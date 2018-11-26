@@ -25,28 +25,24 @@ public class AreaGeografica {
         this.mNomeAreaGeo = mNomeAreaGeo;
     }
 
-    public TipoAreaGeo getmTipoAreaGeo() {
-        return mTipoAreaGeo;
+    @Override
+    public int hashCode() {
+        return 1;
     }
 
-    public void setmTipoAreaGeo(TipoAreaGeo mTipoAreaGeo) {
-        this.mTipoAreaGeo = mTipoAreaGeo;
-    }
-
-    public Localizacao getmLocalizacao() {
-        return mLocalizacao;
-    }
-
-    public void setmLocalizacao(Localizacao mLocalizacao) {
-        this.mLocalizacao = mLocalizacao;
-    }
-
-    public RetanguloArea getmRetanguloArea() {
-        return mRetanguloArea;
-    }
-
-    public void setmRetanguloArea(RetanguloArea mRetanguloArea) {
-        this.mRetanguloArea = mRetanguloArea;
+    @Override
+    public boolean equals (Object obj){
+        if (this == obj){
+            return true;
+        }
+        if (!(obj instanceof AreaGeografica)){
+            return false;
+        }
+        AreaGeografica ag = (AreaGeografica) obj;
+        if (this.mNomeAreaGeo.equals(ag.mNomeAreaGeo)&&this.mTipoAreaGeo.equals(ag.mTipoAreaGeo)&&this.mLocalizacao.equals(ag.mLocalizacao)&&this.mRetanguloArea.equals(ag.mRetanguloArea)){
+            return true;
+        }
+        return false;
     }
 }
 
