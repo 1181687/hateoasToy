@@ -3,6 +3,7 @@ package Sprint_0;
 import java.util.Date;
 import java.util.List;
 
+
 public class Sensor {
     private String mNomeSensor;
     private Date mDataFuncionamento;
@@ -19,5 +20,36 @@ public class Sensor {
 
     public String getmNomeSensor() {
         return mNomeSensor;
+    }
+
+    public Date getmDataFuncionamento() {
+        return mDataFuncionamento;
+    }
+
+    public TipoSensor getmTipoSensor() {
+        return mTipoSensor;
+    }
+
+    public Localizacao getmLocalizacao() {
+        return mLocalizacao;
+    }
+
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Sensor)) {
+            return false;
+        }
+        Sensor c = (Sensor) o;
+        if (this.getmNomeSensor().equals(c.getmNomeSensor())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int hashCode(){
+        return 1;
     }
 }
