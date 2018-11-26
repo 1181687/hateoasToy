@@ -3,6 +3,7 @@ package Sprint_0;
 import java.util.Date;
 import java.util.List;
 
+
 public class Sensor {
     private String mNomeSensor;
     private Date mDataFuncionamento;
@@ -10,43 +11,45 @@ public class Sensor {
     private TipoSensor mTipoSensor;
     private Localizacao mLocalizacao;
 
-    public String getmNomeSensor() {
-        return mNomeSensor;
+    public Sensor(String mNomeSensor, Date mDataFuncionamento, TipoSensor mTipoSensor, Localizacao mLocalizacao) {
+        this.mNomeSensor = mNomeSensor;
+        this.mDataFuncionamento = mDataFuncionamento;
+        this.mTipoSensor = mTipoSensor;
+        this.mLocalizacao = mLocalizacao;
     }
 
-    public void setmNomeSensor(String mNomeSensor) {
-        this.mNomeSensor = mNomeSensor;
+    public String getmNomeSensor() {
+        return mNomeSensor;
     }
 
     public Date getmDataFuncionamento() {
         return mDataFuncionamento;
     }
 
-    public void setmDataFuncionamento(Date mDataFuncionamento) {
-        this.mDataFuncionamento = mDataFuncionamento;
-    }
-
-    public List<Medicao> getmRegistos() {
-        return mRegistos;
-    }
-
-    public void setmRegistos(List<Medicao> mRegistos) {
-        this.mRegistos = mRegistos;
-    }
-
     public TipoSensor getmTipoSensor() {
         return mTipoSensor;
-    }
-
-    public void setmTipoSensor(TipoSensor mTipoSensor) {
-        this.mTipoSensor = mTipoSensor;
     }
 
     public Localizacao getmLocalizacao() {
         return mLocalizacao;
     }
 
-    public void setmLocalizacao(Localizacao mLocalizacao) {
-        this.mLocalizacao = mLocalizacao;
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Sensor)) {
+            return false;
+        }
+        Sensor c = (Sensor) o;
+        if (this.getmNomeSensor().equals(c.getmNomeSensor())) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public int hashCode(){
+        return 1;
     }
 }
