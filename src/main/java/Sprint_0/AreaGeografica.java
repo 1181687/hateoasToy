@@ -1,6 +1,7 @@
 package Sprint_0;
 import java.util.List;
 
+// Atributos da classe AreaGeografica
 public class AreaGeografica {
     private String mNomeAreaGeo;
     private TipoAreaGeo mTipoAreaGeo;
@@ -9,6 +10,8 @@ public class AreaGeografica {
     private RetanguloArea mRetanguloArea;
     private List<Sensor> mListaSensor;
 
+
+    // Construtor com todos os atributos
     public AreaGeografica(String mNomeAreaGeo, TipoAreaGeo mTipoAreaGeo, AreaGeografica mAreaInserida, Localizacao mLocalizacao, RetanguloArea mRetanguloArea, List<Sensor> mListaSensor) {
         this.mNomeAreaGeo = mNomeAreaGeo;
         this.mTipoAreaGeo = mTipoAreaGeo;
@@ -17,4 +20,5 @@ public class AreaGeografica {
         this.mRetanguloArea = mRetanguloArea;
         this.mListaSensor = mListaSensor;
     }
+
 }
