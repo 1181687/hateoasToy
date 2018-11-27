@@ -4,9 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.*;
 
 
 class SensorTest {
@@ -106,5 +104,45 @@ class SensorTest {
         //Assert
         assertEquals(expectedResult, result, 0.0001);
 
+    }
+
+    @Test
+    void testarRegistoDeMedicao() {
+        //Arrange
+        Calendar calendario = new GregorianCalendar(1991, 11, 2,15,20,00);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+
+        Medicao medicao = new Medicao(20, dataFuncionamento);
+        s1.adicionarMedicaoALista(medicao);
+
+        Medicao expectedResult = medicao;
+
+        //Act
+        Medicao result = s1.getUltimoResultado();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    @Test
+    void testarListaDeMedicoesVazia() {
+        //Arrange
+        Calendar calendario = new GregorianCalendar(1991, 11, 2,15,20,00);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+
+        Medicao expectedResult = null;
+
+        //Act
+        Medicao result = s1.getUltimoResultado();
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 }

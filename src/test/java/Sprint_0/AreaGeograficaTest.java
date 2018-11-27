@@ -70,7 +70,7 @@ class AreaGeograficaTest {
         //assert
         assertEquals(expectedResult, result);
     }
-/*
+
     @Test
     public void testarDistanciaLinearDuasAreas() {
         // arrange
@@ -87,10 +87,9 @@ class AreaGeograficaTest {
         double expectedResult = 11.8843;
 
         // act
-        double resultado =
+        double resultado = ag1.distanciaLinearDuasAreas(ag2);
 
                 //assert
         assertEquals (expectedResult,resultado, 0.0001);
     }
-    */
 }

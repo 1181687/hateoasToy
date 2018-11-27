@@ -1,5 +1,6 @@
 package Sprint_0;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.Semaphore;
@@ -8,7 +9,7 @@ import java.util.concurrent.Semaphore;
 public class Sensor {
     private String mNomeSensor;
     private Date mDataFuncionamento;
-    private List<Medicao> mRegistos;
+    private List<Medicao> mRegistos = new ArrayList<>();
     private TipoSensor mTipoSensor;
     private Localizacao mLocalizacao;
 
@@ -60,5 +61,58 @@ public class Sensor {
     }
 
 
+
+
+// determinar temperatura/pluviosidade/humidade/vento/visibilidade média mínima mensal num dispositivo/sensor;
+
+    /*
+    public double getMediaMinimaMes(Date data) {
+
+    }
+
+    public double getMediaMaximaMes(Date data) {
+
+    }
+*/
+    public double getMenorRegistoDia(Date dia) {
+
+        List<Double> registosDoDia = new ArrayList<>();
+
+        for (Medicao registo : mRegistos) {
+            if (registo.getmDataHora().equals(dia)) {
+                registosDoDia.add(registo.getmValor());
+            }
+        }
+        double menorRegistoDia = registosDoDia.get(0);
+        for (int i = 1; i < registosDoDia.size(); i++) {
+            if (menorRegistoDia > registosDoDia.get(i)) {
+                menorRegistoDia = registosDoDia.get(i);
+            }
+        }
+        return menorRegistoDia;
+    }
+
+/*
+    public double getMaiorTemperaturaDia(Date dia) {
+
+
+    }
+*/
+
+
+    public void adicionarMedicaoALista(Medicao medicao) {
+        mRegistos.add(medicao);
+    }
+
+    public List<Medicao> getmRegistos() {
+        return mRegistos;
+    }
+
+    public Medicao getUltimoResultado(){
+        if(mRegistos.isEmpty()){
+            return null;
+        }
+        return mRegistos.get(mRegistos.size()-1);
+    }
 
 }
