@@ -87,7 +87,7 @@ class AreaGeograficaTest {
         double expectedResult = 11.8843;
 
         // act
-        double resultado = ag1.distanciaLinearDuasAreas(ag1,ag2);
+        double resultado = ag1.distanciaLinearDuasAreas(ag2);
 
                 //assert
         assertEquals (expectedResult,resultado, 0.0001);

@@ -15,7 +15,7 @@ public class LocalizacaoTest {
         double expectedResult = 11.8843;
 
         // act
-        double resultado = local1.distanciaDuasLocalizacoes (local1, local2);
+        double resultado = local1.distanciaDuasLocalizacoes (local2);
 
                 //assert
         assertEquals (expectedResult,resultado, 0.0001);

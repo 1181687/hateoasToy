@@ -45,10 +45,9 @@ public class AreaGeografica {
         return false;
     }
 
-    public double distanciaLinearDuasAreas (AreaGeografica ag1, AreaGeografica ag2) {
-        return ag1.mLocalizacao.distanciaDuasLocalizacoes(ag1.mLocalizacao,ag2.mLocalizacao);
+    public double distanciaLinearDuasAreas(AreaGeografica novoAg) {
+        return this.mLocalizacao.distanciaDuasLocalizacoes(novoAg.mLocalizacao);
     }
-
 
 }
 
