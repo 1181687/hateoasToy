@@ -8,7 +8,7 @@ import java.util.List;
 public class Sensor {
     private String mNomeSensor;
     private Date mDataFuncionamento;
-    private List<Medicao> mRegistos;
+    private List<Medicao> mRegistos = new ArrayList<>();
     private TipoSensor mTipoSensor;
     private Localizacao mLocalizacao;
 
@@ -35,15 +35,15 @@ public class Sensor {
         return mLocalizacao;
     }
 
-    public boolean equals(Object o) {
-        if (this == o) {
+    public boolean equals(Object objeto) {
+        if (this == objeto) {
             return true;
         }
-        if (!(o instanceof Sensor)) {
+        if (!(objeto instanceof Sensor)) {
             return false;
         }
-        Sensor c = (Sensor) o;
-        if (this.getmNomeSensor().equals(c.getmNomeSensor())) {
+        Sensor sensor = (Sensor) objeto;
+        if (this.mNomeSensor.equals(sensor.mNomeSensor) && this.mTipoSensor.equals(sensor.mTipoSensor) && this.mLocalizacao.equals(sensor.mLocalizacao)) {
             return true;
         } else {
             return false;
@@ -52,6 +52,17 @@ public class Sensor {
 
     public int hashCode() {
         return 1;
+    }
+
+    public List<Medicao> getmRegistos() {
+        return mRegistos;
+    }
+
+    public Medicao getUltimoResultado(){
+        if(mRegistos.isEmpty()){
+            return null;
+        }
+        return mRegistos.get(mRegistos.size()-1);
     }
 
 
@@ -91,4 +102,9 @@ public class Sensor {
     }
 */
 
+}
+
+    public void adicionarMedicaoALista(Medicao medicao) {
+        mRegistos.add(medicao);
+    }
 }
