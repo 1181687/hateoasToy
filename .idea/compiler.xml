@@ -8,11 +8,13 @@
         <outputRelativeToContentRoot value="true" />
         <module name="project_g3" />
         <module name="smarthome" />
+        <module name="Switch" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Switch" options="-Werror -Xlint:all" />
       <module name="project_g3" options="-Werror -Xlint:all" />
       <module name="smarthome" options="-Werror -Xlint:all" />
     </option>
