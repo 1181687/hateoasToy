@@ -34,4 +34,9 @@ public class Localizacao {
     public void setmAltitude(double mAltitude) {
         this.mAltitude = mAltitude;
     }
+
+    public double distanciaDuasLocalizacoes(Localizacao local1, Localizacao local2) {
+        return Math.hypot((local1.mLatitude - local2.mLatitude), (local1.mLongitude - local2.mLongitude));
+
+    }
 }
