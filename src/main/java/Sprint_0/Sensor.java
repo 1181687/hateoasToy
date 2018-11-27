@@ -54,5 +54,11 @@ public class Sensor {
         return 1;
     }
 
+    public double distanciaLinearEntreDoisSensores (Sensor sensor1, Sensor sensor2){
+
+        return sensor1.mLocalizacao.distanciaDuasLocalizacoes(sensor1.mLocalizacao, sensor2.mLocalizacao);
+    }
+
+
 
 }

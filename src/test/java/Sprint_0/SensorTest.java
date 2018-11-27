@@ -99,9 +99,12 @@ class SensorTest {
         Localizacao locS2 = new Localizacao(300, 425, 100);
         Sensor s2= new Sensor("s2",dataFuncionamento, tipoSensor, locS2);
 
-        double expectedResult;
+        double expectedResult = 194.2395;
 
-        double result;
+        double result = s1.distanciaLinearEntreDoisSensores(s1,s2);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.0001);
 
     }
 }
