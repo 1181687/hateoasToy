@@ -50,21 +50,9 @@ public class Sensor {
         }
     }
 
-    public int hashCode() {
+    public int hashCode(){
         return 1;
     }
-
-    public List<Medicao> getmRegistos() {
-        return mRegistos;
-    }
-
-    public Medicao getUltimoResultado(){
-        if(mRegistos.isEmpty()){
-            return null;
-        }
-        return mRegistos.get(mRegistos.size()-1);
-    }
-
 
 // determinar temperatura/pluviosidade/humidade/vento/visibilidade média mínima mensal num dispositivo/sensor;
 
@@ -102,9 +90,21 @@ public class Sensor {
     }
 */
 
-}
 
     public void adicionarMedicaoALista(Medicao medicao) {
         mRegistos.add(medicao);
+    }
+
+    public List<Medicao> getmRegistos() {
+        return mRegistos;
+    }
+
+    public Medicao getUltimoResultado(){
+        if(mRegistos.isEmpty()){
+            return null;
+        }
+        return mRegistos.get(mRegistos.size()-1);
+    }
+
     }
 }
