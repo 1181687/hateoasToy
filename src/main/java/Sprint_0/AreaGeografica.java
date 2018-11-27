@@ -17,14 +17,6 @@ public class AreaGeografica {
         this.mRetanguloArea = mRetanguloArea;
     }
 
-    public String getmNomeAreaGeo() {
-        return mNomeAreaGeo;
-    }
-
-    public void setmNomeAreaGeo(String mNomeAreaGeo) {
-        this.mNomeAreaGeo = mNomeAreaGeo;
-    }
-
     @Override
     public int hashCode() {
         return 1;
