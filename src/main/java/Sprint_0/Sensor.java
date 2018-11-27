@@ -77,7 +77,7 @@ public class Sensor {
         List<Double> registosDoDia = new ArrayList<>();
 
         for (Medicao registo : mRegistos) {
-            if (registo.getmDataHora().equals(dia)) {
+            if (eMesmoDia(registo.getmDataHora(),dia)) {
                 registosDoDia.add(registo.getmValor());
             }
         }

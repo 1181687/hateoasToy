@@ -1,5 +1,4 @@
 package Sprint_0;
-import sun.jvm.hotspot.utilities.Assert;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -219,6 +218,36 @@ class SensorTest {
 
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testarGetMenorRegistoDia () {
+
+        // Arrange
+        Calendar calendario = new GregorianCalendar(2017, 8, 15);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Date data1 = new GregorianCalendar(2017, 8, 15, 5, 30, 0).getTime();
+        Date data2 = new GregorianCalendar(2017, 8, 15, 6, 00, 0).getTime();
+        Date data3 = new GregorianCalendar(2017, 8, 16, 6, 30, 0).getTime();
+
+        Medicao registo1 = new Medicao (22.5, data1);
+        Medicao registo2 = new Medicao (20.1, data2);
+        Medicao registo3 = new Medicao (21.7, data3);
+
+        double expectedResult = 20.1;
+        Date data = new GregorianCalendar(2017,8,15).getTime();
+        // Act
+        sensor1.adicionarMedicaoALista(registo1);
+        sensor1.adicionarMedicaoALista(registo2);
+        sensor1.adicionarMedicaoALista(registo3);
+
+        double result = sensor1.getMenorRegistoDia(data);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
