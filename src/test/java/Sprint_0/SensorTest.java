@@ -86,4 +86,22 @@ class SensorTest {
         assertEquals(expectedResult, result);
     }
 
+
+    @Test
+    void testarDistanciaLinear(){
+        //Arrange
+        Calendar calendario = new GregorianCalendar(2018, 11, 27);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor s1= new Sensor("s1",dataFuncionamento, tipoSensor, locS1);
+
+        Localizacao locS2 = new Localizacao(300, 425, 100);
+        Sensor s2= new Sensor("s2",dataFuncionamento, tipoSensor, locS2);
+
+        double expectedResult;
+
+        double result;
+
+    }
 }

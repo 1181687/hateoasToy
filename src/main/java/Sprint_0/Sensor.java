@@ -2,6 +2,7 @@ package Sprint_0;
 
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.Semaphore;
 
 
 public class Sensor {
@@ -49,7 +50,9 @@ public class Sensor {
         }
     }
 
-    public int hashCode(){
+    public int hashCode() {
         return 1;
     }
+
+
 }
