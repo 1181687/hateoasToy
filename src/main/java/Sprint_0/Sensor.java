@@ -1,5 +1,6 @@
 package Sprint_0;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -49,7 +50,45 @@ public class Sensor {
         }
     }
 
-    public int hashCode(){
+    public int hashCode() {
         return 1;
     }
+
+
+// determinar temperatura/pluviosidade/humidade/vento/visibilidade média mínima mensal num dispositivo/sensor;
+
+    /*
+    public double getMediaMinimaMes(Date data) {
+
+    }
+
+    public double getMediaMaximaMes(Date data) {
+
+    }
+*/
+    public double getMenorRegistoDia(Date dia) {
+
+        List<Double> registosDoDia = new ArrayList<>();
+
+        for (Medicao registo : mRegistos) {
+            if (registo.getmDataHora().equals(dia)) {
+                registosDoDia.add(registo.getmValor());
+            }
+        }
+        double menorRegistoDia = registosDoDia.get(0);
+        for (int i = 1; i < registosDoDia.size(); i++) {
+            if (menorRegistoDia > registosDoDia.get(i)) {
+                menorRegistoDia = registosDoDia.get(i);
+            }
+        }
+        return menorRegistoDia;
+    }
+
+/*
+    public double getMaiorTemperaturaDia(Date dia) {
+
+
+    }
+*/
+
 }
