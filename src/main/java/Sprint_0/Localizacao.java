@@ -10,4 +10,28 @@ public class Localizacao {
         this.mLongitude = mLongitude;
         this.mAltitude = mAltitude;
     }
+
+    public double getmLatitude() {
+        return mLatitude;
+    }
+
+    public void setmLatitude(double mLatitude) {
+        this.mLatitude = mLatitude;
+    }
+
+    public double getmLongitude() {
+        return mLongitude;
+    }
+
+    public void setmLongitude(double mLongitude) {
+        this.mLongitude = mLongitude;
+    }
+
+    public double getmAltitude() {
+        return mAltitude;
+    }
+
+    public void setmAltitude(double mAltitude) {
+        this.mAltitude = mAltitude;
+    }
 }

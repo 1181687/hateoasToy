@@ -6,4 +6,12 @@ public class TipoAreaGeo {
     public TipoAreaGeo(String mTipoAreaGeo) {
         this.mTipoAreaGeo = mTipoAreaGeo;
     }
+
+    public String getmTipoAreaGeo() {
+        return mTipoAreaGeo;
+    }
+
+    public void setmTipoAreaGeo(String mTipoAreaGeo) {
+        this.mTipoAreaGeo = mTipoAreaGeo;
+    }
 }
