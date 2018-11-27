@@ -106,5 +106,4 @@ public class Sensor {
         return mRegistos.get(mRegistos.size()-1);
     }
 
-    }
 }
