@@ -49,7 +49,7 @@ public class Sensor {
         }
     }
 
-    public int hashCode(){
+    public int hashCode() {
         return 1;
     }
 }
