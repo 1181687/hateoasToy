@@ -3,7 +3,6 @@ package Sprint_0;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.concurrent.Semaphore;
 
 
 public class Sensor {
@@ -60,16 +59,6 @@ public class Sensor {
         return this.mLocalizacao.distanciaDuasLocalizacoes(sensor1.mLocalizacao);
     }
 
-    public List<Medicao> getmRegistos() {
-        return mRegistos;
-    }
-
-    public Medicao getUltimoResultado(){
-        if(mRegistos.isEmpty()){
-            return null;
-        }
-        return mRegistos.get(mRegistos.size()-1);
-    }
 
 // determinar temperatura/pluviosidade/humidade/vento/visibilidade média mínima mensal num dispositivo/sensor;
 
@@ -106,8 +95,21 @@ public class Sensor {
 
     }
 */
+
+
     public void adicionarMedicaoALista(Medicao medicao) {
         mRegistos.add(medicao);
+    }
+
+    public List<Medicao> getmRegistos() {
+        return mRegistos;
+    }
+
+    public Medicao getUltimoRegisto(){
+        if(mRegistos.isEmpty()){
+            return null;
+        }
+        return mRegistos.get(mRegistos.size()-1);
     }
 
 }
