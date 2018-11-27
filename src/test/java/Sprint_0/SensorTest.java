@@ -1,10 +1,10 @@
 package Sprint_0;
-import sun.jvm.hotspot.utilities.Assert;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.util.*;
 
 
@@ -124,5 +124,37 @@ class SensorTest {
 
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testaGetMaiorRegistoDia(){
+        //Arrange
+        Calendar calendario = new GregorianCalendar(1991, 11, 2,15,20,00);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+
+        Date data1 = new GregorianCalendar(2018, 2, 11,5,55).getTime();
+        Date data2 = new GregorianCalendar(2018, 2, 11,6,25).getTime();
+        Date data3 = new GregorianCalendar(2018, 2, 11,7,30).getTime();
+        Date data4 = new GregorianCalendar(2018, 2, 12,6,25).getTime();
+
+        Medicao registo1 = new Medicao(21,data1);
+        Medicao registo2 = new Medicao(25,data2);
+        Medicao registo3 = new Medicao(26,data3);
+        Medicao registo4 = new Medicao(27,data4);
+
+        double expectedResult= 26;
+        Date data = new GregorianCalendar(2018,2,11).getTime();
+
+        sensor1.adicionarMedicaoALista(registo1);
+        sensor1.adicionarMedicaoALista(registo2);
+        sensor1.adicionarMedicaoALista(registo3);
+        sensor1.adicionarMedicaoALista(registo4);
+        //Act
+        double result=sensor1.getMaiorRegistoDia(data);
+        //Assert
+        assertEquals(expectedResult,result,0.001);
     }
 }

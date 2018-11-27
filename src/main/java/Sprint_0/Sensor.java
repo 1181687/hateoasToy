@@ -1,6 +1,7 @@
 package Sprint_0;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -83,21 +84,69 @@ public class Sensor {
         return menorRegistoDia;
     }
 
-/*
-    public double getMaiorTemperaturaDia(Date dia) {
 
+    public double getMaiorRegistoDia(Date dia) {
 
+        List<Double> registosDoDia = new ArrayList<>();
+
+        for (Medicao registo : this.mRegistos) {
+            if (eMesmoDia(registo.getmDataHora(),dia)) {
+                registosDoDia.add(registo.getmValor());
+            }
+        }
+        double maiorRegistoDia = registosDoDia.get(0);
+
+        for (int i = 1; i < registosDoDia.size(); i++) {
+            if (maiorRegistoDia < registosDoDia.get(i)) {
+                maiorRegistoDia = registosDoDia.get(i);
+            }
+        }
+        return maiorRegistoDia;
     }
-*/
+
+    public boolean eMesmoDia(Date data1, Date data2){
+
+        Calendar calendario1 = Calendar.getInstance();
+        calendario1.setTime(data1);
+        int dia1 = calendario1.get(Calendar.DAY_OF_MONTH);
+        int mes1 = calendario1.get(Calendar.MONTH);
+        int ano1 = calendario1.get(Calendar.YEAR);
+
+        Calendar calendario2 = Calendar.getInstance();
+        calendario2.setTime(data2);
+        int dia2 = calendario2.get(Calendar.DAY_OF_MONTH);
+        int mes2 = calendario2.get(Calendar.MONTH);
+        int ano2 = calendario2.get(Calendar.YEAR);
+
+        if (dia1 == dia2 && mes1 == mes2 && ano1 == ano2) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean eMesmoMes(Date data1, Date data2){
+
+        Calendar calendario1 = Calendar.getInstance();
+        calendario1.setTime(data1);
+        int mes1 = calendario1.get(Calendar.MONTH);
+        int ano1 = calendario1.get(Calendar.YEAR);
+
+        Calendar calendario2 = Calendar.getInstance();
+        calendario2.setTime(data2);
+        int mes2 = calendario2.get(Calendar.MONTH);
+        int ano2 = calendario2.get(Calendar.YEAR);
+
+        if (mes1 == mes2 && ano1 == ano2) {
+            return true;
+        }
+        return false;
+    }
 
 
     public void adicionarMedicaoALista(Medicao medicao) {
         mRegistos.add(medicao);
     }
 
-    public List<Medicao> getmRegistos() {
-        return mRegistos;
-    }
 
     public Medicao getUltimoResultado(){
         if(mRegistos.isEmpty()){
