@@ -99,7 +99,7 @@ public class Sensor {
         return mRegistos;
     }
 
-    public Medicao getUltimoResultado(){
+    public Medicao getUltimoRegisto(){
         if(mRegistos.isEmpty()){
             return null;
         }
