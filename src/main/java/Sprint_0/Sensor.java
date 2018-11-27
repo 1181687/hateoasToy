@@ -43,7 +43,7 @@ public class Sensor {
             return false;
         }
         Sensor sensor = (Sensor) objeto;
-        if (this.mNomeSensor.equals(sensor.mNomeSensor) && this.mTipoSensor.equals(sensor.mTipoSensor) && this.mLocalizacao.equals(sensor.mLocalizacao)) {
+        if (this.mNomeSensor.equals(sensor.mNomeSensor) && this.mDataFuncionamento.equals(sensor.mDataFuncionamento) && this.mTipoSensor.equals(sensor.mTipoSensor) && this.mLocalizacao.equals(sensor.mLocalizacao)) {
             return true;
         } else {
             return false;
@@ -111,5 +111,6 @@ public class Sensor {
         }
         return mRegistos.get(mRegistos.size()-1);
     }
+
 
 }

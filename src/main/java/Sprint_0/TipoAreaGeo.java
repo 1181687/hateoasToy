@@ -7,11 +7,4 @@ public class TipoAreaGeo {
         this.mTipoAreaGeo = mTipoAreaGeo;
     }
 
-    public String getmTipoAreaGeo() {
-        return mTipoAreaGeo;
-    }
-
-    public void setmTipoAreaGeo(String mTipoAreaGeo) {
-        this.mTipoAreaGeo = mTipoAreaGeo;
-    }
 }

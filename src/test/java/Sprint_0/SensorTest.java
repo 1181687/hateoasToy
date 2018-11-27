@@ -70,6 +70,49 @@ class SensorTest {
     }
 
     @Test
+    void testarEqualsSame () {
+        //Arrange
+        Calendar calendario = new GregorianCalendar(1991, 11, 2);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        boolean expectedResult = true;
+        //Act
+        boolean result = s1.equals(s1);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+    @Test
+    void testarEqualsFalse () {
+        //Arrange
+        Calendar calendario = new GregorianCalendar(1991, 11, 2);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        boolean expectedResult = false;
+        //Act
+        boolean result = s1.equals(tipoSensor);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+    @Test
+    void testarEqualsNomeSensorDiferente () {
+        //Arrange
+        Calendar calendario = new GregorianCalendar(1991, 11, 2);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor s2 = new Sensor("A200", dataFuncionamento, tipoSensor, locS1);
+        boolean expectedResult = false;
+        //Act
+        boolean result = s1.equals(s2);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+    @Test
     void testaConstrutorSensorLocalizacao() {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
@@ -83,6 +126,8 @@ class SensorTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+
 
 
     @Test
