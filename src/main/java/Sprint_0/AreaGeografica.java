@@ -17,14 +17,6 @@ public class AreaGeografica {
         this.mRetanguloArea = mRetanguloArea;
     }
 
-    public String getmNomeAreaGeo() {
-        return mNomeAreaGeo;
-    }
-
-    public void setmNomeAreaGeo(String mNomeAreaGeo) {
-        this.mNomeAreaGeo = mNomeAreaGeo;
-    }
-
     @Override
     public int hashCode() {
         return 1;
@@ -45,10 +37,9 @@ public class AreaGeografica {
         return false;
     }
 
-    public double distanciaLinearDuasAreas (AreaGeografica ag1, AreaGeografica ag2) {
-        return ag1.mLocalizacao.distanciaDuasLocalizacoes(ag1.mLocalizacao,ag2.mLocalizacao);
+    public double distanciaLinearDuasAreas(AreaGeografica novoAg) {
+        return this.mLocalizacao.distanciaDuasLocalizacoes(novoAg.mLocalizacao);
     }
-
 
 }
 

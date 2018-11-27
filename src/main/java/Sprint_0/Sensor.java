@@ -44,7 +44,7 @@ public class Sensor {
             return false;
         }
         Sensor sensor = (Sensor) objeto;
-        if (this.mNomeSensor.equals(sensor.mNomeSensor) && this.mTipoSensor.equals(sensor.mTipoSensor) && this.mLocalizacao.equals(sensor.mLocalizacao)) {
+        if (this.mNomeSensor.equals(sensor.mNomeSensor) && this.mDataFuncionamento.equals(sensor.mDataFuncionamento) && this.mTipoSensor.equals(sensor.mTipoSensor) && this.mLocalizacao.equals(sensor.mLocalizacao)) {
             return true;
         } else {
             return false;
@@ -54,6 +54,12 @@ public class Sensor {
     public int hashCode() {
         return 1;
     }
+
+    public double distanciaLinearEntreDoisSensores (Sensor sensor1){
+
+        return this.mLocalizacao.distanciaDuasLocalizacoes(sensor1.mLocalizacao);
+    }
+
 
 // determinar temperatura/pluviosidade/humidade/vento/visibilidade média mínima mensal num dispositivo/sensor;
 
@@ -148,11 +154,12 @@ public class Sensor {
     }
 
 
-    public Medicao getUltimoResultado(){
+    public Medicao getUltimoRegisto(){
         if(mRegistos.isEmpty()){
             return null;
         }
         return mRegistos.get(mRegistos.size()-1);
     }
+
 
 }

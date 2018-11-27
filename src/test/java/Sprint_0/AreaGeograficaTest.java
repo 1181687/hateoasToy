@@ -6,20 +6,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AreaGeograficaTest {
 
-
     @Test
-    public void testarConstrutorNome() {
+    public void testarEqualsSame() {
         //arrange
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
         RetanguloArea area = new RetanguloArea(10, 4);
-        AreaGeografica ag = new AreaGeografica(nomeAG, tipo, local, area);
-        ag.setmNomeAreaGeo("Braga");
-        String expectedResult = "Braga";
+        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
+        boolean expectedResult = true;
         //act
-        String result = ag.getmNomeAreaGeo();
-        //assert
+        boolean result = ag1.equals(ag1);
         assertEquals(expectedResult, result);
     }
 
@@ -87,9 +84,10 @@ class AreaGeograficaTest {
         double expectedResult = 11.8843;
 
         // act
-        double resultado = ag1.distanciaLinearDuasAreas(ag1,ag2);
+        double resultado = ag1.distanciaLinearDuasAreas(ag2);
 
                 //assert
         assertEquals (expectedResult,resultado, 0.0001);
     }
+
 }
