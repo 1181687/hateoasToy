@@ -1,5 +1,6 @@
 package Sprint_0;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -7,7 +8,7 @@ import java.util.List;
 public class Sensor {
     private String mNomeSensor;
     private Date mDataFuncionamento;
-    private List<Medicao> mRegistos;
+    private List<Medicao> mRegistos = new ArrayList<>();
     private TipoSensor mTipoSensor;
     private Localizacao mLocalizacao;
 
@@ -49,7 +50,22 @@ public class Sensor {
         }
     }
 
-    public int hashCode(){
+    public int hashCode() {
         return 1;
+    }
+
+    public List<Medicao> getmRegistos() {
+        return mRegistos;
+    }
+
+    public Medicao getUltimoResultado(){
+        if(mRegistos.isEmpty()){
+            return null;
+        }
+        return mRegistos.get(mRegistos.size()-1);
+    }
+
+    public void adicionarMedicaoALista(Medicao medicao) {
+        mRegistos.add(medicao);
     }
 }
