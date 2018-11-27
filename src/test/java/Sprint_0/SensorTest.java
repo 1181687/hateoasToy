@@ -99,7 +99,7 @@ class SensorTest {
 
         double expectedResult = 194.2395;
 
-        double result = s1.distanciaLinearEntreDoisSensores(s1,s2);
+        double result = s1.distanciaLinearEntreDoisSensores(s2);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);

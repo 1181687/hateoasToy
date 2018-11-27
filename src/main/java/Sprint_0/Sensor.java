@@ -55,9 +55,9 @@ public class Sensor {
         return 1;
     }
 
-    public double distanciaLinearEntreDoisSensores (Sensor sensor1, Sensor sensor2){
+    public double distanciaLinearEntreDoisSensores (Sensor sensor1){
 
-        return sensor1.mLocalizacao.distanciaDuasLocalizacoes(sensor1.mLocalizacao, sensor2.mLocalizacao);
+        return this.mLocalizacao.distanciaDuasLocalizacoes(sensor1.mLocalizacao);
     }
 
     public List<Medicao> getmRegistos() {
@@ -71,7 +71,43 @@ public class Sensor {
         return mRegistos.get(mRegistos.size()-1);
     }
 
+// determinar temperatura/pluviosidade/humidade/vento/visibilidade média mínima mensal num dispositivo/sensor;
+
+    /*
+    public double getMediaMinimaMes(Date data) {
+
+    }
+
+    public double getMediaMaximaMes(Date data) {
+
+    }
+*/
+    public double getMenorRegistoDia(Date dia) {
+
+        List<Double> registosDoDia = new ArrayList<>();
+
+        for (Medicao registo : mRegistos) {
+            if (registo.getmDataHora().equals(dia)) {
+                registosDoDia.add(registo.getmValor());
+            }
+        }
+        double menorRegistoDia = registosDoDia.get(0);
+        for (int i = 1; i < registosDoDia.size(); i++) {
+            if (menorRegistoDia > registosDoDia.get(i)) {
+                menorRegistoDia = registosDoDia.get(i);
+            }
+        }
+        return menorRegistoDia;
+    }
+
+/*
+    public double getMaiorTemperaturaDia(Date dia) {
+
+
+    }
+*/
     public void adicionarMedicaoALista(Medicao medicao) {
         mRegistos.add(medicao);
     }
+
 }
