@@ -50,9 +50,15 @@ public class Sensor {
         }
     }
 
-    public int hashCode(){
+    public int hashCode() {
         return 1;
     }
+
+    public double distanciaLinearEntreDoisSensores (Sensor sensor1){
+
+        return this.mLocalizacao.distanciaDuasLocalizacoes(sensor1.mLocalizacao);
+    }
+
 
 // determinar temperatura/pluviosidade/humidade/vento/visibilidade média mínima mensal num dispositivo/sensor;
 
