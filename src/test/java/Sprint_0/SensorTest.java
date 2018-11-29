@@ -238,13 +238,14 @@ class SensorTest {
         Medicao registo3 = new Medicao (21.7, data3);
 
         double expectedResult = 20.1;
-        Date data = new GregorianCalendar(2017,8,15).getTime();
+        Date inicioDoMes = new GregorianCalendar(2017,8,1).getTime();
+        Date finalDoMes = new GregorianCalendar(2017,8,31).getTime();
         // Act
         sensor1.adicionarMedicaoALista(registo1);
         sensor1.adicionarMedicaoALista(registo2);
         sensor1.adicionarMedicaoALista(registo3);
 
-        double result = sensor1.getMenorRegistoDia(data);
+        double result = sensor1.getMenorRegistoDoMes(inicioDoMes,finalDoMes);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
