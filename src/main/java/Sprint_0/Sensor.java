@@ -86,6 +86,21 @@ public class Sensor {
         return menorRegisto;
     }
 
+    public double getMaiorRegistoDoMes(Date primeiroDiaMes, Date ultimoDiaMes) {
+
+        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
+        double maiorRegisto = registosEntreDatas.get(0);
+
+        for (int i = 1; i < registosEntreDatas.size(); i++) {
+            if (maiorRegisto < registosEntreDatas.get(i)) {
+                maiorRegisto = registosEntreDatas.get(i);
+            }
+        }
+        return maiorRegisto;
+    }
+
+
+
 
 
     public void adicionarMedicaoALista(Medicao medicao) {
