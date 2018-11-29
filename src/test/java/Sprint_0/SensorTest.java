@@ -251,7 +251,7 @@ class SensorTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @Test
+  /*  @Test
     void testaGetMaiorRegistoDia(){
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2,15,20,00);
@@ -281,5 +281,5 @@ class SensorTest {
         double result=sensor1.getMaiorRegistoDia(data);
         //Assert
         assertEquals(expectedResult,result,0.001);
-    }
+    }*/
 }
