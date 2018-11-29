@@ -1,10 +1,13 @@
 package Sprint_0;
 
 public class TipoSensor {
-    private String mTipoSensor;
+    private String mTipo;
 
     public TipoSensor(String mTipoSensor) {
-        this.mTipoSensor = mTipoSensor;
+        this.mTipo = mTipoSensor;
     }
 
+    public String getmTipo() {
+        return mTipo;
+    }
 }
