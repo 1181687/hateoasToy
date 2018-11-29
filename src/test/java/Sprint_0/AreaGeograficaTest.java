@@ -77,13 +77,13 @@ class AreaGeograficaTest {
         String nomeAG2 = "Funchal";
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
         TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
-        Localizacao local1 = new Localizacao(41.1496, -8.6109, 0);
-        Localizacao local2 = new Localizacao(32.6333, -16.9, 0);
+        Localizacao local1 = new Localizacao(41.1496, 10.6109, 50);
+        Localizacao local2 = new Localizacao(32.6333, 16.9, 20);
         RetanguloArea area1 = new RetanguloArea(10, 4);
         RetanguloArea area2 = new RetanguloArea(10, 4);
         AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
         AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
-        double expectedResult = 11.8843;
+        double expectedResult = 1099043.7203;
 
         // act
         double resultado = ag1.distanciaLinearDuasAreas(ag2);
