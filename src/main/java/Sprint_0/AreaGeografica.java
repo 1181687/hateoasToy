@@ -38,8 +38,12 @@ public class AreaGeografica {
         return false;
     }
 
+    public Localizacao getmLocalizacao() {
+        return this.mLocalizacao;
+    }
+
     public double distanciaLinearDuasAreas(AreaGeografica novoAg) {
-        return this.mLocalizacao.distanciaDuasLocalizacoes(novoAg.mLocalizacao);
+        return this.mLocalizacao.distanciaDuasLocalizacoes(novoAg.getmLocalizacao());
     }
 
     public void adicionarSensorAListaDeSensores(Sensor sensor) {

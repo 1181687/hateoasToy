@@ -66,7 +66,7 @@ public class Sensor {
         List<Double> registosEntreDatas = new ArrayList<>();
 
         for (Medicao registo : mRegistos) {
-            if (registo.getmDataHora().after(dataInicial)&&registo.getmDataHora().before(dataFinal)) {
+            if (registo.getmDataHora().after(dataInicial) && registo.getmDataHora().before(dataFinal)) {
                 registosEntreDatas.add(registo.getmValor());
             }
         }
@@ -75,7 +75,7 @@ public class Sensor {
 
     public double getMenorRegistoDoMes(Date primeiroDiaMes, Date ultimoDiaMes) {
 
-        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes,ultimoDiaMes);
+        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
         double menorRegisto = registosEntreDatas.get(0);
 
         for (int i = 1; i < registosEntreDatas.size(); i++) {
@@ -86,6 +86,32 @@ public class Sensor {
         return menorRegisto;
     }
 
+    public double getMaiorRegistoDoMes(Date primeiroDiaMes, Date ultimoDiaMes) {
+
+        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
+        double maiorRegisto = registosEntreDatas.get(0);
+
+        for (int i = 1; i < registosEntreDatas.size(); i++) {
+            if (maiorRegisto < registosEntreDatas.get(i)) {
+                maiorRegisto = registosEntreDatas.get(i);
+            }
+        }
+        return maiorRegisto;
+    }
+
+    public double getRegistoMediaMes(Date primeiroDiaMes, Date ultimoDiaMes) {
+
+        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
+
+        double numeroDeRegistos = registosEntreDatas.size();
+        double somaRegistos = 0;
+
+        for (Double registo : registosEntreDatas) {
+
+            somaRegistos += registo;
+        }
+        return somaRegistos / numeroDeRegistos;
+    }
 
 
     public void adicionarMedicaoALista(Medicao medicao) {
