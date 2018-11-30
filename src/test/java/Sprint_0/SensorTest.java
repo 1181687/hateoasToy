@@ -83,6 +83,22 @@ class SensorTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    void testarHashCode () {
+        // Arrange
+        Calendar calendario = new GregorianCalendar(1991, 11, 2);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        int expectedResult = 1;
+        // Act
+        int result = s1.hashCode();
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
     @Test
     void testarEqualsFalse () {
         //Arrange
