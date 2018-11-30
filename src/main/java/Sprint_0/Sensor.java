@@ -126,6 +126,14 @@ public class Sensor {
         return mRegistos.get(mRegistos.size() - 1);
     }
 
+    public boolean umTipoDeSensorEIgualAOutro(TipoSensor tipo){
+        String tipoDoSensorPedido = tipo.getmTipo();
+        if (this.getmTipoSensor().getmTipo().equals(tipoDoSensorPedido)) {
+            return true;
+        }
+        return false;
+    }
+
 
 
 

@@ -319,4 +319,34 @@ class SensorTest {
         assertEquals(expectedResult,result,0.001);
     }
 
+    @Test
+    public void testarSeUmSensorTemOTipoPedido(){
+        //Arrange
+        Calendar calendario = new GregorianCalendar(1991, 11, 2,15,20,00);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        TipoSensor tipoPedido = new TipoSensor("Temperatura");
+        //Act
+        boolean resultado = sensor1.umTipoDeSensorEIgualAOutro(tipoPedido);
+        //Assert
+        assertTrue(resultado);
+    }
+
+    @Test
+    public void testarSeUmSensorNaoTemOTipoPedido(){
+        //Arrange
+        Calendar calendario = new GregorianCalendar(1991, 11, 2,15,20,00);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        TipoSensor tipoPedido = new TipoSensor("Humidade");
+        //Act
+        boolean resultado = sensor1.umTipoDeSensorEIgualAOutro(tipoPedido);
+        //Assert
+        assertFalse(resultado);
+    }
+
 }
