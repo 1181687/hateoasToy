@@ -7,9 +7,9 @@ public class Localizacao {      //graus decimais
     private double mAltitude;
 
     public Localizacao(double mLatitude, double mLongitude, double mAltitude) {
-        this.mLatitude = mLatitude;
-        this.mLongitude = mLongitude;
-        this.mAltitude = mAltitude;
+        setmLatitude(mLatitude);
+        setmLongitude(mLongitude);
+        this.mAltitude=mAltitude;
     }
 
     public double getmLatitude() {
@@ -17,7 +17,10 @@ public class Localizacao {      //graus decimais
     }
 
     public void setmLatitude(double mLatitude) {
-        this.mLatitude = mLatitude;
+        if (mLatitude<-90||mLatitude>90){
+            this.mLatitude=Double.NaN;
+        }
+        else this.mLatitude = mLatitude;
     }
 
     public double getmLongitude() {
@@ -25,15 +28,14 @@ public class Localizacao {      //graus decimais
     }
 
     public void setmLongitude(double mLongitude) {
-        this.mLongitude = mLongitude;
+        if (mLongitude<-180||mLongitude>180){
+            this.mLongitude=Double.NaN;
+        }
+        else this.mLongitude = mLongitude;
     }
 
     public double getmAltitude() {
         return mAltitude;
-    }
-
-    public void setmAltitude(double mAltitude) {
-        this.mAltitude = mAltitude;
     }
 
 
@@ -42,19 +44,20 @@ public class Localizacao {      //graus decimais
         final int R = 6371; // raio da Terra
         double lonNovoLocal = novoLocal.getmLongitude();
         double altNovoLocal = novoLocal.getmAltitude();
+        double latNovoLocal = novoLocal.getmLatitude();
 
         double distEntreLon = Math.toRadians(lonNovoLocal - this.mLongitude);
 
-        double distEntreLocais = Math.acos(Math.cos(Math.toRadians(this.mLatitude))*Math.cos(Math.toRadians(novoLocal.getmLatitude()))
-                *Math.cos(distEntreLon)+Math.sin(Math.toRadians(this.mLatitude))*Math.sin(Math.toRadians(novoLocal.getmLatitude())));
+        double distEntreLocais = Math.acos(Math.cos(Math.toRadians(this.mLatitude))*Math.cos(Math.toRadians(latNovoLocal))
+                *Math.cos(distEntreLon)+Math.sin(Math.toRadians(this.mLatitude))*Math.sin(Math.toRadians(latNovoLocal)));
 
 
-        double distancia = R * distEntreLocais*1000; // convert to km
+        double distanciaKm = R * distEntreLocais*1000; // convert to km
 
         double altura = this.mAltitude - altNovoLocal;
 
 
-        return Math.hypot(distancia, altura);
+        return Math.hypot(distanciaKm, altura);
 
     }
 }
