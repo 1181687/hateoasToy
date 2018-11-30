@@ -99,4 +99,76 @@ public class LocalizacaoTest {
         //assert
         assertEquals(expectedResult,result,0.001);
     }
+    @Test
+    void testarEqualsSameObjectTrue (){
+        //Arrange
+        double latitude = 41.1496;
+        double longitude = -8.6109;
+        double altitude = 97;
+        Localizacao local1 = new Localizacao(latitude, longitude, altitude);
+        boolean expectedResult = true;
+        //Act
+        boolean result = local1.equals(local1);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+    @Test
+    void testarEqualsTwoEqualObjects (){
+        //Arrange
+        double latitude = 41.1496;
+        double longitude = -8.6109;
+        double altitude = 97;
+        Localizacao local1 = new Localizacao(latitude, longitude, altitude);
+
+        double latitude2 = 41.1496;
+        double longitude2 = -8.6109;
+        double altitude2 = 97;
+        Localizacao local2 = new Localizacao(latitude2, longitude2, altitude2);
+
+        boolean expectedResult = true;
+        //Act
+        boolean result = local1.equals(local2);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+    @Test
+    void testarEqualsTwoDifferentObjects (){
+        //Arrange
+        double latitude = 41.1496;
+        double longitude = -8.6109;
+        double altitude = 97;
+        Localizacao local1 = new Localizacao(latitude, longitude, altitude);
+
+        double latitude2 = 41.1496;
+        double longitude2 = -8.6109;
+        double altitude2 = 100;
+        Localizacao local2 = new Localizacao(latitude2, longitude2, altitude2);
+
+        boolean expectedResult = false;
+        //Act
+        boolean result = local1.equals(local2);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+    @Test
+    void testarEqualsTwoDifferentObjectsAgain (){
+        //Arrange
+        String nomeAG = "Porto";
+        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
+        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area = new RetanguloArea(10, 4);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
+
+        double latitude2 = 41.1496;
+        double longitude2 = -8.6109;
+        double altitude2 = 97;
+        Localizacao local2 = new Localizacao(latitude2, longitude2, altitude2);
+
+        boolean expectedResult = false;
+        //Act
+        boolean result = local2.equals(ag1);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
 }

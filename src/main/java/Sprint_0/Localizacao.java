@@ -58,6 +58,26 @@ public class Localizacao {      //graus decimais
 
 
         return Math.hypot(distanciaKm, altura);
+    }
 
+    @Override
+    public int hashCode() {
+        return 1;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Localizacao)) {
+            return false;
+        }
+
+        Localizacao local = (Localizacao) obj;
+        if (this.mLatitude==local.mLatitude && this.mLongitude==local.mLongitude && this.mAltitude==local.mAltitude) {
+            return true;
+        }
+        return false;
     }
 }
