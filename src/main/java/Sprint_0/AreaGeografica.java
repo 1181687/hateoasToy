@@ -53,10 +53,7 @@ public class AreaGeografica {
     public List<Medicao> getListaDeUltimosRegistosPorTipoDeSensor(TipoSensor tipo) {
         List<Medicao> listaDeUltimosRegistos = new ArrayList<>();
         for (Sensor sensor : mListaSensor) {
-            if (sensor.umTipoDeSensorEIgualAOutro(tipo)){
-                if(sensor.getUltimoRegisto()==null){
-                    break;
-                }
+            if (sensor.umTipoDeSensorEIgualAOutro(tipo) && sensor.getUltimoRegisto()!=null){
                 listaDeUltimosRegistos.add(sensor.getUltimoRegisto());
             }
         }
