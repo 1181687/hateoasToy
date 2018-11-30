@@ -52,9 +52,11 @@ public class AreaGeografica {
 
     public List<Medicao> getListaDeUltimosRegistosPorTipoDeSensor(TipoSensor tipo) {
         List<Medicao> listaDeUltimosRegistos = new ArrayList<>();
-        String tipoDeSensorPedido = tipo.getmTipo();
         for (Sensor sensor : mListaSensor) {
-            if ((tipoDeSensorPedido).equals(sensor.getmTipoSensor().getmTipo())) {
+            if (sensor.umTipoDeSensorEIgualAOutro(tipo)){
+                if(sensor.getUltimoRegisto()==null){
+                    break;
+                }
                 listaDeUltimosRegistos.add(sensor.getUltimoRegisto());
             }
         }
@@ -66,6 +68,9 @@ public class AreaGeografica {
 
     public double getUltimoRegistoDeUmTipoDeSensor(TipoSensor tipo){
         List<Medicao> listaDeUltimosRegisto=getListaDeUltimosRegistosPorTipoDeSensor(tipo);
+        if(getListaDeUltimosRegistosPorTipoDeSensor(tipo)==null){
+            return Double.NaN;
+        }
         Medicao medicaoComUltimoRegisto = listaDeUltimosRegisto.get(0);
         for (Medicao registo:listaDeUltimosRegisto){
             if(registo.getmDataHora().after(medicaoComUltimoRegisto.getmDataHora())){
@@ -73,7 +78,6 @@ public class AreaGeografica {
             }
         }
         return medicaoComUltimoRegisto.getmValor();
-
         }
 
 
