@@ -171,4 +171,14 @@ public class LocalizacaoTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    void testarHashCode () {
+        // Arrange
+        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        int expectedResult = 1;
+        // Act
+        int result = local.hashCode();
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 }

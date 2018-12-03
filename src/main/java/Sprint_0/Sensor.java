@@ -1,7 +1,6 @@
 package Sprint_0;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -46,9 +45,8 @@ public class Sensor {
         Sensor sensor = (Sensor) objeto;
         if (this.mNomeSensor.equals(sensor.mNomeSensor) && this.mDataFuncionamento.equals(sensor.mDataFuncionamento) && this.mTipoSensor.equals(sensor.mTipoSensor) && this.mLocalizacao.equals(sensor.mLocalizacao)) {
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 
     public int hashCode() {
@@ -126,16 +124,13 @@ public class Sensor {
         return mRegistos.get(mRegistos.size() - 1);
     }
 
-    public boolean umTipoDeSensorEIgualAOutro(TipoSensor tipo){
+    public boolean umTipoDeSensorEIgualAOutro(TipoSensor tipo) {
         String tipoDoSensorPedido = tipo.getmTipo();
         if (this.getmTipoSensor().getmTipo().equals(tipoDoSensorPedido)) {
             return true;
         }
         return false;
     }
-
-
-
 
 
 }
