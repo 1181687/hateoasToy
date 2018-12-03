@@ -123,11 +123,7 @@ public class Sensor {
 
     public boolean umTipoDeSensorEIgualAOutro(TipoSensor tipo) {
         String tipoDoSensorPedido = tipo.getmTipo();
-        if (this.getmTipoSensor().getmTipo().equals(tipoDoSensorPedido)) {
-            return true;
-        }
-        return false;
+        return (this.getmTipoSensor().getmTipo().equals(tipoDoSensorPedido));
     }
-
 
 }
