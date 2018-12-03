@@ -75,7 +75,9 @@ public class Localizacao {      //graus decimais
         }
 
         Localizacao local = (Localizacao) obj;
-        if (this.mLatitude==local.mLatitude && this.mLongitude==local.mLongitude && this.mAltitude==local.mAltitude) {
+        final double delta = 0.0000001;
+        if (Math.abs((this.mLatitude - local.mLatitude)) < delta && Math.abs((this.mLongitude - local.mLongitude)) < delta
+                && Math.abs((this.mAltitude - local.mAltitude)) < delta) {
             return true;
         }
         return false;
