@@ -2,6 +2,7 @@ package Sprint_0;
 
 import org.junit.jupiter.api.Test;
 
+
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -88,12 +89,12 @@ class AreaGeograficaTest {
         // act
         double resultado = ag1.distanciaLinearDuasAreas(ag2);
 
-                //assert
-        assertEquals (expectedResult,resultado, 0.0001);
+        //assert
+        assertEquals(expectedResult, resultado, 0.0001);
     }
 
     @Test
-    public void testaSeUmSensorEIgualAoTipoPedido(){
+    public void testaSeUmSensorEIgualAoTipoPedido() {
         //Arrange
         //Instanciar AG
         String nomeAG = "Porto";
@@ -106,7 +107,7 @@ class AreaGeograficaTest {
     }
 
     @Test
-    public void testargetListaUltimosRegistosPorTipoSensorCasoPositivo(){
+    public void testargetListaUltimosRegistosPorTipoSensorCasoPositivo() {
         //Arrange
         //Instanciar AG
         String nomeAG = "Porto";
@@ -188,11 +189,11 @@ class AreaGeograficaTest {
         List<Medicao> result = ag1.getListaDeUltimosRegistosPorTipoDeSensor(tipoResultado);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testarUltimoRegistoDeUmaListaDeTiposDeSensores(){
+    public void testarUltimoRegistoDeUmaListaDeTiposDeSensores() {
         //arrange
         //Instanciar AG
         String nomeAG = "Porto";
@@ -271,11 +272,11 @@ class AreaGeograficaTest {
         double result = ag1.getUltimoRegistoDeUmTipoDeSensor(tipoResultado);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresTipoDiferente(){
+    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresTipoDiferente() {
         //arrange
         //Instanciar AG
         String nomeAG = "Porto";
@@ -354,11 +355,11 @@ class AreaGeograficaTest {
         double result = ag1.getUltimoRegistoDeUmTipoDeSensor(tipoResultado);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresListaVazia(){
+    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresListaVazia() {
         //arrange
         //Instanciar AG
         String nomeAG = "Porto";
@@ -397,6 +398,23 @@ class AreaGeograficaTest {
         double result = ag1.getUltimoRegistoDeUmTipoDeSensor(tipoResultado);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testarHashCode() {
+        //Arrange
+        String nomeAG = "Porto";
+        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
+        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area = new RetanguloArea(10, 4);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
+
+        int expectedResult = 1;
+        //Act
+        int result = ag1.hashCode();
+        //Assert
+        assertEquals(expectedResult, result);
+
     }
 }
