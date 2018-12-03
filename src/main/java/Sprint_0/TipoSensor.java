@@ -25,10 +25,7 @@ public class TipoSensor {
             return false;
         }
         TipoSensor ts = (TipoSensor) obj;
-        if (this.mTipo.equals(ts.mTipo)) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.mTipo.equals(ts.mTipo);
+
     }
 }

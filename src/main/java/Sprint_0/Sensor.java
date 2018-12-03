@@ -43,10 +43,7 @@ public class Sensor {
             return false;
         }
         Sensor sensor = (Sensor) objeto;
-        if (this.mNomeSensor.equals(sensor.mNomeSensor) && this.mDataFuncionamento.equals(sensor.mDataFuncionamento) && this.mTipoSensor.equals(sensor.mTipoSensor) && this.mLocalizacao.equals(sensor.mLocalizacao)) {
-            return true;
-        }
-        return false;
+        return this.mNomeSensor.equals(sensor.mNomeSensor) && this.mDataFuncionamento.equals(sensor.mDataFuncionamento) && this.mTipoSensor.equals(sensor.mTipoSensor) && this.mLocalizacao.equals(sensor.mLocalizacao);
     }
 
     public int hashCode() {

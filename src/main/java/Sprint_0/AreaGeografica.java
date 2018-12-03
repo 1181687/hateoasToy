@@ -32,10 +32,8 @@ public class AreaGeografica {
             return false;
         }
         AreaGeografica ag = (AreaGeografica) obj;
-        if (this.mNomeAreaGeo.equals(ag.mNomeAreaGeo) && this.mTipoAreaGeo.equals(ag.mTipoAreaGeo) && this.mLocalizacao.equals(ag.mLocalizacao) && this.mRetanguloArea.equals(ag.mRetanguloArea)) {
-            return true;
-        }
-        return false;
+        return this.mNomeAreaGeo.equals(ag.mNomeAreaGeo) && this.mTipoAreaGeo.equals(ag.mTipoAreaGeo) && this.mLocalizacao.equals(ag.mLocalizacao) && this.mRetanguloArea.equals(ag.mRetanguloArea);
+
     }
 
     public Localizacao getmLocalizacao() {

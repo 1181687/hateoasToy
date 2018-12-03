@@ -73,9 +73,6 @@ public class Localizacao {      //graus decimais
         }
 
         Localizacao local = (Localizacao) obj;
-        if (this.mLatitude==local.mLatitude && this.mLongitude==local.mLongitude && this.mAltitude==local.mAltitude) {
-            return true;
-        }
-        return false;
+        return this.mLatitude==local.mLatitude && this.mLongitude==local.mLongitude && this.mAltitude==local.mAltitude;
     }
 }
