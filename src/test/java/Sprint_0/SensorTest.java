@@ -268,6 +268,37 @@ class SensorTest {
     }
 
     @Test
+    void testarGetOutraMenorRegistoMes () {
+
+        // Arrange
+        Calendar calendario = new GregorianCalendar(2017, 8, 15);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Date data1 = new GregorianCalendar(2017, 8, 15, 5, 30, 0).getTime();
+        Date data2 = new GregorianCalendar(2017, 8, 15, 6, 00, 0).getTime();
+        Date data3 = new GregorianCalendar(2017, 8, 16, 6, 30, 0).getTime();
+
+        Medicao registo1 = new Medicao (20.1, data1);
+        Medicao registo2 = new Medicao (20.1, data2);
+        Medicao registo3 = new Medicao (20.1, data3);
+
+        double expectedResult = 20.1;
+        Date inicioDoMes = new GregorianCalendar(2017,8,1).getTime();
+        Date finalDoMes = new GregorianCalendar(2017,8,31).getTime();
+        // Act
+        sensor1.adicionarMedicaoALista(registo1);
+        sensor1.adicionarMedicaoALista(registo2);
+        sensor1.adicionarMedicaoALista(registo3);
+
+        double result = sensor1.getMenorRegistoDoMes(inicioDoMes,finalDoMes);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
     void testaGetMaiorRegistoMes(){
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2,15,20,00);
