@@ -60,12 +60,10 @@ public class Localizacao {      //graus decimais
         return Math.hypot(distanciaKm, altura);
     }
 
-    @Override
     public int hashCode() {
         return 1;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (this == obj) {
             return true;
