@@ -276,9 +276,9 @@ class SensorTest {
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
         Localizacao locS1 = new Localizacao(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
-        Date data1 = new GregorianCalendar(2017, 8, 15, 5, 30, 0).getTime();
-        Date data2 = new GregorianCalendar(2017, 8, 15, 6, 00, 0).getTime();
-        Date data3 = new GregorianCalendar(2017, 8, 16, 6, 30, 0).getTime();
+        Date data1 = new GregorianCalendar(2017, 8, 15, 6, 30, 0).getTime();
+        Date data2 = new GregorianCalendar(2017, 8, 15, 6, 30, 0).getTime();
+        Date data3 = new GregorianCalendar(2017, 8, 15, 6, 30, 0).getTime();
 
         Medicao registo1 = new Medicao (20.1, data1);
         Medicao registo2 = new Medicao (20.1, data2);
@@ -341,10 +341,10 @@ class SensorTest {
         Localizacao locS1 = new Localizacao(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
-        Date data1 = new GregorianCalendar(2018, 4, 11,5,55).getTime();
+        Date data1 = new GregorianCalendar(2018, 2, 11,6,25).getTime();
         Date data2 = new GregorianCalendar(2018, 2, 11,6,25).getTime();
-        Date data3 = new GregorianCalendar(2018, 2, 11,7,30).getTime();
-        Date data4 = new GregorianCalendar(2018, 2, 12,6,25).getTime();
+        Date data3 = new GregorianCalendar(2018, 2, 11,6,25).getTime();
+        Date data4 = new GregorianCalendar(2018, 2, 11,6,25).getTime();
 
         Medicao registo1 = new Medicao(27,data1);
         Medicao registo2 = new Medicao(27,data2);
