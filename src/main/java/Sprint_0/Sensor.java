@@ -98,7 +98,7 @@ public class Sensor {
 
         List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
 
-        double numeroDeRegistos = registosEntreDatas.size();
+        int numeroDeRegistos = registosEntreDatas.size();
         double somaRegistos = 0;
 
         if (numeroDeRegistos==0){
