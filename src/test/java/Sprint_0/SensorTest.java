@@ -282,9 +282,9 @@ class SensorTest {
 
         Medicao registo1 = new Medicao (20.1, data1);
         Medicao registo2 = new Medicao (20.1, data2);
-        Medicao registo3 = new Medicao (19.1, data3);
+        Medicao registo3 = new Medicao (20.1, data3);
 
-        double expectedResult = 19.1;
+        double expectedResult = 20.1;
         Date inicioDoMes = new GregorianCalendar(2017,8,1).getTime();
         Date finalDoMes = new GregorianCalendar(2017,8,31).getTime();
         // Act
