@@ -101,6 +101,10 @@ public class Sensor {
         double numeroDeRegistos = registosEntreDatas.size();
         double somaRegistos = 0;
 
+        if (numeroDeRegistos==0){
+            return Double.NaN;
+        }
+
         for (Double registo : registosEntreDatas) {
 
             somaRegistos += registo;
