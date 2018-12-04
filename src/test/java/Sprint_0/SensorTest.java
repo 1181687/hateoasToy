@@ -220,7 +220,7 @@ class SensorTest {
         Date dataHoraDaMedicao1 = calendarioDaMedicao1.getTime();
 
         Calendar calendarioDaMedicao2 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
-        Date dataHoraDaMedicao2 = calendarioDaMedicao1.getTime();
+        Date dataHoraDaMedicao2 = calendarioDaMedicao2.getTime();
 
         Medicao medicao1 = new Medicao(20, dataHoraDaMedicao1);
         Medicao medicao2 = new Medicao(25, dataHoraDaMedicao2);
