@@ -41,14 +41,14 @@ public class LocalizacaoTest {
     }
 
     @Test
-    void testarAlteracaoLatitude() {
+    void testarAlteracaoLatitudeDentroIntervaloLimitePositivo() {
         //arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
         Localizacao local = new Localizacao(latitude, longitude, altitude);
-        local.setmLatitude(-45.6109);
-        double expectedResult = -45.6109;
+        local.setmLatitude(90);
+        double expectedResult = 90;
         //act
         double result = local.getmLatitude();
         //assert
@@ -56,13 +56,28 @@ public class LocalizacaoTest {
     }
 
     @Test
-    void testarAlteracaoLatitudeForaIntervalo() {
+    void testarAlteracaoLatitudeDentroIntervaloLimiteNegativo() {
         //arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
         Localizacao local = new Localizacao(latitude, longitude, altitude);
-        local.setmLatitude(-100.6109);
+        local.setmLatitude(-90);
+        double expectedResult = -90;
+        //act
+        double result = local.getmLatitude();
+        //assert
+        assertEquals(expectedResult,result,0.001);
+    }
+
+    @Test
+    void testarAlteracaoLatitudeForaIntervaloNegativo() {
+        //arrange
+        double latitude = 41.1496;
+        double longitude = -8.6109;
+        double altitude = 97;
+        Localizacao local = new Localizacao(latitude, longitude, altitude);
+        local.setmLatitude(-91);
         double expectedResult = Double.NaN;
         //act
         double result = local.getmLatitude();
@@ -71,14 +86,29 @@ public class LocalizacaoTest {
     }
 
     @Test
-    void testarAlteracaoLongitude() {
+    void testarAlteracaoLatitudeForaIntervaloPositivo() {
         //arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
         Localizacao local = new Localizacao(latitude, longitude, altitude);
-        local.setmLongitude(-100.6109);
-        double expectedResult = -100.6109;
+        local.setmLatitude(91);
+        double expectedResult = Double.NaN;
+        //act
+        double result = local.getmLatitude();
+        //assert
+        assertEquals(expectedResult,result,0.001);
+    }
+
+    @Test
+    void testarAlteracaoLongitudeDentroIntervaloLimitePositivo() {
+        //arrange
+        double latitude = 41.1496;
+        double longitude = -8.6109;
+        double altitude = 97;
+        Localizacao local = new Localizacao(latitude, longitude, altitude);
+        local.setmLongitude(180);
+        double expectedResult = 180;
         //act
         double result = local.getmLongitude();
         //assert
@@ -86,19 +116,50 @@ public class LocalizacaoTest {
     }
 
     @Test
-    void testarAlteracaoLongitudeForaIntervalo() {
+    void testarAlteracaoLongitudeDentroIntervaloLimiteNegativo() {
         //arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
         Localizacao local = new Localizacao(latitude, longitude, altitude);
-        local.setmLongitude(200.198);
+        local.setmLongitude(-180);
+        double expectedResult = -180;
+        //act
+        double result = local.getmLongitude();
+        //assert
+        assertEquals(expectedResult,result,0.001);
+    }
+
+    @Test
+    void testarAlteracaoLongitudeForaIntervaloPositivo() {
+        //arrange
+        double latitude = 41.1496;
+        double longitude = -8.6109;
+        double altitude = 97;
+        Localizacao local = new Localizacao(latitude, longitude, altitude);
+        local.setmLongitude(181);
         double expectedResult = Double.NaN;
         //act
         double result = local.getmLongitude();
         //assert
         assertEquals(expectedResult,result,0.001);
     }
+
+    @Test
+    void testarAlteracaoLongitudeForaIntervaloNegativo() {
+        //arrange
+        double latitude = 41.1496;
+        double longitude = -8.6109;
+        double altitude = 97;
+        Localizacao local = new Localizacao(latitude, longitude, altitude);
+        local.setmLongitude(-181);
+        double expectedResult = Double.NaN;
+        //act
+        double result = local.getmLongitude();
+        //assert
+        assertEquals(expectedResult,result,0.001);
+    }
+
     @Test
     void testarEqualsSameObjectTrue (){
         //Arrange
