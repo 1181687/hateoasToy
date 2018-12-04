@@ -55,15 +55,12 @@ public class AreaGeografica {
                 listaDeUltimosRegistos.add(sensor.getUltimoRegisto());
             }
         }
-        if(listaDeUltimosRegistos.isEmpty()){
-            return null;
-        }
         return listaDeUltimosRegistos;
     }
 
     public double getUltimoRegistoDeUmTipoDeSensor(TipoSensor tipo){
         List<Medicao> listaDeUltimosRegisto=getListaDeUltimosRegistosPorTipoDeSensor(tipo);
-        if(getListaDeUltimosRegistosPorTipoDeSensor(tipo)==null){
+        if(getListaDeUltimosRegistosPorTipoDeSensor(tipo).isEmpty()){
             return Double.NaN;
         }
         Medicao medicaoComUltimoRegisto = listaDeUltimosRegisto.get(0);
