@@ -41,7 +41,7 @@ public class Localizacao {      //graus decimais
 
     public double distanciaDuasLocalizacoes(Localizacao novoLocal) {
 
-        final int R = 6371; // raio da Terra
+        final int raioDaTerra = 6371; // raio da Terra
         double lonNovoLocal = novoLocal.getmLongitude();
         double altNovoLocal = novoLocal.getmAltitude();
         double latNovoLocal = novoLocal.getmLatitude();
@@ -52,7 +52,7 @@ public class Localizacao {      //graus decimais
                 *Math.cos(distEntreLon)+Math.sin(Math.toRadians(this.mLatitude))*Math.sin(Math.toRadians(latNovoLocal)));
 
 
-        double distanciaKm = R * distEntreLocais*1000; // convert to km
+        double distanciaKm = raioDaTerra* distEntreLocais*1000; // convert to km
 
         double altura = this.mAltitude - altNovoLocal;
 
