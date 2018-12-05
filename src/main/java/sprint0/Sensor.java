@@ -144,10 +144,7 @@ public class Sensor {
     }
 
     public boolean listaDeRegistosEVazia(){
-        if(mRegistos.size()==0){
-            return true;
-        }
-        return false;
+        return mRegistos.isEmpty();
     }
 
     public Medicao getUltimoRegisto() {

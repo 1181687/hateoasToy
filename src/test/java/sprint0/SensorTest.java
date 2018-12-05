@@ -208,6 +208,44 @@ class SensorTest {
     }
 
     @Test
+    void testarListaDeRegistosVazia() {
+        //Arrange
+        Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+
+        //Act
+        boolean result = s1.listaDeRegistosEVazia();
+
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void testarListaDeRegistosNaoEVazia() {
+        //Arrange
+        Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+
+        Calendar calendarioDaMedicao1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataHoraDaMedicao1 = calendarioDaMedicao1.getTime();
+
+        Medicao medicao1 = new Medicao(20, dataHoraDaMedicao1);
+        s1.adicionarMedicaoALista(medicao1);
+
+        //Act
+        boolean result = s1.listaDeRegistosEVazia();
+
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
     void testarListaDeMedicoesDefinida() {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
