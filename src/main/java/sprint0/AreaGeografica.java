@@ -54,7 +54,7 @@ public class AreaGeografica {
             if(sensor.listaDeRegistosEVazia()){
                 break;
             }
-            if (sensor.umTipoDeSensorEIgualAOutro(tipo) && sensor.getUltimoRegisto().getmValor()!=Double.NaN){
+            if (sensor.umTipoDeSensorEIgualAOutro(tipo) && (!(Double.isNaN(sensor.getUltimoRegisto().getmValor())))){
                 listaDeUltimosRegistos.add(sensor.getUltimoRegisto());
             }
         }
