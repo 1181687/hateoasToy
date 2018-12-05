@@ -1,6 +1,7 @@
 package sprint0;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -68,9 +69,12 @@ public class Sensor {
         return registosEntreDatas;
     }
 
-    public double getMenorRegistoDoMes(Date primeiroDiaMes, Date primeiroDiaMesSeguinte) {
+    public double getMenorRegistoDoMes(Date diaDoMes) {
 
-        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, primeiroDiaMesSeguinte);
+        Date primeiroDiaMes= getPrimeiroDiaDoMes(diaDoMes);
+        Date ultimoDiaMes = getUltimoDiaDoMes(diaDoMes);
+
+        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
         double menorRegisto = registosEntreDatas.get(0);
 
         for (int i = 1; i < registosEntreDatas.size(); i++) {
@@ -81,9 +85,13 @@ public class Sensor {
         return menorRegisto;
     }
 
-    public double getMaiorRegistoDoMes(Date primeiroDiaMes, Date primeiroDiaMesSeguinte) {
+    public double getMaiorRegistoDoMes(Date diaDoMes) {
 
-        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, primeiroDiaMesSeguinte);
+        Date primeiroDiaMes= getPrimeiroDiaDoMes(diaDoMes);
+        Date ultimoDiaMes = getUltimoDiaDoMes(diaDoMes);
+
+        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
+
         double maiorRegisto = registosEntreDatas.get(0);
 
         for (int i = 1; i < registosEntreDatas.size(); i++) {
@@ -94,9 +102,13 @@ public class Sensor {
         return maiorRegisto;
     }
 
-    public double getRegistoMediaMes(Date primeiroDiaMes, Date primeiroDiaMesSeguinte) {
 
-        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, primeiroDiaMesSeguinte);
+    public double getRegistoMediaMes(Date diaDoMes) {
+
+        Date primeiroDiaMes= getPrimeiroDiaDoMes(diaDoMes);
+        Date ultimoDiaMes = getUltimoDiaDoMes(diaDoMes);
+
+        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
 
         int numeroDeRegistos = registosEntreDatas.size();
         double somaRegistos = 0;
@@ -112,6 +124,20 @@ public class Sensor {
         return somaRegistos / numeroDeRegistos;
     }
 
+    public Date getPrimeiroDiaDoMes(Date data){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(data);
+        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
+        return cal.getTime();
+    }
+
+    public Date getUltimoDiaDoMes(Date data){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(data);
+        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+        cal.set(Calendar.HOUR_OF_DAY,cal.getActualMaximum(Calendar.HOUR_OF_DAY));
+        return cal.getTime();
+    }
 
     public void adicionarMedicaoALista(Medicao medicao) {
         mRegistos.add(medicao);

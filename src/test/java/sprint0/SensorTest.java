@@ -254,14 +254,13 @@ class SensorTest {
         Medicao registo3 = new Medicao (21.7, data3);
 
         double expectedResult = 20.1;
-        Date inicioDoMes = new GregorianCalendar(2017,8,1).getTime();
-        Date finalDoMes = new GregorianCalendar(2017,8,31).getTime();
+        Date diaDoMes = new GregorianCalendar(2017,8,5).getTime();
         // Act
         sensor1.adicionarMedicaoALista(registo1);
         sensor1.adicionarMedicaoALista(registo2);
         sensor1.adicionarMedicaoALista(registo3);
 
-        double result = sensor1.getMenorRegistoDoMes(inicioDoMes,finalDoMes);
+        double result = sensor1.getMenorRegistoDoMes(diaDoMes);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -285,14 +284,13 @@ class SensorTest {
         Medicao registo3 = new Medicao (3.1, data3);
 
         double expectedResult = 3.1;
-        Date inicioDoMes = new GregorianCalendar(2017,GregorianCalendar.AUGUST,1).getTime();
-        Date finalDoMes = new GregorianCalendar(2017,GregorianCalendar.AUGUST,31).getTime();
+        Date diaDoMes = new GregorianCalendar(2017,GregorianCalendar.AUGUST,1).getTime();
         // Act
         sensor1.adicionarMedicaoALista(registo1);
         sensor1.adicionarMedicaoALista(registo2);
         sensor1.adicionarMedicaoALista(registo3);
 
-        double result = sensor1.getMenorRegistoDoMes(inicioDoMes,finalDoMes);
+        double result = sensor1.getMenorRegistoDoMes(diaDoMes);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -308,26 +306,24 @@ class SensorTest {
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
         Date data1 = new GregorianCalendar(2018, 4, 11,5,55).getTime();
-        Date data2 = new GregorianCalendar(2018, 2, 11,6,25).getTime();
+        Date data2 = new GregorianCalendar(2018, 2, 1,6,25).getTime();
         Date data3 = new GregorianCalendar(2018, 2, 11,7,30).getTime();
-        Date data4 = new GregorianCalendar(2018, 2, 12,6,25).getTime();
+        Date data4 = new GregorianCalendar(2018, 2, 31).getTime();
 
-        Medicao registo1 = new Medicao(21,data1);
+        Medicao registo1 = new Medicao(28,data1);
         Medicao registo2 = new Medicao(25,data2);
         Medicao registo3 = new Medicao(26,data3);
         Medicao registo4 = new Medicao(27,data4);
 
         double expectedResult= 27;
-        Date dataInicioMes = new GregorianCalendar(2018,2,1).getTime();
-        Date dataFinalMes = new GregorianCalendar(2018,2,28).getTime();
-
+        Date dataDoMes = new GregorianCalendar(2018,2,5).getTime();
 
         sensor1.adicionarMedicaoALista(registo1);
         sensor1.adicionarMedicaoALista(registo2);
         sensor1.adicionarMedicaoALista(registo3);
         sensor1.adicionarMedicaoALista(registo4);
         //Act
-        double result=sensor1.getMaiorRegistoDoMes(dataInicioMes, dataFinalMes);
+        double result=sensor1.getMaiorRegistoDoMes(dataDoMes);
         //Assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -352,16 +348,14 @@ class SensorTest {
         Medicao registo4 = new Medicao(5,data4);
 
         double expectedResult= 35;
-        Date dataInicioMes = new GregorianCalendar(2018,2,1).getTime();
-        Date dataFinalMes = new GregorianCalendar(2018,2,28).getTime();
-
+        Date dataDoMes = new GregorianCalendar(2018,2,1).getTime();
 
         sensor1.adicionarMedicaoALista(registo1);
         sensor1.adicionarMedicaoALista(registo2);
         sensor1.adicionarMedicaoALista(registo3);
         sensor1.adicionarMedicaoALista(registo4);
         //Act
-        double result=sensor1.getMaiorRegistoDoMes(dataInicioMes, dataFinalMes);
+        double result=sensor1.getMaiorRegistoDoMes(dataDoMes);
         //Assert
         assertEquals (expectedResult,result,0.001);
     }
@@ -386,16 +380,14 @@ class SensorTest {
         Medicao registo4 = new Medicao(27,data4);
 
         double expectedResult= 26;
-        Date dataInicioMes = new GregorianCalendar(2018,2,1).getTime();
-        Date dataFinalMes = new GregorianCalendar(2018,2,28).getTime();
-
+        Date diaDoMes = new GregorianCalendar(2018,2,1).getTime();
 
         sensor1.adicionarMedicaoALista(registo1);
         sensor1.adicionarMedicaoALista(registo2);
         sensor1.adicionarMedicaoALista(registo3);
         sensor1.adicionarMedicaoALista(registo4);
         //Act
-        double result=sensor1.getRegistoMediaMes(dataInicioMes, dataFinalMes);
+        double result=sensor1.getRegistoMediaMes(diaDoMes);
         //Assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -410,11 +402,10 @@ class SensorTest {
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
         double expectedResult= Double.NaN;
-        Date dataInicioMes = new GregorianCalendar(2018,2,1).getTime();
-        Date dataFinalMes = new GregorianCalendar(2018,2,28).getTime();
+        Date diaDoMes = new GregorianCalendar(2018,2,1).getTime();
 
         //Act
-        double result=sensor1.getRegistoMediaMes(dataInicioMes, dataFinalMes);
+        double result=sensor1.getRegistoMediaMes(diaDoMes);
         //Assert
         assertEquals(expectedResult,result,0.001);
     }
