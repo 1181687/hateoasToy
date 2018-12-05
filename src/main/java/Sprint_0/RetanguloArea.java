@@ -1,12 +1,18 @@
 package Sprint_0;
 
 public class RetanguloArea {
-    private double mComprimento;
-    private double mLargura;
+    private Localizacao mCantoSuperiorEsquerdo;
+    private Localizacao mCantoInferiorDireito;
 
-    public RetanguloArea(double mComprimento, double mLargura) {
-        this.mComprimento = mComprimento;
-        this.mLargura = mLargura;
+    public RetanguloArea(Localizacao cantoSuperiorEsquerdo, Localizacao cantoInferiorDireito) {
+        mCantoSuperiorEsquerdo = cantoSuperiorEsquerdo;
+        mCantoInferiorDireito = cantoInferiorDireito;
     }
 
+    public boolean verificaSeLocalizacaoEstaContidaNumaArea(Localizacao localizacao){
+        return (localizacao.getmLatitude() >= mCantoInferiorDireito.getmLatitude()
+                && localizacao.getmLatitude() <= mCantoSuperiorEsquerdo.getmLatitude()
+                && localizacao.getmLongitude() <= mCantoInferiorDireito.getmLongitude()
+                && localizacao.getmLongitude() >= mCantoSuperiorEsquerdo.getmLongitude());
+    }
 }

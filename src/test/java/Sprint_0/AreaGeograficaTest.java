@@ -15,7 +15,9 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 4);
+        Localizacao cantoSuperiorEsquerdo = new Localizacao(180,20,65);
+        Localizacao cantoInferiorDireito = new Localizacao(140,40,65);
+        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
         boolean expectedResult = true;
         //act
@@ -29,7 +31,9 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 4);
+        Localizacao cantoSuperiorEsquerdo = new Localizacao(180,20,65);
+        Localizacao cantoInferiorDireito = new Localizacao(140,40,65);
+        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
         AreaGeografica ag2 = new AreaGeografica(nomeAG, tipo, local, area);
         boolean expectedResult = true;
@@ -46,7 +50,9 @@ class AreaGeograficaTest {
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
         TipoAreaGeo tipo2 = new TipoAreaGeo("Aldeia");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 4);
+        Localizacao cantoSuperiorEsquerdo = new Localizacao(180,20,65);
+        Localizacao cantoInferiorDireito = new Localizacao(140,40,65);
+        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo1, local, area);
         AreaGeografica ag2 = new AreaGeografica(nomeAG, tipo2, local, area);
         boolean expectedResult = false;
@@ -62,7 +68,9 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 4);
+        Localizacao cantoSuperiorEsquerdo = new Localizacao(180,20,65);
+        Localizacao cantoInferiorDireito = new Localizacao(140,40,65);
+        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
         AreaGeografica ag = new AreaGeografica(nomeAG, tipo, local, area);
         boolean expectedResult = false;
         //act
@@ -80,10 +88,11 @@ class AreaGeograficaTest {
         TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
         Localizacao local1 = new Localizacao(41.1496, 10.6109, 50);
         Localizacao local2 = new Localizacao(32.6333, 16.9, 20);
-        RetanguloArea area1 = new RetanguloArea(10, 4);
-        RetanguloArea area2 = new RetanguloArea(10, 4);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
-        AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
+        Localizacao cantoSuperiorEsquerdo = new Localizacao(180,20,65);
+        Localizacao cantoInferiorDireito = new Localizacao(140,40,65);
+        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area);
+        AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area);
         double expectedResult = 1099043.7203;
 
         // act
@@ -94,26 +103,15 @@ class AreaGeograficaTest {
     }
 
     @Test
-    public void testaSeUmSensorEIgualAoTipoPedido() {
-        //Arrange
-        //Instanciar AG
-        String nomeAG = "Porto";
-        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
-        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 4);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local1, area);
-
-        //Instanciar Sen
-    }
-
-    @Test
     public void testargetListaUltimosRegistosPorTipoSensorCasoPositivo() {
         //Arrange
         //Instanciar AG
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 4);
+        Localizacao cantoSuperiorEsquerdo = new Localizacao(180,20,65);
+        Localizacao cantoInferiorDireito = new Localizacao(140,40,65);
+        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local1, area);
 
         //Instanciar Sensor
@@ -199,7 +197,9 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 4);
+        Localizacao cantoSuperiorEsquerdo = new Localizacao(180,20,65);
+        Localizacao cantoInferiorDireito = new Localizacao(140,40,65);
+        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local1, area);
 
         //Instanciar Sensor
@@ -282,7 +282,9 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 4);
+        Localizacao cantoSuperiorEsquerdo = new Localizacao(180,20,65);
+        Localizacao cantoInferiorDireito = new Localizacao(140,40,65);
+        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local1, area);
 
         //Instanciar Sensor
@@ -365,7 +367,9 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 4);
+        Localizacao cantoSuperiorEsquerdo = new Localizacao(180,20,65);
+        Localizacao cantoInferiorDireito = new Localizacao(140,40,65);
+        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local1, area);
 
         //Instanciar Sensor
@@ -407,7 +411,9 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 4);
+        Localizacao cantoSuperiorEsquerdo = new Localizacao(180,20,65);
+        Localizacao cantoInferiorDireito = new Localizacao(140,40,65);
+        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         int expectedResult = 1;
