@@ -199,7 +199,9 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 4);
+        Localizacao cantoSuperiorEsquerdo = new Localizacao(80,20,65);
+        Localizacao cantoInferiorDireito = new Localizacao(40,40,65);
+        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local1, area);
 
         //Instanciar Sensor
