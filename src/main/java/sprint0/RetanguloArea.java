@@ -1,4 +1,4 @@
-package Sprint_0;
+package sprint0;
 
 public class RetanguloArea {
     private Localizacao mCantoSuperiorEsquerdo;

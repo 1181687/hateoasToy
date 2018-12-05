@@ -1,6 +1,7 @@
-package Sprint_0;
+package sprint0;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -68,7 +69,10 @@ public class Sensor {
         return registosEntreDatas;
     }
 
-    public double getMenorRegistoDoMes(Date primeiroDiaMes, Date ultimoDiaMes) {
+    public double getMenorRegistoDoMes(Date diaDoMes) {
+
+        Date primeiroDiaMes= getPrimeiroDiaDoMes(diaDoMes);
+        Date ultimoDiaMes = getUltimoDiaDoMes(diaDoMes);
 
         List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
         double menorRegisto = registosEntreDatas.get(0);
@@ -81,9 +85,13 @@ public class Sensor {
         return menorRegisto;
     }
 
-    public double getMaiorRegistoDoMes(Date primeiroDiaMes, Date ultimoDiaMes) {
+    public double getMaiorRegistoDoMes(Date diaDoMes) {
+
+        Date primeiroDiaMes= getPrimeiroDiaDoMes(diaDoMes);
+        Date ultimoDiaMes = getUltimoDiaDoMes(diaDoMes);
 
         List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
+
         double maiorRegisto = registosEntreDatas.get(0);
 
         for (int i = 1; i < registosEntreDatas.size(); i++) {
@@ -94,7 +102,11 @@ public class Sensor {
         return maiorRegisto;
     }
 
-    public double getRegistoMediaMes(Date primeiroDiaMes, Date ultimoDiaMes) {
+
+    public double getRegistoMediaMes(Date diaDoMes) {
+
+        Date primeiroDiaMes= getPrimeiroDiaDoMes(diaDoMes);
+        Date ultimoDiaMes = getUltimoDiaDoMes(diaDoMes);
 
         List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
 
@@ -112,17 +124,36 @@ public class Sensor {
         return somaRegistos / numeroDeRegistos;
     }
 
+    public Date getPrimeiroDiaDoMes(Date data){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(data);
+        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
+        return cal.getTime();
+    }
+
+    public Date getUltimoDiaDoMes(Date data){
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(data);
+        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
+        cal.set(Calendar.HOUR_OF_DAY,cal.getActualMaximum(Calendar.HOUR_OF_DAY));
+        return cal.getTime();
+    }
 
     public void adicionarMedicaoALista(Medicao medicao) {
         mRegistos.add(medicao);
     }
 
+    public boolean listaDeRegistosEVazia(){
+        return mRegistos.isEmpty();
+    }
 
     public Medicao getUltimoRegisto() {
-        if (mRegistos.isEmpty()) {
-            return null;
+        for (int i = (mRegistos.size()-1); i>= 0 ; i--) {
+            if (!(Double.isNaN(mRegistos.get(i).getmValor()))){
+                return mRegistos.get(i);
+            }
         }
-        return mRegistos.get(mRegistos.size() - 1);
+        return null;
     }
 
     public boolean umTipoDeSensorEIgualAOutro(TipoSensor tipo) {

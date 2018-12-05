@@ -1,5 +1,5 @@
 
-package Sprint_0;
+package sprint0;
 
 public class Localizacao {      //graus decimais
     private double mLatitude;

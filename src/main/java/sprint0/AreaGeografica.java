@@ -1,4 +1,4 @@
-package Sprint_0;
+package sprint0;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,7 +51,10 @@ public class AreaGeografica {
     public List<Medicao> getListaDeUltimosRegistosPorTipoDeSensor(TipoSensor tipo) {
         List<Medicao> listaDeUltimosRegistos = new ArrayList<>();
         for (Sensor sensor : mListaSensor) {
-            if (sensor.umTipoDeSensorEIgualAOutro(tipo) && sensor.getUltimoRegisto()!=null){
+            if(sensor.listaDeRegistosEVazia()){
+                break;
+            }
+            if (sensor.umTipoDeSensorEIgualAOutro(tipo) && (!(Double.isNaN(sensor.getUltimoRegisto().getmValor())))){
                 listaDeUltimosRegistos.add(sensor.getUltimoRegisto());
             }
         }
