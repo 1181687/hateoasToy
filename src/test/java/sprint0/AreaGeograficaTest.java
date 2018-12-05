@@ -1,4 +1,4 @@
-package Sprint_0;
+package sprint0;
 
 import org.junit.jupiter.api.Test;
 
