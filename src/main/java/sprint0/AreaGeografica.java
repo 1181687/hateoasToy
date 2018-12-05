@@ -9,7 +9,7 @@ public class AreaGeografica {
     private AreaGeografica mAreaInserida;
     private Localizacao mLocalizacao;
     private RetanguloArea mRetanguloArea;
-    private List<Sensor> mListaSensor= new ArrayList<>();
+    private List<Sensor> mListaSensor = new ArrayList<>();
 
     public AreaGeografica(String mNomeAreaGeo, TipoAreaGeo mTipoAreaGeo, Localizacao mLocalizacao, RetanguloArea mRetanguloArea) {
         this.mNomeAreaGeo = mNomeAreaGeo;
@@ -51,47 +51,49 @@ public class AreaGeografica {
     public List<Medicao> getListaDeUltimosRegistosPorTipoDeSensor(TipoSensor tipo) {
         List<Medicao> listaDeUltimosRegistos = new ArrayList<>();
         for (Sensor sensor : mListaSensor) {
-            if(sensor.listaDeRegistosEVazia()){
+            if (sensor.listaDeRegistosEVazia()) {
                 break;
             }
-            if (sensor.umTipoDeSensorEIgualAOutro(tipo) && (!(Double.isNaN(sensor.getUltimoRegisto().getmValor())))){
+            if (sensor.umTipoDeSensorEIgualAOutro(tipo) && (!(Double.isNaN(sensor.getUltimoRegisto().getmValor())))) {
                 listaDeUltimosRegistos.add(sensor.getUltimoRegisto());
             }
         }
         return listaDeUltimosRegistos;
     }
 
-    public double getUltimoRegistoDeUmTipoDeSensor(TipoSensor tipo){
-        List<Medicao> listaDeUltimosRegisto=getListaDeUltimosRegistosPorTipoDeSensor(tipo);
-        if(getListaDeUltimosRegistosPorTipoDeSensor(tipo).isEmpty()){
+    public double getUltimoRegistoDeUmTipoDeSensor(TipoSensor tipo) {
+        List<Medicao> listaDeUltimosRegisto = getListaDeUltimosRegistosPorTipoDeSensor(tipo);
+        if (getListaDeUltimosRegistosPorTipoDeSensor(tipo).isEmpty()) {
             return Double.NaN;
         }
         Medicao medicaoComUltimoRegisto = listaDeUltimosRegisto.get(0);
-        for (Medicao registo:listaDeUltimosRegisto){
-            if(registo.getmDataHora().after(medicaoComUltimoRegisto.getmDataHora())){
-                medicaoComUltimoRegisto=registo;
+        for (Medicao registo : listaDeUltimosRegisto) {
+            if (registo.getmDataHora().after(medicaoComUltimoRegisto.getmDataHora())) {
+                medicaoComUltimoRegisto = registo;
             }
         }
         return medicaoComUltimoRegisto.getmValor();
-        }
+    }
 
-    public boolean verificarSeSensorEstaContidoNaAG (Sensor sensor) {
+    public boolean verificarSeSensorEstaContidoNaAG(Sensor sensor) {
 
         return mRetanguloArea.verificaSeLocalizacaoEstaContidaNumaArea(sensor.getmLocalizacao());
 
     }
 
+    public List<Sensor> listarSensoresContidosNaAGPorTipo(TipoSensor tipoSensor, List<Sensor> listaDeSensores) {
 
+        List<Sensor> listaDeSensoresInseridos = new ArrayList<>();
 
+        for (Sensor sensor : listaDeSensores) {
 
-/*
-    public List <Sensor> listarSensoresContidosNaAGPorTipo (TipoSensor tipoSensor) {
-
-        Sensor tipoDeSensorNaAreaGeografica = verificarSeSensorEstaContidoNaAG();
-
+            if (verificarSeSensorEstaContidoNaAG(sensor) && sensor.getmTipoSensor().equals(tipoSensor)) {
+                listaDeSensoresInseridos.add(sensor);
+            }
+        }
+        return listaDeSensoresInseridos;
     }
 
-*/
 }
 
 
