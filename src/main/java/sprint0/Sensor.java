@@ -1,4 +1,4 @@
-package Sprint_0;
+package sprint0;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -68,9 +68,9 @@ public class Sensor {
         return registosEntreDatas;
     }
 
-    public double getMenorRegistoDoMes(Date primeiroDiaMes, Date ultimoDiaMes) {
+    public double getMenorRegistoDoMes(Date primeiroDiaMes, Date primeiroDiaMesSeguinte) {
 
-        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
+        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, primeiroDiaMesSeguinte);
         double menorRegisto = registosEntreDatas.get(0);
 
         for (int i = 1; i < registosEntreDatas.size(); i++) {
@@ -81,9 +81,9 @@ public class Sensor {
         return menorRegisto;
     }
 
-    public double getMaiorRegistoDoMes(Date primeiroDiaMes, Date ultimoDiaMes) {
+    public double getMaiorRegistoDoMes(Date primeiroDiaMes, Date primeiroDiaMesSeguinte) {
 
-        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
+        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, primeiroDiaMesSeguinte);
         double maiorRegisto = registosEntreDatas.get(0);
 
         for (int i = 1; i < registosEntreDatas.size(); i++) {
@@ -94,9 +94,9 @@ public class Sensor {
         return maiorRegisto;
     }
 
-    public double getRegistoMediaMes(Date primeiroDiaMes, Date ultimoDiaMes) {
+    public double getRegistoMediaMes(Date primeiroDiaMes, Date primeiroDiaMesSeguinte) {
 
-        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
+        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, primeiroDiaMesSeguinte);
 
         int numeroDeRegistos = registosEntreDatas.size();
         double somaRegistos = 0;
