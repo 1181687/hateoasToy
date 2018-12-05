@@ -513,4 +513,77 @@ class AreaGeograficaTest {
         assertEquals(expectedResult, result);
 
     }
+
+    @Test
+    public void testarSensorContidoEmAreaGeografica() {
+        //Arrange
+        String nomeAG = "Porto";
+        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
+        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        Localizacao cantoSuperiorEsquerdo = new Localizacao(50,-10,65);
+        Localizacao cantoInferiorDireito = new Localizacao(35,0,65);
+        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
+
+        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataFuncionamento0 = calendario0.getTime();
+        TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
+        Localizacao locS0 = new Localizacao(45, -5, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
+
+        boolean expectedResult = true;
+        //Act
+        boolean result = ag1.verificarSeSensorEstaContidoNaAG(s0);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testarSensorNaoContidoEmAreaGeografica() {
+        //Arrange
+        String nomeAG = "Porto";
+        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
+        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        Localizacao cantoSuperiorEsquerdo = new Localizacao(50,-10,65);
+        Localizacao cantoInferiorDireito = new Localizacao(35,0,65);
+        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
+
+        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataFuncionamento0 = calendario0.getTime();
+        TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
+        Localizacao locS0 = new Localizacao(45, -20, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
+
+        boolean expectedResult = false;
+        //Act
+        boolean result = ag1.verificarSeSensorEstaContidoNaAG(s0);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testarSensorNoLimiteEmAreaGeografica() {
+        //Arrange
+        String nomeAG = "Porto";
+        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
+        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        Localizacao cantoSuperiorEsquerdo = new Localizacao(50,-10,65);
+        Localizacao cantoInferiorDireito = new Localizacao(35,0,65);
+        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
+
+        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataFuncionamento0 = calendario0.getTime();
+        TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
+        Localizacao locS0 = new Localizacao(50, -10, 65);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
+
+        boolean expectedResult = true;
+        //Act
+        boolean result = ag1.verificarSeSensorEstaContidoNaAG(s0);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
 }

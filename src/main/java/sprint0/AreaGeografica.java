@@ -75,8 +75,23 @@ public class AreaGeografica {
         return medicaoComUltimoRegisto.getmValor();
         }
 
+    public boolean verificarSeSensorEstaContidoNaAG (Sensor sensor) {
+
+        return mRetanguloArea.verificaSeLocalizacaoEstaContidaNumaArea(sensor.getmLocalizacao());
+
+    }
 
 
+
+
+/*
+    public List <Sensor> listarSensoresContidosNaAGPorTipo (TipoSensor tipoSensor) {
+
+        Sensor tipoDeSensorNaAreaGeografica = verificarSeSensorEstaContidoNaAG();
+
+    }
+
+*/
 }
 
 
