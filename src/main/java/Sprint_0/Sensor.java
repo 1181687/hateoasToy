@@ -117,12 +117,20 @@ public class Sensor {
         mRegistos.add(medicao);
     }
 
+    public boolean listaDeRegistosEVazia(){
+        if(mRegistos.size()==0){
+            return true;
+        }
+        return false;
+    }
 
     public Medicao getUltimoRegisto() {
-        if (mRegistos.isEmpty()) {
-            return null;
+        for (int i = (mRegistos.size()-1); i>= 0 ; i--) {
+            if (!(Double.isNaN(mRegistos.get(i).getmValor()))){
+                return mRegistos.get(i);
+            }
         }
-        return mRegistos.get(mRegistos.size() - 1);
+        return null;
     }
 
     public boolean umTipoDeSensorEIgualAOutro(TipoSensor tipo) {
