@@ -322,7 +322,7 @@ class SensorTest {
         Medicao registo3 = new Medicao (3.1, data3);
 
         double expectedResult = 3.1;
-        Date diaDoMes = new GregorianCalendar(2017,GregorianCalendar.AUGUST,1).getTime();
+        Date diaDoMes = new GregorianCalendar(2017,GregorianCalendar.AUGUST,15).getTime();
         // Act
         sensor1.adicionarMedicaoALista(registo1);
         sensor1.adicionarMedicaoALista(registo2);
@@ -386,7 +386,7 @@ class SensorTest {
         Medicao registo4 = new Medicao(5,data4);
 
         double expectedResult= 35;
-        Date dataDoMes = new GregorianCalendar(2018,2,1).getTime();
+        Date dataDoMes = new GregorianCalendar(2018,2,15).getTime();
 
         sensor1.adicionarMedicaoALista(registo1);
         sensor1.adicionarMedicaoALista(registo2);
@@ -418,7 +418,7 @@ class SensorTest {
         Medicao registo4 = new Medicao(27,data4);
 
         double expectedResult= 26;
-        Date diaDoMes = new GregorianCalendar(2018,2,1).getTime();
+        Date diaDoMes = new GregorianCalendar(2018,2,15).getTime();
 
         sensor1.adicionarMedicaoALista(registo1);
         sensor1.adicionarMedicaoALista(registo2);
@@ -440,7 +440,7 @@ class SensorTest {
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
         double expectedResult= Double.NaN;
-        Date diaDoMes = new GregorianCalendar(2018,2,1).getTime();
+        Date diaDoMes = new GregorianCalendar(2018,2,20).getTime();
 
         //Act
         double result=sensor1.getRegistoMediaMes(diaDoMes);
