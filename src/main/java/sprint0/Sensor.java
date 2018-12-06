@@ -69,6 +69,12 @@ public class Sensor {
         return registosEntreDatas;
     }
 
+    public boolean temRegistosEntreDatas(Date dataInicial, Date dataFinal){
+        List<Double> registosEntreDatas = getValorRegistosEntreDatas(dataInicial,dataFinal);
+
+        return !(registosEntreDatas.isEmpty());
+    }
+
     public double getMenorRegistoDoMes(Date diaDoMes) {
 
         Date primeiroDiaMes= getPrimeiroDiaDoMes(diaDoMes);
@@ -136,6 +142,7 @@ public class Sensor {
         cal.setTime(data);
         cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
         cal.set(Calendar.HOUR_OF_DAY,cal.getActualMaximum(Calendar.HOUR_OF_DAY));
+
         return cal.getTime();
     }
 

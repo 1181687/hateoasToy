@@ -1,6 +1,7 @@
 package sprint0;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class AreaGeografica {
@@ -92,6 +93,19 @@ public class AreaGeografica {
             }
         }
         return listaDeSensoresInseridos;
+    }
+
+    public List<Sensor> listarSensoresDeUmTipoNaAGNumPeriodo(TipoSensor tipo, List<Sensor> listaDeSensores, Date dataInicial, Date dataFinal){
+
+        List <Sensor> listaSensoresContidosNaAGPorTipo= listarSensoresContidosNaAGPorTipo(tipo,listaDeSensores);
+        List<Sensor> listaSensoresDeTipoNumPeriodo = new ArrayList<>();
+
+        for (Sensor sensor : listaSensoresContidosNaAGPorTipo) {
+            if (sensor.temRegistosEntreDatas(dataInicial,dataFinal)){
+                listaSensoresDeTipoNumPeriodo.add(sensor);
+            }
+        }
+        return listaSensoresDeTipoNumPeriodo;
     }
 
 }
