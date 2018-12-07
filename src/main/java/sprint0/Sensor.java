@@ -83,7 +83,7 @@ public class Sensor {
 
         List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
 
-        if(registosEntreDatas.isEmpty()){
+        if (registosEntreDatas.isEmpty()) {
             return Double.NaN;
         }
         double menorRegisto = registosEntreDatas.get(0);
@@ -103,7 +103,7 @@ public class Sensor {
 
         List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
 
-        if(registosEntreDatas.isEmpty()){
+        if (registosEntreDatas.isEmpty()) {
             return Double.NaN;
         }
         double maiorRegisto = registosEntreDatas.get(0);
@@ -181,13 +181,13 @@ public class Sensor {
         Calendar cal = Calendar.getInstance();
         cal.setTime(data);
 
-        List<Medicao>registosDoDia = new ArrayList<>();
+        List<Medicao> registosDoDia = new ArrayList<>();
         for (Medicao registo : mRegistos) {
             //passar Data do registo para Calendario
             Calendar ca2 = Calendar.getInstance();
             ca2.setTime(registo.getmDataHora());
 
-            if (verificaDiasIguais(ca2, cal) && registo.getmValor() != Double.NaN) {
+            if (verificaDiasIguais(ca2, cal) && (! Double.isNaN(registo.getmValor()))) {
                 registosDoDia.add(registo);
             }
         }
@@ -195,8 +195,21 @@ public class Sensor {
 
     }
 
-    public boolean verificaDiasIguais (Calendar cal1, Calendar cal2){
-        return (cal1.get(Calendar.YEAR)==cal2.get(Calendar.YEAR) && cal1.get(Calendar.MONTH)==cal2.get(Calendar.MONTH)
-                && cal1.get(Calendar.DAY_OF_MONTH)==cal2.get(Calendar.DAY_OF_MONTH));
+    public boolean verificaDiasIguais(Calendar cal1, Calendar cal2) {
+        return (cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)
+                && cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH));
+    }
+
+    public double getValorMinimoDoDia(Date data) {
+        if (!getRegistosDoDia(data).isEmpty()) {
+            double valorMinimoDoDia = getRegistosDoDia(data).get(0).getmValor();
+            for (Medicao registo : getRegistosDoDia(data)) {
+                if (valorMinimoDoDia > registo.getmValor()){
+                    valorMinimoDoDia = registo.getmValor();
+                }
+            }
+            return valorMinimoDoDia;
+        }
+        return Double.NaN;
     }
 }
