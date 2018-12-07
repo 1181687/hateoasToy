@@ -293,11 +293,11 @@ class SensorTest {
 
         double expectedResult = 20.1;
         Date diaDoMes = new GregorianCalendar(2017,8,5).getTime();
+
         // Act
         sensor1.adicionarMedicaoALista(registo1);
         sensor1.adicionarMedicaoALista(registo2);
         sensor1.adicionarMedicaoALista(registo3);
-
         double result = sensor1.getMenorRegistoDoMes(diaDoMes);
 
         // Assert
@@ -305,7 +305,7 @@ class SensorTest {
     }
 
     @Test
-    void testarGetOutroMenorRegistoMes () {
+    void testarGetMenorRegistoMesListaSemRegistos () {
 
         // Arrange
         Calendar calendario = new GregorianCalendar(2017, 8, 15);
@@ -317,17 +317,10 @@ class SensorTest {
         Date data2 = new GregorianCalendar(2017, GregorianCalendar.AUGUST, 13, 6, 30, 0).getTime();
         Date data3 = new GregorianCalendar(2017, GregorianCalendar.AUGUST, 30, 5, 0, 0).getTime();
 
-        Medicao registo1 = new Medicao (35.1, data1);
-        Medicao registo2 = new Medicao (10.1, data2);
-        Medicao registo3 = new Medicao (3.1, data3);
+        double expectedResult = Double.NaN;
+        Date diaDoMes = new GregorianCalendar(2017,GregorianCalendar.AUGUST,15).getTime();
 
-        double expectedResult = 3.1;
-        Date diaDoMes = new GregorianCalendar(2017,GregorianCalendar.AUGUST,1).getTime();
         // Act
-        sensor1.adicionarMedicaoALista(registo1);
-        sensor1.adicionarMedicaoALista(registo2);
-        sensor1.adicionarMedicaoALista(registo3);
-
         double result = sensor1.getMenorRegistoDoMes(diaDoMes);
 
         // Assert
@@ -360,14 +353,16 @@ class SensorTest {
         sensor1.adicionarMedicaoALista(registo2);
         sensor1.adicionarMedicaoALista(registo3);
         sensor1.adicionarMedicaoALista(registo4);
+
         //Act
         double result=sensor1.getMaiorRegistoDoMes(dataDoMes);
+
         //Assert
         assertEquals(expectedResult,result,0.001);
     }
 
     @Test
-    void testaGetOutroMaiorRegistoMes(){
+    void testaGetMaiorRegistoMesListaSemRegistos(){
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2,15,20,00);
         Date dataFuncionamento = calendario.getTime();
@@ -375,25 +370,12 @@ class SensorTest {
         Localizacao locS1 = new Localizacao(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
-        Date data1 = new GregorianCalendar(2018, 2, 1,6,25).getTime();
-        Date data2 = new GregorianCalendar(2018, 2, 8,6,25).getTime();
-        Date data3 = new GregorianCalendar(2018, 2, 10,6,25).getTime();
-        Date data4 = new GregorianCalendar(2018, 2, 28,6,25).getTime();
+        Date dataDoMes = new GregorianCalendar(2018,2,15).getTime();
+        double expectedResult= Double.NaN;
 
-        Medicao registo1 = new Medicao(35,data1);
-        Medicao registo2 = new Medicao(10,data2);
-        Medicao registo3 = new Medicao(8,data3);
-        Medicao registo4 = new Medicao(5,data4);
-
-        double expectedResult= 35;
-        Date dataDoMes = new GregorianCalendar(2018,2,1).getTime();
-
-        sensor1.adicionarMedicaoALista(registo1);
-        sensor1.adicionarMedicaoALista(registo2);
-        sensor1.adicionarMedicaoALista(registo3);
-        sensor1.adicionarMedicaoALista(registo4);
         //Act
         double result=sensor1.getMaiorRegistoDoMes(dataDoMes);
+
         //Assert
         assertEquals (expectedResult,result,0.001);
     }
@@ -418,7 +400,7 @@ class SensorTest {
         Medicao registo4 = new Medicao(27,data4);
 
         double expectedResult= 26;
-        Date diaDoMes = new GregorianCalendar(2018,2,1).getTime();
+        Date diaDoMes = new GregorianCalendar(2018,2,15).getTime();
 
         sensor1.adicionarMedicaoALista(registo1);
         sensor1.adicionarMedicaoALista(registo2);
@@ -440,7 +422,7 @@ class SensorTest {
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
         double expectedResult= Double.NaN;
-        Date diaDoMes = new GregorianCalendar(2018,2,1).getTime();
+        Date diaDoMes = new GregorianCalendar(2018,2,20).getTime();
 
         //Act
         double result=sensor1.getRegistoMediaMes(diaDoMes);
@@ -477,5 +459,218 @@ class SensorTest {
         //Assert
         assertFalse(resultado);
     }
+
+    @Test
+    public void testarGetRegistosDoDia () {
+        //Arrange
+
+        Calendar calDomingo1 = new GregorianCalendar(2018, 11, 2,15,20,00);
+        Date dataDomingo1 = calDomingo1.getTime();
+        Calendar calDomingo2 = new GregorianCalendar(2018, 11, 2,16,20,00);
+        Date dataDomingo2 = calDomingo2.getTime();
+        Calendar calSegunda = new GregorianCalendar(2018, 11, 3,17,20,00);
+        Date dataSegunda = calSegunda.getTime();
+        Calendar calDomingo = new GregorianCalendar(2018, 11, 2);
+        Date dataDomingo = calDomingo.getTime();
+
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123",dataDomingo1, tipoSensor, locS1);
+        Medicao medicaoDomingo1 = new Medicao(30, dataDomingo1);
+        Medicao medicaoDomingo2 = new Medicao(35, dataDomingo2);
+        Medicao medicaoSegunda = new Medicao(40, dataSegunda);
+
+        sensor1.adicionarMedicaoALista(medicaoDomingo1);
+        sensor1.adicionarMedicaoALista(medicaoDomingo2);
+        sensor1.adicionarMedicaoALista(medicaoSegunda);
+
+
+        List<Medicao> expectedResult = new ArrayList<>();
+        expectedResult.add(medicaoDomingo1);
+        expectedResult.add(medicaoDomingo2);
+
+        //act
+        List<Medicao> result = sensor1.getRegistosDoDia (dataDomingo);
+
+        //assert
+        assertEquals (expectedResult, result);
+
+    }
+    @Test
+    public void testarGetRegistosDoDiaComValorNaN () {
+        //Arrange
+
+        Calendar calDomingo1 = new GregorianCalendar(2018, 11, 2,15,20,00);
+        Date dataDomingo1 = calDomingo1.getTime();
+        Calendar calDomingo2 = new GregorianCalendar(2018, 11, 2,16,20,00);
+        Date dataDomingo2 = calDomingo2.getTime();
+        Calendar calSegunda = new GregorianCalendar(2018, 11, 3,17,20,00);
+        Date dataSegunda = calSegunda.getTime();
+        Calendar calDomingo = new GregorianCalendar(2018, 11, 2);
+        Date dataDomingo = calDomingo.getTime();
+
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123",dataDomingo1, tipoSensor, locS1);
+        Medicao medicaoDomingo1 = new Medicao(Double.NaN, dataDomingo1);
+        Medicao medicaoDomingo2 = new Medicao(35.0, dataDomingo2);
+        Medicao medicaoSegunda = new Medicao(40.0, dataSegunda);
+
+        sensor1.adicionarMedicaoALista(medicaoDomingo1);
+        sensor1.adicionarMedicaoALista(medicaoDomingo2);
+        sensor1.adicionarMedicaoALista(medicaoSegunda);
+
+
+        List<Medicao> expectedResult = new ArrayList<>();
+        expectedResult.add(medicaoDomingo2);
+
+        //act
+        List<Medicao> result = sensor1.getRegistosDoDia (dataDomingo);
+
+        //assert
+        assertEquals (expectedResult, result);
+
+    }
+
+
+    @Test
+    public void testarVerificaSeDatasSaoIguais() {
+        //Arrange
+
+        Calendar cal1 = new GregorianCalendar(2018, 1, 2,15,20,00);
+        Calendar cal2 = new GregorianCalendar(2018, 10, 2,16,20,00);
+        Date data = cal2.getTime();
+        boolean expectedResult = false;
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        boolean result = sensor1.verificaDiasIguais(cal1, cal2);
+
+        //assert
+        assertEquals (expectedResult, result);
+
+    }
+
+    @Test
+    public void testarVerificaSeDatasSaoIguaisTrue() {
+        //Arrange
+
+        Calendar cal1 = new GregorianCalendar(2018, 10, 2,15,20,00);
+        Calendar cal2 = new GregorianCalendar(2018, 10, 2,16,20,00);
+        Date data = cal2.getTime();
+        boolean expectedResult = true;
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+
+       //Act
+        boolean result = sensor1.verificaDiasIguais(cal1, cal2);
+
+        //assert
+        assertEquals (expectedResult, result);
+
+    }
+
+    @Test
+    public void testarGetValorMinimoDoDia (){
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
+        Date data = cal.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+
+        //Registo 1
+        Calendar cal1 = new GregorianCalendar(2018, 10, 2,00,00,01);
+        Date data1 = cal1.getTime();
+        Medicao medicao1 = new Medicao(40, data1);
+
+        //Registo 2
+        Calendar cal2 = new GregorianCalendar(2018, 10, 2,23,59,59);
+        Date data2 = cal2.getTime();
+        Medicao medicao2 = new Medicao(30, data2);
+
+        //Registo 3
+        Calendar cal3 = new GregorianCalendar(2018, 10, 2,17,20,00);
+        Date data3 = cal3.getTime();
+        Medicao medicao3 = new Medicao(-2, data3);
+
+        //Adição das medições
+        sensor1.adicionarMedicaoALista(medicao1);
+        sensor1.adicionarMedicaoALista(medicao2);
+        sensor1.adicionarMedicaoALista(medicao3);
+
+
+        double expectedResult = -2;
+
+        //Act
+        double result = sensor1.getValorMinimoDoDia(data);
+        //assert
+        assertEquals (expectedResult, result);
+
+    }
+
+    @Test
+    public void testarGetValorMinimoDoDiaComListaVazia (){
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
+        Date data = cal.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+
+        //Registo 1
+        Calendar cal1 = new GregorianCalendar(2018, 10, 2,00,00,01);
+        Date data1 = cal1.getTime();
+        Medicao medicao1 = new Medicao(40, data1);
+
+
+        double expectedResult = Double.NaN;
+
+        //Act
+        double result = sensor1.getValorMinimoDoDia(data);
+        //assert
+        assertEquals (expectedResult, result);
+
+    }
+
+    @Test
+    public void testarGetValorMinimoDoDiaComValorNaN (){
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
+        Date data = cal.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+
+        //Registo 1
+        Calendar cal1 = new GregorianCalendar(2018, 10, 2,00,00,01);
+        Date data1 = cal1.getTime();
+        Medicao medicao1 = new Medicao(Double.NaN, data1);
+
+        //Registo 2
+        Calendar cal2 = new GregorianCalendar(2018, 10, 2,23,59,59);
+        Date data2 = cal2.getTime();
+        Medicao medicao2 = new Medicao(30, data2);
+
+        //Registo 3
+        Calendar cal3 = new GregorianCalendar(2018, 10, 2,17,20,00);
+        Date data3 = cal3.getTime();
+        Medicao medicao3 = new Medicao(-2, data3);
+
+        //Adição das medições
+        sensor1.adicionarMedicaoALista(medicao1);
+        sensor1.adicionarMedicaoALista(medicao2);
+        sensor1.adicionarMedicaoALista(medicao3);
+
+        double expectedResult = -2;
+
+        //Act
+        double result = sensor1.getValorMinimoDoDia(data);
+        //assert
+        assertEquals (expectedResult, result);
+
+    }
+
 
 }
