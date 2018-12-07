@@ -355,11 +355,9 @@ class AreaGeograficaTest {
         //Instanciar AG
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
-        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
-        Localizacao cantoSuperiorEsquerdo = new Localizacao(180, 20, 65);
-        Localizacao cantoInferiorDireito = new Localizacao(140, 40, 65);
-        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local1, area);
+        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area = new RetanguloArea(10, 10,local);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -766,11 +764,9 @@ class AreaGeograficaTest {
         //Instanciar AG
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
-        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
-        Localizacao cantoSuperiorEsquerdo = new Localizacao(45, -10, 65);
-        Localizacao cantoInferiorDireito = new Localizacao(35, 0, 65);
-        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local1, area);
+        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area = new RetanguloArea(10, 10,local);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -862,11 +858,9 @@ class AreaGeograficaTest {
         //Instanciar AG
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
-        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
-        Localizacao cantoSuperiorEsquerdo = new Localizacao(45, -10, 65);
-        Localizacao cantoInferiorDireito = new Localizacao(35, 0, 65);
-        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local1, area);
+        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area = new RetanguloArea(10, 10,local);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -949,5 +943,4 @@ class AreaGeograficaTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-
 }
