@@ -82,9 +82,13 @@ public class Sensor {
         Date ultimoDiaMes = getUltimoDiaDoMes(diaDoMes);
 
         List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
+
+        if(registosEntreDatas.isEmpty()){
+            return Double.NaN;
+        }
         double menorRegisto = registosEntreDatas.get(0);
 
-        for (int i = 1; i < registosEntreDatas.size(); i++) {
+        for (int i = 0; i < registosEntreDatas.size(); i++) {
             if (menorRegisto > registosEntreDatas.get(i)) {
                 menorRegisto = registosEntreDatas.get(i);
             }
@@ -99,9 +103,12 @@ public class Sensor {
 
         List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
 
+        if(registosEntreDatas.isEmpty()){
+            return Double.NaN;
+        }
         double maiorRegisto = registosEntreDatas.get(0);
 
-        for (int i = 1; i < registosEntreDatas.size(); i++) {
+        for (int i = 0; i < registosEntreDatas.size(); i++) {
             if (maiorRegisto < registosEntreDatas.get(i)) {
                 maiorRegisto = registosEntreDatas.get(i);
             }
