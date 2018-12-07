@@ -672,5 +672,18 @@ class SensorTest {
 
     }
 
+    @Test
+    public void testarPrimeiroDiaSemana () {
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 11, 2);
+        Date data = cal.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Date expectedResult = data;
 
+        Date result = sensor1.getPrimeiroDiaSemana(2018, 48);
+
+        assertEquals(expectedResult, result);
+    }
 }

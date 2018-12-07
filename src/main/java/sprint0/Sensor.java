@@ -1,6 +1,5 @@
 package sprint0;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -212,4 +211,27 @@ public class Sensor {
         }
         return Double.NaN;
     }
+
+    public Date getPrimeiroDiaSemana (int ano, int semana){
+        Calendar cal = Calendar.getInstance();
+        //cal.setFirstDayOfWeek(Calendar.SUNDAY);
+        cal.setWeekDate(ano, semana, Calendar.SUNDAY);
+        cal.set(Calendar.HOUR_OF_DAY,0);
+        cal.set(Calendar.MINUTE,0);
+        cal.set(Calendar.SECOND,0);
+        cal.set(Calendar.MILLISECOND,0);
+        return cal.getTime();
+    }
+
+    /*public List <Double> valoresMinimosSemana(int ano, int semana){
+        Calendar cal = Calendar.getInstance();
+        cal.setFirstDayOfWeek(Calendar.SUNDAY);
+        cal.setWeekDate(ano, semana);
+        cal.getTime();
+
+        for (int i =Calendar.SUNDAY; i<=Calendar.SATURDAY; i++){
+            getValorMinimoDoDia()
+
+        }
+    }*/
 }
