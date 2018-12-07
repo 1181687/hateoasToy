@@ -7,12 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class RetanguloAreaTest {
 
     @Test
-    void verificaSeLocalizacaoEstaContidaNumaAreaComTesteVerdadeiro() {
+    void verificarSeLocalizacaoEstaContidaNumaAreaComTesteVerdadeiroNoLimiteMaximo() {
         // Arrange
-        Localizacao localizacao0 = new Localizacao(50,35,65);
-        Localizacao cantoSuperiorEsquerdo = new Localizacao(80,20,65);
-        Localizacao cantoInferiorDireito = new Localizacao(40,40,65);
-        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
+        Localizacao localizacao0 = new Localizacao(50,40,65);
+        Localizacao localizacaoRetanguloArea = new Localizacao(40,20,65);
+        RetanguloArea area = new RetanguloArea(20, 40,localizacaoRetanguloArea);
 
         // Act
         boolean result = area.verificaSeLocalizacaoEstaContidaNumaArea(localizacao0);
@@ -22,12 +21,25 @@ class RetanguloAreaTest {
     }
 
     @Test
-    void verificaSeLocalizacaoEstaContidaNumaAreaComTesteFalso() {
+    void verificarSeLocalizacaoEstaContidaNumaAreaComTesteVerdadeiroNoLimiteMinimo() {
         // Arrange
-        Localizacao localizacao0 = new Localizacao(90,35,65);
-        Localizacao cantoSuperiorEsquerdo = new Localizacao(80,20,65);
-        Localizacao cantoInferiorDireito = new Localizacao(40,40,65);
-        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
+        Localizacao localizacao0 = new Localizacao(30,0,65);
+        Localizacao localizacaoRetanguloArea = new Localizacao(40,20,65);
+        RetanguloArea area = new RetanguloArea(20, 40,localizacaoRetanguloArea);
+
+        // Act
+        boolean result = area.verificaSeLocalizacaoEstaContidaNumaArea(localizacao0);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void verificarSeLocalizacaoEstaContidaNumaAreaNumLimiteDeForaDaLatitudeCantoSuperiorEsquerdo() {
+        // Arrange
+        Localizacao localizacao0 = new Localizacao(51,20,65);
+        Localizacao localizacaoRetanguloArea = new Localizacao(40,20,65);
+        RetanguloArea area = new RetanguloArea(20, 40,localizacaoRetanguloArea);
 
         // Act
         boolean result = area.verificaSeLocalizacaoEstaContidaNumaArea(localizacao0);
@@ -37,32 +49,44 @@ class RetanguloAreaTest {
     }
 
     @Test
-    void verificaSeLocalizacaoEstaContidaNumaAreaComTestePositivoNoLimite1() {
+    void verificarSeLocalizacaoEstaContidaNumaAreaNumLimiteDeForaDaLongitudeCantoSuperiorEsquerdo() {
         // Arrange
-        Localizacao localizacao0 = new Localizacao(80,40,65);
-        Localizacao cantoSuperiorEsquerdo = new Localizacao(80,20,65);
-        Localizacao cantoInferiorDireito = new Localizacao(40,40,65);
-        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
+        Localizacao localizacao0 = new Localizacao(45,41,65);
+        Localizacao localizacaoRetanguloArea = new Localizacao(40,20,65);
+        RetanguloArea area = new RetanguloArea(20, 40,localizacaoRetanguloArea);
 
         // Act
         boolean result = area.verificaSeLocalizacaoEstaContidaNumaArea(localizacao0);
 
         // Assert
-        assertTrue(result);
+        assertFalse(result);
     }
 
     @Test
-    void verificaSeLocalizacaoEstaContidaNumaAreaComTestePositivoNoLimite2() {
+    void verificarSeLocalizacaoEstaContidaNumaAreaNumLimiteDeForaDaLatitudeCantoInferiorDireito() {
         // Arrange
-        Localizacao localizacao0 = new Localizacao(40,20,65);
-        Localizacao cantoSuperiorEsquerdo = new Localizacao(80,20,65);
-        Localizacao cantoInferiorDireito = new Localizacao(40,40,65);
-        RetanguloArea area = new RetanguloArea(cantoSuperiorEsquerdo, cantoInferiorDireito);
+        Localizacao localizacao0 = new Localizacao(29,20,65);
+        Localizacao localizacaoRetanguloArea = new Localizacao(40,20,65);
+        RetanguloArea area = new RetanguloArea(20, 40,localizacaoRetanguloArea);
 
         // Act
         boolean result = area.verificaSeLocalizacaoEstaContidaNumaArea(localizacao0);
 
         // Assert
-        assertTrue(result);
+        assertFalse(result);
+    }
+
+    @Test
+    void verificarSeLocalizacaoEstaContidaNumaAreaNumLimiteDeForaDaLongitudeCantoInferiorDireito() {
+        // Arrange
+        Localizacao localizacao0 = new Localizacao(51,-1,65);
+        Localizacao localizacaoRetanguloArea = new Localizacao(40,20,65);
+        RetanguloArea area = new RetanguloArea(20, 40,localizacaoRetanguloArea);
+
+        // Act
+        boolean result = area.verificaSeLocalizacaoEstaContidaNumaArea(localizacao0);
+
+        // Assert
+        assertFalse(result);
     }
 }
