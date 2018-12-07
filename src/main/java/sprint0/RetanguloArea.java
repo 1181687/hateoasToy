@@ -1,18 +1,26 @@
 package sprint0;
 
 public class RetanguloArea {
-    private Localizacao mCantoSuperiorEsquerdo;
-    private Localizacao mCantoInferiorDireito;
+    private double mComprimento;
+    private double mLargura;
+    private Localizacao mLocalizacaoRetanguloArea;
 
-    public RetanguloArea(Localizacao cantoSuperiorEsquerdo, Localizacao cantoInferiorDireito) {
-        mCantoSuperiorEsquerdo = cantoSuperiorEsquerdo;
-        mCantoInferiorDireito = cantoInferiorDireito;
+    public RetanguloArea(double largura, double comprimento, Localizacao localizacaoRetangulo) {
+        mComprimento = comprimento;
+        mLargura = largura;
+        mLocalizacaoRetanguloArea = localizacaoRetangulo;
     }
 
     public boolean verificaSeLocalizacaoEstaContidaNumaArea(Localizacao localizacao){
-        return (localizacao.getmLatitude() >= mCantoInferiorDireito.getmLatitude()
-                && localizacao.getmLatitude() <= mCantoSuperiorEsquerdo.getmLatitude()
-                && localizacao.getmLongitude() <= mCantoInferiorDireito.getmLongitude()
-                && localizacao.getmLongitude() >= mCantoSuperiorEsquerdo.getmLongitude());
+        double latitudeCantoSuperiorEsquerdo = mLocalizacaoRetanguloArea.getmLatitude() + (mLargura/2);
+        double longitudeCantoSuperiorEsquerdo = mLocalizacaoRetanguloArea.getmLongitude() - (mComprimento/2);
+
+        double latitudeCantoInferiorDireito = mLocalizacaoRetanguloArea.getmLatitude() - (mLargura/2);
+        double longitudeCantoInferiorDireito = mLocalizacaoRetanguloArea.getmLongitude() + (mComprimento/2);
+
+        return (localizacao.getmLatitude() >= latitudeCantoInferiorDireito
+                && localizacao.getmLatitude() <= latitudeCantoSuperiorEsquerdo
+                && localizacao.getmLongitude() <= longitudeCantoInferiorDireito
+                && localizacao.getmLongitude() >= longitudeCantoSuperiorEsquerdo);
     }
 }
