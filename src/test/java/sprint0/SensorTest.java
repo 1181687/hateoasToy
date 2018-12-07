@@ -478,4 +478,80 @@ class SensorTest {
         assertFalse(resultado);
     }
 
+    @Test
+    public void testarGetRegistosDoDia () {
+        //Arrange
+
+        Calendar calDomingo1 = new GregorianCalendar(2018, 11, 2,15,20,00);
+        Date dataDomingo1 = calDomingo1.getTime();
+        Calendar calDomingo2 = new GregorianCalendar(2018, 11, 2,16,20,00);
+        Date dataDomingo2 = calDomingo2.getTime();
+        Calendar calSegunda = new GregorianCalendar(2018, 11, 3,17,20,00);
+        Date dataSegunda = calSegunda.getTime();
+        Calendar calDomingo = new GregorianCalendar(2018, 11, 2);
+        Date dataDomingo = calDomingo.getTime();
+
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123",dataDomingo1, tipoSensor, locS1);
+        Medicao medicaoDomingo1 = new Medicao(30, dataDomingo1);
+        Medicao medicaoDomingo2 = new Medicao(35, dataDomingo2);
+        Medicao medicaoSegunda = new Medicao(40, dataSegunda);
+
+        sensor1.adicionarMedicaoALista(medicaoDomingo1);
+        sensor1.adicionarMedicaoALista(medicaoDomingo2);
+        sensor1.adicionarMedicaoALista(medicaoSegunda);
+
+
+        List<Medicao> expectedResult = new ArrayList<>();
+        expectedResult.add(medicaoDomingo1);
+        expectedResult.add(medicaoDomingo2);
+
+        //act
+        List<Medicao> result = sensor1.getRegistosDoDia (dataDomingo);
+
+        //assert
+        assertEquals (expectedResult, result);
+
+    }
+
+
+    @Test
+    public void testarVerificaSeDatasSaoIguais() {
+//Arrange
+
+        Calendar cal1 = new GregorianCalendar(2018, 1, 2,15,20,00);
+        Calendar cal2 = new GregorianCalendar(2018, 10, 2,16,20,00);
+        Date data = cal2.getTime();
+        boolean expectedResult = false;
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        boolean result = sensor1.verificaDiasIguais(cal1, cal2);
+
+        //assert
+        assertEquals (expectedResult, result);
+
+    }
+
+    @Test
+    public void testarVerificaSeDatasSaoIguaisTrue() {
+//Arrange
+
+        Calendar cal1 = new GregorianCalendar(2018, 10, 2,15,20,00);
+        Calendar cal2 = new GregorianCalendar(2018, 10, 2,16,20,00);
+        Date data = cal2.getTime();
+        boolean expectedResult = true;
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        boolean result = sensor1.verificaDiasIguais(cal1, cal2);
+
+        //assert
+        assertEquals (expectedResult, result);
+
+    }
+
+
+
 }
