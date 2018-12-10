@@ -214,7 +214,6 @@ public class Sensor {
 
     public Date getPrimeiroDiaSemana (int ano, int semana){
         Calendar cal = Calendar.getInstance();
-        //cal.setFirstDayOfWeek(Calendar.SUNDAY);
         cal.setWeekDate(ano, semana, Calendar.SUNDAY);
         cal.set(Calendar.HOUR_OF_DAY,0);
         cal.set(Calendar.MINUTE,0);
@@ -223,15 +222,20 @@ public class Sensor {
         return cal.getTime();
     }
 
-    /*public List <Double> valoresMinimosSemana(int ano, int semana){
+    public List <Double> valoresMinimosSemana(int ano, int semana){
+        List <Double> registosMinimosSemana = new ArrayList<>();
+        Date primeiroDiaSemana = getPrimeiroDiaSemana(ano,semana);
         Calendar cal = Calendar.getInstance();
-        cal.setFirstDayOfWeek(Calendar.SUNDAY);
-        cal.setWeekDate(ano, semana);
-        cal.getTime();
-
-        for (int i =Calendar.SUNDAY; i<=Calendar.SATURDAY; i++){
-            getValorMinimoDoDia()
-
+        cal.setTime(primeiroDiaSemana);
+        int contador = 1;
+        while (contador<8) {
+            if (!Double.isNaN(getValorMinimoDoDia(cal.getTime()))) {
+                registosMinimosSemana.add(getValorMinimoDoDia(cal.getTime()));
+            }
+            cal.add(Calendar.DAY_OF_WEEK, 1);
+            contador++;
         }
-    }*/
+        return registosMinimosSemana;
+    }
 }
+
