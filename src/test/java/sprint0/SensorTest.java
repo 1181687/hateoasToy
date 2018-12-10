@@ -682,7 +682,7 @@ class SensorTest {
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
         Date expectedResult = data;
 
-        Date result = sensor1.getPrimeiroDiaSemana(2018, 48);
+        Date result = sensor1.getPrimeiroDiaSemana(2018, 49);
 
         assertEquals(expectedResult, result);
     }
@@ -699,37 +699,37 @@ class SensorTest {
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 11, 2,01,00,01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(0, data1);
+        Medicao medicao1 = new Medicao(0.0, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 11, 3,23,59,59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(30, data2);
+        Medicao medicao2 = new Medicao(30.0, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 11, 4,17,20,00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(-2, data3);
+        Medicao medicao3 = new Medicao(-2.0, data3);
 
         //Registo 4
         Calendar cal4 = new GregorianCalendar(2018, 11, 5,17,20,00);
         Date data4 = cal4.getTime();
-        Medicao medicao4 = new Medicao(-4, data4);
+        Medicao medicao4 = new Medicao(-4.0, data4);
 
         //Registo 5
         Calendar cal5 = new GregorianCalendar(2018, 11, 6,17,20,00);
         Date data5 = cal5.getTime();
-        Medicao medicao5 = new Medicao(-2, data5);
+        Medicao medicao5 = new Medicao(-2.0, data5);
 
         //Registo 6
         Calendar cal6 = new GregorianCalendar(2018, 11, 7,17,20,00);
         Date data6 = cal6.getTime();
-        Medicao medicao6 = new Medicao(-5, data6);
+        Medicao medicao6 = new Medicao(-5.0, data6);
 
         //Registo 7
         Calendar cal7 = new GregorianCalendar(2018, 11, 8,17,20,00);
         Date data7 = cal7.getTime();
-        Medicao medicao7 = new Medicao(-2, data7);
+        Medicao medicao7 = new Medicao(-2.0, data7);
 
         //Adição das medições
         sensor1.adicionarMedicaoALista(medicao1);
@@ -743,7 +743,7 @@ class SensorTest {
         List <Double> expectedResult = new ArrayList<>(Arrays.asList(0.0,30.0,-2.0,-4.0,-2.0,-5.0,-2.0));
 
         //Act
-        List <Double> result = sensor1.valoresMinimosSemana(2018,48);
+        List <Double> result = sensor1.valoresMinimosSemana(2018,49);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -805,7 +805,7 @@ class SensorTest {
         List <Double> expectedResult = new ArrayList<>(Arrays.asList(30.0,-2.0,-4.0,-2.0,-5.0,-2.0));
 
         //Act
-        List <Double> result = sensor1.valoresMinimosSemana(2018,48);
+        List <Double> result = sensor1.valoresMinimosSemana(2018,49);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -855,7 +855,7 @@ class SensorTest {
         List <Double> expectedResult = new ArrayList<>(Arrays.asList(0.0,30.0,-2.0,-4.0,-2.0));
 
         //Act
-        List <Double> result = sensor1.valoresMinimosSemana(2018,48);
+        List <Double> result = sensor1.valoresMinimosSemana(2018,49);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -905,7 +905,7 @@ class SensorTest {
         List <Double> expectedResult = new ArrayList<>(Arrays.asList(0.0,30.0,-2.0,-4.0));
 
         //Act
-        List <Double> result = sensor1.valoresMinimosSemana(2018,48);
+        List <Double> result = sensor1.valoresMinimosSemana(2018,49);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -923,7 +923,7 @@ class SensorTest {
         List <Double> expectedResult = new ArrayList<>(Arrays.asList());
 
         //Act
-        List <Double> result = sensor1.valoresMinimosSemana(2018,48);
+        List <Double> result = sensor1.valoresMinimosSemana(2018,49);
 
         //Assert
         assertEquals(expectedResult, result);
