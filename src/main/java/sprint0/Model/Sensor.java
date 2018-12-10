@@ -225,15 +225,16 @@ public class Sensor {
         Date primeiroDiaSemana = getPrimeiroDiaSemana(ano,semana);
         Calendar cal = new GregorianCalendar(Locale.US);
         cal.setTime(primeiroDiaSemana);
-        int contador = 1;
-        while (contador<8) {
+        int primeiroDiaDaSemana = cal.getFirstDayOfWeek();
+        for (int diaDaSemana= primeiroDiaDaSemana; diaDaSemana<primeiroDiaDaSemana+7; diaDaSemana++) {
             double minimoDia = getValorMinimoDoDia(cal.getTime());
             if (!Double.isNaN(minimoDia)) {
                 registosMinimosSemana.add(minimoDia);
             }
             cal.add(Calendar.DAY_OF_WEEK, 1);
-            contador++;
         }
         return registosMinimosSemana;
     }
+
+
 }
