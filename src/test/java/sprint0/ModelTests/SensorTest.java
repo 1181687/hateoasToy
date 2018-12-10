@@ -1,8 +1,12 @@
-package sprint0;
+package sprint0.ModelTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+import sprint0.Model.Localizacao;
+import sprint0.Model.Medicao;
+import sprint0.Model.Sensor;
+import sprint0.Model.TipoSensor;
 
 import java.util.*;
 

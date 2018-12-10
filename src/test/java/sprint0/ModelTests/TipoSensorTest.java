@@ -1,6 +1,9 @@
-package sprint0;
+package sprint0.ModelTests;
 
 import org.junit.jupiter.api.Test;
+import sprint0.Model.Localizacao;
+import sprint0.Model.Sensor;
+import sprint0.Model.TipoSensor;
 
 import java.util.Calendar;
 import java.util.Date;

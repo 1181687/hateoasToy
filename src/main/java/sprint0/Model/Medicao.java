@@ -1,4 +1,4 @@
-package sprint0;
+package sprint0.Model;
 
 import java.util.Date;
 

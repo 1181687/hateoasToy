@@ -1,5 +1,5 @@
 
-package sprint0;
+package sprint0.Model;
 
 public class Localizacao {      //graus decimais
     private double mLatitude;

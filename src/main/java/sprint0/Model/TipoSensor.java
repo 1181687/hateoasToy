@@ -1,4 +1,4 @@
-package sprint0;
+package sprint0.Model;
 
 public class TipoSensor {
     private String mTipo;
