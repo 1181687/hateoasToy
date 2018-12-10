@@ -1,6 +1,4 @@
-package sprint0;
-
-import sun.util.resources.pt.CalendarData_pt_PT;
+package sprint0.Model;
 
 import java.util.*;
 
@@ -212,7 +210,6 @@ public class Sensor {
     }
 
     public Date getPrimeiroDiaSemana (int ano, int semana){
-        //Calendar cal = Calendar.getInstance();
         Calendar cal = new GregorianCalendar(Locale.US);
         cal.setWeekDate(ano, semana, cal.getFirstDayOfWeek());
         cal.set(Calendar.HOUR_OF_DAY,0);

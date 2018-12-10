@@ -1,6 +1,8 @@
-package sprint0;
+package sprint0.ModelTests;
 
 import org.junit.jupiter.api.Test;
+import sprint0.Model.Localizacao;
+import sprint0.Model.RetanguloArea;
 
 import static org.junit.jupiter.api.Assertions.*;
 
