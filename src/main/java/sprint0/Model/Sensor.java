@@ -1,9 +1,6 @@
 package sprint0.Model;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 
 public class Sensor {
@@ -213,8 +210,8 @@ public class Sensor {
     }
 
     public Date getPrimeiroDiaSemana (int ano, int semana){
-        Calendar cal = Calendar.getInstance();
-        cal.setWeekDate(ano, semana, Calendar.SUNDAY);
+        Calendar cal = new GregorianCalendar(Locale.US);
+        cal.setWeekDate(ano, semana, cal.getFirstDayOfWeek());
         cal.set(Calendar.HOUR_OF_DAY,0);
         cal.set(Calendar.MINUTE,0);
         cal.set(Calendar.SECOND,0);
@@ -222,15 +219,17 @@ public class Sensor {
         return cal.getTime();
     }
 
+
     public List <Double> valoresMinimosSemana(int ano, int semana){
         List <Double> registosMinimosSemana = new ArrayList<>();
         Date primeiroDiaSemana = getPrimeiroDiaSemana(ano,semana);
-        Calendar cal = Calendar.getInstance();
+        Calendar cal = new GregorianCalendar(Locale.US);
         cal.setTime(primeiroDiaSemana);
         int contador = 1;
         while (contador<8) {
-            if (!Double.isNaN(getValorMinimoDoDia(cal.getTime()))) {
-                registosMinimosSemana.add(getValorMinimoDoDia(cal.getTime()));
+            double minimoDia = getValorMinimoDoDia(cal.getTime());
+            if (!Double.isNaN(minimoDia)) {
+                registosMinimosSemana.add(minimoDia);
             }
             cal.add(Calendar.DAY_OF_WEEK, 1);
             contador++;
@@ -238,4 +237,3 @@ public class Sensor {
         return registosMinimosSemana;
     }
 }
-
