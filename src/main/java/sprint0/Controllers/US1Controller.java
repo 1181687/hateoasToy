@@ -3,7 +3,6 @@ package sprint0.Controllers;
 import sprint0.Model.ListaTiposAG;
 import sprint0.Model.TipoAreaGeo;
 
-import java.util.List;
 
 public class US1Controller {
     ListaTiposAG listaTAG;
