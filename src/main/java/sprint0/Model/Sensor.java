@@ -289,7 +289,7 @@ public class Sensor {
 
         int contador=0;
         double somaRegistosMaxSemana=0;
-        if (registosMaxSemana.size()==0){
+        if (registosMaxSemana.isEmpty()){
             return Double.NaN;
         }
         while (contador<registosMaxSemana.size()){
