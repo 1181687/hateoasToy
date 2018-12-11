@@ -6,8 +6,8 @@ import sprint0.Model.ListaTiposAG;
 import java.util.Scanner;
 
 public class US1UI {
-    ListaTiposAG lista;
-    US1Controller ctrl;
+    private ListaTiposAG lista;
+    private US1Controller ctrl;
 
     public US1UI(ListaTiposAG lista) {
         this.lista = lista;

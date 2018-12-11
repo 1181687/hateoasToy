@@ -5,7 +5,7 @@ import sprint0.Model.TipoAreaGeo;
 
 
 public class US1Controller {
-    ListaTiposAG listaTAG;
+    private ListaTiposAG listaTAG;
 
     public US1Controller(ListaTiposAG listaTAG) {
         this.listaTAG = listaTAG;
