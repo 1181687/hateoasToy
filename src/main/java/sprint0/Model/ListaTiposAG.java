@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListaTiposAG {
-    List<TipoAreaGeo> mListaTAG = new ArrayList<>();
+    private List<TipoAreaGeo> mListaTAG = new ArrayList<>();
 
     public ListaTiposAG(List<TipoAreaGeo> mListaTAG) {
         this.mListaTAG = mListaTAG;
