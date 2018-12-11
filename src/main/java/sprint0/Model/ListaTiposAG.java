@@ -13,6 +13,10 @@ public class ListaTiposAG {
     public ListaTiposAG() {
     }
 
+    public List<TipoAreaGeo> getmListaTAG() {
+        return mListaTAG;
+    }
+
     public boolean adicionarElementoALista(TipoAreaGeo tipoAG) {
         if (!(mListaTAG.contains(tipoAG))) {
             mListaTAG.add(tipoAG);

@@ -1019,5 +1019,99 @@ class SensorTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void testarValorMaximoDoDia() {
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
+        Date data = cal.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+
+        //Registo 1
+        Calendar cal1 = new GregorianCalendar(2018, 10, 2, 00, 00, 01);
+        Date data1 = cal1.getTime();
+        Medicao medicao1 = new Medicao(30, data1);
+
+        //Registo 2
+        Calendar cal2 = new GregorianCalendar(2018, 10, 2, 23, 59, 59);
+        Date data2 = cal2.getTime();
+        Medicao medicao2 = new Medicao(40, data2);
+
+        //Registo 3
+        Calendar cal3 = new GregorianCalendar(2018, 10, 2, 17, 20, 00);
+        Date data3 = cal3.getTime();
+        Medicao medicao3 = new Medicao(-2, data3);
+
+        //Adição das medições
+        sensor1.adicionarMedicaoALista(medicao1);
+        sensor1.adicionarMedicaoALista(medicao2);
+        sensor1.adicionarMedicaoALista(medicao3);
+
+
+        double expectedResult = 40;
+
+        //Act
+        double result = sensor1.getValorMaximoDoDia(data);
+        //assert
+        assertEquals(expectedResult, result);
+    }
+    @Test
+    public void testarGetValorMaximoDoDiaComListaVazia() {
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
+        Date data = cal.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+
+        double expectedResult = Double.NaN;
+
+        //Act
+        double result = sensor1.getValorMaximoDoDia(data);
+        //assert
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    public void testarGetValorMaximoDoDiaComValorNaN() {
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
+        Date data = cal.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+
+        //Registo 1
+        Calendar cal1 = new GregorianCalendar(2018, 10, 2, 00, 00, 01);
+        Date data1 = cal1.getTime();
+        Medicao medicao1 = new Medicao(Double.NaN, data1);
+
+        //Registo 2
+        Calendar cal2 = new GregorianCalendar(2018, 10, 2, 23, 59, 59);
+        Date data2 = cal2.getTime();
+        Medicao medicao2 = new Medicao(-2, data2);
+
+        //Registo 3
+        Calendar cal3 = new GregorianCalendar(2018, 10, 2, 17, 20, 00);
+        Date data3 = cal3.getTime();
+        Medicao medicao3 = new Medicao(30, data3);
+
+        //Adição das medições
+        sensor1.adicionarMedicaoALista(medicao1);
+        sensor1.adicionarMedicaoALista(medicao2);
+        sensor1.adicionarMedicaoALista(medicao3);
+
+        double expectedResult = 30;
+
+        //Act
+        double result = sensor1.getValorMaximoDoDia(data);
+        //assert
+        assertEquals(expectedResult, result);
+
+    }
+
+
 
 }

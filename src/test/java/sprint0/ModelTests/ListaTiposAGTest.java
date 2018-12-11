@@ -1,6 +1,8 @@
-package sprint0.Model;
+package sprint0.ModelTests;
 
 import org.junit.jupiter.api.Test;
+import sprint0.Model.ListaTiposAG;
+import sprint0.Model.TipoAreaGeo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +60,7 @@ class ListaTiposAGTest {
         lista.add(tipo2);
         ListaTiposAG novaLista = new ListaTiposAG(lista);
         //Act
-        boolean resultado = novaLista.mListaTAG.isEmpty();
+        boolean resultado = novaLista.getmListaTAG().isEmpty();
         //Assert
         assertFalse(resultado);
     }

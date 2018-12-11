@@ -252,4 +252,17 @@ public class Sensor {
         return somaRegistosMinSemana/registosMinSemana.size();
 
     }
+
+    public double getValorMaximoDoDia(Date data) {
+        if (!getRegistosDoDia(data).isEmpty()) {
+            double valorMaximoDoDia = getRegistosDoDia(data).get(0).getmValor();
+            for (Medicao registo : getRegistosDoDia(data)) {
+                if (valorMaximoDoDia < registo.getmValor()){
+                    valorMaximoDoDia = registo.getmValor();
+                }
+            }
+            return valorMaximoDoDia;
+        }
+        return Double.NaN;
+    }
 }

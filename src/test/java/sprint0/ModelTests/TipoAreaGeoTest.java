@@ -1,6 +1,8 @@
-package sprint0.Model;
+package sprint0.ModelTests;
 
 import org.junit.jupiter.api.Test;
+import sprint0.Model.TipoAreaGeo;
+import sprint0.Model.TipoSensor;
 
 import static org.junit.jupiter.api.Assertions.*;
 
