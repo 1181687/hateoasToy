@@ -611,7 +611,7 @@ class SensorTest {
         //Act
         double result = sensor1.getValorMinimoDoDia(data);
         //assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
 
     }
 
@@ -635,7 +635,7 @@ class SensorTest {
         //Act
         double result = sensor1.getValorMinimoDoDia(data);
         //assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
 
     }
 
@@ -673,7 +673,7 @@ class SensorTest {
         //Act
         double result = sensor1.getValorMinimoDoDia(data);
         //assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
 
     }
 
@@ -997,7 +997,7 @@ class SensorTest {
         double result = sensor1.getMediaRegitosMinSemanal(2018,49);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -1016,7 +1016,7 @@ class SensorTest {
         double result = sensor1.getMediaRegitosMinSemanal(2018,49);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -1054,7 +1054,7 @@ class SensorTest {
         //Act
         double result = sensor1.getValorMaximoDoDia(data);
         //assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
     @Test
     public void testarGetValorMaximoDoDiaComListaVazia() {
@@ -1070,7 +1070,7 @@ class SensorTest {
         //Act
         double result = sensor1.getValorMaximoDoDia(data);
         //assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
 
     }
 
@@ -1108,7 +1108,7 @@ class SensorTest {
         //Act
         double result = sensor1.getValorMaximoDoDia(data);
         //assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
 
     }
 
@@ -1354,5 +1354,141 @@ class SensorTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void testarGetMediaRegistosMaxSemanal(){
 
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 11, 2,15,20,00);
+        Date data = cal.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+
+        //Registo 1
+        Calendar cal1 = new GregorianCalendar(2018, 11, 2,01,00,01);
+        Date data1 = cal1.getTime();
+        Medicao medicao1 = new Medicao(10.0, data1);
+
+        //Registo 2
+        Calendar cal2 = new GregorianCalendar(2018, 11, 3,23,59,59);
+        Date data2 = cal2.getTime();
+        Medicao medicao2 = new Medicao(9.5, data2);
+
+        //Registo 3
+        Calendar cal3 = new GregorianCalendar(2018, 11, 4,17,20,00);
+        Date data3 = cal3.getTime();
+        Medicao medicao3 = new Medicao(7.5, data3);
+
+        //Registo 4
+        Calendar cal4 = new GregorianCalendar(2018, 11, 5,17,20,00);
+        Date data4 = cal4.getTime();
+        Medicao medicao4 = new Medicao(9.7, data4);
+
+        //Registo 5
+        Calendar cal5 = new GregorianCalendar(2018, 11, 6,17,20,00);
+        Date data5 = cal5.getTime();
+        Medicao medicao5 = new Medicao(10.1, data5);
+
+        //Registo 6
+        Calendar cal6 = new GregorianCalendar(2018, 11, 7,17,20,00);
+        Date data6 = cal6.getTime();
+        Medicao medicao6 = new Medicao(11.2, data6);
+
+        //Registo 7
+        Calendar cal7 = new GregorianCalendar(2018, 11, 8,17,20,00);
+        Date data7 = cal7.getTime();
+        Medicao medicao7 = new Medicao(8.9, data7);
+
+
+        //Adição das medições
+        sensor1.adicionarMedicaoALista(medicao1);
+        sensor1.adicionarMedicaoALista(medicao2);
+        sensor1.adicionarMedicaoALista(medicao3);
+        sensor1.adicionarMedicaoALista(medicao4);
+        sensor1.adicionarMedicaoALista(medicao5);
+        sensor1.adicionarMedicaoALista(medicao6);
+        sensor1.adicionarMedicaoALista(medicao7);
+
+        //   List <Double> registoMinSemana = new ArrayList<>(Arrays.asList(10.0, 9.5, 7.5, 9.7, 10.1, 11.2, 8.9)); //66.9/7=9.557
+
+        double expectedResult=66.9/7;
+
+        //Act
+        double result = sensor1.getMediaRegistosMaxSemanal(2018,49);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void testarGetMediaRegistosMaxSemanalDoubleNan(){
+
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 11, 2,15,20,00);
+        Date data = cal.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+
+        double expectedResult= Double.NaN;
+
+        //Act
+        double result = sensor1.getMediaRegistosMaxSemanal(2018,49);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void testarGetMediaRegistosMaxSemanalComCincoDiasDeRegisto(){
+
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 11, 2,15,20,00);
+        Date data = cal.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+
+        //Registo 1
+        Calendar cal1 = new GregorianCalendar(2018, 11, 2,01,00,01);
+        Date data1 = cal1.getTime();
+        Medicao medicao1 = new Medicao(10.0, data1);
+
+        //Registo 2
+        Calendar cal2 = new GregorianCalendar(2018, 11, 3,23,59,59);
+        Date data2 = cal2.getTime();
+        Medicao medicao2 = new Medicao(9.5, data2);
+
+        //Registo 3
+        Calendar cal3 = new GregorianCalendar(2018, 11, 4,17,20,00);
+        Date data3 = cal3.getTime();
+        Medicao medicao3 = new Medicao(7.5, data3);
+
+        //Registo 4
+        Calendar cal4 = new GregorianCalendar(2018, 11, 5,17,20,00);
+        Date data4 = cal4.getTime();
+        Medicao medicao4 = new Medicao(9.7, data4);
+
+        //Registo 5
+        Calendar cal5 = new GregorianCalendar(2018, 11, 6,17,20,00);
+        Date data5 = cal5.getTime();
+        Medicao medicao5 = new Medicao(10.1, data5);
+
+        //Adição das medições
+        sensor1.adicionarMedicaoALista(medicao1);
+        sensor1.adicionarMedicaoALista(medicao2);
+        sensor1.adicionarMedicaoALista(medicao3);
+        sensor1.adicionarMedicaoALista(medicao4);
+        sensor1.adicionarMedicaoALista(medicao5);
+
+        //   List <Double> registoMinSemana = new ArrayList<>(Arrays.asList(10.0, 9.5, 7.5, 9.7, 10.1)); //46.8/5=9.36
+
+        double expectedResult=46.8/5;
+
+        //Act
+        double result = sensor1.getMediaRegistosMaxSemanal(2018,49);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
 }

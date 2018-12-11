@@ -282,4 +282,20 @@ public class Sensor {
         }
         return registosMaximosSemana;
     }
+
+    public double getMediaRegistosMaxSemanal (int ano, int semana){
+
+        List <Double> registosMaxSemana= this.valoresMaximosSemana(ano, semana);
+
+        int contador=0;
+        double somaRegistosMaxSemana=0;
+        if (registosMaxSemana.size()==0){
+            return Double.NaN;
+        }
+        while (contador<registosMaxSemana.size()){
+            somaRegistosMaxSemana += registosMaxSemana.get(contador);
+            contador++;
+        }
+        return somaRegistosMaxSemana/registosMaxSemana.size();
+    }
 }
