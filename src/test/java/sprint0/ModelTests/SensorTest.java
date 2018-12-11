@@ -1112,6 +1112,247 @@ class SensorTest {
 
     }
 
+    @Test
+    public void testarListaMaximosSemana(){
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
+        Date data = cal.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+
+        //Registo 1
+        Calendar cal1 = new GregorianCalendar(2018, 11, 2,01,00,01);
+        Date data1 = cal1.getTime();
+        Medicao medicao1 = new Medicao(20.0, data1);
+
+        //Registo 2
+        Calendar cal2 = new GregorianCalendar(2018, 11, 3,23,59,59);
+        Date data2 = cal2.getTime();
+        Medicao medicao2 = new Medicao(30.0, data2);
+
+        //Registo 3
+        Calendar cal3 = new GregorianCalendar(2018, 11, 4,17,20,00);
+        Date data3 = cal3.getTime();
+        Medicao medicao3 = new Medicao(20.0, data3);
+
+        //Registo 4
+        Calendar cal4 = new GregorianCalendar(2018, 11, 5,17,20,00);
+        Date data4 = cal4.getTime();
+        Medicao medicao4 = new Medicao(40.0, data4);
+
+        //Registo 5
+        Calendar cal5 = new GregorianCalendar(2018, 11, 6,17,20,00);
+        Date data5 = cal5.getTime();
+        Medicao medicao5 = new Medicao(20.0, data5);
+
+        //Registo 6
+        Calendar cal6 = new GregorianCalendar(2018, 11, 7,17,20,00);
+        Date data6 = cal6.getTime();
+        Medicao medicao6 = new Medicao(45.0, data6);
+
+        //Registo 7
+        Calendar cal7 = new GregorianCalendar(2018, 11, 8,17,20,00);
+        Date data7 = cal7.getTime();
+        Medicao medicao7 = new Medicao(20.0, data7);
+
+        //Adição das medições
+        sensor1.adicionarMedicaoALista(medicao1);
+        sensor1.adicionarMedicaoALista(medicao2);
+        sensor1.adicionarMedicaoALista(medicao3);
+        sensor1.adicionarMedicaoALista(medicao4);
+        sensor1.adicionarMedicaoALista(medicao5);
+        sensor1.adicionarMedicaoALista(medicao6);
+        sensor1.adicionarMedicaoALista(medicao7);
+
+        List <Double> expectedResult = new ArrayList<>(Arrays.asList(20.0,30.0,20.0,40.0,20.0,45.0,20.0));
+
+        //Act
+        List <Double> result = sensor1.valoresMaximosSemana(2018,49);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testarListaMaximosSemanaDoubleNaN(){
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
+        Date data = cal.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+
+        //Registo 1
+        Calendar cal1 = new GregorianCalendar(2018, 11, 2,01,00,01);
+        Date data1 = cal1.getTime();
+        Medicao medicao1 = new Medicao(Double.NaN, data1);
+
+        //Registo 2
+        Calendar cal2 = new GregorianCalendar(2018, 11, 3,23,59,59);
+        Date data2 = cal2.getTime();
+        Medicao medicao2 = new Medicao(30.0, data2);
+
+        //Registo 3
+        Calendar cal3 = new GregorianCalendar(2018, 11, 4,17,20,00);
+        Date data3 = cal3.getTime();
+        Medicao medicao3 = new Medicao(20.0, data3);
+
+        //Registo 4
+        Calendar cal4 = new GregorianCalendar(2018, 11, 5,17,20,00);
+        Date data4 = cal4.getTime();
+        Medicao medicao4 = new Medicao(40.0, data4);
+
+        //Registo 5
+        Calendar cal5 = new GregorianCalendar(2018, 11, 6,17,20,00);
+        Date data5 = cal5.getTime();
+        Medicao medicao5 = new Medicao(20.0, data5);
+
+        //Registo 6
+        Calendar cal6 = new GregorianCalendar(2018, 11, 7,17,20,00);
+        Date data6 = cal6.getTime();
+        Medicao medicao6 = new Medicao(45.0, data6);
+
+        //Registo 7
+        Calendar cal7 = new GregorianCalendar(2018, 11, 8,17,20,00);
+        Date data7 = cal7.getTime();
+        Medicao medicao7 = new Medicao(20.0, data7);
+
+        //Adição das medições
+        sensor1.adicionarMedicaoALista(medicao1);
+        sensor1.adicionarMedicaoALista(medicao2);
+        sensor1.adicionarMedicaoALista(medicao3);
+        sensor1.adicionarMedicaoALista(medicao4);
+        sensor1.adicionarMedicaoALista(medicao5);
+        sensor1.adicionarMedicaoALista(medicao6);
+        sensor1.adicionarMedicaoALista(medicao7);
+
+        List <Double> expectedResult = new ArrayList<>(Arrays.asList(30.0,20.0,40.0,20.0,45.0,20.0));
+
+        //Act
+        List <Double> result = sensor1.valoresMaximosSemana(2018,49);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testarListaMaximosSemanaComCincoRegistos(){
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
+        Date data = cal.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+
+        //Registo 1
+        Calendar cal1 = new GregorianCalendar(2018, 11, 2,01,00,01);
+        Date data1 = cal1.getTime();
+        Medicao medicao1 = new Medicao(30.0, data1);
+
+        //Registo 2
+        Calendar cal2 = new GregorianCalendar(2018, 11, 3,23,59,59);
+        Date data2 = cal2.getTime();
+        Medicao medicao2 = new Medicao(30.0, data2);
+
+        //Registo 3
+        Calendar cal3 = new GregorianCalendar(2018, 11, 4,17,20,00);
+        Date data3 = cal3.getTime();
+        Medicao medicao3 = new Medicao(20.0, data3);
+
+        //Registo 4
+        Calendar cal4 = new GregorianCalendar(2018, 11, 5,17,20,00);
+        Date data4 = cal4.getTime();
+        Medicao medicao4 = new Medicao(40.0, data4);
+
+        //Registo 5
+        Calendar cal5 = new GregorianCalendar(2018, 11, 6,17,20,00);
+        Date data5 = cal5.getTime();
+        Medicao medicao5 = new Medicao(20.0, data5);
+
+        //Adição das medições
+        sensor1.adicionarMedicaoALista(medicao1);
+        sensor1.adicionarMedicaoALista(medicao2);
+        sensor1.adicionarMedicaoALista(medicao3);
+        sensor1.adicionarMedicaoALista(medicao4);
+        sensor1.adicionarMedicaoALista(medicao5);
+
+        List <Double> expectedResult = new ArrayList<>(Arrays.asList(30.0,30.0,20.0,40.0,20.0));
+
+        //Act
+        List <Double> result = sensor1.valoresMaximosSemana(2018,49);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testarListaMaximosSemanaComDataSemanaDiferente(){
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
+        Date data = cal.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+
+        //Registo 1
+        Calendar cal1 = new GregorianCalendar(2018, 11, 2,01,00,01);
+        Date data1 = cal1.getTime();
+        Medicao medicao1 = new Medicao(45.0, data1);
+
+        //Registo 2
+        Calendar cal2 = new GregorianCalendar(2018, 11, 3,23,59,59);
+        Date data2 = cal2.getTime();
+        Medicao medicao2 = new Medicao(30.0, data2);
+
+        //Registo 3
+        Calendar cal3 = new GregorianCalendar(2018, 11, 4,17,20,00);
+        Date data3 = cal3.getTime();
+        Medicao medicao3 = new Medicao(25.0, data3);
+
+        //Registo 4
+        Calendar cal4 = new GregorianCalendar(2018, 11, 5,17,20,00);
+        Date data4 = cal4.getTime();
+        Medicao medicao4 = new Medicao(40.0, data4);
+
+        //Registo 5
+        Calendar cal5 = new GregorianCalendar(2018, 10, 6,17,20,00);
+        Date data5 = cal5.getTime();
+        Medicao medicao5 = new Medicao(20.0, data5);
+
+        //Adição das medições
+        sensor1.adicionarMedicaoALista(medicao1);
+        sensor1.adicionarMedicaoALista(medicao2);
+        sensor1.adicionarMedicaoALista(medicao3);
+        sensor1.adicionarMedicaoALista(medicao4);
+        sensor1.adicionarMedicaoALista(medicao5);
+
+        List <Double> expectedResult = new ArrayList<>(Arrays.asList(45.0,30.0,25.0,40.0));
+
+        //Act
+        List <Double> result = sensor1.valoresMaximosSemana(2018,49);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testarListaMaximosSemanaSemRegistos(){
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
+        Date data = cal.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+
+        List <Double> expectedResult = new ArrayList<>(Arrays.asList());
+
+        //Act
+        List <Double> result = sensor1.valoresMaximosSemana(2018,49);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 
 
 }

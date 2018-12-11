@@ -265,4 +265,21 @@ public class Sensor {
         }
         return Double.NaN;
     }
+
+    public List<Double> valoresMaximosSemana(int ano, int semana) {
+        List<Double> registosMaximosSemana = new ArrayList<>();
+        Date primeiroDiaSemana = getPrimeiroDiaSemana(ano, semana);
+        Calendar cal = new GregorianCalendar(Locale.US);
+        cal.setTime(primeiroDiaSemana);
+        int contador = 1;
+        while (contador < 8) {
+            double maximoDia = getValorMaximoDoDia(cal.getTime());
+            if (!Double.isNaN(maximoDia)) {
+                registosMaximosSemana.add(maximoDia);
+            }
+            cal.add(Calendar.DAY_OF_WEEK, 1);
+            contador++;
+        }
+        return registosMaximosSemana;
+    }
 }

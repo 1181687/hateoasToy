@@ -9,13 +9,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class US1ControllerTest {
 
     @Test
-    public void testarCriacaoDeNovoTipoDeAG(){
+    public void testarCriacaoDeNovoTipoDeAG() {
         //Arrange
         ListaTiposAG lista = new ListaTiposAG();
         String novoTipo = "Cidade";
         US1Controller ctrl = new US1Controller(lista);
         //Act
-        boolean resultado =ctrl.novoTAG(novoTipo);
+        boolean resultado = ctrl.novoTAG(novoTipo);
         //Assert
         assertTrue(resultado);
 
