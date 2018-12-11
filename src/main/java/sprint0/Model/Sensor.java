@@ -236,4 +236,21 @@ public class Sensor {
         }
         return registosMinimosSemana;
     }
+
+    public double getMediaRegitosMinSemanal (int ano, int semana){
+
+        List <Double> registosMinSemana= this.valoresMinimosSemana(ano, semana);
+
+        int contador=0;
+        double somaRegistosMinSemana=0;
+        if (registosMinSemana.size()==0){
+            return Double.NaN;
+        }
+        while (contador<registosMinSemana.size()){
+            somaRegistosMinSemana += registosMinSemana.get(contador);
+            contador++;
+        }
+        return somaRegistosMinSemana/registosMinSemana.size();
+
+    }
 }
