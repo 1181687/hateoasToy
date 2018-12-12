@@ -18,9 +18,8 @@ public class US2Controller {
 
     public List<String> getListaDosTiposDeAG (){
         List<String> listaFinal = new ArrayList<>();
-        US1Controller ctrl1 = new US1Controller(listaTAG);
-        ListaTiposAG obterListaTAG = ctrl1.getListaTAG();
-        for (TipoAreaGeo objecto: obterListaTAG.getmListaTAG()){
+       
+        for (TipoAreaGeo objecto: listaTAG.getmListaTAG()){
                 listaFinal.add(objecto.getmTipoAreaGeo());
         }
         return listaFinal;
