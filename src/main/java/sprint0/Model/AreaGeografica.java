@@ -46,7 +46,9 @@ public class AreaGeografica {
     }
 
     public void adicionarSensorAListaDeSensores(Sensor sensor) {
-        mListaSensor.add(sensor);
+        if (!(mListaSensor.contains(sensor))) {
+            mListaSensor.add(sensor);
+        }
     }
 
     public List<Medicao> getListaDeUltimosRegistosPorTipoDeSensor(TipoSensor tipo) {
