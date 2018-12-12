@@ -8,7 +8,7 @@ public class US6Controller {
 
         private Sensor mNovoSensor;
         private ListaTiposSensores mListaTipoSensores;
-        // private ListaAG mListaAreaGeografica;
+        private ListaAG mListaAreaGeografica;
 
         public US6Controller(Sensor novoSensor) {
             this.mNovoSensor = novoSensor;
@@ -39,21 +39,22 @@ public class US6Controller {
             return false;
         }
 
-        public boolean atribuirTipoSensor (TipoSensor novoTipoSensor) {
+        public boolean atribuirTipoSensor (String novoTipoSensor) {
 
             if (this.mListaTipoSensores.getmListaTiposSensores().contains(novoTipoSensor)) {
-                mNovoSensor.setmTipoSensor(novoTipoSensor);
+                mNovoSensor.getmTipoSensor().setmTipo(novoTipoSensor);
+                //mNovoSensor.setmTipoSensor(TipoSensor.);
                 return true;
             }
             return false;
         }
-/*
-        public boolean adicionarSensorAAreaGeografica (AreaGeografica areaGeografica) {
 
+        public boolean adicionarSensorAAreaGeografica (String areaGeografica) {
 
-            if (this.mListaAreaGeografica.getmLista().contains(areaGeografica)) {
-                mListaAreaGeografica.getmAreaGeograficaPorNome(areaGeografica)
+            if (this.mListaAreaGeografica.getmListaAG().contains(mListaAreaGeografica.getAreaGeografica(areaGeografica))) {
+                mListaAreaGeografica.getAreaGeografica(areaGeografica).adicionarSensorAListaDeSensores(this.mNovoSensor);
+                return true;
             }
+            return false;
         }
-        */
 }

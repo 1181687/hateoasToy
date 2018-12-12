@@ -27,4 +27,13 @@ public class ListaAG {
         return false;
     }
 
+    public AreaGeografica getAreaGeografica (String nomeAreaGeografica) {
+        for (AreaGeografica area : mListaAG) {
+            if (area.getmNomeAreaGeo().equals(nomeAreaGeografica)) {
+                return area;
+            }
+        }
+        return null;
+    }
+
 }

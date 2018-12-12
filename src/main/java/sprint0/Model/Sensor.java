@@ -31,7 +31,6 @@ public class Sensor {
 
     public void setmTipoSensor (TipoSensor tipoSensor) {
         this.mTipoSensor = tipoSensor;
-
     }
 
     public void setmLocalizacao (Localizacao localizacao) {
