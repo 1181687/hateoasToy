@@ -15,4 +15,8 @@ public class US1Controller {
         TipoAreaGeo novoTAG = listaTAG.novoTipoAG(tipoTAG);
         return listaTAG.adicionarElementoALista(novoTAG);
     }
+
+    public ListaTiposAG getListaTAG() {
+        return listaTAG;
+    }
 }

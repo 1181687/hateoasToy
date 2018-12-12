@@ -25,4 +25,7 @@ public class TipoAreaGeo {
 
     }
 
+    public String getmTipoAreaGeo() {
+        return mTipoAreaGeo;
+    }
 }

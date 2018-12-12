@@ -52,4 +52,17 @@ class TipoAreaGeoTest {
         //Assert
         assertFalse(result);
     }
+
+    @Test
+    public void testarGetMTipoAreaGeo (){
+        //Arrange
+        String TipoAreaGeo = "Cidade";
+        TipoAreaGeo tipo = new TipoAreaGeo(TipoAreaGeo);
+        String expectedResult = "Cidade";
+        //Act
+        String result = tipo.getmTipoAreaGeo();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 }

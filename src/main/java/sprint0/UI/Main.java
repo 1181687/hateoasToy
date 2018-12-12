@@ -20,6 +20,10 @@ public class Main {
                     US1UI ui = new US1UI(lista);
                     ui.run();
                     break;
+                case 2:
+                    US2UI ui2 = new US2UI(lista);
+                    ui2.run();
+                    break;
             }
         }
     }

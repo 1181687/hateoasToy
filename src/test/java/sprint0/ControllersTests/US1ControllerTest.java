@@ -35,5 +35,19 @@ public class US1ControllerTest {
         assertFalse(resultado);
     }
 
+    @Test
+    public void testarGetListaTAG() {
+        //Arrange
+        ListaTiposAG lista = new ListaTiposAG();
+        US1Controller ctrl = new US1Controller(lista);
+        TipoAreaGeo tipoDaLista = new TipoAreaGeo("Cidade");
+        lista.adicionarElementoALista(tipoDaLista);
+        ListaTiposAG expectedResult = lista;
+        //Act
+        ListaTiposAG result = ctrl.getListaTAG();
 
+        //Assert
+
+        assertEquals(expectedResult, result);
+    }
 }
