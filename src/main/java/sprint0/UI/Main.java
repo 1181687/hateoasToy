@@ -24,7 +24,7 @@ public class Main {
                     ui.run();
                     break;
                 case 2:
-                    US2UI ui2 = new US2UI(lista);
+                    US2UI ui2 = new US2UI(listaTiposAG);
                     ui2.run();
                     break;
                 case 5:
