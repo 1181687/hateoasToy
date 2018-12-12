@@ -1,5 +1,6 @@
 package sprint0.UI;
 
+import sprint0.Model.ListaAG;
 import sprint0.Model.ListaTiposAG;
 import sprint0.Model.ListaTiposSensores;
 
@@ -9,12 +10,14 @@ public class Main {
 
     public static void main(String[] args) {
         ListaTiposAG listaTiposAG = new ListaTiposAG();
+        ListaAG listaAG = new ListaAG();
         ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
         int opcao = -1;
         Scanner ler = new Scanner(System.in);
         while (opcao != 0) {
             System.out.println("1-US1-Novo tipo de Area Geografica");
             System.out.println("2-US2-Apresentar lista de tipos de Area Geografica");
+            System.out.println("3-US3-Nova Area Geografica");
             System.out.println("5-US5-Nova característica meteorológica dos sensores");
             System.out.println("0-Sair");
             opcao = ler.nextInt();
@@ -26,6 +29,10 @@ public class Main {
                 case 2:
                     US2UI ui2 = new US2UI(listaTiposAG);
                     ui2.run();
+                    break;
+                case 3:
+                    US3UI ui3 = new US3UI(listaAG);
+                    ui3.run();
                     break;
                 case 5:
                     US5UI ui5 = new US5UI(listaTiposSensores);
