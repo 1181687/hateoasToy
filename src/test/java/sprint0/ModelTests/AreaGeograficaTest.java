@@ -944,4 +944,35 @@ class AreaGeograficaTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void getmNomeAreaGeo() {
+        //arrange
+        String nomeAG = "Porto";
+        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
+        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area = new RetanguloArea(10, 10,local);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
+        String expectedResult = "Porto";
+
+        //act
+        String result = ag1.getmNomeAreaGeo();
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testarGetmTipoAreaGeo() {
+        //arrange
+        String nomeAG = "Porto";
+        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
+        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area = new RetanguloArea(10, 10,local);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
+
+        TipoAreaGeo expectedResult = tipo;
+
+        //act
+        TipoAreaGeo result = ag1.getmTipoAreaGeo();
+        assertEquals(expectedResult, result);
+    }
 }

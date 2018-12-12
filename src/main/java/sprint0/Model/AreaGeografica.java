@@ -37,6 +37,10 @@ public class AreaGeografica {
 
     }
 
+    public String getmNomeAreaGeo() {
+        return mNomeAreaGeo;
+    }
+
     public Localizacao getmLocalizacao() {
         return this.mLocalizacao;
     }
@@ -110,6 +114,9 @@ public class AreaGeografica {
         return listaSensoresDeTipoNumPeriodo;
     }
 
+    public TipoAreaGeo getmTipoAreaGeo() {
+        return mTipoAreaGeo;
+    }
 }
 
 
