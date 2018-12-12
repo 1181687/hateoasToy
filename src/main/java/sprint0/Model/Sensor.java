@@ -1,5 +1,6 @@
 package sprint0.Model;
 
+import javax.xml.crypto.Data;
 import java.util.*;
 
 
@@ -10,11 +11,31 @@ public class Sensor {
     private TipoSensor mTipoSensor;
     private Localizacao mLocalizacao;
 
+    public Sensor () {
+    }
+
     public Sensor(String mNomeSensor, Date mDataFuncionamento, TipoSensor mTipoSensor, Localizacao mLocalizacao) {
         this.mNomeSensor = mNomeSensor;
         this.mDataFuncionamento = mDataFuncionamento;
         this.mTipoSensor = mTipoSensor;
         this.mLocalizacao = mLocalizacao;
+    }
+
+    public void setmNomeSensor (String nome) {
+        this.mNomeSensor = nome;
+    }
+
+    public void setmDataFuncionamento (Date dataFuncionamento) {
+        this.mDataFuncionamento = dataFuncionamento;
+    }
+
+    public void setmTipoSensor (TipoSensor tipoSensor) {
+        this.mTipoSensor = tipoSensor;
+
+    }
+
+    public void setmLocalizacao (Localizacao localizacao) {
+        this.mLocalizacao = localizacao;
     }
 
     public String getmNomeSensor() {
