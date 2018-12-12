@@ -5,18 +5,19 @@ import sprint0.Model.TipoAreaGeo;
 
 
 public class US1Controller {
-    private ListaTiposAG listaTAG;
+    private ListaTiposAG mListaTAG;
 
     public US1Controller(ListaTiposAG listaTAG) {
-        this.listaTAG = listaTAG;
+        this.mListaTAG = listaTAG;
     }
 
     public boolean novoTAG(String tipoTAG){
-        TipoAreaGeo novoTAG = listaTAG.novoTipoAG(tipoTAG);
-        return listaTAG.adicionarElementoALista(novoTAG);
+        TipoAreaGeo novoTAG = mListaTAG.novoTipoAG(tipoTAG);
+        return mListaTAG.adicionarElementoALista(novoTAG);
     }
 
     public ListaTiposAG getListaTAG() {
-        return listaTAG;
+        return mListaTAG;
     }
 }
+
