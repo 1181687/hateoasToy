@@ -7,13 +7,9 @@ import java.util.*;
 
 public class US6UI {
     private US6Controller controller6;
-    private ListaTiposSensores listaTiposSensores;
-    private ListaAG listaAG;
 
     public US6UI(ListaAG listaAG, ListaTiposSensores listaTiposSensores) {
         this.controller6 = new US6Controller(listaTiposSensores,listaAG);
-        this.listaTiposSensores = listaTiposSensores;
-        this.listaAG = listaAG;
     }
 
     public void run() {
@@ -30,23 +26,23 @@ public class US6UI {
         System.out.println("Introduza o tipo de sensor");
         int posicao1 = -1;
         do {
-            for (int i = 0; i < controller6.numeroElementosDaListaTipoDeSensor(listaTiposSensores); i++) {
+            for (int i = 0; i < controller6.numeroElementosDaListaTipoDeSensor(); i++) {
                 System.out.println((i + 1) + " - " +(controller6.getNomeTipoSensorPorIndice(i)));
             }
             posicao1 = ler.nextInt();
         }
-        while (posicao1 < 0 || posicao1 > controller6.numeroElementosDaListaTipoDeSensor(listaTiposSensores));
+        while (posicao1 < 0 || posicao1 > controller6.numeroElementosDaListaTipoDeSensor());
 
         ler.nextLine();
         System.out.println("Em que área geográfica está este sensor inserido?");
         int posicao2 = -1;
         do {
-            for (int i = 0; i < controller6.numeroElementosDaListaAreaGeografica(listaAG); i++) {
+            for (int i = 0; i < controller6.numeroElementosDaListaAreaGeografica(); i++) {
                 System.out.println((i + 1) + " - " + (controller6.getNomeAreaGeograficaPorIndice(i)));
             }
             posicao2 = ler.nextInt();
         }
-        while (posicao2 < 0 || posicao2 > controller6.numeroElementosDaListaAreaGeografica(listaAG));
+        while (posicao2 < 0 || posicao2 > controller6.numeroElementosDaListaAreaGeografica());
 
         Localizacao novaLocalizacao = new Localizacao(latitude, longitude, altitude);
         TipoSensor novoTipoSensor = controller6.getTipoSensorPorPosicao(posicao1-1);

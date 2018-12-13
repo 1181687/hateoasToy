@@ -1,6 +1,7 @@
 package sprint0.ControllersTests;
 
 import org.junit.jupiter.api.Test;
+import sprint0.Controllers.US6Controller;
 import sprint0.Model.*;
 
 import java.util.Calendar;
@@ -33,5 +34,40 @@ class US6ControllerTest {
 
         assertFalse(resultado);
     }
+
+    @Test
+    public void testarTipoSensorPorPosicao () {
+        // Arrange
+        String tipo1 = "Humidade";
+        String tipo2 = "Temperatura";
+        TipoSensor tipoSensor1 = new TipoSensor(tipo1);
+        TipoSensor tipoSensor2 = new TipoSensor(tipo2);
+        ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
+        listaTiposSensores.adicionarTipoSensorALista(tipoSensor1);
+        listaTiposSensores.adicionarTipoSensorALista(tipoSensor2);
+        ListaAG listaAreasGeograficas = new ListaAG();
+
+        int posicao = 0;
+        US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
+        TipoSensor expectedResult = tipoSensor1;
+
+        // Act
+        TipoSensor resultado = ctrl6.getTipoSensorPorPosicao(posicao);
+
+        // Assert
+        assertEquals(expectedResult, resultado);
+    }
+
+    /* @Test
+    public void testarNomeAreaGeograficaPorIndice () {
+
+        String ag1 = "Espinho";
+        String ag2 = "Ancora";
+        AreaGeografica areageo1 = new AreaGeografica(ag1);
+        AreaGeografica areageo2 = new AreaGeografica(ag2);
+
+        ListaAG listaareasgeograficas = new ListaAG();
+
+    } */
 
 }

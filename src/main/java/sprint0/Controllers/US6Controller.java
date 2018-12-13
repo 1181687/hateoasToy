@@ -24,11 +24,11 @@ public class US6Controller {
         return mListaAreaGeografica.getmListaAG().get(posicao);
     }
 
-    public int numeroElementosDaListaAreaGeografica (ListaAG listaAreaGeografica) {
+    public int numeroElementosDaListaAreaGeografica () {
         return mListaAreaGeografica.getmListaAG().size();
     }
 
-    public int numeroElementosDaListaTipoDeSensor (ListaTiposSensores listaTiposSensores) {
+    public int numeroElementosDaListaTipoDeSensor () {
         return mListaTiposSensores.getmListaTiposSensores().size();
     }
 
