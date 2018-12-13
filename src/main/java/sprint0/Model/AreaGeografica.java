@@ -37,6 +37,10 @@ public class AreaGeografica {
 
     }
 
+    public List<Sensor> getmListaSensor() {
+        return mListaSensor;
+    }
+
     public String getmNomeAreaGeo() {
         return mNomeAreaGeo;
     }
@@ -49,10 +53,12 @@ public class AreaGeografica {
         return this.mLocalizacao.distanciaDuasLocalizacoes(novoAg.getmLocalizacao());
     }
 
-    public void adicionarSensorAListaDeSensores(Sensor sensor) {
+    public boolean adicionarSensorAListaDeSensores(Sensor sensor) {
         if (!(mListaSensor.contains(sensor))) {
             mListaSensor.add(sensor);
+            return true;
         }
+        return false;
     }
 
     public List<Medicao> getListaDeUltimosRegistosPorTipoDeSensor(TipoSensor tipo) {

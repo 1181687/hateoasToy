@@ -2,59 +2,45 @@ package sprint0.Controllers;
 
 import sprint0.Model.*;
 
-import java.util.Date;
-
 public class US6Controller {
+    private ListaTiposSensores mListaTiposSensores;
+    private ListaAG mListaAreaGeografica;
 
-        private Sensor mNovoSensor;
-        private ListaTiposSensores mListaTipoSensores;
-        private ListaAG mListaAreaGeografica;
+    public US6Controller(ListaTiposSensores listaTiposSensores, ListaAG listaAG) {
+        this.mListaTiposSensores = listaTiposSensores;
+        this.mListaAreaGeografica = listaAG;
+    }
 
-        public US6Controller(Sensor novoSensor) {
-            this.mNovoSensor = novoSensor;
+
+    public TipoSensor getTipoSensorPorPosicao (int posicao) {
+        return mListaTiposSensores.getTipoSensorPorPosicao(posicao);
+    }
+
+    public String getNomeAreaGeograficaPorIndice (int posicao) {
+        return mListaAreaGeografica.getNomeAreaGeograficaPorIndice(posicao);
+    }
+
+    public AreaGeografica getAreaGeografica (int posicao) {
+        return mListaAreaGeografica.getmListaAG().get(posicao);
+    }
+
+    public int numeroElementosDaListaAreaGeografica (ListaAG listaAreaGeografica) {
+        return mListaAreaGeografica.getmListaAG().size();
+    }
+
+    public int numeroElementosDaListaTipoDeSensor (ListaTiposSensores listaTiposSensores) {
+        return mListaTiposSensores.getmListaTiposSensores().size();
+    }
+
+    public String getNomeTipoSensorPorIndice (int posicao) {
+        return mListaTiposSensores.getTipoSensorPorPosicao(posicao).getmTipo();
+    }
+
+    public boolean adicionarSensorAAreaGeografica(Sensor sensor, AreaGeografica areaGeografica) {
+        if ((!(this.mListaAreaGeografica.getAreaGeografica(areaGeografica).getmListaSensor().contains(sensor)))) {
+            mListaAreaGeografica.getAreaGeografica(areaGeografica).adicionarSensorAListaDeSensores(sensor);
+            return true;
         }
-
-        public boolean novoSensor (String nomeSensor) {
-            this.mNovoSensor = new Sensor();
-            mNovoSensor.setmNomeSensor(nomeSensor);
-            if (mNovoSensor.getmNomeSensor().equals(nomeSensor)) {
-                return true;
-            }
-            return false;
-        }
-
-        public boolean atribuirData (Date novaData) {
-            mNovoSensor.setmDataFuncionamento(novaData);
-            if (mNovoSensor.getmDataFuncionamento().equals(novaData)) {
-                return true;
-            }
-            return false;
-        }
-
-        public boolean atribuirLocalizacao (Localizacao novaLocalizacao) {
-            mNovoSensor.setmLocalizacao(novaLocalizacao);
-            if (mNovoSensor.getmLocalizacao().equals(novaLocalizacao)) {
-                return true;
-            }
-            return false;
-        }
-
-        public boolean atribuirTipoSensor (String novoTipoSensor) {
-
-            if (this.mListaTipoSensores.getmListaTiposSensores().contains(novoTipoSensor)) {
-                mNovoSensor.getmTipoSensor().setmTipo(novoTipoSensor);
-                //mNovoSensor.setmTipoSensor(TipoSensor.);
-                return true;
-            }
-            return false;
-        }
-
-        public boolean adicionarSensorAAreaGeografica (String areaGeografica) {
-
-            if (this.mListaAreaGeografica.getmListaAG().contains(mListaAreaGeografica.getAreaGeografica(areaGeografica))) {
-                mListaAreaGeografica.getAreaGeografica(areaGeografica).adicionarSensorAListaDeSensores(this.mNovoSensor);
-                return true;
-            }
-            return false;
-        }
+        return false;
+    }
 }

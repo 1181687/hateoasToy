@@ -28,8 +28,4 @@ public class TipoSensor {
         return this.mTipo.equals(ts.mTipo);
 
     }
-
-    public void setmTipo(String mTipo) {
-        this.mTipo = mTipo;
-    }
 }

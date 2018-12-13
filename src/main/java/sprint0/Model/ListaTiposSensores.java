@@ -10,23 +10,27 @@ public class ListaTiposSensores {
     public ListaTiposSensores() {
     }
 
-    public List<TipoSensor> getmListaTiposSensores() {
-        return mListaTiposSensores;
-    }
-
     public ListaTiposSensores(List<TipoSensor> mListaTiposSensores) {
         this.mListaTiposSensores = mListaTiposSensores;
     }
 
-    public TipoSensor novoTipoSensor (String novoTipo){
+    public List<TipoSensor> getmListaTiposSensores() {
+        return mListaTiposSensores;
+    }
+
+    public TipoSensor novoTipoSensor(String novoTipo) {
         return new TipoSensor(novoTipo);
     }
 
-    public boolean adicionarTipoSensorALista(TipoSensor novoTipoSensor){
-        if(!(this.mListaTiposSensores.contains(novoTipoSensor))){
+    public boolean adicionarTipoSensorALista(TipoSensor novoTipoSensor) {
+        if (!(this.mListaTiposSensores.contains(novoTipoSensor))) {
             this.mListaTiposSensores.add(novoTipoSensor);
             return true;
         }
         return false;
+    }
+
+    public TipoSensor getTipoSensorPorPosicao(int posicao) {
+        return this.mListaTiposSensores.get(posicao);
     }
 }

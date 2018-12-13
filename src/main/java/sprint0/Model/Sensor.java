@@ -1,6 +1,5 @@
 package sprint0.Model;
 
-import javax.xml.crypto.Data;
 import java.util.*;
 
 
@@ -11,30 +10,11 @@ public class Sensor {
     private TipoSensor mTipoSensor;
     private Localizacao mLocalizacao;
 
-    public Sensor () {
-    }
-
     public Sensor(String mNomeSensor, Date mDataFuncionamento, TipoSensor mTipoSensor, Localizacao mLocalizacao) {
         this.mNomeSensor = mNomeSensor;
         this.mDataFuncionamento = mDataFuncionamento;
         this.mTipoSensor = mTipoSensor;
         this.mLocalizacao = mLocalizacao;
-    }
-
-    public void setmNomeSensor (String nome) {
-        this.mNomeSensor = nome;
-    }
-
-    public void setmDataFuncionamento (Date dataFuncionamento) {
-        this.mDataFuncionamento = dataFuncionamento;
-    }
-
-    public void setmTipoSensor (TipoSensor tipoSensor) {
-        this.mTipoSensor = tipoSensor;
-    }
-
-    public void setmLocalizacao (Localizacao localizacao) {
-        this.mLocalizacao = localizacao;
     }
 
     public String getmNomeSensor() {
@@ -61,7 +41,7 @@ public class Sensor {
             return false;
         }
         Sensor sensor = (Sensor) objeto;
-        return this.mNomeSensor.equals(sensor.mNomeSensor) && this.mDataFuncionamento.equals(sensor.mDataFuncionamento) && this.mTipoSensor.equals(sensor.mTipoSensor) && this.mLocalizacao.equals(sensor.mLocalizacao);
+        return (this.mNomeSensor.equals(sensor.mNomeSensor) && this.mTipoSensor.equals(sensor.mTipoSensor) && this.mLocalizacao.equals(sensor.mLocalizacao));
     }
 
     public int hashCode() {
@@ -131,7 +111,6 @@ public class Sensor {
         }
         return maiorRegisto;
     }
-
 
     public double getRegistoMediaMes(Date diaDoMes) {
 
@@ -238,7 +217,6 @@ public class Sensor {
         cal.set(Calendar.MILLISECOND,0);
         return cal.getTime();
     }
-
 
     public List <Double> valoresMinimosSemana(int ano, int semana){
         List <Double> registosMinimosSemana = new ArrayList<>();
