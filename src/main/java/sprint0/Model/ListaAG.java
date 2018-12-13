@@ -12,10 +12,6 @@ public class ListaAG {
         this.mListaAG = new ArrayList<>();
     }
 
-    public ListaAG(List<AreaGeografica> mListaAG) {
-        this.mListaAG = new ArrayList<>();
-    }
-
     public List<AreaGeografica> getmListaAG() {
         return mListaAG;
     }
@@ -26,6 +22,19 @@ public class ListaAG {
             return true;
         }
         return false;
+    }
+
+    public AreaGeografica getAreaGeografica (AreaGeografica areaGeografica) {
+        for (AreaGeografica area : mListaAG) {
+            if (area.equals(areaGeografica)) {
+                return area;
+            }
+        }
+        return null;
+    }
+
+    public String getNomeAreaGeograficaPorIndice (int posicao) {
+        return this.mListaAG.get(posicao).getmNomeAreaGeo();
     }
 
     public ArrayList<String> getListaAGPorTipo(String tipo) {

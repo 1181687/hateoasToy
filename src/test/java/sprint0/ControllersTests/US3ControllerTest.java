@@ -16,7 +16,8 @@ public class US3ControllerTest {
         //Arrange
         //instanciar us3controller
         ListaAG lista = new ListaAG();
-        US3Controller ctrl3 = new US3Controller(lista);
+        ListaTiposAG listaTAG = new ListaTiposAG();
+        US3Controller ctrl3 = new US3Controller(lista, listaTAG);
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
@@ -34,7 +35,8 @@ public class US3ControllerTest {
         //Arrange
         //instanciar us3controller
         ListaAG lista = new ListaAG();
-        US3Controller ctrl3 = new US3Controller(lista);
+        ListaTiposAG listaTAG = new ListaTiposAG();
+        US3Controller ctrl3 = new US3Controller(lista, listaTAG);
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
@@ -52,7 +54,8 @@ public class US3ControllerTest {
     public void testarGetListaTAG() {
         //Arrange
         ListaAG lista = new ListaAG();
-        US3Controller ctrl3 = new US3Controller(lista);
+        ListaTiposAG listaTAG = new ListaTiposAG();
+        US3Controller ctrl3 = new US3Controller(lista, listaTAG);
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
