@@ -7,7 +7,7 @@ import java.util.List;
 public class AreaGeografica {
     private String mNomeAreaGeo;
     private TipoAreaGeo mTipoAreaGeo;
-    private AreaGeografica mAreaInserida;
+    private AreaGeografica mAreaInseridaEm;
     private Localizacao mLocalizacao;
     private RetanguloArea mRetanguloArea;
     private List<Sensor> mListaSensor = new ArrayList<>();
@@ -45,8 +45,20 @@ public class AreaGeografica {
         return mNomeAreaGeo;
     }
 
+    public TipoAreaGeo getmTipoAreaGeo() {
+        return mTipoAreaGeo;
+    }
+
     public Localizacao getmLocalizacao() {
         return this.mLocalizacao;
+    }
+
+    public AreaGeografica getmAreaInseridaEm() {
+        return mAreaInseridaEm;
+    }
+
+    public void setmAreaInseridaEm(AreaGeografica mAreaInseridaEm) {
+        this.mAreaInseridaEm = mAreaInseridaEm;
     }
 
     public double distanciaLinearDuasAreas(AreaGeografica novoAg) {
@@ -118,10 +130,6 @@ public class AreaGeografica {
             }
         }
         return listaSensoresDeTipoNumPeriodo;
-    }
-
-    public TipoAreaGeo getmTipoAreaGeo() {
-        return mTipoAreaGeo;
     }
 }
 

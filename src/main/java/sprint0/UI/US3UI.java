@@ -7,13 +7,11 @@ import sprint0.Model.*;
 import java.util.Scanner;
 
 public class US3UI {
-    private ListaAG lista;
-    private US1Controller ctrl;
+
     private US3Controller ctrl3;
 
-    public US3UI(ListaAG lista) {
-        this.lista = lista;
-        this.ctrl3 = new US3Controller(lista);
+    public US3UI(ListaAG lista, ListaTiposAG listaTAG) {
+        this.ctrl3 = new US3Controller(lista, listaTAG);
     }
 
 
@@ -21,8 +19,10 @@ public class US3UI {
         System.out.println("Introduza o nome da Area Geografica");
         Scanner ler = new Scanner(System.in);
         String nome = ler.nextLine();
-        System.out.println("Introduza o tipo da Area Geografica");
-        String tipo = ler.nextLine();
+        System.out.println("Escolha o tipo da Area Geografica");
+        for (int i = 1; i <= ctrl3.obterTamanhoLista(); i++) {
+            System.out.println(i + " - " + "Tipo: " + ctrl3.getNomeTipoAGNaLista(i - 1));}
+        int opcao = ler.nextInt();
         System.out.println("Introduza a latitude da localização da Area Geografica");
         Double latitude = ler.nextDouble();
         System.out.println("Introduza a longitude da localização da Area Geografica");
@@ -35,7 +35,7 @@ public class US3UI {
         Double largura = ler.nextDouble();
 
 
-        TipoAreaGeo novoTipo = new TipoAreaGeo(tipo);
+        TipoAreaGeo novoTipo = new TipoAreaGeo(ctrl3.getNomeTipoAGNaLista(opcao));
         Localizacao novaLocalizacao = new Localizacao(latitude, longitude, altitude);
         RetanguloArea novoRetanguloArea = new RetanguloArea(comprimento, largura, novaLocalizacao);
         AreaGeografica novaAG = new AreaGeografica(nome, novoTipo, novaLocalizacao, novoRetanguloArea);

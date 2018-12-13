@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class US2ControllerTest {
 
     @Test
-    public void testarGetListaDosTiposDeAG() {
+    public void testarGetListaTiposDeAG() {
         //Arrange
         //Instanciar a classe US2Controller
         ListaTiposAG lista = new ListaTiposAG();
@@ -29,15 +29,14 @@ public class US2ControllerTest {
         //Expected Result
         List<String> expectedResult = Arrays.asList("Cidade");
 
-
         //Act
-        List<String> result = ctrl2.getListaDosTiposDeAG();
+        List < String > result = ctrl2.getListaTiposDeAG();
 
         //Assert
         assertEquals(expectedResult, result);
-
     }
 
+    //NOVO
     @Test
     public void testarGetListaDosTiposDeAGAdicionandoMaisDoQueUmTipo() {
         //Arrange
@@ -61,7 +60,7 @@ public class US2ControllerTest {
 
 
         //Act
-        List<String> result = ctrl2.getListaDosTiposDeAG();
+        List<String> result = ctrl2.getListaTiposDeAG();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -79,10 +78,11 @@ public class US2ControllerTest {
 
 
         //Act
-        List<String> result = ctrl2.getListaDosTiposDeAG();
+        List<String> result = ctrl2.getListaTiposDeAG();
 
         //Assert
         assertEquals(expectedResult, result);
 
     }
 }
+

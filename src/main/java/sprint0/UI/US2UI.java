@@ -14,7 +14,14 @@ public class US2UI {
         this.lista = lista;
         this.ctrl2 = new US2Controller(lista);
     }
+
+
     public void run() {
-        System.out.println("Lista de Areas Geográficas existentes:"+ ctrl2.getListaDosTiposDeAG());
+        System.out.println("Lista de Areas Geográficas existentes:");
+
+        for (int i = 0; i <ctrl2.getListaTiposDeAG().size() ; i++) {
+            System.out.println(ctrl2.getListaTiposDeAG().get(i));
+        }
+        System.out.println("");
     }
 }
