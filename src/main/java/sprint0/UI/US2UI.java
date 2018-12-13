@@ -19,8 +19,8 @@ public class US2UI {
     public void run() {
         System.out.println("Lista de Areas Geográficas existentes:");
 
-        for (int i = 0; i <ctrl2.getListaDosTiposDeAG().size() ; i++) {
-            System.out.println(ctrl2.getListaDosTiposDeAG().get(i));
+        for (int i = 0; i <ctrl2.getListaTiposDeAG().size() ; i++) {
+            System.out.println(ctrl2.getListaTiposDeAG().get(i));
         }
         System.out.println("");
     }

@@ -50,4 +50,5 @@ public class US1ControllerTest {
 
         assertEquals(expectedResult, result);
     }
+
 }
