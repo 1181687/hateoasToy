@@ -36,7 +36,7 @@ public class Main {
                     ui3.run();
                     break;
                 case 4:
-                    US4UI ui4= new US4UI(listaAG);
+                    US4UI ui4= new US4UI(listaAG, listaTiposAG);
                     ui4.run();
                     break;
                 case 5:
