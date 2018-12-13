@@ -7,7 +7,7 @@ import java.util.List;
 public class AreaGeografica {
     private String mNomeAreaGeo;
     private TipoAreaGeo mTipoAreaGeo;
-    private AreaGeografica mAreaInserida;
+    private AreaGeografica mAreaInseridaEm;
     private Localizacao mLocalizacao;
     private RetanguloArea mRetanguloArea;
     private List<Sensor> mListaSensor = new ArrayList<>();
@@ -37,20 +37,40 @@ public class AreaGeografica {
 
     }
 
+    public List<Sensor> getmListaSensor() {
+        return mListaSensor;
+    }
+
     public String getmNomeAreaGeo() {
         return mNomeAreaGeo;
+    }
+
+    public TipoAreaGeo getmTipoAreaGeo() {
+        return mTipoAreaGeo;
     }
 
     public Localizacao getmLocalizacao() {
         return this.mLocalizacao;
     }
 
+    public AreaGeografica getmAreaInseridaEm() {
+        return mAreaInseridaEm;
+    }
+
+    public void setmAreaInseridaEm(AreaGeografica mAreaInseridaEm) {
+        this.mAreaInseridaEm = mAreaInseridaEm;
+    }
+
     public double distanciaLinearDuasAreas(AreaGeografica novoAg) {
         return this.mLocalizacao.distanciaDuasLocalizacoes(novoAg.getmLocalizacao());
     }
 
-    public void adicionarSensorAListaDeSensores(Sensor sensor) {
-        mListaSensor.add(sensor);
+    public boolean adicionarSensorAListaDeSensores(Sensor sensor) {
+        if (!(mListaSensor.contains(sensor))) {
+            mListaSensor.add(sensor);
+            return true;
+        }
+        return false;
     }
 
     public List<Medicao> getListaDeUltimosRegistosPorTipoDeSensor(TipoSensor tipo) {
@@ -110,10 +130,6 @@ public class AreaGeografica {
             }
         }
         return listaSensoresDeTipoNumPeriodo;
-    }
-
-    public TipoAreaGeo getmTipoAreaGeo() {
-        return mTipoAreaGeo;
     }
 }
 

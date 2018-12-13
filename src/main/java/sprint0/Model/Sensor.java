@@ -41,7 +41,7 @@ public class Sensor {
             return false;
         }
         Sensor sensor = (Sensor) objeto;
-        return this.mNomeSensor.equals(sensor.mNomeSensor) && this.mDataFuncionamento.equals(sensor.mDataFuncionamento) && this.mTipoSensor.equals(sensor.mTipoSensor) && this.mLocalizacao.equals(sensor.mLocalizacao);
+        return (this.mNomeSensor.equals(sensor.mNomeSensor) && this.mTipoSensor.equals(sensor.mTipoSensor) && this.mLocalizacao.equals(sensor.mLocalizacao));
     }
 
     public int hashCode() {
@@ -111,7 +111,6 @@ public class Sensor {
         }
         return maiorRegisto;
     }
-
 
     public double getRegistoMediaMes(Date diaDoMes) {
 
@@ -218,7 +217,6 @@ public class Sensor {
         cal.set(Calendar.MILLISECOND,0);
         return cal.getTime();
     }
-
 
     public List <Double> valoresMinimosSemana(int ano, int semana){
         List <Double> registosMinimosSemana = new ArrayList<>();
