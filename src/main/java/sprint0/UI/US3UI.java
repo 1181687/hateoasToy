@@ -1,6 +1,5 @@
 package sprint0.UI;
 
-import sprint0.Controllers.US1Controller;
 import sprint0.Controllers.US3Controller;
 import sprint0.Model.*;
 
@@ -21,7 +20,9 @@ public class US3UI {
         String nome = ler.nextLine();
         System.out.println("Escolha o tipo da Area Geografica");
         for (int i = 1; i <= ctrl3.obterTamanhoLista(); i++) {
-            System.out.println(i + " - " + "Tipo: " + ctrl3.getNomeTipoAGNaLista(i - 1));}
+            System.out.println(i + " - " +
+                    "Tipo: " + ctrl3.getNomeTipoAGNaLista(i - 1));
+        }
         int opcao = ler.nextInt();
         System.out.println("Introduza a latitude da localização da Area Geografica");
         Double latitude = ler.nextDouble();
@@ -35,7 +36,7 @@ public class US3UI {
         Double largura = ler.nextDouble();
 
 
-        TipoAreaGeo novoTipo = new TipoAreaGeo(ctrl3.getNomeTipoAGNaLista(opcao));
+        TipoAreaGeo novoTipo = new TipoAreaGeo(ctrl3.getNomeTipoAGNaLista(opcao-1));
         Localizacao novaLocalizacao = new Localizacao(latitude, longitude, altitude);
         RetanguloArea novoRetanguloArea = new RetanguloArea(comprimento, largura, novaLocalizacao);
         AreaGeografica novaAG = new AreaGeografica(nome, novoTipo, novaLocalizacao, novoRetanguloArea);
