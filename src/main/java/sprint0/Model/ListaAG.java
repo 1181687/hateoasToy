@@ -42,7 +42,7 @@ public class ListaAG {
     }
 
     public boolean verificarSeAGNaoTemAreaInserida(AreaGeografica area) {
-        return area.getmAreaInserida() == null;
+        return area.getmAreaInseridaEm() == null;
     }
 
     public String getNomeAGNaLista (int posicao){
@@ -59,6 +59,14 @@ public class ListaAG {
 
     public double getLongitudeAGNaLista (int posicao){
         return mListaAG.get(posicao).getmLocalizacao().getmLongitude();
+    }
+
+    public String getNomeAreaInseridaEmAG (int posicao){
+        return mListaAG.get(posicao).getmAreaInseridaEm().getmNomeAreaGeo();
+    }
+
+    public String getTipoAreaInseridaEmAG (int posicao){
+        return mListaAG.get(posicao).getmAreaInseridaEm().getmTipoAreaGeo().getmTipoAreaGeo();
     }
 
     public int getTamanhoLista(){

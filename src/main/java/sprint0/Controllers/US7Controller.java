@@ -30,6 +30,14 @@ public class US7Controller {
         return mLista.getLongitudeAGNaLista(posicao);
     }
 
+    public String nomeAreaInseridaEmAGNaLista(int posicao){
+        return mLista.getNomeAreaInseridaEmAG(posicao);
+    }
+
+    public String tipoAreaInseridaEmAGNaLista(int posicao){
+        return mLista.getTipoAreaInseridaEmAG(posicao);
+    }
+
     public AreaGeografica getAGNaListaApresentada(int opcaoSelecionada){
         return mLista.getAreaGeograficaNaListaApresentada(opcaoSelecionada);
     }

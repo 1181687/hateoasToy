@@ -3,6 +3,7 @@ package sprint0.UI;
 import sprint0.Controllers.US7Controller;
 import sprint0.Model.AreaGeografica;
 import sprint0.Model.ListaAG;
+
 import java.util.Scanner;
 
 public class US7UI {
@@ -15,10 +16,19 @@ public class US7UI {
     public void run() {
         System.out.println("Indique o número correspondente à área geográfica que quer inserir noutra área geográfica");
         for (int i = 1; i <= ctrl.obterTamanhoLista(); i++) {
-            System.out.println(i + " - Nome: " + ctrl.nomeAGNaLista(i - 1)
-                    + ", Tipo: " + ctrl.tipoAGNaLista(i-1)
-                    + ", Latitude: " + ctrl.latitudeAGNaLista(i-1)
-                    +  ", Longitude: " + ctrl.longitudeAGNaLista(i-1));
+            if (ctrl.verSeAGTemAreaInseridaVazia(ctrl.getAGNaListaApresentada(i))) {
+                System.out.println(i + " - Nome: " + ctrl.nomeAGNaLista(i - 1)
+                        + ", Tipo: " + ctrl.tipoAGNaLista(i - 1)
+                        + ", Latitude: " + ctrl.latitudeAGNaLista(i - 1)
+                        + ", Longitude: " + ctrl.longitudeAGNaLista(i - 1));
+            } else {
+                System.out.println(i + " - Nome: " + ctrl.nomeAGNaLista(i - 1)
+                        + ", Tipo: " + ctrl.tipoAGNaLista(i - 1)
+                        + ", Latitude: " + ctrl.latitudeAGNaLista(i - 1)
+                        + ", Longitude: " + ctrl.longitudeAGNaLista(i - 1)
+                        + ", Inserido Em: " + ctrl.tipoAreaInseridaEmAGNaLista(i - 1)
+                        + " " + ctrl.nomeAreaInseridaEmAGNaLista(i - 1));
+            }
         }
         Scanner ler = new Scanner(System.in);
         int opcaoSelecionada1 = ler.nextInt();
@@ -28,15 +38,15 @@ public class US7UI {
             ctrl.removerAGLista(primeiraAG);
             for (int i = 1; i <= ctrl.obterTamanhoLista(); i++) {
                 System.out.println(i + " - Nome: " + ctrl.nomeAGNaLista(i - 1)
-                        + ", Tipo: " + ctrl.tipoAGNaLista(i-1)
-                        + ", Latitude: " + ctrl.latitudeAGNaLista(i-1)
-                        +  ", Longitude: " + ctrl.longitudeAGNaLista(i-1));
+                        + ", Tipo: " + ctrl.tipoAGNaLista(i - 1)
+                        + ", Latitude: " + ctrl.latitudeAGNaLista(i - 1)
+                        + ", Longitude: " + ctrl.longitudeAGNaLista(i - 1));
             }
             int opcaoSelecionada2 = ler.nextInt();
             AreaGeografica segundaAG = ctrl.getAGNaListaApresentada(opcaoSelecionada2);
-            primeiraAG.setmAreaInserida(segundaAG);
+            primeiraAG.setmAreaInseridaEm(segundaAG);
             System.out.println("Sucesso!");
-            ctrl.adicionarAGLista(opcaoSelecionada1-1, primeiraAG);
+            ctrl.adicionarAGLista(opcaoSelecionada1 - 1, primeiraAG);
         } else
             System.out.println("A área geográfica que escolheu já está inserida noutra área. Tente outra área geográfica");
     }
