@@ -37,8 +37,24 @@ public class AreaGeografica {
 
     }
 
+    public String getmNomeAreaGeo() {
+        return mNomeAreaGeo;
+    }
+
+    public TipoAreaGeo getmTipoAreaGeo() {
+        return mTipoAreaGeo;
+    }
+
     public Localizacao getmLocalizacao() {
         return this.mLocalizacao;
+    }
+
+    public AreaGeografica getmAreaInserida() {
+        return mAreaInserida;
+    }
+
+    public void setmAreaInserida(AreaGeografica mAreaInserida) {
+        this.mAreaInserida = mAreaInserida;
     }
 
     public double distanciaLinearDuasAreas(AreaGeografica novoAg) {

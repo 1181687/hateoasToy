@@ -27,4 +27,39 @@ public class ListaAG {
         return false;
     }
 
+    public AreaGeografica getAreaGeograficaNaListaApresentada(int opcaoSelecionada){
+        return mListaAG.get(opcaoSelecionada-1);
+    }
+
+    public boolean verificarSeAGNaoTemAreaInserida(AreaGeografica area) {
+        return area.getmAreaInserida() == null;
+    }
+
+    public String getNomeAGNaLista (int posicao){
+        return mListaAG.get(posicao).getmNomeAreaGeo();
+    }
+
+    public String getTipoAGNaLista (int posicao){
+        return mListaAG.get(posicao).getmTipoAreaGeo().getmTipoAreaGeo();
+    }
+
+    public double getLatitudeAGNaLista (int posicao){
+        return mListaAG.get(posicao).getmLocalizacao().getmLatitude();
+    }
+
+    public double getLongitudeAGNaLista (int posicao){
+        return mListaAG.get(posicao).getmLocalizacao().getmLongitude();
+    }
+
+    public int getTamanhoLista(){
+        return mListaAG.size();
+    }
+
+    public boolean removerAreaGeoALista(AreaGeografica AG) {
+        return mListaAG.remove(AG);
+    }
+
+    public void adicionarAreaGeoAListaNumaPosicaoEspecifica(int posicao, AreaGeografica AG) {
+        mListaAG.add(posicao,AG);
+    }
 }
