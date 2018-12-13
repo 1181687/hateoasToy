@@ -33,7 +33,7 @@ public class Main {
                     ui2.run();
                     break;
                 case 3:
-                    US3UI ui3 = new US3UI(listaAG);
+                    US3UI ui3 = new US3UI(listaAG, listaTiposAG);
                     ui3.run();
                     break;
                 case 4:
