@@ -28,4 +28,10 @@ public class TipoAreaGeo {
     public String getmTipoAreaGeo() {
         return mTipoAreaGeo;
     }
+
+    public boolean umTipoAreaGeoEIgualAOutra(String tipo) {
+        //String tipoDaAGpedido = tipo.getmTipoAreaGeo();
+        return (this.getmTipoAreaGeo().equals(tipo));
+    }
+
 }

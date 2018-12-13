@@ -27,6 +27,16 @@ public class ListaAG {
         return false;
     }
 
+    public ArrayList<String> getListaAGPorTipo(String tipo) {
+        ArrayList<String> listaAGMesmoTipo = new ArrayList<>();
+        for (AreaGeografica areaGeo : this.getmListaAG()) {
+            if (areaGeo.getmTipoAreaGeo().umTipoAreaGeoEIgualAOutra(tipo)) {
+                listaAGMesmoTipo.add(areaGeo.getmNomeAreaGeo());
+            }
+        }
+        return listaAGMesmoTipo;
+    }
+
     public AreaGeografica getAreaGeograficaNaListaApresentada(int opcaoSelecionada){
         return mListaAG.get(opcaoSelecionada-1);
     }

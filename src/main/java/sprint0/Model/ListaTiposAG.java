@@ -28,4 +28,12 @@ public class ListaTiposAG {
     public TipoAreaGeo novoTipoAG(String novoTipo){
         return new TipoAreaGeo(novoTipo);
     }
+
+    public List<String> getListaDosTiposDeAG () {
+        List<String> listaFinal = new ArrayList<>();
+        for (TipoAreaGeo objecto : mListaTAG) {
+            listaFinal.add(objecto.getmTipoAreaGeo());
+        }
+        return listaFinal;
+    }
 }

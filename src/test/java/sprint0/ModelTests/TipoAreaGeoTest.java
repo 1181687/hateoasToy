@@ -54,14 +54,45 @@ class TipoAreaGeoTest {
     }
 
     @Test
-    public void testarGetMTipoAreaGeo (){
+    void testarGetmTipoAreaGeo() {
         //Arrange
-        String TipoAreaGeo = "Cidade";
-        TipoAreaGeo tipo = new TipoAreaGeo(TipoAreaGeo);
-        String expectedResult = "Cidade";
+        String TipoAreaGeo = "Rua";
+        TipoAreaGeo tipo1 = new TipoAreaGeo(TipoAreaGeo);
+        String expectedResult= "Rua";
         //Act
-        String result = tipo.getmTipoAreaGeo();
+        String result = tipo1.getmTipoAreaGeo();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 
+    @Test
+    void testarUmTipoAreaGeoEIgualAOutraTrue() {
+        //Arrange
+        String TipoAreaGeo1 = "Rua";
+        TipoAreaGeo tipo1 = new TipoAreaGeo(TipoAreaGeo1);
+
+        String TipoAreaGeo2 = "Rua";
+        TipoAreaGeo tipo2 = new TipoAreaGeo(TipoAreaGeo2);
+        boolean expectedResult= true;
+
+        //Act
+        boolean result = tipo1.umTipoAreaGeoEIgualAOutra("Rua");
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testarUmTipoAreaGeoEIgualAOutraFalse() {
+        //Arrange
+        String TipoAreaGeo1 = "Rua";
+        TipoAreaGeo tipo1 = new TipoAreaGeo(TipoAreaGeo1);
+
+        String TipoAreaGeo2 = "Cidade";
+        TipoAreaGeo tipo2 = new TipoAreaGeo(TipoAreaGeo2);
+        boolean expectedResult= false;
+
+        //Act
+        boolean result = tipo1.umTipoAreaGeoEIgualAOutra("Cidade");
         //Assert
         assertEquals(expectedResult, result);
     }

@@ -18,6 +18,7 @@ public class Main {
             System.out.println("1-US1-Novo tipo de Area Geografica");
             System.out.println("2-US2-Apresentar lista de tipos de Area Geografica");
             System.out.println("3-US3-Nova Area Geografica");
+            System.out.println("4-US4-Apresentar lista de àreas geográficas por tipo");
             System.out.println("5-US5-Nova característica meteorológica dos sensores");
             System.out.println("7-US7-Definir área geográfica inserida noutra área");
             System.out.println("0-Sair");
@@ -34,6 +35,10 @@ public class Main {
                 case 3:
                     US3UI ui3 = new US3UI(listaAG);
                     ui3.run();
+                    break;
+                case 4:
+                    US4UI ui4= new US4UI(listaAG);
+                    ui4.run();
                     break;
                 case 5:
                     US5UI ui5 = new US5UI(listaTiposSensores);
