@@ -46,8 +46,6 @@ public class ListaAG {
         return listaAGMesmoTipo;
     }
 
-    //////// OLÁ GABRIELA, TESTA A PARTIR DAQUI, SFF :)
-
     public AreaGeografica getAreaGeograficaNaListaApresentada(int opcaoSelecionada) {
         return mListaAG.get(opcaoSelecionada);
     }
@@ -55,7 +53,6 @@ public class ListaAG {
     public boolean verificarSeAGNaoTemAreaInserida(AreaGeografica area) {
         return area.getmAreaInseridaEm() == null;
     }
-
 
     public boolean removerAreaGeoALista(AreaGeografica AG) {
         return mListaAG.remove(AG);
@@ -78,7 +75,6 @@ public class ListaAG {
         return false;
     }
 
-    /////////
 
     public String conteudoLista(boolean usarCriterio) {
         StringBuilder conteudo = new StringBuilder();
