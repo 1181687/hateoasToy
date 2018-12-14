@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import sprint0.Model.*;
 
 
+import java.awt.geom.Area;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -1044,5 +1045,34 @@ class AreaGeograficaTest {
 
         //Assert
         assertFalse(resultado);
+    }
+
+    @Test
+    public void testarGetmAreaInseridaEm () {
+        //Arrange
+        String nomeAG1 = "Porto";
+        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area1 = new RetanguloArea(10, 10, local1);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+
+        String nomeAG = "Porto";
+        TipoAreaGeo tipo = new TipoAreaGeo("Distrito");
+        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
+        AreaGeografica ag2 = new AreaGeografica(nomeAG, tipo, local, area);
+
+        ag1.setmAreaInseridaEm(ag1);
+
+        AreaGeografica expectedResult = ag1;
+
+        //Act
+
+        AreaGeografica result = ag1.getmAreaInseridaEm();
+
+        //Assert
+
+        assertEquals(expectedResult, result);
+
     }
 }

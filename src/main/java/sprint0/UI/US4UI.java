@@ -47,8 +47,6 @@ public class US4UI {
                     System.out.println(listaDeAGPorTipo.get(i));
                 }
                 System.out.println("");
-
-               // System.out.println(mCtrl.getListaAGPorTipo(tipoEscolhido));
             }
         }
 
