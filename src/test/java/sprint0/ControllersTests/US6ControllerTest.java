@@ -58,16 +58,36 @@ class US6ControllerTest {
         assertEquals(expectedResult, resultado);
     }
 
-    /* @Test
+    @Test
     public void testarNomeAreaGeograficaPorIndice () {
 
-        String ag1 = "Espinho";
-        String ag2 = "Ancora";
-        AreaGeografica areageo1 = new AreaGeografica(ag1);
-        AreaGeografica areageo2 = new AreaGeografica(ag2);
+        String nomeAG1 = "Espinho";
+        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area1 = new RetanguloArea(10, 10, local1);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
 
-        ListaAG listaareasgeograficas = new ListaAG();
+        String nomeAG2 = "Ancora";
+        TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
+        Localizacao local2 = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area2 = new RetanguloArea(10, 10, local1);
+        AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
 
-    } */
+        ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
+        ListaAG listaAreasGeograficas = new ListaAG();
+
+        listaAreasGeograficas.adicionarAreaGeoALista(ag1);
+        listaAreasGeograficas.adicionarAreaGeoALista(ag2);
+
+        int posicao = 0;
+        US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
+        String expectedResult = "Espinho";
+
+        // Act
+        String resultado = ctrl6.getNomeAreaGeograficaPorIndice(posicao);
+
+        // Assert
+        assertEquals(expectedResult, resultado);
+    }
 
 }
