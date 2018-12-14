@@ -4,7 +4,6 @@ package sprint0.UI;
 import sprint0.Controllers.US2Controller;
 import sprint0.Model.ListaTiposAG;
 
-import java.util.Scanner;
 
 public class US2UI {
     private ListaTiposAG lista;
