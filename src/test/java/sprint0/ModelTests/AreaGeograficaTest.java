@@ -16,7 +16,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
         boolean expectedResult = true;
         //act
@@ -30,7 +30,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
         AreaGeografica ag2 = new AreaGeografica(nomeAG, tipo, local, area);
         boolean expectedResult = true;
@@ -47,7 +47,7 @@ class AreaGeograficaTest {
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
         TipoAreaGeo tipo2 = new TipoAreaGeo("Aldeia");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo1, local, area);
         AreaGeografica ag2 = new AreaGeografica(nomeAG, tipo2, local, area);
         boolean expectedResult = false;
@@ -63,7 +63,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
         AreaGeografica ag = new AreaGeografica(nomeAG, tipo, local, area);
         boolean expectedResult = false;
         //act
@@ -81,8 +81,8 @@ class AreaGeograficaTest {
         TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
         Localizacao local1 = new Localizacao(41.1496, 10.6109, 50);
         Localizacao local2 = new Localizacao(32.6333, 16.9, 20);
-        RetanguloArea area1 = new RetanguloArea(10, 10,local1);
-        RetanguloArea area2 = new RetanguloArea(10, 10,local2);
+        RetanguloArea area1 = new RetanguloArea(10, 10, local1);
+        RetanguloArea area2 = new RetanguloArea(10, 10, local2);
         AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
         AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
         double expectedResult = 1099043.7203;
@@ -101,7 +101,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local1);
+        RetanguloArea area = new RetanguloArea(10, 10, local1);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local1, area);
 
         //Instanciar Sensor
@@ -188,7 +188,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local1);
+        RetanguloArea area = new RetanguloArea(10, 10, local1);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local1, area);
 
         //Instanciar Sensor
@@ -274,7 +274,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local1);
+        RetanguloArea area = new RetanguloArea(10, 10, local1);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local1, area);
 
         //Instanciar Sensor
@@ -357,7 +357,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
@@ -440,7 +440,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local1);
+        RetanguloArea area = new RetanguloArea(10, 10, local1);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local1, area);
 
         //Instanciar Sensor
@@ -523,7 +523,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local1);
+        RetanguloArea area = new RetanguloArea(10, 10, local1);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local1, area);
 
         //Instanciar Sensor
@@ -565,7 +565,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         int expectedResult = 1;
@@ -582,7 +582,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -604,7 +604,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -628,7 +628,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         // Instanciar Sensor
@@ -653,7 +653,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         // Instanciar S0
@@ -711,7 +711,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         // Instanciar S0
@@ -766,7 +766,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
@@ -793,10 +793,10 @@ class AreaGeograficaTest {
 
         //Instanciar Medicao
         // Sensor0
-        Calendar calendarioDaMedicao01 = new GregorianCalendar(2015, 11, 2,5,22,40);
+        Calendar calendarioDaMedicao01 = new GregorianCalendar(2015, 11, 2, 5, 22, 40);
         Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
 
-        Calendar calendarioDaMedicao02 = new GregorianCalendar(2015, 11, 3,19,36,55);
+        Calendar calendarioDaMedicao02 = new GregorianCalendar(2015, 11, 3, 19, 36, 55);
         Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
 
         Medicao medicao01 = new Medicao(23, dataHoraDaMedicao01);
@@ -806,10 +806,10 @@ class AreaGeograficaTest {
         s0.adicionarMedicaoALista(medicao02);
 
         //Sensor1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2016, 1, 2,8,59,13);
+        Calendar calendarioDaMedicao11 = new GregorianCalendar(2016, 1, 2, 8, 59, 13);
         Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
 
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2016, 5, 4,2,05,27);
+        Calendar calendarioDaMedicao12 = new GregorianCalendar(2016, 5, 4, 2, 05, 27);
         Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
 
         Medicao medicao11 = new Medicao(22, dataHoraDaMedicao11);
@@ -819,10 +819,10 @@ class AreaGeograficaTest {
         s1.adicionarMedicaoALista(medicao12);
 
         //Sensor2
-        Calendar calendarioDaMedicao21 = new GregorianCalendar(2016, 0, 1,18,24,10);
+        Calendar calendarioDaMedicao21 = new GregorianCalendar(2016, 0, 1, 18, 24, 10);
         Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
 
-        Calendar calendarioDaMedicao22 = new GregorianCalendar(2016, 3, 30,20,17,50);
+        Calendar calendarioDaMedicao22 = new GregorianCalendar(2016, 3, 30, 20, 17, 50);
         Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
 
         Medicao medicao21 = new Medicao(20, dataHoraDaMedicao21);
@@ -831,14 +831,14 @@ class AreaGeograficaTest {
         s2.adicionarMedicaoALista(medicao21);
         s2.adicionarMedicaoALista(medicao22);
 
-       List<Sensor> listaDeSensores = new ArrayList<>();
-       listaDeSensores.add(s0);
-       listaDeSensores.add(s1);
-       listaDeSensores.add(s2);
+        List<Sensor> listaDeSensores = new ArrayList<>();
+        listaDeSensores.add(s0);
+        listaDeSensores.add(s1);
+        listaDeSensores.add(s2);
 
-       List<Sensor> expectedResult = new ArrayList<>();
-       expectedResult.add(s1);
-       expectedResult.add(s2);
+        List<Sensor> expectedResult = new ArrayList<>();
+        expectedResult.add(s1);
+        expectedResult.add(s2);
 
         Date dataInicial = new GregorianCalendar(2016, 0, 1, 17, 24, 00).getTime();
         Date dataFinal = new GregorianCalendar(2016, 3, 30, 17, 24, 00).getTime();
@@ -847,7 +847,7 @@ class AreaGeograficaTest {
         TipoSensor tipoResultado = new TipoSensor("Temperatura");
 
         //Act
-        List<Sensor> result = ag1.listarSensoresDeUmTipoNaAGNumPeriodo(tipoResultado,listaDeSensores,dataInicial,dataFinal);
+        List<Sensor> result = ag1.listarSensoresDeUmTipoNaAGNumPeriodo(tipoResultado, listaDeSensores, dataInicial, dataFinal);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -860,7 +860,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
@@ -939,7 +939,7 @@ class AreaGeograficaTest {
         TipoSensor tipoResultado = new TipoSensor("Temperatura");
 
         //Act
-        List<Sensor> result = ag1.listarSensoresDeUmTipoNaAGNumPeriodo(tipoResultado,listaDeSensores,dataInicial,dataFinal);
+        List<Sensor> result = ag1.listarSensoresDeUmTipoNaAGNumPeriodo(tipoResultado, listaDeSensores, dataInicial, dataFinal);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -951,7 +951,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
         String expectedResult = "Porto";
 
@@ -966,7 +966,7 @@ class AreaGeograficaTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Localizacao local = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area = new RetanguloArea(10, 10,local);
+        RetanguloArea area = new RetanguloArea(10, 10, local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         TipoAreaGeo expectedResult = tipo;
@@ -974,5 +974,75 @@ class AreaGeograficaTest {
         //act
         TipoAreaGeo result = ag1.getmTipoAreaGeo();
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testarAdicaoSensorAAreaGeografica() {
+        //Arrange
+        String nomeAG1 = "Porto";
+        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area1 = new RetanguloArea(10, 10, local1);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+
+        Calendar cal = new GregorianCalendar();
+        Date data = cal.getTime();
+        TipoSensor tipo = new TipoSensor("Humidade");
+        Localizacao local = new Localizacao(45, 45, 45);
+        Sensor s1 = new Sensor("s1", data, tipo, local);
+
+        //Act
+        boolean resultado = ag1.adicionarSensorAListaDeSensores(s1);
+
+        //Assert
+        assertTrue(resultado);
+    }
+
+    @Test
+    public void testarAdicaoDeDoisSensoresAAreaGeografica() {
+        //Arrange
+        String nomeAG1 = "Porto";
+        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area1 = new RetanguloArea(10, 10, local1);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+
+        Calendar cal = new GregorianCalendar();
+        Date data = cal.getTime();
+        TipoSensor tipo = new TipoSensor("Humidade");
+        Localizacao local = new Localizacao(45, 45, 45);
+        Sensor s1 = new Sensor("s1", data, tipo, local);
+        Sensor s2 = new Sensor("s2", data, tipo, local);
+        ag1.getmListaSensor().add(s1);
+
+        //Act
+        boolean resultado = ag1.adicionarSensorAListaDeSensores(s2);
+
+        //Assert
+        assertTrue(resultado);
+    }
+
+    @Test
+    public void testarAdicaoDeUmSensorApenasAAreaGeografica() {
+        //Arrange
+        String nomeAG1 = "Porto";
+        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area1 = new RetanguloArea(10, 10, local1);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+
+        Calendar cal = new GregorianCalendar();
+        Date data = cal.getTime();
+        TipoSensor tipo = new TipoSensor("Humidade");
+        Localizacao local = new Localizacao(45, 45, 45);
+        Sensor s1 = new Sensor("s1", data, tipo, local);
+        Sensor s2 = new Sensor("s1", data, tipo, local);
+        ag1.getmListaSensor().add(s1);
+
+        //Act
+        boolean resultado = ag1.adicionarSensorAListaDeSensores(s2);
+
+        //Assert
+        assertFalse(resultado);
     }
 }

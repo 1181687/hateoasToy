@@ -67,8 +67,8 @@ public class ListaAG {
     public boolean verificarSeAGEstaContidaNoutra(int opcaoSelecionada1, int opcaoSelecionada2) {
         AreaGeografica primeiraAG = mListaAG.get(opcaoSelecionada1);
         AreaGeografica segundaAG = mListaAG.get(opcaoSelecionada2);
-        while (!primeiraAG.getmAreaInseridaEm().equals(null)) {
-            if (!primeiraAG.getmAreaInseridaEm().equals(segundaAG)) {
+        while(primeiraAG.getmAreaInseridaEm() != null){
+            if(!primeiraAG.getmAreaInseridaEm().equals(segundaAG)){
                 primeiraAG = primeiraAG.getmAreaInseridaEm();
             } else {
                 return true;

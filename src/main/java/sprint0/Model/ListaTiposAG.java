@@ -37,8 +37,5 @@ public class ListaTiposAG {
         return listaFinal;
     }
 
-    public int getTamanhoLista(){
-        return mListaTAG.size();
-    }
 }
 

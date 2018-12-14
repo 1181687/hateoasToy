@@ -3,6 +3,8 @@ package sprint0.UI;
 import sprint0.Controllers.US4Controller;
 import sprint0.Model.ListaAG;
 import sprint0.Model.ListaTiposAG;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class US4UI {
@@ -16,24 +18,37 @@ public class US4UI {
 
     public void run() {
         System.out.println("Escolha o tipo de àrea geografica que pretende vizualizar");
-        //List<String> listaDeTiposDeAG = mCtrl.getListaDosTiposDeAG();
+        List<String> listaDeTiposDeAG = mCtrl.getListaDosTiposDeAG();
         Scanner ler = new Scanner(System.in);
         int opcaoEscolhida = -1;
         do {
-            for (int i = 1; i <= mCtrl.getListaDosTiposDeAG().size(); i++) {
-                System.out.println(i +"-"+ mCtrl.getListaDosTiposDeAG().get(i - 1));
+            for (int i = 1; i <= listaDeTiposDeAG.size(); i++) {
+                System.out.println(i +"-"+ listaDeTiposDeAG.get(i - 1));
             }
             opcaoEscolhida = ler.nextInt();
         }
-            while (opcaoEscolhida < 1 || opcaoEscolhida > mCtrl.getListaDosTiposDeAG().size());
+            while (opcaoEscolhida < 1 || opcaoEscolhida > listaDeTiposDeAG.size());
 
 
-            String tipoEscolhido = mCtrl.getListaDosTiposDeAG().get(opcaoEscolhida-1);
+            String tipoEscolhido = listaDeTiposDeAG.get(opcaoEscolhida-1);
 
-            if (mCtrl.getListaAGPorTipo(tipoEscolhido).isEmpty()) {
+        List<String> listaDeAGPorTipo = mCtrl.getListaAGPorTipo(tipoEscolhido);
+
+        if (listaDeAGPorTipo.isEmpty()) {
                 System.out.println("Não foram encontradas àreas geográficas do tipo escolhido");
             } else {
-                System.out.println(mCtrl.getListaAGPorTipo(tipoEscolhido));
+                if (listaDeAGPorTipo.size()==1){
+                    System.out.println("A área geográfica encontrada do tipo "+tipoEscolhido+" é:");
+                }
+                if (listaDeAGPorTipo.size()>1){
+                System.out.println("As áreas geográficas encontradas do tipo "+tipoEscolhido+" são:");
+                }
+                for (int i = 0; i <listaDeAGPorTipo.size() ; i++) {
+                    System.out.println(listaDeAGPorTipo.get(i));
+                }
+                System.out.println("");
+
+               // System.out.println(mCtrl.getListaAGPorTipo(tipoEscolhido));
             }
         }
 

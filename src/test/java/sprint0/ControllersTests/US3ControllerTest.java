@@ -1,9 +1,11 @@
 package sprint0.ControllersTests;
 
 import org.junit.jupiter.api.Test;
-import sprint0.Controllers.US1Controller;
 import sprint0.Controllers.US3Controller;
 import sprint0.Model.*;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -69,5 +71,32 @@ public class US3ControllerTest {
         //Assert
 
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testarGetListaDosTiposDeAG() {
+        //Arrange
+
+        ListaAG lista = new ListaAG();
+        ListaTiposAG listaTAG = new ListaTiposAG();
+        US3Controller ctrl3 = new US3Controller(lista, listaTAG);
+
+        //Tipo de Area Geográfica
+        String nomeDoTipo1 = "Cidade";
+        TipoAreaGeo tipo1 = new TipoAreaGeo(nomeDoTipo1);
+
+        //Adicionar o Tipo de Area Geográfica na lista
+        listaTAG.adicionarElementoALista(tipo1);
+
+        //Expected Result
+        List<String> expectedResult = Arrays.asList("Cidade");
+
+
+        //Act
+        List<String> result = ctrl3.getListaTAG();
+
+        //Assert
+        assertEquals(expectedResult, result);
+
     }
 }
