@@ -1,5 +1,6 @@
 package sprint0.Model;
 
+import java.awt.geom.Area;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class ListaAG {
     }
 
     public AreaGeografica getAreaGeograficaNaListaApresentada(int opcaoSelecionada){
-        return mListaAG.get(opcaoSelecionada-1);
+        return mListaAG.get(opcaoSelecionada);
     }
 
     public boolean verificarSeAGNaoTemAreaInserida(AreaGeografica area) {
@@ -89,5 +90,19 @@ public class ListaAG {
 
     public void adicionarAreaGeoAListaNumaPosicaoEspecifica(int posicao, AreaGeografica AG) {
         mListaAG.add(posicao,AG);
+    }
+
+    public boolean verificarSeAGEstaContidaNoutra(int opcaoSelecionada1, int opcaoSelecionada2){
+        AreaGeografica primeiraAG = mListaAG.get(opcaoSelecionada1);
+        AreaGeografica segundaAG = mListaAG.get(opcaoSelecionada2);
+        while(!primeiraAG.getmAreaInseridaEm().equals(null)){
+            if(!primeiraAG.getmAreaInseridaEm().equals(segundaAG)){
+                primeiraAG = primeiraAG.getmAreaInseridaEm();
+            }
+            else{
+                return true;
+            }
+        }
+        return false;
     }
 }

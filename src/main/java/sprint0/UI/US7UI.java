@@ -16,7 +16,7 @@ public class US7UI {
     public void run() {
         System.out.println("Indique o número correspondente à área geográfica que quer inserir noutra área geográfica");
         for (int i = 1; i <= ctrl.obterTamanhoLista(); i++) {
-            if (ctrl.verSeAGTemAreaInseridaVazia(ctrl.getAGNaListaApresentada(i))) {
+            if (ctrl.verSeAGTemAreaInseridaVazia(ctrl.getAGNaListaApresentada(i - 1))) {
                 System.out.println(i + " - Nome: " + ctrl.nomeAGNaLista(i - 1)
                         + ", Tipo: " + ctrl.tipoAGNaLista(i - 1)
                         + ", Latitude: " + ctrl.latitudeAGNaLista(i - 1)
@@ -31,8 +31,8 @@ public class US7UI {
             }
         }
         Scanner ler = new Scanner(System.in);
-        int opcaoSelecionada1 = ler.nextInt();
-        AreaGeografica primeiraAG = ctrl.getAGNaListaApresentada(opcaoSelecionada1);
+        int posicaoDaPrimeiraOpcao = ler.nextInt() - 1;
+        AreaGeografica primeiraAG = ctrl.getAGNaListaApresentada(posicaoDaPrimeiraOpcao);
         if (ctrl.verSeAGTemAreaInseridaVazia(primeiraAG)) {
             System.out.println("Introduza o nome da área geográfica na qual está inserida a área geográfica anterior");
             ctrl.removerAGLista(primeiraAG);
@@ -42,11 +42,11 @@ public class US7UI {
                         + ", Latitude: " + ctrl.latitudeAGNaLista(i - 1)
                         + ", Longitude: " + ctrl.longitudeAGNaLista(i - 1));
             }
-            int opcaoSelecionada2 = ler.nextInt();
-            AreaGeografica segundaAG = ctrl.getAGNaListaApresentada(opcaoSelecionada2);
+            int posicaoDaSegundaOpcao = ler.nextInt() - 1;
+            AreaGeografica segundaAG = ctrl.getAGNaListaApresentada(posicaoDaSegundaOpcao);
             primeiraAG.setmAreaInseridaEm(segundaAG);
             System.out.println("Sucesso!");
-            ctrl.adicionarAGLista(opcaoSelecionada1 - 1, primeiraAG);
+            ctrl.adicionarAGLista(posicaoDaPrimeiraOpcao, primeiraAG);
         } else
             System.out.println("A área geográfica que escolheu já está inserida noutra área. Tente outra área geográfica");
     }
