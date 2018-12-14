@@ -49,7 +49,7 @@ public class US6UI {
         Calendar calendario = new GregorianCalendar(Locale.getDefault());
         Date dataFuncionamento = calendario.getTime();
         Sensor novoSensor = new Sensor(nome, dataFuncionamento, novoTipoSensor, novaLocalizacao);
-        AreaGeografica areaGeografica = controller6.getAreaGeografica(posicao2-1);
+        AreaGeografica areaGeografica = controller6.getAreaGeograficaNaListaPorPosicao(posicao2-1);
 
         if (controller6.adicionarSensorAAreaGeografica(novoSensor,areaGeografica)) {
             System.out.println("Sucesso! Foi criado um Sensor.");

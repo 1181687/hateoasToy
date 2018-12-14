@@ -20,7 +20,7 @@ public class US6Controller {
         return mListaAreaGeografica.getNomeAreaGeograficaPorIndice(posicao);
     }
 
-    public AreaGeografica getAreaGeografica (int posicao) {
+    public AreaGeografica getAreaGeograficaNaListaPorPosicao (int posicao) {
         return mListaAreaGeografica.getmListaAG().get(posicao);
     }
 
