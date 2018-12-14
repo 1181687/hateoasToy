@@ -10,32 +10,8 @@ public class US7Controller {
         this.mLista = listaAG;
     }
 
-    public int obterTamanhoLista() {
-        return mLista.getTamanhoLista();
-    }
-
-    public String nomeAGNaLista(int posicao){
-        return mLista.getNomeAGNaLista(posicao);
-    }
-
-    public String tipoAGNaLista(int posicao){
-        return mLista.getTipoAGNaLista(posicao);
-    }
-
-    public double latitudeAGNaLista(int posicao){
-        return mLista.getLatitudeAGNaLista(posicao);
-    }
-
-    public double longitudeAGNaLista(int posicao){
-        return mLista.getLongitudeAGNaLista(posicao);
-    }
-
-    public String nomeAreaInseridaEmAGNaLista(int posicao){
-        return mLista.getNomeAreaInseridaEmAG(posicao);
-    }
-
-    public String tipoAreaInseridaEmAGNaLista(int posicao){
-        return mLista.getTipoAreaInseridaEmAG(posicao);
+    public String getConteudoLista (boolean usarCriterio){
+        return mLista.conteudoLista(usarCriterio);
     }
 
     public AreaGeografica getAGNaListaApresentada(int opcaoSelecionada){

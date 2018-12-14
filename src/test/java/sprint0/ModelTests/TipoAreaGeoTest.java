@@ -60,7 +60,7 @@ class TipoAreaGeoTest {
         TipoAreaGeo tipo1 = new TipoAreaGeo(TipoAreaGeo);
         String expectedResult= "Rua";
         //Act
-        String result = tipo1.getmTipoAreaGeo();
+        String result = tipo1.getNomeDoTipoAreaGeo();
         //Assert
         assertEquals(expectedResult, result);
     }

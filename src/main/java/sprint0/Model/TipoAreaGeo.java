@@ -25,12 +25,12 @@ public class TipoAreaGeo {
 
     }
 
-    public String getmTipoAreaGeo() {
+    public String getNomeDoTipoAreaGeo() {
         return mTipoAreaGeo;
     }
 
     public boolean umTipoAreaGeoEIgualAOutra(String tipo) {
-        return (this.getmTipoAreaGeo().equals(tipo));
+        return (this.getNomeDoTipoAreaGeo().equals(tipo));
     }
 
 }

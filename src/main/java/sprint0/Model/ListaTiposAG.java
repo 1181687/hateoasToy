@@ -32,7 +32,7 @@ public class ListaTiposAG {
     public List<String> getListaDosTiposDeAG () {
         List<String> listaFinal = new ArrayList<>();
         for (TipoAreaGeo objecto : mListaTAG) {
-            listaFinal.add(objecto.getmTipoAreaGeo());
+            listaFinal.add(objecto.getNomeDoTipoAreaGeo());
         }
         return listaFinal;
     }
