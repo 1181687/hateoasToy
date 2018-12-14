@@ -27,7 +27,7 @@ public class US7UI {
             AreaGeografica segundaAG = ctrl.getAGNaListaApresentada(posicaoDaSegundaOpcao);
             primeiraAG.setmAreaInseridaEm(segundaAG);
             System.out.println("Sucesso!");
-            ctrl.adicionarAGLista(posicaoDaPrimeiraOpcao, primeiraAG);
+            ctrl.adicionarAGListaPosicaoEspecifica(posicaoDaPrimeiraOpcao, primeiraAG);
         } else
             System.out.println("A área geográfica que escolheu já está inserida noutra área. Tente outra área geográfica");
     }
