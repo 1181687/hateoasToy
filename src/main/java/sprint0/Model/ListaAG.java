@@ -36,9 +36,8 @@ public class ListaAG {
         return this.mListaAG.get(posicao).getmNomeAreaGeo();
     }
 
-    public ArrayList<String> getListaAGPorTipo(String tipo) {
-        ArrayList<String> listaAGMesmoTipo = new ArrayList<>();
-
+    public List<String> getListaAGPorTipo(String tipo) {
+        List<String> listaAGMesmoTipo = new ArrayList<>();
         for (AreaGeografica areaGeo : mListaAG) {
             if (areaGeo.getmTipoAreaGeo().umTipoAreaGeoEIgualAOutra(tipo)) {
                 listaAGMesmoTipo.add(areaGeo.getmNomeAreaGeo());
@@ -46,6 +45,8 @@ public class ListaAG {
         }
         return listaAGMesmoTipo;
     }
+
+    //////// OLÁ GABRIELA, TESTA A PARTIR DAQUI, SFF :)
 
     public AreaGeografica getAreaGeograficaNaListaApresentada(int opcaoSelecionada) {
         return mListaAG.get(opcaoSelecionada);
@@ -67,8 +68,8 @@ public class ListaAG {
     public boolean verificarSeAGEstaContidaNoutra(int opcaoSelecionada1, int opcaoSelecionada2) {
         AreaGeografica primeiraAG = mListaAG.get(opcaoSelecionada1);
         AreaGeografica segundaAG = mListaAG.get(opcaoSelecionada2);
-        while(primeiraAG.getmAreaInseridaEm() != null){
-            if(!primeiraAG.getmAreaInseridaEm().equals(segundaAG)){
+        while (primeiraAG.getmAreaInseridaEm() != null) {
+            if (!primeiraAG.getmAreaInseridaEm().equals(segundaAG)) {
                 primeiraAG = primeiraAG.getmAreaInseridaEm();
             } else {
                 return true;
@@ -77,18 +78,18 @@ public class ListaAG {
         return false;
     }
 
+    /////////
+
     public String conteudoLista(boolean usarCriterio) {
         StringBuilder conteudo = new StringBuilder();
         for (int i = 1; i <= mListaAG.size(); i++) {
-            conteudo.append( i + " - Nome: " + mListaAG.get(i - 1).getmNomeAreaGeo());
+            conteudo.append(i + " - Nome: " + mListaAG.get(i - 1).getmNomeAreaGeo());
             conteudo.append(", Tipo: " + mListaAG.get(i - 1).getmTipoAreaGeo().getNomeDoTipoAreaGeo());
             conteudo.append(", Latitude: " + mListaAG.get(i - 1).getmLocalizacao().getmLatitude());
             conteudo.append(", Longitude: " + mListaAG.get(i - 1).getmLocalizacao().getmLongitude());
-            if (usarCriterio == true) {
-                if (!verificarSeAGNaoTemAreaInserida(mListaAG.get(i - 1))) {
-                    conteudo.append(", Inserido Em: " + mListaAG.get(i - 1).getmAreaInseridaEm().getmTipoAreaGeo().getNomeDoTipoAreaGeo());
-                    conteudo.append(" " + mListaAG.get(i - 1).getmAreaInseridaEm().getmNomeAreaGeo());
-                }
+            if (usarCriterio && !verificarSeAGNaoTemAreaInserida(mListaAG.get(i - 1))) {
+                conteudo.append(", Inserido Em: " + mListaAG.get(i - 1).getmAreaInseridaEm().getmTipoAreaGeo().getNomeDoTipoAreaGeo());
+                conteudo.append(" " + mListaAG.get(i - 1).getmAreaInseridaEm().getmNomeAreaGeo());
             }
             conteudo.append("\n");
         }

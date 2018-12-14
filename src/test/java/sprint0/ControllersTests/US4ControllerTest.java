@@ -50,7 +50,7 @@ public class US4ControllerTest {
         ArrayList<String> expectedResult = new ArrayList<>(Arrays.asList("Porto"));
 
         //Act
-        ArrayList<String> resultado = ctrl.getListaAGPorTipo(tipoPedido);
+        List<String> resultado = ctrl.getListaAGPorTipo(tipoPedido);
 
         //Assert
         assertEquals(expectedResult, resultado);
