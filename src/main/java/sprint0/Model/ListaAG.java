@@ -39,7 +39,8 @@ public class ListaAG {
 
     public ArrayList<String> getListaAGPorTipo(String tipo) {
         ArrayList<String> listaAGMesmoTipo = new ArrayList<>();
-        for (AreaGeografica areaGeo : this.getmListaAG()) {
+
+        for (AreaGeografica areaGeo : mListaAG){
             if (areaGeo.getmTipoAreaGeo().umTipoAreaGeoEIgualAOutra(tipo)) {
                 listaAGMesmoTipo.add(areaGeo.getmNomeAreaGeo());
             }
