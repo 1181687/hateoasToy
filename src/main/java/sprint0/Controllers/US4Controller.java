@@ -15,7 +15,7 @@ public class US4Controller {
         this.mListaTAG = listaTAG;
     }
 
-    public ArrayList<String> getListaAGPorTipo(String tipo) {
+    public List<String> getListaAGPorTipo(String tipo) {
         return this.mListaAG.getListaAGPorTipo(tipo);
     }
 

@@ -15,40 +15,24 @@ public class US8UI {
 
     public void run() {
         System.out.println("Indique a área geografica a avaliar se está inserida noutra, direta ou indiretamente");
-        for (int i = 1; i <= ctrl.obterTamanhoLista(); i++) {
-                System.out.println(i + " - Nome: " + ctrl.nomeAGNaLista(i - 1)
-                        + ", Tipo: " + ctrl.tipoAGNaLista(i - 1)
-                        + ", Latitude: " + ctrl.latitudeAGNaLista(i - 1)
-                        + ", Longitude: " + ctrl.longitudeAGNaLista(i - 1));
-        }
+        System.out.println(ctrl.getConteudoLista(false));
         Scanner ler = new Scanner(System.in);
         int posicaoDaPrimeiraOpcao = ler.nextInt() - 1;
         AreaGeografica primeiraAG = ctrl.getAGNaListaApresentada(posicaoDaPrimeiraOpcao);
         if (!ctrl.verSeAGTemAreaInseridaVazia(primeiraAG)) {
             System.out.println("Indique a área geografica a verificar se contém a anterior, direta ou indiretamente");
-            for (int i = 1; i <= ctrl.obterTamanhoLista(); i++) {
-                System.out.println(i + " - Nome: " + ctrl.nomeAGNaLista(i - 1)
-                        + ", Tipo: " + ctrl.tipoAGNaLista(i - 1)
-                        + ", Latitude: " + ctrl.latitudeAGNaLista(i - 1)
-                        + ", Longitude: " + ctrl.longitudeAGNaLista(i - 1));
-            }
+            System.out.println(ctrl.getConteudoLista(false));
             int posicaoDaSegundaOpcao = ler.nextInt()- 1;
             if(posicaoDaPrimeiraOpcao != posicaoDaSegundaOpcao){
                 if(ctrl.verificarSeAGEstaContidaDiretaOuIndiretamenteNoutraAG(posicaoDaPrimeiraOpcao,posicaoDaSegundaOpcao)) {
-                    System.out.println("Sucesso! O/A "
-                            + ctrl.tipoAGNaLista(posicaoDaPrimeiraOpcao) + " " + ctrl.nomeAGNaLista(posicaoDaPrimeiraOpcao)
-                            + " está inserido/a em "
-                            + ctrl.tipoAGNaLista(posicaoDaSegundaOpcao) + " " + ctrl.nomeAGNaLista(posicaoDaSegundaOpcao) + "!");
+                    System.out.println("Sucesso!");
                 }
                 else{
                     System.out.println("Ohhh! A primeira área escolhida não está inserida na segunda área.");
                 }
             }
             else{
-                System.out.println("CÁ BURROOO! É obvio que "
-                        + ctrl.tipoAGNaLista(posicaoDaPrimeiraOpcao) + " " + ctrl.nomeAGNaLista(posicaoDaPrimeiraOpcao)
-                        + " está inserido/a em "
-                        + ctrl.tipoAGNaLista(posicaoDaSegundaOpcao) + " " + ctrl.nomeAGNaLista(posicaoDaSegundaOpcao) + "!");
+                System.out.println("CÁ BURROOO!");
             }
         } else
             System.out.println("A área geográfica que escolheu não tem área inserida definida. Na opção 7 do menu anterior poderá defini-la.");
