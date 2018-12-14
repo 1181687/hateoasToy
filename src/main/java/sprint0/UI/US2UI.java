@@ -6,12 +6,10 @@ import sprint0.Model.ListaTiposAG;
 
 
 public class US2UI {
-    private ListaTiposAG lista;
-    private US2Controller ctrl2;
+       private US2Controller ctrl2;
 
     public US2UI(ListaTiposAG lista) {
-        this.lista = lista;
-        this.ctrl2 = new US2Controller(lista);
+              this.ctrl2 = new US2Controller(lista);
     }
 
 
