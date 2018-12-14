@@ -2,6 +2,8 @@ package sprint0.Controllers;
 
 import sprint0.Model.*;
 
+import java.util.List;
+
 public class US3Controller {
     private ListaAG mListaAG;
     private ListaTiposAG mListaTAG;
@@ -19,12 +21,8 @@ public class US3Controller {
         return mListaAG;
     }
 
-    public int obterTamanhoLista() {
-        return mListaTAG.getTamanhoLista();
-    }
-
-    public String getNomeTipoAGNaLista (int posicao) {
-        return mListaTAG.getListaDosTiposDeAG().get(posicao);
+    public List<String> getListaTAG () {
+        return mListaTAG.getListaDosTiposDeAG();
     }
 
 }
