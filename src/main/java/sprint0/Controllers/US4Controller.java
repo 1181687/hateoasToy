@@ -1,9 +1,7 @@
 package sprint0.Controllers;
 
-
 import sprint0.Model.ListaAG;
 import sprint0.Model.ListaTiposAG;
-
 import java.util.ArrayList;
 import java.util.List;
 
