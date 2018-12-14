@@ -16,6 +16,8 @@ public class Main {
         Scanner ler = new Scanner(System.in);
         while (opcao!=0){
             do {
+                System.out.println("Escolha uma das seguintes opções:");
+                System.out.println("");
                 System.out.println("1-US1-Novo tipo de Area Geografica");
                 System.out.println("2-US2-Apresentar lista de tipos de Area Geografica");
                 System.out.println("3-US3-Nova Area Geografica");

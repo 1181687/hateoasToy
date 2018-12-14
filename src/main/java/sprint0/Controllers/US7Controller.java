@@ -22,7 +22,7 @@ public class US7Controller {
         return mLista.verificarSeAGNaoTemAreaInserida (area);
     }
 
-    public void adicionarAGLista (int posicao, AreaGeografica area){
+    public void adicionarAGListaPosicaoEspecifica(int posicao, AreaGeografica area){
         mLista.adicionarAreaGeoAListaNumaPosicaoEspecifica(posicao,area);
     }
 
