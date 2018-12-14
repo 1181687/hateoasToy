@@ -6,11 +6,11 @@ import sprint0.Model.ListaTiposSensores;
 import java.util.Scanner;
 
 public class US5UI {
-    private ListaTiposSensores mListaTiposSensores;
+
     private US5Controller mController;
 
     public US5UI(ListaTiposSensores mListaTiposSensores) {
-        this.mListaTiposSensores = mListaTiposSensores;
+
         this.mController = new US5Controller(mListaTiposSensores);
     }
 

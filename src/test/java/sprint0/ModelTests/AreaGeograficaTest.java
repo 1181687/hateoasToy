@@ -975,4 +975,29 @@ class AreaGeograficaTest {
         TipoAreaGeo result = ag1.getmTipoAreaGeo();
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void testarAdicaoDeDoisSensoresAAreaGeografica () {
+        //Arrange
+        String nomeAG1 = "Porto";
+        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area1 = new RetanguloArea(10, 10, local1);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+
+        Calendar cal = new GregorianCalendar();
+        Date data = cal.getTime();
+        TipoSensor tipo = new TipoSensor("Hum");
+        Localizacao local = new Localizacao(45, 45, 45);
+        Sensor s1 = new Sensor("fe",data,tipo,local);
+        Sensor s2 = new Sensor ("fe",data,tipo,local);
+        ag1.getmListaSensor().add(s1);
+
+        //Act
+        boolean resultado = ag1.adicionarSensorAListaDeSensores(s2);
+
+        //Assert
+        assertFalse(resultado);
+    }
+
 }
