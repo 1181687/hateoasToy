@@ -3,7 +3,6 @@ package sprint0.UI;
 import sprint0.Model.ListaAG;
 import sprint0.Model.ListaTiposAG;
 import sprint0.Model.ListaTiposSensores;
-import sprint0.Model.Sensor;
 
 import java.util.Scanner;
 
