@@ -27,7 +27,13 @@ public class US147UI {
         int secondOptionPosition = ler.nextInt() - 1;
         Room chosenRoom = ctrl.getRoomFromTheList(secondOptionPosition);
 
-
+        if (ctrl.checkIfRoomIsntInAHouseGrid(chosenRoom)) {
+            ctrl.attachRoomInTheHouseGrid(chosenGrid, chosenRoom);
+            ctrl.changeTheAttributeHouseGridInTheRoomObject(chosenRoom, chosenGrid);
+            System.out.println("The specified room has been attached to the specified house grid.");
+        } else {
+            System.out.println("The specified room is already attached to a house grid. Please, use another room.");
+        }
 
 
     }
