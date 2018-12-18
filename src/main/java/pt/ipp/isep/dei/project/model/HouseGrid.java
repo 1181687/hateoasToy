@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.project.model;
 
-import java.util.ArrayList;
-
 public class HouseGrid {
     private double mMaximumContractedPower;
     private DeviceList mDeviceListOnHouseGrid = new DeviceList();
@@ -10,5 +8,9 @@ public class HouseGrid {
 
     public HouseGrid(double maximumContractedPower) {
         this.mMaximumContractedPower = maximumContractedPower;
+    }
+
+    public boolean addPowerSourceToHouseGrid(PowerSource newPowerSource){
+        return this.mPowerSourceList.addPowerSourceToList(newPowerSource);
     }
 }
