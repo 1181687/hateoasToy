@@ -37,6 +37,24 @@ public class Room {
                 && this.mDimensions.equals(roomOne.mDimensions) && this.mHouseGrid.equals(roomOne.mHouseGrid);
     }
 
+    /**
+     * Method that checks if the room isn't in a house grid (basically, if the room doesn't have a value in the attribute mHouseGrid.
+     *
+     * @return True or false.
+     */
+    public boolean checkIfTheRoomIsntInAHouseGrid() {
+        return mHouseGrid == null;
+    }
+
+    /**
+     * Method that asks the changes the attribute mHouseGrid to the room.
+     *
+     * @param houseGrid Specified house grid.
+     */
+    public void changeTheAttributeHouseGrid(HouseGrid houseGrid) {
+        mHouseGrid = houseGrid;
+    }
+
     public String getmName() {
         return mName;
     }
