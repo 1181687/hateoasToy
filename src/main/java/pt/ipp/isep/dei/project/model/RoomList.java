@@ -12,4 +12,15 @@ public class RoomList {
     public List<Room> getmList() {
         return mList;
     }
+
+
+    /**
+     * Method that get the room in a specific position in the list.
+     *
+     * @param position Specifies the position of the room in the list.
+     * @return The respective room.
+     */
+    public Room getRoomFromASpecificPositionInTheList(int position) {
+        return mList.get(position);
+    }
 }

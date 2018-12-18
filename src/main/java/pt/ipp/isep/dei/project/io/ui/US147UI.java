@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.US147Controller;
 import pt.ipp.isep.dei.project.model.HouseGrid;
 import pt.ipp.isep.dei.project.model.HouseGridList;
+import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.RoomList;
 
 import java.util.Scanner;
@@ -24,7 +25,10 @@ public class US147UI {
         System.out.println("Please choose the room to be attached to the chosen house grid.");
         System.out.println(ctrl.getmListOfRooms());
         int secondOptionPosition = ler.nextInt() - 1;
+        Room chosenRoom = ctrl.getRoomFromTheList(secondOptionPosition);
 
-        // AINDA FALTA
+
+
+
     }
 }

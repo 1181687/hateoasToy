@@ -13,6 +13,13 @@ public class HouseGridList {
         return mList;
     }
 
+
+    /**
+     * Method that get the house grid in a specific position in the list.
+     *
+     * @param position Specifies the position of the house grid in the list.
+     * @return The respective house grid.
+     */
     public HouseGrid getHouseGridFromASpecificPositionInTheList(int position){
         return mList.get(position);
     }

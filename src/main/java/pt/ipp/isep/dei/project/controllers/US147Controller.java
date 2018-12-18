@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.project.model.HouseGrid;
 import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.RoomList;
+
 import java.util.List;
 
 public class US147Controller {
@@ -40,6 +41,13 @@ public class US147Controller {
         return mListOfRooms.getmList();
     }
 
-
-    // AINDA FALTA
+    /**
+     * Method that asks for the room in a specific position in the list.
+     *
+     * @param position Specifies the position of the room in the list.
+     * @return The respective room.
+     */
+    public Room getRoomFromTheList(int position) {
+        return mListOfRooms.getRoomFromASpecificPositionInTheList(position);
+    }
 }
