@@ -8,5 +8,7 @@ public class HouseGrid {
     private PowerSourceList mPowerSourceList= new PowerSourceList();
     private RoomList mRoomsConnectedToHouseGrid;
 
-
+    public HouseGrid(double maximumContractedPower) {
+        this.mMaximumContractedPower = maximumContractedPower;
+    }
 }
