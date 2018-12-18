@@ -23,4 +23,13 @@ public class HouseGridList {
     public HouseGrid getHouseGridFromASpecificPositionInTheList(int position){
         return mList.get(position);
     }
+
+    public String getContentOfHouseGrid() {
+        StringBuilder content = new StringBuilder();
+        for (int i = 1; i <= mList.size(); i++) {
+            content.append(i + " - Name: " + mList.get(i - 1).houseGridName());
+            content.append("\n");
+        }
+        return content.toString();
+    }
 }

@@ -4,8 +4,8 @@ public class HouseGrid {
     private String houseGridName;
     private double mMaximumContractedPower;
     private DeviceList mDeviceListOnHouseGrid = new DeviceList();
-    private PowerSourceList mPowerSourceList= new PowerSourceList();
-    private RoomList mRoomsConnectedToHouseGrid= new RoomList();
+    private PowerSourceList mPowerSourceList = new PowerSourceList();
+    private RoomList mRoomsConnectedToHouseGrid = new RoomList();
 
     public HouseGrid(double maximumContractedPower) {
         this.mMaximumContractedPower = maximumContractedPower;
@@ -44,5 +44,22 @@ public class HouseGrid {
         return mRoomsConnectedToHouseGrid;
     }
 
+
+
+    /**
+     * Method that detaches a room from a house grid. It return a true in case of success
+     * and a false in the case of a failure.
+     * @param roomToDetach
+     * @return
+     */
+    public boolean detachRoomFromHouseGrid(Room roomToDetach) {
+        for (Room room : this.mRoomsConnectedToHouseGrid.getmList()) {
+            if (room.equals(roomToDetach)) {
+                this.mRoomsConnectedToHouseGrid.getmList().remove(room);
+                return true;
+            }
+        }
+        return false;
+    }
 
 }
