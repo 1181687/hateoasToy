@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
 public class HouseGrid {
-    private String houseGridName;
+    private String mHouseGridName;
     private double mMaximumContractedPower;
     private DeviceList mDeviceListOnHouseGrid = new DeviceList();
     private PowerSourceList mPowerSourceList= new PowerSourceList();
@@ -16,12 +16,12 @@ public class HouseGrid {
         this.mRoomsConnectedToHouseGrid = mRoomsConnectedToHouseGrid;
     }
 
-    public void setHouseGridName(String houseGridName) {
-        this.houseGridName = houseGridName;
+    public void setmHouseGridName(String mHouseGridName) {
+        this.mHouseGridName = mHouseGridName;
     }
 
-    public String getHouseGridName() {
-        return houseGridName;
+    public String getmHouseGridName() {
+        return mHouseGridName;
     }
 
     public double getmMaximumContractedPower() {
