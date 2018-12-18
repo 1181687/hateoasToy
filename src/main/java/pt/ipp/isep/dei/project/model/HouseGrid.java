@@ -8,4 +8,5 @@ public class HouseGrid {
     private PowerSourceList mPowerSourceList= new PowerSourceList();
     private RoomList mRoomsConnectedToHouseGrid;
 
+
 }
