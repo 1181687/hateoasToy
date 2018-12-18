@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.project.model;
 
-import java.util.ArrayList;
-
 public class HouseGrid {
     private double mMaximumContractedPower;
     private DeviceList mDeviceListOnHouseGrid = new DeviceList();
@@ -10,5 +8,14 @@ public class HouseGrid {
 
     public HouseGrid(double maximumContractedPower) {
         this.mMaximumContractedPower = maximumContractedPower;
+    }
+
+    /**
+     * Method that attaches a room in the house grid's room list.
+     *
+     * @param room Speficied room to attach.
+     */
+    public void attachRoomInTheHouseGridRoomList(Room room) {
+        mRoomsConnectedToHouseGrid.getmList().add(room);
     }
 }
