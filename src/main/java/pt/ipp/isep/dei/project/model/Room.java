@@ -36,4 +36,16 @@ public class Room {
         return this.mName.equals(roomOne.mName) && this.mHouseFloor == roomOne.mHouseFloor
                 && this.mDimensions.equals(roomOne.mDimensions) && this.mHouseGrid.equals(roomOne.mHouseGrid);
     }
+
+    public String getmName() {
+        return mName;
+    }
+
+    public int getmHouseFloor() {
+        return mHouseFloor;
+    }
+
+    public Dimensions getmDimensions() {
+        return mDimensions;
+    }
 }
