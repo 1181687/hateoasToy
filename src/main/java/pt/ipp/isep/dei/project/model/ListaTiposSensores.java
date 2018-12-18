@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class ListaTiposSensores {
 
@@ -32,5 +31,15 @@ public class ListaTiposSensores {
 
     public TipoSensor getTipoSensorPorPosicao(int posicao) {
         return this.mListaTiposSensores.get(posicao);
+    }
+
+    public Sensor novoSensor (String nome, Date dataFuncionamento, TipoSensor novoTipoSensor, Localizacao novaLocalizacao) {
+        return new Sensor(nome, dataFuncionamento, novoTipoSensor, novaLocalizacao);
+    }
+
+    public Date dataDoSensor (Date dataFuncionamentoDoSensor) {
+        Calendar calendario = new GregorianCalendar(Locale.getDefault());
+        dataFuncionamentoDoSensor = calendario.getTime();
+        return dataFuncionamentoDoSensor;
     }
 }
