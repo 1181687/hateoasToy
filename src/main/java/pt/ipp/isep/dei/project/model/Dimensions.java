@@ -11,4 +11,15 @@ public class Dimensions {
         this.mWidth = mWidth;
     }
 
+    public double getmHeight() {
+        return mHeight;
+    }
+
+    public double getmLength() {
+        return mLength;
+    }
+
+    public double getmWidth() {
+        return mWidth;
+    }
 }
