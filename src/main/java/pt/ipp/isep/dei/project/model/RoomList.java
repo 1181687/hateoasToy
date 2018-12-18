@@ -24,6 +24,18 @@ public class RoomList {
         return mList.get(position);
     }
 
+    /**
+     * Method that adds a new room to the list of rooms
+     * @param room the new room that i want to add
+     * @return true if it adds, false if it doesn't add, because it already contains it
+     */
+    public boolean addRoomToRoomList(Room room) {
+        if (!(mList.contains(room))) {
+            mList.add(room);
+            return true;
+        }
+        return false;
+    }
 
     /**
      * Method that asks to the class Room if a room isn't in a house grid.
