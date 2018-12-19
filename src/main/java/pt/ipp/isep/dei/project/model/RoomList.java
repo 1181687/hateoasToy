@@ -26,6 +26,7 @@ public class RoomList {
 //////////////////////////
     /**
      * Method that adds a new room to the list of rooms
+     *
      * @param room the new room that i want to add
      * @return true if it adds, false if it doesn't add, because it already contains it
      */
@@ -42,32 +43,51 @@ public class RoomList {
         return new Room(name, housefloor,newDimension);
     }
 
-
     public String getDisplayRoomList() {
-        StringBuilder conteudo = new StringBuilder();
-        for (int i = 1; i <= mList.size(); i++) {
-            conteudo.append(i + " - Name: " + mList.get(i - 1).getmName());
-            conteudo.append(", House Floor: " + mList.get(i - 1).getmHouseFloor());
-            conteudo.append(", Dimensions - Height: " + mList.get(i - 1).getmDimensions().getmHeight());
-            conteudo.append(", Dimensions - Length: " + mList.get(i - 1).getmDimensions().getmLength());
-            conteudo.append(", Dimensions - Width: " + mList.get(i - 1).getmDimensions().getmWidth());
-            conteudo.append("\n");
+        StringBuilder content = new StringBuilder();
+        int numberInTheList = 1;
+        String displayOfTheRoom = mList.get(0).getRoomDisplay();
+        for (int i = 0; i < mList.size(); i++) {
+            content.append(numberInTheList + "- ");
+            content.append(displayOfTheRoom);
+            content.append("\n");
+            numberInTheList++;
         }
-        return conteudo.toString();
+        return content.toString();
     }
 
     public String getDisplayOfTheChosenRoom(int position) {
-        StringBuilder conteudo = new StringBuilder();
-        conteudo.append("1 - Name: " + mList.get(position).getmName());
-        conteudo.append("\n");
-        conteudo.append("2 - House Floor: " + mList.get(position).getmHouseFloor());
-        conteudo.append("\n");
-        conteudo.append("3 - Dimensions - Height: " + mList.get(position).getmDimensions().getmHeight());
-        conteudo.append("\n");
-        conteudo.append("4 - Dimensions - Length: " + mList.get(position).getmDimensions().getmLength());
-        conteudo.append("\n");
-        conteudo.append("5 - Dimensions - Width: " + mList.get(position).getmDimensions().getmWidth());
-        conteudo.append("\n");
-        return conteudo.toString();
+        StringBuilder content = new StringBuilder();
+        content.append("1 - Name: " + mList.get(position).getmName());
+        content.append("\n");
+        content.append("2 - House Floor: " + mList.get(position).getmHouseFloor());
+        content.append("\n");
+        content.append("3 - Dimensions - Height: " + mList.get(position).getmDimensions().getmHeight());
+        content.append("\n");
+        content.append("4 - Dimensions - Length: " + mList.get(position).getmDimensions().getmLength());
+        content.append("\n");
+        content.append("5 - Dimensions - Width: " + mList.get(position).getmDimensions().getmWidth());
+        content.append("\n");
+        return content.toString();
+    }
+
+    public void setRoomName(int chosenRoom, String change) {
+        mList.get(chosenRoom).setmName(change);
+    }
+
+    public void setRoomFloor(int chosenRoom, int change) {
+            mList.get(chosenRoom).setmHouseFloor(change);
+        }
+
+    public void setRoomDimensions(int chosenRoom, int chosenFeature, double change) {
+        if (chosenFeature == 3) {
+            mList.get(chosenRoom).getmDimensions().setmHeight(change);
+        } else mList.get(chosenRoom).getmDimensions().getmHeight();
+        if (chosenFeature == 4) {
+            mList.get(chosenRoom).getmDimensions().setmLength(change);
+        } else mList.get(chosenRoom).getmDimensions().getmLength();
+        if (chosenFeature == 5) {
+            mList.get(chosenRoom).getmDimensions().setmWidth(change);
+        } else mList.get(chosenRoom).getmDimensions().getmWidth();
     }
 }
