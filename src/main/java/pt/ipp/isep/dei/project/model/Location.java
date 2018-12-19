@@ -1,12 +1,12 @@
 
 package pt.ipp.isep.dei.project.model;
 
-public class Localizacao {      //graus decimais
+public class Location {      //graus decimais
     private double mLatitude;
     private double mLongitude;
     private double mAltitude;
 
-    public Localizacao(double mLatitude, double mLongitude, double mAltitude) {
+    public Location(double mLatitude, double mLongitude, double mAltitude) {
         setmLatitude(mLatitude);
         setmLongitude(mLongitude);
         this.mAltitude=mAltitude;
@@ -39,7 +39,7 @@ public class Localizacao {      //graus decimais
     }
 
 
-    public double distanciaDuasLocalizacoes(Localizacao novoLocal) {
+    public double distanciaDuasLocalizacoes(Location novoLocal) {
 
         final int raioDaTerra = 6371; // raio da Terra
         double lonNovoLocal = novoLocal.getmLongitude();
@@ -68,11 +68,11 @@ public class Localizacao {      //graus decimais
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Localizacao)) {
+        if (!(obj instanceof Location)) {
             return false;
         }
 
-        Localizacao local = (Localizacao) obj;
+        Location local = (Location) obj;
         final double delta = 0.0001;
         return Math.abs((this.mLatitude - local.mLatitude)) < delta && Math.abs((this.mLongitude - local.mLongitude)) < delta
                 && Math.abs((this.mAltitude - local.mAltitude)) < delta;
