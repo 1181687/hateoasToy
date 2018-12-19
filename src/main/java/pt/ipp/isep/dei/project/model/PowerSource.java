@@ -31,12 +31,13 @@ public class PowerSource {
             return false;
         }
 
-        if(type.mIsRechargeable){
-            return this.mPowerSourceType.equals(type.mPowerSourceType) && this.mMaximumPowerOutput == type.mMaximumPowerOutput && this.mMaximumAmountOfStorableEnergy==type.mMaximumAmountOfStorableEnergy;
+        final double delta = 0.0001;
 
+        if(type.mIsRechargeable){
+            return this.mPowerSourceType.equals(type.mPowerSourceType) && Math.abs(this.mMaximumPowerOutput - type.mMaximumPowerOutput)<delta && Math.abs(this.mMaximumAmountOfStorableEnergy-type.mMaximumAmountOfStorableEnergy)<delta;
         }
         else {
-            return this.mPowerSourceType.equals(type.mPowerSourceType) && this.mMaximumPowerOutput == type.mMaximumPowerOutput;
+            return this.mPowerSourceType.equals(type.mPowerSourceType) && Math.abs(this.mMaximumPowerOutput - type.mMaximumPowerOutput)<delta;
         }
     }
 }
