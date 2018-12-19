@@ -53,13 +53,13 @@ public class ListaAGTest {
         //Arrange
         String nomeAG1 = "Porto";
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
-        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area1 = new RetanguloArea(10, 10,local1);
+        Location local1 = new Location(41.1496, -8.6109, 97);
+        RectangleArea area1 = new RectangleArea(10, 10,local1);
 
         String nomeAG2 = "Porto";
         TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
-        Localizacao local2 = new Localizacao(41.1496, -8.6109, 97);
-        RetanguloArea area2 = new RetanguloArea(10, 10,local2);
+        Location local2 = new Location(41.1496, -8.6109, 97);
+        RectangleArea area2 = new RectangleArea(10, 10,local2);
 
         ListaAG lista = new ListaAG();
         AreaGeografica ag1 = new AreaGeografica (nomeAG1, tipo1, local1,area1);

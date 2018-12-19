@@ -44,11 +44,11 @@ public class US6Controller {
         return false;
     }
 
-    public Location criarNovaLocalizacao (double mAltitude, double mLatitude, double mLongitude) {
+    public Location criarNovaLocalizacao (double mAltitude, double mLatitude, double mLongitude, AreaGeografica areaGeografica) {
         return this.mListaAreaGeografica.novaLocalizacao(mAltitude, mLatitude, mLongitude);
     }
 
-    public Sensor criarNovoSensor (String nome, Date dataFuncionamento, TipoSensor novoTipoSensor, Location novaLocation) {
-        return this.mListaTiposSensores.novoSensor(nome, dataFuncionamento, novoTipoSensor, novaLocation);
+    public Sensor criarNovoSensor (String nome, TipoSensor novoTipoSensor, Location novaLocation, AreaGeografica areaGeografica) {
+        return this.mListaAreaGeografica.getAreaGeografica(areaGeografica).novoSensor(nome, novoTipoSensor, novaLocation);
     }
 }

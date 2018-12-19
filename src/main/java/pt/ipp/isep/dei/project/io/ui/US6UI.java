@@ -45,7 +45,7 @@ public class US6UI {
         while (posicao2 < 0 || posicao2 > controller6.numeroElementosDaListaAreaGeografica());
 
         AreaGeografica areaGeografica = controller6.getAreaGeograficaNaListaPorPosicao(posicao2-1);
-        Localizacao novaLocalizacao = controller6.criarNovaLocalizacao(altitude, latitude, longitude, areaGeografica);
+        Location novaLocalizacao = controller6.criarNovaLocalizacao(altitude, latitude, longitude, areaGeografica);
         TipoSensor novoTipoSensor = controller6.getTipoSensorPorPosicao(posicao1-1);
         Sensor novoSensor = controller6.criarNovoSensor(nome, novoTipoSensor, novaLocalizacao, areaGeografica);
 
