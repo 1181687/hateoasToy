@@ -17,11 +17,11 @@ public class US6UI {
         Scanner ler = new Scanner(System.in);
         String nome = ler.nextLine();
         System.out.println("Introduza a latitude do novo sensor");
-        Double latitude = ler.nextDouble();
+        double latitude = ler.nextDouble();
         System.out.println("Introduza a longitude do novo sensor");
-        Double longitude = ler.nextDouble();
+        double longitude = ler.nextDouble();
         System.out.println("Introduza a altitude do novo sensor");
-        Double altitude = ler.nextDouble();
+        double altitude = ler.nextDouble();
         ler.nextLine();
         System.out.println("Introduza o tipo de sensor");
         int posicao1 = -1;
@@ -44,11 +44,11 @@ public class US6UI {
         }
         while (posicao2 < 0 || posicao2 > controller6.numeroElementosDaListaAreaGeografica());
 
-        Localizacao novaLocalizacao = new Localizacao(latitude, longitude, altitude);
+        Location novaLocation = controller6.criarNovaLocalizacao(altitude, latitude, longitude);
         TipoSensor novoTipoSensor = controller6.getTipoSensorPorPosicao(posicao1-1);
         Calendar calendario = new GregorianCalendar(Locale.getDefault());
         Date dataFuncionamento = calendario.getTime();
-        Sensor novoSensor = new Sensor(nome, dataFuncionamento, novoTipoSensor, novaLocalizacao);
+        Sensor novoSensor = controller6.criarNovoSensor(nome, dataFuncionamento, novoTipoSensor, novaLocation);
         AreaGeografica areaGeografica = controller6.getAreaGeograficaNaListaPorPosicao(posicao2-1);
 
         if (controller6.adicionarSensorAAreaGeografica(novoSensor,areaGeografica)) {
