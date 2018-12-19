@@ -27,6 +27,10 @@ public class PowerSource {
 
         PowerSource type = (PowerSource) obj;
 
+        if(this.mIsRechargeable!=type.mIsRechargeable){
+            return false;
+        }
+
         if(type.mIsRechargeable){
             return this.mPowerSourceType.equals(type.mPowerSourceType) && this.mMaximumPowerOutput == type.mMaximumPowerOutput && this.mMaximumAmountOfStorableEnergy==type.mMaximumAmountOfStorableEnergy;
 
