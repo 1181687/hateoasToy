@@ -24,6 +24,7 @@ public class US3UI {
                     "Tipo: " + ctrl3.getListaTAG().get(i - 1));
         }
         int opcao = ler.nextInt();
+        String nomeTipoAG = ctrl3.getListaTAG().get(opcao-1);
         System.out.println("Introduza a latitude da localização da Area Geografica (valores válidos entre -90 e 90)");
         double latitude = ler.nextDouble();
         while (latitude < -90 || latitude > 90) {
@@ -55,11 +56,7 @@ public class US3UI {
             largura = ler.nextDouble();
         }
 
-
-        TipoAreaGeo novoTipo = new TipoAreaGeo(ctrl3.getListaTAG ().get(opcao - 1));
-        Location newLocation = new Location(latitude, longitude, altitude);
-        RectangleArea newRectangleArea = new RectangleArea(comprimento, largura, newLocation);
-        AreaGeografica novaAG = new AreaGeografica(nome, novoTipo, newLocation, newRectangleArea);
+        AreaGeografica novaAG = ctrl3.criarNovaAG(nome,nomeTipoAG, latitude, longitude, altitude,comprimento,largura);
         if (ctrl3.adicionarNovaAG(novaAG)) {
             System.out.println("Sucesso!");
         } else {

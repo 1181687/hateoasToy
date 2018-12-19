@@ -5,6 +5,7 @@ public class RectangleArea {
     private double mLargura;
     private Location mLocationRetanguloArea;
 
+
     public RectangleArea(double largura, double comprimento, Location locationRetangulo) {
         mComprimento = comprimento;
         mLargura = largura;
@@ -23,4 +24,5 @@ public class RectangleArea {
                 && location.getmLongitude() <= longitudeCantoInferiorDireito
                 && location.getmLongitude() >= longitudeCantoSuperiorEsquerdo);
     }
+
 }
