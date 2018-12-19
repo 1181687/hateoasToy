@@ -1,10 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.model.ListaAG;
-import pt.ipp.isep.dei.project.model.ListaTiposAG;
-import pt.ipp.isep.dei.project.model.ListaTiposSensores;
-import pt.ipp.isep.dei.project.model.RoomList;
+import pt.ipp.isep.dei.project.model.*;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -14,6 +12,7 @@ public class Main {
         ListaAG listaAG = new ListaAG();
         RoomList roomList = new RoomList();
         ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
+        House house= new House(roomList);
         int opcao = -1;
         Scanner ler = new Scanner(System.in);
         while (opcao != 0) {
@@ -28,11 +27,12 @@ public class Main {
                 System.out.println("6-US6-Novo sensor");
                 System.out.println("7-US7-Definir área geográfica inserida noutra área");
                 System.out.println("8-US8-Verificar se área geográfica está inserida noutra área");
+                System.out.println("10-US105-Add a room to the house");
                 System.out.println("11-US108-Edit a room from a list of rooms");
                 System.out.println("0-Sair");
                 opcao = ler.nextInt();
             }
-            while ((opcao < 1 && opcao != 0) || opcao > 8);
+            while ((opcao < 1 && opcao != 0) || opcao > 10);
             switch (opcao) {
                 case 1:
                     US1UI ui = new US1UI(listaTiposAG);
@@ -65,6 +65,10 @@ public class Main {
                 case 8:
                     US8UI ui8 = new US8UI(listaAG);
                     ui8.run();
+                    break;
+                case 10:
+                    US105UI ui105 = new US105UI(house);
+                    ui105.run();
                     break;
                 case 11:
                     US108UI ui108 = new US108UI(roomList);

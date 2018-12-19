@@ -57,10 +57,11 @@ public class US147Controller {
      * @param room Specifies the room.
      * @return True or false.
      */
+    /*
     public boolean checkIfRoomIsntInAHouseGrid(Room room) {
         return mListOfRooms.checkIfARoomInAListIsntInAHouseGrid(room);
     }
-
+*/
     /**
      * Method that asks the class HouseGridList to attach the specified room in the specified house grid via class HouseGrid.
      *
@@ -77,7 +78,9 @@ public class US147Controller {
      * @param roomSelected
      * @param houseGridSelected
      */
+    /*
     public void changeTheAttributeHouseGridInTheRoomObject(Room roomSelected, HouseGrid houseGridSelected) {
         mListOfRooms.changeTheAttributeHouseGridInTheSpecifiedRoomInTheList(roomSelected, houseGridSelected);
     }
+    */
 }
