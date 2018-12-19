@@ -22,7 +22,7 @@ public class US3ControllerTest {
         US3Controller ctrl3 = new US3Controller(lista, listaTAG);
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
-        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        Location local = new Location(41.1496, -8.6109, 97);
         RetanguloArea area = new RetanguloArea(10, 10,local);
 
         AreaGeografica ag = new AreaGeografica(nomeAG, tipo, local, area);
@@ -41,7 +41,7 @@ public class US3ControllerTest {
         US3Controller ctrl3 = new US3Controller(lista, listaTAG);
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
-        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        Location local = new Location(41.1496, -8.6109, 97);
         RetanguloArea area = new RetanguloArea(10, 10,local);
 
         AreaGeografica ag = new AreaGeografica(nomeAG, tipo, local, area);
@@ -60,7 +60,7 @@ public class US3ControllerTest {
         US3Controller ctrl3 = new US3Controller(lista, listaTAG);
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
-        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        Location local = new Location(41.1496, -8.6109, 97);
         RetanguloArea area = new RetanguloArea(10, 10,local);
         AreaGeografica areaDaLista = new AreaGeografica(nomeAG, tipo,local,area);
         lista.adicionarAreaGeoALista(areaDaLista);

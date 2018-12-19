@@ -81,8 +81,8 @@ public class ListaAG {
         for (int i = 1; i <= mListaAG.size(); i++) {
             conteudo.append(i + " - Nome: " + mListaAG.get(i - 1).getmNomeAreaGeo());
             conteudo.append(", Tipo: " + mListaAG.get(i - 1).getmTipoAreaGeo().getNomeDoTipoAreaGeo());
-            conteudo.append(", Latitude: " + mListaAG.get(i - 1).getmLocalizacao().getmLatitude());
-            conteudo.append(", Longitude: " + mListaAG.get(i - 1).getmLocalizacao().getmLongitude());
+            conteudo.append(", Latitude: " + mListaAG.get(i - 1).getmLocation().getmLatitude());
+            conteudo.append(", Longitude: " + mListaAG.get(i - 1).getmLocation().getmLongitude());
             if (usarCriterio && !verificarSeAGNaoTemAreaInserida(mListaAG.get(i - 1))) {
                 conteudo.append(", Inserido Em: " + mListaAG.get(i - 1).getmAreaInseridaEm().getmTipoAreaGeo().getNomeDoTipoAreaGeo());
                 conteudo.append(" " + mListaAG.get(i - 1).getmAreaInseridaEm().getmNomeAreaGeo());
@@ -92,7 +92,7 @@ public class ListaAG {
         return conteudo.toString();
     }
 
-    public Localizacao novaLocalizacao (double mAltitude, double mLatitude, double mLongitude) {
-        return new Localizacao(mAltitude, mLatitude, mLongitude);
+    public Location novaLocalizacao (double mAltitude, double mLatitude, double mLongitude) {
+        return new Location(mAltitude, mLatitude, mLongitude);
     }
 }

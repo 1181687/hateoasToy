@@ -3,24 +3,24 @@ package pt.ipp.isep.dei.project.model;
 public class RetanguloArea {
     private double mComprimento;
     private double mLargura;
-    private Localizacao mLocalizacaoRetanguloArea;
+    private Location mLocationRetanguloArea;
 
-    public RetanguloArea(double largura, double comprimento, Localizacao localizacaoRetangulo) {
+    public RetanguloArea(double largura, double comprimento, Location locationRetangulo) {
         mComprimento = comprimento;
         mLargura = largura;
-        mLocalizacaoRetanguloArea = localizacaoRetangulo;
+        mLocationRetanguloArea = locationRetangulo;
     }
 
-    public boolean verificaSeLocalizacaoEstaContidaNumaArea(Localizacao localizacao){
-        double latitudeCantoSuperiorEsquerdo = mLocalizacaoRetanguloArea.getmLatitude() + (mLargura/2);
-        double longitudeCantoSuperiorEsquerdo = mLocalizacaoRetanguloArea.getmLongitude() - (mComprimento/2);
+    public boolean verificaSeLocalizacaoEstaContidaNumaArea(Location location){
+        double latitudeCantoSuperiorEsquerdo = mLocationRetanguloArea.getmLatitude() + (mLargura/2);
+        double longitudeCantoSuperiorEsquerdo = mLocationRetanguloArea.getmLongitude() - (mComprimento/2);
 
-        double latitudeCantoInferiorDireito = mLocalizacaoRetanguloArea.getmLatitude() - (mLargura/2);
-        double longitudeCantoInferiorDireito = mLocalizacaoRetanguloArea.getmLongitude() + (mComprimento/2);
+        double latitudeCantoInferiorDireito = mLocationRetanguloArea.getmLatitude() - (mLargura/2);
+        double longitudeCantoInferiorDireito = mLocationRetanguloArea.getmLongitude() + (mComprimento/2);
 
-        return (localizacao.getmLatitude() >= latitudeCantoInferiorDireito
-                && localizacao.getmLatitude() <= latitudeCantoSuperiorEsquerdo
-                && localizacao.getmLongitude() <= longitudeCantoInferiorDireito
-                && localizacao.getmLongitude() >= longitudeCantoSuperiorEsquerdo);
+        return (location.getmLatitude() >= latitudeCantoInferiorDireito
+                && location.getmLatitude() <= latitudeCantoSuperiorEsquerdo
+                && location.getmLongitude() <= longitudeCantoInferiorDireito
+                && location.getmLongitude() >= longitudeCantoSuperiorEsquerdo);
     }
 }

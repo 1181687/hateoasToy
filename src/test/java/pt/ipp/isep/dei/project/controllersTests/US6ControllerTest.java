@@ -39,19 +39,19 @@ class US6ControllerTest {
 
         String nomeAG1 = "Porto";
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
-        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
+        Location local1 = new Location(41.1496, -8.6109, 97);
         RetanguloArea area1 = new RetanguloArea(10, 10, local1);
         AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Espinho";
         TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
-        Localizacao local2 = new Localizacao(41.1496, -8.6109, 97);
+        Location local2 = new Location(41.1496, -8.6109, 97);
         RetanguloArea area2 = new RetanguloArea(10, 10, local2);
         AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
 
         String nomeAG3 = "Ancora";
         TipoAreaGeo tipo3 = new TipoAreaGeo("Cidade");
-        Localizacao local3 = new Localizacao(41.1496, -8.6109, 97);
+        Location local3 = new Location(41.1496, -8.6109, 97);
         RetanguloArea area3 = new RetanguloArea(10, 10, local3);
         AreaGeografica ag3 = new AreaGeografica(nomeAG3, tipo3, local3, area3);
 
@@ -78,19 +78,19 @@ class US6ControllerTest {
 
         String nomeAG1 = "Porto";
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
-        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
+        Location local1 = new Location(41.1496, -8.6109, 97);
         RetanguloArea area1 = new RetanguloArea(10, 10, local1);
         AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Espinho";
         TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
-        Localizacao local2 = new Localizacao(41.1496, -8.6109, 97);
+        Location local2 = new Location(41.1496, -8.6109, 97);
         RetanguloArea area2 = new RetanguloArea(10, 10, local2);
         AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
 
         String nomeAG3 = "Ancora";
         TipoAreaGeo tipo3 = new TipoAreaGeo("Cidade");
-        Localizacao local3 = new Localizacao(41.1496, -8.6109, 97);
+        Location local3 = new Location(41.1496, -8.6109, 97);
         RetanguloArea area3 = new RetanguloArea(10, 10, local3);
         AreaGeografica ag3 = new AreaGeografica(nomeAG3, tipo3, local3, area3);
 
@@ -118,7 +118,7 @@ class US6ControllerTest {
         // Arrange
         String nomeAG1 = "Espinho";
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
-        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
+        Location local1 = new Location(41.1496, -8.6109, 97);
         RetanguloArea area1 = new RetanguloArea(10, 10, local1);
         AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
 
@@ -144,13 +144,13 @@ class US6ControllerTest {
         // Arrange
         String nomeAG1 = "Espinho";
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
-        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
+        Location local1 = new Location(41.1496, -8.6109, 97);
         RetanguloArea area1 = new RetanguloArea(10, 10, local1);
         AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Ancora";
         TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
-        Localizacao local2 = new Localizacao(41.1496, -8.6109, 97);
+        Location local2 = new Location(41.1496, -8.6109, 97);
         RetanguloArea area2 = new RetanguloArea(10, 10, local1);
         AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
 
@@ -176,19 +176,19 @@ class US6ControllerTest {
         // Arrange
         String nomeAG1 = "Espinho";
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
-        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
+        Location local1 = new Location(41.1496, -8.6109, 97);
         RetanguloArea area1 = new RetanguloArea(10, 10, local1);
         AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Ancora";
         TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
-        Localizacao local2 = new Localizacao(41.1496, -8.6109, 97);
+        Location local2 = new Location(41.1496, -8.6109, 97);
         RetanguloArea area2 = new RetanguloArea(10, 10, local1);
         AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
 
         String nomeAG3 = "Porto";
         TipoAreaGeo tipo3 = new TipoAreaGeo("Cidade");
-        Localizacao local3 = new Localizacao(41.1496, -8.6109, 97);
+        Location local3 = new Location(41.1496, -8.6109, 97);
         RetanguloArea area3 = new RetanguloArea(10, 10, local3);
         AreaGeografica ag3 = new AreaGeografica(nomeAG3, tipo3, local3, area3);
 
@@ -215,7 +215,7 @@ class US6ControllerTest {
         // Arrange
         String nomeAG1 = "Espinho";
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
-        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
+        Location local1 = new Location(41.1496, -8.6109, 97);
         RetanguloArea area1 = new RetanguloArea(10, 10, local1);
         AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
 
@@ -240,13 +240,13 @@ class US6ControllerTest {
         // Arrange
         String nomeAG1 = "Espinho";
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
-        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
+        Location local1 = new Location(41.1496, -8.6109, 97);
         RetanguloArea area1 = new RetanguloArea(10, 10, local1);
         AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Ancora";
         TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
-        Localizacao local2 = new Localizacao(41.1496, -8.6109, 97);
+        Location local2 = new Location(41.1496, -8.6109, 97);
         RetanguloArea area2 = new RetanguloArea(10, 10, local1);
         AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
 
@@ -395,14 +395,14 @@ class US6ControllerTest {
 
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
-        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        Location local = new Location(41.1496, -8.6109, 97);
         RetanguloArea area = new RetanguloArea(10, 10,local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento0 = calendario0.getTime();
         TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
-        Localizacao locS0 = new Localizacao(45, -5, 50);
+        Location locS0 = new Location(45, -5, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
 
         ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
@@ -423,14 +423,14 @@ class US6ControllerTest {
 
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
-        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        Location local = new Location(41.1496, -8.6109, 97);
         RetanguloArea area = new RetanguloArea(10, 10,local);
         AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
 
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento0 = calendario0.getTime();
         TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
-        Localizacao locS0 = new Localizacao(45, -5, 50);
+        Location locS0 = new Location(45, -5, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
 
         ListaTiposSensores listaTiposSensores = new ListaTiposSensores();

@@ -33,8 +33,8 @@ public class ListaTiposSensores {
         return this.mListaTiposSensores.get(posicao);
     }
 
-    public Sensor novoSensor (String nome, Date dataFuncionamento, TipoSensor novoTipoSensor, Localizacao novaLocalizacao) {
-        return new Sensor(nome, dataFuncionamento, novoTipoSensor, novaLocalizacao);
+    public Sensor novoSensor (String nome, Date dataFuncionamento, TipoSensor novoTipoSensor, Location novaLocation) {
+        return new Sensor(nome, dataFuncionamento, novoTipoSensor, novaLocation);
     }
 
     public Date dataDoSensor (Date dataFuncionamentoDoSensor) {

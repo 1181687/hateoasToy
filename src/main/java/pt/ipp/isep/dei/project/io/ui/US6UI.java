@@ -44,11 +44,11 @@ public class US6UI {
         }
         while (posicao2 < 0 || posicao2 > controller6.numeroElementosDaListaAreaGeografica());
 
-        Localizacao novaLocalizacao = controller6.criarNovaLocalizacao(altitude, latitude, longitude);
+        Location novaLocation = controller6.criarNovaLocalizacao(altitude, latitude, longitude);
         TipoSensor novoTipoSensor = controller6.getTipoSensorPorPosicao(posicao1-1);
         Calendar calendario = new GregorianCalendar(Locale.getDefault());
         Date dataFuncionamento = calendario.getTime();
-        Sensor novoSensor = controller6.criarNovoSensor(nome, dataFuncionamento, novoTipoSensor, novaLocalizacao);
+        Sensor novoSensor = controller6.criarNovoSensor(nome, dataFuncionamento, novoTipoSensor, novaLocation);
         AreaGeografica areaGeografica = controller6.getAreaGeograficaNaListaPorPosicao(posicao2-1);
 
         if (controller6.adicionarSensorAAreaGeografica(novoSensor,areaGeografica)) {

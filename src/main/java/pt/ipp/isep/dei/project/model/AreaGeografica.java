@@ -8,14 +8,14 @@ public class AreaGeografica {
     private String mNomeAreaGeo;
     private TipoAreaGeo mTipoAreaGeo;
     private AreaGeografica mAreaInseridaEm;
-    private Localizacao mLocalizacao;
+    private Location mLocation;
     private RetanguloArea mRetanguloArea;
     private List<Sensor> mListaSensor = new ArrayList<>();
 
-    public AreaGeografica(String mNomeAreaGeo, TipoAreaGeo mTipoAreaGeo, Localizacao mLocalizacao, RetanguloArea mRetanguloArea) {
+    public AreaGeografica(String mNomeAreaGeo, TipoAreaGeo mTipoAreaGeo, Location mLocation, RetanguloArea mRetanguloArea) {
         this.mNomeAreaGeo = mNomeAreaGeo;
         this.mTipoAreaGeo = mTipoAreaGeo;
-        this.mLocalizacao = mLocalizacao;
+        this.mLocation = mLocation;
         this.mRetanguloArea = mRetanguloArea;
     }
 
@@ -49,8 +49,8 @@ public class AreaGeografica {
         return mTipoAreaGeo;
     }
 
-    public Localizacao getmLocalizacao() {
-        return this.mLocalizacao;
+    public Location getmLocation() {
+        return this.mLocation;
     }
 
     public AreaGeografica getmAreaInseridaEm() {
@@ -62,7 +62,7 @@ public class AreaGeografica {
     }
 
     public double distanciaLinearDuasAreas(AreaGeografica novoAg) {
-        return this.mLocalizacao.distanciaDuasLocalizacoes(novoAg.getmLocalizacao());
+        return this.mLocation.distanciaDuasLocalizacoes(novoAg.getmLocation());
     }
 
     public boolean adicionarSensorAListaDeSensores(Sensor sensor) {
@@ -102,7 +102,7 @@ public class AreaGeografica {
 
     public boolean verificarSeSensorEstaContidoNaAG(Sensor sensor) {
 
-        return mRetanguloArea.verificaSeLocalizacaoEstaContidaNumaArea(sensor.getmLocalizacao());
+        return mRetanguloArea.verificaSeLocalizacaoEstaContidaNumaArea(sensor.getmLocation());
 
     }
 
