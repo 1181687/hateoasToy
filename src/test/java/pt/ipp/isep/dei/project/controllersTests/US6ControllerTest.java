@@ -477,12 +477,6 @@ class US6ControllerTest {
     @Test
     void testarNovoSensor() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2);
-        Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
-
         String nomeAG1 = "Porto";
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
@@ -491,11 +485,12 @@ class US6ControllerTest {
 
         String nomeSensor= "A456";
         TipoSensor tipoSensor2 = new TipoSensor("Temperatura");
-        Location locS2 = new Location(123, 345, 50);
+        Location locS2 = new Location(41.5478, -8.5458, 97);
         Sensor s2 = new Sensor(nomeSensor, tipoSensor2, locS2);
 
         ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
         ListaAG listaAreasGeograficas = new ListaAG();
+        listaAreasGeograficas.adicionarAreaGeoALista(ag1);
 
         US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
         Sensor expectedResult = s2;
