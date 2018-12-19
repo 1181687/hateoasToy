@@ -8,4 +8,13 @@ public class PowerSourceList {
 
     public PowerSourceList() {
     }
+
+    public boolean addPowerSourceToList(PowerSource newPowerSource){
+
+        if(!(this.mPowerSourceList.contains(newPowerSource))){
+            this.mPowerSourceList.add(newPowerSource);
+            return true;
+        }
+        return false;
+    }
 }

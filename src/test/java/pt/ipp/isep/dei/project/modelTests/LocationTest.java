@@ -1,11 +1,11 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Localizacao;
+import pt.ipp.isep.dei.project.model.Location;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class LocalizacaoTest {
+public class LocationTest {
 
     @Test
     void testarDistanciaDuasLocalizacoes() {
@@ -15,10 +15,10 @@ public class LocalizacaoTest {
         double lat2 = 52.3740;
         double lon2 = 4.8897;
         double alt2 = 13;
-        Localizacao local1 = new Localizacao(lat1, lon1, alt1);
-        Localizacao local2 = new Localizacao(lat2, lon2, alt2);
+        Location local1 = new Location(lat1, lon1, alt1);
+        Location local2 = new Location(lat2, lon2, alt2);
 
-        //Localizacao local2 = new Localizacao(lat2, -16.9, 0);
+        //Location local2 = new Location(lat2, -16.9, 0);
         double expectedResult = 1611770.043;
         double result = local1.distanciaDuasLocalizacoes(local2);
         assertEquals(expectedResult,result,0.001);
@@ -32,10 +32,10 @@ public class LocalizacaoTest {
         double lat2 = 52.3740;
         double lon2 = 4.8897;
         double alt2 = 13;
-        Localizacao local1 = new Localizacao(lat1, lon1, alt1);
-        Localizacao local2 = new Localizacao(lat2, lon2, alt2);
+        Location local1 = new Location(lat1, lon1, alt1);
+        Location local2 = new Location(lat2, lon2, alt2);
 
-        //Localizacao local2 = new Localizacao(lat2, -16.9, 0);
+        //Location local2 = new Location(lat2, -16.9, 0);
         double expectedResult = Double.NaN;
         double result = local1.distanciaDuasLocalizacoes(local2);
         assertEquals(expectedResult,result,0.001);
@@ -47,7 +47,7 @@ public class LocalizacaoTest {
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
-        Localizacao local = new Localizacao(latitude, longitude, altitude);
+        Location local = new Location(latitude, longitude, altitude);
         local.setmLatitude(90);
         double expectedResult = 90;
         //act
@@ -62,7 +62,7 @@ public class LocalizacaoTest {
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
-        Localizacao local = new Localizacao(latitude, longitude, altitude);
+        Location local = new Location(latitude, longitude, altitude);
         local.setmLatitude(-90);
         double expectedResult = -90;
         //act
@@ -77,7 +77,7 @@ public class LocalizacaoTest {
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
-        Localizacao local = new Localizacao(latitude, longitude, altitude);
+        Location local = new Location(latitude, longitude, altitude);
         local.setmLatitude(-91);
         double expectedResult = Double.NaN;
         //act
@@ -92,7 +92,7 @@ public class LocalizacaoTest {
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
-        Localizacao local = new Localizacao(latitude, longitude, altitude);
+        Location local = new Location(latitude, longitude, altitude);
         local.setmLatitude(91);
         double expectedResult = Double.NaN;
         //act
@@ -107,7 +107,7 @@ public class LocalizacaoTest {
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
-        Localizacao local = new Localizacao(latitude, longitude, altitude);
+        Location local = new Location(latitude, longitude, altitude);
         local.setmLongitude(180);
         double expectedResult = 180;
         //act
@@ -122,7 +122,7 @@ public class LocalizacaoTest {
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
-        Localizacao local = new Localizacao(latitude, longitude, altitude);
+        Location local = new Location(latitude, longitude, altitude);
         local.setmLongitude(-180);
         double expectedResult = -180;
         //act
@@ -137,7 +137,7 @@ public class LocalizacaoTest {
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
-        Localizacao local = new Localizacao(latitude, longitude, altitude);
+        Location local = new Location(latitude, longitude, altitude);
         local.setmLongitude(181);
         double expectedResult = Double.NaN;
         //act
@@ -152,7 +152,7 @@ public class LocalizacaoTest {
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
-        Localizacao local = new Localizacao(latitude, longitude, altitude);
+        Location local = new Location(latitude, longitude, altitude);
         local.setmLongitude(-181);
         double expectedResult = Double.NaN;
         //act
@@ -167,7 +167,7 @@ public class LocalizacaoTest {
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
-        Localizacao local1 = new Localizacao(latitude, longitude, altitude);
+        Location local1 = new Location(latitude, longitude, altitude);
         boolean expectedResult = true;
         //Act
         boolean result = local1.equals(local1);
@@ -181,7 +181,7 @@ public class LocalizacaoTest {
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
-        Localizacao local1 = new Localizacao(latitude, longitude, altitude);
+        Location local1 = new Location(latitude, longitude, altitude);
         Object objeto = new Object();
         boolean expectedResult = false;
         //Act
@@ -196,12 +196,12 @@ public class LocalizacaoTest {
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
-        Localizacao local1 = new Localizacao(latitude, longitude, altitude);
+        Location local1 = new Location(latitude, longitude, altitude);
 
         double latitude2 = 41.1496;
         double longitude2 = -8.6109;
         double altitude2 = 97;
-        Localizacao local2 = new Localizacao(latitude2, longitude2, altitude2);
+        Location local2 = new Location(latitude2, longitude2, altitude2);
 
         boolean expectedResult = true;
         //Act
@@ -216,12 +216,12 @@ public class LocalizacaoTest {
         double latitude = 41.1496;
         double longitude = -8.6109;
         double altitude = 97;
-        Localizacao local1 = new Localizacao(latitude, longitude, altitude);
+        Location local1 = new Location(latitude, longitude, altitude);
 
         double latitude2 = 41.1497;
         double longitude2 = -8.6109;
         double altitude2 = 97;
-        Localizacao local2 = new Localizacao(latitude2, longitude2, altitude2);
+        Location local2 = new Location(latitude2, longitude2, altitude2);
 
         boolean expectedResult = false;
         //Act
@@ -233,7 +233,7 @@ public class LocalizacaoTest {
     @Test
     void testarHashCode () {
         // Arrange
-        Localizacao local = new Localizacao(41.1496, -8.6109, 97);
+        Location local = new Location(41.1496, -8.6109, 97);
         int expectedResult = 1;
         // Act
         int result = local.hashCode();

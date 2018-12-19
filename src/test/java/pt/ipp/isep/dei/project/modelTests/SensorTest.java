@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Localizacao;
+import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Medicao;
 import pt.ipp.isep.dei.project.model.Sensor;
 import pt.ipp.isep.dei.project.model.TipoSensor;
@@ -19,7 +19,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         Sensor s2 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         //Act
@@ -34,7 +34,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         String expectedResult = "A123";
         //Act
@@ -49,7 +49,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         Date expectedResult = calendario.getTime();
         //Act
@@ -64,7 +64,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         TipoSensor expectedResult = tipoSensor;
         //Act
@@ -79,7 +79,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         boolean expectedResult = true;
         //Act
@@ -94,7 +94,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         int expectedResult = 1;
         // Act
@@ -109,7 +109,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         boolean expectedResult = false;
         //Act
@@ -124,7 +124,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         Sensor s2 = new Sensor("A200", dataFuncionamento, tipoSensor, locS1);
         boolean expectedResult = false;
@@ -140,11 +140,11 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
-        Localizacao expectedResult = locS1;
+        Location expectedResult = locS1;
         //Act
-        Localizacao result = s1.getmLocalizacao();
+        Location result = s1.getmLocation();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -156,10 +156,10 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(2018, 11, 27);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(40, 10, 20);
+        Location locS1 = new Location(40, 10, 20);
         Sensor s1 = new Sensor("s1", dataFuncionamento, tipoSensor, locS1);
 
-        Localizacao locS2 = new Localizacao(30, 15, 10);
+        Location locS2 = new Location(30, 15, 10);
         Sensor s2 = new Sensor("s2", dataFuncionamento, tipoSensor, locS2);
 
         double expectedResult = 1201040.7956;
@@ -177,7 +177,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
         Medicao medicao = new Medicao(20, dataFuncionamento);
@@ -199,7 +199,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
         Medicao expectedResult = null;
@@ -217,7 +217,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
         //Act
@@ -233,7 +233,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
         Calendar calendarioDaMedicao1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -255,7 +255,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
         Calendar calendarioDaMedicao1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -285,7 +285,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(2017, 8, 15);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         Date data1 = new GregorianCalendar(2017, 8, 15, 5, 30, 0).getTime();
         Date data2 = new GregorianCalendar(2017, 8, 15, 6, 02, 0).getTime();
@@ -315,7 +315,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(2017, 8, 15);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
         double expectedResult = Double.NaN;
@@ -335,7 +335,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(2017, 8, 15);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         Date data1 = new GregorianCalendar(2017, 8, 15, 5, 30, 0).getTime();
         Date data2 = new GregorianCalendar(2017, 8, 15, 6, 02, 0).getTime();
@@ -365,7 +365,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(2017, 8, 15);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         Date data1 = new GregorianCalendar(2017, 8, 15, 5, 30, 0).getTime();
         Date data2 = new GregorianCalendar(2017, 8, 15, 6, 02, 0).getTime();
@@ -395,7 +395,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(2017, 8, 15);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         Date data1 = new GregorianCalendar(2017, 8, 15, 5, 30, 0).getTime();
         Date data2 = new GregorianCalendar(2017, 8, 15, 6, 02, 0).getTime();
@@ -425,7 +425,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(2017, 8, 15);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         Date data1 = new GregorianCalendar(2017, 8, 15, 5, 30, 0).getTime();
         Date data2 = new GregorianCalendar(2017, 8, 15, 6, 02, 0).getTime();
@@ -454,7 +454,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
         Date data1 = new GregorianCalendar(2018, 4, 11, 5, 55).getTime();
@@ -488,7 +488,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
         Date dataDoMes = new GregorianCalendar(2018, 2, 15).getTime();
@@ -507,7 +507,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
         Date data1 = new GregorianCalendar(2018, 4, 11, 5, 55).getTime();
@@ -539,7 +539,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
         double expectedResult = Double.NaN;
@@ -557,7 +557,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         TipoSensor tipoPedido = new TipoSensor("Temperatura");
         //Act
@@ -572,7 +572,7 @@ class SensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         TipoSensor tipoPedido = new TipoSensor("Humidade");
         //Act
@@ -595,7 +595,7 @@ class SensorTest {
         Date dataDomingo = calDomingo.getTime();
 
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataDomingo1, tipoSensor, locS1);
         Medicao medicaoDomingo1 = new Medicao(30, dataDomingo1);
         Medicao medicaoDomingo2 = new Medicao(35, dataDomingo2);
@@ -632,7 +632,7 @@ class SensorTest {
         Date dataDomingo = calDomingo.getTime();
 
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataDomingo1, tipoSensor, locS1);
         Medicao medicaoDomingo1 = new Medicao(Double.NaN, dataDomingo1);
         Medicao medicaoDomingo2 = new Medicao(35.0, dataDomingo2);
@@ -664,7 +664,7 @@ class SensorTest {
         Date data = cal2.getTime();
         boolean expectedResult = false;
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
         boolean result = sensor1.verificaDiasIguais(cal1, cal2);
 
@@ -682,7 +682,7 @@ class SensorTest {
         Date data = cal2.getTime();
         boolean expectedResult = true;
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Act
@@ -699,7 +699,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1
@@ -738,7 +738,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1
@@ -762,7 +762,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1
@@ -800,7 +800,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 11, 2);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
         Date expectedResult = data;
 
@@ -815,7 +815,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1
@@ -877,7 +877,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1
@@ -939,7 +939,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1
@@ -989,7 +989,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1
@@ -1039,7 +1039,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList());
@@ -1058,7 +1058,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1
@@ -1124,7 +1124,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         double expectedResult = Double.NaN;
@@ -1142,7 +1142,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1
@@ -1180,7 +1180,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         double expectedResult = Double.NaN;
@@ -1198,7 +1198,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1
@@ -1236,7 +1236,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1
@@ -1298,7 +1298,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1
@@ -1360,7 +1360,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1
@@ -1410,7 +1410,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1
@@ -1460,7 +1460,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         List <Double> expectedResult = new ArrayList<>(Arrays.asList());
@@ -1479,7 +1479,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 11, 2,15,20,00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1
@@ -1545,7 +1545,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 11, 2,15,20,00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         double expectedResult= Double.NaN;
@@ -1564,7 +1564,7 @@ class SensorTest {
         Calendar cal = new GregorianCalendar(2018, 11, 2,15,20,00);
         Date data = cal.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
 
         //Registo 1

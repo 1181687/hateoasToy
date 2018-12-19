@@ -23,7 +23,7 @@ public class RoomList {
     public Room getRoomFromASpecificPositionInTheList(int position) {
         return mList.get(position);
     }
-
+//////////////////////////
     /**
      * Method that adds a new room to the list of rooms
      * @param room the new room that i want to add
@@ -37,26 +37,9 @@ public class RoomList {
         return false;
     }
 
-    /**
-     * Method that asks to the class Room if a room isn't in a house grid.
-     *
-     * @param room Specified room in the list.
-     * @return True or false.
-     */
-    public boolean checkIfARoomInAListIsntInAHouseGrid(Room room) {
-        int index = mList.indexOf(room);
-        return mList.get(index).checkIfTheRoomIsntInAHouseGrid();
-    }
-
-    /**
-     * Method that asks the class Room to change it's attribute to the house grid selected.
-     *
-     * @param roomSelected      Specified room in the list.
-     * @param houseGridSelected Specified house grid.
-     */
-    public void changeTheAttributeHouseGridInTheSpecifiedRoomInTheList(Room roomSelected, HouseGrid houseGridSelected) {
-        int index = mList.indexOf(roomSelected);
-        mList.get(index).changeTheAttributeHouseGrid(houseGridSelected);
+    public Room newRoom(String name, int housefloor,double height, double length, double width){
+        Dimensions newDimension = new Dimensions(height,length,width);
+        return new Room(name, housefloor,newDimension);
     }
 
 

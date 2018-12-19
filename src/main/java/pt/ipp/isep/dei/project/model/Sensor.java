@@ -8,13 +8,13 @@ public class Sensor {
     private Date mDataFuncionamento;
     private List<Medicao> mRegistos = new ArrayList<>();
     private TipoSensor mTipoSensor;
-    private Localizacao mLocalizacao;
+    private Location mLocation;
 
-    public Sensor(String mNomeSensor, Date mDataFuncionamento, TipoSensor mTipoSensor, Localizacao mLocalizacao) {
+    public Sensor(String mNomeSensor, Date mDataFuncionamento, TipoSensor mTipoSensor, Location mLocation) {
         this.mNomeSensor = mNomeSensor;
         this.mDataFuncionamento = mDataFuncionamento;
         this.mTipoSensor = mTipoSensor;
-        this.mLocalizacao = mLocalizacao;
+        this.mLocation = mLocation;
     }
 
     public Sensor (String mNomeSensor, TipoSensor mTipoSensor, Localizacao mLocalizacao) {
@@ -36,8 +36,8 @@ public class Sensor {
         return mTipoSensor;
     }
 
-    public Localizacao getmLocalizacao() {
-        return mLocalizacao;
+    public Location getmLocation() {
+        return mLocation;
     }
 
     public boolean equals(Object objeto) {
@@ -48,7 +48,7 @@ public class Sensor {
             return false;
         }
         Sensor sensor = (Sensor) objeto;
-        return (this.mNomeSensor.equals(sensor.mNomeSensor) && this.mTipoSensor.equals(sensor.mTipoSensor) && this.mLocalizacao.equals(sensor.mLocalizacao));
+        return (this.mNomeSensor.equals(sensor.mNomeSensor) && this.mTipoSensor.equals(sensor.mTipoSensor) && this.mLocation.equals(sensor.mLocation));
     }
 
     public int hashCode() {
@@ -57,7 +57,7 @@ public class Sensor {
 
     public double distanciaLinearEntreDoisSensores(Sensor sensor1) {
 
-        return this.mLocalizacao.distanciaDuasLocalizacoes(sensor1.mLocalizacao);
+        return this.mLocation.distanciaDuasLocalizacoes(sensor1.mLocation);
     }
 
 

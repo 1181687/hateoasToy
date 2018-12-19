@@ -14,7 +14,7 @@ public class US147UI {
     public US147UI(HouseGridList listOfHouseGrids, RoomList listOfRooms) {
         ctrl = new US147Controller(listOfHouseGrids, listOfRooms);
     }
-
+/*
     public void run() {
         System.out.println("Please choose the house grid where the room will be attached.");
         System.out.println(ctrl.getmListOfHouseGrids());
@@ -37,4 +37,5 @@ public class US147UI {
 
 
     }
+    */
 }
