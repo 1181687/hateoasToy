@@ -463,6 +463,7 @@ class US6ControllerTest {
 
         ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
         ListaAG listaAreasGeograficas = new ListaAG();
+        listaAreasGeograficas.adicionarAreaGeoALista(ag1);
 
         US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
         Location expectedResult = local2;
