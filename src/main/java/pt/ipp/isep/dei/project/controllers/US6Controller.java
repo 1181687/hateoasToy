@@ -45,7 +45,7 @@ public class US6Controller {
     }
 
     public Location criarNovaLocalizacao (double mAltitude, double mLatitude, double mLongitude, AreaGeografica areaGeografica) {
-        return this.mListaAreaGeografica.novaLocalizacao(mAltitude, mLatitude, mLongitude);
+        return this.mListaAreaGeografica.getAreaGeografica(areaGeografica).novaLocalizacao(mAltitude, mLatitude, mLongitude);
     }
 
     public Sensor criarNovoSensor (String nome, TipoSensor novoTipoSensor, Location novaLocation, AreaGeografica areaGeografica) {

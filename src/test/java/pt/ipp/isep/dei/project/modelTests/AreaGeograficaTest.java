@@ -1112,7 +1112,7 @@ class AreaGeograficaTest {
         
         String nomeSensor= "A456";
         TipoSensor tipoSensor2 = new TipoSensor("Temperatura");
-        Location locS2 = new Location(123, 345, 50);
+        Location locS2 = new Location(123, 345, 48);
         Sensor s2 = new Sensor(nomeSensor, tipoSensor2, locS2);
 
         Sensor expectedResult = s2;
