@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.*;
 
+import java.util.Date;
+
 public class US6Controller {
     private ListaTiposSensores mListaTiposSensores;
     private ListaAG mListaAreaGeografica;
@@ -42,5 +44,13 @@ public class US6Controller {
             return true;
         }
         return false;
+    }
+
+    public Location criarNovaLocalizacao (double mAltitude, double mLatitude, double mLongitude) {
+        return this.mListaAreaGeografica.novaLocalizacao(mAltitude, mLatitude, mLongitude);
+    }
+
+    public Sensor criarNovoSensor (String nome, Date dataFuncionamento, TipoSensor novoTipoSensor, Location novaLocation) {
+        return this.mListaTiposSensores.novoSensor(nome, dataFuncionamento, novoTipoSensor, novaLocation);
     }
 }

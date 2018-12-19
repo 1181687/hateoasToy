@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.project.model;
 public class HouseGrid {
     private String mHouseGridName;
     private double mMaximumContractedPower;
-    private DeviceList mDeviceListOnHouseGrid = new DeviceList();
     private PowerSourceList mPowerSourceList= new PowerSourceList();
     private RoomList mRoomsConnectedToHouseGrid= new RoomList();
 
@@ -44,6 +43,24 @@ public class HouseGrid {
         return mRoomsConnectedToHouseGrid;
     }
 
+
+
+    /**
+     * Method that detaches a room from a house grid. It return a true in case of success
+     * and false in the case of a failure.
+     * @param roomToDetach
+     * @return
+     */
+    public boolean detachRoomFromHouseGrid(Room roomToDetach) {
+        for (Room room : this.mRoomsConnectedToHouseGrid.getmList()) {
+            if (room.equals(roomToDetach)) {
+                this.mRoomsConnectedToHouseGrid.getmList().remove(room);
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Method that attaches a room in the house grid's room list.
      *
@@ -51,5 +68,9 @@ public class HouseGrid {
      */
     public void attachRoomInTheHouseGridRoomList(Room room) {
         mRoomsConnectedToHouseGrid.getmList().add(room);
+    }
+
+    public boolean addPowerSourceToHouseGrid(PowerSource newPowerSource){
+        return this.mPowerSourceList.addPowerSourceToList(newPowerSource);
     }
 }

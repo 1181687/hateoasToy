@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Localizacao;
+import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Sensor;
 import pt.ipp.isep.dei.project.model.TipoSensor;
 
@@ -75,7 +75,7 @@ class TipoSensorTest {
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
         TipoSensor tipoSensor = new TipoSensor("Temperatura");
-        Localizacao locS1 = new Localizacao(123, 345, 50);
+        Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
         //Act
         boolean result = tipo0.equals(s1);
