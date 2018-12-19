@@ -60,7 +60,7 @@ public class US3UI {
         if (ctrl3.adicionarNovaAG(novaAG)) {
             System.out.println("Sucesso!");
         } else {
-            System.out.println("Tente outro nome!");
+            System.out.println("Esta área geográfica já existe!");
         }
     }
 }

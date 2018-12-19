@@ -1066,12 +1066,59 @@ class AreaGeograficaTest {
         AreaGeografica expectedResult = ag1;
 
         //Act
-
         AreaGeografica result = ag1.getmAreaInseridaEm();
 
         //Assert
-
         assertEquals(expectedResult, result);
+    }
 
+    @Test
+    void testarNovaLocation () {
+        //Arrange
+        String nomeAG1 = "Porto";
+        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        Location local1 = new Location(41.1496, -8.6109, 97);
+        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+
+        double mLatitude = 40.487;
+        double mLongitude = -9;
+        double mAltitude = 98;
+        Location local2 = new Location(mLatitude, mLongitude, mAltitude);
+
+        Location expectedResult = local2;
+
+        //Act
+        Location result = ag1.novaLocalizacao(mLatitude, mLongitude, mAltitude);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testarNovoSensor() {
+        //Arrange
+        Calendar calendario = new GregorianCalendar(1991, 11, 2);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+
+        String nomeAG1 = "Porto";
+        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        Location local1 = new Location(41.1496, -8.6109, 97);
+        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+        
+        String nomeSensor= "A456";
+        TipoSensor tipoSensor2 = new TipoSensor("Temperatura");
+        Location locS2 = new Location(123, 345, 50);
+        Sensor s2 = new Sensor(nomeSensor, tipoSensor2, locS2);
+
+        Sensor expectedResult = s2;
+        //Act
+        Sensor result = ag1.novoSensor(nomeSensor,tipoSensor2,locS2);
+        //Assert
+        assertEquals(expectedResult, result);
     }
 }
