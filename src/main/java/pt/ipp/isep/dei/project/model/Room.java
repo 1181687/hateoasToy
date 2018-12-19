@@ -66,4 +66,22 @@ public class Room {
     public Dimensions getmDimensions() {
         return mDimensions;
     }
+
+    public String getRoomDisplay() {
+        StringBuilder conteudo = new StringBuilder();
+            conteudo.append(" - Name: " + getmName());
+            conteudo.append(", House Floor: " + getmHouseFloor());
+            conteudo.append(", Dimensions - Height: " + getmDimensions().getmHeight());
+            conteudo.append(", Dimensions - Length: " + getmDimensions().getmLength());
+            conteudo.append(", Dimensions - Width: " + getmDimensions().getmWidth());
+        return conteudo.toString();
+    }
+
+    public void setmName(String mName) {
+        this.mName = mName;
+    }
+
+    public void setmHouseFloor(int mHouseFloor) {
+        this.mHouseFloor = mHouseFloor;
+    }
 }

@@ -22,4 +22,16 @@ public class Dimensions {
     public double getmWidth() {
         return mWidth;
     }
+
+    public void setmHeight(double mHeight) {
+        this.mHeight = mHeight;
+    }
+
+    public void setmLength(double mLength) {
+        this.mLength = mLength;
+    }
+
+    public void setmWidth(double mWidth) {
+        this.mWidth = mWidth;
+    }
 }
