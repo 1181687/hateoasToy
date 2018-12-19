@@ -77,4 +77,5 @@ public class Location {      //graus decimais
         return Math.abs((this.mLatitude - local.mLatitude)) < delta && Math.abs((this.mLongitude - local.mLongitude)) < delta
                 && Math.abs((this.mAltitude - local.mAltitude)) < delta;
     }
+
 }

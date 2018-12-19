@@ -9,14 +9,14 @@ public class AreaGeografica {
     private TipoAreaGeo mTipoAreaGeo;
     private AreaGeografica mAreaInseridaEm;
     private Location mLocation;
-    private RetanguloArea mRetanguloArea;
+    private RectangleArea mRectangleArea;
     private List<Sensor> mListaSensor = new ArrayList<>();
 
-    public AreaGeografica(String mNomeAreaGeo, TipoAreaGeo mTipoAreaGeo, Location mLocation, RetanguloArea mRetanguloArea) {
+    public AreaGeografica(String mNomeAreaGeo, TipoAreaGeo mTipoAreaGeo, Location mLocation, RectangleArea mRectangleArea) {
         this.mNomeAreaGeo = mNomeAreaGeo;
         this.mTipoAreaGeo = mTipoAreaGeo;
         this.mLocation = mLocation;
-        this.mRetanguloArea = mRetanguloArea;
+        this.mRectangleArea = mRectangleArea;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class AreaGeografica {
             return false;
         }
         AreaGeografica ag = (AreaGeografica) obj;
-        return this.mNomeAreaGeo.equals(ag.mNomeAreaGeo) && this.mTipoAreaGeo.equals(ag.mTipoAreaGeo) && this.mRetanguloArea.equals(ag.mRetanguloArea);
+        return this.mNomeAreaGeo.equals(ag.mNomeAreaGeo) && this.mTipoAreaGeo.equals(ag.mTipoAreaGeo) && this.mRectangleArea.equals(ag.mRectangleArea);
 
     }
 
@@ -102,7 +102,7 @@ public class AreaGeografica {
 
     public boolean verificarSeSensorEstaContidoNaAG(Sensor sensor) {
 
-        return mRetanguloArea.verificaSeLocalizacaoEstaContidaNumaArea(sensor.getmLocation());
+        return mRectangleArea.verificaSeLocalizacaoEstaContidaNumaArea(sensor.getmLocation());
 
     }
 
@@ -131,6 +131,7 @@ public class AreaGeografica {
         }
         return listaSensoresDeTipoNumPeriodo;
     }
+
 }
 
 
