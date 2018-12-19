@@ -25,8 +25,8 @@ public class US3Controller {
         return mListaTAG.getListaDosTiposDeAG();
     }
 
-    public AreaGeografica criarNovaAG(String nomeAG, String nomeTipoAG, double altitude, double longitude, double latitude, double altura, double comprimento) {
-       return mListaAG.novaAreaGeografica(nomeAG, nomeTipoAG, altitude, longitude, latitude, altura, comprimento);
+    public AreaGeografica criarNovaAG(String nomeAG, String nomeTipoAG, double altitude, double longitude, double latitude, double largura, double comprimento) {
+       return mListaAG.novaAreaGeografica(nomeAG, nomeTipoAG, altitude, longitude, latitude, largura, comprimento);
 
     }
 }

@@ -17,10 +17,10 @@ public class ListaAGTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10,local);
+        RectangleArea area = new RectangleArea(10, 10, local);
 
         ListaAG lista = new ListaAG();
-        AreaGeografica areaGeografica = new AreaGeografica (nomeAG, tipo, local,area);
+        AreaGeografica areaGeografica = new AreaGeografica(nomeAG, tipo, local, area);
 
         //Act
         boolean resultado = lista.adicionarAreaGeoALista(areaGeografica);
@@ -35,10 +35,10 @@ public class ListaAGTest {
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10,local);
+        RectangleArea area = new RectangleArea(10, 10, local);
 
         ListaAG lista = new ListaAG();
-        AreaGeografica areaGeografica = new AreaGeografica (nomeAG, tipo, local,area);
+        AreaGeografica areaGeografica = new AreaGeografica(nomeAG, tipo, local, area);
         lista.adicionarAreaGeoALista(areaGeografica);
 
         //Act
@@ -54,16 +54,16 @@ public class ListaAGTest {
         String nomeAG1 = "Porto";
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10,local1);
+        RectangleArea area1 = new RectangleArea(10, 10, local1);
 
         String nomeAG2 = "Porto";
         TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area2 = new RectangleArea(10, 10,local2);
+        RectangleArea area2 = new RectangleArea(10, 10, local2);
 
         ListaAG lista = new ListaAG();
-        AreaGeografica ag1 = new AreaGeografica (nomeAG1, tipo1, local1,area1);
-        AreaGeografica ag2 = new AreaGeografica (nomeAG2, tipo2, local2,area2);
+        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+        AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
 
         lista.adicionarAreaGeoALista(ag1);
 
@@ -75,15 +75,15 @@ public class ListaAGTest {
     }
 
     @Test
-    public void getmListaAG(){
+    public void getmListaAG() {
 
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10,local);
+        RectangleArea area = new RectangleArea(10, 10, local);
 
         ListaAG lista = new ListaAG();
-        AreaGeografica areaGeografica = new AreaGeografica (nomeAG, tipo, local,area);
+        AreaGeografica areaGeografica = new AreaGeografica(nomeAG, tipo, local, area);
         lista.adicionarAreaGeoALista(areaGeografica);
 
         List<AreaGeografica> expectedResult = new ArrayList<>();
@@ -93,7 +93,6 @@ public class ListaAGTest {
 
         assertEquals(expectedResult, resultado);
     }
-
 
 
     @Test
@@ -267,7 +266,7 @@ public class ListaAGTest {
         lista.adicionarAreaGeoALista(ag1);
         lista.adicionarAreaGeoALista(ag2);
 
-        int opçãoSeleccionada =1;
+        int opçãoSeleccionada = 1;
 
         AreaGeografica expectedResult = ag2;
 
@@ -280,7 +279,7 @@ public class ListaAGTest {
 
 
     @Test
-    public void testarSeAGNaoTemAreaInseridaQuandoNaoTem () {
+    public void testarSeAGNaoTemAreaInseridaQuandoNaoTem() {
         //Arrange
         ListaAG listaAG = new ListaAG();
 
@@ -317,7 +316,7 @@ public class ListaAGTest {
     }
 
     @Test
-    public void testarSeAGNaoTemAreaInseridaQuandoTem () {
+    public void testarSeAGNaoTemAreaInseridaQuandoTem() {
         //Arrange
         ListaAG listaAG = new ListaAG();
 
@@ -353,7 +352,7 @@ public class ListaAGTest {
     }
 
     @Test
-    public void testarSeAGEstaContidaNoutraComCasoFalso () {
+    public void testarSeAGEstaContidaNoutraComCasoFalso() {
         //Arrange
         ListaAG listaAG = new ListaAG();
 
@@ -385,7 +384,7 @@ public class ListaAGTest {
 
         //Act
 
-        boolean result = listaAG.verificarSeAGEstaContidaNoutra(2,0);
+        boolean result = listaAG.verificarSeAGEstaContidaNoutra(2, 0);
 
         //Assert
 
@@ -414,14 +413,14 @@ public class ListaAGTest {
         listaDeAGs.adicionarAreaGeoALista(ag2);
 
         //Act
-        boolean resultado = listaDeAGs.verificarSeAGEstaContidaNoutra(1,0);
+        boolean resultado = listaDeAGs.verificarSeAGEstaContidaNoutra(1, 0);
 
         //Assert
         assertTrue(resultado);
     }
 
     @Test
-    public void testarSeAGEstaContidaNoutraNoCasoDeDuasIguais () {
+    public void testarSeAGEstaContidaNoutraNoCasoDeDuasIguais() {
         //Arrange
         ListaAG listaAG = new ListaAG();
 
@@ -453,7 +452,7 @@ public class ListaAGTest {
 
         //Act
 
-        boolean result = listaAG.verificarSeAGEstaContidaNoutra(1,0);
+        boolean result = listaAG.verificarSeAGEstaContidaNoutra(1, 0);
 
         //Assert
 
@@ -461,7 +460,7 @@ public class ListaAGTest {
     }
 
     @Test
-    public void testarSeAGEstaContidaNoutraNoCasoDeEstarIndiretamente () {
+    public void testarSeAGEstaContidaNoutraNoCasoDeEstarIndiretamente() {
         //Arrange
         ListaAG listaAG = new ListaAG();
 
@@ -495,7 +494,7 @@ public class ListaAGTest {
 
         //Act
 
-        boolean result = listaAG.verificarSeAGEstaContidaNoutra(0,2);
+        boolean result = listaAG.verificarSeAGEstaContidaNoutra(0, 2);
 
         //Assert
 
@@ -521,7 +520,7 @@ public class ListaAGTest {
         AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
 
         listaDeAGs.adicionarAreaGeoALista(ag1);
-        listaDeAGs.adicionarAreaGeoAListaNumaPosicaoEspecifica(0,ag2);
+        listaDeAGs.adicionarAreaGeoAListaNumaPosicaoEspecifica(0, ag2);
 
         AreaGeografica expectedResult = ag2;
 
@@ -613,4 +612,21 @@ public class ListaAGTest {
         assertEquals(expectedResult, resultado);
     }
 
+    @Test
+    public void testarNovaAreaGeografica() {
+        //Arrange
+        ListaAG lista = new ListaAG();
+
+        String nomeAG = "Porto";
+        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
+        Location local = new Location(40.5, 50.5, 100.0);
+        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaGeografica resultado = new AreaGeografica(nomeAG, tipo, local, area);
+
+        AreaGeografica expectedResult = lista.novaAreaGeografica("Porto", "Cidade", 40.5, 50.5, 100.0, 10, 10);
+        //Act
+
+        //Assert
+        assertEquals(resultado, expectedResult);
+    }
 }

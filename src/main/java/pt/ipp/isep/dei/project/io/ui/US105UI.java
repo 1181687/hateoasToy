@@ -22,20 +22,22 @@ public class US105UI {
         System.out.println("Write the number of housefloor's room");
         int houseFloor = read.nextInt();
         System.out.println("Write the height of the room");
-        int height = read.nextInt();
+        double height = read.nextDouble();
         System.out.println("Write the length of the room");
-        int length = read.nextInt();
+        double length = read.nextDouble();
         System.out.println("Write the width of the room");
-        int width = read.nextInt();
+        double width = read.nextDouble();
 
         Room newRoom = mctrl.addANewRoom(height,length,width,name,houseFloor);
 
         mctrl.addRoomToRoomList(newRoom);
 
         System.out.println("The new room " + name + " was created with sucess!");
-      /*  StringBuilder content = new StringBuilder();
-        content.append("The new room " + name + " was created with sucess!");
+
+        StringBuilder content = new StringBuilder();
+        content.append("The new room " + name);
+        content.append(" was created with sucess!");
         content.append("\n");
-        content.toString();*/
+        content.toString();
     }
 }
