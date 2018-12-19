@@ -48,7 +48,7 @@ public class HouseGrid {
 
     /**
      * Method that detaches a room from a house grid. It return a true in case of success
-     * and a false in the case of a failure.
+     * and false in the case of a failure.
      * @param roomToDetach
      * @return
      */

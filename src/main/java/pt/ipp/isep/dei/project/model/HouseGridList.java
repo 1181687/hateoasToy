@@ -27,10 +27,21 @@ public class HouseGridList {
     public String getContentOfHouseGrid() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= mList.size(); i++) {
-            content.append(i + " - Name: " + mList.get(i - 1).houseGridName());
+            content.append(i + " - Name: " + mList.get(i - 1).getmHouseGridName());
             content.append("\n");
         }
         return content.toString();
+    }
+
+    /**
+     * Method that calls the method in HouseGrid that detaches a selected room from the HouseGridList.
+     *
+     * @param houseGridSelected Specified house grid in the list.
+     * @param roomSelected      Specified room.
+     */
+    public void detachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
+        int index = mList.indexOf(houseGridSelected);
+        mList.get(index).detachRoomFromHouseGrid(roomSelected);
     }
 
     /**
