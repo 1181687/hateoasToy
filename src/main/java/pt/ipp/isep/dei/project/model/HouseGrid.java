@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.project.model;
 public class HouseGrid {
     private String mHouseGridName;
     private double mMaximumContractedPower;
-    private DeviceList mDeviceListOnHouseGrid = new DeviceList();
     private PowerSourceList mPowerSourceList= new PowerSourceList();
     private RoomList mRoomsConnectedToHouseGrid= new RoomList();
 

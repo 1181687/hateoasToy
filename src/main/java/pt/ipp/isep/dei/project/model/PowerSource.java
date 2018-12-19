@@ -6,6 +6,11 @@ public class PowerSource {
     private boolean mIsRechargeable;
     private double mMaximumAmountOfStorableEnergy;
 
+    public PowerSource(PowerSourceType powerSourceType, boolean isRechargeable) {
+        this.mPowerSourceType = powerSourceType;
+        this.mIsRechargeable = isRechargeable;
+    }
+
     @Override
     public int hashCode() {
         return 1;
