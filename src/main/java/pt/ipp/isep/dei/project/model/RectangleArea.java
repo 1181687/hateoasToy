@@ -1,11 +1,11 @@
 package pt.ipp.isep.dei.project.model;
 
-public class RetanguloArea {
+public class RectangleArea {
     private double mComprimento;
     private double mLargura;
     private Location mLocationRetanguloArea;
 
-    public RetanguloArea(double largura, double comprimento, Location locationRetangulo) {
+    public RectangleArea(double largura, double comprimento, Location locationRetangulo) {
         mComprimento = comprimento;
         mLargura = largura;
         mLocationRetanguloArea = locationRetangulo;

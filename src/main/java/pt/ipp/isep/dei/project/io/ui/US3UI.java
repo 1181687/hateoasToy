@@ -57,9 +57,9 @@ public class US3UI {
 
 
         TipoAreaGeo novoTipo = new TipoAreaGeo(ctrl3.getListaTAG ().get(opcao - 1));
-        Location novaLocation = new Location(latitude, longitude, altitude);
-        RetanguloArea novoRetanguloArea = new RetanguloArea(comprimento, largura, novaLocation);
-        AreaGeografica novaAG = new AreaGeografica(nome, novoTipo, novaLocation, novoRetanguloArea);
+        Location newLocation = new Location(latitude, longitude, altitude);
+        RectangleArea newRectangleArea = new RectangleArea(comprimento, largura, newLocation);
+        AreaGeografica novaAG = new AreaGeografica(nome, novoTipo, newLocation, newRectangleArea);
         if (ctrl3.adicionarNovaAG(novaAG)) {
             System.out.println("Sucesso!");
         } else {
