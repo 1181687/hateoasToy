@@ -33,13 +33,4 @@ public class ListaTiposSensores {
         return this.mListaTiposSensores.get(posicao);
     }
 
-    public Sensor novoSensor (String nome, Date dataFuncionamento, TipoSensor novoTipoSensor, Location novaLocation) {
-        return new Sensor(nome, dataFuncionamento, novoTipoSensor, novaLocation);
-    }
-
-    public Date dataDoSensor (Date dataFuncionamentoDoSensor) {
-        Calendar calendario = new GregorianCalendar(Locale.getDefault());
-        dataFuncionamentoDoSensor = calendario.getTime();
-        return dataFuncionamentoDoSensor;
-    }
 }

@@ -95,4 +95,12 @@ public class ListaAG {
     public Location novaLocalizacao (double mAltitude, double mLatitude, double mLongitude) {
         return new Location(mAltitude, mLatitude, mLongitude);
     }
+
+    public AreaGeografica novaAreaGeografica(String nomeAG, String nomeTipoAG, double latitude, double longitude, double altitude, double altura, double comprimento) {
+        TipoAreaGeo tipoAG = new TipoAreaGeo(nomeTipoAG);
+        Location localizacao = new Location(latitude, longitude,altitude);
+        RectangleArea rectanguloArea = new RectangleArea(altura, comprimento, localizacao);
+        return new AreaGeografica(nomeAG,tipoAG,localizacao,rectanguloArea);
+    }
+
 }

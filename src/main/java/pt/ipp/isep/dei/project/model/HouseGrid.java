@@ -43,6 +43,24 @@ public class HouseGrid {
         return mRoomsConnectedToHouseGrid;
     }
 
+
+
+    /**
+     * Method that detaches a room from a house grid. It return a true in case of success
+     * and false in the case of a failure.
+     * @param roomToDetach
+     * @return
+     */
+    public boolean detachRoomFromHouseGrid(Room roomToDetach) {
+        for (Room room : this.mRoomsConnectedToHouseGrid.getmList()) {
+            if (room.equals(roomToDetach)) {
+                this.mRoomsConnectedToHouseGrid.getmList().remove(room);
+                return true;
+            }
+        }
+        return false;
+    }
+
     /**
      * Method that attaches a room in the house grid's room list.
      *
