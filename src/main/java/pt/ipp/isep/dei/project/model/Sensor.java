@@ -17,6 +17,13 @@ public class Sensor {
         this.mLocalizacao = mLocalizacao;
     }
 
+    public Sensor (String mNomeSensor, TipoSensor mTipoSensor, Localizacao mLocalizacao) {
+        this.mNomeSensor = mNomeSensor;
+        this.mDataFuncionamento = new GregorianCalendar(Locale.getDefault()).getTime();
+        this.mTipoSensor = mTipoSensor;
+        this.mLocalizacao = mLocalizacao;
+    }
+
     public String getmNomeSensor() {
         return mNomeSensor;
     }

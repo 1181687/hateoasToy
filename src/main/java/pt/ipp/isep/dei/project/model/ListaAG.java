@@ -92,7 +92,4 @@ public class ListaAG {
         return conteudo.toString();
     }
 
-    public Localizacao novaLocalizacao (double mAltitude, double mLatitude, double mLongitude) {
-        return new Localizacao(mAltitude, mLatitude, mLongitude);
-    }
 }

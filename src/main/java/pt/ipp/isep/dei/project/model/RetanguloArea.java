@@ -23,4 +23,21 @@ public class RetanguloArea {
                 && localizacao.getmLongitude() <= longitudeCantoInferiorDireito
                 && localizacao.getmLongitude() >= longitudeCantoSuperiorEsquerdo);
     }
+
+    public int hashCode() {
+        return 1;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof RetanguloArea)) {
+            return false;
+        }
+
+        RetanguloArea local = (RetanguloArea) obj;
+        final double delta = 0.0001;
+        return mLocalizacaoRetanguloArea.equals(local.mLocalizacaoRetanguloArea)&& Math.abs((mComprimento-local.mComprimento))<delta && Math.abs((mLargura-local.mLargura))<delta;
+    }
 }

@@ -49,6 +49,32 @@ public class ListaAGTest {
     }
 
     @Test
+    void testaAdicionarAreaGeoAListaMesmaAG() {
+        //Arrange
+        String nomeAG1 = "Porto";
+        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        Localizacao local1 = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area1 = new RetanguloArea(10, 10,local1);
+
+        String nomeAG2 = "Porto";
+        TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
+        Localizacao local2 = new Localizacao(41.1496, -8.6109, 97);
+        RetanguloArea area2 = new RetanguloArea(10, 10,local2);
+
+        ListaAG lista = new ListaAG();
+        AreaGeografica ag1 = new AreaGeografica (nomeAG1, tipo1, local1,area1);
+        AreaGeografica ag2 = new AreaGeografica (nomeAG2, tipo2, local2,area2);
+
+        lista.adicionarAreaGeoALista(ag1);
+
+        //Act
+        boolean resultado = lista.adicionarAreaGeoALista(ag2);
+
+        //Arrange
+        assertFalse(resultado);
+    }
+
+    @Test
     public void getmListaAG(){
 
         String nomeAG = "Porto";

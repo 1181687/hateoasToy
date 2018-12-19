@@ -55,7 +55,6 @@ public class US3UI {
             largura = ler.nextDouble();
         }
 
-
         TipoAreaGeo novoTipo = new TipoAreaGeo(ctrl3.getListaTAG ().get(opcao - 1));
         Localizacao novaLocalizacao = new Localizacao(latitude, longitude, altitude);
         RetanguloArea novoRetanguloArea = new RetanguloArea(comprimento, largura, novaLocalizacao);

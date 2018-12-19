@@ -33,7 +33,7 @@ public class AreaGeografica {
             return false;
         }
         AreaGeografica ag = (AreaGeografica) obj;
-        return this.mNomeAreaGeo.equals(ag.mNomeAreaGeo) && this.mTipoAreaGeo.equals(ag.mTipoAreaGeo) && this.mRetanguloArea.equals(ag.mRetanguloArea);
+        return this.mNomeAreaGeo.equals(ag.mNomeAreaGeo) && this.mTipoAreaGeo.equals(ag.mTipoAreaGeo) && this.mLocalizacao.equals(ag.mLocalizacao) && this.mRetanguloArea.equals(ag.mRetanguloArea);
 
     }
 
@@ -130,6 +130,14 @@ public class AreaGeografica {
             }
         }
         return listaSensoresDeTipoNumPeriodo;
+    }
+
+    public Sensor novoSensor (String nome, TipoSensor novoTipoSensor, Localizacao novaLocalizacao) {
+        return new Sensor(nome, novoTipoSensor, novaLocalizacao);
+    }
+
+    public Localizacao novaLocalizacao (double mLatitude, double mLongitude, double mAltitude) {
+        return new Localizacao(mLatitude, mLongitude, mAltitude);
     }
 }
 

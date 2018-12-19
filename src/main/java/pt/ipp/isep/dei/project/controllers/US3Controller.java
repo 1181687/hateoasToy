@@ -16,7 +16,11 @@ public class US3Controller {
     }
 
     public boolean adicionarNovaAG(AreaGeografica novaAG) {
-        return mListaAG.adicionarAreaGeoALista(novaAG);
+        if ((!(this.mListaAG.getmListaAG().contains(novaAG)))) {
+            mListaAG.adicionarAreaGeoALista(novaAG);
+            return true;
+        }
+        return false;
     }
 
     public ListaAG getListaAG() {
