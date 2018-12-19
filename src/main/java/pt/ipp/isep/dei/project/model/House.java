@@ -4,9 +4,6 @@ public class House {
     private RoomList mRoomList;
 
 
-
-
-
     public House(RoomList mRoomList) {
         this.mRoomList = mRoomList;
     }
