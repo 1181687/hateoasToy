@@ -5,8 +5,6 @@ import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.RoomList;
 
-import java.util.List;
-
 public class US147Controller {
     private HouseGridList mListOfHouseGrids;
     private RoomList mListOfRooms;
@@ -20,8 +18,8 @@ public class US147Controller {
      * Method that asks for the list of house grids from the class HouseGridList.
      * @return List of house grids.
      */
-    public List<HouseGrid> getmListOfHouseGrids(){
-        return mListOfHouseGrids.getmList();
+    public String listAllTheHouseGridsInTheList() {
+        return mListOfHouseGrids.getContentOfHouseGrid();
     }
 
     /**
@@ -35,10 +33,10 @@ public class US147Controller {
 
     /**
      * Method that asks for the list of rooms from the class RoomList.
-     * @return List of rooms.
+     * @return List of house grids.
      */
-    public List<Room> getmListOfRooms(){
-        return mListOfRooms.getmRoomList();
+    public String listAllTheRoomsInTheList() {
+        return mListOfRooms.getDisplayRoomList();
     }
 
     /**
@@ -51,8 +49,19 @@ public class US147Controller {
     }
 
     /**
+     * Method that asks if the room isn't already in the chosen grid.
+     *
+     * @param chosenGrid Specific house grid to search throughout the list of grids.
+     * @param chosenRoom Specific room to search throughout the list of room of the grid.
+     * @return True or false.
+     */
+    public boolean checkIfTheChosenRoomIsntAlreadyInTheChosenGrid(HouseGrid chosenGrid, Room chosenRoom) {
+        return mListOfHouseGrids.checkIfARoomIsntAlreadyInAHouseGridOfTheList(chosenGrid, chosenRoom);
+    }
+
+    /**
      * Method that asks the class HouseGridList to attach the specified room in the specified house grid via class HouseGrid.
-     * @param houseGridSelected Specific house grid to search throughtout the list.
+     * @param houseGridSelected Specific house grid to search throughout the list of grids.
      * @param roomSelected Chosen room to attach to the house grid.
      */
     public void attachRoomInTheHouseGrid(HouseGrid houseGridSelected, Room roomSelected) {

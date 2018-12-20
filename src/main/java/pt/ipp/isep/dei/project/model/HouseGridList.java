@@ -24,6 +24,11 @@ public class HouseGridList {
         return mList.get(position);
     }
 
+    /**
+     * Method that shows the content of the house grids in the list.
+     *
+     * @return String with the required information.
+     */
     public String getContentOfHouseGrid() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= mList.size(); i++) {
@@ -65,4 +70,15 @@ public class HouseGridList {
 
     //public boolean checkIfHouseGrid
 
+    /**
+     * Method that checks if a room isn't already in a specific grid in the list.
+     *
+     * @param chosenGrid Specified house grid in the list.
+     * @param room       Specified room.
+     * @return True or false.
+     */
+    public boolean checkIfARoomIsntAlreadyInAHouseGridOfTheList(HouseGrid chosenGrid, Room room) {
+        int index = mList.indexOf(chosenGrid);
+        return mList.get(index).checkIfARoomIsntAlreadyInTheGrid(room);
+    }
 }

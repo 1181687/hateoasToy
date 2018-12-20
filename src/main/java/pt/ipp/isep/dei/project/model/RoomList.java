@@ -9,24 +9,27 @@ public class RoomList {
     public RoomList() {
     }
 
+    /**
+     * Get method.
+     *
+     * @return mRoomList.
+     */
     public List<Room> getmRoomList() {
         return mRoomList;
     }
 
-
     /**
      * Method that get the room in a specific position in the list.
-     *
      * @param position Specifies the position of the room in the list.
      * @return The respective room.
      */
     public Room getRoomFromASpecificPositionInTheList(int position) {
         return mRoomList.get(position);
     }
-//////////////////////////
+
+
     /**
      * Method that adds a new room to the list of rooms
-     *
      * @param room the new room that i want to add
      * @return true if it adds, false if it doesn't add, because it already contains it
      */

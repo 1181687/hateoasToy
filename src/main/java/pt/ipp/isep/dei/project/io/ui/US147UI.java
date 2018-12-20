@@ -17,17 +17,20 @@ public class US147UI {
 
     public void run() {
         System.out.println("Please choose the house grid where the room will be attached.");
-        System.out.println(ctrl.getmListOfHouseGrids());
-        Scanner ler = new Scanner(System.in);
-        int firstOptionPosition = ler.nextInt() - 1;
-        HouseGrid chosenGrid = ctrl.getHouseGridFromTheList(firstOptionPosition);
+        System.out.println(ctrl.listAllTheHouseGridsInTheList());
+        Scanner keyboardInput = new Scanner(System.in);
+        int indexOfTheChosenGrid = keyboardInput.nextInt() - 1;
+        HouseGrid chosenGrid = ctrl.getHouseGridFromTheList(indexOfTheChosenGrid);
 
-        System.out.println("Please choose the room to be attached to the chosen house grid.");
-        System.out.println(ctrl.getmListOfRooms());
-        int secondOptionPosition = ler.nextInt() - 1;
-        Room chosenRoom = ctrl.getRoomFromTheList(secondOptionPosition);
-
-        ctrl.attachRoomInTheHouseGrid(chosenGrid, chosenRoom);
-        System.out.println("The specified room has been attached to the specified house grid.");
+        System.out.println("\n Please choose a room to be attached to the chosen house grid.");
+        System.out.println(ctrl.listAllTheRoomsInTheList());
+        int indexOfTheChosenRoom = keyboardInput.nextInt() - 1;
+        Room chosenRoom = ctrl.getRoomFromTheList(indexOfTheChosenRoom);
+        if (ctrl.checkIfTheChosenRoomIsntAlreadyInTheChosenGrid(chosenGrid, chosenRoom)) {
+            ctrl.attachRoomInTheHouseGrid(chosenGrid, chosenRoom);
+            System.out.println("The specified room has been attached to the specified house grid.");
+        } else {
+            System.out.println("The specified room is already in the house grid. Please, choose another one.");
+        }
     }
 }
