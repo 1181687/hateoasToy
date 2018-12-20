@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.*;
 
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
