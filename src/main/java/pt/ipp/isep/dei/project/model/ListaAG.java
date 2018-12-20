@@ -5,17 +5,17 @@ import java.util.List;
 
 public class ListaAG {
 
-    private List<AreaGeografica> mListaAG;
+    private List<GeographicalArea> mListaAG;
 
     public ListaAG() {
         this.mListaAG = new ArrayList<>();
     }
 
-    public List<AreaGeografica> getmListaAG() {
+    public List<GeographicalArea> getmListaAG() {
         return mListaAG;
     }
 
-    public boolean adicionarAreaGeoALista(AreaGeografica AG) {
+    public boolean adicionarAreaGeoALista(GeographicalArea AG) {
         if (!(mListaAG.contains(AG))) {
             mListaAG.add(AG);
             return true;
@@ -23,9 +23,9 @@ public class ListaAG {
         return false;
     }
 
-    public AreaGeografica getAreaGeografica(AreaGeografica areaGeografica) {
-        for (AreaGeografica area : mListaAG) {
-            if (area.equals(areaGeografica)) {
+    public GeographicalArea getAreaGeografica(GeographicalArea geographicalArea) {
+        for (GeographicalArea area : mListaAG) {
+            if (area.equals(geographicalArea)) {
                 return area;
             }
         }
@@ -38,7 +38,7 @@ public class ListaAG {
 
     public List<String> getListaAGPorTipo(String tipo) {
         List<String> listaAGMesmoTipo = new ArrayList<>();
-        for (AreaGeografica areaGeo : mListaAG) {
+        for (GeographicalArea areaGeo : mListaAG) {
             if (areaGeo.getmTipoAreaGeo().umTipoAreaGeoEIgualAOutra(tipo)) {
                 listaAGMesmoTipo.add(areaGeo.getmNomeAreaGeo());
             }
@@ -46,25 +46,25 @@ public class ListaAG {
         return listaAGMesmoTipo;
     }
 
-    public AreaGeografica getAreaGeograficaNaListaApresentada(int opcaoSelecionada) {
+    public GeographicalArea getAreaGeograficaNaListaApresentada(int opcaoSelecionada) {
         return mListaAG.get(opcaoSelecionada);
     }
 
-    public boolean verificarSeAGNaoTemAreaInserida(AreaGeografica area) {
+    public boolean verificarSeAGNaoTemAreaInserida(GeographicalArea area) {
         return area.getmAreaInseridaEm() == null;
     }
 
-    public boolean removerAreaGeoALista(AreaGeografica AG) {
+    public boolean removerAreaGeoALista(GeographicalArea AG) {
         return mListaAG.remove(AG);
     }
 
-    public void adicionarAreaGeoAListaNumaPosicaoEspecifica(int posicao, AreaGeografica AG) {
+    public void adicionarAreaGeoAListaNumaPosicaoEspecifica(int posicao, GeographicalArea AG) {
         mListaAG.add(posicao, AG);
     }
 
     public boolean verificarSeAGEstaContidaNoutra(int opcaoSelecionada1, int opcaoSelecionada2) {
-        AreaGeografica primeiraAG = mListaAG.get(opcaoSelecionada1);
-        AreaGeografica segundaAG = mListaAG.get(opcaoSelecionada2);
+        GeographicalArea primeiraAG = mListaAG.get(opcaoSelecionada1);
+        GeographicalArea segundaAG = mListaAG.get(opcaoSelecionada2);
         while (primeiraAG.getmAreaInseridaEm() != null) {
             if (!primeiraAG.getmAreaInseridaEm().equals(segundaAG)) {
                 primeiraAG = primeiraAG.getmAreaInseridaEm();
@@ -92,11 +92,11 @@ public class ListaAG {
         return conteudo.toString();
     }
 
-    public AreaGeografica novaAreaGeografica(String nomeAG, String nomeTipoAG, double latitude, double longitude, double altitude, double altura, double comprimento) {
+    public GeographicalArea novaAreaGeografica(String nomeAG, String nomeTipoAG, double latitude, double longitude, double altitude, double altura, double comprimento) {
         TipoAreaGeo tipoAG = new TipoAreaGeo(nomeTipoAG);
         Location localizacao = new Location(latitude, longitude,altitude);
         RectangleArea rectanguloArea = new RectangleArea(altura, comprimento, localizacao);
-        return new AreaGeografica(nomeAG, tipoAG, localizacao, rectanguloArea);
+        return new GeographicalArea(nomeAG, tipoAG, localizacao, rectanguloArea);
     }
 
 }

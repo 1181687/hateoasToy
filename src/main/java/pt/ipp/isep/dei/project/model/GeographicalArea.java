@@ -4,15 +4,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class AreaGeografica {
+public class GeographicalArea {
     private String mNomeAreaGeo;
     private TipoAreaGeo mTipoAreaGeo;
-    private AreaGeografica mAreaInseridaEm;
+    private GeographicalArea mAreaInseridaEm;
     private Location mLocation;
     private RectangleArea mRectangleArea;
     private SensorList mSensorList = new SensorList();
 
-    public AreaGeografica(String mNomeAreaGeo, TipoAreaGeo mTipoAreaGeo, Location mLocation, RectangleArea mRectangleArea) {
+    public GeographicalArea(String mNomeAreaGeo, TipoAreaGeo mTipoAreaGeo, Location mLocation, RectangleArea mRectangleArea) {
         this.mNomeAreaGeo = mNomeAreaGeo;
         this.mTipoAreaGeo = mTipoAreaGeo;
         this.mLocation = mLocation;
@@ -33,10 +33,10 @@ public class AreaGeografica {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof AreaGeografica)) {
+        if (!(obj instanceof GeographicalArea)) {
             return false;
         }
-        AreaGeografica ag = (AreaGeografica) obj;
+        GeographicalArea ag = (GeographicalArea) obj;
         return this.mNomeAreaGeo.equals(ag.mNomeAreaGeo) && this.mTipoAreaGeo.equals(ag.mTipoAreaGeo) && this.mLocation.equals(ag.mLocation) && this.mRectangleArea.equals(ag.mRectangleArea);
 
     }
@@ -54,15 +54,15 @@ public class AreaGeografica {
         return this.mLocation;
     }
 
-    public AreaGeografica getmAreaInseridaEm() {
+    public GeographicalArea getmAreaInseridaEm() {
         return mAreaInseridaEm;
     }
 
-    public void setmAreaInseridaEm(AreaGeografica mAreaInseridaEm) {
+    public void setmAreaInseridaEm(GeographicalArea mAreaInseridaEm) {
         this.mAreaInseridaEm = mAreaInseridaEm;
     }
 
-    public double distanciaLinearDuasAreas(AreaGeografica novoAg) {
+    public double distanciaLinearDuasAreas(GeographicalArea novoAg) {
         return this.mLocation.distanciaDuasLocalizacoes(novoAg.getmLocation());
     }
 

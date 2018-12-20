@@ -17,13 +17,13 @@ class US7ControllerTest {
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Rua do Bonfim";
         TipoAreaGeo tipo2 = new TipoAreaGeo("Rua");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         ag2.setmAreaInseridaEm(ag1);
         listaDeAGs.adicionarAreaGeoALista(ag1);
@@ -49,13 +49,13 @@ class US7ControllerTest {
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Rua do Bonfim";
         TipoAreaGeo tipo2 = new TipoAreaGeo("Rua");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         lista.adicionarAreaGeoALista(ag1);
         lista.adicionarAreaGeoALista(ag2);
@@ -64,10 +64,10 @@ class US7ControllerTest {
 
         int opçãoSeleccionada =1;
 
-        AreaGeografica expectedResult = ag2;
+        GeographicalArea expectedResult = ag2;
 
         //Act
-        AreaGeografica resultado = ctrl.getAGNaListaApresentada(opçãoSeleccionada);
+        GeographicalArea resultado = ctrl.getAGNaListaApresentada(opçãoSeleccionada);
 
         //Assert
         assertEquals(expectedResult, resultado);
@@ -82,19 +82,19 @@ class US7ControllerTest {
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Distrito");
         Location local = new Location(41.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
-        AreaGeografica ag2 = new AreaGeografica(nomeAG, tipo, local, area);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
 
         String nomeAG3 = "Sul";
         TipoAreaGeo tipo3 = new TipoAreaGeo("Região");
         Location local3 = new Location(41.1496, -8.6109, 97);
         RectangleArea area3 = new RectangleArea(10, 10, local);
-        AreaGeografica ag3 = new AreaGeografica(nomeAG3, tipo3, local3, area3);
+        GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
         ag2.setmAreaInseridaEm(ag1);
 
@@ -121,19 +121,19 @@ class US7ControllerTest {
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG = "Porto";
         TipoAreaGeo tipo = new TipoAreaGeo("Distrito");
         Location local = new Location(41.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
-        AreaGeografica ag2 = new AreaGeografica(nomeAG, tipo, local, area);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
 
         String nomeAG3 = "Sul";
         TipoAreaGeo tipo3 = new TipoAreaGeo("Região");
         Location local3 = new Location(41.1496, -8.6109, 97);
         RectangleArea area3 = new RectangleArea(10, 10, local);
-        AreaGeografica ag3 = new AreaGeografica(nomeAG3, tipo3, local3, area3);
+        GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
         ag2.setmAreaInseridaEm(ag1);
 
@@ -160,13 +160,13 @@ class US7ControllerTest {
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Rua do Bonfim";
         TipoAreaGeo tipo2 = new TipoAreaGeo("Rua");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         listaDeAGs.adicionarAreaGeoALista(ag1);
 
@@ -174,10 +174,10 @@ class US7ControllerTest {
 
         ctrl.adicionarAGListaPosicaoEspecifica(0,ag2);
 
-        AreaGeografica expectedResult = ag2;
+        GeographicalArea expectedResult = ag2;
 
         //Act
-        AreaGeografica result = listaDeAGs.getmListaAG().get(0);
+        GeographicalArea result = listaDeAGs.getmListaAG().get(0);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -192,13 +192,13 @@ class US7ControllerTest {
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Rua do Bonfim";
         TipoAreaGeo tipo2 = new TipoAreaGeo("Rua");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         listaDeAGs.adicionarAreaGeoALista(ag1);
         listaDeAGs.adicionarAreaGeoALista(ag2);
@@ -207,10 +207,10 @@ class US7ControllerTest {
 
         ctrl.removerAGLista(ag1);
 
-        AreaGeografica expectedResult = ag2;
+        GeographicalArea expectedResult = ag2;
 
         //Act
-        AreaGeografica result = listaDeAGs.getmListaAG().get(0);
+        GeographicalArea result = listaDeAGs.getmListaAG().get(0);
 
         //Assert
         assertEquals(expectedResult, result);
