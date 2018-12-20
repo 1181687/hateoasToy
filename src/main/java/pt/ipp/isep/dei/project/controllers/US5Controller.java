@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.model.TipoSensor;
 public class US5Controller {
     private ListaTiposSensores mListaTipoSensores;
 
+
     public US5Controller(ListaTiposSensores listaTipoSensores) {
         this.mListaTipoSensores = listaTipoSensores;
     }
