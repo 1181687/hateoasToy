@@ -14,6 +14,8 @@ public class Main {
         HouseGridList gridList = new HouseGridList();
         ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
         House house= new House(roomList);
+        PowerSourceType powerSourceType = new PowerSourceType("Battery");
+        PowerSource powerSourceMock = new PowerSource(powerSourceType,true);
         int opcao = -1;
         Scanner ler = new Scanner(System.in);
         while (opcao != 0) {
@@ -30,6 +32,7 @@ public class Main {
                 System.out.println("8-US8-Verificar se área geográfica está inserida noutra área");
                 System.out.println("10-US105-Add a room to the house");
                 System.out.println("11-US108-Edit a room from a list of rooms");
+                System.out.println("13-US135-Add a power source to a house grid");
                 System.out.println("16-US149-Detach a room from a house grid");
                 System.out.println("0-Sair");
                 opcao = ler.nextInt();
@@ -71,6 +74,11 @@ public class Main {
                 case 10:
                     US105UI ui105 = new US105UI(house);
                     ui105.run();
+                    break;
+
+                case 13:
+                    US135UI ui135 = new US135UI(gridList,powerSourceMock);
+                    ui135.run();
                     break;
                 case 11:
                     US108UI ui108 = new US108UI(roomList);

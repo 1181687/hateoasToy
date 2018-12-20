@@ -40,4 +40,5 @@ public class PowerSource {
             return this.mPowerSourceType.equals(type.mPowerSourceType) && Math.abs(this.mMaximumPowerOutput - type.mMaximumPowerOutput)<delta;
         }
     }
+
 }
