@@ -15,8 +15,9 @@ public class Main {
         Address address = new Address("0000", location);
         ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
         House house = new House(roomList, gridList, address);
+        String powerSourceName = "ps1";
         PowerSourceType powerSourceType = new PowerSourceType("Battery");
-        PowerSource powerSourceMock = new PowerSource(powerSourceType,true);
+        PowerSource powerSourceMock = new PowerSource(powerSourceName, powerSourceType,true);
         int opcao = -1;
         Scanner ler = new Scanner(System.in);
         while (opcao != 0) {

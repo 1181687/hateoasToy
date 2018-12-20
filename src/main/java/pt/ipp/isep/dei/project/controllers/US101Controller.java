@@ -5,16 +5,21 @@ import pt.ipp.isep.dei.project.model.House;
 
 public class US101Controller {
     private House mHouse;
+    private Address mAddress;
 
-    public US101Controller(House mHouse) {
-        this.mHouse = mHouse;
+    public US101Controller(House house) {
+        this.mHouse = house;
     }
 
-    public Address defineNewAddress(String zipCode, double latitude, double longitude, double altitude) {
-        return mHouse.newAddresses(zipCode, latitude, longitude, altitude);
+    public Address getmAddress() {
+        return mAddress;
     }
 
-    public void addTheAddressToTheHouse(Address address) {
-        mHouse.setmAddress(address);
+    public void defineNewAddress(String zipCode, double latitude, double longitude, double altitude) {
+        this.mAddress = mHouse.newAddresses(zipCode, latitude, longitude, altitude);
+    }
+
+    public void setAddressToTheHouse() {
+        mHouse.setmAddress(mAddress);
     }
 }
