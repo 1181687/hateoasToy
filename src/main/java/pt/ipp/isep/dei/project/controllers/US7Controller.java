@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.AreaGeografica;
+import pt.ipp.isep.dei.project.model.GeographicArea;
 import pt.ipp.isep.dei.project.model.ListaAG;
 
 public class US7Controller {
@@ -14,19 +14,19 @@ public class US7Controller {
         return mLista.conteudoLista(usarCriterio);
     }
 
-    public AreaGeografica getAGNaListaApresentada(int opcaoSelecionada){
+    public GeographicArea getAGNaListaApresentada(int opcaoSelecionada) {
         return mLista.getAreaGeograficaNaListaApresentada(opcaoSelecionada);
     }
 
-    public boolean verSeAGTemAreaInseridaVazia(AreaGeografica area) {
+    public boolean verSeAGTemAreaInseridaVazia(GeographicArea area) {
         return mLista.verificarSeAGNaoTemAreaInserida (area);
     }
 
-    public void adicionarAGListaPosicaoEspecifica(int posicao, AreaGeografica area){
+    public void adicionarAGListaPosicaoEspecifica(int posicao, GeographicArea area) {
         mLista.adicionarAreaGeoAListaNumaPosicaoEspecifica(posicao,area);
     }
 
-    public void removerAGLista (AreaGeografica area){
+    public void removerAGLista(GeographicArea area) {
         mLista.removerAreaGeoALista(area);
     }
 }

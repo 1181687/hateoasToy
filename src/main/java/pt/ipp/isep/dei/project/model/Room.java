@@ -4,6 +4,7 @@ public class Room {
     private String mName;
     private int mHouseFloor;
     private Dimensions mDimensions;
+    private SensorList mSensorList = new SensorList();
 
     public Room(String mName, int mHouseFloor, Dimensions dimensions) {
         this.mName = mName;
@@ -25,11 +26,11 @@ public class Room {
 
     public String getRoomDisplay() {
         StringBuilder content = new StringBuilder();
-            content.append("Name: " + getmName());
-            content.append(", House Floor: " + getmHouseFloor());
-            content.append(", Dimensions - Height: " + getmDimensions().getmHeight());
-            content.append(", Dimensions - Length: " + getmDimensions().getmLength());
-            content.append(", Dimensions - Width: " + getmDimensions().getmWidth());
+        content.append("Name: " + getmName());
+        content.append(", House Floor: " + getmHouseFloor());
+        content.append(", Dimensions - Height: " + getmDimensions().getmHeight());
+        content.append(", Dimensions - Length: " + getmDimensions().getmLength());
+        content.append(", Dimensions - Width: " + getmDimensions().getmWidth());
         return content.toString();
     }
 
@@ -40,4 +41,12 @@ public class Room {
     public void setmHouseFloor(int mHouseFloor) {
         this.mHouseFloor = mHouseFloor;
     }
+
+    public boolean setSensorInRoom(Sensor sensor) {
+        if (mSensorList.getmSensorList().contains(sensor)) {
+            return false;
+        }
+        return mSensorList.addSensorToTheListOfSensorsInTheGeographicalArea(sensor);
+    }
+
 }
