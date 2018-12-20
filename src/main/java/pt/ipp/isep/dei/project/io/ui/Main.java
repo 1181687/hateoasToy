@@ -28,6 +28,7 @@ public class Main {
                 System.out.println("6-US6-Novo sensor");
                 System.out.println("7-US7-Definir área geográfica inserida noutra área");
                 System.out.println("8-US8-Verificar se área geográfica está inserida noutra área");
+                System.out.println("9-US101-Configure the location of the house");
                 System.out.println("10-US105-Add a room to the house");
                 System.out.println("11-US108-Edit a room from a list of rooms");
                 System.out.println("16-US149-Detach a room from a house grid");
