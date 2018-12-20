@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestTemplate;
+
 import pt.ipp.isep.dei.project.controllers.US135Controller;
 import pt.ipp.isep.dei.project.model.HouseGrid;
 import pt.ipp.isep.dei.project.model.HouseGridList;
@@ -22,9 +22,7 @@ class US135ControllerTest {
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         boolean powerSourceTypeIsRechargeable = false;
 
-        PowerSource powerSource = new PowerSource(powerSourceName1, powerSourceType, powerSourceTypeIsRechargeable);
-
-        US135Controller us135Controller = new US135Controller(houseGridList, powerSource);
+        US135Controller us135Controller = new US135Controller(houseGridList);
 
         // Act
         boolean result = us135Controller.checkIfHouseGridListIsEmpty();
@@ -48,7 +46,7 @@ class US135ControllerTest {
 
         PowerSource powerSource = new PowerSource(powerSourceName1, powerSourceType, powerSourceTypeIsRechargeable);
 
-        US135Controller us135Controller = new US135Controller(houseGridList, powerSource);
+        US135Controller us135Controller = new US135Controller(houseGridList);
 
         // Act
         boolean result = us135Controller.checkIfHouseGridListIsEmpty();
@@ -72,7 +70,7 @@ class US135ControllerTest {
         String powerSourceName1 = "Power Source 1";
         PowerSource powerSource = new PowerSource(powerSourceName1, powerSourceType, powerSourceTypeIsRechargeable);
 
-        US135Controller us135Controller = new US135Controller(houseGridList, powerSource);
+        US135Controller us135Controller = new US135Controller(houseGridList);
 
         String expectedResult = "1 - Name: hgname1\n";
 
@@ -95,7 +93,7 @@ class US135ControllerTest {
 
         PowerSource powerSource = new PowerSource(powerSourceName1, powerSourceType, powerSourceTypeIsRechargeable);
 
-        US135Controller us135Controller = new US135Controller(houseGridList, powerSource);
+        US135Controller us135Controller = new US135Controller(houseGridList);
 
         int posicao = 0;
 

@@ -9,6 +9,10 @@ public class PowerSourceList {
     public PowerSourceList() {
     }
 
+    public PowerSource createNewPowerSource(String powerSourceName, PowerSourceType type, boolean isRechargeable){
+        return new PowerSource(powerSourceName,type,isRechargeable);
+    }
+
     public boolean addPowerSourceToList(PowerSource newPowerSource){
 
         if(!(this.mPowerSourceList.contains(newPowerSource))){
