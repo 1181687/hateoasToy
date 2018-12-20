@@ -1,6 +1,7 @@
 
 package pt.ipp.isep.dei.project.model;
 
+
 public class Location {      //graus decimais
     private double mLatitude;
     private double mLongitude;
@@ -16,12 +17,12 @@ public class Location {      //graus decimais
         return mLatitude;
     }
 
-    public void setmLatitude(double mLatitude) {
-        if (mLatitude<-90||mLatitude>90){
-            this.mLatitude=Double.NaN;
+    public void setmLatitude(double latitude) {
+        if (latitude < -90 || latitude > 90) {
+            this.mLatitude = Double.NaN;
+        } else this.mLatitude = latitude;
         }
-        else this.mLatitude = mLatitude;
-    }
+
 
     public double getmLongitude() {
         return mLongitude;
@@ -37,7 +38,6 @@ public class Location {      //graus decimais
     public double getmAltitude() {
         return mAltitude;
     }
-
 
     public double distanciaDuasLocalizacoes(Location novoLocal) {
 

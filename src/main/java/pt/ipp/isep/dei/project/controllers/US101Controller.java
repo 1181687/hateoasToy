@@ -7,8 +7,12 @@ public class US101Controller {
     private House mHouse;
     private Address mAddress;
 
-    public US101Controller(House mHouse) {
-        this.mHouse = mHouse;
+    public US101Controller(House house) {
+        this.mHouse = house;
+    }
+
+    public Address getmAddress() {
+        return mAddress;
     }
 
     public void defineNewAddress(String zipCode, double latitude, double longitude, double altitude) {
