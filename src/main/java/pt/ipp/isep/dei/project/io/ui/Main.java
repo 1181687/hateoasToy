@@ -11,8 +11,10 @@ public class Main {
         ListaAG listaAG = new ListaAG();
         RoomList roomList = new RoomList();
         HouseGridList gridList = new HouseGridList();
+        Location location = new Location(0.0, 0.0, 0.0);
+        Address address = new Address("0000", location);
         ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
-        House house= new House(roomList);
+        House house = new House(roomList, gridList, address);
         PowerSourceType powerSourceType = new PowerSourceType("Battery");
         PowerSource powerSourceMock = new PowerSource(powerSourceType,true);
         int opcao = -1;
@@ -71,11 +73,14 @@ public class Main {
                     US8UI ui8 = new US8UI(listaAG);
                     ui8.run();
                     break;
+                case 9:
+                    US101UI ui9 = new US101UI(house);
+                    ui9.run();
+                    break;
                 case 10:
                     US105UI ui105 = new US105UI(house);
                     ui105.run();
                     break;
-
                 case 13:
                     US135UI ui135 = new US135UI(gridList,powerSourceMock);
                     ui135.run();
@@ -84,7 +89,6 @@ public class Main {
                     US108UI ui108 = new US108UI(roomList);
                     ui108.run();
                     break;
-
                 case 16:
                     US149UI ui149 = new US149UI(gridList, roomList);
                     ui149.run();

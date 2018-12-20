@@ -13,10 +13,21 @@ public class House {
         this.mAddress = address;
     }
 
+    public void setmAddress(Address mAddress) {
+        this.mAddress = mAddress;
+    }
 
-    public Address newAddresses (String mZipCode,double mLatitude, double mLongitude, double mAltitude) {
-        Location newLocation = new Location (mLatitude,mLongitude,mAltitude);
-        return new Address(mZipCode,newLocation);
+
+    /**
+     * @param mZipCode
+     * @param mLatitude
+     * @param mLongitude
+     * @param mAltitude
+     * @return method for the creation of a new Address
+     */
+    public Address newAddresses(String mZipCode, double mLatitude, double mLongitude, double mAltitude) {
+        Location location = new Location(mLatitude, mLongitude, mAltitude);
+        return new Address(mZipCode, location);
     }
 
 

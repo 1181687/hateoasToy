@@ -9,11 +9,9 @@ public class Address {
         this.mLocation = mLocation;
     }
 
-
     public void setmZipCode(String mZipCode) {
         this.mZipCode = mZipCode;
     }
-
 
     public void setmLocation(Location mLocation) {
         this.mLocation = mLocation;
