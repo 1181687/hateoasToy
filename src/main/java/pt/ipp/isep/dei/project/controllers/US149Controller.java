@@ -25,7 +25,7 @@ public class US149Controller {
     }
 
     public List<Room> getListOfRooms() {
-        return mListOfRooms.getmList();
+        return mListOfRooms.getmRoomList();
     }
 
     public Room getRoomFromTheListOfRoomByAPosition(int position) {

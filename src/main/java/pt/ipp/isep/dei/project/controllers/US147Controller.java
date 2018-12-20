@@ -38,7 +38,7 @@ public class US147Controller {
      * @return List of rooms.
      */
     public List<Room> getmListOfRooms(){
-        return mListOfRooms.getmList();
+        return mListOfRooms.getmRoomList();
     }
 
     /**
