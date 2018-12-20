@@ -30,7 +30,11 @@ public class US149UI {
             System.out.println(ctrl.getListOfRooms());
             int secondOption = ler.nextInt() - 1;
             Room chosenRoom = ctrl.getRoomFromTheListOfRoomByAPosition(secondOption);
-            ctrl.detachRoomFromGridList(chosenGrid, chosenRoom);
+            if (ctrl.detachRoomFromGridList(chosenGrid, chosenRoom)) {
+                System.out.println("The room has been detached from the grid.");
+            } else {
+                System.out.println("Please select a valid room to detach.");
+            }
         }
     }
 

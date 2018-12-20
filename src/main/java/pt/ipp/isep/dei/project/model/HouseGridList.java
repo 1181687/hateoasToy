@@ -20,11 +20,11 @@ public class HouseGridList {
      * @param position Specifies the position of the house grid in the list.
      * @return The respective house grid.
      */
-    public HouseGrid getHouseGridFromASpecificPositionInTheList(int position){
+    public HouseGrid getHouseGridFromASpecificPositionInTheList(int position) {
         return mList.get(position);
     }
 
-    public String getContentOfHouseGrid() {
+    public String getContentOfHouseGridList() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= mList.size(); i++) {
             content.append(i + " - Name: " + mList.get(i - 1).getmHouseGridName());
@@ -39,9 +39,9 @@ public class HouseGridList {
      * @param houseGridSelected Specified house grid in the list.
      * @param roomSelected      Specified room.
      */
-    public void detachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
+    public boolean detachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
         int index = mList.indexOf(houseGridSelected);
-        mList.get(index).detachRoomFromHouseGrid(roomSelected);
+        return mList.get(index).detachRoomFromHouseGrid(roomSelected);
     }
 
     /**
