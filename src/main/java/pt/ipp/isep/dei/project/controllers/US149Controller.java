@@ -5,8 +5,6 @@ import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.RoomList;
 
-import java.util.List;
-
 public class US149Controller {
     private HouseGridList mListOfHouseGrids;
     private RoomList mListOfRooms;
@@ -16,7 +14,7 @@ public class US149Controller {
         this.mListOfRooms = listOfRooms;
     }
 
-    public String getListContent() {
+    public String getListOfHouseGridsAttachedToHouseGrid() {
         return mListOfHouseGrids.getContentOfHouseGrid();
     }
 
@@ -24,16 +22,20 @@ public class US149Controller {
         return mListOfHouseGrids.getHouseGridFromASpecificPositionInTheList(position);
     }
 
-    public List<Room> getListOfRooms() {
-        return mListOfRooms.getmRoomList();
+    public String getListOfRooms() {
+        return mListOfRooms.getDisplayRoomList();
+    }
+
+    public String getListOfRoomsInACertainHouseGrid(int position) {
+        return mListOfHouseGrids.getHouseGridFromASpecificPositionInTheList(position).displayRoomsAttachedToHouseGrid();
     }
 
     public Room getRoomFromTheListOfRoomByAPosition(int position) {
         return mListOfRooms.getRoomFromASpecificPositionInTheList(position);
     }
 
-    public void detachRoomFromGridList(HouseGrid houseGrid, Room roomSelected) {
-        mListOfHouseGrids.detachRoomInASpecificHouseGridInTheList(houseGrid, roomSelected);
+    public boolean detachRoomFromGridList(HouseGrid houseGrid, Room roomSelected) {
+        return mListOfHouseGrids.detachRoomInASpecificHouseGridInTheList(houseGrid, roomSelected);
     }
 
     public int getNumberOfGridLists() {

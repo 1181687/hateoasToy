@@ -11,7 +11,7 @@ public class US1Controller {
         this.mListaTAG = listaTAG;
     }
 
-    public boolean novoTAG(String tipoTAG){
+    public boolean adicionaNovoTipoAreaGeografica(String tipoTAG){
         TipoAreaGeo novoTAG = mListaTAG.novoTipoAG(tipoTAG);
         return mListaTAG.adicionarElementoALista(novoTAG);
     }
