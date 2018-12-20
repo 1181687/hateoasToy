@@ -38,12 +38,11 @@ public class US147Controller {
      * @return List of rooms.
      */
     public List<Room> getmListOfRooms(){
-        return mListOfRooms.getmList();
+        return mListOfRooms.getmRoomList();
     }
 
     /**
      * Method that asks for the room in a specific position in the list.
-     *
      * @param position Specifies the position of the room in the list.
      * @return The respective room.
      */
@@ -52,35 +51,11 @@ public class US147Controller {
     }
 
     /**
-     * Method that asks if the room isn't already in a house grid.
-     *
-     * @param room Specifies the room.
-     * @return True or false.
-     */
-    /*
-    public boolean checkIfRoomIsntInAHouseGrid(Room room) {
-        return mListOfRooms.checkIfARoomInAListIsntInAHouseGrid(room);
-    }
-*/
-    /**
      * Method that asks the class HouseGridList to attach the specified room in the specified house grid via class HouseGrid.
-     *
-     * @param houseGridSelected
-     * @param roomSelected
+     * @param houseGridSelected Specific house grid to search throughtout the list.
+     * @param roomSelected Chosen room to attach to the house grid.
      */
     public void attachRoomInTheHouseGrid(HouseGrid houseGridSelected, Room roomSelected) {
         mListOfHouseGrids.attachRoomInASpecificHouseGridInTheList(houseGridSelected, roomSelected);
     }
-
-    /**
-     * Method that asks the class RoomList to change the attribute mHouseGrid in the specified room via class Room.
-     *
-     * @param roomSelected
-     * @param houseGridSelected
-     */
-    /*
-    public void changeTheAttributeHouseGridInTheRoomObject(Room roomSelected, HouseGrid houseGridSelected) {
-        mListOfRooms.changeTheAttributeHouseGridInTheSpecifiedRoomInTheList(roomSelected, houseGridSelected);
-    }
-    */
 }

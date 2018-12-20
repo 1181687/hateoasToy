@@ -1,13 +1,14 @@
-package pt.ipp.isep.dei.project.modelTests;
+package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.US108Controller;
 import pt.ipp.isep.dei.project.model.Dimensions;
-import pt.ipp.isep.dei.project.model.RoomList;
 import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.RoomList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
-
-public class RoomListTest {
+class US108ControllerTest {
 
     @Test
     public void getDisplayRoomListTest(){
@@ -27,10 +28,12 @@ public class RoomListTest {
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
 
+        US108Controller ctrl = new US108Controller(rList);
+
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
 
         //act
-        String result = rList.getDisplayRoomList();
+        String result = ctrl.displayOfTheRoomList();
         //assert
         assertEquals(expectResult, result);
     }
@@ -52,8 +55,10 @@ public class RoomListTest {
     public void checkIfRoomListIsEmptyTrue(){
         //arrange
         RoomList rList = new RoomList();
+
+        US108Controller ctrl = new US108Controller(rList);
         //act
-        boolean result = rList.checkIfRoomListIsEmpty();
+        boolean result = ctrl.checkIfListIsEmpty();
         //assert
         assertTrue(result);
     }
@@ -69,8 +74,11 @@ public class RoomListTest {
         Room room1 = new Room (name1,houseFloor1,dimensions1);
 
         rList.addRoomToRoomList(room1);
+
+        US108Controller ctrl = new US108Controller(rList);
+
         //act
-        boolean result = rList.checkIfRoomListIsEmpty();
+        boolean result = ctrl.checkIfListIsEmpty();
         //assert
         assertFalse(result);
     }
@@ -93,9 +101,11 @@ public class RoomListTest {
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
 
+        US108Controller ctrl = new US108Controller(rList);
+
         int expectResult = 2;
         //act
-        int result = rList.listSize();
+        int result = ctrl.sizeOfTheList();
         //assert
         assertEquals(expectResult, result);
     }
@@ -105,9 +115,11 @@ public class RoomListTest {
         //arrange
         RoomList rList = new RoomList();
 
+        US108Controller ctrl = new US108Controller(rList);
+
         int expectResult = 0;
         //act
-        int result = rList.listSize();
+        int result = ctrl.sizeOfTheList();
         //assert
         assertEquals(expectResult, result);
     }
