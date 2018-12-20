@@ -4,7 +4,6 @@ public class Room {
     private String mName;
     private int mHouseFloor;
     private Dimensions mDimensions;
-    private SensorList mSensorList = new SensorList();
 
     public Room(String mName, int mHouseFloor, Dimensions dimensions) {
         this.mName = mName;
@@ -41,12 +40,4 @@ public class Room {
     public void setmHouseFloor(int mHouseFloor) {
         this.mHouseFloor = mHouseFloor;
     }
-
-    public boolean setSensorInRoom(Sensor sensor) {
-        if (mSensorList.getmSensorList().contains(sensor)) {
-            return false;
-        }
-        return mSensorList.addSensorToTheListOfSensorsInTheGeographicalArea(sensor);
-    }
-
 }

@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.GeographicArea;
+import pt.ipp.isep.dei.project.model.AreaGeografica;
 import pt.ipp.isep.dei.project.model.ListaAG;
 import pt.ipp.isep.dei.project.model.ListaTiposAG;
 
@@ -15,7 +15,7 @@ public class US3Controller {
         this.mListaTAG = listaTAG;
     }
 
-    public boolean adicionarNovaAG(GeographicArea novaAG) {
+    public boolean adicionarNovaAG(AreaGeografica novaAG) {
         return mListaAG.adicionarAreaGeoALista(novaAG);
     }
 
@@ -27,7 +27,7 @@ public class US3Controller {
         return mListaTAG.getListaDosTiposDeAG();
     }
 
-    public GeographicArea criarNovaAG(String nomeAG, String nomeTipoAG, double altitude, double longitude, double latitude, double largura, double comprimento) {
+    public AreaGeografica criarNovaAG(String nomeAG, String nomeTipoAG, double altitude, double longitude, double latitude, double largura, double comprimento) {
        return mListaAG.novaAreaGeografica(nomeAG, nomeTipoAG, altitude, longitude, latitude, largura, comprimento);
 
     }

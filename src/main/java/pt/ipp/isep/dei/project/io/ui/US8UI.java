@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.US8Controller;
-import pt.ipp.isep.dei.project.model.GeographicArea;
+import pt.ipp.isep.dei.project.model.AreaGeografica;
 import pt.ipp.isep.dei.project.model.ListaAG;
 
 import java.util.Scanner;
@@ -18,7 +18,7 @@ public class US8UI {
         System.out.println(ctrl.getConteudoLista(false));
         Scanner ler = new Scanner(System.in);
         int posicaoDaPrimeiraOpcao = ler.nextInt() - 1;
-        GeographicArea primeiraAG = ctrl.getAGNaListaApresentada(posicaoDaPrimeiraOpcao);
+        AreaGeografica primeiraAG = ctrl.getAGNaListaApresentada(posicaoDaPrimeiraOpcao);
         if (!ctrl.verSeAGTemAreaInseridaVazia(primeiraAG)) {
             System.out.println("Indique a área geografica a verificar se contém a anterior, direta ou indiretamente");
             System.out.println(ctrl.getConteudoLista(false));

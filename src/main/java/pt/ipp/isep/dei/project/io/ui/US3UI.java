@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.US3Controller;
-import pt.ipp.isep.dei.project.model.GeographicArea;
+import pt.ipp.isep.dei.project.model.AreaGeografica;
 import pt.ipp.isep.dei.project.model.ListaAG;
 import pt.ipp.isep.dei.project.model.ListaTiposAG;
 
@@ -57,7 +57,7 @@ public class US3UI {
             largura = ler.nextDouble();
         }
 
-        GeographicArea novaAG = ctrl3.criarNovaAG(nome, nomeTipoAG, latitude, longitude, altitude, comprimento, largura);
+        AreaGeografica novaAG = ctrl3.criarNovaAG(nome, nomeTipoAG, latitude, longitude, altitude, comprimento, largura);
         if (ctrl3.adicionarNovaAG(novaAG)) {
             System.out.println("Sucesso!");
         } else {

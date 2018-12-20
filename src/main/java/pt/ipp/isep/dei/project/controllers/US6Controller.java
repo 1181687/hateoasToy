@@ -20,7 +20,7 @@ public class US6Controller {
         return mListaAreaGeografica.getNomeAreaGeograficaPorIndice(posicao);
     }
 
-    public GeographicArea getAreaGeograficaNaListaPorPosicao(int posicao) {
+    public AreaGeografica getAreaGeograficaNaListaPorPosicao(int posicao) {
         return mListaAreaGeografica.getmListaAG().get(posicao);
     }
 
@@ -36,19 +36,19 @@ public class US6Controller {
         return mListaTiposSensores.getTipoSensorPorPosicao(posicao).getmTipo();
     }
 
-    public boolean adicionarSensorAAreaGeografica(Sensor sensor, GeographicArea geographicArea) {
-        if ((!(this.mListaAreaGeografica.getAreaGeografica(geographicArea).getmSensorListInTheGeographicArea().getmSensorList().contains(sensor)))) {
-            mListaAreaGeografica.getAreaGeografica(geographicArea).getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(sensor);
+    public boolean adicionarSensorAAreaGeografica(Sensor sensor, AreaGeografica areaGeografica) {
+        if ((!(this.mListaAreaGeografica.getAreaGeografica(areaGeografica).getmSensorListInTheGeographicArea().getmSensorList().contains(sensor)))) {
+            mListaAreaGeografica.getAreaGeografica(areaGeografica).getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(sensor);
             return true;
         }
         return false;
     }
 
-    public Location criarNovaLocalizacao(double mAltitude, double mLatitude, double mLongitude, GeographicArea geographicArea) {
-        return this.mListaAreaGeografica.getAreaGeografica(geographicArea).novaLocalizacao(mAltitude, mLatitude, mLongitude);
+    public Location criarNovaLocalizacao(double mAltitude, double mLatitude, double mLongitude, AreaGeografica areaGeografica) {
+        return this.mListaAreaGeografica.getAreaGeografica(areaGeografica).novaLocalizacao(mAltitude, mLatitude, mLongitude);
     }
 
-    public Sensor criarNovoSensor(String nome, TipoSensor novoTipoSensor, Location novaLocation, GeographicArea geographicArea) {
-        return this.mListaAreaGeografica.getAreaGeografica(geographicArea).novoSensor(nome, novoTipoSensor, novaLocation);
+    public Sensor criarNovoSensor(String nome, TipoSensor novoTipoSensor, Location novaLocation, AreaGeografica areaGeografica) {
+        return this.mListaAreaGeografica.getAreaGeografica(areaGeografica).novoSensor(nome, novoTipoSensor, novaLocation);
     }
 }

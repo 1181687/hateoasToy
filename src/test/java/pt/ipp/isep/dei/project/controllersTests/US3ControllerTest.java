@@ -25,7 +25,7 @@ public class US3ControllerTest {
         Location local = new Location(41.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10,local);
 
-        GeographicArea ag = new GeographicArea(nomeAG, tipo, local, area);
+        AreaGeografica ag = new AreaGeografica(nomeAG, tipo, local, area);
         //Act
         boolean resultado = ctrl3.adicionarNovaAG(ag);
         //Assert
@@ -44,7 +44,7 @@ public class US3ControllerTest {
         Location local = new Location(41.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10,local);
 
-        GeographicArea ag = new GeographicArea(nomeAG, tipo, local, area);
+        AreaGeografica ag = new AreaGeografica(nomeAG, tipo, local, area);
         ctrl3.adicionarNovaAG(ag);
         //Act
         boolean resultado = ctrl3.adicionarNovaAG(ag);
@@ -62,7 +62,7 @@ public class US3ControllerTest {
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10,local);
-        GeographicArea areaDaLista = new GeographicArea(nomeAG, tipo, local, area);
+        AreaGeografica areaDaLista = new AreaGeografica(nomeAG, tipo, local, area);
         lista.adicionarAreaGeoALista(areaDaLista);
         ListaAG expectedResult = lista;
         //Act
@@ -112,9 +112,9 @@ public class US3ControllerTest {
         TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
         Location local = new Location(40.5, 50.5, 100.0);
         RectangleArea area = new RectangleArea(10, 10, local);
-        GeographicArea expectedResult = new GeographicArea(nomeAG, tipo, local, area);
+        AreaGeografica expectedResult = new AreaGeografica(nomeAG, tipo, local, area);
 
-        GeographicArea result = ctrl3.criarNovaAG("Porto", "Cidade", 40.5,
+        AreaGeografica result = ctrl3.criarNovaAG("Porto", "Cidade", 40.5,
                 50.5, 100.0, 10, 10);
         //Act
 
