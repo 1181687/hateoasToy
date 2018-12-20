@@ -24,13 +24,13 @@ public class Room {
     }
 
     public String getRoomDisplay() {
-        StringBuilder conteudo = new StringBuilder();
-            conteudo.append(" - Name: " + getmName());
-            conteudo.append(", House Floor: " + getmHouseFloor());
-            conteudo.append(", Dimensions - Height: " + getmDimensions().getmHeight());
-            conteudo.append(", Dimensions - Length: " + getmDimensions().getmLength());
-            conteudo.append(", Dimensions - Width: " + getmDimensions().getmWidth());
-        return conteudo.toString();
+        StringBuilder content = new StringBuilder();
+            content.append("Name: " + getmName());
+            content.append(", House Floor: " + getmHouseFloor());
+            content.append(", Dimensions - Height: " + getmDimensions().getmHeight());
+            content.append(", Dimensions - Length: " + getmDimensions().getmLength());
+            content.append(", Dimensions - Width: " + getmDimensions().getmWidth());
+        return content.toString();
     }
 
     public void setmName(String mName) {

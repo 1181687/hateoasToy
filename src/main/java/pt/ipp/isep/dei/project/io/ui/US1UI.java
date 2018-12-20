@@ -16,7 +16,7 @@ public class US1UI {
         System.out.println("Introduza o nome do novo tipo de Area Geografica");
         Scanner ler = new Scanner(System.in);
         String nome = ler.nextLine();
-        if (ctrl.novoTAG(nome)) {
+        if (ctrl.adicionaNovoTipoAreaGeografica(nome)) {
             System.out.println("Sucesso!");
         } else {
             System.out.println("Tente outro nome!");

@@ -3,16 +3,31 @@ package pt.ipp.isep.dei.project.model;
 public class HouseGrid {
     private String mHouseGridName;
     private double mMaximumContractedPower;
-    private PowerSourceList mPowerSourceList= new PowerSourceList();
-    private RoomList mRoomsConnectedToHouseGrid= new RoomList();
+    private PowerSourceList mPowerSourceList;
+    private RoomList mRoomsConnectedToHouseGrid;
 
-    public HouseGrid(double maximumContractedPower) {
-        this.mMaximumContractedPower = maximumContractedPower;
+    public HouseGrid(String mHouseGridName) {
+        this.mHouseGridName = mHouseGridName;
+        this.mRoomsConnectedToHouseGrid= new RoomList();
+        this.mPowerSourceList = new PowerSourceList();
+        this.mMaximumContractedPower = Double.NaN;
     }
 
-    public HouseGrid(double mMaximumContractedPower, RoomList mRoomsConnectedToHouseGrid) {
-        this.mMaximumContractedPower = mMaximumContractedPower;
-        this.mRoomsConnectedToHouseGrid = mRoomsConnectedToHouseGrid;
+    @Override
+    public int hashCode() {
+        return 1;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof HouseGrid)) {
+            return false;
+        }
+        HouseGrid houseGrid = (HouseGrid) obj;
+        return (this.mHouseGridName.equals(houseGrid.mHouseGridName));
     }
 
     public void setmHouseGridName(String mHouseGridName) {
@@ -21,6 +36,10 @@ public class HouseGrid {
 
     public String getmHouseGridName() {
         return mHouseGridName;
+    }
+
+    public PowerSourceList getPowerSourceList() {
+        return mPowerSourceList;
     }
 
     public double getmMaximumContractedPower() {
@@ -32,8 +51,8 @@ public class HouseGrid {
     }
 
     public boolean addRoomToHouseGrid (Room houseRoom){
-       if (!(mRoomsConnectedToHouseGrid.getmList().contains(houseRoom))){
-           mRoomsConnectedToHouseGrid.getmList().add(houseRoom);
+       if (!(mRoomsConnectedToHouseGrid.getmRoomList().contains(houseRoom))){
+           mRoomsConnectedToHouseGrid.getmRoomList().add(houseRoom);
            return true;
        }
             return false;
@@ -52,9 +71,9 @@ public class HouseGrid {
      * @return
      */
     public boolean detachRoomFromHouseGrid(Room roomToDetach) {
-        for (Room room : this.mRoomsConnectedToHouseGrid.getmList()) {
+        for (Room room : this.mRoomsConnectedToHouseGrid.getmRoomList()) {
             if (room.equals(roomToDetach)) {
-                this.mRoomsConnectedToHouseGrid.getmList().remove(room);
+                this.mRoomsConnectedToHouseGrid.getmRoomList().remove(room);
                 return true;
             }
         }
@@ -67,10 +86,19 @@ public class HouseGrid {
      * @param room Speficied room to attach.
      */
     public void attachRoomInTheHouseGridRoomList(Room room) {
-        mRoomsConnectedToHouseGrid.getmList().add(room);
+        mRoomsConnectedToHouseGrid.getmRoomList().add(room);
     }
 
     public boolean addPowerSourceToHouseGrid(PowerSource newPowerSource){
         return this.mPowerSourceList.addPowerSourceToList(newPowerSource);
+    }
+
+    /**
+     * Method that attaches a list of existing rooms to a house grid.
+     *
+     * @return a list of existing rooms attached to a house grid.
+     */
+    public String displayRoomsAttachedToHouseGrid () {
+        return this.mRoomsConnectedToHouseGrid.getDisplayRoomList();
     }
 }

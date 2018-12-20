@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RoomList {
-    private List<Room> mList = new ArrayList<>();
+    private List<Room> mRoomList = new ArrayList<>();
 
     public RoomList() {
     }
 
-    public List<Room> getmList() {
-        return mList;
+    public List<Room> getmRoomList() {
+        return mRoomList;
     }
 
 
@@ -21,7 +21,7 @@ public class RoomList {
      * @return The respective room.
      */
     public Room getRoomFromASpecificPositionInTheList(int position) {
-        return mList.get(position);
+        return mRoomList.get(position);
     }
 //////////////////////////
     /**
@@ -31,8 +31,8 @@ public class RoomList {
      * @return true if it adds, false if it doesn't add, because it already contains it
      */
     public boolean addRoomToRoomList(Room room) {
-        if (!(mList.contains(room))) {
-            mList.add(room);
+        if (!(mRoomList.contains(room))) {
+            mRoomList.add(room);
             return true;
         }
         return false;
@@ -46,8 +46,8 @@ public class RoomList {
     public String getDisplayRoomList() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
-        String displayOfTheRoom = mList.get(0).getRoomDisplay();
-        for (int i = 0; i < mList.size(); i++) {
+        for (int i = 0; i < mRoomList.size(); i++) {
+            String displayOfTheRoom = mRoomList.get(i).getRoomDisplay();
             content.append(numberInTheList + "- ");
             content.append(displayOfTheRoom);
             content.append("\n");
@@ -56,38 +56,46 @@ public class RoomList {
         return content.toString();
     }
 
+    public boolean checkIfRoomListIsEmpty(){
+        return mRoomList.isEmpty();
+    }
+
+    public int listSize(){
+        return mRoomList.size();
+    }
+
     public String getDisplayOfTheChosenRoom(int position) {
         StringBuilder content = new StringBuilder();
-        content.append("1 - Name: " + mList.get(position).getmName());
+        content.append("1 - Name: " + mRoomList.get(position).getmName());
         content.append("\n");
-        content.append("2 - House Floor: " + mList.get(position).getmHouseFloor());
+        content.append("2 - House Floor: " + mRoomList.get(position).getmHouseFloor());
         content.append("\n");
-        content.append("3 - Dimensions - Height: " + mList.get(position).getmDimensions().getmHeight());
+        content.append("3 - Dimensions - Height: " + mRoomList.get(position).getmDimensions().getmHeight());
         content.append("\n");
-        content.append("4 - Dimensions - Length: " + mList.get(position).getmDimensions().getmLength());
+        content.append("4 - Dimensions - Length: " + mRoomList.get(position).getmDimensions().getmLength());
         content.append("\n");
-        content.append("5 - Dimensions - Width: " + mList.get(position).getmDimensions().getmWidth());
+        content.append("5 - Dimensions - Width: " + mRoomList.get(position).getmDimensions().getmWidth());
         content.append("\n");
         return content.toString();
     }
 
     public void setRoomName(int chosenRoom, String change) {
-        mList.get(chosenRoom).setmName(change);
+        mRoomList.get(chosenRoom).setmName(change);
     }
 
     public void setRoomFloor(int chosenRoom, int change) {
-            mList.get(chosenRoom).setmHouseFloor(change);
+            mRoomList.get(chosenRoom).setmHouseFloor(change);
         }
 
     public void setRoomDimensions(int chosenRoom, int chosenFeature, double change) {
         if (chosenFeature == 3) {
-            mList.get(chosenRoom).getmDimensions().setmHeight(change);
-        } else mList.get(chosenRoom).getmDimensions().getmHeight();
+            mRoomList.get(chosenRoom).getmDimensions().setmHeight(change);
+        } else mRoomList.get(chosenRoom).getmDimensions().getmHeight();
         if (chosenFeature == 4) {
-            mList.get(chosenRoom).getmDimensions().setmLength(change);
-        } else mList.get(chosenRoom).getmDimensions().getmLength();
+            mRoomList.get(chosenRoom).getmDimensions().setmLength(change);
+        } else mRoomList.get(chosenRoom).getmDimensions().getmLength();
         if (chosenFeature == 5) {
-            mList.get(chosenRoom).getmDimensions().setmWidth(change);
-        } else mList.get(chosenRoom).getmDimensions().getmWidth();
+            mRoomList.get(chosenRoom).getmDimensions().setmWidth(change);
+        } else mRoomList.get(chosenRoom).getmDimensions().getmWidth();
     }
 }

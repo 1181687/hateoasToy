@@ -54,4 +54,15 @@ public class HouseGridList {
         int index = mList.indexOf(houseGridSelected);
         mList.get(index).attachRoomInTheHouseGridRoomList(roomSelected);
     }
+
+    public boolean checkIfHouseGridListIsEmpty (){
+        return mList.isEmpty();
+    }
+
+    public HouseGrid createAHouseGrid (String name){
+        return new HouseGrid(name);
+    }
+
+    //public boolean checkIfHouseGrid
+
 }
