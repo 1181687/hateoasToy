@@ -31,6 +31,7 @@ public class Main {
                 System.out.println("8-US8-Verificar se área geográfica está inserida noutra área");
                 System.out.println("10-US105-Add a room to the house");
                 System.out.println("11-US108-Edit a room from a list of rooms");
+                System.out.println("12-US130-Create a House Grid");
                 System.out.println("13-US135-Add a power source to a house grid");
                 System.out.println("16-US149-Detach a room from a house grid");
                 System.out.println("0-Sair");
@@ -74,7 +75,10 @@ public class Main {
                     US105UI ui105 = new US105UI(house);
                     ui105.run();
                     break;
-
+                case 12:
+                    US130UI ui130 = new US130UI(gridList);
+                    ui130.run();
+                    break;
                 case 13:
                     US135UI ui135 = new US135UI(gridList,powerSourceMock);
                     ui135.run();
