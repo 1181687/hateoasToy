@@ -24,7 +24,7 @@ public class HouseGridList {
         return mList.get(position);
     }
 
-    public String displayHouseGridNames() {
+    public String getContentOfHouseGrid() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= mList.size(); i++) {
             content.append(i + " - Name: " + mList.get(i - 1).getmHouseGridName());

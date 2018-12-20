@@ -15,7 +15,7 @@ public class US149Controller {
     }
 
     public String getListOfHouseGridsAttachedToHouseGrid() {
-        return mListOfHouseGrids.displayHouseGridNames();
+        return mListOfHouseGrids.getContentOfHouseGrid();
     }
 
     public HouseGrid getHouseGridFromTheList(int position) {
