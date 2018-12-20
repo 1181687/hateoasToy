@@ -36,6 +36,7 @@ public class Main {
                 System.out.println("11-US108-Edit a room from a list of rooms");
                 System.out.println("12-US130-Create a House Grid");
                 System.out.println("13-US135-Add a power source to a house grid");
+                System.out.println("15-US147-Attach a room to a house grid");
                 System.out.println("16-US149-Detach a room from a house grid");
                 System.out.println("0-Sair");
                 opcao = ler.nextInt();
@@ -93,6 +94,10 @@ public class Main {
                 case 11:
                     US108UI ui108 = new US108UI(roomList);
                     ui108.run();
+                    break;
+                case 15:
+                    US147UI ui147 = new US147UI(gridList, roomList);
+                    ui147.run();
                     break;
                 case 16:
                     US149UI ui149 = new US149UI(gridList, roomList);
