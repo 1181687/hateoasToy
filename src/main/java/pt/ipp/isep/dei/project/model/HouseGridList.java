@@ -58,4 +58,11 @@ public class HouseGridList {
     public boolean checkIfHouseGridListIsEmpty (){
         return mList.isEmpty();
     }
+
+    public HouseGrid createAHouseGrid (String name){
+        return new HouseGrid(name);
+    }
+
+    //public boolean checkIfHouseGrid
+
 }
