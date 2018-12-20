@@ -50,6 +50,14 @@ public class HouseGrid {
         this.mMaximumContractedPower = mMaximumContractedPower;
     }
 
+    public boolean addRoomToHouseGrid (Room houseRoom){
+       if (!(mRoomsConnectedToHouseGrid.getmRoomList().contains(houseRoom))){
+           mRoomsConnectedToHouseGrid.getmRoomList().add(houseRoom);
+           return true;
+       }
+            return false;
+    }
+
     public RoomList getmRoomsConnectedToHouseGrid() {
         return mRoomsConnectedToHouseGrid;
     }
@@ -57,14 +65,13 @@ public class HouseGrid {
     /**
      * Method that detaches a room from a house grid. It return a true in case of success
      * and false in the case of a failure.
-     *
      * @param roomToDetach
      * @return
      */
     public boolean detachRoomFromHouseGrid(Room roomToDetach) {
-        for (Room room : this.mRoomsConnectedToHouseGrid.getmList()) {
+        for (Room room : this.mRoomsConnectedToHouseGrid.getmRoomList()) {
             if (room.equals(roomToDetach)) {
-                this.mRoomsConnectedToHouseGrid.getmList().remove(room);
+                this.mRoomsConnectedToHouseGrid.getmRoomList().remove(room);
                 return true;
             }
         }
@@ -77,10 +84,19 @@ public class HouseGrid {
      * @param room Speficied room to attach.
      */
     public void attachRoomInTheHouseGridRoomList(Room room) {
-        mRoomsConnectedToHouseGrid.getmList().add(room);
+        mRoomsConnectedToHouseGrid.getmRoomList().add(room);
     }
 
     public boolean addPowerSourceToHouseGrid(PowerSource newPowerSource) {
         return this.mPowerSourceList.addPowerSourceToList(newPowerSource);
+    }
+
+    /**
+     * Method that attaches a list of existing rooms to a house grid.
+     *
+     * @return a list of existing rooms attached to a house grid.
+     */
+    public String displayRoomsAttachedToHouseGrid () {
+        return this.mRoomsConnectedToHouseGrid.getDisplayRoomList();
     }
 }

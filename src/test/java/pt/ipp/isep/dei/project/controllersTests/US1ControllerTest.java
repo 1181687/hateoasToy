@@ -16,7 +16,7 @@ public class US1ControllerTest {
         String novoTipo = "Cidade";
         US1Controller ctrl = new US1Controller(lista);
         //Act
-        boolean resultado = ctrl.novoTAG(novoTipo);
+        boolean resultado = ctrl.adicionaNovoTipoAreaGeografica(novoTipo);
         //Assert
         assertTrue(resultado);
     }
@@ -30,7 +30,7 @@ public class US1ControllerTest {
         String novoTipo = "Cidade";
         US1Controller ctrl = new US1Controller(lista);
         //Act
-        boolean resultado = ctrl.novoTAG(novoTipo);
+        boolean resultado = ctrl.adicionaNovoTipoAreaGeografica(novoTipo);
         //Assert
         assertFalse(resultado);
     }

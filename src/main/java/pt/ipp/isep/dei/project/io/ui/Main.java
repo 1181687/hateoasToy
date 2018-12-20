@@ -11,8 +11,10 @@ public class Main {
         ListaAG listaAG = new ListaAG();
         RoomList roomList = new RoomList();
         HouseGridList gridList = new HouseGridList();
+        Location location = new Location(0.0, 0.0, 0.0);
+        Address address = new Address("0000", location);
         ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
-        House house= new House(roomList);
+        House house = new House(roomList, gridList, address);
         PowerSourceType powerSourceType = new PowerSourceType("Battery");
         PowerSource powerSourceMock = new PowerSource(powerSourceType,true);
         int opcao = -1;
@@ -29,6 +31,7 @@ public class Main {
                 System.out.println("6-US6-Novo sensor");
                 System.out.println("7-US7-Definir área geográfica inserida noutra área");
                 System.out.println("8-US8-Verificar se área geográfica está inserida noutra área");
+                System.out.println("9-US101-Configure the location of the house");
                 System.out.println("10-US105-Add a room to the house");
                 System.out.println("11-US108-Edit a room from a list of rooms");
                 System.out.println("12-US130-Create a House Grid");
@@ -71,6 +74,10 @@ public class Main {
                     US8UI ui8 = new US8UI(listaAG);
                     ui8.run();
                     break;
+                case 9:
+                    US101UI ui9 = new US101UI(house);
+                    ui9.run();
+                    break;
                 case 10:
                     US105UI ui105 = new US105UI(house);
                     ui105.run();
@@ -87,7 +94,6 @@ public class Main {
                     US108UI ui108 = new US108UI(roomList);
                     ui108.run();
                     break;
-
                 case 16:
                     US149UI ui149 = new US149UI(gridList, roomList);
                     ui149.run();
