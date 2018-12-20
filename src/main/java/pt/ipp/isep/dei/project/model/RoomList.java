@@ -46,14 +46,22 @@ public class RoomList {
     public String getDisplayRoomList() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
-        String displayOfTheRoom = mList.get(0).getRoomDisplay();
         for (int i = 0; i < mList.size(); i++) {
+            String displayOfTheRoom = mList.get(i).getRoomDisplay();
             content.append(numberInTheList + "- ");
             content.append(displayOfTheRoom);
             content.append("\n");
             numberInTheList++;
         }
         return content.toString();
+    }
+
+    public boolean checkIfRoomListIsEmpty(){
+        return mList.isEmpty();
+    }
+
+    public int listSize(){
+        return mList.size();
     }
 
     public String getDisplayOfTheChosenRoom(int position) {

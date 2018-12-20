@@ -23,6 +23,10 @@ public class HouseGrid {
         return mHouseGridName;
     }
 
+    public PowerSourceList getPowerSourceList() {
+        return mPowerSourceList;
+    }
+
     public double getmMaximumContractedPower() {
         return mMaximumContractedPower;
     }
