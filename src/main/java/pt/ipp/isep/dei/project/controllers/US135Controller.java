@@ -15,8 +15,8 @@ public class US135Controller {
         this.mPowerSource = newPowerSource;
     }
 
-    public int getNumberOfHouseGridsInTheHouseGridList (){
-        return mHouseGridList.getmList().size();
+    public boolean checkIfHouseGridListIsEmpty (){
+        return mHouseGridList.checkIfHouseGridListIsEmpty();
     }
 
     public String getHouseGridListContent() {
@@ -28,6 +28,6 @@ public class US135Controller {
     }
 
     public boolean addPowerSourceToHouseGrid(HouseGrid selectedHouseGrid) {
-        return selectedHouseGrid.getPowerSourceList().addPowerSourceToList(mPowerSource);
+        return selectedHouseGrid.addPowerSourceToHouseGrid(mPowerSource);
     }
 }
