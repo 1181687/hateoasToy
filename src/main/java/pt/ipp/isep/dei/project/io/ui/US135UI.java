@@ -16,7 +16,7 @@ public class US135UI {
     }
 
     public void run(){
-        if(mController.getNumberOfHouseGridsInTheHouseGridList()==0){
+        if(mController.checkIfHouseGridListIsEmpty()){
             System.out.println("There are no house grids in your house. Please insert a new house grid."+"\n");
         }
         else {
