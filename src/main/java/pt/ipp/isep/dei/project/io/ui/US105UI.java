@@ -27,11 +27,10 @@ public class US105UI {
         double length = read.nextDouble();
         System.out.println("Write the width of the room");
         double width = read.nextDouble();
-
-        Room newRoom = mctrl.addANewRoom(height,length,width,name,houseFloor);
-
-        mctrl.addRoomToRoomList(newRoom);
-
+/////
+        mctrl.newRoom(height,length,width,name,houseFloor);
+        mctrl.addRoomToRoomList();
+//////
         System.out.println("The new room " + name + " was created with sucess!");
 
         StringBuilder content = new StringBuilder();
