@@ -100,4 +100,26 @@ public class US3ControllerTest {
 
     }
 
+
+    @Test
+    public void testarCriarNovaAG() {
+        //Arrange
+        ListaAG lista = new ListaAG();
+        ListaTiposAG listaTAG = new ListaTiposAG();
+        US3Controller ctrl3 = new US3Controller(lista, listaTAG);
+
+        String nomeAG = "Porto";
+        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
+        Location local = new Location(40.5, 50.5, 100.0);
+        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaGeografica expectedResult = new AreaGeografica(nomeAG, tipo, local, area);
+
+        AreaGeografica result = ctrl3.criarNovaAG("Porto", "Cidade", 40.5,
+                50.5, 100.0, 10, 10);
+        //Act
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
 }
