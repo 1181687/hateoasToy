@@ -62,6 +62,8 @@ public class HouseGrid {
         return mRoomsConnectedToHouseGrid;
     }
 
+
+
     /**
      * Method that detaches a room from a house grid. It return a true in case of success
      * and false in the case of a failure.
@@ -87,7 +89,7 @@ public class HouseGrid {
         mRoomsConnectedToHouseGrid.getmRoomList().add(room);
     }
 
-    public boolean addPowerSourceToHouseGrid(PowerSource newPowerSource) {
+    public boolean addPowerSourceToHouseGrid(PowerSource newPowerSource){
         return this.mPowerSourceList.addPowerSourceToList(newPowerSource);
     }
 
