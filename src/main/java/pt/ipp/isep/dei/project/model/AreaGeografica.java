@@ -10,13 +10,17 @@ public class AreaGeografica {
     private AreaGeografica mAreaInseridaEm;
     private Location mLocation;
     private RectangleArea mRectangleArea;
-    private List<Sensor> mListaSensor = new ArrayList<>();
+    private SensorList mSensorList = new SensorList();
 
     public AreaGeografica(String mNomeAreaGeo, TipoAreaGeo mTipoAreaGeo, Location mLocation, RectangleArea mRectangleArea) {
         this.mNomeAreaGeo = mNomeAreaGeo;
         this.mTipoAreaGeo = mTipoAreaGeo;
         this.mLocation = mLocation;
         this.mRectangleArea = mRectangleArea;
+    }
+
+    public SensorList getmSensorListInTheGeographicArea() {
+        return mSensorList;
     }
 
     @Override
@@ -37,9 +41,6 @@ public class AreaGeografica {
 
     }
 
-    public List<Sensor> getmListaSensor() {
-        return mListaSensor;
-    }
 
     public String getmNomeAreaGeo() {
         return mNomeAreaGeo;
@@ -65,17 +66,10 @@ public class AreaGeografica {
         return this.mLocation.distanciaDuasLocalizacoes(novoAg.getmLocation());
     }
 
-    public boolean adicionarSensorAListaDeSensores(Sensor sensor) {
-        if (!(mListaSensor.contains(sensor))) {
-            mListaSensor.add(sensor);
-            return true;
-        }
-        return false;
-    }
 
     public List<Medicao> getListaDeUltimosRegistosPorTipoDeSensor(TipoSensor tipo) {
         List<Medicao> listaDeUltimosRegistos = new ArrayList<>();
-        for (Sensor sensor : mListaSensor) {
+        for (Sensor sensor : mSensorList.getmSensorList()) {
             if (sensor.listaDeRegistosEVazia()) {
                 break;
             }
