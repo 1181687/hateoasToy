@@ -79,15 +79,15 @@ public class RoomList {
         return content.toString();
     }
 
-    public void setRoomName(int chosenRoom, String change) {
+    public void setRoomNameInList(int chosenRoom, String change) {
         mRoomList.get(chosenRoom).setmName(change);
     }
 
-    public void setRoomFloor(int chosenRoom, int change) {
+    public void setRoomFloorInList(int chosenRoom, int change) {
             mRoomList.get(chosenRoom).setmHouseFloor(change);
         }
 
-    public void setRoomDimensions(int chosenRoom, int chosenFeature, double change) {
+    public void setRoomDimensionsInList(int chosenRoom, int chosenFeature, double change) {
         if (chosenFeature == 3) {
             mRoomList.get(chosenRoom).getmDimensions().setmHeight(change);
         } else mRoomList.get(chosenRoom).getmDimensions().getmHeight();

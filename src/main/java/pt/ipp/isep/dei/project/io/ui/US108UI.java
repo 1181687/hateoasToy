@@ -18,11 +18,14 @@ public class US108UI {
             System.out.println("The list is empty. Please add a room.");
             return;
         }
-        System.out.println("Look at the following list and choose the number of the room you would like to edit.");
+        System.out.println("Look at the following list and choose the number of the room you would like to edit. If you don't want to edit a room, please write down: 0.");
         System.out.println(ctrl.displayOfTheRoomList());
         Scanner read = new Scanner(System.in);
         int positionOfTheChosenRoom = read.nextInt() - 1;
         while (positionOfTheChosenRoom < 0 || positionOfTheChosenRoom > ctrl.sizeOfTheList() - 1) {
+            if (positionOfTheChosenRoom==-1){
+                return;
+            }
             System.out.println("Invalid number. Please choose a number from the list above.");
             positionOfTheChosenRoom = read.nextInt() - 1;
         }
