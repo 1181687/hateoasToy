@@ -69,7 +69,8 @@ class US135ControllerTest {
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         boolean powerSourceTypeIsRechargeable = false;
 
-        PowerSource powerSource = new PowerSource(powerSourceType, powerSourceTypeIsRechargeable);
+        String powerSourceName1 = "Power Source 1";
+        PowerSource powerSource = new PowerSource(powerSourceName1, powerSourceType, powerSourceTypeIsRechargeable);
 
         US135Controller us135Controller = new US135Controller(houseGridList, powerSource);
 
@@ -88,10 +89,11 @@ class US135ControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         houseGridList.getmList().add(houseGrid1);
 
+        String powerSourceName1 = "Power Source 1";
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         boolean powerSourceTypeIsRechargeable = false;
 
-        PowerSource powerSource = new PowerSource(powerSourceType, powerSourceTypeIsRechargeable);
+        PowerSource powerSource = new PowerSource(powerSourceName1, powerSourceType, powerSourceTypeIsRechargeable);
 
         US135Controller us135Controller = new US135Controller(houseGridList, powerSource);
 
