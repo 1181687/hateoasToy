@@ -21,8 +21,9 @@ public class HouseGridTest {
 
         roomsConnectedToHouseGrid.addRoomToRoomList(room1);
         roomsConnectedToHouseGrid.addRoomToRoomList(room2);
+        String houseGridName = "hgname1";
 
-        HouseGrid houseGrid1 = new HouseGrid(maximumContractedPower, roomsConnectedToHouseGrid);
+        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
 
         String expectedResult =
                 "1- Name: Kid's room, House Floor: 1, Dimensions - Height: 5.2, Dimensions - Length: 3.7, Dimensions - Width: 8.5\n" +
