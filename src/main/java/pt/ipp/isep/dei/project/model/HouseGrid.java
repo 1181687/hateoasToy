@@ -30,6 +30,12 @@ public class HouseGrid {
         return (this.mHouseGridName.equals(houseGrid.mHouseGridName));
     }
 
+    public HouseGrid(String HouseGridName, double mMaximumContractedPower, RoomList mRoomsConnectedToHouseGrid) {
+        this.mHouseGridName = HouseGridName;
+        this.mMaximumContractedPower = mMaximumContractedPower;
+        this.mRoomsConnectedToHouseGrid = mRoomsConnectedToHouseGrid;
+    }
+
     public void setmHouseGridName(String mHouseGridName) {
         this.mHouseGridName = mHouseGridName;
     }

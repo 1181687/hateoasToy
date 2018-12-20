@@ -26,14 +26,14 @@ public class US108Controller {
     }
 
     public void changeNameOfTheRoom(int chosenRoom, String change) {
-        mList.setRoomName(chosenRoom, change);
+        mList.setRoomNameInList(chosenRoom, change);
     }
 
     public void changeHouseFloorOfTheRoom(int chosenRoom, int change) {
-        mList.setRoomFloor(chosenRoom, change);
+        mList.setRoomFloorInList(chosenRoom, change);
     }
 
     public void changeDimensionsOfTheRoom(int chosenRoom, int chosenFeature, double change) {
-        mList.setRoomDimensions(chosenRoom, chosenFeature, change);
+        mList.setRoomDimensionsInList(chosenRoom, chosenFeature, change);
     }
 }

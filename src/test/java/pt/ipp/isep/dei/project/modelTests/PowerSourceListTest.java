@@ -11,13 +11,18 @@ public class PowerSourceListTest {
     @Test
     public void testIfPowerSourceIsAddedToThePowerSourceListPositiveTest(){
         //Arrange
+        String powerSourceName1 = "Power Source 1";
+        String powerSourceName2 = "Power Source 2";
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
         boolean isRechargeable1 = true;
-        PowerSource powerSource1 = new PowerSource(powerSourceType1,isRechargeable1);
+        boolean isRechargeable2 = true;
+        PowerSource powerSource1 = new PowerSource(powerSourceName1,powerSourceType1 ,isRechargeable1);
+        PowerSource powerSource2 = new PowerSource(powerSourceName2,powerSourceType1 ,isRechargeable2);
         PowerSourceList powerSourceList = new PowerSourceList();
+        powerSourceList.addPowerSourceToList(powerSource1);
 
         //Act
-        boolean result = powerSourceList.addPowerSourceToList(powerSource1);
+        boolean result = powerSourceList.addPowerSourceToList(powerSource2);
 
         //Assert
         assertTrue(result);
@@ -27,12 +32,14 @@ public class PowerSourceListTest {
     public void testIfPowerSourceIsAddedToThePowerSourceListNegativeTest(){
 
         //Arrange
+        String powerSourceName1 = "Power Source 1";
+        String powerSourceName2 = "Power Source 1";
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
         PowerSourceType powerSourceType2 = new PowerSourceType("Battery");
         boolean isRechargeable1 = true;
         boolean isRechargeable2 = true;
-        PowerSource powerSource1 = new PowerSource(powerSourceType1,isRechargeable1);
-        PowerSource powerSource2 = new PowerSource(powerSourceType2,isRechargeable2);
+        PowerSource powerSource1 = new PowerSource(powerSourceName1, powerSourceType1,isRechargeable1);
+        PowerSource powerSource2 = new PowerSource(powerSourceName2, powerSourceType2,isRechargeable2);
         PowerSourceList powerSourceList = new PowerSourceList();
         powerSourceList.addPowerSourceToList(powerSource1);
 

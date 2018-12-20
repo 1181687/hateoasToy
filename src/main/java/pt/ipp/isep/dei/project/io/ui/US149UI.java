@@ -21,16 +21,20 @@ public class US149UI {
             System.out.println();
         } else {
             System.out.println("Please choose the house grid where the room will be detached.");
-            System.out.println(ctrl.getListContent());
+            System.out.println(ctrl.getListOfHouseGridsAttachedToHouseGrid());
             Scanner ler = new Scanner(System.in);
             int firstOption = ler.nextInt() - 1;
             HouseGrid chosenGrid = ctrl.getHouseGridFromTheList(firstOption);
 
             System.out.println("Please choose the room to be detached from the chosen house grid.");
-            System.out.println(ctrl.getListOfRooms());
+            System.out.println(ctrl.getListOfRoomsInACertainHouseGrid(firstOption));
             int secondOption = ler.nextInt() - 1;
             Room chosenRoom = ctrl.getRoomFromTheListOfRoomByAPosition(secondOption);
-            ctrl.detachRoomFromGridList(chosenGrid, chosenRoom);
+            if (ctrl.detachRoomFromGridList(chosenGrid, chosenRoom)) {
+                System.out.println("The room has been detached from the grid.");
+            } else {
+                System.out.println("Please select a valid room to detach.");
+            }
         }
     }
 
