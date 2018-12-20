@@ -24,7 +24,7 @@ class US149ControllerTest {
         US149Controller ctrl = new US149Controller(houseGridList, listOfRooms);
         String expectedResult = "1 - Name: Main Grid" + "\n";
         //Act
-        String result = ctrl.getListContent();
+        String result = ctrl.getListOfHouseGridsAttachedToHouseGrid();
         //Assert
         assertEquals(result, expectedResult);
     }
@@ -47,7 +47,7 @@ class US149ControllerTest {
         US149Controller ctrl = new US149Controller(houseGridList, listOfRooms);
         String expectedResult = "1 - Name: Main Grid" + "\n" + "2 - Name: Secondary Grid" + "\n";
         //Act
-        String result = ctrl.getListContent();
+        String result = ctrl.getListOfHouseGridsAttachedToHouseGrid();
         //Assert
         assertEquals(result, expectedResult);
     }
@@ -200,5 +200,27 @@ class US149ControllerTest {
 
     @Test
     void getNumberOfGridLists() {
+        //Arrange
+        Dimensions r0Dimensions = new Dimensions(2, 3, 4);
+        Dimensions r1Dimensions = new Dimensions(2, 3, 3);
+        Room r0 = new Room("Bedroom", 3, r0Dimensions);
+        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        Room r2 = new Room("Bathroom", 2, r1Dimensions);
+        RoomList listOfRooms = new RoomList();
+        RoomList listOfRooms1 = new RoomList();
+        listOfRooms.addRoomToRoomList(r0);
+        listOfRooms.addRoomToRoomList(r1);
+        listOfRooms1.addRoomToRoomList(r2);
+        HouseGrid newGrid0 = new HouseGrid("Main Grid", 20, listOfRooms);
+        HouseGrid newGrid1 = new HouseGrid("Secondary Grid", 20, listOfRooms1);
+        HouseGridList houseGridList = new HouseGridList();
+        houseGridList.getmList().add(newGrid0);
+        houseGridList.getmList().add(newGrid1);
+        US149Controller ctrl = new US149Controller(houseGridList, listOfRooms);
+        int expectedResult = 2;
+        //Act
+        int result = ctrl.getNumberOfGridLists();
+        //Assert
+        assertEquals(result, expectedResult);
     }
 }
