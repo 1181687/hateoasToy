@@ -54,12 +54,12 @@ public class ListaAG {
         return area.getmAreaInseridaEm() == null;
     }
 
-    public boolean removerAreaGeoALista(GeographicalArea AG) {
-        return mListaAG.remove(AG);
+    public boolean removerAreaGeoALista(GeographicalArea geoArea) {
+        return mListaAG.remove(geoArea);
     }
 
-    public void adicionarAreaGeoAListaNumaPosicaoEspecifica(int posicao, GeographicalArea AG) {
-        mListaAG.add(posicao, AG);
+    public void adicionarAreaGeoAListaNumaPosicaoEspecifica(int posicao, GeographicalArea geoArea) {
+        mListaAG.add(posicao, geoArea);
     }
 
     public boolean verificarSeAGEstaContidaNoutra(int opcaoSelecionada1, int opcaoSelecionada2) {
