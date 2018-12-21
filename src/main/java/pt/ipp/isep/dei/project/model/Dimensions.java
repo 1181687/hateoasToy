@@ -34,4 +34,29 @@ public class Dimensions {
     public void setmWidth(double mWidth) {
         this.mWidth = mWidth;
     }
+
+    @Override
+    public int hashCode() {
+        return 1;
+    }
+
+    /**
+     * Equals method to determine if two Dimensions are equal.
+     *
+     * @param obj receives an object
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Dimensions)) {
+            return false;
+        }
+        Dimensions dim = (Dimensions) obj;
+        final double delta = 0.0001;
+        return Math.abs((this.mHeight-dim.mHeight))< delta && Math.abs((this.mLength-dim.mLength))< delta
+                && Math.abs((this.mWidth-dim.mWidth))<delta;
+    }
 }

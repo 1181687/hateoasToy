@@ -105,10 +105,9 @@ public class HouseGridListTest {
         String gridName = "Grid";
         HouseGrid grid = gridList.createAHouseGrid(gridName);
         gridList.addHouseGridToTheList(grid);
-        int gridPosition = gridList.getmList().indexOf(grid);
 
         // Act
-        boolean result = gridList.getHouseGridFromASpecificPositionInTheList(gridPosition).checkIfARoomIsAlreadyInTheGrid(room);
+        boolean result = gridList.checkIfARoomIsAlreadyInAHouseGridOfTheList(grid, room);
 
         // Assert
         assertFalse(result);
