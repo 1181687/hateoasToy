@@ -4,11 +4,13 @@ public class Room {
     private String mName;
     private int mHouseFloor;
     private Dimensions mDimensions;
+    private SensorList mSensorList;
 
     public Room(String mName, int mHouseFloor, Dimensions dimensions) {
         this.mName = mName;
         this.mHouseFloor = mHouseFloor;
         this.mDimensions = dimensions;
+        this.mSensorList = new SensorList();
     }
 
     public String getmName() {
@@ -39,5 +41,13 @@ public class Room {
 
     public void setmHouseFloor(int mHouseFloor) {
         this.mHouseFloor = mHouseFloor;
+    }
+
+    public boolean addSensorToTheListOfSensorsInTheRoom (Sensor newSensor) {
+        return this.mSensorList.addSensorToTheListOfSensors(newSensor);
+    }
+
+    public SensorList getSensorList() {
+        return mSensorList;
     }
 }
