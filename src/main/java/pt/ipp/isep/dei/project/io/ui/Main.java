@@ -54,10 +54,11 @@ public class Main {
                         System.out.println("13-US135-Add a power source to a house grid");
                         System.out.println("15-US147-Attach a room to a house grid");
                         System.out.println("16-US149-Detach a room from a house grid");
+                        System.out.println("17-US253-Add a sensor to a room");
                         System.out.println("0-Sair");
                         option = ler.nextInt();
                     }
-                    while ((option < 1 && option != 0) || option > 17);
+                    while ((option < 1 && option != 0) || option > 18);
                     switch (option) {
                         case 1:
                             US1UI ui = new US1UI(listaTiposAG);
@@ -118,6 +119,10 @@ public class Main {
                         case 16:
                             US149UI ui149 = new US149UI(gridList, roomList);
                             ui149.run();
+                            break;
+                        case 17:
+                            US253UI ui253 = new US253UI(house, roomList, listaTiposSensores);
+                            ui253.run();
                             break;
                     }
                 }

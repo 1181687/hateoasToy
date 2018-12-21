@@ -46,4 +46,8 @@ public class ListaTiposSensores {
         return content.toString();
     }
 
+    public boolean checkIfListOfTypeSensorsIsEmpty () {
+        return this.mListaTiposSensores.isEmpty();
+    }
+
 }
