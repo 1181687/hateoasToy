@@ -4,8 +4,6 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.HouseGrid;
 import pt.ipp.isep.dei.project.model.HouseGridList;
 
-import java.util.Scanner;
-
 
 public class US130Controller {
 
@@ -15,12 +13,31 @@ public class US130Controller {
         this.mHouseGridList = houseGridList;
     }
 
-    public HouseGrid createANewHouseGrid (String nameOfHG){
-       return mHouseGridList.createAHouseGrid(nameOfHG);
+    /**
+     * Get method.
+     *
+     * @return mHouseGridList.
+     */
+    public HouseGridList getmHouseGridList() {
+        return mHouseGridList;
     }
 
+    /**
+     * Method that asks the class HouseGridList to create a new house grid.
+     *
+     * @param nameOfHG Name of the grid.
+     * @return New object of the class HouseGrid.
+     */
+    public HouseGrid createANewHouseGrid (String nameOfHG){
+        return mHouseGridList.createAHouseGrid(nameOfHG);
+    }
 
-
-
-
+    /**
+     * Method that aks the list of grids do add a new grid to it.
+     *
+     * @param grid Specified grid.
+     */
+    public void addHouseGridToTheListOfHouseGrids(HouseGrid grid) {
+        mHouseGridList.addHouseGridToTheList(grid);
+    }
 }

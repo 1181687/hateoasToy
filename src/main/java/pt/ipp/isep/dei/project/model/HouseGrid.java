@@ -113,7 +113,7 @@ public class HouseGrid {
      * @param room Room to be used.
      * @return True or false.
      */
-    public boolean checkIfARoomIsntAlreadyInTheGrid(Room room) {
-        return !mRoomsConnectedToHouseGrid.getmRoomList().contains(room);
+    public boolean checkIfARoomIsAlreadyInTheGrid(Room room) {
+        return mRoomsConnectedToHouseGrid.getmRoomList().contains(room);
     }
 }
