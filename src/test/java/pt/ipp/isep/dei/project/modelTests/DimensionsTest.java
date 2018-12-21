@@ -171,6 +171,4 @@ public class DimensionsTest {
         //assert
         assertEquals(expectResult, result, 0.0001);
     }
-
-
 }
