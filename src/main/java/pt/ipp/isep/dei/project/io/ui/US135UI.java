@@ -42,7 +42,7 @@ public class US135UI {
             read.nextLine();
             boolean isRechargeable = mController.isRechargeable(rechargeableOption);
 
-            boolean isPowerSourceAdded = mController.addPowerSourceToHouseGrid(powerSourceName,isRechargeable);
+            boolean isPowerSourceAdded = mController.createAndAddPowerSourceToHouseGrid(powerSourceName,isRechargeable);
 
             if (isPowerSourceAdded) {
                 System.out.println("Success! The Power Source was added to the House Grid");

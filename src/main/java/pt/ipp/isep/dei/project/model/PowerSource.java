@@ -8,6 +8,8 @@ public class PowerSource {
     private double mMaximumAmountOfStorableEnergy;
 
     public PowerSource(String powerSourceName, PowerSourceType powerSourceType, boolean isRechargeable) {
+
+
         this.mPowerSourceType = powerSourceType;
         this.mIsRechargeable = isRechargeable;
         this.mPowerSourceName = powerSourceName;
