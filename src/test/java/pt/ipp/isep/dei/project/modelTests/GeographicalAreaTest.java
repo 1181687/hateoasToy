@@ -109,21 +109,21 @@ class GeographicalAreaTest {
         TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s0);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
         Date dataFuncionamento1 = calendario1.getTime();
         TipoSensor tipoSensor1 = new TipoSensor("Temperatura");
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, tipoSensor1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s1);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
         Date dataFuncionamento2 = calendario2.getTime();
         TipoSensor tipoSensor2 = new TipoSensor("Humidade");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, tipoSensor2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s2);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
         //Instanciar Medicao
         // Sensor0
@@ -196,21 +196,21 @@ class GeographicalAreaTest {
         TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s0);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
         Date dataFuncionamento1 = calendario1.getTime();
         TipoSensor tipoSensor1 = new TipoSensor("Temperatura");
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, tipoSensor1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s1);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
         Date dataFuncionamento2 = calendario2.getTime();
         TipoSensor tipoSensor2 = new TipoSensor("Humidade");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, tipoSensor2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s2);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
         //Instanciar Medicao
         // Sensor0
@@ -282,21 +282,21 @@ class GeographicalAreaTest {
         TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s0);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
         Date dataFuncionamento1 = calendario1.getTime();
         TipoSensor tipoSensor1 = new TipoSensor("Temperatura");
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, tipoSensor1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s1);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
         Date dataFuncionamento2 = calendario2.getTime();
         TipoSensor tipoSensor2 = new TipoSensor("Humidade");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, tipoSensor2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s2);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
         //Instanciar Medicao
         // Sensor0
@@ -365,21 +365,21 @@ class GeographicalAreaTest {
         TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s0);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
         Date dataFuncionamento1 = calendario1.getTime();
         TipoSensor tipoSensor1 = new TipoSensor("Temperatura");
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, tipoSensor1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s1);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
         Date dataFuncionamento2 = calendario2.getTime();
         TipoSensor tipoSensor2 = new TipoSensor("Temperatura");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, tipoSensor2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s2);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
         //Instanciar Medicao
         // Sensor0
@@ -448,21 +448,21 @@ class GeographicalAreaTest {
         TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s0);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
         Date dataFuncionamento1 = calendario1.getTime();
         TipoSensor tipoSensor1 = new TipoSensor("Temperatura");
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, tipoSensor1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s1);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
         Date dataFuncionamento2 = calendario2.getTime();
         TipoSensor tipoSensor2 = new TipoSensor("Humidade");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, tipoSensor2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s2);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
         //Instanciar Medicao
         // Sensor0
@@ -531,21 +531,21 @@ class GeographicalAreaTest {
         TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s0);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
         Date dataFuncionamento1 = calendario1.getTime();
         TipoSensor tipoSensor1 = new TipoSensor("Temperatura");
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, tipoSensor1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s1);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
         Date dataFuncionamento2 = calendario2.getTime();
         TipoSensor tipoSensor2 = new TipoSensor("Humidade");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, tipoSensor2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s2);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
         double expectedResult = Double.NaN;
 
@@ -774,21 +774,21 @@ class GeographicalAreaTest {
         TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
         Location locS0 = new Location(40, -5, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s0);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
         Date dataFuncionamento1 = calendario1.getTime();
         TipoSensor tipoSensor1 = new TipoSensor("Temperatura");
         Location locS1 = new Location(41, -6, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, tipoSensor1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s1);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
         Date dataFuncionamento2 = calendario2.getTime();
         TipoSensor tipoSensor2 = new TipoSensor("Temperatura");
         Location locS2 = new Location(42, -7, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, tipoSensor2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s2);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
         //Instanciar Medicao
         // Sensor0
@@ -868,21 +868,21 @@ class GeographicalAreaTest {
         TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
         Location locS0 = new Location(40, -5, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s0);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
         Date dataFuncionamento1 = calendario1.getTime();
         TipoSensor tipoSensor1 = new TipoSensor("Temperatura");
         Location locS1 = new Location(41, -6, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, tipoSensor1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s1);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
         Date dataFuncionamento2 = calendario2.getTime();
         TipoSensor tipoSensor2 = new TipoSensor("Temperatura");
         Location locS2 = new Location(42, -7, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, tipoSensor2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s2);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
         //Instanciar Medicao
         // Sensor0
@@ -991,7 +991,7 @@ class GeographicalAreaTest {
         Sensor s1 = new Sensor("s1", data, tipo, local);
 
         //Act
-        boolean resultado = ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s1);
+        boolean resultado = ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         //Assert
         assertTrue(resultado);
@@ -1015,7 +1015,7 @@ class GeographicalAreaTest {
         ag1.getmSensorListInTheGeographicArea().getmSensorList().add(s1);
 
         //Act
-        boolean resultado = ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s2);
+        boolean resultado = ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
         //Assert
         assertTrue(resultado);
@@ -1036,10 +1036,10 @@ class GeographicalAreaTest {
         Location local = new Location(45, 45, 45);
         Sensor s1 = new Sensor("s1", data, tipo, local);
         Sensor s2 = new Sensor("s1", data, tipo, local);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s1);
+        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         //Act
-        boolean resultado = ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(s2);
+        boolean resultado = ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
         //Assert
         assertFalse(resultado);

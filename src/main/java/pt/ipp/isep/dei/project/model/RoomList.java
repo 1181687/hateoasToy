@@ -27,8 +27,9 @@ public class RoomList {
     }
 
     /**
-     * Method that adds a new room to the list of rooms
-     * @param room the new room that i want to add
+     * Method that adds a room to the list of rooms
+     *
+     * @param room the room that i want to add
      * @return true if it adds, false if it doesn't add, because it already contains it
      */
     public boolean addRoomToRoomList(Room room) {
@@ -39,9 +40,18 @@ public class RoomList {
         return false;
     }
 
-    public Room newRoom(String name, int housefloor,double height, double length, double width){
+    /**
+     * method that creates a newroom
+     * @param name given name to the new room
+     * @param housefloor given housefloor number to the new room
+     * @param height given height number to the new room
+     * @param length given length number to the new room
+     * @param width given width number to the new room
+     * @return
+     */
+    public Room newRoom(String name, int housefloor, double height, double length, double width){
         Dimensions newDimension = new Dimensions(height,length,width);
-        return new Room(name, housefloor,newDimension);
+        return new Room(name, housefloor, newDimension);
     }
 
     public String getDisplayRoomList() {

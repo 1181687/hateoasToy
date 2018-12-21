@@ -28,4 +28,10 @@ public class Address {
 
     }
 
+    /**
+     * Get the location on the address of the house.
+     */
+    public Location getLocation() {
+        return mLocation;
+    }
 }

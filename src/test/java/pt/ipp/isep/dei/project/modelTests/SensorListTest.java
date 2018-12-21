@@ -23,7 +23,7 @@ class SensorListTest {
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
         //Act
-        boolean result = newList.addSensorToTheListOfSensorsInTheGeographicalArea(s0);
+        boolean result = newList.addSensorToTheListOfSensors(s0);
         //Assert
         assertTrue(result);
     }
@@ -38,7 +38,7 @@ class SensorListTest {
         TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
-        newList.addSensorToTheListOfSensorsInTheGeographicalArea(s0);
+        newList.addSensorToTheListOfSensors(s0);
         List<Sensor> expectedResult = new ArrayList<>();
         expectedResult.add(s0);
         //Act
