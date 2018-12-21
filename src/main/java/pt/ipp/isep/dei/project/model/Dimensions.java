@@ -55,6 +55,8 @@ public class Dimensions {
             return false;
         }
         Dimensions dim = (Dimensions) obj;
-        return this.mHeight==dim.mHeight && this.mLength==dim.mLength && this.mWidth==dim.mWidth;
+        final double delta = 0.0001;
+        return Math.abs((this.mHeight-dim.mHeight))< delta && Math.abs((this.mLength-dim.mLength))< delta
+                && Math.abs((this.mWidth-dim.mWidth))<delta;
     }
 }
