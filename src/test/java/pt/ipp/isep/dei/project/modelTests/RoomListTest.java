@@ -4,25 +4,26 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Dimensions;
 import pt.ipp.isep.dei.project.model.RoomList;
 import pt.ipp.isep.dei.project.model.Room;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class RoomListTest {
 
     @Test
-    public void getDisplayRoomListTest(){
+    public void getDisplayRoomListTest() {
         //arrange
         RoomList rList = new RoomList();
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1);
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
-        Room room2 = new Room (name2,houseFloor2,dimensions2);
+        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimensions2);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -36,7 +37,7 @@ public class RoomListTest {
     }
 
     @Test
-    public void getDisplayRoomListEmptyTest(){
+    public void getDisplayRoomListEmptyTest() {
         //arrange
         RoomList rList = new RoomList();
 
@@ -49,7 +50,7 @@ public class RoomListTest {
     }
 
     @Test
-    public void checkIfRoomListIsEmptyTrue(){
+    public void checkIfRoomListIsEmptyTrue() {
         //arrange
         RoomList rList = new RoomList();
         //act
@@ -59,14 +60,14 @@ public class RoomListTest {
     }
 
     @Test
-    public void checkIfRoomListIsEmptyFalse(){
+    public void checkIfRoomListIsEmptyFalse() {
         //arrange
         RoomList rList = new RoomList();
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1);
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
 
         rList.addRoomToRoomList(room1);
         //act
@@ -76,19 +77,19 @@ public class RoomListTest {
     }
 
     @Test
-    public void getListSize(){
+    public void getListSize() {
         //arrange
         RoomList rList = new RoomList();
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1);
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
-        Room room2 = new Room (name2,houseFloor2,dimensions2);
+        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimensions2);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -101,7 +102,7 @@ public class RoomListTest {
     }
 
     @Test
-    public void getListSizeEmptyList(){
+    public void getListSizeEmptyList() {
         //arrange
         RoomList rList = new RoomList();
 
@@ -110,5 +111,184 @@ public class RoomListTest {
         int result = rList.listSize();
         //assert
         assertEquals(expectResult, result);
+    }
+
+    @Test
+    public void getDisplayOfTheChosenRoomTest() {
+        //arrange
+        RoomList rList = new RoomList();
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
+
+        String name2 = "Bathroom";
+        int houseFloor2 = 1;
+        Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
+        Room room2 = new Room(name2, houseFloor2, dimensions2);
+
+        rList.addRoomToRoomList(room1);
+        rList.addRoomToRoomList(room2);
+
+        String expectedResult = "1 - Name: Kitchen\n2 - House Floor: 0\n3 - Dimensions - Height: 2.0\n4 - Dimensions - Length: 2.0\n5 - Dimensions - Width: 2.0\n";
+
+        //act
+        String result = rList.getDisplayOfTheChosenRoom(0);
+        //assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void setRoomNameInList() {
+        //arrange
+        RoomList rList = new RoomList();
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
+
+        String name2 = "Bathroom";
+        int houseFloor2 = 1;
+        Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
+        Room room2 = new Room(name2, houseFloor2, dimensions2);
+
+        rList.addRoomToRoomList(room1);
+        rList.addRoomToRoomList(room2);
+
+        int chosenRoomPositionInList=1;
+        String nameChange="Living Room";
+        rList.setRoomNameInList(chosenRoomPositionInList,nameChange);
+
+        String expectedResult = "1 - Name: Living Room\n2 - House Floor: 1\n3 - Dimensions - Height: 2.6\n4 - Dimensions - Length: 2.8\n5 - Dimensions - Width: 2.1\n";
+
+        //act
+        String result = rList.getDisplayOfTheChosenRoom(chosenRoomPositionInList);
+        //assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void setHouseFloorInList() {
+        //arrange
+        RoomList rList = new RoomList();
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
+
+        String name2 = "Bathroom";
+        int houseFloor2 = 1;
+        Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
+        Room room2 = new Room(name2, houseFloor2, dimensions2);
+
+        rList.addRoomToRoomList(room1);
+        rList.addRoomToRoomList(room2);
+
+        int chosenRoomPositionInList=0;
+        int houseFloorChange= 3;
+        rList.setRoomFloorInList(chosenRoomPositionInList,houseFloorChange);
+
+        String expectedResult = "1 - Name: Kitchen\n2 - House Floor: 3\n3 - Dimensions - Height: 2.0\n4 - Dimensions - Length: 2.0\n5 - Dimensions - Width: 2.0\n";
+
+        //act
+        String result = rList.getDisplayOfTheChosenRoom(chosenRoomPositionInList);
+        //assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void setRoomHeightInList() {
+        //arrange
+        RoomList rList = new RoomList();
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
+
+        String name2 = "Bathroom";
+        int houseFloor2 = 1;
+        Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
+        Room room2 = new Room(name2, houseFloor2, dimensions2);
+
+        rList.addRoomToRoomList(room1);
+        rList.addRoomToRoomList(room2);
+
+        int chosenRoomPositionInList=0;
+        int positionOfTheChosenFeature=3;
+        double heightChange= 3.0;
+        rList.setRoomDimensionsInList(chosenRoomPositionInList,positionOfTheChosenFeature, heightChange);
+
+        String expectedResult = "1 - Name: Kitchen\n2 - House Floor: 0\n3 - Dimensions - Height: 3.0\n4 - Dimensions - Length: 2.0\n5 - Dimensions - Width: 2.0\n";
+
+        //act
+        String result = rList.getDisplayOfTheChosenRoom(chosenRoomPositionInList);
+        //assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void setRoomLengthInList() {
+        //arrange
+        RoomList rList = new RoomList();
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
+
+        String name2 = "Bathroom";
+        int houseFloor2 = 1;
+        Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
+        Room room2 = new Room(name2, houseFloor2, dimensions2);
+
+        rList.addRoomToRoomList(room1);
+        rList.addRoomToRoomList(room2);
+
+        int chosenRoomPositionInList=0;
+        int positionOfTheChosenFeature=4;
+        double lengthChange= 3.0;
+        rList.setRoomDimensionsInList(chosenRoomPositionInList,positionOfTheChosenFeature, lengthChange);
+
+        String expectedResult = "1 - Name: Kitchen\n2 - House Floor: 0\n3 - Dimensions - Height: 2.0\n4 - Dimensions - Length: 3.0\n5 - Dimensions - Width: 2.0\n";
+
+        //act
+        String result = rList.getDisplayOfTheChosenRoom(chosenRoomPositionInList);
+        //assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void setRoomWidthInList() {
+        //arrange
+        RoomList rList = new RoomList();
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
+
+        String name2 = "Bathroom";
+        int houseFloor2 = 1;
+        Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
+        Room room2 = new Room(name2, houseFloor2, dimensions2);
+
+        rList.addRoomToRoomList(room1);
+        rList.addRoomToRoomList(room2);
+
+        int chosenRoomPositionInList=0;
+        int positionOfTheChosenFeature=5;
+        double widthChange= 3.0;
+        rList.setRoomDimensionsInList(chosenRoomPositionInList,positionOfTheChosenFeature, widthChange);
+
+        String expectedResult = "1 - Name: Kitchen\n2 - House Floor: 0\n3 - Dimensions - Height: 2.0\n4 - Dimensions - Length: 2.0\n5 - Dimensions - Width: 3.0\n";
+
+        //act
+        String result = rList.getDisplayOfTheChosenRoom(chosenRoomPositionInList);
+        //assert
+        assertEquals(expectedResult, result);
     }
 }
