@@ -17,7 +17,7 @@ public class US4UI {
     }
 
     public void run() {
-        System.out.println("Escolha o tipo de àrea geografica que pretende vizualizar");
+        System.out.println("Choose the Geographical Area type you wish to see.");
         List<String> listaDeTiposDeAG = mCtrl.getListaDosTiposDeAG();
         Scanner ler = new Scanner(System.in);
         int opcaoEscolhida = -1;
@@ -35,18 +35,18 @@ public class US4UI {
         List<String> listaDeAGPorTipo = mCtrl.getListaAGPorTipo(tipoEscolhido);
 
         if (listaDeAGPorTipo.isEmpty()) {
-                System.out.println("Não foram encontradas àreas geográficas do tipo escolhido");
+            System.out.println("No Geographical Areas of the chosen type were found.");
             } else {
                 if (listaDeAGPorTipo.size()==1){
-                    System.out.println("A área geográfica encontrada do tipo "+tipoEscolhido+" é:");
+                    System.out.println("The Geographical Area of the type " + tipoEscolhido + " is:");
                 }
                 if (listaDeAGPorTipo.size()>1){
-                System.out.println("As áreas geográficas encontradas do tipo "+tipoEscolhido+" são:");
+                    System.out.println("The Geographical Areas of the type " + tipoEscolhido + " are:");
                 }
                 for (int i = 0; i <listaDeAGPorTipo.size() ; i++) {
                     System.out.println(listaDeAGPorTipo.get(i));
                 }
-                System.out.println("");
+            System.out.println();
             }
         }
 

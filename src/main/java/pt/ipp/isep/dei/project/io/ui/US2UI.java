@@ -14,11 +14,11 @@ public class US2UI {
 
 
     public void run() {
-        System.out.println("Lista de Areas Geográficas existentes:");
+        System.out.println("List of existing geographical areas:");
 
         for (int i = 0; i <ctrl2.getListaTiposDeAG().size() ; i++) {
             System.out.println(ctrl2.getListaTiposDeAG().get(i));
         }
-        System.out.println("");
+        System.out.println();
     }
 }

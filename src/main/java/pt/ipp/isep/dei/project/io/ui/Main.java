@@ -129,7 +129,7 @@ public class Main {
                         System.out.println();
                         System.out.println("1-US600");
                         System.out.println("2-US605");
-                        System.out.println("3-US610");
+                        System.out.println("3-US610- Access the maximum temperature in a room.");
                         System.out.println("4-US620");
                         System.out.println("5-US623");
                         System.out.println("0-Exit");
