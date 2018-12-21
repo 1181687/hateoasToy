@@ -20,7 +20,7 @@ public class US135Controller {
     }
 
     public String getHouseGridListContent() {
-        return mHouseGridList.getContentOfHouseGrid();
+        return mHouseGridList.displayOfTheContentOfTheHouseGridsInTheList();
     }
 
     public HouseGrid getHouseGridFromListByPosition(int position){
