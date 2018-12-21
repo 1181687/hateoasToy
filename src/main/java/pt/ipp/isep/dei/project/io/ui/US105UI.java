@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.US105Controller;
 import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.utils.InputValidator;
+
 import java.util.Scanner;
 
 public class US105UI {
@@ -14,11 +16,16 @@ public class US105UI {
 
     public void run(){
 
-        System.out.println("What is the name of the room you want to add to the house?");
+       // System.out.println("What is the name of the room you want to add to the house?");
         Scanner read = new Scanner(System.in);
-        String name = read.nextLine();
-        System.out.println("Write the number of housefloor's room");
-        int houseFloor = read.nextInt();
+        //String name = read.nextLine();
+        String label1="What is the name of the room you want to add to the house?";
+        String name=InputValidator.getString(label1);
+        //System.out.println("Write the number of housefloor's room");
+        String label2 = "Write the number of housefloor's room";
+        //int houseFloor = read.nextInt();
+        int houseFloor = InputValidator.getIntPos(label2);
+
         System.out.println("Write the height of the room");
         double height = read.nextDouble();
         System.out.println("Write the length of the room");
