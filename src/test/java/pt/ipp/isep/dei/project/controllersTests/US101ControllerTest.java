@@ -31,11 +31,13 @@ public class US101ControllerTest {
         Address newAddress = new Address(zipCodeNewAddress, localNewAddress);
 
         ctrl.defineNewAddress(zipCodeNewAddress, latitudeNewAddress, longitudeNewAddress, altitudeNewAddress);
+        ctrl.setAddressToTheHouse();
 
         //Act
-        boolean result = ctrl.getmAddress().equals(newAddress);
+        boolean result = ctrl.getmHouse().getmAddress().equals(newAddress);
 
         //Assert
         assertTrue(result);
     }
+
 }

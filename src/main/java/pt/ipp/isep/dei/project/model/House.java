@@ -17,6 +17,10 @@ public class House {
         this.mAddress = mAddress;
     }
 
+    public Address getmAddress() {
+        return mAddress;
+    }
+
     /**
      * @param mZipCode
      * @param mLatitude
