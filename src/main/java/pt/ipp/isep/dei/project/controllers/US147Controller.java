@@ -15,11 +15,20 @@ public class US147Controller {
     }
 
     /**
+     * Method that checks if the house grid's list is empty.
+     *
+     * @return True or false.
+     */
+    public boolean checkIfHouseGridListIsEmpty() {
+        return mListOfHouseGrids.checkIfHouseGridListIsEmpty();
+    }
+
+    /**
      * Method that asks for the list of house grids from the class HouseGridList.
      * @return List of house grids.
      */
     public String listAllTheHouseGridsInTheList() {
-        return mListOfHouseGrids.getContentOfHouseGrid();
+        return mListOfHouseGrids.displayOfTheContentOfTheHouseGridsInTheList();
     }
 
     /**
@@ -50,13 +59,12 @@ public class US147Controller {
 
     /**
      * Method that asks if the room isn't already in the chosen grid.
-     *
      * @param chosenGrid Specific house grid to search throughout the list of grids.
      * @param chosenRoom Specific room to search throughout the list of room of the grid.
      * @return True or false.
      */
-    public boolean checkIfTheChosenRoomIsntAlreadyInTheChosenGrid(HouseGrid chosenGrid, Room chosenRoom) {
-        return mListOfHouseGrids.checkIfARoomIsntAlreadyInAHouseGridOfTheList(chosenGrid, chosenRoom);
+    public boolean checkIfTheChosenRoomIsAlreadyInTheChosenGrid(HouseGrid chosenGrid, Room chosenRoom) {
+        return mListOfHouseGrids.checkIfARoomIsAlreadyInAHouseGridOfTheList(chosenGrid, chosenRoom);
     }
 
     /**

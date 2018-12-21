@@ -11,7 +11,6 @@ public class RoomList {
 
     /**
      * Get method.
-     *
      * @return mRoomList.
      */
     public List<Room> getmRoomList() {
@@ -26,7 +25,6 @@ public class RoomList {
     public Room getRoomFromASpecificPositionInTheList(int position) {
         return mRoomList.get(position);
     }
-
 
     /**
      * Method that adds a new room to the list of rooms
