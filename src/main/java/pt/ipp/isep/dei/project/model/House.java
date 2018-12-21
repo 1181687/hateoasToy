@@ -17,6 +17,10 @@ public class House {
         this.mAddress = mAddress;
     }
 
+    public Address getmAddress() {
+        return mAddress;
+    }
+
     /**
      * @param mZipCode
      * @param mLatitude
@@ -29,12 +33,15 @@ public class House {
         return new Address(mZipCode, location);
     }
 
-
-    public House(RoomList RoomList) {
-        this.mRoomList = RoomList;
-    }
-
+    /**
+     * method that adds a room to the house's roomlist
+     * @param room given room we pretend to add
+     * @return true if adds, false if don't
+     */
     public boolean addRoomToHouse(Room room) {
+        if (room == null) {
+            return false;
+        }
         return this.mRoomList.addRoomToRoomList(room);
     }
 

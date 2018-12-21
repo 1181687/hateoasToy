@@ -43,6 +43,30 @@ public class Room {
         this.mHouseFloor = mHouseFloor;
     }
 
+    @Override
+    public int hashCode() {
+        return 1;
+    }
+
+    /**
+     * Equals method to determine if two Rooms are equal.
+     * They are equals if all atributtes are equal.
+     * @param obj receives an object
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Room)) {
+            return false;
+        }
+        Room roomOne = (Room) obj;
+        return this.mName.equals(roomOne.mName) && this.mHouseFloor == roomOne.mHouseFloor
+                && this.mDimensions.equals(roomOne.mDimensions);
+    }
+
     public boolean addSensorToTheListOfSensorsInTheRoom (Sensor newSensor) {
         return this.mSensorList.addSensorToTheListOfSensors(newSensor);
     }

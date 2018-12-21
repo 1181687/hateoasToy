@@ -11,8 +11,8 @@ public class US101Controller {
         this.mHouse = house;
     }
 
-    public Address getmAddress() {
-        return mAddress;
+    public House getmHouse() {
+        return mHouse;
     }
 
     public void defineNewAddress(String zipCode, double latitude, double longitude, double altitude) {

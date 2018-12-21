@@ -111,4 +111,23 @@ public class RoomListTest {
         //assert
         assertEquals(expectResult, result);
     }
+
+    @Test
+    public void testNewRoom() {
+        //arrange
+        RoomList list = new RoomList();
+        Dimensions dim = new Dimensions(3.5, 6.5, 7.5);
+        Room room1 = new Room("Room1", 2, dim);
+        Room room2 = list.newRoom("Room1", 2, 3.5, 6.5, 7.5);
+
+        //act
+        boolean result = room1.equals(room2);
+
+        //assert
+        assertEquals(true,result);
+    }
+
+
+
+
 }

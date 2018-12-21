@@ -83,8 +83,8 @@ class US149ControllerTest {
         Room r0 = new Room("Bedroom",3,r0Dimensions);
         Room r1 = new Room("Living Room",2,r1Dimensions);
         RoomList listOfRooms = new RoomList();
-        listOfRooms.addRoomToRoomList(r0);
-        listOfRooms.addRoomToRoomList(r1);
+        listOfRooms.addRoomToHouse(r0);
+        listOfRooms.addRoomToHouse(r1);
         HouseGrid newGrid0 = new HouseGrid("Main Grid",20,listOfRooms);
         HouseGrid newGrid1 = new HouseGrid("Secondary Grid",20,listOfRooms);
         HouseGridList houseGridList = new HouseGridList();
