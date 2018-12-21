@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.US101Controller;
 import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.utils.InputValidator;
 
 import java.util.Scanner;
 
@@ -18,19 +19,13 @@ public class US101UI {
         System.out.println("Introduce the zip code of the new location.");
         Scanner ler = new Scanner(System.in);
         String zipCode = ler.nextLine();
-        System.out.println("Introduce the latitude of the new location (valid numbers between -90 and 90).");
-        double latitude = ler.nextDouble();
-        while (latitude < -90 || latitude > 90) {
-            System.out.println("That value is out of bounds (-90 e 90). Introduce a new value of latitude).");
-            latitude = ler.nextDouble();
-        }
+        String label1 = "Introduce the latitude of the new location (valid numbers between -90 and 90).";
+        double latitude = InputValidator.getDoubleRange(label1, -90, 90);
 
-        System.out.println("Introduce the longitude of the new location (valid numbers between -180 and 180).");
-        double longitude = ler.nextDouble();
-        while (longitude < -180 || longitude > 180) {
-            System.out.println("That value is out of bounds (-180 e 180). Introduce a new value of longitude).");
-            longitude = ler.nextDouble();
-        }
+
+        String label2 = "Introduce the longitude of the new location (valid numbers between -180 and 180).";
+        double longitude = InputValidator.getDoubleRange(label2, -180, 180);
+
 
         System.out.println("Introduce the altitude of the new location.");
         Double altitude = ler.nextDouble();
