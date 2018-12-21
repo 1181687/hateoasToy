@@ -1,21 +1,22 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.HouseGrid;
-import pt.ipp.isep.dei.project.model.HouseGridList;
-import pt.ipp.isep.dei.project.model.PowerSource;
+import pt.ipp.isep.dei.project.model.*;
 
 public class US135Controller {
 
     private HouseGridList mHouseGridList;
     private PowerSource mPowerSource;
+    private PowerSourceTypeList mPowerSourceTypeList;
+    private HouseGrid mSelectedHouseGrid;
+    private PowerSourceType mSelectedPowerSourceType;
 
 
-    public US135Controller(HouseGridList houseGridList, PowerSource newPowerSource) {
+    public US135Controller(HouseGridList houseGridList, PowerSourceTypeList powerSourceTypeList) {
         this.mHouseGridList = houseGridList;
-        this.mPowerSource = newPowerSource;
+        this.mPowerSourceTypeList = powerSourceTypeList;
     }
 
-    public boolean checkIfHouseGridListIsEmpty (){
+    public boolean checkIfHouseGridListIsEmpty() {
         return mHouseGridList.checkIfHouseGridListIsEmpty();
     }
 
@@ -23,11 +24,33 @@ public class US135Controller {
         return mHouseGridList.displayOfTheContentOfTheHouseGridsInTheList();
     }
 
-    public HouseGrid getHouseGridFromListByPosition(int position){
-        return this.mHouseGridList.getHouseGridFromASpecificPositionInTheList(position);
+    public void getHouseGridFromListByPosition(int position) {
+        this.mSelectedHouseGrid = this.mHouseGridList.getHouseGridFromASpecificPositionInTheList(position);
     }
 
-    public boolean addPowerSourceToHouseGrid(HouseGrid selectedHouseGrid) {
-        return selectedHouseGrid.addPowerSourceToHouseGrid(mPowerSource);
+    public boolean addPowerSourceToHouseGrid(String name, boolean isRechargeable) {
+        mPowerSource = this.mSelectedHouseGrid.getPowerSourceList().createNewPowerSource(name, this.mSelectedPowerSourceType, isRechargeable);
+        return this.mSelectedHouseGrid.addPowerSourceToHouseGrid(mPowerSource);
     }
+
+    public String displayPowerSourceTypeList() {
+        return mPowerSourceTypeList.displayPowerSourceTypeList();
+    }
+
+    public void getPowerSourceTypeFromListByPosition(int position) {
+        this.mSelectedPowerSourceType = this.mPowerSourceTypeList.getPowerSourceTypeFromASpecificPositionInTheList(position);
+    }
+
+    public String chooseRechargeableOption() {
+
+        return mSelectedHouseGrid.getPowerSourceList().chooseRechargeableOption();
+    }
+
+    public boolean isRechargeable(int opcao) {
+        if (opcao == 1) {
+            return true;
+        }
+        return false;
+    }
+
 }
