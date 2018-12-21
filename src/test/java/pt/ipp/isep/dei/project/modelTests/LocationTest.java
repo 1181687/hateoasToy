@@ -240,4 +240,5 @@ public class LocationTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+
 }

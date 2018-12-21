@@ -15,8 +15,12 @@ public class Main {
         Address address = new Address("0000", location);
         ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
         House house = new House(roomList, gridList, address);
-        PowerSourceType powerSourceType = new PowerSourceType("Battery");
-        PowerSource powerSourceMock = new PowerSource(powerSourceType,true);
+        PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
+        PowerSourceType powerSourceType2 = new PowerSourceType("Public electric grid");
+        PowerSourceTypeList powerSourceTypeList=new PowerSourceTypeList();
+        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType1);
+        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType2);
+
         int opcao = -1;
         Scanner ler = new Scanner(System.in);
         while (opcao != 0) {
@@ -88,7 +92,7 @@ public class Main {
                     ui130.run();
                     break;
                 case 13:
-                    US135UI ui135 = new US135UI(gridList,powerSourceMock);
+                    US135UI ui135 = new US135UI(gridList,powerSourceTypeList);
                     ui135.run();
                     break;
                 case 11:

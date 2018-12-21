@@ -18,6 +18,7 @@ public class US130UI {
         Scanner read = new Scanner(System.in);
         String nameHG = read.nextLine();
         HouseGrid houseGridCreated = mController.createANewHouseGrid(nameHG);
+        mController.addHouseGridToTheListOfHouseGrids(houseGridCreated);
         System.out.println("Your House Grid was succesfully created! \n" );
     }
 

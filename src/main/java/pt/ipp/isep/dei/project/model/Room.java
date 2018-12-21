@@ -25,11 +25,11 @@ public class Room {
 
     public String getRoomDisplay() {
         StringBuilder content = new StringBuilder();
-            content.append("Name: " + getmName());
-            content.append(", House Floor: " + getmHouseFloor());
-            content.append(", Dimensions - Height: " + getmDimensions().getmHeight());
-            content.append(", Dimensions - Length: " + getmDimensions().getmLength());
-            content.append(", Dimensions - Width: " + getmDimensions().getmWidth());
+        content.append("Name: " + getmName());
+        content.append(", House Floor: " + getmHouseFloor());
+        content.append(", Dimensions - Height: " + getmDimensions().getmHeight());
+        content.append(", Dimensions - Length: " + getmDimensions().getmLength());
+        content.append(", Dimensions - Width: " + getmDimensions().getmWidth());
         return content.toString();
     }
 

@@ -9,12 +9,22 @@ public class Address {
         this.mLocation = mLocation;
     }
 
-    public void setmZipCode(String mZipCode) {
-        this.mZipCode = mZipCode;
+    @Override
+    public int hashCode() {
+        return 1;
     }
 
-    public void setmLocation(Location mLocation) {
-        this.mLocation = mLocation;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Address)) {
+            return false;
+        }
+        Address address = (Address) obj;
+        return this.mZipCode.equals(address.mZipCode) && this.mLocation.equals(address.mLocation);
+
     }
 
 }

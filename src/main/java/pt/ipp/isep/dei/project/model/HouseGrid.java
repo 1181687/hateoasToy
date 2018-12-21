@@ -88,7 +88,6 @@ public class HouseGrid {
 
     /**
      * Method that attaches a room in the house grid's room list.
-     *
      * @param room Speficied room to attach.
      */
     public void attachRoomInTheHouseGridRoomList(Room room) {
@@ -101,10 +100,20 @@ public class HouseGrid {
 
     /**
      * Method that attaches a list of existing rooms to a house grid.
-     *
      * @return a list of existing rooms attached to a house grid.
      */
     public String displayRoomsAttachedToHouseGrid () {
         return this.mRoomsConnectedToHouseGrid.getDisplayRoomList();
+    }
+
+
+    /**
+     * Method that checks if a room isn't already in the grid.
+     *
+     * @param room Room to be used.
+     * @return True or false.
+     */
+    public boolean checkIfARoomIsAlreadyInTheGrid(Room room) {
+        return mRoomsConnectedToHouseGrid.getmRoomList().contains(room);
     }
 }

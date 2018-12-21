@@ -13,47 +13,25 @@ import static org.junit.jupiter.api.Assertions.*;
 class US6ControllerTest {
 
     @Test
-    public void testarTipoSensorPorPosicao () {
-        // Arrange
-        String tipo1 = "Humidade";
-        String tipo2 = "Temperatura";
-        TipoSensor tipoSensor1 = new TipoSensor(tipo1);
-        TipoSensor tipoSensor2 = new TipoSensor(tipo2);
-        ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
-        listaTiposSensores.adicionarTipoSensorALista(tipoSensor1);
-        listaTiposSensores.adicionarTipoSensorALista(tipoSensor2);
-        ListaAG listaAreasGeograficas = new ListaAG();
-
-        int posicao = 0;
-        US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
-
-        // Act
-        TipoSensor resultado = ctrl6.getTipoSensorPorPosicao(posicao);
-
-        // Assert
-        assertEquals(tipoSensor1, resultado);
-    }
-
-    @Test
     public void testarNomeAreaGeograficaPorIndicePrimeiro () {
 
         String nomeAG1 = "Porto";
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Espinho";
         TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local2);
-        AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG3 = "Ancora";
         TipoAreaGeo tipo3 = new TipoAreaGeo("Cidade");
         Location local3 = new Location(41.1496, -8.6109, 97);
         RectangleArea area3 = new RectangleArea(10, 10, local3);
-        AreaGeografica ag3 = new AreaGeografica(nomeAG3, tipo3, local3, area3);
+        GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
         ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
         ListaAG listaAreasGeograficas = new ListaAG();
@@ -80,19 +58,19 @@ class US6ControllerTest {
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Espinho";
         TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local2);
-        AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG3 = "Ancora";
         TipoAreaGeo tipo3 = new TipoAreaGeo("Cidade");
         Location local3 = new Location(41.1496, -8.6109, 97);
         RectangleArea area3 = new RectangleArea(10, 10, local3);
-        AreaGeografica ag3 = new AreaGeografica(nomeAG3, tipo3, local3, area3);
+        GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
         ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
         ListaAG listaAreasGeograficas = new ListaAG();
@@ -120,7 +98,7 @@ class US6ControllerTest {
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
         ListaAG listaAreasGeograficas = new ListaAG();
@@ -139,102 +117,6 @@ class US6ControllerTest {
     }
 
     @Test
-    public void testeGetAreaGeograficaNaListaPorPosicaoPrimeira () {
-
-        // Arrange
-        String nomeAG1 = "Espinho";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
-
-        String nomeAG2 = "Ancora";
-        TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
-        Location local2 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area2 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
-
-        ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
-        ListaAG listaAreasGeograficas = new ListaAG();
-
-        listaAreasGeograficas.adicionarAreaGeoALista(ag1);
-        listaAreasGeograficas.adicionarAreaGeoALista(ag2);
-
-        int posicao = 0;
-        US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
-
-        // Act
-        AreaGeografica resultado = ctrl6.getAreaGeograficaNaListaPorPosicao(posicao);
-
-        // Assert
-        assertEquals(ag1, resultado);
-    }
-
-    @Test
-    public void testeGetAreaGeograficaNaListaPorPosicaoUltima () {
-
-        // Arrange
-        String nomeAG1 = "Espinho";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
-
-        String nomeAG2 = "Ancora";
-        TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
-        Location local2 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area2 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
-
-        String nomeAG3 = "Porto";
-        TipoAreaGeo tipo3 = new TipoAreaGeo("Cidade");
-        Location local3 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area3 = new RectangleArea(10, 10, local3);
-        AreaGeografica ag3 = new AreaGeografica(nomeAG3, tipo3, local3, area3);
-
-        ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
-        ListaAG listaAreasGeograficas = new ListaAG();
-
-        listaAreasGeograficas.adicionarAreaGeoALista(ag1);
-        listaAreasGeograficas.adicionarAreaGeoALista(ag2);
-        listaAreasGeograficas.adicionarAreaGeoALista(ag3);
-
-        int posicao = 2;
-        US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
-
-        // Act
-        AreaGeografica resultado = ctrl6.getAreaGeograficaNaListaPorPosicao(posicao);
-
-        // Assert
-        assertEquals(ag3, resultado);
-    }
-
-    @Test
-    public void testeGetAreaGeograficaNaListaPorPosicaoApenasUma () {
-
-        // Arrange
-        String nomeAG1 = "Espinho";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
-
-        ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
-        ListaAG listaAreasGeograficas = new ListaAG();
-
-        listaAreasGeograficas.adicionarAreaGeoALista(ag1);
-
-        int posicao = 0;
-        US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
-
-        // Act
-        AreaGeografica resultado = ctrl6.getAreaGeograficaNaListaPorPosicao(posicao);
-
-        // Assert
-        assertEquals(ag1, resultado);
-    }
-
-    @Test
     public void testarNumeroElementosDaListaAreaGeografica () {
 
         // Arrange
@@ -242,13 +124,13 @@ class US6ControllerTest {
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Ancora";
         TipoAreaGeo tipo2 = new TipoAreaGeo("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag2 = new AreaGeografica(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
         ListaAG listaAreasGeograficas = new ListaAG();
@@ -390,114 +272,4 @@ class US6ControllerTest {
         assertEquals(expectedResult, resultado);
     }
 
-    @Test
-    public void testarAdicionarSensorAAreaGeografica () {
-
-        String nomeAG = "Porto";
-        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
-        Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10,local);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
-
-        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
-        TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
-        Location locS0 = new Location(45, -5, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
-
-        ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
-        ListaAG listaAreasGeograficas = new ListaAG();
-
-        listaAreasGeograficas.adicionarAreaGeoALista(ag1);
-
-        US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
-
-        //Act
-        boolean result = ctrl6.adicionarSensorAAreaGeografica(s0, ag1);
-        //Assert
-        assertTrue(result);
-    }
-
-    @Test
-    public void testarAdicionarSensorQueJaExisteAAreaGeografica () {
-
-        String nomeAG = "Porto";
-        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
-        Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10,local);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG, tipo, local, area);
-
-        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
-        TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
-        Location locS0 = new Location(45, -5, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
-
-        ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
-        ListaAG listaAreasGeograficas = new ListaAG();
-
-        listaAreasGeograficas.adicionarAreaGeoALista(ag1);
-
-        US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
-        ctrl6.adicionarSensorAAreaGeografica(s0, ag1);
-
-        //Act
-        boolean result = ctrl6.adicionarSensorAAreaGeografica(s0, ag1);
-        //Assert
-        assertFalse(result);
-    }
-
-    @Test
-    void testarNovaLocation () {
-        //Arrange
-        String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
-
-        double mLatitude = 40.487;
-        double mLongitude = -9;
-        double mAltitude = 98;
-        Location local2 = new Location(mLatitude, mLongitude, mAltitude);
-
-        ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
-        ListaAG listaAreasGeograficas = new ListaAG();
-        listaAreasGeograficas.adicionarAreaGeoALista(ag1);
-
-        US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
-        Location expectedResult = local2;
-
-        //Act
-        Location result = ctrl6.criarNovaLocalizacao(mLatitude, mLongitude, mAltitude, ag1);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    void testarNovoSensor() {
-        //Arrange
-        String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
-        AreaGeografica ag1 = new AreaGeografica(nomeAG1, tipo1, local1, area1);
-
-        String nomeSensor= "A456";
-        TipoSensor tipoSensor2 = new TipoSensor("Temperatura");
-        Location locS2 = new Location(41.5478, -8.5458, 97);
-        Sensor s2 = new Sensor(nomeSensor, tipoSensor2, locS2);
-
-        ListaTiposSensores listaTiposSensores = new ListaTiposSensores();
-        ListaAG listaAreasGeograficas = new ListaAG();
-        listaAreasGeograficas.adicionarAreaGeoALista(ag1);
-
-        US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
-        Sensor expectedResult = s2;
-        //Act
-        Sensor result = ctrl6.criarNovoSensor(nomeSensor,tipoSensor2,locS2, ag1);
-        //Assert
-        assertEquals(expectedResult, result);
-    }
 }

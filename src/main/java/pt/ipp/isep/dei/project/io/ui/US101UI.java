@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.US101Controller;
-import pt.ipp.isep.dei.project.model.Address;
 import pt.ipp.isep.dei.project.model.House;
 
 import java.util.Scanner;
@@ -36,8 +35,8 @@ public class US101UI {
         System.out.println("Introduce the altitude of the new location");
         Double altitude = ler.nextDouble();
 
-        Address newAddress = ctrl.defineNewAddress(zipCode, latitude, longitude, altitude);
-        ctrl.addTheAddressToTheHouse(newAddress);
+        ctrl.defineNewAddress(zipCode, latitude, longitude, altitude);
+        ctrl.setAddressToTheHouse();
         System.out.println("Success!");
     }
 }

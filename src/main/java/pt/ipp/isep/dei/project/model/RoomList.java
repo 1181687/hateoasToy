@@ -9,20 +9,23 @@ public class RoomList {
     public RoomList() {
     }
 
+    /**
+     * Get method.
+     * @return mRoomList.
+     */
     public List<Room> getmRoomList() {
         return mRoomList;
     }
 
     /**
      * Method that get the room in a specific position in the list.
-     *
      * @param position Specifies the position of the room in the list.
      * @return The respective room.
      */
     public Room getRoomFromASpecificPositionInTheList(int position) {
         return mRoomList.get(position);
     }
-//////////////////////////
+
     /**
      * Method that adds a room to the list of rooms
      *
@@ -50,7 +53,7 @@ public class RoomList {
         Dimensions newDimension = new Dimensions(height,length,width);
         return new Room(name, housefloor, newDimension);
     }
-////////////////////////////////////////////////////////////////////////////
+
     public String getDisplayRoomList() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
