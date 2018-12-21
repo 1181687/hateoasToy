@@ -1,9 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.US135Controller;
-import pt.ipp.isep.dei.project.model.HouseGrid;
 import pt.ipp.isep.dei.project.model.HouseGridList;
-import pt.ipp.isep.dei.project.model.PowerSourceType;
+import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
 
 import java.util.Scanner;
 
@@ -11,8 +10,8 @@ public class US135UI {
 
     private US135Controller mController;
 
-    public US135UI(HouseGridList houseGridList) {
-        this.mController = new US135Controller(houseGridList);
+    public US135UI(HouseGridList houseGridList, PowerSourceTypeList powerSourceTypeList) {
+        this.mController = new US135Controller(houseGridList,powerSourceTypeList);
     }
 
     public void run(){
@@ -26,7 +25,7 @@ public class US135UI {
             System.out.println(mController.getHouseGridListContent());
             int positionOfHouseGrid = read.nextInt() - 1;
             read.nextLine();
-            HouseGrid selectedHouseGrid = mController.getHouseGridFromListByPosition(positionOfHouseGrid);
+            mController.getHouseGridFromListByPosition(positionOfHouseGrid);
 
             System.out.println("Please insert the name of the new power source");
             String powerSourceName = read.nextLine();
@@ -35,7 +34,7 @@ public class US135UI {
             System.out.println(mController.displayPowerSourceTypeList());
             int positionOfPowerSource = read.nextInt()-1;
             read.nextLine();
-            PowerSourceType powerSourceType = mController.getPowerSourceTypeFromListByPosition(positionOfPowerSource);
+            mController.getPowerSourceTypeFromListByPosition(positionOfPowerSource);
 
             System.out.println("Is the power source rechargeable?");
             System.out.println(mController.chooseRechargeableOption());
@@ -43,7 +42,7 @@ public class US135UI {
             read.nextLine();
             boolean isRechargeable = mController.isRechargeable(rechargeableOption);
 
-            boolean isPowerSourceAdded = mController.addPowerSourceToHouseGrid(selectedHouseGrid,powerSourceName,powerSourceType,isRechargeable);
+            boolean isPowerSourceAdded = mController.addPowerSourceToHouseGrid(powerSourceName,isRechargeable);
 
             if (isPowerSourceAdded) {
                 System.out.println("Success! The Power Source was added to the House Grid");

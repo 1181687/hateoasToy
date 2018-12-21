@@ -22,5 +22,14 @@ public class PowerSourceList {
         return false;
     }
 
+    public String chooseRechargeableOption() {
 
+        StringBuilder content = new StringBuilder();
+        content.append("1 - Yes");
+        content.append("\n");
+        content.append("2 - No");
+        content.append("\n");
+
+        return content.toString();
+    }
 }
