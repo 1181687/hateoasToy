@@ -25,7 +25,7 @@ public class US101UI {
             latitude = ler.nextDouble();
         }
 
-        System.out.println("Introduce the latitude of the new location (valid numbers between -180 and 180).");
+        System.out.println("Introduce the longitude of the new location (valid numbers between -180 and 180).");
         double longitude = ler.nextDouble();
         while (longitude < -180 || longitude > 180) {
             System.out.println("That value is out of bounds (-180 e 180). Introduce a new value of longitude).");
