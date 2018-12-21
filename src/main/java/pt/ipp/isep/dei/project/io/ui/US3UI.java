@@ -29,14 +29,14 @@ public class US3UI {
         System.out.println("Introduce the latitude of the location of the Geographical Area (valid values between -90 and 90)");
         double latitude = ler.nextDouble();
         while (latitude < -90 || latitude > 90) {
-            System.out.println("That value is out of bounds (-90 e 90). Introduce a new latitude value).");
+            System.out.println("That value is out of bounds (-90 and 90). Introduce a new latitude value).");
             latitude = ler.nextDouble();
         }
 
         System.out.println("Introduce the longitude of the location of the Geographical Area(valid numbers between -180 and 180).");
         double longitude = ler.nextDouble();
         while (longitude < -180 || longitude > 180) {
-            System.out.println("That value is out of bounds (-180 e 180). Introduce a new longitude value).");
+            System.out.println("That value is out of bounds (-180 and 180). Introduce a new longitude value).");
             longitude = ler.nextDouble();
         }
 
