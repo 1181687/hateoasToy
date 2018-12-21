@@ -75,4 +75,8 @@ public class US253Controller {
     public boolean checkIfRoomListIsEmpty () {
         return mRoomList.checkIfRoomListIsEmpty();
     }
+
+    public boolean checkIfTheListOfSensorTypeIsEmpty () {
+        return mListSensorsType.checkIfListOfTypeSensorsIsEmpty();
+    }
 }

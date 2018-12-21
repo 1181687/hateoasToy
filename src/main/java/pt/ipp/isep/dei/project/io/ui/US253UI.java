@@ -21,10 +21,12 @@ public class US253UI {
 
         if (mUS253Controller.checkIfRoomListIsEmpty()) {
             System.out.println("There are no rooms in the house. Please create a room");
+        } else if (mUS253Controller.checkIfTheListOfSensorTypeIsEmpty()) {
+            System.out.println("There are no sensor types created. Please create one.");
         } else {
             System.out.println("To which room do you want to add a sensor?");
             System.out.println(mUS253Controller.displayRoomsInTheHouse());
-            int positionOfTheRoom = read.nextInt() -1;
+            int positionOfTheRoom = read.nextInt() - 1;
             read.nextLine();
             mUS253Controller.getRoomByIndex(positionOfTheRoom);
 
@@ -33,13 +35,18 @@ public class US253UI {
 
             System.out.println("Please, select a sensor type");
             System.out.println(mUS253Controller.displayListOfSensorsType());
-            int positionOfTheSensorType = read.nextInt() -1;
+            int positionOfTheSensorType = read.nextInt() - 1;
             read.nextLine();
             mUS253Controller.getSensorTypeByIndex(positionOfTheSensorType);
 
             mUS253Controller.getLocationOfTheHouse();
 
-            mUS253Controller.createAndAddSensorToTheList(nameOfSensor);
+            if (mUS253Controller.createAndAddSensorToTheList(nameOfSensor)) {
+                System.out.println("A sensor was added to the room.");
+            } else {
+                System.out.println("Sensor was not created.");
+            }
+
         }
     }
 }

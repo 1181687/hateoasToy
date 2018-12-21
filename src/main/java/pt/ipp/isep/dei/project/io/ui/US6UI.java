@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.US6Controller;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.ListaAG;
+import pt.ipp.isep.dei.project.model.ListaTiposSensores;
 
 import java.util.Scanner;
 
@@ -13,17 +14,17 @@ public class US6UI {
     }
 
     public void run() {
-        System.out.println("Introduza o nome do novo sensor");
+        System.out.println("Introduce the name of the new sensor.");
         Scanner ler = new Scanner(System.in);
         String nome = ler.nextLine();
-        System.out.println("Introduza a latitude do novo sensor");
+        System.out.println("Introduce the latitude of the new sensor.");
         double latitude = ler.nextDouble();
-        System.out.println("Introduza a longitude do novo sensor");
+        System.out.println("Introduce the longitude of the new sensor.");
         double longitude = ler.nextDouble();
-        System.out.println("Introduza a altitude do novo sensor");
+        System.out.println("Introduce the altitude of the new sensor.");
         double altitude = ler.nextDouble();
         ler.nextLine();
-        System.out.println("Introduza o tipo de sensor");
+        System.out.println("Introduce the type of sensor");
         int posicao1 = -1;
         do {
             for (int i = 0; i < controller6.numeroElementosDaListaTipoDeSensor(); i++) {
@@ -34,7 +35,7 @@ public class US6UI {
         while (posicao1 < 0 || posicao1 > controller6.numeroElementosDaListaTipoDeSensor());
 
         ler.nextLine();
-        System.out.println("Em que área geográfica está este sensor inserido?");
+        System.out.println("In which geographical area is this sensor included?");
         int posicao2 = -1;
         do {
             for (int i = 0; i < controller6.numeroElementosDaListaAreaGeografica(); i++) {
@@ -50,9 +51,9 @@ public class US6UI {
         controller6.criarNovoSensor(nome);
 
         if (controller6.adicionarSensorAAreaGeografica()) {
-            System.out.println("Sucesso! Foi criado um Sensor.");
+            System.out.println("Success! A sensor was created.");
         } else {
-            System.out.println("Este sensor já existe nesta área geográfica.");
+            System.out.println("This sensor already exists in this geographical area.");
         }
     }
 

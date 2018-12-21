@@ -93,6 +93,10 @@ public class Main {
                             US149UI ui149 = new US149UI(gridList, roomList);
                             ui149.run();
                             break;
+                        case 17:
+                            US253UI ui253 = new US253UI(house, roomList, listaTiposSensores);
+                            ui253.run();
+                            break;
                     }
                     option = Menu.administratorMenu();
                 }

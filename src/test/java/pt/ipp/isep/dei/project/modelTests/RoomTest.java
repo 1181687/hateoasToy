@@ -1,10 +1,9 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimensions;
-import pt.ipp.isep.dei.project.model.Room;
-import pt.ipp.isep.dei.project.model.RoomList;
-import pt.ipp.isep.dei.project.model.TipoSensor;
+import pt.ipp.isep.dei.project.model.*;
+
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -103,5 +102,48 @@ public class RoomTest {
         boolean result = list.addRoomToRoomList(room);
         //assert
         assertFalse(result);
+    }
+
+    @Test
+    void testAddSensorToTheListOfSensorsInTheRoom () {
+        // Arrange
+        Calendar calendario = new GregorianCalendar(1991, 11, 2);
+        Date dataFuncionamento = calendario.getTime();
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        Location locS1 = new Location(123, 345, 50);
+
+        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+
+        Dimensions dim = new Dimensions(3,3.5,3.5);
+        Room room = new Room("Room",2,dim);
+
+        // Act
+        boolean result = room.addSensorToTheListOfSensorsInTheRoom(s1);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void getSensorList() {
+        //Arrange
+        SensorList sensorList = new SensorList();
+
+        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataFuncionamento0 = calendario0.getTime();
+        TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
+        Location locS0 = new Location(123, 345, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
+
+        Dimensions dim = new Dimensions(3,3.5,3.5);
+        Room room = new Room("Room",2,dim);
+
+        room.addSensorToTheListOfSensorsInTheRoom(s0);
+        sensorList.addSensorToTheListOfSensors(s0);
+        List<Sensor> expectedResult = sensorList.getmSensorList();
+        //Act
+        List<Sensor> result = room.getSensorList().getmSensorList();
+        //Assert
+        assertEquals(result, expectedResult);
     }
 }
