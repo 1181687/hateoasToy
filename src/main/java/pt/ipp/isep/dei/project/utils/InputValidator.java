@@ -48,6 +48,9 @@ public class InputValidator {
             try {
                 flag = false;
                 x = in.nextInt();
+                if(x<min || x>max){
+                    System.out.println("Insert number between " + min + " and " + max);
+                }
             } catch (Exception e) {
                 System.out.println("Error! Please insert a number between the interval given.");
                 flag = true;
