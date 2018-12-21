@@ -4,11 +4,13 @@ public class Room {
     private String mName;
     private int mHouseFloor;
     private Dimensions mDimensions;
+    private SensorList mSensorList;
 
     public Room(String mName, int mHouseFloor, Dimensions dimensions) {
         this.mName = mName;
         this.mHouseFloor = mHouseFloor;
         this.mDimensions = dimensions;
+        this.mSensorList = new SensorList();
     }
 
     public String getmName() {
@@ -63,5 +65,22 @@ public class Room {
         Room roomOne = (Room) obj;
         return this.mName.equals(roomOne.mName) && this.mHouseFloor == roomOne.mHouseFloor
                 && this.mDimensions.equals(roomOne.mDimensions);
+    }
+
+    /**
+     * This method add a new sensor to the list of sensors in the room
+     * @param newSensor add to the list of sensors
+     * @return a new sensor to the list of sensors
+     */
+    public boolean addSensorToTheListOfSensorsInTheRoom (Sensor newSensor) {
+        return this.mSensorList.addSensorToTheListOfSensors(newSensor);
+    }
+
+    /**
+     * This method get de sensors list.
+     * @return the list of sensors.
+     */
+    public SensorList getSensorList() {
+        return mSensorList;
     }
 }

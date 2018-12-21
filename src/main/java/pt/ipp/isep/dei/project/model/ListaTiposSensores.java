@@ -33,4 +33,17 @@ public class ListaTiposSensores {
         return this.mListaTiposSensores.get(posicao);
     }
 
+    /**
+     * Method that shows the content of the Sensor type in the list.
+     * @return
+     */
+    public String displaySensorTypeList() {
+        StringBuilder content = new StringBuilder();
+        for (int i = 1; i <= this.mListaTiposSensores.size(); i++) {
+            content.append(i + " - Sensor Type: " + this.mListaTiposSensores.get(i - 1).getmTipo());
+            content.append("\n");
+        }
+        return content.toString();
+    }
+
 }

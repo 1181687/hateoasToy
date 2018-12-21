@@ -13,19 +13,30 @@ public class House {
         this.mAddress = address;
     }
 
-    public void setmAddress(Address mAddress) {
-        this.mAddress = mAddress;
-    }
-
+    /**
+     * Get Method
+     *
+     * @return mAddress
+     */
     public Address getmAddress() {
         return mAddress;
     }
 
     /**
-     * @param mZipCode
-     * @param mLatitude
-     * @param mLongitude
-     * @param mAltitude
+     * Set Method
+     *
+     * @param mAddress
+     */
+    public void setmAddress(Address mAddress) {
+        this.mAddress = mAddress;
+    }
+
+    /**
+     * Method that creates a new address considering the parameters below
+     * @param mZipCode String zipCode
+     * @param mLatitude attribute of Location. Double
+     * @param mLongitude attribute of Location. Double
+     * @param mAltitude attribute of Location. Double
      * @return method for the creation of a new Address
      */
     public Address newAddresses(String mZipCode, double mLatitude, double mLongitude, double mAltitude) {
@@ -50,6 +61,14 @@ public class House {
      */
     public RoomList getListOfRoom() {
         return this.mRoomList;
+    }
+
+    /**
+     * Get the location of the house.
+     * @return the location of the house.
+     */
+    public Location getLocationOfTheHouse () {
+        return this.mAddress.getLocation();
     }
 
 }

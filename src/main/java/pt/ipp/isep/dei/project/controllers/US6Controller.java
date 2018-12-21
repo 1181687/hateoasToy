@@ -42,7 +42,7 @@ public class US6Controller {
 
     public boolean adicionarSensorAAreaGeografica() {
         if ((!(this.mListaAreaGeografica.getAreaGeografica(this.mGeographicalArea).getmSensorListInTheGeographicArea().getmSensorList().contains(this.mSensor)))) {
-            mListaAreaGeografica.getAreaGeografica(this.mGeographicalArea).getmSensorListInTheGeographicArea().addSensorToTheListOfSensorsInTheGeographicalArea(this.mSensor);
+            mListaAreaGeografica.getAreaGeografica(this.mGeographicalArea).getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(this.mSensor);
             return true;
         }
         return false;

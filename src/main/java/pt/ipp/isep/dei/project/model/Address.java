@@ -14,6 +14,7 @@ public class Address {
         return 1;
     }
 
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -27,4 +28,10 @@ public class Address {
 
     }
 
+    /**
+     * Get the location on the address of the house.
+     */
+    public Location getLocation() {
+        return mLocation;
+    }
 }
