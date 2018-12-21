@@ -48,7 +48,7 @@ public class Room {
 
     /**
      * Equals method to determine if two Rooms are equal.
-     *
+     * They are equals if all atributtes are equal.
      * @param obj receives an object
      * @return boolean
      */

@@ -2,8 +2,6 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.US105Controller;
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.Room;
-
 import java.util.Scanner;
 
 public class US105UI {
@@ -27,10 +25,10 @@ public class US105UI {
         double length = read.nextDouble();
         System.out.println("Write the width of the room");
         double width = read.nextDouble();
-/////
+
         mctrl.newRoom(height,length,width,name,houseFloor);
-        mctrl.addRoomToRoomList();
-//////
+        mctrl.addRoomToHouse();
+
         System.out.println("The new room " + name + " was created with sucess!");
 
         StringBuilder content = new StringBuilder();

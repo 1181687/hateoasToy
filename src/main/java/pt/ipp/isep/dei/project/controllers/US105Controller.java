@@ -15,13 +15,7 @@ public class US105Controller {
         this.mRoom= mHouse.getListOfRoom().newRoom(name,housefloor,height,length,width);
     }
 
-    public boolean addRoomToRoomList() {
-       if (this.mRoom.equals(null)){
-           return false;
-       }
+    public boolean addRoomToHouse() {
         return this.mHouse.addRoomToHouse(mRoom);
     }
-//nao se deve usar objectos do model no UI e aqui no controlor tb nao, entao acrecentei o mroom aos atributos,
-    //e retorno um metodo void e no addroomtolist vou buscar a variavel mroom
-
 }

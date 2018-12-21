@@ -1,13 +1,28 @@
-package pt.ipp.isep.dei.project.modelTests;
+package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.US105Controller;
 import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+public class US105ControllerTest {
 
-public class HouseTest {
+    @Test
+    public void testAddRoomToHouseFalse(){
+        RoomList rList = new RoomList();
+        Dimensions dim = new Dimensions(4,4,4);
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10,10,10);
+        Address adr = new Address("5000", local);
+        House house = new House(rList, gridlist, adr);
+        US105Controller ctr= new US105Controller(house);
+
+
+        boolean result = ctr.addRoomToHouse();
+        assertFalse(result);
+    }
 
     @Test
     public void testAddRoomToHouse(){
@@ -18,21 +33,12 @@ public class HouseTest {
         Location local = new Location(10,10,10);
         Address adr = new Address("5000", local);
         House house = new House(rList, gridlist, adr);
+        US105Controller ctr= new US105Controller(house);
 
-        boolean result = house.addRoomToHouse(room);
+        ctr.newRoom(4,4,4,"F5",1);
+
+        boolean result = ctr.addRoomToHouse();
+
         assertTrue(result);
-    }
-
-    @Test
-    public void testAddRoomToHouseFalse(){
-        RoomList rList = new RoomList();
-        Dimensions dim = new Dimensions(4,4,4);
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10,10,10);
-        Address adr = new Address("5000", local);
-        House house = new House(rList, gridlist, adr);
-
-        boolean result = house.addRoomToHouse(null);
-        assertFalse(result);
     }
 }

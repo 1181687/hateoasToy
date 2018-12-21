@@ -22,6 +22,16 @@ public class DimensionsTest {
     }
 
     @Test
+    void testEqualsTrueSameObj() {
+        //Arrange
+        Dimensions dim = new Dimensions(3.5,3.5,3.5);
+        //Act
+        boolean result = dim.equals(dim);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
     void testEqualsTrue() {
         //Arrange
         Dimensions dim = new Dimensions(3.5,3.5,3.5);
