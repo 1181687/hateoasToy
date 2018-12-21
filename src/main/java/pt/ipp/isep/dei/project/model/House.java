@@ -5,6 +5,7 @@ public class House {
     private RoomList mRoomList;
     private HouseGridList mListHouseGrids;
     private Address mAddress;
+    private GeographicalArea mInsertedGeoArea;
 
 
     public House(RoomList roomList, HouseGridList listHouseGrids, Address address) {
@@ -71,4 +72,7 @@ public class House {
         return this.mAddress.getLocation();
     }
 
+    public double getLastTemperatureOfTheHouseArea(){
+        return mInsertedGeoArea.getLastTemperatureInTheArea(mAddress.getLocation());
+    }
 }
