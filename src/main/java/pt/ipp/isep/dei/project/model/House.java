@@ -52,6 +52,10 @@ public class House {
         return this.mRoomList;
     }
 
+    /**
+     * Get the location of the house.
+     * @return the location of the house.
+     */
     public Location getLocationOfTheHouse () {
         return this.mAddress.getLocation();
     }

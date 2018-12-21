@@ -67,10 +67,19 @@ public class Room {
                 && this.mDimensions.equals(roomOne.mDimensions);
     }
 
+    /**
+     * This method add a new sensor to the list of sensors in the room
+     * @param newSensor add to the list of sensors
+     * @return a new sensor to the list of sensors
+     */
     public boolean addSensorToTheListOfSensorsInTheRoom (Sensor newSensor) {
         return this.mSensorList.addSensorToTheListOfSensors(newSensor);
     }
 
+    /**
+     * This method get de sensors list.
+     * @return the list of sensors.
+     */
     public SensorList getSensorList() {
         return mSensorList;
     }
