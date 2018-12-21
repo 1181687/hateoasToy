@@ -13,13 +13,13 @@ public class US1UI {
     }
 
     public void run() {
-        System.out.println("Introduza o nome do novo tipo de Area Geografica");
+        System.out.println("Introduce the name of the new type of Geographical Area.");
         Scanner ler = new Scanner(System.in);
         String nome = ler.nextLine();
         if (ctrl.adicionaNovoTipoAreaGeografica(nome)) {
-            System.out.println("Sucesso!");
+            System.out.println("Success!");
         } else {
-            System.out.println("Tente outro nome!");
+            System.out.println("Try another name!");
         }
     }
 }

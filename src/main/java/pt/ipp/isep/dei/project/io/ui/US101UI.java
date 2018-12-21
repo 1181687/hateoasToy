@@ -15,7 +15,7 @@ public class US101UI {
 
 
     public void run() {
-        System.out.println("Introduce the zip code of the new location");
+        System.out.println("Introduce the zip code of the new location.");
         Scanner ler = new Scanner(System.in);
         String zipCode = ler.nextLine();
         System.out.println("Introduce the latitude of the new location (valid numbers between -90 and 90).");
@@ -32,7 +32,7 @@ public class US101UI {
             longitude = ler.nextDouble();
         }
 
-        System.out.println("Introduce the altitude of the new location");
+        System.out.println("Introduce the altitude of the new location.");
         Double altitude = ler.nextDouble();
 
         ctrl.defineNewAddress(zipCode, latitude, longitude, altitude);
