@@ -16,52 +16,52 @@ public class US3UI {
     }
 
     public void run() {
-        System.out.println("Introduza o nome da Area Geografica");
+        System.out.println("Introduce the name of the Geographical Area");
         Scanner ler = new Scanner(System.in);
         String nome = ler.nextLine();
-        System.out.println("Escolha o tipo da Area Geografica");
+        System.out.println("Choose the Geographical Area type");
         for (int i = 1; i <= ctrl3.getListaTAG().size(); i++) {
             System.out.println(i + " - " +
-                    "Tipo: " + ctrl3.getListaTAG().get(i - 1));
+                    "Type: " + ctrl3.getListaTAG().get(i - 1));
         }
         int opcao = ler.nextInt();
         String nomeTipoAG = ctrl3.getListaTAG().get(opcao-1);
-        System.out.println("Introduza a latitude da localização da Area Geografica (valores válidos entre -90 e 90)");
+        System.out.println("Introduce the latitude of the location of the Geographical Area (valid values between -90 and 90)");
         double latitude = ler.nextDouble();
         while (latitude < -90 || latitude > 90) {
-            System.out.println("Esse valor está fora dos valores válidos (-90 e 90). Introduza um novo valor de latitude.");
+            System.out.println("That value is out of bounds (-90 and 90). Introduce a new latitude value).");
             latitude = ler.nextDouble();
         }
 
-        System.out.println("Introduza a longitude da localização da Area Geografica (valores válidos entre -180 e 180)");
+        System.out.println("Introduce the longitude of the location of the Geographical Area(valid numbers between -180 and 180).");
         double longitude = ler.nextDouble();
         while (longitude < -180 || longitude > 180) {
-            System.out.println("Esse valor está fora dos valores válidos (-180 e 180). Introduza um novo valor de longitude.");
+            System.out.println("That value is out of bounds (-180 and 180). Introduce a new longitude value).");
             longitude = ler.nextDouble();
         }
 
-        System.out.println("Introduza a altitude da localização da Area Geografica");
+        System.out.println("Introduce the altitude of the location of the Geographical Area.");
         Double altitude = ler.nextDouble();
 
-        System.out.println("Introduza o comprimento da Area Geografica (valores válidos superiores a 0)");
+        System.out.println("Introduce the length of the Geographical Area (valid numbers greater than 0).");
         double comprimento = ler.nextDouble();
         while (comprimento <=0) {
-            System.out.println("Esse valor está fora dos valores válidos (superior a 0). Introduza um novo valor de comprimento.");
+            System.out.println("That value is out of bounds (greater than 0). Introduce a new length value.");
             comprimento = ler.nextDouble();
         }
 
-        System.out.println("Introduza a largura da Area Geografica (valores válidos superiores a 0)");
+        System.out.println("Introduce the width of the Geographical Area (valid numbers greater than 0).");
         double largura = ler.nextDouble();
         while (largura <=0) {
-            System.out.println("Esse valor está fora dos valores válidos (superior a 0). Introduza um novo valor de largura.");
+            System.out.println("That value is out of bounds (greater than 0). Introduce a new width value.");
             largura = ler.nextDouble();
         }
 
         GeographicalArea novaAG = ctrl3.criarNovaAG(nome, nomeTipoAG, latitude, longitude, altitude, comprimento, largura);
         if (ctrl3.adicionarNovaAG(novaAG)) {
-            System.out.println("Sucesso!");
+            System.out.println("Success!");
         } else {
-            System.out.println("Esta área geográfica já existe!");
+            System.out.println("That Geographical Area already exists!");
         }
     }
 }

@@ -169,4 +169,21 @@ public class AddressTest {
 
     }
 
+    @Test
+    void testGetLocation() {
+        // Arrange
+        String zipCode = "4050";
+        double latitude = 40.5;
+        double longitude = 50.5;
+        double altitude = 100.0;
+        Location local = new Location(latitude, longitude, altitude);
+        Address address = new Address(zipCode, local);
+
+        Location expectedResult = local;
+        // Act
+        Location result = address.getLocation();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 }
