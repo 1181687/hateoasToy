@@ -85,7 +85,7 @@ public class AddressTest {
 
     @Test
     public void testIfTwoAddressesWithTheSameAttributesAreEqual() {
-        //arrange
+
         //Arrange
 
         String zipCode = "4050";
@@ -101,6 +101,49 @@ public class AddressTest {
 
         //act
         boolean result = address1.equals(address2);
+
+        //assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testIfTwoAddressesWithDifferentAttributesAreEqualFalse() {
+
+        //arrange
+
+        String zipCode1 = "4050";
+        String zipCode2 = "4000";
+        double latitude = 40.5;
+        double longitude = 50.5;
+        double altitude = 100.0;
+        Location local = new Location(latitude, longitude, altitude);
+        Address address1 = new Address(zipCode1, local);
+        Address address2 = new Address(zipCode2, local);
+
+        boolean expectedResult = false;
+
+        //act
+        boolean result = address1.equals(address2);
+
+        //assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testIfTwoDifferentObjectsAreTheSameFalse() {
+
+        //arrange
+        String zipCode1 = "4050";
+        double latitude = 40.5;
+        double longitude = 50.5;
+        double altitude = 100.0;
+        Location local = new Location(latitude, longitude, altitude);
+        Address address1 = new Address(zipCode1, local);
+
+        boolean expectedResult = false;
+
+        //act
+        boolean result = address1.equals(local);
 
         //assert
         assertEquals(expectedResult, result);
@@ -125,4 +168,5 @@ public class AddressTest {
         assertEquals(expectedResult, result);
 
     }
+
 }

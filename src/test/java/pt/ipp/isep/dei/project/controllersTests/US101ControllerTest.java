@@ -38,11 +38,4 @@ public class US101ControllerTest {
         //Assert
         assertTrue(result);
     }
-
-    @Test
-    public void testSetAddressToTheHouse() {
-
-        //Arrange
-
-    }
 }
