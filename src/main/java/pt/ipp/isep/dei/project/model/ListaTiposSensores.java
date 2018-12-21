@@ -33,4 +33,13 @@ public class ListaTiposSensores {
         return this.mListaTiposSensores.get(posicao);
     }
 
+    public String displaySensorTypeList() {
+        StringBuilder content = new StringBuilder();
+        for (int i = 1; i <= this.mListaTiposSensores.size(); i++) {
+            content.append(i + " - Power Source Type: " + this.mListaTiposSensores.get(i - 1).getmTipo());
+            content.append("\n");
+        }
+        return content.toString();
+    }
+
 }

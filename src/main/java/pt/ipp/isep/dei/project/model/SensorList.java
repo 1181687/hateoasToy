@@ -13,7 +13,7 @@ public class SensorList {
         return mSensorList;
     }
 
-    public boolean addSensorToTheListOfSensorsInTheGeographicalArea(Sensor sensor) {
+    public boolean addSensorToTheListOfSensors(Sensor sensor) {
         if (!(mSensorList.contains(sensor))) {
             mSensorList.add(sensor);
             return true;
@@ -21,5 +21,8 @@ public class SensorList {
         return false;
     }
 
+    public Sensor createNewSensor (String name, TipoSensor sensorType, Location location) {
+        return new Sensor(name, sensorType, location);
+    }
 
 }

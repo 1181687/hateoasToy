@@ -27,4 +27,7 @@ public class Address {
 
     }
 
+    public Location getLocation() {
+        return mLocation;
+    }
 }

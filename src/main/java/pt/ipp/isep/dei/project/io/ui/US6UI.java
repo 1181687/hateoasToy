@@ -44,12 +44,12 @@ public class US6UI {
         }
         while (posicao2 < 0 || posicao2 > controller6.numeroElementosDaListaAreaGeografica());
 
-        GeographicalArea geographicalArea = controller6.getAreaGeograficaNaListaPorPosicao(posicao2 - 1);
-        Location novaLocalizacao = controller6.criarNovaLocalizacao(altitude, latitude, longitude, geographicalArea);
-        TipoSensor novoTipoSensor = controller6.getTipoSensorPorPosicao(posicao1-1);
-        Sensor novoSensor = controller6.criarNovoSensor(nome, novoTipoSensor, novaLocalizacao, geographicalArea);
+        controller6.getAreaGeograficaNaListaPorPosicao(posicao2 - 1);
+        controller6.criarNovaLocalizacao(altitude, latitude, longitude);
+        controller6.getTipoSensorPorPosicao(posicao1-1);
+        controller6.criarNovoSensor(nome);
 
-        if (controller6.adicionarSensorAAreaGeografica(novoSensor, geographicalArea)) {
+        if (controller6.adicionarSensorAAreaGeografica()) {
             System.out.println("Sucesso! Foi criado um Sensor.");
         } else {
             System.out.println("Este sensor já existe nesta área geográfica.");
