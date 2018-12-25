@@ -133,6 +133,36 @@ public class GeographicalArea {
     public Location novaLocalizacao(double mLatitude, double mLongitude, double mAltitude) {
         return new Location(mLatitude, mLongitude, mAltitude);
     }
+
+    public double getLastTemperatureInTheArea(Location location) {
+        TipoSensor temperature = new TipoSensor("Temperature");
+
+        GeographicalArea areaToBeUsed = new GeographicalArea(mNomeAreaGeo, mTipoAreaGeo, mLocation, mRectangleArea);
+        areaToBeUsed.setmAreaInseridaEm(mAreaInseridaEm);
+        areaToBeUsed.getmSensorListInTheGeographicArea().setmSensorList(mSensorList.getmSensorList());
+
+        SensorList sensorList = new SensorList();
+        sensorList.setmSensorList(listarSensoresContidosNaAGPorTipo(temperature, areaToBeUsed.getmSensorListInTheGeographicArea().getmSensorList()));
+        while (sensorList.getmSensorList().isEmpty()) {
+            if (areaToBeUsed.getmAreaInseridaEm() != null) {
+                areaToBeUsed.getmSensorListInTheGeographicArea().setmSensorList(areaToBeUsed.getmAreaInseridaEm().getmSensorListInTheGeographicArea().getmSensorList());
+                areaToBeUsed.setmAreaInseridaEm(areaToBeUsed.getmAreaInseridaEm().getmAreaInseridaEm());
+                sensorList.setmSensorList(areaToBeUsed.getmSensorListInTheGeographicArea().getmSensorList());
+            } else {
+                return Double.NaN;
+            }
+        }
+        Sensor nearestSensor = sensorList.getmSensorList().get(0);
+        double shortestDistance = nearestSensor.distanceBetweenASensorAndALocation(location);
+        for (Sensor sensor : sensorList.getmSensorList()) {
+            if (shortestDistance > sensor.distanceBetweenASensorAndALocation(location)) {
+                shortestDistance = sensor.distanceBetweenASensorAndALocation(location);
+                nearestSensor = sensor;
+            }
+        }
+        if (nearestSensor.getUltimoRegisto() == null) {
+            return Double.NaN;
+        }
+        return nearestSensor.getUltimoRegisto().getmValor();
+    }
 }
-
-
