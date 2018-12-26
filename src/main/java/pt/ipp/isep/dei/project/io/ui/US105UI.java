@@ -34,7 +34,7 @@ public class US105UI {
         //System.out.println("Write the number of housefloor's room");
         String label1 = "Write the number of housefloor's room";
         //int houseFloor = read.nextInt();
-        int houseFloor = InputValidator.getIntPos(label1);
+        int houseFloor = InputValidator.getInt(label1);
 
         //System.out.println("Write the height of the room");
         String label2 = "Write the height of the room";

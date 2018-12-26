@@ -11,7 +11,8 @@ public class HouseTest {
     public void testAddRoomToHouse(){
         RoomList rList = new RoomList();
         Dimensions dim = new Dimensions(4,4,4);
-        Room room = new Room("F5",1,dim);
+        SensorList list = new SensorList();
+        Room room = new Room("F5", 1, dim, list);
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10,10,10);
         Address adr = new Address("5000", local);

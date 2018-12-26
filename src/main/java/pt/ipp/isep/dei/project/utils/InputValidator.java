@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.project.utils;
 import java.util.Scanner;
 
 public class InputValidator {
-    /////////////se ninguem usar este metodo getint tiramos para o notepad que depois podemos vir a usar..
 
     /**
      * method that keeps displaying the string label, till the input is a int number
@@ -28,7 +27,6 @@ public class InputValidator {
         }while(flag);
         return x;
     }
-    //////////////////////////////////////////
 
     /**
      * method that keeps displaying the string label, till the input is a int positive number
@@ -44,7 +42,9 @@ public class InputValidator {
             try {
                 flag = false;
                 x = in.nextInt();
-                if (x < 0) throw new Exception();
+                if (x < 0) {
+                    throw new Exception();
+                }
 
             } catch (Exception e) {
                 System.out.println("Error! Please insert a positive integer number.");
@@ -56,8 +56,8 @@ public class InputValidator {
     }
 
     /**
-     * method that keeps displaying the string label, till the input is a double positive number
-     *
+     * method that keeps displaying the string label, till the input is a double positive number greater
+     * than zero
      * @param label string that is showed to the user, indicating what type of input he need to introduce
      * @return a double positive number
      */
@@ -70,7 +70,9 @@ public class InputValidator {
             try {
                 flag = false;
                 x = in.nextDouble();
-                if (x < 0) throw new Exception();
+                if (x <= 0) {
+                    throw new Exception();
+                }
 
             } catch (Exception e) {
                 System.out.println("Error! Please insert a positive number.");

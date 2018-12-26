@@ -13,8 +13,9 @@ class US149ControllerTest {
         //Arrange
         Dimensions r0Dimensions = new Dimensions(2, 3, 4);
         Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        SensorList list = new SensorList();
+        Room r0 = new Room("Bedroom", 3, r0Dimensions, list);
+        Room r1 = new Room("Living Room", 2, r1Dimensions, list);
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoomToRoomList(r0);
         listOfRooms.addRoomToRoomList(r1);
@@ -34,8 +35,9 @@ class US149ControllerTest {
         //Arrange
         Dimensions r0Dimensions = new Dimensions(2, 3, 4);
         Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        SensorList list = new SensorList();
+        Room r0 = new Room("Bedroom", 3, r0Dimensions, list);
+        Room r1 = new Room("Living Room", 2, r1Dimensions, list);
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoomToRoomList(r0);
         listOfRooms.addRoomToRoomList(r1);
@@ -57,8 +59,9 @@ class US149ControllerTest {
         //Arrange
         Dimensions r0Dimensions = new Dimensions(2, 3, 4);
         Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        SensorList list = new SensorList();
+        Room r0 = new Room("Bedroom", 3, r0Dimensions, list);
+        Room r1 = new Room("Living Room", 2, r1Dimensions, list);
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoomToRoomList(r0);
         listOfRooms.addRoomToRoomList(r1);
@@ -103,8 +106,9 @@ class US149ControllerTest {
         //Arrange
         Dimensions r0Dimensions = new Dimensions(2, 3, 4);
         Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        SensorList list = new SensorList();
+        Room r0 = new Room("Bedroom", 3, r0Dimensions, list);
+        Room r1 = new Room("Living Room", 2, r1Dimensions, list);
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoomToRoomList(r0);
         listOfRooms.addRoomToRoomList(r1);
@@ -127,8 +131,9 @@ class US149ControllerTest {
         //Arrange
         Dimensions r0Dimensions = new Dimensions(2, 3, 4);
         Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        SensorList list = new SensorList();
+        Room r0 = new Room("Bedroom", 3, r0Dimensions, list);
+        Room r1 = new Room("Living Room", 2, r1Dimensions, list);
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoomToRoomList(r0);
         listOfRooms.addRoomToRoomList(r1);
@@ -150,8 +155,9 @@ class US149ControllerTest {
         //Arrange
         Dimensions r0Dimensions = new Dimensions(2, 3, 4);
         Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        SensorList list = new SensorList();
+        Room r0 = new Room("Bedroom", 3, r0Dimensions, list);
+        Room r1 = new Room("Living Room", 2, r1Dimensions, list);
         RoomList listOfRooms = new RoomList();
         RoomList listOfRooms1 = new RoomList();
         listOfRooms.addRoomToRoomList(r0);
@@ -175,9 +181,10 @@ class US149ControllerTest {
         //Arrange
         Dimensions r0Dimensions = new Dimensions(2, 3, 4);
         Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
-        Room r2 = new Room("Bathroom", 2, r1Dimensions);
+        SensorList list = new SensorList();
+        Room r0 = new Room("Bedroom", 3, r0Dimensions, list);
+        Room r1 = new Room("Living Room", 2, r1Dimensions, list);
+        Room r2 = new Room("Bathroom", 2, r1Dimensions, list);
         RoomList listOfRooms = new RoomList();
         RoomList listOfRooms1 = new RoomList();
         listOfRooms.addRoomToRoomList(r0);
@@ -203,9 +210,10 @@ class US149ControllerTest {
         //Arrange
         Dimensions r0Dimensions = new Dimensions(2, 3, 4);
         Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
-        Room r2 = new Room("Bathroom", 2, r1Dimensions);
+        SensorList list = new SensorList();
+        Room r0 = new Room("Bedroom", 3, r0Dimensions, list);
+        Room r1 = new Room("Living Room", 2, r1Dimensions, list);
+        Room r2 = new Room("Bathroom", 2, r1Dimensions, list);
         RoomList listOfRooms = new RoomList();
         RoomList listOfRooms1 = new RoomList();
         listOfRooms.addRoomToRoomList(r0);

@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.project.controllers.US108Controller;
 import pt.ipp.isep.dei.project.model.Dimensions;
 import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.RoomList;
+import pt.ipp.isep.dei.project.model.SensorList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,12 +19,13 @@ class US108ControllerTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
-        Room room2 = new Room (name2,houseFloor2,dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -71,7 +73,8 @@ class US108ControllerTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         rList.addRoomToRoomList(room1);
 
@@ -91,12 +94,13 @@ class US108ControllerTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
-        Room room2 = new Room (name2,houseFloor2,dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -132,12 +136,13 @@ class US108ControllerTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -161,12 +166,13 @@ class US108ControllerTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -194,12 +200,13 @@ class US108ControllerTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -226,12 +233,13 @@ class US108ControllerTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -259,12 +267,13 @@ class US108ControllerTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -292,12 +301,13 @@ class US108ControllerTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);

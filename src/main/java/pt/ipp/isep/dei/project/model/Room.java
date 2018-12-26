@@ -2,19 +2,37 @@ package pt.ipp.isep.dei.project.model;
 
 import java.util.Objects;
 
+import static java.util.Objects.isNull;
+
 public class Room {
     private String mName;
     private int mHouseFloor;
     private Dimensions mDimensions;
     private SensorList mSensorList;
 
-    public Room(String mName, int mHouseFloor, Dimensions dimensions) {
-        this.mName = mName;
-        this.mHouseFloor = mHouseFloor;
+    //////////////////////////////////////////////////////////////////////////////////////////////////////
+    public Room(String name, int houseFloor, Dimensions dimensions, SensorList sensorList) {
+        validateName(name);
+        validateDimensions(dimensions);
+        this.mName = name.trim();
+        this.mHouseFloor = houseFloor;
         this.mDimensions = dimensions;
-        this.mSensorList = new SensorList();
+        this.mSensorList = sensorList;
     }
 
+    private void validateName(String name) {
+        if (isNull(name) || name.trim().length() == 0) {
+            throw new RuntimeException("Please enter a valid name. Name should not be empty");
+        }
+    }
+
+    private void validateDimensions(Dimensions dimensions) {
+        if (isNull(dimensions)) {
+            throw new RuntimeException("Dimensjons should not be null");
+        }
+    }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////
     public String getmName() {
         return mName;
     }
@@ -58,6 +76,7 @@ public class Room {
     /**
      * Equals method to determine if two Rooms are equal.
      * They are equals if all atributtes are equal.
+     *
      * @param obj receives an object
      * @return boolean
      */
@@ -76,15 +95,17 @@ public class Room {
 
     /**
      * This method add a new sensor to the list of sensors in the room
+     *
      * @param newSensor add to the list of sensors
      * @return a new sensor to the list of sensors
      */
-    public boolean addSensorToTheListOfSensorsInTheRoom (Sensor newSensor) {
+    public boolean addSensorToTheListOfSensorsInTheRoom(Sensor newSensor) {
         return this.mSensorList.addSensorToTheListOfSensors(newSensor);
     }
 
     /**
      * This method get de sensors list.
+     *
      * @return the list of sensors.
      */
     public SensorList getSensorList() {
