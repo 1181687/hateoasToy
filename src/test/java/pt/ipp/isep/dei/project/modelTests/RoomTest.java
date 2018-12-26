@@ -144,4 +144,37 @@ public class RoomTest {
         //Assert
         assertEquals(result, expectedResult);
     }
+
+    @Test
+    public void testValidateNameNull() {
+        String name = null;
+        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        SensorList list = new SensorList();
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new Room(name, 2, dim, list)
+        );
+        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+    }
+
+    @Test
+    public void testValidateNameEmpty() {
+        String name = "  ";
+        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        SensorList list = new SensorList();
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new Room(name, 2, dim, list)
+        );
+        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+    }
+
+    @Test
+    public void testValidateDimensions() {
+        String name = "Room 1";
+        Dimensions dim = null;
+        SensorList list = new SensorList();
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new Room(name, 2, dim, list)
+        );
+        assertEquals("Dimensions should not be null", exception.getMessage());
+    }
 }

@@ -8,6 +8,16 @@ public class Dimensions {
     private double mWidth;
 
     ///////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * constructor that receives height, length, width and
+     * throw an exception if any of the parameters is invalid.
+     * Invalid parameters if they are doubleNan or equal or less than zero
+     *
+     * @param height given height
+     * @param length given length
+     * @param width  given width
+     */
     public Dimensions(double height, double length, double width) {
         validateHeight(height);
         validateLength(length);
@@ -17,19 +27,37 @@ public class Dimensions {
         this.mWidth = width;
     }
 
-    private void validateHeight(double height) {
+    /**
+     * method that receives a height and validates it. It can not be doubleNan or equal or less than zero
+     * throw an exception if the height is invalid
+     *
+     * @param height given height
+     */
+    private static void validateHeight(double height) {
         if (Double.isNaN(height) || height <= 0) {
             throw new RuntimeException("Please enter a valid height. Height should be greater than zero");
         }
     }
 
-    private void validateLength(double length) {
+    /**
+     * method that receives a length and validates it. It can not be doubleNan or equal or less than zero
+     * throw an exception if the length is invalid
+     *
+     * @param length given length
+     */
+    private static void validateLength(double length) {
         if (Double.isNaN(length) || length <= 0) {
             throw new RuntimeException("Please enter a valid length. Length should be greater than zero");
         }
     }
 
-    private void validateWidth(double width) {
+    /**
+     * method that receives a width and validates it. It can not be doubleNan or equal or less than zero
+     * throw an exception if the width is invalid
+     *
+     * @param width given width
+     */
+    private static void validateWidth(double width) {
         if (Double.isNaN(width) || width <= 0) {
             throw new RuntimeException("Please enter a valid width. Width should be greater than zero");
         }

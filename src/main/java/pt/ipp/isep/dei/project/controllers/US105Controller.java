@@ -8,8 +8,6 @@ public class US105Controller {
     private Room mRoom;
 
 
-    //////////////////////pk é construido so com uma casa e nao com os dois atributos???
-
     /**
      * method constructor that receives a house
      *
