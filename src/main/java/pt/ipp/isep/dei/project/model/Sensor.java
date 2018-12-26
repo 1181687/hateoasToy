@@ -303,4 +303,28 @@ public class Sensor {
         }
         return somaRegistosMaxSemana/registosMaxSemana.size();
     }
+
+    public double distanceBetweenASensorAndALocation(Location location) {
+        return this.mLocation.distanciaDuasLocalizacoes(location);
+    }
+
+    /**
+     * Method that returns the daily average on a given date.
+     *
+     * @param date
+     * @return
+     */
+    public double getDailyAverage(Date date) {
+        double dailyAverage = 0;
+        if (!(getRegistosDoDia(date).isEmpty())) {
+            double sum = 0;
+            for (Medicao measurement : getRegistosDoDia(date)) {
+                sum += measurement.getmValor();
+            }
+            dailyAverage = sum / getRegistosDoDia(date).size();
+        }
+        return dailyAverage;
+    }
+
+
 }

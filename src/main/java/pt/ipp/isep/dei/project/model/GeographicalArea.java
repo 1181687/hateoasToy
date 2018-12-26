@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -133,6 +135,64 @@ public class GeographicalArea {
     public Location novaLocalizacao(double mLatitude, double mLongitude, double mAltitude) {
         return new Location(mLatitude, mLongitude, mAltitude);
     }
-}
 
+    public double getLastTemperatureInTheArea(Location location) {
+        TipoSensor temperature = new TipoSensor("Temperature");
+
+        GeographicalArea areaToBeUsed = new GeographicalArea(mNomeAreaGeo, mTipoAreaGeo, mLocation, mRectangleArea);
+        areaToBeUsed.setmAreaInseridaEm(mAreaInseridaEm);
+        areaToBeUsed.getmSensorListInTheGeographicArea().setmSensorList(mSensorList.getmSensorList());
+
+        SensorList sensorList = new SensorList();
+        sensorList.setmSensorList(listarSensoresContidosNaAGPorTipo(temperature, areaToBeUsed.getmSensorListInTheGeographicArea().getmSensorList()));
+        while (sensorList.getmSensorList().isEmpty()) {
+            if (areaToBeUsed.getmAreaInseridaEm() != null) {
+                areaToBeUsed.getmSensorListInTheGeographicArea().setmSensorList(areaToBeUsed.getmAreaInseridaEm().getmSensorListInTheGeographicArea().getmSensorList());
+                areaToBeUsed.setmAreaInseridaEm(areaToBeUsed.getmAreaInseridaEm().getmAreaInseridaEm());
+                sensorList.setmSensorList(areaToBeUsed.getmSensorListInTheGeographicArea().getmSensorList());
+            } else {
+                return Double.NaN;
+            }
+        }
+        Sensor nearestSensor = sensorList.getmSensorList().get(0);
+        double shortestDistance = nearestSensor.distanceBetweenASensorAndALocation(location);
+        for (Sensor sensor : sensorList.getmSensorList()) {
+            if (shortestDistance > sensor.distanceBetweenASensorAndALocation(location)) {
+                shortestDistance = sensor.distanceBetweenASensorAndALocation(location);
+                nearestSensor = sensor;
+            }
+        }
+        if (nearestSensor.getUltimoRegisto() == null) {
+            return Double.NaN;
+        }
+        return nearestSensor.getUltimoRegisto().getmValor();
+    }
+
+    /**
+     * Method that returns an ArrayList with the daily averages between two dates.
+     *
+     * @param sensorType
+     * @param startDate
+     * @param endDate
+     * @return
+     */
+    public ArrayList<Double> getDailyAverageMeasurementInTheArea(TipoSensor sensorType, Date startDate, Date endDate) {
+        LocalDate startDate1 = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate endDate1 = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        ArrayList<Double> dailyAverage = new ArrayList<>();
+        List<Sensor> sensorListWithRightTypeDuringPeriod = listarSensoresDeUmTipoNaAGNumPeriodo(sensorType, this.mSensorList.getmSensorList(), startDate, endDate);
+
+        for (Sensor sensor : sensorListWithRightTypeDuringPeriod) {
+
+            for (LocalDate dateIterator = startDate1; dateIterator.isBefore(endDate1); dateIterator = dateIterator.plusDays(1)) {
+                Date dateTeste = Date.from(dateIterator.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                if (!(sensor.getRegistosDoDia(dateTeste).isEmpty())) {
+                    dailyAverage.add(sensor.getDailyAverage(dateTeste));
+                }
+            }
+        }
+        return dailyAverage;
+
+    }
+}
 

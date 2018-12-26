@@ -2,8 +2,10 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Dimensions;
-import pt.ipp.isep.dei.project.model.RoomList;
 import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.RoomList;
+import pt.ipp.isep.dei.project.model.SensorList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -17,12 +19,13 @@ public class RoomListTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
-        Room room2 = new Room (name2,houseFloor2,dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -66,7 +69,8 @@ public class RoomListTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         rList.addRoomToRoomList(room1);
         //act
@@ -83,12 +87,13 @@ public class RoomListTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
-        Room room2 = new Room (name2,houseFloor2,dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -117,7 +122,8 @@ public class RoomListTest {
         //arrange
         RoomList list = new RoomList();
         Dimensions dim = new Dimensions(3.5, 6.5, 7.5);
-        Room room1 = new Room("Room1", 2, dim);
+        SensorList listSensor = new SensorList();
+        Room room1 = new Room("Room1", 2, dim, listSensor);
         Room room2 = list.newRoom("Room1", 2, 3.5, 6.5, 7.5);
 
         //act
@@ -135,12 +141,13 @@ public class RoomListTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -161,12 +168,13 @@ public class RoomListTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -191,12 +199,13 @@ public class RoomListTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -221,12 +230,13 @@ public class RoomListTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -252,12 +262,13 @@ public class RoomListTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -283,12 +294,13 @@ public class RoomListTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room1 = new Room(name1, houseFloor1, dimensions1, list);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Room room2 = new Room(name2, houseFloor2, dimensions2, list);
 
         rList.addRoomToRoomList(room1);
         rList.addRoomToRoomList(room2);
@@ -304,5 +316,42 @@ public class RoomListTest {
         String result = rList.getDisplayOfTheChosenRoom(chosenRoomPositionInList);
         //assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testAddRoomToRoomList() {
+        //Arrange
+        RoomList list = new RoomList();
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        SensorList listSensor = new SensorList();
+        Room room = new Room("RoomOne", 2, dim, listSensor);
+        //Act
+        boolean result = list.addRoomToRoomList(room);
+        //assert
+        assertTrue(result);
+    }
+
+    @Test
+    void testAddRoomToRoomListFalse() {
+        //Arrange
+        RoomList list = new RoomList();
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        SensorList listSensor = new SensorList();
+        Room room = new Room("RoomOne", 2, dim, listSensor);
+        list.addRoomToRoomList(room);
+        //Act
+        boolean result = list.addRoomToRoomList(room);
+        //assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testAddRoomToRoomListFalseNull() {
+        //Arrange
+        RoomList rList = new RoomList();
+        //Act
+        boolean result = rList.addRoomToRoomList(null);
+        //Assert
+        assertFalse(result);
     }
 }

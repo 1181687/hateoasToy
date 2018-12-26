@@ -7,14 +7,36 @@ public class US105Controller {
     private House mHouse;
     private Room mRoom;
 
+
+    //////////////////////pk é construido so com uma casa e nao com os dois atributos???
+
+    /**
+     * method constructor that receives a house
+     *
+     * @param house house received
+     */
     public US105Controller(House house) {
         this.mHouse = house;
     }
 
+    /**
+     * method that creates a new room invoking the method newroom from model and stores it in the private atribute
+     * mRoom of this class
+     * @param height given height number to the new room
+     * @param length given length number to the new room
+     * @param width given width number to the new room
+     * @param name given name to the new room
+     * @param housefloor given housefloor number to the new room
+     */
     public void newRoom(double height, double length, double width, String name, int housefloor ){
         this.mRoom= mHouse.getListOfRoom().newRoom(name,housefloor,height,length,width);
     }
 
+    /**
+     * method that adds a room to the house's roomlist. Invokes the method addRoomToHouse of the model
+     * who receives the new room stored in the private atributte mRoom of this class
+     * @return true if adds, false if don't
+     */
     public boolean addRoomToHouse() {
         return this.mHouse.addRoomToHouse(mRoom);
     }

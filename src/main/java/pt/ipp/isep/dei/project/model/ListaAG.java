@@ -98,5 +98,4 @@ public class ListaAG {
         RectangleArea rectanguloArea = new RectangleArea(altura, comprimento, localizacao);
         return new GeographicalArea(nomeAG, tipoAG, localizacao, rectanguloArea);
     }
-
 }

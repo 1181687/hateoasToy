@@ -25,4 +25,7 @@ public class SensorList {
         return new Sensor(name, sensorType, location);
     }
 
+    public void setmSensorList(List<Sensor> mSensorList) {
+        this.mSensorList = mSensorList;
+    }
 }

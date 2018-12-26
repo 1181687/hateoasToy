@@ -1,10 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimensions;
-import pt.ipp.isep.dei.project.model.HouseGrid;
-import pt.ipp.isep.dei.project.model.HouseGridList;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -47,12 +44,41 @@ public class HouseGridListTest {
     }
 
     @Test
+    public void detachRoomInTheHouseGridTest() {
+        // Arrange
+        String roomName = "Kitchen";
+        String roomName1 = "Bedroom";
+        int houseFloor = 0;
+        int houseFloor1 = 0;
+        Dimensions dimensions = new Dimensions(2, 2, 2);
+        Dimensions dimensions1 = new Dimensions(2, 4, 4);
+        SensorList sensorList = new SensorList();
+        Room room = new Room(roomName, houseFloor, dimensions, sensorList);
+        Room room1 = new Room(roomName1, houseFloor1, dimensions1, sensorList);
+        String gridName = "Grid";
+        HouseGrid grid = new HouseGrid(gridName);
+        HouseGridList gridList = new HouseGridList();
+        gridList.addHouseGridToTheList(grid);
+        gridList.attachRoomInASpecificHouseGridInTheList(grid, room);
+        gridList.attachRoomInASpecificHouseGridInTheList(grid, room1);
+        int gridPosition = gridList.getmList().indexOf(grid);
+        gridList.detachRoomInASpecificHouseGridInTheList(grid, room1);
+
+        // Act
+        boolean result = gridList.getHouseGridFromASpecificPositionInTheList(gridPosition).checkIfARoomIsAlreadyInTheGrid(room1);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
     public void attachRoomInTheHouseGridTest() {
         // Arrange
         String roomName = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room = new Room(roomName, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room = new Room(roomName, houseFloor1, dimensions1, list);
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
         HouseGridList gridList = new HouseGridList();
@@ -100,7 +126,8 @@ public class HouseGridListTest {
         String roomName = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room = new Room(roomName, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room = new Room(roomName, houseFloor1, dimensions1, list);
         HouseGridList gridList = new HouseGridList();
         String gridName = "Grid";
         HouseGrid grid = gridList.createAHouseGrid(gridName);
