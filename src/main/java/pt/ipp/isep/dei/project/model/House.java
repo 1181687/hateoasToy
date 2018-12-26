@@ -5,6 +5,7 @@ public class House {
     private RoomList mRoomList;
     private HouseGridList mListHouseGrids;
     private Address mAddress;
+    private GeographicalArea mInsertedGeoArea;
 
 
     public House(RoomList roomList, HouseGridList listHouseGrids, Address address) {
@@ -46,13 +47,10 @@ public class House {
 
     /**
      * method that adds a room to the house's roomlist
-     * @param room given room we pretend to add
-     * @return true if adds, false if don't
+     * @param room given room to be added
+     * @return true if adds, false if doesn't
      */
     public boolean addRoomToHouse(Room room) {
-        if (room == null) {
-            return false;
-        }
         return this.mRoomList.addRoomToRoomList(room);
     }
 
@@ -71,4 +69,7 @@ public class House {
         return this.mAddress.getLocation();
     }
 
+    public double getLastTemperatureOfTheHouseArea(){
+        return mInsertedGeoArea.getLastTemperatureInTheArea(mAddress.getLocation());
+    }
 }

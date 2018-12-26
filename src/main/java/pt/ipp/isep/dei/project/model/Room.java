@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.util.Objects;
+
 public class Room {
     private String mName;
     private int mHouseFloor;
@@ -43,9 +45,14 @@ public class Room {
         this.mHouseFloor = mHouseFloor;
     }
 
+    /**
+     * method that creates the same hashcode to rooms with the same attributes: name, housefloor and dimensions.
+     *
+     * @return the hashcode created
+     */
     @Override
     public int hashCode() {
-        return 1;
+        return Objects.hash(mName, mHouseFloor, mDimensions);
     }
 
     /**

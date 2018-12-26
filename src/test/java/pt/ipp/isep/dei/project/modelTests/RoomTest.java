@@ -5,9 +5,7 @@ import pt.ipp.isep.dei.project.model.*;
 
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RoomTest {
 
@@ -17,7 +15,7 @@ public class RoomTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room = new Room(name1,houseFloor1,dimensions1);
+        Room room = new Room(name1, houseFloor1, dimensions1);
 
         String expectResult = "Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0";
 
@@ -30,9 +28,12 @@ public class RoomTest {
     @Test
     void testhashCode() {
         //Arrange
-        Dimensions dim = new Dimensions(3.5,3.5,3.5);
-        Room room = new Room("Room",2,dim);
-        int expectedResult = 1;
+        String name = "roomOne";
+        int housefloor = 2;
+        Dimensions dim = new Dimensions(4, 10.5, 7.5);
+        Room room = new Room(name, housefloor, dim);
+        int expectedResult = Objects.hash(name, housefloor, dim);
+
         // Act
         int result = room.hashCode();
         // Assert
@@ -40,12 +41,27 @@ public class RoomTest {
     }
 
     @Test
+    void testhashCodeNotEquals() {
+        //Arrange
+        String name = "roomOne";
+        String name2 = "roomtwo";
+        int housefloor = 2;
+        Dimensions dim = new Dimensions(4, 10.5, 7.5);
+
+        // Act
+        int hash1 = Objects.hash(name, housefloor, dim);
+        int hash2 = Objects.hash(name2, housefloor, dim);
+        // Assert
+        assertNotEquals(hash1, hash2);
+    }
+
+    @Test
     void testEqualsTrue() {
         //Arrange
-        Dimensions dim = new Dimensions(3.5,3.5,3.5);
-        Room room = new Room("Room",2,dim);
-        Dimensions dim2 = new Dimensions(3.5,3.5,3.5);
-        Room room2 = new Room("Room",2,dim2);
+        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
+        Room room2 = new Room("Room", 2, dim2);
         //Act
         boolean result = room.equals(room2);
         //Assert
@@ -55,10 +71,10 @@ public class RoomTest {
     @Test
     void testEqualsFalse() {
         //Arrange
-        Dimensions dim = new Dimensions(3,3.5,3.5);
-        Room room = new Room("Room",2,dim);
-        Dimensions dim2 = new Dimensions(3.5,3.5,3.5);
-        Room room2 = new Room("Room",2,dim2);
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
+        Room room2 = new Room("Room", 2, dim2);
         //Act
         boolean result = room.equals(room2);
         //Assert
@@ -80,32 +96,7 @@ public class RoomTest {
     }
 
     @Test
-    void testAddRoomToRoomList(){
-        //Arrange
-        RoomList list = new RoomList();
-        Dimensions dim = new Dimensions(3,3.5,3.5);
-        Room room = new Room("RoomOne",2,dim);
-        //Act
-        boolean result = list.addRoomToRoomList(room);
-        //assert
-        assertTrue(result);
-    }
-
-    @Test
-    void testAddRoomToRoomListFalse(){
-        //Arrange
-        RoomList list = new RoomList();
-        Dimensions dim = new Dimensions(3,3.5,3.5);
-        Room room = new Room("RoomOne",2,dim);
-        list.addRoomToRoomList(room);
-        //Act
-        boolean result = list.addRoomToRoomList(room);
-        //assert
-        assertFalse(result);
-    }
-
-    @Test
-    void testAddSensorToTheListOfSensorsInTheRoom () {
+    void testAddSensorToTheListOfSensorsInTheRoom() {
         // Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
@@ -114,8 +105,8 @@ public class RoomTest {
 
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
-        Dimensions dim = new Dimensions(3,3.5,3.5);
-        Room room = new Room("Room",2,dim);
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
 
         // Act
         boolean result = room.addSensorToTheListOfSensorsInTheRoom(s1);
@@ -135,8 +126,8 @@ public class RoomTest {
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
 
-        Dimensions dim = new Dimensions(3,3.5,3.5);
-        Room room = new Room("Room",2,dim);
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
 
         room.addSensorToTheListOfSensorsInTheRoom(s0);
         sensorList.addSensorToTheListOfSensors(s0);

@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.util.Objects;
+
 public class Dimensions {
     private double mHeight;
     private double mLength;
@@ -35,10 +37,16 @@ public class Dimensions {
         this.mWidth = mWidth;
     }
 
+    /**
+     * method that creates the same hashcode to dimensions with the same attributes: height, length, and width.
+     *
+     * @return the hashcode created
+     */
     @Override
     public int hashCode() {
-        return 1;
+        return Objects.hash(mHeight, mLength, mWidth);
     }
+
 
     /**
      * Equals method to determine if two Dimensions are equal.
@@ -59,4 +67,5 @@ public class Dimensions {
         return Math.abs((this.mHeight-dim.mHeight))< delta && Math.abs((this.mLength-dim.mLength))< delta
                 && Math.abs((this.mWidth-dim.mWidth))<delta;
     }
+    ////////////////////////////////////////////////////////
 }

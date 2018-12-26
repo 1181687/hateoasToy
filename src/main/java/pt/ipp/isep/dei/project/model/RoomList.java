@@ -28,11 +28,13 @@ public class RoomList {
 
     /**
      * Method that adds a room to the list of rooms
-     *
-     * @param room the room that i want to add
-     * @return true if it adds, false if it doesn't add, because it already contains it
+     * @param room the room to be added
+     * @return true if it adds, false if it doesn't add, because it already contains it or the room is null
      */
     public boolean addRoomToRoomList(Room room) {
+        if (room == null) {
+            return false;
+        }
         if (!(mRoomList.contains(room))) {
             mRoomList.add(room);
             return true;
@@ -47,7 +49,7 @@ public class RoomList {
      * @param height given height number to the new room
      * @param length given length number to the new room
      * @param width given width number to the new room
-     * @return
+     * @return the new room
      */
     public Room newRoom(String name, int housefloor, double height, double length, double width){
         Dimensions newDimension = new Dimensions(height,length,width);

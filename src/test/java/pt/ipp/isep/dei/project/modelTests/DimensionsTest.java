@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Dimensions;
 import pt.ipp.isep.dei.project.model.TipoSensor;
 
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class DimensionsTest {
@@ -11,12 +13,21 @@ public class DimensionsTest {
     @Test
     void testhashCode() {
         //Arrange
-        Dimensions dim = new Dimensions(3.5,3.5,3.5);
-        int expectedResult = 1;
+        double height = 5;
+        double length = 10;
+        double width = 10;
+        double width2 = 15;
+        Dimensions dim = new Dimensions(height, length, width);
+        Dimensions dim2 = new Dimensions(height, length, width2);
+
+        int hash1 = Objects.hash(height, length, width);
+        int hash2 = Objects.hash(height, length, width2);
+
         // Act
-        int result = dim.hashCode();
+        int result = hash1;
+        int expectedResult = hash2;
         // Assert
-        assertEquals(expectedResult, result);
+        assertNotEquals(expectedResult, result);
     }
 
     @Test

@@ -303,4 +303,8 @@ public class Sensor {
         }
         return somaRegistosMaxSemana/registosMaxSemana.size();
     }
+
+    public double distanceBetweenASensorAndALocation(Location location) {
+        return this.mLocation.distanciaDuasLocalizacoes(location);
+    }
 }
