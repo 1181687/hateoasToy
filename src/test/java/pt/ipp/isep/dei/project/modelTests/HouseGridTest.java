@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Dimensions;
 import pt.ipp.isep.dei.project.model.HouseGrid;
 import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.SensorList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,9 +16,10 @@ public class HouseGridTest {
 
         // Arrange
         Dimensions dimensionsRoom1 = new Dimensions(5.2, 3.7, 8.5);
-        Room room1 = new Room ("Kid's room", 1, dimensionsRoom1);
+        SensorList list = new SensorList();
+        Room room1 = new Room("Kid's room", 1, dimensionsRoom1, list);
         Dimensions dimensionsRoom2 = new Dimensions(5.2, 3.7, 8.5);
-        Room room2 = new Room ("Bathroom", 1, dimensionsRoom2);
+        Room room2 = new Room("Bathroom", 1, dimensionsRoom2, list);
 
         String houseGridName = "hgname1";
         HouseGrid houseGrid1 = new HouseGrid(houseGridName);
@@ -43,7 +45,8 @@ public class HouseGridTest {
         String roomName = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room = new Room(roomName, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room = new Room(roomName, houseFloor1, dimensions1, list);
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
         grid.attachRoomInTheHouseGridRoomList(room);

@@ -15,7 +15,8 @@ public class RoomTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room = new Room(name1, houseFloor1, dimensions1);
+        SensorList list = new SensorList();
+        Room room = new Room(name1, houseFloor1, dimensions1, list);
 
         String expectResult = "Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0";
 
@@ -31,7 +32,9 @@ public class RoomTest {
         String name = "roomOne";
         int housefloor = 2;
         Dimensions dim = new Dimensions(4, 10.5, 7.5);
-        Room room = new Room(name, housefloor, dim);
+        SensorList list = new SensorList();
+        Room room = new Room(name, housefloor, dim, list);
+
         int expectedResult = Objects.hash(name, housefloor, dim);
 
         // Act
@@ -39,7 +42,6 @@ public class RoomTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-
     @Test
     void testhashCodeNotEquals() {
         //Arrange
@@ -59,9 +61,10 @@ public class RoomTest {
     void testEqualsTrue() {
         //Arrange
         Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        SensorList list = new SensorList();
+        Room room = new Room("Room", 2, dim, list);
         Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
-        Room room2 = new Room("Room", 2, dim2);
+        Room room2 = new Room("Room", 2, dim2, list);
         //Act
         boolean result = room.equals(room2);
         //Assert
@@ -72,9 +75,10 @@ public class RoomTest {
     void testEqualsFalse() {
         //Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        SensorList list = new SensorList();
+        Room room = new Room("Room", 2, dim, list);
         Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
-        Room room2 = new Room("Room", 2, dim2);
+        Room room2 = new Room("Room", 2, dim2, list);
         //Act
         boolean result = room.equals(room2);
         //Assert
@@ -85,7 +89,8 @@ public class RoomTest {
     void testEqualsFalseDifTypes() {
         //Arrange
         Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        SensorList list = new SensorList();
+        Room room = new Room("Room", 2, dim, list);
 
         TipoSensor tipo = new TipoSensor("humidade");
 
@@ -106,7 +111,8 @@ public class RoomTest {
         Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
 
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        SensorList list = new SensorList();
+        Room room = new Room("Room", 2, dim, list);
 
         // Act
         boolean result = room.addSensorToTheListOfSensorsInTheRoom(s1);
@@ -127,7 +133,8 @@ public class RoomTest {
         Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
 
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        SensorList list = new SensorList();
+        Room room = new Room("Room", 2, dim, list);
 
         room.addSensorToTheListOfSensorsInTheRoom(s0);
         sensorList.addSensorToTheListOfSensors(s0);
