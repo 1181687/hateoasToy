@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.ListaTiposSensores;
-import pt.ipp.isep.dei.project.model.TipoSensor;
+import pt.ipp.isep.dei.project.controllers.US253Controller;
+import pt.ipp.isep.dei.project.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -130,5 +130,33 @@ class ListaTiposSensoresTest {
         TipoSensor resultado = novaLista.getTipoSensorPorPosicao(posicao);
         //Assert
         assertEquals(tipo3, resultado);
+    }
+
+    @Test
+    void testDisplayListOfSensorsType() {
+        // Arrange
+        // RoomList with two rooms
+        RoomList roomList = new RoomList();
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2,2,2);
+        Room room1 = new Room (name1,houseFloor1,dimensions1);
+
+        roomList.addRoomToRoomList(room1);
+
+        // Type of sensor
+        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+
+        // Sensors Type List
+        ListaTiposSensores listSensorsType = new ListaTiposSensores();
+        listSensorsType.adicionarTipoSensorALista(tipoSensor);
+
+        String expectedResult = "1 - Sensor Type: Temperatura\n";
+
+        // Act
+        String result = listSensorsType.displaySensorTypeList();
+        // Assert
+        assertEquals(expectedResult, result);
     }
 }

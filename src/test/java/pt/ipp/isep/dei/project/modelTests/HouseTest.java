@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -35,4 +36,26 @@ public class HouseTest {
         boolean result = house.addRoomToHouse(null);
         assertFalse(result);
     }
+
+    @Test
+    void testGetLocationOfTheHouse () {
+        // Arrange
+        String zipCode = "4050";
+        double latitude = 40.5;
+        double longitude = 50.5;
+        double altitude = 100.0;
+        Location local = new Location(latitude, longitude, altitude);
+        Address address = new Address(zipCode, local);
+        HouseGridList houseGridList = new HouseGridList();
+        RoomList roomList = new RoomList();
+
+        House house = new House(roomList, houseGridList, address);
+
+        Location expectedResult = local;
+        // Act
+        Location result = house.getLocationOfTheHouse();
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
 }

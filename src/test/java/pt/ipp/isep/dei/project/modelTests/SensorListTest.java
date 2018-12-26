@@ -48,5 +48,23 @@ class SensorListTest {
         assertEquals(result, expectedResult);
     }
 
+    @Test
+    void testCreateNewSensor () {
+        //Arrange
+        String sensorName = "s0";
+        TipoSensor sensorType = new TipoSensor("Temperatura");
+        Location location = new Location(123, 345, 50);
+        Sensor s0 = new Sensor(sensorName, sensorType, location);
+
+        SensorList newList = new SensorList();
+
+        Sensor expectedResult = s0;
+
+        // Act
+        Sensor result = newList.createNewSensor(sensorName, sensorType, location);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 
 }

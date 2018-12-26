@@ -76,6 +76,10 @@ public class US253Controller {
         return mRoomList.checkIfRoomListIsEmpty();
     }
 
+    /**
+     * This method check if the list of Sensors Type is empty.
+     * @return true or false.
+     */
     public boolean checkIfTheListOfSensorTypeIsEmpty () {
         return mListSensorsType.checkIfListOfTypeSensorsIsEmpty();
     }
