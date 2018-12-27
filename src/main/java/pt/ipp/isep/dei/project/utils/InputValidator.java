@@ -132,7 +132,7 @@ public class InputValidator {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                System.out.println("Error! Please insert a number between between " + min + " and " + max +".");
+                System.out.println("Error! Please insert a number between " + min + " and " + max + ".");
                 flag = true;
                 in.nextLine();
             }

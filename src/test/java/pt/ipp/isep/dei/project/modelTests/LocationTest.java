@@ -35,7 +35,6 @@ public class LocationTest {
         Location local1 = new Location(lat1, lon1, alt1);
         Location local2 = new Location(lat2, lon2, alt2);
 
-        //Location local2 = new Location(lat2, -16.9, 0);
         double expectedResult = Double.NaN;
         double result = local1.distanciaDuasLocalizacoes(local2);
         assertEquals(expectedResult,result,0.001);
