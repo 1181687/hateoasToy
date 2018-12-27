@@ -105,4 +105,55 @@ public class PowerSourceTest {
         //Assert
         assertFalse(result);
     }
+
+    @Test
+    public void testingEqualsComparingTheSameObjectPositiveTest(){
+        //Arrange
+        String powerSourceName1 = "ps1";
+
+        PowerSourceType powerSourceType1 = new PowerSourceType("public electric grid");
+        boolean powerSourceType1IsRechargeable = false;
+
+
+        PowerSource powerSource1 = new PowerSource(powerSourceName1, powerSourceType1,powerSourceType1IsRechargeable);
+
+        //Act
+        boolean result = powerSource1.equals(powerSource1);
+
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testingEqualsComparingDifferentObjectTypeNegativeTest(){
+        //Arrange
+        String powerSourceName1 = "ps1";
+
+        PowerSourceType powerSourceType1 = new PowerSourceType("public electric grid");
+        boolean powerSourceType1IsRechargeable = false;
+
+        PowerSource powerSource1 = new PowerSource(powerSourceName1, powerSourceType1,powerSourceType1IsRechargeable);
+
+        //Act
+        boolean result = powerSource1.equals(powerSourceType1);
+
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testingHashCode() {
+        //Arrange
+        String powerSourceName1 = "ps1";
+
+        PowerSourceType powerSourceType1 = new PowerSourceType("public electric grid");
+        boolean powerSourceType1IsRechargeable = false;
+
+        PowerSource powerSource1 = new PowerSource(powerSourceName1, powerSourceType1,powerSourceType1IsRechargeable);
+        int expectedResult = 1;
+        // Act
+        int result = powerSource1.hashCode();
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 }
