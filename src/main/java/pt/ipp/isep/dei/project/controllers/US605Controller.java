@@ -18,6 +18,7 @@ public class US605Controller {
         return this.mHouse.getListOfRoom().getRoomByName(name).getSensorList().getUltimoRegistoDeUmTipoDeSensor(mType);
     }
 
+    
     public String getDisplayRoomList() {
         return this.mHouse.getListOfRoom().getDisplayRoomList();
     }

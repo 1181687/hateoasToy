@@ -1,11 +1,12 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.GeographicalArea;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.RectangleArea;
+import pt.ipp.isep.dei.project.model.TipoAreaGeo;
 
-import java.util.*;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class GeographicalAreaTest {
 
@@ -92,7 +93,7 @@ class GeographicalAreaTest {
         //assert
         assertEquals(expectedResult, resultado, 0.0001);
     }
-
+/*
     @Test
     public void testargetListaUltimosRegistosPorTipoSensorCasoPositivo() {
         //Arrange
@@ -1407,5 +1408,5 @@ class GeographicalAreaTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-
+*/
 }
