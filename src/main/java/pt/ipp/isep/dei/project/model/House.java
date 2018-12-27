@@ -1,6 +1,9 @@
 package pt.ipp.isep.dei.project.model;
 
 
+import java.util.ArrayList;
+import java.util.Date;
+
 public class House {
     private RoomList mRoomList;
     private HouseGridList mListHouseGrids;
@@ -12,6 +15,13 @@ public class House {
         this.mRoomList = roomList;
         this.mListHouseGrids = listHouseGrids;
         this.mAddress = address;
+    }
+
+    public House(RoomList mRoomList, HouseGridList mListHouseGrids, Address mAddress, GeographicalArea mInsertedGeoArea) {
+        this.mRoomList = mRoomList;
+        this.mListHouseGrids = mListHouseGrids;
+        this.mAddress = mAddress;
+        this.mInsertedGeoArea = mInsertedGeoArea;
     }
 
     /**
@@ -34,10 +44,11 @@ public class House {
 
     /**
      * Method that creates a new address considering the parameters below
-     * @param mZipCode String zipCode
-     * @param mLatitude attribute of Location. Double
+     *
+     * @param mZipCode   String zipCode
+     * @param mLatitude  attribute of Location. Double
      * @param mLongitude attribute of Location. Double
-     * @param mAltitude attribute of Location. Double
+     * @param mAltitude  attribute of Location. Double
      * @return method for the creation of a new Address
      */
     public Address newAddresses(String mZipCode, double mLatitude, double mLongitude, double mAltitude) {
@@ -47,6 +58,7 @@ public class House {
 
     /**
      * method that adds a room to the house's roomlist
+     *
      * @param room given room to be added
      * @return true if adds, false if doesn't
      */
@@ -63,13 +75,26 @@ public class House {
 
     /**
      * Get the location of the house.
+     *
      * @return the location of the house.
      */
-    public Location getLocationOfTheHouse () {
+    public Location getLocationOfTheHouse() {
         return this.mAddress.getLocation();
     }
 
-    public double getLastTemperatureOfTheHouseArea(){
+    public double getLastTemperatureOfTheHouseArea() {
         return mInsertedGeoArea.getLastTemperatureInTheArea(mAddress.getLocation());
+    }
+
+    public double getAverageDailyMeasurementOfHouseArea(TipoSensor measurementType, Date startDate, Date endDate) {
+        ArrayList<Double> listOfDailyAverages = mInsertedGeoArea.getDailyAverageMeasurementInTheArea(measurementType, startDate, endDate);
+        double sum = 0;
+        if (listOfDailyAverages.isEmpty()) {
+            return 0;
+        }
+        for (int i = 0; i < listOfDailyAverages.size(); i++) {
+            sum += listOfDailyAverages.get(i);
+        }
+        return sum / listOfDailyAverages.size();
     }
 }

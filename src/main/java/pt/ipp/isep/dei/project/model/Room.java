@@ -11,6 +11,17 @@ public class Room {
     private SensorList mSensorList;
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /**
+     * constructor that receives name, houseFloor, dimensions, sensorList
+     * throw an exception if any of the parameters is invalid.
+     * Invalid parameters if Dimensions is null or name is null or empty
+     *
+     * @param name
+     * @param houseFloor
+     * @param dimensions
+     * @param sensorList
+     */
     public Room(String name, int houseFloor, Dimensions dimensions, SensorList sensorList) {
         validateName(name);
         validateDimensions(dimensions);
@@ -20,15 +31,27 @@ public class Room {
         this.mSensorList = sensorList;
     }
 
-    private void validateName(String name) {
+    /**
+     * method that receives a name and validates it. It can not be null or empty
+     * throw an exception if the name is invalid
+     *
+     * @param name given name
+     */
+    private static void validateName(String name) {
         if (isNull(name) || name.trim().length() == 0) {
             throw new RuntimeException("Please enter a valid name. Name should not be empty");
         }
     }
 
-    private void validateDimensions(Dimensions dimensions) {
+    /**
+     * method that receives an object Dimensions and validates it. It can not be null
+     * throw an exception if Dimensions is null
+     *
+     * @param dimensions given object dimensions
+     */
+    private static void validateDimensions(Dimensions dimensions) {
         if (isNull(dimensions)) {
-            throw new RuntimeException("Dimensjons should not be null");
+            throw new RuntimeException("Dimensions should not be null");
         }
     }
 
@@ -73,7 +96,7 @@ public class Room {
         return Objects.hash(mName, mHouseFloor, mDimensions);
     }
 
-    /**
+    /*
      * Equals method to determine if two Rooms are equal.
      * They are equals if all atributtes are equal.
      *

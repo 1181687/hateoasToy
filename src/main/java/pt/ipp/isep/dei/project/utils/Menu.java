@@ -62,7 +62,7 @@ public class Menu {
         content.append("\n");
         content.append("2-US605-Get the current temperature in a room");
         content.append("\n");
-        content.append("3-US610");
+        content.append("3-US610- Get the maximum temperature in a room");
         content.append("\n");
         content.append("4-US620");
         content.append("\n");

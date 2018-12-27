@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -66,7 +68,7 @@ public class GeographicalArea {
         return this.mLocation.distanciaDuasLocalizacoes(novoAg.getmLocation());
     }
 
-
+/*
     public List<Medicao> getListaDeUltimosRegistosPorTipoDeSensor(TipoSensor tipo) {
         List<Medicao> listaDeUltimosRegistos = new ArrayList<>();
         for (Sensor sensor : mSensorList.getmSensorList()) {
@@ -93,6 +95,7 @@ public class GeographicalArea {
         }
         return medicaoComUltimoRegisto.getmValor();
     }
+    */
 
     public boolean verificarSeSensorEstaContidoNaAG(Sensor sensor) {
 
@@ -165,4 +168,32 @@ public class GeographicalArea {
         }
         return nearestSensor.getUltimoRegisto().getmValor();
     }
+
+    /**
+     * Method that returns an ArrayList with the daily averages between two dates.
+     *
+     * @param sensorType
+     * @param startDate
+     * @param endDate
+     * @return
+     */
+    public ArrayList<Double> getDailyAverageMeasurementInTheArea(TipoSensor sensorType, Date startDate, Date endDate) {
+        LocalDate startDate1 = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        LocalDate endDate1 = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        ArrayList<Double> dailyAverage = new ArrayList<>();
+        List<Sensor> sensorListWithRightTypeDuringPeriod = listarSensoresDeUmTipoNaAGNumPeriodo(sensorType, this.mSensorList.getmSensorList(), startDate, endDate);
+
+        for (Sensor sensor : sensorListWithRightTypeDuringPeriod) {
+
+            for (LocalDate dateIterator = startDate1; dateIterator.isBefore(endDate1); dateIterator = dateIterator.plusDays(1)) {
+                Date dateTeste = Date.from(dateIterator.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                if (!(sensor.getRegistosDoDia(dateTeste).isEmpty())) {
+                    dailyAverage.add(sensor.getDailyAverage(dateTeste));
+                }
+            }
+        }
+        return dailyAverage;
+
+    }
 }
+
