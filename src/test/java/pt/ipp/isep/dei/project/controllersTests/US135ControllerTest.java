@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class US135ControllerTest {
 
     @Test
-    void testCheckIfHouseGridListIsEmptyPositive () {
+    void testCheckIfHouseGridListIsEmptyPositive() {
 
         // Arrange
         HouseGridList houseGridList = new HouseGridList();
@@ -19,7 +19,7 @@ class US135ControllerTest {
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
         powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
 
-        US135Controller us135Controller = new US135Controller(houseGridList,powerSourceTypeList);
+        US135Controller us135Controller = new US135Controller(houseGridList, powerSourceTypeList);
 
         // Act
         boolean result = us135Controller.checkIfHouseGridListIsEmpty();
@@ -29,7 +29,7 @@ class US135ControllerTest {
     }
 
     @Test
-    void testCheckIfHouseGridListIsEmptyNegative () {
+    void testCheckIfHouseGridListIsEmptyNegative() {
 
         // Arrange
         String houseGridName = "hgname1";
@@ -41,7 +41,7 @@ class US135ControllerTest {
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
         powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
 
-        US135Controller us135Controller = new US135Controller(houseGridList,powerSourceTypeList);
+        US135Controller us135Controller = new US135Controller(houseGridList, powerSourceTypeList);
 
         // Act
         boolean result = us135Controller.checkIfHouseGridListIsEmpty();
@@ -51,7 +51,7 @@ class US135ControllerTest {
     }
 
     @Test
-    void testGetHouseGridListContent () {
+    void testGetHouseGridListContentPositiveTest() {
 
         // Arrange
         String houseGridName = "hgname1";
@@ -64,7 +64,7 @@ class US135ControllerTest {
         powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
 
 
-        US135Controller us135Controller = new US135Controller(houseGridList,powerSourceTypeList);
+        US135Controller us135Controller = new US135Controller(houseGridList, powerSourceTypeList);
 
         String expectedResult = "1 - Name: hgname1\n";
 
@@ -75,7 +75,7 @@ class US135ControllerTest {
     }
 
     @Test
-    void testAddPowerSourceToHouseGridPositiveTest(){
+    void testAddPowerSourceToHouseGridPositiveTest() {
         //Arrange
         String houseGridName = "hgname1";
         HouseGrid houseGrid1 = new HouseGrid(houseGridName);
@@ -92,19 +92,19 @@ class US135ControllerTest {
         int position = 0;
         int positionOfPowerSource = 0;
 
-        US135Controller controller = new US135Controller(houseGridList,powerSourceTypeList);
+        US135Controller controller = new US135Controller(houseGridList, powerSourceTypeList);
         controller.getHouseGridFromListByPosition(position);
         controller.getPowerSourceTypeFromListByPosition(positionOfPowerSource);
 
         //Act
-        boolean result = controller.createAndAddPowerSourceToHouseGrid(powerSourceName,isRechargeable);
+        boolean result = controller.createAndAddPowerSourceToHouseGrid(powerSourceName, isRechargeable);
 
         //Assert
         assertTrue(result);
     }
 
     @Test
-    void testAddPowerSourceToHouseGridWithMoreThanAHouseGridPositiveTest(){
+    void testAddPowerSourceToHouseGridWithMoreThanAHouseGridPositiveTest() {
         //Arrange
         String houseGridName1 = "house grid 1";
         String houseGridName2 = "house grid 2";
@@ -125,18 +125,19 @@ class US135ControllerTest {
         int position = 1;
         int positionOfPowerSource = 0;
 
-        US135Controller controller = new US135Controller(houseGridList,powerSourceTypeList);
+        US135Controller controller = new US135Controller(houseGridList, powerSourceTypeList);
         controller.getHouseGridFromListByPosition(position);
         controller.getPowerSourceTypeFromListByPosition(positionOfPowerSource);
 
         //Act
-        boolean result = controller.createAndAddPowerSourceToHouseGrid(powerSourceName,isRechargeable);
+        boolean result = controller.createAndAddPowerSourceToHouseGrid(powerSourceName, isRechargeable);
 
         //Assert
         assertTrue(result);
     }
+
     @Test
-    void testAddPowerSourceToHouseGridAddingExistingPowerSourceNegativeTest(){
+    void testAddPowerSourceToHouseGridAddingExistingPowerSourceNegativeTest() {
 
         //Arrange
         String houseGridName = "hgname1";
@@ -154,13 +155,111 @@ class US135ControllerTest {
 
         int position = 0;
 
-        US135Controller controller = new US135Controller(houseGridList,powerSourceTypeList);
+        US135Controller controller = new US135Controller(houseGridList, powerSourceTypeList);
         controller.getHouseGridFromListByPosition(position);
         controller.getPowerSourceTypeFromListByPosition(position);
-        controller.createAndAddPowerSourceToHouseGrid(powerSourceName1,isRechargeable);
+        controller.createAndAddPowerSourceToHouseGrid(powerSourceName1, isRechargeable);
 
         //Act
-        boolean result = controller.createAndAddPowerSourceToHouseGrid(powerSourceName2,isRechargeable);
+        boolean result = controller.createAndAddPowerSourceToHouseGrid(powerSourceName2, isRechargeable);
+
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testingDisplayPowerSourceTypeListPositiveTest() {
+
+        //Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        HouseGridList houseGridList = new HouseGridList();
+        houseGridList.getmList().add(houseGrid1);
+
+        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
+        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
+        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
+
+        US135Controller controller = new US135Controller(houseGridList, powerSourceTypeList);
+
+        String expectedResult = "1 - Power Source Type: public electric grid\n";
+
+        //Act
+        String result = controller.displayPowerSourceTypeList();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testingChooseRechargeableOption() {
+        //Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        HouseGridList houseGridList = new HouseGridList();
+        houseGridList.getmList().add(houseGrid1);
+
+        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
+        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
+        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
+
+        int position = 0;
+
+        US135Controller controller = new US135Controller(houseGridList, powerSourceTypeList);
+        controller.getHouseGridFromListByPosition(position);
+        controller.getPowerSourceTypeFromListByPosition(position);
+
+        String expectedResult = "1 - Yes\n" + "2 - No\n";
+
+        //Act
+        String result = controller.chooseRechargeableOption();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testingIsRechargeablePositiveTest() {
+
+        //Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        HouseGridList houseGridList = new HouseGridList();
+        houseGridList.getmList().add(houseGrid1);
+
+        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
+        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
+        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
+
+        US135Controller controller = new US135Controller(houseGridList, powerSourceTypeList);
+
+        int option = 1;
+
+        //Act
+        boolean result = controller.isRechargeable(option);
+
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testingIsRechargeableNegativeTest() {
+
+        //Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        HouseGridList houseGridList = new HouseGridList();
+        houseGridList.getmList().add(houseGrid1);
+
+        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
+        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
+        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
+
+        US135Controller controller = new US135Controller(houseGridList, powerSourceTypeList);
+
+        int option = 2;
+
+        //Act
+        boolean result = controller.isRechargeable(option);
 
         //Assert
         assertFalse(result);

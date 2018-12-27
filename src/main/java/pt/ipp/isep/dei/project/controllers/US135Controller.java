@@ -46,8 +46,8 @@ public class US135Controller {
         return mSelectedHouseGrid.getPowerSourceList().chooseRechargeableOption();
     }
 
-    public boolean isRechargeable(int opcao) {
-        if (opcao == 1) {
+    public boolean isRechargeable(int option) {
+        if (option == 1) {
             return true;
         }
         return false;
