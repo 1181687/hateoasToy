@@ -27,8 +27,8 @@ public class US101UI {
         double longitude = InputValidator.getDoubleRange(label2, -180, 180);
 
 
-        System.out.println("Introduce the altitude of the new location.");
-        Double altitude = ler.nextDouble();
+        String label3 = "Introduce the altitude of the new location.";
+        double altitude = InputValidator.getInt(label3);
 
         ctrl.defineNewAddress(zipCode, latitude, longitude, altitude);
         ctrl.setAddressToTheHouse();
