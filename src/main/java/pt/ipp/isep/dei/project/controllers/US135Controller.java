@@ -47,10 +47,7 @@ public class US135Controller {
     }
 
     public boolean isRechargeable(int option) {
-        if (option == 1) {
-            return true;
-        }
-        return false;
+        return option ==1;
     }
 
 }
