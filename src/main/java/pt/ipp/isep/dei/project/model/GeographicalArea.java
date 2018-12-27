@@ -68,7 +68,7 @@ public class GeographicalArea {
         return this.mLocation.distanciaDuasLocalizacoes(novoAg.getmLocation());
     }
 
-
+/*
     public List<Medicao> getListaDeUltimosRegistosPorTipoDeSensor(TipoSensor tipo) {
         List<Medicao> listaDeUltimosRegistos = new ArrayList<>();
         for (Sensor sensor : mSensorList.getmSensorList()) {
@@ -95,6 +95,7 @@ public class GeographicalArea {
         }
         return medicaoComUltimoRegisto.getmValor();
     }
+    */
 
     public boolean verificarSeSensorEstaContidoNaAG(Sensor sensor) {
 

@@ -11,6 +11,7 @@ public class RoomList {
 
     /**
      * Get method.
+     *
      * @return mRoomList.
      */
     public List<Room> getmRoomList() {
@@ -19,6 +20,7 @@ public class RoomList {
 
     /**
      * Method that get the room in a specific position in the list.
+     *
      * @param position Specifies the position of the room in the list.
      * @return The respective room.
      */
@@ -28,6 +30,7 @@ public class RoomList {
 
     /**
      * Method that adds a room to the list of rooms
+     *
      * @param room the room to be added
      * @return true if it adds, false if it doesn't add, because it already contains it or the room is null
      */
@@ -44,15 +47,16 @@ public class RoomList {
 
     /**
      * method that creates a newroom
-     * @param name given name to the new room
+     *
+     * @param name       given name to the new room
      * @param housefloor given housefloor number to the new room
-     * @param height given height number to the new room
-     * @param length given length number to the new room
-     * @param width given width number to the new room
+     * @param height     given height number to the new room
+     * @param length     given length number to the new room
+     * @param width      given width number to the new room
      * @return the new room
      */
-    public Room newRoom(String name, int housefloor, double height, double length, double width){
-        Dimensions newDimension = new Dimensions(height,length,width);
+    public Room newRoom(String name, int housefloor, double height, double length, double width) {
+        Dimensions newDimension = new Dimensions(height, length, width);
         SensorList sensorList = new SensorList();
         return new Room(name, housefloor, newDimension, sensorList);
     }
@@ -70,11 +74,11 @@ public class RoomList {
         return content.toString();
     }
 
-    public boolean checkIfRoomListIsEmpty(){
+    public boolean checkIfRoomListIsEmpty() {
         return mRoomList.isEmpty();
     }
 
-    public int listSize(){
+    public int listSize() {
         return mRoomList.size();
     }
 
@@ -98,8 +102,8 @@ public class RoomList {
     }
 
     public void setRoomFloorInList(int chosenRoom, int change) {
-            mRoomList.get(chosenRoom).setmHouseFloor(change);
-        }
+        mRoomList.get(chosenRoom).setmHouseFloor(change);
+    }
 
     public void setRoomDimensionsInList(int chosenRoom, int chosenFeature, double change) {
         if (chosenFeature == 3) {
@@ -111,5 +115,19 @@ public class RoomList {
         if (chosenFeature == 5) {
             mRoomList.get(chosenRoom).getmDimensions().setmWidth(change);
         } else mRoomList.get(chosenRoom).getmDimensions().getmWidth();
+    }
+
+    public Room getRoomByName(String name) {
+
+        for (Room room : mRoomList) {
+            if (room.getmName().equals(name)) {
+                return room;
+            }
+        }
+        return null;
+    }
+
+    public String getNameOfTheChosenRoomInSpecificPos(int position) {
+        return mRoomList.get(position).getmName();
     }
 }

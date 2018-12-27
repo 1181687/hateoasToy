@@ -1,10 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.utils.InputValidator;
 import pt.ipp.isep.dei.project.utils.Menu;
-
-import java.util.Scanner;
 
 public class Main {
 
@@ -142,6 +139,10 @@ public class Main {
                         case 9:
                             US101UI ui9 = new US101UI(house);
                             ui9.run();
+                            break;
+                        case 10:
+                            US605UI ui10 = new US605UI(house, listaTiposSensores);
+                            ui10.run();
                             break;
                     }
                     option = Menu.administratorMenu();

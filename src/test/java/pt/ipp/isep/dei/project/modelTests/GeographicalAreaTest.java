@@ -165,6 +165,8 @@ class GeographicalAreaTest {
         s2.adicionarMedicaoALista(medicao21);
         s2.adicionarMedicaoALista(medicao22);
 
+        SensorList listSens = new SensorList();
+
         List<Medicao> expectedResult = new ArrayList<>();
 
         expectedResult.add(medicao02);
@@ -173,7 +175,7 @@ class GeographicalAreaTest {
         TipoSensor tipoResultado = new TipoSensor("Temperatura");
 
         //Act
-        List<Medicao> result = ag1.getListaDeUltimosRegistosPorTipoDeSensor(tipoResultado);
+        List<Medicao> result = listSens.getListaDeUltimosRegistosPorTipoDeSensor(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -258,9 +260,10 @@ class GeographicalAreaTest {
         expectedResult.add(medicao12);
 
         TipoSensor tipoResultado = new TipoSensor("Temperatura");
+        SensorList listSens = new SensorList();
 
         //Act
-        List<Medicao> result = ag1.getListaDeUltimosRegistosPorTipoDeSensor(tipoResultado);
+        List<Medicao> result = listSens.getListaDeUltimosRegistosPorTipoDeSensor(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -341,9 +344,10 @@ class GeographicalAreaTest {
         double expectedResult = 25;
 
         TipoSensor tipoResultado = new TipoSensor("Temperatura");
+        SensorList listSens = new SensorList();
 
         //Act
-        double result = ag1.getUltimoRegistoDeUmTipoDeSensor(tipoResultado);
+        double result = listSens.getUltimoRegistoDeUmTipoDeSensor(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -424,9 +428,10 @@ class GeographicalAreaTest {
         double expectedResult = 25;
 
         TipoSensor tipoResultado = new TipoSensor("Temperatura");
+        SensorList listSens = new SensorList();
 
         //Act
-        double result = ag1.getUltimoRegistoDeUmTipoDeSensor(tipoResultado);
+        double result = listSens.getUltimoRegistoDeUmTipoDeSensor(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -507,9 +512,10 @@ class GeographicalAreaTest {
         double expectedResult = Double.NaN;
 
         TipoSensor tipoResultado = new TipoSensor("Pluviosidade");
+        SensorList listSens = new SensorList();
 
         //Act
-        double result = ag1.getUltimoRegistoDeUmTipoDeSensor(tipoResultado);
+        double result = listSens.getUltimoRegistoDeUmTipoDeSensor(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -550,9 +556,10 @@ class GeographicalAreaTest {
         double expectedResult = Double.NaN;
 
         TipoSensor tipoResultado = new TipoSensor("Temperatura");
+        SensorList listSens = new SensorList();
 
         //Act
-        double result = ag1.getUltimoRegistoDeUmTipoDeSensor(tipoResultado);
+        double result = listSens.getUltimoRegistoDeUmTipoDeSensor(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);
