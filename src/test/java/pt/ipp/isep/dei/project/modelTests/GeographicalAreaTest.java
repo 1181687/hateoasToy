@@ -1376,7 +1376,7 @@ class GeographicalAreaTest {
         SensorType searchType = new SensorType("Rainfall");
 
         //Act
-        ArrayList<Double> result = ag.getDailyAverageMeasurementInTheArea(searchType, startDate1, endDate1);
+        List<Double> result = ag.getDailyAverageMeasurementInTheArea(searchType, startDate1, endDate1);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1417,7 +1417,7 @@ class GeographicalAreaTest {
         SensorType searchType = new SensorType("Rainfall");
 
         //Act
-        ArrayList<Double> result = ag.getDailyAverageMeasurementInTheArea(searchType, startDate1, endDate1);
+        List<Double> result = ag.getDailyAverageMeasurementInTheArea(searchType, startDate1, endDate1);
 
         //Assert
         assertEquals(expectedResult, result);
