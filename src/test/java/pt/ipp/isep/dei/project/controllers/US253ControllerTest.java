@@ -132,7 +132,7 @@ class US253ControllerTest {
     }
 
     @Test
-    void checkIfRoomListIsEmpty() {
+    void checkIfRoomListIsEmptyPositive() {
         // Arrange
         RoomList roomList = new RoomList();
 
@@ -151,6 +151,37 @@ class US253ControllerTest {
         boolean result = us253Controller.checkIfRoomListIsEmpty();
         // Assert
         assertTrue(result);
+    }
+
+    @Test
+    void checkIfRoomListIsEmptyNegative() {
+        // Arrange
+        RoomList roomList = new RoomList();
+        SensorList sensorList = new SensorList();
+
+        // Room
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2,2,2);
+        Room room1 = new Room (name1,houseFloor1,dimensions1, sensorList);
+
+        roomList.addRoomToRoomList(room1);
+
+        // House
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10,10,10);
+        Address adr = new Address("5000", local);
+        House house = new House(roomList, gridlist, adr);
+
+        // Sensors Type List
+        ListaTiposSensores listSensorsType = new ListaTiposSensores();
+
+        US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
+
+        // Act
+        boolean result = us253Controller.checkIfRoomListIsEmpty();
+        // Assert
+        assertFalse(result);
     }
 
     @Test
@@ -182,5 +213,40 @@ class US253ControllerTest {
         boolean result = us253Controller.checkIfTheListOfSensorTypeIsEmpty();
         // Assert
         assertTrue(result);
+    }
+
+    @Test
+    void checkIfTheListOfSensorTypeIsEmptyNegative() {
+        // Arrange
+        // RoomList with two rooms
+        RoomList roomList = new RoomList();
+        SensorList sensorList = new SensorList();
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2,2,2);
+        Room room1 = new Room (name1,houseFloor1,dimensions1, sensorList);
+
+        roomList.addRoomToRoomList(room1);
+
+        // House
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10,10,10);
+        Address adr = new Address("5000", local);
+        House house = new House(roomList, gridlist, adr);
+
+        // Tipo de sensor
+        TipoSensor sensorType = new TipoSensor("Temperatura");
+
+        // Sensors Type List
+        ListaTiposSensores listSensorsType = new ListaTiposSensores();
+        listSensorsType.adicionarTipoSensorALista(sensorType);
+
+        US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
+
+        // Act
+        boolean result = us253Controller.checkIfTheListOfSensorTypeIsEmpty();
+        // Assert
+        assertFalse(result);
     }
 }

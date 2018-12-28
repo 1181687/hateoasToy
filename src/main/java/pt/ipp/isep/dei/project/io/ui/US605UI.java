@@ -26,7 +26,7 @@ public class US605UI {
             //tenho que prever quarto sem sensores ou sem lista fazia?
 
             double temp = mctrl.getCurrentTemperatureRoom(roomName);
-            if (temp == Double.NaN) {
+            if (Double.isNaN(temp)) {
                 System.out.println("There are no temperature values available");
             } else {
                 StringBuilder content = new StringBuilder();
