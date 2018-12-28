@@ -3,21 +3,21 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.*;
 
 public class US6Controller {
-    private ListaTiposSensores mListaTiposSensores;
-    private ListaAG mListaAreaGeografica;
+    private SensorTypeList mSensorTypeList;
+    private GeoAreaList mListaAreaGeografica;
     private GeographicalArea mGeographicalArea;
     private Location mLocation;
-    private TipoSensor mSensorType;
+    private SensorType mSensorType;
     private Sensor mSensor;
 
-    public US6Controller(ListaTiposSensores listaTiposSensores, ListaAG listaAG) {
-        this.mListaTiposSensores = listaTiposSensores;
-        this.mListaAreaGeografica = listaAG;
+    public US6Controller(SensorTypeList sensorTypeList, GeoAreaList geoAreaList) {
+        this.mSensorTypeList = sensorTypeList;
+        this.mListaAreaGeografica = geoAreaList;
     }
 
 
     public void getTipoSensorPorPosicao (int posicao) {
-        mSensorType = mListaTiposSensores.getTipoSensorPorPosicao(posicao);
+        mSensorType = mSensorTypeList.getTipoSensorPorPosicao(posicao);
     }
 
     public String getNomeAreaGeograficaPorIndice (int posicao) {
@@ -33,11 +33,11 @@ public class US6Controller {
     }
 
     public int numeroElementosDaListaTipoDeSensor () {
-        return mListaTiposSensores.getmListaTiposSensores().size();
+        return mSensorTypeList.getmListaTiposSensores().size();
     }
 
     public String getNomeTipoSensorPorIndice (int posicao) {
-        return mListaTiposSensores.getTipoSensorPorPosicao(posicao).getmTipo();
+        return mSensorTypeList.getTipoSensorPorPosicao(posicao).getmTipo();
     }
 
     public boolean adicionarSensorAAreaGeografica(Sensor sensor) {

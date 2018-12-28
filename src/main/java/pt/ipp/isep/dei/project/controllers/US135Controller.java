@@ -28,7 +28,7 @@ public class US135Controller {
         this.mSelectedHouseGrid = this.mHouseGridList.getHouseGridFromASpecificPositionInTheList(position);
     }
 
-    public boolean addPowerSourceToHouseGrid(String name, boolean isRechargeable) {
+    public boolean createAndAddPowerSourceToHouseGrid(String name, boolean isRechargeable) {
         mPowerSource = this.mSelectedHouseGrid.getPowerSourceList().createNewPowerSource(name, this.mSelectedPowerSourceType, isRechargeable);
         return this.mSelectedHouseGrid.addPowerSourceToHouseGrid(mPowerSource);
     }
@@ -46,11 +46,8 @@ public class US135Controller {
         return mSelectedHouseGrid.getPowerSourceList().chooseRechargeableOption();
     }
 
-    public boolean isRechargeable(int opcao) {
-        if (opcao == 1) {
-            return true;
-        }
-        return false;
+    public boolean isRechargeable(int option) {
+        return option ==1;
     }
 
 }

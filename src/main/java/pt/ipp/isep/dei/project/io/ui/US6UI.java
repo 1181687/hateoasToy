@@ -1,16 +1,16 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.US6Controller;
-import pt.ipp.isep.dei.project.model.ListaAG;
-import pt.ipp.isep.dei.project.model.ListaTiposSensores;
+import pt.ipp.isep.dei.project.model.GeoAreaList;
+import pt.ipp.isep.dei.project.model.SensorTypeList;
 
 import java.util.Scanner;
 
 public class US6UI {
     private US6Controller controller6;
 
-    public US6UI(ListaAG listaAG, ListaTiposSensores listaTiposSensores) {
-        this.controller6 = new US6Controller(listaTiposSensores,listaAG);
+    public US6UI(GeoAreaList geoAreaList, SensorTypeList sensorTypeList) {
+        this.controller6 = new US6Controller(sensorTypeList, geoAreaList);
     }
 
     public void run() {

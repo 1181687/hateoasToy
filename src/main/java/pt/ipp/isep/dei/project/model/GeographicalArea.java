@@ -8,15 +8,15 @@ import java.util.List;
 
 public class GeographicalArea {
     private String mNomeAreaGeo;
-    private TipoAreaGeo mTipoAreaGeo;
+    private GeoAreaType mGeoAreaType;
     private GeographicalArea mAreaInseridaEm;
     private Location mLocation;
     private RectangleArea mRectangleArea;
     private SensorList mSensorList = new SensorList();
 
-    public GeographicalArea(String mNomeAreaGeo, TipoAreaGeo mTipoAreaGeo, Location mLocation, RectangleArea mRectangleArea) {
+    public GeographicalArea(String mNomeAreaGeo, GeoAreaType mGeoAreaType, Location mLocation, RectangleArea mRectangleArea) {
         this.mNomeAreaGeo = mNomeAreaGeo;
-        this.mTipoAreaGeo = mTipoAreaGeo;
+        this.mGeoAreaType = mGeoAreaType;
         this.mLocation = mLocation;
         this.mRectangleArea = mRectangleArea;
     }
@@ -39,7 +39,7 @@ public class GeographicalArea {
             return false;
         }
         GeographicalArea ag = (GeographicalArea) obj;
-        return this.mNomeAreaGeo.equals(ag.mNomeAreaGeo) && this.mTipoAreaGeo.equals(ag.mTipoAreaGeo) && this.mLocation.equals(ag.mLocation) && this.mRectangleArea.equals(ag.mRectangleArea);
+        return this.mNomeAreaGeo.equals(ag.mNomeAreaGeo) && this.mGeoAreaType.equals(ag.mGeoAreaType) && this.mLocation.equals(ag.mLocation) && this.mRectangleArea.equals(ag.mRectangleArea);
 
     }
 
@@ -48,8 +48,8 @@ public class GeographicalArea {
         return mNomeAreaGeo;
     }
 
-    public TipoAreaGeo getmTipoAreaGeo() {
-        return mTipoAreaGeo;
+    public GeoAreaType getmGeoAreaType() {
+        return mGeoAreaType;
     }
 
     public Location getmLocation() {
@@ -69,8 +69,8 @@ public class GeographicalArea {
     }
 
 /*
-    public List<Medicao> getListaDeUltimosRegistosPorTipoDeSensor(TipoSensor tipo) {
-        List<Medicao> listaDeUltimosRegistos = new ArrayList<>();
+    public List<Measurement> getListaDeUltimosRegistosPorTipoDeSensor(SensorType tipo) {
+        List<Measurement> listaDeUltimosRegistos = new ArrayList<>();
         for (Sensor sensor : mSensorList.getmSensorList()) {
             if (sensor.listaDeRegistosEVazia()) {
                 break;
@@ -82,13 +82,13 @@ public class GeographicalArea {
         return listaDeUltimosRegistos;
     }
 
-    public double getUltimoRegistoDeUmTipoDeSensor(TipoSensor tipo) {
-        List<Medicao> listaDeUltimosRegisto = getListaDeUltimosRegistosPorTipoDeSensor(tipo);
+    public double getUltimoRegistoDeUmTipoDeSensor(SensorType tipo) {
+        List<Measurement> listaDeUltimosRegisto = getListaDeUltimosRegistosPorTipoDeSensor(tipo);
         if (getListaDeUltimosRegistosPorTipoDeSensor(tipo).isEmpty()) {
             return Double.NaN;
         }
-        Medicao medicaoComUltimoRegisto = listaDeUltimosRegisto.get(0);
-        for (Medicao registo : listaDeUltimosRegisto) {
+        Measurement medicaoComUltimoRegisto = listaDeUltimosRegisto.get(0);
+        for (Measurement registo : listaDeUltimosRegisto) {
             if (registo.getmDataHora().after(medicaoComUltimoRegisto.getmDataHora())) {
                 medicaoComUltimoRegisto = registo;
             }
@@ -103,20 +103,20 @@ public class GeographicalArea {
 
     }
 
-    public List<Sensor> listarSensoresContidosNaAGPorTipo(TipoSensor tipoSensor, List<Sensor> listaDeSensores) {
+    public List<Sensor> listarSensoresContidosNaAGPorTipo(SensorType sensorType, List<Sensor> listaDeSensores) {
 
         List<Sensor> listaDeSensoresInseridos = new ArrayList<>();
 
         for (Sensor sensor : listaDeSensores) {
 
-            if (verificarSeSensorEstaContidoNaAG(sensor) && sensor.getmTipoSensor().equals(tipoSensor)) {
+            if (verificarSeSensorEstaContidoNaAG(sensor) && sensor.getmSensorType().equals(sensorType)) {
                 listaDeSensoresInseridos.add(sensor);
             }
         }
         return listaDeSensoresInseridos;
     }
 
-    public List<Sensor> listarSensoresDeUmTipoNaAGNumPeriodo(TipoSensor tipo, List<Sensor> listaDeSensores, Date dataInicial, Date dataFinal) {
+    public List<Sensor> listarSensoresDeUmTipoNaAGNumPeriodo(SensorType tipo, List<Sensor> listaDeSensores, Date dataInicial, Date dataFinal) {
 
         List<Sensor> listaSensoresContidosNaAGPorTipo = listarSensoresContidosNaAGPorTipo(tipo, listaDeSensores);
         List<Sensor> listaSensoresDeTipoNumPeriodo = new ArrayList<>();
@@ -129,8 +129,8 @@ public class GeographicalArea {
         return listaSensoresDeTipoNumPeriodo;
     }
 
-    public Sensor novoSensor(String nome, TipoSensor novoTipoSensor, Location novaLocalizacao) {
-        return new Sensor(nome, novoTipoSensor, novaLocalizacao);
+    public Sensor novoSensor(String nome, SensorType novoSensorType, Location novaLocalizacao) {
+        return new Sensor(nome, novoSensorType, novaLocalizacao);
     }
 
     public Location novaLocalizacao(double mLatitude, double mLongitude, double mAltitude) {
@@ -138,9 +138,9 @@ public class GeographicalArea {
     }
 
     public double getLastTemperatureInTheArea(Location location) {
-        TipoSensor temperature = new TipoSensor("Temperature");
+        SensorType temperature = new SensorType("Temperature");
 
-        GeographicalArea areaToBeUsed = new GeographicalArea(mNomeAreaGeo, mTipoAreaGeo, mLocation, mRectangleArea);
+        GeographicalArea areaToBeUsed = new GeographicalArea(mNomeAreaGeo, mGeoAreaType, mLocation, mRectangleArea);
         areaToBeUsed.setmAreaInseridaEm(mAreaInseridaEm);
         areaToBeUsed.getmSensorListInTheGeographicArea().setmSensorList(mSensorList.getmSensorList());
 
@@ -177,7 +177,7 @@ public class GeographicalArea {
      * @param endDate
      * @return
      */
-    public ArrayList<Double> getDailyAverageMeasurementInTheArea(TipoSensor sensorType, Date startDate, Date endDate) {
+    public ArrayList<Double> getDailyAverageMeasurementInTheArea(SensorType sensorType, Date startDate, Date endDate) {
         LocalDate startDate1 = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate endDate1 = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         ArrayList<Double> dailyAverage = new ArrayList<>();

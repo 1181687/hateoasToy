@@ -2,9 +2,9 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.Medicao;
+import pt.ipp.isep.dei.project.model.Measurement;
 import pt.ipp.isep.dei.project.model.Sensor;
-import pt.ipp.isep.dei.project.model.TipoSensor;
+import pt.ipp.isep.dei.project.model.SensorType;
 
 import java.util.*;
 
@@ -18,10 +18,10 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
-        Sensor s2 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
+        Sensor s2 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         //Act
         boolean result = s1.equals(s2);
         //Assert
@@ -33,9 +33,9 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         String expectedResult = "A123";
         //Act
         String result = s1.getmNomeSensor();
@@ -48,9 +48,9 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         Date expectedResult = calendario.getTime();
         //Act
         Date result = s1.getmDataFuncionamento();
@@ -63,12 +63,12 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
-        TipoSensor expectedResult = tipoSensor;
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
+        SensorType expectedResult = sensorType;
         //Act
-        TipoSensor result = s1.getmTipoSensor();
+        SensorType result = s1.getmSensorType();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -78,9 +78,9 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         boolean expectedResult = true;
         //Act
         boolean result = s1.equals(s1);
@@ -93,9 +93,9 @@ class SensorTest {
         // Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         int expectedResult = 1;
         // Act
         int result = s1.hashCode();
@@ -108,12 +108,12 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         boolean expectedResult = false;
         //Act
-        boolean result = s1.equals(tipoSensor);
+        boolean result = s1.equals(sensorType);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -123,10 +123,10 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
-        Sensor s2 = new Sensor("A200", dataFuncionamento, tipoSensor, locS1);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
+        Sensor s2 = new Sensor("A200", dataFuncionamento, sensorType, locS1);
         boolean expectedResult = false;
         //Act
         boolean result = s1.equals(s2);
@@ -139,9 +139,9 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         Location expectedResult = locS1;
         //Act
         Location result = s1.getmLocation();
@@ -155,12 +155,12 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(2018, 11, 27);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(40, 10, 20);
-        Sensor s1 = new Sensor("s1", dataFuncionamento, tipoSensor, locS1);
+        Sensor s1 = new Sensor("s1", dataFuncionamento, sensorType, locS1);
 
         Location locS2 = new Location(30, 15, 10);
-        Sensor s2 = new Sensor("s2", dataFuncionamento, tipoSensor, locS2);
+        Sensor s2 = new Sensor("s2", dataFuncionamento, sensorType, locS2);
 
         double expectedResult = 1201040.7956;
 
@@ -176,17 +176,17 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
-        Medicao medicao = new Medicao(20, dataFuncionamento);
-        s1.adicionarMedicaoALista(medicao);
+        Measurement measurement = new Measurement(20, dataFuncionamento);
+        s1.adicionarMedicaoALista(measurement);
 
-        Medicao expectedResult = medicao;
+        Measurement expectedResult = measurement;
 
         //Act
-        Medicao result = s1.getUltimoRegisto();
+        Measurement result = s1.getUltimoRegisto();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -198,14 +198,14 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
-        Medicao expectedResult = null;
+        Measurement expectedResult = null;
 
         //Act
-        Medicao result = s1.getUltimoRegisto();
+        Measurement result = s1.getUltimoRegisto();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -216,9 +216,9 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
         //Act
         boolean result = s1.listaDeRegistosEVazia();
@@ -232,15 +232,15 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
         Calendar calendarioDaMedicao1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataHoraDaMedicao1 = calendarioDaMedicao1.getTime();
 
-        Medicao medicao1 = new Medicao(20, dataHoraDaMedicao1);
-        s1.adicionarMedicaoALista(medicao1);
+        Measurement measurement1 = new Measurement(20, dataHoraDaMedicao1);
+        s1.adicionarMedicaoALista(measurement1);
 
         //Act
         boolean result = s1.listaDeRegistosEVazia();
@@ -254,9 +254,9 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
         Calendar calendarioDaMedicao1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataHoraDaMedicao1 = calendarioDaMedicao1.getTime();
@@ -264,15 +264,15 @@ class SensorTest {
         Calendar calendarioDaMedicao2 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
         Date dataHoraDaMedicao2 = calendarioDaMedicao2.getTime();
 
-        Medicao medicao1 = new Medicao(20, dataHoraDaMedicao1);
-        Medicao medicao2 = new Medicao(25, dataHoraDaMedicao2);
-        s1.adicionarMedicaoALista(medicao1);
-        s1.adicionarMedicaoALista(medicao2);
+        Measurement measurement1 = new Measurement(20, dataHoraDaMedicao1);
+        Measurement measurement2 = new Measurement(25, dataHoraDaMedicao2);
+        s1.adicionarMedicaoALista(measurement1);
+        s1.adicionarMedicaoALista(measurement2);
 
-        Medicao expectedResult = medicao2;
+        Measurement expectedResult = measurement2;
 
         //Act
-        Medicao result = s1.getUltimoRegisto();
+        Measurement result = s1.getUltimoRegisto();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -284,16 +284,16 @@ class SensorTest {
         // Arrange
         Calendar calendario = new GregorianCalendar(2017, 8, 15);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         Date data1 = new GregorianCalendar(2017, 8, 15, 5, 30, 0).getTime();
         Date data2 = new GregorianCalendar(2017, 8, 15, 6, 02, 0).getTime();
         Date data3 = new GregorianCalendar(2017, 8, 16, 6, 30, 0).getTime();
 
-        Medicao registo1 = new Medicao(19, data1);
-        Medicao registo2 = new Medicao(20.1, data2);
-        Medicao registo3 = new Medicao(21.7, data3);
+        Measurement registo1 = new Measurement(19, data1);
+        Measurement registo2 = new Measurement(20.1, data2);
+        Measurement registo3 = new Measurement(21.7, data3);
 
         double expectedResult = 19;
         Date diaDoMes = new GregorianCalendar(2017, 8, 5).getTime();
@@ -314,9 +314,9 @@ class SensorTest {
         // Arrange
         Calendar calendario = new GregorianCalendar(2017, 8, 15);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
         double expectedResult = Double.NaN;
         Date diaDoMes = new GregorianCalendar(2017, GregorianCalendar.AUGUST, 15).getTime();
@@ -334,16 +334,16 @@ class SensorTest {
         // Arrange
         Calendar calendario = new GregorianCalendar(2017, 8, 15);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         Date data1 = new GregorianCalendar(2017, 8, 15, 5, 30, 0).getTime();
         Date data2 = new GregorianCalendar(2017, 8, 15, 6, 02, 0).getTime();
         Date data3 = new GregorianCalendar(2017, 8, 16, 6, 30, 0).getTime();
 
-        Medicao registo1 = new Medicao(20.5, data1);
-        Medicao registo2 = new Medicao(19, data2);
-        Medicao registo3 = new Medicao(21.7, data3);
+        Measurement registo1 = new Measurement(20.5, data1);
+        Measurement registo2 = new Measurement(19, data2);
+        Measurement registo3 = new Measurement(21.7, data3);
 
         double expectedResult = 19;
         Date diaDoMes = new GregorianCalendar(2017, 8, 5).getTime();
@@ -364,16 +364,16 @@ class SensorTest {
         // Arrange
         Calendar calendario = new GregorianCalendar(2017, 8, 15);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         Date data1 = new GregorianCalendar(2017, 8, 15, 5, 30, 0).getTime();
         Date data2 = new GregorianCalendar(2017, 8, 15, 6, 02, 0).getTime();
         Date data3 = new GregorianCalendar(2017, 8, 16, 6, 30, 0).getTime();
 
-        Medicao registo1 = new Medicao(19, data1);
-        Medicao registo2 = new Medicao(22, data2);
-        Medicao registo3 = new Medicao(19, data3);
+        Measurement registo1 = new Measurement(19, data1);
+        Measurement registo2 = new Measurement(22, data2);
+        Measurement registo3 = new Measurement(19, data3);
 
         double expectedResult = 19;
         Date diaDoMes = new GregorianCalendar(2017, 8, 5).getTime();
@@ -394,16 +394,16 @@ class SensorTest {
         // Arrange
         Calendar calendario = new GregorianCalendar(2017, 8, 15);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         Date data1 = new GregorianCalendar(2017, 8, 15, 5, 30, 0).getTime();
         Date data2 = new GregorianCalendar(2017, 8, 15, 6, 02, 0).getTime();
         Date data3 = new GregorianCalendar(2017, 8, 16, 6, 30, 0).getTime();
 
-        Medicao registo1 = new Medicao(19, data1);
-        Medicao registo2 = new Medicao(19, data2);
-        Medicao registo3 = new Medicao(19, data3);
+        Measurement registo1 = new Measurement(19, data1);
+        Measurement registo2 = new Measurement(19, data2);
+        Measurement registo3 = new Measurement(19, data3);
 
         double expectedResult = 19;
         Date diaDoMes = new GregorianCalendar(2017, 8, 5).getTime();
@@ -424,16 +424,16 @@ class SensorTest {
         // Arrange
         Calendar calendario = new GregorianCalendar(2017, 8, 15);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         Date data1 = new GregorianCalendar(2017, 8, 15, 5, 30, 0).getTime();
         Date data2 = new GregorianCalendar(2017, 8, 15, 6, 02, 0).getTime();
         Date data3 = new GregorianCalendar(2017, 8, 16, 6, 30, 0).getTime();
 
-        Medicao registo1 = new Medicao(22, data1);
-        Medicao registo2 = new Medicao(22, data2);
-        Medicao registo3 = new Medicao(19, data3);
+        Measurement registo1 = new Measurement(22, data1);
+        Measurement registo2 = new Measurement(22, data2);
+        Measurement registo3 = new Measurement(19, data3);
 
         double expectedResult = 19;
         Date diaDoMes = new GregorianCalendar(2017, 8, 5).getTime();
@@ -453,19 +453,19 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
         Date data1 = new GregorianCalendar(2018, 4, 11, 5, 55).getTime();
         Date data2 = new GregorianCalendar(2018, 2, 1, 6, 25).getTime();
         Date data3 = new GregorianCalendar(2018, 2, 11, 7, 30).getTime();
         Date data4 = new GregorianCalendar(2018, 2, 31).getTime();
 
-        Medicao registo1 = new Medicao(28, data1);
-        Medicao registo2 = new Medicao(25, data2);
-        Medicao registo3 = new Medicao(26, data3);
-        Medicao registo4 = new Medicao(27, data4);
+        Measurement registo1 = new Measurement(28, data1);
+        Measurement registo2 = new Measurement(25, data2);
+        Measurement registo3 = new Measurement(26, data3);
+        Measurement registo4 = new Measurement(27, data4);
 
         double expectedResult = 27;
         Date dataDoMes = new GregorianCalendar(2018, 2, 5).getTime();
@@ -487,9 +487,9 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
         Date dataDoMes = new GregorianCalendar(2018, 2, 15).getTime();
         double expectedResult = Double.NaN;
@@ -506,19 +506,19 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
         Date data1 = new GregorianCalendar(2018, 4, 11, 5, 55).getTime();
         Date data2 = new GregorianCalendar(2018, 2, 11, 6, 25).getTime();
         Date data3 = new GregorianCalendar(2018, 2, 11, 7, 30).getTime();
         Date data4 = new GregorianCalendar(2018, 2, 12, 6, 25).getTime();
 
-        Medicao registo1 = new Medicao(21, data1);
-        Medicao registo2 = new Medicao(25, data2);
-        Medicao registo3 = new Medicao(26, data3);
-        Medicao registo4 = new Medicao(27, data4);
+        Measurement registo1 = new Measurement(21, data1);
+        Measurement registo2 = new Measurement(25, data2);
+        Measurement registo3 = new Measurement(26, data3);
+        Measurement registo4 = new Measurement(27, data4);
 
         double expectedResult = 26;
         Date diaDoMes = new GregorianCalendar(2018, 2, 15).getTime();
@@ -538,9 +538,9 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
         double expectedResult = Double.NaN;
         Date diaDoMes = new GregorianCalendar(2018, 2, 20).getTime();
@@ -556,10 +556,10 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
-        TipoSensor tipoPedido = new TipoSensor("Temperatura");
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
+        SensorType tipoPedido = new SensorType("Temperatura");
         //Act
         boolean resultado = sensor1.umTipoDeSensorEIgualAOutro(tipoPedido);
         //Assert
@@ -571,10 +571,10 @@ class SensorTest {
         //Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
-        TipoSensor tipoPedido = new TipoSensor("Humidade");
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
+        SensorType tipoPedido = new SensorType("Humidade");
         //Act
         boolean resultado = sensor1.umTipoDeSensorEIgualAOutro(tipoPedido);
         //Assert
@@ -594,24 +594,24 @@ class SensorTest {
         Calendar calDomingo = new GregorianCalendar(2018, 11, 2);
         Date dataDomingo = calDomingo.getTime();
 
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", dataDomingo1, tipoSensor, locS1);
-        Medicao medicaoDomingo1 = new Medicao(30, dataDomingo1);
-        Medicao medicaoDomingo2 = new Medicao(35, dataDomingo2);
-        Medicao medicaoSegunda = new Medicao(40, dataSegunda);
+        Sensor sensor1 = new Sensor("A123", dataDomingo1, sensorType, locS1);
+        Measurement measurementDomingo1 = new Measurement(30, dataDomingo1);
+        Measurement measurementDomingo2 = new Measurement(35, dataDomingo2);
+        Measurement measurementSegunda = new Measurement(40, dataSegunda);
 
-        sensor1.adicionarMedicaoALista(medicaoDomingo1);
-        sensor1.adicionarMedicaoALista(medicaoDomingo2);
-        sensor1.adicionarMedicaoALista(medicaoSegunda);
+        sensor1.adicionarMedicaoALista(measurementDomingo1);
+        sensor1.adicionarMedicaoALista(measurementDomingo2);
+        sensor1.adicionarMedicaoALista(measurementSegunda);
 
 
-        List<Medicao> expectedResult = new ArrayList<>();
-        expectedResult.add(medicaoDomingo1);
-        expectedResult.add(medicaoDomingo2);
+        List<Measurement> expectedResult = new ArrayList<>();
+        expectedResult.add(measurementDomingo1);
+        expectedResult.add(measurementDomingo2);
 
         //act
-        List<Medicao> result = sensor1.getRegistosDoDia(dataDomingo);
+        List<Measurement> result = sensor1.getRegistosDoDia(dataDomingo);
 
         //assert
         assertEquals(expectedResult, result);
@@ -631,23 +631,23 @@ class SensorTest {
         Calendar calDomingo = new GregorianCalendar(2018, 11, 2);
         Date dataDomingo = calDomingo.getTime();
 
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", dataDomingo1, tipoSensor, locS1);
-        Medicao medicaoDomingo1 = new Medicao(Double.NaN, dataDomingo1);
-        Medicao medicaoDomingo2 = new Medicao(35.0, dataDomingo2);
-        Medicao medicaoSegunda = new Medicao(40.0, dataSegunda);
+        Sensor sensor1 = new Sensor("A123", dataDomingo1, sensorType, locS1);
+        Measurement measurementDomingo1 = new Measurement(Double.NaN, dataDomingo1);
+        Measurement measurementDomingo2 = new Measurement(35.0, dataDomingo2);
+        Measurement measurementSegunda = new Measurement(40.0, dataSegunda);
 
-        sensor1.adicionarMedicaoALista(medicaoDomingo1);
-        sensor1.adicionarMedicaoALista(medicaoDomingo2);
-        sensor1.adicionarMedicaoALista(medicaoSegunda);
+        sensor1.adicionarMedicaoALista(measurementDomingo1);
+        sensor1.adicionarMedicaoALista(measurementDomingo2);
+        sensor1.adicionarMedicaoALista(measurementSegunda);
 
 
-        List<Medicao> expectedResult = new ArrayList<>();
-        expectedResult.add(medicaoDomingo2);
+        List<Measurement> expectedResult = new ArrayList<>();
+        expectedResult.add(measurementDomingo2);
 
         //act
-        List<Medicao> result = sensor1.getRegistosDoDia(dataDomingo);
+        List<Measurement> result = sensor1.getRegistosDoDia(dataDomingo);
 
         //assert
         assertEquals(expectedResult, result);
@@ -663,9 +663,9 @@ class SensorTest {
         Calendar cal2 = new GregorianCalendar(2018, 10, 2, 16, 20, 00);
         Date data = cal2.getTime();
         boolean expectedResult = false;
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
         boolean result = sensor1.verificaDiasIguais(cal1, cal2);
 
         //assert
@@ -681,9 +681,9 @@ class SensorTest {
         Calendar cal2 = new GregorianCalendar(2018, 10, 2, 16, 20, 00);
         Date data = cal2.getTime();
         boolean expectedResult = true;
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Act
         boolean result = sensor1.verificaDiasIguais(cal1, cal2);
@@ -698,29 +698,29 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 10, 2, 00, 00, 01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(40, data1);
+        Measurement measurement1 = new Measurement(40, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 10, 2, 23, 59, 59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(30, data2);
+        Measurement measurement2 = new Measurement(30, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 10, 2, 17, 20, 00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(-2, data3);
+        Measurement measurement3 = new Measurement(-2, data3);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
 
 
         double expectedResult = -2;
@@ -737,14 +737,14 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 10, 2, 00, 00, 01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(40, data1);
+        Measurement measurement1 = new Measurement(40, data1);
 
 
         double expectedResult = Double.NaN;
@@ -761,29 +761,29 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 10, 2, 00, 00, 01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(Double.NaN, data1);
+        Measurement measurement1 = new Measurement(Double.NaN, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 10, 2, 23, 59, 59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(30, data2);
+        Measurement measurement2 = new Measurement(30, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 10, 2, 17, 20, 00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(-2, data3);
+        Measurement measurement3 = new Measurement(-2, data3);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
 
         double expectedResult = -2;
 
@@ -799,9 +799,9 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 11, 2);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
         Date expectedResult = data;
 
         Date result = sensor1.getPrimeiroDiaSemana(2018, 49);
@@ -814,53 +814,53 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 11, 2, 01, 00, 01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(0.0, data1);
+        Measurement measurement1 = new Measurement(0.0, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 11, 3, 23, 59, 59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(30.0, data2);
+        Measurement measurement2 = new Measurement(30.0, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 11, 4, 17, 20, 00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(-2.0, data3);
+        Measurement measurement3 = new Measurement(-2.0, data3);
 
         //Registo 4
         Calendar cal4 = new GregorianCalendar(2018, 11, 5, 17, 20, 00);
         Date data4 = cal4.getTime();
-        Medicao medicao4 = new Medicao(-4.0, data4);
+        Measurement measurement4 = new Measurement(-4.0, data4);
 
         //Registo 5
         Calendar cal5 = new GregorianCalendar(2018, 11, 6, 17, 20, 00);
         Date data5 = cal5.getTime();
-        Medicao medicao5 = new Medicao(-2.0, data5);
+        Measurement measurement5 = new Measurement(-2.0, data5);
 
         //Registo 6
         Calendar cal6 = new GregorianCalendar(2018, 11, 7, 17, 20, 00);
         Date data6 = cal6.getTime();
-        Medicao medicao6 = new Medicao(-5.0, data6);
+        Measurement measurement6 = new Measurement(-5.0, data6);
 
         //Registo 7
         Calendar cal7 = new GregorianCalendar(2018, 11, 8, 17, 20, 00);
         Date data7 = cal7.getTime();
-        Medicao medicao7 = new Medicao(-2.0, data7);
+        Measurement measurement7 = new Measurement(-2.0, data7);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
-        sensor1.adicionarMedicaoALista(medicao4);
-        sensor1.adicionarMedicaoALista(medicao5);
-        sensor1.adicionarMedicaoALista(medicao6);
-        sensor1.adicionarMedicaoALista(medicao7);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.adicionarMedicaoALista(measurement4);
+        sensor1.adicionarMedicaoALista(measurement5);
+        sensor1.adicionarMedicaoALista(measurement6);
+        sensor1.adicionarMedicaoALista(measurement7);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList(0.0, 30.0, -2.0, -4.0, -2.0, -5.0, -2.0));
 
@@ -876,53 +876,53 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 11, 2, 01, 00, 01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(Double.NaN, data1);
+        Measurement measurement1 = new Measurement(Double.NaN, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 11, 3, 23, 59, 59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(30, data2);
+        Measurement measurement2 = new Measurement(30, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 11, 4, 17, 20, 00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(-2, data3);
+        Measurement measurement3 = new Measurement(-2, data3);
 
         //Registo 4
         Calendar cal4 = new GregorianCalendar(2018, 11, 5, 17, 20, 00);
         Date data4 = cal4.getTime();
-        Medicao medicao4 = new Medicao(-4, data4);
+        Measurement measurement4 = new Measurement(-4, data4);
 
         //Registo 5
         Calendar cal5 = new GregorianCalendar(2018, 11, 6, 17, 20, 00);
         Date data5 = cal5.getTime();
-        Medicao medicao5 = new Medicao(-2, data5);
+        Measurement measurement5 = new Measurement(-2, data5);
 
         //Registo 6
         Calendar cal6 = new GregorianCalendar(2018, 11, 7, 17, 20, 00);
         Date data6 = cal6.getTime();
-        Medicao medicao6 = new Medicao(-5, data6);
+        Measurement measurement6 = new Measurement(-5, data6);
 
         //Registo 7
         Calendar cal7 = new GregorianCalendar(2018, 11, 8, 17, 20, 00);
         Date data7 = cal7.getTime();
-        Medicao medicao7 = new Medicao(-2, data7);
+        Measurement measurement7 = new Measurement(-2, data7);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
-        sensor1.adicionarMedicaoALista(medicao4);
-        sensor1.adicionarMedicaoALista(medicao5);
-        sensor1.adicionarMedicaoALista(medicao6);
-        sensor1.adicionarMedicaoALista(medicao7);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.adicionarMedicaoALista(measurement4);
+        sensor1.adicionarMedicaoALista(measurement5);
+        sensor1.adicionarMedicaoALista(measurement6);
+        sensor1.adicionarMedicaoALista(measurement7);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList(30.0, -2.0, -4.0, -2.0, -5.0, -2.0));
 
@@ -938,41 +938,41 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 11, 2, 01, 00, 01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(0.0, data1);
+        Measurement measurement1 = new Measurement(0.0, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 11, 3, 23, 59, 59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(30, data2);
+        Measurement measurement2 = new Measurement(30, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 11, 4, 17, 20, 00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(-2, data3);
+        Measurement measurement3 = new Measurement(-2, data3);
 
         //Registo 4
         Calendar cal4 = new GregorianCalendar(2018, 11, 5, 17, 20, 00);
         Date data4 = cal4.getTime();
-        Medicao medicao4 = new Medicao(-4, data4);
+        Measurement measurement4 = new Measurement(-4, data4);
 
         //Registo 5
         Calendar cal5 = new GregorianCalendar(2018, 11, 6, 17, 20, 00);
         Date data5 = cal5.getTime();
-        Medicao medicao5 = new Medicao(-2, data5);
+        Measurement measurement5 = new Measurement(-2, data5);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
-        sensor1.adicionarMedicaoALista(medicao4);
-        sensor1.adicionarMedicaoALista(medicao5);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.adicionarMedicaoALista(measurement4);
+        sensor1.adicionarMedicaoALista(measurement5);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList(0.0, 30.0, -2.0, -4.0, -2.0));
 
@@ -988,41 +988,41 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 11, 2, 01, 00, 01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(0.0, data1);
+        Measurement measurement1 = new Measurement(0.0, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 11, 3, 23, 59, 59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(30, data2);
+        Measurement measurement2 = new Measurement(30, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 11, 4, 17, 20, 00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(-2, data3);
+        Measurement measurement3 = new Measurement(-2, data3);
 
         //Registo 4
         Calendar cal4 = new GregorianCalendar(2018, 11, 5, 17, 20, 00);
         Date data4 = cal4.getTime();
-        Medicao medicao4 = new Medicao(-4, data4);
+        Measurement measurement4 = new Measurement(-4, data4);
 
         //Registo 5
         Calendar cal5 = new GregorianCalendar(2018, 10, 6, 17, 20, 00);
         Date data5 = cal5.getTime();
-        Medicao medicao5 = new Medicao(-2, data5);
+        Measurement measurement5 = new Measurement(-2, data5);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
-        sensor1.adicionarMedicaoALista(medicao4);
-        sensor1.adicionarMedicaoALista(medicao5);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.adicionarMedicaoALista(measurement4);
+        sensor1.adicionarMedicaoALista(measurement5);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList(0.0, 30.0, -2.0, -4.0));
 
@@ -1038,9 +1038,9 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList());
 
@@ -1057,54 +1057,54 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 11, 2, 01, 00, 01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(10.0, data1);
+        Measurement measurement1 = new Measurement(10.0, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 11, 3, 23, 59, 59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(9.5, data2);
+        Measurement measurement2 = new Measurement(9.5, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 11, 4, 17, 20, 00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(7.5, data3);
+        Measurement measurement3 = new Measurement(7.5, data3);
 
         //Registo 4
         Calendar cal4 = new GregorianCalendar(2018, 11, 5, 17, 20, 00);
         Date data4 = cal4.getTime();
-        Medicao medicao4 = new Medicao(9.7, data4);
+        Measurement measurement4 = new Measurement(9.7, data4);
 
         //Registo 5
         Calendar cal5 = new GregorianCalendar(2018, 11, 6, 17, 20, 00);
         Date data5 = cal5.getTime();
-        Medicao medicao5 = new Medicao(10.1, data5);
+        Measurement measurement5 = new Measurement(10.1, data5);
 
         //Registo 6
         Calendar cal6 = new GregorianCalendar(2018, 11, 7, 17, 20, 00);
         Date data6 = cal6.getTime();
-        Medicao medicao6 = new Medicao(11.2, data6);
+        Measurement measurement6 = new Measurement(11.2, data6);
 
         //Registo 7
         Calendar cal7 = new GregorianCalendar(2018, 11, 8, 17, 20, 00);
         Date data7 = cal7.getTime();
-        Medicao medicao7 = new Medicao(8.9, data7);
+        Measurement measurement7 = new Measurement(8.9, data7);
 
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
-        sensor1.adicionarMedicaoALista(medicao4);
-        sensor1.adicionarMedicaoALista(medicao5);
-        sensor1.adicionarMedicaoALista(medicao6);
-        sensor1.adicionarMedicaoALista(medicao7);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.adicionarMedicaoALista(measurement4);
+        sensor1.adicionarMedicaoALista(measurement5);
+        sensor1.adicionarMedicaoALista(measurement6);
+        sensor1.adicionarMedicaoALista(measurement7);
 
         //   List <Double> registoMinSemana = new ArrayList<>(Arrays.asList(10.0, 9.5, 7.5, 9.7, 10.1, 11.2, 8.9)); //66.9/7=9.557
 
@@ -1123,9 +1123,9 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         double expectedResult = Double.NaN;
 
@@ -1141,29 +1141,29 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 10, 2, 00, 00, 01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(30, data1);
+        Measurement measurement1 = new Measurement(30, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 10, 2, 23, 59, 59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(40, data2);
+        Measurement measurement2 = new Measurement(40, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 10, 2, 17, 20, 00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(-2, data3);
+        Measurement measurement3 = new Measurement(-2, data3);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
 
 
         double expectedResult = 40;
@@ -1179,9 +1179,9 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         double expectedResult = Double.NaN;
 
@@ -1197,29 +1197,29 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 10, 2, 00, 00, 01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(Double.NaN, data1);
+        Measurement measurement1 = new Measurement(Double.NaN, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 10, 2, 23, 59, 59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(-2, data2);
+        Measurement measurement2 = new Measurement(-2, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 10, 2, 17, 20, 00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(30, data3);
+        Measurement measurement3 = new Measurement(30, data3);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
 
         double expectedResult = 30;
 
@@ -1235,53 +1235,53 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 11, 2,01,00,01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(20.0, data1);
+        Measurement measurement1 = new Measurement(20.0, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 11, 3,23,59,59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(30.0, data2);
+        Measurement measurement2 = new Measurement(30.0, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 11, 4,17,20,00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(20.0, data3);
+        Measurement measurement3 = new Measurement(20.0, data3);
 
         //Registo 4
         Calendar cal4 = new GregorianCalendar(2018, 11, 5,17,20,00);
         Date data4 = cal4.getTime();
-        Medicao medicao4 = new Medicao(40.0, data4);
+        Measurement measurement4 = new Measurement(40.0, data4);
 
         //Registo 5
         Calendar cal5 = new GregorianCalendar(2018, 11, 6,17,20,00);
         Date data5 = cal5.getTime();
-        Medicao medicao5 = new Medicao(20.0, data5);
+        Measurement measurement5 = new Measurement(20.0, data5);
 
         //Registo 6
         Calendar cal6 = new GregorianCalendar(2018, 11, 7,17,20,00);
         Date data6 = cal6.getTime();
-        Medicao medicao6 = new Medicao(45.0, data6);
+        Measurement measurement6 = new Measurement(45.0, data6);
 
         //Registo 7
         Calendar cal7 = new GregorianCalendar(2018, 11, 8,17,20,00);
         Date data7 = cal7.getTime();
-        Medicao medicao7 = new Medicao(20.0, data7);
+        Measurement measurement7 = new Measurement(20.0, data7);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
-        sensor1.adicionarMedicaoALista(medicao4);
-        sensor1.adicionarMedicaoALista(medicao5);
-        sensor1.adicionarMedicaoALista(medicao6);
-        sensor1.adicionarMedicaoALista(medicao7);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.adicionarMedicaoALista(measurement4);
+        sensor1.adicionarMedicaoALista(measurement5);
+        sensor1.adicionarMedicaoALista(measurement6);
+        sensor1.adicionarMedicaoALista(measurement7);
 
         List <Double> expectedResult = new ArrayList<>(Arrays.asList(20.0,30.0,20.0,40.0,20.0,45.0,20.0));
 
@@ -1297,53 +1297,53 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 11, 2,01,00,01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(Double.NaN, data1);
+        Measurement measurement1 = new Measurement(Double.NaN, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 11, 3,23,59,59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(30.0, data2);
+        Measurement measurement2 = new Measurement(30.0, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 11, 4,17,20,00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(20.0, data3);
+        Measurement measurement3 = new Measurement(20.0, data3);
 
         //Registo 4
         Calendar cal4 = new GregorianCalendar(2018, 11, 5,17,20,00);
         Date data4 = cal4.getTime();
-        Medicao medicao4 = new Medicao(40.0, data4);
+        Measurement measurement4 = new Measurement(40.0, data4);
 
         //Registo 5
         Calendar cal5 = new GregorianCalendar(2018, 11, 6,17,20,00);
         Date data5 = cal5.getTime();
-        Medicao medicao5 = new Medicao(20.0, data5);
+        Measurement measurement5 = new Measurement(20.0, data5);
 
         //Registo 6
         Calendar cal6 = new GregorianCalendar(2018, 11, 7,17,20,00);
         Date data6 = cal6.getTime();
-        Medicao medicao6 = new Medicao(45.0, data6);
+        Measurement measurement6 = new Measurement(45.0, data6);
 
         //Registo 7
         Calendar cal7 = new GregorianCalendar(2018, 11, 8,17,20,00);
         Date data7 = cal7.getTime();
-        Medicao medicao7 = new Medicao(20.0, data7);
+        Measurement measurement7 = new Measurement(20.0, data7);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
-        sensor1.adicionarMedicaoALista(medicao4);
-        sensor1.adicionarMedicaoALista(medicao5);
-        sensor1.adicionarMedicaoALista(medicao6);
-        sensor1.adicionarMedicaoALista(medicao7);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.adicionarMedicaoALista(measurement4);
+        sensor1.adicionarMedicaoALista(measurement5);
+        sensor1.adicionarMedicaoALista(measurement6);
+        sensor1.adicionarMedicaoALista(measurement7);
 
         List <Double> expectedResult = new ArrayList<>(Arrays.asList(30.0,20.0,40.0,20.0,45.0,20.0));
 
@@ -1359,41 +1359,41 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 11, 2,01,00,01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(30.0, data1);
+        Measurement measurement1 = new Measurement(30.0, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 11, 3,23,59,59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(30.0, data2);
+        Measurement measurement2 = new Measurement(30.0, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 11, 4,17,20,00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(20.0, data3);
+        Measurement measurement3 = new Measurement(20.0, data3);
 
         //Registo 4
         Calendar cal4 = new GregorianCalendar(2018, 11, 5,17,20,00);
         Date data4 = cal4.getTime();
-        Medicao medicao4 = new Medicao(40.0, data4);
+        Measurement measurement4 = new Measurement(40.0, data4);
 
         //Registo 5
         Calendar cal5 = new GregorianCalendar(2018, 11, 6,17,20,00);
         Date data5 = cal5.getTime();
-        Medicao medicao5 = new Medicao(20.0, data5);
+        Measurement measurement5 = new Measurement(20.0, data5);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
-        sensor1.adicionarMedicaoALista(medicao4);
-        sensor1.adicionarMedicaoALista(medicao5);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.adicionarMedicaoALista(measurement4);
+        sensor1.adicionarMedicaoALista(measurement5);
 
         List <Double> expectedResult = new ArrayList<>(Arrays.asList(30.0,30.0,20.0,40.0,20.0));
 
@@ -1409,41 +1409,41 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 11, 2,01,00,01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(45.0, data1);
+        Measurement measurement1 = new Measurement(45.0, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 11, 3,23,59,59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(30.0, data2);
+        Measurement measurement2 = new Measurement(30.0, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 11, 4,17,20,00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(25.0, data3);
+        Measurement measurement3 = new Measurement(25.0, data3);
 
         //Registo 4
         Calendar cal4 = new GregorianCalendar(2018, 11, 5,17,20,00);
         Date data4 = cal4.getTime();
-        Medicao medicao4 = new Medicao(40.0, data4);
+        Measurement measurement4 = new Measurement(40.0, data4);
 
         //Registo 5
         Calendar cal5 = new GregorianCalendar(2018, 10, 6,17,20,00);
         Date data5 = cal5.getTime();
-        Medicao medicao5 = new Medicao(20.0, data5);
+        Measurement measurement5 = new Measurement(20.0, data5);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
-        sensor1.adicionarMedicaoALista(medicao4);
-        sensor1.adicionarMedicaoALista(medicao5);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.adicionarMedicaoALista(measurement4);
+        sensor1.adicionarMedicaoALista(measurement5);
 
         List <Double> expectedResult = new ArrayList<>(Arrays.asList(45.0,30.0,25.0,40.0));
 
@@ -1459,9 +1459,9 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 10, 2,15,20,00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         List <Double> expectedResult = new ArrayList<>(Arrays.asList());
 
@@ -1478,54 +1478,54 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 11, 2,15,20,00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 11, 2,01,00,01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(10.0, data1);
+        Measurement measurement1 = new Measurement(10.0, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 11, 3,23,59,59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(9.5, data2);
+        Measurement measurement2 = new Measurement(9.5, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 11, 4,17,20,00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(7.5, data3);
+        Measurement measurement3 = new Measurement(7.5, data3);
 
         //Registo 4
         Calendar cal4 = new GregorianCalendar(2018, 11, 5,17,20,00);
         Date data4 = cal4.getTime();
-        Medicao medicao4 = new Medicao(9.7, data4);
+        Measurement measurement4 = new Measurement(9.7, data4);
 
         //Registo 5
         Calendar cal5 = new GregorianCalendar(2018, 11, 6,17,20,00);
         Date data5 = cal5.getTime();
-        Medicao medicao5 = new Medicao(10.1, data5);
+        Measurement measurement5 = new Measurement(10.1, data5);
 
         //Registo 6
         Calendar cal6 = new GregorianCalendar(2018, 11, 7,17,20,00);
         Date data6 = cal6.getTime();
-        Medicao medicao6 = new Medicao(11.2, data6);
+        Measurement measurement6 = new Measurement(11.2, data6);
 
         //Registo 7
         Calendar cal7 = new GregorianCalendar(2018, 11, 8,17,20,00);
         Date data7 = cal7.getTime();
-        Medicao medicao7 = new Medicao(8.9, data7);
+        Measurement measurement7 = new Measurement(8.9, data7);
 
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
-        sensor1.adicionarMedicaoALista(medicao4);
-        sensor1.adicionarMedicaoALista(medicao5);
-        sensor1.adicionarMedicaoALista(medicao6);
-        sensor1.adicionarMedicaoALista(medicao7);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.adicionarMedicaoALista(measurement4);
+        sensor1.adicionarMedicaoALista(measurement5);
+        sensor1.adicionarMedicaoALista(measurement6);
+        sensor1.adicionarMedicaoALista(measurement7);
 
         //   List <Double> registoMinSemana = new ArrayList<>(Arrays.asList(10.0, 9.5, 7.5, 9.7, 10.1, 11.2, 8.9)); //66.9/7=9.557
 
@@ -1544,9 +1544,9 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 11, 2,15,20,00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         double expectedResult= Double.NaN;
 
@@ -1563,41 +1563,41 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 11, 2,15,20,00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 11, 2,01,00,01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(10.0, data1);
+        Measurement measurement1 = new Measurement(10.0, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 11, 3,23,59,59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(9.5, data2);
+        Measurement measurement2 = new Measurement(9.5, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 11, 4,17,20,00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(7.5, data3);
+        Measurement measurement3 = new Measurement(7.5, data3);
 
         //Registo 4
         Calendar cal4 = new GregorianCalendar(2018, 11, 5,17,20,00);
         Date data4 = cal4.getTime();
-        Medicao medicao4 = new Medicao(9.7, data4);
+        Measurement measurement4 = new Measurement(9.7, data4);
 
         //Registo 5
         Calendar cal5 = new GregorianCalendar(2018, 11, 6,17,20,00);
         Date data5 = cal5.getTime();
-        Medicao medicao5 = new Medicao(10.1, data5);
+        Measurement measurement5 = new Measurement(10.1, data5);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
-        sensor1.adicionarMedicaoALista(medicao4);
-        sensor1.adicionarMedicaoALista(medicao5);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.adicionarMedicaoALista(measurement4);
+        sensor1.adicionarMedicaoALista(measurement5);
 
         //   List <Double> registoMinSemana = new ArrayList<>(Arrays.asList(10.0, 9.5, 7.5, 9.7, 10.1)); //46.8/5=9.36
 
@@ -1615,41 +1615,41 @@ class SensorTest {
         //Arrange
         Calendar cal = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
         Date data = cal.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("A123", data, tipoSensor, locS1);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
         Calendar cal1 = new GregorianCalendar(2018, 11, 2, 8, 00, 01);
         Date data1 = cal1.getTime();
-        Medicao medicao1 = new Medicao(10.0, data1);
+        Measurement measurement1 = new Measurement(10.0, data1);
 
         //Registo 2
         Calendar cal2 = new GregorianCalendar(2018, 11, 2, 15, 59, 59);
         Date data2 = cal2.getTime();
-        Medicao medicao2 = new Medicao(9.5, data2);
+        Measurement measurement2 = new Measurement(9.5, data2);
 
         //Registo 3
         Calendar cal3 = new GregorianCalendar(2018, 11, 2, 17, 15, 00);
         Date data3 = cal3.getTime();
-        Medicao medicao3 = new Medicao(7.5, data3);
+        Measurement measurement3 = new Measurement(7.5, data3);
 
         //Registo 4
         Calendar cal4 = new GregorianCalendar(2018, 11, 2, 17, 20, 00);
         Date data4 = cal4.getTime();
-        Medicao medicao4 = new Medicao(9.7, data4);
+        Measurement measurement4 = new Measurement(9.7, data4);
 
         //Registo 5
         Calendar cal5 = new GregorianCalendar(2018, 11, 2, 17, 20, 10);
         Date data5 = cal5.getTime();
-        Medicao medicao5 = new Medicao(10.1, data5);
+        Measurement measurement5 = new Measurement(10.1, data5);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(medicao1);
-        sensor1.adicionarMedicaoALista(medicao2);
-        sensor1.adicionarMedicaoALista(medicao3);
-        sensor1.adicionarMedicaoALista(medicao4);
-        sensor1.adicionarMedicaoALista(medicao5);
+        sensor1.adicionarMedicaoALista(measurement1);
+        sensor1.adicionarMedicaoALista(measurement2);
+        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.adicionarMedicaoALista(measurement4);
+        sensor1.adicionarMedicaoALista(measurement5);
 
         double expectedResult = 9.36;
 

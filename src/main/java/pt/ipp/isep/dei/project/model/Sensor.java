@@ -6,21 +6,21 @@ import java.util.*;
 public class Sensor {
     private String mNomeSensor;
     private Date mDataFuncionamento;
-    private List<Medicao> mRegistos = new ArrayList<>();
-    private TipoSensor mTipoSensor;
+    private List<Measurement> mRegistos = new ArrayList<>();
+    private SensorType mSensorType;
     private Location mLocation;
 
-    public Sensor(String mNomeSensor, Date mDataFuncionamento, TipoSensor mTipoSensor, Location mLocation) {
+    public Sensor(String mNomeSensor, Date mDataFuncionamento, SensorType mSensorType, Location mLocation) {
         this.mNomeSensor = mNomeSensor;
         this.mDataFuncionamento = mDataFuncionamento;
-        this.mTipoSensor = mTipoSensor;
+        this.mSensorType = mSensorType;
         this.mLocation = mLocation;
     }
 
-    public Sensor (String mNomeSensor, TipoSensor mTipoSensor, Location mLocation) {
+    public Sensor(String mNomeSensor, SensorType mSensorType, Location mLocation) {
         this.mNomeSensor = mNomeSensor;
         this.mDataFuncionamento = new GregorianCalendar(Locale.getDefault()).getTime();
-        this.mTipoSensor = mTipoSensor;
+        this.mSensorType = mSensorType;
         this.mLocation = mLocation;
     }
 
@@ -32,8 +32,8 @@ public class Sensor {
         return mDataFuncionamento;
     }
 
-    public TipoSensor getmTipoSensor() {
-        return mTipoSensor;
+    public SensorType getmSensorType() {
+        return mSensorType;
     }
 
     public Location getmLocation() {
@@ -48,7 +48,7 @@ public class Sensor {
             return false;
         }
         Sensor sensor = (Sensor) objeto;
-        return (this.mNomeSensor.equals(sensor.mNomeSensor) && this.mTipoSensor.equals(sensor.mTipoSensor) && this.mLocation.equals(sensor.mLocation));
+        return (this.mNomeSensor.equals(sensor.mNomeSensor) && this.mSensorType.equals(sensor.mSensorType) && this.mLocation.equals(sensor.mLocation));
     }
 
     public int hashCode() {
@@ -65,7 +65,7 @@ public class Sensor {
 
         List<Double> registosEntreDatas = new ArrayList<>();
 
-        for (Medicao registo : mRegistos) {
+        for (Measurement registo : mRegistos) {
             if (registo.getmDataHora().after(dataInicial) && registo.getmDataHora().before(dataFinal)) {
                 registosEntreDatas.add(registo.getmValor());
             }
@@ -156,15 +156,15 @@ public class Sensor {
         return cal.getTime();
     }
 
-    public void adicionarMedicaoALista(Medicao medicao) {
-        mRegistos.add(medicao);
+    public void adicionarMedicaoALista(Measurement measurement) {
+        mRegistos.add(measurement);
     }
 
     public boolean listaDeRegistosEVazia() {
         return mRegistos.isEmpty();
     }
 
-    public Medicao getUltimoRegisto() {
+    public Measurement getUltimoRegisto() {
         for (int i = (mRegistos.size() - 1); i >= 0; i--) {
             if (!(Double.isNaN(mRegistos.get(i).getmValor()))) {
                 return mRegistos.get(i);
@@ -173,18 +173,18 @@ public class Sensor {
         return null;
     }
 
-    public boolean umTipoDeSensorEIgualAOutro(TipoSensor tipo) {
+    public boolean umTipoDeSensorEIgualAOutro(SensorType tipo) {
         String tipoDoSensorPedido = tipo.getmTipo();
-        return (this.getmTipoSensor().getmTipo().equals(tipoDoSensorPedido));
+        return (this.getmSensorType().getmTipo().equals(tipoDoSensorPedido));
     }
 
-    public List<Medicao> getRegistosDoDia(Date data) {
+    public List<Measurement> getRegistosDoDia(Date data) {
         //passar data para calendario
         Calendar cal = Calendar.getInstance();
         cal.setTime(data);
 
-        List<Medicao> registosDoDia = new ArrayList<>();
-        for (Medicao registo : mRegistos) {
+        List<Measurement> registosDoDia = new ArrayList<>();
+        for (Measurement registo : mRegistos) {
             //passar Data do registo para Calendario
             Calendar ca2 = Calendar.getInstance();
             ca2.setTime(registo.getmDataHora());
@@ -205,7 +205,7 @@ public class Sensor {
     public double getValorMinimoDoDia(Date data) {
         if (!getRegistosDoDia(data).isEmpty()) {
             double valorMinimoDoDia = getRegistosDoDia(data).get(0).getmValor();
-            for (Medicao registo : getRegistosDoDia(data)) {
+            for (Measurement registo : getRegistosDoDia(data)) {
                 if (valorMinimoDoDia > registo.getmValor()){
                     valorMinimoDoDia = registo.getmValor();
                 }
@@ -261,7 +261,7 @@ public class Sensor {
     public double getValorMaximoDoDia(Date data) {
         if (!getRegistosDoDia(data).isEmpty()) {
             double valorMaximoDoDia = getRegistosDoDia(data).get(0).getmValor();
-            for (Medicao registo : getRegistosDoDia(data)) {
+            for (Measurement registo : getRegistosDoDia(data)) {
                 if (valorMaximoDoDia < registo.getmValor()){
                     valorMaximoDoDia = registo.getmValor();
                 }
@@ -318,7 +318,7 @@ public class Sensor {
         double dailyAverage = 0;
         if (!(getRegistosDoDia(date).isEmpty())) {
             double sum = 0;
-            for (Medicao measurement : getRegistosDoDia(date)) {
+            for (Measurement measurement : getRegistosDoDia(date)) {
                 sum += measurement.getmValor();
             }
             dailyAverage = sum / getRegistosDoDia(date).size();

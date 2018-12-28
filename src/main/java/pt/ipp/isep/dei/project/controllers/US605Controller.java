@@ -2,14 +2,14 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
-import pt.ipp.isep.dei.project.model.TipoSensor;
+import pt.ipp.isep.dei.project.model.SensorType;
 
 public class US605Controller {
 
     private House mHouse;
-    private TipoSensor mType;
+    private SensorType mType;
 
-    public US605Controller(House house, TipoSensor type) {
+    public US605Controller(House house, SensorType type) {
         this.mHouse = house;
         this.mType = type;
     }

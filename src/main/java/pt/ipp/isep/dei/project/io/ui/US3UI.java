@@ -1,9 +1,9 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.US3Controller;
+import pt.ipp.isep.dei.project.model.GeoAreaList;
+import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 import pt.ipp.isep.dei.project.model.GeographicalArea;
-import pt.ipp.isep.dei.project.model.ListaAG;
-import pt.ipp.isep.dei.project.model.ListaTiposAG;
 
 import java.util.Scanner;
 
@@ -11,7 +11,7 @@ public class US3UI {
 
     private US3Controller ctrl3;
 
-    public US3UI(ListaAG lista, ListaTiposAG listaTAG) {
+    public US3UI(GeoAreaList lista, GeoAreaTypeList listaTAG) {
         this.ctrl3 = new US3Controller(lista, listaTAG);
     }
 

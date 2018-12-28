@@ -2,14 +2,14 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.US605Controller;
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.ListaTiposSensores;
+import pt.ipp.isep.dei.project.model.SensorTypeList;
 import pt.ipp.isep.dei.project.utils.InputValidator;
 
 public class US605UI {
 
     private US605Controller mctrl;
 
-    public US605UI(House house, ListaTiposSensores listatiposSens) {
+    public US605UI(House house, SensorTypeList listatiposSens) {
         this.mctrl = new US605Controller(house, listatiposSens.novoTipoSensor("temperatura"));
     }
 

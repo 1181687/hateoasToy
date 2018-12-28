@@ -2,13 +2,13 @@ package pt.ipp.isep.dei.project.io.ui;
 
 
 import pt.ipp.isep.dei.project.controllers.US2Controller;
-import pt.ipp.isep.dei.project.model.ListaTiposAG;
+import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 
 
 public class US2UI {
        private US2Controller ctrl2;
 
-    public US2UI(ListaTiposAG lista) {
+    public US2UI(GeoAreaTypeList lista) {
               this.ctrl2 = new US2Controller(lista);
     }
 

@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.US1Controller;
-import pt.ipp.isep.dei.project.model.ListaTiposAG;
+import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 
 import java.util.Scanner;
 
 public class US1UI {
     private US1Controller ctrl;
 
-    public US1UI(ListaTiposAG lista) {
+    public US1UI(GeoAreaTypeList lista) {
         this.ctrl = new US1Controller(lista);
     }
 
