@@ -65,7 +65,7 @@ public class SensorList {
     public double getMaximumMeasureOfATypeOfSensorInAGivenDay(SensorType tipo, Date date) {
         double maxValue = Double.NaN;
         for (Sensor sensor : mSensorList) {
-            if (sensor.getmSensorType().equals(tipo) && (!(sensor.getRegistosDoDia(date).isEmpty()))) {
+            if (sensor.getmSensorType().equals(tipo) && (!(sensor.getDailyMeasurement(date).isEmpty()))) {
                 if (sensor.getMaximumValueOfDay(date) > maxValue) {
                     maxValue = sensor.getMaximumValueOfDay(date);
 
