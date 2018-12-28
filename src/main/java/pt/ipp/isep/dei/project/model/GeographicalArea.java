@@ -187,7 +187,7 @@ public class GeographicalArea {
 
             for (LocalDate dateIterator = startDate1; dateIterator.isBefore(endDate1); dateIterator = dateIterator.plusDays(1)) {
                 Date currentDate = Date.from(dateIterator.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                if (!(sensor.getRegistosDoDia(currentDate).isEmpty())) {
+                if (!(sensor.getDailyMeasurement(currentDate).isEmpty())) {
                     dailyAverage.add(sensor.getDailyAverage(currentDate));
                 }
             }

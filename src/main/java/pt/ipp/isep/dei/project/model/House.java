@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -48,6 +47,10 @@ public class House {
     public Address newAddresses(String mZipCode, double mLatitude, double mLongitude, double mAltitude) {
         Location location = new Location(mLatitude, mLongitude, mAltitude);
         return new Address(mZipCode, location);
+    }
+
+    public GeographicalArea getmInsertedGeoArea() {
+        return mInsertedGeoArea;
     }
 
     /**

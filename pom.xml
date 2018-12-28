@@ -135,7 +135,9 @@
                         <param>lapr.project.utils.*</param>
                     </inScopeClasses>-->
                     <targetClasses>
-                        <param>pt.ipp.isep.dei.project.*</param>
+                        <param>pt.ipp.isep.dei.project.controllers.*</param>
+                        <param>pt.ipp.isep.dei.project.model.*</param>
+                        <param>pt.ipp.isep.dei.project.utils.*</param>
                     </targetClasses>
                     <targetTests>
                         <param>pt.ipp.isep.dei.project.*</param>

@@ -61,13 +61,4 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void testeAverageDailyMeasurementOfHouseArea() {
-        //Arrange
-
-        //Act
-
-        //Assert
-    }
-
 }
