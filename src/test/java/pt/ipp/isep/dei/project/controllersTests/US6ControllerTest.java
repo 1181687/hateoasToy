@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.US6Controller;
 import pt.ipp.isep.dei.project.model.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class US6ControllerTest {
 
@@ -39,6 +39,7 @@ class US6ControllerTest {
         int posicao = 0;
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
         String expectedResult = "Porto";
+        ctrl6.getAreaGeograficaNaListaPorPosicao(posicao);
 
         // Act
         String resultado = ctrl6.getNomeAreaGeograficaPorIndice(posicao);
@@ -78,6 +79,7 @@ class US6ControllerTest {
         int posicao = 2;
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
         String expectedResult = "Ancora";
+        ctrl6.getAreaGeograficaNaListaPorPosicao(posicao);
 
         // Act
         String resultado = ctrl6.getNomeAreaGeograficaPorIndice(posicao);
@@ -104,6 +106,7 @@ class US6ControllerTest {
         int posicao = 0;
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
         String expectedResult = "Espinho";
+        ctrl6.getAreaGeograficaNaListaPorPosicao(posicao);
 
         // Act
         String resultado = ctrl6.getNomeAreaGeograficaPorIndice(posicao);
@@ -202,7 +205,7 @@ class US6ControllerTest {
     }
 
     @Test
-    public void testarGetNomeTipoSensorPorIndicePrimeiro () {
+    public void testarGetNomeSensorTypePorIndicePrimeiro () {
 
         SensorType tipo1 = new SensorType("Humidade");
         SensorType tipo2 = new SensorType("Temperatura");
@@ -219,13 +222,14 @@ class US6ControllerTest {
 
         // Act
         String resultado = ctrl6.getNomeTipoSensorPorIndice(posicao);
+        ctrl6.getTipoSensorPorPosicao(posicao);
 
         // Assert
         assertEquals(expectedResult, resultado);
     }
 
     @Test
-    public void testarGetNomeTipoSensorPorIndiceUltimo () {
+    public void testarGetNomeSensorTypePorIndiceUltimo () {
 
         SensorType tipo1 = new SensorType("Humidade");
         SensorType tipo2 = new SensorType("Temperatura");
@@ -239,6 +243,7 @@ class US6ControllerTest {
         int posicao = 1;
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
         String expectedResult = "Temperatura";
+        ctrl6.getTipoSensorPorPosicao(posicao);
 
         // Act
         String resultado = ctrl6.getNomeTipoSensorPorIndice(posicao);
@@ -248,7 +253,7 @@ class US6ControllerTest {
     }
 
     @Test
-    public void testarGetNomeTipoSensorPorIndiceApenasUm () {
+    public void testarGetNomeSensorTypePorIndiceApenasUm () {
 
         SensorType tipo1 = new SensorType("Humidade");
 
@@ -260,6 +265,7 @@ class US6ControllerTest {
         int posicao = 0;
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
         String expectedResult = "Humidade";
+        ctrl6.getTipoSensorPorPosicao(posicao);
 
         // Act
         String resultado = ctrl6.getNomeTipoSensorPorIndice(posicao);
@@ -268,4 +274,72 @@ class US6ControllerTest {
         assertEquals(expectedResult, resultado);
     }
 
+    @Test
+    public void testarAdicaoSensorAAreaGeograficaNegativo () {
+        //Arrange
+        String nomeAG1 = "Porto";
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
+        Location local1 = new Location(41.1496, -8.6109, 97);
+        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        
+        SensorType sensorType = new SensorType("Humidade");
+        Location local = new Location(45, 45, 45);
+        Sensor s1 = new Sensor("s1", sensorType, local);
+
+        SensorTypeList listSensorsType = new SensorTypeList();
+        listSensorsType.adicionarTipoSensorALista(sensorType);
+
+        GeoAreaList geographicalAreaList = new GeoAreaList();
+        geographicalAreaList.getmListaAG().add(ag1);
+
+
+        US6Controller ctrl6 = new US6Controller(listSensorsType, geographicalAreaList);
+
+        ctrl6.getAreaGeograficaNaListaPorPosicao(0);
+        ctrl6.getTipoSensorPorPosicao(0);
+        ctrl6.criarNovaLocalizacao(41.1496, -8.6109, 97);
+        ctrl6.criarNovoSensor("s1");
+        ctrl6.adicionarSensorAAreaGeografica(s1);
+
+        //Act
+        boolean resultado = ctrl6.adicionarSensorAAreaGeografica(s1);
+
+        //Assert
+        assertFalse(resultado);
+    }
+
+    @Test
+    public void testarAdicaoSensorAAreaGeograficaPositivo () {
+        //Arrange
+        String nomeAG1 = "Porto";
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
+        Location local1 = new Location(41.1496, -8.6109, 97);
+        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+
+        SensorType sensorType = new SensorType("Humidade");
+        Location local = new Location(45, 45, 45);
+        Sensor s1 = new Sensor("s1", sensorType, local);
+
+        SensorTypeList listSensorsType = new SensorTypeList();
+        listSensorsType.adicionarTipoSensorALista(sensorType);
+
+        GeoAreaList geographicalAreaList = new GeoAreaList();
+        geographicalAreaList.getmListaAG().add(ag1);
+
+
+        US6Controller ctrl6 = new US6Controller(listSensorsType, geographicalAreaList);
+
+        ctrl6.getAreaGeograficaNaListaPorPosicao(0);
+        ctrl6.getTipoSensorPorPosicao(0);
+        ctrl6.criarNovaLocalizacao(41.1496, -8.6109, 97);
+        ctrl6.criarNovoSensor("s1");
+
+        //Act
+        boolean resultado = ctrl6.adicionarSensorAAreaGeografica(s1);
+
+        //Assert
+        assertTrue(resultado);
+    }
 }

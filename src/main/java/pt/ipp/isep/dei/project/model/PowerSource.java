@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import static java.util.Objects.isNull;
+
 public class PowerSource {
     private String mPowerSourceName;
     private PowerSourceType mPowerSourceType;
@@ -8,6 +10,9 @@ public class PowerSource {
     private double mMaximumAmountOfStorableEnergy;
 
     public PowerSource(String powerSourceName, PowerSourceType powerSourceType, boolean isRechargeable) {
+        validateName(powerSourceName);
+        validatePowerSourceType(powerSourceType);
+
         this.mPowerSourceType = powerSourceType;
         this.mIsRechargeable = isRechargeable;
         this.mPowerSourceName = powerSourceName;
@@ -40,6 +45,18 @@ public class PowerSource {
         }
         else {
             return this.mPowerSourceName.equals(type.mPowerSourceName) && this.mPowerSourceType.equals(type.mPowerSourceType) && Math.abs(this.mMaximumPowerOutput - type.mMaximumPowerOutput)<delta;
+        }
+    }
+
+    private void validateName(String name) {
+        if (isNull(name) || name.trim().length() == 0) {
+            throw new NullPointerException("Please enter a valid name. Name should not be empty");
+        }
+    }
+
+    private void validatePowerSourceType(PowerSourceType powerSourceType) {
+        if (isNull(powerSourceType)) {
+            throw new NullPointerException("Please select a valid power source type");
         }
     }
 
