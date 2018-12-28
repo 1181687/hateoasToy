@@ -7,13 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class HouseTest {
     @Test
-    public void testAddRoomToHouse(){
+    public void testAddRoomToHouse() {
         RoomList rList = new RoomList();
-        Dimensions dim = new Dimensions(4,4,4);
+        Dimensions dim = new Dimensions(4, 4, 4);
         SensorList list = new SensorList();
         Room room = new Room("F5", 1, dim, list);
         HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10,10,10);
+        Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         RectangleArea rectangleArea = new RectangleArea(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
@@ -24,10 +24,10 @@ public class HouseTest {
     }
 
     @Test
-    public void testAddRoomToHouseFalse(){
+    public void testAddRoomToHouseFalse() {
         RoomList rList = new RoomList();
         HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10,10,10);
+        Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         RectangleArea rectangleArea = new RectangleArea(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
@@ -39,7 +39,7 @@ public class HouseTest {
     }
 
     @Test
-    void testGetLocationOfTheHouse () {
+    public void testGetLocationOfTheHouse() {
         // Arrange
         String zipCode = "4050";
         double latitude = 40.5;
@@ -53,8 +53,6 @@ public class HouseTest {
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
-
-
 
         Location expectedResult = local;
         // Act

@@ -3,20 +3,20 @@ package pt.ipp.isep.dei.project.model;
 import java.util.Date;
 
 public class Measurement {
-    private double mValor;
-    private Date mDataHora;
+    private double mValue;
+    private Date mDateTime;
 
-    public Measurement(double mValor, Date mDataHora) {
-        this.mValor = mValor;
-        this.mDataHora = mDataHora;
+    public Measurement(double mValue, Date mDateTime) {
+        this.mValue = mValue;
+        this.mDateTime = mDateTime;
     }
 
-    public double getmValor() {
-        return mValor;
+    public double getmValue() {
+        return mValue;
     }
 
-    public Date getmDataHora() {
-        return mDataHora;
+    public Date getmDateTime() {
+        return mDateTime;
     }
 
 }

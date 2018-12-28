@@ -1,4 +1,3 @@
-
 package pt.ipp.isep.dei.project.model;
 
 
@@ -10,7 +9,7 @@ public class Location {      //graus decimais
     public Location(double mLatitude, double mLongitude, double mAltitude) {
         setmLatitude(mLatitude);
         setmLongitude(mLongitude);
-        this.mAltitude=mAltitude;
+        this.mAltitude = mAltitude;
     }
 
     public double getmLatitude() {
@@ -21,7 +20,7 @@ public class Location {      //graus decimais
         if (latitude < -90 || latitude > 90) {
             this.mLatitude = Double.NaN;
         } else this.mLatitude = latitude;
-        }
+    }
 
 
     public double getmLongitude() {
@@ -29,10 +28,9 @@ public class Location {      //graus decimais
     }
 
     public void setmLongitude(double mLongitude) {
-        if (mLongitude<-180||mLongitude>180){
-            this.mLongitude=Double.NaN;
-        }
-        else this.mLongitude = mLongitude;
+        if (mLongitude < -180 || mLongitude > 180) {
+            this.mLongitude = Double.NaN;
+        } else this.mLongitude = mLongitude;
     }
 
     public double getmAltitude() {
@@ -48,11 +46,11 @@ public class Location {      //graus decimais
 
         double distEntreLon = Math.toRadians(lonNovoLocal - this.mLongitude);
 
-        double distEntreLocais = Math.acos(Math.cos(Math.toRadians(this.mLatitude))*Math.cos(Math.toRadians(latNovoLocal))
-                *Math.cos(distEntreLon)+Math.sin(Math.toRadians(this.mLatitude))*Math.sin(Math.toRadians(latNovoLocal)));
+        double distEntreLocais = Math.acos(Math.cos(Math.toRadians(this.mLatitude)) * Math.cos(Math.toRadians(latNovoLocal))
+                * Math.cos(distEntreLon) + Math.sin(Math.toRadians(this.mLatitude)) * Math.sin(Math.toRadians(latNovoLocal)));
 
 
-        double distanciaKm = raioDaTerra* distEntreLocais*1000; // convert to km
+        double distanciaKm = raioDaTerra * distEntreLocais * 1000; // convert to km
 
         double altura = this.mAltitude - altNovoLocal;
 

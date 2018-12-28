@@ -75,7 +75,7 @@ public class GeographicalArea {
             if (sensor.listaDeRegistosEVazia()) {
                 break;
             }
-            if (sensor.umTipoDeSensorEIgualAOutro(tipo) && (!(Double.isNaN(sensor.getUltimoRegisto().getmValor())))) {
+            if (sensor.umTipoDeSensorEIgualAOutro(tipo) && (!(Double.isNaN(sensor.getUltimoRegisto().getmValue())))) {
                 listaDeUltimosRegistos.add(sensor.getUltimoRegisto());
             }
         }
@@ -89,11 +89,11 @@ public class GeographicalArea {
         }
         Measurement medicaoComUltimoRegisto = listaDeUltimosRegisto.get(0);
         for (Measurement registo : listaDeUltimosRegisto) {
-            if (registo.getmDataHora().after(medicaoComUltimoRegisto.getmDataHora())) {
+            if (registo.getmDateTime().after(medicaoComUltimoRegisto.getmDateTime())) {
                 medicaoComUltimoRegisto = registo;
             }
         }
-        return medicaoComUltimoRegisto.getmValor();
+        return medicaoComUltimoRegisto.getmValue();
     }
     */
 
@@ -166,7 +166,7 @@ public class GeographicalArea {
         if (nearestSensor.getUltimoRegisto() == null) {
             return Double.NaN;
         }
-        return nearestSensor.getUltimoRegisto().getmValor();
+        return nearestSensor.getUltimoRegisto().getmValue();
     }
 
     /**
@@ -177,18 +177,18 @@ public class GeographicalArea {
      * @param endDate
      * @return
      */
-    public ArrayList<Double> getDailyAverageMeasurementInTheArea(SensorType sensorType, Date startDate, Date endDate) {
+    public List<Double> getDailyAverageMeasurementInTheArea(SensorType sensorType, Date startDate, Date endDate) {
         LocalDate startDate1 = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate endDate1 = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        ArrayList<Double> dailyAverage = new ArrayList<>();
+        List<Double> dailyAverage = new ArrayList<>();
         List<Sensor> sensorListWithRightTypeDuringPeriod = listarSensoresDeUmTipoNaAGNumPeriodo(sensorType, this.mSensorList.getmSensorList(), startDate, endDate);
 
         for (Sensor sensor : sensorListWithRightTypeDuringPeriod) {
 
             for (LocalDate dateIterator = startDate1; dateIterator.isBefore(endDate1); dateIterator = dateIterator.plusDays(1)) {
-                Date dateTeste = Date.from(dateIterator.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                if (!(sensor.getRegistosDoDia(dateTeste).isEmpty())) {
-                    dailyAverage.add(sensor.getDailyAverage(dateTeste));
+                Date currentDate = Date.from(dateIterator.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                if (!(sensor.getDailyMeasurement(currentDate).isEmpty())) {
+                    dailyAverage.add(sensor.getDailyAverage(currentDate));
                 }
             }
         }

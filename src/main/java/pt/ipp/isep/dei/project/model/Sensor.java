@@ -66,8 +66,8 @@ public class Sensor {
         List<Double> registosEntreDatas = new ArrayList<>();
 
         for (Measurement registo : mRegistos) {
-            if (registo.getmDataHora().after(dataInicial) && registo.getmDataHora().before(dataFinal)) {
-                registosEntreDatas.add(registo.getmValor());
+            if (registo.getmDateTime().after(dataInicial) && registo.getmDateTime().before(dataFinal)) {
+                registosEntreDatas.add(registo.getmValue());
             }
         }
         return registosEntreDatas;
@@ -80,7 +80,6 @@ public class Sensor {
     }
 
     public double getMenorRegistoDoMes(Date diaDoMes) {
-
         Date primeiroDiaMes = getPrimeiroDiaDoMes(diaDoMes);
         Date ultimoDiaMes = getUltimoDiaDoMes(diaDoMes);
 
@@ -99,6 +98,18 @@ public class Sensor {
         return menorRegisto;
     }
 
+    public double getMaiorRegisto(Date date) {
+        Date primeiroDiaMes = getPrimeiroDiaDoMes(date);
+        Date ultimoDiaMes = getUltimoDiaDoMes(date);
+
+        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
+
+        if (registosEntreDatas.isEmpty()) {
+            return Double.NaN;
+        }
+        return registosEntreDatas.get(0);
+    }
+
     public double getMaiorRegistoDoMes(Date diaDoMes) {
 
         Date primeiroDiaMes = getPrimeiroDiaDoMes(diaDoMes);
@@ -106,10 +117,7 @@ public class Sensor {
 
         List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
 
-        if (registosEntreDatas.isEmpty()) {
-            return Double.NaN;
-        }
-        double maiorRegisto = registosEntreDatas.get(0);
+        double maiorRegisto = getMaiorRegisto(diaDoMes);
 
         for (int i = 0; i < registosEntreDatas.size(); i++) {
             if (maiorRegisto < registosEntreDatas.get(i)) {
@@ -156,7 +164,7 @@ public class Sensor {
         return cal.getTime();
     }
 
-    public void adicionarMedicaoALista(Measurement measurement) {
+    public void addMeasurementToList(Measurement measurement) {
         mRegistos.add(measurement);
     }
 
@@ -166,7 +174,7 @@ public class Sensor {
 
     public Measurement getUltimoRegisto() {
         for (int i = (mRegistos.size() - 1); i >= 0; i--) {
-            if (!(Double.isNaN(mRegistos.get(i).getmValor()))) {
+            if (!(Double.isNaN(mRegistos.get(i).getmValue()))) {
                 return mRegistos.get(i);
             }
         }
@@ -178,7 +186,7 @@ public class Sensor {
         return (this.getmSensorType().getmTipo().equals(tipoDoSensorPedido));
     }
 
-    public List<Measurement> getRegistosDoDia(Date data) {
+    public List<Measurement> getDailyMeasurement(Date data) {
         //passar data para calendario
         Calendar cal = Calendar.getInstance();
         cal.setTime(data);
@@ -187,9 +195,9 @@ public class Sensor {
         for (Measurement registo : mRegistos) {
             //passar Data do registo para Calendario
             Calendar ca2 = Calendar.getInstance();
-            ca2.setTime(registo.getmDataHora());
+            ca2.setTime(registo.getmDateTime());
 
-            if (verificaDiasIguais(ca2, cal) && (! Double.isNaN(registo.getmValor()))) {
+            if (verificaDiasIguais(ca2, cal) && (!Double.isNaN(registo.getmValue()))) {
                 registosDoDia.add(registo);
             }
         }
@@ -203,11 +211,11 @@ public class Sensor {
     }
 
     public double getValorMinimoDoDia(Date data) {
-        if (!getRegistosDoDia(data).isEmpty()) {
-            double valorMinimoDoDia = getRegistosDoDia(data).get(0).getmValor();
-            for (Measurement registo : getRegistosDoDia(data)) {
-                if (valorMinimoDoDia > registo.getmValor()){
-                    valorMinimoDoDia = registo.getmValor();
+        if (!getDailyMeasurement(data).isEmpty()) {
+            double valorMinimoDoDia = getDailyMeasurement(data).get(0).getmValue();
+            for (Measurement registo : getDailyMeasurement(data)) {
+                if (valorMinimoDoDia > registo.getmValue()) {
+                    valorMinimoDoDia = registo.getmValue();
                 }
             }
             return valorMinimoDoDia;
@@ -215,23 +223,23 @@ public class Sensor {
         return Double.NaN;
     }
 
-    public Date getPrimeiroDiaSemana (int ano, int semana){
+    public Date getPrimeiroDiaSemana(int ano, int semana) {
         Calendar cal = new GregorianCalendar(Locale.US);
         cal.setWeekDate(ano, semana, cal.getFirstDayOfWeek());
-        cal.set(Calendar.HOUR_OF_DAY,0);
-        cal.set(Calendar.MINUTE,0);
-        cal.set(Calendar.SECOND,0);
-        cal.set(Calendar.MILLISECOND,0);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
         return cal.getTime();
     }
 
-    public List <Double> valoresMinimosSemana(int ano, int semana){
-        List <Double> registosMinimosSemana = new ArrayList<>();
-        Date primeiroDiaSemana = getPrimeiroDiaSemana(ano,semana);
+    public List<Double> valoresMinimosSemana(int ano, int semana) {
+        List<Double> registosMinimosSemana = new ArrayList<>();
+        Date primeiroDiaSemana = getPrimeiroDiaSemana(ano, semana);
         Calendar cal = new GregorianCalendar(Locale.US);
         cal.setTime(primeiroDiaSemana);
         int primeiroDiaDaSemana = cal.getFirstDayOfWeek();
-        for (int diaDaSemana= primeiroDiaDaSemana; diaDaSemana<primeiroDiaDaSemana+7; diaDaSemana++) {
+        for (int diaDaSemana = primeiroDiaDaSemana; diaDaSemana < primeiroDiaDaSemana + 7; diaDaSemana++) {
             double minimoDia = getValorMinimoDoDia(cal.getTime());
             if (!Double.isNaN(minimoDia)) {
                 registosMinimosSemana.add(minimoDia);
@@ -241,20 +249,20 @@ public class Sensor {
         return registosMinimosSemana;
     }
 
-    public double getMediaRegitosMinSemanal (int ano, int semana){
+    public double getMediaRegitosMinSemanal(int ano, int semana) {
 
-        List <Double> registosMinSemana= this.valoresMinimosSemana(ano, semana);
+        List<Double> registosMinSemana = this.valoresMinimosSemana(ano, semana);
 
-        int contador=0;
-        double somaRegistosMinSemana=0;
-        if (registosMinSemana.size()==0){
+        int contador = 0;
+        double somaRegistosMinSemana = 0;
+        if (registosMinSemana.size() == 0) {
             return Double.NaN;
         }
-        while (contador<registosMinSemana.size()){
+        while (contador < registosMinSemana.size()) {
             somaRegistosMinSemana += registosMinSemana.get(contador);
             contador++;
         }
-        return somaRegistosMinSemana/registosMinSemana.size();
+        return somaRegistosMinSemana / registosMinSemana.size();
 
     }
 
@@ -263,11 +271,11 @@ public class Sensor {
      * @return the maximum value of measurements
      */
     public double getMaximumValueOfDay(Date data) {
-        if (!getRegistosDoDia(data).isEmpty()) {
-            double valorMaximoDoDia = getRegistosDoDia(data).get(0).getmValor();
-            for (Measurement registo : getRegistosDoDia(data)) {
-                if (valorMaximoDoDia < registo.getmValor()){
-                    valorMaximoDoDia = registo.getmValor();
+        if (!getDailyMeasurement(data).isEmpty()) {
+            double valorMaximoDoDia = getDailyMeasurement(data).get(0).getmValue();
+            for (Measurement registo : getDailyMeasurement(data)) {
+                if (valorMaximoDoDia < registo.getmValue()){
+                    valorMaximoDoDia = registo.getmValue();
                 }
             }
             return valorMaximoDoDia;
@@ -292,24 +300,41 @@ public class Sensor {
         return registosMaximosSemana;
     }
 
-    public double getMediaRegistosMaxSemanal (int ano, int semana){
+    public double getMediaRegistosMaxSemanal(int ano, int semana) {
 
-        List <Double> registosMaxSemana= this.valoresMaximosSemana(ano, semana);
+        List<Double> registosMaxSemana = this.valoresMaximosSemana(ano, semana);
 
-        int contador=0;
-        double somaRegistosMaxSemana=0;
-        if (registosMaxSemana.isEmpty()){
+        int contador = 0;
+        double somaRegistosMaxSemana = 0;
+        if (registosMaxSemana.isEmpty()) {
             return Double.NaN;
         }
-        while (contador<registosMaxSemana.size()){
+        while (contador < registosMaxSemana.size()) {
             somaRegistosMaxSemana += registosMaxSemana.get(contador);
             contador++;
         }
-        return somaRegistosMaxSemana/registosMaxSemana.size();
+        return somaRegistosMaxSemana / registosMaxSemana.size();
     }
 
     public double distanceBetweenASensorAndALocation(Location location) {
         return this.mLocation.distanciaDuasLocalizacoes(location);
+    }
+
+    /**
+     * Method that returns the daily measurement of a given day
+     *
+     * @param day
+     * @return
+     */
+
+    public double getTotalDailyMeasurements(Date day) {
+        double sum = 0;
+        if (!(getDailyMeasurement(day).isEmpty())) {
+            for (Measurement measurement : getDailyMeasurement(day)) {
+                sum += measurement.getmValue();
+            }
+        }
+        return sum;
     }
 
     /**
@@ -319,15 +344,7 @@ public class Sensor {
      * @return
      */
     public double getDailyAverage(Date date) {
-        double dailyAverage = 0;
-        if (!(getRegistosDoDia(date).isEmpty())) {
-            double sum = 0;
-            for (Measurement measurement : getRegistosDoDia(date)) {
-                sum += measurement.getmValor();
-            }
-            dailyAverage = sum / getRegistosDoDia(date).size();
-        }
-        return dailyAverage;
+        return getTotalDailyMeasurements(date) / getDailyMeasurement(date).size();
     }
 
 

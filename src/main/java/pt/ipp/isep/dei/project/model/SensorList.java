@@ -36,7 +36,7 @@ public class SensorList {
             if (sensor.listaDeRegistosEVazia()) {
                 break;
             }
-            if (sensor.umTipoDeSensorEIgualAOutro(tipo) && (!(Double.isNaN(sensor.getUltimoRegisto().getmValor())))) {
+            if (sensor.umTipoDeSensorEIgualAOutro(tipo) && (!(Double.isNaN(sensor.getUltimoRegisto().getmValue())))) {
                 listaDeUltimosRegistos.add(sensor.getUltimoRegisto());
             }
         }
@@ -50,11 +50,11 @@ public class SensorList {
         }
         Measurement measurementComUltimoRegisto = listaDeUltimosRegisto.get(0);
         for (Measurement registo : listaDeUltimosRegisto) {
-            if (registo.getmDataHora().after(measurementComUltimoRegisto.getmDataHora())) {
+            if (registo.getmDateTime().after(measurementComUltimoRegisto.getmDateTime())) {
                 measurementComUltimoRegisto = registo;
             }
         }
-        return measurementComUltimoRegisto.getmValor();
+        return measurementComUltimoRegisto.getmValue();
     }
 
     /**

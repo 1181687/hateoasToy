@@ -97,7 +97,7 @@ public class Room {
         return Objects.hash(mName, mHouseFloor, mDimensions);
     }
 
-    /*
+    /**
      * Equals method to determine if two Rooms are equal.
      * They are equals if all atributtes are equal.
      *
