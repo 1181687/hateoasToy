@@ -166,6 +166,9 @@ class GeographicalAreaTest {
         s2.adicionarMedicaoALista(medicao22);
 
         SensorList listSens = new SensorList();
+        listSens.addSensorToTheListOfSensors(s0);
+        listSens.addSensorToTheListOfSensors(s1);
+        listSens.addSensorToTheListOfSensors(s2);
 
         List<Medicao> expectedResult = new ArrayList<>();
 
@@ -180,7 +183,6 @@ class GeographicalAreaTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-
 
     @Test
     public void testargetListaUltimosRegistosPorTipoSensorCasoUltimoRegistoDoubleNan() {
@@ -261,6 +263,9 @@ class GeographicalAreaTest {
 
         TipoSensor tipoResultado = new TipoSensor("Temperatura");
         SensorList listSens = new SensorList();
+        listSens.addSensorToTheListOfSensors(s0);
+        listSens.addSensorToTheListOfSensors(s1);
+        listSens.addSensorToTheListOfSensors(s2);
 
         //Act
         List<Medicao> result = listSens.getListaDeUltimosRegistosPorTipoDeSensor(tipoResultado);
@@ -345,6 +350,9 @@ class GeographicalAreaTest {
 
         TipoSensor tipoResultado = new TipoSensor("Temperatura");
         SensorList listSens = new SensorList();
+        listSens.addSensorToTheListOfSensors(s0);
+        listSens.addSensorToTheListOfSensors(s1);
+        listSens.addSensorToTheListOfSensors(s2);
 
         //Act
         double result = listSens.getUltimoRegistoDeUmTipoDeSensor(tipoResultado);
@@ -399,6 +407,7 @@ class GeographicalAreaTest {
         s0.adicionarMedicaoALista(medicao01);
         s0.adicionarMedicaoALista(medicao02);
 
+
         //Sensor1
         Calendar calendarioDaMedicao11 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
@@ -429,6 +438,9 @@ class GeographicalAreaTest {
 
         TipoSensor tipoResultado = new TipoSensor("Temperatura");
         SensorList listSens = new SensorList();
+        listSens.addSensorToTheListOfSensors(s0);
+        listSens.addSensorToTheListOfSensors(s1);
+        listSens.addSensorToTheListOfSensors(s2);
 
         //Act
         double result = listSens.getUltimoRegistoDeUmTipoDeSensor(tipoResultado);
@@ -513,6 +525,9 @@ class GeographicalAreaTest {
 
         TipoSensor tipoResultado = new TipoSensor("Pluviosidade");
         SensorList listSens = new SensorList();
+        listSens.addSensorToTheListOfSensors(s0);
+        listSens.addSensorToTheListOfSensors(s1);
+        listSens.addSensorToTheListOfSensors(s2);
 
         //Act
         double result = listSens.getUltimoRegistoDeUmTipoDeSensor(tipoResultado);
