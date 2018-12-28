@@ -142,7 +142,7 @@ public class PowerSourceTest {
     }
 
     @Test
-    void testingHashCode() {
+    public void testingHashCode() {
         //Arrange
         String powerSourceName1 = "ps1";
 
@@ -155,5 +155,50 @@ public class PowerSourceTest {
         int result = powerSource1.hashCode();
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testValidateNameNull(){
+        //Arrange
+        String name = null;
+        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
+        boolean powerSourceType1IsRechargeable = false;
+
+        //Act
+        Throwable exception = assertThrows(NullPointerException.class, () ->
+                new PowerSource(name,powerSourceType,powerSourceType1IsRechargeable)
+        );
+        //Assert
+        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+    }
+
+    @Test
+    public void testValidateNameEmpty(){
+        //Arrange
+        String name = " ";
+        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
+        boolean powerSourceType1IsRechargeable = false;
+
+        //Act
+        Throwable exception = assertThrows(NullPointerException.class, () ->
+                new PowerSource(name,powerSourceType,powerSourceType1IsRechargeable)
+        );
+        //Assert
+        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+    }
+
+    @Test
+    public void testValidatePowerSourceTypeNull(){
+        //Arrange
+        String name = "power source 1";
+        PowerSourceType powerSourceType = null;
+        boolean powerSourceType1IsRechargeable = false;
+
+        //Act
+        Throwable exception = assertThrows(NullPointerException.class, () ->
+                new PowerSource(name,powerSourceType,powerSourceType1IsRechargeable)
+        );
+        //Assert
+        assertEquals("Please select a valid power source type", exception.getMessage());
     }
 }

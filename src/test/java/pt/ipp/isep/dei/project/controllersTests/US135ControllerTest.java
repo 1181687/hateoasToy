@@ -151,7 +151,7 @@ class US135ControllerTest {
 
         String powerSourceName1 = "ps1";
         String powerSourceName2 = "ps1";
-        Boolean isRechargeable = false;
+        boolean isRechargeable = false;
 
         int position = 0;
 

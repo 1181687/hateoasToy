@@ -48,13 +48,13 @@ public class PowerSource {
         }
     }
 
-    private void validateName(String name) {
+    private static void validateName(String name) {
         if (isNull(name) || name.trim().length() == 0) {
             throw new NullPointerException("Please enter a valid name. Name should not be empty");
         }
     }
 
-    private void validatePowerSourceType(PowerSourceType powerSourceType) {
+    private static void validatePowerSourceType(PowerSourceType powerSourceType) {
         if (isNull(powerSourceType)) {
             throw new NullPointerException("Please select a valid power source type");
         }
