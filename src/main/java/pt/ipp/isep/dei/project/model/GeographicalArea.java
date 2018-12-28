@@ -137,6 +137,18 @@ public class GeographicalArea {
         return new Location(mLatitude, mLongitude, mAltitude);
     }
 
+    public Sensor getNearestSensorOfALocation (SensorList sensorList, Location location){
+        Sensor nearestSensor = sensorList.getmSensorList().get(0);
+        double shortestDistance = nearestSensor.distanceBetweenASensorAndALocation(location);
+        for (Sensor sensor : sensorList.getmSensorList()) {
+            if (shortestDistance > sensor.distanceBetweenASensorAndALocation(location)) {
+                shortestDistance = sensor.distanceBetweenASensorAndALocation(location);
+                nearestSensor = sensor;
+            }
+        }
+        return nearestSensor;
+    }
+
     public double getLastTemperatureInTheArea(Location location) {
         SensorType temperature = new SensorType("Temperature");
 
@@ -155,18 +167,10 @@ public class GeographicalArea {
                 return Double.NaN;
             }
         }
-        Sensor nearestSensor = sensorList.getmSensorList().get(0);
-        double shortestDistance = nearestSensor.distanceBetweenASensorAndALocation(location);
-        for (Sensor sensor : sensorList.getmSensorList()) {
-            if (shortestDistance > sensor.distanceBetweenASensorAndALocation(location)) {
-                shortestDistance = sensor.distanceBetweenASensorAndALocation(location);
-                nearestSensor = sensor;
-            }
-        }
-        if (nearestSensor.getUltimoRegisto() == null) {
+        if (getNearestSensorOfALocation(sensorList, location).getUltimoRegisto() == null) {
             return Double.NaN;
         }
-        return nearestSensor.getUltimoRegisto().getmValue();
+        return getNearestSensorOfALocation(sensorList, location).getUltimoRegisto().getmValue();
     }
 
     /**
@@ -195,5 +199,13 @@ public class GeographicalArea {
         return dailyAverage;
 
     }
+
+    /*public double getTotalDailyMeasurementInTheArea(SensorType sensorType, Date day) {
+        LocalDate day1 = day.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        List<Sensor> listOfSensorsInTheArea
+        double sumOfDailyMeasurements = 0;
+
+
+    }*/
 }
 
