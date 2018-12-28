@@ -10,11 +10,6 @@ public class House {
     private Address mAddress;
     private GeographicalArea mInsertedGeoArea;
 
-    public House(RoomList roomList, HouseGridList listHouseGrids, Address address) {
-        this.mRoomList = roomList;
-        this.mListHouseGrids = listHouseGrids;
-        this.mAddress = address;
-    }
     public House(RoomList mRoomList, HouseGridList mListHouseGrids, Address mAddress, GeographicalArea mInsertedGeoArea) {
         this.mRoomList = mRoomList;
         this.mListHouseGrids = mListHouseGrids;
