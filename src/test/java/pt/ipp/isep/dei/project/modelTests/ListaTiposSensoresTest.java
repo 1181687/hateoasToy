@@ -137,11 +137,12 @@ class ListaTiposSensoresTest {
         // Arrange
         // RoomList with two rooms
         RoomList roomList = new RoomList();
+        SensorList sensorList = new SensorList();
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1);
+        Room room1 = new Room (name1,houseFloor1,dimensions1, sensorList);
 
         roomList.addRoomToRoomList(room1);
 
@@ -159,4 +160,30 @@ class ListaTiposSensoresTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    void checkIfTheListOfSensorTypeIsEmptyPositive() {
+        // Arrange
+        // RoomList with two rooms
+        RoomList roomList = new RoomList();
+        SensorList sensorList = new SensorList();
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2,2,2);
+        Room room1 = new Room (name1,houseFloor1,dimensions1, sensorList);
+
+        roomList.addRoomToRoomList(room1);
+
+        // Sensors Type List
+        ListaTiposSensores listSensorsType = new ListaTiposSensores();
+
+        // Act
+        boolean result = listSensorsType.checkIfListOfTypeSensorsIsEmpty();
+        // Assert
+        assertTrue(result);
+    }
+
+
+
 }
