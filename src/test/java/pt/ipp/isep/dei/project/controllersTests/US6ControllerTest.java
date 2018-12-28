@@ -5,6 +5,8 @@ import pt.ipp.isep.dei.project.controllers.US6Controller;
 import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class US6ControllerTest {
 
@@ -205,7 +207,7 @@ class US6ControllerTest {
     }
 
     @Test
-    public void testarGetNomeTipoSensorPorIndicePrimeiro () {
+    public void testarGetNomeSensorTypePorIndicePrimeiro () {
 
         SensorType tipo1 = new SensorType("Humidade");
         SensorType tipo2 = new SensorType("Temperatura");
@@ -229,7 +231,7 @@ class US6ControllerTest {
     }
 
     @Test
-    public void testarGetNomeTipoSensorPorIndiceUltimo () {
+    public void testarGetNomeSensorTypePorIndiceUltimo () {
 
         SensorType tipo1 = new SensorType("Humidade");
         SensorType tipo2 = new SensorType("Temperatura");
@@ -253,7 +255,7 @@ class US6ControllerTest {
     }
 
     @Test
-    public void testarGetNomeTipoSensorPorIndiceApenasUm () {
+    public void testarGetNomeSensorTypePorIndiceApenasUm () {
 
         SensorType tipo1 = new SensorType("Humidade");
 
@@ -278,21 +280,19 @@ class US6ControllerTest {
     public void testarAdicaoSensorAAreaGeograficaNegativo () {
         //Arrange
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-
-        Calendar cal = new GregorianCalendar();
-        Date data = cal.getTime();
-        TipoSensor sensorType = new TipoSensor("Humidade");
+        
+        SensorType sensorType = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
-        Sensor s1 = new Sensor("s1", data, sensorType, local);
+        Sensor s1 = new Sensor("s1", sensorType, local);
 
-        ListaTiposSensores listSensorsType = new ListaTiposSensores();
+        SensorTypeList listSensorsType = new SensorTypeList();
         listSensorsType.adicionarTipoSensorALista(sensorType);
 
-        ListaAG geographicalAreaList = new ListaAG();
+        GeoAreaList geographicalAreaList = new GeoAreaList();
         geographicalAreaList.getmListaAG().add(ag1);
 
 
@@ -315,21 +315,19 @@ class US6ControllerTest {
     public void testarAdicaoSensorAAreaGeograficaPositivo () {
         //Arrange
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
-        Calendar cal = new GregorianCalendar();
-        Date data = cal.getTime();
-        TipoSensor sensorType = new TipoSensor("Humidade");
+        SensorType sensorType = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
-        Sensor s1 = new Sensor("s1", data, sensorType, local);
+        Sensor s1 = new Sensor("s1", sensorType, local);
 
-        ListaTiposSensores listSensorsType = new ListaTiposSensores();
+        SensorTypeList listSensorsType = new SensorTypeList();
         listSensorsType.adicionarTipoSensorALista(sensorType);
 
-        ListaAG geographicalAreaList = new ListaAG();
+        GeoAreaList geographicalAreaList = new GeoAreaList();
         geographicalAreaList.getmListaAG().add(ag1);
 
 
