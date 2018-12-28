@@ -17,11 +17,11 @@ public class US3ControllerTest {
     public void testarAdicionarNovaAG() {
         //Arrange
         //instanciar us3controller
-        ListaAG lista = new ListaAG();
-        ListaTiposAG listaTAG = new ListaTiposAG();
+        GeoAreaList lista = new GeoAreaList();
+        GeoAreaTypeList listaTAG = new GeoAreaTypeList();
         US3Controller ctrl3 = new US3Controller(lista, listaTAG);
         String nomeAG = "Porto";
-        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10,local);
 
@@ -36,11 +36,11 @@ public class US3ControllerTest {
     public void testarAdicionarNovaAGFalso() {
         //Arrange
         //instanciar us3controller
-        ListaAG lista = new ListaAG();
-        ListaTiposAG listaTAG = new ListaTiposAG();
+        GeoAreaList lista = new GeoAreaList();
+        GeoAreaTypeList listaTAG = new GeoAreaTypeList();
         US3Controller ctrl3 = new US3Controller(lista, listaTAG);
         String nomeAG = "Porto";
-        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10,local);
 
@@ -55,18 +55,18 @@ public class US3ControllerTest {
     @Test
     public void testarGetListaTAG() {
         //Arrange
-        ListaAG lista = new ListaAG();
-        ListaTiposAG listaTAG = new ListaTiposAG();
+        GeoAreaList lista = new GeoAreaList();
+        GeoAreaTypeList listaTAG = new GeoAreaTypeList();
         US3Controller ctrl3 = new US3Controller(lista, listaTAG);
         String nomeAG = "Porto";
-        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10,local);
         GeographicalArea areaDaLista = new GeographicalArea(nomeAG, tipo, local, area);
         lista.adicionarAreaGeoALista(areaDaLista);
-        ListaAG expectedResult = lista;
+        GeoAreaList expectedResult = lista;
         //Act
-        ListaAG result = ctrl3.getListaAG();
+        GeoAreaList result = ctrl3.getListaAG();
 
         //Assert
 
@@ -77,13 +77,13 @@ public class US3ControllerTest {
     public void testarGetListaDosTiposDeAG() {
         //Arrange
 
-        ListaAG lista = new ListaAG();
-        ListaTiposAG listaTAG = new ListaTiposAG();
+        GeoAreaList lista = new GeoAreaList();
+        GeoAreaTypeList listaTAG = new GeoAreaTypeList();
         US3Controller ctrl3 = new US3Controller(lista, listaTAG);
 
         //Tipo de Area Geográfica
         String nomeDoTipo1 = "Cidade";
-        TipoAreaGeo tipo1 = new TipoAreaGeo(nomeDoTipo1);
+        GeoAreaType tipo1 = new GeoAreaType(nomeDoTipo1);
 
         //Adicionar o Tipo de Area Geográfica na lista
         listaTAG.adicionarElementoALista(tipo1);
@@ -104,12 +104,12 @@ public class US3ControllerTest {
     @Test
     public void testarCriarNovaAG() {
         //Arrange
-        ListaAG lista = new ListaAG();
-        ListaTiposAG listaTAG = new ListaTiposAG();
+        GeoAreaList lista = new GeoAreaList();
+        GeoAreaTypeList listaTAG = new GeoAreaTypeList();
         US3Controller ctrl3 = new US3Controller(lista, listaTAG);
 
         String nomeAG = "Porto";
-        TipoAreaGeo tipo = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(40.5, 50.5, 100.0);
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea expectedResult = new GeographicalArea(nomeAG, tipo, local, area);

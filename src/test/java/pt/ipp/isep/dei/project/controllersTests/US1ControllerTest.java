@@ -2,8 +2,8 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.US1Controller;
-import pt.ipp.isep.dei.project.model.ListaTiposAG;
-import pt.ipp.isep.dei.project.model.TipoAreaGeo;
+import pt.ipp.isep.dei.project.model.GeoAreaType;
+import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,7 +12,7 @@ public class US1ControllerTest {
     @Test
     public void testarCriacaoDeNovoTipoDeAG() {
         //Arrange
-        ListaTiposAG lista = new ListaTiposAG();
+        GeoAreaTypeList lista = new GeoAreaTypeList();
         String novoTipo = "Cidade";
         US1Controller ctrl = new US1Controller(lista);
         //Act
@@ -24,8 +24,8 @@ public class US1ControllerTest {
     @Test
     public void testarCriacaoDeNovoTipoDeAGFalhar() {
         //Arrange
-        ListaTiposAG lista = new ListaTiposAG();
-        TipoAreaGeo tipoDaLista = new TipoAreaGeo("Cidade");
+        GeoAreaTypeList lista = new GeoAreaTypeList();
+        GeoAreaType tipoDaLista = new GeoAreaType("Cidade");
         lista.adicionarElementoALista(tipoDaLista);
         String novoTipo = "Cidade";
         US1Controller ctrl = new US1Controller(lista);
@@ -38,13 +38,13 @@ public class US1ControllerTest {
     @Test
     public void testarGetListaTAG() {
         //Arrange
-        ListaTiposAG lista = new ListaTiposAG();
+        GeoAreaTypeList lista = new GeoAreaTypeList();
         US1Controller ctrl = new US1Controller(lista);
-        TipoAreaGeo tipoDaLista = new TipoAreaGeo("Cidade");
+        GeoAreaType tipoDaLista = new GeoAreaType("Cidade");
         lista.adicionarElementoALista(tipoDaLista);
-        ListaTiposAG expectedResult = lista;
+        GeoAreaTypeList expectedResult = lista;
         //Act
-        ListaTiposAG result = ctrl.getListaTAG();
+        GeoAreaTypeList result = ctrl.getListaTAG();
 
         //Assert
 

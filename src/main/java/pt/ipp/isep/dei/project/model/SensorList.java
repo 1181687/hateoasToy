@@ -21,7 +21,7 @@ public class SensorList {
         return false;
     }
 
-    public Sensor createNewSensor (String name, TipoSensor sensorType, Location location) {
+    public Sensor createNewSensor(String name, SensorType sensorType, Location location) {
         return new Sensor(name, sensorType, location);
     }
 
@@ -29,8 +29,8 @@ public class SensorList {
         this.mSensorList = mSensorList;
     }
 
-    public List<Medicao> getListaDeUltimosRegistosPorTipoDeSensor(TipoSensor tipo) {
-        List<Medicao> listaDeUltimosRegistos = new ArrayList<>();
+    public List<Measurement> getListaDeUltimosRegistosPorTipoDeSensor(SensorType tipo) {
+        List<Measurement> listaDeUltimosRegistos = new ArrayList<>();
         for (Sensor sensor : mSensorList) {
             if (sensor.listaDeRegistosEVazia()) {
                 break;
@@ -42,18 +42,18 @@ public class SensorList {
         return listaDeUltimosRegistos;
     }
 
-    public double getUltimoRegistoDeUmTipoDeSensor(TipoSensor tipo) {
-        List<Medicao> listaDeUltimosRegisto = getListaDeUltimosRegistosPorTipoDeSensor(tipo);
+    public double getUltimoRegistoDeUmTipoDeSensor(SensorType tipo) {
+        List<Measurement> listaDeUltimosRegisto = getListaDeUltimosRegistosPorTipoDeSensor(tipo);
         if (getListaDeUltimosRegistosPorTipoDeSensor(tipo).isEmpty()) {
             return Double.NaN;
         }
-        Medicao medicaoComUltimoRegisto = listaDeUltimosRegisto.get(0);
-        for (Medicao registo : listaDeUltimosRegisto) {
-            if (registo.getmDataHora().after(medicaoComUltimoRegisto.getmDataHora())) {
-                medicaoComUltimoRegisto = registo;
+        Measurement measurementComUltimoRegisto = listaDeUltimosRegisto.get(0);
+        for (Measurement registo : listaDeUltimosRegisto) {
+            if (registo.getmDataHora().after(measurementComUltimoRegisto.getmDataHora())) {
+                measurementComUltimoRegisto = registo;
             }
         }
-        return medicaoComUltimoRegisto.getmValor();
+        return measurementComUltimoRegisto.getmValor();
     }
 }
 

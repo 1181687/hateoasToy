@@ -1,35 +1,36 @@
 package pt.ipp.isep.dei.project.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ListaTiposSensores {
+public class SensorTypeList {
 
-    private List<TipoSensor> mListaTiposSensores = new ArrayList<>();
+    private List<SensorType> mListaTiposSensores = new ArrayList<>();
 
-    public ListaTiposSensores() {
+    public SensorTypeList() {
     }
 
-    public ListaTiposSensores(List<TipoSensor> mListaTiposSensores) {
+    public SensorTypeList(List<SensorType> mListaTiposSensores) {
         this.mListaTiposSensores = mListaTiposSensores;
     }
 
-    public List<TipoSensor> getmListaTiposSensores() {
+    public List<SensorType> getmListaTiposSensores() {
         return mListaTiposSensores;
     }
 
-    public TipoSensor novoTipoSensor(String novoTipo) {
-        return new TipoSensor(novoTipo);
+    public SensorType novoTipoSensor(String novoTipo) {
+        return new SensorType(novoTipo);
     }
 
-    public boolean adicionarTipoSensorALista(TipoSensor novoTipoSensor) {
-        if (!(this.mListaTiposSensores.contains(novoTipoSensor))) {
-            this.mListaTiposSensores.add(novoTipoSensor);
+    public boolean adicionarTipoSensorALista(SensorType novoSensorType) {
+        if (!(this.mListaTiposSensores.contains(novoSensorType))) {
+            this.mListaTiposSensores.add(novoSensorType);
             return true;
         }
         return false;
     }
 
-    public TipoSensor getTipoSensorPorPosicao(int posicao) {
+    public SensorType getTipoSensorPorPosicao(int posicao) {
         return this.mListaTiposSensores.get(posicao);
     }
 

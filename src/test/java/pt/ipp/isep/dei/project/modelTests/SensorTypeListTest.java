@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US253Controller;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.util.ArrayList;
@@ -9,17 +8,17 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ListaTiposSensoresTest {
+class SensorTypeListTest {
 
     @Test
     void testarContrutorNaoVazio() {
         //Arrange
-        List<TipoSensor> lista = new ArrayList<>();
-        TipoSensor tipo1 = new TipoSensor("Humidade");
-        TipoSensor tipo2 = new TipoSensor("Temperatura");
+        List<SensorType> lista = new ArrayList<>();
+        SensorType tipo1 = new SensorType("Humidade");
+        SensorType tipo2 = new SensorType("Temperatura");
         lista.add(tipo1);
         lista.add(tipo2);
-        ListaTiposSensores novaLista = new ListaTiposSensores(lista);
+        SensorTypeList novaLista = new SensorTypeList(lista);
         //Act
         boolean resultado = !(novaLista.getmListaTiposSensores().isEmpty());
         //Assert
@@ -29,17 +28,17 @@ class ListaTiposSensoresTest {
     @Test
     void testarGetListaTipoSensores() {
         //Arrange
-        List<TipoSensor> lista = new ArrayList<>();
-        TipoSensor tipo1 = new TipoSensor("Humidade");
-        TipoSensor tipo2 = new TipoSensor("Temperatura");
+        List<SensorType> lista = new ArrayList<>();
+        SensorType tipo1 = new SensorType("Humidade");
+        SensorType tipo2 = new SensorType("Temperatura");
         lista.add(tipo1);
         lista.add(tipo2);
-        ListaTiposSensores novaLista = new ListaTiposSensores(lista);
-        List<TipoSensor> resultadoEsperado = new ArrayList<>();
+        SensorTypeList novaLista = new SensorTypeList(lista);
+        List<SensorType> resultadoEsperado = new ArrayList<>();
         resultadoEsperado.add(tipo1);
         resultadoEsperado.add(tipo2);
         //Act
-        List<TipoSensor> resultado = novaLista.getmListaTiposSensores();
+        List<SensorType> resultado = novaLista.getmListaTiposSensores();
         //Assert
         assertEquals(resultadoEsperado, resultado);
     }
@@ -47,11 +46,11 @@ class ListaTiposSensoresTest {
     @Test
     void testarAdicionarTipoDeSensorAListaPositivo() {
         //Arrange
-        ListaTiposSensores lista = new ListaTiposSensores();
+        SensorTypeList lista = new SensorTypeList();
         String novoTipo = "Humidade";
-        TipoSensor novoTipoSensor = new TipoSensor(novoTipo);
+        SensorType novoSensorType = new SensorType(novoTipo);
         //Act
-        boolean resultado = lista.adicionarTipoSensorALista(novoTipoSensor);
+        boolean resultado = lista.adicionarTipoSensorALista(novoSensorType);
         //Assert
         assertTrue(resultado);
     }
@@ -59,12 +58,12 @@ class ListaTiposSensoresTest {
     @Test
     void testarAdicionarTipoDeSensorAListaNegativo() {
         //Arrange
-        ListaTiposSensores lista = new ListaTiposSensores();
+        SensorTypeList lista = new SensorTypeList();
         String novoTipo = "Humidade";
-        TipoSensor novoTipoSensor = new TipoSensor(novoTipo);
-        lista.adicionarTipoSensorALista(novoTipoSensor);
+        SensorType novoSensorType = new SensorType(novoTipo);
+        lista.adicionarTipoSensorALista(novoSensorType);
         //Act
-        boolean resultado = lista.adicionarTipoSensorALista(novoTipoSensor);
+        boolean resultado = lista.adicionarTipoSensorALista(novoSensorType);
         //Assert
         assertFalse(resultado);
     }
@@ -72,13 +71,13 @@ class ListaTiposSensoresTest {
     @Test
     void testarNovoTipoSensor() {
         //Arrange
-        ListaTiposSensores lista = new ListaTiposSensores();
+        SensorTypeList lista = new SensorTypeList();
         String novoTipo = "Humidade";
-        TipoSensor novoTipoSensor = new TipoSensor(novoTipo);
-        lista.adicionarTipoSensorALista(novoTipoSensor);
-        TipoSensor outroTipoSensor = lista.novoTipoSensor("Temperatura");
+        SensorType novoSensorType = new SensorType(novoTipo);
+        lista.adicionarTipoSensorALista(novoSensorType);
+        SensorType outroSensorType = lista.novoTipoSensor("Temperatura");
         //Act
-        boolean resultado = lista.adicionarTipoSensorALista(outroTipoSensor);
+        boolean resultado = lista.adicionarTipoSensorALista(outroSensorType);
         //Assert
         assertTrue(resultado);
     }
@@ -86,15 +85,15 @@ class ListaTiposSensoresTest {
     @Test
     void testarGetTipoSensorPorPosicao() {
         //Arrange
-        List<TipoSensor> lista = new ArrayList<>();
-        TipoSensor tipo1 = new TipoSensor("Humidade");
-        TipoSensor tipo2 = new TipoSensor("Temperatura");
+        List<SensorType> lista = new ArrayList<>();
+        SensorType tipo1 = new SensorType("Humidade");
+        SensorType tipo2 = new SensorType("Temperatura");
         lista.add(tipo1);
         lista.add(tipo2);
-        ListaTiposSensores novaLista = new ListaTiposSensores(lista);
+        SensorTypeList novaLista = new SensorTypeList(lista);
         int posicao = 0;
         //Act
-        TipoSensor resultado = novaLista.getTipoSensorPorPosicao(posicao);
+        SensorType resultado = novaLista.getTipoSensorPorPosicao(posicao);
         //Assert
         assertEquals(tipo1, resultado);
     }
@@ -102,13 +101,13 @@ class ListaTiposSensoresTest {
     @Test
     void testarGetTipoSensorPorPosicaoComUmTipoApenas() {
         //Arrange
-        List<TipoSensor> lista = new ArrayList<>();
-        TipoSensor tipo1 = new TipoSensor("Humidade");
+        List<SensorType> lista = new ArrayList<>();
+        SensorType tipo1 = new SensorType("Humidade");
         lista.add(tipo1);
-        ListaTiposSensores novaLista = new ListaTiposSensores(lista);
+        SensorTypeList novaLista = new SensorTypeList(lista);
         int posicao = 0;
         //Act
-        TipoSensor resultado = novaLista.getTipoSensorPorPosicao(posicao);
+        SensorType resultado = novaLista.getTipoSensorPorPosicao(posicao);
         //Assert
         assertEquals(tipo1, resultado);
     }
@@ -116,18 +115,18 @@ class ListaTiposSensoresTest {
     @Test
     void testarGetTipoSensorPorPosicaoMaxima() {
         //Arrange
-        List<TipoSensor> lista = new ArrayList<>();
-        TipoSensor tipo1 = new TipoSensor("Humidade");
-        TipoSensor tipo2 = new TipoSensor("Temperatura");
-        TipoSensor tipo3 = new TipoSensor("Vento");
+        List<SensorType> lista = new ArrayList<>();
+        SensorType tipo1 = new SensorType("Humidade");
+        SensorType tipo2 = new SensorType("Temperatura");
+        SensorType tipo3 = new SensorType("Vento");
 
         lista.add(tipo1);
         lista.add(tipo2);
         lista.add(tipo3);
-        ListaTiposSensores novaLista = new ListaTiposSensores(lista);
+        SensorTypeList novaLista = new SensorTypeList(lista);
         int posicao = 2;
         //Act
-        TipoSensor resultado = novaLista.getTipoSensorPorPosicao(posicao);
+        SensorType resultado = novaLista.getTipoSensorPorPosicao(posicao);
         //Assert
         assertEquals(tipo3, resultado);
     }
@@ -147,11 +146,11 @@ class ListaTiposSensoresTest {
         roomList.addRoomToRoomList(room1);
 
         // Type of sensor
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
 
         // Sensors Type List
-        ListaTiposSensores listSensorsType = new ListaTiposSensores();
-        listSensorsType.adicionarTipoSensorALista(tipoSensor);
+        SensorTypeList listSensorsType = new SensorTypeList();
+        listSensorsType.adicionarTipoSensorALista(sensorType);
 
         String expectedResult = "1 - Sensor Type: Temperatura\n";
 
@@ -176,7 +175,7 @@ class ListaTiposSensoresTest {
         roomList.addRoomToRoomList(room1);
 
         // Sensors Type List
-        ListaTiposSensores listSensorsType = new ListaTiposSensores();
+        SensorTypeList listSensorsType = new SensorTypeList();
 
         // Act
         boolean result = listSensorsType.checkIfListOfTypeSensorsIsEmpty();

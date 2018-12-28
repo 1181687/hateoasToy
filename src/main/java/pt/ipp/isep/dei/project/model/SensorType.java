@@ -1,9 +1,9 @@
 package pt.ipp.isep.dei.project.model;
 
-public class TipoSensor {
+public class SensorType {
     private String mTipo;
 
-    public TipoSensor(String mTipoSensor) {
+    public SensorType(String mTipoSensor) {
         this.mTipo = mTipoSensor;
     }
 
@@ -21,10 +21,10 @@ public class TipoSensor {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof TipoSensor)) {
+        if (!(obj instanceof SensorType)) {
             return false;
         }
-        TipoSensor ts = (TipoSensor) obj;
+        SensorType ts = (SensorType) obj;
         return this.mTipo.equals(ts.mTipo);
 
     }

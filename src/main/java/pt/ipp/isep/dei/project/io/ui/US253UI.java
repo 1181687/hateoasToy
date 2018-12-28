@@ -2,8 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.US253Controller;
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.ListaTiposSensores;
 import pt.ipp.isep.dei.project.model.RoomList;
+import pt.ipp.isep.dei.project.model.SensorTypeList;
 
 import java.util.Scanner;
 
@@ -11,7 +11,7 @@ public class US253UI {
 
     private US253Controller mUS253Controller;
 
-    public US253UI(House house, RoomList roomList, ListaTiposSensores listSensorsType) {
+    public US253UI(House house, RoomList roomList, SensorTypeList listSensorsType) {
         mUS253Controller = new US253Controller(listSensorsType, roomList, house);
     }
 

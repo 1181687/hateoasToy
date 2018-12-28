@@ -11,16 +11,16 @@ class US7ControllerTest {
     @Test
     void testeConteudoListaController() {
 
-        ListaAG listaDeAGs = new ListaAG();
+        GeoAreaList listaDeAGs = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Rua do Bonfim";
-        TipoAreaGeo tipo2 = new TipoAreaGeo("Rua");
+        GeoAreaType tipo2 = new GeoAreaType("Rua");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
@@ -43,16 +43,16 @@ class US7ControllerTest {
     @Test
     public void testarGetAreaGeograficaNaListaApresentada() {
         //Arrange
-        ListaAG lista = new ListaAG();
+        GeoAreaList lista = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Rua do Bonfim";
-        TipoAreaGeo tipo2 = new TipoAreaGeo("Rua");
+        GeoAreaType tipo2 = new GeoAreaType("Rua");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
@@ -76,29 +76,29 @@ class US7ControllerTest {
     @Test
     public void testarSeAGNaoTemAreaInseridaQuandoNAOTem () {
         //Arrange
-        ListaAG listaAG = new ListaAG();
+        GeoAreaList geoAreaList = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG = "Porto";
-        TipoAreaGeo tipo = new TipoAreaGeo("Distrito");
+        GeoAreaType tipo = new GeoAreaType("Distrito");
         Location local = new Location(41.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
 
         String nomeAG3 = "Sul";
-        TipoAreaGeo tipo3 = new TipoAreaGeo("Região");
+        GeoAreaType tipo3 = new GeoAreaType("Região");
         Location local3 = new Location(41.1496, -8.6109, 97);
         RectangleArea area3 = new RectangleArea(10, 10, local);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
         ag2.setmAreaInseridaEm(ag1);
 
-        US7Controller ctrl = new US7Controller(listaAG);
+        US7Controller ctrl = new US7Controller(geoAreaList);
 
         boolean expectedResult = true;
 
@@ -115,29 +115,29 @@ class US7ControllerTest {
     @Test
     public void testarSeAGNaoTemAreaInseridaQuandoTem () {
         //Arrange
-        ListaAG listaAG = new ListaAG();
+        GeoAreaList geoAreaList = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG = "Porto";
-        TipoAreaGeo tipo = new TipoAreaGeo("Distrito");
+        GeoAreaType tipo = new GeoAreaType("Distrito");
         Location local = new Location(41.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
 
         String nomeAG3 = "Sul";
-        TipoAreaGeo tipo3 = new TipoAreaGeo("Região");
+        GeoAreaType tipo3 = new GeoAreaType("Região");
         Location local3 = new Location(41.1496, -8.6109, 97);
         RectangleArea area3 = new RectangleArea(10, 10, local);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
         ag2.setmAreaInseridaEm(ag1);
 
-        US7Controller ctrl = new US7Controller(listaAG);
+        US7Controller ctrl = new US7Controller(geoAreaList);
 
         boolean expectedResult = false;
 
@@ -154,16 +154,16 @@ class US7ControllerTest {
     @Test
     public void testaAdicionarAreaGeoAListaNumaPosicaoEspecifica() {
         //Arrange
-        ListaAG listaDeAGs = new ListaAG();
+        GeoAreaList listaDeAGs = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Rua do Bonfim";
-        TipoAreaGeo tipo2 = new TipoAreaGeo("Rua");
+        GeoAreaType tipo2 = new GeoAreaType("Rua");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
@@ -186,16 +186,16 @@ class US7ControllerTest {
     @Test
     public void testarRemoverUmaAreaGeoAListaDeAreasGeo() {
         //Arrange
-        ListaAG listaDeAGs = new ListaAG();
+        GeoAreaList listaDeAGs = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Rua do Bonfim";
-        TipoAreaGeo tipo2 = new TipoAreaGeo("Rua");
+        GeoAreaType tipo2 = new GeoAreaType("Rua");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);

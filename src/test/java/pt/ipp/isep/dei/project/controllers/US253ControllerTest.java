@@ -3,10 +3,6 @@ package pt.ipp.isep.dei.project.controllers;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class US253ControllerTest {
@@ -32,7 +28,7 @@ class US253ControllerTest {
         roomList.addRoomToRoomList(room2);
 
         // Sensors Type List
-        ListaTiposSensores listSensorsType = new ListaTiposSensores();
+        SensorTypeList listSensorsType = new SensorTypeList();
 
         // House
         HouseGridList gridlist = new HouseGridList();
@@ -65,7 +61,7 @@ class US253ControllerTest {
         roomList.addRoomToRoomList(room1);
 
         // Type of sensor
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
 
         // House
         HouseGridList gridlist = new HouseGridList();
@@ -74,8 +70,8 @@ class US253ControllerTest {
         House house = new House(roomList, gridlist, adr);
 
         // Sensors Type List
-        ListaTiposSensores listSensorsType = new ListaTiposSensores();
-        listSensorsType.adicionarTipoSensorALista(tipoSensor);
+        SensorTypeList listSensorsType = new SensorTypeList();
+        listSensorsType.adicionarTipoSensorALista(sensorType);
 
         US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
 
@@ -92,7 +88,7 @@ class US253ControllerTest {
         // Arrange
 
         // Sensor
-        TipoSensor sensorType = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         String sensorName = "A123";
 
         // Sensors List
@@ -115,7 +111,7 @@ class US253ControllerTest {
         House house = new House(roomList, houseGridList, address);
 
         // Sensors Type List
-        ListaTiposSensores listSensorsType = new ListaTiposSensores();
+        SensorTypeList listSensorsType = new SensorTypeList();
         listSensorsType.adicionarTipoSensorALista(sensorType);
 
         US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
@@ -143,7 +139,7 @@ class US253ControllerTest {
         House house = new House(roomList, gridlist, adr);
 
         // Sensors Type List
-        ListaTiposSensores listSensorsType = new ListaTiposSensores();
+        SensorTypeList listSensorsType = new SensorTypeList();
 
         US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
 
@@ -174,7 +170,7 @@ class US253ControllerTest {
         House house = new House(roomList, gridlist, adr);
 
         // Sensors Type List
-        ListaTiposSensores listSensorsType = new ListaTiposSensores();
+        SensorTypeList listSensorsType = new SensorTypeList();
 
         US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
 
@@ -205,7 +201,7 @@ class US253ControllerTest {
         House house = new House(roomList, gridlist, adr);
 
         // Sensors Type List
-        ListaTiposSensores listSensorsType = new ListaTiposSensores();
+        SensorTypeList listSensorsType = new SensorTypeList();
 
         US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
 
@@ -236,10 +232,10 @@ class US253ControllerTest {
         House house = new House(roomList, gridlist, adr);
 
         // Tipo de sensor
-        TipoSensor sensorType = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
 
         // Sensors Type List
-        ListaTiposSensores listSensorsType = new ListaTiposSensores();
+        SensorTypeList listSensorsType = new SensorTypeList();
         listSensorsType.adicionarTipoSensorALista(sensorType);
 
         US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);

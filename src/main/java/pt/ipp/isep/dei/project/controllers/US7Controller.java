@@ -1,13 +1,13 @@
 package pt.ipp.isep.dei.project.controllers;
 
+import pt.ipp.isep.dei.project.model.GeoAreaList;
 import pt.ipp.isep.dei.project.model.GeographicalArea;
-import pt.ipp.isep.dei.project.model.ListaAG;
 
 public class US7Controller {
-    private ListaAG mLista;
+    private GeoAreaList mLista;
 
-    public US7Controller(ListaAG listaAG) {
-        this.mLista = listaAG;
+    public US7Controller(GeoAreaList geoAreaList) {
+        this.mLista = geoAreaList;
     }
 
     public String getConteudoLista (boolean usarCriterio){
