@@ -16,9 +16,11 @@ public class US105ControllerTest {
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10,10,10);
         Address adr = new Address("5000", local);
-        House house = new House(rList, gridlist, adr);
+        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
         US105Controller ctr= new US105Controller(house);
-
 
         boolean result = ctr.addRoomToHouse();
         assertFalse(result);
@@ -33,7 +35,10 @@ public class US105ControllerTest {
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10,10,10);
         Address adr = new Address("5000", local);
-        House house = new House(rList, gridlist, adr);
+        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
         US105Controller ctr= new US105Controller(house);
 
         ctr.newRoom(4,4,4,"F5",1);

@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.ListaTiposAG;
-import pt.ipp.isep.dei.project.model.TipoAreaGeo;
+import pt.ipp.isep.dei.project.model.GeoAreaType;
+import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,14 +10,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ListaTiposAGTest {
+class GeoAreaTypeListTest {
 
     @Test
     void testaadicionarElementoAListaPositivo() {
         //Arrange
-        ListaTiposAG lista = new ListaTiposAG();
+        GeoAreaTypeList lista = new GeoAreaTypeList();
         String novoTipoAG = "Cidade";
-        TipoAreaGeo novoTipo = new TipoAreaGeo(novoTipoAG);
+        GeoAreaType novoTipo = new GeoAreaType(novoTipoAG);
         //Act
         boolean resultado = lista.adicionarElementoALista(novoTipo);
         //Arrange
@@ -27,9 +27,9 @@ class ListaTiposAGTest {
     @Test
     void testaadicionarElementoAListaNegativo() {
         //Arrange
-        ListaTiposAG lista = new ListaTiposAG();
+        GeoAreaTypeList lista = new GeoAreaTypeList();
         String novoTipoAG = "Cidade";
-        TipoAreaGeo novoTipo = new TipoAreaGeo(novoTipoAG);
+        GeoAreaType novoTipo = new GeoAreaType(novoTipoAG);
         lista.adicionarElementoALista(novoTipo);
         //Act
         boolean resultado = lista.adicionarElementoALista(novoTipo);
@@ -40,11 +40,11 @@ class ListaTiposAGTest {
     @Test
     void testarNovoTipoAG() {
         //Arrange
-        ListaTiposAG lista = new ListaTiposAG();
+        GeoAreaTypeList lista = new GeoAreaTypeList();
         String novoTipoAG = "Cidade";
-        TipoAreaGeo novoTipo = new TipoAreaGeo(novoTipoAG);
+        GeoAreaType novoTipo = new GeoAreaType(novoTipoAG);
         lista.adicionarElementoALista(novoTipo);
-        TipoAreaGeo tipoDiferente = lista.novoTipoAG("Rua");
+        GeoAreaType tipoDiferente = lista.novoTipoAG("Rua");
         //Act
         boolean resultado = lista.adicionarElementoALista(tipoDiferente);
         //Arrange
@@ -54,12 +54,12 @@ class ListaTiposAGTest {
     @Test
     void testarConstrutorNaoVazio(){
         //Arrange
-        List<TipoAreaGeo> lista = new ArrayList<>();
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
-        TipoAreaGeo tipo2 = new TipoAreaGeo("Rua");
+        List<GeoAreaType> lista = new ArrayList<>();
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
+        GeoAreaType tipo2 = new GeoAreaType("Rua");
         lista.add(tipo1);
         lista.add(tipo2);
-        ListaTiposAG novaLista = new ListaTiposAG(lista);
+        GeoAreaTypeList novaLista = new GeoAreaTypeList(lista);
         //Act
         boolean resultado = novaLista.getmListaTAG().isEmpty();
         //Assert
@@ -69,12 +69,12 @@ class ListaTiposAGTest {
     @Test
     public void testarGetListaDosTiposDeAG() {
         //Arrange
-        //Instanciar a classe ListaTiposAG
-        ListaTiposAG lista = new ListaTiposAG();
+        //Instanciar a classe GeoAreaTypeList
+        GeoAreaTypeList lista = new GeoAreaTypeList();
 
         //Tipo de Area Geográfica
         String nomeDoTipo1 = "Cidade";
-        TipoAreaGeo tipo1 = new TipoAreaGeo(nomeDoTipo1);
+        GeoAreaType tipo1 = new GeoAreaType(nomeDoTipo1);
 
         //Adicionar o Tipo de Area Geográfica na lista
         lista.adicionarElementoALista(tipo1);
@@ -94,14 +94,14 @@ class ListaTiposAGTest {
     @Test
     public void testarGetListaDosTiposDeAGAdicionandoMaisDoQueUmTipo() {
         //Arrange
-        //Instanciar a classe ListaTiposAG
-        ListaTiposAG lista = new ListaTiposAG();
+        //Instanciar a classe GeoAreaTypeList
+        GeoAreaTypeList lista = new GeoAreaTypeList();
 
         //Tipos de Areas Geográficas
         String nomeDoTipo1 = "Cidade";
-        TipoAreaGeo tipo1 = new TipoAreaGeo(nomeDoTipo1);
+        GeoAreaType tipo1 = new GeoAreaType(nomeDoTipo1);
         String nomeDoTipo2 = "Freguesia";
-        TipoAreaGeo tipo2 = new TipoAreaGeo(nomeDoTipo2);
+        GeoAreaType tipo2 = new GeoAreaType(nomeDoTipo2);
 
         //Adicionar os Tipos de Areas Geográficas na lista
         lista.adicionarElementoALista(tipo1);
@@ -122,8 +122,8 @@ class ListaTiposAGTest {
     @Test
     public void testarGetListaDosTiposDeAGASemAdicionarNenhumTipo() {
         //Arrange
-        //Instanciar a classe ListaTiposAG
-        ListaTiposAG lista = new ListaTiposAG();
+        //Instanciar a classe GeoAreaTypeList
+        GeoAreaTypeList lista = new GeoAreaTypeList();
 
         //Expected Result
         List<String> expectedResult = Arrays.asList();

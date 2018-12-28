@@ -1,9 +1,9 @@
 package pt.ipp.isep.dei.project.model;
 
-public class TipoAreaGeo {
+public class GeoAreaType {
     private String mTipoAreaGeo;
 
-    public TipoAreaGeo(String mTipoAreaGeo) {
+    public GeoAreaType(String mTipoAreaGeo) {
         this.mTipoAreaGeo = mTipoAreaGeo;
     }
 
@@ -17,10 +17,10 @@ public class TipoAreaGeo {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof TipoAreaGeo)) {
+        if (!(obj instanceof GeoAreaType)) {
             return false;
         }
-        TipoAreaGeo tag = (TipoAreaGeo) obj;
+        GeoAreaType tag = (GeoAreaType) obj;
         return this.mTipoAreaGeo.equals(tag.mTipoAreaGeo);
 
     }

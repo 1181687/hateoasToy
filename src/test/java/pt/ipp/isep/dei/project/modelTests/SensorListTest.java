@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Sensor;
 import pt.ipp.isep.dei.project.model.SensorList;
-import pt.ipp.isep.dei.project.model.TipoSensor;
+import pt.ipp.isep.dei.project.model.SensorType;
 
 import java.util.*;
 
@@ -19,9 +19,9 @@ class SensorListTest {
         SensorList newList = new SensorList();
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento0 = calendario0.getTime();
-        TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
+        SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
         //Act
         boolean result = newList.addSensorToTheListOfSensors(s0);
         //Assert
@@ -35,9 +35,9 @@ class SensorListTest {
 
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento0 = calendario0.getTime();
-        TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
+        SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
         newList.addSensorToTheListOfSensors(s0);
         List<Sensor> expectedResult = new ArrayList<>();
@@ -48,5 +48,23 @@ class SensorListTest {
         assertEquals(result, expectedResult);
     }
 
+    @Test
+    void testCreateNewSensor () {
+        //Arrange
+        String sensorName = "s0";
+        SensorType sensorType = new SensorType("Temperatura");
+        Location location = new Location(123, 345, 50);
+        Sensor s0 = new Sensor(sensorName, sensorType, location);
+
+        SensorList newList = new SensorList();
+
+        Sensor expectedResult = s0;
+
+        // Act
+        Sensor result = newList.createNewSensor(sensorName, sensorType, location);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 
 }

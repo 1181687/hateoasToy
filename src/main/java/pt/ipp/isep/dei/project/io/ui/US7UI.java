@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.US7Controller;
+import pt.ipp.isep.dei.project.model.GeoAreaList;
 import pt.ipp.isep.dei.project.model.GeographicalArea;
-import pt.ipp.isep.dei.project.model.ListaAG;
 
 import java.util.Scanner;
 
 public class US7UI {
     private US7Controller ctrl;
 
-    public US7UI(ListaAG lista) {
+    public US7UI(GeoAreaList lista) {
         this.ctrl = new US7Controller(lista);
     }
 

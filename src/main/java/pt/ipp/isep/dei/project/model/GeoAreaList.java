@@ -3,11 +3,11 @@ package pt.ipp.isep.dei.project.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaAG {
+public class GeoAreaList {
 
     private List<GeographicalArea> mListaAG;
 
-    public ListaAG() {
+    public GeoAreaList() {
         this.mListaAG = new ArrayList<>();
     }
 
@@ -39,7 +39,7 @@ public class ListaAG {
     public List<String> getListaAGPorTipo(String tipo) {
         List<String> listaAGMesmoTipo = new ArrayList<>();
         for (GeographicalArea areaGeo : mListaAG) {
-            if (areaGeo.getmTipoAreaGeo().umTipoAreaGeoEIgualAOutra(tipo)) {
+            if (areaGeo.getmGeoAreaType().umTipoAreaGeoEIgualAOutra(tipo)) {
                 listaAGMesmoTipo.add(areaGeo.getmNomeAreaGeo());
             }
         }
@@ -80,11 +80,11 @@ public class ListaAG {
         StringBuilder conteudo = new StringBuilder();
         for (int i = 1; i <= mListaAG.size(); i++) {
             conteudo.append(i + " - Nome: " + mListaAG.get(i - 1).getmNomeAreaGeo());
-            conteudo.append(", Tipo: " + mListaAG.get(i - 1).getmTipoAreaGeo().getNomeDoTipoAreaGeo());
+            conteudo.append(", Tipo: " + mListaAG.get(i - 1).getmGeoAreaType().getNomeDoTipoAreaGeo());
             conteudo.append(", Latitude: " + mListaAG.get(i - 1).getmLocation().getmLatitude());
             conteudo.append(", Longitude: " + mListaAG.get(i - 1).getmLocation().getmLongitude());
             if (usarCriterio && !verificarSeAGNaoTemAreaInserida(mListaAG.get(i - 1))) {
-                conteudo.append(", Inserido Em: " + mListaAG.get(i - 1).getmAreaInseridaEm().getmTipoAreaGeo().getNomeDoTipoAreaGeo());
+                conteudo.append(", Inserido Em: " + mListaAG.get(i - 1).getmAreaInseridaEm().getmGeoAreaType().getNomeDoTipoAreaGeo());
                 conteudo.append(" " + mListaAG.get(i - 1).getmAreaInseridaEm().getmNomeAreaGeo());
             }
             conteudo.append("\n");
@@ -93,7 +93,7 @@ public class ListaAG {
     }
 
     public GeographicalArea novaAreaGeografica(String nomeAG, String nomeTipoAG, double latitude, double longitude, double altitude, double altura, double comprimento) {
-        TipoAreaGeo tipoAG = new TipoAreaGeo(nomeTipoAG);
+        GeoAreaType tipoAG = new GeoAreaType(nomeTipoAG);
         Location localizacao = new Location(latitude, longitude,altitude);
         RectangleArea rectanguloArea = new RectangleArea(altura, comprimento, localizacao);
         return new GeographicalArea(nomeAG, tipoAG, localizacao, rectanguloArea);

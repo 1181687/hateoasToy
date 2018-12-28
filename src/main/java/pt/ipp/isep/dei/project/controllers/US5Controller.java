@@ -1,18 +1,18 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.ListaTiposSensores;
-import pt.ipp.isep.dei.project.model.TipoSensor;
+import pt.ipp.isep.dei.project.model.SensorType;
+import pt.ipp.isep.dei.project.model.SensorTypeList;
 
 public class US5Controller {
-    private ListaTiposSensores mListaTipoSensores;
+    private SensorTypeList mListaTipoSensores;
 
 
-    public US5Controller(ListaTiposSensores listaTipoSensores) {
+    public US5Controller(SensorTypeList listaTipoSensores) {
         this.mListaTipoSensores = listaTipoSensores;
     }
 
     public boolean criarEAdicionarTipoDeSensor (String tipoDeSensor){
-        TipoSensor novoTipoSensor = this.mListaTipoSensores.novoTipoSensor(tipoDeSensor);
-        return this.mListaTipoSensores.adicionarTipoSensorALista(novoTipoSensor);
+        SensorType novoSensorType = this.mListaTipoSensores.novoTipoSensor(tipoDeSensor);
+        return this.mListaTipoSensores.adicionarTipoSensorALista(novoSensorType);
     }
 }

@@ -92,7 +92,7 @@ public class RoomTest {
         SensorList list = new SensorList();
         Room room = new Room("Room", 2, dim, list);
 
-        TipoSensor tipo = new TipoSensor("humidade");
+        SensorType tipo = new SensorType("humidade");
 
         //Act
         boolean result = room.equals(tipo);
@@ -105,10 +105,10 @@ public class RoomTest {
         // Arrange
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();
-        TipoSensor tipoSensor = new TipoSensor("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
 
-        Sensor s1 = new Sensor("A123", dataFuncionamento, tipoSensor, locS1);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         SensorList list = new SensorList();
@@ -128,9 +128,9 @@ public class RoomTest {
 
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento0 = calendario0.getTime();
-        TipoSensor tipoSensor0 = new TipoSensor("Temperatura");
+        SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, tipoSensor0, locS0);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         SensorList list = new SensorList();
@@ -143,5 +143,38 @@ public class RoomTest {
         List<Sensor> result = room.getSensorList().getmSensorList();
         //Assert
         assertEquals(result, expectedResult);
+    }
+
+    @Test
+    public void testValidateNameNull() {
+        String name = null;
+        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        SensorList list = new SensorList();
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new Room(name, 2, dim, list)
+        );
+        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+    }
+
+    @Test
+    public void testValidateNameEmpty() {
+        String name = "  ";
+        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        SensorList list = new SensorList();
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new Room(name, 2, dim, list)
+        );
+        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+    }
+
+    @Test
+    public void testValidateDimensions() {
+        String name = "Room 1";
+        Dimensions dim = null;
+        SensorList list = new SensorList();
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new Room(name, 2, dim, list)
+        );
+        assertEquals("Dimensions should not be null", exception.getMessage());
     }
 }

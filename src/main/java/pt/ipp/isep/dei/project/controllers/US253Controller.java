@@ -5,15 +5,15 @@ import pt.ipp.isep.dei.project.model.*;
 
 public class US253Controller {
 
-    private ListaTiposSensores mListSensorsType;
+    private SensorTypeList mListSensorsType;
     private RoomList mRoomList;
     private House mHouse;
     private Sensor mNewSensor;
     private Room mSelectedRoom;
-    private TipoSensor mSensorType;
+    private SensorType mSensorType;
     private Location mLocationOfTheHouse;
 
-    public US253Controller(ListaTiposSensores mListSensorsType, RoomList mRoomList, House mHouse) {
+    public US253Controller(SensorTypeList mListSensorsType, RoomList mRoomList, House mHouse) {
         this.mListSensorsType = mListSensorsType;
         this.mRoomList = mRoomList;
         this.mHouse = mHouse;
@@ -76,6 +76,10 @@ public class US253Controller {
         return mRoomList.checkIfRoomListIsEmpty();
     }
 
+    /**
+     * This method check if the list of Sensors Type is empty.
+     * @return true or false.
+     */
     public boolean checkIfTheListOfSensorTypeIsEmpty () {
         return mListSensorsType.checkIfListOfTypeSensorsIsEmpty();
     }

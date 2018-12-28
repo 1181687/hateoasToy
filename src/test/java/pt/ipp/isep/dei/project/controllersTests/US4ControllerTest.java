@@ -16,21 +16,21 @@ public class US4ControllerTest {
     public void testarGetListaAGPorTipo() {
         //Arrange
 
-        //Instanciar a classe ListaTiposAG
-        ListaTiposAG listaTiposAG = new ListaTiposAG();
+        //Instanciar a classe GeoAreaTypeList
+        GeoAreaTypeList geoAreaTypeList = new GeoAreaTypeList();
 
         //Tipos de Areas Geográficas
         String nomeDoTipo1 = "Cidade";
-        TipoAreaGeo tipo1 = new TipoAreaGeo(nomeDoTipo1);
+        GeoAreaType tipo1 = new GeoAreaType(nomeDoTipo1);
         String nomeDoTipo2 = "Freguesia";
-        TipoAreaGeo tipo2 = new TipoAreaGeo(nomeDoTipo2);
+        GeoAreaType tipo2 = new GeoAreaType(nomeDoTipo2);
 
         //Adicionar os Tipos de Areas Geográficas na lista
-        listaTiposAG.adicionarElementoALista(tipo1);
-        listaTiposAG.adicionarElementoALista(tipo2);
+        geoAreaTypeList.adicionarElementoALista(tipo1);
+        geoAreaTypeList.adicionarElementoALista(tipo2);
 
-        //Instanciar a classe ListaAG
-        ListaAG lista = new ListaAG();
+        //Instanciar a classe GeoAreaList
+        GeoAreaList lista = new GeoAreaList();
 
         String tipoPedido = "Cidade";
 
@@ -47,7 +47,7 @@ public class US4ControllerTest {
         lista.adicionarAreaGeoALista(ag1);
         lista.adicionarAreaGeoALista(ag2);
 
-        US4Controller ctrl = new US4Controller(lista, listaTiposAG);
+        US4Controller ctrl = new US4Controller(lista, geoAreaTypeList);
         ArrayList<String> expectedResult = new ArrayList<>(Arrays.asList("Porto"));
 
         //Act
@@ -61,19 +61,19 @@ public class US4ControllerTest {
     @Test
     public void testarGetListaDosTiposDeAG() {
         //Arrange
-        //Instanciar a classe ListaTiposAG
-        ListaTiposAG lista = new ListaTiposAG();
+        //Instanciar a classe GeoAreaTypeList
+        GeoAreaTypeList lista = new GeoAreaTypeList();
 
         //Tipo de Area Geográfica
         String nomeDoTipo1 = "Cidade";
-        TipoAreaGeo tipo1 = new TipoAreaGeo(nomeDoTipo1);
+        GeoAreaType tipo1 = new GeoAreaType(nomeDoTipo1);
 
         //Adicionar o Tipo de Area Geográfica na lista
         lista.adicionarElementoALista(tipo1);
 
-        //Instanciar a classe ListaAG
-        ListaAG listaAG = new ListaAG();
-        US4Controller ctrl = new US4Controller(listaAG, lista);
+        //Instanciar a classe GeoAreaList
+        GeoAreaList geoAreaList = new GeoAreaList();
+        US4Controller ctrl = new US4Controller(geoAreaList, lista);
 
 
         //Expected Result

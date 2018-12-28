@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Dimensions;
-import pt.ipp.isep.dei.project.model.TipoSensor;
+import pt.ipp.isep.dei.project.model.SensorType;
 
 import java.util.Objects;
 
@@ -33,7 +33,7 @@ public class DimensionsTest {
     @Test
     void testEqualsTrueSameObj() {
         //Arrange
-        Dimensions dim = new Dimensions(3.5,3.5,3.5);
+        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
         //Act
         boolean result = dim.equals(dim);
         //Assert
@@ -43,8 +43,8 @@ public class DimensionsTest {
     @Test
     void testEqualsTrue() {
         //Arrange
-        Dimensions dim = new Dimensions(3.5,3.5,3.5);
-        Dimensions dim2 = new Dimensions(3.5,3.5,3.5);
+        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
         //Act
         boolean result = dim.equals(dim2);
         //Assert
@@ -54,8 +54,8 @@ public class DimensionsTest {
     @Test
     void testEqualsFalse() {
         //Arrange
-        Dimensions dim = new Dimensions(2,3.5,3.5);
-        Dimensions dim2 = new Dimensions(3.5,3.5,3.5);
+        Dimensions dim = new Dimensions(2, 3.5, 3.5);
+        Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
         //Act
         boolean result = dim.equals(dim2);
         //Assert
@@ -66,7 +66,7 @@ public class DimensionsTest {
     void testEqualsFalseDifTypes() {
         //Arrange
         Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
-        TipoSensor tipo = new TipoSensor("humidade");
+        SensorType tipo = new SensorType("humidade");
 
         //Act
         boolean result = dim.equals(tipo);
@@ -181,5 +181,111 @@ public class DimensionsTest {
 
         //assert
         assertEquals(expectResult, result, 0.0001);
+    }
+
+    @Test
+    public void TestValidateHeightNeg() {
+
+        double length = 40;
+        double width = 20;
+        double height = -20;
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new Dimensions(height, length, width)
+        );
+        assertEquals("Please enter a valid height. Height should be greater than zero", exception.getMessage());
+    }
+
+    @Test
+    public void TestValidateHeightZero() {
+
+        double length = 40;
+        double width = 20;
+        double height = 0;
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new Dimensions(height, length, width)
+        );
+        assertEquals("Please enter a valid height. Height should be greater than zero", exception.getMessage());
+    }
+
+    @Test
+    public void TestValidateHeightDoubleNan() {
+        double length = 40;
+        double width = 20;
+        double height = Double.NaN;
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new Dimensions(height, length, width)
+        );
+        assertEquals("Please enter a valid height. Height should be greater than zero", exception.getMessage());
+    }
+
+    @Test
+    public void TestValidateLengthNeg() {
+
+        double length = -40;
+        double width = 20;
+        double height = 20;
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new Dimensions(height, length, width)
+        );
+        assertEquals("Please enter a valid length. Length should be greater than zero", exception.getMessage());
+    }
+
+    @Test
+    public void TestValidateLengthZero() {
+
+        double length = 0;
+        double width = 20;
+        double height = 20;
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new Dimensions(height, length, width)
+        );
+        assertEquals("Please enter a valid length. Length should be greater than zero", exception.getMessage());
+    }
+
+    @Test
+    public void TestValidateLengthDoubleNan() {
+        double height = 40;
+        double width = 20;
+        double length = Double.NaN;
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new Dimensions(height, length, width)
+        );
+        assertEquals("Please enter a valid length. Length should be greater than zero", exception.getMessage());
+    }
+
+    @Test
+    public void TestValidateWidthNeg() {
+
+        double length = 40;
+        double width = -20;
+        double height = 20;
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new Dimensions(height, length, width)
+        );
+        assertEquals("Please enter a valid width. Width should be greater than zero", exception.getMessage());
+    }
+
+    @Test
+    public void TestValidateWidthZero() {
+
+        double length = 40;
+        double width = 0;
+        double height = 20;
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new Dimensions(height, length, width)
+        );
+        assertEquals("Please enter a valid width. Width should be greater than zero", exception.getMessage());
+    }
+
+
+    @Test
+    public void TestValidateWidthDoubleNan() {
+        double height = 40;
+        double length = 20;
+        double width = Double.NaN;
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new Dimensions(height, length, width)
+        );
+        assertEquals("Please enter a valid width. Width should be greater than zero", exception.getMessage());
     }
 }

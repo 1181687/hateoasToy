@@ -21,11 +21,40 @@ public class SensorList {
         return false;
     }
 
-    public Sensor createNewSensor (String name, TipoSensor sensorType, Location location) {
+    public Sensor createNewSensor(String name, SensorType sensorType, Location location) {
         return new Sensor(name, sensorType, location);
     }
 
     public void setmSensorList(List<Sensor> mSensorList) {
         this.mSensorList = mSensorList;
     }
+
+    public List<Measurement> getListaDeUltimosRegistosPorTipoDeSensor(SensorType tipo) {
+        List<Measurement> listaDeUltimosRegistos = new ArrayList<>();
+        for (Sensor sensor : mSensorList) {
+            if (sensor.listaDeRegistosEVazia()) {
+                break;
+            }
+            if (sensor.umTipoDeSensorEIgualAOutro(tipo) && (!(Double.isNaN(sensor.getUltimoRegisto().getmValor())))) {
+                listaDeUltimosRegistos.add(sensor.getUltimoRegisto());
+            }
+        }
+        return listaDeUltimosRegistos;
+    }
+
+    public double getUltimoRegistoDeUmTipoDeSensor(SensorType tipo) {
+        List<Measurement> listaDeUltimosRegisto = getListaDeUltimosRegistosPorTipoDeSensor(tipo);
+        if (getListaDeUltimosRegistosPorTipoDeSensor(tipo).isEmpty()) {
+            return Double.NaN;
+        }
+        Measurement measurementComUltimoRegisto = listaDeUltimosRegisto.get(0);
+        for (Measurement registo : listaDeUltimosRegisto) {
+            if (registo.getmDataHora().after(measurementComUltimoRegisto.getmDataHora())) {
+                measurementComUltimoRegisto = registo;
+            }
+        }
+        return measurementComUltimoRegisto.getmValor();
+    }
 }
+
+

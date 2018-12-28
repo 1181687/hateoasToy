@@ -1,22 +1,22 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.ListaAG;
-import pt.ipp.isep.dei.project.model.ListaTiposAG;
+import pt.ipp.isep.dei.project.model.GeoAreaList;
+import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 
 import java.util.List;
 
 public class US4Controller {
 
-    private ListaAG mListaAG;
-    private ListaTiposAG mListaTAG;
+    private GeoAreaList mGeoAreaList;
+    private GeoAreaTypeList mListaTAG;
 
-    public US4Controller(ListaAG listaAG, ListaTiposAG listaTAG) {
-        this.mListaAG = listaAG;
+    public US4Controller(GeoAreaList geoAreaList, GeoAreaTypeList listaTAG) {
+        this.mGeoAreaList = geoAreaList;
         this.mListaTAG = listaTAG;
     }
 
     public List<String> getListaAGPorTipo(String tipo) {
-        return this.mListaAG.getListaAGPorTipo(tipo);
+        return this.mGeoAreaList.getListaAGPorTipo(tipo);
     }
 
     public List<String> getListaDosTiposDeAG(){

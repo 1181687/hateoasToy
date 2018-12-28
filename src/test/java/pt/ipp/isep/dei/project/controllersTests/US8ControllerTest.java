@@ -12,16 +12,16 @@ class US8ControllerTest {
     @Test
     public void testarApresentacaoDeListaComCriterioTrueComAreaInserida() {
         //Arrange
-        ListaAG listaDeAGs = new ListaAG();
+        GeoAreaList listaDeAGs = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Rua do Bonfim";
-        TipoAreaGeo tipo2 = new TipoAreaGeo("Rua");
+        GeoAreaType tipo2 = new GeoAreaType("Rua");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
@@ -45,16 +45,16 @@ class US8ControllerTest {
     @Test
     public void testarApresentacaoDeListaComCriterioTrueSemAreaInserida() {
         //Arrange
-        ListaAG listaDeAGs = new ListaAG();
+        GeoAreaList listaDeAGs = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Rua do Bonfim";
-        TipoAreaGeo tipo2 = new TipoAreaGeo("Rua");
+        GeoAreaType tipo2 = new GeoAreaType("Rua");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
@@ -77,16 +77,16 @@ class US8ControllerTest {
     @Test
     public void testarApresentacaoDeListaComCriterioFalseComAreaInserida() {
         //Arrange
-        ListaAG listaDeAGs = new ListaAG();
+        GeoAreaList listaDeAGs = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Rua do Bonfim";
-        TipoAreaGeo tipo2 = new TipoAreaGeo("Rua");
+        GeoAreaType tipo2 = new GeoAreaType("Rua");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
@@ -110,16 +110,16 @@ class US8ControllerTest {
     @Test
     public void testarApresentacaoDeListaComCriterioFalseSemAreaInserida() {
         //Arrange
-        ListaAG listaDeAGs = new ListaAG();
+        GeoAreaList listaDeAGs = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Rua do Bonfim";
-        TipoAreaGeo tipo2 = new TipoAreaGeo("Rua");
+        GeoAreaType tipo2 = new GeoAreaType("Rua");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
@@ -141,16 +141,16 @@ class US8ControllerTest {
     @Test
     public void testarGetAreaGeograficaNaListaApresentada() {
         //Arrange
-        ListaAG lista = new ListaAG();
+        GeoAreaList lista = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Rua do Bonfim";
-        TipoAreaGeo tipo2 = new TipoAreaGeo("Rua");
+        GeoAreaType tipo2 = new GeoAreaType("Rua");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
@@ -174,29 +174,29 @@ class US8ControllerTest {
     @Test
     public void testarSeAGNaoTemAreaInseridaQuandoNaoTem () {
         //Arrange
-        ListaAG listaAG = new ListaAG();
+        GeoAreaList geoAreaList = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG = "Porto";
-        TipoAreaGeo tipo = new TipoAreaGeo("Distrito");
+        GeoAreaType tipo = new GeoAreaType("Distrito");
         Location local = new Location(41.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
 
         String nomeAG3 = "Sul";
-        TipoAreaGeo tipo3 = new TipoAreaGeo("Região");
+        GeoAreaType tipo3 = new GeoAreaType("Região");
         Location local3 = new Location(41.1496, -8.6109, 97);
         RectangleArea area3 = new RectangleArea(10, 10, local);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
         ag2.setmAreaInseridaEm(ag1);
 
-        US8Controller ctrl = new US8Controller(listaAG);
+        US8Controller ctrl = new US8Controller(geoAreaList);
 
         boolean expectedResult = true;
 
@@ -213,29 +213,29 @@ class US8ControllerTest {
     @Test
     public void testarSeAGNaoTemAreaInseridaQuandoTem () {
         //Arrange
-        ListaAG listaAG = new ListaAG();
+        GeoAreaList geoAreaList = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG = "Porto";
-        TipoAreaGeo tipo = new TipoAreaGeo("Distrito");
+        GeoAreaType tipo = new GeoAreaType("Distrito");
         Location local = new Location(41.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
 
         String nomeAG3 = "Sul";
-        TipoAreaGeo tipo3 = new TipoAreaGeo("Região");
+        GeoAreaType tipo3 = new GeoAreaType("Região");
         Location local3 = new Location(41.1496, -8.6109, 97);
         RectangleArea area3 = new RectangleArea(10, 10, local);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
         ag2.setmAreaInseridaEm(ag1);
 
-        US8Controller ctrl = new US8Controller(listaAG);
+        US8Controller ctrl = new US8Controller(geoAreaList);
 
         boolean expectedResult = false;
 
@@ -251,33 +251,33 @@ class US8ControllerTest {
     @Test
     public void testarSeAGEstaContidaNoutraComCasoFalso () {
         //Arrange
-        ListaAG listaAG = new ListaAG();
+        GeoAreaList geoAreaList = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG = "Porto";
-        TipoAreaGeo tipo = new TipoAreaGeo("Distrito");
+        GeoAreaType tipo = new GeoAreaType("Distrito");
         Location local = new Location(41.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
 
         String nomeAG3 = "Sul";
-        TipoAreaGeo tipo3 = new TipoAreaGeo("Região");
+        GeoAreaType tipo3 = new GeoAreaType("Região");
         Location local3 = new Location(41.1496, -8.6109, 97);
         RectangleArea area3 = new RectangleArea(10, 10, local);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
         ag2.setmAreaInseridaEm(ag1);
 
-        listaAG.adicionarAreaGeoALista(ag1);
-        listaAG.adicionarAreaGeoALista(ag2);
-        listaAG.adicionarAreaGeoALista(ag3);
+        geoAreaList.adicionarAreaGeoALista(ag1);
+        geoAreaList.adicionarAreaGeoALista(ag2);
+        geoAreaList.adicionarAreaGeoALista(ag3);
 
-        US8Controller ctrl = new US8Controller(listaAG);
+        US8Controller ctrl = new US8Controller(geoAreaList);
 
         boolean expectedResult = false;
 
@@ -293,16 +293,16 @@ class US8ControllerTest {
     @Test
     public void testarSeAGEstaInseridaEmAGDiretamenteComCasoVerdadeiro() {
         //Arrange
-        ListaAG listaDeAGs = new ListaAG();
+        GeoAreaList listaDeAGs = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Rua do Bonfim";
-        TipoAreaGeo tipo2 = new TipoAreaGeo("Rua");
+        GeoAreaType tipo2 = new GeoAreaType("Rua");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
@@ -323,32 +323,32 @@ class US8ControllerTest {
     @Test
     public void testarSeAGEstaContidaNoutraNoCasoDeDuasIguais () {
         //Arrange
-        ListaAG listaAG = new ListaAG();
+        GeoAreaList geoAreaList = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG = "Porto";
-        TipoAreaGeo tipo = new TipoAreaGeo("Distrito");
+        GeoAreaType tipo = new GeoAreaType("Distrito");
         Location local = new Location(41.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
 
         String nomeAG3 = "Sul";
-        TipoAreaGeo tipo3 = new TipoAreaGeo("Região");
+        GeoAreaType tipo3 = new GeoAreaType("Região");
         Location local3 = new Location(41.1496, -8.6109, 97);
         RectangleArea area3 = new RectangleArea(10, 10, local);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
 
-        listaAG.adicionarAreaGeoALista(ag1);
-        listaAG.adicionarAreaGeoALista(ag2);
-        listaAG.adicionarAreaGeoALista(ag3);
+        geoAreaList.adicionarAreaGeoALista(ag1);
+        geoAreaList.adicionarAreaGeoALista(ag2);
+        geoAreaList.adicionarAreaGeoALista(ag3);
 
-        US8Controller ctrl = new US8Controller(listaAG);
+        US8Controller ctrl = new US8Controller(geoAreaList);
 
         boolean expectedResult = false;
 
@@ -364,22 +364,22 @@ class US8ControllerTest {
     @Test
     public void testarSeAGEstaContidaNoutraNoCasoDeEstarIndiretamente () {
         //Arrange
-        ListaAG listaAG = new ListaAG();
+        GeoAreaList geoAreaList = new GeoAreaList();
 
         String nomeAG1 = "Porto";
-        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Porto";
-        TipoAreaGeo tipo2 = new TipoAreaGeo("Distrito");
+        GeoAreaType tipo2 = new GeoAreaType("Distrito");
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area2 = new RectangleArea(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG3 = "Norte";
-        TipoAreaGeo tipo3 = new TipoAreaGeo("Região");
+        GeoAreaType tipo3 = new GeoAreaType("Região");
         Location local3 = new Location(41.1496, -8.6109, 97);
         RectangleArea area3 = new RectangleArea(10, 10, local3);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
@@ -387,11 +387,11 @@ class US8ControllerTest {
         ag1.setmAreaInseridaEm(ag2);
         ag2.setmAreaInseridaEm(ag3);
 
-        listaAG.adicionarAreaGeoALista(ag1);
-        listaAG.adicionarAreaGeoALista(ag2);
-        listaAG.adicionarAreaGeoALista(ag3);
+        geoAreaList.adicionarAreaGeoALista(ag1);
+        geoAreaList.adicionarAreaGeoALista(ag2);
+        geoAreaList.adicionarAreaGeoALista(ag3);
 
-        US8Controller ctrl = new US8Controller(listaAG);
+        US8Controller ctrl = new US8Controller(geoAreaList);
 
         boolean expectedResult = true;
 

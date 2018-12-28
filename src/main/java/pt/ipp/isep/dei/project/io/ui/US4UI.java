@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.US4Controller;
-import pt.ipp.isep.dei.project.model.ListaAG;
-import pt.ipp.isep.dei.project.model.ListaTiposAG;
+import pt.ipp.isep.dei.project.model.GeoAreaList;
+import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 
 import java.util.List;
 import java.util.Scanner;
@@ -12,7 +12,7 @@ public class US4UI {
     private US4Controller mCtrl; //o controller tem como atributo as listas logo nao preciso ter aqui
 
 
-    public US4UI(ListaAG lista, ListaTiposAG listaTAG) {
+    public US4UI(GeoAreaList lista, GeoAreaTypeList listaTAG) {
         this.mCtrl = new US4Controller(lista, listaTAG);
     }
 

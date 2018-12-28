@@ -3,21 +3,21 @@ package pt.ipp.isep.dei.project.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListaTiposAG {
-    private List<TipoAreaGeo> mListaTAG = new ArrayList<>();
+public class GeoAreaTypeList {
+    private List<GeoAreaType> mListaTAG = new ArrayList<>();
 
-    public ListaTiposAG(List<TipoAreaGeo> mListaTAG) {
+    public GeoAreaTypeList(List<GeoAreaType> mListaTAG) {
         this.mListaTAG = mListaTAG;
     }
 
-    public ListaTiposAG() {
+    public GeoAreaTypeList() {
     }
 
-    public List<TipoAreaGeo> getmListaTAG() {
+    public List<GeoAreaType> getmListaTAG() {
         return mListaTAG;
     }
 
-    public boolean adicionarElementoALista(TipoAreaGeo tipoAG) {
+    public boolean adicionarElementoALista(GeoAreaType tipoAG) {
         if (!(mListaTAG.contains(tipoAG))) {
             mListaTAG.add(tipoAG);
             return true;
@@ -25,13 +25,13 @@ public class ListaTiposAG {
         return false;
     }
 
-    public TipoAreaGeo novoTipoAG(String novoTipo){
-        return new TipoAreaGeo(novoTipo);
+    public GeoAreaType novoTipoAG(String novoTipo) {
+        return new GeoAreaType(novoTipo);
     }
 
     public List<String> getListaDosTiposDeAG () {
         List<String> listaFinal = new ArrayList<>();
-        for (TipoAreaGeo objecto : mListaTAG) {
+        for (GeoAreaType objecto : mListaTAG) {
             listaFinal.add(objecto.getNomeDoTipoAreaGeo());
         }
         return listaFinal;
