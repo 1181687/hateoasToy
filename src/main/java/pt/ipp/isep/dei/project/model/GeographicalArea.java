@@ -137,6 +137,18 @@ public class GeographicalArea {
         return new Location(mLatitude, mLongitude, mAltitude);
     }
 
+    public Sensor getNearestSensorOfALocation (SensorList sensorList, Location location){
+        Sensor nearestSensor = sensorList.getmSensorList().get(0);
+        double shortestDistance = nearestSensor.distanceBetweenASensorAndALocation(location);
+        for (Sensor sensor : sensorList.getmSensorList()) {
+            if (shortestDistance > sensor.distanceBetweenASensorAndALocation(location)) {
+                shortestDistance = sensor.distanceBetweenASensorAndALocation(location);
+                nearestSensor = sensor;
+            }
+        }
+        return nearestSensor;
+    }
+
     public double getLastTemperatureInTheArea(Location location) {
         SensorType temperature = new SensorType("Temperature");
 
@@ -155,18 +167,10 @@ public class GeographicalArea {
                 return Double.NaN;
             }
         }
-        Sensor nearestSensor = sensorList.getmSensorList().get(0);
-        double shortestDistance = nearestSensor.distanceBetweenASensorAndALocation(location);
-        for (Sensor sensor : sensorList.getmSensorList()) {
-            if (shortestDistance > sensor.distanceBetweenASensorAndALocation(location)) {
-                shortestDistance = sensor.distanceBetweenASensorAndALocation(location);
-                nearestSensor = sensor;
-            }
-        }
-        if (nearestSensor.getUltimoRegisto() == null) {
+        if (getNearestSensorOfALocation(sensorList, location).getUltimoRegisto() == null) {
             return Double.NaN;
         }
-        return nearestSensor.getUltimoRegisto().getmValue();
+        return getNearestSensorOfALocation(sensorList, location).getUltimoRegisto().getmValue();
     }
 
     /**
@@ -177,23 +181,31 @@ public class GeographicalArea {
      * @param endDate
      * @return
      */
-    public ArrayList<Double> getDailyAverageMeasurementInTheArea(SensorType sensorType, Date startDate, Date endDate) {
+    public List<Double> getDailyAverageMeasurementInTheArea(SensorType sensorType, Date startDate, Date endDate) {
         LocalDate startDate1 = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate endDate1 = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        ArrayList<Double> dailyAverage = new ArrayList<>();
+        List<Double> dailyAverage = new ArrayList<>();
         List<Sensor> sensorListWithRightTypeDuringPeriod = listarSensoresDeUmTipoNaAGNumPeriodo(sensorType, this.mSensorList.getmSensorList(), startDate, endDate);
 
         for (Sensor sensor : sensorListWithRightTypeDuringPeriod) {
 
             for (LocalDate dateIterator = startDate1; dateIterator.isBefore(endDate1); dateIterator = dateIterator.plusDays(1)) {
-                Date dateTeste = Date.from(dateIterator.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                if (!(sensor.getDailyMeasurement(dateTeste).isEmpty())) {
-                    dailyAverage.add(sensor.getDailyAverage(dateTeste));
+                Date currentDate = Date.from(dateIterator.atStartOfDay(ZoneId.systemDefault()).toInstant());
+                if (!(sensor.getDailyMeasurement(currentDate).isEmpty())) {
+                    dailyAverage.add(sensor.getDailyAverage(currentDate));
                 }
             }
         }
         return dailyAverage;
 
     }
+
+    /*public double getTotalDailyMeasurementInTheArea(SensorType sensorType, Date day) {
+        LocalDate day1 = day.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        List<Sensor> listOfSensorsInTheArea
+        double sumOfDailyMeasurements = 0;
+
+
+    }*/
 }
 

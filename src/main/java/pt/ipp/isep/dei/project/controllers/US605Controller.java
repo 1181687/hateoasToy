@@ -27,8 +27,8 @@ public class US605Controller {
         return this.mHouse.getListOfRoom().listSize();
     }
 
-    public String getNameOfTheChosenRoomInSpecificPos(int posicion) {
-        return this.mHouse.getListOfRoom().getNameOfTheChosenRoomInSpecificPos(posicion);
+    public String getNameOfTheChosenRoomInSpecificPos(int position) {
+        return this.mHouse.getListOfRoom().getNameOfTheChosenRoomInSpecificPos(position);
     }
 
     public Room getRoomFromASpecificPositionInTheList(int position) {
