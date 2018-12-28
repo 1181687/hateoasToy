@@ -136,8 +136,8 @@ class GeographicalAreaTest {
         Measurement measurement01 = new Measurement(20, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
 
-        s0.adicionarMedicaoALista(measurement01);
-        s0.adicionarMedicaoALista(measurement02);
+        s0.addMeasurementToList(measurement01);
+        s0.addMeasurementToList(measurement02);
 
         //Sensor1
         Calendar calendarioDaMedicao11 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -149,8 +149,8 @@ class GeographicalAreaTest {
         Measurement measurement11 = new Measurement(20, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
 
-        s1.adicionarMedicaoALista(measurement11);
-        s1.adicionarMedicaoALista(measurement12);
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
 
         //Sensor2
         Calendar calendarioDaMedicao21 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -162,8 +162,8 @@ class GeographicalAreaTest {
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
 
-        s2.adicionarMedicaoALista(measurement21);
-        s2.adicionarMedicaoALista(measurement22);
+        s2.addMeasurementToList(measurement21);
+        s2.addMeasurementToList(measurement22);
 
         SensorList listSens = new SensorList();
         listSens.addSensorToTheListOfSensors(s0);
@@ -227,8 +227,8 @@ class GeographicalAreaTest {
         Measurement measurement01 = new Measurement(20, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(Double.NaN, dataHoraDaMedicao02);
 
-        s0.adicionarMedicaoALista(measurement01);
-        s0.adicionarMedicaoALista(measurement02);
+        s0.addMeasurementToList(measurement01);
+        s0.addMeasurementToList(measurement02);
 
         //Sensor1
         Calendar calendarioDaMedicao11 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -240,8 +240,8 @@ class GeographicalAreaTest {
         Measurement measurement11 = new Measurement(20, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
 
-        s1.adicionarMedicaoALista(measurement11);
-        s1.adicionarMedicaoALista(measurement12);
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
 
         //Sensor2
         Calendar calendarioDaMedicao21 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -253,8 +253,8 @@ class GeographicalAreaTest {
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
 
-        s2.adicionarMedicaoALista(measurement21);
-        s2.adicionarMedicaoALista(measurement22);
+        s2.addMeasurementToList(measurement21);
+        s2.addMeasurementToList(measurement22);
 
         List<Measurement> expectedResult = new ArrayList<>();
 
@@ -317,8 +317,8 @@ class GeographicalAreaTest {
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
 
-        s0.adicionarMedicaoALista(measurement01);
-        s0.adicionarMedicaoALista(measurement02);
+        s0.addMeasurementToList(measurement01);
+        s0.addMeasurementToList(measurement02);
 
         //Sensor1
         Calendar calendarioDaMedicao11 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -330,8 +330,8 @@ class GeographicalAreaTest {
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
 
-        s1.adicionarMedicaoALista(measurement11);
-        s1.adicionarMedicaoALista(measurement12);
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
 
         //Sensor2
         Calendar calendarioDaMedicao21 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -343,8 +343,8 @@ class GeographicalAreaTest {
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
 
-        s2.adicionarMedicaoALista(measurement21);
-        s2.adicionarMedicaoALista(measurement22);
+        s2.addMeasurementToList(measurement21);
+        s2.addMeasurementToList(measurement22);
 
         double expectedResult = 25;
 
@@ -404,8 +404,8 @@ class GeographicalAreaTest {
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(24, dataHoraDaMedicao02);
 
-        s0.adicionarMedicaoALista(measurement01);
-        s0.adicionarMedicaoALista(measurement02);
+        s0.addMeasurementToList(measurement01);
+        s0.addMeasurementToList(measurement02);
 
 
         //Sensor1
@@ -418,8 +418,8 @@ class GeographicalAreaTest {
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
 
-        s1.adicionarMedicaoALista(measurement11);
-        s1.adicionarMedicaoALista(measurement12);
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
 
         //Sensor2
         Calendar calendarioDaMedicao21 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -431,8 +431,8 @@ class GeographicalAreaTest {
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(27, dataHoraDaMedicao22);
 
-        s2.adicionarMedicaoALista(measurement21);
-        s2.adicionarMedicaoALista(measurement22);
+        s2.addMeasurementToList(measurement21);
+        s2.addMeasurementToList(measurement22);
 
         double expectedResult = 25;
 
@@ -492,8 +492,8 @@ class GeographicalAreaTest {
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
 
-        s0.adicionarMedicaoALista(measurement01);
-        s0.adicionarMedicaoALista(measurement02);
+        s0.addMeasurementToList(measurement01);
+        s0.addMeasurementToList(measurement02);
 
         //Sensor1
         Calendar calendarioDaMedicao11 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -505,8 +505,8 @@ class GeographicalAreaTest {
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
 
-        s1.adicionarMedicaoALista(measurement11);
-        s1.adicionarMedicaoALista(measurement12);
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
 
         //Sensor2
         Calendar calendarioDaMedicao21 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -518,8 +518,8 @@ class GeographicalAreaTest {
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
 
-        s2.adicionarMedicaoALista(measurement21);
-        s2.adicionarMedicaoALista(measurement22);
+        s2.addMeasurementToList(measurement21);
+        s2.addMeasurementToList(measurement22);
 
         double expectedResult = Double.NaN;
 
@@ -823,8 +823,8 @@ class GeographicalAreaTest {
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
 
-        s0.adicionarMedicaoALista(measurement01);
-        s0.adicionarMedicaoALista(measurement02);
+        s0.addMeasurementToList(measurement01);
+        s0.addMeasurementToList(measurement02);
 
         //Sensor1
         Calendar calendarioDaMedicao11 = new GregorianCalendar(2016, 1, 2, 8, 59, 13);
@@ -836,8 +836,8 @@ class GeographicalAreaTest {
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
 
-        s1.adicionarMedicaoALista(measurement11);
-        s1.adicionarMedicaoALista(measurement12);
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
 
         //Sensor2
         Calendar calendarioDaMedicao21 = new GregorianCalendar(2016, 0, 1, 18, 24, 10);
@@ -849,8 +849,8 @@ class GeographicalAreaTest {
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
 
-        s2.adicionarMedicaoALista(measurement21);
-        s2.adicionarMedicaoALista(measurement22);
+        s2.addMeasurementToList(measurement21);
+        s2.addMeasurementToList(measurement22);
 
         List<Sensor> listaDeSensores = new ArrayList<>();
         listaDeSensores.add(s0);
@@ -917,8 +917,8 @@ class GeographicalAreaTest {
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
 
-        s0.adicionarMedicaoALista(measurement01);
-        s0.adicionarMedicaoALista(measurement02);
+        s0.addMeasurementToList(measurement01);
+        s0.addMeasurementToList(measurement02);
 
         //Sensor1
         Calendar calendarioDaMedicao11 = new GregorianCalendar(2015, 1, 2);
@@ -930,8 +930,8 @@ class GeographicalAreaTest {
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
 
-        s1.adicionarMedicaoALista(measurement11);
-        s1.adicionarMedicaoALista(measurement12);
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
 
         //Sensor2
         Calendar calendarioDaMedicao21 = new GregorianCalendar(2015, 0, 1);
@@ -943,8 +943,8 @@ class GeographicalAreaTest {
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
 
-        s2.adicionarMedicaoALista(measurement21);
-        s2.adicionarMedicaoALista(measurement22);
+        s2.addMeasurementToList(measurement21);
+        s2.addMeasurementToList(measurement22);
 
         List<Sensor> listaDeSensores = new ArrayList<>();
         listaDeSensores.add(s0);
@@ -1195,8 +1195,8 @@ class GeographicalAreaTest {
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(30, dataHoraDaMedicao02);
 
-        s0.adicionarMedicaoALista(measurement01);
-        s0.adicionarMedicaoALista(measurement02);
+        s0.addMeasurementToList(measurement01);
+        s0.addMeasurementToList(measurement02);
 
         //Sensor1
         Calendar calendarioDaMedicao11 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
@@ -1208,8 +1208,8 @@ class GeographicalAreaTest {
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
 
-        s1.adicionarMedicaoALista(measurement11);
-        s1.adicionarMedicaoALista(measurement12);
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
 
         Location location = new Location(0,30,50);
 
@@ -1344,8 +1344,8 @@ class GeographicalAreaTest {
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(30, dataHoraDaMedicao02);
 
-        s0.adicionarMedicaoALista(measurement01);
-        s0.adicionarMedicaoALista(measurement02);
+        s0.addMeasurementToList(measurement01);
+        s0.addMeasurementToList(measurement02);
 
         //Sensor1
         Calendar calendarioDaMedicao11 = new GregorianCalendar(2018, 11, 4, 15, 20, 00);
@@ -1358,9 +1358,9 @@ class GeographicalAreaTest {
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
         Measurement measurement13 = new Measurement(20, dataHoraDaMedicao12);
 
-        s1.adicionarMedicaoALista(measurement11);
-        s1.adicionarMedicaoALista(measurement12);
-        s1.adicionarMedicaoALista(measurement13);
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
+        s1.addMeasurementToList(measurement13);
 
         Calendar startDate = new GregorianCalendar(2018, 11, 1, 15, 20, 00);
         Date startDate1 = startDate.getTime();

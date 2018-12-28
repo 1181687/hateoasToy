@@ -13,7 +13,7 @@ public class HouseGrid {
         this.mMaximumContractedPower = Double.NaN;
     }
 
-    @Override
+    /*@Override
     public int hashCode() {
         return 1;
     }
@@ -28,7 +28,7 @@ public class HouseGrid {
         }
         HouseGrid houseGrid = (HouseGrid) obj;
         return (this.mHouseGridName.equals(houseGrid.mHouseGridName));
-    }
+    }*/
 
     public HouseGrid(String HouseGridName, double mMaximumContractedPower, RoomList mRoomsConnectedToHouseGrid) {
         this.mHouseGridName = HouseGridName;
@@ -36,32 +36,12 @@ public class HouseGrid {
         this.mRoomsConnectedToHouseGrid = mRoomsConnectedToHouseGrid;
     }
 
-    public void setmHouseGridName(String mHouseGridName) {
-        this.mHouseGridName = mHouseGridName;
-    }
-
-    public String getmHouseGridName() {
+       public String getmHouseGridName() {
         return mHouseGridName;
     }
 
     public PowerSourceList getPowerSourceList() {
         return mPowerSourceList;
-    }
-
-    public double getmMaximumContractedPower() {
-        return mMaximumContractedPower;
-    }
-
-    public void setmMaximumContractedPower(double mMaximumContractedPower) {
-        this.mMaximumContractedPower = mMaximumContractedPower;
-    }
-
-    public boolean addRoomToHouseGrid (Room houseRoom){
-       if (!(mRoomsConnectedToHouseGrid.getmRoomList().contains(houseRoom))){
-           mRoomsConnectedToHouseGrid.getmRoomList().add(houseRoom);
-           return true;
-       }
-            return false;
     }
 
     public RoomList getmRoomsConnectedToHouseGrid() {

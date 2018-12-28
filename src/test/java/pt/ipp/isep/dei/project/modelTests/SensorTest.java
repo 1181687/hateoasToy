@@ -181,7 +181,7 @@ class SensorTest {
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
         Measurement measurement = new Measurement(20, dataFuncionamento);
-        s1.adicionarMedicaoALista(measurement);
+        s1.addMeasurementToList(measurement);
 
         Measurement expectedResult = measurement;
 
@@ -240,7 +240,7 @@ class SensorTest {
         Date dataHoraDaMedicao1 = calendarioDaMedicao1.getTime();
 
         Measurement measurement1 = new Measurement(20, dataHoraDaMedicao1);
-        s1.adicionarMedicaoALista(measurement1);
+        s1.addMeasurementToList(measurement1);
 
         //Act
         boolean result = s1.listaDeRegistosEVazia();
@@ -266,8 +266,8 @@ class SensorTest {
 
         Measurement measurement1 = new Measurement(20, dataHoraDaMedicao1);
         Measurement measurement2 = new Measurement(25, dataHoraDaMedicao2);
-        s1.adicionarMedicaoALista(measurement1);
-        s1.adicionarMedicaoALista(measurement2);
+        s1.addMeasurementToList(measurement1);
+        s1.addMeasurementToList(measurement2);
 
         Measurement expectedResult = measurement2;
 
@@ -299,9 +299,9 @@ class SensorTest {
         Date diaDoMes = new GregorianCalendar(2017, 8, 5).getTime();
 
         // Act
-        sensor1.adicionarMedicaoALista(registo1);
-        sensor1.adicionarMedicaoALista(registo2);
-        sensor1.adicionarMedicaoALista(registo3);
+        sensor1.addMeasurementToList(registo1);
+        sensor1.addMeasurementToList(registo2);
+        sensor1.addMeasurementToList(registo3);
         double result = sensor1.getMenorRegistoDoMes(diaDoMes);
 
         // Assert
@@ -349,9 +349,9 @@ class SensorTest {
         Date diaDoMes = new GregorianCalendar(2017, 8, 5).getTime();
 
         // Act
-        sensor1.adicionarMedicaoALista(registo1);
-        sensor1.adicionarMedicaoALista(registo2);
-        sensor1.adicionarMedicaoALista(registo3);
+        sensor1.addMeasurementToList(registo1);
+        sensor1.addMeasurementToList(registo2);
+        sensor1.addMeasurementToList(registo3);
         double result = sensor1.getMenorRegistoDoMes(diaDoMes);
 
         // Assert
@@ -379,9 +379,9 @@ class SensorTest {
         Date diaDoMes = new GregorianCalendar(2017, 8, 5).getTime();
 
         // Act
-        sensor1.adicionarMedicaoALista(registo1);
-        sensor1.adicionarMedicaoALista(registo2);
-        sensor1.adicionarMedicaoALista(registo3);
+        sensor1.addMeasurementToList(registo1);
+        sensor1.addMeasurementToList(registo2);
+        sensor1.addMeasurementToList(registo3);
         double result = sensor1.getMenorRegistoDoMes(diaDoMes);
 
         // Assert
@@ -409,9 +409,9 @@ class SensorTest {
         Date diaDoMes = new GregorianCalendar(2017, 8, 5).getTime();
 
         // Act
-        sensor1.adicionarMedicaoALista(registo1);
-        sensor1.adicionarMedicaoALista(registo2);
-        sensor1.adicionarMedicaoALista(registo3);
+        sensor1.addMeasurementToList(registo1);
+        sensor1.addMeasurementToList(registo2);
+        sensor1.addMeasurementToList(registo3);
         double result = sensor1.getMenorRegistoDoMes(diaDoMes);
 
         // Assert
@@ -439,9 +439,9 @@ class SensorTest {
         Date diaDoMes = new GregorianCalendar(2017, 8, 5).getTime();
 
         // Act
-        sensor1.adicionarMedicaoALista(registo1);
-        sensor1.adicionarMedicaoALista(registo2);
-        sensor1.adicionarMedicaoALista(registo3);
+        sensor1.addMeasurementToList(registo1);
+        sensor1.addMeasurementToList(registo2);
+        sensor1.addMeasurementToList(registo3);
         double result = sensor1.getMenorRegistoDoMes(diaDoMes);
 
         // Assert
@@ -470,10 +470,10 @@ class SensorTest {
         double expectedResult = 27;
         Date dataDoMes = new GregorianCalendar(2018, 2, 5).getTime();
 
-        sensor1.adicionarMedicaoALista(registo1);
-        sensor1.adicionarMedicaoALista(registo2);
-        sensor1.adicionarMedicaoALista(registo3);
-        sensor1.adicionarMedicaoALista(registo4);
+        sensor1.addMeasurementToList(registo1);
+        sensor1.addMeasurementToList(registo2);
+        sensor1.addMeasurementToList(registo3);
+        sensor1.addMeasurementToList(registo4);
 
         //Act
         double result = sensor1.getMaiorRegistoDoMes(dataDoMes);
@@ -523,10 +523,10 @@ class SensorTest {
         double expectedResult = 26;
         Date diaDoMes = new GregorianCalendar(2018, 2, 15).getTime();
 
-        sensor1.adicionarMedicaoALista(registo1);
-        sensor1.adicionarMedicaoALista(registo2);
-        sensor1.adicionarMedicaoALista(registo3);
-        sensor1.adicionarMedicaoALista(registo4);
+        sensor1.addMeasurementToList(registo1);
+        sensor1.addMeasurementToList(registo2);
+        sensor1.addMeasurementToList(registo3);
+        sensor1.addMeasurementToList(registo4);
         //Act
         double result = sensor1.getRegistoMediaMes(diaDoMes);
         //Assert
@@ -601,9 +601,9 @@ class SensorTest {
         Measurement measurementDomingo2 = new Measurement(35, dataDomingo2);
         Measurement measurementSegunda = new Measurement(40, dataSegunda);
 
-        sensor1.adicionarMedicaoALista(measurementDomingo1);
-        sensor1.adicionarMedicaoALista(measurementDomingo2);
-        sensor1.adicionarMedicaoALista(measurementSegunda);
+        sensor1.addMeasurementToList(measurementDomingo1);
+        sensor1.addMeasurementToList(measurementDomingo2);
+        sensor1.addMeasurementToList(measurementSegunda);
 
 
         List<Measurement> expectedResult = new ArrayList<>();
@@ -611,7 +611,7 @@ class SensorTest {
         expectedResult.add(measurementDomingo2);
 
         //act
-        List<Measurement> result = sensor1.getRegistosDoDia(dataDomingo);
+        List<Measurement> result = sensor1.getDailyMeasurement(dataDomingo);
 
         //assert
         assertEquals(expectedResult, result);
@@ -638,16 +638,16 @@ class SensorTest {
         Measurement measurementDomingo2 = new Measurement(35.0, dataDomingo2);
         Measurement measurementSegunda = new Measurement(40.0, dataSegunda);
 
-        sensor1.adicionarMedicaoALista(measurementDomingo1);
-        sensor1.adicionarMedicaoALista(measurementDomingo2);
-        sensor1.adicionarMedicaoALista(measurementSegunda);
+        sensor1.addMeasurementToList(measurementDomingo1);
+        sensor1.addMeasurementToList(measurementDomingo2);
+        sensor1.addMeasurementToList(measurementSegunda);
 
 
         List<Measurement> expectedResult = new ArrayList<>();
         expectedResult.add(measurementDomingo2);
 
         //act
-        List<Measurement> result = sensor1.getRegistosDoDia(dataDomingo);
+        List<Measurement> result = sensor1.getDailyMeasurement(dataDomingo);
 
         //assert
         assertEquals(expectedResult, result);
@@ -718,9 +718,9 @@ class SensorTest {
         Measurement measurement3 = new Measurement(-2, data3);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
 
 
         double expectedResult = -2;
@@ -781,9 +781,9 @@ class SensorTest {
         Measurement measurement3 = new Measurement(-2, data3);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
 
         double expectedResult = -2;
 
@@ -854,13 +854,13 @@ class SensorTest {
         Measurement measurement7 = new Measurement(-2.0, data7);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
-        sensor1.adicionarMedicaoALista(measurement4);
-        sensor1.adicionarMedicaoALista(measurement5);
-        sensor1.adicionarMedicaoALista(measurement6);
-        sensor1.adicionarMedicaoALista(measurement7);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(measurement4);
+        sensor1.addMeasurementToList(measurement5);
+        sensor1.addMeasurementToList(measurement6);
+        sensor1.addMeasurementToList(measurement7);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList(0.0, 30.0, -2.0, -4.0, -2.0, -5.0, -2.0));
 
@@ -916,13 +916,13 @@ class SensorTest {
         Measurement measurement7 = new Measurement(-2, data7);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
-        sensor1.adicionarMedicaoALista(measurement4);
-        sensor1.adicionarMedicaoALista(measurement5);
-        sensor1.adicionarMedicaoALista(measurement6);
-        sensor1.adicionarMedicaoALista(measurement7);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(measurement4);
+        sensor1.addMeasurementToList(measurement5);
+        sensor1.addMeasurementToList(measurement6);
+        sensor1.addMeasurementToList(measurement7);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList(30.0, -2.0, -4.0, -2.0, -5.0, -2.0));
 
@@ -968,11 +968,11 @@ class SensorTest {
         Measurement measurement5 = new Measurement(-2, data5);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
-        sensor1.adicionarMedicaoALista(measurement4);
-        sensor1.adicionarMedicaoALista(measurement5);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(measurement4);
+        sensor1.addMeasurementToList(measurement5);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList(0.0, 30.0, -2.0, -4.0, -2.0));
 
@@ -1018,11 +1018,11 @@ class SensorTest {
         Measurement measurement5 = new Measurement(-2, data5);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
-        sensor1.adicionarMedicaoALista(measurement4);
-        sensor1.adicionarMedicaoALista(measurement5);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(measurement4);
+        sensor1.addMeasurementToList(measurement5);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList(0.0, 30.0, -2.0, -4.0));
 
@@ -1098,13 +1098,13 @@ class SensorTest {
 
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
-        sensor1.adicionarMedicaoALista(measurement4);
-        sensor1.adicionarMedicaoALista(measurement5);
-        sensor1.adicionarMedicaoALista(measurement6);
-        sensor1.adicionarMedicaoALista(measurement7);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(measurement4);
+        sensor1.addMeasurementToList(measurement5);
+        sensor1.addMeasurementToList(measurement6);
+        sensor1.addMeasurementToList(measurement7);
 
         //   List <Double> registoMinSemana = new ArrayList<>(Arrays.asList(10.0, 9.5, 7.5, 9.7, 10.1, 11.2, 8.9)); //66.9/7=9.557
 
@@ -1161,9 +1161,9 @@ class SensorTest {
         Measurement measurement3 = new Measurement(-2, data3);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
 
 
         double expectedResult = 40;
@@ -1217,9 +1217,9 @@ class SensorTest {
         Measurement measurement3 = new Measurement(30, data3);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
 
         double expectedResult = 30;
 
@@ -1275,13 +1275,13 @@ class SensorTest {
         Measurement measurement7 = new Measurement(20.0, data7);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
-        sensor1.adicionarMedicaoALista(measurement4);
-        sensor1.adicionarMedicaoALista(measurement5);
-        sensor1.adicionarMedicaoALista(measurement6);
-        sensor1.adicionarMedicaoALista(measurement7);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(measurement4);
+        sensor1.addMeasurementToList(measurement5);
+        sensor1.addMeasurementToList(measurement6);
+        sensor1.addMeasurementToList(measurement7);
 
         List <Double> expectedResult = new ArrayList<>(Arrays.asList(20.0,30.0,20.0,40.0,20.0,45.0,20.0));
 
@@ -1337,13 +1337,13 @@ class SensorTest {
         Measurement measurement7 = new Measurement(20.0, data7);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
-        sensor1.adicionarMedicaoALista(measurement4);
-        sensor1.adicionarMedicaoALista(measurement5);
-        sensor1.adicionarMedicaoALista(measurement6);
-        sensor1.adicionarMedicaoALista(measurement7);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(measurement4);
+        sensor1.addMeasurementToList(measurement5);
+        sensor1.addMeasurementToList(measurement6);
+        sensor1.addMeasurementToList(measurement7);
 
         List <Double> expectedResult = new ArrayList<>(Arrays.asList(30.0,20.0,40.0,20.0,45.0,20.0));
 
@@ -1389,11 +1389,11 @@ class SensorTest {
         Measurement measurement5 = new Measurement(20.0, data5);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
-        sensor1.adicionarMedicaoALista(measurement4);
-        sensor1.adicionarMedicaoALista(measurement5);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(measurement4);
+        sensor1.addMeasurementToList(measurement5);
 
         List <Double> expectedResult = new ArrayList<>(Arrays.asList(30.0,30.0,20.0,40.0,20.0));
 
@@ -1439,11 +1439,11 @@ class SensorTest {
         Measurement measurement5 = new Measurement(20.0, data5);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
-        sensor1.adicionarMedicaoALista(measurement4);
-        sensor1.adicionarMedicaoALista(measurement5);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(measurement4);
+        sensor1.addMeasurementToList(measurement5);
 
         List <Double> expectedResult = new ArrayList<>(Arrays.asList(45.0,30.0,25.0,40.0));
 
@@ -1519,13 +1519,13 @@ class SensorTest {
 
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
-        sensor1.adicionarMedicaoALista(measurement4);
-        sensor1.adicionarMedicaoALista(measurement5);
-        sensor1.adicionarMedicaoALista(measurement6);
-        sensor1.adicionarMedicaoALista(measurement7);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(measurement4);
+        sensor1.addMeasurementToList(measurement5);
+        sensor1.addMeasurementToList(measurement6);
+        sensor1.addMeasurementToList(measurement7);
 
         //   List <Double> registoMinSemana = new ArrayList<>(Arrays.asList(10.0, 9.5, 7.5, 9.7, 10.1, 11.2, 8.9)); //66.9/7=9.557
 
@@ -1593,11 +1593,11 @@ class SensorTest {
         Measurement measurement5 = new Measurement(10.1, data5);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
-        sensor1.adicionarMedicaoALista(measurement4);
-        sensor1.adicionarMedicaoALista(measurement5);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(measurement4);
+        sensor1.addMeasurementToList(measurement5);
 
         //   List <Double> registoMinSemana = new ArrayList<>(Arrays.asList(10.0, 9.5, 7.5, 9.7, 10.1)); //46.8/5=9.36
 
@@ -1645,11 +1645,11 @@ class SensorTest {
         Measurement measurement5 = new Measurement(10.1, data5);
 
         //Adição das medições
-        sensor1.adicionarMedicaoALista(measurement1);
-        sensor1.adicionarMedicaoALista(measurement2);
-        sensor1.adicionarMedicaoALista(measurement3);
-        sensor1.adicionarMedicaoALista(measurement4);
-        sensor1.adicionarMedicaoALista(measurement5);
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(measurement4);
+        sensor1.addMeasurementToList(measurement5);
 
         double expectedResult = 9.36;
 
@@ -1662,4 +1662,111 @@ class SensorTest {
         //Assert
         assertEquals(expectedResult, result, 0.001);
     }
+
+    @Test
+    public void testOfGetTotalDailyMeasurementsOfTheSameDay (){
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
+        Date data = cal.getTime();
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("T123", data, sensorType, locS1);
+
+        //Registo 1
+        Calendar cal1 = new GregorianCalendar(2018, 11, 2, 8, 00, 01);
+        Date data1 = cal1.getTime();
+        Measurement measurement1 = new Measurement(10.0, data1);
+
+        //Registo 2
+        Calendar cal2 = new GregorianCalendar(2018, 11, 2, 15, 59, 59);
+        Date data2 = cal2.getTime();
+        Measurement measurement2 = new Measurement(10, data2);
+
+        //Registo 3
+        Calendar cal3 = new GregorianCalendar(2018, 11, 2, 17, 15, 00);
+        Date data3 = cal3.getTime();
+        Measurement measurement3 = new Measurement(5, data3);
+
+        //Registo 4
+        Calendar cal4 = new GregorianCalendar(2018, 11, 2, 17, 20, 00);
+        Date data4 = cal4.getTime();
+        Measurement measurement4 = new Measurement(5, data4);
+
+        //Registo 5
+        Calendar cal5 = new GregorianCalendar(2018, 11, 2, 17, 20, 10);
+        Date data5 = cal5.getTime();
+        Measurement measurement5 = new Measurement(10, data5);
+
+        //Adição das medições
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(measurement4);
+        sensor1.addMeasurementToList(measurement5);
+
+        double expectedResult = 40;
+
+        Calendar searchCal = new GregorianCalendar(2018, 11, 2, 17, 20, 10);
+        Date searchDate = searchCal.getTime();
+
+        //Act
+        double result = sensor1.getTotalDailyMeasurements(searchDate);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void testOfGetTotalDailyMeasurementsWithDifferentDays (){
+        //Arrange
+        Calendar cal = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
+        Date data = cal.getTime();
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("T123", data, sensorType, locS1);
+
+        //Registo 1
+        Calendar cal1 = new GregorianCalendar(2018, 10, 2, 8, 00, 01);
+        Date data1 = cal1.getTime();
+        Measurement measurement1 = new Measurement(10.0, data1);
+
+        //Registo 2
+        Calendar cal2 = new GregorianCalendar(2018, 11, 2, 15, 59, 59);
+        Date data2 = cal2.getTime();
+        Measurement measurement2 = new Measurement(10, data2);
+
+        //Registo 3
+        Calendar cal3 = new GregorianCalendar(2018, 11, 2, 17, 15, 00);
+        Date data3 = cal3.getTime();
+        Measurement measurement3 = new Measurement(5, data3);
+
+        //Registo 4
+        Calendar cal4 = new GregorianCalendar(2018, 11, 2, 17, 20, 00);
+        Date data4 = cal4.getTime();
+        Measurement measurement4 = new Measurement(5, data4);
+
+        //Registo 5
+        Calendar cal5 = new GregorianCalendar(2018, 11, 2, 17, 20, 10);
+        Date data5 = cal5.getTime();
+        Measurement measurement5 = new Measurement(10, data5);
+
+        //Adição das medições
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(measurement4);
+        sensor1.addMeasurementToList(measurement5);
+
+        double expectedResult = 30;
+
+        Calendar searchCal = new GregorianCalendar(2018, 11, 2, 17, 20, 10);
+        Date searchDate = searchCal.getTime();
+
+        //Act
+        double result = sensor1.getTotalDailyMeasurements(searchDate);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
 }
