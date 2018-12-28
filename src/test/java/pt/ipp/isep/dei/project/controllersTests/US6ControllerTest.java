@@ -43,6 +43,7 @@ class US6ControllerTest {
         int posicao = 0;
         US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
         String expectedResult = "Porto";
+        ctrl6.getAreaGeograficaNaListaPorPosicao(posicao);
 
         // Act
         String resultado = ctrl6.getNomeAreaGeograficaPorIndice(posicao);
@@ -82,6 +83,7 @@ class US6ControllerTest {
         int posicao = 2;
         US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
         String expectedResult = "Ancora";
+        ctrl6.getAreaGeograficaNaListaPorPosicao(posicao);
 
         // Act
         String resultado = ctrl6.getNomeAreaGeograficaPorIndice(posicao);
@@ -108,6 +110,7 @@ class US6ControllerTest {
         int posicao = 0;
         US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
         String expectedResult = "Espinho";
+        ctrl6.getAreaGeograficaNaListaPorPosicao(posicao);
 
         // Act
         String resultado = ctrl6.getNomeAreaGeograficaPorIndice(posicao);
@@ -223,6 +226,7 @@ class US6ControllerTest {
 
         // Act
         String resultado = ctrl6.getNomeTipoSensorPorIndice(posicao);
+        ctrl6.getTipoSensorPorPosicao(posicao);
 
         // Assert
         assertEquals(expectedResult, resultado);
@@ -243,6 +247,7 @@ class US6ControllerTest {
         int posicao = 1;
         US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
         String expectedResult = "Temperatura";
+        ctrl6.getTipoSensorPorPosicao(posicao);
 
         // Act
         String resultado = ctrl6.getNomeTipoSensorPorIndice(posicao);
@@ -264,6 +269,7 @@ class US6ControllerTest {
         int posicao = 0;
         US6Controller ctrl6 = new US6Controller(listaTiposSensores, listaAreasGeograficas);
         String expectedResult = "Humidade";
+        ctrl6.getTipoSensorPorPosicao(posicao);
 
         // Act
         String resultado = ctrl6.getNomeTipoSensorPorIndice(posicao);
@@ -272,4 +278,39 @@ class US6ControllerTest {
         assertEquals(expectedResult, resultado);
     }
 
+    @Test
+    public void testarAdicaoSensorAAreaGeografica() {
+        //Arrange
+        String nomeAG1 = "Porto";
+        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        Location local1 = new Location(41.1496, -8.6109, 97);
+        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+
+        Calendar cal = new GregorianCalendar();
+        Date data = cal.getTime();
+        TipoSensor sensorType = new TipoSensor("Humidade");
+        Location local = new Location(45, 45, 45);
+        Sensor s1 = new Sensor("s1", data, sensorType, local);
+
+        ListaTiposSensores listSensorsType = new ListaTiposSensores();
+        listSensorsType.adicionarTipoSensorALista(sensorType);
+
+        ListaAG geographicalAreaList = new ListaAG();
+        geographicalAreaList.getmListaAG().add(ag1);
+
+
+        US6Controller ctrl6 = new US6Controller(listSensorsType, geographicalAreaList);
+
+        ctrl6.getAreaGeograficaNaListaPorPosicao(0);
+        ctrl6.getTipoSensorPorPosicao(0);
+        ctrl6.criarNovaLocalizacao(41.1496, -8.6109, 97);
+        ctrl6.criarNovoSensor("s1");
+
+        //Act
+        boolean resultado = ctrl6.adicionarSensorAAreaGeografica();
+
+        //Assert
+        assertTrue(resultado);
+    }
 }
