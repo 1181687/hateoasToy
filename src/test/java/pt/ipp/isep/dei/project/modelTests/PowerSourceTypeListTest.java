@@ -90,6 +90,9 @@ public class PowerSourceTypeListTest {
 
         //Act
         PowerSourceType result = list.getPowerSourceTypeFromASpecificPositionInTheList(position);
+
+        //Assert
+        assertEquals(expectedResult,result);
     }
 
     @Test
@@ -111,5 +114,8 @@ public class PowerSourceTypeListTest {
 
         //Act
         PowerSourceType result = list.getPowerSourceTypeFromASpecificPositionInTheList(position);
+
+        //Assert
+        assertEquals(expectedResult,result);
     }
 }
