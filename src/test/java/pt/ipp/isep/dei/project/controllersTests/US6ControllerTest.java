@@ -279,7 +279,44 @@ class US6ControllerTest {
     }
 
     @Test
-    public void testarAdicaoSensorAAreaGeografica() {
+    public void testarAdicaoSensorAAreaGeograficaNegativo () {
+        //Arrange
+        String nomeAG1 = "Porto";
+        TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
+        Location local1 = new Location(41.1496, -8.6109, 97);
+        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+
+        Calendar cal = new GregorianCalendar();
+        Date data = cal.getTime();
+        TipoSensor sensorType = new TipoSensor("Humidade");
+        Location local = new Location(45, 45, 45);
+        Sensor s1 = new Sensor("s1", data, sensorType, local);
+
+        ListaTiposSensores listSensorsType = new ListaTiposSensores();
+        listSensorsType.adicionarTipoSensorALista(sensorType);
+
+        ListaAG geographicalAreaList = new ListaAG();
+        geographicalAreaList.getmListaAG().add(ag1);
+
+
+        US6Controller ctrl6 = new US6Controller(listSensorsType, geographicalAreaList);
+
+        ctrl6.getAreaGeograficaNaListaPorPosicao(0);
+        ctrl6.getTipoSensorPorPosicao(0);
+        ctrl6.criarNovaLocalizacao(41.1496, -8.6109, 97);
+        ctrl6.criarNovoSensor("s1");
+        ctrl6.adicionarSensorAAreaGeografica(s1);
+
+        //Act
+        boolean resultado = ctrl6.adicionarSensorAAreaGeografica(s1);
+
+        //Assert
+        assertFalse(resultado);
+    }
+
+    @Test
+    public void testarAdicaoSensorAAreaGeograficaPositivo () {
         //Arrange
         String nomeAG1 = "Porto";
         TipoAreaGeo tipo1 = new TipoAreaGeo("Cidade");
@@ -308,7 +345,7 @@ class US6ControllerTest {
         ctrl6.criarNovoSensor("s1");
 
         //Act
-        boolean resultado = ctrl6.adicionarSensorAAreaGeografica();
+        boolean resultado = ctrl6.adicionarSensorAAreaGeografica(s1);
 
         //Assert
         assertTrue(resultado);

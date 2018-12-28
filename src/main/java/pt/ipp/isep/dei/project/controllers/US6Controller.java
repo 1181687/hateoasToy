@@ -40,9 +40,9 @@ public class US6Controller {
         return mListaTiposSensores.getTipoSensorPorPosicao(posicao).getmTipo();
     }
 
-    public boolean adicionarSensorAAreaGeografica() {
-        if ((!(this.mListaAreaGeografica.getAreaGeografica(this.mGeographicalArea).getmSensorListInTheGeographicArea().getmSensorList().contains(this.mSensor)))) {
-            mListaAreaGeografica.getAreaGeografica(this.mGeographicalArea).getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(this.mSensor);
+    public boolean adicionarSensorAAreaGeografica(Sensor sensor) {
+        if ((!(this.mListaAreaGeografica.getAreaGeografica(this.mGeographicalArea).getmSensorListInTheGeographicArea().getmSensorList().contains(sensor)))) {
+            mListaAreaGeografica.getAreaGeografica(this.mGeographicalArea).getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(sensor);
             return true;
         }
         return false;
@@ -52,7 +52,7 @@ public class US6Controller {
         mLocation = this.mListaAreaGeografica.getAreaGeografica(this.mGeographicalArea).novaLocalizacao(mAltitude, mLatitude, mLongitude);
     }
 
-    public void criarNovoSensor(String nome) {
-        mSensor = this.mListaAreaGeografica.getAreaGeografica(this.mGeographicalArea).novoSensor(nome, this.mSensorType, this.mLocation);
+    public Sensor criarNovoSensor(String nome) {
+        return this.mListaAreaGeografica.getAreaGeografica(this.mGeographicalArea).novoSensor(nome, this.mSensorType, this.mLocation);
     }
 }
