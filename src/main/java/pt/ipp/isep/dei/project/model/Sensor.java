@@ -80,7 +80,6 @@ public class Sensor {
     }
 
     public double getMenorRegistoDoMes(Date diaDoMes) {
-
         Date primeiroDiaMes = getPrimeiroDiaDoMes(diaDoMes);
         Date ultimoDiaMes = getUltimoDiaDoMes(diaDoMes);
 
@@ -99,6 +98,18 @@ public class Sensor {
         return menorRegisto;
     }
 
+    public double getMaiorRegisto(Date date) {
+        Date primeiroDiaMes = getPrimeiroDiaDoMes(date);
+        Date ultimoDiaMes = getUltimoDiaDoMes(date);
+
+        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
+
+        if (registosEntreDatas.isEmpty()) {
+            return Double.NaN;
+        }
+        return registosEntreDatas.get(0);
+    }
+
     public double getMaiorRegistoDoMes(Date diaDoMes) {
 
         Date primeiroDiaMes = getPrimeiroDiaDoMes(diaDoMes);
@@ -106,10 +117,7 @@ public class Sensor {
 
         List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
 
-        if (registosEntreDatas.isEmpty()) {
-            return Double.NaN;
-        }
-        double maiorRegisto = registosEntreDatas.get(0);
+        double maiorRegisto = getMaiorRegisto(diaDoMes);
 
         for (int i = 0; i < registosEntreDatas.size(); i++) {
             if (maiorRegisto < registosEntreDatas.get(i)) {
@@ -258,11 +266,15 @@ public class Sensor {
 
     }
 
-    public double getValorMaximoDoDia(Date data) {
+    /**
+     * @param data a given day
+     * @return the maximum value of measurements
+     */
+    public double getMaximumValueOfDay(Date data) {
         if (!getDailyMeasurement(data).isEmpty()) {
             double valorMaximoDoDia = getDailyMeasurement(data).get(0).getmValue();
             for (Measurement registo : getDailyMeasurement(data)) {
-                if (valorMaximoDoDia < registo.getmValue()) {
+                if (valorMaximoDoDia < registo.getmValue()){
                     valorMaximoDoDia = registo.getmValue();
                 }
             }
@@ -278,7 +290,7 @@ public class Sensor {
         cal.setTime(primeiroDiaSemana);
         int contador = 1;
         while (contador < 8) {
-            double maximoDia = getValorMaximoDoDia(cal.getTime());
+            double maximoDia = getMaximumValueOfDay(cal.getTime());
             if (!Double.isNaN(maximoDia)) {
                 registosMaximosSemana.add(maximoDia);
             }

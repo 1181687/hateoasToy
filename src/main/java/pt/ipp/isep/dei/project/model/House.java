@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.model;
 
 
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class House {
     private RoomList mRoomList;
@@ -49,6 +49,10 @@ public class House {
         return new Address(mZipCode, location);
     }
 
+    public GeographicalArea getmInsertedGeoArea() {
+        return mInsertedGeoArea;
+    }
+
     /**
      * method that adds a room to the house's roomlist
      *
@@ -80,7 +84,7 @@ public class House {
     }
 
     public double getAverageDailyMeasurementOfHouseArea(SensorType measurementType, Date startDate, Date endDate) {
-        ArrayList<Double> listOfDailyAverages = mInsertedGeoArea.getDailyAverageMeasurementInTheArea(measurementType, startDate, endDate);
+        List<Double> listOfDailyAverages = mInsertedGeoArea.getDailyAverageMeasurementInTheArea(measurementType, startDate, endDate);
         double sum = 0;
         if (listOfDailyAverages.isEmpty()) {
             return 0;

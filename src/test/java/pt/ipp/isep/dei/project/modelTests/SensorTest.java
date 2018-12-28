@@ -448,6 +448,8 @@ class SensorTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
+
+
     @Test
     void testaGetMaiorRegistoMes() {
         //Arrange
@@ -691,6 +693,24 @@ class SensorTest {
         //assert
         assertEquals(expectedResult, result);
 
+    }
+
+    @Test
+    public void testarVerificaSeDatasSaoIguaisMesmaData() {
+        //Arrange
+
+        Calendar cal1 = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
+        Calendar cal2 = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
+        Date data = cal2.getTime();
+        SensorType sensorType = new SensorType("Temperatura");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
+
+        //Act
+        boolean result = sensor1.verificaDiasIguais(cal1, cal2);
+
+        //assert
+        assertTrue(result);
     }
 
     @Test
@@ -1169,7 +1189,7 @@ class SensorTest {
         double expectedResult = 40;
 
         //Act
-        double result = sensor1.getValorMaximoDoDia(data);
+        double result = sensor1.getMaximumValueOfDay(data);
         //assert
         assertEquals(expectedResult, result, 0.001);
     }
@@ -1186,7 +1206,7 @@ class SensorTest {
         double expectedResult = Double.NaN;
 
         //Act
-        double result = sensor1.getValorMaximoDoDia(data);
+        double result = sensor1.getMaximumValueOfDay(data);
         //assert
         assertEquals(expectedResult, result, 0.001);
 
@@ -1224,7 +1244,7 @@ class SensorTest {
         double expectedResult = 30;
 
         //Act
-        double result = sensor1.getValorMaximoDoDia(data);
+        double result = sensor1.getMaximumValueOfDay(data);
         //assert
         assertEquals(expectedResult, result, 0.001);
 

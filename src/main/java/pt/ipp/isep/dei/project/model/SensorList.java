@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SensorList {
@@ -54,6 +55,25 @@ public class SensorList {
             }
         }
         return measurementComUltimoRegisto.getmValue();
+    }
+
+    /**
+     * @param tipo type of sensor (temperature)
+     * @param date any given day
+     * @return maximum value of the temperature sensor in a given day.
+     */
+    public double getMaximumMeasureOfATypeOfSensorInAGivenDay(SensorType tipo, Date date) {
+        double maxValue = Double.NaN;
+        for (Sensor sensor : mSensorList) {
+            if (sensor.getmSensorType().equals(tipo) && (!(sensor.getDailyMeasurement(date).isEmpty()))) {
+                if (sensor.getMaximumValueOfDay(date) > maxValue) {
+                    maxValue = sensor.getMaximumValueOfDay(date);
+
+                }
+
+            }
+        }
+        return maxValue;
     }
 }
 
