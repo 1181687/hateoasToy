@@ -17,14 +17,6 @@ public class PowerSourceTypeList {
         return false;
     }
 
-    public List<PowerSourceType> getPowerSourceTypeList() {
-        return mPowerSourceTypeList;
-    }
-
-    public PowerSourceType newPowerSourceType(String newPowerSourceType) {
-        return new PowerSourceType(newPowerSourceType);
-    }
-
     public String displayPowerSourceTypeList() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= this.mPowerSourceTypeList.size(); i++) {
