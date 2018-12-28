@@ -1169,7 +1169,7 @@ class SensorTest {
         double expectedResult = 40;
 
         //Act
-        double result = sensor1.getValorMaximoDoDia(data);
+        double result = sensor1.getMaximumValueOfDay(data);
         //assert
         assertEquals(expectedResult, result, 0.001);
     }
@@ -1186,7 +1186,7 @@ class SensorTest {
         double expectedResult = Double.NaN;
 
         //Act
-        double result = sensor1.getValorMaximoDoDia(data);
+        double result = sensor1.getMaximumValueOfDay(data);
         //assert
         assertEquals(expectedResult, result, 0.001);
 
@@ -1224,7 +1224,7 @@ class SensorTest {
         double expectedResult = 30;
 
         //Act
-        double result = sensor1.getValorMaximoDoDia(data);
+        double result = sensor1.getMaximumValueOfDay(data);
         //assert
         assertEquals(expectedResult, result, 0.001);
 

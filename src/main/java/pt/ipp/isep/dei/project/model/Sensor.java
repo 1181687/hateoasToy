@@ -258,7 +258,11 @@ public class Sensor {
 
     }
 
-    public double getValorMaximoDoDia(Date data) {
+    /**
+     * @param data a given day
+     * @return the maximum value of measurements
+     */
+    public double getMaximumValueOfDay(Date data) {
         if (!getRegistosDoDia(data).isEmpty()) {
             double valorMaximoDoDia = getRegistosDoDia(data).get(0).getmValor();
             for (Measurement registo : getRegistosDoDia(data)) {
@@ -278,7 +282,7 @@ public class Sensor {
         cal.setTime(primeiroDiaSemana);
         int contador = 1;
         while (contador < 8) {
-            double maximoDia = getValorMaximoDoDia(cal.getTime());
+            double maximoDia = getMaximumValueOfDay(cal.getTime());
             if (!Double.isNaN(maximoDia)) {
                 registosMaximosSemana.add(maximoDia);
             }

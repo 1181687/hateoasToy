@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.util.Date;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;
@@ -133,5 +134,14 @@ public class Room {
      */
     public SensorList getSensorList() {
         return mSensorList;
+    }
+
+    /**
+     * @param type of sensor (temperature)
+     * @param date any given day
+     * @return maximum temperature
+     */
+    public double getMaximumMeasurementInAGivenDay(SensorType type, Date date) {
+        return mSensorList.getMaximumMeasureOfATypeOfSensorInAGivenDay(type, date);
     }
 }
