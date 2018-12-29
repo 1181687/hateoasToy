@@ -16,10 +16,9 @@ public class HouseGridTest {
 
         // Arrange
         Dimensions dimensionsRoom1 = new Dimensions(5.2, 3.7, 8.5);
-        SensorList list = new SensorList();
-        Room room1 = new Room("Kid's room", 1, dimensionsRoom1, list);
+        Room room1 = new Room("Kid's room", 1, dimensionsRoom1);
         Dimensions dimensionsRoom2 = new Dimensions(5.2, 3.7, 8.5);
-        Room room2 = new Room("Bathroom", 1, dimensionsRoom2, list);
+        Room room2 = new Room("Bathroom", 1, dimensionsRoom2);
 
         String houseGridName = "hgname1";
         HouseGrid houseGrid1 = new HouseGrid(houseGridName);
@@ -46,7 +45,7 @@ public class HouseGridTest {
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
         SensorList list = new SensorList();
-        Room room = new Room(roomName, houseFloor1, dimensions1, list);
+        Room room = new Room(roomName, houseFloor1, dimensions1);
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
         grid.attachRoomInTheHouseGridRoomList(room);

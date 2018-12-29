@@ -15,8 +15,7 @@ public class RoomTest {
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        SensorList list = new SensorList();
-        Room room = new Room(name1, houseFloor1, dimensions1, list);
+        Room room = new Room(name1, houseFloor1, dimensions1);
 
         String expectResult = "Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0";
 
@@ -32,8 +31,7 @@ public class RoomTest {
         String name = "roomOne";
         int housefloor = 2;
         Dimensions dim = new Dimensions(4, 10.5, 7.5);
-        SensorList list = new SensorList();
-        Room room = new Room(name, housefloor, dim, list);
+        Room room = new Room(name, housefloor, dim);
 
         int expectedResult = Objects.hash(name, housefloor, dim);
 
@@ -61,10 +59,9 @@ public class RoomTest {
     void testEqualsTrue() {
         //Arrange
         Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
-        SensorList list = new SensorList();
-        Room room = new Room("Room", 2, dim, list);
+        Room room = new Room("Room", 2, dim);
         Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
-        Room room2 = new Room("Room", 2, dim2, list);
+        Room room2 = new Room("Room", 2, dim2);
         //Act
         boolean result = room.equals(room2);
         //Assert
@@ -75,10 +72,9 @@ public class RoomTest {
     void testEqualsFalse() {
         //Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
-        SensorList list = new SensorList();
-        Room room = new Room("Room", 2, dim, list);
+        Room room = new Room("Room", 2, dim);
         Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
-        Room room2 = new Room("Room", 2, dim2, list);
+        Room room2 = new Room("Room", 2, dim2);
         //Act
         boolean result = room.equals(room2);
         //Assert
@@ -89,8 +85,7 @@ public class RoomTest {
     void testEqualsFalseDifTypes() {
         //Arrange
         Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
-        SensorList list = new SensorList();
-        Room room = new Room("Room", 2, dim, list);
+        Room room = new Room("Room", 2, dim);
 
         SensorType tipo = new SensorType("humidade");
 
@@ -111,8 +106,8 @@ public class RoomTest {
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
-        SensorList list = new SensorList();
-        Room room = new Room("Room", 2, dim, list);
+
+        Room room = new Room("Room", 2, dim);
 
         // Act
         boolean result = room.addSensorToTheListOfSensorsInTheRoom(s1);
@@ -133,8 +128,7 @@ public class RoomTest {
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
-        SensorList list = new SensorList();
-        Room room = new Room("Room", 2, dim, list);
+        Room room = new Room("Room", 2, dim);
 
         room.addSensorToTheListOfSensorsInTheRoom(s0);
         sensorList.addSensorToTheListOfSensors(s0);
@@ -149,9 +143,8 @@ public class RoomTest {
     public void testValidateNameNull() {
         String name = null;
         Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
-        SensorList list = new SensorList();
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new Room(name, 2, dim, list)
+                new Room(name, 2, dim)
         );
         assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
     }
@@ -160,9 +153,8 @@ public class RoomTest {
     public void testValidateNameEmpty() {
         String name = "  ";
         Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
-        SensorList list = new SensorList();
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new Room(name, 2, dim, list)
+                new Room(name, 2, dim)
         );
         assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
     }
@@ -171,9 +163,8 @@ public class RoomTest {
     public void testValidateDimensions() {
         String name = "Room 1";
         Dimensions dim = null;
-        SensorList list = new SensorList();
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new Room(name, 2, dim, list)
+                new Room(name, 2, dim)
         );
         assertEquals("Dimensions should not be null", exception.getMessage());
     }

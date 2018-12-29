@@ -14,22 +14,21 @@ public class Room {
     //////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * constructor that receives name, houseFloor, dimensions, sensorList
+     * constructor that receives name, houseFloor, dimensions
      * throw an exception if any of the parameters is invalid.
      * Invalid parameters if Dimensions is null or name is null or empty
      *
      * @param name
      * @param houseFloor
      * @param dimensions
-     * @param sensorList
      */
-    public Room(String name, int houseFloor, Dimensions dimensions, SensorList sensorList) {
+    public Room(String name, int houseFloor, Dimensions dimensions) {
         validateName(name);
         validateDimensions(dimensions);
         this.mName = name.trim();
         this.mHouseFloor = houseFloor;
         this.mDimensions = dimensions;
-        this.mSensorList = sensorList;
+        this.mSensorList = new SensorList();
     }
 
     /**

@@ -58,8 +58,7 @@ public class RoomList {
      */
     public Room newRoom(String name, int housefloor, double height, double length, double width) {
         Dimensions newDimension = new Dimensions(height, length, width);
-        SensorList sensorList = new SensorList();
-        return new Room(name, housefloor, newDimension, sensorList);
+        return new Room(name, housefloor, newDimension);
     }
 
     public String getDisplayRoomList() {

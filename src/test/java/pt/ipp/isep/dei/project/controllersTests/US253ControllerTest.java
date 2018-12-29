@@ -13,17 +13,16 @@ class US253ControllerTest {
         // Arrange
         // RoomList with two rooms
         RoomList roomList = new RoomList();
-        SensorList sensorList = new SensorList();
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1, sensorList);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
-        Room room2 = new Room (name2,houseFloor2,dimensions2, sensorList);
+        Room room2 = new Room(name2, houseFloor2, dimensions2);
 
         roomList.addRoomToRoomList(room1);
         roomList.addRoomToRoomList(room2);
@@ -57,12 +56,11 @@ class US253ControllerTest {
         // Arrange
         // RoomList with two rooms
         RoomList roomList = new RoomList();
-        SensorList sensorList = new SensorList();
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1, sensorList);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
 
         roomList.addRoomToRoomList(room1);
 
@@ -101,14 +99,11 @@ class US253ControllerTest {
         SensorType sensorType = new SensorType("Temperatura");
         String sensorName = "A123";
 
-        // Sensors List
-        SensorList sensorList = new SensorList();
-
         // Room
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1, sensorList);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
 
         // Room list
         RoomList roomList = new RoomList();
@@ -169,13 +164,12 @@ class US253ControllerTest {
     void checkIfRoomListIsEmptyNegative() {
         // Arrange
         RoomList roomList = new RoomList();
-        SensorList sensorList = new SensorList();
 
         // Room
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1, sensorList);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
 
         roomList.addRoomToRoomList(room1);
 
@@ -204,12 +198,11 @@ class US253ControllerTest {
         // Arrange
         // RoomList with two rooms
         RoomList roomList = new RoomList();
-        SensorList sensorList = new SensorList();
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1, sensorList);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
 
         roomList.addRoomToRoomList(room1);
 
@@ -238,12 +231,11 @@ class US253ControllerTest {
         // Arrange
         // RoomList with two rooms
         RoomList roomList = new RoomList();
-        SensorList sensorList = new SensorList();
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room (name1,houseFloor1,dimensions1, sensorList);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
 
         roomList.addRoomToRoomList(room1);
 
