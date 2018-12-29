@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.Measurement;
 import pt.ipp.isep.dei.project.model.SensorType;
 
 public class US605Controller {
@@ -14,11 +14,10 @@ public class US605Controller {
         this.mType = type;
     }
 
-    public double getCurrentTemperatureRoom(String name) {
-        return this.mHouse.getListOfRoom().getRoomByName(name).getSensorList().getUltimoRegistoDeUmTipoDeSensor(mType);
+    public Measurement getLatestTemperatureRoom(String name) {
+        return this.mHouse.getListOfRoom().getRoomByName(name).getSensorList().getLatestMeasurementBySensorType(mType);
     }
 
-    
     public String getDisplayRoomList() {
         return this.mHouse.getListOfRoom().getDisplayRoomList();
     }
@@ -29,9 +28,5 @@ public class US605Controller {
 
     public String getNameOfTheChosenRoomInSpecificPos(int position) {
         return this.mHouse.getListOfRoom().getNameOfTheChosenRoomInSpecificPos(position);
-    }
-
-    public Room getRoomFromASpecificPositionInTheList(int position) {
-        return this.mHouse.getListOfRoom().getRoomFromASpecificPositionInTheList(position);
     }
 }

@@ -149,7 +149,7 @@ class SensorListTest {
         SensorType tipoResultado = new SensorType("Temperatura");
 
         //Act
-        List<Measurement> result = listSens.getListaDeUltimosRegistosPorTipoDeSensor(tipoResultado);
+        List<Measurement> result = listSens.getListOfLatestMeasurementsBySensorType(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -239,7 +239,7 @@ class SensorListTest {
         listSens.addSensorToTheListOfSensors(s2);
 
         //Act
-        List<Measurement> result = listSens.getListaDeUltimosRegistosPorTipoDeSensor(tipoResultado);
+        List<Measurement> result = listSens.getListOfLatestMeasurementsBySensorType(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -321,7 +321,7 @@ class SensorListTest {
         SensorType tipoResultado = new SensorType("Temperatura");
 
         //Act
-        List<Measurement> result = listSens.getListaDeUltimosRegistosPorTipoDeSensor(tipoResultado);
+        List<Measurement> result = listSens.getListOfLatestMeasurementsBySensorType(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);

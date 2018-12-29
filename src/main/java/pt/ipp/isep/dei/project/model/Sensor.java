@@ -168,7 +168,7 @@ public class Sensor {
         mRegistos.add(measurement);
     }
 
-    public boolean listaDeRegistosEVazia() {
+    public boolean measurementListIsEmpty() {
         return mRegistos.isEmpty();
     }
 

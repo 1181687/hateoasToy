@@ -221,7 +221,7 @@ class SensorTest {
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
         //Act
-        boolean result = s1.listaDeRegistosEVazia();
+        boolean result = s1.measurementListIsEmpty();
 
         //Assert
         assertTrue(result);
@@ -243,7 +243,7 @@ class SensorTest {
         s1.addMeasurementToList(measurement1);
 
         //Act
-        boolean result = s1.listaDeRegistosEVazia();
+        boolean result = s1.measurementListIsEmpty();
 
         //Assert
         assertFalse(result);

@@ -69,10 +69,10 @@ public class GeographicalArea {
     }
 
 /*
-    public List<Measurement> getListaDeUltimosRegistosPorTipoDeSensor(SensorType tipo) {
+    public List<Measurement> getListOfLatestMeasurementsBySensorType(SensorType tipo) {
         List<Measurement> listaDeUltimosRegistos = new ArrayList<>();
         for (Sensor sensor : mSensorList.getmSensorList()) {
-            if (sensor.listaDeRegistosEVazia()) {
+            if (sensor.measurementListIsEmpty()) {
                 break;
             }
             if (sensor.umTipoDeSensorEIgualAOutro(tipo) && (!(Double.isNaN(sensor.getUltimoRegisto().getmValue())))) {
@@ -83,8 +83,8 @@ public class GeographicalArea {
     }
 
     public double getUltimoRegistoDeUmTipoDeSensor(SensorType tipo) {
-        List<Measurement> listaDeUltimosRegisto = getListaDeUltimosRegistosPorTipoDeSensor(tipo);
-        if (getListaDeUltimosRegistosPorTipoDeSensor(tipo).isEmpty()) {
+        List<Measurement> listaDeUltimosRegisto = getListOfLatestMeasurementsBySensorType(tipo);
+        if (getListOfLatestMeasurementsBySensorType(tipo).isEmpty()) {
             return Double.NaN;
         }
         Measurement medicaoComUltimoRegisto = listaDeUltimosRegisto.get(0);

@@ -58,19 +58,31 @@ public class Menu {
         StringBuilder content = new StringBuilder();
         content.append("Choose one of the options:");
         content.append("\n");
-        content.append("1-US600");
+        content.append("1-US1UI");
         content.append("\n");
-        content.append("2-US605-Get the current temperature in a room");
+        content.append("2-US2UI");
         content.append("\n");
-        content.append("3-US610- Get the maximum temperature in a room in a given day");
+        content.append("3-US3UI");
         content.append("\n");
-        content.append("4-US620");
+        content.append("4-US4UI");
         content.append("\n");
-        content.append("5-US623");
+        content.append("5-US5UI");
+        content.append("\n");
+        content.append("6-US6UI");
+        content.append("\n");
+        content.append("7-US7UI");
+        content.append("\n");
+        content.append("8-US8UI");
+        content.append("\n");
+        content.append("9-US101UI");
+        content.append("\n");
+        content.append("10-US600UI- Get the maximum temperature in a room in a given day");
+        content.append("\n");
+        content.append("11-US605UI- Get the current temperature of a room");
         content.append("\n");
         content.append("0-Exit");
         String label = content.toString();
-        int op = InputValidator.getIntRange(label, 0, 5);
+        int op = InputValidator.getIntRange(label, 0, 11);
         return op;
     }
 }
