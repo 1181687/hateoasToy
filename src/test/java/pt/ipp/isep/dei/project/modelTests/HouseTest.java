@@ -281,8 +281,10 @@ public class HouseTest {
 
         double expectedResult = 25;
 
+        SensorType type = new SensorType("Temperature");
+
         //Act
-        double result = house.getLastTemperatureOfTheHouseArea();
+        double result = house.getLastMeasurementOfTheHouseArea(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -356,8 +358,10 @@ public class HouseTest {
 
         double expectedResult = Double.NaN;
 
+        SensorType type = new SensorType("Temperature");
+
         //Act
-        double result = house.getLastTemperatureOfTheHouseArea();
+        double result = house.getLastMeasurementOfTheHouseArea(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -415,8 +419,10 @@ public class HouseTest {
 
         double expectedResult = Double.NaN;
 
+        SensorType type = new SensorType("Temperature");
+
         //Act
-        double result = house.getLastTemperatureOfTheHouseArea();
+        double result = house.getLastMeasurementOfTheHouseArea(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
