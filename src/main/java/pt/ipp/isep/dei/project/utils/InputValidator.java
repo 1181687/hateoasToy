@@ -24,7 +24,7 @@ public class InputValidator {
                 flag = true;
                 in.next();
             }
-        }while(flag);
+        } while(flag);
         return x;
     }
 
