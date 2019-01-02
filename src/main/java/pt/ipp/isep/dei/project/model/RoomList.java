@@ -138,7 +138,7 @@ public class RoomList {
      * @param name of Room
      * @param type of Sensor (temperature)
      * @param date any given day
-     * @return the maximum temperature in a Rooom in a given day
+     * @return the maximum temperature in a specific Room in a given day
      */
     public double getMaximumTemperatureInARoomInAGivenDay(String name, SensorType type, Date date) {
         return getRoomByName(name).getMaximumMeasurementInAGivenDay(type, date);
