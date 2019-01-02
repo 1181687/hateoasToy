@@ -95,7 +95,8 @@ public class AddressTest {
         Location local = new Location(latitude, longitude, altitude);
         Address address1 = new Address(zipCode, local);
 
-        Address address2 = new Address(zipCode, local);
+        Location local2 = new Location(latitude, longitude, altitude);
+        Address address2 = new Address(zipCode, local2);
 
         boolean expectedResult = true;
 
