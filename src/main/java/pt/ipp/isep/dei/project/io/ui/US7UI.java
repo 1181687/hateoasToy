@@ -25,7 +25,7 @@ public class US7UI {
             System.out.println(ctrl.getConteudoLista(true));
             int posicaoDaSegundaOpcao = ler.nextInt() - 1;
             GeographicalArea segundaAG = ctrl.getAGNaListaApresentada(posicaoDaSegundaOpcao);
-            primeiraAG.setmAreaInseridaEm(segundaAG);
+            primeiraAG.setmInsertedIn(segundaAG);
             System.out.println("Success!");
             ctrl.adicionarAGListaPosicaoEspecifica(posicaoDaPrimeiraOpcao, primeiraAG);
         } else

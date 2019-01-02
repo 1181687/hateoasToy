@@ -25,7 +25,7 @@ class US7ControllerTest {
         RectangleArea area2 = new RectangleArea(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        ag2.setmAreaInseridaEm(ag1);
+        ag2.setmInsertedIn(ag1);
         listaDeAGs.adicionarAreaGeoALista(ag1);
         listaDeAGs.adicionarAreaGeoALista(ag2);
 
@@ -96,7 +96,7 @@ class US7ControllerTest {
         RectangleArea area3 = new RectangleArea(10, 10, local);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
-        ag2.setmAreaInseridaEm(ag1);
+        ag2.setmInsertedIn(ag1);
 
         US7Controller ctrl = new US7Controller(geoAreaList);
 
@@ -135,7 +135,7 @@ class US7ControllerTest {
         RectangleArea area3 = new RectangleArea(10, 10, local);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
-        ag2.setmAreaInseridaEm(ag1);
+        ag2.setmInsertedIn(ag1);
 
         US7Controller ctrl = new US7Controller(geoAreaList);
 
