@@ -11,10 +11,20 @@ public class US605UI {
 
     private US605Controller mctrl;
 
-    public US605UI(House house, SensorTypeList listatiposSens) {
-        this.mctrl = new US605Controller(house, listatiposSens.novoTipoSensor("temperature"));
+    /**
+     * constructor that receives a House and a SensorTypeList
+     *
+     * @param house          House
+     * @param listSensorType SensorTypeList
+     */
+    public US605UI(House house, SensorTypeList listSensorType) {
+        this.mctrl = new US605Controller(house, listSensorType.novoTipoSensor("temperature"));
     }
 
+    /**
+     * method that displays the rooms available to the user, so he can choose one
+     * to get the current temperature.
+     */
     public void run() {
 
         System.out.println(mctrl.getDisplayRoomList());
@@ -26,7 +36,7 @@ public class US605UI {
         String label0 = "Choose the room you want to get the current temperature";
         int option = InputValidator.getIntRange(label0, 1, mctrl.lengthOfRoomList());
         String roomName = mctrl.getNameOfTheChosenRoomInSpecificPos(option - 1);
-        Measurement temp = mctrl.getLatestTemperatureRoom(roomName);
+        Measurement temp = mctrl.getLatestMeasurementByRoomName(roomName);
 
         if (Objects.isNull(temp)) {
             System.out.println("There are no temperature values available");
@@ -36,6 +46,12 @@ public class US605UI {
         this.displayResults(roomName, temp.getmValue(), temp.getmDateTime().toString());
     }
 
+    /**
+     * outputs the latest temperature with date, of the room
+     * @param roomName given String room name
+     * @param temp given double temperature
+     * @param dateTime given string date and time
+     */
     private void displayResults(String roomName, double temp, String dateTime) {
         StringBuilder content = new StringBuilder();
         content.append("The latest temperature of the room ");

@@ -11,7 +11,6 @@ public class Room {
     private Dimensions mDimensions;
     private SensorList mSensorList;
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
      * constructor that receives name, houseFloor, dimensions
@@ -55,7 +54,6 @@ public class Room {
         }
     }
 
-    ////////////////////////////////////////////////////////////////////////////////////////////
     public String getmName() {
         return mName;
     }

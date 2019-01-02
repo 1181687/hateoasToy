@@ -4,32 +4,13 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.US605Controller;
 import pt.ipp.isep.dei.project.model.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class US605ControllerTest {
-
-    @Test
-    void testarNovoTipoSensor() {
-        //Arrange
-        SensorTypeList list = new SensorTypeList();
-        SensorType newSensorType = new SensorType("Humidity");
-        //Act
-        boolean result = list.adicionarTipoSensorALista(newSensorType);
-        //Assert
-        assertTrue(result);
-    }
-
-    @Test
-    void testNewTypeSensorDuplicated() {
-        //Arrange
-        SensorTypeList list = new SensorTypeList();
-        SensorType newSensorType = new SensorType("Humidity");
-        list.adicionarTipoSensorALista(newSensorType);
-        //Act
-        boolean result = list.adicionarTipoSensorALista(newSensorType);
-        //Assert
-        assertFalse(result);
-    }
 
     @Test
     public void getDisplayRoomListTest() {
@@ -68,7 +49,7 @@ public class US605ControllerTest {
     }
 
     @Test
-    public void getDisplayRoomListEmptyTest() {
+    public void testGetDisplayRoomListEmpty() {
         //arrange
         RoomList rList = new RoomList();
 
@@ -124,21 +105,11 @@ public class US605ControllerTest {
         assertEquals(expectResult, result);
     }
 
-
-
-
-
-
-    /*
     @Test
-    public void testarUltimoRegistoDeUmaListaDeTiposDeSensores() {
+    public void testGetLatestTemperatureRoom() {
         //arrange
-        //Instanciar AG
-        String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local1, area);
+        Dimensions dimensions = new Dimensions(300, 600, 600);
+        Room room1 = new Room("room1", 1, dimensions);
 
         //Instanciar Sensor
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -146,23 +117,19 @@ public class US605ControllerTest {
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
         Date dataFuncionamento1 = calendario1.getTime();
-        SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(123, 355, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType0, locS1);
 
         Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
         Date dataFuncionamento2 = calendario2.getTime();
         SensorType sensorType2 = new SensorType("Humidade");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
-        //Instanciar Measurement
+        //Measurement
         // Sensor0
         Calendar calendarioDaMedicao01 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
@@ -197,40 +164,134 @@ public class US605ControllerTest {
         Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
 
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
+        Measurement measurement22 = new Measurement(26, dataHoraDaMedicao22);
 
         s2.addMeasurementToList(measurement21);
         s2.addMeasurementToList(measurement22);
 
-        double expectedResult = 25;
+        Measurement expectedResult = measurement12;
 
-        SensorType tipoResultado = new SensorType("Temperatura");
-        SensorList listSens = new SensorList();
-        listSens.addSensorToTheListOfSensors(s0);
-        listSens.addSensorToTheListOfSensors(s1);
-        listSens.addSensorToTheListOfSensors(s2);
+        room1.addSensorToTheListOfSensorsInTheRoom(s0);
+        room1.addSensorToTheListOfSensorsInTheRoom(s1);
+        room1.addSensorToTheListOfSensorsInTheRoom(s2);
 
-        Dimensions dimensions = new Dimensions(300, 600, 600);
-        Room room = new Room("room1", 1, dimensions);
         RoomList roomList = new RoomList();
-        roomList.addRoomToRoomList(room);
+        roomList.addRoomToRoomList(room1);
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
         GeoAreaType geoAreaType = new GeoAreaType("City");
         RectangleArea rectangleArea = new RectangleArea(20, 20, location);
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
-        room.getSensorList().addSensorToTheListOfSensors(s0);
-        room.getSensorList().addSensorToTheListOfSensors(s1);
-        room.getSensorList().addSensorToTheListOfSensors(s2);
         House house = new House(roomList, gridList, address, insertedGeoArea);
-        US605Controller ctrl = new US605Controller(house, sensorType1);
+        US605Controller ctrl = new US605Controller(house, sensorType0);
 
         //Act
-        Measurement result = listSens.getLatestMeasurementBySensorType(tipoResultado).getmValue();
+        Measurement result = ctrl.getLatestMeasurementByRoomName("room1");
 
         //Assert
         assertEquals(expectedResult, result);
     }
-    */
+
+    @Test
+    public void testGetLatestTemperatureRoomNull() {
+        //arrange
+        Dimensions dimensions = new Dimensions(300, 600, 600);
+        Room room1 = new Room("room1", 1, dimensions);
+
+        //Sensor
+        Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
+        Date dataFuncionamento2 = calendario2.getTime();
+        SensorType sensorType2 = new SensorType("Humidity");
+        Location locS2 = new Location(123, 345, 55);
+        Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
+
+        //Measurement
+        Calendar calendarioDaMedicao21 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
+
+        Calendar calendarioDaMedicao22 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
+        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+
+        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
+        Measurement measurement22 = new Measurement(26, dataHoraDaMedicao22);
+
+        s2.addMeasurementToList(measurement21);
+        s2.addMeasurementToList(measurement22);
+
+        Measurement expectedResult = null;
+
+        room1.addSensorToTheListOfSensorsInTheRoom(s2);
+
+        SensorType sensorType0 = new SensorType("Temperature");
+        RoomList roomList = new RoomList();
+        roomList.addRoomToRoomList(room1);
+        HouseGridList gridList = new HouseGridList();
+        Location location = new Location(0.0, 0.0, 0.0);
+        GeoAreaType geoAreaType = new GeoAreaType("City");
+        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        Address address = new Address("0000", location);
+        House house = new House(roomList, gridList, address, insertedGeoArea);
+        US605Controller ctrl = new US605Controller(house, sensorType0);
+
+        //Act
+        Measurement result = ctrl.getLatestMeasurementByRoomName("room1");
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getNameOfTheChosenRoomInSpecificPos() {
+
+        //Arrange
+        RoomList rList = new RoomList();
+        Dimensions dim0 = new Dimensions(3, 3.5, 3.5);
+        Dimensions dim1 = new Dimensions(3, 3.5, 3.5);
+        Room room0 = new Room("RoomOne", 2, dim0);
+        Room room1 = new Room("RoomTwo", 2, dim1);
+
+        rList.addRoomToRoomList(room0);
+        rList.addRoomToRoomList(room1);
+
+        HouseGridList gridList = new HouseGridList();
+        Location location = new Location(0.0, 0.0, 0.0);
+        GeoAreaType geoAreaType = new GeoAreaType("City");
+        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        Address address = new Address("0000", location);
+        House house = new House(rList, gridList, address, insertedGeoArea);
+        SensorType sensorType0 = new SensorType("Temperature");
+        US605Controller ctrl = new US605Controller(house, sensorType0);
+
+        String expectedResult = "RoomTwo";
+        int roomPos = 1;
+        //Act
+        String result = ctrl.getNameOfTheChosenRoomInSpecificPos(roomPos);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetNameOfRoomInEmptyListOfRooms() {
+        //Arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridList = new HouseGridList();
+        Location location = new Location(0.0, 0.0, 0.0);
+        GeoAreaType geoAreaType = new GeoAreaType("City");
+        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        Address address = new Address("0000", location);
+        House house = new House(rList, gridList, address, insertedGeoArea);
+        SensorType sensorType0 = new SensorType("Temperature");
+        US605Controller ctrl = new US605Controller(house, sensorType0);
+
+        String expectedResult = null;
+        int roomPos = 0;
+        //Act
+        String result = ctrl.getNameOfTheChosenRoomInSpecificPos(roomPos);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 }
