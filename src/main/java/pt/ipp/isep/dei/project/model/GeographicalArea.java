@@ -234,7 +234,7 @@ public class GeographicalArea {
      * @return
      */
     public double getTotalDailyMeasurementInTheArea(SensorType sensorType, Date day) {
-        double totalDailyMeasurement = Double.NaN;
+        double totalDailyMeasurement = 0;
         List<Sensor> sensorListWithSameTypeDuringADay = sortSensorTypesOfAGeoAreaInADay(sensorType, this.mSensorList.getmSensorList(), day);
         if(!sensorListWithSameTypeDuringADay.isEmpty()) {
             for (Sensor sensor : sensorListWithSameTypeDuringADay) {
@@ -242,7 +242,7 @@ public class GeographicalArea {
                     totalDailyMeasurement = sensor.getTotalDailyMeasurements(day);
                 }
             }
-        }
+        } else {totalDailyMeasurement = Double.NaN;}
         return totalDailyMeasurement;
     }
 }
