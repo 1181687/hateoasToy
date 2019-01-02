@@ -7,13 +7,35 @@ import java.util.List;
 public class SensorList {
     private List<Sensor> mSensorList = new ArrayList<>();
 
+    /**
+     * Constructor method.
+     */
     public SensorList() {
     }
 
+    /**
+     * Get method.
+     *
+     * @return mSensorList.
+     */
     public List<Sensor> getmSensorList() {
         return mSensorList;
     }
 
+    /**
+     * Set method.
+     *
+     * @param mSensorList List of sensors to be used.
+     */
+    public void setmSensorList(List<Sensor> mSensorList) {
+        this.mSensorList = mSensorList;
+    }
+
+    /**
+     * Method that adds a sensor to the existing list.
+     * @param sensor Chosen sensor.
+     * @return True or false.
+     */
     public boolean addSensorToTheListOfSensors(Sensor sensor) {
         if (!(mSensorList.contains(sensor))) {
             mSensorList.add(sensor);
@@ -22,14 +44,22 @@ public class SensorList {
         return false;
     }
 
+    /**
+     * Method that creates a new sensor.
+     * @param name Name for the sensor.
+     * @param sensorType Type of the sensor.
+     * @param location Location of the sensor.
+     * @return Sensor.
+     */
     public Sensor createNewSensor(String name, SensorType sensorType, Location location) {
         return new Sensor(name, sensorType, location);
     }
 
-    public void setmSensorList(List<Sensor> mSensorList) {
-        this.mSensorList = mSensorList;
-    }
-
+    /**
+     * Method that returns a list of the latest measurements by sensor type.
+     * @param type Sensor type needed.
+     * @return List with the lastest measeruments for the required type.
+     */
     public List<Measurement> getListOfLatestMeasurementsBySensorType(SensorType type) {
         List<Measurement> listOfLatestMeasurements = new ArrayList<>();
         for (Sensor sensor : mSensorList) {
@@ -91,5 +121,3 @@ public class SensorList {
         return maxValue;
     }
 }
-
-

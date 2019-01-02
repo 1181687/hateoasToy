@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HouseGridList {
-    private List<HouseGrid> mList = new ArrayList<>();
+    private List<HouseGrid> mList;
 
+    /**
+     * Constructor method.
+     */
     public HouseGridList() {
+        mList = new ArrayList<>();
     }
 
     /**
      * Get method.
-     *
      * @return mList.
      */
     public List<HouseGrid> getmList() {
@@ -19,7 +22,7 @@ public class HouseGridList {
     }
 
     /**
-     * Method that get the house grid in a specific position in the list.
+     * Method that gets the house grid in a specific position in the list.
      * @param position Specifies the position of the house grid in the list.
      * @return The respective house grid.
      */
@@ -51,7 +54,7 @@ public class HouseGridList {
     }
 
     /**
-     * Method that asks to the class HouseGrid to add a room to it's list.
+     * Method that asks the class HouseGrid to add a room to it's list.
      * @param houseGridSelected Specified house grid in the list.
      * @param roomSelected      Specified room.
      */
@@ -62,7 +65,6 @@ public class HouseGridList {
 
     /**
      * Method that checks if the house grid's list is empty.
-     *
      * @return True or false.
      */
     public boolean checkIfHouseGridListIsEmpty (){
@@ -80,7 +82,6 @@ public class HouseGridList {
 
     /**
      * Method that adds a house grid to the list.
-     *
      * @param grid Specified grid.
      */
     public void addHouseGridToTheList(HouseGrid grid) {

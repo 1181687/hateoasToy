@@ -786,7 +786,7 @@ class GeographicalAreaTest {
     }
 
     @Test
-    public void getmNomeAreaGeo() {
+    public void getmNomeAreaGeoTest() {
         //arrange
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
@@ -901,12 +901,12 @@ class GeographicalAreaTest {
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
 
-        ag1.setmAreaInseridaEm(ag1);
+        ag1.setmInsertedIn(ag1);
 
         GeographicalArea expectedResult = ag1;
 
         //Act
-        GeographicalArea result = ag1.getmAreaInseridaEm();
+        GeographicalArea result = ag1.getmInsertedIn();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -963,9 +963,9 @@ class GeographicalAreaTest {
     }
 
     @Test
-    public void getLastTemperatureInTheAreaTest() {
-        //arrange
-        //Instanciar AG
+    public void getTheSensorListInTheFirstAreaWithSensorOfAGivenTypeTest() {
+        // Arrange
+        // Instantiate GeoAreas
         String nomeAG2 = "Região Norte";
         GeoAreaType tipo2 = new GeoAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
@@ -977,17 +977,17 @@ class GeographicalAreaTest {
         Location local1 = new Location(41.1496, -6.6109, 100);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-        ag1.setmAreaInseridaEm(ag2);
+        ag1.setmInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-        ag.setmAreaInseridaEm(ag1);
+        ag.setmInsertedIn(ag1);
 
 
-        //Instanciar Sensor
+        // Instantiate Sensors
         Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
         Date dataFuncionamento0 = calendario0.getTime();
         SensorType sensorType0 = new SensorType("Temperature");
@@ -1003,7 +1003,7 @@ class GeographicalAreaTest {
         ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
 
-        //Instanciar Measurement
+        // Instantiate Measurements
         // Sensor0
         Calendar calendarioDaMedicao01 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
         Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
@@ -1030,21 +1030,19 @@ class GeographicalAreaTest {
         s1.addMeasurementToList(measurement11);
         s1.addMeasurementToList(measurement12);
 
-        Location location = new Location(0,30,50);
-
-        double expectedResult = 25;
+        SensorType typeRequired = new SensorType("Temperature");
 
         //Act
-        double result = ag.getLastTemperatureInTheArea(location);
+        Boolean result = ag.getTheSensorListInTheFirstAreaWithSensorOfAGivenType(typeRequired).getmSensorList().isEmpty();
 
         //Assert
-        assertEquals(expectedResult, result, 0.0001);
+        assertFalse(result);
     }
 
     @Test
-    public void getLastTemperatureInTheAreaTest2() {
-        //arrange
-        //Instanciar AG
+    public void getTheSensorListInTheFirstAreaWithSensorOfAGivenTypeTestWithoutSensors() {
+        // Arrange
+        // Instantiate GeoAreas
         String nomeAG2 = "Região Norte";
         GeoAreaType tipo2 = new GeoAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
@@ -1056,30 +1054,160 @@ class GeographicalAreaTest {
         Location local1 = new Location(41.1496, -6.6109, 100);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-        ag1.setmAreaInseridaEm(ag2);
+        ag1.setmInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-        ag.setmAreaInseridaEm(ag1);
+        ag.setmInsertedIn(ag1);
+
+
+        // Instantiate Sensors
+        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
+        Date dataFuncionamento0 = calendario0.getTime();
+        SensorType sensorType0 = new SensorType("Temperature");
+        Location locS0 = new Location(-1, 30, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+
+        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
+        Date dataFuncionamento1 = calendario1.getTime();
+        SensorType sensorType1 = new SensorType("Temperature");
+        Location locS1 = new Location(0, 30, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+
+
+        SensorType typeRequired = new SensorType("Temperature");
+
+        //Act
+        Boolean result = ag.getTheSensorListInTheFirstAreaWithSensorOfAGivenType(typeRequired).getmSensorList().isEmpty();
+
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void getLastTemperatureInTheAreaTest() {
+        // Arrange
+        // Instantiate GeoAreas
+        String nomeAG2 = "Região Norte";
+        GeoAreaType tipo2 = new GeoAreaType("Região");
+        Location local2 = new Location(32.1496, 7.6109, 98);
+        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+
+        String nomeAG1 = "Distrito Porto";
+        GeoAreaType tipo1 = new GeoAreaType("Distrito");
+        Location local1 = new Location(41.1496, -6.6109, 100);
+        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        ag1.setmInsertedIn(ag2);
+
+        String nomeAG = "Porto";
+        GeoAreaType tipo = new GeoAreaType("Cidade");
+        Location local = new Location(42.1496, -8.6109, 97);
+        RectangleArea area = new RectangleArea(10, 10, local);
+        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        ag.setmInsertedIn(ag1);
+
+
+        // Instantiate Sensors
+        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
+        Date dataFuncionamento0 = calendario0.getTime();
+        SensorType sensorType0 = new SensorType("Temperature");
+        Location locS0 = new Location(-1, 30, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+
+        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
+        Date dataFuncionamento1 = calendario1.getTime();
+        SensorType sensorType1 = new SensorType("Temperature");
+        Location locS1 = new Location(0, 30, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+
+        // Instantiate Measurements
+        // Sensor0
+        Calendar calendarioDaMedicao01 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
+        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
+
+        Calendar calendarioDaMedicao02 = new GregorianCalendar(2018, 11, 3, 17, 24, 00);
+        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+
+        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
+        Measurement measurement02 = new Measurement(30, dataHoraDaMedicao02);
+
+        s0.addMeasurementToList(measurement01);
+        s0.addMeasurementToList(measurement02);
+
+        //Sensor1
+        Calendar calendarioDaMedicao11 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
+        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
+
+        Calendar calendarioDaMedicao12 = new GregorianCalendar(2018, 11, 4, 17, 24, 00);
+        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+
+        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
+        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
+
+
+        Location location = new Location(0,30,50);
+
+        double expectedResult = 25.0;
+        SensorType type = new SensorType("Temperature");
+
+        //Act
+        double result = ag.getTheLastMeasurementInTheArea(location, type);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.0001);
+    }
+
+    @Test
+    public void getLastTemperatureInTheAreaTestWithoutSensors() {
+        // Arrange
+        // Instantiate GeoAreas
+        String nomeAG2 = "Região Norte";
+        GeoAreaType tipo2 = new GeoAreaType("Região");
+        Location local2 = new Location(32.1496, 7.6109, 98);
+        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+
+        String nomeAG1 = "Distrito Porto";
+        GeoAreaType tipo1 = new GeoAreaType("Distrito");
+        Location local1 = new Location(41.1496, -6.6109, 100);
+        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        ag1.setmInsertedIn(ag2);
+
+        String nomeAG = "Porto";
+        GeoAreaType tipo = new GeoAreaType("Cidade");
+        Location local = new Location(42.1496, -8.6109, 97);
+        RectangleArea area = new RectangleArea(10, 10, local);
+        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        ag.setmInsertedIn(ag1);
 
         Location location = new Location(0,30,50);
 
         double expectedResult = Double.NaN;
 
+        SensorType type = new SensorType("Temperature");
+
         //Act
-        double result = ag.getLastTemperatureInTheArea(location);
+        double result = ag.getTheLastMeasurementInTheArea(location, type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
     }
 
     @Test
-    public void getLastTemperatureInTheAreaTest3() {
-        //arrange
-        //Instanciar AG
+    public void getLastTemperatureInTheAreaTestWithoutMeasurements() {
+        // Arrange
+        // Instantiate GeoAreas
         String nomeAG2 = "Região Norte";
         GeoAreaType tipo2 = new GeoAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
@@ -1091,17 +1219,17 @@ class GeographicalAreaTest {
         Location local1 = new Location(41.1496, -6.6109, 100);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-        ag1.setmAreaInseridaEm(ag2);
+        ag1.setmInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-        ag.setmAreaInseridaEm(ag1);
+        ag.setmInsertedIn(ag1);
 
 
-        //Instanciar Sensor
+        // Instantiate Sensors
         Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
         Date dataFuncionamento0 = calendario0.getTime();
         SensorType sensorType0 = new SensorType("Temperature");
@@ -1120,9 +1248,10 @@ class GeographicalAreaTest {
         Location location = new Location(0,30,50);
 
         double expectedResult = Double.NaN;
+        SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = ag.getLastTemperatureInTheArea(location);
+        double result = ag.getTheLastMeasurementInTheArea(location, type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -1241,5 +1370,4 @@ class GeographicalAreaTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-
 }

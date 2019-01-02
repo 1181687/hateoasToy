@@ -80,7 +80,8 @@ public class House {
     }
 
     public double getLastTemperatureOfTheHouseArea() {
-        return mInsertedGeoArea.getLastTemperatureInTheArea(mAddress.getLocation());
+        SensorType type = new SensorType("Temperature");
+        return mInsertedGeoArea.getTheLastMeasurementInTheArea(mAddress.getLocation(), type);
     }
 
     public double getAverageDailyMeasurementOfHouseArea(SensorType measurementType, Date startDate, Date endDate) {
