@@ -1042,7 +1042,7 @@ class GeographicalAreaTest {
     }
 
     @Test
-    public void getLastTemperatureInTheAreaTest2() {
+    public void getLastTemperatureInTheAreaTestWithoutSensors() {
         //arrange
         //Instanciar AG
         String nomeAG2 = "Região Norte";
@@ -1077,7 +1077,7 @@ class GeographicalAreaTest {
     }
 
     @Test
-    public void getLastTemperatureInTheAreaTest3() {
+    public void getLastTemperatureInTheAreaTestWithoutMeasurements() {
         //arrange
         //Instanciar AG
         String nomeAG2 = "Região Norte";

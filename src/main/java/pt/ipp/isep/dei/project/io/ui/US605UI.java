@@ -4,7 +4,6 @@ import pt.ipp.isep.dei.project.controllers.US605Controller;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Measurement;
 import pt.ipp.isep.dei.project.model.SensorTypeList;
-import pt.ipp.isep.dei.project.utils.InputValidator;
 
 import java.util.Objects;
 
