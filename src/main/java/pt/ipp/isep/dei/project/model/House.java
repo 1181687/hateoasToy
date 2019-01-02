@@ -79,8 +79,7 @@ public class House {
         return this.mAddress.getLocation();
     }
 
-    public double getLastTemperatureOfTheHouseArea() {
-        SensorType type = new SensorType("Temperature");
+    public double getLastMeasurementOfTheHouseArea(SensorType type) {
         return mInsertedGeoArea.getTheLastMeasurementInTheArea(mAddress.getLocation(), type);
     }
 
