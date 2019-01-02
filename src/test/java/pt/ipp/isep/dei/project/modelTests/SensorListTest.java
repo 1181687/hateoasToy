@@ -387,49 +387,16 @@ class SensorListTest {
     public void getMaximumMeasureOfATypeOfSensorInAGivenDayEmptyListOfSensors() {
         //arrange
 
-        Calendar calendar0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date date0 = calendar0.getTime();
+
+        Calendar cal = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dateTimeDayMeasure = cal.getTime();
         SensorType sensorType0 = new SensorType("Temperature");
-        Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("A123", date0, sensorType0, locS0);
-
-        Calendar calendar1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date date1 = calendar1.getTime();
-        SensorType sensorType1 = new SensorType("Temperature");
-        Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("B123", date1, sensorType1, locS1);
-
-
-        Calendar calendarMeasurement1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dateTimeDayMeasure1 = calendarMeasurement1.getTime();
-
-        Calendar calendarMeasurement2 = new GregorianCalendar(1991, 11, 2, 20, 24, 00);
-        Date dateTimeDayMeasure2 = calendarMeasurement2.getTime();
-
-        Measurement measurement1 = new Measurement(20.0, dateTimeDayMeasure1);
-        Measurement measurement2 = new Measurement(25.0, dateTimeDayMeasure2);
-
-        s0.addMeasurementToList(measurement1);
-        s0.addMeasurementToList(measurement2);
-
-        Calendar calendarMeasurement3 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dateTimeDayMeasure3 = calendarMeasurement3.getTime();
-
-        Calendar calendarMeasurement4 = new GregorianCalendar(1991, 11, 2, 17, 24, 00);
-        Date dateTimeDayMeasure4 = calendarMeasurement4.getTime();
-
-        Measurement measurement3 = new Measurement(20.0, dateTimeDayMeasure3);
-        Measurement measurement4 = new Measurement(30.0, dateTimeDayMeasure4);
-
-        s1.addMeasurementToList(measurement3);
-        s1.addMeasurementToList(measurement4);
-
         SensorList listOfSensors = new SensorList();
 
         double expectedResult = Double.NaN;
 
         //Act
-        double result = listOfSensors.getMaximumMeasureOfATypeOfSensorInAGivenDay(sensorType0, dateTimeDayMeasure2);
+        double result = listOfSensors.getMaximumMeasureOfATypeOfSensorInAGivenDay(sensorType0, dateTimeDayMeasure);
 
 
         //Assert
@@ -447,38 +414,15 @@ class SensorListTest {
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", date0, sensorType0, locS0);
 
-        Calendar calendar1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date date1 = calendar1.getTime();
-        SensorType sensorType1 = new SensorType("Temperature");
-        Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("B123", date1, sensorType1, locS1);
-
-
-        Calendar calendarMeasurement1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dateTimeDayMeasure1 = calendarMeasurement1.getTime();
-
-        Calendar calendarMeasurement2 = new GregorianCalendar(1991, 11, 2, 20, 24, 00);
-        Date dateTimeDayMeasure2 = calendarMeasurement2.getTime();
-
-        Measurement measurement1 = new Measurement(20.0, dateTimeDayMeasure1);
-        Measurement measurement2 = new Measurement(25.0, dateTimeDayMeasure2);
-
-        Calendar calendarMeasurement3 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dateTimeDayMeasure3 = calendarMeasurement3.getTime();
-
-        Calendar calendarMeasurement4 = new GregorianCalendar(1991, 11, 2, 17, 24, 00);
-        Date dateTimeDayMeasure4 = calendarMeasurement4.getTime();
-
-        Measurement measurement3 = new Measurement(20.0, dateTimeDayMeasure3);
-        Measurement measurement4 = new Measurement(30.0, dateTimeDayMeasure4);
-
+        Calendar cal = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dateTimeDayMeasure = cal.getTime();
 
         SensorList listOfSensors = new SensorList();
 
         double expectedResult = Double.NaN;
 
         //Act
-        double result = listOfSensors.getMaximumMeasureOfATypeOfSensorInAGivenDay(sensorType0, dateTimeDayMeasure2);
+        double result = listOfSensors.getMaximumMeasureOfATypeOfSensorInAGivenDay(sensorType0, dateTimeDayMeasure);
 
 
         //Assert
@@ -495,11 +439,6 @@ class SensorListTest {
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", date0, sensorType0, locS0);
 
-        Calendar calendar1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date date1 = calendar1.getTime();
-        SensorType sensorType1 = new SensorType("Humidity");
-        Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("B123", date1, sensorType1, locS1);
 
         Calendar calendarMeasurement1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dateTimeDayMeasure1 = calendarMeasurement1.getTime();
@@ -512,6 +451,12 @@ class SensorListTest {
 
         s0.addMeasurementToList(measurement1);
         s0.addMeasurementToList(measurement2);
+
+        Calendar calendar1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date date1 = calendar1.getTime();
+        SensorType sensorType1 = new SensorType("Humidity");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor s1 = new Sensor("B123", date1, sensorType1, locS1);
 
         Calendar calendarMeasurement3 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dateTimeDayMeasure3 = calendarMeasurement3.getTime();
