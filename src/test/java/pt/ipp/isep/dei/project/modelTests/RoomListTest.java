@@ -357,8 +357,8 @@ public class RoomListTest {
         rList.addRoomToRoomList(room0);
         rList.addRoomToRoomList(room1);
 
-        Room expectedResult = room0;
-        String roomName = "RoomOne";
+        Room expectedResult = room1;
+        String roomName = "RoomTwo";
         //Act
         Room result = rList.getRoomByName(roomName);
         //Assert
