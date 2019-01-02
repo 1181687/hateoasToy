@@ -1,37 +1,53 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.Dimensions;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.RectangleArea;
+import pt.ipp.isep.dei.project.model.Room;
+
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class RectangleAreaTest {
 
     @Test
-    public void testarEqualsSame() {
-        //arrange
+    void testhashCode() {
+        //Arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        RectangleArea area = new RectangleArea(10, 10, local1);
 
-        boolean expectedResult = true;
-        //act
-        boolean result = area1.equals(area1);
+        int expectedResult = Objects.hash();
+
+        // Act
+        int result = area.hashCode();
+        // Assert
         assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testarEqualsTrue() {
+    void testarEqualsSame() {
+        //arrange
+        Location local1 = new Location(41.1496, -8.6109, 97);
+        RectangleArea area1 = new RectangleArea(10, 10, local1);
+
+        //act
+        boolean result = area1.equals(area1);
+        assertTrue(result);
+    }
+
+    @Test
+    void testarEqualsTrue() {
         //arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
         Location local2 = new Location(41.1496, -8.6109, 97);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         RectangleArea area2 = new RectangleArea(10, 10, local2);
 
-        boolean expectedResult = true;
         //act
         boolean result = area1.equals(area2);
-        assertEquals(expectedResult, result);
+        assertTrue(result);
     }
 
     @Test
@@ -42,10 +58,25 @@ class RectangleAreaTest {
         RectangleArea area1 = new RectangleArea(12, 8, local1);
         RectangleArea area2 = new RectangleArea(10, 10, local2);
 
-        boolean expectedResult = false;
         //act
         boolean result = area1.equals(area2);
-        assertEquals(expectedResult, result);
+        assertFalse(result);
+    }
+
+    @Test
+    public void testEqualsFalseDiferentObject() {
+        //arrange
+        Location local1 = new Location(41.1496, -8.6109, 97);
+        RectangleArea area1 = new RectangleArea(12, 8, local1);
+
+        String name = "roomOne";
+        int housefloor = 2;
+        Dimensions dim = new Dimensions(4, 10.5, 7.5);
+        Room room = new Room(name, housefloor, dim);
+
+        //act
+        boolean result = area1.equals(room);
+        assertFalse(result);
     }
 
     @Test

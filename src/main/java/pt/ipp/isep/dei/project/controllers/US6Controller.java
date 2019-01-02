@@ -8,7 +8,6 @@ public class US6Controller {
     private GeographicalArea mGeographicalArea;
     private Location mLocation;
     private SensorType mSensorType;
-    private Sensor mSensor;
 
     public US6Controller(SensorTypeList sensorTypeList, GeoAreaList geoAreaList) {
         this.mSensorTypeList = sensorTypeList;

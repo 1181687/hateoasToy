@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.utils;
+package pt.ipp.isep.dei.project.io.ui;
 
 import java.util.Scanner;
 
@@ -24,7 +24,7 @@ public class InputValidator {
                 flag = true;
                 in.next();
             }
-        }while(flag);
+        } while(flag);
         return x;
     }
 

@@ -1370,4 +1370,107 @@ class GeographicalAreaTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void getDailyMeasurementsInAListOfSensors() {
+        //arrange
+        //Instanciar AG
+        String nomeAG = "Porto";
+        GeoAreaType tipo = new GeoAreaType("Cidade");
+        Location local = new Location(42.1496, -8.6109, 97);
+        RectangleArea area = new RectangleArea(10, 10, local);
+        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+
+        //Instanciar Sensor
+        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
+        Date dataFuncionamento0 = calendario0.getTime();
+        SensorType sensorType0 = new SensorType("Rainfall");
+        Location locS0 = new Location(42.1496, -8.6109, 97);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+
+        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
+        Date dataFuncionamento1 = calendario1.getTime();
+        SensorType sensorType1 = new SensorType("Rainfall");
+        Location locS1 = new Location(42.149, -8.610, 97);
+        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+
+        //Sensor1
+        Calendar calendarioDaMedicao11 = new GregorianCalendar(2018, 11, 4, 15, 20, 00);
+        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
+
+        Calendar calendarioDaMedicao12 = new GregorianCalendar(2018, 11, 4, 17, 24, 00);
+        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+
+        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
+        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
+
+        Calendar startDate = new GregorianCalendar(2018, 11, 4, 15, 20, 00);
+        Date searchDate = startDate.getTime();
+
+        double expectedResult = 23.5;
+
+        //Act
+        double result = ag.getDailyAverageOfAListOfSensors(ag.getmSensorListInTheGeographicArea().getmSensorList(), searchDate);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getDailyAverageMeasurementsInAListOfSensorsDayWithNoMeasurements() {
+        //arrange
+        //Instanciar AG
+        String nomeAG = "Porto";
+        GeoAreaType tipo = new GeoAreaType("Cidade");
+        Location local = new Location(42.1496, -8.6109, 97);
+        RectangleArea area = new RectangleArea(10, 10, local);
+        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+
+        //Instanciar Sensor
+        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
+        Date dataFuncionamento0 = calendario0.getTime();
+        SensorType sensorType0 = new SensorType("Rainfall");
+        Location locS0 = new Location(42.1496, -8.6109, 97);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+
+        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
+        Date dataFuncionamento1 = calendario1.getTime();
+        SensorType sensorType1 = new SensorType("Rainfall");
+        Location locS1 = new Location(42.149, -8.610, 97);
+        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+
+        //Sensor1
+        Calendar calendarioDaMedicao11 = new GregorianCalendar(2018, 11, 4, 15, 20, 00);
+        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
+
+        Calendar calendarioDaMedicao12 = new GregorianCalendar(2018, 11, 4, 17, 24, 00);
+        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+
+        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
+        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
+
+        Calendar startDate = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
+        Date searchDate = startDate.getTime();
+
+        double expectedResult = Double.NaN;
+
+        //Act
+        double result = ag.getDailyAverageOfAListOfSensors(ag.getmSensorListInTheGeographicArea().getmSensorList(), searchDate);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+
 }
