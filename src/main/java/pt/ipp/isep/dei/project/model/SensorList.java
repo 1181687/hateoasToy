@@ -78,17 +78,20 @@ public class SensorList {
      * @return maximum value of the temperature sensor in a given day.
      */
     public double getMaximumMeasureOfATypeOfSensorInAGivenDay(SensorType type, Date date) {
-        double maxValue = Double.NaN;
-        for (Sensor sensor : mSensorList) {
-            if (sensor.getmSensorType().equals(type) && (!(sensor.getDailyMeasurement(date).isEmpty()))) {
-                if (sensor.getMaximumValueOfDay(date) > maxValue) {
-                    maxValue = sensor.getMaximumValueOfDay(date);
+        if (!mSensorList.isEmpty()) {
+            double maxValue = mSensorList.get(0).getMaximumValueOfDay(date);
+            for (Sensor sensor : mSensorList) {
+                if (sensor.getmSensorType().equals(type) && (!(sensor.getDailyMeasurement(date).isEmpty()))) {
+                    if (sensor.getMaximumValueOfDay(date) > maxValue) {
+                        maxValue = sensor.getMaximumValueOfDay(date);
+
+                    }
 
                 }
-
             }
+            return maxValue;
         }
-        return maxValue;
+        return Double.NaN;
     }
 }
 
