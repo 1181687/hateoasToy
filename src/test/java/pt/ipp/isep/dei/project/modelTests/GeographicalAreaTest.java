@@ -1707,7 +1707,7 @@ class GeographicalAreaTest {
 
     }
 
-    public void testingTotalDailyMeasurement (){
+    /*public void testingTotalDailyMeasurement (){
         //ARRANGE
         //Instanciar AG
         String nomeAG = "Porto";
@@ -1726,6 +1726,5 @@ class GeographicalAreaTest {
         //ASSERT
 
 
-    }
-    //getTotalDailyMeasurementInTheArea(SensorType sensorType, Date day)
+    }*/
 }
