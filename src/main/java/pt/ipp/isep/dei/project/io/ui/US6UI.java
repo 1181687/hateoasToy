@@ -48,7 +48,6 @@ public class US6UI {
         controller6.getAreaGeograficaNaListaPorPosicao(posicao2 - 1);
         controller6.criarNovaLocalizacao(altitude, latitude, longitude);
         controller6.getTipoSensorPorPosicao(posicao1-1);
-        //controller6.criarNovoSensor(nome);
 
         if (controller6.adicionarSensorAAreaGeografica(controller6.criarNovoSensor(nome))) {
             System.out.println("Success! A sensor was created.");
