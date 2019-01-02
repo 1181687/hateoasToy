@@ -128,6 +128,9 @@ public class RoomList {
     }
 
     public String getNameOfTheChosenRoomInSpecificPos(int position) {
+        if (mRoomList.isEmpty()) {
+            return null;
+        }
         return mRoomList.get(position).getmName();
     }
 
