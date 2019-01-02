@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.utils;
+package pt.ipp.isep.dei.project.io.ui;
 
 import java.util.Scanner;
 

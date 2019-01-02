@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.utils;
 
+import pt.ipp.isep.dei.project.io.ui.InputValidator;
+
 public class Menu {
 
     public static int usersMenu() {
