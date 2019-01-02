@@ -51,7 +51,7 @@ public class GeoAreaList {
     }
 
     public boolean verificarSeAGNaoTemAreaInserida(GeographicalArea area) {
-        return area.getmAreaInseridaEm() == null;
+        return area.getmInsertedIn() == null;
     }
 
     public boolean removerAreaGeoALista(GeographicalArea geoArea) {
@@ -65,9 +65,9 @@ public class GeoAreaList {
     public boolean verificarSeAGEstaContidaNoutra(int opcaoSelecionada1, int opcaoSelecionada2) {
         GeographicalArea primeiraAG = mListaAG.get(opcaoSelecionada1);
         GeographicalArea segundaAG = mListaAG.get(opcaoSelecionada2);
-        while (primeiraAG.getmAreaInseridaEm() != null) {
-            if (!primeiraAG.getmAreaInseridaEm().equals(segundaAG)) {
-                primeiraAG = primeiraAG.getmAreaInseridaEm();
+        while (primeiraAG.getmInsertedIn() != null) {
+            if (!primeiraAG.getmInsertedIn().equals(segundaAG)) {
+                primeiraAG = primeiraAG.getmInsertedIn();
             } else {
                 return true;
             }
@@ -84,8 +84,8 @@ public class GeoAreaList {
             conteudo.append(", Latitude: " + mListaAG.get(i - 1).getmLocation().getmLatitude());
             conteudo.append(", Longitude: " + mListaAG.get(i - 1).getmLocation().getmLongitude());
             if (usarCriterio && !verificarSeAGNaoTemAreaInserida(mListaAG.get(i - 1))) {
-                conteudo.append(", Inserido Em: " + mListaAG.get(i - 1).getmAreaInseridaEm().getmGeoAreaType().getNomeDoTipoAreaGeo());
-                conteudo.append(" " + mListaAG.get(i - 1).getmAreaInseridaEm().getmNomeAreaGeo());
+                conteudo.append(", Inserido Em: " + mListaAG.get(i - 1).getmInsertedIn().getmGeoAreaType().getNomeDoTipoAreaGeo());
+                conteudo.append(" " + mListaAG.get(i - 1).getmInsertedIn().getmNomeAreaGeo());
             }
             conteudo.append("\n");
         }
