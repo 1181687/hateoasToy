@@ -1,8 +1,10 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.Dimensions;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.RectangleArea;
+import pt.ipp.isep.dei.project.model.Room;
 
 import java.util.Objects;
 
@@ -62,40 +64,18 @@ class RectangleAreaTest {
     }
 
     @Test
-    void testarEqualsFalseDiferentValues() {
+    public void testEqualsFalseDiferentObject() {
         //arrange
-        Location local1 = new Location(-100, -200, 1);
-        Location local2 = new Location(100, 200, 100);
-        RectangleArea area1 = new RectangleArea(1, 8, local1);
-        RectangleArea area2 = new RectangleArea(5, 20, local2);
+        Location local1 = new Location(41.1496, -8.6109, 97);
+        RectangleArea area1 = new RectangleArea(12, 8, local1);
+
+        String name = "roomOne";
+        int housefloor = 2;
+        Dimensions dim = new Dimensions(4, 10.5, 7.5);
+        Room room = new Room(name, housefloor, dim);
 
         //act
-        boolean result = area1.equals(area2);
-        assertFalse(result);
-    }
-
-    @Test
-    void testarEqualsFalseMoreValues() {
-        //arrange
-        Location local1 = new Location(-200, -200, 100);
-        RectangleArea area1 = new RectangleArea(100, 80, local1);
-        RectangleArea area2 = new RectangleArea(0, 0, local1);
-
-        //act
-        boolean result = area2.equals(area1);
-        assertFalse(result);
-    }
-
-    @Test
-    public void testarEqualsFalseSameSizeArea() {
-        //arrange
-        Location local1 = new Location(-90, 180, 100);
-        Location local2 = new Location(90, -180, 0);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
-        RectangleArea area2 = new RectangleArea(10, 10, local2);
-
-        //act
-        boolean result = area1.equals(area2);
+        boolean result = area1.equals(room);
         assertFalse(result);
     }
 
