@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class US4UI {
 
-    private US4Controller mCtrl; //o controller tem como atributo as listas logo nao preciso ter aqui
+    private US4Controller mCtrl;
 
 
     public US4UI(GeoAreaList lista, GeoAreaTypeList listaTAG) {
@@ -23,31 +23,30 @@ public class US4UI {
         int opcaoEscolhida = -1;
         do {
             for (int i = 1; i <= listaDeTiposDeAG.size(); i++) {
-                System.out.println(i +"-"+ listaDeTiposDeAG.get(i - 1));
+                System.out.println(i + "-" + listaDeTiposDeAG.get(i - 1));
             }
             opcaoEscolhida = ler.nextInt();
         }
-            while (opcaoEscolhida < 1 || opcaoEscolhida > listaDeTiposDeAG.size());
+        while (opcaoEscolhida < 1 || opcaoEscolhida > listaDeTiposDeAG.size());
 
 
-            String tipoEscolhido = listaDeTiposDeAG.get(opcaoEscolhida-1);
+        String tipoEscolhido = listaDeTiposDeAG.get(opcaoEscolhida - 1);
 
         List<String> listaDeAGPorTipo = mCtrl.getListaAGPorTipo(tipoEscolhido);
 
         if (listaDeAGPorTipo.isEmpty()) {
             System.out.println("No Geographical Areas of the chosen type were found.");
-            } else {
-                if (listaDeAGPorTipo.size()==1){
-                    System.out.println("The Geographical Area of the type " + tipoEscolhido + " is:");
-                }
-                if (listaDeAGPorTipo.size()>1){
-                    System.out.println("The Geographical Areas of the type " + tipoEscolhido + " are:");
-                }
-                for (int i = 0; i <listaDeAGPorTipo.size() ; i++) {
-                    System.out.println(listaDeAGPorTipo.get(i));
-                }
-            System.out.println();
+        } else {
+            if (listaDeAGPorTipo.size() == 1) {
+                System.out.println("The Geographical Area of the type " + tipoEscolhido + " is:");
             }
+            if (listaDeAGPorTipo.size() > 1) {
+                System.out.println("The Geographical Areas of the type " + tipoEscolhido + " are:");
+            }
+            for (int i = 0; i < listaDeAGPorTipo.size(); i++) {
+                System.out.println(listaDeAGPorTipo.get(i));
+            }
+            System.out.println();
         }
-
     }
+}

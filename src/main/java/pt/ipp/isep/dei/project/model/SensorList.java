@@ -30,6 +30,12 @@ public class SensorList {
         this.mSensorList = mSensorList;
     }
 
+    /**
+     * method that receives a Sensortype, and gets a List of the latest Measurements available by that Sensortype
+     *
+     * @param type Sensortype
+     * @return List of latest Measurements
+     */
     public List<Measurement> getListOfLatestMeasurementsBySensorType(SensorType type) {
         List<Measurement> listOfLatestMeasurements = new ArrayList<>();
         for (Sensor sensor : mSensorList) {
@@ -44,6 +50,12 @@ public class SensorList {
     }
 
     ////method to substitute the getUltimoRegistoDeUmTipoDeSensor if nobody uses it
+
+    /**
+     * method that receives a Sensortype, and gets the latest Measurement available by that Sensortype
+     * @param type Sensortype
+     * @return Measuremnt
+     */
     public Measurement getLatestMeasurementBySensorType(SensorType type) {
         List<Measurement> listOfLatestMeasurements = getListOfLatestMeasurementsBySensorType(type);
         if (getListOfLatestMeasurementsBySensorType(type).isEmpty()) {
