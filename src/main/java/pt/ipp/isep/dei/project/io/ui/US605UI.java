@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.US605Controller;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Measurement;
-import pt.ipp.isep.dei.project.model.SensorTypeList;
+import pt.ipp.isep.dei.project.model.SensorType;
 
 import java.util.Objects;
 
@@ -15,10 +15,10 @@ public class US605UI {
      * constructor that receives a House and a SensorTypeList
      *
      * @param house          House
-     * @param listSensorType SensorTypeList
+     * @param sensorType SensorType
      */
-    public US605UI(House house, SensorTypeList listSensorType) {
-        this.mctrl = new US605Controller(house, listSensorType.novoTipoSensor("temperature"));
+    public US605UI(House house, SensorType sensorType) {
+        this.mctrl = new US605Controller(house, sensorType);
     }
 
     /**
