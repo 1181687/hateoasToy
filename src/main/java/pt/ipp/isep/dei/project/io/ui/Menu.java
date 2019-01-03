@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.io.ui.InputValidator;
-
 public class Menu {
 
     public static int usersMenu() {
@@ -78,13 +76,15 @@ public class Menu {
         content.append("\n");
         content.append("9-US101UI");
         content.append("\n");
-        content.append("10-US600UI- Get the maximum temperature in a room in a given day");
+        content.append("10-US600UI- Get the current temperature in the house area");
         content.append("\n");
         content.append("11-US605UI- Get the current temperature of a room");
         content.append("\n");
+        content.append("13-US605UI- Get the maximum temperature of in a room in a given day");
+        content.append("\n");
         content.append("0-Exit");
         String label = content.toString();
-        int op = InputValidator.getIntRange(label, 0, 11);
+        int op = InputValidator.getIntRange(label, 0, 13);
         return op;
     }
 }

@@ -168,8 +168,12 @@ public class Main {
                             ui10.run();
                             break;*/
                         case 11:
-                            US605UI ui11 = new US605UI(house, sensorTypeList);
+                            US605UI ui11 = new US605UI(house, temperature);
                             ui11.run1();
+                            break;
+                        case 13:
+                            US605UI ui13 = new US605UI(house, temperature);
+                            ui13.run2();
                             break;
                     }
                     option = Menu.regularUserMenu();
