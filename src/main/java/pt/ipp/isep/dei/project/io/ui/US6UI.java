@@ -14,16 +14,19 @@ public class US6UI {
     }
 
     public void run() {
-        System.out.println("Introduce the name of the new sensor.");
+        String label = "Introduce the name of the new sensor.";
         Scanner ler = new Scanner(System.in);
-        String nome = ler.nextLine();
-        System.out.println("Introduce the latitude of the new sensor.");
-        double latitude = ler.nextDouble();
-        System.out.println("Introduce the longitude of the new sensor.");
-        double longitude = ler.nextDouble();
-        System.out.println("Introduce the altitude of the new sensor.");
-        double altitude = ler.nextDouble();
-        ler.nextLine();
+        String nome = InputValidator.getString(label);
+
+        String label1 = "Introduce the latitude of the new sensor (valid numbers between -90 and 90).";
+        double latitude = InputValidator.getDoubleRange(label1, -90, 90);
+
+        String label2 = "Introduce the longitude of the new sensor (valid numbers between -180 and 180).";
+        double longitude = InputValidator.getDoubleRange(label2, -180, 180);
+
+        String label3 = "Introduce the altitude of the new sensor.";
+        double altitude = InputValidator.getInt(label3);
+
         System.out.println("Introduce the type of sensor");
         int posicao1 = -1;
         do {
