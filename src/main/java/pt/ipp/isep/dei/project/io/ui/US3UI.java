@@ -26,36 +26,20 @@ public class US3UI {
         }
         int opcao = ler.nextInt();
         String nomeTipoAG = ctrl3.getListaTAG().get(opcao-1);
-        System.out.println("Introduce the latitude of the location of the Geographical Area (valid values between -90 and 90)");
-        double latitude = ler.nextDouble();
-        while (latitude < -90 || latitude > 90) {
-            System.out.println("That value is out of bounds (-90 and 90). Introduce a new latitude value).");
-            latitude = ler.nextDouble();
-        }
+        String label1 = "Introduce the latitude of the Geographical Area(valid numbers between -90 and 90).";
+        double latitude = InputValidator.getDoubleRange(label1, -90, 90);
 
-        System.out.println("Introduce the longitude of the location of the Geographical Area(valid numbers between -180 and 180).");
-        double longitude = ler.nextDouble();
-        while (longitude < -180 || longitude > 180) {
-            System.out.println("That value is out of bounds (-180 and 180). Introduce a new longitude value).");
-            longitude = ler.nextDouble();
-        }
+        String label2 = "Introduce the longitude of the Geographical Area(valid numbers between -180 and 180).";
+        double longitude = InputValidator.getDoubleRange(label2, -180, 180);
 
-        System.out.println("Introduce the altitude of the location of the Geographical Area.");
-        Double altitude = ler.nextDouble();
+        String label3 = "Introduce the altitude of the Geographical Area.";
+        double altitude = InputValidator.getInt(label3);
 
-        System.out.println("Introduce the length of the Geographical Area (valid numbers greater than 0).");
-        double comprimento = ler.nextDouble();
-        while (comprimento <=0) {
-            System.out.println("That value is out of bounds (greater than 0). Introduce a new length value.");
-            comprimento = ler.nextDouble();
-        }
+        String label4 = "Introduce the length of the Geographical Area(valid numbers greater than 0).";
+        double comprimento = InputValidator.getDoublePos(label4);
 
-        System.out.println("Introduce the width of the Geographical Area (valid numbers greater than 0).");
-        double largura = ler.nextDouble();
-        while (largura <=0) {
-            System.out.println("That value is out of bounds (greater than 0). Introduce a new width value.");
-            largura = ler.nextDouble();
-        }
+        String label5 = "Introduce the length of the Geographical Area(valid numbers greater than 0).";
+        double largura = InputValidator.getDoublePos(label5);
 
         GeographicalArea novaAG = ctrl3.criarNovaAG(nome, nomeTipoAG, latitude, longitude, altitude, comprimento, largura);
         if (ctrl3.adicionarNovaAG(novaAG)) {
