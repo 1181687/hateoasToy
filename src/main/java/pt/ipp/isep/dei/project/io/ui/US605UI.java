@@ -16,7 +16,7 @@ public class US605UI {
      * constructor that receives a House and a SensorTypeList
      *
      * @param house          House
-     * @param sensorType Sensor Type used to construct the UI.
+     * @param sensorType SensorType
      */
     public US605UI(House house, SensorType sensorType) {
         this.mctrl = new US605Controller(house, sensorType);

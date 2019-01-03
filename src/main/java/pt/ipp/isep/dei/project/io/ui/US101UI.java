@@ -21,10 +21,8 @@ public class US101UI {
         String label1 = "Introduce the latitude of the new location (valid numbers between -90 and 90).";
         double latitude = InputValidator.getDoubleRange(label1, -90, 90);
 
-
         String label2 = "Introduce the longitude of the new location (valid numbers between -180 and 180).";
         double longitude = InputValidator.getDoubleRange(label2, -180, 180);
-
 
         String label3 = "Introduce the altitude of the new location.";
         double altitude = InputValidator.getInt(label3);
