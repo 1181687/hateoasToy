@@ -101,6 +101,16 @@ public class House {
         return mInsertedGeoArea.getTotalDailyMeasurementInTheArea(measurementType, day);
     }
 
+    /**
+     * @param name name of room
+     * @param type type of sensor (temperature)
+     * @param date given day
+     * @return returns the maximum temperature in a specific day
+     */
+    public double getMaximumTemperatureOfARoomInASpecificDay(String name, SensorType type, Date date) {
+        return this.mRoomList.getMaximumTemperatureInARoomInAGivenDay(name, type, date);
+    }
+
     public Date createANewDate (int year, int month, int day){
         LocalDate date = LocalDate.of(year, month, day);
         //Convert LocalDate to Date

@@ -552,12 +552,6 @@ class SensorListTest {
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
-        Calendar calendar1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento1 = calendar1.getTime();
-        SensorType sensorType1 = new SensorType("Temperature");
-        Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("B123", dataFuncionamento1, sensorType1, locS1);
-
         Calendar calendarMeasurement1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dateTimeDayMeasure1 = calendarMeasurement1.getTime();
 
@@ -569,6 +563,12 @@ class SensorListTest {
 
         s0.addMeasurementToList(measurement1);
         s0.addMeasurementToList(measurement2);
+
+        Calendar calendar1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataFuncionamento1 = calendar1.getTime();
+        SensorType sensorType1 = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor s1 = new Sensor("B123", dataFuncionamento1, sensorType1, locS1);
 
         Calendar calendarMeasurement3 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dateTimeDayMeasure3 = calendarMeasurement3.getTime();
