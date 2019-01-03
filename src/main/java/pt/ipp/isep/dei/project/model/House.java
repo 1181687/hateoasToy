@@ -95,7 +95,29 @@ public class House {
         return sum / listOfDailyAverages.size();
     }
 
-    public double getTotalDailyMeasurementOfHouseArea (SensorType measurementType, Date day){
+    public double getTotalDailyMeasurementOfHouseArea(SensorType measurementType, Date day) {
         return mInsertedGeoArea.getTotalDailyMeasurementInTheArea(measurementType, day);
+    }
+
+    public Measurement getLatestMeasurementBySensorType(String name, SensorType type) {
+        Room room = mRoomList.getRoomByName(name);
+        if (room == null)
+            return null;
+        Measurement measurement = room.getLatestMeasurementBySensorType(type);
+        if (measurement == null)
+            return null;
+        return measurement;
+    }
+
+    public String getDisplayRoomList() {
+        return mRoomList.getDisplayRoomList();
+    }
+
+    public int listSize() {
+        return mRoomList.listSize();
+    }
+
+    public String getNameOfTheChosenRoomInSpecificPos(int position) {
+        return mRoomList.getNameOfTheChosenRoomInSpecificPos(position);
     }
 }

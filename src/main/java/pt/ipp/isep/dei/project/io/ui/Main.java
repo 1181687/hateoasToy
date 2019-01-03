@@ -169,7 +169,8 @@ public class Main {
                             ui10.run();
                             break;*/
                         case 11:
-                            US605UI ui11 = new US605UI(house, sensorTypeList);
+                            SensorType sensorType = sensorTypeList.novoTipoSensor("temperature");
+                            US605UI ui11 = new US605UI(house, sensorType);
                             ui11.run();
                             break;
                     }
