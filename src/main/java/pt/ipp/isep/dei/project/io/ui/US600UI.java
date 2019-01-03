@@ -13,8 +13,8 @@ public class US600UI {
     }
 
     public void run() {
-        if (ctrl.getMostRecentAvailableMeasurementInTheHouseArea() == Double.NaN) {
-            System.out.println("There are no " + ctrl.getSensorType() + "sensors with valid measurements in the house area.");
+        if (Double.isNaN(ctrl.getMostRecentAvailableMeasurementInTheHouseArea())) {
+            System.out.println("There are no " + ctrl.getSensorType() + " sensors with valid measurements in the house area.");
             return;
         } else {
             System.out.println("The most recent measurement available in the house area for "

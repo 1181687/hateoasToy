@@ -22,6 +22,10 @@ public class US605Controller {
         this.mType = type;
     }
 
+    public SensorType getmType() {
+        return mType;
+    }
+
     /**
      * receives a Room name, and gets the latest Measurement according to the sensorType
      * passed on the constructor
@@ -61,7 +65,6 @@ public class US605Controller {
         return this.mHouse.getListOfRoom().getNameOfTheChosenRoomInSpecificPos(position);
     }
 
-
     /**
      * @param name receives the string name of the room
      * @param type receives the type of sensor (temperature)
@@ -70,5 +73,9 @@ public class US605Controller {
      */
     public double getMaximumTemperatureOfARoomInAGivenDay(String name, SensorType type, Date date) {
         return this.mHouse.getMaximumTemperatureOfARoomInASpecificDay(name, type, date);
+    }
+
+    public Date createANewDate(int year, int month, int day) {
+        return mHouse.createANewDate(year, month, day);
     }
 }
