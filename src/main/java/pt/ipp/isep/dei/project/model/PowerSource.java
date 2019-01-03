@@ -5,9 +5,7 @@ import static java.util.Objects.isNull;
 public class PowerSource {
     private String mPowerSourceName;
     private PowerSourceType mPowerSourceType;
-    private double mMaximumPowerOutput;
     private boolean mIsRechargeable;
-    private double mMaximumAmountOfStorableEnergy;
 
     public PowerSource(String powerSourceName, PowerSourceType powerSourceType, boolean isRechargeable) {
         validateName(powerSourceName);
@@ -38,13 +36,11 @@ public class PowerSource {
             return false;
         }
 
-        final double delta = 0.0001;
-
         if(type.mIsRechargeable){
-            return this.mPowerSourceName.equals(type.mPowerSourceName) && this.mPowerSourceType.equals(type.mPowerSourceType) && Math.abs(this.mMaximumPowerOutput - type.mMaximumPowerOutput)<delta && Math.abs(this.mMaximumAmountOfStorableEnergy-type.mMaximumAmountOfStorableEnergy)<delta;
+            return this.mPowerSourceName.equals(type.mPowerSourceName) && this.mPowerSourceType.equals(type.mPowerSourceType);
         }
         else {
-            return this.mPowerSourceName.equals(type.mPowerSourceName) && this.mPowerSourceType.equals(type.mPowerSourceType) && Math.abs(this.mMaximumPowerOutput - type.mMaximumPowerOutput)<delta;
+            return this.mPowerSourceName.equals(type.mPowerSourceName) && this.mPowerSourceType.equals(type.mPowerSourceType);
         }
     }
 
