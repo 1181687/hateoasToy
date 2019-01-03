@@ -82,9 +82,11 @@ public class Menu {
         content.append("\n");
         content.append("11-US605UI- Get the current temperature of a room");
         content.append("\n");
+        content.append("12-US620UI- Get the total Rainfall in the House Area");
+        content.append("\n");
         content.append("0-Exit");
         String label = content.toString();
-        int op = InputValidator.getIntRange(label, 0, 11);
+        int op = InputValidator.getIntRange(label, 0, 12);
         return op;
     }
 }

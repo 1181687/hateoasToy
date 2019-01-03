@@ -171,6 +171,10 @@ public class Main {
                             US605UI ui11 = new US605UI(house, sensorTypeList);
                             ui11.run();
                             break;
+                        case 12:
+                            US620UI ui620 = new US620UI(house);
+                            ui620.run();
+                            break;
                     }
                     option = Menu.regularUserMenu();
                 }

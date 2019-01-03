@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.model;
 
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -98,4 +100,12 @@ public class House {
     public double getTotalDailyMeasurementOfHouseArea (SensorType measurementType, Date day){
         return mInsertedGeoArea.getTotalDailyMeasurementInTheArea(measurementType, day);
     }
+
+    public Date createANewDate (int year, int month, int day){
+        LocalDate date = LocalDate.of(year, month, day);
+        //Convert LocalDate to Date
+        Date newDate = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        return newDate;
+    }
+
 }
