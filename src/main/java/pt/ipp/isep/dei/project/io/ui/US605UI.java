@@ -25,7 +25,7 @@ public class US605UI {
      * method that displays the rooms available to the user, so he can choose one
      * to get the current temperature.
      */
-    public void run() {
+    public void run1() {
 
         System.out.println(mctrl.getDisplayRoomList());
         if (mctrl.getDisplayRoomList().isEmpty()) {

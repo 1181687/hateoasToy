@@ -4,6 +4,8 @@ import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Measurement;
 import pt.ipp.isep.dei.project.model.SensorType;
 
+import java.util.Date;
+
 public class US605Controller {
 
     private House mHouse;
@@ -42,6 +44,7 @@ public class US605Controller {
 
     /**
      * gets the lenght of roomList
+     *
      * @return lenght of roomList
      */
     public int lengthOfRoomList() {
@@ -50,10 +53,22 @@ public class US605Controller {
 
     /**
      * gets the room name, by a specific position
+     *
      * @param position integer position number of the room
      * @return a String with the name of room
      */
     public String getNameOfTheChosenRoomInSpecificPos(int position) {
         return this.mHouse.getListOfRoom().getNameOfTheChosenRoomInSpecificPos(position);
+    }
+
+
+    /**
+     * @param name receives the string name of the room
+     * @param type receives the type of sensor (temperature)
+     * @param date receives a given day
+     * @return the maximum temperature of that room in the choosen day
+     */
+    public double getMaximumTemperatureOfARoomInAGivenDay(String name, SensorType type, Date date) {
+        return this.mHouse.getMaximumTemperatureOfARoomInASpecificDay(name, type, date);
     }
 }
