@@ -27,14 +27,14 @@ public class RegularUser {
 
             switch (option) {
                 case 1:
-                    US600UI ui600 = new US600UI();
+                    US600UI ui600 = new US600UI(house, sensorTypeTemperature);
                     ui600.run();
-                case 2:
-                    US620UI ui620 = new US620UI();
-                    ui620.run();
-                case 3:
-                    US623UI ui623 = new US623UI();
-                    ui623.run();
+                    //case 2:
+                    //US620UI ui620 = new US620UI();
+                    //ui620.run();
+                    //case 3:
+                    //US623UI ui623 = new US623UI();
+                    //ui623.run();
 
             }
             option = Menu.regularUserHouseAreaMenu();
@@ -51,10 +51,10 @@ public class RegularUser {
             switch (option) {
                 case 1:
                     US605UI ui605 = new US605UI(house, sensorTypeTemperature);
-                    ui605.run();
-                case 2:
-                    US610UI ui610 = new US610UI();
-                    ui610.run();
+                    ui605.run1();
+                    //case 2:
+                    //US610UI ui610 = new US610UI();
+                    //ui610.run();
             }
             option = Menu.regularUserRoomsMenu();
         }

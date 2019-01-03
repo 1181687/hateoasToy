@@ -46,6 +46,7 @@ public class Main {
 
         //UI levels
         Admin admin = new Admin(geoAreaTypeList, geoAreaList, sensorTypeList, house, powerSourceTypeList, roomList, gridList);
+        RegularUser regularUser = new RegularUser(geoAreaTypeList, geoAreaList, sensorTypeList, house, sensorTypeTemperature);
 
         int option = -1;
         int userOption = -1;
@@ -58,7 +59,7 @@ public class Main {
 
             }
             if (userOption == 2) {
-                admin.runAdminHouse();
+                regularUser.runRegularUserOption();
 
             }
         }

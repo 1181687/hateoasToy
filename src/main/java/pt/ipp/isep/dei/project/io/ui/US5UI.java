@@ -15,14 +15,14 @@ public class US5UI {
     }
 
     public void run(){
-        System.out.println("Introduce a new weather feature.");
+        System.out.println("Introduce a new sensor type.");
         Scanner ler = new Scanner(System.in);
         String nome = ler.nextLine();
         if(this.mController.criarEAdicionarTipoDeSensor(nome)){
             System.out.println("Success!");
         }
         else{
-            System.out.println("Try another weather feature!");
+            System.out.println("Try another sensor type!");
         }
     }
 }
