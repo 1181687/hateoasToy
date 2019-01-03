@@ -64,7 +64,7 @@ public class House {
     public boolean addRoomToHouse(Room room) {
         return this.mRoomList.addRoomToRoomList(room);
     }
-    
+
     /**
      * Get the location of the house.
      *
