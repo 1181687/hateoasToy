@@ -171,6 +171,10 @@ public class Main {
                             US605UI ui11 = new US605UI(house, temperature);
                             ui11.run1();
                             break;
+                        case 12:
+                            US620UI ui620 = new US620UI(house);
+                            ui620.run();
+                            break;
                         case 13:
                             US605UI ui13 = new US605UI(house, temperature);
                             ui13.run2();

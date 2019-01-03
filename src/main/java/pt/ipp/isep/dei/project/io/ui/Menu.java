@@ -80,6 +80,8 @@ public class Menu {
         content.append("\n");
         content.append("11-US605UI- Get the current temperature of a room");
         content.append("\n");
+        content.append("12-US620UI- Get the total Rainfall in the House Area");
+        content.append("\n");
         content.append("13-US605UI- Get the maximum temperature of in a room in a given day");
         content.append("\n");
         content.append("0-Exit");
