@@ -22,15 +22,16 @@ public class US620Controller {
         this.mType= new SensorType("Rainfall");
     }
 
-    public double getTotalRainfallInTheHouseAreaInTheSelectedDay (int year, int month, int day){
-        Date day1 = mHouse.createANewDate(year, month, day);
-        return mHouse.getTotalDailyMeasurementOfHouseArea(mType, day1);
+    public double getTotalRainfallInTheHouseAreaInTheSelectedDay (Date day){
+        return mHouse.getTotalDailyMeasurementOfHouseArea(mType, day);
     }
 
-    public double getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(int year1, int month1, int day1, int year2, int month2, int day2){
-        Date date1 = mHouse.createANewDate(year1, month1, day1);
-        Date date2 = mHouse.createANewDate(year2, month2, day2);
+    public double getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(Date date1, Date date2){
         return mHouse.getAverageDailyMeasurementOfHouseArea(mType, date1, date2);
+    }
+
+    public Date createANewDate (int year, int month, int day){
+        return mHouse.createANewDate(year, month, day);
     }
 
 
