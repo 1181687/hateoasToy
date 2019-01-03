@@ -24,7 +24,7 @@ public class US2ControllerTest {
         GeoAreaType tipo1 = new GeoAreaType(nomeDoTipo1);
 
         //Adicionar o Tipo de Area Geográfica na lista
-        lista.adicionarElementoALista(tipo1);
+        lista.addTypeOfGeoAreaToTheList(tipo1);
 
         //Expected Result
         List<String> expectedResult = Arrays.asList("Cidade");
@@ -51,8 +51,8 @@ public class US2ControllerTest {
         GeoAreaType tipo2 = new GeoAreaType(nomeDoTipo2);
 
         //Adicionar os Tipos de Areas Geográficas na lista
-        lista.adicionarElementoALista(tipo1);
-        lista.adicionarElementoALista(tipo2);
+        lista.addTypeOfGeoAreaToTheList(tipo1);
+        lista.addTypeOfGeoAreaToTheList(tipo2);
 
 
         //Expected Result

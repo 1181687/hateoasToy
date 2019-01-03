@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class US135ControllerTest {
 
     @Test
-    void testCheckIfHouseGridListIsEmptyPositive() {
+    public void testCheckIfHouseGridListIsEmptyPositive() {
 
         // Arrange
         HouseGridList houseGridList = new HouseGridList();
@@ -29,7 +29,7 @@ class US135ControllerTest {
     }
 
     @Test
-    void testCheckIfHouseGridListIsEmptyNegative() {
+    public void testCheckIfHouseGridListIsEmptyNegative() {
 
         // Arrange
         String houseGridName = "hgname1";
@@ -51,7 +51,7 @@ class US135ControllerTest {
     }
 
     @Test
-    void testGetHouseGridListContentPositiveTest() {
+    public void testGetHouseGridListContentPositiveTest() {
 
         // Arrange
         String houseGridName = "hgname1";
@@ -75,7 +75,51 @@ class US135ControllerTest {
     }
 
     @Test
-    void testAddPowerSourceToHouseGridPositiveTest() {
+    public void testHouseGridListLength(){
+        //Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        HouseGridList houseGridList = new HouseGridList();
+        houseGridList.getmList().add(houseGrid1);
+
+        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
+        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
+        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
+
+        US135Controller us135Controller = new US135Controller(houseGridList, powerSourceTypeList);
+
+        int expectedResult=1;
+        //Act
+        int result = us135Controller.houseGridListLength();
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void testPowerSourceTypeListLength(){
+        //Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        HouseGridList houseGridList = new HouseGridList();
+        houseGridList.getmList().add(houseGrid1);
+
+        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
+        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
+        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
+
+        US135Controller us135Controller = new US135Controller(houseGridList, powerSourceTypeList);
+
+        int expectedResult=1;
+        //Act
+        int result = us135Controller.powerSourceTypeListLength();
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void testAddPowerSourceToHouseGridPositiveTest() {
         //Arrange
         String houseGridName = "hgname1";
         HouseGrid houseGrid1 = new HouseGrid(houseGridName);
@@ -104,7 +148,7 @@ class US135ControllerTest {
     }
 
     @Test
-    void testAddPowerSourceToHouseGridWithMoreThanAHouseGridPositiveTest() {
+    public void testAddPowerSourceToHouseGridWithMoreThanAHouseGridPositiveTest() {
         //Arrange
         String houseGridName1 = "house grid 1";
         String houseGridName2 = "house grid 2";
@@ -137,7 +181,7 @@ class US135ControllerTest {
     }
 
     @Test
-    void testAddPowerSourceToHouseGridAddingExistingPowerSourceNegativeTest() {
+    public void testAddPowerSourceToHouseGridAddingExistingPowerSourceNegativeTest() {
 
         //Arrange
         String houseGridName = "hgname1";

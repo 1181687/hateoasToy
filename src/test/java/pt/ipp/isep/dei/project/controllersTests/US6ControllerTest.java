@@ -32,9 +32,9 @@ class US6ControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeoAreaList listaAreasGeograficas = new GeoAreaList();
 
-        listaAreasGeograficas.adicionarAreaGeoALista(ag1);
-        listaAreasGeograficas.adicionarAreaGeoALista(ag2);
-        listaAreasGeograficas.adicionarAreaGeoALista(ag3);
+        listaAreasGeograficas.addGeoAreaToTheList(ag1);
+        listaAreasGeograficas.addGeoAreaToTheList(ag2);
+        listaAreasGeograficas.addGeoAreaToTheList(ag3);
 
         int posicao = 0;
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
@@ -72,9 +72,9 @@ class US6ControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeoAreaList listaAreasGeograficas = new GeoAreaList();
 
-        listaAreasGeograficas.adicionarAreaGeoALista(ag1);
-        listaAreasGeograficas.adicionarAreaGeoALista(ag2);
-        listaAreasGeograficas.adicionarAreaGeoALista(ag3);
+        listaAreasGeograficas.addGeoAreaToTheList(ag1);
+        listaAreasGeograficas.addGeoAreaToTheList(ag2);
+        listaAreasGeograficas.addGeoAreaToTheList(ag3);
 
         int posicao = 2;
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
@@ -101,7 +101,7 @@ class US6ControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeoAreaList listaAreasGeograficas = new GeoAreaList();
 
-        listaAreasGeograficas.adicionarAreaGeoALista(ag1);
+        listaAreasGeograficas.addGeoAreaToTheList(ag1);
 
         int posicao = 0;
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
@@ -134,8 +134,8 @@ class US6ControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeoAreaList listaAreasGeograficas = new GeoAreaList();
 
-        listaAreasGeograficas.adicionarAreaGeoALista(ag1);
-        listaAreasGeograficas.adicionarAreaGeoALista(ag2);
+        listaAreasGeograficas.addGeoAreaToTheList(ag1);
+        listaAreasGeograficas.addGeoAreaToTheList(ag2);
 
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
         int expectedResult = 2;

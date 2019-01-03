@@ -24,6 +24,10 @@ public class US135Controller {
         return mHouseGridList.displayOfTheContentOfTheHouseGridsInTheList();
     }
 
+    public int houseGridListLength(){
+        return mHouseGridList.getmList().size();
+    }
+
     public void getHouseGridFromListByPosition(int position) {
         this.mSelectedHouseGrid = this.mHouseGridList.getHouseGridFromASpecificPositionInTheList(position);
     }
@@ -35,6 +39,10 @@ public class US135Controller {
 
     public String displayPowerSourceTypeList() {
         return mPowerSourceTypeList.displayPowerSourceTypeList();
+    }
+
+    public int powerSourceTypeListLength(){
+        return mPowerSourceTypeList.powerSourceTypeListLength();
     }
 
     public void getPowerSourceTypeFromListByPosition(int position) {

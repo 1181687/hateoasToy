@@ -63,7 +63,7 @@ public class US3ControllerTest {
         Location local = new Location(41.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10,local);
         GeographicalArea areaDaLista = new GeographicalArea(nomeAG, tipo, local, area);
-        lista.adicionarAreaGeoALista(areaDaLista);
+        lista.addGeoAreaToTheList(areaDaLista);
         GeoAreaList expectedResult = lista;
         //Act
         GeoAreaList result = ctrl3.getListaAG();
@@ -86,7 +86,7 @@ public class US3ControllerTest {
         GeoAreaType tipo1 = new GeoAreaType(nomeDoTipo1);
 
         //Adicionar o Tipo de Area Geográfica na lista
-        listaTAG.adicionarElementoALista(tipo1);
+        listaTAG.addTypeOfGeoAreaToTheList(tipo1);
 
         //Expected Result
         List<String> expectedResult = Arrays.asList("Cidade");

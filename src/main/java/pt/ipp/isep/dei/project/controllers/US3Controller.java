@@ -16,7 +16,7 @@ public class US3Controller {
     }
 
     public boolean adicionarNovaAG(GeographicalArea novaAG) {
-        return mGeoAreaList.adicionarAreaGeoALista(novaAG);
+        return mGeoAreaList.addGeoAreaToTheList(novaAG);
     }
 
     public GeoAreaList getListaAG() {
@@ -24,11 +24,11 @@ public class US3Controller {
     }
 
     public List<String> getListaTAG() {
-        return mListaTAG.getListaDosTiposDeAG();
+        return mListaTAG.getListOfGeoAreaTypes();
     }
 
     public GeographicalArea criarNovaAG(String nomeAG, String nomeTipoAG, double altitude, double longitude, double latitude, double largura, double comprimento) {
-        return mGeoAreaList.novaAreaGeografica(nomeAG, nomeTipoAG, altitude, longitude, latitude, largura, comprimento);
+        return mGeoAreaList.newGeographicalArea(nomeAG, nomeTipoAG, altitude, longitude, latitude, largura, comprimento);
 
     }
 }

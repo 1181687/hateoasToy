@@ -15,6 +15,6 @@ public class US2Controller {
 
 
     public List<String> getListaTiposDeAG (){
-        return mListaTAG.getListaDosTiposDeAG();
+        return mListaTAG.getListOfGeoAreaTypes();
     }
 }

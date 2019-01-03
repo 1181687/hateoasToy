@@ -45,31 +45,31 @@ public class GeographicalArea {
     }
 
 
-    public String getmNomeAreaGeo() {
+    public String getNameOfGeoArea() {
         return mNomeAreaGeo;
     }
 
-    public GeoAreaType getmGeoAreaType() {
+    public GeoAreaType getGeoAreaType() {
         return mGeoAreaType;
     }
 
-    public Location getmLocation() {
+    public Location getLocation() {
         return this.mLocation;
     }
 
-    public GeographicalArea getmInsertedIn() {
+    public GeographicalArea getInsertedIn() {
         return mInsertedIn;
     }
 
-    public void setmInsertedIn(GeographicalArea mInsertedIn) {
+    public void setInsertedIn(GeographicalArea mInsertedIn) {
         this.mInsertedIn = mInsertedIn;
     }
 
-    public double distanciaLinearDuasAreas(GeographicalArea novoAg) {
-        return this.mLocation.distanciaDuasLocalizacoes(novoAg.getmLocation());
+    public double linearDistanceBetweenTwoGeoAreas(GeographicalArea novoAg) {
+        return this.mLocation.distanceBetweenTwoLocations(novoAg.getLocation());
     }
 
-    public boolean verificarSeSensorEstaContidoNaAG(Sensor sensor) {
+    public boolean checkIfSensorInInsideOfGeoArea(Sensor sensor) {
 
         return mRectangleArea.verificaSeLocalizacaoEstaContidaNumaArea(sensor.getmLocation());
 
@@ -81,14 +81,14 @@ public class GeographicalArea {
 
         for (Sensor sensor : listaDeSensores) {
 
-            if (verificarSeSensorEstaContidoNaAG(sensor) && sensor.getmSensorType().equals(sensorType)) {
+            if (checkIfSensorInInsideOfGeoArea(sensor) && sensor.getmSensorType().equals(sensorType)) {
                 listaDeSensoresInseridos.add(sensor);
             }
         }
         return listaDeSensoresInseridos;
     }
 
-    public List<Sensor> listarSensoresDeUmTipoNaAGNumPeriodo(SensorType tipo, List<Sensor> listaDeSensores, Date dataInicial, Date dataFinal) {
+    public List<Sensor> listSensorsOfACertainTypeInTheGeoAreaInAGivenPeriod(SensorType tipo, List<Sensor> listaDeSensores, Date dataInicial, Date dataFinal) {
 
         List<Sensor> listaSensoresContidosNaAGPorTipo = sortSensorsInAGeoAreaByType(tipo, listaDeSensores);
         List<Sensor> listaSensoresDeTipoNumPeriodo = new ArrayList<>();
@@ -122,11 +122,11 @@ public class GeographicalArea {
         return sensorListByTypeInADay;
     }
 
-    public Sensor novoSensor(String nome, SensorType novoSensorType, Location novaLocalizacao) {
+    public Sensor newSensor(String nome, SensorType novoSensorType, Location novaLocalizacao) {
         return new Sensor(nome, novoSensorType, novaLocalizacao);
     }
 
-    public Location novaLocalizacao(double mLatitude, double mLongitude, double mAltitude) {
+    public Location newLocation(double mLatitude, double mLongitude, double mAltitude) {
         return new Location(mLatitude, mLongitude, mAltitude);
     }
 
@@ -148,15 +148,15 @@ public class GeographicalArea {
      */
     public SensorList getTheSensorListInTheFirstAreaWithSensorOfAGivenType(SensorType type) {
         GeographicalArea areaToBeUsed = new GeographicalArea(mNomeAreaGeo, mGeoAreaType, mLocation, mRectangleArea);
-        areaToBeUsed.setmInsertedIn(mInsertedIn);
+        areaToBeUsed.setInsertedIn(mInsertedIn);
         areaToBeUsed.getmSensorListInTheGeographicArea().setmSensorList(mSensorList.getmSensorList());
 
         SensorList sensorList = new SensorList();
         sensorList.setmSensorList(sortSensorsInAGeoAreaByType(type, areaToBeUsed.getmSensorListInTheGeographicArea().getmSensorList()));
         while (sensorList.getmSensorList().isEmpty()) {
-            if (areaToBeUsed.getmInsertedIn() != null) {
-                areaToBeUsed.getmSensorListInTheGeographicArea().setmSensorList(areaToBeUsed.getmInsertedIn().getmSensorListInTheGeographicArea().getmSensorList());
-                areaToBeUsed.setmInsertedIn(areaToBeUsed.getmInsertedIn().getmInsertedIn());
+            if (areaToBeUsed.getInsertedIn() != null) {
+                areaToBeUsed.getmSensorListInTheGeographicArea().setmSensorList(areaToBeUsed.getInsertedIn().getmSensorListInTheGeographicArea().getmSensorList());
+                areaToBeUsed.setInsertedIn(areaToBeUsed.getInsertedIn().getInsertedIn());
                 sensorList.setmSensorList(areaToBeUsed.getmSensorListInTheGeographicArea().getmSensorList());
             } else {
                 return sensorList;
@@ -212,7 +212,7 @@ public class GeographicalArea {
         LocalDate startDate1 = startDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         LocalDate endDate1 = endDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         List<Double> listOfDailyAverages = new ArrayList<>();
-        List<Sensor> sensorListWithRightTypeDuringPeriod = listarSensoresDeUmTipoNaAGNumPeriodo(sensorType, this.mSensorList.getmSensorList(), startDate, endDate);
+        List<Sensor> sensorListWithRightTypeDuringPeriod = listSensorsOfACertainTypeInTheGeoAreaInAGivenPeriod(sensorType, this.mSensorList.getmSensorList(), startDate, endDate);
 
         for (LocalDate dateIterator = startDate1; dateIterator.isBefore(endDate1); dateIterator = dateIterator.plusDays(1)) {
             Date currentDate = Date.from(dateIterator.atStartOfDay(ZoneId.systemDefault()).toInstant());

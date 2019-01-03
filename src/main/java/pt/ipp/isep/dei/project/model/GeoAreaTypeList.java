@@ -17,7 +17,7 @@ public class GeoAreaTypeList {
         return mListaTAG;
     }
 
-    public boolean adicionarElementoALista(GeoAreaType tipoAG) {
+    public boolean addTypeOfGeoAreaToTheList(GeoAreaType tipoAG) {
         if (!(mListaTAG.contains(tipoAG))) {
             mListaTAG.add(tipoAG);
             return true;
@@ -25,14 +25,14 @@ public class GeoAreaTypeList {
         return false;
     }
 
-    public GeoAreaType novoTipoAG(String novoTipo) {
+    public GeoAreaType newTypeOfGeoArea(String novoTipo) {
         return new GeoAreaType(novoTipo);
     }
 
-    public List<String> getListaDosTiposDeAG () {
+    public List<String> getListOfGeoAreaTypes() {
         List<String> listaFinal = new ArrayList<>();
         for (GeoAreaType objecto : mListaTAG) {
-            listaFinal.add(objecto.getNomeDoTipoAreaGeo());
+            listaFinal.add(objecto.getStringOfTypeOfGeoArea());
         }
         return listaFinal;
     }

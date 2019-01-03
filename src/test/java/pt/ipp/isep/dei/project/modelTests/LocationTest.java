@@ -20,7 +20,7 @@ public class LocationTest {
 
         //Location local2 = new Location(lat2, -16.9, 0);
         double expectedResult = 1611770.043;
-        double result = local1.distanciaDuasLocalizacoes(local2);
+        double result = local1.distanceBetweenTwoLocations(local2);
         assertEquals(expectedResult,result,0.001);
     }
 
@@ -36,7 +36,7 @@ public class LocationTest {
         Location local2 = new Location(lat2, lon2, alt2);
 
         double expectedResult = Double.NaN;
-        double result = local1.distanciaDuasLocalizacoes(local2);
+        double result = local1.distanceBetweenTwoLocations(local2);
         assertEquals(expectedResult,result,0.001);
     }
 

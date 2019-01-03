@@ -29,4 +29,8 @@ public class PowerSourceTypeList {
     public PowerSourceType getPowerSourceTypeFromASpecificPositionInTheList(int position) {
         return mPowerSourceTypeList.get(position);
     }
+
+    public int powerSourceTypeListLength(){
+        return this.mPowerSourceTypeList.size();
+    }
 }
