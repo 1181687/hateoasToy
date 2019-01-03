@@ -169,7 +169,7 @@ public class Main {
                             break;*/
                         case 11:
                             US605UI ui11 = new US605UI(house, sensorTypeList);
-                            ui11.run();
+                            ui11.run1();
                             break;
                     }
                     option = Menu.regularUserMenu();
