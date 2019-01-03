@@ -64,14 +64,7 @@ public class House {
     public boolean addRoomToHouse(Room room) {
         return this.mRoomList.addRoomToRoomList(room);
     }
-
-    /**
-     * @return
-     */
-    public RoomList getListOfRoom() {
-        return this.mRoomList;
-    }
-
+    
     /**
      * Get the location of the house.
      *
@@ -139,5 +132,9 @@ public class House {
 
     public String getNameOfTheChosenRoomInSpecificPos(int position) {
         return mRoomList.getNameOfTheChosenRoomInSpecificPos(position);
+    }
+
+    public Room newRoom(double height, double length, double width, String name, int housefloor) {
+        return mRoomList.newRoom(name, housefloor, height, length, width);
     }
 }
