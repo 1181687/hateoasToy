@@ -32,16 +32,7 @@ public class PowerSource {
 
         PowerSource type = (PowerSource) obj;
 
-        if(this.mIsRechargeable!=type.mIsRechargeable){
-            return false;
-        }
-
-        if(type.mIsRechargeable){
-            return this.mPowerSourceName.equals(type.mPowerSourceName) && this.mPowerSourceType.equals(type.mPowerSourceType);
-        }
-        else {
-            return this.mPowerSourceName.equals(type.mPowerSourceName) && this.mPowerSourceType.equals(type.mPowerSourceType);
-        }
+        return this.mPowerSourceName.equals(type.mPowerSourceName) && this.mPowerSourceType.equals(type.mPowerSourceType) && this.mIsRechargeable == type.mIsRechargeable;
     }
 
     private static void validateName(String name) {
