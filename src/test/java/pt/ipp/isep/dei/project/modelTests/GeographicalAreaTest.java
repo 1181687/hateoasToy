@@ -87,7 +87,7 @@ class GeographicalAreaTest {
         double expectedResult = 1099043.7203;
 
         // act
-        double resultado = ag1.distanciaLinearDuasAreas(ag2);
+        double resultado = ag1.linearDistanceBetweenTwoGeoAreas(ag2);
 
         //assert
         assertEquals(expectedResult, resultado, 0.0001);
@@ -127,7 +127,7 @@ class GeographicalAreaTest {
 
         boolean expectedResult = true;
         //Act
-        boolean result = ag1.verificarSeSensorEstaContidoNaAG(s0);
+        boolean result = ag1.checkIfSensorInInsideOfGeoArea(s0);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -149,7 +149,7 @@ class GeographicalAreaTest {
 
         boolean expectedResult = false;
         //Act
-        boolean result = ag1.verificarSeSensorEstaContidoNaAG(s0);
+        boolean result = ag1.checkIfSensorInInsideOfGeoArea(s0);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -174,7 +174,7 @@ class GeographicalAreaTest {
 
         boolean expectedResult = true;
         //Act
-        boolean result = ag1.verificarSeSensorEstaContidoNaAG(s0);
+        boolean result = ag1.checkIfSensorInInsideOfGeoArea(s0);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -381,7 +381,7 @@ class GeographicalAreaTest {
         SensorType tipoResultado = new SensorType("Temperatura");
 
         //Act
-        List<Sensor> result = ag1.listarSensoresDeUmTipoNaAGNumPeriodo(tipoResultado, listaDeSensores, dataInicial, dataFinal);
+        List<Sensor> result = ag1.listSensorsOfACertainTypeInTheGeoAreaInAGivenPeriod(tipoResultado, listaDeSensores, dataInicial, dataFinal);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -473,7 +473,7 @@ class GeographicalAreaTest {
         SensorType tipoResultado = new SensorType("Temperatura");
 
         //Act
-        List<Sensor> result = ag1.listarSensoresDeUmTipoNaAGNumPeriodo(tipoResultado, listaDeSensores, dataInicial, dataFinal);
+        List<Sensor> result = ag1.listSensorsOfACertainTypeInTheGeoAreaInAGivenPeriod(tipoResultado, listaDeSensores, dataInicial, dataFinal);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -490,7 +490,7 @@ class GeographicalAreaTest {
         String expectedResult = "Porto";
 
         //act
-        String result = ag1.getmNomeAreaGeo();
+        String result = ag1.getNameOfGeoArea();
         assertEquals(expectedResult, result);
     }
 
@@ -506,7 +506,7 @@ class GeographicalAreaTest {
         GeoAreaType expectedResult = tipo;
 
         //act
-        GeoAreaType result = ag1.getmGeoAreaType();
+        GeoAreaType result = ag1.getGeoAreaType();
         assertEquals(expectedResult, result);
     }
 
@@ -595,12 +595,12 @@ class GeographicalAreaTest {
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
 
-        ag1.setmInsertedIn(ag1);
+        ag1.setInsertedIn(ag1);
 
         GeographicalArea expectedResult = ag1;
 
         //Act
-        GeographicalArea result = ag1.getmInsertedIn();
+        GeographicalArea result = ag1.getInsertedIn();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -623,7 +623,7 @@ class GeographicalAreaTest {
         Location expectedResult = local2;
 
         //Act
-        Location result = ag1.novaLocalizacao(mLatitude, mLongitude, mAltitude);
+        Location result = ag1.newLocation(mLatitude, mLongitude, mAltitude);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -651,7 +651,7 @@ class GeographicalAreaTest {
 
         Sensor expectedResult = s2;
         //Act
-        Sensor result = ag1.novoSensor(nomeSensor, sensorType2, locS2);
+        Sensor result = ag1.newSensor(nomeSensor, sensorType2, locS2);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -671,14 +671,14 @@ class GeographicalAreaTest {
         Location local1 = new Location(41.1496, -6.6109, 100);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-        ag1.setmInsertedIn(ag2);
+        ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-        ag.setmInsertedIn(ag1);
+        ag.setInsertedIn(ag1);
 
 
         // Instantiate Sensors
@@ -748,14 +748,14 @@ class GeographicalAreaTest {
         Location local1 = new Location(41.1496, -6.6109, 100);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-        ag1.setmInsertedIn(ag2);
+        ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-        ag.setmInsertedIn(ag1);
+        ag.setInsertedIn(ag1);
 
 
         // Instantiate Sensors
@@ -796,14 +796,14 @@ class GeographicalAreaTest {
         Location local1 = new Location(41.1496, -6.6109, 100);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-        ag1.setmInsertedIn(ag2);
+        ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-        ag.setmInsertedIn(ag1);
+        ag.setInsertedIn(ag1);
 
 
         // Instantiate Sensors
@@ -876,14 +876,14 @@ class GeographicalAreaTest {
         Location local1 = new Location(41.1496, -6.6109, 100);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-        ag1.setmInsertedIn(ag2);
+        ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-        ag.setmInsertedIn(ag1);
+        ag.setInsertedIn(ag1);
 
         Location location = new Location(0,30,50);
 
@@ -913,14 +913,14 @@ class GeographicalAreaTest {
         Location local1 = new Location(41.1496, -6.6109, 100);
         RectangleArea area1 = new RectangleArea(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-        ag1.setmInsertedIn(ag2);
+        ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         RectangleArea area = new RectangleArea(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-        ag.setmInsertedIn(ag1);
+        ag.setInsertedIn(ag1);
 
 
         // Instantiate Sensors

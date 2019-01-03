@@ -11,22 +11,22 @@ public class US7Controller {
     }
 
     public String getConteudoLista (boolean usarCriterio){
-        return mLista.conteudoLista(usarCriterio);
+        return mLista.listContent(usarCriterio);
     }
 
     public GeographicalArea getAGNaListaApresentada(int opcaoSelecionada) {
-        return mLista.getAreaGeograficaNaListaApresentada(opcaoSelecionada);
+        return mLista.getGeographicalAreaInTheList(opcaoSelecionada);
     }
 
     public boolean verSeAGTemAreaInseridaVazia(GeographicalArea area) {
-        return mLista.verificarSeAGNaoTemAreaInserida (area);
+        return mLista.checkIfGeoAreaDoesntHaveAnInsertedArea(area);
     }
 
     public void adicionarAGListaPosicaoEspecifica(int posicao, GeographicalArea area) {
-        mLista.adicionarAreaGeoAListaNumaPosicaoEspecifica(posicao,area);
+        mLista.addGeoAreaToTheListInASpecificPosition(posicao, area);
     }
 
     public void removerAGLista(GeographicalArea area) {
-        mLista.removerAreaGeoALista(area);
+        mLista.removeGeoAreaFromTheList(area);
     }
 }

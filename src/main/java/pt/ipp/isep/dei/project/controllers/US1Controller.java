@@ -12,8 +12,8 @@ public class US1Controller {
     }
 
     public boolean adicionaNovoTipoAreaGeografica(String tipoTAG){
-        GeoAreaType novoTAG = mListaTAG.novoTipoAG(tipoTAG);
-        return mListaTAG.adicionarElementoALista(novoTAG);
+        GeoAreaType novoTAG = mListaTAG.newTypeOfGeoArea(tipoTAG);
+        return mListaTAG.addTypeOfGeoAreaToTheList(novoTAG);
     }
 
     public GeoAreaTypeList getListaTAG() {

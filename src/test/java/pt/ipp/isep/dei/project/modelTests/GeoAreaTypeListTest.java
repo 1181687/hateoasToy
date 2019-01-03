@@ -19,7 +19,7 @@ class GeoAreaTypeListTest {
         String novoTipoAG = "Cidade";
         GeoAreaType novoTipo = new GeoAreaType(novoTipoAG);
         //Act
-        boolean resultado = lista.adicionarElementoALista(novoTipo);
+        boolean resultado = lista.addTypeOfGeoAreaToTheList(novoTipo);
         //Arrange
         assertTrue(resultado);
     }
@@ -30,9 +30,9 @@ class GeoAreaTypeListTest {
         GeoAreaTypeList lista = new GeoAreaTypeList();
         String novoTipoAG = "Cidade";
         GeoAreaType novoTipo = new GeoAreaType(novoTipoAG);
-        lista.adicionarElementoALista(novoTipo);
+        lista.addTypeOfGeoAreaToTheList(novoTipo);
         //Act
-        boolean resultado = lista.adicionarElementoALista(novoTipo);
+        boolean resultado = lista.addTypeOfGeoAreaToTheList(novoTipo);
         //Arrange
         assertFalse(resultado);
     }
@@ -43,10 +43,10 @@ class GeoAreaTypeListTest {
         GeoAreaTypeList lista = new GeoAreaTypeList();
         String novoTipoAG = "Cidade";
         GeoAreaType novoTipo = new GeoAreaType(novoTipoAG);
-        lista.adicionarElementoALista(novoTipo);
-        GeoAreaType tipoDiferente = lista.novoTipoAG("Rua");
+        lista.addTypeOfGeoAreaToTheList(novoTipo);
+        GeoAreaType tipoDiferente = lista.newTypeOfGeoArea("Rua");
         //Act
-        boolean resultado = lista.adicionarElementoALista(tipoDiferente);
+        boolean resultado = lista.addTypeOfGeoAreaToTheList(tipoDiferente);
         //Arrange
         assertTrue(resultado);
     }
@@ -77,14 +77,14 @@ class GeoAreaTypeListTest {
         GeoAreaType tipo1 = new GeoAreaType(nomeDoTipo1);
 
         //Adicionar o Tipo de Area Geográfica na lista
-        lista.adicionarElementoALista(tipo1);
+        lista.addTypeOfGeoAreaToTheList(tipo1);
 
         //Expected Result
         List<String> expectedResult = Arrays.asList("Cidade");
 
 
         //Act
-        List<String> result = lista.getListaDosTiposDeAG();
+        List<String> result = lista.getListOfGeoAreaTypes();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -104,8 +104,8 @@ class GeoAreaTypeListTest {
         GeoAreaType tipo2 = new GeoAreaType(nomeDoTipo2);
 
         //Adicionar os Tipos de Areas Geográficas na lista
-        lista.adicionarElementoALista(tipo1);
-        lista.adicionarElementoALista(tipo2);
+        lista.addTypeOfGeoAreaToTheList(tipo1);
+        lista.addTypeOfGeoAreaToTheList(tipo2);
 
 
         //Expected Result
@@ -113,7 +113,7 @@ class GeoAreaTypeListTest {
 
 
         //Act
-        List<String> result = lista.getListaDosTiposDeAG();
+        List<String> result = lista.getListOfGeoAreaTypes();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -130,7 +130,7 @@ class GeoAreaTypeListTest {
 
 
         //Act
-        List<String> result = lista.getListaDosTiposDeAG();
+        List<String> result = lista.getListOfGeoAreaTypes();
 
         //Assert
         assertEquals(expectedResult, result);
