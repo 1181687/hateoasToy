@@ -16,24 +16,4 @@ public class US108Controller {
     public boolean checkIfListIsEmpty(){
         return mList.checkIfRoomListIsEmpty();
     }
-
-    public int sizeOfTheList(){
-        return mList.listSize();
-    }
-
-    public String displayOfTheChosenRoom(int position) {
-        return mList.getDisplayOfTheChosenRoom(position);
-    }
-
-    public void changeNameOfTheRoom(int chosenRoom, String change) {
-        mList.setRoomNameInList(chosenRoom, change);
-    }
-
-    public void changeHouseFloorOfTheRoom(int chosenRoom, int change) {
-        mList.setRoomFloorInList(chosenRoom, change);
-    }
-
-    public void changeDimensionsOfTheRoom(int chosenRoom, int chosenFeature, double change) {
-        mList.setRoomDimensionsInList(chosenRoom, chosenFeature, change);
-    }
 }
