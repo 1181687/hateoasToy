@@ -16,11 +16,11 @@ public class US4Controller {
     }
 
     public List<String> getListaAGPorTipo(String tipo) {
-        return this.mGeoAreaList.getListaAGPorTipo(tipo);
+        return this.mGeoAreaList.getListOfGeographicalAreasByType(tipo);
     }
 
     public List<String> getListaDosTiposDeAG(){
-        return mListaTAG.getListaDosTiposDeAG();
+        return mListaTAG.getListOfGeoAreaTypes();
     }
 
 

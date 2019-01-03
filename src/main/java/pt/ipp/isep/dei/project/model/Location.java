@@ -37,7 +37,7 @@ public class Location {      //graus decimais
         return mAltitude;
     }
 
-    public double distanciaDuasLocalizacoes(Location novoLocal) {
+    public double distanceBetweenTwoLocations(Location novoLocal) {
 
         final int raioDaTerra = 6371; // raio da Terra
         double lonNovoLocal = novoLocal.getmLongitude();

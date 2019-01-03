@@ -60,7 +60,7 @@ class GeoAreaTypeTest {
         GeoAreaType tipo1 = new GeoAreaType(TipoAreaGeo);
         String expectedResult= "Rua";
         //Act
-        String result = tipo1.getNomeDoTipoAreaGeo();
+        String result = tipo1.getStringOfTypeOfGeoArea();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -76,7 +76,7 @@ class GeoAreaTypeTest {
         boolean expectedResult= true;
 
         //Act
-        boolean result = tipo1.umTipoAreaGeoEIgualAOutra("Rua");
+        boolean result = tipo1.checkIfOneTypeOfGeoAreaIsEqualToAnotherType("Rua");
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -92,7 +92,7 @@ class GeoAreaTypeTest {
         boolean expectedResult= false;
 
         //Act
-        boolean result = tipo1.umTipoAreaGeoEIgualAOutra("Cidade");
+        boolean result = tipo1.checkIfOneTypeOfGeoAreaIsEqualToAnotherType("Cidade");
         //Assert
         assertEquals(expectedResult, result);
     }

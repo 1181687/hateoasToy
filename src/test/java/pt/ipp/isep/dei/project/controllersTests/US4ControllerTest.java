@@ -26,8 +26,8 @@ public class US4ControllerTest {
         GeoAreaType tipo2 = new GeoAreaType(nomeDoTipo2);
 
         //Adicionar os Tipos de Areas Geográficas na lista
-        geoAreaTypeList.adicionarElementoALista(tipo1);
-        geoAreaTypeList.adicionarElementoALista(tipo2);
+        geoAreaTypeList.addTypeOfGeoAreaToTheList(tipo1);
+        geoAreaTypeList.addTypeOfGeoAreaToTheList(tipo2);
 
         //Instanciar a classe GeoAreaList
         GeoAreaList lista = new GeoAreaList();
@@ -44,8 +44,8 @@ public class US4ControllerTest {
         RectangleArea area2 = new RectangleArea(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        lista.adicionarAreaGeoALista(ag1);
-        lista.adicionarAreaGeoALista(ag2);
+        lista.addGeoAreaToTheList(ag1);
+        lista.addGeoAreaToTheList(ag2);
 
         US4Controller ctrl = new US4Controller(lista, geoAreaTypeList);
         ArrayList<String> expectedResult = new ArrayList<>(Arrays.asList("Porto"));
@@ -69,7 +69,7 @@ public class US4ControllerTest {
         GeoAreaType tipo1 = new GeoAreaType(nomeDoTipo1);
 
         //Adicionar o Tipo de Area Geográfica na lista
-        lista.adicionarElementoALista(tipo1);
+        lista.addTypeOfGeoAreaToTheList(tipo1);
 
         //Instanciar a classe GeoAreaList
         GeoAreaList geoAreaList = new GeoAreaList();

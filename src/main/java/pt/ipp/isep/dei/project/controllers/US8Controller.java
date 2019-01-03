@@ -11,18 +11,18 @@ public class US8Controller {
     }
 
     public String getConteudoLista (boolean usarCriterio){
-        return mLista.conteudoLista(usarCriterio);
+        return mLista.listContent(usarCriterio);
     }
 
     public GeographicalArea getAGNaListaApresentada(int opcaoSelecionada) {
-        return mLista.getAreaGeograficaNaListaApresentada(opcaoSelecionada);
+        return mLista.getGeographicalAreaInTheList(opcaoSelecionada);
     }
 
     public boolean verSeAGTemAreaInseridaVazia(GeographicalArea area) {
-        return mLista.verificarSeAGNaoTemAreaInserida (area);
+        return mLista.checkIfGeoAreaDoesntHaveAnInsertedArea(area);
     }
 
     public boolean verificarSeAGEstaContidaDiretaOuIndiretamenteNoutraAG(int opcaoSelecionada1, int opcaoSelecionada2){
-        return mLista.verificarSeAGEstaContidaNoutra(opcaoSelecionada1,opcaoSelecionada2);
+        return mLista.checkIfGeoAreaIsinsertedInAnother(opcaoSelecionada1, opcaoSelecionada2);
     }
 }

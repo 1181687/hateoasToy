@@ -26,7 +26,7 @@ public class US1ControllerTest {
         //Arrange
         GeoAreaTypeList lista = new GeoAreaTypeList();
         GeoAreaType tipoDaLista = new GeoAreaType("Cidade");
-        lista.adicionarElementoALista(tipoDaLista);
+        lista.addTypeOfGeoAreaToTheList(tipoDaLista);
         String novoTipo = "Cidade";
         US1Controller ctrl = new US1Controller(lista);
         //Act
@@ -41,7 +41,7 @@ public class US1ControllerTest {
         GeoAreaTypeList lista = new GeoAreaTypeList();
         US1Controller ctrl = new US1Controller(lista);
         GeoAreaType tipoDaLista = new GeoAreaType("Cidade");
-        lista.adicionarElementoALista(tipoDaLista);
+        lista.addTypeOfGeoAreaToTheList(tipoDaLista);
         GeoAreaTypeList expectedResult = lista;
         //Act
         GeoAreaTypeList result = ctrl.getListaTAG();

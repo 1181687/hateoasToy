@@ -57,7 +57,7 @@ public class Sensor {
 
     public double distanciaLinearEntreDoisSensores(Sensor sensor1) {
 
-        return this.mLocation.distanciaDuasLocalizacoes(sensor1.mLocation);
+        return this.mLocation.distanceBetweenTwoLocations(sensor1.mLocation);
     }
 
 
@@ -317,7 +317,7 @@ public class Sensor {
     }
 
     public double distanceBetweenASensorAndALocation(Location location) {
-        return this.mLocation.distanciaDuasLocalizacoes(location);
+        return this.mLocation.distanceBetweenTwoLocations(location);
     }
 
     /**

@@ -15,7 +15,7 @@ public class GeoAreaList {
         return mListaAG;
     }
 
-    public boolean adicionarAreaGeoALista(GeographicalArea AG) {
+    public boolean addGeoAreaToTheList(GeographicalArea AG) {
         if (!(mListaAG.contains(AG))) {
             mListaAG.add(AG);
             return true;
@@ -23,7 +23,7 @@ public class GeoAreaList {
         return false;
     }
 
-    public GeographicalArea getAreaGeografica(GeographicalArea geographicalArea) {
+    public GeographicalArea getGeographicalArea(GeographicalArea geographicalArea) {
         for (GeographicalArea area : mListaAG) {
             if (area.equals(geographicalArea)) {
                 return area;
@@ -32,42 +32,42 @@ public class GeoAreaList {
         return null;
     }
 
-    public String getNomeAreaGeograficaPorIndice(int posicao) {
-        return this.mListaAG.get(posicao).getmNomeAreaGeo();
+    public String getGeographicalAreaNameByPosition(int posicao) {
+        return this.mListaAG.get(posicao).getNameOfGeoArea();
     }
 
-    public List<String> getListaAGPorTipo(String tipo) {
+    public List<String> getListOfGeographicalAreasByType(String tipo) {
         List<String> listaAGMesmoTipo = new ArrayList<>();
         for (GeographicalArea areaGeo : mListaAG) {
-            if (areaGeo.getmGeoAreaType().umTipoAreaGeoEIgualAOutra(tipo)) {
-                listaAGMesmoTipo.add(areaGeo.getmNomeAreaGeo());
+            if (areaGeo.getGeoAreaType().checkIfOneTypeOfGeoAreaIsEqualToAnotherType(tipo)) {
+                listaAGMesmoTipo.add(areaGeo.getNameOfGeoArea());
             }
         }
         return listaAGMesmoTipo;
     }
 
-    public GeographicalArea getAreaGeograficaNaListaApresentada(int opcaoSelecionada) {
+    public GeographicalArea getGeographicalAreaInTheList(int opcaoSelecionada) {
         return mListaAG.get(opcaoSelecionada);
     }
 
-    public boolean verificarSeAGNaoTemAreaInserida(GeographicalArea area) {
-        return area.getmInsertedIn() == null;
+    public boolean checkIfGeoAreaDoesntHaveAnInsertedArea(GeographicalArea area) {
+        return area.getInsertedIn() == null;
     }
 
-    public boolean removerAreaGeoALista(GeographicalArea geoArea) {
+    public boolean removeGeoAreaFromTheList(GeographicalArea geoArea) {
         return mListaAG.remove(geoArea);
     }
 
-    public void adicionarAreaGeoAListaNumaPosicaoEspecifica(int posicao, GeographicalArea geoArea) {
+    public void addGeoAreaToTheListInASpecificPosition(int posicao, GeographicalArea geoArea) {
         mListaAG.add(posicao, geoArea);
     }
 
-    public boolean verificarSeAGEstaContidaNoutra(int opcaoSelecionada1, int opcaoSelecionada2) {
+    public boolean checkIfGeoAreaIsinsertedInAnother(int opcaoSelecionada1, int opcaoSelecionada2) {
         GeographicalArea primeiraAG = mListaAG.get(opcaoSelecionada1);
         GeographicalArea segundaAG = mListaAG.get(opcaoSelecionada2);
-        while (primeiraAG.getmInsertedIn() != null) {
-            if (!primeiraAG.getmInsertedIn().equals(segundaAG)) {
-                primeiraAG = primeiraAG.getmInsertedIn();
+        while (primeiraAG.getInsertedIn() != null) {
+            if (!primeiraAG.getInsertedIn().equals(segundaAG)) {
+                primeiraAG = primeiraAG.getInsertedIn();
             } else {
                 return true;
             }
@@ -76,23 +76,23 @@ public class GeoAreaList {
     }
 
 
-    public String conteudoLista(boolean usarCriterio) {
+    public String listContent(boolean usarCriterio) {
         StringBuilder conteudo = new StringBuilder();
         for (int i = 1; i <= mListaAG.size(); i++) {
-            conteudo.append(i + " - Nome: " + mListaAG.get(i - 1).getmNomeAreaGeo());
-            conteudo.append(", Tipo: " + mListaAG.get(i - 1).getmGeoAreaType().getNomeDoTipoAreaGeo());
-            conteudo.append(", Latitude: " + mListaAG.get(i - 1).getmLocation().getmLatitude());
-            conteudo.append(", Longitude: " + mListaAG.get(i - 1).getmLocation().getmLongitude());
-            if (usarCriterio && !verificarSeAGNaoTemAreaInserida(mListaAG.get(i - 1))) {
-                conteudo.append(", Inserido Em: " + mListaAG.get(i - 1).getmInsertedIn().getmGeoAreaType().getNomeDoTipoAreaGeo());
-                conteudo.append(" " + mListaAG.get(i - 1).getmInsertedIn().getmNomeAreaGeo());
+            conteudo.append(i + " - Nome: " + mListaAG.get(i - 1).getNameOfGeoArea());
+            conteudo.append(", Tipo: " + mListaAG.get(i - 1).getGeoAreaType().getStringOfTypeOfGeoArea());
+            conteudo.append(", Latitude: " + mListaAG.get(i - 1).getLocation().getmLatitude());
+            conteudo.append(", Longitude: " + mListaAG.get(i - 1).getLocation().getmLongitude());
+            if (usarCriterio && !checkIfGeoAreaDoesntHaveAnInsertedArea(mListaAG.get(i - 1))) {
+                conteudo.append(", Inserido Em: " + mListaAG.get(i - 1).getInsertedIn().getGeoAreaType().getStringOfTypeOfGeoArea());
+                conteudo.append(" " + mListaAG.get(i - 1).getInsertedIn().getNameOfGeoArea());
             }
             conteudo.append("\n");
         }
         return conteudo.toString();
     }
 
-    public GeographicalArea novaAreaGeografica(String nomeAG, String nomeTipoAG, double latitude, double longitude, double altitude, double altura, double comprimento) {
+    public GeographicalArea newGeographicalArea(String nomeAG, String nomeTipoAG, double latitude, double longitude, double altitude, double altura, double comprimento) {
         GeoAreaType tipoAG = new GeoAreaType(nomeTipoAG);
         Location localizacao = new Location(latitude, longitude,altitude);
         RectangleArea rectanguloArea = new RectangleArea(altura, comprimento, localizacao);
