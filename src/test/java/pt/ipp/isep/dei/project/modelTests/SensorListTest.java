@@ -67,34 +67,24 @@ class SensorListTest {
     @Test
     public void testargetListaUltimosRegistosPorTipoSensorCasoPositivo() {
         //Arrange
-        //Instanciar AG
-        String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local1, area);
-
         //Instanciar Sensor
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento0 = calendario0.getTime();
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
         Date dataFuncionamento1 = calendario1.getTime();
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
         Date dataFuncionamento2 = calendario2.getTime();
         SensorType sensorType2 = new SensorType("Humidade");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
         //Instanciar Measurement
         // Sensor0
@@ -156,36 +146,26 @@ class SensorListTest {
     }
 
     @Test
-    public void testargetListaUltimosRegistosPorTipoSensorCasoUltimoRegistoDoubleNan() {
+    public void testarGetListaUltimosRegistosPorTipoSensorCasoUltimoRegistoDoubleNan() {
         //Arrange
-        //Instanciar AG
-        String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local1, area);
-
         //Instanciar Sensor
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento0 = calendario0.getTime();
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
         Date dataFuncionamento1 = calendario1.getTime();
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
         Date dataFuncionamento2 = calendario2.getTime();
         SensorType sensorType2 = new SensorType("Humidade");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
         //Instanciar Measurement
         // Sensor0
@@ -246,36 +226,26 @@ class SensorListTest {
     }
 
     @Test
-    public void testargetListaUltimosRegistosPorTipoSensorListaVazia() {
+    public void testarGetListaUltimosRegistosPorTipoSensorListaVazia() {
         //Arrange
-        //Instanciar AG
-        String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local1, area);
-
         //Instanciar Sensor
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento0 = calendario0.getTime();
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
         Date dataFuncionamento1 = calendario1.getTime();
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
         Date dataFuncionamento2 = calendario2.getTime();
         SensorType sensorType2 = new SensorType("Humidade");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
         //Instanciar Measurement
         // Sensor0
@@ -327,41 +297,28 @@ class SensorListTest {
         assertEquals(expectedResult, result);
     }
 
-    ///////////////////////////////////////////////////////////////////
     @Test
-    public void testarUltimoRegistoDeUmaListaDeTiposDeSensores() {
+    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresDiferentes() {
         //arrange
-        //Instanciar AG
-        String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local1, area);
-
-        //Instanciar Sensor
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento0 = calendario0.getTime();
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
         Date dataFuncionamento1 = calendario1.getTime();
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
         Date dataFuncionamento2 = calendario2.getTime();
         SensorType sensorType2 = new SensorType("Humidade");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
-        //Instanciar Measurement
-        // Sensor0
+        //Measurement
         Calendar calendarioDaMedicao01 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
 
@@ -369,7 +326,7 @@ class SensorListTest {
         Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
 
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
-        Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
+        Measurement measurement02 = new Measurement(26, dataHoraDaMedicao02);
 
         s0.addMeasurementToList(measurement01);
         s0.addMeasurementToList(measurement02);
@@ -400,7 +357,7 @@ class SensorListTest {
         s2.addMeasurementToList(measurement21);
         s2.addMeasurementToList(measurement22);
 
-        double expectedResult = 25;
+        Measurement expectedResult = measurement12;
 
         SensorType tipoResultado = new SensorType("Temperatura");
         SensorList listSens = new SensorList();
@@ -409,45 +366,35 @@ class SensorListTest {
         listSens.addSensorToTheListOfSensors(s2);
 
         //Act
-        double result = listSens.getLatestMeasurementBySensorType(tipoResultado).getmValue();
+        Measurement result = listSens.getLatestMeasurementBySensorType(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresMutacao() {
+    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresIguais() {
         //arrange
-        //Instanciar AG
-        String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
-        Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
-
-        //Instanciar Sensor
+        //Sensor
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento0 = calendario0.getTime();
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
         Date dataFuncionamento1 = calendario1.getTime();
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
         Date dataFuncionamento2 = calendario2.getTime();
         SensorType sensorType2 = new SensorType("Temperatura");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
-        //Instanciar Measurement
+        //Measurement
         // Sensor0
         Calendar calendarioDaMedicao01 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
@@ -466,11 +413,11 @@ class SensorListTest {
         Calendar calendarioDaMedicao11 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
 
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(1991, 11, 4, 17, 24, 00);
+        Calendar calendarioDaMedicao12 = new GregorianCalendar(1991, 11, 24, 17, 24, 00);
         Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Measurement measurement12 = new Measurement(30, dataHoraDaMedicao12);
 
         s1.addMeasurementToList(measurement11);
         s1.addMeasurementToList(measurement12);
@@ -488,52 +435,42 @@ class SensorListTest {
         s2.addMeasurementToList(measurement21);
         s2.addMeasurementToList(measurement22);
 
-        double expectedResult = 25;
+        Measurement expectedResult = measurement12;
 
-        SensorType tipoResultado = new SensorType("Temperatura");
+        SensorType sensorType = new SensorType("Temperatura");
         SensorList listSens = new SensorList();
         listSens.addSensorToTheListOfSensors(s0);
         listSens.addSensorToTheListOfSensors(s1);
         listSens.addSensorToTheListOfSensors(s2);
 
         //Act
-        double result = listSens.getLatestMeasurementBySensorType(tipoResultado).getmValue();
+        Measurement result = listSens.getLatestMeasurementBySensorType(sensorType);
 
         //Assert
         assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresTipoDiferente() {
+    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresQueNaoTem() {
         //arrange
-        //Instanciar AG
-        String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local1, area);
-
         //Instanciar Sensor
         Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
         Date dataFuncionamento0 = calendario0.getTime();
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
         Date dataFuncionamento1 = calendario1.getTime();
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
         Date dataFuncionamento2 = calendario2.getTime();
         SensorType sensorType2 = new SensorType("Humidade");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
 
         //Instanciar Measurement
         // Sensor0
@@ -593,40 +530,10 @@ class SensorListTest {
     @Test
     public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresListaVazia() {
         //arrange
-        //Instanciar AG
-        String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local1, area);
-
-        //Instanciar Sensor
-        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
-        SensorType sensorType0 = new SensorType("Temperatura");
-        Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
-
-        Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
-        SensorType sensorType1 = new SensorType("Temperatura");
-        Location locS1 = new Location(123, 355, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
-
-        Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
-        Date dataFuncionamento2 = calendario2.getTime();
-        SensorType sensorType2 = new SensorType("Humidade");
-        Location locS2 = new Location(123, 345, 55);
-        Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
-
-        Measurement expectedResult = null;
-
         SensorType tipoResultado = new SensorType("Temperatura");
         SensorList listSens = new SensorList();
 
+        Measurement expectedResult = null;
         //Act
         Measurement result = listSens.getLatestMeasurementBySensorType(tipoResultado);
 
@@ -689,7 +596,59 @@ class SensorListTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void getMaximumMeasureOfATypeOfSensorInAGivenDayDifferentDays() {
+        //arrange
 
+        Calendar calendar0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataFuncionamento0 = calendar0.getTime();
+        SensorType sensorType0 = new SensorType("Temperature");
+        Location locS0 = new Location(123, 345, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+
+        Calendar calendarMeasurement1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dateTimeDayMeasure1 = calendarMeasurement1.getTime();
+
+        Calendar calendarMeasurement2 = new GregorianCalendar(1991, 11, 2, 20, 24, 00);
+        Date dateTimeDayMeasure2 = calendarMeasurement2.getTime();
+
+        Measurement measurement1 = new Measurement(20.0, dateTimeDayMeasure1);
+        Measurement measurement2 = new Measurement(25.0, dateTimeDayMeasure2);
+
+        s0.addMeasurementToList(measurement1);
+        s0.addMeasurementToList(measurement2);
+
+        Calendar calendar1 = new GregorianCalendar(1991, 11, 3, 15, 20, 00);
+        Date dataFuncionamento1 = calendar1.getTime();
+        SensorType sensorType1 = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor s1 = new Sensor("B123", dataFuncionamento1, sensorType1, locS1);
+
+        Calendar calendarMeasurement3 = new GregorianCalendar(1991, 11, 3, 15, 20, 00);
+        Date dateTimeDayMeasure3 = calendarMeasurement3.getTime();
+
+        Calendar calendarMeasurement4 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
+        Date dateTimeDayMeasure4 = calendarMeasurement4.getTime();
+
+        Measurement measurement3 = new Measurement(20.0, dateTimeDayMeasure3);
+        Measurement measurement4 = new Measurement(30.0, dateTimeDayMeasure4);
+
+        s1.addMeasurementToList(measurement3);
+        s1.addMeasurementToList(measurement4);
+
+        SensorList listOfSensors = new SensorList();
+        listOfSensors.addSensorToTheListOfSensors(s0);
+        listOfSensors.addSensorToTheListOfSensors(s1);
+
+        double expectedResult = 25.0;
+
+        //Act
+        double result = listOfSensors.getMaximumMeasureOfATypeOfSensorInAGivenDay(sensorType0, dateTimeDayMeasure2);
+
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 
     @Test
     public void getMaximumMeasureOfATypeOfSensorInAGivenDayEmptyListOfSensors() {

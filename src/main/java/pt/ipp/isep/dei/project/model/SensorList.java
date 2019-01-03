@@ -73,8 +73,6 @@ public class SensorList {
         return listOfLatestMeasurements;
     }
 
-    ////method to substitute the getUltimoRegistoDeUmTipoDeSensor if nobody uses it
-
     /**
      * method that receives a Sensortype, and gets the latest Measurement available by that Sensortype
      * @param type Sensortype
@@ -92,20 +90,6 @@ public class SensorList {
             }
         }
         return latestMeasurement;
-    }
-
-    public double getUltimoRegistoDeUmTipoDeSensor(SensorType type) {
-        List<Measurement> listaDeUltimosRegisto = getListOfLatestMeasurementsBySensorType(type);
-        if (getListOfLatestMeasurementsBySensorType(type).isEmpty()) {
-            return Double.NaN;
-        }
-        Measurement measurementComUltimoRegisto = listaDeUltimosRegisto.get(0);
-        for (Measurement registo : listaDeUltimosRegisto) {
-            if (registo.getmDateTime().after(measurementComUltimoRegisto.getmDateTime())) {
-                measurementComUltimoRegisto = registo;
-            }
-        }
-        return measurementComUltimoRegisto.getmValue();
     }
 
     /**

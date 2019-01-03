@@ -27,12 +27,12 @@ public class US105Controller {
      * @param housefloor given housefloor number to the new room
      */
     public void newRoom(double height, double length, double width, String name, int housefloor ){
-        this.mRoom= mHouse.getListOfRoom().newRoom(name,housefloor,height,length,width);
+        this.mRoom = mHouse.getListOfRoom().newRoom(name, housefloor, height, length, width);
     }
 
     /**
      * method that adds a room to the house's roomlist. Invokes the method addRoomToHouse of the model
-     * who receives the new room stored in the private atributte mRoom of this class
+     * who receives the new room stored in the private attribute mRoom of this class
      * @return true if adds, false if don't
      */
     public boolean addRoomToHouse() {

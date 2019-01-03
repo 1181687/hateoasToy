@@ -94,4 +94,8 @@ public class House {
         }
         return sum / listOfDailyAverages.size();
     }
+
+    public double getTotalDailyMeasurementOfHouseArea (SensorType measurementType, Date day){
+        return mInsertedGeoArea.getTotalDailyMeasurementInTheArea(measurementType, day);
+    }
 }
