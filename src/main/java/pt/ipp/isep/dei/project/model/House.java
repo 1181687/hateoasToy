@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.model;
 
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
 
@@ -108,4 +110,12 @@ public class House {
     public double getMaximumTemperatureOfARoomInASpecificDay(String name, SensorType type, Date date) {
         return this.mRoomList.getMaximumTemperatureInARoomInAGivenDay(name, type, date);
     }
+
+    public Date createANewDate (int year, int month, int day){
+        LocalDate date = LocalDate.of(year, month, day);
+        //Convert LocalDate to Date
+        Date newDate = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        return newDate;
+    }
+
 }
