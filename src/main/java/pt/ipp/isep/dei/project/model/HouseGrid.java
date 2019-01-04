@@ -12,7 +12,7 @@ public class HouseGrid {
         this.mPowerSourceList = new PowerSourceList();
         this.mMaximumContractedPower = Double.NaN;
     }
-    
+
 
     public HouseGrid(String HouseGridName, double mMaximumContractedPower, RoomList mRoomsConnectedToHouseGrid) {
         this.mHouseGridName = HouseGridName;
