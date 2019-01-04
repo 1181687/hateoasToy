@@ -8,7 +8,8 @@ import java.util.Date;
 
 public class US620Controller {
     private House mHouse;
-    private SensorType mType;
+    private SensorType mTypeRainfall;
+    private SensorType mTypeTemperature;
 
 
     /**
@@ -18,21 +19,27 @@ public class US620Controller {
      */
     public US620Controller(House house) {
         this.mHouse = house;
-        this.mType= new SensorType("Rainfall");
+        this.mTypeRainfall = new SensorType("Rainfall");
+        this.mTypeTemperature = new SensorType("temperature");
     }
 
     public double getTotalRainfallInTheHouseAreaInTheSelectedDay (Date day){
-        return mHouse.getTotalDailyMeasurementOfHouseArea(mType, day);
+        return mHouse.getTotalDailyMeasurementOfHouseArea(mTypeRainfall, day);
     }
 
     public double getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(Date date1, Date date2){
-        return mHouse.getAverageDailyMeasurementOfHouseArea(mType, date1, date2);
+        return mHouse.getAverageDailyMeasurementOfHouseArea(mTypeRainfall, date1, date2);
     }
 
     public Date createANewDate (int year, int month, int day){
         return mHouse.createANewDate(year, month, day);
     }
 
+    public double getMostRecentAvailableMeasurementInTheHouseArea() {
+        return mHouse.getLastMeasurementOfTheHouseArea(mTypeTemperature);
+    }
 
-
+    public String getmTypeTemperature() {
+        return mTypeTemperature.getmTipo();
+    }
 }

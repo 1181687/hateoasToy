@@ -98,6 +98,13 @@ public class US620UI {
         }
     }
 
-
+    public void run3() {
+        if (Double.isNaN(mCtrl.getMostRecentAvailableMeasurementInTheHouseArea())) {
+            System.out.println("There are no " + mCtrl.getmTypeTemperature() + " sensors with valid measurements in the house area.");
+            return;
+        } else {
+            System.out.println("The most recent measurement available in the house area for "
+                    + mCtrl.getmTypeTemperature() + " is " + mCtrl.getMostRecentAvailableMeasurementInTheHouseArea() + ".");
+        }
+    }
 }
-
