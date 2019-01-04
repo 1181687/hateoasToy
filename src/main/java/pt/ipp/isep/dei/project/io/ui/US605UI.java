@@ -16,7 +16,7 @@ public class US605UI {
      * constructor that receives a House and a SensorTypeList
      *
      * @param house          House
-     * @param sensorType SensorType
+     * @param sensorType   SensorType
      */
     public US605UI(House house, SensorType sensorType) {
         this.mctrl = new US605Controller(house, sensorType);
@@ -49,9 +49,8 @@ public class US605UI {
 
     /**
      * outputs the latest temperature with date, of the room
-     *
      * @param roomName given String room name
-     * @param temp     given double temperature
+     * @param temp given double temperature
      * @param dateTime given string date and time
      */
     private void displayResults(String roomName, double temp, String dateTime) {

@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.US108Controller;
 import pt.ipp.isep.dei.project.model.RoomList;
 
-import java.util.Scanner;
 
 public class US108UI {
 

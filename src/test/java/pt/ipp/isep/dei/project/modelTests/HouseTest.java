@@ -500,6 +500,295 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresIguais() {
+        //arrange
+        //Sensor
+        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataFuncionamento0 = calendario0.getTime();
+        SensorType sensorType0 = new SensorType("Temperatura");
+        Location locS0 = new Location(123, 345, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+
+        Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
+        Date dataFuncionamento1 = calendario1.getTime();
+        SensorType sensorType1 = new SensorType("Temperatura");
+        Location locS1 = new Location(123, 355, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+
+        Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
+        Date dataFuncionamento2 = calendario2.getTime();
+        SensorType sensorType2 = new SensorType("Temperatura");
+        Location locS2 = new Location(123, 345, 55);
+        Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
+
+        //Measurement
+        // Sensor0
+        Calendar calendarioDaMedicao01 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
+
+        Calendar calendarioDaMedicao02 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
+        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+
+        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
+        Measurement measurement02 = new Measurement(24, dataHoraDaMedicao02);
+
+        s0.addMeasurementToList(measurement01);
+        s0.addMeasurementToList(measurement02);
+
+
+        //Sensor1
+        Calendar calendarioDaMedicao11 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
+
+        Calendar calendarioDaMedicao12 = new GregorianCalendar(1991, 11, 24, 17, 24, 00);
+        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+
+        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
+        Measurement measurement12 = new Measurement(30, dataHoraDaMedicao12);
+
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
+
+        //Sensor2
+        Calendar calendarioDaMedicao21 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
+
+        Calendar calendarioDaMedicao22 = new GregorianCalendar(1991, 11, 4, 17, 24, 00);
+        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+
+        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
+        Measurement measurement22 = new Measurement(27, dataHoraDaMedicao22);
+
+        s2.addMeasurementToList(measurement21);
+        s2.addMeasurementToList(measurement22);
+
+        Measurement expectedResult = measurement12;
+
+        SensorType sensorType = new SensorType("Temperatura");
+        RoomList rList = new RoomList();
+        Dimensions dim = new Dimensions(4, 4, 4);
+        Room room = new Room("F5", 1, dim);
+        room.addSensorToTheListOfSensorsInTheRoom(s0);
+        room.addSensorToTheListOfSensorsInTheRoom(s1);
+        room.addSensorToTheListOfSensorsInTheRoom(s2);
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+        house.addRoomToHouse(room);
+
+
+        //Act
+        Measurement result = house.getLatestMeasurementBySensorType("F5", sensorType);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresQueNaoTem() {
+        //arrange
+        //Instanciar Sensor
+        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataFuncionamento0 = calendario0.getTime();
+        SensorType sensorType0 = new SensorType("Temperatura");
+        Location locS0 = new Location(123, 345, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+
+        Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
+        Date dataFuncionamento1 = calendario1.getTime();
+        SensorType sensorType1 = new SensorType("Temperatura");
+        Location locS1 = new Location(123, 355, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+
+        Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
+        Date dataFuncionamento2 = calendario2.getTime();
+        SensorType sensorType2 = new SensorType("Humidade");
+        Location locS2 = new Location(123, 345, 55);
+        Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
+
+        //Instanciar Measurement
+        // Sensor0
+        Calendar calendarioDaMedicao01 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
+
+        Calendar calendarioDaMedicao02 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
+        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+
+        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
+        Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
+
+        s0.addMeasurementToList(measurement01);
+        s0.addMeasurementToList(measurement02);
+
+        //Sensor1
+        Calendar calendarioDaMedicao11 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
+
+        Calendar calendarioDaMedicao12 = new GregorianCalendar(1991, 11, 4, 17, 24, 00);
+        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+
+        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
+        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
+
+        //Sensor2
+        Calendar calendarioDaMedicao21 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
+
+        Calendar calendarioDaMedicao22 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
+        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+
+        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
+        Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
+
+        s2.addMeasurementToList(measurement21);
+        s2.addMeasurementToList(measurement22);
+
+        Measurement expectedResult = null;
+
+        SensorType tipoResultado = new SensorType("Pluviosidade");
+
+        RoomList rList = new RoomList();
+        Dimensions dim = new Dimensions(4, 4, 4);
+        Room room = new Room("F5", 1, dim);
+        room.addSensorToTheListOfSensorsInTheRoom(s0);
+        room.addSensorToTheListOfSensorsInTheRoom(s1);
+        room.addSensorToTheListOfSensorsInTheRoom(s2);
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+        house.addRoomToHouse(room);
+
+
+        //Act
+        Measurement result = house.getLatestMeasurementBySensorType("F5", tipoResultado);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresQuartoNulo() {
+        //arrange
+        //Instanciar Sensor
+        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataFuncionamento0 = calendario0.getTime();
+        SensorType sensorType0 = new SensorType("Temperatura");
+        Location locS0 = new Location(123, 345, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+
+        Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
+        Date dataFuncionamento1 = calendario1.getTime();
+        SensorType sensorType1 = new SensorType("Temperatura");
+        Location locS1 = new Location(123, 355, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+
+        Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
+        Date dataFuncionamento2 = calendario2.getTime();
+        SensorType sensorType2 = new SensorType("Humidade");
+        Location locS2 = new Location(123, 345, 55);
+        Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
+
+        //Instanciar Measurement
+        // Sensor0
+        Calendar calendarioDaMedicao01 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
+
+        Calendar calendarioDaMedicao02 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
+        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+
+        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
+        Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
+
+        s0.addMeasurementToList(measurement01);
+        s0.addMeasurementToList(measurement02);
+
+        //Sensor1
+        Calendar calendarioDaMedicao11 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
+
+        Calendar calendarioDaMedicao12 = new GregorianCalendar(1991, 11, 4, 17, 24, 00);
+        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+
+        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
+        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
+
+        //Sensor2
+        Calendar calendarioDaMedicao21 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
+
+        Calendar calendarioDaMedicao22 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
+        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+
+        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
+        Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
+
+        s2.addMeasurementToList(measurement21);
+        s2.addMeasurementToList(measurement22);
+
+        Measurement expectedResult = null;
+
+        SensorType tipoResultado = new SensorType("Pluviosidade");
+
+        RoomList rList = new RoomList();
+        Dimensions dim = new Dimensions(4, 4, 4);
+        Room room = new Room("F5", 1, dim);
+        room.addSensorToTheListOfSensorsInTheRoom(s0);
+        room.addSensorToTheListOfSensorsInTheRoom(s1);
+        room.addSensorToTheListOfSensorsInTheRoom(s2);
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+        house.addRoomToHouse(room);
+
+
+        //Act
+        Measurement result = house.getLatestMeasurementBySensorType("F6", tipoResultado);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresListaVazia() {
+        //arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+        SensorType tipoResultado = new SensorType("Temperatura");
+
+        Measurement expectedResult = null;
+        //Act
+        Measurement result = house.getLatestMeasurementBySensorType("F5", tipoResultado);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
 
     @Test
     public void getMaximumTemperatureOfARoomInASpecificDay() {

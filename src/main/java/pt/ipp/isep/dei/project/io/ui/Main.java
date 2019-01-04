@@ -15,13 +15,13 @@ public class Main {
         HouseGridList gridList = new HouseGridList();
 
         // mock objects
-        Location location = new Location(0.0, 0.0, 0.0);
-        Address address = new Address("0000", location);
+        //Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
         SensorTypeList sensorTypeList = new SensorTypeList();
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
-
+        RectangleArea rectangleArea = new RectangleArea(0.261, 0.249, location);
+        GeoAreaType geoAreaType = new GeoAreaType("Urban area");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geoAreaType, location, rectangleArea);
+        geoAreaList.addGeoAreaToTheListInASpecificPosition(0, insertedGeoArea);
         //mock objects for test US605
         Calendar calendar0 = new GregorianCalendar(2018, 11, 1, 15, 00, 00);
         Date date1 = calendar0.getTime();
@@ -33,11 +33,13 @@ public class Main {
         Measurement temp2 = new Measurement(22, date2);
         sensor.addMeasurementToList(temp1);
         sensor.addMeasurementToList(temp2);
-        Dimensions dimensions = new Dimensions(300, 600, 600);
-        Room room = new Room("room1", 1, dimensions);
+        Dimensions dimensionsB107 = new Dimensions(3.5, 11, 7);
+        Room room = new Room("B107", 1, dimensionsB107);
         room.getSensorList().addSensorToTheListOfSensors(sensor);
-        House house = new House(roomList, gridList, address, insertedGeoArea);
-        house.addRoomToHouse(room);
+        Location houseLocation = new Location(41.177748, -8.607745, 112);
+        Address address = new Address("4200-072", houseLocation);
+        House houseEdificioB = new House(roomList, gridList, address, insertedGeoArea);
+        houseEdificioB.addRoomToHouse(room);
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
         PowerSourceType powerSourceType2 = new PowerSourceType("Public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
@@ -45,8 +47,8 @@ public class Main {
         powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType2);
 
         //UI levels
-        Admin admin = new Admin(geoAreaTypeList, geoAreaList, sensorTypeList, house, powerSourceTypeList, roomList, gridList);
-        RegularUser regularUser = new RegularUser(geoAreaTypeList, geoAreaList, sensorTypeList, house, sensorTypeTemperature);
+        Admin admin = new Admin(geoAreaTypeList, geoAreaList, sensorTypeList, houseEdificioB, powerSourceTypeList, roomList, gridList);
+        RegularUser regularUser = new RegularUser(geoAreaTypeList, geoAreaList, sensorTypeList, houseEdificioB, sensorTypeTemperature);
 
         int option = -1;
         int userOption = -1;

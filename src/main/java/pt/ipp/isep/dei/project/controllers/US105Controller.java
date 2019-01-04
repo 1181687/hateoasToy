@@ -27,7 +27,7 @@ public class US105Controller {
      * @param housefloor given housefloor number to the new room
      */
     public void newRoom(double height, double length, double width, String name, int housefloor ){
-        this.mRoom = mHouse.getListOfRoom().newRoom(name, housefloor, height, length, width);
+        this.mRoom = mHouse.newRoom(height, length, width, name, housefloor);
     }
 
     /**
