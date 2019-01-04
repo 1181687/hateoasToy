@@ -46,7 +46,6 @@ public class Admin {
                     US4UI ui4 = new US4UI(geoAreaList, geoAreaTypeList);
                     ui4.run();
                     break;
-
                 case 5:
                     US5UI ui5 = new US5UI(sensorTypeList);
                     ui5.run();

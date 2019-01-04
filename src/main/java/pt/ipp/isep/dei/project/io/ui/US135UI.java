@@ -26,7 +26,7 @@ public class US135UI {
             String label2 ="Please insert the name of the new power source";
             String powerSourceName = InputValidator.getString(label2);
 
-            String label3 = "Please select the power source type: \n" + mController.displayPowerSourceTypeList();
+            String label3 = "Please select the power source type: \n" + mController.getPowerSourceTypeListContent();
             int positionOfPowerSource = InputValidator.getIntRange(label3,1,mController.powerSourceTypeListLength()) -1;
             mController.getPowerSourceTypeFromListByPosition(positionOfPowerSource);
 

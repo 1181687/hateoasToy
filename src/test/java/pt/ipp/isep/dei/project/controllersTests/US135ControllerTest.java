@@ -1,9 +1,11 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-
 import pt.ipp.isep.dei.project.controllers.US135Controller;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.HouseGrid;
+import pt.ipp.isep.dei.project.model.HouseGridList;
+import pt.ipp.isep.dei.project.model.PowerSourceType;
+import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -229,7 +231,7 @@ class US135ControllerTest {
         String expectedResult = "1 - Power Source Type: public electric grid\n";
 
         //Act
-        String result = controller.displayPowerSourceTypeList();
+        String result = controller.getPowerSourceTypeListContent();
         //Assert
         assertEquals(expectedResult, result);
     }
