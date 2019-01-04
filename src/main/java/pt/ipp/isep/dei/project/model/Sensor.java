@@ -4,32 +4,32 @@ import java.util.*;
 
 
 public class Sensor {
-    private String mNomeSensor;
-    private Date mDataFuncionamento;
-    private List<Measurement> mRegistos = new ArrayList<>();
+    private String mSensorName;
+    private Date mStartingDate;
+    private List<Measurement> mMeasurements = new ArrayList<>();
     private SensorType mSensorType;
     private Location mLocation;
 
-    public Sensor(String mNomeSensor, Date mDataFuncionamento, SensorType mSensorType, Location mLocation) {
-        this.mNomeSensor = mNomeSensor;
-        this.mDataFuncionamento = mDataFuncionamento;
+    public Sensor(String mSensorName, Date mStartingDate, SensorType mSensorType, Location mLocation) {
+        this.mSensorName = mSensorName;
+        this.mStartingDate = mStartingDate;
         this.mSensorType = mSensorType;
         this.mLocation = mLocation;
     }
 
-    public Sensor(String mNomeSensor, SensorType mSensorType, Location mLocation) {
-        this.mNomeSensor = mNomeSensor;
-        this.mDataFuncionamento = new GregorianCalendar(Locale.getDefault()).getTime();
+    public Sensor(String mSensorName, SensorType mSensorType, Location mLocation) {
+        this.mSensorName = mSensorName;
+        this.mStartingDate = new GregorianCalendar(Locale.getDefault()).getTime();
         this.mSensorType = mSensorType;
         this.mLocation = mLocation;
     }
 
-    public String getmNomeSensor() {
-        return mNomeSensor;
+    public String getmSensorName() {
+        return mSensorName;
     }
 
-    public Date getmDataFuncionamento() {
-        return mDataFuncionamento;
+    public Date getmStartingDate() {
+        return mStartingDate;
     }
 
     public SensorType getmSensorType() {
@@ -48,7 +48,7 @@ public class Sensor {
             return false;
         }
         Sensor sensor = (Sensor) objeto;
-        return (this.mNomeSensor.equals(sensor.mNomeSensor) && this.mSensorType.equals(sensor.mSensorType) && this.mLocation.equals(sensor.mLocation));
+        return (this.mSensorName.equals(sensor.mSensorName) && this.mSensorType.equals(sensor.mSensorType) && this.mLocation.equals(sensor.mLocation));
     }
 
     public int hashCode() {
@@ -65,7 +65,7 @@ public class Sensor {
 
         List<Double> registosEntreDatas = new ArrayList<>();
 
-        for (Measurement registo : mRegistos) {
+        for (Measurement registo : mMeasurements) {
             if (registo.getmDateTime().after(dataInicial) && registo.getmDateTime().before(dataFinal)) {
                 registosEntreDatas.add(registo.getmValue());
             }
@@ -165,17 +165,17 @@ public class Sensor {
     }
 
     public void addMeasurementToList(Measurement measurement) {
-        mRegistos.add(measurement);
+        mMeasurements.add(measurement);
     }
 
     public boolean measurementListIsEmpty() {
-        return mRegistos.isEmpty();
+        return mMeasurements.isEmpty();
     }
 
     public Measurement getUltimoRegisto() {
-        for (int i = (mRegistos.size() - 1); i >= 0; i--) {
-            if (!(Double.isNaN(mRegistos.get(i).getmValue()))) {
-                return mRegistos.get(i);
+        for (int i = (mMeasurements.size() - 1); i >= 0; i--) {
+            if (!(Double.isNaN(mMeasurements.get(i).getmValue()))) {
+                return mMeasurements.get(i);
             }
         }
         return null;
@@ -192,7 +192,7 @@ public class Sensor {
         cal.setTime(data);
 
         List<Measurement> registosDoDia = new ArrayList<>();
-        for (Measurement registo : mRegistos) {
+        for (Measurement registo : mMeasurements) {
             //passar Data do registo para Calendario
             Calendar ca2 = Calendar.getInstance();
             ca2.setTime(registo.getmDateTime());
