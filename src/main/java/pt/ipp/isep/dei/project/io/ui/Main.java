@@ -37,17 +37,26 @@ public class Main {
         // Add sensor to the Inserted area
         insertedGeoArea.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(sensor);
 
-        // Dimensions
-        Dimensions dimensionsB107 = new Dimensions(3.5, 11, 7);
-        Room room = new Room("B107", 1, dimensionsB107);
-        room.getSensorList().addSensorToTheListOfSensors(sensor);
-
         // House
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation);
         House houseEdificioB = new House(roomList, gridList, address, insertedGeoArea);
-        houseEdificioB.addRoomToHouse(room);
         houseEdificioB.getmInsertedGeoArea().setInsertedIn(insertedGeoArea);
+
+        // Rooms
+
+        String name = "B107";
+        int houseFloor = 1;
+        double height = 3.5;
+        double length = 11;
+        double width = 7;
+        Dimensions dimensions = new Dimensions(height, length, width);
+        Room room1 = new Room(name, houseFloor, dimensions);
+        houseEdificioB.addRoomToHouse(room1);
+
+        String name2 = "B109";
+        Room room2 = new Room(name2, houseFloor, dimensions);
+        houseEdificioB.addRoomToHouse(room2);
 
         // Power Source Type (and List)
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
