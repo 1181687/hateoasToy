@@ -34,7 +34,7 @@ public class HouseGridList {
      * Method that shows the content of the house grids in the list.
      * @return String with the required information.
      */
-    public String displayOfTheContentOfTheHouseGridsInTheList() {
+    public String getContentOfTheHouseGridsInTheList() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= mList.size(); i++) {
             content.append(i + " - Name: " + mList.get(i - 1).getmHouseGridName());

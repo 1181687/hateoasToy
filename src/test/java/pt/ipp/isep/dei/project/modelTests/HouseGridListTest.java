@@ -40,7 +40,7 @@ public class HouseGridListTest {
         String expectedResult = "1 - Name: Grid\n2 - Name: Grid\n";
 
         // Act
-        String result = list.displayOfTheContentOfTheHouseGridsInTheList();
+        String result = list.getContentOfTheHouseGridsInTheList();
 
         // Assert
         assertEquals(expectedResult, result);
