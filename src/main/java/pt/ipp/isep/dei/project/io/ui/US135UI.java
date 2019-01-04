@@ -4,7 +4,6 @@ import pt.ipp.isep.dei.project.controllers.US135Controller;
 import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
 
-import java.util.Scanner;
 
 public class US135UI {
 
