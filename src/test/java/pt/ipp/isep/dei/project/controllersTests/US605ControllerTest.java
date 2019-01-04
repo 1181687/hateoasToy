@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.US605Controller;
 import pt.ipp.isep.dei.project.model.*;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -374,4 +376,75 @@ public class US605ControllerTest {
         assertEquals(expectedResult, result);
 
     }
+
+    @Test
+    public void testCreateANewDate() {
+
+        //Arrange
+        String zipCode = "4050";
+        double latitude = 42.1;
+        double longitude = -8.6;
+        double altitude = 100.0;
+        Location local = new Location(latitude, longitude, altitude);
+        Address address = new Address(zipCode, local);
+        HouseGridList houseGridList = new HouseGridList();
+        RoomList roomList = new RoomList();
+        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        House house = new House(roomList, houseGridList, address, insertedGeoArea);
+
+        Calendar calendar0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
+        Date date0 = calendar0.getTime();
+        SensorType sensorType0 = new SensorType("Temperature");
+        Location locS0 = new Location(123, 345, 50);
+        Sensor s0 = new Sensor("A123", date0, sensorType0, locS0);
+
+        US605Controller ctrl = new US605Controller(house, sensorType0);
+
+        int year = 2001, month = 12, day = 1;
+        LocalDate dateLD = LocalDate.of(2001, 12, 1);
+
+        Date expectedResult = Date.from(dateLD.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+        //Act
+        Date result = ctrl.createANewDate(year, month, day);
+
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    void testGetmType() {
+
+        //Arrange
+        String zipCode = "4050";
+        double latitude = 42.1;
+        double longitude = -8.6;
+        double altitude = 100.0;
+        Location local = new Location(latitude, longitude, altitude);
+        Address address = new Address(zipCode, local);
+        HouseGridList houseGridList = new HouseGridList();
+        RoomList roomList = new RoomList();
+        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        House house = new House(roomList, houseGridList, address, insertedGeoArea);
+        Calendar calendario = new GregorianCalendar(1991, 11, 2);
+        Date dataFuncionamento = calendario.getTime();
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
+
+        US605Controller ctrl = new US605Controller(house, sensorType);
+        SensorType expectedResult = sensorType;
+
+        //Act
+        SensorType result = ctrl.getmType();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
 }
