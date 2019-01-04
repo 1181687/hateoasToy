@@ -38,7 +38,7 @@ class SensorTest {
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         String expectedResult = "A123";
         //Act
-        String result = s1.getmNomeSensor();
+        String result = s1.getmSensorName();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -53,7 +53,7 @@ class SensorTest {
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         Date expectedResult = calendario.getTime();
         //Act
-        Date result = s1.getmDataFuncionamento();
+        Date result = s1.getmStartingDate();
         //Assert
         assertEquals(expectedResult, result);
     }
