@@ -8,27 +8,11 @@ public class HouseGrid {
 
     public HouseGrid(String mHouseGridName) {
         this.mHouseGridName = mHouseGridName;
-        this.mRoomsConnectedToHouseGrid= new RoomList();
+        this.mRoomsConnectedToHouseGrid = new RoomList();
         this.mPowerSourceList = new PowerSourceList();
         this.mMaximumContractedPower = Double.NaN;
     }
 
-    /*@Override
-    public int hashCode() {
-        return 1;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof HouseGrid)) {
-            return false;
-        }
-        HouseGrid houseGrid = (HouseGrid) obj;
-        return (this.mHouseGridName.equals(houseGrid.mHouseGridName));
-    }*/
 
     public HouseGrid(String HouseGridName, double mMaximumContractedPower, RoomList mRoomsConnectedToHouseGrid) {
         this.mHouseGridName = HouseGridName;
@@ -36,7 +20,7 @@ public class HouseGrid {
         this.mRoomsConnectedToHouseGrid = mRoomsConnectedToHouseGrid;
     }
 
-       public String getmHouseGridName() {
+    public String getmHouseGridName() {
         return mHouseGridName;
     }
 
@@ -49,10 +33,10 @@ public class HouseGrid {
     }
 
 
-
     /**
      * Method that detaches a room from a house grid. It return a true in case of success
      * and false in the case of a failure.
+     *
      * @param roomToDetach
      * @return
      */
@@ -68,21 +52,23 @@ public class HouseGrid {
 
     /**
      * Method that attaches a room in the house grid's room list.
+     *
      * @param room Speficied room to attach.
      */
     public void attachRoomInTheHouseGridRoomList(Room room) {
         mRoomsConnectedToHouseGrid.getmRoomList().add(room);
     }
 
-    public boolean addPowerSourceToHouseGrid(PowerSource newPowerSource){
+    public boolean addPowerSourceToHouseGrid(PowerSource newPowerSource) {
         return this.mPowerSourceList.addPowerSourceToList(newPowerSource);
     }
 
     /**
      * Method that attaches a list of existing rooms to a house grid.
+     *
      * @return a list of existing rooms attached to a house grid.
      */
-    public String displayRoomsAttachedToHouseGrid () {
+    public String displayRoomsAttachedToHouseGrid() {
         return this.mRoomsConnectedToHouseGrid.getDisplayRoomList();
     }
 
