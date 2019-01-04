@@ -34,7 +34,7 @@ public class US605Controller {
      * @return latest measurement
      */
     public Measurement getLatestMeasurementByRoomName(String name) {
-        return this.mHouse.getListOfRoom().getRoomByName(name).getSensorList().getLatestMeasurementBySensorType(mType);
+        return this.mHouse.getLatestMeasurementBySensorType(name, mType);
     }
 
     /**
@@ -43,7 +43,7 @@ public class US605Controller {
      * @return a String with room's name, house floor, height, length and width:
      */
     public String getDisplayRoomList() {
-        return this.mHouse.getListOfRoom().getDisplayRoomList();
+        return this.mHouse.getDisplayRoomList();
     }
 
     /**
@@ -52,7 +52,7 @@ public class US605Controller {
      * @return lenght of roomList
      */
     public int lengthOfRoomList() {
-        return this.mHouse.getListOfRoom().listSize();
+        return this.mHouse.listSize();
     }
 
     /**
@@ -62,7 +62,7 @@ public class US605Controller {
      * @return a String with the name of room
      */
     public String getNameOfTheChosenRoomInSpecificPos(int position) {
-        return this.mHouse.getListOfRoom().getNameOfTheChosenRoomInSpecificPos(position);
+        return this.mHouse.getNameOfTheChosenRoomInSpecificPos(position);
     }
 
     /**

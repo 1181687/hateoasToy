@@ -4,7 +4,6 @@ import pt.ipp.isep.dei.project.controllers.US135Controller;
 import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
 
-import java.util.Scanner;
 
 public class US135UI {
 
@@ -19,27 +18,20 @@ public class US135UI {
             System.out.println("There are no house grids in your house. Please insert a new house grid."+"\n");
         }
         else {
-            Scanner read = new Scanner(System.in);
 
-            System.out.println("Please select the House Grid you want to add the Power Source:");
-            System.out.println(mController.getHouseGridListContent());
-            int positionOfHouseGrid = read.nextInt() - 1;
-            read.nextLine();
+            String label1 = "Please select the House Grid you want to add the Power Source: \n" + mController.getHouseGridListContent();
+            int positionOfHouseGrid = InputValidator.getIntRange(label1,1,mController.houseGridListLength()) - 1;
             mController.getHouseGridFromListByPosition(positionOfHouseGrid);
 
-            System.out.println("Please insert the name of the new power source");
-            String powerSourceName = read.nextLine();
+            String label2 ="Please insert the name of the new power source";
+            String powerSourceName = InputValidator.getString(label2);
 
-            System.out.println("Please select the power source type");
-            System.out.println(mController.displayPowerSourceTypeList());
-            int positionOfPowerSource = read.nextInt()-1;
-            read.nextLine();
+            String label3 = "Please select the power source type: \n" + mController.getPowerSourceTypeListContent();
+            int positionOfPowerSource = InputValidator.getIntRange(label3,1,mController.powerSourceTypeListLength()) -1;
             mController.getPowerSourceTypeFromListByPosition(positionOfPowerSource);
 
-            System.out.println("Is the power source rechargeable?");
-            System.out.println(mController.chooseRechargeableOption());
-            int rechargeableOption = read.nextInt();
-            read.nextLine();
+            String label4 ="Is the power source rechargeable? \n" + mController.chooseRechargeableOption();
+            int rechargeableOption = InputValidator.getIntRange(label4,1,2);
             boolean isRechargeable = mController.isRechargeable(rechargeableOption);
 
             boolean isPowerSourceAdded = mController.createAndAddPowerSourceToHouseGrid(powerSourceName,isRechargeable);

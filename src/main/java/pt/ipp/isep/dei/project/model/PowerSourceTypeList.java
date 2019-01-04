@@ -17,7 +17,7 @@ public class PowerSourceTypeList {
         return false;
     }
 
-    public String displayPowerSourceTypeList() {
+    public String getPowerSourceTypeListContent() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= this.mPowerSourceTypeList.size(); i++) {
             content.append(i + " - Power Source Type: " + this.mPowerSourceTypeList.get(i - 1).getPowerSourceType());
@@ -28,5 +28,9 @@ public class PowerSourceTypeList {
 
     public PowerSourceType getPowerSourceTypeFromASpecificPositionInTheList(int position) {
         return mPowerSourceTypeList.get(position);
+    }
+
+    public int powerSourceTypeListLength(){
+        return this.mPowerSourceTypeList.size();
     }
 }

@@ -21,7 +21,11 @@ public class US135Controller {
     }
 
     public String getHouseGridListContent() {
-        return mHouseGridList.displayOfTheContentOfTheHouseGridsInTheList();
+        return mHouseGridList.getContentOfTheHouseGridsInTheList();
+    }
+
+    public int houseGridListLength(){
+        return mHouseGridList.getmList().size();
     }
 
     public void getHouseGridFromListByPosition(int position) {
@@ -33,8 +37,12 @@ public class US135Controller {
         return this.mSelectedHouseGrid.addPowerSourceToHouseGrid(mPowerSource);
     }
 
-    public String displayPowerSourceTypeList() {
-        return mPowerSourceTypeList.displayPowerSourceTypeList();
+    public String getPowerSourceTypeListContent() {
+        return mPowerSourceTypeList.getPowerSourceTypeListContent();
+    }
+
+    public int powerSourceTypeListLength(){
+        return mPowerSourceTypeList.powerSourceTypeListLength();
     }
 
     public void getPowerSourceTypeFromListByPosition(int position) {

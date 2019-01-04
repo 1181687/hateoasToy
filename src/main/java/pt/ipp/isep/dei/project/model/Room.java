@@ -141,4 +141,10 @@ public class Room {
     public double getMaximumMeasurementInAGivenDay(SensorType type, Date date) {
         return mSensorList.getMaximumMeasureOfATypeOfSensorInAGivenDay(type, date);
     }
+
+
+    public Measurement getLatestMeasurementBySensorType(SensorType type) {
+        return mSensorList.getLatestMeasurementBySensorType(type);
+    }
+
 }

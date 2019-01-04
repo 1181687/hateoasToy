@@ -4,18 +4,18 @@ import pt.ipp.isep.dei.project.model.*;
 
 public class RegularUser {
 
-    GeoAreaTypeList geoAreaTypeList;
-    GeoAreaList geoAreaList;
-    SensorTypeList sensorTypeList;
+    GeoAreaTypeList mGeoAreaTypeList;
+    GeoAreaList mGeoAreaList;
+    SensorTypeList mSensorTypeList;
     House house;
-    SensorType sensorTypeTemperature;
+    SensorType mSensorTypeTemperature;
 
-    public RegularUser(GeoAreaTypeList geoAreaTypeList, GeoAreaList geoAreaList, SensorTypeList sensorTypeList, House house, SensorType sensorTypeTemperature) {
-        this.geoAreaTypeList = geoAreaTypeList;
-        this.geoAreaList = geoAreaList;
-        this.sensorTypeList = sensorTypeList;
+    public RegularUser(GeoAreaTypeList mGeoAreaTypeList, GeoAreaList mGeoAreaList, SensorTypeList mSensorTypeList, House house, SensorType mSensorTypeTemperature) {
+        this.mGeoAreaTypeList = mGeoAreaTypeList;
+        this.mGeoAreaList = mGeoAreaList;
+        this.mSensorTypeList = mSensorTypeList;
         this.house = house;
-        this.sensorTypeTemperature = sensorTypeTemperature;
+        this.mSensorTypeTemperature = mSensorTypeTemperature;
     }
 
     public void runRegularUserHouseArea() {
@@ -27,8 +27,8 @@ public class RegularUser {
 
             switch (option) {
                 case 1:
-                    US600UI ui600 = new US600UI(house, sensorTypeTemperature);
-                    ui600.run();
+                    US620UI ui600 = new US620UI(house);
+                    ui600.run3();
                     break;
                 case 2:
                     US620UI ui620 = new US620UI(house);
@@ -52,11 +52,11 @@ public class RegularUser {
 
             switch (option) {
                 case 1:
-                    US605UI ui605 = new US605UI(house, sensorTypeTemperature);
+                    US605UI ui605 = new US605UI(house, mSensorTypeTemperature);
                     ui605.run1();
                     break;
                 case 2:
-                    US605UI ui610 = new US605UI(house, sensorTypeTemperature);
+                    US605UI ui610 = new US605UI(house, mSensorTypeTemperature);
                     ui610.run2();
                     break;
             }
@@ -83,6 +83,3 @@ public class RegularUser {
         }
     }
 }
-
-
-

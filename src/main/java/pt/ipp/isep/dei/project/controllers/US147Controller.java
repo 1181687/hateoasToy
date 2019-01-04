@@ -29,7 +29,7 @@ public class US147Controller {
      * @return List of house grids.
      */
     public String listAllTheHouseGridsInTheList() {
-        return mListOfHouseGrids.displayOfTheContentOfTheHouseGridsInTheList();
+        return mListOfHouseGrids.getContentOfTheHouseGridsInTheList();
     }
 
     /**
