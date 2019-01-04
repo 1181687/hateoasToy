@@ -66,13 +66,6 @@ public class House {
     }
 
     /**
-     * @return
-     */
-    public RoomList getListOfRoom() {
-        return this.mRoomList;
-    }
-
-    /**
      * Get the location of the house.
      *
      * @return the location of the house.
@@ -97,7 +90,7 @@ public class House {
         return sum / listOfDailyAverages.size();
     }
 
-    public double getTotalDailyMeasurementOfHouseArea (SensorType measurementType, Date day){
+    public double getTotalDailyMeasurementOfHouseArea(SensorType measurementType, Date day) {
         return mInsertedGeoArea.getTotalDailyMeasurementInTheArea(measurementType, day);
     }
 
@@ -118,4 +111,30 @@ public class House {
         return newDate;
     }
 
+
+    public Measurement getLatestMeasurementBySensorType(String name, SensorType type) {
+        Room room = mRoomList.getRoomByName(name);
+        if (room == null)
+            return null;
+        Measurement measurement = room.getLatestMeasurementBySensorType(type);
+        if (measurement == null)
+            return null;
+        return measurement;
+    }
+
+    public String getDisplayRoomList() {
+        return mRoomList.getDisplayRoomList();
+    }
+
+    public int listSize() {
+        return mRoomList.listSize();
+    }
+
+    public String getNameOfTheChosenRoomInSpecificPos(int position) {
+        return mRoomList.getNameOfTheChosenRoomInSpecificPos(position);
+    }
+
+    public Room newRoom(double height, double length, double width, String name, int housefloor) {
+        return mRoomList.newRoom(name, housefloor, height, length, width);
+    }
 }

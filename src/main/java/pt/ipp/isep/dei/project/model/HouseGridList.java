@@ -43,6 +43,10 @@ public class HouseGridList {
         return content.toString();
     }
 
+    public String displayRoomsInTheHouseGrid(int position) {
+        return mList.get(position).displayRoomsAttachedToHouseGrid();
+    }
+
     /**
      * Method that calls the method in HouseGrid that detaches a selected room from the HouseGridList.
      * @param houseGridSelected Specified house grid in the list.
