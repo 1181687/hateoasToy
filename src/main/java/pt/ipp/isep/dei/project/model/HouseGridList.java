@@ -15,6 +15,7 @@ public class HouseGridList {
 
     /**
      * Get method.
+     *
      * @return mList.
      */
     public List<HouseGrid> getmList() {
@@ -23,6 +24,7 @@ public class HouseGridList {
 
     /**
      * Method that gets the house grid in a specific position in the list.
+     *
      * @param position Specifies the position of the house grid in the list.
      * @return The respective house grid.
      */
@@ -32,6 +34,7 @@ public class HouseGridList {
 
     /**
      * Method that shows the content of the house grids in the list.
+     *
      * @return String with the required information.
      */
     public String getContentOfTheHouseGridsInTheList() {
@@ -49,6 +52,7 @@ public class HouseGridList {
 
     /**
      * Method that calls the method in HouseGrid that detaches a selected room from the HouseGridList.
+     *
      * @param houseGridSelected Specified house grid in the list.
      * @param roomSelected      Specified room.
      */
@@ -59,6 +63,7 @@ public class HouseGridList {
 
     /**
      * Method that asks the class HouseGrid to add a room to it's list.
+     *
      * @param houseGridSelected Specified house grid in the list.
      * @param roomSelected      Specified room.
      */
@@ -69,6 +74,7 @@ public class HouseGridList {
 
     /**
      * Method that checks if the house grid's list is empty.
+     *
      * @return True or false.
      */
     public boolean checkIfHouseGridListIsEmpty (){
@@ -77,15 +83,17 @@ public class HouseGridList {
 
     /**
      * Method that creates a house grid.
+     *
      * @param name Name of the grid.
      * @return New object of the class HouseGrid.
      */
-    public HouseGrid createAHouseGrid (String name){
+    public HouseGrid createAHouseGrid(String name) {
         return new HouseGrid(name);
     }
 
     /**
      * Method that adds a house grid to the list.
+     *
      * @param grid Specified grid.
      */
     public void addHouseGridToTheList(HouseGrid grid) {
@@ -94,12 +102,28 @@ public class HouseGridList {
 
     /**
      * Method that checks if a room isn't already in a specific grid in the list.
+     *
      * @param chosenGrid Specified house grid in the list.
      * @param room Specified room.
      * @return True or false.
      */
-    public boolean checkIfARoomIsAlreadyInAHouseGridOfTheList(HouseGrid chosenGrid, Room room) {
+    public boolean checkIfARoomIsAlreadyInAHouseGrid(HouseGrid chosenGrid, Room room) {
         int index = mList.indexOf(chosenGrid);
         return mList.get(index).checkIfARoomIsAlreadyInTheGrid(room);
+    }
+
+    /**
+     * Method that asks for the grid where the room might already be connected.
+     *
+     * @param room Specified room.
+     * @return Grid where the room is is connected to.
+     */
+    public HouseGrid getTheGridWhereTheRoomIsConnected(Room room) {
+        for (HouseGrid houseGrid : mList) {
+            if (houseGrid.checkIfARoomIsAlreadyInTheGrid(room)) {
+                return houseGrid;
+            }
+        }
+        return null;
     }
 }

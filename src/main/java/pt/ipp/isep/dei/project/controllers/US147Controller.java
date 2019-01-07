@@ -11,6 +11,12 @@ public class US147Controller {
     private HouseGrid mGridToBeUsed;
     private Room mRoomToBeAttached;
 
+    /**
+     * Constructor.
+     *
+     * @param listOfHouseGrids HouseGridList attribute.
+     * @param listOfRooms      RoomList attribute.
+     */
     public US147Controller(HouseGridList listOfHouseGrids, RoomList listOfRooms) {
         mListOfHouseGrids = listOfHouseGrids;
         mListOfRooms = listOfRooms;
@@ -25,11 +31,20 @@ public class US147Controller {
     }
 
     /**
-     * Method that asks for the list of house grids from the class HouseGridList.
+     * Method that asks for the list of house grids.
      * @return List of house grids.
      */
     public String listAllTheHouseGridsInTheList() {
         return mListOfHouseGrids.getContentOfTheHouseGridsInTheList();
+    }
+
+    /**
+     * Method that asks for the size of the list of house grids.
+     *
+     * @return Size of the list.
+     */
+    public int houseGridListLength() {
+        return mListOfHouseGrids.getmList().size();
     }
 
     /**
@@ -42,11 +57,29 @@ public class US147Controller {
     }
 
     /**
+     * Method that checks if the house grid's list is empty.
+     *
+     * @return True or false.
+     */
+    public boolean checkIfRoomListIsEmpty() {
+        return mListOfRooms.checkIfRoomListIsEmpty();
+    }
+
+    /**
      * Method that asks for the list of rooms from the class RoomList.
      * @return List of house grids.
      */
     public String listAllTheRoomsInTheList() {
         return mListOfRooms.getDisplayRoomList();
+    }
+
+    /**
+     * Method that asks for the size of the list of rooms.
+     *
+     * @return Size of the list.
+     */
+    public int roomListLength() {
+        return mListOfRooms.getmRoomList().size();
     }
 
     /**
@@ -81,7 +114,23 @@ public class US147Controller {
      * @return True or false.
      */
     public boolean checkIfTheChosenRoomIsAlreadyInTheChosenGrid() {
-        return mListOfHouseGrids.checkIfARoomIsAlreadyInAHouseGridOfTheList(mGridToBeUsed, mRoomToBeAttached);
+        return mListOfHouseGrids.checkIfARoomIsAlreadyInAHouseGrid(mGridToBeUsed, mRoomToBeAttached);
+    }
+
+    /**
+     * Method that asks for the grid where the room might already be connected.
+     *
+     * @return Grid where the room is is connected to.
+     */
+    public HouseGrid getTheGridWhereTheRoomIsConnected() {
+        return mListOfHouseGrids.getTheGridWhereTheRoomIsConnected(mRoomToBeAttached);
+    }
+
+    /**
+     * Method that asks the class HouseGridList to detach the specified room in the specified house grid via class HouseGrid.
+     */
+    public void detachRoomFromTheHouseGrid(HouseGrid grid) {
+        mListOfHouseGrids.detachRoomInASpecificHouseGridInTheList(grid, mRoomToBeAttached);
     }
 
     /**

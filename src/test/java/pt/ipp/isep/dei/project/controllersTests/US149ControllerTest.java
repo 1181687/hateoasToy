@@ -75,29 +75,6 @@ class US149ControllerTest {
         assertEquals(result, expectedResult);
     }
 
-    /*@Test
-    void getHouseGridFromTheListNotExisting() {
-        //Arrange
-        Dimensions r0Dimensions = new Dimensions(2,3,4);
-        Dimensions r1Dimensions = new Dimensions(2,3,3);
-        Room r0 = new Room("Bedroom",3,r0Dimensions);
-        Room r1 = new Room("Living Room",2,r1Dimensions);
-        RoomList listOfRooms = new RoomList();
-        listOfRooms.addRoomToHouse(r0);
-        listOfRooms.addRoomToHouse(r1);
-        HouseGrid newGrid0 = new HouseGrid("Main Grid",20,listOfRooms);
-        HouseGrid newGrid1 = new HouseGrid("Secondary Grid",20,listOfRooms);
-        HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmList().add(newGrid0);
-        houseGridList.getmList().add(newGrid1);
-        US149Controller ctrl = new US149Controller(houseGridList,listOfRooms);
-        HouseGrid expectedResult = null;
-        //Act
-        HouseGrid result = ctrl.getHouseGridFromTheList(2);
-        //Assert
-        assertEquals(result,expectedResult);
-    }*/
-
     @Test
     void getListOfRooms() {
         //Arrange

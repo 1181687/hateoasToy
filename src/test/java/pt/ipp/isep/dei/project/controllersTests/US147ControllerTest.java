@@ -177,4 +177,221 @@ class US147ControllerTest {
         // Assert
         assertFalse(result);
     }
+
+    @Test
+    void houseGridListLengthTest() {
+        // Arrange
+        // Instantiate House Grids
+        String gridName = "Grid";
+        HouseGrid grid = new HouseGrid(gridName);
+
+        // Instantiate List of House Grids
+        HouseGridList gridList = new HouseGridList();
+        gridList.addHouseGridToTheList(grid);
+
+        // Instantiate List of Rooms
+        RoomList roomList = new RoomList();
+
+        // Instantiate Controller
+        US147Controller ctrl = new US147Controller(gridList, roomList);
+
+        int expectedResult = 1;
+
+        // Act
+        int result = ctrl.houseGridListLength();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void checkIfRoomListIsEmptyFalse() {
+        // Arrange
+        // Instantiate Room
+        String roomName = "Kitchen";
+        int houseFloor = 0;
+        Dimensions dimensions = new Dimensions(4, 10, 12);
+        Room room = new Room(roomName, houseFloor, dimensions);
+
+        // Instantiate List of Rooms
+        RoomList roomList = new RoomList();
+        roomList.addRoomToRoomList(room);
+
+        // Instantiate List of House Grids
+        HouseGridList gridList = new HouseGridList();
+
+        // Instantiate Controller
+        US147Controller ctrl = new US147Controller(gridList, roomList);
+
+        // Act
+        boolean result = ctrl.checkIfRoomListIsEmpty();
+
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void checkIfRoomListIsEmptyTrue() {
+        // Arrange
+        // Instantiate List of Rooms
+        RoomList roomList = new RoomList();
+
+        // Instantiate List of House Grids
+        HouseGridList gridList = new HouseGridList();
+
+        // Instantiate Controller
+        US147Controller ctrl = new US147Controller(gridList, roomList);
+
+        // Act
+        boolean result = ctrl.checkIfRoomListIsEmpty();
+
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void roomListLengthTest() {
+        // Arrange
+        // Instantiate Room
+        String roomName = "Kitchen";
+        int houseFloor = 0;
+        Dimensions dimensions = new Dimensions(4, 10, 12);
+        Room room = new Room(roomName, houseFloor, dimensions);
+
+        // Instantiate List of Rooms
+        RoomList roomList = new RoomList();
+        roomList.addRoomToRoomList(room);
+
+        // Instantiate List of House Grids
+        HouseGridList gridList = new HouseGridList();
+
+        // Instantiate Controller
+        US147Controller ctrl = new US147Controller(gridList, roomList);
+
+        int expectedResult = 1;
+
+        // Act
+        int result = ctrl.roomListLength();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getTheGridWhereTheRoomIsConnectedTest() {
+        // Arrange
+        // Instantiate Room
+        String roomName = "Kitchen";
+        int houseFloor = 0;
+        Dimensions dimensions = new Dimensions(4, 10, 12);
+        Room room = new Room(roomName, houseFloor, dimensions);
+
+        // Instantiate House Grids
+        String gridName0 = "Grid";
+        HouseGrid grid0 = new HouseGrid(gridName0);
+        String gridName1 = "Grid";
+        HouseGrid grid1 = new HouseGrid(gridName1);
+        String gridName2 = "Grid";
+        HouseGrid grid2 = new HouseGrid(gridName2);
+        grid2.attachRoomInTheHouseGridRoomList(room);
+
+        // Instantiate List of House Grids
+        HouseGridList gridList = new HouseGridList();
+        gridList.addHouseGridToTheList(grid0);
+        gridList.addHouseGridToTheList(grid1);
+        gridList.addHouseGridToTheList(grid2);
+
+        // Instantiate List of Rooms
+        RoomList roomList = new RoomList();
+
+        // Instantiate Controller
+        US147Controller ctrl = new US147Controller(gridList, roomList);
+        ctrl.setmRoomToBeAttached(room);
+
+        HouseGrid expectedResult = grid2;
+
+        // Act
+        HouseGrid result = ctrl.getTheGridWhereTheRoomIsConnected();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getTheGridWhereTheRoomIsConnectedNullTest() {
+        // Arrange
+        // Instantiate Room
+        String roomName = "Kitchen";
+        int houseFloor = 0;
+        Dimensions dimensions = new Dimensions(4, 10, 12);
+        Room room = new Room(roomName, houseFloor, dimensions);
+
+        // Instantiate House Grids
+        String gridName0 = "Grid";
+        HouseGrid grid0 = new HouseGrid(gridName0);
+        String gridName1 = "Grid";
+        HouseGrid grid1 = new HouseGrid(gridName1);
+        String gridName2 = "Grid";
+        HouseGrid grid2 = new HouseGrid(gridName2);
+
+        // Instantiate List of House Grids
+        HouseGridList gridList = new HouseGridList();
+        gridList.addHouseGridToTheList(grid0);
+        gridList.addHouseGridToTheList(grid1);
+        gridList.addHouseGridToTheList(grid2);
+
+        // Instantiate List of Rooms
+        RoomList roomList = new RoomList();
+
+        // Instantiate Controller
+        US147Controller ctrl = new US147Controller(gridList, roomList);
+        ctrl.setmRoomToBeAttached(room);
+
+        HouseGrid expectedResult = null;
+
+        // Act
+        HouseGrid result = ctrl.getTheGridWhereTheRoomIsConnected();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void detachRoomFromGridListTest() {
+        //Arrange
+        // Instantiate Rooms
+        String roomName0 = "Kitchen";
+        int houseFloor0 = 0;
+        Dimensions dimensions0 = new Dimensions(4, 10, 12);
+        Room room0 = new Room(roomName0, houseFloor0, dimensions0);
+        String roomName1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(4, 10, 12);
+        Room room1 = new Room(roomName1, houseFloor1, dimensions1);
+
+        // Instantiate List of Rooms
+        RoomList roomList = new RoomList();
+        roomList.addRoomToRoomList(room0);
+        roomList.addRoomToRoomList(room1);
+
+        // Instantiate House Grids
+        String gridName0 = "Grid0";
+        HouseGrid grid0 = new HouseGrid(gridName0, 20, roomList);
+
+        // Instantiate List of House Grids
+        HouseGridList gridList = new HouseGridList();
+        gridList.addHouseGridToTheList(grid0);
+
+        // Instantiate Controller
+        US147Controller ctrl = new US147Controller(gridList, roomList);
+        ctrl.setmGridToBeUsed(grid0);
+        ctrl.setmRoomToBeAttached(room0);
+        ctrl.detachRoomFromTheHouseGrid(grid0);
+
+        // Act
+        boolean result = ctrl.checkIfTheChosenRoomIsAlreadyInTheChosenGrid();
+
+        // Assert
+        assertFalse(result);
+    }
 }

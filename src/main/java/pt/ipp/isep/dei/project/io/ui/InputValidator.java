@@ -105,7 +105,6 @@ public class InputValidator {
             } catch (Exception e) {
                 System.out.println("Error! Please insert a integer number between " + min + " and " + max +".");
                 flag = true;
-                in.next();
             }
         }while(flag);
 

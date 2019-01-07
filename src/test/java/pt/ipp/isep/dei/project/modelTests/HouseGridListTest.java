@@ -134,9 +134,74 @@ public class HouseGridListTest {
         gridList.addHouseGridToTheList(grid);
 
         // Act
-        boolean result = gridList.checkIfARoomIsAlreadyInAHouseGridOfTheList(grid, room);
+        boolean result = gridList.checkIfARoomIsAlreadyInAHouseGrid(grid, room);
 
         // Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void getTheGridWhereTheRoomIsConnectedTest() {
+        // Arrange
+        // Instantiate Room
+        String roomName = "Kitchen";
+        int houseFloor = 0;
+        Dimensions dimensions = new Dimensions(4, 10, 12);
+        Room room = new Room(roomName, houseFloor, dimensions);
+
+        // Instantiate House Grids
+        String gridName0 = "Grid";
+        HouseGrid grid0 = new HouseGrid(gridName0);
+        String gridName1 = "Grid";
+        HouseGrid grid1 = new HouseGrid(gridName1);
+        String gridName2 = "Grid";
+        HouseGrid grid2 = new HouseGrid(gridName2);
+        grid2.attachRoomInTheHouseGridRoomList(room);
+
+        // Instantiate List of House Grids
+        HouseGridList gridList = new HouseGridList();
+        gridList.addHouseGridToTheList(grid0);
+        gridList.addHouseGridToTheList(grid1);
+        gridList.addHouseGridToTheList(grid2);
+
+        HouseGrid expectedResult = grid2;
+
+        // Act
+        HouseGrid result = gridList.getTheGridWhereTheRoomIsConnected(room);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getTheGridWhereTheRoomIsConnectedNullTest() {
+        // Arrange
+        // Instantiate Room
+        String roomName = "Kitchen";
+        int houseFloor = 0;
+        Dimensions dimensions = new Dimensions(4, 10, 12);
+        Room room = new Room(roomName, houseFloor, dimensions);
+
+        // Instantiate House Grids
+        String gridName0 = "Grid";
+        HouseGrid grid0 = new HouseGrid(gridName0);
+        String gridName1 = "Grid";
+        HouseGrid grid1 = new HouseGrid(gridName1);
+        String gridName2 = "Grid";
+        HouseGrid grid2 = new HouseGrid(gridName2);
+
+        // Instantiate List of House Grids
+        HouseGridList gridList = new HouseGridList();
+        gridList.addHouseGridToTheList(grid0);
+        gridList.addHouseGridToTheList(grid1);
+        gridList.addHouseGridToTheList(grid2);
+
+        HouseGrid expectedResult = null;
+
+        // Act
+        HouseGrid result = gridList.getTheGridWhereTheRoomIsConnected(room);
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 }
