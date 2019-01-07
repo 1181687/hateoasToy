@@ -166,4 +166,31 @@ public class InputValidator {
         } while (flag);
         return str;
     }
+
+    /**
+     * Method to validate the act of confirmation of an action by writing 'y' or 'n'.
+     *
+     * @param label String that is showed to the user, indicating what shall be written.
+     * @return String explaining that only 'y' or 'n' are allowed.
+     */
+    public static String confirmValidation(String label) {
+        Scanner in = new Scanner(System.in);
+        String str = "";
+        boolean flag;
+        do {
+            System.out.println(label);
+            try {
+                flag = false;
+                str = in.nextLine();
+                str = str.trim();
+                if (!str.equals("y") && !str.equals("Y") && !str.equals("n") && !str.equals("N")) {
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                System.out.println("Error! Please, use 'y' or 'n' to answer.");
+                flag = true;
+            }
+        } while (flag);
+        return str;
+    }
 }

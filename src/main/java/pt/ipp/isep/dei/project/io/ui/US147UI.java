@@ -4,8 +4,6 @@ import pt.ipp.isep.dei.project.controllers.US147Controller;
 import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.RoomList;
 
-import java.util.Scanner;
-
 public class US147UI {
     private US147Controller mCtrl;
 
@@ -42,9 +40,8 @@ public class US147UI {
                         mCtrl.setmRoomToBeAttached(mCtrl.getRoomFromTheList(indexOfTheChosenRoom2));
                     } else {
                         if (mCtrl.getTheGridWhereTheRoomIsConnected() != null) {
-                            System.out.println("The specified room is already in another grid. Do you want to disconnect it and connect it the the chosen grid? (Press 'y' to confirm)");
-                            Scanner keyboardInput = new Scanner(System.in);
-                            String answer = keyboardInput.nextLine();
+                            String label4 = "The specified room is already in another grid. Do you want to disconnect it and connect it the the chosen grid? (y/n)";
+                            String answer = InputValidator.confirmValidation(label4);
                             if (answer.equals("y") || answer.equals("Y")) {
                                 mCtrl.detachRoomFromTheHouseGrid(mCtrl.getTheGridWhereTheRoomIsConnected());
                                 mCtrl.attachRoomInTheHouseGrid();
@@ -57,9 +54,8 @@ public class US147UI {
                         }
                     }
                 }
-                System.out.println("Confirm? (Press 'y' to confirm)");
-                Scanner keyboardInput2 = new Scanner(System.in);
-                String answer = keyboardInput2.nextLine();
+                String label5 = "Confirm? (y/n)";
+                String answer = InputValidator.confirmValidation(label5);
                 if (answer.equals("y") || answer.equals("Y")) {
                     mCtrl.attachRoomInTheHouseGrid();
                     System.out.println("The room has been attached to the house grid.\n");
