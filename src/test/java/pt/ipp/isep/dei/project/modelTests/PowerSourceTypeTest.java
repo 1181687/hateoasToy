@@ -53,7 +53,7 @@ public class PowerSourceTypeTest {
         String type1 = "Battery";
         String powerSourceName = "Wind Generator";
         PowerSourceType powerSourceType = new PowerSourceType(type1);
-        PowerSource powerSource = new PowerSource(powerSourceName,powerSourceType,true);
+        PowerSource powerSource = new PowerSource(powerSourceName,powerSourceType);
         //Act
         boolean result = powerSourceType.equals(powerSource);
         //Assert

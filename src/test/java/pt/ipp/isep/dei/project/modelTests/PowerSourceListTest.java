@@ -15,10 +15,8 @@ public class PowerSourceListTest {
         String powerSourceName1 = "Power Source 1";
         String powerSourceName2 = "Power Source 2";
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
-        boolean isRechargeable1 = true;
-        boolean isRechargeable2 = true;
-        PowerSource powerSource1 = new PowerSource(powerSourceName1,powerSourceType1 ,isRechargeable1);
-        PowerSource powerSource2 = new PowerSource(powerSourceName2,powerSourceType1 ,isRechargeable2);
+        PowerSource powerSource1 = new PowerSource(powerSourceName1,powerSourceType1);
+        PowerSource powerSource2 = new PowerSource(powerSourceName2,powerSourceType1);
         PowerSourceList powerSourceList = new PowerSourceList();
         powerSourceList.addPowerSourceToList(powerSource1);
 
@@ -37,10 +35,8 @@ public class PowerSourceListTest {
         String powerSourceName2 = "Power Source 1";
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
         PowerSourceType powerSourceType2 = new PowerSourceType("Battery");
-        boolean isRechargeable1 = true;
-        boolean isRechargeable2 = true;
-        PowerSource powerSource1 = new PowerSource(powerSourceName1, powerSourceType1,isRechargeable1);
-        PowerSource powerSource2 = new PowerSource(powerSourceName2, powerSourceType2,isRechargeable2);
+        PowerSource powerSource1 = new PowerSource(powerSourceName1, powerSourceType1);
+        PowerSource powerSource2 = new PowerSource(powerSourceName2, powerSourceType2);
         PowerSourceList powerSourceList = new PowerSourceList();
         powerSourceList.addPowerSourceToList(powerSource1);
 
@@ -56,28 +52,12 @@ public class PowerSourceListTest {
         //Arrange
         String name = "Power Source 1";
         PowerSourceType type = new PowerSourceType("Battery");
-        boolean isRechargeable1 = true;
         PowerSourceList powerSourceList = new PowerSourceList();
-        PowerSource expectedResult = new PowerSource(name,type, isRechargeable1);
+        PowerSource expectedResult = new PowerSource(name,type);
         //Act
-        PowerSource result = powerSourceList.createNewPowerSource(name,type,isRechargeable1);
+        PowerSource result = powerSourceList.createNewPowerSource(name,type);
         //Assert
         assertEquals(expectedResult,result);
-    }
-
-    @Test
-    public void testChooseRechargeableOption(){
-        //Arrange
-
-        PowerSourceList powerSourceList = new PowerSourceList();
-
-        String expectedResult = "1 - Yes\n" + "2 - No\n";
-
-        //Act
-        String result = powerSourceList.chooseRechargeableOption();
-
-        //Assert
-        assertEquals(expectedResult, result);
     }
 
 }
