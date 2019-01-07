@@ -30,11 +30,7 @@ public class US135UI {
             int positionOfPowerSource = InputValidator.getIntRange(label3,1,mController.powerSourceTypeListLength()) -1;
             mController.getPowerSourceTypeFromListByPosition(positionOfPowerSource);
 
-            String label4 ="Is the power source rechargeable? \n" + mController.chooseRechargeableOption();
-            int rechargeableOption = InputValidator.getIntRange(label4,1,2);
-            boolean isRechargeable = mController.isRechargeable(rechargeableOption);
-
-            boolean isPowerSourceAdded = mController.createAndAddPowerSourceToHouseGrid(powerSourceName,isRechargeable);
+            boolean isPowerSourceAdded = mController.createAndAddPowerSourceToHouseGrid(powerSourceName);
 
             if (isPowerSourceAdded) {
                 System.out.println("Success! The Power Source was added to the House Grid");

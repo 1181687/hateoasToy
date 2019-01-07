@@ -9,8 +9,8 @@ public class PowerSourceList {
     public PowerSourceList() {
     }
 
-    public PowerSource createNewPowerSource(String powerSourceName, PowerSourceType type, boolean isRechargeable){
-        return new PowerSource(powerSourceName,type,isRechargeable);
+    public PowerSource createNewPowerSource(String powerSourceName, PowerSourceType type){
+        return new PowerSource(powerSourceName,type);
     }
 
     public boolean addPowerSourceToList(PowerSource newPowerSource){

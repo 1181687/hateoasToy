@@ -5,14 +5,12 @@ import static java.util.Objects.isNull;
 public class PowerSource {
     private String mPowerSourceName;
     private PowerSourceType mPowerSourceType;
-    private boolean mIsRechargeable;
 
-    public PowerSource(String powerSourceName, PowerSourceType powerSourceType, boolean isRechargeable) {
+    public PowerSource(String powerSourceName, PowerSourceType powerSourceType) {
         validateName(powerSourceName);
         validatePowerSourceType(powerSourceType);
 
         this.mPowerSourceType = powerSourceType;
-        this.mIsRechargeable = isRechargeable;
         this.mPowerSourceName = powerSourceName;
     }
 
@@ -32,7 +30,7 @@ public class PowerSource {
 
         PowerSource type = (PowerSource) obj;
 
-        return this.mPowerSourceName.equals(type.mPowerSourceName) && this.mPowerSourceType.equals(type.mPowerSourceType) && this.mIsRechargeable == type.mIsRechargeable;
+        return this.mPowerSourceName.equals(type.mPowerSourceName) && this.mPowerSourceType.equals(type.mPowerSourceType);
     }
 
     private static void validateName(String name) {
