@@ -158,7 +158,7 @@ class SensorTest {
 
         double expectedResult = 1201040.7956;
 
-        double result = s1.distanciaLinearEntreDoisSensores(s2);
+        double result = s1.distanceBetweenTwoLocations(s2);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -179,7 +179,7 @@ class SensorTest {
         Measurement expectedResult = measurement;
 
         //Act
-        Measurement result = s1.getUltimoRegisto();
+        Measurement result = s1.getLastMeasurement();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -197,7 +197,7 @@ class SensorTest {
         Measurement expectedResult = null;
 
         //Act
-        Measurement result = s1.getUltimoRegisto();
+        Measurement result = s1.getLastMeasurement();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -258,7 +258,7 @@ class SensorTest {
         Measurement expectedResult = measurement2;
 
         //Act
-        Measurement result = s1.getUltimoRegisto();
+        Measurement result = s1.getLastMeasurement();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -287,7 +287,7 @@ class SensorTest {
         sensor1.addMeasurementToList(registo1);
         sensor1.addMeasurementToList(registo2);
         sensor1.addMeasurementToList(registo3);
-        double result = sensor1.getMenorRegistoDoMes(diaDoMes);
+        double result = sensor1.getLowestMeasurementOfMonth(diaDoMes);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -306,7 +306,7 @@ class SensorTest {
         LocalDate diaDoMes = LocalDate.of(2017, GregorianCalendar.AUGUST, 15);
 
         // Act
-        double result = sensor1.getMenorRegistoDoMes(diaDoMes);
+        double result = sensor1.getLowestMeasurementOfMonth(diaDoMes);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -335,7 +335,7 @@ class SensorTest {
         sensor1.addMeasurementToList(registo1);
         sensor1.addMeasurementToList(registo2);
         sensor1.addMeasurementToList(registo3);
-        double result = sensor1.getMenorRegistoDoMes(diaDoMes);
+        double result = sensor1.getLowestMeasurementOfMonth(diaDoMes);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -364,7 +364,7 @@ class SensorTest {
         sensor1.addMeasurementToList(registo1);
         sensor1.addMeasurementToList(registo2);
         sensor1.addMeasurementToList(registo3);
-        double result = sensor1.getMenorRegistoDoMes(diaDoMes);
+        double result = sensor1.getLowestMeasurementOfMonth(diaDoMes);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -393,7 +393,7 @@ class SensorTest {
         sensor1.addMeasurementToList(registo1);
         sensor1.addMeasurementToList(registo2);
         sensor1.addMeasurementToList(registo3);
-        double result = sensor1.getMenorRegistoDoMes(diaDoMes);
+        double result = sensor1.getLowestMeasurementOfMonth(diaDoMes);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -422,7 +422,7 @@ class SensorTest {
         sensor1.addMeasurementToList(registo1);
         sensor1.addMeasurementToList(registo2);
         sensor1.addMeasurementToList(registo3);
-        double result = sensor1.getMenorRegistoDoMes(diaDoMes);
+        double result = sensor1.getLowestMeasurementOfMonth(diaDoMes);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -457,7 +457,7 @@ class SensorTest {
         sensor1.addMeasurementToList(registo4);
 
         //Act
-        double result = sensor1.getMaiorRegistoDoMes(dataDoMes);
+        double result = sensor1.getGreatestMeasurementOfMonth(dataDoMes);
 
         //Assert
         assertEquals(expectedResult, result, 0.001);
@@ -475,7 +475,7 @@ class SensorTest {
         double expectedResult = Double.NaN;
 
         //Act
-        double result = sensor1.getMaiorRegistoDoMes(dataDoMes);
+        double result = sensor1.getGreatestMeasurementOfMonth(dataDoMes);
 
         //Assert
         assertEquals(expectedResult, result, 0.001);
@@ -507,7 +507,7 @@ class SensorTest {
         sensor1.addMeasurementToList(registo3);
         sensor1.addMeasurementToList(registo4);
         //Act
-        double result = sensor1.getRegistoMediaMes(diaDoMes);
+        double result = sensor1.getMonthlyAverageMeasurement(diaDoMes);
         //Assert
         assertEquals(expectedResult, result, 0.001);
     }
@@ -524,7 +524,7 @@ class SensorTest {
         LocalDate diaDoMes = LocalDate.of(2018, 2, 20);
 
         //Act
-        double result = sensor1.getRegistoMediaMes(diaDoMes);
+        double result = sensor1.getMonthlyAverageMeasurement(diaDoMes);
         //Assert
         assertEquals(expectedResult, result, 0.001);
     }
@@ -538,7 +538,7 @@ class SensorTest {
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         SensorType tipoPedido = new SensorType("Temperatura");
         //Act
-        boolean resultado = sensor1.umTipoDeSensorEIgualAOutro(tipoPedido);
+        boolean resultado = sensor1.sensorTypeEqualsSensorType(tipoPedido);
         //Assert
         assertTrue(resultado);
     }
@@ -552,7 +552,7 @@ class SensorTest {
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         SensorType tipoPedido = new SensorType("Humidade");
         //Act
-        boolean resultado = sensor1.umTipoDeSensorEIgualAOutro(tipoPedido);
+        boolean resultado = sensor1.sensorTypeEqualsSensorType(tipoPedido);
         //Assert
         assertFalse(resultado);
     }
@@ -633,7 +633,7 @@ class SensorTest {
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
-        boolean result = sensor1.checkIfSameDay(data.toLocalDate(), data2.toLocalDate());
+        boolean result = sensor1.checkIfDaysAreEqual(data.toLocalDate(), data2.toLocalDate());
 
         //assert
         assertEquals(expectedResult, result);
@@ -653,7 +653,7 @@ class SensorTest {
         Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Act
-        boolean result = sensor1.checkIfSameDay(data.toLocalDate(), data2.toLocalDate());
+        boolean result = sensor1.checkIfDaysAreEqual(data.toLocalDate(), data2.toLocalDate());
 
         //assert
         assertEquals(expectedResult, result);
@@ -671,7 +671,7 @@ class SensorTest {
         Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Act
-        boolean result = sensor1.checkIfSameDay(data.toLocalDate(), data2.toLocalDate());
+        boolean result = sensor1.checkIfDaysAreEqual(data.toLocalDate(), data2.toLocalDate());
 
         //assert
         assertTrue(result);
@@ -706,7 +706,7 @@ class SensorTest {
         double expectedResult = -2;
 
         //Act
-        double result = sensor1.getValorMinimoDoDia(data.toLocalDate());
+        double result = sensor1.getLowestMeasurementOfDay(data.toLocalDate());
         //assert
         assertEquals(expectedResult, result, 0.001);
 
@@ -720,15 +720,10 @@ class SensorTest {
         Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
-        //Registo 1
-        LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
-        Measurement measurement1 = new Measurement(40, data1);
-
-
         double expectedResult = Double.NaN;
 
         //Act
-        double result = sensor1.getValorMinimoDoDia(data.toLocalDate());
+        double result = sensor1.getLowestMeasurementOfDay(data.toLocalDate());
         //assert
         assertEquals(expectedResult, result, 0.001);
 
@@ -763,7 +758,7 @@ class SensorTest {
         double expectedResult = -2;
 
         //Act
-        double result = sensor1.getValorMinimoDoDia(data.toLocalDate());
+        double result = sensor1.getLowestMeasurementOfDay(data.toLocalDate());
         //assert
         assertEquals(expectedResult, result, 0.001);
 
@@ -776,9 +771,9 @@ class SensorTest {
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
-        LocalDateTime expectedResult = data;
+        LocalDate expectedResult = data.toLocalDate();
 
-        LocalDate result = sensor1.getFirstDayOfTheWeek(data.toLocalDate());
+        LocalDate result = sensor1.getFirstDayOfWeek(data.toLocalDate());
 
         assertEquals(expectedResult, result);
     }
@@ -833,7 +828,7 @@ class SensorTest {
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
         //Act
-        List<Double> result = sensor1.valoresMinimosSemana(searchDate);
+        List<Double> result = sensor1.lowestMeasurementsOfWeek(searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -889,7 +884,7 @@ class SensorTest {
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
         //Act
-        List<Double> result = sensor1.valoresMinimosSemana(searchDate);
+        List<Double> result = sensor1.lowestMeasurementsOfWeek(searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -935,7 +930,7 @@ class SensorTest {
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
         //Act
-        List<Double> result = sensor1.valoresMinimosSemana(searchDate);
+        List<Double> result = sensor1.lowestMeasurementsOfWeek(searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -982,7 +977,7 @@ class SensorTest {
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
         //Act
-        List<Double> result = sensor1.valoresMinimosSemana(searchDate);
+        List<Double> result = sensor1.lowestMeasurementsOfWeek(searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1001,7 +996,7 @@ class SensorTest {
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
         //Act
-        List<Double> result = sensor1.valoresMinimosSemana(searchDate);
+        List<Double> result = sensor1.lowestMeasurementsOfWeek(searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1061,7 +1056,7 @@ class SensorTest {
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
         //Act
-        double result = sensor1.getMediaRegitosMinSemanal(searchDate);
+        double result = sensor1.getAverageOfLowestMeasurementsWeek(searchDate);
 
         //Assert
         assertEquals(expectedResult, result, 0.001);
@@ -1081,7 +1076,7 @@ class SensorTest {
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
         //Act
-        double result = sensor1.getMediaRegitosMinSemanal(searchDate);
+        double result = sensor1.getAverageOfLowestMeasurementsWeek(searchDate);
 
         //Assert
         assertEquals(expectedResult, result, 0.001);
@@ -1222,7 +1217,7 @@ class SensorTest {
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
         //Act
-        List<Double> result = sensor1.valoresMaximosSemana(searchDate);
+        List<Double> result = sensor1.biggestWeeklyMeasurements(searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1278,7 +1273,7 @@ class SensorTest {
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
         //Act
-        List<Double> result = sensor1.valoresMaximosSemana(searchDate);
+        List<Double> result = sensor1.biggestWeeklyMeasurements(searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1324,7 +1319,7 @@ class SensorTest {
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
         //Act
-        List<Double> result = sensor1.valoresMaximosSemana(searchDate);
+        List<Double> result = sensor1.biggestWeeklyMeasurements(searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1370,7 +1365,7 @@ class SensorTest {
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
         //Act
-        List<Double> result = sensor1.valoresMaximosSemana(searchDate);
+        List<Double> result = sensor1.biggestWeeklyMeasurements(searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1389,7 +1384,7 @@ class SensorTest {
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
         //Act
-        List<Double> result = sensor1.valoresMaximosSemana(searchDate);
+        List<Double> result = sensor1.biggestWeeklyMeasurements(searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1449,7 +1444,7 @@ class SensorTest {
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
         //Act
-        double result = sensor1.getMediaRegistosMaxSemanal(searchDate);
+        double result = sensor1.getAverageOfBiggestMeasurementsWeek(searchDate);
 
         //Assert
         assertEquals(expectedResult, result, 0.001);
@@ -1469,7 +1464,7 @@ class SensorTest {
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
         //Act
-        double result = sensor1.getMediaRegistosMaxSemanal(searchDate);
+        double result = sensor1.getAverageOfBiggestMeasurementsWeek(searchDate);
 
         //Assert
         assertEquals(expectedResult, result, 0.001);
@@ -1518,7 +1513,7 @@ class SensorTest {
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
         //Act
-        double result = sensor1.getMediaRegistosMaxSemanal(searchDate);
+        double result = sensor1.getAverageOfBiggestMeasurementsWeek(searchDate);
 
         //Assert
         assertEquals(expectedResult, result, 0.001);

@@ -95,7 +95,7 @@ public class GeoAreaList {
     public GeographicalArea newGeographicalArea(String geoAreaName, String geoAreaTypeName, double latitude, double longitude, double altitude, double height, double length) {
         GeoAreaType geoAreaType = new GeoAreaType(geoAreaTypeName);
         Location location = new Location(latitude, longitude, altitude);
-        RectangleArea rectangleArea = new RectangleArea(height, length, location);
+        AreaShape rectangleArea = new AreaShape(height, length, location);
         return new GeographicalArea(geoAreaName, geoAreaType, location, rectangleArea);
     }
 }
