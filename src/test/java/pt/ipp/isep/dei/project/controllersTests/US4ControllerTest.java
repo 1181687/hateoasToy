@@ -36,12 +36,12 @@ public class US4ControllerTest {
 
         String nomeAG1 = "Porto";
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Massarelos";
         Location local2 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area2 = new RectangleArea(10, 10, local1);
+        AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         lista.addGeoAreaToTheList(ag1);

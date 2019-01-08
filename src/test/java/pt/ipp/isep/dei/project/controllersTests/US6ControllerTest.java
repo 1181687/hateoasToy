@@ -14,19 +14,19 @@ class US6ControllerTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Espinho";
         GeoAreaType tipo2 = new GeoAreaType("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG3 = "Ancora";
         GeoAreaType tipo3 = new GeoAreaType("Cidade");
         Location local3 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area3 = new RectangleArea(10, 10, local3);
+        AreaShape area3 = new AreaShape(10, 10, local3);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
         SensorTypeList sensorTypeList = new SensorTypeList();
@@ -54,19 +54,19 @@ class US6ControllerTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Espinho";
         GeoAreaType tipo2 = new GeoAreaType("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG3 = "Ancora";
         GeoAreaType tipo3 = new GeoAreaType("Cidade");
         Location local3 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area3 = new RectangleArea(10, 10, local3);
+        AreaShape area3 = new AreaShape(10, 10, local3);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
         SensorTypeList sensorTypeList = new SensorTypeList();
@@ -95,7 +95,7 @@ class US6ControllerTest {
         String nomeAG1 = "Espinho";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         SensorTypeList sensorTypeList = new SensorTypeList();
@@ -122,13 +122,13 @@ class US6ControllerTest {
         String nomeAG1 = "Espinho";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Ancora";
         GeoAreaType tipo2 = new GeoAreaType("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area2 = new RectangleArea(10, 10, local1);
+        AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         SensorTypeList sensorTypeList = new SensorTypeList();
@@ -280,7 +280,7 @@ class US6ControllerTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         
         SensorType sensorType = new SensorType("Humidade");
@@ -315,7 +315,7 @@ class US6ControllerTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         SensorType sensorType = new SensorType("Humidade");

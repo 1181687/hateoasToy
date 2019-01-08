@@ -29,14 +29,14 @@ public class US605ControllerTest {
         Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
 
-        rList.addRoomToRoomList(room1);
-        rList.addRoomToRoomList(room2);
+        rList.addRoom(room1);
+        rList.addRoom(room2);
 
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
         GeoAreaType geoAreaType = new GeoAreaType("City");
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        AreaShape areaShape = new AreaShape(20, 20, location);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, areaShape);
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
         SensorType sensorType = new SensorType("Temperature");
@@ -60,8 +60,8 @@ public class US605ControllerTest {
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
         GeoAreaType geoAreaType = new GeoAreaType("City");
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        AreaShape areaShape = new AreaShape(20, 20, location);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, areaShape);
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
         SensorType sensorType = new SensorType("Temperature");
@@ -87,14 +87,14 @@ public class US605ControllerTest {
         Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
 
-        rList.addRoomToRoomList(room1);
-        rList.addRoomToRoomList(room2);
+        rList.addRoom(room1);
+        rList.addRoom(room2);
 
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
         GeoAreaType geoAreaType = new GeoAreaType("City");
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        AreaShape areaShape = new AreaShape(20, 20, location);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, areaShape);
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
         SensorType sensorType = new SensorType("Temperature");
@@ -178,12 +178,12 @@ public class US605ControllerTest {
         room1.addSensorToTheListOfSensorsInTheRoom(s2);
 
         RoomList roomList = new RoomList();
-        roomList.addRoomToRoomList(room1);
+        roomList.addRoom(room1);
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
         GeoAreaType geoAreaType = new GeoAreaType("City");
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        AreaShape areaShape = new AreaShape(20, 20, location);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, areaShape);
         Address address = new Address("0000", location);
         House house = new House(roomList, gridList, address, insertedGeoArea);
         US605Controller ctrl = new US605Controller(house, sensorType0);
@@ -227,12 +227,12 @@ public class US605ControllerTest {
 
         SensorType sensorType0 = new SensorType("Temperature");
         RoomList roomList = new RoomList();
-        roomList.addRoomToRoomList(room1);
+        roomList.addRoom(room1);
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
         GeoAreaType geoAreaType = new GeoAreaType("City");
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        AreaShape areaShape = new AreaShape(20, 20, location);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, areaShape);
         Address address = new Address("0000", location);
         House house = new House(roomList, gridList, address, insertedGeoArea);
         US605Controller ctrl = new US605Controller(house, sensorType0);
@@ -254,14 +254,14 @@ public class US605ControllerTest {
         Room room0 = new Room("RoomOne", 2, dim0);
         Room room1 = new Room("RoomTwo", 2, dim1);
 
-        rList.addRoomToRoomList(room0);
-        rList.addRoomToRoomList(room1);
+        rList.addRoom(room0);
+        rList.addRoom(room1);
 
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
         GeoAreaType geoAreaType = new GeoAreaType("City");
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        AreaShape areaShape = new AreaShape(20, 20, location);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, areaShape);
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
         SensorType sensorType0 = new SensorType("Temperature");
@@ -282,8 +282,8 @@ public class US605ControllerTest {
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
         GeoAreaType geoAreaType = new GeoAreaType("City");
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        AreaShape areaShape = new AreaShape(20, 20, location);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, areaShape);
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
         SensorType sensorType0 = new SensorType("Temperature");
@@ -307,9 +307,9 @@ public class US605ControllerTest {
         Address address = new Address(zipCode, local);
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         String name = "Master Bedroom";
@@ -362,7 +362,7 @@ public class US605ControllerTest {
         room1.getSensorList().addSensorToTheListOfSensors(s1);
 
         RoomList listOfRooms = new RoomList();
-        listOfRooms.addRoomToRoomList(room1);
+        listOfRooms.addRoom(room1);
 
         US605Controller ctrl = new US605Controller(house, sensorType0);
 
@@ -389,9 +389,9 @@ public class US605ControllerTest {
         Address address = new Address(zipCode, local);
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         Calendar calendar0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
@@ -427,9 +427,9 @@ public class US605ControllerTest {
         Address address = new Address(zipCode, local);
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
         Calendar calendario = new GregorianCalendar(1991, 11, 2);
         Date dataFuncionamento = calendario.getTime();

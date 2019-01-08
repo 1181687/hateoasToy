@@ -23,7 +23,7 @@ public class US149Controller {
     }
 
     public String getListOfRooms() {
-        return mListOfRooms.getDisplayRoomList();
+        return mListOfRooms.displayRoomList();
     }
 
     public String getListOfRoomsInACertainHouseGrid(int position) {
@@ -31,7 +31,7 @@ public class US149Controller {
     }
 
     public Room getRoomFromTheListOfRoomByAPosition(int position) {
-        return mListOfRooms.getRoomFromASpecificPositionInTheList(position);
+        return mListOfRooms.getRoomFromASpecificPosition(position);
     }
 
     public boolean detachRoomFromGridList(HouseGrid houseGrid, Room roomSelected) {

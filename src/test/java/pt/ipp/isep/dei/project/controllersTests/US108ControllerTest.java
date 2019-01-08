@@ -25,8 +25,8 @@ class US108ControllerTest {
         Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
 
-        rList.addRoomToRoomList(room1);
-        rList.addRoomToRoomList(room2);
+        rList.addRoom(room1);
+        rList.addRoom(room2);
 
         US108Controller ctrl = new US108Controller(rList);
 
@@ -46,7 +46,7 @@ class US108ControllerTest {
         String expectResult = "";
 
         //act
-        String result = rList.getDisplayRoomList();
+        String result = rList.displayRoomList();
         //assert
         assertEquals(expectResult, result);
     }
@@ -73,7 +73,7 @@ class US108ControllerTest {
         Dimensions dimensions1 = new Dimensions(2,2,2);
         Room room1 = new Room(name1, houseFloor1, dimensions1);
 
-        rList.addRoomToRoomList(room1);
+        rList.addRoom(room1);
 
         US108Controller ctrl = new US108Controller(rList);
 

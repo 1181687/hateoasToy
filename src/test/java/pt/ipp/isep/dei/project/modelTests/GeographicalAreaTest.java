@@ -18,7 +18,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
         boolean expectedResult = true;
         //act
@@ -32,7 +32,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
         //act
@@ -48,7 +48,7 @@ class GeographicalAreaTest {
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         GeoAreaType tipo2 = new GeoAreaType("Aldeia");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo1, local, area);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo2, local, area);
         //act
@@ -63,7 +63,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         boolean expectedResult = false;
         //act
@@ -81,8 +81,8 @@ class GeographicalAreaTest {
         GeoAreaType tipo2 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, 10.6109, 50);
         Location local2 = new Location(32.6333, 16.9, 20);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
-        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        AreaShape area1 = new AreaShape(10, 10, local1);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
         double expectedResult = 1099043.7203;
@@ -100,7 +100,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
         int expectedResult = 1;
@@ -117,7 +117,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
@@ -137,7 +137,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
@@ -158,7 +158,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
         // Instantiate Sensor
@@ -181,7 +181,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
         // Instanciar S0
@@ -235,7 +235,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
         // Instanciar S0
@@ -286,7 +286,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
@@ -367,7 +367,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
@@ -445,7 +445,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
         String expectedResult = "Porto";
 
@@ -460,7 +460,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
         GeoAreaType expectedResult = tipo;
@@ -476,7 +476,7 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         LocalDateTime data = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
@@ -497,7 +497,7 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         LocalDateTime data = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
@@ -520,7 +520,7 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         LocalDateTime data = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
@@ -543,13 +543,13 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Distrito");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
 
         ag1.setInsertedIn(ag1);
@@ -569,7 +569,7 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         double mLatitude = 40.487;
@@ -597,7 +597,7 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeSensor = "A456";
@@ -619,20 +619,20 @@ class GeographicalAreaTest {
         String nomeAG2 = "Região Norte";
         GeoAreaType tipo2 = new GeoAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
-        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeoAreaType tipo1 = new GeoAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         ag.setInsertedIn(ag1);
 
@@ -688,20 +688,20 @@ class GeographicalAreaTest {
         String nomeAG2 = "Região Norte";
         GeoAreaType tipo2 = new GeoAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
-        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeoAreaType tipo1 = new GeoAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         ag.setInsertedIn(ag1);
 
@@ -721,20 +721,20 @@ class GeographicalAreaTest {
         String nomeAG2 = "Região Norte";
         GeoAreaType tipo2 = new GeoAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
-        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeoAreaType tipo1 = new GeoAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         ag.setInsertedIn(ag1);
 
@@ -793,20 +793,20 @@ class GeographicalAreaTest {
         String nomeAG2 = "Região Norte";
         GeoAreaType tipo2 = new GeoAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
-        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeoAreaType tipo1 = new GeoAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         ag.setInsertedIn(ag1);
 
@@ -830,20 +830,20 @@ class GeographicalAreaTest {
         String nomeAG2 = "Região Norte";
         GeoAreaType tipo2 = new GeoAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
-        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeoAreaType tipo1 = new GeoAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         ag.setInsertedIn(ag1);
 
@@ -881,7 +881,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
@@ -944,7 +944,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
@@ -981,7 +981,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
@@ -1025,7 +1025,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
@@ -1071,7 +1071,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Sensor1
@@ -1142,7 +1142,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Sensor1
@@ -1211,7 +1211,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Sensor1
@@ -1281,7 +1281,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(40, 40, local);
+        AreaShape area = new AreaShape(40, 40, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
 
@@ -1344,7 +1344,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(40, 40, local);
+        AreaShape area = new AreaShape(40, 40, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
 

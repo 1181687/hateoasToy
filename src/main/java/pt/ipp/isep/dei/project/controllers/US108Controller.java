@@ -10,7 +10,7 @@ public class US108Controller {
     }
 
     public String displayOfTheRoomList() {
-        return mList.getDisplayRoomList();
+        return mList.displayRoomList();
     }
 
     public boolean checkIfListIsEmpty(){

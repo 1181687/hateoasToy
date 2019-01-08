@@ -6,14 +6,30 @@ import java.util.List;
 public class PowerSourceList {
     private List<PowerSource> mPowerSourceList = new ArrayList<>();
 
+    /**
+     * Power Source List constructor
+     */
     public PowerSourceList() {
     }
 
+    /**
+     * Method that creates a new Power Source
+     *
+     * @param powerSourceName name of Power Source (String)
+     * @param type            type of Power Source
+     * @return new Power Source
+     */
     public PowerSource createNewPowerSource(String powerSourceName, PowerSourceType type){
-        return new PowerSource(powerSourceName,type);
+        return new PowerSource(powerSourceName, type);
     }
 
-    public boolean addPowerSourceToList(PowerSource newPowerSource){
+    /**
+     * Method that adds a new Power Source to the Power Source List.
+     *
+     * @param newPowerSource new Power Source
+     * @return true if the adds a power source or false if it doesn't
+     */
+    public boolean addPowerSource(PowerSource newPowerSource){
 
         if(!(this.mPowerSourceList.contains(newPowerSource))){
             this.mPowerSourceList.add(newPowerSource);

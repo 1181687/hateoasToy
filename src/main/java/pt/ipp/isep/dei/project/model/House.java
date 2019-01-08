@@ -60,7 +60,7 @@ public class House {
      * @return true if adds, false if doesn't
      */
     public boolean addRoomToHouse(Room room) {
-        return this.mRoomList.addRoomToRoomList(room);
+        return this.mRoomList.addRoom(room);
     }
 
     /**
@@ -118,7 +118,7 @@ public class House {
     }
 
     public String getDisplayRoomList() {
-        return mRoomList.getDisplayRoomList();
+        return mRoomList.displayRoomList();
     }
 
     public int listSize() {
@@ -126,7 +126,7 @@ public class House {
     }
 
     public String getNameOfTheChosenRoomInSpecificPos(int position) {
-        return mRoomList.getNameOfTheChosenRoomInSpecificPos(position);
+        return mRoomList.getNameOfTheChosenRoomInSpecificPosition(position);
     }
 
     public Room newRoom(double height, double length, double width, String name, int housefloor) {
