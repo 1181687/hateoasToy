@@ -12,14 +12,14 @@ public class GeographicalArea {
     private GeoAreaType mGeoAreaType;
     private GeographicalArea mInsertedIn;
     private Location mLocation;
-    private RectangleArea mRectangleArea;
+    private AreaShape mAreaShape;
     private SensorList mSensorList = new SensorList();
 
-    public GeographicalArea(String mNomeAreaGeo, GeoAreaType mGeoAreaType, Location mLocation, RectangleArea mRectangleArea) {
+    public GeographicalArea(String mNomeAreaGeo, GeoAreaType mGeoAreaType, Location mLocation, AreaShape mAreaShape) {
         this.mNomeAreaGeo = mNomeAreaGeo;
         this.mGeoAreaType = mGeoAreaType;
         this.mLocation = mLocation;
-        this.mRectangleArea = mRectangleArea;
+        this.mAreaShape = mAreaShape;
     }
 
     public SensorList getmSensorListInTheGeographicArea() {
@@ -40,7 +40,7 @@ public class GeographicalArea {
             return false;
         }
         GeographicalArea ag = (GeographicalArea) obj;
-        return this.mNomeAreaGeo.equals(ag.mNomeAreaGeo) && this.mGeoAreaType.equals(ag.mGeoAreaType) && this.mLocation.equals(ag.mLocation) && this.mRectangleArea.equals(ag.mRectangleArea);
+        return this.mNomeAreaGeo.equals(ag.mNomeAreaGeo) && this.mGeoAreaType.equals(ag.mGeoAreaType) && this.mLocation.equals(ag.mLocation) && this.mAreaShape.equals(ag.mAreaShape);
 
     }
 
@@ -71,7 +71,7 @@ public class GeographicalArea {
 
     public boolean checkIfSensorInInsideOfGeoArea(Sensor sensor) {
 
-        return mRectangleArea.verificaSeLocalizacaoEstaContidaNumaArea(sensor.getmLocation());
+        return mAreaShape.verificaSeLocalizacaoEstaContidaNumaArea(sensor.getmLocation());
 
     }
 
@@ -147,7 +147,7 @@ public class GeographicalArea {
      * @return
      */
     public SensorList getTheSensorListInTheFirstAreaWithSensorOfAGivenType(SensorType type) {
-        GeographicalArea areaToBeUsed = new GeographicalArea(mNomeAreaGeo, mGeoAreaType, mLocation, mRectangleArea);
+        GeographicalArea areaToBeUsed = new GeographicalArea(mNomeAreaGeo, mGeoAreaType, mLocation, mAreaShape);
         areaToBeUsed.setInsertedIn(mInsertedIn);
         areaToBeUsed.getmSensorListInTheGeographicArea().setmSensorList(mSensorList.getmSensorList());
 

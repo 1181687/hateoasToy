@@ -16,9 +16,9 @@ public class US105ControllerTest {
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10,10,10);
         Address adr = new Address("5000", local);
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
         US105Controller ctr= new US105Controller(house);
 
@@ -34,9 +34,9 @@ public class US105ControllerTest {
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10,10,10);
         Address adr = new Address("5000", local);
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
         US105Controller ctr= new US105Controller(house);
 

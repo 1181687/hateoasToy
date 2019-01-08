@@ -21,9 +21,9 @@ public class HouseTest {
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
         boolean result = house.addRoomToHouse(room);
         assertTrue(result);
@@ -35,9 +35,9 @@ public class HouseTest {
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         boolean result = house.addRoomToHouse(null);
@@ -55,9 +55,9 @@ public class HouseTest {
         Address address = new Address(zipCode, local);
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         Location expectedResult = local;
@@ -78,9 +78,9 @@ public class HouseTest {
         Address address = new Address(zipCode, local);
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         //Instanciar Sensor
@@ -152,9 +152,9 @@ public class HouseTest {
         Address address = new Address(zipCode, local);
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         //Instanciar Sensor
@@ -229,7 +229,7 @@ public class HouseTest {
         String nomeAG = "Região Norte";
         GeoAreaType tipo = new GeoAreaType("Região");
         Location localAG = new Location(32.1576, 7.6199, 100);
-        RectangleArea area = new RectangleArea(10, 10, localAG);
+        AreaShape area = new AreaShape(10, 10, localAG);
 
         GeographicalArea AG = new GeographicalArea(nomeAG, tipo, localAG, area);
 
@@ -334,7 +334,7 @@ public class HouseTest {
         String nomeAG = "Região Norte";
         GeoAreaType tipo = new GeoAreaType("Região");
         Location localAG = new Location(32.1576, 7.6199, 100);
-        RectangleArea area = new RectangleArea(10, 10, localAG);
+        AreaShape area = new AreaShape(10, 10, localAG);
 
         GeographicalArea AG = new GeographicalArea(nomeAG, tipo, localAG, area);
 
@@ -411,7 +411,7 @@ public class HouseTest {
         String nomeAG = "Região Norte";
         GeoAreaType tipo = new GeoAreaType("Região");
         Location localAG = new Location(32.1576, 7.6199, 100);
-        RectangleArea area = new RectangleArea(10, 10, localAG);
+        AreaShape area = new AreaShape(10, 10, localAG);
 
         GeographicalArea AG = new GeographicalArea(nomeAG, tipo, localAG, area);
 
@@ -442,9 +442,9 @@ public class HouseTest {
         Address address = new Address(zipCode, local);
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         //Instantiate Sensor
@@ -575,9 +575,9 @@ public class HouseTest {
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
         house.addRoomToHouse(room);
 
@@ -664,9 +664,9 @@ public class HouseTest {
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
         house.addRoomToHouse(room);
 
@@ -753,9 +753,9 @@ public class HouseTest {
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
         house.addRoomToHouse(room);
 
@@ -774,9 +774,9 @@ public class HouseTest {
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         SensorType tipoResultado = new SensorType("Temperatura");
@@ -801,9 +801,9 @@ public class HouseTest {
         Address address = new Address(zipCode, local);
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         String name = "Master Bedroom";
@@ -881,9 +881,9 @@ public class HouseTest {
         Address address = new Address(zipCode, local);
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
         int year= 2001, month =12, day=1;
         LocalDate dateLD = LocalDate.of(2001,12,1);

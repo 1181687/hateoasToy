@@ -20,9 +20,9 @@ public class US101ControllerTest {
         double altitude = 100.0;
         Location local = new Location(latitude, longitude, altitude);
         Address address = new Address(zipCode, local);
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         US101Controller ctrl = new US101Controller(house);

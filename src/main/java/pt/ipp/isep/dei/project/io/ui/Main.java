@@ -18,9 +18,9 @@ public class Main {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         SensorTypeList sensorTypeList = new SensorTypeList();
-        RectangleArea rectangleArea = new RectangleArea(0.261, 0.249, location);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeoAreaType geoAreaType = new GeoAreaType("Urban area");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geoAreaType, location, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geoAreaType, location, areaShape);
         geoAreaList.addGeoAreaToTheListInASpecificPosition(0, insertedGeoArea);
 
         // Sensor

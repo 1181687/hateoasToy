@@ -35,9 +35,9 @@ class US253ControllerTest {
         Location local = new Location(10,10,10);
         Address adr = new Address("5000", local);
 
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, gridlist, adr, insertedGeoArea);
 
 
@@ -71,9 +71,9 @@ class US253ControllerTest {
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10,10,10);
         Address adr = new Address("5000", local);
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, gridlist, adr, insertedGeoArea);
 
 
@@ -113,9 +113,9 @@ class US253ControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         Location location = new Location(10,10,10);
         Address address = new Address("5000", location);
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
+        AreaShape areaShape = new AreaShape(20, 20, location);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, areaShape);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         // Sensors Type List
@@ -144,9 +144,9 @@ class US253ControllerTest {
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10,10,10);
         Address adr = new Address("5000", local);
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, gridlist, adr, insertedGeoArea);
 
         // Sensors Type List
@@ -177,9 +177,9 @@ class US253ControllerTest {
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10,10,10);
         Address adr = new Address("5000", local);
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, gridlist, adr, insertedGeoArea);
 
         // Sensors Type List
@@ -210,9 +210,9 @@ class US253ControllerTest {
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10,10,10);
         Address adr = new Address("5000", local);
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, gridlist, adr, insertedGeoArea);
 
         // Sensors Type List
@@ -243,9 +243,9 @@ class US253ControllerTest {
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10,10,10);
         Address adr = new Address("5000", local);
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, gridlist, adr, insertedGeoArea);
 
         // Tipo de sensor
