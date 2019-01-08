@@ -5,8 +5,6 @@ import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -801,9 +799,7 @@ public class HouseTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
         int year= 2001, month =12, day=1;
-        LocalDate dateLD = LocalDate.of(2001,12,1);
-
-        Date expectedResult= Date.from(dateLD.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        LocalDate expectedResult = LocalDate.of(2001, 12, 1);
 
         //ACT
         LocalDate result = house.createANewDate(year, month, day);
