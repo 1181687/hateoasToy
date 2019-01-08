@@ -206,8 +206,8 @@ public class US620ControllerTest {
         Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
 
-        roomList.addRoomToRoomList(room1);
-        roomList.addRoomToRoomList(room2);
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
 
         // Instantiate HouseGridList
         HouseGridList houseGridList = new HouseGridList();
@@ -302,8 +302,8 @@ public class US620ControllerTest {
         Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
 
-        roomList.addRoomToRoomList(room1);
-        roomList.addRoomToRoomList(room2);
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
 
         // Instantiate HouseGridList
         HouseGridList houseGridList = new HouseGridList();
@@ -371,8 +371,8 @@ public class US620ControllerTest {
         Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
 
-        roomList.addRoomToRoomList(room1);
-        roomList.addRoomToRoomList(room2);
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
 
         // Instantiate HouseGridList
         HouseGridList houseGridList = new HouseGridList();

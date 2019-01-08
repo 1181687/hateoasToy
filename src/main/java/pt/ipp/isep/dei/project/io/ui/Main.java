@@ -62,8 +62,8 @@ public class Main {
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
         PowerSourceType powerSourceType2 = new PowerSourceType("Public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType1);
-        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType2);
+        powerSourceTypeList.addPowerSourceType(powerSourceType1);
+        powerSourceTypeList.addPowerSourceType(powerSourceType2);
 
         //UI levels
         Admin admin = new Admin(geoAreaTypeList, geoAreaList, sensorTypeList, houseEdificioB, powerSourceTypeList, roomList, gridList);

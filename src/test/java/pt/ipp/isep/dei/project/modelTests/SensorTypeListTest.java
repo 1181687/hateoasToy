@@ -142,7 +142,7 @@ class SensorTypeListTest {
         Dimensions dimensions1 = new Dimensions(2,2,2);
         Room room1 = new Room(name1, houseFloor1, dimensions1);
 
-        roomList.addRoomToRoomList(room1);
+        roomList.addRoom(room1);
 
         // Type of sensor
         SensorType sensorType = new SensorType("Temperatura");
@@ -170,7 +170,7 @@ class SensorTypeListTest {
         Dimensions dimensions1 = new Dimensions(2,2,2);
         Room room1 = new Room(name1, houseFloor1, dimensions1);
 
-        roomList.addRoomToRoomList(room1);
+        roomList.addRoom(room1);
 
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();

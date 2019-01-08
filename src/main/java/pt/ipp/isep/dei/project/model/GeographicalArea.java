@@ -94,7 +94,7 @@ public class GeographicalArea {
         List<Sensor> listaSensoresDeTipoNumPeriodo = new ArrayList<>();
 
         for (Sensor sensor : listaSensoresContidosNaAGPorTipo) {
-            if (sensor.temRegistosEntreDatas(dataInicial, dataFinal)) {
+            if (sensor.checkMeasurementExistenceBetweenDates(dataInicial, dataFinal)) {
                 listaSensoresDeTipoNumPeriodo.add(sensor);
             }
         }
@@ -115,7 +115,7 @@ public class GeographicalArea {
         List<Sensor> sensorListByTypeInADay = new ArrayList<>();
 
         for (Sensor sensor : SensorListByTypeInAGeoArea) {
-            if (sensor.temRegistosEntreDatas(beginningOfDay, endOfDay)) {
+            if (sensor.checkMeasurementExistenceBetweenDates(beginningOfDay, endOfDay)) {
                 sensorListByTypeInADay.add(sensor);
             }
         }
@@ -132,10 +132,10 @@ public class GeographicalArea {
 
     public Sensor getNearestSensorOfALocation (SensorList sensorList, Location location){
         Sensor nearestSensor = sensorList.getmSensorList().get(0);
-        double shortestDistance = nearestSensor.distanceBetweenASensorAndALocation(location);
+        double shortestDistance = nearestSensor.distanceBetweenSensorAndLocation(location);
         for (Sensor sensor : sensorList.getmSensorList()) {
-            if (shortestDistance > sensor.distanceBetweenASensorAndALocation(location)) {
-                shortestDistance = sensor.distanceBetweenASensorAndALocation(location);
+            if (shortestDistance > sensor.distanceBetweenSensorAndLocation(location)) {
+                shortestDistance = sensor.distanceBetweenSensorAndLocation(location);
                 nearestSensor = sensor;
             }
         }
@@ -175,10 +175,10 @@ public class GeographicalArea {
     public double getTheLastMeasurementInTheArea(Location location, SensorType type) {
         SensorList sensorList = getTheSensorListInTheFirstAreaWithSensorOfAGivenType(type);
         if (!sensorList.getmSensorList().isEmpty()) {
-            if (getNearestSensorOfALocation(sensorList, location).getUltimoRegisto() == null) {
+            if (getNearestSensorOfALocation(sensorList, location).getLastMeasurement() == null) {
                 return Double.NaN;
             }
-            return getNearestSensorOfALocation(sensorList, location).getUltimoRegisto().getmValue();
+            return getNearestSensorOfALocation(sensorList, location).getLastMeasurement().getmValue();
         }
         return Double.NaN;
     }

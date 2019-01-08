@@ -70,7 +70,7 @@ public class US147Controller {
      * @return List of house grids.
      */
     public String listAllTheRoomsInTheList() {
-        return mListOfRooms.getDisplayRoomList();
+        return mListOfRooms.displayRoomList();
     }
 
     /**
@@ -88,7 +88,7 @@ public class US147Controller {
      * @return The respective room.
      */
     public Room getRoomFromTheList(int position) {
-        return mListOfRooms.getRoomFromASpecificPositionInTheList(position);
+        return mListOfRooms.getRoomFromASpecificPosition(position);
     }
 
     /**

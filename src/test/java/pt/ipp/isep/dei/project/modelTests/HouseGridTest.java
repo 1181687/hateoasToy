@@ -23,8 +23,8 @@ public class HouseGridTest {
         String houseGridName = "hgname1";
         HouseGrid houseGrid1 = new HouseGrid(houseGridName);
 
-        houseGrid1.getmRoomsConnectedToHouseGrid().addRoomToRoomList(room1);
-        houseGrid1.getmRoomsConnectedToHouseGrid().addRoomToRoomList(room2);
+        houseGrid1.getmRoomsConnectedToHouseGrid().addRoom(room1);
+        houseGrid1.getmRoomsConnectedToHouseGrid().addRoom(room2);
 
         String expectedResult =
                 "1- Name: Kid's room, House Floor: 1, Dimensions - Height: 5.2, Dimensions - Length: 3.7, Dimensions - Width: 8.5\n" +

@@ -66,8 +66,8 @@ public class SensorList {
             if (sensor.measurementListIsEmpty()) {
                 break;
             }
-            if (sensor.umTipoDeSensorEIgualAOutro(type) && (!(Double.isNaN(sensor.getUltimoRegisto().getmValue())))) {
-                listOfLatestMeasurements.add(sensor.getUltimoRegisto());
+            if (sensor.sensorTypeEqualsSensorType(type) && (!(Double.isNaN(sensor.getLastMeasurement().getmValue())))) {
+                listOfLatestMeasurements.add(sensor.getLastMeasurement());
             }
         }
         return listOfLatestMeasurements;

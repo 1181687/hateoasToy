@@ -40,6 +40,6 @@ public class US620Controller {
     }
 
     public String getmTypeTemperature() {
-        return mTypeTemperature.getmTipo();
+        return mTypeTemperature.getmType();
     }
 }

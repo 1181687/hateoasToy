@@ -92,8 +92,8 @@ class US147ControllerTest {
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
-        roomList.addRoomToRoomList(room1);
-        roomList.addRoomToRoomList(room2);
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
         US147Controller Ctrl = new US147Controller(gridList, roomList);
         String expectedResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
 
@@ -117,8 +117,8 @@ class US147ControllerTest {
         int houseFloor2 = 1;
         Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
-        roomList.addRoomToRoomList(room1);
-        roomList.addRoomToRoomList(room2);
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
         US147Controller Ctrl = new US147Controller(listOfGrids, roomList);
         Room expectedResult = room1;
 
@@ -141,7 +141,7 @@ class US147ControllerTest {
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
         Room room = new Room(roomName, houseFloor1, dimensions1);
-        roomList.addRoomToRoomList(room);
+        roomList.addRoom(room);
         US147Controller Ctrl = new US147Controller(gridList, roomList);
         Ctrl.setmGridToBeUsed(grid);
         Ctrl.setmRoomToBeAttached(room);
@@ -166,7 +166,7 @@ class US147ControllerTest {
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
         Room room = new Room(roomName, houseFloor1, dimensions1);
-        roomList.addRoomToRoomList(room);
+        roomList.addRoom(room);
         US147Controller Ctrl = new US147Controller(gridList, roomList);
         Ctrl.setmGridToBeUsed(grid);
         Ctrl.setmRoomToBeAttached(room);
@@ -215,7 +215,7 @@ class US147ControllerTest {
 
         // Instantiate List of Rooms
         RoomList roomList = new RoomList();
-        roomList.addRoomToRoomList(room);
+        roomList.addRoom(room);
 
         // Instantiate List of House Grids
         HouseGridList gridList = new HouseGridList();
@@ -260,7 +260,7 @@ class US147ControllerTest {
 
         // Instantiate List of Rooms
         RoomList roomList = new RoomList();
-        roomList.addRoomToRoomList(room);
+        roomList.addRoom(room);
 
         // Instantiate List of House Grids
         HouseGridList gridList = new HouseGridList();
@@ -371,8 +371,8 @@ class US147ControllerTest {
 
         // Instantiate List of Rooms
         RoomList roomList = new RoomList();
-        roomList.addRoomToRoomList(room0);
-        roomList.addRoomToRoomList(room1);
+        roomList.addRoom(room0);
+        roomList.addRoom(room1);
 
         // Instantiate House Grids
         String gridName0 = "Grid0";

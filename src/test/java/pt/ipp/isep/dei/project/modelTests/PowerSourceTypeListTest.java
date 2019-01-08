@@ -19,10 +19,10 @@ public class PowerSourceTypeListTest {
         PowerSourceType type2 = new PowerSourceType(powerSourceTypeName2);
 
         PowerSourceTypeList list = new PowerSourceTypeList();
-        list.addPowerSourceTypeToPowerSourceTypeList(type1);
+        list.addPowerSourceType(type1);
 
         //Act
-        boolean result = list.addPowerSourceTypeToPowerSourceTypeList(type2);
+        boolean result = list.addPowerSourceType(type2);
 
         //Assert
         assertTrue(result);
@@ -39,10 +39,10 @@ public class PowerSourceTypeListTest {
         PowerSourceType type2 = new PowerSourceType(powerSourceTypeName2);
 
         PowerSourceTypeList list = new PowerSourceTypeList();
-        list.addPowerSourceTypeToPowerSourceTypeList(type1);
+        list.addPowerSourceType(type1);
 
         //Act
-        boolean result = list.addPowerSourceTypeToPowerSourceTypeList(type2);
+        boolean result = list.addPowerSourceType(type2);
 
         //Assert
         assertFalse(result);
@@ -58,15 +58,15 @@ public class PowerSourceTypeListTest {
         PowerSourceType type2 = new PowerSourceType(powerSourceTypeName2);
 
         PowerSourceTypeList list = new PowerSourceTypeList();
-        list.addPowerSourceTypeToPowerSourceTypeList(type1);
-        list.addPowerSourceTypeToPowerSourceTypeList(type2);
+        list.addPowerSourceType(type1);
+        list.addPowerSourceType(type2);
 
         String expectedResult =
                         "1 - Power Source Type: Battery\n" +
                         "2 - Power Source Type: Wind Generator\n";
 
         //Act
-        String result = list.getPowerSourceTypeListContent();
+        String result = list.displayPowerSourceTypeList();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -82,14 +82,14 @@ public class PowerSourceTypeListTest {
         PowerSourceType type2 = new PowerSourceType(powerSourceTypeName2);
 
         PowerSourceTypeList list = new PowerSourceTypeList();
-        list.addPowerSourceTypeToPowerSourceTypeList(type1);
-        list.addPowerSourceTypeToPowerSourceTypeList(type2);
+        list.addPowerSourceType(type1);
+        list.addPowerSourceType(type2);
 
         int position = 0;
         PowerSourceType expectedResult = type1;
 
         //Act
-        PowerSourceType result = list.getPowerSourceTypeFromASpecificPositionInTheList(position);
+        PowerSourceType result = list.getPowerSourceTypeFromASpecificPosition(position);
 
         //Assert
         assertEquals(expectedResult,result);
@@ -106,14 +106,14 @@ public class PowerSourceTypeListTest {
         PowerSourceType type2 = new PowerSourceType(powerSourceTypeName2);
 
         PowerSourceTypeList list = new PowerSourceTypeList();
-        list.addPowerSourceTypeToPowerSourceTypeList(type1);
-        list.addPowerSourceTypeToPowerSourceTypeList(type2);
+        list.addPowerSourceType(type1);
+        list.addPowerSourceType(type2);
 
         int position = 1;
         PowerSourceType expectedResult = type2;
 
         //Act
-        PowerSourceType result = list.getPowerSourceTypeFromASpecificPositionInTheList(position);
+        PowerSourceType result = list.getPowerSourceTypeFromASpecificPosition(position);
 
         //Assert
         assertEquals(expectedResult,result);

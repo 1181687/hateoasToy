@@ -204,8 +204,8 @@ public class HouseTest {
         Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
 
-        roomList.addRoomToRoomList(room1);
-        roomList.addRoomToRoomList(room2);
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
 
 
         //Instanciar HouseGridList
@@ -309,8 +309,8 @@ public class HouseTest {
         Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
 
-        roomList.addRoomToRoomList(room1);
-        roomList.addRoomToRoomList(room2);
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
 
 
         //Instanciar HouseGridList
@@ -386,8 +386,8 @@ public class HouseTest {
         Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
 
-        roomList.addRoomToRoomList(room1);
-        roomList.addRoomToRoomList(room2);
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
 
 
         //Instanciar HouseGridList
@@ -856,7 +856,7 @@ public class HouseTest {
         room1.getSensorList().addSensorToTheListOfSensors(s1);
 
         RoomList listOfRooms = new RoomList();
-        listOfRooms.addRoomToRoomList(room1);
+        listOfRooms.addRoom(room1);
 
 
         double expectedResult = -10.0;
