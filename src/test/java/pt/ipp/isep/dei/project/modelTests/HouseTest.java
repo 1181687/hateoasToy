@@ -4,10 +4,9 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -84,26 +83,21 @@ public class HouseTest {
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         //Instanciar Sensor
-        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
         house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         // Sensor0
-        Calendar calendarioDaMedicao01 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
-
-        Calendar calendarioDaMedicao02 = new GregorianCalendar(2018, 11, 3, 17, 24, 00);
-        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(30, dataHoraDaMedicao02);
@@ -112,11 +106,8 @@ public class HouseTest {
         s0.addMeasurementToList(measurement02);
 
         //Sensor1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2018, 11, 4, 15, 20, 00);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2018, 11, 5, 17, 24, 00);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 5, 17, 24, 00);
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
@@ -126,16 +117,14 @@ public class HouseTest {
         s1.addMeasurementToList(measurement12);
         s1.addMeasurementToList(measurement13);
 
-        Calendar startDate = new GregorianCalendar(2018, 11, 1, 15, 20, 00);
-        Date startDate1 = startDate.getTime();
-        Calendar endDate = new GregorianCalendar(2018, 11, 6, 17, 24, 00);
-        Date endDate1 = endDate.getTime();
+        LocalDate startDate = LocalDate.of(2018, 12, 1);
+        LocalDate endDate = LocalDate.of(2018, 12, 6);
 
         double expectedResult = 24.375;
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getAverageDailyMeasurementOfHouseArea(searchType, startDate1, endDate1);
+        double result = house.getAverageDailyMeasurementOfHouseArea(searchType, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -158,30 +147,26 @@ public class HouseTest {
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         //Instanciar Sensor
-        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
         house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
-        Calendar startDate = new GregorianCalendar(2018, 11, 1, 15, 20, 00);
-        Date startDate1 = startDate.getTime();
-        Calendar endDate = new GregorianCalendar(2018, 11, 6, 17, 24, 00);
-        Date endDate1 = endDate.getTime();
+        LocalDate startDate = LocalDate.of(2018, 12, 1);
+        LocalDate endDate = LocalDate.of(2018, 12, 6);
 
         double expectedResult = 0;
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getAverageDailyMeasurementOfHouseArea(searchType, startDate1, endDate1);
+        double result = house.getAverageDailyMeasurementOfHouseArea(searchType, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -239,15 +224,13 @@ public class HouseTest {
 
 
         //Instantiate Sensors
-        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(-1, 30, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
         AG.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(32.1576, 7.6199, 100);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
@@ -256,11 +239,8 @@ public class HouseTest {
 
         //Instantiate Measurement
         // Sensor0
-        Calendar calendarioDaMedicao01 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
-
-        Calendar calendarioDaMedicao02 = new GregorianCalendar(2018, 11, 4, 17, 24, 00);
-        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 4, 17, 24, 00);
 
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(30, dataHoraDaMedicao02);
@@ -269,11 +249,8 @@ public class HouseTest {
         s0.addMeasurementToList(measurement02);
 
         //Sensor1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2018, 11, 3, 17, 24, 00);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
@@ -344,15 +321,13 @@ public class HouseTest {
 
 
         //Instantiate Sensors
-        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(-1, 30, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
         AG.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(32.1576, 7.6199, 100);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
@@ -448,47 +423,39 @@ public class HouseTest {
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         //Instantiate Sensor
-        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
         house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         // Sensor0 - Register 1
-        Calendar calendarioDaMedicao01 = new GregorianCalendar(2018, 11, 1, 15, 20, 00);
-        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 1, 15, 20, 00);
         Measurement measurement01 = new Measurement(10, dataHoraDaMedicao01);
         s0.addMeasurementToList(measurement01);
 
         // Sensor0 - Register 2
-        Calendar calendarioDaMedicao02 = new GregorianCalendar(2018, 11, 1, 17, 24, 00);
-        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 1, 17, 24, 00);
         Measurement measurement02 = new Measurement(11, dataHoraDaMedicao02);
         s0.addMeasurementToList(measurement02);
 
         //Sensor1 - Register 1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2018, 11, 1, 15, 20, 00);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 1, 15, 20, 00);
         Measurement measurement11 = new Measurement(11, dataHoraDaMedicao11);
         s1.addMeasurementToList(measurement11);
 
         //Sensor1 - Register 2
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2018, 11, 1, 17, 24, 00);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 1, 17, 24, 00);
         Measurement measurement12 = new Measurement(15, dataHoraDaMedicao12);
         s1.addMeasurementToList(measurement12);
 
-        Calendar calendarDay = new GregorianCalendar(2018, 11, 1, 15, 20, 00);
-        Date day = calendarDay.getTime();
-
+        LocalDate day = LocalDate.of(2018, 12, 1);
 
         double expectedResult = 26;
 
@@ -504,31 +471,25 @@ public class HouseTest {
     public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresIguais() {
         //arrange
         //Sensor
-        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
-        Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
 
-        Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
-        Date dataFuncionamento2 = calendario2.getTime();
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 11, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Temperatura");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
         //Measurement
         // Sensor0
-        Calendar calendarioDaMedicao01 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
-
-        Calendar calendarioDaMedicao02 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
-        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
 
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(24, dataHoraDaMedicao02);
@@ -536,13 +497,9 @@ public class HouseTest {
         s0.addMeasurementToList(measurement01);
         s0.addMeasurementToList(measurement02);
 
-
         //Sensor1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(1991, 11, 24, 17, 24, 00);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 12, 24, 17, 24, 00);
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(30, dataHoraDaMedicao12);
@@ -551,11 +508,8 @@ public class HouseTest {
         s1.addMeasurementToList(measurement12);
 
         //Sensor2
-        Calendar calendarioDaMedicao21 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
-
-        Calendar calendarioDaMedicao22 = new GregorianCalendar(1991, 11, 4, 17, 24, 00);
-        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 12, 4, 17, 24, 00);
 
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(27, dataHoraDaMedicao22);
@@ -581,7 +535,6 @@ public class HouseTest {
         House house = new House(rList, gridlist, adr, insertedGeoArea);
         house.addRoomToHouse(room);
 
-
         //Act
         Measurement result = house.getLatestMeasurementBySensorType("F5", sensorType);
 
@@ -593,31 +546,25 @@ public class HouseTest {
     public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresQueNaoTem() {
         //arrange
         //Instanciar Sensor
-        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
-        Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
 
-        Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
-        Date dataFuncionamento2 = calendario2.getTime();
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 11, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Humidade");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
         //Instanciar Measurement
         // Sensor0
-        Calendar calendarioDaMedicao01 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
-
-        Calendar calendarioDaMedicao02 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
-        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
 
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
@@ -626,11 +573,8 @@ public class HouseTest {
         s0.addMeasurementToList(measurement02);
 
         //Sensor1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(1991, 11, 4, 17, 24, 00);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 12, 4, 17, 24, 00);
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
@@ -639,19 +583,14 @@ public class HouseTest {
         s1.addMeasurementToList(measurement12);
 
         //Sensor2
-        Calendar calendarioDaMedicao21 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
-
-        Calendar calendarioDaMedicao22 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
-        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
 
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
 
         s2.addMeasurementToList(measurement21);
         s2.addMeasurementToList(measurement22);
-
-        Measurement expectedResult = null;
 
         SensorType tipoResultado = new SensorType("Pluviosidade");
 
@@ -670,43 +609,36 @@ public class HouseTest {
         House house = new House(rList, gridlist, adr, insertedGeoArea);
         house.addRoomToHouse(room);
 
-
         //Act
         Measurement result = house.getLatestMeasurementBySensorType("F5", tipoResultado);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertNull(result);
     }
 
     @Test
     public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresQuartoNulo() {
         //arrange
         //Instanciar Sensor
-        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
-        Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
 
-        Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
-        Date dataFuncionamento2 = calendario2.getTime();
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 11, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Humidade");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
         //Instanciar Measurement
         // Sensor0
-        Calendar calendarioDaMedicao01 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
-
-        Calendar calendarioDaMedicao02 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
-        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
 
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
@@ -715,11 +647,8 @@ public class HouseTest {
         s0.addMeasurementToList(measurement02);
 
         //Sensor1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(1991, 11, 4, 17, 24, 00);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 12, 4, 17, 24, 00);
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
@@ -728,19 +657,14 @@ public class HouseTest {
         s1.addMeasurementToList(measurement12);
 
         //Sensor2
-        Calendar calendarioDaMedicao21 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
-
-        Calendar calendarioDaMedicao22 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
-        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
 
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
 
         s2.addMeasurementToList(measurement21);
         s2.addMeasurementToList(measurement22);
-
-        Measurement expectedResult = null;
 
         SensorType tipoResultado = new SensorType("Pluviosidade");
 
@@ -759,12 +683,11 @@ public class HouseTest {
         House house = new House(rList, gridlist, adr, insertedGeoArea);
         house.addRoomToHouse(room);
 
-
         //Act
         Measurement result = house.getLatestMeasurementBySensorType("F6", tipoResultado);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertNull(result);
     }
 
     @Test
@@ -781,12 +704,11 @@ public class HouseTest {
 
         SensorType tipoResultado = new SensorType("Temperatura");
 
-        Measurement expectedResult = null;
         //Act
         Measurement result = house.getLatestMeasurementBySensorType("F5", tipoResultado);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertNull(result);
     }
 
 
@@ -816,23 +738,18 @@ public class HouseTest {
 
         house.addRoomToHouse(room1);
 
-        Calendar calendar0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date date0 = calendar0.getTime();
+        LocalDateTime date0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", date0, sensorType0, locS0);
 
-        Calendar calendar1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date date1 = calendar1.getTime();
+        LocalDateTime date1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("B123", date1, sensorType1, locS1);
 
-        Calendar calendarMeasurement1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dateTimeDayMeasure1 = calendarMeasurement1.getTime();
-
-        Calendar calendarMeasurement2 = new GregorianCalendar(1991, 11, 2, 20, 24, 00);
-        Date dateTimeDayMeasure2 = calendarMeasurement2.getTime();
+        LocalDateTime dateTimeDayMeasure1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 12, 2, 20, 24, 00);
 
         Measurement measurement1 = new Measurement(-20.0, dateTimeDayMeasure1);
         Measurement measurement2 = new Measurement(-25.0, dateTimeDayMeasure2);
@@ -840,11 +757,8 @@ public class HouseTest {
         s0.addMeasurementToList(measurement1);
         s0.addMeasurementToList(measurement2);
 
-        Calendar calendarMeasurement3 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dateTimeDayMeasure3 = calendarMeasurement3.getTime();
-
-        Calendar calendarMeasurement4 = new GregorianCalendar(1991, 11, 2, 17, 24, 00);
-        Date dateTimeDayMeasure4 = calendarMeasurement4.getTime();
+        LocalDateTime dateTimeDayMeasure3 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 12, 2, 17, 24, 00);
 
         Measurement measurement3 = new Measurement(-10.0, dateTimeDayMeasure3);
         Measurement measurement4 = new Measurement(-15.0, dateTimeDayMeasure4);
@@ -858,11 +772,12 @@ public class HouseTest {
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoomToRoomList(room1);
 
+        LocalDate dayNeeded = LocalDate.of(1991, 12, 2);
 
         double expectedResult = -10.0;
 
         //Act
-        double result = house.getMaximumTemperatureOfARoomInASpecificDay(name, sensorType0, dateTimeDayMeasure3);
+        double result = house.getMaximumTemperatureOfARoomInASpecificDay(name, sensorType0, dayNeeded);
 
 
         //Assert
@@ -891,7 +806,7 @@ public class HouseTest {
         Date expectedResult= Date.from(dateLD.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
         //ACT
-        Date result = house.createANewDate(year, month, day);
+        LocalDate result = house.createANewDate(year, month, day);
         //ASSERT
         assertEquals(expectedResult, result);
 

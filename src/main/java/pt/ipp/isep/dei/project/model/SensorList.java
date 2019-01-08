@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class SensorList {
@@ -85,7 +85,7 @@ public class SensorList {
         }
         Measurement latestMeasurement = listOfLatestMeasurements.get(0);
         for (Measurement measurement : listOfLatestMeasurements) {
-            if (measurement.getmDateTime().after(latestMeasurement.getmDateTime())) {
+            if (measurement.getmDateTime().isAfter(latestMeasurement.getmDateTime())) {
                 latestMeasurement = measurement;
             }
         }
@@ -97,7 +97,7 @@ public class SensorList {
      * @param date any given day
      * @return maximum value of the temperature sensor in a given day.
      */
-    public double getMaximumMeasureOfATypeOfSensorInAGivenDay(SensorType type, Date date) {
+    public double getMaximumMeasureOfATypeOfSensorInAGivenDay(SensorType type, LocalDate date) {
         if (!mSensorList.isEmpty()) {
             double maxValue = mSensorList.get(0).getMaximumValueOfDay(date);
             for (Sensor sensor : mSensorList) {

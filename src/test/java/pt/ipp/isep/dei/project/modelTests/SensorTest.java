@@ -6,6 +6,8 @@ import pt.ipp.isep.dei.project.model.Measurement;
 import pt.ipp.isep.dei.project.model.Sensor;
 import pt.ipp.isep.dei.project.model.SensorType;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -16,8 +18,9 @@ class SensorTest {
     @Test
     void testaConstrutor() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2);
-        Date dataFuncionamento = calendario.getTime();
+        //Calendar calendario = new GregorianCalendar(1991, 11, 2);
+        //Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
@@ -31,8 +34,7 @@ class SensorTest {
     @Test
     void testaConstrutorSensor() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
@@ -46,14 +48,13 @@ class SensorTest {
     @Test
     void testaConstrutorSensorData() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
-        Date expectedResult = calendario.getTime();
+        LocalDate expectedResult = dataFuncionamento.toLocalDate();
         //Act
-        Date result = s1.getmStartingDate();
+        LocalDate result = s1.getmStartingDate().toLocalDate();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -61,8 +62,7 @@ class SensorTest {
     @Test
     void testaConstrutorSensorTipo() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
@@ -76,8 +76,7 @@ class SensorTest {
     @Test
     void testarEqualsSame() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
@@ -91,8 +90,7 @@ class SensorTest {
     @Test
     void testarHashCode() {
         // Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
@@ -106,8 +104,7 @@ class SensorTest {
     @Test
     void testarEqualsFalse() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
@@ -121,8 +118,7 @@ class SensorTest {
     @Test
     void testarEqualsNomeSensorDiferente() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
@@ -137,8 +133,7 @@ class SensorTest {
     @Test
     void testaConstrutorSensorLocalizacao() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
@@ -153,8 +148,7 @@ class SensorTest {
     @Test
     void testarDistanciaLinear() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(2018, 11, 27);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(40, 10, 20);
         Sensor s1 = new Sensor("s1", dataFuncionamento, sensorType, locS1);
@@ -174,8 +168,7 @@ class SensorTest {
     @Test
     void testarRegistoDeMedicao() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
@@ -196,8 +189,7 @@ class SensorTest {
     @Test
     void testarListaDeMedicoesVazia() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
@@ -214,8 +206,7 @@ class SensorTest {
     @Test
     void testarListaDeRegistosVazia() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
@@ -230,8 +221,7 @@ class SensorTest {
     @Test
     void testarListaDeRegistosNaoEVazia() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
@@ -252,17 +242,14 @@ class SensorTest {
     @Test
     void testarListaDeMedicoesDefinida() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
-        Calendar calendarioDaMedicao1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao1 = calendarioDaMedicao1.getTime();
+        LocalDateTime dataHoraDaMedicao1 = LocalDate.of(1991, 11, 2).atTime(15, 20, 00);
 
-        Calendar calendarioDaMedicao2 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
-        Date dataHoraDaMedicao2 = calendarioDaMedicao2.getTime();
+        LocalDateTime dataHoraDaMedicao2 = LocalDate.of(1991, 11, 3).atTime(17, 24, 00);
 
         Measurement measurement1 = new Measurement(20, dataHoraDaMedicao1);
         Measurement measurement2 = new Measurement(25, dataHoraDaMedicao2);
@@ -282,21 +269,20 @@ class SensorTest {
     void testarGetMenorRegistoMes() {
 
         // Arrange
-        Calendar calendario = new GregorianCalendar(2017, 8, 15);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
-        Date data1 = new GregorianCalendar(2017, 8, 15, 5, 30, 0).getTime();
-        Date data2 = new GregorianCalendar(2017, 8, 15, 6, 02, 0).getTime();
-        Date data3 = new GregorianCalendar(2017, 8, 16, 6, 30, 0).getTime();
+        LocalDateTime data1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
+        LocalDateTime data2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
+        LocalDateTime data3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
 
         Measurement registo1 = new Measurement(19, data1);
         Measurement registo2 = new Measurement(20.1, data2);
         Measurement registo3 = new Measurement(21.7, data3);
 
         double expectedResult = 19;
-        Date diaDoMes = new GregorianCalendar(2017, 8, 5).getTime();
+        LocalDateTime diaDoMes = LocalDateTime.of(2017, 8, 5).getTime();
 
         // Act
         sensor1.addMeasurementToList(registo1);
@@ -312,8 +298,7 @@ class SensorTest {
     void testarGetMenorRegistoMesListaSemRegistos() {
 
         // Arrange
-        Calendar calendario = new GregorianCalendar(2017, 8, 15);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
@@ -668,7 +653,7 @@ class SensorTest {
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
-        boolean result = sensor1.verificaDiasIguais(cal1, cal2);
+        boolean result = sensor1.checkIfSameDay(cal1, cal2);
 
         //assert
         assertEquals(expectedResult, result);
@@ -688,7 +673,7 @@ class SensorTest {
         Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Act
-        boolean result = sensor1.verificaDiasIguais(cal1, cal2);
+        boolean result = sensor1.checkIfSameDay(cal1, cal2);
 
         //assert
         assertEquals(expectedResult, result);
@@ -707,7 +692,7 @@ class SensorTest {
         Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Act
-        boolean result = sensor1.verificaDiasIguais(cal1, cal2);
+        boolean result = sensor1.checkIfSameDay(cal1, cal2);
 
         //assert
         assertTrue(result);

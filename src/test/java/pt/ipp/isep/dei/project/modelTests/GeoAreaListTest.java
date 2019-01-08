@@ -90,7 +90,7 @@ public class GeoAreaListTest {
         List<GeographicalArea> expectedResult = new ArrayList<>();
         expectedResult.add(geographicalArea);
 
-        List<GeographicalArea> resultado = lista.getmListaAG();
+        List<GeographicalArea> resultado = lista.getmGeoAreaList();
 
         assertEquals(expectedResult, resultado);
     }
@@ -526,7 +526,7 @@ public class GeoAreaListTest {
         GeographicalArea expectedResult = ag2;
 
         //Act
-        GeographicalArea result = listaDeAGs.getmListaAG().get(0);
+        GeographicalArea result = listaDeAGs.getmGeoAreaList().get(0);
 
         //Assert
         assertEquals(expectedResult, result);

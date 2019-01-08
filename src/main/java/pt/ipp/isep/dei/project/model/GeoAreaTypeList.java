@@ -4,37 +4,37 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GeoAreaTypeList {
-    private List<GeoAreaType> mListaTAG = new ArrayList<>();
+    private List<GeoAreaType> mGeoAreaTypeList = new ArrayList<>();
 
-    public GeoAreaTypeList(List<GeoAreaType> mListaTAG) {
-        this.mListaTAG = mListaTAG;
+    public GeoAreaTypeList(List<GeoAreaType> mGeoAreaTypeList) {
+        this.mGeoAreaTypeList = mGeoAreaTypeList;
     }
 
     public GeoAreaTypeList() {
     }
 
-    public List<GeoAreaType> getmListaTAG() {
-        return mListaTAG;
+    public List<GeoAreaType> getmGeoAreaTypeList() {
+        return mGeoAreaTypeList;
     }
 
-    public boolean addTypeOfGeoAreaToTheList(GeoAreaType tipoAG) {
-        if (!(mListaTAG.contains(tipoAG))) {
-            mListaTAG.add(tipoAG);
+    public boolean addTypeOfGeoAreaToTheList(GeoAreaType GeoAreaType) {
+        if (!(mGeoAreaTypeList.contains(GeoAreaType))) {
+            mGeoAreaTypeList.add(GeoAreaType);
             return true;
         }
         return false;
     }
 
-    public GeoAreaType newTypeOfGeoArea(String novoTipo) {
-        return new GeoAreaType(novoTipo);
+    public GeoAreaType newTypeOfGeoArea(String newType) {
+        return new GeoAreaType(newType);
     }
 
     public List<String> getListOfGeoAreaTypes() {
-        List<String> listaFinal = new ArrayList<>();
-        for (GeoAreaType objecto : mListaTAG) {
-            listaFinal.add(objecto.getStringOfTypeOfGeoArea());
+        List<String> listOfGeoAreaTypes = new ArrayList<>();
+        for (GeoAreaType object : mGeoAreaTypeList) {
+            listOfGeoAreaTypes.add(object.getStringOfTypeOfGeoArea());
         }
-        return listaFinal;
+        return listOfGeoAreaTypes;
     }
 
 }

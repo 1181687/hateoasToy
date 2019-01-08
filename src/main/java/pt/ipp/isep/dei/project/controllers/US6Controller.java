@@ -24,11 +24,11 @@ public class US6Controller {
     }
 
     public void getAreaGeograficaNaListaPorPosicao(int posicao) {
-        mGeographicalArea = mListaAreaGeografica.getmListaAG().get(posicao);
+        mGeographicalArea = mListaAreaGeografica.getmGeoAreaList().get(posicao);
     }
 
     public int numeroElementosDaListaAreaGeografica () {
-        return mListaAreaGeografica.getmListaAG().size();
+        return mListaAreaGeografica.getmGeoAreaList().size();
     }
 
     public int numeroElementosDaListaTipoDeSensor () {

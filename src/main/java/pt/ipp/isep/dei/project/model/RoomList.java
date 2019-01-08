@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class RoomList {
@@ -140,7 +140,7 @@ public class RoomList {
      * @param date any given day
      * @return the maximum temperature in a specific Room in a given day
      */
-    public double getMaximumTemperatureInARoomInAGivenDay(String name, SensorType type, Date date) {
+    public double getMaximumTemperatureInARoomInAGivenDay(String name, SensorType type, LocalDate date) {
         return getRoomByName(name).getMaximumMeasurementInAGivenDay(type, date);
     }
 

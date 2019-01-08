@@ -2,9 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.*;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Main {
 
@@ -24,10 +23,12 @@ public class Main {
         geoAreaList.addGeoAreaToTheListInASpecificPosition(0, insertedGeoArea);
 
         // Sensor
-        Calendar calendar0 = new GregorianCalendar(2018, 11, 1, 15, 00, 00);
-        Date date1 = calendar0.getTime();
-        Calendar calendar1 = new GregorianCalendar(2018, 11, 1, 16, 00, 00);
-        Date date2 = calendar1.getTime();
+        LocalDateTime date1 = LocalDate.of(2018, 11, 1).atTime(15, 00, 00);
+        //Calendar calendar0 = new GregorianCalendar(2018, 11, 1, 15, 00, 00);
+        //Date date1 = calendar0.getTime();
+        //Calendar calendar1 = new GregorianCalendar(2018, 11, 1, 16, 00, 00);
+        //Date date2 = calendar1.getTime();
+        LocalDateTime date2 = LocalDate.of(2019, 11, 1).atTime(16, 00, 00);
         SensorType sensorTypeTemperature = new SensorType("temperature");
         Sensor sensor = new Sensor("sensor1", date1, sensorTypeTemperature, location);
         Measurement temp1 = new Measurement(20, date1);

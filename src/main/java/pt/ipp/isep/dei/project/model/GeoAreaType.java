@@ -1,10 +1,10 @@
 package pt.ipp.isep.dei.project.model;
 
 public class GeoAreaType {
-    private String mTipoAreaGeo;
+    private String mGeoAreaType;
 
-    public GeoAreaType(String mTipoAreaGeo) {
-        this.mTipoAreaGeo = mTipoAreaGeo;
+    public GeoAreaType(String mGeoAreaType) {
+        this.mGeoAreaType = mGeoAreaType;
     }
 
     @Override
@@ -21,16 +21,16 @@ public class GeoAreaType {
             return false;
         }
         GeoAreaType tag = (GeoAreaType) obj;
-        return this.mTipoAreaGeo.equals(tag.mTipoAreaGeo);
+        return this.mGeoAreaType.equals(tag.mGeoAreaType);
 
     }
 
     public String getStringOfTypeOfGeoArea() {
-        return mTipoAreaGeo;
+        return mGeoAreaType;
     }
 
-    public boolean checkIfOneTypeOfGeoAreaIsEqualToAnotherType(String tipo) {
-        return (this.getStringOfTypeOfGeoArea().equals(tipo));
+    public boolean checkIfOneTypeOfGeoAreaIsEqualToAnotherType(String type) {
+        return (this.getStringOfTypeOfGeoArea().equals(type));
     }
 
 }
