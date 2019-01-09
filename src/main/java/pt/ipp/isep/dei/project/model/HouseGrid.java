@@ -104,4 +104,8 @@ public class HouseGrid {
     public boolean checkIfARoomIsAlreadyInTheGrid(Room room) {
         return mRoomsConnectedToHouseGrid.getmRoomList().contains(room);
     }
+
+    public String listPowerSources(){
+        return mPowerSourceList.listPowerSources();
+    }
 }

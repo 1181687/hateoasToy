@@ -183,7 +183,7 @@ public class InputValidator {
                 flag = false;
                 str = in.nextLine();
                 str = str.trim();
-                if (!str.equals("y") && !str.equals("Y") && !str.equals("n") && !str.equals("N")) {
+                if (!"y".equals(str) && !"Y".equals(str) && !"n".equals(str) && !"N".equals(str)) {
                     throw new Exception();
                 }
             } catch (Exception e) {

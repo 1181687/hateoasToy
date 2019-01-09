@@ -64,13 +64,13 @@ public class GeoAreaList {
      * @return the geo area type list.
      */
     public List<String> getListOfGeographicalAreasByType(String geoAreaType) {
-        List<String> GeoAreaListWithSameType = new ArrayList<>();
+        List<String> geoAreaListWithSameType = new ArrayList<>();
         for (GeographicalArea areaGeo : mGeoAreaList) {
             if (areaGeo.getGeoAreaType().checkIfOneTypeOfGeoAreaIsEqualToAnotherType(geoAreaType)) {
-                GeoAreaListWithSameType.add(areaGeo.getNameOfGeoArea());
+                geoAreaListWithSameType.add(areaGeo.getNameOfGeoArea());
             }
         }
-        return GeoAreaListWithSameType;
+        return geoAreaListWithSameType;
     }
 
     /**

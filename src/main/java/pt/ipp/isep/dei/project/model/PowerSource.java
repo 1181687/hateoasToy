@@ -73,4 +73,7 @@ public class PowerSource {
         return this.mPowerSourceName.equals(type.mPowerSourceName) && this.mPowerSourceType.equals(type.mPowerSourceType);
     }
 
+    public String getName() {
+        return mPowerSourceName;
+    }
 }
