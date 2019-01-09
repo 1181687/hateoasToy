@@ -23,12 +23,8 @@ public class Main {
         geoAreaList.addGeoAreaInASpecificPosition(0, insertedGeoArea);
 
         // Sensor
-        LocalDateTime date1 = LocalDate.of(2018, 11, 1).atTime(15, 00, 00);
-        //Calendar calendar0 = new GregorianCalendar(2018, 11, 1, 15, 00, 00);
-        //Date date1 = calendar0.getTime();
-        //Calendar calendar1 = new GregorianCalendar(2018, 11, 1, 16, 00, 00);
-        //Date date2 = calendar1.getTime();
-        LocalDateTime date2 = LocalDate.of(2019, 11, 1).atTime(16, 00, 00);
+        LocalDateTime date1 = LocalDate.of(2018, 12, 1).atTime(15, 00, 00);
+        LocalDateTime date2 = LocalDate.of(2019, 12, 1).atTime(16, 00, 00);
         SensorType sensorTypeTemperature = new SensorType("temperature");
         Sensor sensor = new Sensor("sensor1", date1, sensorTypeTemperature, location);
         Measurement temp1 = new Measurement(20, date1);

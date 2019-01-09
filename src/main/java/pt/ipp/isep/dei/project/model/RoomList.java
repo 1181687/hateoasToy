@@ -7,6 +7,9 @@ import java.util.List;
 public class RoomList {
     private List<Room> mRoomList = new ArrayList<>();
 
+    /**
+     * Constructor.
+     */
     public RoomList() {
     }
 
