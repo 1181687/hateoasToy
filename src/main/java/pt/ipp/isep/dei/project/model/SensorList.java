@@ -113,4 +113,20 @@ public class SensorList {
         }
         return Double.NaN;
     }
+
+    /**
+     * Method that returns de daily average of the measurements of a list of sensors
+     *
+     * @param date
+     * @return
+     */
+    public double getDailyAverageOfTheListOfSensors(LocalDate date) {
+        double dailyAverage = Double.NaN;
+        for (Sensor sensor : mSensorList) {
+            if (!(sensor.getDailyMeasurement(date).isEmpty())) {
+                dailyAverage = sensor.getDailyAverage(date);
+            }
+        }
+        return dailyAverage;
+    }
 }

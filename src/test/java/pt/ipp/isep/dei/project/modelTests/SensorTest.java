@@ -9,7 +9,7 @@ import pt.ipp.isep.dei.project.model.SensorType;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
+import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -452,7 +452,7 @@ class SensorTest {
         Measurement registo4 = new Measurement(27, data4);
 
         double expectedResult = 27;
-        LocalDate dataDoMes = LocalDate.of(2017, 8, 5);
+        LocalDate dataDoMes = LocalDate.of(2018, 2, 5);
 
         sensor1.addMeasurementToList(registo1);
         sensor1.addMeasurementToList(registo2);
@@ -600,7 +600,7 @@ class SensorTest {
 
         LocalDateTime dataDomingo1 = LocalDateTime.of(1991, 11, 2, 21, 10, 25);
         LocalDateTime dataDomingo2 = LocalDateTime.of(1991, 11, 2, 21, 10, 25);
-        LocalDateTime dataSegunda = LocalDateTime.of(1991, 11, 2, 21, 10, 25);
+        LocalDateTime dataSegunda = LocalDateTime.of(1991, 11, 3, 21, 10, 25);
         LocalDateTime dataDomingo = LocalDateTime.of(1991, 11, 2, 21, 10, 25);
 
         SensorType sensorType = new SensorType("Temperatura");
@@ -705,11 +705,12 @@ class SensorTest {
         sensor1.addMeasurementToList(measurement2);
         sensor1.addMeasurementToList(measurement3);
 
+        LocalDate searchDate = LocalDate.of(2018, 10, 2);
 
         double expectedResult = -2;
 
         //Act
-        double result = sensor1.getLowestMeasurementOfDay(data.toLocalDate());
+        double result = sensor1.getLowestMeasurementOfDay(searchDate);
         //assert
         assertEquals(expectedResult, result, 0.001);
 
@@ -736,7 +737,6 @@ class SensorTest {
     public void testarGetValorMinimoDoDiaComValorNaN() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
-        Calendar cal = new GregorianCalendar(2018, 10, 2, 15, 20, 00);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
@@ -760,8 +760,10 @@ class SensorTest {
 
         double expectedResult = -2;
 
+        LocalDate searchDate = LocalDate.of(2018, 10, 2);
+
         //Act
-        double result = sensor1.getLowestMeasurementOfDay(data.toLocalDate());
+        double result = sensor1.getLowestMeasurementOfDay(searchDate);
         //assert
         assertEquals(expectedResult, result, 0.001);
 
@@ -774,13 +776,13 @@ class SensorTest {
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
-        LocalDate expectedResult = data.toLocalDate();
+        LocalDate expectedResult = LocalDate.of(1991, 10, 27);
 
         LocalDate result = sensor1.getFirstDayOfWeek(data.toLocalDate());
 
         assertEquals(expectedResult, result);
     }
-    /*
+
 
     @Test
     public void testarListaMinimosSemana() {
@@ -827,9 +829,15 @@ class SensorTest {
         sensor1.addMeasurementToList(measurement6);
         sensor1.addMeasurementToList(measurement7);
 
-        List<Double> expectedResult = new ArrayList<>(Arrays.asList(0.0, 30.0, -2.0, -4.0, -2.0, -5.0, -2.0));
+        List<Double> expectedResult = new ArrayList<>();
 
-        LocalDate searchDate = LocalDate.of(2018, 12, 4);
+        expectedResult.add(-2.0);
+        expectedResult.add(-4.0);
+        expectedResult.add(-2.0);
+        expectedResult.add(-5.0);
+        expectedResult.add(-2.0);
+
+        LocalDate searchDate = LocalDate.of(2018, 11, 4);
 
         //Act
         List<Double> result = sensor1.lowestMeasurementsOfWeek(searchDate);
@@ -883,9 +891,9 @@ class SensorTest {
         sensor1.addMeasurementToList(measurement6);
         sensor1.addMeasurementToList(measurement7);
 
-        List<Double> expectedResult = new ArrayList<>(Arrays.asList(30.0, -2.0, -4.0, -2.0, -5.0, -2.0));
+        List<Double> expectedResult = new ArrayList<>(Arrays.asList(-2.0, -4.0, -2.0, -5.0, -2.0));
 
-        LocalDate searchDate = LocalDate.of(2018, 12, 4);
+        LocalDate searchDate = LocalDate.of(2018, 11, 4);
 
         //Act
         List<Double> result = sensor1.lowestMeasurementsOfWeek(searchDate);
@@ -929,9 +937,9 @@ class SensorTest {
         sensor1.addMeasurementToList(measurement4);
         sensor1.addMeasurementToList(measurement5);
 
-        List<Double> expectedResult = new ArrayList<>(Arrays.asList(0.0, 30.0, -2.0, -4.0, -2.0));
+        List<Double> expectedResult = new ArrayList<>(Arrays.asList(-2.0, -4.0, -2.0));
 
-        LocalDate searchDate = LocalDate.of(2018, 12, 4);
+        LocalDate searchDate = LocalDate.of(2018, 11, 4);
 
         //Act
         List<Double> result = sensor1.lowestMeasurementsOfWeek(searchDate);
@@ -976,9 +984,9 @@ class SensorTest {
         sensor1.addMeasurementToList(measurement4);
         sensor1.addMeasurementToList(measurement5);
 
-        List<Double> expectedResult = new ArrayList<>(Arrays.asList(0.0, 30.0, -2.0, -4.0));
+        List<Double> expectedResult = new ArrayList<>(Arrays.asList(-2.0, -4.0));
 
-        LocalDate searchDate = LocalDate.of(2018, 12, 4);
+        LocalDate searchDate = LocalDate.of(2018, 11, 4);
 
         //Act
         List<Double> result = sensor1.lowestMeasurementsOfWeek(searchDate);
@@ -1053,11 +1061,10 @@ class SensorTest {
         sensor1.addMeasurementToList(measurement6);
         sensor1.addMeasurementToList(measurement7);
 
-        //   List <Double> registoMinSemana = new ArrayList<>(Arrays.asList(10.0, 9.5, 7.5, 9.7, 10.1, 11.2, 8.9)); //66.9/7=9.557
 
-        double expectedResult = 66.9 / 7;
+        double expectedResult = 47.4 / 5;
 
-        LocalDate searchDate = LocalDate.of(2018, 12, 4);
+        LocalDate searchDate = LocalDate.of(2018, 11, 4);
 
         //Act
         double result = sensor1.getAverageOfLowestMeasurementsWeek(searchDate);
@@ -1111,11 +1118,13 @@ class SensorTest {
         sensor1.addMeasurementToList(measurement2);
         sensor1.addMeasurementToList(measurement3);
 
+        LocalDate searchDate = LocalDate.of(2018, 10, 2);
+
 
         double expectedResult = 40;
 
         //Act
-        double result = sensor1.getMaximumValueOfDay(data.toLocalDate());
+        double result = sensor1.getMaximumValueOfDay(searchDate);
         //assert
         assertEquals(expectedResult, result, 0.001);
     }
@@ -1164,8 +1173,10 @@ class SensorTest {
 
         double expectedResult = 30;
 
+        LocalDate searchDate = LocalDate.of(2018, 10, 2);
+
         //Act
-        double result = sensor1.getMaximumValueOfDay(data.toLocalDate());
+        double result = sensor1.getMaximumValueOfDay(searchDate);
         //assert
         assertEquals(expectedResult, result, 0.001);
 
@@ -1216,9 +1227,9 @@ class SensorTest {
         sensor1.addMeasurementToList(measurement6);
         sensor1.addMeasurementToList(measurement7);
 
-        List <Double> expectedResult = new ArrayList<>(Arrays.asList(20.0,30.0,20.0,40.0,20.0,45.0,20.0));
+        List<Double> expectedResult = new ArrayList<>(Arrays.asList(20.0, 40.0, 20.0, 45.0, 20.0));
 
-        LocalDate searchDate = LocalDate.of(2018, 12, 4);
+        LocalDate searchDate = LocalDate.of(2018, 11, 4);
 
         //Act
         List<Double> result = sensor1.biggestWeeklyMeasurements(searchDate);
@@ -1236,31 +1247,31 @@ class SensorTest {
         Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
-        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 5, 01, 00, 01);
         Measurement measurement1 = new Measurement(Double.NaN, data1);
 
         //Registo 2
-        LocalDateTime data2 = LocalDateTime.of(2018, 11, 3, 23, 59, 59);
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 6, 23, 59, 59);
         Measurement measurement2 = new Measurement(30.0, data2);
 
         //Registo 3
-        LocalDateTime data3 = LocalDateTime.of(2018, 11, 4, 17, 20, 00);
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 7, 17, 20, 00);
         Measurement measurement3 = new Measurement(20.0, data3);
 
         //Registo 4
-        LocalDateTime data4 = LocalDateTime.of(2018, 11, 5, 17, 20, 00);
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 8, 17, 20, 00);
         Measurement measurement4 = new Measurement(40.0, data4);
 
         //Registo 5
-        LocalDateTime data5 = LocalDateTime.of(2018, 11, 6, 17, 20, 00);
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 9, 17, 20, 00);
         Measurement measurement5 = new Measurement(20.0, data5);
 
         //Registo 6
-        LocalDateTime data6 = LocalDateTime.of(2018, 11, 7, 17, 20, 00);
+        LocalDateTime data6 = LocalDateTime.of(2018, 11, 10, 17, 20, 00);
         Measurement measurement6 = new Measurement(45.0, data6);
 
         //Registo 7
-        LocalDateTime data7 = LocalDateTime.of(2018, 11, 8, 17, 20, 00);
+        LocalDateTime data7 = LocalDateTime.of(2018, 11, 11, 17, 20, 00);
         Measurement measurement7 = new Measurement(20.0, data7);
 
         //Adição das medições
@@ -1272,9 +1283,9 @@ class SensorTest {
         sensor1.addMeasurementToList(measurement6);
         sensor1.addMeasurementToList(measurement7);
 
-        List <Double> expectedResult = new ArrayList<>(Arrays.asList(30.0,20.0,40.0,20.0,45.0,20.0));
+        List<Double> expectedResult = new ArrayList<>(Arrays.asList(30.0, 20.0, 40.0, 20.0, 45.0));
 
-        LocalDate searchDate = LocalDate.of(2018, 12, 4);
+        LocalDate searchDate = LocalDate.of(2018, 11, 6);
 
         //Act
         List<Double> result = sensor1.biggestWeeklyMeasurements(searchDate);
@@ -1292,23 +1303,23 @@ class SensorTest {
         Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
 
         //Registo 1
-        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 6, 01, 00, 01);
         Measurement measurement1 = new Measurement(30.0, data1);
 
         //Registo 2
-        LocalDateTime data2 = LocalDateTime.of(2018, 11, 3, 23, 59, 59);
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 5, 23, 59, 59);
         Measurement measurement2 = new Measurement(30.0, data2);
 
         //Registo 3
-        LocalDateTime data3 = LocalDateTime.of(2018, 11, 4, 17, 20, 00);
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 6, 17, 20, 00);
         Measurement measurement3 = new Measurement(20.0, data3);
 
         //Registo 4
-        LocalDateTime data4 = LocalDateTime.of(2018, 11, 5, 17, 20, 00);
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 7, 17, 20, 00);
         Measurement measurement4 = new Measurement(40.0, data4);
 
         //Registo 5
-        LocalDateTime data5 = LocalDateTime.of(2018, 11, 6, 17, 20, 00);
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 8, 17, 20, 00);
         Measurement measurement5 = new Measurement(20.0, data5);
 
         //Adição das medições
@@ -1318,9 +1329,9 @@ class SensorTest {
         sensor1.addMeasurementToList(measurement4);
         sensor1.addMeasurementToList(measurement5);
 
-        List <Double> expectedResult = new ArrayList<>(Arrays.asList(30.0,30.0,20.0,40.0,20.0));
+        List<Double> expectedResult = new ArrayList<>(Arrays.asList(30.0, 30.0, 40.0, 20.0));
 
-        LocalDate searchDate = LocalDate.of(2018, 12, 4);
+        LocalDate searchDate = LocalDate.of(2018, 11, 7);
 
         //Act
         List<Double> result = sensor1.biggestWeeklyMeasurements(searchDate);
@@ -1364,9 +1375,9 @@ class SensorTest {
         sensor1.addMeasurementToList(measurement4);
         sensor1.addMeasurementToList(measurement5);
 
-        List <Double> expectedResult = new ArrayList<>(Arrays.asList(45.0,30.0,25.0,40.0));
+        List<Double> expectedResult = new ArrayList<>(Arrays.asList(25.0, 40.0));
 
-        LocalDate searchDate = LocalDate.of(2018, 12, 4);
+        LocalDate searchDate = LocalDate.of(2018, 11, 4);
 
         //Act
         List<Double> result = sensor1.biggestWeeklyMeasurements(searchDate);
@@ -1441,11 +1452,10 @@ class SensorTest {
         sensor1.addMeasurementToList(measurement6);
         sensor1.addMeasurementToList(measurement7);
 
-        //   List <Double> registoMinSemana = new ArrayList<>(Arrays.asList(10.0, 9.5, 7.5, 9.7, 10.1, 11.2, 8.9)); //66.9/7=9.557
 
-        double expectedResult=66.9/7;
+        double expectedResult = 47.4 / 5;
 
-        LocalDate searchDate = LocalDate.of(2018, 12, 4);
+        LocalDate searchDate = LocalDate.of(2018, 11, 4);
 
         //Act
         double result = sensor1.getAverageOfBiggestMeasurementsWeek(searchDate);
@@ -1510,11 +1520,9 @@ class SensorTest {
         sensor1.addMeasurementToList(measurement4);
         sensor1.addMeasurementToList(measurement5);
 
-        //   List <Double> registoMinSemana = new ArrayList<>(Arrays.asList(10.0, 9.5, 7.5, 9.7, 10.1)); //46.8/5=9.36
+        double expectedResult = 9.1;
 
-        double expectedResult=46.8/5;
-
-        LocalDate searchDate = LocalDate.of(2018, 12, 4);
+        LocalDate searchDate = LocalDate.of(2018, 11, 4);
 
         //Act
         double result = sensor1.getAverageOfBiggestMeasurementsWeek(searchDate);
@@ -1660,6 +1668,6 @@ class SensorTest {
 
         //Assert
         assertEquals(expectedResult, result, 0.001);
-    }*/
+    }
 
 }
