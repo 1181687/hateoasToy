@@ -16,7 +16,7 @@ public class US6Controller {
 
 
     public void getTipoSensorPorPosicao (int posicao) {
-        mSensorType = mSensorTypeList.getTipoSensorPorPosicao(posicao);
+        mSensorType = mSensorTypeList.getSensorTypeByPosition(posicao);
     }
 
     public String getNomeAreaGeograficaPorIndice (int posicao) {
@@ -32,11 +32,11 @@ public class US6Controller {
     }
 
     public int numeroElementosDaListaTipoDeSensor () {
-        return mSensorTypeList.getmListaTiposSensores().size();
+        return mSensorTypeList.getSensorTypeList().size();
     }
 
     public String getNomeTipoSensorPorIndice (int posicao) {
-        return mSensorTypeList.getTipoSensorPorPosicao(posicao).getmType();
+        return mSensorTypeList.getSensorTypeByPosition(posicao).getmType();
     }
 
     public boolean adicionarSensorAAreaGeografica(Sensor sensor) {

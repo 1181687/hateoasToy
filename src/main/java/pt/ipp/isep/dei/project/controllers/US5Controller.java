@@ -12,7 +12,7 @@ public class US5Controller {
     }
 
     public boolean criarEAdicionarTipoDeSensor (String tipoDeSensor){
-        SensorType novoSensorType = this.mListaTipoSensores.novoTipoSensor(tipoDeSensor);
-        return this.mListaTipoSensores.adicionarTipoSensorALista(novoSensorType);
+        SensorType novoSensorType = this.mListaTipoSensores.newSensorType(tipoDeSensor);
+        return this.mListaTipoSensores.addSensorType(novoSensorType);
     }
 }

@@ -174,8 +174,8 @@ class US6ControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeoAreaList listaAreasGeograficas = new GeoAreaList();
 
-        sensorTypeList.adicionarTipoSensorALista(tipo1);
-        sensorTypeList.adicionarTipoSensorALista(tipo2);
+        sensorTypeList.addSensorType(tipo1);
+        sensorTypeList.addSensorType(tipo2);
 
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
         int expectedResult = 2;
@@ -213,8 +213,8 @@ class US6ControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeoAreaList listaAreasGeograficas = new GeoAreaList();
 
-        sensorTypeList.adicionarTipoSensorALista(tipo1);
-        sensorTypeList.adicionarTipoSensorALista(tipo2);
+        sensorTypeList.addSensorType(tipo1);
+        sensorTypeList.addSensorType(tipo2);
 
         int posicao = 0;
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
@@ -237,8 +237,8 @@ class US6ControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeoAreaList listaAreasGeograficas = new GeoAreaList();
 
-        sensorTypeList.adicionarTipoSensorALista(tipo1);
-        sensorTypeList.adicionarTipoSensorALista(tipo2);
+        sensorTypeList.addSensorType(tipo1);
+        sensorTypeList.addSensorType(tipo2);
 
         int posicao = 1;
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
@@ -260,7 +260,7 @@ class US6ControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeoAreaList listaAreasGeograficas = new GeoAreaList();
 
-        sensorTypeList.adicionarTipoSensorALista(tipo1);
+        sensorTypeList.addSensorType(tipo1);
 
         int posicao = 0;
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
@@ -288,7 +288,7 @@ class US6ControllerTest {
         Sensor s1 = new Sensor("s1", sensorType, local);
 
         SensorTypeList listSensorsType = new SensorTypeList();
-        listSensorsType.adicionarTipoSensorALista(sensorType);
+        listSensorsType.addSensorType(sensorType);
 
         GeoAreaList geographicalAreaList = new GeoAreaList();
         geographicalAreaList.getmGeoAreaList().add(ag1);
@@ -323,7 +323,7 @@ class US6ControllerTest {
         Sensor s1 = new Sensor("s1", sensorType, local);
 
         SensorTypeList listSensorsType = new SensorTypeList();
-        listSensorsType.adicionarTipoSensorALista(sensorType);
+        listSensorsType.addSensorType(sensorType);
 
         GeoAreaList geographicalAreaList = new GeoAreaList();
         geographicalAreaList.getmGeoAreaList().add(ag1);

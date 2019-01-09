@@ -10,19 +10,41 @@ public class SensorTypeList {
     public SensorTypeList() {
     }
 
+    /**
+     * Constructor Method
+     *
+     * @param mListaTiposSensores List of Sensor Types
+     */
     public SensorTypeList(List<SensorType> mListaTiposSensores) {
         this.mListaTiposSensores = mListaTiposSensores;
     }
 
-    public List<SensorType> getmListaTiposSensores() {
+    /**
+     * Get method
+     *
+     * @return Sensor Type List
+     */
+    public List<SensorType> getSensorTypeList() {
         return mListaTiposSensores;
     }
 
-    public SensorType novoTipoSensor(String novoTipo) {
+    /**
+     * Method that creates a new Sensor Type
+     *
+     * @param novoTipo new Type of Sensor (string)
+     * @return new Sensor Type
+     */
+    public SensorType newSensorType(String novoTipo) {
         return new SensorType(novoTipo);
     }
 
-    public boolean adicionarTipoSensorALista(SensorType novoSensorType) {
+    /**
+     * Boolean method that adds a Sensor Type to the Sensor Type List if the list doesn't already contain that sensor type
+     *
+     * @param novoSensorType new type of Sensor
+     * @return true or false
+     */
+    public boolean addSensorType(SensorType novoSensorType) {
         if (!(this.mListaTiposSensores.contains(novoSensorType))) {
             this.mListaTiposSensores.add(novoSensorType);
             return true;
@@ -30,7 +52,13 @@ public class SensorTypeList {
         return false;
     }
 
-    public SensorType getTipoSensorPorPosicao(int posicao) {
+    /**
+     * Method that retrieves the sensor type in a specific position of the Sensor Type List
+     *
+     * @param posicao position the Sensor Type in the Sensor Type List
+     * @return the Sensor Type of that position
+     */
+    public SensorType getSensorTypeByPosition(int posicao) {
         return this.mListaTiposSensores.get(posicao);
     }
 
@@ -47,6 +75,10 @@ public class SensorTypeList {
         return content.toString();
     }
 
+    /**
+     * Boolean method that checks if the Sensor Type List is empty
+     * @return empty Sensor Type List
+     */
     public boolean checkIfListOfTypeSensorsIsEmpty () {
         return this.mListaTiposSensores.isEmpty();
     }
