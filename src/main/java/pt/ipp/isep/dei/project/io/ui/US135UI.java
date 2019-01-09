@@ -33,7 +33,13 @@ public class US135UI {
             boolean isPowerSourceAdded = mController.createAndAddPowerSourceToHouseGrid(powerSourceName);
 
             if (isPowerSourceAdded) {
-                System.out.println("Success! The Power Source was added to the House Grid");
+                String houseGridName = mController.getHouseGridName();
+                System.out.println("Success! The power source "+ powerSourceName +" was added to the house grid " + houseGridName + ".");
+                String label4 = "Do you want to see the list of power sources added to this house grid? (y/n)";
+                String answer = InputValidator.confirmValidation(label4);
+                if ("y".equals(answer) || "Y".equals(answer)){
+                    System.out.println(mController.listPowerSourcesConnectedToHouseGrid());
+                }
             } else {
                 System.out.println("The Power Source was not added to the House Grid");
             }

@@ -45,4 +45,7 @@ public class PowerSource {
         }
     }
 
+    public String getName() {
+        return mPowerSourceName;
+    }
 }

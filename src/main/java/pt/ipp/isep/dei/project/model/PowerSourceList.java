@@ -21,4 +21,17 @@ public class PowerSourceList {
         }
         return false;
     }
+
+    public String listPowerSources(){
+        StringBuilder content = new StringBuilder();
+        int numberInTheList = 1;
+        for (int i = 0; i < mPowerSourceList.size(); i++) {
+            String powerSourceName = mPowerSourceList.get(i).getName();
+            content.append(numberInTheList + "- ");
+            content.append(powerSourceName);
+            content.append("\n");
+            numberInTheList++;
+        }
+        return content.toString();
+    }
 }

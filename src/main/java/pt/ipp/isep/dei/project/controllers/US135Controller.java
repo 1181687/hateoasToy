@@ -49,4 +49,11 @@ public class US135Controller {
         this.mSelectedPowerSourceType = this.mPowerSourceTypeList.getPowerSourceTypeFromASpecificPositionInTheList(position);
     }
 
+    public String getHouseGridName(){
+        return mSelectedHouseGrid.getmHouseGridName();
+    }
+
+    public String listPowerSourcesConnectedToHouseGrid(){
+        return mSelectedHouseGrid.listPowerSources();
+    }
 }
