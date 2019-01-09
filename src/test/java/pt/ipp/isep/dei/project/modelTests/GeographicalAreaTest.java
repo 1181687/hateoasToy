@@ -999,7 +999,7 @@ class GeographicalAreaTest {
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 5, 17, 24, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 4, 17, 24, 00);
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);

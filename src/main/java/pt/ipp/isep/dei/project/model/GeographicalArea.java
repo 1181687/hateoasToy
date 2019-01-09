@@ -170,7 +170,7 @@ public class GeographicalArea {
         List<Sensor> sensorListByTypeInADay = new ArrayList<>();
 
         for (Sensor sensor : sensorListByTypeInAGeoArea) {
-            if (sensor.checkMeasurementExistenceBetweenDates(day.atStartOfDay().toLocalDate(), day.plusDays(1).atStartOfDay().toLocalDate())) {
+            if (sensor.checkMeasurementExistenceBetweenDates(day, day)) {
                 sensorListByTypeInADay.add(sensor);
             }
         }
