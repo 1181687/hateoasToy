@@ -39,7 +39,7 @@ public class US149Controller {
     }
 
     public int getNumberOfGridLists() {
-        return mListOfHouseGrids.getmList().size();
+        return mListOfHouseGrids.getmHouseGridsList().size();
     }
 
 }

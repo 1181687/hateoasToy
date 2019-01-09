@@ -43,7 +43,7 @@ public class US605Controller {
      * @return a String with room's name, house floor, height, length and width:
      */
     public String getDisplayRoomList() {
-        return this.mHouse.getDisplayRoomList();
+        return this.mHouse.displayRoomList();
     }
 
     /**

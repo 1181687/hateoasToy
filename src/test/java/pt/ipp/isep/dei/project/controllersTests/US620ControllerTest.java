@@ -195,8 +195,8 @@ public class US620ControllerTest {
         String gridName1 = "Grid1";
         HouseGrid grid0 = new HouseGrid(gridName0);
         HouseGrid grid1 = new HouseGrid(gridName1);
-        houseGridList.getmList().add(grid0);
-        houseGridList.getmList().add(grid1);
+        houseGridList.getmHouseGridsList().add(grid0);
+        houseGridList.getmHouseGridsList().add(grid1);
 
         // Instantiate Address
         Location local = new Location(32.1496, 7.6109, 98);
@@ -285,8 +285,8 @@ public class US620ControllerTest {
         String gridName1 = "Grid1";
         HouseGrid grid0 = new HouseGrid(gridName0);
         HouseGrid grid1 = new HouseGrid(gridName1);
-        houseGridList.getmList().add(grid0);
-        houseGridList.getmList().add(grid1);
+        houseGridList.getmHouseGridsList().add(grid0);
+        houseGridList.getmHouseGridsList().add(grid1);
 
         // Instantiate Address
         Location local = new Location(32.1496, 7.6109, 98);
@@ -352,8 +352,8 @@ public class US620ControllerTest {
         String gridName1 = "Grid1";
         HouseGrid grid0 = new HouseGrid(gridName0);
         HouseGrid grid1 = new HouseGrid(gridName1);
-        houseGridList.getmList().add(grid0);
-        houseGridList.getmList().add(grid1);
+        houseGridList.getmHouseGridsList().add(grid0);
+        houseGridList.getmHouseGridsList().add(grid1);
 
         // Instantiate Address
         Location local = new Location(32.1496, 7.6109, 98);

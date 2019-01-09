@@ -18,8 +18,8 @@ public class US105UI {
 
     /**
      * method that creats and adds a new room to the house. First asks the user to give the valid parameters necessary
-     * to create the new room and then invokes the controller methods newroom and addRoomToHouse. Finally if the
-     * addRoomToHouse returns true, a informative message of the sucess of it, is apresented to the user.
+     * to create the new room and then invokes the controller methods newroom and addRoom. Finally if the
+     * addRoom returns true, a informative message of the sucess of it, is apresented to the user.
      */
     public void run() {
 

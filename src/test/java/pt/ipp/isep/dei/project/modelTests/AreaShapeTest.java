@@ -87,7 +87,7 @@ class AreaShapeTest {
         AreaShape area = new AreaShape(20, 40, locationRectangleArea);
 
         // Act
-        boolean result = area.verificaSeLocalizacaoEstaContidaNumaArea(location0);
+        boolean result = area.checkIfLocationIsInsertedInAnArea(location0);
 
         // Assert
         assertTrue(result);
@@ -101,7 +101,7 @@ class AreaShapeTest {
         AreaShape area = new AreaShape(20, 40, locationRectangleArea);
 
         // Act
-        boolean result = area.verificaSeLocalizacaoEstaContidaNumaArea(location0);
+        boolean result = area.checkIfLocationIsInsertedInAnArea(location0);
 
         // Assert
         assertTrue(result);
@@ -115,7 +115,7 @@ class AreaShapeTest {
         AreaShape area = new AreaShape(20, 40, locationRectangleArea);
 
         // Act
-        boolean result = area.verificaSeLocalizacaoEstaContidaNumaArea(location0);
+        boolean result = area.checkIfLocationIsInsertedInAnArea(location0);
 
         // Assert
         assertFalse(result);
@@ -129,7 +129,7 @@ class AreaShapeTest {
         AreaShape area = new AreaShape(20, 40, locationRectangleArea);
 
         // Act
-        boolean result = area.verificaSeLocalizacaoEstaContidaNumaArea(location0);
+        boolean result = area.checkIfLocationIsInsertedInAnArea(location0);
 
         // Assert
         assertFalse(result);
@@ -143,7 +143,7 @@ class AreaShapeTest {
         AreaShape area = new AreaShape(20, 40, locationRectangleArea);
 
         // Act
-        boolean result = area.verificaSeLocalizacaoEstaContidaNumaArea(location0);
+        boolean result = area.checkIfLocationIsInsertedInAnArea(location0);
 
         // Assert
         assertFalse(result);
@@ -157,7 +157,7 @@ class AreaShapeTest {
         AreaShape area = new AreaShape(20, 40, locationRectangleArea);
 
         // Act
-        boolean result = area.verificaSeLocalizacaoEstaContidaNumaArea(location0);
+        boolean result = area.checkIfLocationIsInsertedInAnArea(location0);
 
         // Assert
         assertFalse(result);

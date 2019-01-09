@@ -16,7 +16,7 @@ public class US3Controller {
     }
 
     public boolean adicionarNovaAG(GeographicalArea novaAG) {
-        return mGeoAreaList.addGeoAreaToTheList(novaAG);
+        return mGeoAreaList.addGeoArea(novaAG);
     }
 
     public GeoAreaList getListaAG() {

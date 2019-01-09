@@ -32,9 +32,9 @@ class US6ControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeoAreaList listaAreasGeograficas = new GeoAreaList();
 
-        listaAreasGeograficas.addGeoAreaToTheList(ag1);
-        listaAreasGeograficas.addGeoAreaToTheList(ag2);
-        listaAreasGeograficas.addGeoAreaToTheList(ag3);
+        listaAreasGeograficas.addGeoArea(ag1);
+        listaAreasGeograficas.addGeoArea(ag2);
+        listaAreasGeograficas.addGeoArea(ag3);
 
         int posicao = 0;
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
@@ -72,9 +72,9 @@ class US6ControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeoAreaList listaAreasGeograficas = new GeoAreaList();
 
-        listaAreasGeograficas.addGeoAreaToTheList(ag1);
-        listaAreasGeograficas.addGeoAreaToTheList(ag2);
-        listaAreasGeograficas.addGeoAreaToTheList(ag3);
+        listaAreasGeograficas.addGeoArea(ag1);
+        listaAreasGeograficas.addGeoArea(ag2);
+        listaAreasGeograficas.addGeoArea(ag3);
 
         int posicao = 2;
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
@@ -101,7 +101,7 @@ class US6ControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeoAreaList listaAreasGeograficas = new GeoAreaList();
 
-        listaAreasGeograficas.addGeoAreaToTheList(ag1);
+        listaAreasGeograficas.addGeoArea(ag1);
 
         int posicao = 0;
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
@@ -134,8 +134,8 @@ class US6ControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeoAreaList listaAreasGeograficas = new GeoAreaList();
 
-        listaAreasGeograficas.addGeoAreaToTheList(ag1);
-        listaAreasGeograficas.addGeoAreaToTheList(ag2);
+        listaAreasGeograficas.addGeoArea(ag1);
+        listaAreasGeograficas.addGeoArea(ag2);
 
         US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
         int expectedResult = 2;

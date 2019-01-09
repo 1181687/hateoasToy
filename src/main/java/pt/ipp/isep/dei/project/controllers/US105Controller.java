@@ -31,11 +31,11 @@ public class US105Controller {
     }
 
     /**
-     * method that adds a room to the house's roomlist. Invokes the method addRoomToHouse of the model
+     * method that adds a room to the house's roomlist. Invokes the method addRoom of the model
      * who receives the new room stored in the private attribute mRoom of this class
      * @return true if adds, false if don't
      */
     public boolean addRoomToHouse() {
-        return this.mHouse.addRoomToHouse(mRoom);
+        return this.mHouse.addRoom(mRoom);
     }
 }

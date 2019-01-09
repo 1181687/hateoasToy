@@ -23,10 +23,10 @@ public class US7Controller {
     }
 
     public void adicionarAGListaPosicaoEspecifica(int posicao, GeographicalArea area) {
-        mLista.addGeoAreaToTheListInASpecificPosition(posicao, area);
+        mLista.addGeoAreaInASpecificPosition(posicao, area);
     }
 
     public void removerAGLista(GeographicalArea area) {
-        mLista.removeGeoAreaFromTheList(area);
+        mLista.removeGeoArea(area);
     }
 }

@@ -44,7 +44,7 @@ public class US147Controller {
      * @return Size of the list.
      */
     public int houseGridListLength() {
-        return mListOfHouseGrids.getmList().size();
+        return mListOfHouseGrids.getmHouseGridsList().size();
     }
 
     /**

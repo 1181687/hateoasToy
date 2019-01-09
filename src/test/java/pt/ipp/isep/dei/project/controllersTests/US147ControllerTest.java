@@ -46,8 +46,8 @@ class US147ControllerTest {
         String gridName = "Grid";
         HouseGrid grid0 = new HouseGrid(gridName);
         HouseGrid grid1 = new HouseGrid(gridName);
-        gridList.getmList().add(grid0);
-        gridList.getmList().add(grid1);
+        gridList.getmHouseGridsList().add(grid0);
+        gridList.getmHouseGridsList().add(grid1);
         RoomList roomList = new RoomList();
         US147Controller Ctrl = new US147Controller(gridList, roomList);
         String expectedResult = "1 - Name: Grid\n2 - Name: Grid\n";
@@ -66,8 +66,8 @@ class US147ControllerTest {
         HouseGrid grid0 = new HouseGrid(gridName);
         HouseGrid grid1 = new HouseGrid(gridName);
         HouseGridList listOfGrids = new HouseGridList();
-        listOfGrids.getmList().add(grid0);
-        listOfGrids.getmList().add(grid1);
+        listOfGrids.getmHouseGridsList().add(grid0);
+        listOfGrids.getmHouseGridsList().add(grid1);
         RoomList listOfRooms = new RoomList();
         US147Controller Ctrl = new US147Controller(listOfGrids, listOfRooms);
         HouseGrid expectedResult = grid0;
@@ -293,7 +293,7 @@ class US147ControllerTest {
         HouseGrid grid1 = new HouseGrid(gridName1);
         String gridName2 = "Grid";
         HouseGrid grid2 = new HouseGrid(gridName2);
-        grid2.attachRoomInTheHouseGridRoomList(room);
+        grid2.attachRoomToTheRoomList(room);
 
         // Instantiate List of House Grids
         HouseGridList gridList = new HouseGridList();

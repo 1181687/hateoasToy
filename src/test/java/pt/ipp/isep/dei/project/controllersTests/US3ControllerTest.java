@@ -63,7 +63,7 @@ public class US3ControllerTest {
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10,local);
         GeographicalArea areaDaLista = new GeographicalArea(nomeAG, tipo, local, area);
-        lista.addGeoAreaToTheList(areaDaLista);
+        lista.addGeoArea(areaDaLista);
         GeoAreaList expectedResult = lista;
         //Act
         GeoAreaList result = ctrl3.getListaAG();
