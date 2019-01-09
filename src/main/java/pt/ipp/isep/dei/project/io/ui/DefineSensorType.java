@@ -5,11 +5,11 @@ import pt.ipp.isep.dei.project.model.SensorTypeList;
 
 import java.util.Scanner;
 
-public class US5UI {
+public class DefineSensorType {
 
     private US5Controller mController;
 
-    public US5UI(SensorTypeList mSensorTypeList) {
+    public DefineSensorType(SensorTypeList mSensorTypeList) {
 
         this.mController = new US5Controller(mSensorTypeList);
     }

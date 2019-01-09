@@ -6,10 +6,10 @@ import pt.ipp.isep.dei.project.model.GeographicalArea;
 
 import java.util.Scanner;
 
-public class US7UI {
+public class AddGeoAreaToAnotherGeoArea {
     private US7Controller ctrl;
 
-    public US7UI(GeoAreaList lista) {
+    public AddGeoAreaToAnotherGeoArea(GeoAreaList lista) {
         this.ctrl = new US7Controller(lista);
     }
 

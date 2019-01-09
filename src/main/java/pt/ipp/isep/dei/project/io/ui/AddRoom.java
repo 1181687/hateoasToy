@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.US105Controller;
 import pt.ipp.isep.dei.project.model.House;
 
-public class US105UI {
+public class AddRoom {
 
     private US105Controller mctrl;
 
@@ -12,7 +12,7 @@ public class US105UI {
      *
      * @param house house received
      */
-    public US105UI(House house) {
+    public AddRoom(House house) {
         this.mctrl = new US105Controller(house);
     }
 

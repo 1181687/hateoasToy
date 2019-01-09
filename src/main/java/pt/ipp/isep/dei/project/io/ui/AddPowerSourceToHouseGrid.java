@@ -5,11 +5,11 @@ import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
 
 
-public class US135UI {
+public class AddPowerSourceToHouseGrid {
 
     private US135Controller mController;
 
-    public US135UI(HouseGridList houseGridList, PowerSourceTypeList powerSourceTypeList) {
+    public AddPowerSourceToHouseGrid(HouseGridList houseGridList, PowerSourceTypeList powerSourceTypeList) {
         this.mController = new US135Controller(houseGridList,powerSourceTypeList);
     }
 

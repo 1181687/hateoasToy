@@ -4,10 +4,10 @@ import pt.ipp.isep.dei.project.controllers.US147Controller;
 import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.RoomList;
 
-public class US147UI {
+public class AttachRoomToHouseGrid {
     private US147Controller mCtrl;
 
-    public US147UI(HouseGridList listOfHouseGrids, RoomList listOfRooms) {
+    public AttachRoomToHouseGrid(HouseGridList listOfHouseGrids, RoomList listOfRooms) {
         mCtrl = new US147Controller(listOfHouseGrids, listOfRooms);
     }
 

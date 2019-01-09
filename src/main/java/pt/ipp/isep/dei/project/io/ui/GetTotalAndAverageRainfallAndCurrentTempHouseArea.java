@@ -6,10 +6,10 @@ import pt.ipp.isep.dei.project.model.House;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 
-public class US620UI {
+public class GetTotalAndAverageRainfallAndCurrentTempHouseArea {
     private US620Controller mCtrl;
 
-    public US620UI(House house) {
+    public GetTotalAndAverageRainfallAndCurrentTempHouseArea(House house) {
         this.mCtrl = new US620Controller(house);
     }
 

@@ -31,35 +31,35 @@ public class Admin {
 
             switch (option) {
                 case 1:
-                    US1UI ui = new US1UI(geoAreaTypeList);
+                    AddGeoAreaType ui = new AddGeoAreaType(geoAreaTypeList);
                     ui.run();
                     break;
                 case 2:
-                    US2UI ui2 = new US2UI(geoAreaTypeList);
+                    GetListGeoAreaTypes ui2 = new GetListGeoAreaTypes(geoAreaTypeList);
                     ui2.run();
                     break;
                 case 3:
-                    US3UI ui3 = new US3UI(geoAreaList, geoAreaTypeList);
+                    AddGeoArea ui3 = new AddGeoArea(geoAreaList, geoAreaTypeList);
                     ui3.run();
                     break;
                 case 4:
-                    US4UI ui4 = new US4UI(geoAreaList, geoAreaTypeList);
+                    GetListOfTypeOfGeoArea ui4 = new GetListOfTypeOfGeoArea(geoAreaList, geoAreaTypeList);
                     ui4.run();
                     break;
                 case 5:
-                    US5UI ui5 = new US5UI(sensorTypeList);
+                    DefineSensorType ui5 = new DefineSensorType(sensorTypeList);
                     ui5.run();
                     break;
                 case 6:
-                    US6UI ui6 = new US6UI(geoAreaList, sensorTypeList);
+                    AddSensorToGeoArea ui6 = new AddSensorToGeoArea(geoAreaList, sensorTypeList);
                     ui6.run();
                     break;
                 case 7:
-                    US7UI ui7 = new US7UI(geoAreaList);
+                    AddGeoAreaToAnotherGeoArea ui7 = new AddGeoAreaToAnotherGeoArea(geoAreaList);
                     ui7.run();
                     break;
                 case 8:
-                    US8UI ui8 = new US8UI(geoAreaList);
+                    InsertedGeoArea ui8 = new InsertedGeoArea(geoAreaList);
                     ui8.run();
                     break;
             }
@@ -76,18 +76,18 @@ public class Admin {
 
             switch (option) {
                 case 1:
-                    US101UI ui101 = new US101UI(house);
+                    ConfHouseLocation ui101 = new ConfHouseLocation(house);
                     ui101.run();
                     break;
                 case 2:
-                    US105UI ui105 = new US105UI(house);
+                    AddRoom ui105 = new AddRoom(house);
                     ui105.run();
                     break;
                 case 3:
                     runHouseGridUI();
                     break;
                 case 4:
-                    US253UI ui253 = new US253UI(house, roomList, sensorTypeList);
+                    AddSensorToRoom ui253 = new AddSensorToRoom(house, roomList, sensorTypeList);
                     ui253.run();
                     break;
             }
@@ -104,19 +104,19 @@ public class Admin {
 
             switch (option) {
                 case 1:
-                    US130UI ui130 = new US130UI(gridList);
+                    CreateHouseGrid ui130 = new CreateHouseGrid(gridList);
                     ui130.run();
                     break;
                 case 2:
-                    US135UI ui135 = new US135UI(gridList, powerSourceTypeList);
+                    AddPowerSourceToHouseGrid ui135 = new AddPowerSourceToHouseGrid(gridList, powerSourceTypeList);
                     ui135.run();
                     break;
                 case 3:
-                    US147UI ui147 = new US147UI(gridList, roomList);
+                    AttachRoomToHouseGrid ui147 = new AttachRoomToHouseGrid(gridList, roomList);
                     ui147.run();
                     break;
                 case 4:
-                    US149UI ui149 = new US149UI(gridList, roomList);
+                    DetachRoomFromHouseGrid ui149 = new DetachRoomFromHouseGrid(gridList, roomList);
                     ui149.run();
                     break;
             }

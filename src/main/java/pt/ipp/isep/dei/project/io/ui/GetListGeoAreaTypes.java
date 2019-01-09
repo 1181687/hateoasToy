@@ -5,10 +5,10 @@ import pt.ipp.isep.dei.project.controllers.US2Controller;
 import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 
 
-public class US2UI {
+public class GetListGeoAreaTypes {
        private US2Controller ctrl2;
 
-    public US2UI(GeoAreaTypeList lista) {
+    public GetListGeoAreaTypes(GeoAreaTypeList lista) {
               this.ctrl2 = new US2Controller(lista);
     }
 

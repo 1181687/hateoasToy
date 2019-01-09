@@ -7,11 +7,11 @@ import pt.ipp.isep.dei.project.model.GeographicalArea;
 
 import java.util.Scanner;
 
-public class US3UI {
+public class AddGeoArea {
 
     private US3Controller ctrl3;
 
-    public US3UI(GeoAreaList lista, GeoAreaTypeList listaTAG) {
+    public AddGeoArea(GeoAreaList lista, GeoAreaTypeList listaTAG) {
         this.ctrl3 = new US3Controller(lista, listaTAG);
     }
 

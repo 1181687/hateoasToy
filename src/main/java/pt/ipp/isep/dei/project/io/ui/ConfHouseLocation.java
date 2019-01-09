@@ -5,11 +5,11 @@ import pt.ipp.isep.dei.project.model.House;
 
 import java.util.Scanner;
 
-public class US101UI {
+public class ConfHouseLocation {
 
     private US101Controller ctrl;
 
-    public US101UI(House house) {
+    public ConfHouseLocation(House house) {
         this.ctrl = new US101Controller(house);
     }
 
