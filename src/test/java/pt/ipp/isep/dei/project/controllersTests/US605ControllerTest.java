@@ -5,10 +5,7 @@ import pt.ipp.isep.dei.project.controllers.US605Controller;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,13 +26,13 @@ public class US605ControllerTest {
         Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
 
-        rList.addRoomToRoomList(room1);
-        rList.addRoomToRoomList(room2);
+        rList.addRoom(room1);
+        rList.addRoom(room2);
 
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
         GeoAreaType geoAreaType = new GeoAreaType("City");
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
+        AreaShape rectangleArea = new AreaShape(20, 20, location);
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
@@ -60,7 +57,7 @@ public class US605ControllerTest {
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
         GeoAreaType geoAreaType = new GeoAreaType("City");
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
+        AreaShape rectangleArea = new AreaShape(20, 20, location);
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
@@ -87,13 +84,13 @@ public class US605ControllerTest {
         Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
 
-        rList.addRoomToRoomList(room1);
-        rList.addRoomToRoomList(room2);
+        rList.addRoom(room1);
+        rList.addRoom(room2);
 
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
         GeoAreaType geoAreaType = new GeoAreaType("City");
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
+        AreaShape rectangleArea = new AreaShape(20, 20, location);
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
@@ -114,30 +111,25 @@ public class US605ControllerTest {
         Room room1 = new Room("room1", 1, dimensions);
 
         //Instanciar Sensor
-        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
-        Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         Location locS1 = new Location(123, 355, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType0, locS1);
 
-        Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
-        Date dataFuncionamento2 = calendario2.getTime();
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Humidade");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
         //Measurement
         // Sensor0
-        Calendar calendarioDaMedicao01 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
-        Calendar calendarioDaMedicao02 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
-        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
@@ -146,11 +138,9 @@ public class US605ControllerTest {
         s0.addMeasurementToList(measurement02);
 
         //Sensor1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(1991, 11, 4, 17, 24, 00);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 11, 4, 17, 24, 00);
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
@@ -159,11 +149,9 @@ public class US605ControllerTest {
         s1.addMeasurementToList(measurement12);
 
         //Sensor2
-        Calendar calendarioDaMedicao21 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
+        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
-        Calendar calendarioDaMedicao22 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
-        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(26, dataHoraDaMedicao22);
@@ -178,11 +166,11 @@ public class US605ControllerTest {
         room1.addSensorToTheListOfSensorsInTheRoom(s2);
 
         RoomList roomList = new RoomList();
-        roomList.addRoomToRoomList(room1);
+        roomList.addRoom(room1);
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
         GeoAreaType geoAreaType = new GeoAreaType("City");
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
+        AreaShape rectangleArea = new AreaShape(20, 20, location);
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(roomList, gridList, address, insertedGeoArea);
@@ -202,18 +190,15 @@ public class US605ControllerTest {
         Room room1 = new Room("room1", 1, dimensions);
 
         //Sensor
-        Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
-        Date dataFuncionamento2 = calendario2.getTime();
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Humidity");
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
         //Measurement
-        Calendar calendarioDaMedicao21 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
+        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
-        Calendar calendarioDaMedicao22 = new GregorianCalendar(1991, 11, 3, 17, 24, 00);
-        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(26, dataHoraDaMedicao22);
@@ -227,11 +212,11 @@ public class US605ControllerTest {
 
         SensorType sensorType0 = new SensorType("Temperature");
         RoomList roomList = new RoomList();
-        roomList.addRoomToRoomList(room1);
+        roomList.addRoom(room1);
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
         GeoAreaType geoAreaType = new GeoAreaType("City");
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
+        AreaShape rectangleArea = new AreaShape(20, 20, location);
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(roomList, gridList, address, insertedGeoArea);
@@ -254,13 +239,13 @@ public class US605ControllerTest {
         Room room0 = new Room("RoomOne", 2, dim0);
         Room room1 = new Room("RoomTwo", 2, dim1);
 
-        rList.addRoomToRoomList(room0);
-        rList.addRoomToRoomList(room1);
+        rList.addRoom(room0);
+        rList.addRoom(room1);
 
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
         GeoAreaType geoAreaType = new GeoAreaType("City");
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
+        AreaShape rectangleArea = new AreaShape(20, 20, location);
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
@@ -282,7 +267,7 @@ public class US605ControllerTest {
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
         GeoAreaType geoAreaType = new GeoAreaType("City");
-        RectangleArea rectangleArea = new RectangleArea(20, 20, location);
+        AreaShape rectangleArea = new AreaShape(20, 20, location);
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
@@ -307,7 +292,7 @@ public class US605ControllerTest {
         Address address = new Address(zipCode, local);
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape rectangleArea = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
@@ -322,23 +307,19 @@ public class US605ControllerTest {
 
         house.addRoomToHouse(room1);
 
-        Calendar calendar0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date date0 = calendar0.getTime();
+        LocalDateTime date0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", date0, sensorType0, locS0);
 
-        Calendar calendar1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date date1 = calendar1.getTime();
+        LocalDateTime date1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("B123", date1, sensorType1, locS1);
 
-        Calendar calendarMeasurement1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dateTimeDayMeasure1 = calendarMeasurement1.getTime();
+        LocalDateTime dateTimeDayMeasure1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
-        Calendar calendarMeasurement2 = new GregorianCalendar(1991, 11, 2, 20, 24, 00);
-        Date dateTimeDayMeasure2 = calendarMeasurement2.getTime();
+        LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 11, 2, 20, 24, 00);
 
         Measurement measurement1 = new Measurement(-20.0, dateTimeDayMeasure1);
         Measurement measurement2 = new Measurement(-25.0, dateTimeDayMeasure2);
@@ -346,11 +327,9 @@ public class US605ControllerTest {
         s0.addMeasurementToList(measurement1);
         s0.addMeasurementToList(measurement2);
 
-        Calendar calendarMeasurement3 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dateTimeDayMeasure3 = calendarMeasurement3.getTime();
+        LocalDateTime dateTimeDayMeasure3 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
-        Calendar calendarMeasurement4 = new GregorianCalendar(1991, 11, 2, 17, 24, 00);
-        Date dateTimeDayMeasure4 = calendarMeasurement4.getTime();
+        LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 11, 2, 17, 24, 00);
 
         Measurement measurement3 = new Measurement(-10.0, dateTimeDayMeasure3);
         Measurement measurement4 = new Measurement(-15.0, dateTimeDayMeasure4);
@@ -362,14 +341,14 @@ public class US605ControllerTest {
         room1.getSensorList().addSensorToTheListOfSensors(s1);
 
         RoomList listOfRooms = new RoomList();
-        listOfRooms.addRoomToRoomList(room1);
+        listOfRooms.addRoom(room1);
 
         US605Controller ctrl = new US605Controller(house, sensorType0);
 
         double expectedResult = -10.0;
 
         //Act
-        double result = ctrl.getMaximumTemperatureOfARoomInAGivenDay(name, sensorType0, dateTimeDayMeasure3);
+        double result = ctrl.getMaximumTemperatureOfARoomInAGivenDay(name, sensorType0, dateTimeDayMeasure3.toLocalDate());
 
 
         //Assert
@@ -389,26 +368,22 @@ public class US605ControllerTest {
         Address address = new Address(zipCode, local);
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape rectangleArea = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
-        Calendar calendar0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date date0 = calendar0.getTime();
         SensorType sensorType0 = new SensorType("Temperature");
-        Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("A123", date0, sensorType0, locS0);
 
         US605Controller ctrl = new US605Controller(house, sensorType0);
 
         int year = 2001, month = 12, day = 1;
         LocalDate dateLD = LocalDate.of(2001, 12, 1);
 
-        Date expectedResult = Date.from(dateLD.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        LocalDate expectedResult = dateLD;
 
         //Act
-        Date result = ctrl.createANewDate(year, month, day);
+        LocalDate result = ctrl.createANewDate(year, month, day);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -427,15 +402,11 @@ public class US605ControllerTest {
         Address address = new Address(zipCode, local);
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
-        RectangleArea rectangleArea = new RectangleArea(20, 20, local);
+        AreaShape rectangleArea = new AreaShape(20, 20, local);
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
-        Calendar calendario = new GregorianCalendar(1991, 11, 2);
-        Date dataFuncionamento = calendario.getTime();
         SensorType sensorType = new SensorType("Temperature");
-        Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
         US605Controller ctrl = new US605Controller(house, sensorType);
         SensorType expectedResult = sensorType;

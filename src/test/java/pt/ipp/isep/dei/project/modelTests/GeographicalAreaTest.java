@@ -3,7 +3,10 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
-import java.util.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -15,7 +18,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
         boolean expectedResult = true;
         //act
@@ -29,14 +32,13 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
-        boolean expectedResult = true;
         //act
         boolean result = ag1.equals(ag2);
         //assert
-        assertEquals(expectedResult, result);
+        assertTrue(result);
     }
 
     @Test
@@ -46,14 +48,13 @@ class GeographicalAreaTest {
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         GeoAreaType tipo2 = new GeoAreaType("Aldeia");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo1, local, area);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo2, local, area);
-        boolean expectedResult = false;
         //act
         boolean result = ag1.equals(ag2);
         //assert
-        assertEquals(expectedResult, result);
+        assertFalse(result);
     }
 
     @Test
@@ -62,7 +63,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         boolean expectedResult = false;
         //act
@@ -80,8 +81,8 @@ class GeographicalAreaTest {
         GeoAreaType tipo2 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, 10.6109, 50);
         Location local2 = new Location(32.6333, 16.9, 20);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
-        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        AreaShape area1 = new AreaShape(10, 10, local1);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
         double expectedResult = 1099043.7203;
@@ -99,7 +100,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
         int expectedResult = 1;
@@ -116,20 +117,18 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
-        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(45, -5, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
-        boolean expectedResult = true;
         //Act
         boolean result = ag1.checkIfSensorInInsideOfGeoArea(s0);
         //Assert
-        assertEquals(expectedResult, result);
+        assertTrue(result);
     }
 
     @Test
@@ -138,45 +137,40 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
-        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(45, -20, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
-        boolean expectedResult = false;
         //Act
         boolean result = ag1.checkIfSensorInInsideOfGeoArea(s0);
         //Assert
-        assertEquals(expectedResult, result);
+        assertFalse(result);
     }
 
     @Test
     public void testarSensorNoLimiteEmAreaGeografica() {
         //Arrange
-
-        // Instanciar AG
+        // Instantiate GeoArea
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
-        // Instanciar Sensor
-        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        // Instantiate Sensor
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(46.1496, -13.6109, 65);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
-        boolean expectedResult = true;
         //Act
         boolean result = ag1.checkIfSensorInInsideOfGeoArea(s0);
         //Assert
-        assertEquals(expectedResult, result);
+        assertTrue(result);
     }
 
     @Test
@@ -187,33 +181,29 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
         // Instanciar S0
-        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(43, -10, 65);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
         //Instanciar S1
-        Calendar calendario1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(43, -10, 65);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
 
         //Instanciar S2
-        Calendar calendario2 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento2 = calendario2.getTime();
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Humidade");
         Location locS2 = new Location(50, -10, 65);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
         //Instanciar S3
-        Calendar calendario3 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento3 = calendario3.getTime();
+        LocalDateTime dataFuncionamento3 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType3 = new SensorType("Temperatura");
         Location locS3 = new Location(-4, -10, 65);
         Sensor s3 = new Sensor("A123", dataFuncionamento3, sensorType3, locS3);
@@ -245,33 +235,29 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
         // Instanciar S0
-        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(50, -10, 65);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
         //Instanciar S1
-        Calendar calendario1 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(50, -10, 65);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
 
         //Instanciar S2
-        Calendar calendario2 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento2 = calendario2.getTime();
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Humidade");
         Location locS2 = new Location(50, -10, 65);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
         //Instanciar S3
-        Calendar calendario3 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento3 = calendario3.getTime();
+        LocalDateTime dataFuncionamento3 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType3 = new SensorType("Temperatura");
         Location locS3 = new Location(-4, -10, 65);
         Sensor s3 = new Sensor("A123", dataFuncionamento3, sensorType3, locS3);
@@ -300,26 +286,23 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
-        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(40, -5, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
         ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
-        Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(41, -6, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
-        Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
-        Date dataFuncionamento2 = calendario2.getTime();
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Temperatura");
         Location locS2 = new Location(42, -7, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
@@ -327,11 +310,8 @@ class GeographicalAreaTest {
 
         //Instanciar Measurement
         // Sensor0
-        Calendar calendarioDaMedicao01 = new GregorianCalendar(2015, 11, 2, 5, 22, 40);
-        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
-
-        Calendar calendarioDaMedicao02 = new GregorianCalendar(2015, 11, 3, 19, 36, 55);
-        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2015, 12, 2, 5, 22, 40);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2015, 12, 3, 19, 36, 55);
 
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
@@ -340,11 +320,8 @@ class GeographicalAreaTest {
         s0.addMeasurementToList(measurement02);
 
         //Sensor1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2016, 1, 2, 8, 59, 13);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2016, 5, 4, 2, 05, 27);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 2, 2, 8, 59, 13);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 6, 4, 2, 05, 27);
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
@@ -353,11 +330,8 @@ class GeographicalAreaTest {
         s1.addMeasurementToList(measurement12);
 
         //Sensor2
-        Calendar calendarioDaMedicao21 = new GregorianCalendar(2016, 0, 1, 18, 24, 10);
-        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
-
-        Calendar calendarioDaMedicao22 = new GregorianCalendar(2016, 3, 30, 20, 17, 50);
-        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
+        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 4, 30, 20, 17, 50);
 
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
@@ -374,14 +348,13 @@ class GeographicalAreaTest {
         expectedResult.add(s1);
         expectedResult.add(s2);
 
-        Date dataInicial = new GregorianCalendar(2016, 0, 1, 17, 24, 00).getTime();
-        Date dataFinal = new GregorianCalendar(2016, 3, 30, 17, 24, 00).getTime();
-
+        LocalDate dataInicial = LocalDate.of(2016, 1, 1);
+        LocalDate dataFinal = LocalDate.of(2016, 4, 30);
 
         SensorType tipoResultado = new SensorType("Temperatura");
 
         //Act
-        List<Sensor> result = ag1.listSensorsOfACertainTypeInTheGeoAreaInAGivenPeriod(tipoResultado, listaDeSensores, dataInicial, dataFinal);
+        List<Sensor> result = ag1.listSensorsOfACertainTypeInTheGeoAreaInAGivenPeriod(tipoResultado, listaDeSensores, dataInicial, dataFinal).getmSensorList();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -394,26 +367,23 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
-        Calendar calendario0 = new GregorianCalendar(1991, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(40, -5, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
         ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
-        Calendar calendario1 = new GregorianCalendar(1991, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(41, -6, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
-        Calendar calendario2 = new GregorianCalendar(1991, 11, 11, 15, 20, 00);
-        Date dataFuncionamento2 = calendario2.getTime();
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Temperatura");
         Location locS2 = new Location(42, -7, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
@@ -421,11 +391,8 @@ class GeographicalAreaTest {
 
         //Instanciar Measurement
         // Sensor0
-        Calendar calendarioDaMedicao01 = new GregorianCalendar(2015, 11, 2);
-        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
-
-        Calendar calendarioDaMedicao02 = new GregorianCalendar(2015, 11, 3);
-        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2015, 12, 2, 0, 0, 0);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2015, 12, 3, 0, 0, 0);
 
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
@@ -434,11 +401,8 @@ class GeographicalAreaTest {
         s0.addMeasurementToList(measurement02);
 
         //Sensor1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2015, 1, 2);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2015, 5, 4);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2015, 2, 2, 0, 0, 0);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2015, 6, 4, 0, 0, 0);
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
@@ -447,11 +411,8 @@ class GeographicalAreaTest {
         s1.addMeasurementToList(measurement12);
 
         //Sensor2
-        Calendar calendarioDaMedicao21 = new GregorianCalendar(2015, 0, 1);
-        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
-
-        Calendar calendarioDaMedicao22 = new GregorianCalendar(2015, 3, 30);
-        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
+        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2015, 4, 30, 0, 0, 0);
 
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
@@ -464,19 +425,16 @@ class GeographicalAreaTest {
         listaDeSensores.add(s1);
         listaDeSensores.add(s2);
 
-        List<Sensor> expectedResult = new ArrayList<>();
-
-        Date dataInicial = new GregorianCalendar(2016, 0, 1, 17, 24, 00).getTime();
-        Date dataFinal = new GregorianCalendar(2016, 3, 30, 17, 24, 00).getTime();
-
+        LocalDate dataInicial = LocalDate.of(2016, 1, 1);
+        LocalDate dataFinal = LocalDate.of(2016, 4, 30);
 
         SensorType tipoResultado = new SensorType("Temperatura");
 
         //Act
-        List<Sensor> result = ag1.listSensorsOfACertainTypeInTheGeoAreaInAGivenPeriod(tipoResultado, listaDeSensores, dataInicial, dataFinal);
+        boolean result = ag1.listSensorsOfACertainTypeInTheGeoAreaInAGivenPeriod(tipoResultado, listaDeSensores, dataInicial, dataFinal).getmSensorList().isEmpty();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertTrue(result);
     }
 
     @Test
@@ -485,7 +443,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
         String expectedResult = "Porto";
 
@@ -500,7 +458,7 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
         GeoAreaType expectedResult = tipo;
@@ -516,11 +474,10 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
-        Calendar cal = new GregorianCalendar();
-        Date data = cal.getTime();
+        LocalDateTime data = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
         SensorType tipo = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
         Sensor s1 = new Sensor("s1", data, tipo, local);
@@ -538,11 +495,10 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
-        Calendar cal = new GregorianCalendar();
-        Date data = cal.getTime();
+        LocalDateTime data = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
         SensorType tipo = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
         Sensor s1 = new Sensor("s1", data, tipo, local);
@@ -562,11 +518,10 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
-        Calendar cal = new GregorianCalendar();
-        Date data = cal.getTime();
+        LocalDateTime data = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
         SensorType tipo = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
         Sensor s1 = new Sensor("s1", data, tipo, local);
@@ -586,13 +541,13 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Distrito");
         Location local = new Location(41.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
 
         ag1.setInsertedIn(ag1);
@@ -612,7 +567,7 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         double mLatitude = 40.487;
@@ -632,8 +587,7 @@ class GeographicalAreaTest {
     @Test
     void testarNovoSensor() {
         //Arrange
-        Calendar calendario = new GregorianCalendar(1991, 11, 2);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDateTime.of(1991, 12, 2, 12, 15, 55);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
@@ -641,7 +595,7 @@ class GeographicalAreaTest {
         String nomeAG1 = "Porto";
         GeoAreaType tipo1 = new GeoAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeSensor = "A456";
@@ -663,34 +617,32 @@ class GeographicalAreaTest {
         String nomeAG2 = "Região Norte";
         GeoAreaType tipo2 = new GeoAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
-        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeoAreaType tipo1 = new GeoAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         ag.setInsertedIn(ag1);
 
 
         // Instantiate Sensors
-        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(-1, 30, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
         ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(0, 30, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
@@ -699,11 +651,8 @@ class GeographicalAreaTest {
 
         // Instantiate Measurements
         // Sensor0
-        Calendar calendarioDaMedicao01 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
-
-        Calendar calendarioDaMedicao02 = new GregorianCalendar(2018, 11, 3, 17, 24, 00);
-        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(30, dataHoraDaMedicao02);
@@ -712,11 +661,8 @@ class GeographicalAreaTest {
         s0.addMeasurementToList(measurement02);
 
         //Sensor1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2018, 11, 4, 17, 24, 00);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
@@ -740,37 +686,22 @@ class GeographicalAreaTest {
         String nomeAG2 = "Região Norte";
         GeoAreaType tipo2 = new GeoAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
-        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeoAreaType tipo1 = new GeoAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         ag.setInsertedIn(ag1);
-
-
-        // Instantiate Sensors
-        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
-        SensorType sensorType0 = new SensorType("Temperature");
-        Location locS0 = new Location(-1, 30, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
-        SensorType sensorType1 = new SensorType("Temperature");
-        Location locS1 = new Location(0, 30, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-
 
         SensorType typeRequired = new SensorType("Temperature");
 
@@ -788,34 +719,32 @@ class GeographicalAreaTest {
         String nomeAG2 = "Região Norte";
         GeoAreaType tipo2 = new GeoAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
-        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeoAreaType tipo1 = new GeoAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         ag.setInsertedIn(ag1);
 
 
         // Instantiate Sensors
-        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(-1, 30, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
         ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(0, 30, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
@@ -823,11 +752,8 @@ class GeographicalAreaTest {
 
         // Instantiate Measurements
         // Sensor0
-        Calendar calendarioDaMedicao01 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
-
-        Calendar calendarioDaMedicao02 = new GregorianCalendar(2018, 11, 3, 17, 24, 00);
-        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(30, dataHoraDaMedicao02);
@@ -836,11 +762,8 @@ class GeographicalAreaTest {
         s0.addMeasurementToList(measurement02);
 
         //Sensor1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2018, 11, 4, 17, 24, 00);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
@@ -868,20 +791,20 @@ class GeographicalAreaTest {
         String nomeAG2 = "Região Norte";
         GeoAreaType tipo2 = new GeoAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
-        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeoAreaType tipo1 = new GeoAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         ag.setInsertedIn(ag1);
 
@@ -905,34 +828,32 @@ class GeographicalAreaTest {
         String nomeAG2 = "Região Norte";
         GeoAreaType tipo2 = new GeoAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
-        RectangleArea area2 = new RectangleArea(10, 10, local2);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeoAreaType tipo1 = new GeoAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
-        RectangleArea area1 = new RectangleArea(10, 10, local1);
+        AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         ag.setInsertedIn(ag1);
 
 
         // Instantiate Sensors
-        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(-1, 30, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
         ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(0, 30, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
@@ -958,30 +879,25 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
-        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
         ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         // Sensor0
-        Calendar calendarioDaMedicao01 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataHoraDaMedicao01 = calendarioDaMedicao01.getTime();
-
-        Calendar calendarioDaMedicao02 = new GregorianCalendar(2018, 11, 3, 17, 24, 00);
-        Date dataHoraDaMedicao02 = calendarioDaMedicao02.getTime();
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
         Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
         Measurement measurement02 = new Measurement(30, dataHoraDaMedicao02);
@@ -990,11 +906,8 @@ class GeographicalAreaTest {
         s0.addMeasurementToList(measurement02);
 
         //Sensor1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2018, 11, 4, 15, 20, 00);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2018, 11, 5, 17, 24, 00);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 5, 17, 24, 00);
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
@@ -1004,10 +917,8 @@ class GeographicalAreaTest {
         s1.addMeasurementToList(measurement12);
         s1.addMeasurementToList(measurement13);
 
-        Calendar startDate = new GregorianCalendar(2018, 11, 1, 15, 20, 00);
-        Date startDate1 = startDate.getTime();
-        Calendar endDate = new GregorianCalendar(2018, 11, 6, 17, 24, 00);
-        Date endDate1 = endDate.getTime();
+        LocalDate startDate = LocalDate.of(2018, 12, 1);
+        LocalDate endDate = LocalDate.of(2018, 12, 6);
 
         ArrayList<Double> expectedResult = new ArrayList<Double>();
         expectedResult.add(23.0);
@@ -1018,7 +929,7 @@ class GeographicalAreaTest {
         SensorType searchType = new SensorType("Rainfall");
 
         //Act
-        List<Double> result = ag.getDailyAverageMeasurementInTheArea(searchType, startDate1, endDate1);
+        List<Double> result = ag.getDailyAverageMeasurementInTheArea(searchType, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1031,140 +942,35 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Instanciar Sensor
-        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
         ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
-        Calendar startDate = new GregorianCalendar(2018, 11, 1, 15, 20, 00);
-        Date startDate1 = startDate.getTime();
-        Calendar endDate = new GregorianCalendar(2018, 11, 6, 17, 24, 00);
-        Date endDate1 = endDate.getTime();
+        LocalDate startDate = LocalDate.of(2018, 12, 1);
+        LocalDate endDate = LocalDate.of(2018, 12, 6);
 
         ArrayList<Double> expectedResult = new ArrayList<>();
 
         SensorType searchType = new SensorType("Rainfall");
 
         //Act
-        List<Double> result = ag.getDailyAverageMeasurementInTheArea(searchType, startDate1, endDate1);
+        List<Double> result = ag.getDailyAverageMeasurementInTheArea(searchType, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
     }
-
-    @Test
-    public void getDailyMeasurementsInAListOfSensors() {
-        //arrange
-        //Instanciar AG
-        String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
-        Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-
-        //Instanciar Sensor
-        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
-        SensorType sensorType0 = new SensorType("Rainfall");
-        Location locS0 = new Location(42.1496, -8.6109, 97);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
-
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
-        SensorType sensorType1 = new SensorType("Rainfall");
-        Location locS1 = new Location(42.149, -8.610, 97);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
-
-        //Sensor1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2018, 11, 4, 15, 20, 00);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2018, 11, 4, 17, 24, 00);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
-
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
-
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
-
-        Calendar startDate = new GregorianCalendar(2018, 11, 4, 15, 20, 00);
-        Date searchDate = startDate.getTime();
-
-        double expectedResult = 23.5;
-
-        //Act
-        double result = ag.getDailyAverageOfAListOfSensors(ag.getmSensorListInTheGeographicArea().getmSensorList(), searchDate);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void getDailyAverageMeasurementsInAListOfSensorsDayWithNoMeasurements() {
-        //arrange
-        //Instanciar AG
-        String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
-        Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-
-        //Instanciar Sensor
-        Calendar calendario0 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento0 = calendario0.getTime();
-        SensorType sensorType0 = new SensorType("Rainfall");
-        Location locS0 = new Location(42.1496, -8.6109, 97);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
-
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
-        SensorType sensorType1 = new SensorType("Rainfall");
-        Location locS1 = new Location(42.149, -8.610, 97);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
-
-        //Sensor1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2018, 11, 4, 15, 20, 00);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2018, 11, 4, 17, 24, 00);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
-
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
-
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
-
-        Calendar startDate = new GregorianCalendar(2018, 11, 5, 15, 20, 00);
-        Date searchDate = startDate.getTime();
-
-        double expectedResult = Double.NaN;
-
-        //Act
-        double result = ag.getDailyAverageOfAListOfSensors(ag.getmSensorListInTheGeographicArea().getmSensorList(), searchDate);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
 
 
     @Test
@@ -1174,23 +980,20 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Sensor1
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.1496, -8.6109, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         //  add Sensor to the List of Sensors in the GeoArea
         ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
         //  add measurements to Sensor 1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2016, 0, 1, 8, 59, 13);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
 
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2016, 0, 1, 2, 05, 27);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 1, 8, 59, 13);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 1, 2, 05, 27);
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
@@ -1199,19 +1002,15 @@ class GeographicalAreaTest {
         s1.addMeasurementToList(measurement12);
 
         //Sensor2
-        Calendar calendario2 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento2 = calendario2.getTime();
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Rainfall");
         Location locS2 = new Location(45.1496, -8.6109, 97);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
         //  add Sensor to the List of Sensors in the GeoArea
         ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
         //  add measurements to Sensor 2
-        Calendar calendarioDaMedicao21 = new GregorianCalendar(2016, 0, 1, 18, 24, 10);
-        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
-
-        Calendar calendarioDaMedicao22 = new GregorianCalendar(2016, 0, 1, 20, 17, 50);
-        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
+        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
 
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
@@ -1228,8 +1027,7 @@ class GeographicalAreaTest {
         sensorList.add(s2);
 
         //Instance of a day
-        Calendar day0 = new GregorianCalendar(2016, 0, 1);
-        Date day = day0.getTime();
+        LocalDate day = LocalDate.of(2016, 1, 1);
 
         //Expected Result
         List<Sensor> expectedResult = new ArrayList<>();
@@ -1253,23 +1051,19 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Sensor1
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.1496, -8.6109, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         //  add Sensor to the List of Sensors in the GeoArea
         ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
         //  add measurements to Sensor 1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2016, 0, 2, 8, 59, 13);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2016, 0, 2, 2, 05, 27);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 2, 8, 59, 13);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 2, 2, 05, 27);
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
@@ -1278,19 +1072,15 @@ class GeographicalAreaTest {
         s1.addMeasurementToList(measurement12);
 
         //Sensor2
-        Calendar calendario2 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento2 = calendario2.getTime();
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Rainfall");
         Location locS2 = new Location(45.1496, -8.6109, 97);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
         //  add Sensor to the List of Sensors in the GeoArea
         ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
         //  add measurements to Sensor 2
-        Calendar calendarioDaMedicao21 = new GregorianCalendar(2016, 0, 1, 18, 24, 10);
-        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
-
-        Calendar calendarioDaMedicao22 = new GregorianCalendar(2016, 0, 1, 20, 17, 50);
-        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
+        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
 
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
@@ -1307,8 +1097,7 @@ class GeographicalAreaTest {
         sensorList.add(s2);
 
         //Instance of a day
-        Calendar day0 = new GregorianCalendar(2016, 0, 1);
-        Date day = day0.getTime();
+        LocalDate day = LocalDate.of(2016, 1, 1);
 
         //Expected Result
         List<Sensor> expectedResult = new ArrayList<>();
@@ -1331,23 +1120,19 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(10, 10, local);
+        AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Sensor1
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.1496, -8.6109, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         //  add Sensor to the List of Sensors in the GeoArea
         ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
         //  add measurements to Sensor 1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2016, 0, 1, 8, 59, 13);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2016, 0, 1, 2, 05, 27);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 1, 8, 59, 13);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 1, 2, 05, 27);
 
         Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
         Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
@@ -1356,19 +1141,17 @@ class GeographicalAreaTest {
         s1.addMeasurementToList(measurement12);
 
         //Sensor2
-        Calendar calendario2 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento2 = calendario2.getTime();
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Temp");
         Location locS2 = new Location(45.1496, -8.6109, 97);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
+
         //  add Sensor to the List of Sensors in the GeoArea
         ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
-        //  add measurements to Sensor 2
-        Calendar calendarioDaMedicao21 = new GregorianCalendar(2016, 0, 1, 18, 24, 10);
-        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
 
-        Calendar calendarioDaMedicao22 = new GregorianCalendar(2016, 0, 1, 20, 17, 50);
-        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+        //  add measurements to Sensor 2
+        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
+        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
 
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
@@ -1385,8 +1168,7 @@ class GeographicalAreaTest {
         sensorList.add(s2);
 
         //Instance of a day
-        Calendar day0 = new GregorianCalendar(2016, 0, 1);
-        Date day = day0.getTime();
+        LocalDate day = LocalDate.of(2016, 1, 1);
 
         //Expected Result
         List<Sensor> expectedResult = new ArrayList<>();
@@ -1408,46 +1190,41 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(40, 40, local);
+        AreaShape area = new AreaShape(40, 40, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
 
         //Sensor1
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.1496, -8.6109, 97);
         Sensor s1 = new Sensor("A124", dataFuncionamento1, sensorType1, locS1);
+
         //  add Sensor to the List of Sensors in the GeoArea
         ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+
         //  add measurements to Sensor 1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2016, 0, 1, 8, 59, 13);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 1, 8, 59, 13);
         Measurement measurement11 = new Measurement(11, dataHoraDaMedicao11);
         s1.addMeasurementToList(measurement11);
 
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2016, 0, 1, 2, 05, 27);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 1, 2, 05, 27);
         Measurement measurement12 = new Measurement(11, dataHoraDaMedicao12);
         s1.addMeasurementToList(measurement12);
 
         //Sensor2
-        Calendar calendario2 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento2 = calendario2.getTime();
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Rainfall");
         Location locS2 = new Location(42.1496, -8.6109, 97);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
         //  add Sensor to the List of Sensors in the GeoArea
         ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
         //  add measurements to Sensor 2
-        Calendar calendarioDaMedicao21 = new GregorianCalendar(2016, 0, 1, 18, 24, 10);
-        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
+        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         s2.addMeasurementToList(measurement21);
 
-        Calendar calendarioDaMedicao22 = new GregorianCalendar(2016, 0, 1, 20, 17, 50);
-        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
         Measurement measurement22 = new Measurement(11, dataHoraDaMedicao22);
         s2.addMeasurementToList(measurement22);
 
@@ -1455,8 +1232,7 @@ class GeographicalAreaTest {
         SensorType typeOfSensorTested = new SensorType("Rainfall");
 
         //Instance of a day
-        Calendar day0 = new GregorianCalendar(2016, 0, 1);
-        Date day = day0.getTime();
+        LocalDate day = LocalDate.of(2016, 1, 1);
 
         //expected result
         double expectedResult = 31;
@@ -1477,42 +1253,35 @@ class GeographicalAreaTest {
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
-        RectangleArea area = new RectangleArea(40, 40, local);
+        AreaShape area = new AreaShape(40, 40, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
 
         //Sensor1
-        Calendar calendario1 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento1 = calendario1.getTime();
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.1496, -8.6109, 97);
         Sensor s1 = new Sensor("A124", dataFuncionamento1, sensorType1, locS1);
         //  add measurements to Sensor 1
-        Calendar calendarioDaMedicao11 = new GregorianCalendar(2016, 0, 1, 8, 59, 13);
-        Date dataHoraDaMedicao11 = calendarioDaMedicao11.getTime();
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 1, 8, 59, 13);
         Measurement measurement11 = new Measurement(11, dataHoraDaMedicao11);
         s1.addMeasurementToList(measurement11);
 
-
-        Calendar calendarioDaMedicao12 = new GregorianCalendar(2016, 0, 1, 2, 05, 27);
-        Date dataHoraDaMedicao12 = calendarioDaMedicao12.getTime();
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
         Measurement measurement12 = new Measurement(11, dataHoraDaMedicao12);
         s1.addMeasurementToList(measurement12);
 
         //Sensor2
-        Calendar calendario2 = new GregorianCalendar(2018, 11, 2, 15, 20, 00);
-        Date dataFuncionamento2 = calendario2.getTime();
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Rainfall");
         Location locS2 = new Location(42.1496, -8.6109, 97);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
         //  add measurements to Sensor 2
-        Calendar calendarioDaMedicao21 = new GregorianCalendar(2016, 0, 1, 18, 24, 10);
-        Date dataHoraDaMedicao21 = calendarioDaMedicao21.getTime();
+        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
         s2.addMeasurementToList(measurement21);
 
-        Calendar calendarioDaMedicao22 = new GregorianCalendar(2016, 0, 1, 20, 17, 50);
-        Date dataHoraDaMedicao22 = calendarioDaMedicao22.getTime();
+        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
         Measurement measurement22 = new Measurement(11, dataHoraDaMedicao22);
         s2.addMeasurementToList(measurement22);
 
@@ -1520,12 +1289,10 @@ class GeographicalAreaTest {
         SensorType typeOfSensorTested = new SensorType("Rainfall");
 
         //Instance of a day
-        Calendar day0 = new GregorianCalendar(2016, 0, 1);
-        Date day = day0.getTime();
+        LocalDate day = LocalDate.of(2016, 1, 1);
 
         //expected result
         double expectedResult = Double.NaN;
-
 
         //ACT
         double result = ag.getTotalDailyMeasurementInTheArea(typeOfSensorTested, day);

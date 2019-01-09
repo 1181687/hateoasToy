@@ -1,16 +1,21 @@
 package pt.ipp.isep.dei.project.model;
 
-import java.util.*;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoField;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Sensor {
     private String mSensorName;
-    private Date mStartingDate;
+    private LocalDateTime mStartingDate;
     private List<Measurement> mMeasurements = new ArrayList<>();
     private SensorType mSensorType;
     private Location mLocation;
 
-    public Sensor(String mSensorName, Date mStartingDate, SensorType mSensorType, Location mLocation) {
+    public Sensor(String mSensorName, LocalDateTime mStartingDate, SensorType mSensorType, Location mLocation) {
         this.mSensorName = mSensorName;
         this.mStartingDate = mStartingDate;
         this.mSensorType = mSensorType;
@@ -19,7 +24,7 @@ public class Sensor {
 
     public Sensor(String mSensorName, SensorType mSensorType, Location mLocation) {
         this.mSensorName = mSensorName;
-        this.mStartingDate = new GregorianCalendar(Locale.getDefault()).getTime();
+        this.mStartingDate = LocalDateTime.now();
         this.mSensorType = mSensorType;
         this.mLocation = mLocation;
     }
@@ -28,7 +33,7 @@ public class Sensor {
         return mSensorName;
     }
 
-    public Date getmStartingDate() {
+    public LocalDateTime getmStartingDate() {
         return mStartingDate;
     }
 
@@ -55,113 +60,95 @@ public class Sensor {
         return 1;
     }
 
-    public double distanciaLinearEntreDoisSensores(Sensor sensor1) {
+    public double distanceBetweenTwoLocations(Sensor sensor1) {
 
         return this.mLocation.distanceBetweenTwoLocations(sensor1.mLocation);
     }
 
 
-    public List<Double> getValorRegistosEntreDatas(Date dataInicial, Date dataFinal) {
+    public List<Double> getMeasurementValueBetweenDates(LocalDate startDate, LocalDate endDate) {
 
-        List<Double> registosEntreDatas = new ArrayList<>();
+        List<Double> measurementsBetweenDates = new ArrayList<>();
 
-        for (Measurement registo : mMeasurements) {
-            if (registo.getmDateTime().after(dataInicial) && registo.getmDateTime().before(dataFinal)) {
-                registosEntreDatas.add(registo.getmValue());
+        for (Measurement measurement : mMeasurements) {
+            if ((measurement.getmDateTime().toLocalDate().isEqual(startDate) || measurement.getmDateTime().toLocalDate().isAfter(startDate)) && (measurement.getmDateTime().toLocalDate().isEqual(endDate) || measurement.getmDateTime().toLocalDate().isBefore(endDate))) {
+                measurementsBetweenDates.add(measurement.getmValue());
             }
         }
-        return registosEntreDatas;
+        return measurementsBetweenDates;
     }
 
-    public boolean temRegistosEntreDatas(Date dataInicial, Date dataFinal) {
-        List<Double> registosEntreDatas = getValorRegistosEntreDatas(dataInicial, dataFinal);
+    public boolean checkMeasurementExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
+        List<Double> measurementsBetweenDates = getMeasurementValueBetweenDates(startDate, endDate);
 
-        return !(registosEntreDatas.isEmpty());
+        return !(measurementsBetweenDates.isEmpty());
     }
 
-    public double getMenorRegistoDoMes(Date diaDoMes) {
-        Date primeiroDiaMes = getPrimeiroDiaDoMes(diaDoMes);
-        Date ultimoDiaMes = getUltimoDiaDoMes(diaDoMes);
+    public double getLowestMeasurementOfMonth(LocalDate dayOfMonth) {
+        LocalDate firstDayOfMonth = dayOfMonth.withDayOfMonth(1);
+        LocalDate lastDayOfMonth = dayOfMonth.withDayOfMonth(dayOfMonth.lengthOfMonth());
 
-        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
+        List<Double> measurementsBetweenDates = getMeasurementValueBetweenDates(firstDayOfMonth, lastDayOfMonth);
 
-        if (registosEntreDatas.isEmpty()) {
+        if (measurementsBetweenDates.isEmpty()) {
             return Double.NaN;
         }
-        double menorRegisto = registosEntreDatas.get(0);
+        double smallestMeasurement = measurementsBetweenDates.get(0);
 
-        for (int i = 0; i < registosEntreDatas.size(); i++) {
-            if (menorRegisto > registosEntreDatas.get(i)) {
-                menorRegisto = registosEntreDatas.get(i);
+        for (int i = 0; i < measurementsBetweenDates.size(); i++) {
+            if (smallestMeasurement > measurementsBetweenDates.get(i)) {
+                smallestMeasurement = measurementsBetweenDates.get(i);
             }
         }
-        return menorRegisto;
+        return smallestMeasurement;
     }
 
-    public double getMaiorRegisto(Date date) {
-        Date primeiroDiaMes = getPrimeiroDiaDoMes(date);
-        Date ultimoDiaMes = getUltimoDiaDoMes(date);
+    public double getBiggestMeasurement(LocalDate date) {
+        LocalDate firstDayOfMonth = date.withDayOfMonth(1);
+        LocalDate lastDayOfMonth = date.withDayOfMonth(date.lengthOfMonth());
 
-        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
+        List<Double> measurementsBetweenDates = getMeasurementValueBetweenDates(firstDayOfMonth, lastDayOfMonth);
 
-        if (registosEntreDatas.isEmpty()) {
+        if (measurementsBetweenDates.isEmpty()) {
             return Double.NaN;
         }
-        return registosEntreDatas.get(0);
+        return measurementsBetweenDates.get(0);
     }
 
-    public double getMaiorRegistoDoMes(Date diaDoMes) {
+    public double getGreatestMeasurementOfMonth(LocalDate date) {
+        LocalDate firstDayOfMonth = date.withDayOfMonth(1);
+        LocalDate lastDayOfMonth = date.withDayOfMonth(date.lengthOfMonth());
 
-        Date primeiroDiaMes = getPrimeiroDiaDoMes(diaDoMes);
-        Date ultimoDiaMes = getUltimoDiaDoMes(diaDoMes);
+        List<Double> measurementsBetweenDates = getMeasurementValueBetweenDates(firstDayOfMonth, lastDayOfMonth);
 
-        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
+        double biggestMeasurement = getBiggestMeasurement(date);
 
-        double maiorRegisto = getMaiorRegisto(diaDoMes);
-
-        for (int i = 0; i < registosEntreDatas.size(); i++) {
-            if (maiorRegisto < registosEntreDatas.get(i)) {
-                maiorRegisto = registosEntreDatas.get(i);
+        for (int i = 0; i < measurementsBetweenDates.size(); i++) {
+            if (biggestMeasurement < measurementsBetweenDates.get(i)) {
+                biggestMeasurement = measurementsBetweenDates.get(i);
             }
         }
-        return maiorRegisto;
+        return biggestMeasurement;
     }
 
-    public double getRegistoMediaMes(Date diaDoMes) {
+    public double getMonthlyAverageMeasurement(LocalDate date) {
+        LocalDate firstDayOfMonth = date.withDayOfMonth(1);
+        LocalDate lastDayOfMonth = date.withDayOfMonth(date.lengthOfMonth());
 
-        Date primeiroDiaMes = getPrimeiroDiaDoMes(diaDoMes);
-        Date ultimoDiaMes = getUltimoDiaDoMes(diaDoMes);
+        List<Double> measurementsBetweenDates = getMeasurementValueBetweenDates(firstDayOfMonth, lastDayOfMonth);
 
-        List<Double> registosEntreDatas = getValorRegistosEntreDatas(primeiroDiaMes, ultimoDiaMes);
+        int numberOfMeasurements = measurementsBetweenDates.size();
+        double sumOfMeasurements = 0;
 
-        int numeroDeRegistos = registosEntreDatas.size();
-        double somaRegistos = 0;
-
-        if (numeroDeRegistos == 0) {
+        if (numberOfMeasurements == 0) {
             return Double.NaN;
         }
 
-        for (Double registo : registosEntreDatas) {
+        for (Double measurements : measurementsBetweenDates) {
 
-            somaRegistos += registo;
+            sumOfMeasurements += measurements;
         }
-        return somaRegistos / numeroDeRegistos;
-    }
-
-    public Date getPrimeiroDiaDoMes(Date data) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(data);
-        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMinimum(Calendar.DAY_OF_MONTH));
-        return cal.getTime();
-    }
-
-    public Date getUltimoDiaDoMes(Date data) {
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(data);
-        cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH));
-        cal.set(Calendar.HOUR_OF_DAY, cal.getActualMaximum(Calendar.HOUR_OF_DAY));
-
-        return cal.getTime();
+        return sumOfMeasurements / numberOfMeasurements;
     }
 
     public void addMeasurementToList(Measurement measurement) {
@@ -172,7 +159,7 @@ public class Sensor {
         return mMeasurements.isEmpty();
     }
 
-    public Measurement getUltimoRegisto() {
+    public Measurement getLastMeasurement() {
         for (int i = (mMeasurements.size() - 1); i >= 0; i--) {
             if (!(Double.isNaN(mMeasurements.get(i).getmValue()))) {
                 return mMeasurements.get(i);
@@ -181,23 +168,17 @@ public class Sensor {
         return null;
     }
 
-    public boolean umTipoDeSensorEIgualAOutro(SensorType tipo) {
-        String tipoDoSensorPedido = tipo.getmTipo();
-        return (this.getmSensorType().getmTipo().equals(tipoDoSensorPedido));
+    public boolean sensorTypeEqualsSensorType(SensorType tipo) {
+        String tipoDoSensorPedido = tipo.getmType();
+        return (this.getmSensorType().getmType().equals(tipoDoSensorPedido));
     }
 
-    public List<Measurement> getDailyMeasurement(Date data) {
-        //passar data para calendario
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(data);
-
+    public List<Measurement> getDailyMeasurement(LocalDate date) {
         List<Measurement> registosDoDia = new ArrayList<>();
         for (Measurement registo : mMeasurements) {
-            //passar Data do registo para Calendario
-            Calendar ca2 = Calendar.getInstance();
-            ca2.setTime(registo.getmDateTime());
+            LocalDate secondDate = registo.getmDateTime().toLocalDate();
 
-            if (verificaDiasIguais(ca2, cal) && (!Double.isNaN(registo.getmValue()))) {
+            if (checkIfDaysAreEqual(date, secondDate) && (!Double.isNaN(registo.getmValue()))) {
                 registosDoDia.add(registo);
             }
         }
@@ -205,12 +186,11 @@ public class Sensor {
 
     }
 
-    public boolean verificaDiasIguais(Calendar cal1, Calendar cal2) {
-        return (cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)
-                && cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH));
+    public boolean checkIfDaysAreEqual(LocalDate firstDate, LocalDate secondDate) {
+        return (firstDate.isEqual(secondDate));
     }
 
-    public double getValorMinimoDoDia(Date data) {
+    public double getLowestMeasurementOfDay(LocalDate data) {
         if (!getDailyMeasurement(data).isEmpty()) {
             double valorMinimoDoDia = getDailyMeasurement(data).get(0).getmValue();
             for (Measurement registo : getDailyMeasurement(data)) {
@@ -223,35 +203,30 @@ public class Sensor {
         return Double.NaN;
     }
 
-    public Date getPrimeiroDiaSemana(int ano, int semana) {
-        Calendar cal = new GregorianCalendar(Locale.US);
-        cal.setWeekDate(ano, semana, cal.getFirstDayOfWeek());
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        return cal.getTime();
+    public LocalDate getFirstDayOfWeek(LocalDate date) {
+        if (date.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
+            return date;
+        }
+        return (date.with(ChronoField.DAY_OF_WEEK, 1)).minusDays(1);
     }
 
-    public List<Double> valoresMinimosSemana(int ano, int semana) {
+    public List<Double> lowestMeasurementsOfWeek(LocalDate date) {
         List<Double> registosMinimosSemana = new ArrayList<>();
-        Date primeiroDiaSemana = getPrimeiroDiaSemana(ano, semana);
-        Calendar cal = new GregorianCalendar(Locale.US);
-        cal.setTime(primeiroDiaSemana);
-        int primeiroDiaDaSemana = cal.getFirstDayOfWeek();
-        for (int diaDaSemana = primeiroDiaDaSemana; diaDaSemana < primeiroDiaDaSemana + 7; diaDaSemana++) {
-            double minimoDia = getValorMinimoDoDia(cal.getTime());
+        LocalDate primeiroDiaSemana = getFirstDayOfWeek(date);
+        LocalDate ultimoDiaSemana = primeiroDiaSemana.plusDays(6);
+        for (LocalDate diaDaSemana = primeiroDiaSemana; diaDaSemana.isBefore(ultimoDiaSemana.plusDays(1)); diaDaSemana.plusDays(1)) {
+            double minimoDia = getLowestMeasurementOfDay(diaDaSemana);
             if (!Double.isNaN(minimoDia)) {
                 registosMinimosSemana.add(minimoDia);
             }
-            cal.add(Calendar.DAY_OF_WEEK, 1);
+            diaDaSemana = diaDaSemana.plusDays(1);
         }
         return registosMinimosSemana;
     }
 
-    public double getMediaRegitosMinSemanal(int ano, int semana) {
+    public double getAverageOfLowestMeasurementsWeek(LocalDate date) {
 
-        List<Double> registosMinSemana = this.valoresMinimosSemana(ano, semana);
+        List<Double> registosMinSemana = this.lowestMeasurementsOfWeek(date);
 
         int contador = 0;
         double somaRegistosMinSemana = 0;
@@ -267,14 +242,14 @@ public class Sensor {
     }
 
     /**
-     * @param data a given day
+     * @param date a given day
      * @return the maximum value of measurements
      */
-    public double getMaximumValueOfDay(Date data) {
-        if (!getDailyMeasurement(data).isEmpty()) {
-            double valorMaximoDoDia = getDailyMeasurement(data).get(0).getmValue();
-            for (Measurement registo : getDailyMeasurement(data)) {
-                if (valorMaximoDoDia < registo.getmValue()){
+    public double getMaximumValueOfDay(LocalDate date) {
+        if (!getDailyMeasurement(date).isEmpty()) {
+            double valorMaximoDoDia = getDailyMeasurement(date).get(0).getmValue();
+            for (Measurement registo : getDailyMeasurement(date)) {
+                if (valorMaximoDoDia < registo.getmValue()) {
                     valorMaximoDoDia = registo.getmValue();
                 }
             }
@@ -283,26 +258,24 @@ public class Sensor {
         return Double.NaN;
     }
 
-    public List<Double> valoresMaximosSemana(int ano, int semana) {
+    public List<Double> biggestWeeklyMeasurements(LocalDate date) {
         List<Double> registosMaximosSemana = new ArrayList<>();
-        Date primeiroDiaSemana = getPrimeiroDiaSemana(ano, semana);
-        Calendar cal = new GregorianCalendar(Locale.US);
-        cal.setTime(primeiroDiaSemana);
+        LocalDate primeiroDiaSemana = getFirstDayOfWeek(date);
         int contador = 1;
         while (contador < 8) {
-            double maximoDia = getMaximumValueOfDay(cal.getTime());
+            double maximoDia = getMaximumValueOfDay(primeiroDiaSemana);
             if (!Double.isNaN(maximoDia)) {
                 registosMaximosSemana.add(maximoDia);
             }
-            cal.add(Calendar.DAY_OF_WEEK, 1);
+            primeiroDiaSemana = primeiroDiaSemana.plusDays(1);
             contador++;
         }
         return registosMaximosSemana;
     }
 
-    public double getMediaRegistosMaxSemanal(int ano, int semana) {
+    public double getAverageOfBiggestMeasurementsWeek(LocalDate date) {
 
-        List<Double> registosMaxSemana = this.valoresMaximosSemana(ano, semana);
+        List<Double> registosMaxSemana = this.biggestWeeklyMeasurements(date);
 
         int contador = 0;
         double somaRegistosMaxSemana = 0;
@@ -316,7 +289,7 @@ public class Sensor {
         return somaRegistosMaxSemana / registosMaxSemana.size();
     }
 
-    public double distanceBetweenASensorAndALocation(Location location) {
+    public double distanceBetweenSensorAndLocation(Location location) {
         return this.mLocation.distanceBetweenTwoLocations(location);
     }
 
@@ -327,7 +300,7 @@ public class Sensor {
      * @return
      */
 
-    public double getTotalDailyMeasurements(Date day) {
+    public double getTotalDailyMeasurements(LocalDate day) {
         double sum = 0;
         if (!(getDailyMeasurement(day).isEmpty())) {
             for (Measurement measurement : getDailyMeasurement(day)) {
@@ -343,7 +316,7 @@ public class Sensor {
      * @param date
      * @return
      */
-    public double getDailyAverage(Date date) {
+    public double getDailyAverage(LocalDate date) {
         return getTotalDailyMeasurements(date) / getDailyMeasurement(date).size();
     }
 

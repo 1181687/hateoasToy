@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class RoomList {
@@ -20,14 +20,15 @@ public class RoomList {
     }
 
     /**
-     * Method that get the room in a specific position in the list.
+     * Method that gets the room in a specific position in the list.
      *
      * @param position Specifies the position of the room in the list.
      * @return The respective room.
      */
-    public Room getRoomFromASpecificPositionInTheList(int position) {
+    public Room getRoomFromASpecificPosition(int position) {
         return mRoomList.get(position);
     }
+
 
     /**
      * Method that adds a room to the list of rooms
@@ -35,7 +36,7 @@ public class RoomList {
      * @param room the room to be added
      * @return true if it adds, false if it doesn't add, because it already contains it or the room is null
      */
-    public boolean addRoomToRoomList(Room room) {
+    public boolean addRoom(Room room) {
         if (room == null) {
             return false;
         }
@@ -47,7 +48,7 @@ public class RoomList {
     }
 
     /**
-     * method that creates a newroom
+     * method that creates a new room
      *
      * @param name       given name to the new room
      * @param housefloor given housefloor number to the new room
@@ -61,7 +62,12 @@ public class RoomList {
         return new Room(name, housefloor, newDimension);
     }
 
-    public String getDisplayRoomList() {
+    /**
+     * method that displays the List of Rooms
+     *
+     * @return Content of Room List
+     */
+    public String displayRoomList() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
         for (int i = 0; i < mRoomList.size(); i++) {
@@ -74,15 +80,29 @@ public class RoomList {
         return content.toString();
     }
 
+    /**
+     * Method that checks if a Room List is Empty
+     * @return true if it is empty
+     */
     public boolean checkIfRoomListIsEmpty() {
         return mRoomList.isEmpty();
     }
 
+    /**
+     * Method that gives us the size of the Room List
+     * @return Room List size
+     */
     public int listSize() {
         return mRoomList.size();
     }
 
-    public String getDisplayOfTheChosenRoom(int position) {
+    /**
+     * Method that displays a choosen Room (in a specific position) with its characteristics (name, house floor, height, length and width)
+     *
+     * @param position position of the Room in the Room List
+     * @return Content of the Room
+     */
+    public String displayOfTheChosenRoom(int position) {
         StringBuilder content = new StringBuilder();
         content.append("1 - Name: " + mRoomList.get(position).getmName());
         content.append("\n");
@@ -97,25 +117,50 @@ public class RoomList {
         return content.toString();
     }
 
-    public void setRoomNameInList(int chosenRoom, String change) {
-        mRoomList.get(chosenRoom).setmName(change);
+    /**
+     * Method that changes the name of a Room
+     *
+     * @param chosenRoom room that you want to change
+     * @param changeName new name for the room
+     */
+    public void changeRoomName(int chosenRoom, String changeName) {
+        mRoomList.get(chosenRoom).setmName(changeName);
     }
 
-    public void setRoomFloorInList(int chosenRoom, int change) {
-        mRoomList.get(chosenRoom).setmHouseFloor(change);
+    /**
+     * Method that changes the house floor of a Room
+     *
+     * @param chosenRoom       room that you want to change
+     * @param changeHouseFloor new house floor for the room
+     */
+    public void setRoomFloor(int chosenRoom, int changeHouseFloor) {
+        mRoomList.get(chosenRoom).setmHouseFloor(changeHouseFloor);
     }
 
-    public void setRoomDimensionsInList(int chosenRoom, int chosenFeature, double change) {
+    /**
+     * Method that changes the dimensions of a Room
+     *
+     * @param chosenRoom      room that you want to change
+     * @param chosenFeature   Dimension that you want to change (Height, Length, Width)
+     * @param changeDimension New value (double) for the chosen dimension (Height, Length, Width)
+     */
+    public void setRoomDimensions(int chosenRoom, int chosenFeature, double changeDimension) {
         if (chosenFeature == 3) {
-            mRoomList.get(chosenRoom).getmDimensions().setmHeight(change);
+            mRoomList.get(chosenRoom).getmDimensions().setmHeight(changeDimension);
         } else mRoomList.get(chosenRoom).getmDimensions().getmHeight();
         if (chosenFeature == 4) {
-            mRoomList.get(chosenRoom).getmDimensions().setmLength(change);
+            mRoomList.get(chosenRoom).getmDimensions().setmLength(changeDimension);
         } else mRoomList.get(chosenRoom).getmDimensions().getmLength();
         if (chosenFeature == 5) {
-            mRoomList.get(chosenRoom).getmDimensions().setmWidth(change);
+            mRoomList.get(chosenRoom).getmDimensions().setmWidth(changeDimension);
         } else mRoomList.get(chosenRoom).getmDimensions().getmWidth();
     }
+
+    /**
+     * Method that goes through the room list and shows the room by name if that name matches a room with the same name in the list
+     * @param name room name (string)
+     * @return room
+     */
 
     public Room getRoomByName(String name) {
 
@@ -127,7 +172,14 @@ public class RoomList {
         return null;
     }
 
-    public String getNameOfTheChosenRoomInSpecificPos(int position) {
+    /**
+     * Method that gets the name of the chosen room in a specific position in the room list
+     *
+     * @param position position of the chosen room in a List
+     * @return if the List is empty, returns null. Else returns the name of room in that position
+     */
+
+    public String getNameOfTheChosenRoomInSpecificPosition(int position) {
         if (mRoomList.isEmpty()) {
             return null;
         }
@@ -140,7 +192,7 @@ public class RoomList {
      * @param date any given day
      * @return the maximum temperature in a specific Room in a given day
      */
-    public double getMaximumTemperatureInARoomInAGivenDay(String name, SensorType type, Date date) {
+    public double getMaximumTemperatureInARoomInAGivenDay(String name, SensorType type, LocalDate date) {
         return getRoomByName(name).getMaximumMeasurementInAGivenDay(type, date);
     }
 

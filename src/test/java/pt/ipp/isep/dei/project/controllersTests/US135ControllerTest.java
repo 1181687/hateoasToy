@@ -19,7 +19,7 @@ class US135ControllerTest {
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
+        powerSourceTypeList.addPowerSourceType(powerSourceType);
 
         US135Controller us135Controller = new US135Controller(houseGridList, powerSourceTypeList);
 
@@ -41,7 +41,7 @@ class US135ControllerTest {
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
+        powerSourceTypeList.addPowerSourceType(powerSourceType);
 
         US135Controller us135Controller = new US135Controller(houseGridList, powerSourceTypeList);
 
@@ -63,7 +63,7 @@ class US135ControllerTest {
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
+        powerSourceTypeList.addPowerSourceType(powerSourceType);
 
 
         US135Controller us135Controller = new US135Controller(houseGridList, powerSourceTypeList);
@@ -86,7 +86,7 @@ class US135ControllerTest {
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
+        powerSourceTypeList.addPowerSourceType(powerSourceType);
 
         US135Controller us135Controller = new US135Controller(houseGridList, powerSourceTypeList);
 
@@ -108,7 +108,7 @@ class US135ControllerTest {
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
+        powerSourceTypeList.addPowerSourceType(powerSourceType);
 
         US135Controller us135Controller = new US135Controller(houseGridList, powerSourceTypeList);
 
@@ -130,7 +130,7 @@ class US135ControllerTest {
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
+        powerSourceTypeList.addPowerSourceType(powerSourceType);
 
         String powerSourceName = "ps1";
 
@@ -162,7 +162,7 @@ class US135ControllerTest {
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
+        powerSourceTypeList.addPowerSourceType(powerSourceType);
 
         String powerSourceName = "ps1";
 
@@ -191,7 +191,7 @@ class US135ControllerTest {
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
+        powerSourceTypeList.addPowerSourceType(powerSourceType);
 
         String powerSourceName1 = "ps1";
         String powerSourceName2 = "ps1";
@@ -221,7 +221,7 @@ class US135ControllerTest {
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType);
+        powerSourceTypeList.addPowerSourceType(powerSourceType);
 
         US135Controller controller = new US135Controller(houseGridList, powerSourceTypeList);
 

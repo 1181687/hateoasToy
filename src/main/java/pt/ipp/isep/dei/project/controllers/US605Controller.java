@@ -4,7 +4,7 @@ import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Measurement;
 import pt.ipp.isep.dei.project.model.SensorType;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class US605Controller {
 
@@ -71,11 +71,11 @@ public class US605Controller {
      * @param date receives a given day
      * @return the maximum temperature of that room in the choosen day
      */
-    public double getMaximumTemperatureOfARoomInAGivenDay(String name, SensorType type, Date date) {
+    public double getMaximumTemperatureOfARoomInAGivenDay(String name, SensorType type, LocalDate date) {
         return this.mHouse.getMaximumTemperatureOfARoomInASpecificDay(name, type, date);
     }
 
-    public Date createANewDate(int year, int month, int day) {
+    public LocalDate createANewDate(int year, int month, int day) {
         return mHouse.createANewDate(year, month, day);
     }
 }

@@ -60,7 +60,7 @@ public class HouseGrid {
     }
 
     public boolean addPowerSourceToHouseGrid(PowerSource newPowerSource) {
-        return this.mPowerSourceList.addPowerSourceToList(newPowerSource);
+        return this.mPowerSourceList.addPowerSource(newPowerSource);
     }
 
     /**
@@ -69,7 +69,7 @@ public class HouseGrid {
      * @return a list of existing rooms attached to a house grid.
      */
     public String displayRoomsAttachedToHouseGrid() {
-        return this.mRoomsConnectedToHouseGrid.getDisplayRoomList();
+        return this.mRoomsConnectedToHouseGrid.displayRoomList();
     }
 
 

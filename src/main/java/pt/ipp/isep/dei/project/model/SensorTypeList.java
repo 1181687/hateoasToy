@@ -41,7 +41,7 @@ public class SensorTypeList {
     public String displaySensorTypeList() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= this.mListaTiposSensores.size(); i++) {
-            content.append(i + " - Sensor Type: " + this.mListaTiposSensores.get(i - 1).getmTipo());
+            content.append(i + " - Sensor Type: " + this.mListaTiposSensores.get(i - 1).getmType());
             content.append("\n");
         }
         return content.toString();

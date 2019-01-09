@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.SensorType;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 
 public class US620Controller {
@@ -23,15 +23,15 @@ public class US620Controller {
         this.mTypeTemperature = new SensorType("temperature");
     }
 
-    public double getTotalRainfallInTheHouseAreaInTheSelectedDay (Date day){
+    public double getTotalRainfallInTheHouseAreaInTheSelectedDay(LocalDate day) {
         return mHouse.getTotalDailyMeasurementOfHouseArea(mTypeRainfall, day);
     }
 
-    public double getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(Date date1, Date date2){
+    public double getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(LocalDate date1, LocalDate date2) {
         return mHouse.getAverageDailyMeasurementOfHouseArea(mTypeRainfall, date1, date2);
     }
 
-    public Date createANewDate (int year, int month, int day){
+    public LocalDate createANewDate(int year, int month, int day) {
         return mHouse.createANewDate(year, month, day);
     }
 
@@ -40,6 +40,6 @@ public class US620Controller {
     }
 
     public String getmTypeTemperature() {
-        return mTypeTemperature.getmTipo();
+        return mTypeTemperature.getmType();
     }
 }

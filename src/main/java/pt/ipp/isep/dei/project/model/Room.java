@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;
@@ -54,18 +54,53 @@ public class Room {
         }
     }
 
+    /**
+     * Get method
+     *
+     * @return mName
+     */
     public String getmName() {
         return mName;
     }
 
+    /**
+     * Method that defines the name of the room
+     *
+     * @param mName name of a room (string)
+     */
+    public void setmName(String mName) {
+        this.mName = mName;
+    }
+
+    /**
+     * Get Method
+     * @return mHouseFloor
+     */
     public int getmHouseFloor() {
         return mHouseFloor;
     }
 
+    /**
+     * Method that defines the House Floor number of the room
+     *
+     * @param mHouseFloor house floor of the room (int number)
+     */
+    public void setmHouseFloor(int mHouseFloor) {
+        this.mHouseFloor = mHouseFloor;
+    }
+
+    /**
+     * Get Method
+     * @return mDimensions
+     */
     public Dimensions getmDimensions() {
         return mDimensions;
     }
 
+    /**
+     * method that displays a Room with its characteristics (name, house floor, height, length and width)
+     * @return Rooms
+     */
     public String getRoomDisplay() {
         StringBuilder content = new StringBuilder();
         content.append("Name: " + getmName());
@@ -74,14 +109,6 @@ public class Room {
         content.append(", Dimensions - Length: " + getmDimensions().getmLength());
         content.append(", Dimensions - Width: " + getmDimensions().getmWidth());
         return content.toString();
-    }
-
-    public void setmName(String mName) {
-        this.mName = mName;
-    }
-
-    public void setmHouseFloor(int mHouseFloor) {
-        this.mHouseFloor = mHouseFloor;
     }
 
     /**
@@ -125,7 +152,7 @@ public class Room {
     }
 
     /**
-     * This method get de sensors list.
+     * This method gets the sensor list.
      *
      * @return the list of sensors.
      */
@@ -138,11 +165,15 @@ public class Room {
      * @param date any given day
      * @return maximum temperature
      */
-    public double getMaximumMeasurementInAGivenDay(SensorType type, Date date) {
+    public double getMaximumMeasurementInAGivenDay(SensorType type, LocalDate date) {
         return mSensorList.getMaximumMeasureOfATypeOfSensorInAGivenDay(type, date);
     }
 
-
+    /**
+     * Method that gets the latest measurement by type of sensor
+     * @param type type of sensor
+     * @return latest measurement by sensor type
+     */
     public Measurement getLatestMeasurementBySensorType(SensorType type) {
         return mSensorList.getLatestMeasurementBySensorType(type);
     }

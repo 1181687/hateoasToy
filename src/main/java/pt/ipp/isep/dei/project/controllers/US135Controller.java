@@ -38,7 +38,7 @@ public class US135Controller {
     }
 
     public String getPowerSourceTypeListContent() {
-        return mPowerSourceTypeList.getPowerSourceTypeListContent();
+        return mPowerSourceTypeList.displayPowerSourceTypeList();
     }
 
     public int powerSourceTypeListLength(){
@@ -46,7 +46,7 @@ public class US135Controller {
     }
 
     public void getPowerSourceTypeFromListByPosition(int position) {
-        this.mSelectedPowerSourceType = this.mPowerSourceTypeList.getPowerSourceTypeFromASpecificPositionInTheList(position);
+        this.mSelectedPowerSourceType = this.mPowerSourceTypeList.getPowerSourceTypeFromASpecificPosition(position);
     }
 
     public String getHouseGridName(){

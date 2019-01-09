@@ -24,7 +24,7 @@ public class US253Controller {
      * @return the RoomList.
      */
     public String displayRoomsInTheHouse () {
-        return this.mRoomList.getDisplayRoomList();
+        return this.mRoomList.displayRoomList();
     }
 
     /**
@@ -32,7 +32,7 @@ public class US253Controller {
      * @param position of the room in the list of rooms.
      */
     public void getRoomByIndex (int position) {
-        mSelectedRoom = this.mRoomList.getRoomFromASpecificPositionInTheList(position);
+        mSelectedRoom = this.mRoomList.getRoomFromASpecificPosition(position);
     }
 
     /**

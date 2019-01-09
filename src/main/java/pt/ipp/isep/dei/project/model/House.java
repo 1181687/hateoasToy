@@ -2,8 +2,6 @@ package pt.ipp.isep.dei.project.model;
 
 
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.List;
 
 public class House {
@@ -62,7 +60,7 @@ public class House {
      * @return true if adds, false if doesn't
      */
     public boolean addRoomToHouse(Room room) {
-        return this.mRoomList.addRoomToRoomList(room);
+        return this.mRoomList.addRoom(room);
     }
 
     /**
@@ -78,7 +76,7 @@ public class House {
         return mInsertedGeoArea.getTheLastMeasurementInTheArea(mAddress.getLocation(), type);
     }
 
-    public double getAverageDailyMeasurementOfHouseArea(SensorType measurementType, Date startDate, Date endDate) {
+    public double getAverageDailyMeasurementOfHouseArea(SensorType measurementType, LocalDate startDate, LocalDate endDate) {
         List<Double> listOfDailyAverages = mInsertedGeoArea.getDailyAverageMeasurementInTheArea(measurementType, startDate, endDate);
         double sum = 0;
         if (listOfDailyAverages.isEmpty()) {
@@ -90,7 +88,7 @@ public class House {
         return sum / listOfDailyAverages.size();
     }
 
-    public double getTotalDailyMeasurementOfHouseArea(SensorType measurementType, Date day) {
+    public double getTotalDailyMeasurementOfHouseArea(SensorType measurementType, LocalDate day) {
         return mInsertedGeoArea.getTotalDailyMeasurementInTheArea(measurementType, day);
     }
 
@@ -100,15 +98,12 @@ public class House {
      * @param date given day
      * @return returns the maximum temperature in a specific day
      */
-    public double getMaximumTemperatureOfARoomInASpecificDay(String name, SensorType type, Date date) {
+    public double getMaximumTemperatureOfARoomInASpecificDay(String name, SensorType type, LocalDate date) {
         return this.mRoomList.getMaximumTemperatureInARoomInAGivenDay(name, type, date);
     }
 
-    public Date createANewDate (int year, int month, int day){
-        LocalDate date = LocalDate.of(year, month, day);
-        //Convert LocalDate to Date
-        Date newDate = Date.from(date.atStartOfDay(ZoneId.systemDefault()).toInstant());
-        return newDate;
+    public LocalDate createANewDate(int year, int month, int day) {
+        return LocalDate.of(year, month, day);
     }
 
 
@@ -123,7 +118,7 @@ public class House {
     }
 
     public String getDisplayRoomList() {
-        return mRoomList.getDisplayRoomList();
+        return mRoomList.displayRoomList();
     }
 
     public int listSize() {
@@ -131,7 +126,7 @@ public class House {
     }
 
     public String getNameOfTheChosenRoomInSpecificPos(int position) {
-        return mRoomList.getNameOfTheChosenRoomInSpecificPos(position);
+        return mRoomList.getNameOfTheChosenRoomInSpecificPosition(position);
     }
 
     public Room newRoom(double height, double length, double width, String name, int housefloor) {

@@ -1,12 +1,12 @@
 package pt.ipp.isep.dei.project.model;
 
-public class RectangleArea {
+public class AreaShape {
     private double mLength;
     private double mWidth;
     private Location mLocationRectangleArea;
 
 
-    public RectangleArea(double largura, double comprimento, Location locationRetangulo) {
+    public AreaShape(double largura, double comprimento, Location locationRetangulo) {
         mLength = comprimento;
         mWidth = largura;
         mLocationRectangleArea = locationRetangulo;
@@ -32,11 +32,11 @@ public class RectangleArea {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof RectangleArea)) {
+        if (!(obj instanceof AreaShape)) {
             return false;
         }
 
-        RectangleArea local = (RectangleArea) obj;
+        AreaShape local = (AreaShape) obj;
         final double delta = 0.0001;
         return mLocationRectangleArea.equals(local.mLocationRectangleArea)&& Math.abs((mLength -local.mLength))<delta && Math.abs((mWidth -local.mWidth))<delta;
     }

@@ -4,7 +4,7 @@ import pt.ipp.isep.dei.project.controllers.US620Controller;
 import pt.ipp.isep.dei.project.model.House;
 
 import java.time.DateTimeException;
-import java.util.Date;
+import java.time.LocalDate;
 
 public class US620UI {
     private US620Controller mCtrl;
@@ -36,7 +36,7 @@ public class US620UI {
                 flag = true;
             }
         } while (flag);
-        Date date = mCtrl.createANewDate(year, month, day);
+        LocalDate date = mCtrl.createANewDate(year, month, day);
 
         if (!(Double.isNaN(mCtrl.getTotalRainfallInTheHouseAreaInTheSelectedDay(date)))) {
             System.out.println("The total Rainfall of this House Area is " + mCtrl.getTotalRainfallInTheHouseAreaInTheSelectedDay(date));
@@ -82,10 +82,10 @@ public class US620UI {
                 flag = true;
             }
         } while (flag);
-        Date date1 = mCtrl.createANewDate(year1, month1, day1);
-        Date date2 = mCtrl.createANewDate(year2, month2, day2);
+        LocalDate date1 = mCtrl.createANewDate(year1, month1, day1);
+        LocalDate date2 = mCtrl.createANewDate(year2, month2, day2);
 
-        if (date1.after(date2)) {
+        if (date1.isAfter(date2)) {
             System.out.println("That is not a valid period. Please try again.\n");
             return;
         }

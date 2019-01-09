@@ -5,9 +5,7 @@ import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Sensor;
 import pt.ipp.isep.dei.project.model.SensorType;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -19,7 +17,7 @@ class SensorTypeTest {
         SensorType tipo0 = new SensorType("Temperatura");
         String expectedResult = "Temperatura";
         //Act
-        String result = tipo0.getmTipo();
+        String result = tipo0.getmType();
         //Assert
         assertEquals(result,expectedResult);
     }
@@ -72,8 +70,7 @@ class SensorTypeTest {
         //Arrange
         SensorType tipo0 = new SensorType("Temperatura");
         // Instanciar Sensor
-        Calendar calendario = new GregorianCalendar(1991, 11, 2);
-        Date dataFuncionamento = calendario.getTime();
+        LocalDateTime dataFuncionamento = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
