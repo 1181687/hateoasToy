@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoField;
@@ -70,7 +71,7 @@ public class Sensor {
         List<Double> measurementsBetweenDates = new ArrayList<>();
 
         for (Measurement measurement : mMeasurements) {
-            if (measurement.getmDateTime().toLocalDate().isAfter(startDate) && measurement.getmDateTime().toLocalDate().isBefore(endDate)) {
+            if ((measurement.getmDateTime().toLocalDate().isEqual(startDate) || measurement.getmDateTime().toLocalDate().isAfter(startDate)) && (measurement.getmDateTime().toLocalDate().isEqual(endDate) || measurement.getmDateTime().toLocalDate().isBefore(endDate))) {
                 measurementsBetweenDates.add(measurement.getmValue());
             }
         }
@@ -203,17 +204,22 @@ public class Sensor {
     }
 
     public LocalDate getFirstDayOfWeek(LocalDate date) {
-        return (date.with(ChronoField.DAY_OF_WEEK, 1));
+        if (date.getDayOfWeek().equals(DayOfWeek.SUNDAY)) {
+            return date;
+        }
+        return (date.with(ChronoField.DAY_OF_WEEK, 1)).minusDays(1);
     }
 
     public List<Double> lowestMeasurementsOfWeek(LocalDate date) {
         List<Double> registosMinimosSemana = new ArrayList<>();
         LocalDate primeiroDiaSemana = getFirstDayOfWeek(date);
-        for (LocalDate diaDaSemana = primeiroDiaSemana; diaDaSemana.isBefore(primeiroDiaSemana.plusDays(7)); diaDaSemana.plusDays(1)) {
+        LocalDate ultimoDiaSemana = primeiroDiaSemana.plusDays(6);
+        for (LocalDate diaDaSemana = primeiroDiaSemana; diaDaSemana.isBefore(ultimoDiaSemana.plusDays(1)); diaDaSemana.plusDays(1)) {
             double minimoDia = getLowestMeasurementOfDay(diaDaSemana);
             if (!Double.isNaN(minimoDia)) {
                 registosMinimosSemana.add(minimoDia);
             }
+            diaDaSemana = diaDaSemana.plusDays(1);
         }
         return registosMinimosSemana;
     }
@@ -261,7 +267,7 @@ public class Sensor {
             if (!Double.isNaN(maximoDia)) {
                 registosMaximosSemana.add(maximoDia);
             }
-            primeiroDiaSemana.plusDays(1);
+            primeiroDiaSemana = primeiroDiaSemana.plusDays(1);
             contador++;
         }
         return registosMaximosSemana;

@@ -82,14 +82,14 @@ public class GeographicalArea {
         return listOfInsertedSensors;
     }
 
-    public List<Sensor> listSensorsOfACertainTypeInTheGeoAreaInAGivenPeriod(SensorType type, List<Sensor> sensorList, LocalDate startDate, LocalDate endDate) {
+    public SensorList listSensorsOfACertainTypeInTheGeoAreaInAGivenPeriod(SensorType type, List<Sensor> sensorList, LocalDate startDate, LocalDate endDate) {
 
         List<Sensor> listOfSensorsInGeoAreaByType = sortSensorsInAGeoAreaByType(type, sensorList);
-        List<Sensor> listOfSensorsOfATypeDuringAPeriod = new ArrayList<>();
+        SensorList listOfSensorsOfATypeDuringAPeriod = new SensorList();
 
         for (Sensor sensor : listOfSensorsInGeoAreaByType) {
             if (sensor.checkMeasurementExistenceBetweenDates(startDate, endDate)) {
-                listOfSensorsOfATypeDuringAPeriod.add(sensor);
+                listOfSensorsOfATypeDuringAPeriod.addSensorToTheListOfSensors(sensor);
             }
         }
         return listOfSensorsOfATypeDuringAPeriod;
@@ -100,7 +100,7 @@ public class GeographicalArea {
         List<Sensor> sensorListByTypeInADay = new ArrayList<>();
 
         for (Sensor sensor : sensorListByTypeInAGeoArea) {
-            if (sensor.checkMeasurementExistenceBetweenDates(day.atStartOfDay().toLocalDate(), day.plusDays(1).atStartOfDay().toLocalDate())) {
+            if (sensor.checkMeasurementExistenceBetweenDates(day, day)) {
                 sensorListByTypeInADay.add(sensor);
             }
         }
@@ -168,22 +168,6 @@ public class GeographicalArea {
         return Double.NaN;
     }
 
-    /**
-     * Method that returns de daily average of the measurements of a list of sensors
-     *
-     * @param sensorList
-     * @param date
-     * @return
-     */
-    public double getDailyAverageOfAListOfSensors(List<Sensor> sensorList, LocalDate date) {
-        double dailyAverage = Double.NaN;
-        for (Sensor sensor : sensorList) {
-            if (!(sensor.getDailyMeasurement(date).isEmpty())) {
-                dailyAverage = sensor.getDailyAverage(date);
-            }
-        }
-        return dailyAverage;
-    }
 
     /**
      * Method that returns an ArrayList with the daily averages between two dates.
@@ -195,12 +179,12 @@ public class GeographicalArea {
      */
     public List<Double> getDailyAverageMeasurementInTheArea(SensorType sensorType, LocalDate startDate, LocalDate endDate) {
         List<Double> listOfDailyAverages = new ArrayList<>();
-        List<Sensor> sensorListWithRightTypeDuringPeriod = listSensorsOfACertainTypeInTheGeoAreaInAGivenPeriod(sensorType, this.mSensorList.getmSensorList(), startDate, endDate);
+        SensorList sensorListWithRightTypeDuringPeriod = listSensorsOfACertainTypeInTheGeoAreaInAGivenPeriod(sensorType, this.mSensorList.getmSensorList(), startDate, endDate);
 
         for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate); dateIterator = dateIterator.plusDays(1)) {
-            double dailyAverage = getDailyAverageOfAListOfSensors(sensorListWithRightTypeDuringPeriod, dateIterator);
+            double dailyAverage = sensorListWithRightTypeDuringPeriod.getDailyAverageOfTheListOfSensors(dateIterator);
             if (!Double.isNaN(dailyAverage)) {
-                listOfDailyAverages.add(getDailyAverageOfAListOfSensors(sensorListWithRightTypeDuringPeriod, dateIterator));
+                listOfDailyAverages.add(sensorListWithRightTypeDuringPeriod.getDailyAverageOfTheListOfSensors(dateIterator));
             }
         }
         return listOfDailyAverages;
