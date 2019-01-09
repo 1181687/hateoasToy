@@ -4,22 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HouseGridList {
-    private List<HouseGrid> mList;
+    private List<HouseGrid> mHouseGridsList;
 
     /**
-     * Constructor method.
+     * constructor of the house grid list that receives a list of house grids.
      */
     public HouseGridList() {
-        mList = new ArrayList<>();
+        mHouseGridsList = new ArrayList<>();
     }
 
     /**
      * Get method.
      *
-     * @return mList.
+     * @return mHouseGridsList.
      */
-    public List<HouseGrid> getmList() {
-        return mList;
+    public List<HouseGrid> getmHouseGridsList() {
+        return mHouseGridsList;
     }
 
     /**
@@ -29,7 +29,7 @@ public class HouseGridList {
      * @return The respective house grid.
      */
     public HouseGrid getHouseGridFromASpecificPositionInTheList(int position) {
-        return mList.get(position);
+        return mHouseGridsList.get(position);
     }
 
     /**
@@ -39,15 +39,15 @@ public class HouseGridList {
      */
     public String getContentOfTheHouseGridsInTheList() {
         StringBuilder content = new StringBuilder();
-        for (int i = 1; i <= mList.size(); i++) {
-            content.append(i + " - Name: " + mList.get(i - 1).getmHouseGridName());
+        for (int i = 1; i <= mHouseGridsList.size(); i++) {
+            content.append(i + " - Name: " + mHouseGridsList.get(i - 1).getmHouseGridName());
             content.append("\n");
         }
         return content.toString();
     }
 
     public String displayRoomsInTheHouseGrid(int position) {
-        return mList.get(position).displayRoomsAttachedToHouseGrid();
+        return mHouseGridsList.get(position).displayRoomsAttached();
     }
 
     /**
@@ -57,8 +57,8 @@ public class HouseGridList {
      * @param roomSelected      Specified room.
      */
     public boolean detachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
-        int index = mList.indexOf(houseGridSelected);
-        return mList.get(index).detachRoomFromHouseGrid(roomSelected);
+        int index = mHouseGridsList.indexOf(houseGridSelected);
+        return mHouseGridsList.get(index).detachRoom(roomSelected);
     }
 
     /**
@@ -68,8 +68,8 @@ public class HouseGridList {
      * @param roomSelected      Specified room.
      */
     public void attachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
-        int index = mList.indexOf(houseGridSelected);
-        mList.get(index).attachRoomInTheHouseGridRoomList(roomSelected);
+        int index = mHouseGridsList.indexOf(houseGridSelected);
+        mHouseGridsList.get(index).attachRoomToTheRoomList(roomSelected);
     }
 
     /**
@@ -78,7 +78,7 @@ public class HouseGridList {
      * @return True or false.
      */
     public boolean checkIfHouseGridListIsEmpty (){
-        return mList.isEmpty();
+        return mHouseGridsList.isEmpty();
     }
 
     /**
@@ -97,7 +97,7 @@ public class HouseGridList {
      * @param grid Specified grid.
      */
     public void addHouseGridToTheList(HouseGrid grid) {
-        mList.add(grid);
+        mHouseGridsList.add(grid);
     }
 
     /**
@@ -108,8 +108,8 @@ public class HouseGridList {
      * @return True or false.
      */
     public boolean checkIfARoomIsAlreadyInAHouseGrid(HouseGrid chosenGrid, Room room) {
-        int index = mList.indexOf(chosenGrid);
-        return mList.get(index).checkIfARoomIsAlreadyInTheGrid(room);
+        int index = mHouseGridsList.indexOf(chosenGrid);
+        return mHouseGridsList.get(index).checkIfARoomIsAlreadyInTheGrid(room);
     }
 
     /**
@@ -119,7 +119,7 @@ public class HouseGridList {
      * @return Grid where the room is is connected to.
      */
     public HouseGrid getTheGridWhereTheRoomIsConnected(Room room) {
-        for (HouseGrid houseGrid : mList) {
+        for (HouseGrid houseGrid : mHouseGridsList) {
             if (houseGrid.checkIfARoomIsAlreadyInTheGrid(room)) {
                 return houseGrid;
             }

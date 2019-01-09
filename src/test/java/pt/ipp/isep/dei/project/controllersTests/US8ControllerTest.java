@@ -27,8 +27,8 @@ class US8ControllerTest {
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         ag2.setInsertedIn(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag2);
+        listaDeAGs.addGeoArea(ag1);
+        listaDeAGs.addGeoArea(ag2);
 
         US8Controller ctrl = new US8Controller(listaDeAGs);
 
@@ -59,8 +59,8 @@ class US8ControllerTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        listaDeAGs.addGeoAreaToTheList(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag2);
+        listaDeAGs.addGeoArea(ag1);
+        listaDeAGs.addGeoArea(ag2);
 
         US8Controller ctrl = new US8Controller(listaDeAGs);
 
@@ -92,8 +92,8 @@ class US8ControllerTest {
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         ag2.setInsertedIn(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag2);
+        listaDeAGs.addGeoArea(ag1);
+        listaDeAGs.addGeoArea(ag2);
 
         US8Controller ctrl = new US8Controller(listaDeAGs);
 
@@ -124,8 +124,8 @@ class US8ControllerTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        listaDeAGs.addGeoAreaToTheList(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag2);
+        listaDeAGs.addGeoArea(ag1);
+        listaDeAGs.addGeoArea(ag2);
 
         US8Controller ctrl = new US8Controller(listaDeAGs);
 
@@ -155,8 +155,8 @@ class US8ControllerTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        lista.addGeoAreaToTheList(ag1);
-        lista.addGeoAreaToTheList(ag2);
+        lista.addGeoArea(ag1);
+        lista.addGeoArea(ag2);
 
         US8Controller ctrl = new US8Controller(lista);
 
@@ -273,9 +273,9 @@ class US8ControllerTest {
 
         ag2.setInsertedIn(ag1);
 
-        geoAreaList.addGeoAreaToTheList(ag1);
-        geoAreaList.addGeoAreaToTheList(ag2);
-        geoAreaList.addGeoAreaToTheList(ag3);
+        geoAreaList.addGeoArea(ag1);
+        geoAreaList.addGeoArea(ag2);
+        geoAreaList.addGeoArea(ag3);
 
         US8Controller ctrl = new US8Controller(geoAreaList);
 
@@ -308,8 +308,8 @@ class US8ControllerTest {
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         ag2.setInsertedIn(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag2);
+        listaDeAGs.addGeoArea(ag1);
+        listaDeAGs.addGeoArea(ag2);
 
         US8Controller ctrl = new US8Controller(listaDeAGs);
 
@@ -344,9 +344,9 @@ class US8ControllerTest {
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
 
-        geoAreaList.addGeoAreaToTheList(ag1);
-        geoAreaList.addGeoAreaToTheList(ag2);
-        geoAreaList.addGeoAreaToTheList(ag3);
+        geoAreaList.addGeoArea(ag1);
+        geoAreaList.addGeoArea(ag2);
+        geoAreaList.addGeoArea(ag3);
 
         US8Controller ctrl = new US8Controller(geoAreaList);
 
@@ -387,9 +387,9 @@ class US8ControllerTest {
         ag1.setInsertedIn(ag2);
         ag2.setInsertedIn(ag3);
 
-        geoAreaList.addGeoAreaToTheList(ag1);
-        geoAreaList.addGeoAreaToTheList(ag2);
-        geoAreaList.addGeoAreaToTheList(ag3);
+        geoAreaList.addGeoArea(ag1);
+        geoAreaList.addGeoArea(ag2);
+        geoAreaList.addGeoArea(ag3);
 
         US8Controller ctrl = new US8Controller(geoAreaList);
 

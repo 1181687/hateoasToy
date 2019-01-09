@@ -20,7 +20,7 @@ public class Main {
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeoAreaType geoAreaType = new GeoAreaType("Urban area");
         GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geoAreaType, location, areaShape);
-        geoAreaList.addGeoAreaToTheListInASpecificPosition(0, insertedGeoArea);
+        geoAreaList.addGeoAreaInASpecificPosition(0, insertedGeoArea);
 
         // Sensor
         LocalDateTime date1 = LocalDate.of(2018, 11, 1).atTime(15, 00, 00);
@@ -53,11 +53,11 @@ public class Main {
         double width = 7;
         Dimensions dimensions = new Dimensions(height, length, width);
         Room room1 = new Room(name, houseFloor, dimensions);
-        houseEdificioB.addRoomToHouse(room1);
+        houseEdificioB.addRoom(room1);
 
         String name2 = "B109";
         Room room2 = new Room(name2, houseFloor, dimensions);
-        houseEdificioB.addRoomToHouse(room2);
+        houseEdificioB.addRoom(room2);
 
         // Power Source Type (and List)
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");

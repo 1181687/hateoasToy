@@ -37,7 +37,7 @@ class US135ControllerTest {
         String houseGridName = "hgname1";
         HouseGrid houseGrid1 = new HouseGrid(houseGridName);
         HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmList().add(houseGrid1);
+        houseGridList.getmHouseGridsList().add(houseGrid1);
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
@@ -59,7 +59,7 @@ class US135ControllerTest {
         String houseGridName = "hgname1";
         HouseGrid houseGrid1 = new HouseGrid(houseGridName);
         HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmList().add(houseGrid1);
+        houseGridList.getmHouseGridsList().add(houseGrid1);
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
@@ -82,7 +82,7 @@ class US135ControllerTest {
         String houseGridName = "hgname1";
         HouseGrid houseGrid1 = new HouseGrid(houseGridName);
         HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmList().add(houseGrid1);
+        houseGridList.getmHouseGridsList().add(houseGrid1);
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
@@ -104,7 +104,7 @@ class US135ControllerTest {
         String houseGridName = "hgname1";
         HouseGrid houseGrid1 = new HouseGrid(houseGridName);
         HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmList().add(houseGrid1);
+        houseGridList.getmHouseGridsList().add(houseGrid1);
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
@@ -126,7 +126,7 @@ class US135ControllerTest {
         String houseGridName = "hgname1";
         HouseGrid houseGrid1 = new HouseGrid(houseGridName);
         HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmList().add(houseGrid1);
+        houseGridList.getmHouseGridsList().add(houseGrid1);
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
@@ -157,8 +157,8 @@ class US135ControllerTest {
         HouseGrid houseGrid2 = new HouseGrid(houseGridName2);
 
         HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmList().add(houseGrid1);
-        houseGridList.getmList().add(houseGrid2);
+        houseGridList.getmHouseGridsList().add(houseGrid1);
+        houseGridList.getmHouseGridsList().add(houseGrid2);
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
@@ -187,7 +187,7 @@ class US135ControllerTest {
         String houseGridName = "hgname1";
         HouseGrid houseGrid1 = new HouseGrid(houseGridName);
         HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmList().add(houseGrid1);
+        houseGridList.getmHouseGridsList().add(houseGrid1);
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
@@ -217,7 +217,7 @@ class US135ControllerTest {
         String houseGridName = "hgname1";
         HouseGrid houseGrid1 = new HouseGrid(houseGridName);
         HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmList().add(houseGrid1);
+        houseGridList.getmHouseGridsList().add(houseGrid1);
 
         PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();

@@ -22,7 +22,7 @@ public class HouseTest {
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
-        boolean result = house.addRoomToHouse(room);
+        boolean result = house.addRoom(room);
         assertTrue(result);
     }
 
@@ -37,7 +37,7 @@ public class HouseTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
-        boolean result = house.addRoomToHouse(null);
+        boolean result = house.addRoom(null);
         assertFalse(result);
     }
 
@@ -59,7 +59,7 @@ public class HouseTest {
 
         Location expectedResult = local;
         // Act
-        Location result = house.getLocationOfTheHouse();
+        Location result = house.getLocation();
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -122,7 +122,7 @@ public class HouseTest {
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getAverageDailyMeasurementOfHouseArea(searchType, startDate, endDate);
+        double result = house.getAverageDailyMeasurement(searchType, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -164,7 +164,7 @@ public class HouseTest {
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getAverageDailyMeasurementOfHouseArea(searchType, startDate, endDate);
+        double result = house.getAverageDailyMeasurement(searchType, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -198,8 +198,8 @@ public class HouseTest {
         String gridName1 = "Grid1";
         HouseGrid grid0 = new HouseGrid(gridName0);
         HouseGrid grid1 = new HouseGrid(gridName1);
-        houseGridList.getmList().add(grid0);
-        houseGridList.getmList().add(grid1);
+        houseGridList.getmHouseGridsList().add(grid0);
+        houseGridList.getmHouseGridsList().add(grid1);
 
 
         //Instanciar Address
@@ -261,7 +261,7 @@ public class HouseTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = house.getLastMeasurementOfTheHouseArea(type);
+        double result = house.getLastMeasurement(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -295,8 +295,8 @@ public class HouseTest {
         String gridName1 = "Grid1";
         HouseGrid grid0 = new HouseGrid(gridName0);
         HouseGrid grid1 = new HouseGrid(gridName1);
-        houseGridList.getmList().add(grid0);
-        houseGridList.getmList().add(grid1);
+        houseGridList.getmHouseGridsList().add(grid0);
+        houseGridList.getmHouseGridsList().add(grid1);
 
 
         //Instanciar Address
@@ -336,7 +336,7 @@ public class HouseTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = house.getLastMeasurementOfTheHouseArea(type);
+        double result = house.getLastMeasurement(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -370,8 +370,8 @@ public class HouseTest {
         String gridName1 = "Grid1";
         HouseGrid grid0 = new HouseGrid(gridName0);
         HouseGrid grid1 = new HouseGrid(gridName1);
-        houseGridList.getmList().add(grid0);
-        houseGridList.getmList().add(grid1);
+        houseGridList.getmHouseGridsList().add(grid0);
+        houseGridList.getmHouseGridsList().add(grid1);
 
 
         //Instanciar Address
@@ -397,7 +397,7 @@ public class HouseTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = house.getLastMeasurementOfTheHouseArea(type);
+        double result = house.getLastMeasurement(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -459,7 +459,7 @@ public class HouseTest {
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getTotalDailyMeasurementOfHouseArea(searchType, day);
+        double result = house.getTotalDailyMeasurement(searchType, day);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -531,7 +531,7 @@ public class HouseTest {
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
-        house.addRoomToHouse(room);
+        house.addRoom(room);
 
         //Act
         Measurement result = house.getLatestMeasurementBySensorType("F5", sensorType);
@@ -605,7 +605,7 @@ public class HouseTest {
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
-        house.addRoomToHouse(room);
+        house.addRoom(room);
 
         //Act
         Measurement result = house.getLatestMeasurementBySensorType("F5", tipoResultado);
@@ -679,7 +679,7 @@ public class HouseTest {
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
-        house.addRoomToHouse(room);
+        house.addRoom(room);
 
         //Act
         Measurement result = house.getLatestMeasurementBySensorType("F6", tipoResultado);
@@ -734,7 +734,7 @@ public class HouseTest {
         Dimensions dimensions = new Dimensions(height, length, width);
         Room room1 = new Room(name, houseFloor, dimensions);
 
-        house.addRoomToHouse(room1);
+        house.addRoom(room1);
 
         LocalDateTime date0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");

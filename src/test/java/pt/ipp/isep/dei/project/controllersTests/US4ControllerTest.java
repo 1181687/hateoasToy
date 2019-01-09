@@ -44,8 +44,8 @@ public class US4ControllerTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        lista.addGeoAreaToTheList(ag1);
-        lista.addGeoAreaToTheList(ag2);
+        lista.addGeoArea(ag1);
+        lista.addGeoArea(ag2);
 
         US4Controller ctrl = new US4Controller(lista, geoAreaTypeList);
         ArrayList<String> expectedResult = new ArrayList<>(Arrays.asList("Porto"));

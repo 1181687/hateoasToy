@@ -31,7 +31,7 @@ public class HouseGridTest {
                 "\n";
 
         // Act
-        String result = houseGrid1.displayRoomsAttachedToHouseGrid();
+        String result = houseGrid1.displayRoomsAttached();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -46,7 +46,7 @@ public class HouseGridTest {
         Room room = new Room(roomName, houseFloor1, dimensions1);
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
-        grid.attachRoomInTheHouseGridRoomList(room);
+        grid.attachRoomToTheRoomList(room);
 
         // Act
         boolean result = grid.getmRoomsConnectedToHouseGrid().getmRoomList().contains(room);

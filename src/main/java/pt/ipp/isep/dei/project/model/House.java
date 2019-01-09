@@ -10,6 +10,13 @@ public class House {
     private Address mAddress;
     private GeographicalArea mInsertedGeoArea;
 
+    /**
+     * constructor of house that receives a room list, a list of house grids, an address and an insertedGeoArea.
+     * @param mRoomList
+     * @param mListHouseGrids
+     * @param mAddress
+     * @param mInsertedGeoArea
+     */
     public House(RoomList mRoomList, HouseGridList mListHouseGrids, Address mAddress, GeographicalArea mInsertedGeoArea) {
         this.mRoomList = mRoomList;
         this.mListHouseGrids = mListHouseGrids;
@@ -18,7 +25,7 @@ public class House {
     }
 
     /**
-     * Get Method
+     * Get Method of Address
      *
      * @return mAddress
      */
@@ -27,7 +34,7 @@ public class House {
     }
 
     /**
-     * Set Method
+     * Set Method of address
      *
      * @param mAddress
      */
@@ -49,6 +56,10 @@ public class House {
         return new Address(mZipCode, location);
     }
 
+    /**
+     * method that get inserted geo area
+     * @return inserted geo area.
+     */
     public GeographicalArea getmInsertedGeoArea() {
         return mInsertedGeoArea;
     }
@@ -59,7 +70,7 @@ public class House {
      * @param room given room to be added
      * @return true if adds, false if doesn't
      */
-    public boolean addRoomToHouse(Room room) {
+    public boolean addRoom(Room room) {
         return this.mRoomList.addRoom(room);
     }
 
@@ -68,16 +79,28 @@ public class House {
      *
      * @return the location of the house.
      */
-    public Location getLocationOfTheHouse() {
+    public Location getLocation() {
         return this.mAddress.getLocation();
     }
 
-    public double getLastMeasurementOfTheHouseArea(SensorType type) {
-        return mInsertedGeoArea.getTheLastMeasurementInTheArea(mAddress.getLocation(), type);
+    /**
+     * method that get the last measurement of house area.
+     * @param type
+     * @return the last measurement with a location and a type of sensor.
+     */
+    public double getLastMeasurement(SensorType type) {
+        return mInsertedGeoArea.getTheLastMeasurement(mAddress.getLocation(), type);
     }
 
-    public double getAverageDailyMeasurementOfHouseArea(SensorType measurementType, LocalDate startDate, LocalDate endDate) {
-        List<Double> listOfDailyAverages = mInsertedGeoArea.getDailyAverageMeasurementInTheArea(measurementType, startDate, endDate);
+    /**
+     * Method that get the average daily measurement of the house area.
+     * @param measurementType
+     * @param startDate
+     * @param endDate
+     * @return the average daily measurement.
+     */
+    public double getAverageDailyMeasurement(SensorType measurementType, LocalDate startDate, LocalDate endDate) {
+        List<Double> listOfDailyAverages = mInsertedGeoArea.getDailyAverageMeasurement(measurementType, startDate, endDate);
         double sum = 0;
         if (listOfDailyAverages.isEmpty()) {
             return 0;
@@ -88,8 +111,14 @@ public class House {
         return sum / listOfDailyAverages.size();
     }
 
-    public double getTotalDailyMeasurementOfHouseArea(SensorType measurementType, LocalDate day) {
-        return mInsertedGeoArea.getTotalDailyMeasurementInTheArea(measurementType, day);
+    /**
+     * method that get the total daily measurement of the house area.
+     * @param measurementType
+     * @param day
+     * @return total daily measurement.
+     */
+    public double getTotalDailyMeasurement(SensorType measurementType, LocalDate day) {
+        return mInsertedGeoArea.getTotalDailyMeasurement(measurementType, day);
     }
 
     /**
@@ -102,11 +131,23 @@ public class House {
         return this.mRoomList.getMaximumTemperatureInARoomInAGivenDay(name, type, date);
     }
 
+    /**
+     * This method create a new date, with a year, a month and a day.
+     * @param year
+     * @param month
+     * @param day
+     * @return date.
+     */
     public LocalDate createANewDate(int year, int month, int day) {
         return LocalDate.of(year, month, day);
     }
 
-
+    /**
+     * Method that get the latest measurement by sensor type.
+     * @param name
+     * @param type
+     * @return latest measurement.
+     */
     public Measurement getLatestMeasurementBySensorType(String name, SensorType type) {
         Room room = mRoomList.getRoomByName(name);
         if (room == null)
@@ -117,18 +158,39 @@ public class House {
         return measurement;
     }
 
-    public String getDisplayRoomList() {
+    /**
+     * method that display a room list.
+     */
+    public String displayRoomList() {
         return mRoomList.displayRoomList();
     }
 
+    /**
+     * Method that get the size of the room list.
+     * @return size of the list of rooms.
+     */
     public int listSize() {
         return mRoomList.listSize();
     }
 
+    /**
+     * method that get the name of the chosen room in a specific position from the list.
+     * @param position
+     * @return a position.
+     */
     public String getNameOfTheChosenRoomInSpecificPos(int position) {
         return mRoomList.getNameOfTheChosenRoomInSpecificPosition(position);
     }
 
+    /**
+     * method that create a new room to the list, with height, length, width, name and housefloor.
+     * @param height
+     * @param length
+     * @param width
+     * @param name
+     * @param housefloor
+     * @return a new room in the list.
+     */
     public Room newRoom(double height, double length, double width, String name, int housefloor) {
         return mRoomList.newRoom(name, housefloor, height, length, width);
     }

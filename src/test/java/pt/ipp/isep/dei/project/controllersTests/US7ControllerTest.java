@@ -26,8 +26,8 @@ class US7ControllerTest {
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         ag2.setInsertedIn(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag2);
+        listaDeAGs.addGeoArea(ag1);
+        listaDeAGs.addGeoArea(ag2);
 
         US7Controller ctrl = new US7Controller(listaDeAGs);
 
@@ -57,8 +57,8 @@ class US7ControllerTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        lista.addGeoAreaToTheList(ag1);
-        lista.addGeoAreaToTheList(ag2);
+        lista.addGeoArea(ag1);
+        lista.addGeoArea(ag2);
 
         US7Controller ctrl = new US7Controller(lista);
 
@@ -168,7 +168,7 @@ class US7ControllerTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        listaDeAGs.addGeoAreaToTheList(ag1);
+        listaDeAGs.addGeoArea(ag1);
 
         US7Controller ctrl = new US7Controller(listaDeAGs);
 
@@ -200,8 +200,8 @@ class US7ControllerTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        listaDeAGs.addGeoAreaToTheList(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag2);
+        listaDeAGs.addGeoArea(ag1);
+        listaDeAGs.addGeoArea(ag2);
 
         US7Controller ctrl = new US7Controller(listaDeAGs);
 

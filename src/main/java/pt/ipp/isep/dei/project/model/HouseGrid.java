@@ -6,6 +6,10 @@ public class HouseGrid {
     private PowerSourceList mPowerSourceList;
     private RoomList mRoomsConnectedToHouseGrid;
 
+    /**
+     * constructor of a house grid that receives a name, a room list, a list of power sources and a maximum contracted power.
+     * @param mHouseGridName
+     */
     public HouseGrid(String mHouseGridName) {
         this.mHouseGridName = mHouseGridName;
         this.mRoomsConnectedToHouseGrid = new RoomList();
@@ -13,21 +17,35 @@ public class HouseGrid {
         this.mMaximumContractedPower = Double.NaN;
     }
 
-
+    /**
+     * constructor of a house grid that receives a name, a maximum contracted power and a list of rooms connected to the house grid.
+     * @param HouseGridName
+     * @param mMaximumContractedPower
+     * @param mRoomsConnectedToHouseGrid
+     */
     public HouseGrid(String HouseGridName, double mMaximumContractedPower, RoomList mRoomsConnectedToHouseGrid) {
         this.mHouseGridName = HouseGridName;
         this.mMaximumContractedPower = mMaximumContractedPower;
         this.mRoomsConnectedToHouseGrid = mRoomsConnectedToHouseGrid;
     }
 
+    /**
+     * method that get the name of the house grid.
+     */
     public String getmHouseGridName() {
         return mHouseGridName;
     }
 
+    /**
+     * method that get the list of power sources.
+     */
     public PowerSourceList getPowerSourceList() {
         return mPowerSourceList;
     }
 
+    /**
+     * method that get the rooms connected to the house grid.
+     */
     public RoomList getmRoomsConnectedToHouseGrid() {
         return mRoomsConnectedToHouseGrid;
     }
@@ -40,7 +58,7 @@ public class HouseGrid {
      * @param roomToDetach
      * @return
      */
-    public boolean detachRoomFromHouseGrid(Room roomToDetach) {
+    public boolean detachRoom (Room roomToDetach) {
         for (Room room : this.mRoomsConnectedToHouseGrid.getmRoomList()) {
             if (room.equals(roomToDetach)) {
                 this.mRoomsConnectedToHouseGrid.getmRoomList().remove(room);
@@ -52,14 +70,18 @@ public class HouseGrid {
 
     /**
      * Method that attaches a room in the house grid's room list.
-     *
      * @param room Speficied room to attach.
      */
-    public void attachRoomInTheHouseGridRoomList(Room room) {
+    public void attachRoomToTheRoomList(Room room) {
         mRoomsConnectedToHouseGrid.getmRoomList().add(room);
     }
 
-    public boolean addPowerSourceToHouseGrid(PowerSource newPowerSource) {
+    /**
+     * Method that add a new power source to the list of power sources.
+     * @param newPowerSource
+     * @return
+     */
+    public boolean addPowerSource(PowerSource newPowerSource) {
         return this.mPowerSourceList.addPowerSource(newPowerSource);
     }
 
@@ -68,7 +90,7 @@ public class HouseGrid {
      *
      * @return a list of existing rooms attached to a house grid.
      */
-    public String displayRoomsAttachedToHouseGrid() {
+    public String displayRoomsAttached() {
         return this.mRoomsConnectedToHouseGrid.displayRoomList();
     }
 

@@ -222,7 +222,7 @@ class GeographicalAreaTest {
         SensorType sensorTypePedido = new SensorType("Temperatura");
 
         //Act
-        List<Sensor> result = ag1.sortSensorsInAGeoAreaByType(sensorTypePedido, lista);
+        List<Sensor> result = ag1.sortSensorsByType(sensorTypePedido, lista);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -274,7 +274,7 @@ class GeographicalAreaTest {
         SensorType sensorTypePedido = new SensorType("Pressão atmosférica");
 
         //Act
-        List<Sensor> result = ag1.sortSensorsInAGeoAreaByType(sensorTypePedido, lista);
+        List<Sensor> result = ag1.sortSensorsByType(sensorTypePedido, lista);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -354,7 +354,7 @@ class GeographicalAreaTest {
         SensorType tipoResultado = new SensorType("Temperatura");
 
         //Act
-        List<Sensor> result = ag1.listSensorsOfACertainTypeInTheGeoAreaInAGivenPeriod(tipoResultado, listaDeSensores, dataInicial, dataFinal).getmSensorList();
+        List<Sensor> result = ag1.listSensorsOfACertainTypeInAGivenPeriod(tipoResultado, listaDeSensores, dataInicial, dataFinal);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -425,16 +425,18 @@ class GeographicalAreaTest {
         listaDeSensores.add(s1);
         listaDeSensores.add(s2);
 
+        List<Sensor> expectedResult = new ArrayList<>();
+
         LocalDate dataInicial = LocalDate.of(2016, 1, 1);
         LocalDate dataFinal = LocalDate.of(2016, 4, 30);
 
         SensorType tipoResultado = new SensorType("Temperatura");
 
         //Act
-        boolean result = ag1.listSensorsOfACertainTypeInTheGeoAreaInAGivenPeriod(tipoResultado, listaDeSensores, dataInicial, dataFinal).getmSensorList().isEmpty();
+        List<Sensor> result = ag1.listSensorsOfACertainTypeInAGivenPeriod(tipoResultado, listaDeSensores, dataInicial, dataFinal);
 
         //Assert
-        assertTrue(result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -673,7 +675,7 @@ class GeographicalAreaTest {
         SensorType typeRequired = new SensorType("Temperature");
 
         //Act
-        Boolean result = ag.getTheSensorListInTheFirstAreaWithSensorOfAGivenType(typeRequired).getmSensorList().isEmpty();
+        Boolean result = ag.getTheSensorListOfAGivenType(typeRequired).getmSensorList().isEmpty();
 
         //Assert
         assertFalse(result);
@@ -706,7 +708,7 @@ class GeographicalAreaTest {
         SensorType typeRequired = new SensorType("Temperature");
 
         //Act
-        Boolean result = ag.getTheSensorListInTheFirstAreaWithSensorOfAGivenType(typeRequired).getmSensorList().isEmpty();
+        Boolean result = ag.getTheSensorListOfAGivenType(typeRequired).getmSensorList().isEmpty();
 
         //Assert
         assertTrue(result);
@@ -778,7 +780,7 @@ class GeographicalAreaTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = ag.getTheLastMeasurementInTheArea(location, type);
+        double result = ag.getTheLastMeasurement(location, type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -815,7 +817,7 @@ class GeographicalAreaTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = ag.getTheLastMeasurementInTheArea(location, type);
+        double result = ag.getTheLastMeasurement(location, type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -866,7 +868,7 @@ class GeographicalAreaTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = ag.getTheLastMeasurementInTheArea(location, type);
+        double result = ag.getTheLastMeasurement(location, type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -929,7 +931,7 @@ class GeographicalAreaTest {
         SensorType searchType = new SensorType("Rainfall");
 
         //Act
-        List<Double> result = ag.getDailyAverageMeasurementInTheArea(searchType, startDate, endDate);
+        List<Double> result = ag.getDailyAverageMeasurement(searchType, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -966,11 +968,100 @@ class GeographicalAreaTest {
         SensorType searchType = new SensorType("Rainfall");
 
         //Act
-        List<Double> result = ag.getDailyAverageMeasurementInTheArea(searchType, startDate, endDate);
+        List<Double> result = ag.getDailyAverageMeasurement(searchType, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void getDailyMeasurementsInAListOfSensors() {
+        //arrange
+        //Instanciar AG
+        String nomeAG = "Porto";
+        GeoAreaType tipo = new GeoAreaType("Cidade");
+        Location local = new Location(42.1496, -8.6109, 97);
+        AreaShape area = new AreaShape(10, 10, local);
+        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+
+        //Instanciar Sensor
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Rainfall");
+        Location locS0 = new Location(42.1496, -8.6109, 97);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Rainfall");
+        Location locS1 = new Location(42.149, -8.610, 97);
+        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+
+        //Sensor1
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 4, 17, 24, 00);
+
+        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
+        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
+
+        LocalDate searchDate = LocalDate.of(2018, 12, 4);
+
+        double expectedResult = 23.5;
+
+        //Act
+        double result = ag.getDailyAverageOfAListOfSensors(ag.getmSensorListInTheGeographicArea().getmSensorList(), searchDate);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getDailyAverageMeasurementsInAListOfSensorsDayWithNoMeasurements() {
+        //arrange
+        //Instanciar AG
+        String nomeAG = "Porto";
+        GeoAreaType tipo = new GeoAreaType("Cidade");
+        Location local = new Location(42.1496, -8.6109, 97);
+        AreaShape area = new AreaShape(10, 10, local);
+        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+
+        //Instanciar Sensor
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Rainfall");
+        Location locS0 = new Location(42.1496, -8.6109, 97);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Rainfall");
+        Location locS1 = new Location(42.149, -8.610, 97);
+        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+
+        //Sensor1
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 4, 17, 24, 00);
+
+        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
+        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
+
+        LocalDate searchDate = LocalDate.of(2018, 12, 5);
+
+        double expectedResult = Double.NaN;
+
+        //Act
+        double result = ag.getDailyAverageOfAListOfSensors(ag.getmSensorListInTheGeographicArea().getmSensorList(), searchDate);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
 
 
     @Test
@@ -1036,7 +1127,7 @@ class GeographicalAreaTest {
 
 
         //ACT
-        List<Sensor> result =ag.sortSensorTypesOfAGeoAreaInADay(typeOfSensorTested,sensorList, day);
+        List<Sensor> result =ag.sortSensorTypesInADay(typeOfSensorTested,sensorList, day);
 
 
         //ASSERT
@@ -1105,7 +1196,7 @@ class GeographicalAreaTest {
 
 
         //ACT
-        List<Sensor> result =ag.sortSensorTypesOfAGeoAreaInADay(typeOfSensorTested,sensorList, day);
+        List<Sensor> result =ag.sortSensorTypesInADay(typeOfSensorTested,sensorList, day);
 
 
         //ASSERT
@@ -1175,7 +1266,7 @@ class GeographicalAreaTest {
         expectedResult.add(s1);
 
         //ACT
-        List<Sensor> result =ag.sortSensorTypesOfAGeoAreaInADay(typeOfSensorTested,sensorList, day);
+        List<Sensor> result =ag.sortSensorTypesInADay(typeOfSensorTested,sensorList, day);
 
 
         //ASSERT
@@ -1239,7 +1330,7 @@ class GeographicalAreaTest {
 
 
         //ACT
-        double result = ag.getTotalDailyMeasurementInTheArea(typeOfSensorTested, day);
+        double result = ag.getTotalDailyMeasurement(typeOfSensorTested, day);
 
         //ASSERT
 
@@ -1295,7 +1386,7 @@ class GeographicalAreaTest {
         double expectedResult = Double.NaN;
 
         //ACT
-        double result = ag.getTotalDailyMeasurementInTheArea(typeOfSensorTested, day);
+        double result = ag.getTotalDailyMeasurement(typeOfSensorTested, day);
 
         //ASSERT
         assertEquals(expectedResult, result);

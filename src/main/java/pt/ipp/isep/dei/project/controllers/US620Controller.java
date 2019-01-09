@@ -24,11 +24,11 @@ public class US620Controller {
     }
 
     public double getTotalRainfallInTheHouseAreaInTheSelectedDay(LocalDate day) {
-        return mHouse.getTotalDailyMeasurementOfHouseArea(mTypeRainfall, day);
+        return mHouse.getTotalDailyMeasurement(mTypeRainfall, day);
     }
 
     public double getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(LocalDate date1, LocalDate date2) {
-        return mHouse.getAverageDailyMeasurementOfHouseArea(mTypeRainfall, date1, date2);
+        return mHouse.getAverageDailyMeasurement(mTypeRainfall, date1, date2);
     }
 
     public LocalDate createANewDate(int year, int month, int day) {
@@ -36,7 +36,7 @@ public class US620Controller {
     }
 
     public double getMostRecentAvailableMeasurementInTheHouseArea() {
-        return mHouse.getLastMeasurementOfTheHouseArea(mTypeTemperature);
+        return mHouse.getLastMeasurement(mTypeTemperature);
     }
 
     public String getmTypeTemperature() {

@@ -24,7 +24,7 @@ public class GeoAreaListTest {
         GeographicalArea geographicalArea = new GeographicalArea(nomeAG, tipo, local, area);
 
         //Act
-        boolean resultado = lista.addGeoAreaToTheList(geographicalArea);
+        boolean resultado = lista.addGeoArea(geographicalArea);
 
         //Arrange
         assertTrue(resultado);
@@ -40,10 +40,10 @@ public class GeoAreaListTest {
 
         GeoAreaList lista = new GeoAreaList();
         GeographicalArea geographicalArea = new GeographicalArea(nomeAG, tipo, local, area);
-        lista.addGeoAreaToTheList(geographicalArea);
+        lista.addGeoArea(geographicalArea);
 
         //Act
-        boolean resultado = lista.addGeoAreaToTheList(geographicalArea);
+        boolean resultado = lista.addGeoArea(geographicalArea);
 
         //Arrange
         assertFalse(resultado);
@@ -66,10 +66,10 @@ public class GeoAreaListTest {
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        lista.addGeoAreaToTheList(ag1);
+        lista.addGeoArea(ag1);
 
         //Act
-        boolean resultado = lista.addGeoAreaToTheList(ag2);
+        boolean resultado = lista.addGeoArea(ag2);
 
         //Arrange
         assertFalse(resultado);
@@ -85,7 +85,7 @@ public class GeoAreaListTest {
 
         GeoAreaList lista = new GeoAreaList();
         GeographicalArea geographicalArea = new GeographicalArea(nomeAG, tipo, local, area);
-        lista.addGeoAreaToTheList(geographicalArea);
+        lista.addGeoArea(geographicalArea);
 
         List<GeographicalArea> expectedResult = new ArrayList<>();
         expectedResult.add(geographicalArea);
@@ -114,8 +114,8 @@ public class GeoAreaListTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        lista.addGeoAreaToTheList(ag1);
-        lista.addGeoAreaToTheList(ag2);
+        lista.addGeoArea(ag1);
+        lista.addGeoArea(ag2);
 
         List<String> expectedResult = new ArrayList<>(Arrays.asList("Porto"));
 
@@ -144,8 +144,8 @@ public class GeoAreaListTest {
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         ag2.setInsertedIn(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag2);
+        listaDeAGs.addGeoArea(ag1);
+        listaDeAGs.addGeoArea(ag2);
 
         String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109, Inserido Em: Cidade Porto\n";
 
@@ -174,8 +174,8 @@ public class GeoAreaListTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        listaDeAGs.addGeoAreaToTheList(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag2);
+        listaDeAGs.addGeoArea(ag1);
+        listaDeAGs.addGeoArea(ag2);
 
         String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
@@ -205,8 +205,8 @@ public class GeoAreaListTest {
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         ag2.setInsertedIn(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag2);
+        listaDeAGs.addGeoArea(ag1);
+        listaDeAGs.addGeoArea(ag2);
 
         String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
@@ -235,8 +235,8 @@ public class GeoAreaListTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        listaDeAGs.addGeoAreaToTheList(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag2);
+        listaDeAGs.addGeoArea(ag1);
+        listaDeAGs.addGeoArea(ag2);
 
         String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
@@ -264,8 +264,8 @@ public class GeoAreaListTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        lista.addGeoAreaToTheList(ag1);
-        lista.addGeoAreaToTheList(ag2);
+        lista.addGeoArea(ag1);
+        lista.addGeoArea(ag2);
 
         int opçãoSeleccionada = 1;
 
@@ -377,9 +377,9 @@ public class GeoAreaListTest {
 
         ag2.setInsertedIn(ag1);
 
-        geoAreaList.addGeoAreaToTheList(ag1);
-        geoAreaList.addGeoAreaToTheList(ag2);
-        geoAreaList.addGeoAreaToTheList(ag3);
+        geoAreaList.addGeoArea(ag1);
+        geoAreaList.addGeoArea(ag2);
+        geoAreaList.addGeoArea(ag3);
 
         boolean expectedResult = false;
 
@@ -410,8 +410,8 @@ public class GeoAreaListTest {
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         ag2.setInsertedIn(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag2);
+        listaDeAGs.addGeoArea(ag1);
+        listaDeAGs.addGeoArea(ag2);
 
         //Act
         boolean resultado = listaDeAGs.checkIfGeoAreaIsinsertedInAnother(1, 0);
@@ -444,9 +444,9 @@ public class GeoAreaListTest {
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
 
-        geoAreaList.addGeoAreaToTheList(ag1);
-        geoAreaList.addGeoAreaToTheList(ag2);
-        geoAreaList.addGeoAreaToTheList(ag3);
+        geoAreaList.addGeoArea(ag1);
+        geoAreaList.addGeoArea(ag2);
+        geoAreaList.addGeoArea(ag3);
 
 
         boolean expectedResult = false;
@@ -486,9 +486,9 @@ public class GeoAreaListTest {
         ag1.setInsertedIn(ag2);
         ag2.setInsertedIn(ag3);
 
-        geoAreaList.addGeoAreaToTheList(ag1);
-        geoAreaList.addGeoAreaToTheList(ag2);
-        geoAreaList.addGeoAreaToTheList(ag3);
+        geoAreaList.addGeoArea(ag1);
+        geoAreaList.addGeoArea(ag2);
+        geoAreaList.addGeoArea(ag3);
 
 
         boolean expectedResult = true;
@@ -520,8 +520,8 @@ public class GeoAreaListTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        listaDeAGs.addGeoAreaToTheList(ag1);
-        listaDeAGs.addGeoAreaToTheListInASpecificPosition(0, ag2);
+        listaDeAGs.addGeoArea(ag1);
+        listaDeAGs.addGeoAreaInASpecificPosition(0, ag2);
 
         GeographicalArea expectedResult = ag2;
 
@@ -549,11 +549,11 @@ public class GeoAreaListTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        listaDeAGs.addGeoAreaToTheList(ag1);
-        listaDeAGs.addGeoAreaToTheList(ag2);
+        listaDeAGs.addGeoArea(ag1);
+        listaDeAGs.addGeoArea(ag2);
 
         //Act
-        boolean result = listaDeAGs.removeGeoAreaFromTheList(ag1);
+        boolean result = listaDeAGs.removeGeoArea(ag1);
 
         //Assert
         assertTrue(result);
@@ -576,10 +576,10 @@ public class GeoAreaListTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        listaDeAGs.addGeoAreaToTheList(ag2);
+        listaDeAGs.addGeoArea(ag2);
 
         //Act
-        boolean result = listaDeAGs.removeGeoAreaFromTheList(ag1);
+        boolean result = listaDeAGs.removeGeoArea(ag1);
 
         //Assert
         assertFalse(result);
@@ -602,7 +602,7 @@ public class GeoAreaListTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
-        lista.addGeoAreaToTheList(ag1);
+        lista.addGeoArea(ag1);
 
         GeographicalArea expectedResult = null;
 

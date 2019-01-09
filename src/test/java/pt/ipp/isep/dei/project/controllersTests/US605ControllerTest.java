@@ -305,7 +305,7 @@ public class US605ControllerTest {
         Dimensions dimensions = new Dimensions(height, length, width);
         Room room1 = new Room(name, houseFloor, dimensions);
 
-        house.addRoomToHouse(room1);
+        house.addRoom(room1);
 
         LocalDateTime date0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");

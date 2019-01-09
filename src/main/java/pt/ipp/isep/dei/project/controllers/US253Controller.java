@@ -55,7 +55,7 @@ public class US253Controller {
      * This method get the location of the house.
      */
     public void getLocationOfTheHouse () {
-        mLocationOfTheHouse = mHouse.getLocationOfTheHouse();
+        mLocationOfTheHouse = mHouse.getLocation();
     }
 
     /**
