@@ -47,7 +47,7 @@ public class HouseGridList {
     }
 
     public String displayRoomsInTheHouseGrid(int position) {
-        return mHouseGridsList.get(position).displayRoomsAttached();
+        return mHouseGridsList.get(position).getRoomsAttached();
     }
 
     /**

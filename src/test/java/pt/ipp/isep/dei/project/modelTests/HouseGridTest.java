@@ -31,7 +31,7 @@ public class HouseGridTest {
                 "\n";
 
         // Act
-        String result = houseGrid1.displayRoomsAttached();
+        String result = houseGrid1.getRoomsAttached();
 
         // Assert
         assertEquals(expectedResult, result);

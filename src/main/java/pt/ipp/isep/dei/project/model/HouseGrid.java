@@ -90,7 +90,7 @@ public class HouseGrid {
      *
      * @return a list of existing rooms attached to a house grid.
      */
-    public String displayRoomsAttached() {
+    public String getRoomsAttached() {
         return this.mRoomsConnectedToHouseGrid.displayRoomList();
     }
 
