@@ -1,12 +1,12 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US6Controller;
+import pt.ipp.isep.dei.project.controllers.AddSensorToGeoAreaController;
 import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class US6ControllerTest {
+class AddSensorToGeoAreaControllerTest {
 
     @Test
     public void testarNomeAreaGeograficaPorIndicePrimeiro () {
@@ -37,7 +37,7 @@ class US6ControllerTest {
         listaAreasGeograficas.addGeoArea(ag3);
 
         int posicao = 0;
-        US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
+        AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(sensorTypeList, listaAreasGeograficas);
         String expectedResult = "Porto";
         ctrl6.getAreaGeograficaNaListaPorPosicao(posicao);
 
@@ -77,7 +77,7 @@ class US6ControllerTest {
         listaAreasGeograficas.addGeoArea(ag3);
 
         int posicao = 2;
-        US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
+        AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(sensorTypeList, listaAreasGeograficas);
         String expectedResult = "Ancora";
         ctrl6.getAreaGeograficaNaListaPorPosicao(posicao);
 
@@ -104,7 +104,7 @@ class US6ControllerTest {
         listaAreasGeograficas.addGeoArea(ag1);
 
         int posicao = 0;
-        US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
+        AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(sensorTypeList, listaAreasGeograficas);
         String expectedResult = "Espinho";
         ctrl6.getAreaGeograficaNaListaPorPosicao(posicao);
 
@@ -137,7 +137,7 @@ class US6ControllerTest {
         listaAreasGeograficas.addGeoArea(ag1);
         listaAreasGeograficas.addGeoArea(ag2);
 
-        US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
+        AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(sensorTypeList, listaAreasGeograficas);
         int expectedResult = 2;
 
         // Act
@@ -154,7 +154,7 @@ class US6ControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeoAreaList listaAreasGeograficas = new GeoAreaList();
 
-        US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
+        AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(sensorTypeList, listaAreasGeograficas);
         int expectedResult = 0;
 
         // Act
@@ -177,7 +177,7 @@ class US6ControllerTest {
         sensorTypeList.addSensorType(tipo1);
         sensorTypeList.addSensorType(tipo2);
 
-        US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
+        AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(sensorTypeList, listaAreasGeograficas);
         int expectedResult = 2;
 
         // Act
@@ -194,7 +194,7 @@ class US6ControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeoAreaList listaAreasGeograficas = new GeoAreaList();
 
-        US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
+        AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(sensorTypeList, listaAreasGeograficas);
         int expectedResult = 0;
 
         // Act
@@ -217,7 +217,7 @@ class US6ControllerTest {
         sensorTypeList.addSensorType(tipo2);
 
         int posicao = 0;
-        US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
+        AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(sensorTypeList, listaAreasGeograficas);
         String expectedResult = "Humidade";
 
         // Act
@@ -241,7 +241,7 @@ class US6ControllerTest {
         sensorTypeList.addSensorType(tipo2);
 
         int posicao = 1;
-        US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
+        AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(sensorTypeList, listaAreasGeograficas);
         String expectedResult = "Temperatura";
         ctrl6.getTipoSensorPorPosicao(posicao);
 
@@ -263,7 +263,7 @@ class US6ControllerTest {
         sensorTypeList.addSensorType(tipo1);
 
         int posicao = 0;
-        US6Controller ctrl6 = new US6Controller(sensorTypeList, listaAreasGeograficas);
+        AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(sensorTypeList, listaAreasGeograficas);
         String expectedResult = "Humidade";
         ctrl6.getTipoSensorPorPosicao(posicao);
 
@@ -294,7 +294,7 @@ class US6ControllerTest {
         geographicalAreaList.getmGeoAreaList().add(ag1);
 
 
-        US6Controller ctrl6 = new US6Controller(listSensorsType, geographicalAreaList);
+        AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(listSensorsType, geographicalAreaList);
 
         ctrl6.getAreaGeograficaNaListaPorPosicao(0);
         ctrl6.getTipoSensorPorPosicao(0);
@@ -329,7 +329,7 @@ class US6ControllerTest {
         geographicalAreaList.getmGeoAreaList().add(ag1);
 
 
-        US6Controller ctrl6 = new US6Controller(listSensorsType, geographicalAreaList);
+        AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(listSensorsType, geographicalAreaList);
 
         ctrl6.getAreaGeograficaNaListaPorPosicao(0);
         ctrl6.getTipoSensorPorPosicao(0);

@@ -1,11 +1,13 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.US105Controller;
+import pt.ipp.isep.dei.project.controllers.AddRoomController;
 import pt.ipp.isep.dei.project.model.House;
+/*US105 As an Administrator, I want to add a new room to the house, in order to configure
+it (name, house floor and dimensions).*/
 
 public class AddRoom {
 
-    private US105Controller mctrl;
+    private AddRoomController mctrl;
 
     /**
      * method constructor that receives a house
@@ -13,7 +15,7 @@ public class AddRoom {
      * @param house house received
      */
     public AddRoom(House house) {
-        this.mctrl = new US105Controller(house);
+        this.mctrl = new AddRoomController(house);
     }
 
     /**

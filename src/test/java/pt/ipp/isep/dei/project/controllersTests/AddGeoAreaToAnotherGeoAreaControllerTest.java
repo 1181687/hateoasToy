@@ -1,12 +1,12 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US7Controller;
+import pt.ipp.isep.dei.project.controllers.AddGeoAreaToAnotherGeoAreaController;
 import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class US7ControllerTest {
+class AddGeoAreaToAnotherGeoAreaControllerTest {
 
     @Test
     void testeConteudoListaController() {
@@ -29,7 +29,7 @@ class US7ControllerTest {
         listaDeAGs.addGeoArea(ag1);
         listaDeAGs.addGeoArea(ag2);
 
-        US7Controller ctrl = new US7Controller(listaDeAGs);
+        AddGeoAreaToAnotherGeoAreaController ctrl = new AddGeoAreaToAnotherGeoAreaController(listaDeAGs);
 
         String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109, Inserido Em: Cidade Porto\n";
 
@@ -60,7 +60,7 @@ class US7ControllerTest {
         lista.addGeoArea(ag1);
         lista.addGeoArea(ag2);
 
-        US7Controller ctrl = new US7Controller(lista);
+        AddGeoAreaToAnotherGeoAreaController ctrl = new AddGeoAreaToAnotherGeoAreaController(lista);
 
         int opçãoSeleccionada =1;
 
@@ -98,7 +98,7 @@ class US7ControllerTest {
 
         ag2.setInsertedIn(ag1);
 
-        US7Controller ctrl = new US7Controller(geoAreaList);
+        AddGeoAreaToAnotherGeoAreaController ctrl = new AddGeoAreaToAnotherGeoAreaController(geoAreaList);
 
         boolean expectedResult = true;
 
@@ -137,7 +137,7 @@ class US7ControllerTest {
 
         ag2.setInsertedIn(ag1);
 
-        US7Controller ctrl = new US7Controller(geoAreaList);
+        AddGeoAreaToAnotherGeoAreaController ctrl = new AddGeoAreaToAnotherGeoAreaController(geoAreaList);
 
         boolean expectedResult = false;
 
@@ -170,7 +170,7 @@ class US7ControllerTest {
 
         listaDeAGs.addGeoArea(ag1);
 
-        US7Controller ctrl = new US7Controller(listaDeAGs);
+        AddGeoAreaToAnotherGeoAreaController ctrl = new AddGeoAreaToAnotherGeoAreaController(listaDeAGs);
 
         ctrl.adicionarAGListaPosicaoEspecifica(0,ag2);
 
@@ -203,7 +203,7 @@ class US7ControllerTest {
         listaDeAGs.addGeoArea(ag1);
         listaDeAGs.addGeoArea(ag2);
 
-        US7Controller ctrl = new US7Controller(listaDeAGs);
+        AddGeoAreaToAnotherGeoAreaController ctrl = new AddGeoAreaToAnotherGeoAreaController(listaDeAGs);
 
         ctrl.removerAGLista(ag1);
 

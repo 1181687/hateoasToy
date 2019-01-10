@@ -1,16 +1,19 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.US6Controller;
+import pt.ipp.isep.dei.project.controllers.AddSensorToGeoAreaController;
 import pt.ipp.isep.dei.project.model.GeoAreaList;
 import pt.ipp.isep.dei.project.model.SensorTypeList;
 
 import java.util.Scanner;
 
+/* US006 As an Administrator, I want to add a new sensor and associate it to a geographical
+area, so that one can get measurements of that type in that area. */
+
 public class AddSensorToGeoArea {
-    private US6Controller controller6;
+    private AddSensorToGeoAreaController controller6;
 
     public AddSensorToGeoArea(GeoAreaList geoAreaList, SensorTypeList sensorTypeList) {
-        this.controller6 = new US6Controller(sensorTypeList, geoAreaList);
+        this.controller6 = new AddSensorToGeoAreaController(sensorTypeList, geoAreaList);
     }
 
     public void run() {

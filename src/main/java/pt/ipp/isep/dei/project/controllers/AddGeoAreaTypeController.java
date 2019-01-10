@@ -4,10 +4,10 @@ import pt.ipp.isep.dei.project.model.GeoAreaType;
 import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 
 
-public class US1Controller {
+public class AddGeoAreaTypeController {
     private GeoAreaTypeList mListaTAG;
 
-    public US1Controller(GeoAreaTypeList listaTAG) {
+    public AddGeoAreaTypeController(GeoAreaTypeList listaTAG) {
         this.mListaTAG = listaTAG;
     }
 

@@ -3,10 +3,10 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.GeoAreaList;
 import pt.ipp.isep.dei.project.model.GeographicalArea;
 
-public class US7Controller {
+public class AddGeoAreaToAnotherGeoAreaController {
     private GeoAreaList mLista;
 
-    public US7Controller(GeoAreaList geoAreaList) {
+    public AddGeoAreaToAnotherGeoAreaController(GeoAreaList geoAreaList) {
         this.mLista = geoAreaList;
     }
 

@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US4Controller;
+import pt.ipp.isep.dei.project.controllers.GetListOfTypeOfGeoAreaController;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.util.ArrayList;
@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class US4ControllerTest {
+public class GetListOfTypeOfGeoAreaControllerTest {
 
     @Test
     public void testarGetListaAGPorTipo() {
@@ -47,7 +47,7 @@ public class US4ControllerTest {
         lista.addGeoArea(ag1);
         lista.addGeoArea(ag2);
 
-        US4Controller ctrl = new US4Controller(lista, geoAreaTypeList);
+        GetListOfTypeOfGeoAreaController ctrl = new GetListOfTypeOfGeoAreaController(lista, geoAreaTypeList);
         ArrayList<String> expectedResult = new ArrayList<>(Arrays.asList("Porto"));
 
         //Act
@@ -73,7 +73,7 @@ public class US4ControllerTest {
 
         //Instanciar a classe GeoAreaList
         GeoAreaList geoAreaList = new GeoAreaList();
-        US4Controller ctrl = new US4Controller(geoAreaList, lista);
+        GetListOfTypeOfGeoAreaController ctrl = new GetListOfTypeOfGeoAreaController(geoAreaList, lista);
 
 
         //Expected Result

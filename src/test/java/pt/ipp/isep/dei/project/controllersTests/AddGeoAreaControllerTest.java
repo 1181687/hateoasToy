@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US3Controller;
+import pt.ipp.isep.dei.project.controllers.AddGeoAreaController;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.util.Arrays;
@@ -9,7 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class US3ControllerTest {
+public class AddGeoAreaControllerTest {
 
 
 
@@ -19,7 +19,7 @@ public class US3ControllerTest {
         //instanciar us3controller
         GeoAreaList lista = new GeoAreaList();
         GeoAreaTypeList listaTAG = new GeoAreaTypeList();
-        US3Controller ctrl3 = new US3Controller(lista, listaTAG);
+        AddGeoAreaController ctrl3 = new AddGeoAreaController(lista, listaTAG);
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
@@ -38,7 +38,7 @@ public class US3ControllerTest {
         //instanciar us3controller
         GeoAreaList lista = new GeoAreaList();
         GeoAreaTypeList listaTAG = new GeoAreaTypeList();
-        US3Controller ctrl3 = new US3Controller(lista, listaTAG);
+        AddGeoAreaController ctrl3 = new AddGeoAreaController(lista, listaTAG);
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
@@ -57,7 +57,7 @@ public class US3ControllerTest {
         //Arrange
         GeoAreaList lista = new GeoAreaList();
         GeoAreaTypeList listaTAG = new GeoAreaTypeList();
-        US3Controller ctrl3 = new US3Controller(lista, listaTAG);
+        AddGeoAreaController ctrl3 = new AddGeoAreaController(lista, listaTAG);
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
@@ -79,7 +79,7 @@ public class US3ControllerTest {
 
         GeoAreaList lista = new GeoAreaList();
         GeoAreaTypeList listaTAG = new GeoAreaTypeList();
-        US3Controller ctrl3 = new US3Controller(lista, listaTAG);
+        AddGeoAreaController ctrl3 = new AddGeoAreaController(lista, listaTAG);
 
         //Tipo de Area Geográfica
         String nomeDoTipo1 = "Cidade";
@@ -106,7 +106,7 @@ public class US3ControllerTest {
         //Arrange
         GeoAreaList lista = new GeoAreaList();
         GeoAreaTypeList listaTAG = new GeoAreaTypeList();
-        US3Controller ctrl3 = new US3Controller(lista, listaTAG);
+        AddGeoAreaController ctrl3 = new AddGeoAreaController(lista, listaTAG);
 
         String nomeAG = "Porto";
         GeoAreaType tipo = new GeoAreaType("Cidade");

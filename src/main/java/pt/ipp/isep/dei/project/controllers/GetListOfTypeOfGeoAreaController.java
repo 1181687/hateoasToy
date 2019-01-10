@@ -5,12 +5,12 @@ import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 
 import java.util.List;
 
-public class US4Controller {
+public class GetListOfTypeOfGeoAreaController {
 
     private GeoAreaList mGeoAreaList;
     private GeoAreaTypeList mListaTAG;
 
-    public US4Controller(GeoAreaList geoAreaList, GeoAreaTypeList listaTAG) {
+    public GetListOfTypeOfGeoAreaController(GeoAreaList geoAreaList, GeoAreaTypeList listaTAG) {
         this.mGeoAreaList = geoAreaList;
         this.mListaTAG = listaTAG;
     }
