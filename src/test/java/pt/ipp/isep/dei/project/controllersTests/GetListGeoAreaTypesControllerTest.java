@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US2Controller;
+import pt.ipp.isep.dei.project.controllers.GetListGeoAreaTypesController;
 import pt.ipp.isep.dei.project.model.GeoAreaType;
 import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 
@@ -10,14 +10,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class US2ControllerTest {
+public class GetListGeoAreaTypesControllerTest {
 
     @Test
     public void testarGetListaTiposDeAG() {
         //Arrange
-        //Instanciar a classe US2Controller
+        //Instanciar a classe GetListGeoAreaTypesController
         GeoAreaTypeList lista = new GeoAreaTypeList();
-        US2Controller ctrl2 = new US2Controller(lista);
+        GetListGeoAreaTypesController ctrl2 = new GetListGeoAreaTypesController(lista);
 
         //Tipo de Area Geográfica
         String nomeDoTipo1 = "Cidade";
@@ -40,9 +40,9 @@ public class US2ControllerTest {
     @Test
     public void testarGetListaDosTiposDeAGAdicionandoMaisDoQueUmTipo() {
         //Arrange
-        //Instanciar a classe US2Controller
+        //Instanciar a classe GetListGeoAreaTypesController
         GeoAreaTypeList lista = new GeoAreaTypeList();
-        US2Controller ctrl2 = new US2Controller(lista);
+        GetListGeoAreaTypesController ctrl2 = new GetListGeoAreaTypesController(lista);
 
         //Tipos de Areas Geográficas
         String nomeDoTipo1 = "Cidade";
@@ -69,9 +69,9 @@ public class US2ControllerTest {
     @Test
     public void testarGetListaDosTiposDeAGASemAdicionarNenhumTipo() {
         //Arrange
-        //Instanciar a classe US2Controller
+        //Instanciar a classe GetListGeoAreaTypesController
         GeoAreaTypeList lista = new GeoAreaTypeList();
-        US2Controller ctrl2 = new US2Controller(lista);
+        GetListGeoAreaTypesController ctrl2 = new GetListGeoAreaTypesController(lista);
 
         //Expected Result
         List<String> expectedResult = Arrays.asList();

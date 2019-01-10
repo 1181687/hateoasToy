@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.US4Controller;
+import pt.ipp.isep.dei.project.controllers.GetListOfTypeOfGeoAreaController;
 import pt.ipp.isep.dei.project.model.GeoAreaList;
 import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 
@@ -9,11 +9,12 @@ import java.util.Scanner;
 
 public class GetListOfTypeOfGeoArea {
 
-    private US4Controller mCtrl;
+    /* US004 As an Administrator, I want to get a list of existing geographical areas of a given type. */
+    private GetListOfTypeOfGeoAreaController mCtrl;
 
 
     public GetListOfTypeOfGeoArea(GeoAreaList lista, GeoAreaTypeList listaTAG) {
-        this.mCtrl = new US4Controller(lista, listaTAG);
+        this.mCtrl = new GetListOfTypeOfGeoAreaController(lista, listaTAG);
     }
 
     public void run() {

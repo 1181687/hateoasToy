@@ -2,14 +2,14 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.*;
 
-public class US6Controller {
+public class AddSensorToGeoAreaController {
     private SensorTypeList mSensorTypeList;
     private GeoAreaList mListaAreaGeografica;
     private GeographicalArea mGeographicalArea;
     private Location mLocation;
     private SensorType mSensorType;
 
-    public US6Controller(SensorTypeList sensorTypeList, GeoAreaList geoAreaList) {
+    public AddSensorToGeoAreaController(SensorTypeList sensorTypeList, GeoAreaList geoAreaList) {
         this.mSensorTypeList = sensorTypeList;
         this.mListaAreaGeografica = geoAreaList;
     }

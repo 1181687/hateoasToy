@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.US605Controller;
+import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Measurement;
 import pt.ipp.isep.dei.project.model.SensorType;
@@ -8,9 +8,15 @@ import pt.ipp.isep.dei.project.model.SensorType;
 import java.time.DateTimeException;
 import java.util.Objects;
 
+
+/* US605 As a Regular User, I want to get the current temperature in a room, in order to check
+if it meets my personal comfort requirements.
+US610 As a Regular User, I want to get the maximum temperature in a room in a given day,
+in order to check if heating/cooling in that room was effective.*/
+
 public class GetCurrentAndMaxTempRoom {
 
-    private US605Controller mctrl;
+    private GetCurrentAndMaxTempRoomController mctrl;
 
     /**
      * constructor that receives a House and a SensorTypeList
@@ -19,7 +25,7 @@ public class GetCurrentAndMaxTempRoom {
      * @param sensorType   SensorType
      */
     public GetCurrentAndMaxTempRoom(House house, SensorType sensorType) {
-        this.mctrl = new US605Controller(house, sensorType);
+        this.mctrl = new GetCurrentAndMaxTempRoomController(house, sensorType);
     }
 
     /**

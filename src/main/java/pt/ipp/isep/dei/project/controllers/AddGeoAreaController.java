@@ -6,11 +6,11 @@ import pt.ipp.isep.dei.project.model.GeographicalArea;
 
 import java.util.List;
 
-public class US3Controller {
+public class AddGeoAreaController {
     private GeoAreaList mGeoAreaList;
     private GeoAreaTypeList mListaTAG;
 
-    public US3Controller(GeoAreaList geoAreaList, GeoAreaTypeList listaTAG) {
+    public AddGeoAreaController(GeoAreaList geoAreaList, GeoAreaTypeList listaTAG) {
         this.mGeoAreaList = geoAreaList;
         this.mListaTAG = listaTAG;
     }

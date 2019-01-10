@@ -1,16 +1,19 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.US7Controller;
+import pt.ipp.isep.dei.project.controllers.AddGeoAreaToAnotherGeoAreaController;
 import pt.ipp.isep.dei.project.model.GeoAreaList;
 import pt.ipp.isep.dei.project.model.GeographicalArea;
 
 import java.util.Scanner;
 
+/* US007 As an Administrator, I want to add an existing geographical area to another one
+(e.g. add city of Porto to the district of Porto). */
+
 public class AddGeoAreaToAnotherGeoArea {
-    private US7Controller ctrl;
+    private AddGeoAreaToAnotherGeoAreaController ctrl;
 
     public AddGeoAreaToAnotherGeoArea(GeoAreaList lista) {
-        this.ctrl = new US7Controller(lista);
+        this.ctrl = new AddGeoAreaToAnotherGeoAreaController(lista);
     }
 
     public void run() {
