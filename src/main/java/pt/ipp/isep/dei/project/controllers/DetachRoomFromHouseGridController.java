@@ -5,11 +5,11 @@ import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.RoomList;
 
-public class US149Controller {
+public class DetachRoomFromHouseGridController {
     private HouseGridList mListOfHouseGrids;
     private RoomList mListOfRooms;
 
-    public US149Controller(HouseGridList listOfHouseGrids, RoomList listOfRooms) {
+    public DetachRoomFromHouseGridController(HouseGridList listOfHouseGrids, RoomList listOfRooms) {
         this.mListOfHouseGrids = listOfHouseGrids;
         this.mListOfRooms = listOfRooms;
     }

@@ -135,8 +135,14 @@ public class Dimensions {
             return false;
         }
         Dimensions dim = (Dimensions) obj;
-        final double delta = 0.0001;
-        return Math.abs((this.mHeight - dim.mHeight)) <= delta && Math.abs((this.mLength - dim.mLength)) <= delta
-                && Math.abs((this.mWidth - dim.mWidth)) <= delta;
+        Double comparablemHeight = mHeight;
+        Double comparablemLength = mLength;
+        Double comparablemWidth = mWidth;
+        Double comparableDimensionsHeight = dim.mHeight;
+        Double comparableDimensionsLength = dim.mLength;
+        Double comparableDimensionsWidth = dim.mWidth;
+        return comparableDimensionsHeight.equals(comparablemHeight)
+                && comparableDimensionsLength.equals(comparablemLength)
+                && comparableDimensionsWidth.equals(comparablemWidth);
     }
 }

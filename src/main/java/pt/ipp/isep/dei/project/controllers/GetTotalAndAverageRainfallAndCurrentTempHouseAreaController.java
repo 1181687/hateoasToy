@@ -6,7 +6,7 @@ import pt.ipp.isep.dei.project.model.SensorType;
 import java.time.LocalDate;
 
 
-public class US620Controller {
+public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
     private House mHouse;
     private SensorType mTypeRainfall;
     private SensorType mTypeTemperature;
@@ -17,7 +17,7 @@ public class US620Controller {
      *
      * @param house
      */
-    public US620Controller(House house) {
+    public GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(House house) {
         this.mHouse = house;
         this.mTypeRainfall = new SensorType("Rainfall");
         this.mTypeTemperature = new SensorType("temperature");

@@ -37,8 +37,12 @@ public class Address {
             return false;
         }
         Address address = (Address) obj;
-        return this.mZipCode.equals(address.mZipCode) && this.mLocation.equals(address.mLocation);
-
+        String comparablemZipCode = mZipCode;
+        Location comparablemLocation = mLocation;
+        String comparableAddressZipCode = address.mZipCode;
+        Location comparableAddressLocation = address.mLocation;
+        return comparableAddressZipCode.equals(comparablemZipCode)
+                && comparableAddressLocation.equals(comparablemLocation);
     }
 
     /**

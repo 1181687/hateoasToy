@@ -2,10 +2,10 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.RoomList;
 
-public class US108Controller {
+public class GetRoomListController {
     private RoomList mList;
 
-    public US108Controller(RoomList list) {
+    public GetRoomListController(RoomList list) {
         this.mList = list;
     }
 

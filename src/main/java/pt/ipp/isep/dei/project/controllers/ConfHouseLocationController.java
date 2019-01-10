@@ -3,11 +3,11 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.Address;
 import pt.ipp.isep.dei.project.model.House;
 
-public class US101Controller {
+public class ConfHouseLocationController {
     private House mHouse;
     private Address mAddress;
 
-    public US101Controller(House house) {
+    public ConfHouseLocationController(House house) {
         this.mHouse = house;
     }
 

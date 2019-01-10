@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US135Controller;
+import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
 import pt.ipp.isep.dei.project.model.HouseGrid;
 import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.PowerSourceType;
@@ -9,7 +9,7 @@ import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class US135ControllerTest {
+class AddPowerSourceToHouseGridControllerTest {
 
     @Test
     public void testCheckIfHouseGridListIsEmptyPositive() {
@@ -21,10 +21,10 @@ class US135ControllerTest {
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
         powerSourceTypeList.addPowerSourceType(powerSourceType);
 
-        US135Controller us135Controller = new US135Controller(houseGridList, powerSourceTypeList);
+        AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
 
         // Act
-        boolean result = us135Controller.checkIfHouseGridListIsEmpty();
+        boolean result = addPowerSourceToHouseGridController.checkIfHouseGridListIsEmpty();
 
         // Assert
         assertTrue(result);
@@ -43,10 +43,10 @@ class US135ControllerTest {
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
         powerSourceTypeList.addPowerSourceType(powerSourceType);
 
-        US135Controller us135Controller = new US135Controller(houseGridList, powerSourceTypeList);
+        AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
 
         // Act
-        boolean result = us135Controller.checkIfHouseGridListIsEmpty();
+        boolean result = addPowerSourceToHouseGridController.checkIfHouseGridListIsEmpty();
 
         // Assert
         assertFalse(result);
@@ -66,12 +66,12 @@ class US135ControllerTest {
         powerSourceTypeList.addPowerSourceType(powerSourceType);
 
 
-        US135Controller us135Controller = new US135Controller(houseGridList, powerSourceTypeList);
+        AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
 
         String expectedResult = "1 - Name: hgname1\n";
 
         // Act
-        String result = us135Controller.getHouseGridListContent();
+        String result = addPowerSourceToHouseGridController.getHouseGridListContent();
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -88,11 +88,11 @@ class US135ControllerTest {
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
         powerSourceTypeList.addPowerSourceType(powerSourceType);
 
-        US135Controller us135Controller = new US135Controller(houseGridList, powerSourceTypeList);
+        AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
 
         int expectedResult=1;
         //Act
-        int result = us135Controller.houseGridListLength();
+        int result = addPowerSourceToHouseGridController.houseGridListLength();
 
         //Assert
         assertEquals(expectedResult,result);
@@ -110,11 +110,11 @@ class US135ControllerTest {
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
         powerSourceTypeList.addPowerSourceType(powerSourceType);
 
-        US135Controller us135Controller = new US135Controller(houseGridList, powerSourceTypeList);
+        AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
 
         int expectedResult=1;
         //Act
-        int result = us135Controller.powerSourceTypeListLength();
+        int result = addPowerSourceToHouseGridController.powerSourceTypeListLength();
 
         //Assert
         assertEquals(expectedResult,result);
@@ -137,7 +137,7 @@ class US135ControllerTest {
         int position = 0;
         int positionOfPowerSource = 0;
 
-        US135Controller controller = new US135Controller(houseGridList, powerSourceTypeList);
+        AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
         controller.getHouseGridFromListByPosition(position);
         controller.getPowerSourceTypeFromListByPosition(positionOfPowerSource);
 
@@ -169,7 +169,7 @@ class US135ControllerTest {
         int position = 1;
         int positionOfPowerSource = 0;
 
-        US135Controller controller = new US135Controller(houseGridList, powerSourceTypeList);
+        AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
         controller.getHouseGridFromListByPosition(position);
         controller.getPowerSourceTypeFromListByPosition(positionOfPowerSource);
 
@@ -198,7 +198,7 @@ class US135ControllerTest {
 
         int position = 0;
 
-        US135Controller controller = new US135Controller(houseGridList, powerSourceTypeList);
+        AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
         controller.getHouseGridFromListByPosition(position);
         controller.getPowerSourceTypeFromListByPosition(position);
         controller.createAndAddPowerSourceToHouseGrid(powerSourceName1);
@@ -223,7 +223,7 @@ class US135ControllerTest {
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
         powerSourceTypeList.addPowerSourceType(powerSourceType);
 
-        US135Controller controller = new US135Controller(houseGridList, powerSourceTypeList);
+        AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
 
         String expectedResult = "1 - Power Source Type: public electric grid\n";
 

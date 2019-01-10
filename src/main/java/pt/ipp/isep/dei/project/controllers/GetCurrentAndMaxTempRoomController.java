@@ -6,7 +6,7 @@ import pt.ipp.isep.dei.project.model.SensorType;
 
 import java.time.LocalDate;
 
-public class US605Controller {
+public class GetCurrentAndMaxTempRoomController {
 
     private House mHouse;
     private SensorType mType;
@@ -17,7 +17,7 @@ public class US605Controller {
      * @param house House received
      * @param type  SensorType received
      */
-    public US605Controller(House house, SensorType type) {
+    public GetCurrentAndMaxTempRoomController(House house, SensorType type) {
         this.mHouse = house;
         this.mType = type;
     }

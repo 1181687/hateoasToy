@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US605Controller;
+import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDate;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class US605ControllerTest {
+public class GetCurrentAndMaxTempRoomControllerTest {
 
     @Test
     public void getDisplayRoomListTest() {
@@ -37,7 +37,7 @@ public class US605ControllerTest {
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
         SensorType sensorType = new SensorType("Temperature");
-        US605Controller ctrl = new US605Controller(house, sensorType);
+        GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType);
 
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
 
@@ -62,7 +62,7 @@ public class US605ControllerTest {
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
         SensorType sensorType = new SensorType("Temperature");
-        US605Controller ctrl = new US605Controller(house, sensorType);
+        GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType);
         //act
         String result = ctrl.getDisplayRoomList();
         //assert
@@ -95,7 +95,7 @@ public class US605ControllerTest {
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
         SensorType sensorType = new SensorType("Temperature");
-        US605Controller ctrl = new US605Controller(house, sensorType);
+        GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType);
 
         int expectResult = 2;
         //act
@@ -172,7 +172,7 @@ public class US605ControllerTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(roomList, gridList, address, insertedGeoArea);
-        US605Controller ctrl = new US605Controller(house, sensorType0);
+        GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType0);
 
         Measurement expectedResult = measurement02;
 
@@ -220,7 +220,7 @@ public class US605ControllerTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(roomList, gridList, address, insertedGeoArea);
-        US605Controller ctrl = new US605Controller(house, sensorType0);
+        GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType0);
 
         //Act
         Measurement result = ctrl.getLatestMeasurementByRoomName("room1");
@@ -250,7 +250,7 @@ public class US605ControllerTest {
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
         SensorType sensorType0 = new SensorType("Temperature");
-        US605Controller ctrl = new US605Controller(house, sensorType0);
+        GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType0);
 
         String expectedResult = "RoomTwo";
         int roomPos = 1;
@@ -272,7 +272,7 @@ public class US605ControllerTest {
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
         SensorType sensorType0 = new SensorType("Temperature");
-        US605Controller ctrl = new US605Controller(house, sensorType0);
+        GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType0);
 
         String expectedResult = null;
         int roomPos = 0;
@@ -343,7 +343,7 @@ public class US605ControllerTest {
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoom(room1);
 
-        US605Controller ctrl = new US605Controller(house, sensorType0);
+        GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType0);
 
         double expectedResult = -10.0;
 
@@ -375,7 +375,7 @@ public class US605ControllerTest {
 
         SensorType sensorType0 = new SensorType("Temperature");
 
-        US605Controller ctrl = new US605Controller(house, sensorType0);
+        GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType0);
 
         int year = 2001, month = 12, day = 1;
         LocalDate dateLD = LocalDate.of(2001, 12, 1);
@@ -408,7 +408,7 @@ public class US605ControllerTest {
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
         SensorType sensorType = new SensorType("Temperature");
 
-        US605Controller ctrl = new US605Controller(house, sensorType);
+        GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType);
         SensorType expectedResult = sensorType;
 
         //Act

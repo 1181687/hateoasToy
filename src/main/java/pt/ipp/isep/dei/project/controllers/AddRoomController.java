@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
 
-public class US105Controller {
+public class AddRoomController {
     private House mHouse;
     private Room mRoom;
 
@@ -13,7 +13,7 @@ public class US105Controller {
      *
      * @param house house received
      */
-    public US105Controller(House house) {
+    public AddRoomController(House house) {
         this.mHouse = house;
     }
 

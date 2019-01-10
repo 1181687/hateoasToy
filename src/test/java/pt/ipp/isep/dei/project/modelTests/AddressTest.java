@@ -152,6 +152,33 @@ public class AddressTest {
     }
 
     @Test
+    public void testIfTwoAddressesWithTheSameZipCodeAreFalse() {
+
+        //Arrange
+
+        String zipCode = "4050";
+        double latitude1 = 40.5;
+        double latitude2 = 41.5;
+        double longitude1 = 50.5;
+        double longitude2 = 51.5;
+        double altitude1 = 100.0;
+        double altitude2 = 101.0;
+        Location local = new Location(latitude1, longitude1, altitude1);
+        Address address1 = new Address(zipCode, local);
+
+        Location local2 = new Location(latitude2, longitude2, altitude2);
+        Address address2 = new Address(zipCode, local2);
+
+        boolean expectedResult = false;
+
+        //act
+        boolean result = address1.equals(address2);
+
+        //assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void testarHashCode() {
         //Arrange
         String zipCode = "4050";
