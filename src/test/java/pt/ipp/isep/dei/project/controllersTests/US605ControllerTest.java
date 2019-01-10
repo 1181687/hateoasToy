@@ -159,8 +159,6 @@ public class US605ControllerTest {
         s2.addMeasurementToList(measurement21);
         s2.addMeasurementToList(measurement22);
 
-        Measurement expectedResult = measurement12;
-
         room1.addSensorToTheListOfSensorsInTheRoom(s0);
         room1.addSensorToTheListOfSensorsInTheRoom(s1);
         room1.addSensorToTheListOfSensorsInTheRoom(s2);
@@ -175,6 +173,8 @@ public class US605ControllerTest {
         Address address = new Address("0000", location);
         House house = new House(roomList, gridList, address, insertedGeoArea);
         US605Controller ctrl = new US605Controller(house, sensorType0);
+
+        Measurement expectedResult = measurement02;
 
         //Act
         Measurement result = ctrl.getLatestMeasurementByRoomName("room1");

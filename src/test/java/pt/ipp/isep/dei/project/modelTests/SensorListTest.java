@@ -124,9 +124,7 @@ class SensorListTest {
         listSens.addSensorToTheListOfSensors(s2);
 
         List<Measurement> expectedResult = new ArrayList<>();
-
         expectedResult.add(measurement02);
-        expectedResult.add(measurement12);
 
         SensorType tipoResultado = new SensorType("Temperatura");
 
@@ -190,16 +188,14 @@ class SensorListTest {
         s2.addMeasurementToList(measurement21);
         s2.addMeasurementToList(measurement22);
 
-        List<Measurement> expectedResult = new ArrayList<>();
-
-        expectedResult.add(measurement01);
-        expectedResult.add(measurement12);
-
         SensorType tipoResultado = new SensorType("Temperatura");
         SensorList listSens = new SensorList();
         listSens.addSensorToTheListOfSensors(s0);
         listSens.addSensorToTheListOfSensors(s1);
         listSens.addSensorToTheListOfSensors(s2);
+
+        List<Measurement> expectedResult = new ArrayList<>();
+        expectedResult.add(measurement01);
 
         //Act
         List<Measurement> result = listSens.getListOfLatestMeasurementsBySensorType(tipoResultado);
@@ -322,13 +318,13 @@ class SensorListTest {
         s2.addMeasurementToList(measurement21);
         s2.addMeasurementToList(measurement22);
 
-        Measurement expectedResult = measurement12;
-
         SensorType tipoResultado = new SensorType("Temperatura");
         SensorList listSens = new SensorList();
         listSens.addSensorToTheListOfSensors(s0);
         listSens.addSensorToTheListOfSensors(s1);
         listSens.addSensorToTheListOfSensors(s2);
+
+        Measurement expectedResult = measurement02;
 
         //Act
         Measurement result = listSens.getLatestMeasurementBySensorType(tipoResultado);
@@ -391,13 +387,13 @@ class SensorListTest {
         s2.addMeasurementToList(measurement21);
         s2.addMeasurementToList(measurement22);
 
-        Measurement expectedResult = measurement12;
-
         SensorType sensorType = new SensorType("Temperatura");
         SensorList listSens = new SensorList();
         listSens.addSensorToTheListOfSensors(s0);
         listSens.addSensorToTheListOfSensors(s1);
         listSens.addSensorToTheListOfSensors(s2);
+
+        Measurement expectedResult = measurement22;
 
         //Act
         Measurement result = listSens.getLatestMeasurementBySensorType(sensorType);

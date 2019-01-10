@@ -515,8 +515,6 @@ public class HouseTest {
         s2.addMeasurementToList(measurement21);
         s2.addMeasurementToList(measurement22);
 
-        Measurement expectedResult = measurement12;
-
         SensorType sensorType = new SensorType("Temperatura");
         RoomList rList = new RoomList();
         Dimensions dim = new Dimensions(4, 4, 4);
@@ -532,6 +530,8 @@ public class HouseTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
         house.addRoom(room);
+
+        Measurement expectedResult = measurement22;
 
         //Act
         Measurement result = house.getLatestMeasurementBySensorType("F5", sensorType);
