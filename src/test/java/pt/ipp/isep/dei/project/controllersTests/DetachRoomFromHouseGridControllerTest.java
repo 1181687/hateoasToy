@@ -193,7 +193,7 @@ class DetachRoomFromHouseGridControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         houseGridList.getmHouseGridsList().add(newGrid0);
         houseGridList.getmHouseGridsList().add(newGrid1);
-        US149Controller ctrl = new US149Controller(houseGridList, listOfRooms);
+        DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
 
         //Act
         boolean result = ctrl.detachRoomFromGridList(newGrid0, r2);
@@ -217,7 +217,7 @@ class DetachRoomFromHouseGridControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         houseGridList.getmHouseGridsList().add(newGrid0);
         houseGridList.getmHouseGridsList().add(newGrid1);
-        US149Controller ctrl = new US149Controller(houseGridList, listOfRooms);
+        DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
 
         //Act
         boolean result = ctrl.detachRoomFromGridList(newGrid0, r1);
