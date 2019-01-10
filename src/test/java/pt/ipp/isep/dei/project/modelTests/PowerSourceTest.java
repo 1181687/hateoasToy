@@ -132,4 +132,22 @@ public class PowerSourceTest {
         //Assert
         assertEquals("Please select a valid power source type", exception.getMessage());
     }
+
+    @Test
+    public void testingGetName(){
+        //Arrange
+        String powerSourceName1 = "ps1";
+
+        PowerSourceType powerSourceType1 = new PowerSourceType("public electric grid");
+
+        PowerSource powerSource1 = new PowerSource(powerSourceName1, powerSourceType1);
+
+        String expectedResult = "ps1";
+
+        //Act
+        String result = powerSource1.getName();
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
 }

@@ -1,9 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimensions;
-import pt.ipp.isep.dei.project.model.HouseGrid;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -53,5 +51,25 @@ public class HouseGridTest {
 
         // Assert
         assertTrue(result);
+    }
+
+    @Test
+    public void testListPowerSources(){
+        //Arrange
+        String name = "Power Source 1";
+        String name2 = "Power Source 2";
+        String typeName = "Battery";
+        PowerSourceType type1 = new PowerSourceType(typeName);
+        PowerSource powerSource1 = new PowerSource(name,type1);
+        PowerSource powerSource2 = new PowerSource(name2,type1);
+        HouseGrid houseGrid = new HouseGrid("House Grid1");
+        houseGrid.addPowerSource(powerSource1);
+        houseGrid.addPowerSource(powerSource2);
+        String expectedResult="1- Power Source 1\n" +
+                "2- Power Source 2\n";
+        //Act
+        String result=houseGrid.listPowerSources();
+        //Assert
+        assertEquals(expectedResult,result);
     }
 }

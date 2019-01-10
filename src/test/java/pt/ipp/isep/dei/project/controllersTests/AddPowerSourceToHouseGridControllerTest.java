@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
-import pt.ipp.isep.dei.project.model.HouseGrid;
-import pt.ipp.isep.dei.project.model.HouseGridList;
-import pt.ipp.isep.dei.project.model.PowerSourceType;
-import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
+import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -231,6 +228,62 @@ class AddPowerSourceToHouseGridControllerTest {
         String result = controller.getPowerSourceTypeListContent();
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testListPowerSourcesConnectedToHouseGrid(){
+        //Arrange
+        //Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        HouseGridList houseGridList = new HouseGridList();
+        houseGridList.getmHouseGridsList().add(houseGrid1);
+
+        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
+        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
+        powerSourceTypeList.addPowerSourceType(powerSourceType);
+
+        String powerSourceName1 = "ps1";
+
+        int position = 0;
+
+        AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
+        controller.getHouseGridFromListByPosition(position);
+        controller.getPowerSourceTypeFromListByPosition(position);
+        controller.createAndAddPowerSourceToHouseGrid(powerSourceName1);
+
+        String expectedResult= "1- ps1\n";
+        //Act
+        String result=controller.listPowerSourcesConnectedToHouseGrid();
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void testGetHouseGridName(){
+        //Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        HouseGridList houseGridList = new HouseGridList();
+        houseGridList.getmHouseGridsList().add(houseGrid1);
+
+        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
+        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
+        powerSourceTypeList.addPowerSourceType(powerSourceType);
+
+        int position = 0;
+
+        AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
+        controller.getHouseGridFromListByPosition(position);
+        controller.getPowerSourceTypeFromListByPosition(position);
+
+        String expectedResult = "hgname1";
+
+        //Act
+        String result = controller.getHouseGridName();
+
+        //Assert
+        assertEquals(expectedResult,result);
     }
 
 }
