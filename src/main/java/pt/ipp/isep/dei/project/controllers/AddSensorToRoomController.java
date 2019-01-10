@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.*;
 
 
-public class US253Controller {
+public class AddSensorToRoomController {
 
     private SensorTypeList mListSensorsType;
     private RoomList mRoomList;
@@ -13,7 +13,7 @@ public class US253Controller {
     private SensorType mSensorType;
     private Location mLocationOfTheHouse;
 
-    public US253Controller(SensorTypeList mListSensorsType, RoomList mRoomList, House mHouse) {
+    public AddSensorToRoomController(SensorTypeList mListSensorsType, RoomList mRoomList, House mHouse) {
         this.mListSensorsType = mListSensorsType;
         this.mRoomList = mRoomList;
         this.mHouse = mHouse;

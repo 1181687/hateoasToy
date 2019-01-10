@@ -1,12 +1,12 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US149Controller;
+import pt.ipp.isep.dei.project.controllers.DetachRoomFromHouseGridController;
 import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class US149ControllerTest {
+class DetachRoomFromHouseGridControllerTest {
 
     @Test
     void testsGetListContentMethod() {
@@ -21,7 +21,7 @@ class US149ControllerTest {
         HouseGrid newGrid = new HouseGrid("Main Grid", 20, listOfRooms);
         HouseGridList houseGridList = new HouseGridList();
         houseGridList.getmHouseGridsList().add(newGrid);
-        US149Controller ctrl = new US149Controller(houseGridList, listOfRooms);
+        DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
         String expectedResult = "1 - Name: Main Grid" + "\n";
         //Act
         String result = ctrl.getListOfHouseGridsAttachedToHouseGrid();
@@ -44,7 +44,7 @@ class US149ControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         houseGridList.getmHouseGridsList().add(newGrid);
         houseGridList.getmHouseGridsList().add(newGrid1);
-        US149Controller ctrl = new US149Controller(houseGridList, listOfRooms);
+        DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
         String expectedResult = "1 - Name: Main Grid" + "\n" + "2 - Name: Secondary Grid" + "\n";
         //Act
         String result = ctrl.getListOfHouseGridsAttachedToHouseGrid();
@@ -67,7 +67,7 @@ class US149ControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         houseGridList.getmHouseGridsList().add(newGrid0);
         houseGridList.getmHouseGridsList().add(newGrid1);
-        US149Controller ctrl = new US149Controller(houseGridList, listOfRooms);
+        DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
         HouseGrid expectedResult = newGrid0;
         //Act
         HouseGrid result = ctrl.getHouseGridFromTheList(0);
@@ -90,7 +90,7 @@ class US149ControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         houseGridList.getmHouseGridsList().add(newGrid0);
         houseGridList.getmHouseGridsList().add(newGrid1);
-        US149Controller ctrl = new US149Controller(houseGridList, listOfRooms);
+        DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
         String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimensions - Height: 2.0, Dimensions - Length: 3.0, Dimensions - Width: 4.0\n" +
                 "2- Name: Living Room, House Floor: 2, Dimensions - Height: 2.0, Dimensions - Length: 3.0, Dimensions - Width: 3.0" + "\n";
         //Act
@@ -114,7 +114,7 @@ class US149ControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         houseGridList.getmHouseGridsList().add(newGrid0);
         houseGridList.getmHouseGridsList().add(newGrid1);
-        US149Controller ctrl = new US149Controller(houseGridList, listOfRooms);
+        DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
         Room expectedResult = r1;
         //Act
         Room result = ctrl.getRoomFromTheListOfRoomByAPosition(1);
@@ -138,7 +138,7 @@ class US149ControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         houseGridList.getmHouseGridsList().add(newGrid0);
         houseGridList.getmHouseGridsList().add(newGrid1);
-        US149Controller ctrl = new US149Controller(houseGridList, listOfRooms);
+        DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
         ctrl.detachRoomFromGridList(newGrid0, r1);
         String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimensions - Height: 2.0, Dimensions - Length: 3.0, Dimensions - Width: 4.0\n";
         //Act
@@ -165,7 +165,7 @@ class US149ControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         houseGridList.getmHouseGridsList().add(newGrid0);
         houseGridList.getmHouseGridsList().add(newGrid1);
-        US149Controller ctrl = new US149Controller(houseGridList, listOfRooms);
+        DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
         ctrl.detachRoomFromGridList(newGrid0, r2);
         String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimensions - Height: 2.0, Dimensions - Length: 3.0, Dimensions - Width: 4.0\n" +
                 "2- Name: Living Room, House Floor: 2, Dimensions - Height: 2.0, Dimensions - Length: 3.0, Dimensions - Width: 3.0" + "\n";
@@ -193,7 +193,7 @@ class US149ControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         houseGridList.getmHouseGridsList().add(newGrid0);
         houseGridList.getmHouseGridsList().add(newGrid1);
-        US149Controller ctrl = new US149Controller(houseGridList, listOfRooms);
+        DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
         int expectedResult = 2;
         //Act
         int result = ctrl.getNumberOfGridLists();

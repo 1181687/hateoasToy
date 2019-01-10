@@ -1,13 +1,13 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US105Controller;
+import pt.ipp.isep.dei.project.controllers.AddRoomController;
 import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class US105ControllerTest {
+public class AddRoomControllerTest {
 
     @Test
     public void testAddRoomToHouseFalse(){
@@ -20,7 +20,7 @@ public class US105ControllerTest {
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
-        US105Controller ctr= new US105Controller(house);
+        AddRoomController ctr = new AddRoomController(house);
 
         boolean result = ctr.addRoomToHouse();
         assertFalse(result);
@@ -38,7 +38,7 @@ public class US105ControllerTest {
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
-        US105Controller ctr= new US105Controller(house);
+        AddRoomController ctr = new AddRoomController(house);
 
         ctr.newRoom(4,4,4,"F5",1);
 

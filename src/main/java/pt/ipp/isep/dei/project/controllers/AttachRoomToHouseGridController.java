@@ -5,7 +5,7 @@ import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.RoomList;
 
-public class US147Controller {
+public class AttachRoomToHouseGridController {
     private HouseGridList mListOfHouseGrids;
     private RoomList mListOfRooms;
     private HouseGrid mGridToBeUsed;
@@ -17,7 +17,7 @@ public class US147Controller {
      * @param listOfHouseGrids HouseGridList attribute.
      * @param listOfRooms      RoomList attribute.
      */
-    public US147Controller(HouseGridList listOfHouseGrids, RoomList listOfRooms) {
+    public AttachRoomToHouseGridController(HouseGridList listOfHouseGrids, RoomList listOfRooms) {
         mListOfHouseGrids = listOfHouseGrids;
         mListOfRooms = listOfRooms;
     }

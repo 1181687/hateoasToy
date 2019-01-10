@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.*;
 
-public class US135Controller {
+public class AddPowerSourceToHouseGridController {
 
     private HouseGridList mHouseGridList;
     private PowerSource mPowerSource;
@@ -11,7 +11,7 @@ public class US135Controller {
     private PowerSourceType mSelectedPowerSourceType;
 
 
-    public US135Controller(HouseGridList houseGridList, PowerSourceTypeList powerSourceTypeList) {
+    public AddPowerSourceToHouseGridController(HouseGridList houseGridList, PowerSourceTypeList powerSourceTypeList) {
         this.mHouseGridList = houseGridList;
         this.mPowerSourceTypeList = powerSourceTypeList;
     }

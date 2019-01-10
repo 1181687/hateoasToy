@@ -1,13 +1,13 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US8Controller;
+import pt.ipp.isep.dei.project.controllers.InsertedGeoAreaController;
 import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class US8ControllerTest {
+class InsertedGeoAreaControllerTest {
 
     @Test
     public void testarApresentacaoDeListaComCriterioTrueComAreaInserida() {
@@ -30,7 +30,7 @@ class US8ControllerTest {
         listaDeAGs.addGeoArea(ag1);
         listaDeAGs.addGeoArea(ag2);
 
-        US8Controller ctrl = new US8Controller(listaDeAGs);
+        InsertedGeoAreaController ctrl = new InsertedGeoAreaController(listaDeAGs);
 
         String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109, Inserido Em: Cidade Porto\n";
 
@@ -62,7 +62,7 @@ class US8ControllerTest {
         listaDeAGs.addGeoArea(ag1);
         listaDeAGs.addGeoArea(ag2);
 
-        US8Controller ctrl = new US8Controller(listaDeAGs);
+        InsertedGeoAreaController ctrl = new InsertedGeoAreaController(listaDeAGs);
 
         String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
@@ -95,7 +95,7 @@ class US8ControllerTest {
         listaDeAGs.addGeoArea(ag1);
         listaDeAGs.addGeoArea(ag2);
 
-        US8Controller ctrl = new US8Controller(listaDeAGs);
+        InsertedGeoAreaController ctrl = new InsertedGeoAreaController(listaDeAGs);
 
         String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
@@ -127,7 +127,7 @@ class US8ControllerTest {
         listaDeAGs.addGeoArea(ag1);
         listaDeAGs.addGeoArea(ag2);
 
-        US8Controller ctrl = new US8Controller(listaDeAGs);
+        InsertedGeoAreaController ctrl = new InsertedGeoAreaController(listaDeAGs);
 
         String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
@@ -158,7 +158,7 @@ class US8ControllerTest {
         lista.addGeoArea(ag1);
         lista.addGeoArea(ag2);
 
-        US8Controller ctrl = new US8Controller(lista);
+        InsertedGeoAreaController ctrl = new InsertedGeoAreaController(lista);
 
         int opçãoSeleccionada =1;
 
@@ -196,7 +196,7 @@ class US8ControllerTest {
 
         ag2.setInsertedIn(ag1);
 
-        US8Controller ctrl = new US8Controller(geoAreaList);
+        InsertedGeoAreaController ctrl = new InsertedGeoAreaController(geoAreaList);
 
         boolean expectedResult = true;
 
@@ -235,7 +235,7 @@ class US8ControllerTest {
 
         ag2.setInsertedIn(ag1);
 
-        US8Controller ctrl = new US8Controller(geoAreaList);
+        InsertedGeoAreaController ctrl = new InsertedGeoAreaController(geoAreaList);
 
         boolean expectedResult = false;
 
@@ -277,7 +277,7 @@ class US8ControllerTest {
         geoAreaList.addGeoArea(ag2);
         geoAreaList.addGeoArea(ag3);
 
-        US8Controller ctrl = new US8Controller(geoAreaList);
+        InsertedGeoAreaController ctrl = new InsertedGeoAreaController(geoAreaList);
 
         boolean expectedResult = false;
 
@@ -311,7 +311,7 @@ class US8ControllerTest {
         listaDeAGs.addGeoArea(ag1);
         listaDeAGs.addGeoArea(ag2);
 
-        US8Controller ctrl = new US8Controller(listaDeAGs);
+        InsertedGeoAreaController ctrl = new InsertedGeoAreaController(listaDeAGs);
 
         //Act
         boolean resultado = ctrl.verificarSeAGEstaContidaDiretaOuIndiretamenteNoutraAG(1,0);
@@ -348,7 +348,7 @@ class US8ControllerTest {
         geoAreaList.addGeoArea(ag2);
         geoAreaList.addGeoArea(ag3);
 
-        US8Controller ctrl = new US8Controller(geoAreaList);
+        InsertedGeoAreaController ctrl = new InsertedGeoAreaController(geoAreaList);
 
         boolean expectedResult = false;
 
@@ -391,7 +391,7 @@ class US8ControllerTest {
         geoAreaList.addGeoArea(ag2);
         geoAreaList.addGeoArea(ag3);
 
-        US8Controller ctrl = new US8Controller(geoAreaList);
+        InsertedGeoAreaController ctrl = new InsertedGeoAreaController(geoAreaList);
 
         boolean expectedResult = true;
 

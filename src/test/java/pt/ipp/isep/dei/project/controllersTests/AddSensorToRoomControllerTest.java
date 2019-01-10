@@ -1,12 +1,12 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US253Controller;
+import pt.ipp.isep.dei.project.controllers.AddSensorToRoomController;
 import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class US253ControllerTest {
+class AddSensorToRoomControllerTest {
 
     @Test
     void testDisplayRoomsInTheHouse() {
@@ -41,12 +41,12 @@ class US253ControllerTest {
         House house = new House(roomList, gridlist, adr, insertedGeoArea);
 
 
-        US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
+        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
 
         //act
-        String result = us253Controller.displayRoomsInTheHouse();
+        String result = addSensorToRoomController.displayRoomsInTheHouse();
         //assert
         assertEquals(expectResult, result);
     }
@@ -81,12 +81,12 @@ class US253ControllerTest {
         SensorTypeList listSensorsType = new SensorTypeList();
         listSensorsType.addSensorType(sensorType);
 
-        US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
+        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
         String expectedResult = "1 - Sensor Type: Temperatura\n";
 
         // Act
-        String result = us253Controller.displayListOfSensorsType();
+        String result = addSensorToRoomController.displayListOfSensorsType();
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -122,14 +122,14 @@ class US253ControllerTest {
         SensorTypeList listSensorsType = new SensorTypeList();
         listSensorsType.addSensorType(sensorType);
 
-        US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
+        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
-        us253Controller.getRoomByIndex(0);
-        us253Controller.getSensorTypeByIndex(0);
-        us253Controller.getLocationOfTheHouse();
+        addSensorToRoomController.getRoomByIndex(0);
+        addSensorToRoomController.getSensorTypeByIndex(0);
+        addSensorToRoomController.getLocationOfTheHouse();
 
         // Act
-        boolean result = us253Controller.createAndAddSensorToTheList(sensorName);
+        boolean result = addSensorToRoomController.createAndAddSensorToTheList(sensorName);
 
         // Assert
         assertTrue(result);
@@ -152,10 +152,10 @@ class US253ControllerTest {
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();
 
-        US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
+        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
         // Act
-        boolean result = us253Controller.checkIfRoomListIsEmpty();
+        boolean result = addSensorToRoomController.checkIfRoomListIsEmpty();
         // Assert
         assertTrue(result);
     }
@@ -185,10 +185,10 @@ class US253ControllerTest {
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();
 
-        US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
+        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
         // Act
-        boolean result = us253Controller.checkIfRoomListIsEmpty();
+        boolean result = addSensorToRoomController.checkIfRoomListIsEmpty();
         // Assert
         assertFalse(result);
     }
@@ -218,10 +218,10 @@ class US253ControllerTest {
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();
 
-        US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
+        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
         // Act
-        boolean result = us253Controller.checkIfTheListOfSensorTypeIsEmpty();
+        boolean result = addSensorToRoomController.checkIfTheListOfSensorTypeIsEmpty();
         // Assert
         assertTrue(result);
     }
@@ -255,10 +255,10 @@ class US253ControllerTest {
         SensorTypeList listSensorsType = new SensorTypeList();
         listSensorsType.addSensorType(sensorType);
 
-        US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
+        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
         // Act
-        boolean result = us253Controller.checkIfTheListOfSensorTypeIsEmpty();
+        boolean result = addSensorToRoomController.checkIfTheListOfSensorTypeIsEmpty();
         // Assert
         assertFalse(result);
     }

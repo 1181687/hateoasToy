@@ -1,19 +1,19 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US147Controller;
+import pt.ipp.isep.dei.project.controllers.AttachRoomToHouseGridController;
 import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class US147ControllerTest {
+class AttachRoomToHouseGridControllerTest {
 
     @Test
     public void checkIfHouseGridListIsEmptyPositiveTest() {
         // Arrange
         HouseGridList gridList = new HouseGridList();
         RoomList roomList = new RoomList();
-        US147Controller Ctrl = new US147Controller(gridList, roomList);
+        AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
 
         // Act
         boolean result = Ctrl.checkIfHouseGridListIsEmpty();
@@ -30,7 +30,7 @@ class US147ControllerTest {
         HouseGrid grid = new HouseGrid(gridName);
         gridList.addHouseGridToTheList(grid);
         RoomList roomList = new RoomList();
-        US147Controller Ctrl = new US147Controller(gridList, roomList);
+        AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
 
         // Act
         boolean result = Ctrl.checkIfHouseGridListIsEmpty();
@@ -49,7 +49,7 @@ class US147ControllerTest {
         gridList.getmHouseGridsList().add(grid0);
         gridList.getmHouseGridsList().add(grid1);
         RoomList roomList = new RoomList();
-        US147Controller Ctrl = new US147Controller(gridList, roomList);
+        AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
         String expectedResult = "1 - Name: Grid\n2 - Name: Grid\n";
 
         // Act
@@ -69,7 +69,7 @@ class US147ControllerTest {
         listOfGrids.getmHouseGridsList().add(grid0);
         listOfGrids.getmHouseGridsList().add(grid1);
         RoomList listOfRooms = new RoomList();
-        US147Controller Ctrl = new US147Controller(listOfGrids, listOfRooms);
+        AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(listOfGrids, listOfRooms);
         HouseGrid expectedResult = grid0;
 
         // Act
@@ -94,7 +94,7 @@ class US147ControllerTest {
         Room room2 = new Room(name2, houseFloor2, dimensions2);
         roomList.addRoom(room1);
         roomList.addRoom(room2);
-        US147Controller Ctrl = new US147Controller(gridList, roomList);
+        AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
         String expectedResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
 
         // Act
@@ -119,7 +119,7 @@ class US147ControllerTest {
         Room room2 = new Room(name2, houseFloor2, dimensions2);
         roomList.addRoom(room1);
         roomList.addRoom(room2);
-        US147Controller Ctrl = new US147Controller(listOfGrids, roomList);
+        AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(listOfGrids, roomList);
         Room expectedResult = room1;
 
         // Act
@@ -142,7 +142,7 @@ class US147ControllerTest {
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
         Room room = new Room(roomName, houseFloor1, dimensions1);
         roomList.addRoom(room);
-        US147Controller Ctrl = new US147Controller(gridList, roomList);
+        AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
         Ctrl.setmGridToBeUsed(grid);
         Ctrl.setmRoomToBeAttached(room);
         Ctrl.attachRoomInTheHouseGrid();
@@ -167,7 +167,7 @@ class US147ControllerTest {
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
         Room room = new Room(roomName, houseFloor1, dimensions1);
         roomList.addRoom(room);
-        US147Controller Ctrl = new US147Controller(gridList, roomList);
+        AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
         Ctrl.setmGridToBeUsed(grid);
         Ctrl.setmRoomToBeAttached(room);
 
@@ -193,7 +193,7 @@ class US147ControllerTest {
         RoomList roomList = new RoomList();
 
         // Instantiate Controller
-        US147Controller ctrl = new US147Controller(gridList, roomList);
+        AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
 
         int expectedResult = 1;
 
@@ -221,7 +221,7 @@ class US147ControllerTest {
         HouseGridList gridList = new HouseGridList();
 
         // Instantiate Controller
-        US147Controller ctrl = new US147Controller(gridList, roomList);
+        AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
 
         // Act
         boolean result = ctrl.checkIfRoomListIsEmpty();
@@ -240,7 +240,7 @@ class US147ControllerTest {
         HouseGridList gridList = new HouseGridList();
 
         // Instantiate Controller
-        US147Controller ctrl = new US147Controller(gridList, roomList);
+        AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
 
         // Act
         boolean result = ctrl.checkIfRoomListIsEmpty();
@@ -266,7 +266,7 @@ class US147ControllerTest {
         HouseGridList gridList = new HouseGridList();
 
         // Instantiate Controller
-        US147Controller ctrl = new US147Controller(gridList, roomList);
+        AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
 
         int expectedResult = 1;
 
@@ -305,7 +305,7 @@ class US147ControllerTest {
         RoomList roomList = new RoomList();
 
         // Instantiate Controller
-        US147Controller ctrl = new US147Controller(gridList, roomList);
+        AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
         ctrl.setmRoomToBeAttached(room);
 
         HouseGrid expectedResult = grid2;
@@ -344,7 +344,7 @@ class US147ControllerTest {
         RoomList roomList = new RoomList();
 
         // Instantiate Controller
-        US147Controller ctrl = new US147Controller(gridList, roomList);
+        AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
         ctrl.setmRoomToBeAttached(room);
 
         HouseGrid expectedResult = null;
@@ -383,7 +383,7 @@ class US147ControllerTest {
         gridList.addHouseGridToTheList(grid0);
 
         // Instantiate Controller
-        US147Controller ctrl = new US147Controller(gridList, roomList);
+        AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
         ctrl.setmGridToBeUsed(grid0);
         ctrl.setmRoomToBeAttached(room0);
         ctrl.detachRoomFromTheHouseGrid(grid0);

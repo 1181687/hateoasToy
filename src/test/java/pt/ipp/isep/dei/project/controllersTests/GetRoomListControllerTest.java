@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US108Controller;
+import pt.ipp.isep.dei.project.controllers.GetRoomListController;
 import pt.ipp.isep.dei.project.model.Dimensions;
 import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.RoomList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class US108ControllerTest {
+class GetRoomListControllerTest {
 
     @Test
     public void getDisplayRoomListTest(){
@@ -28,7 +28,7 @@ class US108ControllerTest {
         rList.addRoom(room1);
         rList.addRoom(room2);
 
-        US108Controller ctrl = new US108Controller(rList);
+        GetRoomListController ctrl = new GetRoomListController(rList);
 
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
 
@@ -56,7 +56,7 @@ class US108ControllerTest {
         //arrange
         RoomList rList = new RoomList();
 
-        US108Controller ctrl = new US108Controller(rList);
+        GetRoomListController ctrl = new GetRoomListController(rList);
         //act
         boolean result = ctrl.checkIfListIsEmpty();
         //assert
@@ -75,7 +75,7 @@ class US108ControllerTest {
 
         rList.addRoom(room1);
 
-        US108Controller ctrl = new US108Controller(rList);
+        GetRoomListController ctrl = new GetRoomListController(rList);
 
         //act
         boolean result = ctrl.checkIfListIsEmpty();

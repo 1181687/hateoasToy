@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US620Controller;
+import pt.ipp.isep.dei.project.controllers.GetTotalAndAverageRainfallAndCurrentTempHouseAreaController;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDate;
@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class US620ControllerTest {
+public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
     @Test
     public void testOfCreateANewDate() {
@@ -27,7 +27,7 @@ public class US620ControllerTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
-        US620Controller ctrl = new US620Controller(house);
+        GetTotalAndAverageRainfallAndCurrentTempHouseAreaController ctrl = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
 
         int year = 2001, month = 12, day = 1;
         LocalDate expectedResult = LocalDate.of(2001, 12, 1);
@@ -91,7 +91,7 @@ public class US620ControllerTest {
 
         LocalDateTime day = LocalDateTime.of(2018, 11, 1, 15, 20, 00);
 
-        US620Controller ctrl = new US620Controller(house);
+        GetTotalAndAverageRainfallAndCurrentTempHouseAreaController ctrl = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
 
         double expectedResult = 26;
 
@@ -158,7 +158,7 @@ public class US620ControllerTest {
         LocalDateTime startDate1 = LocalDateTime.of(2018, 11, 1, 15, 20, 00);
         LocalDateTime endDate1 = LocalDateTime.of(2018, 11, 6, 17, 24, 00);
 
-        US620Controller ctrl = new US620Controller(house);
+        GetTotalAndAverageRainfallAndCurrentTempHouseAreaController ctrl = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
 
 
         double expectedResult = 24.375;
@@ -249,7 +249,7 @@ public class US620ControllerTest {
         s1.addMeasurementToList(measurement12);
 
         // Controller
-        US620Controller ctrl = new US620Controller(house);
+        GetTotalAndAverageRainfallAndCurrentTempHouseAreaController ctrl = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
 
         double expectedResult = 25;
 
@@ -316,7 +316,7 @@ public class US620ControllerTest {
         AG.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         // Controller
-        US620Controller ctrl = new US620Controller(house);
+        GetTotalAndAverageRainfallAndCurrentTempHouseAreaController ctrl = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
 
         double expectedResult = Double.NaN;
 
@@ -370,7 +370,7 @@ public class US620ControllerTest {
         House house = new House(roomList, houseGridList, address, AG);
 
         // Controller
-        US620Controller ctrl = new US620Controller(house);
+        GetTotalAndAverageRainfallAndCurrentTempHouseAreaController ctrl = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
 
         double expectedResult = Double.NaN;
 
@@ -405,7 +405,7 @@ public class US620ControllerTest {
         House house = new House(roomList, houseGridList, address, AG);
 
         // Controller
-        US620Controller ctrl = new US620Controller(house);
+        GetTotalAndAverageRainfallAndCurrentTempHouseAreaController ctrl = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
 
         String expectedResult = "temperature";
 

@@ -5,11 +5,11 @@ import pt.ipp.isep.dei.project.model.HouseGrid;
 import pt.ipp.isep.dei.project.model.HouseGridList;
 
 
-public class US130Controller {
+public class CreateHouseGridController {
 
     private HouseGridList mHouseGridList;
 
-    public US130Controller(HouseGridList houseGridList) {
+    public CreateHouseGridController(HouseGridList houseGridList) {
         this.mHouseGridList = houseGridList;
     }
 

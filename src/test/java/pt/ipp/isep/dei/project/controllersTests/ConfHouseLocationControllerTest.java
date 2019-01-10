@@ -1,12 +1,12 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.US101Controller;
+import pt.ipp.isep.dei.project.controllers.ConfHouseLocationController;
 import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class US101ControllerTest {
+public class ConfHouseLocationControllerTest {
 
     @Test
     public void testDefineNewAddress() {
@@ -25,7 +25,7 @@ public class US101ControllerTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
-        US101Controller ctrl = new US101Controller(house);
+        ConfHouseLocationController ctrl = new ConfHouseLocationController(house);
 
         String zipCodeNewAddress = "4150";
         double latitudeNewAddress = 43.5;
