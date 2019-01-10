@@ -1,16 +1,19 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.US8Controller;
+import pt.ipp.isep.dei.project.controllers.InsertedGeoAreaController;
 import pt.ipp.isep.dei.project.model.GeoAreaList;
 import pt.ipp.isep.dei.project.model.GeographicalArea;
 
 import java.util.Scanner;
 
+/* US008 As an Administrator, I want to find out if a geographical area is included, directly
+or indirectly, in another one. */
+
 public class InsertedGeoArea {
-    private US8Controller ctrl;
+    private InsertedGeoAreaController ctrl;
 
     public InsertedGeoArea(GeoAreaList lista) {
-        this.ctrl = new US8Controller(lista);
+        this.ctrl = new InsertedGeoAreaController(lista);
     }
 
     public void run() {

@@ -1,16 +1,18 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.US135Controller;
+import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
 import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
 
+/* US135 As an Administrator, I want to add a power source to a house grid, so that the
+produced energy may be used by all devices in that grid. */
 
 public class AddPowerSourceToHouseGrid {
 
-    private US135Controller mController;
+    private AddPowerSourceToHouseGridController mController;
 
     public AddPowerSourceToHouseGrid(HouseGridList houseGridList, PowerSourceTypeList powerSourceTypeList) {
-        this.mController = new US135Controller(houseGridList,powerSourceTypeList);
+        this.mController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
     }
 
     public void run(){
