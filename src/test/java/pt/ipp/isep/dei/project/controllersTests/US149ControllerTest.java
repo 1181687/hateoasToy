@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.US149Controller;
 import pt.ipp.isep.dei.project.model.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class US149ControllerTest {
 
@@ -173,6 +173,56 @@ class US149ControllerTest {
         String result = ctrl.getListOfRoomsInACertainHouseGrid(0);
         //Assert
         assertEquals(result, expectedResult);
+    }
+
+    @Test
+    void detachRoomFromGridListRoomNotInTheListRemainsTheSameBooleanMethod() {
+        //Arrange
+        Dimensions r0Dimensions = new Dimensions(2, 3, 4);
+        Dimensions r1Dimensions = new Dimensions(2, 3, 3);
+        Room r0 = new Room("Bedroom", 3, r0Dimensions);
+        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        Room r2 = new Room("Bathroom", 2, r1Dimensions);
+        RoomList listOfRooms = new RoomList();
+        RoomList listOfRooms1 = new RoomList();
+        listOfRooms.addRoom(r0);
+        listOfRooms.addRoom(r1);
+        listOfRooms1.addRoom(r2);
+        HouseGrid newGrid0 = new HouseGrid("Main Grid", 20, listOfRooms);
+        HouseGrid newGrid1 = new HouseGrid("Secondary Grid", 20, listOfRooms1);
+        HouseGridList houseGridList = new HouseGridList();
+        houseGridList.getmHouseGridsList().add(newGrid0);
+        houseGridList.getmHouseGridsList().add(newGrid1);
+        US149Controller ctrl = new US149Controller(houseGridList, listOfRooms);
+
+        //Act
+        boolean result = ctrl.detachRoomFromGridList(newGrid0, r2);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void detachRoomFromGridListBooleanMethod() {
+        //Arrange
+        Dimensions r0Dimensions = new Dimensions(2, 3, 4);
+        Dimensions r1Dimensions = new Dimensions(2, 3, 3);
+        Room r0 = new Room("Bedroom", 3, r0Dimensions);
+        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        RoomList listOfRooms = new RoomList();
+        RoomList listOfRooms1 = new RoomList();
+        listOfRooms.addRoom(r0);
+        listOfRooms.addRoom(r1);
+        HouseGrid newGrid0 = new HouseGrid("Main Grid", 20, listOfRooms);
+        HouseGrid newGrid1 = new HouseGrid("Secondary Grid", 20, listOfRooms1);
+        HouseGridList houseGridList = new HouseGridList();
+        houseGridList.getmHouseGridsList().add(newGrid0);
+        houseGridList.getmHouseGridsList().add(newGrid1);
+        US149Controller ctrl = new US149Controller(houseGridList, listOfRooms);
+
+        //Act
+        boolean result = ctrl.detachRoomFromGridList(newGrid0, r1);
+        //Assert
+        assertTrue(result);
     }
 
     @Test
