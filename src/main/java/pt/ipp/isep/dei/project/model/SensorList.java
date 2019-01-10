@@ -149,7 +149,8 @@ public class SensorList {
                 nearestSensors.getmSensorList().clear();
                 nearestSensors.addSensorToTheListOfSensors(sensor);
             } else {
-                if (shortestDistance == sensor.distanceBetweenSensorAndLocation(location) && !sensor.equals(nearestSensors.getmSensorList().get(0))) {
+                Double comparableShortestDistance = shortestDistance;
+                if (comparableShortestDistance.equals(sensor.distanceBetweenSensorAndLocation(location)) && !sensor.equals(nearestSensors.getmSensorList().get(0))) {
                     nearestSensors.addSensorToTheListOfSensors(sensor);
                 }
             }
