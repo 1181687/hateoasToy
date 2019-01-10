@@ -33,6 +33,7 @@ public class SensorList {
 
     /**
      * Method that adds a sensor to the existing list.
+     *
      * @param sensor Chosen sensor.
      * @return True or false.
      */
@@ -46,9 +47,10 @@ public class SensorList {
 
     /**
      * Method that creates a new sensor.
-     * @param name Name for the sensor.
+     *
+     * @param name       Name for the sensor.
      * @param sensorType Type of the sensor.
-     * @param location Location of the sensor.
+     * @param location   Location of the sensor.
      * @return Sensor.
      */
     public Sensor createNewSensor(String name, SensorType sensorType, Location location) {
@@ -57,6 +59,7 @@ public class SensorList {
 
     /**
      * Method that returns a list of the latest measurements by sensor type.
+     *
      * @param type Sensor type needed.
      * @return List with the lastest measeruments for the required type.
      */
@@ -75,6 +78,7 @@ public class SensorList {
 
     /**
      * method that receives a Sensortype, and gets the latest Measurement available by that Sensortype
+     *
      * @param type Sensortype
      * @return Measuremnt
      */
@@ -128,5 +132,28 @@ public class SensorList {
             }
         }
         return dailyAverage;
+    }
+
+    /**
+     * Method that returns the list with the nearest sensor to a location.
+     *
+     * @param location Location used.
+     * @return A list with the nearest sensor (or more, if there are more than one with the same distance).
+     */
+    public SensorList getNearestSensorsToALocation(Location location) {
+        SensorList nearestSensors = new SensorList();
+        double shortestDistance = Double.NaN;
+        for (Sensor sensor : mSensorList) {
+            if (Double.isNaN(shortestDistance) || shortestDistance > sensor.distanceBetweenSensorAndLocation(location)) {
+                shortestDistance = sensor.distanceBetweenSensorAndLocation(location);
+                nearestSensors.getmSensorList().clear();
+                nearestSensors.addSensorToTheListOfSensors(sensor);
+            } else {
+                if (shortestDistance == sensor.distanceBetweenSensorAndLocation(location) && !sensor.equals(nearestSensors.getmSensorList().get(0))) {
+                    nearestSensors.addSensorToTheListOfSensors(sensor);
+                }
+            }
+        }
+        return nearestSensors;
     }
 }

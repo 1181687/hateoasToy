@@ -199,24 +199,6 @@ public class GeographicalArea {
         return new Location(mLatitude, mLongitude, mAltitude);
     }
 
-    /**
-     * method that get the nearest sensor of a location.
-     * @param sensorList
-     * @param location
-     * @return the nearest sensor.
-     */
-    public Sensor getNearestSensorOfALocation (SensorList sensorList, Location location){
-        Sensor nearestSensor = sensorList.getmSensorList().get(0);
-        double shortestDistance = nearestSensor.distanceBetweenSensorAndLocation(location);
-        for (Sensor sensor : sensorList.getmSensorList()) {
-            if (shortestDistance > sensor.distanceBetweenSensorAndLocation(location)) {
-                shortestDistance = sensor.distanceBetweenSensorAndLocation(location);
-                nearestSensor = sensor;
-            }
-        }
-        return nearestSensor;
-    }
-
     /** Method that get the list of sensors that exists in an area, with a certain type of sensor.
      * @param type
      * @return sensor list.
@@ -248,14 +230,26 @@ public class GeographicalArea {
      * @return Last measurement.
      */
     public double getTheLastMeasurement(Location location, SensorType type) {
-        SensorList sensorList = getTheSensorListOfAGivenType(type);
-        if (!sensorList.getmSensorList().isEmpty()) {
-            if (getNearestSensorOfALocation(sensorList, location).getLastMeasurement() == null) {
-                return Double.NaN;
+        SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
+        double latestMeasurementValue = Double.NaN;
+        if (!sensorListWithTheRequiredType.getmSensorList().isEmpty()) {
+            SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToALocation(location);
+            Measurement latestMeasurement = null;
+            if (nearestSensors.getmSensorList().size() > 1) {
+                for (Sensor sensor : nearestSensors.getmSensorList()) {
+                    if (latestMeasurement == null || sensor.getLastMeasurement().getmDateTime().isAfter(latestMeasurement.getmDateTime())) {
+                        latestMeasurement = sensor.getLastMeasurement();
+                        latestMeasurementValue = sensor.getLastMeasurement().getmValue();
+                    }
+                }
+            } else {
+                Sensor nearestSensor = nearestSensors.getmSensorList().get(0);
+                if (nearestSensor.getLastMeasurement() != null) {
+                    latestMeasurementValue = nearestSensor.getLastMeasurement().getmValue();
+                }
             }
-            return getNearestSensorOfALocation(sensorList, location).getLastMeasurement().getmValue();
         }
-        return Double.NaN;
+        return latestMeasurementValue;
     }
 
     /**

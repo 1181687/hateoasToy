@@ -875,6 +875,78 @@ class GeographicalAreaTest {
     }
 
     @Test
+    public void getLastTemperatureInTheAreaTestWithSensorInTheSameDistance() {
+        // Arrange
+        // Instantiate GeoAreas
+        String nomeAG2 = "Região Norte";
+        GeoAreaType tipo2 = new GeoAreaType("Região");
+        Location local2 = new Location(32.1496, 7.6109, 98);
+        AreaShape area2 = new AreaShape(10, 10, local2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+
+        String nomeAG1 = "Distrito Porto";
+        GeoAreaType tipo1 = new GeoAreaType("Distrito");
+        Location local1 = new Location(41.1496, -6.6109, 100);
+        AreaShape area1 = new AreaShape(10, 10, local1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        ag1.setInsertedIn(ag2);
+
+        String nomeAG = "Porto";
+        GeoAreaType tipo = new GeoAreaType("Cidade");
+        Location local = new Location(42.1496, -8.6109, 97);
+        AreaShape area = new AreaShape(10, 10, local);
+        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        ag.setInsertedIn(ag1);
+
+
+        // Instantiate Sensors
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Temperature");
+        Location locS0 = new Location(-1, 30, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Temperature");
+        Location locS1 = new Location(-1, 30, 50);
+        Sensor s1 = new Sensor("A12555", dataFuncionamento1, sensorType1, locS1);
+        ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+
+        // Instantiate Measurements
+        // Sensor0
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 19, 24, 00);
+
+        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
+        Measurement measurement02 = new Measurement(30, dataHoraDaMedicao02);
+
+        s0.addMeasurementToList(measurement01);
+        s0.addMeasurementToList(measurement02);
+
+        //Sensor1
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
+
+        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
+        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+
+        s1.addMeasurementToList(measurement11);
+        s1.addMeasurementToList(measurement12);
+
+
+        Location location = new Location(0, 30, 50);
+
+        double expectedResult = 30.0;
+        SensorType type = new SensorType("Temperature");
+
+        //Act
+        double result = ag.getTheLastMeasurement(location, type);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.0001);
+    }
+
+    @Test
     public void getAverageRainfallInTheAreaTest() {
         //arrange
         //Instanciar AG

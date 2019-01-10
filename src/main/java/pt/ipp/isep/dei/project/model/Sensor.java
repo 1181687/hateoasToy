@@ -319,6 +319,4 @@ public class Sensor {
     public double getDailyAverage(LocalDate date) {
         return getTotalDailyMeasurements(date) / getDailyMeasurement(date).size();
     }
-
-
 }
