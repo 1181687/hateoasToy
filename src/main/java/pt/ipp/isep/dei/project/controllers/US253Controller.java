@@ -48,7 +48,7 @@ public class US253Controller {
      * @param position of sensors type in the sensors type list.
      */
     public void getSensorTypeByIndex (int position) {
-        mSensorType = this.mListSensorsType.getTipoSensorPorPosicao(position);
+        mSensorType = this.mListSensorsType.getSensorTypeByPosition(position);
     }
 
     /**

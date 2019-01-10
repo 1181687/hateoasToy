@@ -7,12 +7,12 @@ import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 import java.util.List;
 import java.util.Scanner;
 
-public class US4UI {
+public class GetListOfTypeOfGeoArea {
 
     private US4Controller mCtrl;
 
 
-    public US4UI(GeoAreaList lista, GeoAreaTypeList listaTAG) {
+    public GetListOfTypeOfGeoArea(GeoAreaList lista, GeoAreaTypeList listaTAG) {
         this.mCtrl = new US4Controller(lista, listaTAG);
     }
 

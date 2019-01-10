@@ -4,11 +4,11 @@ import pt.ipp.isep.dei.project.controllers.US108Controller;
 import pt.ipp.isep.dei.project.model.RoomList;
 
 
-public class US108UI {
+public class GetRoomList {
 
     private US108Controller ctrl;
 
-    public US108UI(RoomList list) {
+    public GetRoomList(RoomList list) {
         this.ctrl = new US108Controller(list);
     }
 

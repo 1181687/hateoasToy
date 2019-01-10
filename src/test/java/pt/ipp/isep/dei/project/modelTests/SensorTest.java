@@ -290,7 +290,7 @@ class SensorTest {
         sensor1.addMeasurementToList(registo1);
         sensor1.addMeasurementToList(registo2);
         sensor1.addMeasurementToList(registo3);
-        double result = sensor1.getLowestMeasurementOfMonth(diaDoMes);
+        double result = sensor1.getSmallestMeasurementOfMonth(diaDoMes);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -309,7 +309,7 @@ class SensorTest {
         LocalDate diaDoMes = LocalDate.of(2017, GregorianCalendar.AUGUST, 15);
 
         // Act
-        double result = sensor1.getLowestMeasurementOfMonth(diaDoMes);
+        double result = sensor1.getSmallestMeasurementOfMonth(diaDoMes);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -338,7 +338,7 @@ class SensorTest {
         sensor1.addMeasurementToList(registo1);
         sensor1.addMeasurementToList(registo2);
         sensor1.addMeasurementToList(registo3);
-        double result = sensor1.getLowestMeasurementOfMonth(diaDoMes);
+        double result = sensor1.getSmallestMeasurementOfMonth(diaDoMes);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -367,7 +367,7 @@ class SensorTest {
         sensor1.addMeasurementToList(registo1);
         sensor1.addMeasurementToList(registo2);
         sensor1.addMeasurementToList(registo3);
-        double result = sensor1.getLowestMeasurementOfMonth(diaDoMes);
+        double result = sensor1.getSmallestMeasurementOfMonth(diaDoMes);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -396,7 +396,7 @@ class SensorTest {
         sensor1.addMeasurementToList(registo1);
         sensor1.addMeasurementToList(registo2);
         sensor1.addMeasurementToList(registo3);
-        double result = sensor1.getLowestMeasurementOfMonth(diaDoMes);
+        double result = sensor1.getSmallestMeasurementOfMonth(diaDoMes);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -425,7 +425,7 @@ class SensorTest {
         sensor1.addMeasurementToList(registo1);
         sensor1.addMeasurementToList(registo2);
         sensor1.addMeasurementToList(registo3);
-        double result = sensor1.getLowestMeasurementOfMonth(diaDoMes);
+        double result = sensor1.getSmallestMeasurementOfMonth(diaDoMes);
 
         // Assert
         assertEquals(expectedResult, result, 0.001);
@@ -460,7 +460,7 @@ class SensorTest {
         sensor1.addMeasurementToList(registo4);
 
         //Act
-        double result = sensor1.getGreatestMeasurementOfMonth(dataDoMes);
+        double result = sensor1.getBiggestMeasurementOfMonth(dataDoMes);
 
         //Assert
         assertEquals(expectedResult, result, 0.001);
@@ -478,7 +478,7 @@ class SensorTest {
         double expectedResult = Double.NaN;
 
         //Act
-        double result = sensor1.getGreatestMeasurementOfMonth(dataDoMes);
+        double result = sensor1.getBiggestMeasurementOfMonth(dataDoMes);
 
         //Assert
         assertEquals(expectedResult, result, 0.001);

@@ -5,10 +5,10 @@ import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 
 import java.util.Scanner;
 
-public class US1UI {
+public class AddGeoAreaType {
     private US1Controller ctrl;
 
-    public US1UI(GeoAreaTypeList lista) {
+    public AddGeoAreaType(GeoAreaTypeList lista) {
         this.ctrl = new US1Controller(lista);
     }
 

@@ -79,7 +79,7 @@ class US253ControllerTest {
 
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();
-        listSensorsType.adicionarTipoSensorALista(sensorType);
+        listSensorsType.addSensorType(sensorType);
 
         US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
 
@@ -120,7 +120,7 @@ class US253ControllerTest {
 
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();
-        listSensorsType.adicionarTipoSensorALista(sensorType);
+        listSensorsType.addSensorType(sensorType);
 
         US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
 
@@ -253,7 +253,7 @@ class US253ControllerTest {
 
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();
-        listSensorsType.adicionarTipoSensorALista(sensorType);
+        listSensorsType.addSensorType(sensorType);
 
         US253Controller us253Controller = new US253Controller(listSensorsType, roomList, house);
 

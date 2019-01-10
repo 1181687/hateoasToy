@@ -6,10 +6,10 @@ import pt.ipp.isep.dei.project.model.SensorTypeList;
 
 import java.util.Scanner;
 
-public class US6UI {
+public class AddSensorToGeoArea {
     private US6Controller controller6;
 
-    public US6UI(GeoAreaList geoAreaList, SensorTypeList sensorTypeList) {
+    public AddSensorToGeoArea(GeoAreaList geoAreaList, SensorTypeList sensorTypeList) {
         this.controller6 = new US6Controller(sensorTypeList, geoAreaList);
     }
 

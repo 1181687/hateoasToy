@@ -8,7 +8,7 @@ import pt.ipp.isep.dei.project.model.SensorType;
 import java.time.DateTimeException;
 import java.util.Objects;
 
-public class US605UI {
+public class GetCurrentAndMaxTempRoom {
 
     private US605Controller mctrl;
 
@@ -18,7 +18,7 @@ public class US605UI {
      * @param house          House
      * @param sensorType   SensorType
      */
-    public US605UI(House house, SensorType sensorType) {
+    public GetCurrentAndMaxTempRoom(House house, SensorType sensorType) {
         this.mctrl = new US605Controller(house, sensorType);
     }
 

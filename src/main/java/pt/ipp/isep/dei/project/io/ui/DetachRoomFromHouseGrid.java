@@ -4,10 +4,10 @@ import pt.ipp.isep.dei.project.controllers.US149Controller;
 import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.RoomList;
 
-public class US149UI {
+public class DetachRoomFromHouseGrid {
     private US149Controller ctrl;
 
-    public US149UI(HouseGridList gridList, RoomList roomList) {
+    public DetachRoomFromHouseGrid(HouseGridList gridList, RoomList roomList) {
         this.ctrl = new US149Controller(gridList, roomList);
     }
 

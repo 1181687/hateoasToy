@@ -6,10 +6,10 @@ import pt.ipp.isep.dei.project.model.GeographicalArea;
 
 import java.util.Scanner;
 
-public class US8UI {
+public class InsertedGeoArea {
     private US8Controller ctrl;
 
-    public US8UI(GeoAreaList lista) {
+    public InsertedGeoArea(GeoAreaList lista) {
         this.ctrl = new US8Controller(lista);
     }
 

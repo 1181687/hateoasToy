@@ -6,10 +6,10 @@ import pt.ipp.isep.dei.project.model.HouseGridList;
 
 import java.util.Scanner;
 
-public class US130UI {
+public class CreateHouseGrid {
     private US130Controller mController;
 
-    public US130UI(HouseGridList houseGridList) {
+    public CreateHouseGrid(HouseGridList houseGridList) {
         this.mController = new US130Controller(houseGridList);
     }
 

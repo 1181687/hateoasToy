@@ -7,11 +7,11 @@ import pt.ipp.isep.dei.project.model.SensorTypeList;
 
 import java.util.Scanner;
 
-public class US253UI {
+public class AddSensorToRoom {
 
     private US253Controller mUS253Controller;
 
-    public US253UI(House house, RoomList roomList, SensorTypeList listSensorsType) {
+    public AddSensorToRoom(House house, RoomList roomList, SensorTypeList listSensorsType) {
         mUS253Controller = new US253Controller(listSensorsType, roomList, house);
     }
 
