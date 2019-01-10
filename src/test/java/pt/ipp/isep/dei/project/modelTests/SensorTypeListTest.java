@@ -69,7 +69,21 @@ class SensorTypeListTest {
     }
 
     @Test
-    void testarNovoTipoSensor() {
+    void testarNovoTipoSensorMesmoTipo() {
+        //Arrange
+        SensorTypeList lista = new SensorTypeList();
+        String novoTipo = "Humidade";
+        SensorType novoSensorType = new SensorType(novoTipo);
+        lista.addSensorType(novoSensorType);
+        SensorType outroSensorType = lista.newSensorType("Humidade");
+        //Act
+        boolean resultado = lista.addSensorType(outroSensorType);
+        //Assert
+        assertFalse(resultado);
+    }
+
+    @Test
+    void testarNovoTipoSensorOutroTipoTrue() {
         //Arrange
         SensorTypeList lista = new SensorTypeList();
         String novoTipo = "Humidade";

@@ -57,8 +57,17 @@ public class AreaShape {
         }
 
         AreaShape local = (AreaShape) obj;
-        final double delta = 0.0001;
-        return mLocationAreaShape.equals(local.mLocationAreaShape)&& Math.abs((mLength -local.mLength))<delta && Math.abs((mWidth -local.mWidth))<delta;
+        Double comparablemLength = mLength;
+        Double comparablemWidth = mWidth;
+        Location comparablemLocationAreaShape = mLocationAreaShape;
+
+        Double comparableAreaShapemLength = local.mLength;
+        Double comparableAreaShapemWidth = local.mWidth;
+        Location comparableAreaShapemLocationAreaShape = local.mLocationAreaShape;
+
+        return comparableAreaShapemLength.equals(comparablemLength)
+                && comparableAreaShapemWidth.equals(comparablemWidth)
+                && comparableAreaShapemLocationAreaShape.equals(comparablemLocationAreaShape);
     }
 
 }
