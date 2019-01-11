@@ -31,7 +31,7 @@ public class RoomListTest {
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
 
         //act
-        String result = rList.displayRoomList();
+        String result = rList.getRoomListContent();
         //assert
         assertEquals(expectResult, result);
     }
@@ -44,7 +44,7 @@ public class RoomListTest {
         String expectResult = "";
 
         //act
-        String result = rList.displayRoomList();
+        String result = rList.getRoomListContent();
         //assert
         assertEquals(expectResult, result);
     }
@@ -149,7 +149,7 @@ public class RoomListTest {
         String expectedResult = "1 - Name: Kitchen\n2 - House Floor: 0\n3 - Dimensions - Height: 2.0\n4 - Dimensions - Length: 2.0\n5 - Dimensions - Width: 2.0\n";
 
         //act
-        String result = rList.displayOfTheChosenRoom(0);
+        String result = rList.getChosenRoomContent(0);
         //assert
         assertEquals(expectedResult, result);
     }
@@ -179,7 +179,7 @@ public class RoomListTest {
         String expectedResult = "1 - Name: Living Room\n2 - House Floor: 1\n3 - Dimensions - Height: 2.6\n4 - Dimensions - Length: 2.8\n5 - Dimensions - Width: 2.1\n";
 
         //act
-        String result = rList.displayOfTheChosenRoom(chosenRoomPositionInList);
+        String result = rList.getChosenRoomContent(chosenRoomPositionInList);
         //assert
         assertEquals(expectedResult, result);
     }
@@ -209,7 +209,7 @@ public class RoomListTest {
         String expectedResult = "1 - Name: Kitchen\n2 - House Floor: 3\n3 - Dimensions - Height: 2.0\n4 - Dimensions - Length: 2.0\n5 - Dimensions - Width: 2.0\n";
 
         //act
-        String result = rList.displayOfTheChosenRoom(chosenRoomPositionInList);
+        String result = rList.getChosenRoomContent(chosenRoomPositionInList);
         //assert
         assertEquals(expectedResult, result);
     }
@@ -240,7 +240,7 @@ public class RoomListTest {
         String expectedResult = "1 - Name: Kitchen\n2 - House Floor: 0\n3 - Dimensions - Height: 3.0\n4 - Dimensions - Length: 2.0\n5 - Dimensions - Width: 2.0\n";
 
         //act
-        String result = rList.displayOfTheChosenRoom(chosenRoomPositionInList);
+        String result = rList.getChosenRoomContent(chosenRoomPositionInList);
         //assert
         assertEquals(expectedResult, result);
     }
@@ -271,7 +271,7 @@ public class RoomListTest {
         String expectedResult = "1 - Name: Kitchen\n2 - House Floor: 0\n3 - Dimensions - Height: 2.0\n4 - Dimensions - Length: 3.0\n5 - Dimensions - Width: 2.0\n";
 
         //act
-        String result = rList.displayOfTheChosenRoom(chosenRoomPositionInList);
+        String result = rList.getChosenRoomContent(chosenRoomPositionInList);
         //assert
         assertEquals(expectedResult, result);
     }
@@ -303,7 +303,7 @@ public class RoomListTest {
         String expectedResult = "1 - Name: Kitchen\n2 - House Floor: 0\n3 - Dimensions - Height: 2.0\n4 - Dimensions - Length: 2.0\n5 - Dimensions - Width: 3.0\n";
 
         //act
-        String result = rList.displayOfTheChosenRoom(chosenRoomPositionInList);
+        String result = rList.getChosenRoomContent(chosenRoomPositionInList);
         //assert
         assertEquals(expectedResult, result);
     }
@@ -526,6 +526,22 @@ public class RoomListTest {
 
 
         //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testCheckIfNameAlreadyExists() {
+        String nameToCheck = "Room one";
+        String name = "ROOM ONE";
+        RoomList list = new RoomList();
+        Dimensions dim = new Dimensions(5, 6, 7);
+        Room room1 = new Room(name, 1, dim);
+        list.addRoom(room1);
+
+        boolean expectedResult = true;
+
+        boolean result = list.checkIfNameAlreadyExists(nameToCheck);
+
         assertEquals(expectedResult, result);
 
     }

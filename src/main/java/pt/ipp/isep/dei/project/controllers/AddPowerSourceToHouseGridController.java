@@ -38,7 +38,7 @@ public class AddPowerSourceToHouseGridController {
     }
 
     public String getPowerSourceTypeListContent() {
-        return mPowerSourceTypeList.displayPowerSourceTypeList();
+        return mPowerSourceTypeList.getPowerSourceTypeListContent();
     }
 
     public int powerSourceTypeListLength(){

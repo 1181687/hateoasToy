@@ -4,7 +4,7 @@ package pt.ipp.isep.dei.project.model;
 import java.time.LocalDate;
 import java.util.List;
 
-public class House implements Measurable {
+public class House {
     private RoomList mRoomList;
     private HouseGridList mListHouseGrids;
     private Address mAddress;
@@ -22,6 +22,10 @@ public class House implements Measurable {
         this.mListHouseGrids = mListHouseGrids;
         this.mAddress = mAddress;
         this.mInsertedGeoArea = mInsertedGeoArea;
+    }
+
+    public RoomList getRoomList() {
+        return mRoomList;
     }
 
     /**
@@ -161,8 +165,8 @@ public class House implements Measurable {
     /**
      * method that display a room list.
      */
-    public String getRoomList() {
-        return mRoomList.displayRoomList();
+    public String getRoomListContent() {
+        return mRoomList.getRoomListContent();
     }
 
     /**
@@ -193,5 +197,23 @@ public class House implements Measurable {
      */
     public Room newRoom(double height, double length, double width, String name, int housefloor) {
         return mRoomList.newRoom(name, housefloor, height, length, width);
+    }
+
+    public boolean checkIfNameAlreadyExists(String name) {
+        return this.mRoomList.checkIfNameAlreadyExists(name);
+    }
+
+    public Room getRoomOfTheRoomList(int option) {
+        return mRoomList.getRoomFromASpecificPosition(option);
+    }
+
+    /**
+     * Method that displays the device list content of a Room
+     *
+     * @param position position of the room in the room list
+     * @return list of devices of a roomMethod that displays the content
+     */
+    public String getDeviceListContentOfARoom(int position) {
+        return mRoomList.getDeviceListContentOfARoom(position);
     }
 }

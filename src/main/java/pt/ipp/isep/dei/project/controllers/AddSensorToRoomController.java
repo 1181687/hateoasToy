@@ -24,7 +24,7 @@ public class AddSensorToRoomController {
      * @return the RoomList.
      */
     public String displayRoomsInTheHouse () {
-        return this.mRoomList.displayRoomList();
+        return this.mRoomList.getRoomListContent();
     }
 
     /**
@@ -40,7 +40,7 @@ public class AddSensorToRoomController {
      * @return the sensor type list.
      */
     public String displayListOfSensorsType () {
-        return this.mListSensorsType.displaySensorTypeList();
+        return this.mListSensorsType.getSensorTypeListContent();
     }
 
     /**

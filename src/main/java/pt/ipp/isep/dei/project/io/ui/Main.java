@@ -50,6 +50,8 @@ public class Main {
         Dimensions dimensions = new Dimensions(height, length, width);
         Room room1 = new Room(name, houseFloor, dimensions);
         houseEdificioB.addRoom(room1);
+        room1.addSensorToTheListOfSensorsInTheRoom(sensor);
+        houseEdificioB.addRoom(room1);
 
         String name2 = "B109";
         Room room2 = new Room(name2, houseFloor, dimensions);

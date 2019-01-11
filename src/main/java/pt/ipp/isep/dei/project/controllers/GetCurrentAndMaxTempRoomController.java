@@ -43,7 +43,7 @@ public class GetCurrentAndMaxTempRoomController {
      * @return a String with room's name, house floor, height, length and width:
      */
     public String getDisplayRoomList() {
-        return this.mHouse.getRoomList();
+        return this.mHouse.getRoomListContent();
     }
 
     /**
