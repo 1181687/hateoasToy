@@ -1,17 +1,17 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.House;
 
 public class GetListOfSensorsRoomController {
 
-    private Room mRoom;
+    private House mHouse;
 
-    public String getContentOfTheSensorList() {
-        return mRoom.getContentOfSensorsList();
+    public String getSensorsListContent(int position) {
+        return this.mHouse.getSensorListContentOfARoom(position);
     }
 
     public boolean checkIfListIsEmpty () {
-        return mRoom.checkIfRoomListIsEmpty();
+        return this.mHouse.checkIfSensorListIsEmpty();
     }
 
 }

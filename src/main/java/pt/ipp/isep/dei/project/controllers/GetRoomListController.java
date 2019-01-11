@@ -9,7 +9,7 @@ public class GetRoomListController {
         this.mList = list;
     }
 
-    public String displayOfTheRoomList() {
+    public String getRoomListContent() {
         return mList.getRoomListContent();
     }
 

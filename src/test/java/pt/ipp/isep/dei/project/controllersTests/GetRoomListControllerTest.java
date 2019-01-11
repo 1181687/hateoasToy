@@ -33,7 +33,7 @@ class GetRoomListControllerTest {
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
 
         //act
-        String result = ctrl.displayOfTheRoomList();
+        String result = ctrl.getRoomListContent();
         //assert
         assertEquals(expectResult, result);
     }

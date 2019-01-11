@@ -168,4 +168,34 @@ public class RoomTest {
         );
         assertEquals("Dimensions should not be null", exception.getMessage());
     }
+
+    @Test
+    public void getSensorsListContentTest () {
+        // Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Temperatura");
+        Location locS0 = new Location(123, 345, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2010, 11, 2, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Temperatura");
+        Location locS1 = new Location(123, 300, 50);
+        Sensor s1 = new Sensor("A456", dataFuncionamento1, sensorType1, locS1);
+
+        room.addSensorToTheListOfSensorsInTheRoom(s0);
+        room.addSensorToTheListOfSensorsInTheRoom(s1);
+
+        String expectedResult =
+                "1 - Name: A123\n" +
+                        "2 - Name: A456\n";
+        // Act
+        String result = room.getSensorsListContent();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+    
 }

@@ -205,18 +205,18 @@ public class Room implements Measurable{
         return content.toString();
     }
 
-    public String getContentOfSensorsList () {
+    public String getSensorsListContent () {
         StringBuilder content = new StringBuilder();
-        int sensorListLength = this.mSensorList.getmSensorList().size();
+        int sensorListLength = this.mSensorList.getLength();
 
         for (int i = 1; i <= sensorListLength; i++) {
-            content.append(i + " - Name: " + this.mSensorList.getmSensorList().get(i-0).getmSensorName());
+            content.append(i + " - Name: " + this.mSensorList.getmSensorList().get(i - 1).getmSensorName());
             content.append("\n");
         }
         return content.toString();
     }
 
-    public boolean checkIfRoomListIsEmpty() {
+    public boolean checkIfSensorListIsEmpty() {
         return mSensorList.getmSensorList().isEmpty();
     }
 

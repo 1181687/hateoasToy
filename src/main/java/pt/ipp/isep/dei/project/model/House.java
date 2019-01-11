@@ -216,4 +216,12 @@ public class House {
     public String getDeviceListContentOfARoom(int position) {
         return mRoomList.getDeviceListContentOfARoom(position);
     }
+
+    public String getSensorListContentOfARoom (int position) {
+        return mRoomList.getSensorListContentOfARoom(position);
+    }
+
+    public boolean checkIfSensorListIsEmpty () {
+        return mRoomList.checkIfSensorListIsEmpty();
+    }
 }
