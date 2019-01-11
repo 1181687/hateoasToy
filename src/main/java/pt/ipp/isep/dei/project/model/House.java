@@ -4,7 +4,7 @@ package pt.ipp.isep.dei.project.model;
 import java.time.LocalDate;
 import java.util.List;
 
-public class House implements Measurable {
+public class House {
     private RoomList mRoomList;
     private HouseGridList mListHouseGrids;
     private Address mAddress;

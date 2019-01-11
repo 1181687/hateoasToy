@@ -108,4 +108,13 @@ public class HouseGrid implements Measurable {
     public String listPowerSources(){
         return mPowerSourceList.listPowerSources();
     }
+
+    @Override
+    public double getNominalPower() {
+        double totalNominalPower= 0;
+        for (Room room : mRoomsConnectedToHouseGrid.getmRoomList() ) {
+            totalNominalPower+=room.getNominalPower();
+        }
+        return totalNominalPower;
+    }
 }

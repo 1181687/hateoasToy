@@ -10,7 +10,7 @@ public class Room implements Measurable{
     private int mHouseFloor;
     private Dimensions mDimensions;
     private SensorList mSensorList;
-
+    private DeviceList mDeviceList;
 
     /**
      * constructor that receives name, houseFloor, dimensions
@@ -28,6 +28,7 @@ public class Room implements Measurable{
         this.mHouseFloor = houseFloor;
         this.mDimensions = dimensions;
         this.mSensorList = new SensorList();
+        this.mDeviceList = new DeviceList();
     }
 
     /**
@@ -178,4 +179,12 @@ public class Room implements Measurable{
         return mSensorList.getLatestMeasurementBySensorType(type);
     }
 
+    @Override
+    public double getNominalPower() {
+        double totalNominalPower=0;
+        for (Device device : mDeviceList.getmDeviceList() ) {
+            totalNominalPower+=device.getNominalPower();
+        }
+        return totalNominalPower;
+    }
 }
