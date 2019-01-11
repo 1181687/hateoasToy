@@ -7,7 +7,7 @@ import pt.ipp.isep.dei.project.model.SensorTypeList;
 
 import java.util.Scanner;
 
-/* US253 As an Administrator, I want to add a new sensor to a room from the list of available
+/** US253 As an Administrator, I want to add a new sensor to a room from the list of available
 sensor types, in order to configure it. */
 
 public class AddSensorToRoom {

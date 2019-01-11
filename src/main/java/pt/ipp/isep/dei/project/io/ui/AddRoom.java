@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddRoomController;
 import pt.ipp.isep.dei.project.model.House;
-/*US105 As an Administrator, I want to add a new room to the house, in order to configure
+/**US105 As an Administrator, I want to add a new room to the house, in order to configure
 it (name, house floor and dimensions).*/
 
 public class AddRoom {

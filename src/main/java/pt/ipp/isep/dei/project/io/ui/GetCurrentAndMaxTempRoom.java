@@ -9,7 +9,7 @@ import java.time.DateTimeException;
 import java.util.Objects;
 
 
-/* US605 As a Regular User, I want to get the current temperature in a room, in order to check
+/** US605 As a Regular User, I want to get the current temperature in a room, in order to check
 if it meets my personal comfort requirements.
 US610 As a Regular User, I want to get the maximum temperature in a room in a given day,
 in order to check if heating/cooling in that room was effective.*/
