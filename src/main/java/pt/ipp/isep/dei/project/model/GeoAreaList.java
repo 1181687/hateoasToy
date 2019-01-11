@@ -164,4 +164,12 @@ public class GeoAreaList {
         AreaShape rectangleArea = new AreaShape(height, length, location);
         return new GeographicalArea(geoAreaName, geoAreaType, location, rectangleArea);
     }
+
+    /**
+     * method that gets the size of the list
+     * @return integer
+     */
+    public int getSizeOfTheList(){
+        return this.mGeoAreaList.size();
+    }
 }
