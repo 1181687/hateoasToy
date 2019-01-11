@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
-public class HouseGrid {
+public class HouseGrid implements Measurable {
     private String mHouseGridName;
     private double mMaximumContractedPower;
     private PowerSourceList mPowerSourceList;
@@ -107,5 +107,14 @@ public class HouseGrid {
 
     public String listPowerSources(){
         return mPowerSourceList.listPowerSources();
+    }
+
+    @Override
+    public double getNominalPower() {
+        double totalNominalPower= 0;
+        for (Room room : mRoomsConnectedToHouseGrid.getmRoomList() ) {
+            totalNominalPower+=room.getNominalPower();
+        }
+        return totalNominalPower;
     }
 }
