@@ -223,5 +223,4 @@ public class InputValidator {
 
         return validDate;
     }
-
 }
