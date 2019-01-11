@@ -168,7 +168,7 @@ class SensorTypeListTest {
         String expectedResult = "1 - Sensor Type: Temperatura\n";
 
         // Act
-        String result = listSensorsType.displaySensorTypeList();
+        String result = listSensorsType.getSensorTypeListContent();
         // Assert
         assertEquals(expectedResult, result);
     }

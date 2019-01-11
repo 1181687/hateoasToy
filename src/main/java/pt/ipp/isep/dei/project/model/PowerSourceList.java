@@ -38,7 +38,7 @@ public class PowerSourceList {
         return false;
     }
 
-    public String listPowerSources(){
+    public String getPowerSourcesListContent(){
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
         for (int i = 0; i < mPowerSourceList.size(); i++) {

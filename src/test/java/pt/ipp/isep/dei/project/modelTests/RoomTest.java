@@ -22,7 +22,7 @@ public class RoomTest {
         String expectResult = "Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0";
 
         //act
-        String result = room.getRoomDisplay();
+        String result = room.getRoomContent();
         //assert
         assertEquals(expectResult, result);
     }

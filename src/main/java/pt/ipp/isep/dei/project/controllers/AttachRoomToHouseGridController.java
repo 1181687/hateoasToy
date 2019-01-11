@@ -70,7 +70,7 @@ public class AttachRoomToHouseGridController {
      * @return List of house grids.
      */
     public String listAllTheRoomsInTheList() {
-        return mListOfRooms.displayRoomList();
+        return mListOfRooms.getRoomListContent();
     }
 
     /**

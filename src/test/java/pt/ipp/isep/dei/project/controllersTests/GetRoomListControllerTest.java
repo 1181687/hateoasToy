@@ -46,7 +46,7 @@ class GetRoomListControllerTest {
         String expectResult = "";
 
         //act
-        String result = rList.displayRoomList();
+        String result = rList.getRoomListContent();
         //assert
         assertEquals(expectResult, result);
     }

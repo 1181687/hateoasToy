@@ -102,7 +102,7 @@ public class Room implements Measurable{
      * method that displays a Room with its characteristics (name, house floor, height, length and width)
      * @return Rooms
      */
-    public String getRoomDisplay() {
+    public String getRoomContent() {
         StringBuilder content = new StringBuilder();
         content.append("Name: " + getmName());
         content.append(", House Floor: " + getmHouseFloor());
@@ -187,4 +187,5 @@ public class Room implements Measurable{
         }
         return totalNominalPower;
     }
+
 }

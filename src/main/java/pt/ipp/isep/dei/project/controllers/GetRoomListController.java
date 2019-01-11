@@ -10,7 +10,7 @@ public class GetRoomListController {
     }
 
     public String displayOfTheRoomList() {
-        return mList.displayRoomList();
+        return mList.getRoomListContent();
     }
 
     public boolean checkIfListIsEmpty(){

@@ -23,11 +23,11 @@ public class DetachRoomFromHouseGridController {
     }
 
     public String getListOfRooms() {
-        return mListOfRooms.displayRoomList();
+        return mListOfRooms.getRoomListContent();
     }
 
     public String getListOfRoomsInACertainHouseGrid(int position) {
-        return mListOfHouseGrids.displayRoomsInTheHouseGrid(position);
+        return mListOfHouseGrids.getRoomsInTheHouseGrid(position);
     }
 
     public Room getRoomFromTheListOfRoomByAPosition(int position) {

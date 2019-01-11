@@ -28,7 +28,7 @@ public class PowerSourceTypeList {
      *
      * @return Content of Power Source Type List
      */
-    public String displayPowerSourceTypeList() {
+    public String getPowerSourceTypeListContent() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= this.mPowerSourceTypeList.size(); i++) {
             content.append(i + " - Power Source Type: " + this.mPowerSourceTypeList.get(i - 1).getPowerSourceType());

@@ -70,11 +70,11 @@ public class RoomList {
      *
      * @return Content of Room List
      */
-    public String displayRoomList() {
+    public String getRoomListContent() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
         for (int i = 0; i < mRoomList.size(); i++) {
-            String displayOfTheRoom = mRoomList.get(i).getRoomDisplay();
+            String displayOfTheRoom = mRoomList.get(i).getRoomContent();
             content.append(numberInTheList + "- ");
             content.append(displayOfTheRoom);
             content.append("\n");
@@ -105,7 +105,7 @@ public class RoomList {
      * @param position position of the Room in the Room List
      * @return Content of the Room
      */
-    public String displayOfTheChosenRoom(int position) {
+    public String getChosenRoomContent(int position) {
         StringBuilder content = new StringBuilder();
         content.append("1 - Name: " + mRoomList.get(position).getmName());
         content.append("\n");
