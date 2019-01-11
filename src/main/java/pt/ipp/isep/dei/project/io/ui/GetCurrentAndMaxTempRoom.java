@@ -5,7 +5,6 @@ import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Measurement;
 import pt.ipp.isep.dei.project.model.SensorType;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -84,10 +83,15 @@ public class GetCurrentAndMaxTempRoom {
         int option = InputValidator.getIntRange(label0, 1, mctrl.lengthOfRoomList());
         String roomName = mctrl.getNameOfTheChosenRoomInSpecificPos(option - 1);
 
-        String label1 = "Please insert the date when you want to get the maximum temperature (valid numbers between 2000 and 2019 in the format yyyy-MM-dd):";
+        String label1 = "Please insert the date when you want to get the maximum temperature (yyyy-MM-dd):";
         LocalDate dateLD = InputValidator.getStringDate(label1);
 
         double temp = mctrl.getMaximumTemperatureOfARoomInAGivenDay(roomName, mctrl.getmType(), dateLD);
-        System.out.println("The maximum temperature is " + temp);
+        if (Double.isNaN(temp)) {
+            System.out.println("There are no temperature values available");
+            return;
+        }
+
+        System.out.println("The maximum temperature is " + temp + "ºC");
     }
 }
