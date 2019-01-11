@@ -1,11 +1,11 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import pt.ipp.isep.dei.project.model.PowerSource;
 import pt.ipp.isep.dei.project.model.PowerSourceList;
 import pt.ipp.isep.dei.project.model.PowerSourceType;
-import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PowerSourceListTest {
 
@@ -18,10 +18,10 @@ public class PowerSourceListTest {
         PowerSource powerSource1 = new PowerSource(powerSourceName1,powerSourceType1);
         PowerSource powerSource2 = new PowerSource(powerSourceName2,powerSourceType1);
         PowerSourceList powerSourceList = new PowerSourceList();
-        powerSourceList.addPowerSourceToList(powerSource1);
+        powerSourceList.addPowerSource(powerSource1);
 
         //Act
-        boolean result = powerSourceList.addPowerSourceToList(powerSource2);
+        boolean result = powerSourceList.addPowerSource(powerSource2);
 
         //Assert
         assertTrue(result);
@@ -38,10 +38,10 @@ public class PowerSourceListTest {
         PowerSource powerSource1 = new PowerSource(powerSourceName1, powerSourceType1);
         PowerSource powerSource2 = new PowerSource(powerSourceName2, powerSourceType2);
         PowerSourceList powerSourceList = new PowerSourceList();
-        powerSourceList.addPowerSourceToList(powerSource1);
+        powerSourceList.addPowerSource(powerSource1);
 
         //Act
-        boolean result = powerSourceList.addPowerSourceToList(powerSource2);
+        boolean result = powerSourceList.addPowerSource(powerSource2);
 
         //Assert
         assertFalse(result);
@@ -60,4 +60,23 @@ public class PowerSourceListTest {
         assertEquals(expectedResult,result);
     }
 
+    @Test
+    public void testListPowerSources(){
+        //Arrange
+        String name = "Power Source 1";
+        String name2 = "Power Source 2";
+        String typeName = "Battery";
+        PowerSourceType type1 = new PowerSourceType(typeName);
+        PowerSource powerSource1 = new PowerSource(name,type1);
+        PowerSource powerSource2 = new PowerSource(name2,type1);
+        PowerSourceList powerSourceList = new PowerSourceList();
+        powerSourceList.addPowerSource(powerSource1);
+        powerSourceList.addPowerSource(powerSource2);
+        String expectedResult="1- Power Source 1\n" +
+                "2- Power Source 2\n";
+        //Act
+        String result=powerSourceList.listPowerSources();
+        //Assert
+        assertEquals(expectedResult,result);
+    }
 }

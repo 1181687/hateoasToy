@@ -9,9 +9,10 @@ public class Menu {
         content.append("1-Administrator");
         content.append("\n");
         content.append("2-Regular User");
+        content.append("\n");
+        content.append("0-Exit");
         String label = content.toString();
-        int op = InputValidator.getIntRange(label, 0, 2);
-        return op;
+        return InputValidator.getIntRange(label, 0, 2);
     }
 
     public static int adminMenu() {
@@ -21,16 +22,17 @@ public class Menu {
         content.append("1-Geographical Area");
         content.append("\n");
         content.append("2-House");
+        content.append("\n");
+        content.append("0-Return to the previous menu");
         String label = content.toString();
-        int op = InputValidator.getIntRange(label, 0, 2);
-        return op;
+        return InputValidator.getIntRange(label, 0, 2);
     }
 
     public static int adminGeoAreaMenu() {
         StringBuilder content = new StringBuilder();
         content.append("Choose one of the following options:");
         content.append("\n");
-        content.append("1-New type of geographical area");
+        content.append("1-Create new type of geographical area");
         content.append("\n");
         content.append("2-Show list of geographical area types");
         content.append("\n");
@@ -38,7 +40,7 @@ public class Menu {
         content.append("\n");
         content.append("4-Show list of geographical areas by type");
         content.append("\n");
-        content.append("5-Define sensor types");
+        content.append("5-Create sensor types");
         content.append("\n");
         content.append("6-Add a new sensor");
         content.append("\n");
@@ -46,10 +48,9 @@ public class Menu {
         content.append("\n");
         content.append("8-Verify if one geographical area is included in another one");
         content.append("\n");
-        content.append("0-Exit");
+        content.append("0-Return to the previous menu");
         String label = content.toString();
-        int op = InputValidator.getIntRange(label, 0, 8);
-        return op;
+        return InputValidator.getIntRange(label, 0, 8);
     }
 
     public static int adminHouseMenu() {
@@ -64,10 +65,9 @@ public class Menu {
         content.append("\n");
         content.append("4-Add sensor to a room");
         content.append("\n");
-        content.append("0-Exit");
+        content.append("0-Return to the previous menu");
         String label = content.toString();
-        int op = InputValidator.getIntRange(label, 0, 4);
-        return op;
+        return InputValidator.getIntRange(label, 0, 4);
     }
 
     public static int regularUserMenu() {
@@ -78,26 +78,24 @@ public class Menu {
         content.append("\n");
         content.append("2-Rooms");
         content.append("\n");
-        content.append("0-Exit");
+        content.append("0-Return to the previous menu");
         String label = content.toString();
-        int op = InputValidator.getIntRange(label, 0, 2);
-        return op;
+        return InputValidator.getIntRange(label, 0, 2);
     }
 
     public static int regularUserHouseAreaMenu() {
         StringBuilder content = new StringBuilder();
         content.append("Choose one of the options:");
         content.append("\n");
-        content.append("1-Current temperature in the house area");
+        content.append("1-Get current temperature in the house area");
         content.append("\n");
-        content.append("2-Total rainfall in the house area");
+        content.append("2-Get total rainfall in the house area");
         content.append("\n");
-        content.append("3-Average daily rainfall in the house area");
+        content.append("3-Get average daily rainfall in the house area");
         content.append("\n");
-        content.append("0-Exit");
+        content.append("0-Return to the previous menu");
         String label = content.toString();
-        int op = InputValidator.getIntRange(label, 0, 3);
-        return op;
+        return InputValidator.getIntRange(label, 0, 3);
     }
 
     public static int regularUserRoomsMenu() {
@@ -108,10 +106,9 @@ public class Menu {
         content.append("\n");
         content.append("2-Maximum temperature of a room in a given day");
         content.append("\n");
-        content.append("0-Exit");
+        content.append("0-Return to the previous menu");
         String label = content.toString();
-        int op = InputValidator.getIntRange(label, 0, 2);
-        return op;
+        return InputValidator.getIntRange(label, 0, 2);
     }
 
     public static int houseGridMenu() {
@@ -126,9 +123,8 @@ public class Menu {
         content.append("\n");
         content.append("4-Detach a room from a house grid");
         content.append("\n");
-        content.append("0-Exit");
+        content.append("0-Return to the previous menu");
         String label = content.toString();
-        int op = InputValidator.getIntRange(label, 0, 4);
-        return op;
+        return InputValidator.getIntRange(label, 0, 4);
     }
 }

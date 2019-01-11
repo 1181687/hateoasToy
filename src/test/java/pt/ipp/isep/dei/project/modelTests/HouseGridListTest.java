@@ -17,8 +17,8 @@ public class HouseGridListTest {
         HouseGrid grid0 = new HouseGrid(gridName);
         HouseGrid grid1 = new HouseGrid(gridName);
         HouseGridList list = new HouseGridList();
-        list.getmList().add(grid0);
-        list.getmList().add(grid1);
+        list.getmHouseGridsList().add(grid0);
+        list.getmHouseGridsList().add(grid1);
         HouseGrid expectedResult = grid0;
 
         // Act
@@ -35,8 +35,8 @@ public class HouseGridListTest {
         HouseGrid grid0 = new HouseGrid(gridName);
         HouseGrid grid1 = new HouseGrid(gridName);
         HouseGridList list = new HouseGridList();
-        list.getmList().add(grid0);
-        list.getmList().add(grid1);
+        list.getmHouseGridsList().add(grid0);
+        list.getmHouseGridsList().add(grid1);
         String expectedResult = "1 - Name: Grid\n2 - Name: Grid\n";
 
         // Act
@@ -63,7 +63,7 @@ public class HouseGridListTest {
         gridList.addHouseGridToTheList(grid);
         gridList.attachRoomInASpecificHouseGridInTheList(grid, room);
         gridList.attachRoomInASpecificHouseGridInTheList(grid, room1);
-        int gridPosition = gridList.getmList().indexOf(grid);
+        int gridPosition = gridList.getmHouseGridsList().indexOf(grid);
         gridList.detachRoomInASpecificHouseGridInTheList(grid, room1);
 
         // Act
@@ -85,7 +85,7 @@ public class HouseGridListTest {
         HouseGridList gridList = new HouseGridList();
         gridList.addHouseGridToTheList(grid);
         gridList.attachRoomInASpecificHouseGridInTheList(grid, room);
-        int gridPosition = gridList.getmList().indexOf(grid);
+        int gridPosition = gridList.getmHouseGridsList().indexOf(grid);
 
         // Act
         boolean result = gridList.getHouseGridFromASpecificPositionInTheList(gridPosition).checkIfARoomIsAlreadyInTheGrid(room);
@@ -156,7 +156,7 @@ public class HouseGridListTest {
         HouseGrid grid1 = new HouseGrid(gridName1);
         String gridName2 = "Grid";
         HouseGrid grid2 = new HouseGrid(gridName2);
-        grid2.attachRoomInTheHouseGridRoomList(room);
+        grid2.attachRoomToTheRoomList(room);
 
         // Instantiate List of House Grids
         HouseGridList gridList = new HouseGridList();

@@ -20,7 +20,7 @@ class SensorTypeListTest {
         lista.add(tipo2);
         SensorTypeList novaLista = new SensorTypeList(lista);
         //Act
-        boolean resultado = !(novaLista.getmListaTiposSensores().isEmpty());
+        boolean resultado = !(novaLista.getSensorTypeList().isEmpty());
         //Assert
         assertTrue(resultado);
     }
@@ -38,7 +38,7 @@ class SensorTypeListTest {
         resultadoEsperado.add(tipo1);
         resultadoEsperado.add(tipo2);
         //Act
-        List<SensorType> resultado = novaLista.getmListaTiposSensores();
+        List<SensorType> resultado = novaLista.getSensorTypeList();
         //Assert
         assertEquals(resultadoEsperado, resultado);
     }
@@ -50,7 +50,7 @@ class SensorTypeListTest {
         String novoTipo = "Humidade";
         SensorType novoSensorType = new SensorType(novoTipo);
         //Act
-        boolean resultado = lista.adicionarTipoSensorALista(novoSensorType);
+        boolean resultado = lista.addSensorType(novoSensorType);
         //Assert
         assertTrue(resultado);
     }
@@ -61,23 +61,37 @@ class SensorTypeListTest {
         SensorTypeList lista = new SensorTypeList();
         String novoTipo = "Humidade";
         SensorType novoSensorType = new SensorType(novoTipo);
-        lista.adicionarTipoSensorALista(novoSensorType);
+        lista.addSensorType(novoSensorType);
         //Act
-        boolean resultado = lista.adicionarTipoSensorALista(novoSensorType);
+        boolean resultado = lista.addSensorType(novoSensorType);
         //Assert
         assertFalse(resultado);
     }
 
     @Test
-    void testarNovoTipoSensor() {
+    void testarNovoTipoSensorMesmoTipo() {
         //Arrange
         SensorTypeList lista = new SensorTypeList();
         String novoTipo = "Humidade";
         SensorType novoSensorType = new SensorType(novoTipo);
-        lista.adicionarTipoSensorALista(novoSensorType);
-        SensorType outroSensorType = lista.novoTipoSensor("Temperatura");
+        lista.addSensorType(novoSensorType);
+        SensorType outroSensorType = lista.newSensorType("Humidade");
         //Act
-        boolean resultado = lista.adicionarTipoSensorALista(outroSensorType);
+        boolean resultado = lista.addSensorType(outroSensorType);
+        //Assert
+        assertFalse(resultado);
+    }
+
+    @Test
+    void testarNovoTipoSensorOutroTipoTrue() {
+        //Arrange
+        SensorTypeList lista = new SensorTypeList();
+        String novoTipo = "Humidade";
+        SensorType novoSensorType = new SensorType(novoTipo);
+        lista.addSensorType(novoSensorType);
+        SensorType outroSensorType = lista.newSensorType("Temperatura");
+        //Act
+        boolean resultado = lista.addSensorType(outroSensorType);
         //Assert
         assertTrue(resultado);
     }
@@ -93,7 +107,7 @@ class SensorTypeListTest {
         SensorTypeList novaLista = new SensorTypeList(lista);
         int posicao = 0;
         //Act
-        SensorType resultado = novaLista.getTipoSensorPorPosicao(posicao);
+        SensorType resultado = novaLista.getSensorTypeByPosition(posicao);
         //Assert
         assertEquals(tipo1, resultado);
     }
@@ -107,7 +121,7 @@ class SensorTypeListTest {
         SensorTypeList novaLista = new SensorTypeList(lista);
         int posicao = 0;
         //Act
-        SensorType resultado = novaLista.getTipoSensorPorPosicao(posicao);
+        SensorType resultado = novaLista.getSensorTypeByPosition(posicao);
         //Assert
         assertEquals(tipo1, resultado);
     }
@@ -126,7 +140,7 @@ class SensorTypeListTest {
         SensorTypeList novaLista = new SensorTypeList(lista);
         int posicao = 2;
         //Act
-        SensorType resultado = novaLista.getTipoSensorPorPosicao(posicao);
+        SensorType resultado = novaLista.getSensorTypeByPosition(posicao);
         //Assert
         assertEquals(tipo3, resultado);
     }
@@ -142,14 +156,14 @@ class SensorTypeListTest {
         Dimensions dimensions1 = new Dimensions(2,2,2);
         Room room1 = new Room(name1, houseFloor1, dimensions1);
 
-        roomList.addRoomToRoomList(room1);
+        roomList.addRoom(room1);
 
         // Type of sensor
         SensorType sensorType = new SensorType("Temperatura");
 
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();
-        listSensorsType.adicionarTipoSensorALista(sensorType);
+        listSensorsType.addSensorType(sensorType);
 
         String expectedResult = "1 - Sensor Type: Temperatura\n";
 
@@ -170,7 +184,7 @@ class SensorTypeListTest {
         Dimensions dimensions1 = new Dimensions(2,2,2);
         Room room1 = new Room(name1, houseFloor1, dimensions1);
 
-        roomList.addRoomToRoomList(room1);
+        roomList.addRoom(room1);
 
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();

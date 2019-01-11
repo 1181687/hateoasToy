@@ -27,15 +27,15 @@ public class RegularUser {
 
             switch (option) {
                 case 1:
-                    US620UI ui600 = new US620UI(house);
+                    GetTotalAndAverageRainfallAndCurrentTempHouseArea ui600 = new GetTotalAndAverageRainfallAndCurrentTempHouseArea(house);
                     ui600.run3();
                     break;
                 case 2:
-                    US620UI ui620 = new US620UI(house);
+                    GetTotalAndAverageRainfallAndCurrentTempHouseArea ui620 = new GetTotalAndAverageRainfallAndCurrentTempHouseArea(house);
                     ui620.run();
                     break;
                 case 3:
-                    US620UI ui623 = new US620UI(house);
+                    GetTotalAndAverageRainfallAndCurrentTempHouseArea ui623 = new GetTotalAndAverageRainfallAndCurrentTempHouseArea(house);
                     ui623.run2();
                     break;
             }
@@ -52,11 +52,11 @@ public class RegularUser {
 
             switch (option) {
                 case 1:
-                    US605UI ui605 = new US605UI(house, mSensorTypeTemperature);
+                    GetCurrentAndMaxTempRoom ui605 = new GetCurrentAndMaxTempRoom(house, mSensorTypeTemperature);
                     ui605.run1();
                     break;
                 case 2:
-                    US605UI ui610 = new US605UI(house, mSensorTypeTemperature);
+                    GetCurrentAndMaxTempRoom ui610 = new GetCurrentAndMaxTempRoom(house, mSensorTypeTemperature);
                     ui610.run2();
                     break;
             }

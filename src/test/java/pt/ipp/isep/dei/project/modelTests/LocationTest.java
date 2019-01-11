@@ -240,4 +240,63 @@ public class LocationTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    void testarEqualsComDuasLocalizacoesComLatitudeDiferente() {
+        //Arrange
+        double latitude = 41.1496;
+        double longitude = -8.6109;
+        double altitude = 97;
+        Location local1 = new Location(latitude, longitude, altitude);
+
+        double latitude2 = 42.1496;
+        double longitude2 = -8.6109;
+        double altitude2 = 97;
+        Location local2 = new Location(latitude2, longitude2, altitude2);
+
+        boolean expectedResult = false;
+        //Act
+        boolean result = local1.equals(local2);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testarEqualsComDuasLocalizacoesComLongitudeDiferente() {
+        //Arrange
+        double latitude = 41.1496;
+        double longitude = -8.6109;
+        double altitude = 97;
+        Location local1 = new Location(latitude, longitude, altitude);
+
+        double latitude2 = 41.1496;
+        double longitude2 = -10.6109;
+        double altitude2 = 97;
+        Location local2 = new Location(latitude2, longitude2, altitude2);
+
+        boolean expectedResult = false;
+        //Act
+        boolean result = local1.equals(local2);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testarEqualsComDuasLocalizacoesAltitudeDiferente() {
+        //Arrange
+        double latitude = 41.1496;
+        double longitude = -8.6109;
+        double altitude = 97;
+        Location local1 = new Location(latitude, longitude, altitude);
+
+        double latitude2 = 41.1496;
+        double longitude2 = -8.6109;
+        double altitude2 = 100;
+        Location local2 = new Location(latitude2, longitude2, altitude2);
+
+        boolean expectedResult = false;
+        //Act
+        boolean result = local1.equals(local2);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 }

@@ -5,26 +5,43 @@ import java.util.List;
 
 public class GeoAreaList {
 
-    private List<GeographicalArea> mListaAG;
+    private List<GeographicalArea> mGeoAreaList;
 
+    /**
+     * constructor that receives a new list of Geographical Areas.
+     */
     public GeoAreaList() {
-        this.mListaAG = new ArrayList<>();
+        this.mGeoAreaList = new ArrayList<>();
     }
 
-    public List<GeographicalArea> getmListaAG() {
-        return mListaAG;
+    /**
+     * method that get a geographical areas list.
+     * @return a list of geographical areas
+     */
+    public List<GeographicalArea> getmGeoAreaList() {
+        return mGeoAreaList;
     }
 
-    public boolean addGeoAreaToTheList(GeographicalArea AG) {
-        if (!(mListaAG.contains(AG))) {
-            mListaAG.add(AG);
+    /**
+     * method that add a geographical area to the list of geographical areas.
+     * @param GeoArea
+     * @return
+     */
+    public boolean addGeoArea(GeographicalArea GeoArea) {
+        if (!(mGeoAreaList.contains(GeoArea))) {
+            mGeoAreaList.add(GeoArea);
             return true;
         }
         return false;
     }
 
+    /**
+     * get a geographical area of a geographical areas list.
+     * @param geographicalArea
+     * @return a geoArea if exists on the list. If not, return null.
+     */
     public GeographicalArea getGeographicalArea(GeographicalArea geographicalArea) {
-        for (GeographicalArea area : mListaAG) {
+        for (GeographicalArea area : mGeoAreaList) {
             if (area.equals(geographicalArea)) {
                 return area;
             }
@@ -32,42 +49,76 @@ public class GeoAreaList {
         return null;
     }
 
-    public String getGeographicalAreaNameByPosition(int posicao) {
-        return this.mListaAG.get(posicao).getNameOfGeoArea();
+    /**
+     * get the name of a geographicalArea by the position selected on the list of geographical areas
+     * @param position
+     * @return the name of a geoArea that is on the position selected on the list.
+     */
+    public String getGeographicalAreaNameByPosition(int position) {
+        return this.mGeoAreaList.get(position).getNameOfGeoArea();
     }
 
-    public List<String> getListOfGeographicalAreasByType(String tipo) {
-        List<String> listaAGMesmoTipo = new ArrayList<>();
-        for (GeographicalArea areaGeo : mListaAG) {
-            if (areaGeo.getGeoAreaType().checkIfOneTypeOfGeoAreaIsEqualToAnotherType(tipo)) {
-                listaAGMesmoTipo.add(areaGeo.getNameOfGeoArea());
+    /**
+     * get the list of the geo area type by name.
+     * @param geoAreaType
+     * @return the geo area type list.
+     */
+    public List<String> getListOfGeographicalAreasByType(String geoAreaType) {
+        List<String> geoAreaListWithSameType = new ArrayList<>();
+        for (GeographicalArea areaGeo : mGeoAreaList) {
+            if (areaGeo.getGeoAreaType().checkIfOneTypeOfGeoAreaIsEqualToAnotherType(geoAreaType)) {
+                geoAreaListWithSameType.add(areaGeo.getNameOfGeoArea());
             }
         }
-        return listaAGMesmoTipo;
+        return geoAreaListWithSameType;
     }
 
-    public GeographicalArea getGeographicalAreaInTheList(int opcaoSelecionada) {
-        return mListaAG.get(opcaoSelecionada);
+    /**
+     * get the geographical area selected in the list.
+     * @param position
+     * @return the geographical area on list selected by position.
+     */
+    public GeographicalArea getGeographicalAreaInTheList(int position) {
+        return mGeoAreaList.get(position);
     }
 
+    /**
+     * method that check if a geo area doesn't have an inserted area.
+     * @param area
+     * @return null if a geo area doesn't have an inserted area.
+     */
     public boolean checkIfGeoAreaDoesntHaveAnInsertedArea(GeographicalArea area) {
         return area.getInsertedIn() == null;
     }
-
-    public boolean removeGeoAreaFromTheList(GeographicalArea geoArea) {
-        return mListaAG.remove(geoArea);
+    /**
+     * that method remove a geo area from the list of geo areas.
+     * @param geoArea
+     */
+    public boolean removeGeoArea(GeographicalArea geoArea) {
+        return mGeoAreaList.remove(geoArea);
     }
 
-    public void addGeoAreaToTheListInASpecificPosition(int posicao, GeographicalArea geoArea) {
-        mListaAG.add(posicao, geoArea);
+    /**
+     * that method add a geo area to the list, in a specific position.
+     * @param position
+     * @param geoArea
+     */
+    public void addGeoAreaInASpecificPosition(int position, GeographicalArea geoArea) {
+        mGeoAreaList.add(position, geoArea);
     }
 
-    public boolean checkIfGeoAreaIsinsertedInAnother(int opcaoSelecionada1, int opcaoSelecionada2) {
-        GeographicalArea primeiraAG = mListaAG.get(opcaoSelecionada1);
-        GeographicalArea segundaAG = mListaAG.get(opcaoSelecionada2);
-        while (primeiraAG.getInsertedIn() != null) {
-            if (!primeiraAG.getInsertedIn().equals(segundaAG)) {
-                primeiraAG = primeiraAG.getInsertedIn();
+    /**
+     * method that check if a geo area is inserted in another geo area.
+     * @param selection1
+     * @param selection2
+     * @return true if a geo area is inserted in another. Return false if not.
+     */
+    public boolean checkIfGeoAreaIsinsertedInAnother(int selection1, int selection2) {
+        GeographicalArea firstGeoArea = mGeoAreaList.get(selection1);
+        GeographicalArea secondGeoArea = mGeoAreaList.get(selection2);
+        while (firstGeoArea.getInsertedIn() != null) {
+            if (!firstGeoArea.getInsertedIn().equals(secondGeoArea)) {
+                firstGeoArea = firstGeoArea.getInsertedIn();
             } else {
                 return true;
             }
@@ -75,27 +126,50 @@ public class GeoAreaList {
         return false;
     }
 
-
-    public String listContent(boolean usarCriterio) {
-        StringBuilder conteudo = new StringBuilder();
-        for (int i = 1; i <= mListaAG.size(); i++) {
-            conteudo.append(i + " - Nome: " + mListaAG.get(i - 1).getNameOfGeoArea());
-            conteudo.append(", Tipo: " + mListaAG.get(i - 1).getGeoAreaType().getStringOfTypeOfGeoArea());
-            conteudo.append(", Latitude: " + mListaAG.get(i - 1).getLocation().getmLatitude());
-            conteudo.append(", Longitude: " + mListaAG.get(i - 1).getLocation().getmLongitude());
-            if (usarCriterio && !checkIfGeoAreaDoesntHaveAnInsertedArea(mListaAG.get(i - 1))) {
-                conteudo.append(", Inserido Em: " + mListaAG.get(i - 1).getInsertedIn().getGeoAreaType().getStringOfTypeOfGeoArea());
-                conteudo.append(" " + mListaAG.get(i - 1).getInsertedIn().getNameOfGeoArea());
+    /**
+     * method that list the content of the list of geo areas.
+     * @param useCriteria
+     * @return the content of the list.
+     */
+    public String listContent(boolean useCriteria) {
+        StringBuilder content = new StringBuilder();
+        for (int i = 1; i <= mGeoAreaList.size(); i++) {
+            content.append(i + " - Nome: " + mGeoAreaList.get(i - 1).getNameOfGeoArea());
+            content.append(", Tipo: " + mGeoAreaList.get(i - 1).getGeoAreaType().getStringOfTypeOfGeoArea());
+            content.append(", Latitude: " + mGeoAreaList.get(i - 1).getLocation().getmLatitude());
+            content.append(", Longitude: " + mGeoAreaList.get(i - 1).getLocation().getmLongitude());
+            if (useCriteria && !checkIfGeoAreaDoesntHaveAnInsertedArea(mGeoAreaList.get(i - 1))) {
+                content.append(", Inserido Em: " + mGeoAreaList.get(i - 1).getInsertedIn().getGeoAreaType().getStringOfTypeOfGeoArea());
+                content.append(" " + mGeoAreaList.get(i - 1).getInsertedIn().getNameOfGeoArea());
             }
-            conteudo.append("\n");
+            content.append("\n");
         }
-        return conteudo.toString();
+        return content.toString();
     }
 
-    public GeographicalArea newGeographicalArea(String nomeAG, String nomeTipoAG, double latitude, double longitude, double altitude, double altura, double comprimento) {
-        GeoAreaType tipoAG = new GeoAreaType(nomeTipoAG);
-        Location localizacao = new Location(latitude, longitude,altitude);
-        AreaShape rectanguloArea = new AreaShape(altura, comprimento, localizacao);
-        return new GeographicalArea(nomeAG, tipoAG, localizacao, rectanguloArea);
+    /**
+     * method that add a new geographical area with a name, a type, a latitude, a longitue, a altitude, a height, a length.
+     * @param geoAreaName
+     * @param geoAreaTypeName
+     * @param latitude
+     * @param longitude
+     * @param altitude
+     * @param height
+     * @param length
+     * @return a new geographical area.
+     */
+    public GeographicalArea newGeographicalArea(String geoAreaName, String geoAreaTypeName, double latitude, double longitude, double altitude, double height, double length) {
+        GeoAreaType geoAreaType = new GeoAreaType(geoAreaTypeName);
+        Location location = new Location(latitude, longitude, altitude);
+        AreaShape rectangleArea = new AreaShape(height, length, location);
+        return new GeographicalArea(geoAreaName, geoAreaType, location, rectangleArea);
+    }
+
+    /**
+     * method that gets the size of the list
+     * @return integer
+     */
+    public int getSizeOfTheList(){
+        return this.mGeoAreaList.size();
     }
 }

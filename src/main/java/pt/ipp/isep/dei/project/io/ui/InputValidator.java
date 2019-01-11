@@ -1,5 +1,9 @@
 package pt.ipp.isep.dei.project.io.ui;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class InputValidator {
@@ -184,7 +188,7 @@ public class InputValidator {
                 flag = false;
                 str = in.nextLine();
                 str = str.trim();
-                if (!str.equals("y") && !str.equals("Y") && !str.equals("n") && !str.equals("N")) {
+                if (!"y".equals(str) && !"Y".equals(str) && !"n".equals(str) && !"N".equals(str)) {
                     throw new Exception();
                 }
             } catch (Exception e) {
@@ -194,4 +198,30 @@ public class InputValidator {
         } while (flag);
         return str;
     }
+    public static LocalDate getStringDate(String label) {
+        Scanner in = new Scanner(System.in);
+        String str="";
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        format.setLenient(false);
+
+        boolean flag;
+        do {
+            System.out.println(label);
+            try {
+                flag =false;
+                str = in.nextLine();
+                str = str.trim();
+                format.parse(str);
+            } catch (ParseException e) {
+                System.out.println("Date " + str + " is not valid. Please insert a valid date according to (" +
+                        ((SimpleDateFormat) format).toPattern() + ") pattern.");
+                flag = true;
+            }
+        } while (flag);
+
+        LocalDate validDate = LocalDate.parse(str);
+
+        return validDate;
+    }
+
 }

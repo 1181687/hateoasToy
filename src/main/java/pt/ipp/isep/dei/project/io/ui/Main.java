@@ -2,9 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.*;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Main {
 
@@ -21,13 +20,11 @@ public class Main {
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeoAreaType geoAreaType = new GeoAreaType("Urban area");
         GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geoAreaType, location, areaShape);
-        geoAreaList.addGeoAreaToTheListInASpecificPosition(0, insertedGeoArea);
+        geoAreaList.addGeoAreaInASpecificPosition(0, insertedGeoArea);
 
         // Sensor
-        Calendar calendar0 = new GregorianCalendar(2018, 11, 1, 15, 00, 00);
-        Date date1 = calendar0.getTime();
-        Calendar calendar1 = new GregorianCalendar(2018, 11, 1, 16, 00, 00);
-        Date date2 = calendar1.getTime();
+        LocalDateTime date1 = LocalDate.of(2018, 12, 1).atTime(15, 00, 00);
+        LocalDateTime date2 = LocalDate.of(2019, 12, 1).atTime(16, 00, 00);
         SensorType sensorTypeTemperature = new SensorType("temperature");
         Sensor sensor = new Sensor("sensor1", date1, sensorTypeTemperature, location);
         Measurement temp1 = new Measurement(20, date1);
@@ -54,17 +51,18 @@ public class Main {
         Room room1 = new Room(name, houseFloor, dimensions);
         houseEdificioB.addRoomToHouse(room1);
         room1.addSensorToTheListOfSensorsInTheRoom(sensor);
+        houseEdificioB.addRoom(room1);
 
         String name2 = "B109";
         Room room2 = new Room(name2, houseFloor, dimensions);
-        houseEdificioB.addRoomToHouse(room2);
+        houseEdificioB.addRoom(room2);
 
         // Power Source Type (and List)
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
         PowerSourceType powerSourceType2 = new PowerSourceType("Public electric grid");
         PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType1);
-        powerSourceTypeList.addPowerSourceTypeToPowerSourceTypeList(powerSourceType2);
+        powerSourceTypeList.addPowerSourceType(powerSourceType1);
+        powerSourceTypeList.addPowerSourceType(powerSourceType2);
 
         //UI levels
         Admin admin = new Admin(geoAreaTypeList, geoAreaList, sensorTypeList, houseEdificioB, powerSourceTypeList, roomList, gridList);

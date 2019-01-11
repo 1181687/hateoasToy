@@ -7,8 +7,6 @@ public class Dimensions {
     private double mLength;
     private double mWidth;
 
-    ///////////////////////////////////////////////////////////////////////////////
-
     /**
      * constructor that receives height, length, width and
      * throw an exception if any of the parameters is invalid.
@@ -63,27 +61,50 @@ public class Dimensions {
         }
     }
 
-    ///////////////////////////////////////////////////////////////////
+    /**
+     * method that get the height of a dimension
+     * @return a height
+     */
     public double getmHeight() {
         return mHeight;
     }
 
+    /**
+     * method that get the length of a dimension
+     * @return a length
+     */
     public double getmLength() {
         return mLength;
     }
 
+    /**
+     * method that get the length of a dimension
+     * @return a width
+     */
     public double getmWidth() {
         return mWidth;
     }
 
+    /**
+     * set the heigth of the dimension
+     * @param mHeight
+     */
     public void setmHeight(double mHeight) {
         this.mHeight = mHeight;
     }
 
+    /**
+     * set the length of the dimension
+     * @param mLength
+     */
     public void setmLength(double mLength) {
         this.mLength = mLength;
     }
 
+    /**
+     * set the width of the dimension
+     * @param mWidth
+     */
     public void setmWidth(double mWidth) {
         this.mWidth = mWidth;
     }
@@ -114,8 +135,14 @@ public class Dimensions {
             return false;
         }
         Dimensions dim = (Dimensions) obj;
-        final double delta = 0.0001;
-        return Math.abs((this.mHeight - dim.mHeight)) <= delta && Math.abs((this.mLength - dim.mLength)) <= delta
-                && Math.abs((this.mWidth - dim.mWidth)) <= delta;
+        Double comparablemHeight = mHeight;
+        Double comparablemLength = mLength;
+        Double comparablemWidth = mWidth;
+        Double comparableDimensionsHeight = dim.mHeight;
+        Double comparableDimensionsLength = dim.mLength;
+        Double comparableDimensionsWidth = dim.mWidth;
+        return comparableDimensionsHeight.equals(comparablemHeight)
+                && comparableDimensionsLength.equals(comparablemLength)
+                && comparableDimensionsWidth.equals(comparablemWidth);
     }
 }

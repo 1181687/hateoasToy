@@ -11,21 +11,19 @@ import static org.junit.jupiter.api.Assertions.*;
 public class DimensionsTest {
 
     @Test
-    void testhashCodeFalse() {
+    void testhashCode() {
         //Arrange
-        double height = 5;
-        double length = 10;
-        double width = 10;
-        double width2 = 15;
+        double height = 5.98;
+        double length = 10.35;
+        double width = 10.48;
+        Dimensions dim = new Dimensions(height, length, width);
 
-        int hash1 = Objects.hash(height, length, width);
-        int hash2 = Objects.hash(height, length, width2);
+        int expectedResult = Objects.hash(height, length, width);
 
         // Act
-        int result = hash1;
-        int expectedResult = hash2;
+        int result = dim.hashCode();
         // Assert
-        assertNotEquals(expectedResult, result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -43,6 +41,24 @@ public class DimensionsTest {
         int expectedResult = hash2;
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testhashCodeFalse() {
+        //Arrange
+        double height = 5;
+        double length = 10;
+        double width = 10;
+        double width2 = 15;
+
+        int hash1 = Objects.hash(height, length, width);
+        int hash2 = Objects.hash(height, length, width2);
+
+        // Act
+        int result = hash1;
+        int expectedResult = hash2;
+        // Assert
+        assertNotEquals(expectedResult, result);
     }
 
     @Test
