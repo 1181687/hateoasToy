@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
-public class HouseGrid {
+public class HouseGrid implements Measurable {
     private String mHouseGridName;
     private double mMaximumContractedPower;
     private PowerSourceList mPowerSourceList;

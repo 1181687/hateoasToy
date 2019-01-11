@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
-public class Room {
+public class Room implements Measurable{
     private String mName;
     private int mHouseFloor;
     private Dimensions mDimensions;
