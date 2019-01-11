@@ -53,7 +53,7 @@ public class AddRoomControllerTest {
         RoomList list = new RoomList();
         Dimensions dim = new Dimensions(5, 6, 7);
         Room room1 = new Room(name, 1, dim);
-        list.addRoomToRoomList(room1);
+        list.addRoom(room1);
         HouseGridList listHG = new HouseGridList();
         Location location = new Location(2, 3, 4);
         Address adress = new Address("4500", location);
@@ -61,7 +61,7 @@ public class AddRoomControllerTest {
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
         House house = new House(list, listHG, adress, geo);
-        US105Controller ctrl = new US105Controller(house);
+        AddRoomController ctrl = new AddRoomController(house);
 
         boolean expectedResult = true;
 
@@ -77,7 +77,7 @@ public class AddRoomControllerTest {
         RoomList list = new RoomList();
         Dimensions dim = new Dimensions(5, 6, 7);
         Room room1 = new Room(name, 1, dim);
-        list.addRoomToRoomList(room1);
+        list.addRoom(room1);
         HouseGridList listHG = new HouseGridList();
         Location location = new Location(2, 3, 4);
         Address adress = new Address("4500", location);
@@ -85,7 +85,7 @@ public class AddRoomControllerTest {
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
         House house = new House(list, listHG, adress, geo);
-        US105Controller ctrl = new US105Controller(house);
+        AddRoomController ctrl = new AddRoomController(house);
 
         boolean expectedResult = false;
 

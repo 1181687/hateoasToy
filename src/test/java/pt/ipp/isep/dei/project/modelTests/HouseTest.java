@@ -815,7 +815,7 @@ public class HouseTest {
         RoomList list = new RoomList();
         Dimensions dim = new Dimensions(5, 6, 7);
         Room room1 = new Room(name, 1, dim);
-        list.addRoomToRoomList(room1);
+        list.addRoom(room1);
         HouseGridList listHG = new HouseGridList();
         Location location = new Location(2, 3, 4);
         Address adress = new Address("4500", location);
@@ -839,7 +839,7 @@ public class HouseTest {
         RoomList list = new RoomList();
         Dimensions dim = new Dimensions(5, 6, 7);
         Room room1 = new Room(name, 1, dim);
-        list.addRoomToRoomList(room1);
+        list.addRoom(room1);
         HouseGridList listHG = new HouseGridList();
         Location location = new Location(2, 3, 4);
         Address adress = new Address("4500", location);

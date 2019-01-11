@@ -49,7 +49,7 @@ public class Main {
         double width = 7;
         Dimensions dimensions = new Dimensions(height, length, width);
         Room room1 = new Room(name, houseFloor, dimensions);
-        houseEdificioB.addRoomToHouse(room1);
+        houseEdificioB.addRoom(room1);
         room1.addSensorToTheListOfSensorsInTheRoom(sensor);
         houseEdificioB.addRoom(room1);
 

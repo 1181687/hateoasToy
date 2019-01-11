@@ -12,7 +12,7 @@ public class GetTotalNominalPowerOfARoomController {
     }
 
     public String getListOfRooms() {
-        return mHouse.getRoomList();
+        return mHouse.getRoomListContent();
     }
 
     public void getRoom(int option) {

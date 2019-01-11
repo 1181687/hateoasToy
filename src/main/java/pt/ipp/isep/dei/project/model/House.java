@@ -165,7 +165,7 @@ public class House {
     /**
      * method that display a room list.
      */
-    public String getRoomList() {
+    public String getRoomListContent() {
         return mRoomList.displayRoomList();
     }
 
@@ -201,5 +201,9 @@ public class House {
 
     public boolean checkIfNameAlreadyExists(String name) {
         return this.mRoomList.checkIfNameAlreadyExists(name);
+    }
+
+    public Room getRoomOfTheRoomList(int option) {
+        return mRoomList.getRoomFromASpecificPosition(option);
     }
 }
