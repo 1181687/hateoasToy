@@ -23,7 +23,7 @@ public class Menu {
         content.append("\n");
         content.append("2-House");
         content.append("\n");
-        content.append("0-Exit menu");
+        content.append("0-Return to the previous menu");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 2);
     }
@@ -48,7 +48,7 @@ public class Menu {
         content.append("\n");
         content.append("8-Verify if one geographical area is included in another one");
         content.append("\n");
-        content.append("0-Exit menu");
+        content.append("0-Return to the previous menu");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 8);
     }
@@ -65,7 +65,7 @@ public class Menu {
         content.append("\n");
         content.append("4-Add sensor to a room");
         content.append("\n");
-        content.append("0-Exit menu");
+        content.append("0-Return to the previous menu");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 4);
     }
@@ -78,7 +78,7 @@ public class Menu {
         content.append("\n");
         content.append("2-Rooms");
         content.append("\n");
-        content.append("0-Exit menu");
+        content.append("0-Return to the previous menu");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 2);
     }
@@ -93,7 +93,7 @@ public class Menu {
         content.append("\n");
         content.append("3-Average daily rainfall in the house area");
         content.append("\n");
-        content.append("0-Exit menu");
+        content.append("0-Return to the previous menu");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 3);
     }
@@ -106,7 +106,7 @@ public class Menu {
         content.append("\n");
         content.append("2-Maximum temperature of a room in a given day");
         content.append("\n");
-        content.append("0-Exit menu");
+        content.append("0-Return to the previous menu");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 2);
     }
@@ -123,7 +123,7 @@ public class Menu {
         content.append("\n");
         content.append("4-Detach a room from a house grid");
         content.append("\n");
-        content.append("0-Exit menu");
+        content.append("0-Return to the previous menu");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 4);
     }
