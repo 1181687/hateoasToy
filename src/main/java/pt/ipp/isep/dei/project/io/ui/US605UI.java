@@ -59,7 +59,7 @@ public class US605UI {
         content.append(roomName);
         content.append(" is ");
         content.append(temp);
-        content.append(" and was registered at ");
+        content.append(" Celsius, and was registered at ");
         content.append(dateTime);
         content.append(".\n");
         System.out.println(content.toString());

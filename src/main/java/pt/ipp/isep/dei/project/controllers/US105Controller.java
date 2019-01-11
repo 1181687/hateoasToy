@@ -38,4 +38,8 @@ public class US105Controller {
     public boolean addRoomToHouse() {
         return this.mHouse.addRoomToHouse(mRoom);
     }
+
+    public boolean checkIfNameAlreadyExists(String name) {
+        return this.mHouse.checkIfNameAlreadyExists(name);
+    }
 }
