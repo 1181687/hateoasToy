@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.model.Measurement;
 import pt.ipp.isep.dei.project.model.SensorType;
 
 import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.Objects;
 
 
@@ -83,30 +84,10 @@ public class GetCurrentAndMaxTempRoom {
         int option = InputValidator.getIntRange(label0, 1, mctrl.lengthOfRoomList());
         String roomName = mctrl.getNameOfTheChosenRoomInSpecificPos(option - 1);
 
-        int year = -1, month = -1, day = -1;
+        String label1 = "Please insert the date when you want to get the maximum temperature (valid numbers between 2000 and 2019 in the format yyyy-MM-dd):";
+        LocalDate dateLD = InputValidator.getStringDate(label1);
 
-        boolean flag;
-        do {
-            try {
-                String label3 = "Choose the date (YEAR) when you want to see the maximum temperature (valid numbers between 2000 and 2019)";
-                year = InputValidator.getIntRange(label3, 2000, 2019);
-
-                String label2 = "Choose the date (MONTH) when you want to see the maximum temperature (valid numbers between 1 and 12)";
-                month = InputValidator.getIntRange(label2, 1, 12);
-
-                String label1 = "Choose the date (DAY) when you want to see the maximum temperature (valid numbers between 1 and 31)";
-                day = InputValidator.getIntRange(label1, 1, 31);
-
-                flag = false;
-
-                mctrl.createANewDate(year, month, day);
-            } catch (DateTimeException e) {
-                System.out.println(e.getMessage());
-                flag = true;
-            }
-        } while (flag);
-
-        double temp = mctrl.getMaximumTemperatureOfARoomInAGivenDay(roomName, mctrl.getmType(), mctrl.createANewDate(year, month, day));
+        double temp = mctrl.getMaximumTemperatureOfARoomInAGivenDay(roomName, mctrl.getmType(), dateLD);
         System.out.println("The maximum temperature is " + temp);
     }
 }
