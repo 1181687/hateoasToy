@@ -165,7 +165,7 @@ public class House {
     /**
      * method that display a room list.
      */
-    public String getRoomList() {
+    public String getRoomListContent() {
         return mRoomList.getRoomListContent();
     }
 

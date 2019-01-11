@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.GetTotalAndAverageRainfallAndCurrentTempHouseAreaController;
 import pt.ipp.isep.dei.project.model.House;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 
 
@@ -30,7 +29,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseArea {
         LocalDate dateLD = InputValidator.getStringDate(label1);
 
         if (!(Double.isNaN(mCtrl.getTotalRainfallInTheHouseAreaInTheSelectedDay(dateLD)))) {
-            System.out.println("The total Rainfall of this House Area is " + mCtrl.getTotalRainfallInTheHouseAreaInTheSelectedDay(dateLD) +"l/m2");
+            System.out.println("The total Rainfall of this House Area is " + mCtrl.getTotalRainfallInTheHouseAreaInTheSelectedDay(dateLD) + "l/m2");
         } else {
             System.out.println("There's no registers for this day.");
         }
@@ -51,7 +50,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseArea {
 
 
         if (!(Double.isNaN(mCtrl.getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(firstDate, secondDate)))) {
-            System.out.println("The average daily rainfall for the chosen period is: " + mCtrl.getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(firstDate, secondDate)+"l/m2");
+            System.out.println("The average daily rainfall for the chosen period is: " + mCtrl.getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(firstDate, secondDate) + "l/m2");
         } else {
             System.out.println("There's no registers for this period.");
         }
