@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;
@@ -176,6 +177,22 @@ public class Room implements Measurable{
      */
     public Measurement getLatestMeasurementBySensorType(SensorType type) {
         return mSensorList.getLatestMeasurementBySensorType(type);
+    }
+
+
+    public String getContentOfSensorsList () {
+        StringBuilder content = new StringBuilder();
+        int sensorListLength = this.mSensorList.getmSensorList().size();
+
+        for (int i = 1; i <= sensorListLength; i++) {
+            content.append(i + " - Name: " + this.mSensorList.getmSensorList().get(i-0).getmSensorName());
+            content.append("\n");
+        }
+        return content.toString();
+    }
+
+    public boolean checkIfRoomListIsEmpty() {
+        return mSensorList.getmSensorList().isEmpty();
     }
 
 }
