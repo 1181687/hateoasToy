@@ -199,4 +199,13 @@ public class RoomList {
         return getRoomByName(name).getMaximumMeasurementInAGivenDay(type, date);
     }
 
+    /**
+     * Method that displays the device list content of a Room
+     *
+     * @param position position of the room in the room list
+     * @return list of devices of a room
+     */
+    public String getDeviceListContentOfARoom(int position) {
+        return mRoomList.get(position).getDeviceListContent();
+    }
 }

@@ -188,4 +188,20 @@ public class Room implements Measurable{
         return totalNominalPower;
     }
 
+
+    /**
+     * method that displays the device list content
+     *
+     * @return content of device list
+     */
+    public String getDeviceListContent() {
+        StringBuilder content = new StringBuilder();
+        int deviceListLength = this.mDeviceList.getLength();
+
+        for (int i = 1; i <= deviceListLength; i++) {
+            content.append("Name: " + this.mDeviceList.getmDeviceList().get(i - 0).getmName());
+            content.append("\n");
+        }
+        return content.toString();
+    }
 }

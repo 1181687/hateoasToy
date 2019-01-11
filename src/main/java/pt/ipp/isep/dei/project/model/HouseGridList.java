@@ -46,6 +46,12 @@ public class HouseGridList {
         return content.toString();
     }
 
+    /**
+     * Method that displays the rooms in the house grid list
+     *
+     * @param position
+     * @return rooms in the house grid
+     */
     public String getRoomsInTheHouseGrid(int position) {
         return mHouseGridsList.get(position).getRoomsAttached();
     }

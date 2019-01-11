@@ -10,4 +10,13 @@ public class Device implements Measurable {
     public double getNominalPower() {
         return mNominalPower;
     }
+
+    /**
+     * get method
+     *
+     * @return name of device
+     */
+    public String getmName() {
+        return this.mName;
+    }
 }
