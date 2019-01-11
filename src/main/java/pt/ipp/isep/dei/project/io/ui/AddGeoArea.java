@@ -6,7 +6,7 @@ import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 import pt.ipp.isep.dei.project.model.GeographicalArea;
 
 import java.util.Scanner;
-/* US003 As an Administrator, I want to add a new geographical area. */
+/** US003 As an Administrator, I want to add a new geographical area. */
 
 public class AddGeoArea {
 
@@ -39,7 +39,7 @@ public class AddGeoArea {
         String label4 = "Introduce the length of the Geographical Area(valid numbers greater than 0).";
         double comprimento = InputValidator.getDoublePos(label4);
 
-        String label5 = "Introduce the length of the Geographical Area(valid numbers greater than 0).";
+        String label5 = "Introduce the width of the Geographical Area(valid numbers greater than 0).";
         double largura = InputValidator.getDoublePos(label5);
 
         GeographicalArea novaAG = ctrl3.criarNovaAG(nome, nomeTipoAG, latitude, longitude, altitude, comprimento, largura);

@@ -4,7 +4,7 @@ import pt.ipp.isep.dei.project.controllers.AttachRoomToHouseGridController;
 import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.RoomList;
 
-/* US147 As an Administrator, I want to attach a room to a house grid, so that the room’s
+/** US147 As an Administrator, I want to attach a room to a house grid, so that the room’s
 power and energy consumption is included in that grid. */
 
 public class AttachRoomToHouseGrid {

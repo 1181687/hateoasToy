@@ -6,7 +6,7 @@ import pt.ipp.isep.dei.project.model.GeographicalArea;
 
 import java.util.Scanner;
 
-/* US007 As an Administrator, I want to add an existing geographical area to another one
+/** US007 As an Administrator, I want to add an existing geographical area to another one
 (e.g. add city of Porto to the district of Porto). */
 
 public class AddGeoAreaToAnotherGeoArea {
@@ -23,7 +23,7 @@ public class AddGeoAreaToAnotherGeoArea {
         int posicaoDaPrimeiraOpcao = ler.nextInt() - 1;
         GeographicalArea primeiraAG = ctrl.getAGNaListaApresentada(posicaoDaPrimeiraOpcao);
         if (ctrl.verSeAGTemAreaInseridaVazia(primeiraAG)) {
-            System.out.println("Introduce the name of the geographical area in which the previous geographical area is included.");
+            System.out.println("Choose the number of the geographical area in which the previous geographical area is included.");
             ctrl.removerAGLista(primeiraAG);
             System.out.println(ctrl.getConteudoLista(true));
             int posicaoDaSegundaOpcao = ler.nextInt() - 1;
@@ -32,6 +32,6 @@ public class AddGeoAreaToAnotherGeoArea {
             System.out.println("Success!");
             ctrl.adicionarAGListaPosicaoEspecifica(posicaoDaPrimeiraOpcao, primeiraAG);
         } else
-            System.out.println("The geographical area you have choosen is already included in another area. Try another geographical area.");
+            System.out.println("The geographical area you have chosen is already included in another area. Try another geographical area.");
     }
 }

@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetListGeoAreaTypesController;
 import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
-/* US002 As an Administrator, I want to get a list of existing geographical area types. */
+/** US002 As an Administrator, I want to get a list of existing geographical area types. */
 
 public class GetListGeoAreaTypes {
     private GetListGeoAreaTypesController ctrl2;
