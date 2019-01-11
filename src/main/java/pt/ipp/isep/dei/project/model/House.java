@@ -194,4 +194,8 @@ public class House {
     public Room newRoom(double height, double length, double width, String name, int housefloor) {
         return mRoomList.newRoom(name, housefloor, height, length, width);
     }
+
+    public Room getRoomOfTheRoomList(int option) {
+        return mRoomList.getRoomFromASpecificPosition(option);
+    }
 }
