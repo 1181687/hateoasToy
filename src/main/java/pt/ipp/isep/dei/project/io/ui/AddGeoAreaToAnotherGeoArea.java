@@ -32,6 +32,6 @@ public class AddGeoAreaToAnotherGeoArea {
             System.out.println("Success!");
             ctrl.adicionarAGListaPosicaoEspecifica(posicaoDaPrimeiraOpcao, primeiraAG);
         } else
-            System.out.println("The geographical area you have choosen is already included in another area. Try another geographical area.");
+            System.out.println("The geographical area you have chosen is already included in another area. Try another geographical area.");
     }
 }
