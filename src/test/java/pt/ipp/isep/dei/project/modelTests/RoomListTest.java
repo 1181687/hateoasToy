@@ -527,6 +527,22 @@ public class RoomListTest {
 
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testCheckIfNameAlreadyExists() {
+        String nameToCheck = "Room one";
+        String name = "ROOM ONE";
+        RoomList list = new RoomList();
+        Dimensions dim = new Dimensions(5, 6, 7);
+        Room room1 = new Room(name, 1, dim);
+        list.addRoom(room1);
+
+        boolean expectedResult = true;
+
+        boolean result = list.checkIfNameAlreadyExists(nameToCheck);
+
+        assertEquals(expectedResult, result);
 
     }
 }

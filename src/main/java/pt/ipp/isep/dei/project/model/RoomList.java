@@ -61,6 +61,9 @@ public class RoomList {
      * @return the new room
      */
     public Room newRoom(String name, int housefloor, double height, double length, double width) {
+        if (checkIfNameAlreadyExists(name)) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
         Dimensions newDimension = new Dimensions(height, length, width);
         return new Room(name, housefloor, newDimension);
     }
@@ -199,6 +202,16 @@ public class RoomList {
         return getRoomByName(name).getMaximumMeasurementInAGivenDay(type, date);
     }
 
+
+    public boolean checkIfNameAlreadyExists(String name) {
+
+        for (int i = 0; i < mRoomList.size(); i++) {
+            if (mRoomList.get(i).getmName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * Method that displays the device list content of a Room
      *

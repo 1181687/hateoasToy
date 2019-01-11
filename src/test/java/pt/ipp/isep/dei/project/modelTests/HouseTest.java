@@ -807,4 +807,51 @@ public class HouseTest {
         assertEquals(expectedResult, result);
 
     }
+
+    @Test
+    public void testCheckIfNameAlreadyExists() {
+        String nameToCheck = "Room one";
+        String name = "ROOM ONE";
+        RoomList list = new RoomList();
+        Dimensions dim = new Dimensions(5, 6, 7);
+        Room room1 = new Room(name, 1, dim);
+        list.addRoom(room1);
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address adress = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(list, listHG, adress, geo);
+
+        boolean expectedResult = true;
+
+        boolean result = house.checkIfNameAlreadyExists(nameToCheck);
+
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    public void testCheckIfNameAlreadyExistsFalse() {
+        String nameToCheck = "Room one";
+        String name = "ROOM Two";
+        RoomList list = new RoomList();
+        Dimensions dim = new Dimensions(5, 6, 7);
+        Room room1 = new Room(name, 1, dim);
+        list.addRoom(room1);
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address adress = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(list, listHG, adress, geo);
+
+        boolean expectedResult = false;
+
+        boolean result = house.checkIfNameAlreadyExists(nameToCheck);
+
+        assertEquals(expectedResult, result);
+    }
 }

@@ -25,20 +25,25 @@ public class AddRoom {
      */
     public void run() {
 
-        String label0 = "What is the name of the room you want to add to the house?";
-        String name = InputValidator.getString(label0);
+        String label1 = "What is the name of the room you want to add to the house?";
+        String name = InputValidator.getString(label1);
 
-        String label1 = "Write the number of housefloor's room";
-        int houseFloor = InputValidator.getInt(label1);
+        while (mctrl.checkIfNameAlreadyExists(name)) {
+            System.out.println("Name already exists. Please write a new one.");
+            name = InputValidator.getString(label1);
+        }
 
-        String label2 = "Write the height of the room";
-        double height = InputValidator.getDoublePos(label2);
+        String label2 = "Write the number of housefloor's room";
+        int houseFloor = InputValidator.getInt(label2);
 
-        String label3 = "Write the length of the room";
-        double length = InputValidator.getDoublePos(label3);
+        String label3 = "Write the height of the room";
+        double height = InputValidator.getDoublePos(label3);
 
-        String label4 = "Write the width of the room";
-        double width = InputValidator.getDoublePos(label4);
+        String label4 = "Write the length of the room";
+        double length = InputValidator.getDoublePos(label4);
+
+        String label5 = "Write the width of the room";
+        double width = InputValidator.getDoublePos(label5);
 
         mctrl.newRoom(height, length, width, name, houseFloor);
         mctrl.addRoomToHouse();
@@ -48,5 +53,12 @@ public class AddRoom {
         content.append(name);
         content.append(" was created with sucess!\n");
         System.out.println(content.toString());
+/*
+        "Pretende ver a lista de quartos existentes?"
+
+                YN
+                        getroomlist e apresentar
+
+                        */
     }
 }

@@ -113,18 +113,18 @@ public class Room implements Measurable{
     }
 
     /**
-     * method that creates the same hashcode to rooms with the same attributes: name, housefloor and dimensions.
+     * method that creates the same hashcode to rooms with the same attribute name.
      *
      * @return the hashcode created
      */
     @Override
     public int hashCode() {
-        return Objects.hash(mName, mHouseFloor, mDimensions);
+        return Objects.hash(mName);
     }
 
     /**
      * Equals method to determine if two Rooms are equal.
-     * They are equals if all atributtes are equal.
+     * They are equals if name are equal.
      *
      * @param obj receives an object
      * @return boolean
@@ -138,8 +138,7 @@ public class Room implements Measurable{
             return false;
         }
         Room roomOne = (Room) obj;
-        return this.mName.equals(roomOne.mName) && this.mHouseFloor == roomOne.mHouseFloor
-                && this.mDimensions.equals(roomOne.mDimensions);
+        return this.mName.equals(roomOne.mName);
     }
 
     /**

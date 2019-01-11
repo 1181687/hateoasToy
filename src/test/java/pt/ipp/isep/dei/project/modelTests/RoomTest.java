@@ -35,7 +35,7 @@ public class RoomTest {
         Dimensions dim = new Dimensions(4, 10.5, 7.5);
         Room room = new Room(name, housefloor, dim);
 
-        int expectedResult = Objects.hash(name, housefloor, dim);
+        int expectedResult = Objects.hash(name);
 
         // Act
         int result = room.hashCode();
@@ -76,7 +76,7 @@ public class RoomTest {
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
-        Room room2 = new Room("Room", 2, dim2);
+        Room room2 = new Room("RoomTwo", 2, dim2);
         //Act
         boolean result = room.equals(room2);
         //Assert
