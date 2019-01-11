@@ -7,7 +7,7 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 
 
-/* US620 As a Regular User, I want to get the total rainfall in the house area for a given day.
+/** US620 As a Regular User, I want to get the total rainfall in the house area for a given day.
 
 US623 As a Regular User, I want to get the average daily rainfall in the house area for a
 given period (days), as it is needed to assess the garden’s watering needs.

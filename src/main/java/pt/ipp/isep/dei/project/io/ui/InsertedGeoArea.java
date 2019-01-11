@@ -6,7 +6,7 @@ import pt.ipp.isep.dei.project.model.GeographicalArea;
 
 import java.util.Scanner;
 
-/* US008 As an Administrator, I want to find out if a geographical area is included, directly
+/** US008 As an Administrator, I want to find out if a geographical area is included, directly
 or indirectly, in another one. */
 
 public class InsertedGeoArea {

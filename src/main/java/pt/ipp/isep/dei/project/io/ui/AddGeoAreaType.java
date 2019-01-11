@@ -5,7 +5,7 @@ import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 
 import java.util.Scanner;
 
-/* US001 As an Administrator, I want to add a new type of geographical area, in order to be
+/** US001 As an Administrator, I want to add a new type of geographical area, in order to be
 able to create a classification of geographical areas. */
 
 public class AddGeoAreaType {

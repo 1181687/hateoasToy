@@ -6,7 +6,7 @@ import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 import pt.ipp.isep.dei.project.model.GeographicalArea;
 
 import java.util.Scanner;
-/* US003 As an Administrator, I want to add a new geographical area. */
+/** US003 As an Administrator, I want to add a new geographical area. */
 
 public class AddGeoArea {
 
