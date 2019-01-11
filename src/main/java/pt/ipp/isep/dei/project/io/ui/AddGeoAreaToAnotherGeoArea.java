@@ -23,7 +23,7 @@ public class AddGeoAreaToAnotherGeoArea {
         int posicaoDaPrimeiraOpcao = ler.nextInt() - 1;
         GeographicalArea primeiraAG = ctrl.getAGNaListaApresentada(posicaoDaPrimeiraOpcao);
         if (ctrl.verSeAGTemAreaInseridaVazia(primeiraAG)) {
-            System.out.println("Introduce the name of the geographical area in which the previous geographical area is included.");
+            System.out.println("Choose the number of the geographical area in which the previous geographical area is included.");
             ctrl.removerAGLista(primeiraAG);
             System.out.println(ctrl.getConteudoLista(true));
             int posicaoDaSegundaOpcao = ler.nextInt() - 1;
