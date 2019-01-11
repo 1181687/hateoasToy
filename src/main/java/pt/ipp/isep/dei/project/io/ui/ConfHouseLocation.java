@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class ConfHouseLocation {
 
-    /* US101 As an Administrator, I want to configure the location of the house. */
+    /** US101 As an Administrator, I want to configure the location of the house. */
     private ConfHouseLocationController ctrl;
 
     public ConfHouseLocation(House house) {

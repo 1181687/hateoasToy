@@ -6,7 +6,7 @@ import pt.ipp.isep.dei.project.model.SensorTypeList;
 
 import java.util.Scanner;
 
-/* US006 As an Administrator, I want to add a new sensor and associate it to a geographical
+/** US006 As an Administrator, I want to add a new sensor and associate it to a geographical
 area, so that one can get measurements of that type in that area. */
 
 public class AddSensorToGeoArea {

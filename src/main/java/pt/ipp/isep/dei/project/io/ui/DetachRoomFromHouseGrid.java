@@ -4,7 +4,7 @@ import pt.ipp.isep.dei.project.controllers.DetachRoomFromHouseGridController;
 import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.RoomList;
 
-/* US149 As an Administrator, I want to detach a room from a house grid, so that the room’s
+/** US149 As an Administrator, I want to detach a room from a house grid, so that the room’s
 power and energy consumption is not included in that grid. The room’s
 characteristics are not changed. */
 

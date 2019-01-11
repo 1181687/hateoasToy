@@ -7,7 +7,7 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 
 
-/* US620 As a Regular User, I want to get the total rainfall in the house area for a given day.
+/** US620 As a Regular User, I want to get the total rainfall in the house area for a given day.
 
 US623 As a Regular User, I want to get the average daily rainfall in the house area for a
 given period (days), as it is needed to assess the garden’s watering needs.
@@ -26,31 +26,11 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseArea {
 
     public void run() {
 
-        int year = -1, month = -1, day = -1;
-        boolean flag;
-        do {
-            try {
-                flag = false;
+        String label1 = "Please insert the date when you want to get the total Rainfall (yyyy-MM-dd):";
+        LocalDate dateLD = InputValidator.getStringDate(label1);
 
-                String label1 = "Please insert the year:";
-                year = InputValidator.getIntRange(label1, 2000, 2019);
-
-                String label2 = "Please insert the month:";
-                month = InputValidator.getIntRange(label2, 1, 12);
-
-                String label3 = "Please insert the day:";
-                day = InputValidator.getIntRange(label3, 1, 31);
-
-                mCtrl.createANewDate(year, month, day);
-            } catch (DateTimeException e) {
-                System.out.println(e.getMessage());
-                flag = true;
-            }
-        } while (flag);
-        LocalDate date = mCtrl.createANewDate(year, month, day);
-
-        if (!(Double.isNaN(mCtrl.getTotalRainfallInTheHouseAreaInTheSelectedDay(date)))) {
-            System.out.println("The total Rainfall of this House Area is " + mCtrl.getTotalRainfallInTheHouseAreaInTheSelectedDay(date));
+        if (!(Double.isNaN(mCtrl.getTotalRainfallInTheHouseAreaInTheSelectedDay(dateLD)))) {
+            System.out.println("The total Rainfall of this House Area is " + mCtrl.getTotalRainfallInTheHouseAreaInTheSelectedDay(dateLD) +"l/m2");
         } else {
             System.out.println("There's no registers for this day.");
         }
@@ -58,52 +38,20 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseArea {
 
     public void run2() {
 
-        int year1 = -1, month1 = -1, day1 = -1, year2 = -1, month2 = -1, day2 = -1;
-        boolean flag;
-        do {
-            try {
-                flag = false;
+        String label1 = "Please insert the first date of the period (yyyy-MM-dd):";
+        LocalDate firstDate = InputValidator.getStringDate(label1);
 
-                //input of the start date
-                String label1 = "Please insert the year of the first date of the period:";
-                year1 = InputValidator.getIntRange(label1, 2000, 2019);
+        String label2 = "Please insert the second date of the period (yyyy-MM-dd):";
+        LocalDate secondDate = InputValidator.getStringDate(label2);
 
-                String label2 = "Please insert the month of the first date of the period:";
-                month1 = InputValidator.getIntRange(label2, 1, 12);
-
-                String label3 = "Please insert the day of the first date of the period:";
-                day1 = InputValidator.getIntRange(label3, 1, 31);
-
-                mCtrl.createANewDate(year1, month1, day1);
-
-                //input of the ending date
-                String label4 = "Please insert the year of the last date of the period:";
-                year2 = InputValidator.getIntRange(label4, 2000, 2019);
-
-                String label5 = "Please insert the month of the last date of the period:";
-                month2 = InputValidator.getIntRange(label5, 1, 12);
-
-                String label6 = "Please insert the day of the last date of the period:";
-                day2 = InputValidator.getIntRange(label6, 1, 31);
-
-                mCtrl.createANewDate(year2, month2, day2);
-
-            } catch (DateTimeException e) {
-                System.out.println(e.getMessage());
-                flag = true;
-            }
-        } while (flag);
-        LocalDate date1 = mCtrl.createANewDate(year1, month1, day1);
-        LocalDate date2 = mCtrl.createANewDate(year2, month2, day2);
-
-        if (date1.isAfter(date2)) {
+        if (firstDate.isAfter(secondDate)) {
             System.out.println("That is not a valid period. Please try again.\n");
             return;
         }
 
 
-        if (!(Double.isNaN(mCtrl.getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(date1, date2)))) {
-            System.out.println("The average daily rainfall for the chosen period is: " + mCtrl.getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(date1, date2));
+        if (!(Double.isNaN(mCtrl.getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(firstDate, secondDate)))) {
+            System.out.println("The average daily rainfall for the chosen period is: " + mCtrl.getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(firstDate, secondDate)+"l/m2");
         } else {
             System.out.println("There's no registers for this period.");
         }

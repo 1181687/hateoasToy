@@ -4,7 +4,7 @@ import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
 import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
 
-/* US135 As an Administrator, I want to add a power source to a house grid, so that the
+/** US135 As an Administrator, I want to add a power source to a house grid, so that the
 produced energy may be used by all devices in that grid. */
 
 public class AddPowerSourceToHouseGrid {

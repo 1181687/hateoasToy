@@ -29,4 +29,9 @@ public class AddGeoAreaToAnotherGeoAreaController {
     public void removerAGLista(GeographicalArea area) {
         mLista.removeGeoArea(area);
     }
+
+    public int getSizeList(){
+        return mLista.getSizeOfTheList();
+    }
 }
+

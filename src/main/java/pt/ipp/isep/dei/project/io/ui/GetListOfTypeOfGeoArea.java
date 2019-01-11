@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class GetListOfTypeOfGeoArea {
 
-    /* US004 As an Administrator, I want to get a list of existing geographical areas of a given type. */
+    /** US004 As an Administrator, I want to get a list of existing geographical areas of a given type. */
     private GetListOfTypeOfGeoAreaController mCtrl;
 
 
