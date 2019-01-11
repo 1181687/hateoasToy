@@ -5,14 +5,14 @@ import java.util.Scanner;
 public class InputValidator {
 
     /**
-     * method that keeps displaying the string label, till the input is a int number
+     * Method that keeps displaying the string label until the input is a int.
      *
      * @param label string that is showed to the user, indicating what type of input he need to introduce
      * @return a int number
      */
     public static int getInt(String label){
         Scanner in = new Scanner(System.in);
-        int x = 0;
+        int x = -1;
         boolean flag;
         do {
             System.out.println(label);
@@ -22,14 +22,14 @@ public class InputValidator {
             } catch (Exception e) {
                 System.out.println("Error! Please insert a valid number.");
                 flag = true;
-                in.next();
+                in.nextLine();
             }
         } while(flag);
         return x;
     }
 
     /**
-     * method that keeps displaying the string label, till the input is a int positive number
+     * Method that keeps displaying the string label until the input is a positive int
      * @param label string that is showed to the user, indicating what type of input he need to introduce
      * @return a int positive number
      */
@@ -49,7 +49,7 @@ public class InputValidator {
             } catch (Exception e) {
                 System.out.println("Error! Please insert a positive integer number.");
                 flag = true;
-                in.next();
+                in.nextLine();
             }
         } while (flag);
         return x;
@@ -70,14 +70,14 @@ public class InputValidator {
             try {
                 flag = false;
                 x = in.nextDouble();
-                if (x <= 0) {
+                if (x < 0) {
                     throw new Exception();
                 }
 
             } catch (Exception e) {
                 System.out.println("Error! Please insert a positive number.");
                 flag = true;
-                in.next();
+                in.nextLine();
             }
         }while(flag);
         return x;
@@ -105,6 +105,7 @@ public class InputValidator {
             } catch (Exception e) {
                 System.out.println("Error! Please insert a integer number between " + min + " and " + max +".");
                 flag = true;
+                in.nextLine();
             }
         }while(flag);
 
@@ -141,14 +142,14 @@ public class InputValidator {
     }
 
     /**
-     * method that keeps displaying the string label, till the input is a string not empty.
+     * Method that keeps displaying the string label until the input is a non-empty string.
      * if the user write spaces in the beginning or end, the method will trim those spaces.
      * @param label string that is showed to the user, indicating what type of input he need to introduce
      * @return a string that is not empty
      */
     public static String getString(String label) {
         Scanner in = new Scanner(System.in);
-        String str="";
+        String str = "";
         boolean flag;
         do {
             System.out.println(label);
