@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -167,5 +169,47 @@ public class RoomTest {
                 new Room(name, 2, dim)
         );
         assertEquals("Dimensions should not be null", exception.getMessage());
+    }
+
+    @Test
+    public void testGetDeviceList() {
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        DeviceSpecs specFridge = new Fridge();
+        DeviceSpecs specWashing = new WashingMachine();
+        DeviceSpecs specDishWasher = new DishWasher();
+        Device dev1 = new Device("FridgeAriston", room, specFridge, 300);
+        Device dev2 = new Device("WashingMachineBosh", room, specWashing, 300);
+        Device dev3 = new Device("DishWasher", room, specDishWasher, 400);
+
+        room.addDevice(dev1);
+        room.addDevice(dev2);
+        room.addDevice(dev3);
+        List<Device> expectedResult = new ArrayList<>(Arrays.asList(dev1, dev2, dev3));
+
+        List<Device> result = room.getDeviceList();
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddDevice() {
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        DeviceSpecs specFridge = new Fridge();
+        DeviceSpecs specWashing = new WashingMachine();
+        DeviceSpecs specDishWasher = new DishWasher();
+        Device dev1 = new Device("FridgeAriston", room, specFridge, 300);
+
+        List<Device> expectedResult = new ArrayList<>(Arrays.asList(dev1));
+
+        room.addDevice(dev1);
+        List<Device> result = room.getDeviceList();
+
+        assertEquals(expectedResult, result);
     }
 }

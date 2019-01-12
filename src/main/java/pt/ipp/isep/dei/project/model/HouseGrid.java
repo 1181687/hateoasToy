@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.util.List;
+
 public class HouseGrid implements Measurable {
     private String mHouseGridName;
     private double mMaximumContractedPower;
@@ -117,4 +119,16 @@ public class HouseGrid implements Measurable {
         }
         return totalNominalPower;
     }
+
+    /////////////////////////////////////////////////
+
+    /**
+     * method that gets a List of all Devices in all Rooms of a Housegrid
+     *
+     * @return List <Device>
+     */
+    public List<Device> getAllDevicesList() {
+        return mRoomsConnectedToHouseGrid.getAllDevicesList();
+    }
+
 }

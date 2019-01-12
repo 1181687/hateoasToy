@@ -88,6 +88,7 @@ public class RoomList {
 
     /**
      * Method that checks if a Room List is Empty
+     *
      * @return true if it is empty
      */
     public boolean checkIfRoomListIsEmpty() {
@@ -96,6 +97,7 @@ public class RoomList {
 
     /**
      * Method that gives us the size of the Room List
+     *
      * @return Room List size
      */
     public int listSize() {
@@ -164,6 +166,7 @@ public class RoomList {
 
     /**
      * Method that goes through the room list and shows the room by name if that name matches a room with the same name in the list
+     *
      * @param name room name (string)
      * @return room
      */
@@ -211,5 +214,27 @@ public class RoomList {
             }
         }
         return false;
+    }
+
+    /////////////////////////////////////////
+
+    /**
+     * method that gets a list of devices in all rooms of roomlist
+     *
+     * @return list of devices\
+     */
+    public List<Device> getAllDevicesList() {
+        List<Device> roomDeviceList;
+        List<Device> allDeviceList = new ArrayList<>();
+        Device dev;
+
+        for (int i = 0; i < mRoomList.size(); i++) {
+            roomDeviceList = mRoomList.get(i).getDeviceList();
+            for (int j = 0; j < roomDeviceList.size(); j++) {
+                dev = roomDeviceList.get(j);
+                allDeviceList.add(dev);
+            }
+        }
+        return allDeviceList;
     }
 }

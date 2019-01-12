@@ -17,4 +17,9 @@ public class Device implements Measurable {
     public double getNominalPower() {
         return mNominalPower;
     }
+
+    ////////////////////////////////////
+    public Room getLocation() {
+        return this.mLocation;
+    }
 }

@@ -3,6 +3,10 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -71,5 +75,47 @@ public class HouseGridTest {
         String result=houseGrid.listPowerSources();
         //Assert
         assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void testGetAllDevicesList() {
+        //Room ONE
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Room room1 = new Room(name, 2, dim);
+
+        DeviceSpecs specFridge = new Fridge();
+        DeviceSpecs specWashing = new WashingMachine();
+        DeviceSpecs specDishWasher = new DishWasher();
+        Device dev1 = new Device("FridgeAriston", room1, specFridge, 300);
+        Device dev2 = new Device("WashingMachineBosh", room1, specWashing, 300);
+        Device dev3 = new Device("DishWasher", room1, specDishWasher, 400);
+
+        room1.addDevice(dev1);
+        room1.addDevice(dev2);
+        room1.addDevice(dev3);
+
+        //Room TWO
+        String name2 = "KitchenBasement";
+        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Room room2 = new Room(name2, -1, dim);
+        DeviceSpecs specWaterHeater = new ElectricWaterHeater();
+        Device dev4 = new Device("FridgeSiemens", room2, specFridge, 300);
+        Device dev5 = new Device("DishWasherTeka", room2, specDishWasher, 400);
+        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater, 25);
+
+        room2.addDevice(dev4);
+        room2.addDevice(dev5);
+        room2.addDevice(dev6);
+
+        List<Device> expectedResult = new ArrayList<>(Arrays.asList(dev1, dev2, dev3, dev4, dev5, dev6));
+        RoomList roomList = new RoomList();
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
+        HouseGrid housegrid = new HouseGrid("grid1", 1000, roomList);
+
+        List<Device> result = housegrid.getAllDevicesList();
+
+        assertEquals(expectedResult, result);
     }
 }

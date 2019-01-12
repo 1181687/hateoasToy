@@ -42,7 +42,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
 
         //act
-        String result = ctrl.getDisplayRoomList();
+        String result = ctrl.getRoomListContent();
         //assert
         assertEquals(expectResult, result);
     }
@@ -64,7 +64,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         SensorType sensorType = new SensorType("Temperature");
         GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType);
         //act
-        String result = ctrl.getDisplayRoomList();
+        String result = ctrl.getRoomListContent();
         //assert
         assertEquals(expectResult, result);
     }
@@ -255,7 +255,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         String expectedResult = "RoomTwo";
         int roomPos = 1;
         //Act
-        String result = ctrl.getNameOfTheChosenRoomInSpecificPos(roomPos);
+        String result = ctrl.getRoomNameByPos(roomPos);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -277,7 +277,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         String expectedResult = null;
         int roomPos = 0;
         //Act
-        String result = ctrl.getNameOfTheChosenRoomInSpecificPos(roomPos);
+        String result = ctrl.getRoomNameByPos(roomPos);
         //Assert
         assertEquals(expectedResult, result);
     }

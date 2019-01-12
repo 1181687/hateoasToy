@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;
@@ -185,5 +187,32 @@ public class Room implements Measurable{
             totalNominalPower+=device.getNominalPower();
         }
         return totalNominalPower;
+    }
+    //////////////////////////////////////////////////////
+
+    /**
+     * method that gets a List of all Devices in a Room
+     *
+     * @return List <Device>
+     */
+    public List<Device> getDeviceList() {
+        Device dev;
+        List<Device> allDeviceList = new ArrayList<>();
+
+        for (int j = 0; j < mDeviceList.getmDeviceList().size(); j++) {
+            dev = mDeviceList.getmDeviceList().get(j);
+            allDeviceList.add(dev);
+        }
+        return allDeviceList;
+    }
+
+    /**
+     * Method that adds a device to the list of Devices of the room
+     *
+     * @param device the device to be added
+     * @return true if it adds, false if it doesn't add
+     */
+    public boolean addDevice(Device device) {
+        return mDeviceList.addDevice(device);
     }
 }
