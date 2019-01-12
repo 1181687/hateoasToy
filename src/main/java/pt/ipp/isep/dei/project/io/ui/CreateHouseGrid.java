@@ -17,9 +17,9 @@ public class CreateHouseGrid {
     }
 
     public void run(){
-        System.out.println("Please insert the name of the House Grid you want to create.");
-        Scanner read = new Scanner(System.in);
-        String nameHG = read.nextLine();
+        String label1 ="Please insert the name of the House Grid you want to create.";
+        String nameHG = InputValidator.getString(label1);
+
         HouseGrid houseGridCreated = mController.createANewHouseGrid(nameHG);
         mController.addHouseGridToTheListOfHouseGrids(houseGridCreated);
         System.out.println("Your House Grid was succesfully created! \n" );
