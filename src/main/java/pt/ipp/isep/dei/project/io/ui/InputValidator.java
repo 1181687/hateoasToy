@@ -198,6 +198,13 @@ public class InputValidator {
         } while (flag);
         return str;
     }
+
+    /**
+     * Method method that keeps displaying the string label, till the input of the date is correct, as in the date
+     * format or in a valid date.
+     * @param label
+     * @return the valid date converted from a String to LocalDate.
+     */
     public static LocalDate getStringDate(String label) {
         Scanner in = new Scanner(System.in);
         String str="";
