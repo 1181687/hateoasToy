@@ -157,4 +157,8 @@ public class SensorList {
         }
         return nearestSensors;
     }
+
+    public int getLength () {
+        return getmSensorList().size();
+    }
 }

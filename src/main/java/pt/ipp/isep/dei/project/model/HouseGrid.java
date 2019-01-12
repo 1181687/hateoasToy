@@ -91,7 +91,7 @@ public class HouseGrid implements Measurable {
      * @return a list of existing rooms attached to a house grid.
      */
     public String getRoomsAttached() {
-        return this.mRoomsConnectedToHouseGrid.displayRoomList();
+        return this.mRoomsConnectedToHouseGrid.getRoomListContent();
     }
 
 
@@ -106,7 +106,7 @@ public class HouseGrid implements Measurable {
     }
 
     public String listPowerSources(){
-        return mPowerSourceList.listPowerSources();
+        return mPowerSourceList.getPowerSourcesListContent();
     }
 
     @Override

@@ -9,7 +9,13 @@ public class DeviceList {
     public DeviceList() {
     }
 
+
     public List<Device> getmDeviceList() {
         return mDeviceList;
     }
+
+    public int getLength() {
+        return getmDeviceList().size();
+    }
+
 }

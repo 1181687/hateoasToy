@@ -70,7 +70,7 @@ public class AttachRoomToHouseGridController {
      * @return List of house grids.
      */
     public String listAllTheRoomsInTheList() {
-        return mListOfRooms.displayRoomList();
+        return mListOfRooms.getRoomListContent();
     }
 
     /**
@@ -88,7 +88,7 @@ public class AttachRoomToHouseGridController {
      * @return The respective room.
      */
     public Room getRoomFromTheList(int position) {
-        return mListOfRooms.getRoomFromASpecificPosition(position);
+        return mListOfRooms.getRoomFromAPosition(position);
     }
 
     /**

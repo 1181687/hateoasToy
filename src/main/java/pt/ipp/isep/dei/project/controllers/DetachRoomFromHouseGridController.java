@@ -23,15 +23,15 @@ public class DetachRoomFromHouseGridController {
     }
 
     public String getListOfRooms() {
-        return mListOfRooms.displayRoomList();
+        return mListOfRooms.getRoomListContent();
     }
 
     public String getListOfRoomsInACertainHouseGrid(int position) {
-        return mListOfHouseGrids.displayRoomsInTheHouseGrid(position);
+        return mListOfHouseGrids.getRoomsInTheHouseGrid(position);
     }
 
     public Room getRoomFromTheListOfRoomByAPosition(int position) {
-        return mListOfRooms.getRoomFromASpecificPosition(position);
+        return mListOfRooms.getRoomFromAPosition(position);
     }
 
     public boolean detachRoomFromGridList(HouseGrid houseGrid, Room roomSelected) {

@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;
@@ -102,7 +103,7 @@ public class Room implements Measurable{
      * method that displays a Room with its characteristics (name, house floor, height, length and width)
      * @return Rooms
      */
-    public String getRoomDisplay() {
+    public String getRoomContent() {
         StringBuilder content = new StringBuilder();
         content.append("Name: " + getmName());
         content.append(", House Floor: " + getmHouseFloor());
@@ -113,18 +114,18 @@ public class Room implements Measurable{
     }
 
     /**
-     * method that creates the same hashcode to rooms with the same attributes: name, housefloor and dimensions.
+     * method that creates the same hashcode to rooms with the same attribute name.
      *
      * @return the hashcode created
      */
     @Override
     public int hashCode() {
-        return Objects.hash(mName, mHouseFloor, mDimensions);
+        return Objects.hash(mName);
     }
 
     /**
      * Equals method to determine if two Rooms are equal.
-     * They are equals if all atributtes are equal.
+     * They are equals if name are equal.
      *
      * @param obj receives an object
      * @return boolean
@@ -138,8 +139,7 @@ public class Room implements Measurable{
             return false;
         }
         Room roomOne = (Room) obj;
-        return this.mName.equals(roomOne.mName) && this.mHouseFloor == roomOne.mHouseFloor
-                && this.mDimensions.equals(roomOne.mDimensions);
+        return this.mName.equals(roomOne.mName);
     }
 
     /**
@@ -187,4 +187,44 @@ public class Room implements Measurable{
         }
         return totalNominalPower;
     }
+
+
+    /**
+     * method that displays the device list content
+     *
+     * @return content of device list
+     */
+    public String getDeviceListContent() {
+        StringBuilder content = new StringBuilder();
+        int deviceListLength = this.mDeviceList.getLength();
+
+        for (int i = 1; i <= deviceListLength; i++) {
+            content.append("Name: " + this.mDeviceList.getmDeviceList().get(i - 0).getmName());
+            content.append("\n");
+        }
+        return content.toString();
+    }
+
+    /**
+     * method that displays the sensor list content
+     * @return content of sensor list
+     */
+    public String getSensorsListContent () {
+        StringBuilder content = new StringBuilder();
+        int sensorListLength = this.mSensorList.getLength();
+
+        for (int i = 1; i <= sensorListLength; i++) {
+            content.append(i + " - Name: " + this.mSensorList.getmSensorList().get(i - 1).getmSensorName());
+            content.append("\n");
+        }
+        return content.toString();
+    }
+
+    /**
+     * method that check if sensor list is empty
+     */
+    public boolean checkIfSensorListIsEmpty() {
+        return mSensorList.getmSensorList().isEmpty();
+    }
+
 }

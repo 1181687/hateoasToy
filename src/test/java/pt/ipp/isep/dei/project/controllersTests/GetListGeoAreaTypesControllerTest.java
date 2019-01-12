@@ -30,7 +30,7 @@ public class GetListGeoAreaTypesControllerTest {
         List<String> expectedResult = Arrays.asList("Cidade");
 
         //Act
-        List < String > result = ctrl2.getListaTiposDeAG();
+        List <String> result = ctrl2.getListaTiposDeAG();
 
         //Assert
         assertEquals(expectedResult, result);

@@ -22,7 +22,7 @@ public class RoomTest {
         String expectResult = "Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0";
 
         //act
-        String result = room.getRoomDisplay();
+        String result = room.getRoomContent();
         //assert
         assertEquals(expectResult, result);
     }
@@ -35,7 +35,7 @@ public class RoomTest {
         Dimensions dim = new Dimensions(4, 10.5, 7.5);
         Room room = new Room(name, housefloor, dim);
 
-        int expectedResult = Objects.hash(name, housefloor, dim);
+        int expectedResult = Objects.hash(name);
 
         // Act
         int result = room.hashCode();
@@ -76,7 +76,7 @@ public class RoomTest {
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
-        Room room2 = new Room("Room", 2, dim2);
+        Room room2 = new Room("RoomTwo", 2, dim2);
         //Act
         boolean result = room.equals(room2);
         //Assert
@@ -167,5 +167,67 @@ public class RoomTest {
                 new Room(name, 2, dim)
         );
         assertEquals("Dimensions should not be null", exception.getMessage());
+    }
+
+    @Test
+    public void getSensorsListContentTest () {
+        // Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Temperatura");
+        Location locS0 = new Location(123, 345, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2010, 11, 2, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Temperatura");
+        Location locS1 = new Location(123, 300, 50);
+        Sensor s1 = new Sensor("A456", dataFuncionamento1, sensorType1, locS1);
+
+        room.addSensorToTheListOfSensorsInTheRoom(s0);
+        room.addSensorToTheListOfSensorsInTheRoom(s1);
+
+        String expectedResult =
+                "1 - Name: A123\n" +
+                        "2 - Name: A456\n";
+        // Act
+        String result = room.getSensorsListContent();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void checkIfSensorListIsEmptyTestTrue () {
+        // Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        // Act
+        boolean result = room.checkIfSensorListIsEmpty();
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkIfSensorListIsEmptyTestFalse () {
+        // Arrange
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Temperatura");
+        Location locS0 = new Location(123, 345, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        room.addSensorToTheListOfSensorsInTheRoom(s0);
+
+        // Act
+        boolean result = room.checkIfSensorListIsEmpty();
+
+        // Assert
+        assertFalse(result);
     }
 }

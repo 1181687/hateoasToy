@@ -20,6 +20,6 @@ public class GetRoomList {
             return;
         }
         System.out.println("This is the list of existing rooms.");
-        System.out.println(ctrl.displayOfTheRoomList());
+        System.out.println(ctrl.getRoomListContent());
     }
 }
