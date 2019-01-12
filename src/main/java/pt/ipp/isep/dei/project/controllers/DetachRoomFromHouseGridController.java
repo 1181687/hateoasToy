@@ -31,7 +31,7 @@ public class DetachRoomFromHouseGridController {
     }
 
     public Room getRoomFromTheListOfRoomByAPosition(int position) {
-        return mListOfRooms.getRoomFromASpecificPosition(position);
+        return mListOfRooms.getRoomFromAPosition(position);
     }
 
     public boolean detachRoomFromGridList(HouseGrid houseGrid, Room roomSelected) {

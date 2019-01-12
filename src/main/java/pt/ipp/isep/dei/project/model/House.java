@@ -199,12 +199,20 @@ public class House {
         return mRoomList.newRoom(name, housefloor, height, length, width);
     }
 
+    /**
+     * method that check if a name of a room already exists on the list of rooms.
+     * @param name
+     */
     public boolean checkIfNameAlreadyExists(String name) {
         return this.mRoomList.checkIfNameAlreadyExists(name);
     }
 
+    /**
+     * method that get a room of the list of rooms, from a specific position.
+     * @param option
+     */
     public Room getRoomOfTheRoomList(int option) {
-        return mRoomList.getRoomFromASpecificPosition(option);
+        return mRoomList.getRoomFromAPosition(option);
     }
 
     /**
@@ -217,10 +225,18 @@ public class House {
         return mRoomList.getDeviceListContentOfARoom(position);
     }
 
+    /**
+     * method that displays the sensor list content of a Room
+     * @param position
+     */
     public String getSensorListContentOfARoom (int position) {
         return mRoomList.getSensorListContentOfARoom(position);
     }
 
+    /**
+     * method that check if the sensor list of the room is empty
+     * @param position
+     */
     public boolean checkIfSensorListIsEmpty (int position) {
         return mRoomList.checkIfSensorListIsEmpty(position);
     }

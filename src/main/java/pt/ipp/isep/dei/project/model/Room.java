@@ -205,6 +205,10 @@ public class Room implements Measurable{
         return content.toString();
     }
 
+    /**
+     * method that displays the sensor list content
+     * @return content of sensor list
+     */
     public String getSensorsListContent () {
         StringBuilder content = new StringBuilder();
         int sensorListLength = this.mSensorList.getLength();
@@ -216,6 +220,9 @@ public class Room implements Measurable{
         return content.toString();
     }
 
+    /**
+     * method that check if sensor list is empty
+     */
     public boolean checkIfSensorListIsEmpty() {
         return mSensorList.getmSensorList().isEmpty();
     }

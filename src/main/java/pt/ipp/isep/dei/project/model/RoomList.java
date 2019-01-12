@@ -28,7 +28,7 @@ public class RoomList {
      * @param position Specifies the position of the room in the list.
      * @return The respective room.
      */
-    public Room getRoomFromASpecificPosition(int position) {
+    public Room getRoomFromAPosition(int position) {
         return mRoomList.get(position);
     }
 
@@ -222,10 +222,19 @@ public class RoomList {
         return mRoomList.get(position).getDeviceListContent();
     }
 
+    /**
+     * Method that displays the sensor list content of a Room
+     * @param position
+     * @return
+     */
     public String getSensorListContentOfARoom (int position) {
         return mRoomList.get(position).getSensorsListContent();
     }
 
+    /**
+     * method that check if the sensor list of the room is empty
+     * @param position
+     */
     public boolean checkIfSensorListIsEmpty (int position) {
         return mRoomList.get(position).checkIfSensorListIsEmpty();
     }

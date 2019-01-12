@@ -32,7 +32,7 @@ public class AddSensorToRoomController {
      * @param position of the room in the list of rooms.
      */
     public void getRoomByIndex (int position) {
-        mSelectedRoom = this.mRoomList.getRoomFromASpecificPosition(position);
+        mSelectedRoom = this.mRoomList.getRoomFromAPosition(position);
     }
 
     /**
