@@ -274,4 +274,109 @@ public class RoomTest {
 
         assertEquals(expectedResult, result);
     }
+
+
+    @Test
+    public void getDeviceListContentOfARoomTest() {
+        // Arrange
+
+        //initiate Room
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geo);
+
+        //initiate Devices
+
+        double freezerCapacity = 5.5;
+        double refrigeratorCapacity = 15.5;
+        double annualEnergyConsumption = 3000.0;
+        DeviceSpecs deviceSpecs = new Fridge("Fridge", freezerCapacity, refrigeratorCapacity, annualEnergyConsumption);
+        double nominalPower = 100.5;
+        Device dev = new Device("Fridge1", room, deviceSpecs, nominalPower);
+
+
+        double luminousFlux = 10.0;
+        double energyConsumption1 = 20.0;
+        DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
+        double nominalPower1 = 0.0;
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
+
+        room.addDevice(dev);
+        room.addDevice(dev1);
+
+
+        String expectedResult =
+                "1 - Name: Fridge1\n" +
+                        "2 - Name: Lamp1\n";
+
+
+        // Act
+        String result = room.getDeviceListContent();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void checkIfDeviceListIsEmptyTestTrue() {
+        // Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geo);
+
+
+        // Act
+        boolean result = room.checkIfDeviceListIsEmpty();
+
+        // Assert
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void checkIfDeviceListIsEmptyTestFalse() {
+        // Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geo);
+
+        double luminousFlux = 10.0;
+        double energyConsumption1 = 20.0;
+        DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
+        double nominalPower1 = 1.0;
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
+
+        room.addDevice(dev1);
+
+        // Act
+        boolean result = room.checkIfDeviceListIsEmpty();
+
+        // Assert
+        assertFalse(result);
+    }
 }

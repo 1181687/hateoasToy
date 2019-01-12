@@ -240,4 +240,13 @@ public class House {
     public boolean checkIfSensorListIsEmpty (int position) {
         return mRoomList.checkIfSensorListIsEmpty(position);
     }
+
+    /**
+     * Method that checks if the Device List of the room is empty
+     *
+     * @param position chosen room
+     */
+    public boolean checkIfDeviceListIsEmpty(int position) {
+        return mRoomList.checkIfDeviceListIsEmpty(position);
+    }
 }

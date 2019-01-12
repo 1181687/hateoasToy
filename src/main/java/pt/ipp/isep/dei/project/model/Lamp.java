@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
 public class Lamp implements DeviceSpecs {
-    private String mTypeName = "Fridge";
+    private String mTypeName = "Lamp";
     private double mLuminousFlux;
     private double mEnergyConsumption;
 
