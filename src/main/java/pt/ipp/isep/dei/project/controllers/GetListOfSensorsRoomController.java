@@ -6,12 +6,16 @@ public class GetListOfSensorsRoomController {
 
     private House mHouse;
 
+    public GetListOfSensorsRoomController(House mHouse) {
+        this.mHouse = mHouse;
+    }
+
     public String getSensorsListContent(int position) {
         return this.mHouse.getSensorListContentOfARoom(position);
     }
 
-    public boolean checkIfListIsEmpty () {
-        return this.mHouse.checkIfSensorListIsEmpty();
+    public boolean checkIfListIsEmpty (int position) {
+        return this.mHouse.checkIfSensorListIsEmpty(position);
     }
 
 }

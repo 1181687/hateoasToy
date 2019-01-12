@@ -197,5 +197,37 @@ public class RoomTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-    
+
+    @Test
+    public void checkIfSensorListIsEmptyTestTrue () {
+        // Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        // Act
+        boolean result = room.checkIfSensorListIsEmpty();
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkIfSensorListIsEmptyTestFalse () {
+        // Arrange
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Temperatura");
+        Location locS0 = new Location(123, 345, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        room.addSensorToTheListOfSensorsInTheRoom(s0);
+
+        // Act
+        boolean result = room.checkIfSensorListIsEmpty();
+
+        // Assert
+        assertFalse(result);
+    }
 }

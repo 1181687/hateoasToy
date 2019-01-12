@@ -226,7 +226,7 @@ public class RoomList {
         return mRoomList.get(position).getSensorsListContent();
     }
 
-    public boolean checkIfSensorListIsEmpty () {
-        return checkIfSensorListIsEmpty();
+    public boolean checkIfSensorListIsEmpty (int position) {
+        return mRoomList.get(position).checkIfSensorListIsEmpty();
     }
 }
