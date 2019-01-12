@@ -283,16 +283,6 @@ public class RoomTest {
         //initiate Room
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-        RoomList roomList = new RoomList();
-
-        //initiate House
-        HouseGridList listHG = new HouseGridList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeoAreaType GAType = new GeoAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, listHG, address, geo);
 
         //initiate Devices
 
@@ -331,16 +321,6 @@ public class RoomTest {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-        RoomList roomList = new RoomList();
-
-        HouseGridList listHG = new HouseGridList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeoAreaType GAType = new GeoAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, listHG, address, geo);
-
 
         // Act
         boolean result = room.checkIfDeviceListIsEmpty();
@@ -355,15 +335,6 @@ public class RoomTest {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-        RoomList roomList = new RoomList();
-
-        HouseGridList listHG = new HouseGridList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeoAreaType GAType = new GeoAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, listHG, address, geo);
 
         double luminousFlux = 10.0;
         double energyConsumption1 = 20.0;
