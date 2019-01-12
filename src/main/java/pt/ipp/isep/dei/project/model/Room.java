@@ -1,12 +1,11 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
-public class Room implements Measurable{
+public class Room implements Measurable {
     private String mName;
     private int mHouseFloor;
     private Dimensions mDimensions;
@@ -76,6 +75,7 @@ public class Room implements Measurable{
 
     /**
      * Get Method
+     *
      * @return mHouseFloor
      */
     public int getmHouseFloor() {
@@ -93,6 +93,7 @@ public class Room implements Measurable{
 
     /**
      * Get Method
+     *
      * @return mDimensions
      */
     public Dimensions getmDimensions() {
@@ -101,6 +102,7 @@ public class Room implements Measurable{
 
     /**
      * method that displays a Room with its characteristics (name, house floor, height, length and width)
+     *
      * @return Rooms
      */
     public String getRoomContent() {
@@ -172,6 +174,7 @@ public class Room implements Measurable{
 
     /**
      * Method that gets the latest measurement by type of sensor
+     *
      * @param type type of sensor
      * @return latest measurement by sensor type
      */
@@ -181,9 +184,11 @@ public class Room implements Measurable{
 
     @Override
     public double getNominalPower() {
-        double totalNominalPower=0;
-        for (Device device : mDeviceList.getmDeviceList() ) {
-            totalNominalPower+=device.getNominalPower();
+        double totalNominalPower = 0;
+        if (mDeviceList.getLength() != 0) {
+            for (Device device : mDeviceList.getmDeviceList()) {
+                totalNominalPower += device.getNominalPower();
+            }
         }
         return totalNominalPower;
     }
@@ -207,9 +212,10 @@ public class Room implements Measurable{
 
     /**
      * method that displays the sensor list content
+     *
      * @return content of sensor list
      */
-    public String getSensorsListContent () {
+    public String getSensorsListContent() {
         StringBuilder content = new StringBuilder();
         int sensorListLength = this.mSensorList.getLength();
 
@@ -227,4 +233,7 @@ public class Room implements Measurable{
         return mSensorList.getmSensorList().isEmpty();
     }
 
+    public DeviceList getmDeviceList() {
+        return mDeviceList;
+    }
 }
