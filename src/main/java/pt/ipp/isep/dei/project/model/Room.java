@@ -104,7 +104,7 @@ public class Room implements Measurable{
      * method that displays a Room with its characteristics (name, house floor, height, length and width)
      * @return Rooms
      */
-    public String getRoomDisplay() {
+    public String getRoomContent() {
         StringBuilder content = new StringBuilder();
         content.append("Name: " + getmName());
         content.append(", House Floor: " + getmHouseFloor());
@@ -182,11 +182,57 @@ public class Room implements Measurable{
 
     @Override
     public double getNominalPower() {
-        double totalNominalPower=0;
-        for (Device device : mDeviceList.getmDeviceList() ) {
-            totalNominalPower+=device.getNominalPower();
+        double totalNominalPower = 0;
+        if (mDeviceList.getLength() != 0) {
+            for (Device device : mDeviceList.getmDeviceList()) {
+                totalNominalPower += device.getNominalPower();
+            }
         }
         return totalNominalPower;
+    }
+
+
+    /**
+     * method that displays the device list content
+     *
+     * @return content of device list
+     */
+    public String getDeviceListContent() {
+        StringBuilder content = new StringBuilder();
+        int deviceListLength = this.mDeviceList.getLength();
+
+        for (int i = 1; i <= deviceListLength; i++) {
+            content.append("Name: " + this.mDeviceList.getmDeviceList().get(i - 0).getmName());
+            content.append("\n");
+        }
+        return content.toString();
+    }
+
+    /**
+     * method that displays the sensor list content
+     *
+     * @return content of sensor list
+     */
+    public String getSensorsListContent() {
+        StringBuilder content = new StringBuilder();
+        int sensorListLength = this.mSensorList.getLength();
+
+        for (int i = 1; i <= sensorListLength; i++) {
+            content.append(i + " - Name: " + this.mSensorList.getmSensorList().get(i - 1).getmSensorName());
+            content.append("\n");
+        }
+        return content.toString();
+    }
+
+    /**
+     * method that check if sensor list is empty
+     */
+    public boolean checkIfSensorListIsEmpty() {
+        return mSensorList.getmSensorList().isEmpty();
+    }
+
+    public DeviceList getmDeviceList() {
+        return mDeviceList;
     }
     //////////////////////////////////////////////////////
 

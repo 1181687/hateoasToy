@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.model;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Objects;
 
 public class DeviceList {
     private List<Device> mDeviceList = new ArrayList<>();
@@ -10,10 +11,16 @@ public class DeviceList {
     public DeviceList() {
     }
 
+
     ///////////////////////////////////////////////////////////////////////
     public List<Device> getmDeviceList() {
         return mDeviceList;
     }
+
+    public int getLength() {
+        return getmDeviceList().size();
+    }
+
 
     /**
      * Method that adds a device to the list of Devices

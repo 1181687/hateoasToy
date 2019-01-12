@@ -24,7 +24,7 @@ public class AddSensorToRoomController {
      * @return the RoomList.
      */
     public String displayRoomsInTheHouse () {
-        return this.mRoomList.displayRoomList();
+        return this.mRoomList.getRoomListContent();
     }
 
     /**
@@ -32,7 +32,7 @@ public class AddSensorToRoomController {
      * @param position of the room in the list of rooms.
      */
     public void getRoomByIndex (int position) {
-        mSelectedRoom = this.mRoomList.getRoomFromASpecificPosition(position);
+        mSelectedRoom = this.mRoomList.getRoomFromAPosition(position);
     }
 
     /**
@@ -40,7 +40,7 @@ public class AddSensorToRoomController {
      * @return the sensor type list.
      */
     public String displayListOfSensorsType () {
-        return this.mListSensorsType.displaySensorTypeList();
+        return this.mListSensorsType.getSensorTypeListContent();
     }
 
     /**

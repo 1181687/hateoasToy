@@ -34,7 +34,7 @@ public class RoomListTest {
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
 
         //act
-        String result = rList.displayRoomList();
+        String result = rList.getRoomListContent();
         //assert
         assertEquals(expectResult, result);
     }
@@ -47,7 +47,7 @@ public class RoomListTest {
         String expectResult = "";
 
         //act
-        String result = rList.displayRoomList();
+        String result = rList.getRoomListContent();
         //assert
         assertEquals(expectResult, result);
     }
@@ -152,7 +152,7 @@ public class RoomListTest {
         String expectedResult = "1 - Name: Kitchen\n2 - House Floor: 0\n3 - Dimensions - Height: 2.0\n4 - Dimensions - Length: 2.0\n5 - Dimensions - Width: 2.0\n";
 
         //act
-        String result = rList.displayOfTheChosenRoom(0);
+        String result = rList.getChosenRoomContent(0);
         //assert
         assertEquals(expectedResult, result);
     }
@@ -182,7 +182,7 @@ public class RoomListTest {
         String expectedResult = "1 - Name: Living Room\n2 - House Floor: 1\n3 - Dimensions - Height: 2.6\n4 - Dimensions - Length: 2.8\n5 - Dimensions - Width: 2.1\n";
 
         //act
-        String result = rList.displayOfTheChosenRoom(chosenRoomPositionInList);
+        String result = rList.getChosenRoomContent(chosenRoomPositionInList);
         //assert
         assertEquals(expectedResult, result);
     }
@@ -212,7 +212,7 @@ public class RoomListTest {
         String expectedResult = "1 - Name: Kitchen\n2 - House Floor: 3\n3 - Dimensions - Height: 2.0\n4 - Dimensions - Length: 2.0\n5 - Dimensions - Width: 2.0\n";
 
         //act
-        String result = rList.displayOfTheChosenRoom(chosenRoomPositionInList);
+        String result = rList.getChosenRoomContent(chosenRoomPositionInList);
         //assert
         assertEquals(expectedResult, result);
     }
@@ -243,7 +243,7 @@ public class RoomListTest {
         String expectedResult = "1 - Name: Kitchen\n2 - House Floor: 0\n3 - Dimensions - Height: 3.0\n4 - Dimensions - Length: 2.0\n5 - Dimensions - Width: 2.0\n";
 
         //act
-        String result = rList.displayOfTheChosenRoom(chosenRoomPositionInList);
+        String result = rList.getChosenRoomContent(chosenRoomPositionInList);
         //assert
         assertEquals(expectedResult, result);
     }
@@ -274,7 +274,7 @@ public class RoomListTest {
         String expectedResult = "1 - Name: Kitchen\n2 - House Floor: 0\n3 - Dimensions - Height: 2.0\n4 - Dimensions - Length: 3.0\n5 - Dimensions - Width: 2.0\n";
 
         //act
-        String result = rList.displayOfTheChosenRoom(chosenRoomPositionInList);
+        String result = rList.getChosenRoomContent(chosenRoomPositionInList);
         //assert
         assertEquals(expectedResult, result);
     }
@@ -306,7 +306,7 @@ public class RoomListTest {
         String expectedResult = "1 - Name: Kitchen\n2 - House Floor: 0\n3 - Dimensions - Height: 2.0\n4 - Dimensions - Length: 2.0\n5 - Dimensions - Width: 3.0\n";
 
         //act
-        String result = rList.displayOfTheChosenRoom(chosenRoomPositionInList);
+        String result = rList.getChosenRoomContent(chosenRoomPositionInList);
         //assert
         assertEquals(expectedResult, result);
     }
@@ -475,8 +475,6 @@ public class RoomListTest {
     @Test
     public void getMaximumTemperatureInARoomInAGivenDayNegativeTemperatures() {
         //Arrange
-
-
         String name = "Master Bedroom";
         int houseFloor = 2;
         double height = 10.0;
@@ -546,6 +544,79 @@ public class RoomListTest {
         boolean result = list.checkIfNameAlreadyExists(nameToCheck);
 
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getSensorsListContentOfARoomTest () {
+        // Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList list = new RoomList();
+
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Temperatura");
+        Location locS0 = new Location(123, 345, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2010, 11, 2, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Temperatura");
+        Location locS1 = new Location(123, 300, 50);
+        Sensor s1 = new Sensor("A456", dataFuncionamento1, sensorType1, locS1);
+
+        room.addSensorToTheListOfSensorsInTheRoom(s0);
+        room.addSensorToTheListOfSensorsInTheRoom(s1);
+
+        list.addRoom(room);
+
+        int position = 0;
+        String expectedResult =
+                "1 - Name: A123\n" +
+                "2 - Name: A456\n";
+        // Act
+        String result = list.getSensorListContentOfARoom(position);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void checkIfSensorListIsEmptyTestTrue () {
+        // Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        roomList.addRoom(room);
+
+        int position = 0;
+        // Act
+        boolean result = roomList.checkIfSensorListIsEmpty(position);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkIfSensorListIsEmptyTestFalse () {
+        // Arrange
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Temperatura");
+        Location locS0 = new Location(123, 345, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        roomList.addRoom(room);
+        room.addSensorToTheListOfSensorsInTheRoom(s0);
+
+        int position = 0;
+        // Act
+        boolean result = roomList.checkIfSensorListIsEmpty(position);
+
+        // Assert
+        assertFalse(result);
     }
 
     @Test

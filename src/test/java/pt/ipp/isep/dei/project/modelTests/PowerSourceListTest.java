@@ -75,7 +75,7 @@ public class PowerSourceListTest {
         String expectedResult="1- Power Source 1\n" +
                 "2- Power Source 2\n";
         //Act
-        String result=powerSourceList.listPowerSources();
+        String result=powerSourceList.getPowerSourcesListContent();
         //Assert
         assertEquals(expectedResult,result);
     }
