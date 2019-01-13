@@ -42,6 +42,7 @@ public class RoomTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+    
     @Test
     void testhashCodeNotEquals() {
         //Arrange

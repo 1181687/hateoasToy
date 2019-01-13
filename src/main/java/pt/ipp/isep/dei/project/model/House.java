@@ -259,7 +259,7 @@ public class House {
      * @return String with Devices Names and Location grouped by Type.
      */
     public String getDeviceListContentNameTypeLocationByHG(int positionHG) {
-        return this.mListHouseGrids.getHouseGridFromASpecificPositionInTheList(positionHG).
+        return this.mListHouseGrids.getHouseGridByPosition(positionHG).
                 getAllDevicesList().getContentNameLocationOrderedByType();
     }
 
