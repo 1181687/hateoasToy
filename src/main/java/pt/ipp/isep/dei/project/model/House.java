@@ -249,4 +249,20 @@ public class House {
     public boolean checkIfDeviceListIsEmpty(int position) {
         return mRoomList.checkIfDeviceListIsEmpty(position);
     }
+
+    public boolean checkIfHouseGridListIsEmpty(){
+        return mListHouseGrids.checkIfHouseGridListIsEmpty();
+    }
+
+    public String getHouseGridList(){
+        return mListHouseGrids.getHouseGridListToString();
+    }
+
+    public HouseGrid getHouseGridByPosition(int position){
+        return mListHouseGrids.getHouseGridByPosition(position);
+    }
+
+    public int houseGridListLength(){
+       return this.mListHouseGrids.getmHouseGridsList().size();
+    }
 }
