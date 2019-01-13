@@ -1,10 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimensions;
-import pt.ipp.isep.dei.project.model.HouseGrid;
-import pt.ipp.isep.dei.project.model.HouseGridList;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -202,6 +199,110 @@ public class HouseGridListTest {
         HouseGrid result = gridList.getTheGridWhereTheRoomIsConnected(room);
 
         // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void TestGetAllDevicesListByPosition() {
+        //Room ONE
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Room room1 = new Room(name, 2, dim);
+
+        DeviceSpecs specFridge = new Fridge();
+        DeviceSpecs specWashing = new WashingMachine();
+        DeviceSpecs specDishWasher = new DishWasher();
+        Device dev1 = new Device("FridgeAriston", room1, specFridge, 300);
+        Device dev2 = new Device("WashingMachineBosh", room1, specWashing, 300);
+        Device dev3 = new Device("DishWasher", room1, specDishWasher, 400);
+
+        room1.addDevice(dev1);
+        room1.addDevice(dev2);
+        room1.addDevice(dev3);
+
+        //Room TWO
+        String name2 = "KitchenBasement";
+        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Room room2 = new Room(name2, -1, dim);
+        DeviceSpecs specWaterHeater = new ElectricWaterHeater();
+        Device dev4 = new Device("FridgeSiemens", room2, specFridge, 300);
+        Device dev5 = new Device("DishWasherTeka", room2, specDishWasher, 400);
+        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater, 25);
+
+        room2.addDevice(dev4);
+        room2.addDevice(dev5);
+        room2.addDevice(dev6);
+
+        //add to Lists
+        RoomList roomListEmpty = new RoomList();
+        RoomList roomList = new RoomList();
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
+        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
+        HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
+        HouseGridList houseGridList1 = new HouseGridList();
+        houseGridList1.addHouseGridToTheList(houseGrid);
+        houseGridList1.addHouseGridToTheList(houseGridEmpty);
+
+        DeviceList expectedResult = new DeviceList();
+        expectedResult.addDevice(dev1);
+        expectedResult.addDevice(dev2);
+        expectedResult.addDevice(dev3);
+        expectedResult.addDevice(dev4);
+        expectedResult.addDevice(dev5);
+        expectedResult.addDevice(dev6);
+
+        DeviceList result = houseGridList1.getAllDevicesListByPosition(0);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void TestGetAllDevicesListByPositionEmpty() {
+        //Room ONE
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Room room1 = new Room(name, 2, dim);
+
+        DeviceSpecs specFridge = new Fridge();
+        DeviceSpecs specWashing = new WashingMachine();
+        DeviceSpecs specDishWasher = new DishWasher();
+        Device dev1 = new Device("FridgeAriston", room1, specFridge, 300);
+        Device dev2 = new Device("WashingMachineBosh", room1, specWashing, 300);
+        Device dev3 = new Device("DishWasher", room1, specDishWasher, 400);
+
+        room1.addDevice(dev1);
+        room1.addDevice(dev2);
+        room1.addDevice(dev3);
+
+        //Room TWO
+        String name2 = "KitchenBasement";
+        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Room room2 = new Room(name2, -1, dim);
+        DeviceSpecs specWaterHeater = new ElectricWaterHeater();
+        Device dev4 = new Device("FridgeSiemens", room2, specFridge, 300);
+        Device dev5 = new Device("DishWasherTeka", room2, specDishWasher, 400);
+        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater, 25);
+
+        room2.addDevice(dev4);
+        room2.addDevice(dev5);
+        room2.addDevice(dev6);
+
+        //add to Lists
+        RoomList roomListEmpty = new RoomList();
+        RoomList roomList = new RoomList();
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
+        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
+        HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
+        HouseGridList houseGridList1 = new HouseGridList();
+        houseGridList1.addHouseGridToTheList(houseGrid);
+        houseGridList1.addHouseGridToTheList(houseGridEmpty);
+
+        DeviceList expectedResult = new DeviceList();
+
+        DeviceList result = houseGridList1.getAllDevicesListByPosition(1);
+
         assertEquals(expectedResult, result);
     }
 }
