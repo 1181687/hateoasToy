@@ -28,7 +28,7 @@ public class HouseGridList {
      * @param position Specifies the position of the house grid in the list.
      * @return The respective house grid.
      */
-    public HouseGrid getHouseGridFromASpecificPositionInTheList(int position) {
+    public HouseGrid getHouseGridByPosition(int position) {
         return mHouseGridsList.get(position);
     }
 
@@ -37,7 +37,7 @@ public class HouseGridList {
      *
      * @return String with the required information.
      */
-    public String getContentOfTheHouseGridsInTheList() {
+    public String getHouseGridListToString() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= mHouseGridsList.size(); i++) {
             content.append(i + " - Name: " + mHouseGridsList.get(i - 1).getmHouseGridName());

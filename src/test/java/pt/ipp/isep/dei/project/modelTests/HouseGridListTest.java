@@ -19,7 +19,7 @@ public class HouseGridListTest {
         HouseGrid expectedResult = grid0;
 
         // Act
-        HouseGrid result = list.getHouseGridFromASpecificPositionInTheList(0);
+        HouseGrid result = list.getHouseGridByPosition(0);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -37,7 +37,7 @@ public class HouseGridListTest {
         String expectedResult = "1 - Name: Grid\n2 - Name: Grid\n";
 
         // Act
-        String result = list.getContentOfTheHouseGridsInTheList();
+        String result = list.getHouseGridListToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -64,7 +64,7 @@ public class HouseGridListTest {
         gridList.detachRoomInASpecificHouseGridInTheList(grid, room1);
 
         // Act
-        boolean result = gridList.getHouseGridFromASpecificPositionInTheList(gridPosition).checkIfARoomIsAlreadyInTheGrid(room1);
+        boolean result = gridList.getHouseGridByPosition(gridPosition).checkIfARoomIsAlreadyInTheGrid(room1);
 
         // Assert
         assertFalse(result);
@@ -85,7 +85,7 @@ public class HouseGridListTest {
         int gridPosition = gridList.getmHouseGridsList().indexOf(grid);
 
         // Act
-        boolean result = gridList.getHouseGridFromASpecificPositionInTheList(gridPosition).checkIfARoomIsAlreadyInTheGrid(room);
+        boolean result = gridList.getHouseGridByPosition(gridPosition).checkIfARoomIsAlreadyInTheGrid(room);
 
         // Assert
         assertTrue(result);

@@ -200,11 +200,19 @@ public class Room implements Measurable{
         int deviceListLength = this.mDeviceList.getLength();
 
         for (int i = 1; i <= deviceListLength; i++) {
-            content.append("Name: " + this.mDeviceList.getmDeviceList().get(i - 0).getmName());
+            content.append(i + " - Name: " + this.mDeviceList.getmDeviceList().get(i - 1).getmName());
             content.append("\n");
         }
         return content.toString();
     }
+
+    /**
+     * method that checks if Device List is empty
+     */
+    public boolean checkIfDeviceListIsEmpty() {
+        return mDeviceList.getmDeviceList().isEmpty();
+    }
+
 
     /**
      * method that displays the sensor list content

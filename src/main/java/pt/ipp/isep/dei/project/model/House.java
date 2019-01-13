@@ -12,7 +12,6 @@ public class House {
 
     /**
      * constructor of house that receives a room list, a list of house grids, an address and an insertedGeoArea.
-     *
      * @param mRoomList
      * @param mListHouseGrids
      * @param mAddress
@@ -63,7 +62,6 @@ public class House {
 
     /**
      * method that get inserted geo area
-     *
      * @return inserted geo area.
      */
     public GeographicalArea getmInsertedGeoArea() {
@@ -91,7 +89,6 @@ public class House {
 
     /**
      * method that get the last measurement of house area.
-     *
      * @param type
      * @return the last measurement with a location and a type of sensor.
      */
@@ -101,7 +98,6 @@ public class House {
 
     /**
      * Method that get the average daily measurement of the house area.
-     *
      * @param measurementType
      * @param startDate
      * @param endDate
@@ -121,7 +117,6 @@ public class House {
 
     /**
      * method that get the total daily measurement of the house area.
-     *
      * @param measurementType
      * @param day
      * @return total daily measurement.
@@ -142,7 +137,6 @@ public class House {
 
     /**
      * This method create a new date, with a year, a month and a day.
-     *
      * @param year
      * @param month
      * @param day
@@ -154,7 +148,6 @@ public class House {
 
     /**
      * Method that get the latest measurement by sensor type.
-     *
      * @param name
      * @param type
      * @return latest measurement.
@@ -178,7 +171,6 @@ public class House {
 
     /**
      * Method that get the size of the room list.
-     *
      * @return size of the list of rooms.
      */
     public int listSize() {
@@ -187,7 +179,6 @@ public class House {
 
     /**
      * method that get the name of the chosen room in a specific position from the list.
-     *
      * @param position
      * @return a position.
      */
@@ -197,7 +188,6 @@ public class House {
 
     /**
      * method that create a new room to the list, with height, length, width, name and housefloor.
-     *
      * @param height
      * @param length
      * @param width
@@ -211,7 +201,6 @@ public class House {
 
     /**
      * method that check if a name of a room already exists on the list of rooms.
-     *
      * @param name
      */
     public boolean checkIfNameAlreadyExists(String name) {
@@ -220,7 +209,6 @@ public class House {
 
     /**
      * method that get a room of the list of rooms, from a specific position.
-     *
      * @param option
      */
     public Room getRoomOfTheRoomList(int option) {
@@ -239,7 +227,6 @@ public class House {
 
     /**
      * method that displays the sensor list content of a Room
-     *
      * @param position
      */
     public String getSensorListContentOfARoom(int position) {
@@ -248,7 +235,6 @@ public class House {
 
     /**
      * method that check if the sensor list of the room is empty
-     *
      * @param position
      */
     public boolean checkIfSensorListIsEmpty(int position) {
@@ -275,5 +261,30 @@ public class House {
     public String getDeviceListContentNameTypeLocationByHG(int positionHG) {
         return this.mListHouseGrids.getHouseGridFromASpecificPositionInTheList(positionHG).
                 getAllDevicesList().getContentNameLocationOrderedByType();
+    }
+
+    /**
+     * Method that checks if the Device List of the room is empty
+     *
+     * @param position chosen room
+     */
+    public boolean checkIfDeviceListIsEmpty(int position) {
+        return mRoomList.checkIfDeviceListIsEmpty(position);
+    }
+
+    public boolean checkIfHouseGridListIsEmpty(){
+        return mListHouseGrids.checkIfHouseGridListIsEmpty();
+    }
+
+    public String getHouseGridList(){
+        return mListHouseGrids.getHouseGridListToString();
+    }
+
+    public HouseGrid getHouseGridByPosition(int position){
+        return mListHouseGrids.getHouseGridByPosition(position);
+    }
+
+    public int houseGridListLength(){
+       return this.mListHouseGrids.getmHouseGridsList().size();
     }
 }

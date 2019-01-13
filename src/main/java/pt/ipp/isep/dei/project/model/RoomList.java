@@ -223,6 +223,15 @@ public class RoomList {
     }
 
     /**
+     * Method that checks if the Device List of the room is empty
+     *
+     * @param position chosen room
+     */
+    public boolean checkIfDeviceListIsEmpty(int position) {
+        return mRoomList.get(position).checkIfDeviceListIsEmpty();
+    }
+
+    /**
      * Method that displays the sensor list content of a Room
      * @param position
      * @return

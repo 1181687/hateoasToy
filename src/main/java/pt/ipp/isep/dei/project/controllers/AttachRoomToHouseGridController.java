@@ -35,7 +35,7 @@ public class AttachRoomToHouseGridController {
      * @return List of house grids.
      */
     public String listAllTheHouseGridsInTheList() {
-        return mListOfHouseGrids.getContentOfTheHouseGridsInTheList();
+        return mListOfHouseGrids.getHouseGridListToString();
     }
 
     /**
@@ -53,7 +53,7 @@ public class AttachRoomToHouseGridController {
      * @return The respective house grid.
      */
     public HouseGrid getHouseGridFromTheList(int position){
-        return mListOfHouseGrids.getHouseGridFromASpecificPositionInTheList(position);
+        return mListOfHouseGrids.getHouseGridByPosition(position);
     }
 
     /**
