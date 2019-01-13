@@ -1,16 +1,14 @@
 package pt.ipp.isep.dei.project.model;
 
 public class WashingMachine implements DeviceSpecs {
-    private String mTypeName = "Washing Machine";
+    private String mTypeName ;
     private double mCapacity;
     private double mDuration;
     private double mEnergyConsumption;
 
-    public WashingMachine(String mTypeName, double mCapacity, double mDuration, double mEnergyConsumption) {
-        this.mTypeName = mTypeName;
+    public WashingMachine(double mCapacity) {
+        this.mTypeName = "Washing Machine";
         this.mCapacity = mCapacity;
-        this.mDuration = mDuration;
-        this.mEnergyConsumption = mEnergyConsumption;
     }
 
     public WashingMachine() {

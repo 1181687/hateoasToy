@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.model;
 
 
+import java.util.List;
+
 public class Device implements Measurable {
     private String mName;
     private Room mLocation;
@@ -19,12 +21,11 @@ public class Device implements Measurable {
         return mNominalPower;
     }
 
-    ////////////////////////////////////
     public Room getLocation() {
         return this.mLocation;
     }
 
-    /*public List<String> getTypeNames (){
+    public List<String> getTypeNames (){
 
         List <String> listOfTypeNames = null;
 
@@ -44,7 +45,7 @@ public class Device implements Measurable {
         listOfTypeNames.add(electricWaterHeater.getmTypeName());
 
         return listOfTypeNames;
-    }*/
+    }
 
 
     /**
@@ -55,7 +56,6 @@ public class Device implements Measurable {
     public String getmName() {
         return this.mName;
     }
-    ///////////
 
     /**
      * method that gets the DeviceSpecs

@@ -291,14 +291,14 @@ public class RoomTest {
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
-        DeviceSpecs deviceSpecs = new Fridge("Fridge", freezerCapacity, refrigeratorCapacity, annualEnergyConsumption);
+        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity);
         double nominalPower = 100.5;
         Device dev = new Device("Fridge1", room, deviceSpecs, nominalPower);
 
 
         double luminousFlux = 10.0;
         double energyConsumption1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 0.0;
         Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
 
@@ -340,7 +340,7 @@ public class RoomTest {
 
         double luminousFlux = 10.0;
         double energyConsumption1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 1.0;
         Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
 
