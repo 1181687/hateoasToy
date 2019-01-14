@@ -354,4 +354,30 @@ public class RoomTest {
         // Assert
         assertFalse(result);
     }
+
+    @Test
+    public void testGetNominalPower() {
+        // Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        Fridge specFridge = new Fridge();
+        WashingMachine specWashing = new WashingMachine();
+        DishWasher specDishWasher = new DishWasher();
+        Device dev1 = new Device("FridgeAriston", room, specFridge, 300);
+        Device dev2 = new Device("WashingMachineBosh", room, specWashing, 300);
+        Device dev3 = new Device("DishWasher", room, specDishWasher, 400);
+
+        room.addDevice(dev1);
+        room.addDevice(dev2);
+        room.addDevice(dev3);
+
+        double expectedResult = 1000;
+
+        // Act
+        double result = room.getNominalPower();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 }

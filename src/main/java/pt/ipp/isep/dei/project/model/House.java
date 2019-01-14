@@ -288,4 +288,8 @@ public class House {
     public int houseGridListLength(){
        return this.mListHouseGrids.getmHouseGridsList().size();
     }
+
+    public int houseRoomListLength() {
+        return this.mRoomList.listSize();
+    }
 }
