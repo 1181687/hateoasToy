@@ -19,21 +19,17 @@ public class GetListOfSensorsAndDevicesRoom {
     }
 
     public void run1() {
-        System.out.println("In which room do you want to see the list of sensors?");
-        RoomList listOfRooms = controller.getListOfRooms();
-        Scanner read = new Scanner(System.in);
+        String label = "In which room do you want to see the list of sensors?";
         int choosenOption = -1;
 
         do {
             System.out.println(controller.getRoomListContent());
-
-            choosenOption = read.nextInt();
+            choosenOption = InputValidator.getIntRange(label,1, controller.roomListSize());
         }
 
-        while (choosenOption < 1 || choosenOption > listOfRooms.listSize());
+        while (choosenOption < 1 || choosenOption > controller.roomListSize());
 
         String roomChoosed = controller.getRoomOfTheRoomList(choosenOption - 1);
-
         String listOfSensors = controller.getSensorsListContent(choosenOption - 1);
 
         if (controller.checkIfListIsEmpty(choosenOption - 1)) {
@@ -43,8 +39,6 @@ public class GetListOfSensorsAndDevicesRoom {
             System.out.println("This is the list of existing sensors in the room" + roomChoosed + ":");
         }
         System.out.println(listOfSensors);
-        //System.out.println(controller.getSensorsListContent(position));
-
     }
 
 

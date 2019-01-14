@@ -155,6 +155,56 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void getListSize() {
+        //arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimensions2);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+        int expectResult = 2;
+        //act
+        int result = house.roomListSize();
+        //assert
+        assertEquals(expectResult, result);
+    }
+
+    @Test
+    public void getListSizeEmptyList() {
+        //arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+        int expectResult = 0;
+        //act
+        int result = house.roomListSize();
+        //assert
+        assertEquals(expectResult, result);
+    }
 
     @Test
     public void testAddRoomToHouse() {
@@ -1325,7 +1375,6 @@ public class HouseTest {
         String expectedResult = "Dish Washer\n- Device Name: DishWasher, Location: Kitchen.\n- Device Name: DishWasherTeka, Location: KitchenBasement.\n\nElectric Water Heater\n- Device Name: ElectricWaterHeater, Location: KitchenBasement.\n\nWashing Machine\n- Device Name: WashingMachineBosh, Location: Kitchen.\n\nFridge\n- Device Name: FridgeAriston, Location: Kitchen.\n- Device Name: FridgeSiemens, Location: KitchenBasement.\n\n";
 
         String result = house.getDeviceListContentNameTypeLocationByHG(0);
-
         assertEquals(expectedResult, result);
     }
     */
