@@ -1227,7 +1227,6 @@ public class HouseTest {
 
         //Room TWO
         String name2 = "KitchenBasement";
-        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim);
         DeviceSpecs specWaterHeater = new ElectricWaterHeater();
         Device dev4 = new Device("FridgeSiemens", room2, specFridge, 300);
@@ -1326,5 +1325,46 @@ public class HouseTest {
         String result = house.getDeviceListContentNameTypeLocationByHG(0);
 
         assertEquals(expectedResult, result);
-    }*/
+    }
+    */
+
+    @Test
+    public void testGetRoomListLength() {
+        String name = "Kitchen";
+        String name2 = "Bedroom";
+        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Room room1 = new Room(name, 2, dim);
+        Room room2 = new Room(name2, 1, dim);
+
+        RoomList roomList = new RoomList();
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
+
+        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
+        HouseGridList houseGridList1 = new HouseGridList();
+        houseGridList1.addHouseGridToTheList(houseGrid);
+
+        //house
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, houseGridList1, address, geo);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+        double expectedResult = 2;
+
+        //Act
+
+        double result = house.houseRoomListLength();
+
+        //Assert
+
+        assertEquals(expectedResult, result);
+
+    }
+
 }
