@@ -62,7 +62,7 @@ public class GetListOfSensorsAndDevicesRoomController {
     }
 
     public int roomListSize () {
-        return mHouse.roomListSize();
+        return mHouse.getRoomListSize();
     }
 
 }
