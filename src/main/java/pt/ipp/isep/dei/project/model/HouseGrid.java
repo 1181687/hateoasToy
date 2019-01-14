@@ -8,6 +8,7 @@ public class HouseGrid implements Measurable {
 
     /**
      * constructor of a house grid that receives a name, a room list, a list of power sources and a maximum contracted power.
+     *
      * @param mHouseGridName
      */
     public HouseGrid(String mHouseGridName) {
@@ -19,6 +20,7 @@ public class HouseGrid implements Measurable {
 
     /**
      * constructor of a house grid that receives a name, a maximum contracted power and a list of rooms connected to the house grid.
+     *
      * @param houseGridName
      * @param maximumContractedPower
      * @param roomsConnectedToHouseGrid
@@ -58,7 +60,7 @@ public class HouseGrid implements Measurable {
      * @param roomToDetach
      * @return
      */
-    public boolean detachRoom (Room roomToDetach) {
+    public boolean detachRoom(Room roomToDetach) {
         for (Room room : this.mRoomsConnectedToHouseGrid.getmRoomList()) {
             if (room.equals(roomToDetach)) {
                 this.mRoomsConnectedToHouseGrid.getmRoomList().remove(room);
@@ -70,6 +72,7 @@ public class HouseGrid implements Measurable {
 
     /**
      * Method that attaches a room in the house grid's room list.
+     *
      * @param room Speficied room to attach.
      */
     public void attachRoomToTheRoomList(Room room) {
@@ -78,6 +81,7 @@ public class HouseGrid implements Measurable {
 
     /**
      * Method that add a new power source to the list of power sources.
+     *
      * @param newPowerSource
      * @return
      */
@@ -105,24 +109,56 @@ public class HouseGrid implements Measurable {
         return mRoomsConnectedToHouseGrid.getmRoomList().contains(room);
     }
 
-    public String listPowerSources(){
+    public String listPowerSources() {
         return mPowerSourceList.getPowerSourcesListContent();
     }
 
     @Override
     public double getNominalPower() {
-        double totalNominalPower= 0;
-        for (Room room : mRoomsConnectedToHouseGrid.getmRoomList() ) {
-            totalNominalPower+=room.getNominalPower();
+        double totalNominalPower = 0;
+        for (Room room : mRoomsConnectedToHouseGrid.getmRoomList()) {
+            totalNominalPower += room.getNominalPower();
         }
         return totalNominalPower;
     }
 
     /**
      * method that gets a List of all Devices in all Rooms of a Housegrid
+     *
      * @return List <Device>
      */
     public DeviceList getAllDevicesList() {
         return mRoomsConnectedToHouseGrid.getAllDevicesList();
     }
+
+    public String getRoomListToStringInAGrid() {
+        return mRoomsConnectedToHouseGrid.getRoomListToString();
+    }
+
+    public int sizeOfTheRoomListInAGrid() {
+        return mRoomsConnectedToHouseGrid.listSize();
+    }
+
+    public Room getRoomInTheGridByPosition(int position) {
+        return mRoomsConnectedToHouseGrid.getRoomFromAPosition(position);
+    }
+
+    public String getDeviceListContent(int position) {
+        return mRoomsConnectedToHouseGrid.getRoomFromAPosition(position).getDeviceListContent();
+    }
+
+    public int getSizeOfListOfDevicesOfRoomAttachedToGrid(int position) {
+        return mRoomsConnectedToHouseGrid.getRoomFromAPosition(position).getSizeOfDevicesList();
+    }
+
+    public boolean checkIsRoomListIsEmpty() {
+        return mRoomsConnectedToHouseGrid.checkIfRoomListIsEmpty();
+    }
+
+    public boolean checkIfDeviceListIsEmpty(int position) {
+        return mRoomsConnectedToHouseGrid.getRoomFromAPosition(position).checkIfDeviceListIsEmpty();
+    }
+
+    //public Device getDeviceFromPositionInList(int positionRoom, int positionDevice){
+    //return mRoomsConnectedToHouseGrid.getRoomFromAPosition(positionRoom).getDeviceList().getDeviceByPosition(positionDevice);
 }
