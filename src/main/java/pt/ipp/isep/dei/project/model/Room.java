@@ -189,7 +189,11 @@ public class Room implements Measurable{
         return totalNominalPower;
     }
 
-
+    /**
+     * method that displays the content of the list of sesnsors
+     *
+     * @return sensor list content
+     */
     public String getSensorListContent () {
         return this.mSensorList.getSensorsListContent();
     }
@@ -208,24 +212,20 @@ public class Room implements Measurable{
      * @return content of device list
      */
     public String getDeviceListContent() {
-        StringBuilder content = new StringBuilder();
-        int deviceListLength = this.mDeviceList.getLength();
-
-        for (int i = 1; i <= deviceListLength; i++) {
-            content.append(i + " - Name: " + this.mDeviceList.getmDeviceList().get(i - 1).getmName());
-            content.append("\n");
-        }
-        return content.toString();
+        return this.mDeviceList.getDeviceListContent();
     }
 
     /**
-     * method that checks if Device List is empty
+     * method that checks if Device List of the room is empty
      */
     public boolean checkIfDeviceListIsEmpty() {
-        return mDeviceList.getmDeviceList().isEmpty();
+        return this.mDeviceList.checkIfDeviceListIsEmpty();
     }
 
-
+    /**
+     * get method
+     * @return device list
+     */
     public DeviceList getmDeviceList() {
         return mDeviceList;
     }
@@ -253,5 +253,9 @@ public class Room implements Measurable{
      */
     public boolean addDevice(Device device) {
         return mDeviceList.addDevice(device);
+    }
+
+    public int getSizeOfDevicesList(){
+        return mDeviceList.getLength();
     }
 }
