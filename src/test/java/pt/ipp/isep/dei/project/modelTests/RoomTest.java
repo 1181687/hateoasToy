@@ -175,6 +175,7 @@ public class RoomTest {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
+        SensorList sensorList = new SensorList();
 
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
@@ -190,10 +191,10 @@ public class RoomTest {
         room.addSensorToTheListOfSensorsInTheRoom(s1);
 
         String expectedResult =
-                "1 - Name: A123\n" +
-                        "2 - Name: A456\n";
+                "1 - Name of the sensor: A123\n" +
+                        "2 - Name of the sensor: A456\n";
         // Act
-        String result = room.getSensorsListContent();
+        String result = room.getSensorListContent();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -279,7 +280,7 @@ public class RoomTest {
 
 
     @Test
-    public void getDeviceListContentOfARoomTest() {
+    public void getDeviceListContentTest() {
         // Arrange
 
         //initiate Room
@@ -291,14 +292,14 @@ public class RoomTest {
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
-        DeviceSpecs deviceSpecs = new Fridge("Fridge", freezerCapacity, refrigeratorCapacity, annualEnergyConsumption);
+        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity);
         double nominalPower = 100.5;
         Device dev = new Device("Fridge1", room, deviceSpecs, nominalPower);
 
 
         double luminousFlux = 10.0;
         double energyConsumption1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 0.0;
         Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
 
@@ -307,8 +308,8 @@ public class RoomTest {
 
 
         String expectedResult =
-                "1 - Name: Fridge1\n" +
-                        "2 - Name: Lamp1\n";
+                "1 - Name of the device: Fridge1\n" +
+                        "2 - Name of the device: Lamp1\n";
 
 
         // Act
@@ -316,6 +317,7 @@ public class RoomTest {
 
         // Assert
         assertEquals(expectedResult, result);
+
     }
 
     @Test
@@ -340,7 +342,7 @@ public class RoomTest {
 
         double luminousFlux = 10.0;
         double energyConsumption1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 1.0;
         Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
 
@@ -351,5 +353,31 @@ public class RoomTest {
 
         // Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void testGetNominalPower() {
+        // Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        Fridge specFridge = new Fridge();
+        WashingMachine specWashing = new WashingMachine();
+        DishWasher specDishWasher = new DishWasher();
+        Device dev1 = new Device("FridgeAriston", room, specFridge, 300);
+        Device dev2 = new Device("WashingMachineBosh", room, specWashing, 300);
+        Device dev3 = new Device("DishWasher", room, specDishWasher, 400);
+
+        room.addDevice(dev1);
+        room.addDevice(dev2);
+        room.addDevice(dev3);
+
+        double expectedResult = 1000;
+
+        // Act
+        double result = room.getNominalPower();
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 }

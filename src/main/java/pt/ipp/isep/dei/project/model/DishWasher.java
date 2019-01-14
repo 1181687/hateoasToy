@@ -1,23 +1,42 @@
 package pt.ipp.isep.dei.project.model;
 
 public class DishWasher implements DeviceSpecs {
-    private String mTypeName = "Dish Washer";
+    private String mTypeName ;
     private int mCapacity;
     private double mDuration;
-    private double mEnergyConsumption;
+    private double mEnergyConsumptionProgram1;
+    private double mNominalPower;
 
-    public DishWasher(String mTypeName, int mCapacity, double mDuration, double mEnergyConsumption) {
-        this.mTypeName = mTypeName;
+    public DishWasher(int mCapacity, double mNominalPower) {
+        this.mTypeName = "Dish Washer";
         this.mCapacity = mCapacity;
-        this.mDuration = mDuration;
-        this.mEnergyConsumption = mEnergyConsumption;
+        this.mNominalPower = mNominalPower;
     }
 
     public DishWasher() {
     }
 
+    /**
+     * @return
+     */
     @Override
     public String getmTypeName() {
         return mTypeName;
+    }
+
+    /**
+     *
+     * @return
+     */
+    public double getEnergyConsumptionInADay() {
+        return mEnergyConsumptionProgram1;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public double getmNominalPower() {
+        return mNominalPower;
     }
 }

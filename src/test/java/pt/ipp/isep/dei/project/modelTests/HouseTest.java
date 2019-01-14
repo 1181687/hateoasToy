@@ -11,6 +11,152 @@ import static org.junit.jupiter.api.Assertions.*;
 public class HouseTest {
 
     @Test
+    public void getRoomListTest () {
+        // Arrange
+        RoomList rList = new RoomList();
+        Dimensions dim = new Dimensions(4, 4, 4);
+        Room room = new Room("F5", 1, dim);
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+        house.addRoom(room);
+
+        RoomList expectedResult = rList;
+
+        // Act
+        RoomList result = house.getRoomList();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getRoomListEmptyTest() {
+        //arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+        RoomList expectResult = rList;
+
+        //act
+        RoomList result = house.getRoomList();
+        //assert
+        assertEquals(expectResult, result);
+    }
+
+    @Test
+    public void getDisplayRoomListTest() {
+        //arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimensions2);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+
+        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
+
+        //act
+        String result = house.getRoomListContent();
+        //assert
+        assertEquals(expectResult, result);
+    }
+
+    @Test
+    public void getDisplayRoomListEmptyTest() {
+        //arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+        String expectResult = "";
+
+        //act
+        String result = house.getRoomListContent();
+        //assert
+        assertEquals(expectResult, result);
+    }
+
+    @Test
+    public void testGetNameOfRoomInListOfRooms() {
+        //Arrange
+        RoomList rList = new RoomList();
+        Dimensions dim0 = new Dimensions(4, 4, 4);
+        Room room0 = new Room("RoomOne", 1, dim0);
+        Dimensions dim1 = new Dimensions(4, 4, 4);
+        Room room1 = new Room("RoomTwo", 1, dim1);
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+        rList.addRoom(room0);
+        rList.addRoom(room1);
+
+        String expectedResult = "RoomTwo";
+        int roomPos = 1;
+        //Act
+        String result = house.getNameOfTheChosenRoomInSpecificPos(roomPos);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetNameOfRoomInEmptyListOfRooms() {
+        //Arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+        String expectedResult = null;
+        int roomPos = 0;
+        //Act
+        String result = house.getNameOfTheChosenRoomInSpecificPos(roomPos);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    @Test
     public void testAddRoomToHouse() {
         RoomList rList = new RoomList();
         Dimensions dim = new Dimensions(4, 4, 4);
@@ -887,8 +1033,8 @@ public class HouseTest {
 
         int position = 0;
         String expectedResult =
-                "1 - Name: A123\n" +
-                        "2 - Name: A456\n";
+                "1 - Name of the sensor: A123\n" +
+                        "2 - Name of the sensor: A456\n";
         // Act
         String result = house.getSensorListContentOfARoom(position);
 
@@ -975,15 +1121,13 @@ public class HouseTest {
 
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
-        double annualEnergyConsumption = 3000.0;
-        DeviceSpecs deviceSpecs = new Fridge("Fridge", freezerCapacity, refrigeratorCapacity, annualEnergyConsumption);
+        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity);
         double nominalPower = 100.5;
         Device dev = new Device("Fridge1", room, deviceSpecs, nominalPower);
 
 
         double luminousFlux = 10.0;
-        double energyConsumption1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 1.0;
         Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
 
@@ -994,12 +1138,13 @@ public class HouseTest {
 
         int position = 0;
         String expectedResult =
-                "1 - Name: Fridge1\n" +
-                        "2 - Name: Lamp1\n";
+                "1 - Name of the device: Fridge1\n" +
+                        "2 - Name of the device: Lamp1\n";
 
 
         // Act
         String result = house.getDeviceListContentOfARoom(position);
+
 
         // Assert
         assertEquals(expectedResult, result);
@@ -1047,8 +1192,7 @@ public class HouseTest {
         House house = new House(roomList, listHG, address, geo);
 
         double luminousFlux = 10.0;
-        double energyConsumption1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 1.0;
         Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
 
@@ -1062,7 +1206,6 @@ public class HouseTest {
         // Assert
         assertFalse(result);
     }
-
 
 
     @Test
@@ -1085,7 +1228,6 @@ public class HouseTest {
 
         //Room TWO
         String name2 = "KitchenBasement";
-        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim);
         DeviceSpecs specWaterHeater = new ElectricWaterHeater();
         Device dev4 = new Device("FridgeSiemens", room2, specFridge, 300);
@@ -1128,7 +1270,7 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    /*@Test
     public void testGetDeviceListContentNameTypeLocationByHG() {
         //Room ONE
         String name = "Kitchen";
@@ -1184,4 +1326,45 @@ public class HouseTest {
         String result = house.getDeviceListContentNameTypeLocationByHG(0);
         assertEquals(expectedResult, result);
     }
+    */
+
+    @Test
+    public void testGetRoomListLength() {
+        String name = "Kitchen";
+        String name2 = "Bedroom";
+        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Room room1 = new Room(name, 2, dim);
+        Room room2 = new Room(name2, 1, dim);
+
+        RoomList roomList = new RoomList();
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
+
+        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
+        HouseGridList houseGridList1 = new HouseGridList();
+        houseGridList1.addHouseGridToTheList(houseGrid);
+
+        //house
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, houseGridList1, address, geo);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+        double expectedResult = 2;
+
+        //Act
+
+        double result = house.houseRoomListLength();
+
+        //Assert
+
+        assertEquals(expectedResult, result);
+
+    }
+
 }

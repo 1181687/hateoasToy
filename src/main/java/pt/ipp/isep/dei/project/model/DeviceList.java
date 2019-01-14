@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.Objects;
 
 public class DeviceList {
     private List<Device> mDeviceList = new ArrayList<>();
@@ -113,4 +112,97 @@ public class DeviceList {
         DeviceList listOne = (DeviceList) obj;
         return this.mDeviceList.equals(listOne.mDeviceList);
     }
+    //ELECTRIC WATER HEATER
+
+    public DeviceSpecs createNewElectricWaterHeater(double mHotWaterTemperature, double mMaximumVolume, double mNominalPower) {
+
+        return new ElectricWaterHeater(mHotWaterTemperature, mMaximumVolume, mNominalPower);
+    }
+
+    public Device newElectricWaterHeater(String name, Room selectedRoom, double mHotWaterTemperature, double mMaximumVolume, double mNominalPower) {
+
+        DeviceSpecs electricWaterHeater = createNewElectricWaterHeater(mHotWaterTemperature, mMaximumVolume, mNominalPower);
+
+        return new Device(name, selectedRoom, electricWaterHeater);
+    }
+
+    //WASHING MACHINE
+
+    public DeviceSpecs createNewWashingMachine(double capacity, double nominalPower) {
+        return new WashingMachine(capacity, nominalPower);
+    }
+
+    public Device newWashingMachine (String name, Room selectedRoom, double nominalPower, double capacity){
+        DeviceSpecs washingMachine = createNewWashingMachine(capacity, nominalPower);
+        return new Device(name, selectedRoom, washingMachine);
+    }
+
+    //DISH WASHER
+    public DeviceSpecs createNewDishWasher(int capacity, double nominalPower) {
+        return new DishWasher(capacity, nominalPower);
+    }
+
+    public Device newDishWasher (String name, Room selectedRoom, double nominalPower, int capacity){
+        DeviceSpecs dishWasher = createNewDishWasher(capacity, nominalPower);
+        return new Device(name, selectedRoom, dishWasher);
+    }
+
+    //LAMP
+    public DeviceSpecs createNewLamp(double luminousFlux, double nominalPower) {
+        return new Lamp(luminousFlux, nominalPower);
+    }
+
+    public Device newLamp (String name, Room selectedRoom, double nominalPower, double luminousFlux){
+        DeviceSpecs lamp = createNewLamp(luminousFlux, nominalPower);
+        return new Device(name, selectedRoom, lamp);
+    }
+
+    //FRIDGE
+    public DeviceSpecs createNewFridge(double freezerCapacity, double refrigeratorCapacity, double annualEnergyConsumption, double nominalPower) {
+        return new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+    }
+
+    public Device newFridge(String name, Room selectedRoom, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
+        DeviceSpecs fridge = createNewFridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        return new Device(name, selectedRoom, fridge);
+    }
+
+
+    /**
+     * Method that adds a device to the existing list.
+     * @param device
+     * @return
+     */
+    public boolean addDeviceToDeviceList (Device device){
+        if (!(mDeviceList.contains(device))) {
+            mDeviceList.add(device);
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * method that displays the device list content
+     *
+     * @return content of the device list
+     */
+    public String getDeviceListContent() {
+        StringBuilder content = new StringBuilder();
+        int deviceListLength = getLength();
+        int numberInTheList = 1;
+        for (int i = 1; i <= deviceListLength; i++) {
+            content.append(numberInTheList + " - Name of the device: " + getmDeviceList().get(i - 1).getmName());
+            content.append("\n");
+            numberInTheList++;
+        }
+        return content.toString();
+    }
+
+    /**
+     * method that check if the device list is empty
+     */
+    public boolean checkIfDeviceListIsEmpty() {
+        return mDeviceList.isEmpty();
+    }
+
 }

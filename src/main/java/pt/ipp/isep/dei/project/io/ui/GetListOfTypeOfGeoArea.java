@@ -30,7 +30,6 @@ public class GetListOfTypeOfGeoArea {
         }
         while (opcaoEscolhida < 1 || opcaoEscolhida > listaDeTiposDeAG.size());
 
-
         String tipoEscolhido = listaDeTiposDeAG.get(opcaoEscolhida - 1);
 
         List<String> listaDeAGPorTipo = mCtrl.getListaAGPorTipo(tipoEscolhido);

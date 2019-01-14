@@ -1,16 +1,18 @@
 package pt.ipp.isep.dei.project.model;
 
 public class Fridge implements DeviceSpecs {
-    private String mTypeName = "Fridge";
+    private String mTypeName ;
     private double mFreezerCapacity;
     private double mRefrigeratorCapacity;
-    private double mEnergyConsumption;
+    private double mAnnualEnergyConsumption;
+    private double mNominalPower;
 
-    public Fridge(String mTypeName, double mFreezerCapacity, double mRefrigeratorCapacity, double mEnergyConsumption) {
-        this.mTypeName = mTypeName;
+    public Fridge(double mFreezerCapacity, double mRefrigeratorCapacity, double mAnnualEnergyConsumption, double mNominalPower) {
+        this.mTypeName = "Fridge";
         this.mFreezerCapacity = mFreezerCapacity;
         this.mRefrigeratorCapacity = mRefrigeratorCapacity;
-        this.mEnergyConsumption = mEnergyConsumption;
+        this.mAnnualEnergyConsumption = mAnnualEnergyConsumption;
+        this.mNominalPower = mNominalPower;
     }
 
     public Fridge() {
@@ -19,5 +21,20 @@ public class Fridge implements DeviceSpecs {
     @Override
     public String getmTypeName() {
         return mTypeName;
+    }
+
+    /**
+     * @return
+     */
+    public double getEnergyConsumptionInADay() {
+        return mAnnualEnergyConsumption / 365;
+    }
+
+    /**
+     * @return
+     */
+    @Override
+    public double getmNominalPower() {
+        return mNominalPower;
     }
 }

@@ -189,6 +189,22 @@ public class Room implements Measurable{
         return totalNominalPower;
     }
 
+    /**
+     * method that displays the content of the list of sesnsors
+     *
+     * @return sensor list content
+     */
+    public String getSensorListContent () {
+        return this.mSensorList.getSensorsListContent();
+    }
+
+    /**
+     * method that check if the sensor list of the room is empty
+     */
+    public boolean checkIfSensorListIsEmpty () {
+        return this.mSensorList.checkIfSensorListIsEmpty();
+    }
+
 
     /**
      * method that displays the device list content
@@ -196,47 +212,20 @@ public class Room implements Measurable{
      * @return content of device list
      */
     public String getDeviceListContent() {
-        StringBuilder content = new StringBuilder();
-        int deviceListLength = this.mDeviceList.getLength();
-
-        for (int i = 1; i <= deviceListLength; i++) {
-            content.append(i + " - Name: " + this.mDeviceList.getmDeviceList().get(i - 1).getmName());
-            content.append("\n");
-        }
-        return content.toString();
+        return this.mDeviceList.getDeviceListContent();
     }
 
     /**
-     * method that checks if Device List is empty
+     * method that checks if Device List of the room is empty
      */
     public boolean checkIfDeviceListIsEmpty() {
-        return mDeviceList.getmDeviceList().isEmpty();
-    }
-
-
-    /**
-     * method that displays the sensor list content
-     *
-     * @return content of sensor list
-     */
-    public String getSensorsListContent() {
-        StringBuilder content = new StringBuilder();
-        int sensorListLength = this.mSensorList.getLength();
-
-        for (int i = 1; i <= sensorListLength; i++) {
-            content.append(i + " - Name: " + this.mSensorList.getmSensorList().get(i - 1).getmSensorName());
-            content.append("\n");
-        }
-        return content.toString();
+        return this.mDeviceList.checkIfDeviceListIsEmpty();
     }
 
     /**
-     * method that check if sensor list is empty
+     * get method
+     * @return device list
      */
-    public boolean checkIfSensorListIsEmpty() {
-        return mSensorList.getmSensorList().isEmpty();
-    }
-
     public DeviceList getmDeviceList() {
         return mDeviceList;
     }
@@ -264,5 +253,9 @@ public class Room implements Measurable{
      */
     public boolean addDevice(Device device) {
         return mDeviceList.addDevice(device);
+    }
+
+    public int getSizeOfDevicesList(){
+        return mDeviceList.getLength();
     }
 }

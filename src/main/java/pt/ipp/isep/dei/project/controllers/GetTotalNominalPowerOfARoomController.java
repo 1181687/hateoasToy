@@ -15,6 +15,14 @@ public class GetTotalNominalPowerOfARoomController {
         return mHouse.getRoomListContent();
     }
 
+    public int getRoomListLength() {
+        return mHouse.houseRoomListLength();
+    }
+
+    public boolean checkIfDeviceListIsEmpty(int option) {
+        return mHouse.checkIfDeviceListIsEmpty(option);
+    }
+
     public void getRoom(int option) {
         mChosenRoom = mHouse.getRoomOfTheRoomList(option);
     }

@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GetDevicesInHouseGridControllerTest {
 
 
-    @Test
+    /*@Test
     public void testGetDeviceListContentNameTypeLocationByHG() {
         //Room ONE
         String name = "Kitchen";
@@ -66,6 +66,6 @@ public class GetDevicesInHouseGridControllerTest {
         String result = ctrl.getDeviceListContentNameTypeLocationByHG(0);
 
         assertEquals(expectedResult, result);
-    }
+    }*/
 }
 
