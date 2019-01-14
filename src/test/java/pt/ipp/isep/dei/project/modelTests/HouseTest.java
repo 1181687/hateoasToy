@@ -1138,8 +1138,8 @@ public class HouseTest {
 
         int position = 0;
         String expectedResult =
-                "1 - Name: Fridge1\n" +
-                        "2 - Name: Lamp1\n";
+                "1 - Name of the device: Fridge1\n" +
+                        "2 - Name of the device: Lamp1\n";
 
 
         // Act

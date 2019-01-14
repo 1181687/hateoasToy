@@ -57,6 +57,7 @@ public class Main {
         Room room2 = new Room(name2, houseFloor, dimensions);
         houseEdificioB.addRoom(room2);
 
+        //mock device
         double luminousFlux = 10.0;
         DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 1.0;

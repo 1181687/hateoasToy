@@ -22,20 +22,20 @@ public class GetListOfSensorsAndDevicesRoom {
         System.out.println("In which room do you want to see the list of sensors?");
         RoomList listOfRooms = controller.getListOfRooms();
         Scanner read = new Scanner(System.in);
-        int optionChoosed = -1;
+        int choosenOption = -1;
         int position = 0;
 
         do {
             System.out.println(controller.getRoomListContent());
 
-            optionChoosed = read.nextInt();
+            choosenOption = read.nextInt();
         }
 
-        while (optionChoosed < 1 || optionChoosed > listOfRooms.listSize());
+        while (choosenOption < 1 || choosenOption > listOfRooms.listSize());
 
-        String roomChoosed = controller.getRoomOfTheRoomList(optionChoosed - 1);
+        String roomChoosed = controller.getRoomOfTheRoomList(choosenOption - 1);
 
-        String listOfSensors = controller.getSensorsListContent(optionChoosed - 1);
+        String listOfSensors = controller.getSensorsListContent(choosenOption - 1);
 
         if (controller.checkIfListIsEmpty(position)) {
             System.out.println("The list is empty. Please, add a sensor.");
