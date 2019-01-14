@@ -270,4 +270,17 @@ public class RoomList {
         }
         return allDeviceList;
     }
+
+    public String getRoomListToString() {
+        StringBuilder content = new StringBuilder();
+        for (int i = 1; i <= mRoomList.size(); i++) {
+            content.append(i + " - Name: " + mRoomList.get(i - 1).getmName());
+            content.append("\n");
+        }
+        return content.toString();
+    }
+
+    public String getDeviceListContent(int position){
+        return mRoomList.get(position).getDeviceListContent();
+    }
 }

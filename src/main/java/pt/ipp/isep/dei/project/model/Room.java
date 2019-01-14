@@ -254,4 +254,8 @@ public class Room implements Measurable{
     public boolean addDevice(Device device) {
         return mDeviceList.addDevice(device);
     }
+
+    public int getSizeOfDevicesList(){
+        return mDeviceList.getLength();
+    }
 }
