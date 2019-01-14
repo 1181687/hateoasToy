@@ -182,7 +182,7 @@ public class HouseTest {
 
         int expectResult = 2;
         //act
-        int result = house.roomListSize();
+        int result = house.getRoomListSize();
         //assert
         assertEquals(expectResult, result);
     }
@@ -201,7 +201,7 @@ public class HouseTest {
 
         int expectResult = 0;
         //act
-        int result = house.roomListSize();
+        int result = house.getRoomListSize();
         //assert
         assertEquals(expectResult, result);
     }
