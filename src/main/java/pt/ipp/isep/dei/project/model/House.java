@@ -173,7 +173,7 @@ public class House {
      * Method that get the size of the room list.
      * @return size of the list of rooms.
      */
-    public int listSize() {
+    public int roomListSize() {
         return mRoomList.listSize();
     }
 
