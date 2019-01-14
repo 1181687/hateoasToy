@@ -242,9 +242,9 @@ public class RoomTest {
         Fridge specFridge = new Fridge();
         WashingMachine specWashing = new WashingMachine();
         DishWasher specDishWasher = new DishWasher();
-        Device dev1 = new Device("FridgeAriston", room, specFridge, 300);
-        Device dev2 = new Device("WashingMachineBosh", room, specWashing, 300);
-        Device dev3 = new Device("DishWasher", room, specDishWasher, 400);
+        Device dev1 = new Device("FridgeAriston", room, specFridge);
+        Device dev2 = new Device("WashingMachineBosh", room, specWashing);
+        Device dev3 = new Device("DishWasher", room, specDishWasher);
 
         room.addDevice(dev1);
         room.addDevice(dev2);
@@ -267,7 +267,7 @@ public class RoomTest {
         Room room = new Room(name, 2, dim);
 
         Fridge specFridge = new Fridge();
-        Device dev1 = new Device("FridgeAriston", room, specFridge, 300);
+        Device dev1 = new Device("FridgeAriston", room, specFridge);
 
         DeviceList expectedResult = new DeviceList();
         expectedResult.addDevice(dev1);
@@ -292,16 +292,15 @@ public class RoomTest {
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
-        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity);
         double nominalPower = 100.5;
-        Device dev = new Device("Fridge1", room, deviceSpecs, nominalPower);
+        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        Device dev = new Device("Fridge1", room, deviceSpecs);
 
 
         double luminousFlux = 10.0;
-        double energyConsumption1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 0.0;
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev);
         room.addDevice(dev1);
@@ -341,10 +340,9 @@ public class RoomTest {
         Room room = new Room("Room", 2, dim);
 
         double luminousFlux = 10.0;
-        double energyConsumption1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 1.0;
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev1);
 
@@ -361,12 +359,12 @@ public class RoomTest {
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        Fridge specFridge = new Fridge();
-        WashingMachine specWashing = new WashingMachine();
-        DishWasher specDishWasher = new DishWasher();
-        Device dev1 = new Device("FridgeAriston", room, specFridge, 300);
-        Device dev2 = new Device("WashingMachineBosh", room, specWashing, 300);
-        Device dev3 = new Device("DishWasher", room, specDishWasher, 400);
+        Fridge specFridge = new Fridge(25, 50, 5000, 500);
+        WashingMachine specWashing = new WashingMachine(400, 250);
+        DishWasher specDishWasher = new DishWasher(400, 250);
+        Device dev1 = new Device("FridgeAriston", room, specFridge);
+        Device dev2 = new Device("WashingMachineBosh", room, specWashing);
+        Device dev3 = new Device("DishWasher", room, specDishWasher);
 
         room.addDevice(dev1);
         room.addDevice(dev2);

@@ -59,9 +59,9 @@ public class Main {
 
         //mock device
         double luminousFlux = 10.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
-        double nominalPower1 = 1.0;
-        Device dev1 = new Device("Lamp1", room1, deviceSpecs1, nominalPower1);
+        double nominalPower = 44;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower);
+        Device dev1 = new Device("Lamp1", room1, deviceSpecs1);
 
         room1.addDevice(dev1);
 

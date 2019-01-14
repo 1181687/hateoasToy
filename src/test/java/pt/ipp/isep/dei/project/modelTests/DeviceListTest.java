@@ -20,7 +20,7 @@ public class DeviceListTest {
         DeviceList devList = new DeviceList();
 
         DeviceSpecs specFridge = new Fridge();
-        Device dev1 = new Device("FridgeAriston", room, specFridge, 300);
+        Device dev1 = new Device("FridgeAriston", room, specFridge);
 
         List<Device> expectedResult = new ArrayList<>(Arrays.asList(dev1));
 
@@ -75,14 +75,15 @@ public class DeviceListTest {
         DeviceList deviceList = new DeviceList();
 
         double luminousFlux1 = 10.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1);
         double nominalPower1 = 1.0;
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         double luminousFlux2 = 15.0;
-        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2);
         double nominalPower2 = 2.0;
-        Device dev2 = new Device("Lamp2", room, deviceSpecs2, nominalPower2);
+
+        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
 
         deviceList.addDeviceToDeviceList(dev1);
         deviceList.addDeviceToDeviceList(dev2);
@@ -119,9 +120,9 @@ public class DeviceListTest {
         Room room = new Room(name, 2, dim);
 
         double luminousFlux1 = 10.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1);
         double nominalPower1 = 1.0;
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         DeviceList deviceList = new DeviceList();
 
