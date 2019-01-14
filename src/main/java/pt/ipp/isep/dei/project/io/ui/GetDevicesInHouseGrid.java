@@ -21,6 +21,7 @@ public class GetDevicesInHouseGrid {
             System.out.println("There aren't House Grids in the House.\n");
             return;
         }
+        
         System.out.println(mctrl.getHouseGridListToString());
         int maxPosition = mctrl.getHouseGridListLength();
 
@@ -32,6 +33,7 @@ public class GetDevicesInHouseGrid {
             System.out.println("There aren't devices in the chosen House Grid.\n");
             return;
         }
+
         StringBuilder content = new StringBuilder();
         content.append("\nThe list of devices in House Grid ");
         content.append(mctrl.getHGNameByHGPosition(positionHG));
