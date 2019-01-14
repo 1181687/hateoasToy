@@ -53,26 +53,26 @@ public class GetListOfSensorsAndDevicesRoom {
         System.out.println("In which room do you want to see the list of devices?");
         RoomList listOfRooms = controller.getListOfRooms();
         Scanner read = new Scanner(System.in);
-        int optionChoosed = -1;
+        int chosenOption = -1;
         int position = 0;
 
         do {
             System.out.println(controller.getRoomListContent());
 
-            optionChoosed = read.nextInt();
+            chosenOption = read.nextInt();
         }
 
-        while (optionChoosed < 1 || optionChoosed > listOfRooms.listSize());
+        while (chosenOption < 1 || chosenOption > listOfRooms.listSize());
 
-        String roomChoosed = controller.getRoomOfTheRoomList(optionChoosed - 1);
+        String choosenRoom = controller.getRoomOfTheRoomList(chosenOption - 1);
 
-        String listOfDevices = controller.getDeviceListContent(optionChoosed - 1);
+        String listOfDevices = controller.getDeviceListContent(chosenOption - 1);
 
         if (controller.checkIfDeviceListIsEmpty(position)) {
             System.out.println("The list is empty. Please, add a device.");
 
         } else {
-            System.out.println("This is the list of existing devices in the room" + roomChoosed + ":");
+            System.out.println("This is the list of existing devices in the room" + choosenRoom + ":");
         }
         System.out.println(listOfDevices);
 
