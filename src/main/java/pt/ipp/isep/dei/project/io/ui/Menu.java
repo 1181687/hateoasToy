@@ -127,8 +127,10 @@ public class Menu {
         content.append("\n");
         content.append("4-Detach a room from a house grid");
         content.append("\n");
+        content.append("5-Get list of devices in a house grid");
+        content.append("\n");
         content.append("0-Return to the previous menu");
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 4);
+        return InputValidator.getIntRange(label, 0, 5);
     }
 }

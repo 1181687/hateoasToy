@@ -18,19 +18,25 @@ public class GetDevicesInHouseGrid {
 
     public void run() {
         if (mctrl.checkIfHouseGridListIsEmpty()) {
-            System.out.println("There aren't House Grids in the House.");
+            System.out.println("There aren't House Grids in the House.\n");
+            return;
         }
         System.out.println(mctrl.getHouseGridListToString());
         int maxPosition = mctrl.getHouseGridListLength();
 
         String label1 = "Choose the House Grid you want to get the list of devices";
-        int seleccion = InputValidator.getIntRange(label1, 1, maxPosition);
-        int positionHG = (seleccion - 1);
+        int selection = InputValidator.getIntRange(label1, 1, maxPosition);
+        int positionHG = (selection - 1);
 
         if (mctrl.checkIfThereAreNoDevicesHGbyPosition(positionHG)) {
-            System.out.println("There aren't devices in the choosen House Grid.");
+            System.out.println("There aren't devices in the chosen House Grid.\n");
+            return;
         }
-        mctrl.getDeviceListContentNameTypeLocationByHG(positionHG);
+        StringBuilder content = new StringBuilder();
+        content.append("\nThe list of devices in House Grid ");
+        content.append(mctrl.getHGNameByHGPosition(positionHG));
+        content.append(" is:\n\n");
+        content.append(mctrl.getDeviceListContentNameTypeLocationByHG(positionHG));
+        System.out.println(content.toString());
     }
-
 }

@@ -781,23 +781,22 @@ public class RoomListTest {
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
-        // double luminousFlux = 10.0;
-        //  double energyConsumption1 = 20.0;
-        // DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
-        // double nominalPower1 = 1.0;
-        // Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
-
-
         //Room TWO
         String name2 = "KitchenBasement";
         Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
+
         DishWasher dishWasher = new DishWasher();
         ElectricWaterHeater specWaterHeater = new ElectricWaterHeater();
-        Fridge fridge = new Fridge();
-        Device dev4 = new Device("FridgeSiemens", room2, fridge, 300);
-        Device dev5 = new Device("DishWasherTeka", room2, dishWasher, 400);
-        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater, 25);
+        double freezerCapacity = 5.5;
+        double refrigeratorCapacity = 15.5;
+        double annualEnergyConsumption = 5000;
+        double nominalPower = 100.5;
+        Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        Device dev4 = new Device("FridgeSiemens", room2, fridge);
+        Device dev5 = new Device("DishWasherTeka", room2, dishWasher);
+        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
 
         room2.addDevice(dev4);
         room2.addDevice(dev5);
@@ -819,11 +818,6 @@ public class RoomListTest {
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
-
-        double luminousFlux = 10.0;
-        double energyConsumption1 = 20.0;
-        // DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
-        // double nominalPower1 = 1.0;
 
         roomList.addRoom(room);
 
