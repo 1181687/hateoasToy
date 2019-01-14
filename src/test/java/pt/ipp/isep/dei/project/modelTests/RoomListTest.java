@@ -4,9 +4,6 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -570,8 +567,8 @@ public class RoomListTest {
 
         int position = 0;
         String expectedResult =
-                "1 - Name: A123\n" +
-                "2 - Name: A456\n";
+                "1 - Name of the sensor: A123\n" +
+                "2 - Name of the sensor: A456\n";
         // Act
         String result = list.getSensorListContentOfARoom(position);
 
@@ -626,9 +623,10 @@ public class RoomListTest {
         Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
-        DeviceSpecs specFridge = new Fridge();
-        DeviceSpecs specWashing = new WashingMachine();
-        DeviceSpecs specDishWasher = new DishWasher();
+        //DeviceSpecs specFridge = new Fridge();
+        Fridge specFridge = new Fridge();
+        WashingMachine specWashing = new WashingMachine();
+        DishWasher specDishWasher = new DishWasher();
         Device dev1 = new Device("FridgeAriston", room1, specFridge, 300);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing, 300);
         Device dev3 = new Device("DishWasher", room1, specDishWasher, 400);
@@ -640,8 +638,8 @@ public class RoomListTest {
         //Room TWO
         String name2 = "KitchenBasement";
         Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
-        Room room2 = new Room(name2, -1, dim);
-        DeviceSpecs specWaterHeater = new ElectricWaterHeater();
+        Room room2 = new Room(name2, -1, dim2);
+        ElectricWaterHeater specWaterHeater = new ElectricWaterHeater();
         Device dev4 = new Device("FridgeSiemens", room2, specFridge, 300);
         Device dev5 = new Device("DishWasherTeka", room2, specDishWasher, 400);
         Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater, 25);
@@ -650,12 +648,19 @@ public class RoomListTest {
         room2.addDevice(dev5);
         room2.addDevice(dev6);
 
-        List<Device> expectedResult = new ArrayList<>(Arrays.asList(dev1, dev2, dev3, dev4, dev5, dev6));
+        DeviceList expectedResult = new DeviceList();
+        expectedResult.addDevice(dev1);
+        expectedResult.addDevice(dev2);
+        expectedResult.addDevice(dev3);
+        expectedResult.addDevice(dev4);
+        expectedResult.addDevice(dev5);
+        expectedResult.addDevice(dev6);
+
         RoomList roomList = new RoomList();
         roomList.addRoom(room1);
         roomList.addRoom(room2);
 
-        List<Device> result = roomList.getAllDevicesList();
+        DeviceList result = roomList.getAllDevicesList();
 
         assertEquals(expectedResult, result);
     }
@@ -683,15 +688,13 @@ public class RoomListTest {
 
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
-        double annualEnergyConsumption = 3000.0;
-        DeviceSpecs deviceSpecs = new Fridge("Fridge", freezerCapacity, refrigeratorCapacity, annualEnergyConsumption);
+        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity);
         double nominalPower = 100.5;
         Device dev = new Device("Fridge1", room, deviceSpecs, nominalPower);
 
 
         double luminousFlux = 10.0;
-        double energyConsumption1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 1.0;
         Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
 
@@ -762,8 +765,7 @@ public class RoomListTest {
         House house = new House(roomList, listHG, address, geo);
 
         double luminousFlux = 10.0;
-        double energyConsumption1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 1.0;
         Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
 

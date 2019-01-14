@@ -132,4 +132,14 @@ public class HouseGridList {
         }
         return null;
     }
+
+    /**
+     * method that gets a List of all Devices in a house grid, by it position in a HouseGridList
+     *
+     * @param position position of the grid in the houseGridList
+     * @return List <Device> in a grid
+     */
+    public DeviceList getAllDevicesListByPosition(int position) {
+        return getmHouseGridsList().get(position).getAllDevicesList();
+    }
 }

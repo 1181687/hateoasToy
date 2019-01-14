@@ -179,12 +179,12 @@ public class HouseTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
         Room room1 = new Room(name1, houseFloor1, dimensions1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
+        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
 
         roomList.addRoom(room1);
@@ -205,7 +205,7 @@ public class HouseTest {
         //Instanciar Address
         Location local = new Location(32.1496, 7.6109, 98);
 
-        Address address = new Address("4250-302",local);
+        Address address = new Address("4250-302", local);
 
 
         //Instanciar AreaInserida
@@ -218,7 +218,7 @@ public class HouseTest {
 
 
         //Instanciar House
-        House house = new House (roomList, houseGridList, address, AG);
+        House house = new House(roomList, houseGridList, address, AG);
 
 
         //Instantiate Sensors
@@ -276,12 +276,12 @@ public class HouseTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
         Room room1 = new Room(name1, houseFloor1, dimensions1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
+        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
 
         roomList.addRoom(room1);
@@ -302,7 +302,7 @@ public class HouseTest {
         //Instanciar Address
         Location local = new Location(32.1496, 7.6109, 98);
 
-        Address address = new Address("4250-302",local);
+        Address address = new Address("4250-302", local);
 
 
         //Instanciar AreaInserida
@@ -315,7 +315,7 @@ public class HouseTest {
 
 
         //Instanciar House
-        House house = new House (roomList, houseGridList, address, AG);
+        House house = new House(roomList, houseGridList, address, AG);
 
 
         //Instantiate Sensors
@@ -351,12 +351,12 @@ public class HouseTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
         Room room1 = new Room(name1, houseFloor1, dimensions1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
+        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimensions2);
 
         roomList.addRoom(room1);
@@ -377,7 +377,7 @@ public class HouseTest {
         //Instanciar Address
         Location local = new Location(32.1496, 7.6109, 98);
 
-        Address address = new Address("4250-302",local);
+        Address address = new Address("4250-302", local);
 
 
         //Instanciar AreaInserida
@@ -390,7 +390,7 @@ public class HouseTest {
 
 
         //Instantiate House
-        House house = new House (roomList, houseGridList, address, AG);
+        House house = new House(roomList, houseGridList, address, AG);
 
         double expectedResult = Double.NaN;
 
@@ -404,7 +404,7 @@ public class HouseTest {
     }
 
     @Test
-    public void testTotalDailyMeasurementInAHouseArea (){
+    public void testTotalDailyMeasurementInAHouseArea() {
         //Arrange
         //Instantiate House
         String zipCode = "4050";
@@ -784,7 +784,7 @@ public class HouseTest {
     }
 
     @Test
-    public void testOfCreateANewDate (){
+    public void testOfCreateANewDate() {
         //ARRANGE
         String zipCode = "4050";
         double latitude = 42.1;
@@ -798,7 +798,7 @@ public class HouseTest {
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
-        int year= 2001, month =12, day=1;
+        int year = 2001, month = 12, day = 1;
         LocalDate expectedResult = LocalDate.of(2001, 12, 1);
 
         //ACT
@@ -856,7 +856,7 @@ public class HouseTest {
     }
 
     @Test
-    public void getSensorsListContentOfARoomTest () {
+    public void getSensorsListContentOfARoomTest() {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
@@ -868,7 +868,7 @@ public class HouseTest {
         GeoAreaType GAType = new GeoAreaType("City");
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House (roomList, listHG, address, geo);
+        House house = new House(roomList, listHG, address, geo);
 
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
@@ -887,8 +887,8 @@ public class HouseTest {
 
         int position = 0;
         String expectedResult =
-                "1 - Name: A123\n" +
-                        "2 - Name: A456\n";
+                "1 - Name of the sensor: A123\n" +
+                        "2 - Name of the sensor: A456\n";
         // Act
         String result = house.getSensorListContentOfARoom(position);
 
@@ -897,7 +897,7 @@ public class HouseTest {
     }
 
     @Test
-    public void checkIfSensorListIsEmptyTestTrue () {
+    public void checkIfSensorListIsEmptyTestTrue() {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
@@ -909,7 +909,7 @@ public class HouseTest {
         GeoAreaType GAType = new GeoAreaType("City");
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House (roomList, listHG, address, geo);
+        House house = new House(roomList, listHG, address, geo);
 
         house.addRoom(room);
 
@@ -922,7 +922,7 @@ public class HouseTest {
     }
 
     @Test
-    public void checkIfSensorListIsEmptyTestFalse () {
+    public void checkIfSensorListIsEmptyTestFalse() {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
@@ -934,7 +934,7 @@ public class HouseTest {
         GeoAreaType GAType = new GeoAreaType("City");
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House (roomList, listHG, address, geo);
+        House house = new House(roomList, listHG, address, geo);
 
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
@@ -975,15 +975,13 @@ public class HouseTest {
 
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
-        double annualEnergyConsumption = 3000.0;
-        DeviceSpecs deviceSpecs = new Fridge("Fridge", freezerCapacity, refrigeratorCapacity, annualEnergyConsumption);
+        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity);
         double nominalPower = 100.5;
         Device dev = new Device("Fridge1", room, deviceSpecs, nominalPower);
 
 
         double luminousFlux = 10.0;
-        double energyConsumption1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 1.0;
         Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
 
@@ -1047,8 +1045,7 @@ public class HouseTest {
         House house = new House(roomList, listHG, address, geo);
 
         double luminousFlux = 10.0;
-        double energyConsumption1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 1.0;
         Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
 
@@ -1064,5 +1061,164 @@ public class HouseTest {
     }
 
 
+    @Test
+    public void TestGetAllDevicesListByGridPosition() {
+        //Room ONE
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Room room1 = new Room(name, 2, dim);
+
+        DeviceSpecs specFridge = new Fridge();
+        DeviceSpecs specWashing = new WashingMachine();
+        DeviceSpecs specDishWasher = new DishWasher();
+        Device dev1 = new Device("FridgeAriston", room1, specFridge, 300);
+        Device dev2 = new Device("WashingMachineBosh", room1, specWashing, 300);
+        Device dev3 = new Device("DishWasher", room1, specDishWasher, 400);
+
+        room1.addDevice(dev1);
+        room1.addDevice(dev2);
+        room1.addDevice(dev3);
+
+        //Room TWO
+        String name2 = "KitchenBasement";
+        Room room2 = new Room(name2, -1, dim);
+        DeviceSpecs specWaterHeater = new ElectricWaterHeater();
+        Device dev4 = new Device("FridgeSiemens", room2, specFridge, 300);
+        Device dev5 = new Device("DishWasherTeka", room2, specDishWasher, 400);
+        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater, 25);
+
+        room2.addDevice(dev4);
+        room2.addDevice(dev5);
+        room2.addDevice(dev6);
+
+        //add to Lists
+        RoomList roomListEmpty = new RoomList();
+        RoomList roomList = new RoomList();
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
+        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
+        HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
+        HouseGridList houseGridList1 = new HouseGridList();
+        houseGridList1.addHouseGridToTheList(houseGrid);
+        houseGridList1.addHouseGridToTheList(houseGridEmpty);
+
+        //house
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, houseGridList1, address, geo);
+
+        DeviceList expectedResult = new DeviceList();
+        expectedResult.addDevice(dev1);
+        expectedResult.addDevice(dev2);
+        expectedResult.addDevice(dev3);
+        expectedResult.addDevice(dev4);
+        expectedResult.addDevice(dev5);
+        expectedResult.addDevice(dev6);
+
+        DeviceList result = house.getAllDevicesListByGridPosition(0);
+
+        assertEquals(expectedResult, result);
+    }
+
+    /*@Test
+    public void testGetDeviceListContentNameTypeLocationByHG() {
+        //Room ONE
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Room room1 = new Room(name, 2, dim);
+
+        DeviceSpecs specFridge = new Fridge();
+        DeviceSpecs specWashing = new WashingMachine();
+        DeviceSpecs specDishWasher = new DishWasher();
+        Device dev1 = new Device("FridgeAriston", room1, specFridge, 300);
+        Device dev2 = new Device("WashingMachineBosh", room1, specWashing, 300);
+        Device dev3 = new Device("DishWasher", room1, specDishWasher, 400);
+
+        room1.addDevice(dev1);
+        room1.addDevice(dev2);
+        room1.addDevice(dev3);
+
+        //Room TWO
+        String name2 = "KitchenBasement";
+        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Room room2 = new Room(name2, -1, dim);
+        DeviceSpecs specWaterHeater = new ElectricWaterHeater();
+        Device dev4 = new Device("FridgeSiemens", room2, specFridge, 300);
+        Device dev5 = new Device("DishWasherTeka", room2, specDishWasher, 400);
+        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater, 25);
+
+        room2.addDevice(dev4);
+        room2.addDevice(dev5);
+        room2.addDevice(dev6);
+
+        //add to Lists
+        RoomList roomListEmpty = new RoomList();
+        RoomList roomList = new RoomList();
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
+        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
+        HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
+        HouseGridList houseGridList1 = new HouseGridList();
+        houseGridList1.addHouseGridToTheList(houseGrid);
+        houseGridList1.addHouseGridToTheList(houseGridEmpty);
+
+        //house
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, houseGridList1, address, geo);
+
+
+        String expectedResult = "Dish Washer\n- Device Name: DishWasher, Location: Kitchen.\n- Device Name: DishWasherTeka, Location: KitchenBasement.\n\nElectric Water Heater\n- Device Name: ElectricWaterHeater, Location: KitchenBasement.\n\nWashing Machine\n- Device Name: WashingMachineBosh, Location: Kitchen.\n\nFridge\n- Device Name: FridgeAriston, Location: Kitchen.\n- Device Name: FridgeSiemens, Location: KitchenBasement.\n\n";
+
+        String result = house.getDeviceListContentNameTypeLocationByHG(0);
+
+        assertEquals(expectedResult, result);
+    }
+    */
+
+    @Test
+    public void testGetRoomListLength() {
+        String name = "Kitchen";
+        String name2 = "Bedroom";
+        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Room room1 = new Room(name, 2, dim);
+        Room room2 = new Room(name2, 1, dim);
+
+        RoomList roomList = new RoomList();
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
+
+        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
+        HouseGridList houseGridList1 = new HouseGridList();
+        houseGridList1.addHouseGridToTheList(houseGrid);
+
+        //house
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, houseGridList1, address, geo);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+        double expectedResult = 2;
+
+        //Act
+
+        double result = house.houseRoomListLength();
+
+        //Assert
+
+        assertEquals(expectedResult, result);
+
+    }
 
 }

@@ -71,11 +71,6 @@ class GetTotalNominalPowerOfARoomControllerTest {
     }
 
     @Test
-    void getRoom() {
-
-    }
-
-    @Test
     void getNominalPower() {
         RoomList roomList = new RoomList();
         HouseGridList houseGridList = new HouseGridList();

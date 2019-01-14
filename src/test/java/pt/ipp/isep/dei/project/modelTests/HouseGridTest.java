@@ -3,10 +3,6 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -108,13 +104,20 @@ public class HouseGridTest {
         room2.addDevice(dev5);
         room2.addDevice(dev6);
 
-        List<Device> expectedResult = new ArrayList<>(Arrays.asList(dev1, dev2, dev3, dev4, dev5, dev6));
+        DeviceList expectedResult = new DeviceList();
+        expectedResult.addDevice(dev1);
+        expectedResult.addDevice(dev2);
+        expectedResult.addDevice(dev3);
+        expectedResult.addDevice(dev4);
+        expectedResult.addDevice(dev5);
+        expectedResult.addDevice(dev6);
+
         RoomList roomList = new RoomList();
         roomList.addRoom(room1);
         roomList.addRoom(room2);
         HouseGrid housegrid = new HouseGrid("grid1", 1000, roomList);
 
-        List<Device> result = housegrid.getAllDevicesList();
+        DeviceList result = housegrid.getAllDevicesList();
 
         assertEquals(expectedResult, result);
     }

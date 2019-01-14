@@ -202,7 +202,11 @@ public class RoomList {
         return getRoomByName(name).getMaximumMeasurementInAGivenDay(type, date);
     }
 
-
+    /**
+     * method that check if a name of a room already exists on the list of rooms.
+     * @param name
+     * @return boolean
+     */
     public boolean checkIfNameAlreadyExists(String name) {
 
         for (int i = 0; i < mRoomList.size(); i++) {
@@ -237,7 +241,7 @@ public class RoomList {
      * @return
      */
     public String getSensorListContentOfARoom (int position) {
-        return mRoomList.get(position).getSensorsListContent();
+        return mRoomList.get(position).getSensorListContent();
     }
 
     /**
@@ -248,23 +252,20 @@ public class RoomList {
         return mRoomList.get(position).checkIfSensorListIsEmpty();
     }
 
-    /////////////////////////////////////////
-
     /**
      * method that gets a list of devices in all rooms of roomlist
-     *
-     * @return list of devices
+     * @return DeviceList
      */
-    public List<Device> getAllDevicesList() {
-        List<Device> roomDeviceList;
-        List<Device> allDeviceList = new ArrayList<>();
+    public DeviceList getAllDevicesList() {
+        DeviceList roomDeviceList;
+        DeviceList allDeviceList = new DeviceList();
         Device dev;
 
         for (int i = 0; i < mRoomList.size(); i++) {
             roomDeviceList = mRoomList.get(i).getDeviceList();
-            for (int j = 0; j < roomDeviceList.size(); j++) {
-                dev = roomDeviceList.get(j);
-                allDeviceList.add(dev);
+            for (int j = 0; j < roomDeviceList.getLength(); j++) {
+                dev = roomDeviceList.getDeviceByPosition(j);
+                allDeviceList.addDevice(dev);
             }
         }
         return allDeviceList;
