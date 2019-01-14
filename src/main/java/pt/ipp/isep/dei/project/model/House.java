@@ -229,7 +229,7 @@ public class House {
      * method that displays the sensor list content of a Room
      * @param position
      */
-    public String getSensorListContentOfARoom (int position) {
+    public String getSensorListContentOfARoom(int position) {
         return mRoomList.getSensorListContentOfARoom(position);
     }
 
@@ -237,8 +237,30 @@ public class House {
      * method that check if the sensor list of the room is empty
      * @param position
      */
-    public boolean checkIfSensorListIsEmpty (int position) {
+    public boolean checkIfSensorListIsEmpty(int position) {
         return mRoomList.checkIfSensorListIsEmpty(position);
+    }
+
+    /**
+     * method that gets a List of all Devices in a house grid, by it position in a HouseGridList
+     *
+     * @param position position of the grid in the houseGridList
+     * @return List <Device>
+     */
+    public DeviceList getAllDevicesListByGridPosition(int position) {
+        return this.mListHouseGrids.getmHouseGridsList().get(position).getAllDevicesList();
+    }
+
+    /**
+     * method that get the String content Name and Location of all devices in the list, of a given HouseGrid,
+     * and grouped by device type.
+     *
+     * @param positionHG integer number relative to position of the HouseGrid
+     * @return String with Devices Names and Location grouped by Type.
+     */
+    public String getDeviceListContentNameTypeLocationByHG(int positionHG) {
+        return this.mListHouseGrids.getHouseGridByPosition(positionHG).
+                getAllDevicesList().getContentNameLocationOrderedByType();
     }
 
     /**
@@ -248,5 +270,21 @@ public class House {
      */
     public boolean checkIfDeviceListIsEmpty(int position) {
         return mRoomList.checkIfDeviceListIsEmpty(position);
+    }
+
+    public boolean checkIfHouseGridListIsEmpty(){
+        return mListHouseGrids.checkIfHouseGridListIsEmpty();
+    }
+
+    public String getHouseGridList(){
+        return mListHouseGrids.getHouseGridListToString();
+    }
+
+    public HouseGrid getHouseGridByPosition(int position){
+        return mListHouseGrids.getHouseGridByPosition(position);
+    }
+
+    public int houseGridListLength(){
+       return this.mListHouseGrids.getmHouseGridsList().size();
     }
 }

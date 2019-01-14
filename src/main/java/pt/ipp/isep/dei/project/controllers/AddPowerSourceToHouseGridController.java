@@ -21,7 +21,7 @@ public class AddPowerSourceToHouseGridController {
     }
 
     public String getHouseGridListContent() {
-        return mHouseGridList.getContentOfTheHouseGridsInTheList();
+        return mHouseGridList.getHouseGridListToString();
     }
 
     public int houseGridListLength(){
@@ -29,7 +29,7 @@ public class AddPowerSourceToHouseGridController {
     }
 
     public void getHouseGridFromListByPosition(int position) {
-        this.mSelectedHouseGrid = this.mHouseGridList.getHouseGridFromASpecificPositionInTheList(position);
+        this.mSelectedHouseGrid = this.mHouseGridList.getHouseGridByPosition(position);
     }
 
     public boolean createAndAddPowerSourceToHouseGrid(String name) {

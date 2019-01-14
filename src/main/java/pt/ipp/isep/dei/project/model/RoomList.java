@@ -247,22 +247,21 @@ public class RoomList {
     public boolean checkIfSensorListIsEmpty (int position) {
         return mRoomList.get(position).checkIfSensorListIsEmpty();
     }
-    
+
     /**
      * method that gets a list of devices in all rooms of roomlist
-     *
-     * @return list of devices
+     * @return DeviceList
      */
-    public List<Device> getAllDevicesList() {
-        List<Device> roomDeviceList;
-        List<Device> allDeviceList = new ArrayList<>();
+    public DeviceList getAllDevicesList() {
+        DeviceList roomDeviceList;
+        DeviceList allDeviceList = new DeviceList();
         Device dev;
 
         for (int i = 0; i < mRoomList.size(); i++) {
             roomDeviceList = mRoomList.get(i).getDeviceList();
-            for (int j = 0; j < roomDeviceList.size(); j++) {
-                dev = roomDeviceList.get(j);
-                allDeviceList.add(dev);
+            for (int j = 0; j < roomDeviceList.getLength(); j++) {
+                dev = roomDeviceList.getDeviceByPosition(j);
+                allDeviceList.addDevice(dev);
             }
         }
         return allDeviceList;
