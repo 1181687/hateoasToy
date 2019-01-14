@@ -88,6 +88,7 @@ public class RoomList {
 
     /**
      * Method that checks if a Room List is Empty
+     *
      * @return true if it is empty
      */
     public boolean checkIfRoomListIsEmpty() {
@@ -96,6 +97,7 @@ public class RoomList {
 
     /**
      * Method that gives us the size of the Room List
+     *
      * @return Room List size
      */
     public int listSize() {
@@ -164,6 +166,7 @@ public class RoomList {
 
     /**
      * Method that goes through the room list and shows the room by name if that name matches a room with the same name in the list
+     *
      * @param name room name (string)
      * @return room
      */
@@ -204,6 +207,7 @@ public class RoomList {
 
     /**
      * method that check if a name of a room already exists on the list of rooms.
+     *
      * @param name
      * @return boolean
      */
@@ -216,6 +220,7 @@ public class RoomList {
         }
         return false;
     }
+
     /**
      * Method that displays the device list content of a Room
      *
@@ -237,23 +242,26 @@ public class RoomList {
 
     /**
      * Method that displays the sensor list content of a Room
+     *
      * @param position
      * @return
      */
-    public String getSensorListContentOfARoom (int position) {
+    public String getSensorListContentOfARoom(int position) {
         return mRoomList.get(position).getSensorListContent();
     }
 
     /**
      * method that check if the sensor list of the room is empty
+     *
      * @param position
      */
-    public boolean checkIfSensorListIsEmpty (int position) {
+    public boolean checkIfSensorListIsEmpty(int position) {
         return mRoomList.get(position).checkIfSensorListIsEmpty();
     }
 
     /**
      * method that gets a list of devices in all rooms of roomlist
+     *
      * @return DeviceList
      */
     public DeviceList getAllDevicesList() {
@@ -278,9 +286,5 @@ public class RoomList {
             content.append("\n");
         }
         return content.toString();
-    }
-
-    public String getDeviceListContent(int position){
-        return mRoomList.get(position).getDeviceListContent();
     }
 }

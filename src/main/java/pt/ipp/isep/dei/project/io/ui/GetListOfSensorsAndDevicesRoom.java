@@ -23,7 +23,6 @@ public class GetListOfSensorsAndDevicesRoom {
         RoomList listOfRooms = controller.getListOfRooms();
         Scanner read = new Scanner(System.in);
         int choosenOption = -1;
-        int position = 0;
 
         do {
             System.out.println(controller.getRoomListContent());
@@ -37,7 +36,7 @@ public class GetListOfSensorsAndDevicesRoom {
 
         String listOfSensors = controller.getSensorsListContent(choosenOption - 1);
 
-        if (controller.checkIfListIsEmpty(position)) {
+        if (controller.checkIfListIsEmpty(choosenOption - 1)) {
             System.out.println("The list is empty. Please, add a sensor.");
 
         } else {
@@ -54,25 +53,26 @@ public class GetListOfSensorsAndDevicesRoom {
         RoomList listOfRooms = controller.getListOfRooms();
         Scanner read = new Scanner(System.in);
         int optionChoosed = -1;
+        int chosenOption = -1;
         int position = 0;
 
         do {
             System.out.println(controller.getRoomListContent());
 
-            optionChoosed = read.nextInt();
+            chosenOption = read.nextInt();
         }
 
-        while (optionChoosed < 1 || optionChoosed > listOfRooms.listSize());
+        while (chosenOption < 1 || chosenOption > listOfRooms.listSize());
 
-        String roomChoosed = controller.getRoomOfTheRoomList(optionChoosed - 1);
+        String choosenRoom = controller.getRoomOfTheRoomList(chosenOption - 1);
 
-        String listOfDevices = controller.getDeviceListContent(optionChoosed - 1);
+        String listOfDevices = controller.getDeviceListContent(chosenOption - 1);
 
-        if (controller.checkIfDeviceListIsEmpty(position)) {
+        if (controller.checkIfDeviceListIsEmpty(optionChoosed - 1)) {
             System.out.println("The list is empty. Please, add a device.");
 
         } else {
-            System.out.println("This is the list of existing devices in the room" + roomChoosed + ":");
+            System.out.println("This is the list of existing devices in the room" + choosenRoom + ":");
         }
         System.out.println(listOfDevices);
 

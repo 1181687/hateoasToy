@@ -130,14 +130,15 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
 
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
-        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity);
+        double annualEnergyConsumption = 5000;
         double nominalPower = 100.5;
-        Device dev = new Device("Fridge1", room, deviceSpecs, nominalPower);
+        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        Device dev = new Device("Fridge1", room, deviceSpecs);
 
         double luminousFlux = 10.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 1.0;
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
 
         room.addDevice(dev);
@@ -202,9 +203,9 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         House house = new House(roomList, listHG, address, geo);
 
         double luminousFlux = 10.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 1.0;
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev1);
         house.addRoom(room);
