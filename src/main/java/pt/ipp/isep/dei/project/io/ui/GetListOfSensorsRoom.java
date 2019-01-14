@@ -14,10 +14,17 @@ public class GetListOfSensorsRoom {
 
     private GetListOfSensorsRoomController controller;
 
+    /**
+     * construtor of the GetListOfSensorsRoom UI class
+     * @param house
+     */
     public GetListOfSensorsRoom (House house) {
         this.controller = new GetListOfSensorsRoomController(house);
     }
 
+    /**
+     * run of the UI GetListSensorsRoom that call the method of the controller.
+     */
     public void run() {
         System.out.println("In which room do you want to see the list of sensors?");
         RoomList listOfRooms = controller.getListOfRooms();
@@ -44,7 +51,5 @@ public class GetListOfSensorsRoom {
             System.out.println("This is the list of existing sensors in the room" + roomChoosed + ":");
         }
         System.out.println(listOfSensors);
-            //System.out.println(controller.getSensorsListContent(position));
-
         }
 }
