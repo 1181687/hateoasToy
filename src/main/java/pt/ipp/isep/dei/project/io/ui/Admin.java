@@ -100,6 +100,10 @@ public class Admin {
                     GetListOfSensorsAndDevicesRoom ui250 = new GetListOfSensorsAndDevicesRoom(house);
                     ui250.run1();
                     break;
+                case 7:
+                    GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(house);
+                    ui230.run();
+                    break;
             }
             option = Menu.adminHouseMenu();
         }

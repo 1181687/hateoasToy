@@ -11,11 +11,11 @@ public class GetNominalPowerOfARoom {
     }
 
     public void run() {
-        System.out.println("Please select a Room to see its total nominal power");
         mController.getListOfRooms();
         int roomListLength = mController.getRoomListLength();
         String label1 = "Please select a room to see its total nominal power: \n" + mController.getListOfRooms();
         int position = InputValidator.getIntRange(label1, 1, roomListLength);
+        mController.getRoom(position - 1);
         if (mController.checkIfDeviceListIsEmpty(position-1)) {
             System.out.println("There are no devices in the room. Please, add one first");
         } else {
