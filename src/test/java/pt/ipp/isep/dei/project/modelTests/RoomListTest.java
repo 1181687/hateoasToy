@@ -567,8 +567,8 @@ public class RoomListTest {
 
         int position = 0;
         String expectedResult =
-                "1 - Name: A123\n" +
-                "2 - Name: A456\n";
+                "1 - Name of the sensor: A123\n" +
+                "2 - Name of the sensor: A456\n";
         // Act
         String result = list.getSensorListContentOfARoom(position);
 
