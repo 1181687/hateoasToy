@@ -276,7 +276,7 @@ public class House {
         return mListHouseGrids.checkIfHouseGridListIsEmpty();
     }
 
-    public String getHouseGridList(){
+    public String getHouseGridListContent() {
         return mListHouseGrids.getHouseGridListToString();
     }
 
@@ -284,7 +284,17 @@ public class House {
         return mListHouseGrids.getHouseGridByPosition(position);
     }
 
-    public int houseGridListLength(){
+    public int getHouseGridListLength() {
        return this.mListHouseGrids.getmHouseGridsList().size();
     }
+
+    ////////////////////////////////////////////////////////
+    public HouseGridList getHouseGridList() {
+        return this.mListHouseGrids;
+    }
+
+    public boolean checkIfThereAreNoDevicesHGbyPosition(int position) {
+        return this.getHouseGridList().getHouseGridByPosition(position).checkIfThereAreNoDevices();
+    }
+
 }

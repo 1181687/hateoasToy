@@ -231,6 +231,16 @@ public class RoomList {
         return mRoomList.get(position).checkIfDeviceListIsEmpty();
     }
 
+    public boolean checkIfThereAreNoDevices() {
+
+        for (int i = 0; i < mRoomList.size(); i++) {
+            if (!checkIfDeviceListIsEmpty(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Method that displays the sensor list content of a Room
      * @param position

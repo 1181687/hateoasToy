@@ -125,4 +125,9 @@ public class HouseGrid implements Measurable {
     public DeviceList getAllDevicesList() {
         return mRoomsConnectedToHouseGrid.getAllDevicesList();
     }
+
+    public boolean checkIfThereAreNoDevices() {
+        return this.getmRoomsConnectedToHouseGrid().checkIfThereAreNoDevices();
+    }
+
 }

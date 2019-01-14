@@ -21,4 +21,20 @@ public class GetDevicesInHouseGridController {
     public String getDeviceListContentNameTypeLocationByHG(int position) {
         return mHouse.getDeviceListContentNameTypeLocationByHG(position);
     }
+
+    public String getHouseGridListToString() {
+        return this.mHouse.getHouseGridList().getHouseGridListToString();
+    }
+
+    public boolean checkIfHouseGridListIsEmpty() {
+        return mHouse.checkIfHouseGridListIsEmpty();
+    }
+
+    public int getHouseGridListLength() {
+        return this.mHouse.getHouseGridListLength();
+    }
+
+    public boolean checkIfThereAreNoDevicesHGbyPosition(int position) {
+        return this.mHouse.checkIfThereAreNoDevicesHGbyPosition(position);
+    }
 }
