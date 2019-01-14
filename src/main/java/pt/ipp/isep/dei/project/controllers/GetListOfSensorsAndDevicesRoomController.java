@@ -3,11 +3,11 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.RoomList;
 
-public class GetListOfSensorsRoomController {
+public class GetListOfSensorsAndDevicesRoomController {
 
     private House mHouse;
 
-    public GetListOfSensorsRoomController(House mHouse) {
+    public GetListOfSensorsAndDevicesRoomController(House mHouse) {
         this.mHouse = mHouse;
     }
 
@@ -31,4 +31,11 @@ public class GetListOfSensorsRoomController {
         return this.mHouse.checkIfSensorListIsEmpty(position);
     }
 
+    public String getDeviceListContent(int position) {
+        return this.mHouse.getDeviceListContentOfARoom(position);
+    }
+
+    public boolean checkIfDeviceListIsEmpty(int position) {
+        return this.mHouse.checkIfDeviceListIsEmpty(position);
+    }
 }

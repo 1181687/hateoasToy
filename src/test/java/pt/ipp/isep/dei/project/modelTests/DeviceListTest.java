@@ -8,8 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DeviceListTest {
 
@@ -66,4 +65,73 @@ public class DeviceListTest {
         //Assert
         assertTrue(result);
     }
+
+    @Test
+    public void getDeviceListContentTest() {
+        // Arrange
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1);
+        double nominalPower1 = 1.0;
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
+
+        double luminousFlux2 = 15.0;
+        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2);
+        double nominalPower2 = 2.0;
+        Device dev2 = new Device("Lamp2", room, deviceSpecs2, nominalPower2);
+
+        deviceList.addDeviceToDeviceList(dev1);
+        deviceList.addDeviceToDeviceList(dev2);
+
+        String expectedResult =
+                "1 - Name of the device: Lamp1\n" +
+                        "2 - Name of the device: Lamp2\n";
+
+        // Act
+        String result = deviceList.getDeviceListContent();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void checkIfDeviceListIsEmptyTestTrue() {
+        // Arrange
+        DeviceList deviceList = new DeviceList();
+
+        // Act
+        boolean result = deviceList.checkIfDeviceListIsEmpty();
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkIfDeviceListIsEmptyTestFalse() {
+        // Arrange
+
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        double luminousFlux1 = 10.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1);
+        double nominalPower1 = 1.0;
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
+
+        DeviceList deviceList = new DeviceList();
+
+        deviceList.addDeviceToDeviceList(dev1);
+
+        // Act
+        boolean result = deviceList.checkIfDeviceListIsEmpty();
+
+        // Assert
+        assertFalse(result);
+    }
+
 }

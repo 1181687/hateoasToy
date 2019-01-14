@@ -11,6 +11,7 @@ public class Main {
         GeoAreaTypeList geoAreaTypeList = new GeoAreaTypeList();
         GeoAreaList geoAreaList = new GeoAreaList();
         RoomList roomList = new RoomList();
+        DeviceList deviceList = new DeviceList();
         HouseGridList gridList = new HouseGridList();
 
         // MOCK OBJECTS
@@ -41,7 +42,6 @@ public class Main {
         houseEdificioB.getmInsertedGeoArea().setInsertedIn(insertedGeoArea);
 
         // Rooms
-
         String name = "B107";
         int houseFloor = 1;
         double height = 3.5;
@@ -57,6 +57,14 @@ public class Main {
         Room room2 = new Room(name2, houseFloor, dimensions);
         houseEdificioB.addRoom(room2);
 
+        double luminousFlux = 10.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
+        double nominalPower1 = 1.0;
+        Device dev1 = new Device("Lamp1", room1, deviceSpecs1, nominalPower1);
+
+        room1.addDevice(dev1);
+
+
         // Power Source Type (and List)
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
         PowerSourceType powerSourceType2 = new PowerSourceType("Public electric grid");
@@ -65,7 +73,7 @@ public class Main {
         powerSourceTypeList.addPowerSourceType(powerSourceType2);
 
         //UI levels
-        Admin admin = new Admin(geoAreaTypeList, geoAreaList, sensorTypeList, houseEdificioB, powerSourceTypeList, roomList, gridList);
+        Admin admin = new Admin(geoAreaTypeList, geoAreaList, deviceList, sensorTypeList, houseEdificioB, powerSourceTypeList, roomList, gridList);
         RegularUser regularUser = new RegularUser(geoAreaTypeList, geoAreaList, sensorTypeList, houseEdificioB, sensorTypeTemperature);
 
         int userOption = -1;
