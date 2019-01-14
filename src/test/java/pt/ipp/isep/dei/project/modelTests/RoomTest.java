@@ -176,6 +176,7 @@ public class RoomTest {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
+        SensorList sensorList = new SensorList();
 
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
@@ -191,10 +192,10 @@ public class RoomTest {
         room.addSensorToTheListOfSensorsInTheRoom(s1);
 
         String expectedResult =
-                "1 - Name: A123\n" +
-                        "2 - Name: A456\n";
+                "1 - Name of the sensor: A123\n" +
+                        "2 - Name of the sensor: A456\n";
         // Act
-        String result = room.getSensorsListContent();
+        String result = room.getSensorListContent();
 
         // Assert
         assertEquals(expectedResult, result);

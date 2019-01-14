@@ -237,7 +237,7 @@ public class RoomList {
      * @return
      */
     public String getSensorListContentOfARoom (int position) {
-        return mRoomList.get(position).getSensorsListContent();
+        return mRoomList.get(position).getSensorListContent();
     }
 
     /**
@@ -247,9 +247,7 @@ public class RoomList {
     public boolean checkIfSensorListIsEmpty (int position) {
         return mRoomList.get(position).checkIfSensorListIsEmpty();
     }
-
-    /////////////////////////////////////////
-
+    
     /**
      * method that gets a list of devices in all rooms of roomlist
      *

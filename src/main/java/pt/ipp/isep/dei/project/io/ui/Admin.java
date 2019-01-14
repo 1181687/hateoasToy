@@ -90,6 +90,11 @@ public class Admin {
                     AddSensorToRoom ui253 = new AddSensorToRoom(house, roomList, sensorTypeList);
                     ui253.run();
                     break;
+                case 5:
+                    GetListOfSensorsRoom ui250 = new GetListOfSensorsRoom(house);
+                    ui250.run();
+                    break;
+
             }
             option = Menu.adminHouseMenu();
         }
