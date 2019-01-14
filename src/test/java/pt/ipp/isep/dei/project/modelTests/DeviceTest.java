@@ -26,4 +26,24 @@ public class DeviceTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void testGetNominalPower() {
+        //Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        double luminousFlux = 10.0;
+        double energyConsumption1 = 20.0;
+        DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
+        double nominalPower1 = 20.0;
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
+        double expectedResult = 20.0;
+
+        //Act
+        double result = dev1.getNominalPower();
+
+        //Assert
+        assertEquals(result, expectedResult);
+    }
 }

@@ -19,14 +19,14 @@ public class HouseGrid implements Measurable {
 
     /**
      * constructor of a house grid that receives a name, a maximum contracted power and a list of rooms connected to the house grid.
-     * @param HouseGridName
-     * @param mMaximumContractedPower
-     * @param mRoomsConnectedToHouseGrid
+     * @param houseGridName
+     * @param maximumContractedPower
+     * @param roomsConnectedToHouseGrid
      */
-    public HouseGrid(String HouseGridName, double mMaximumContractedPower, RoomList mRoomsConnectedToHouseGrid) {
-        this.mHouseGridName = HouseGridName;
-        this.mMaximumContractedPower = mMaximumContractedPower;
-        this.mRoomsConnectedToHouseGrid = mRoomsConnectedToHouseGrid;
+    public HouseGrid(String houseGridName, double maximumContractedPower, RoomList roomsConnectedToHouseGrid) {
+        this.mHouseGridName = houseGridName;
+        this.mMaximumContractedPower = maximumContractedPower;
+        this.mRoomsConnectedToHouseGrid = roomsConnectedToHouseGrid;
     }
 
     /**
