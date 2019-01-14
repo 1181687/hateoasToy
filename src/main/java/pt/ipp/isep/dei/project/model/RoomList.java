@@ -202,7 +202,11 @@ public class RoomList {
         return getRoomByName(name).getMaximumMeasurementInAGivenDay(type, date);
     }
 
-
+    /**
+     * method that check if a name of a room already exists on the list of rooms.
+     * @param name
+     * @return boolean
+     */
     public boolean checkIfNameAlreadyExists(String name) {
 
         for (int i = 0; i < mRoomList.size(); i++) {
