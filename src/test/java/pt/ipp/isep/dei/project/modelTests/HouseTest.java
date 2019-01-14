@@ -1081,7 +1081,6 @@ public class HouseTest {
 
         //Room TWO
         String name2 = "KitchenBasement";
-        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim);
         DeviceSpecs specWaterHeater = new ElectricWaterHeater();
         Device dev4 = new Device("FridgeSiemens", room2, specFridge, 300);
@@ -1181,6 +1180,7 @@ public class HouseTest {
 
         assertEquals(expectedResult, result);
     }
+    */
 
     @Test
     public void testGetRoomListLength() {
@@ -1220,4 +1220,5 @@ public class HouseTest {
         assertEquals(expectedResult, result);
 
     }
+
 }

@@ -33,8 +33,7 @@ public class DeviceTest {
         Room room = new Room("Room", 2, dim);
 
         double luminousFlux = 10.0;
-        double energyConsumption1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp("Lamp", luminousFlux, energyConsumption1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 20.0;
         Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
         double expectedResult = 20.0;
