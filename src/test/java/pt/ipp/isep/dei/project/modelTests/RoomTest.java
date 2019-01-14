@@ -280,7 +280,7 @@ public class RoomTest {
 
 
     @Test
-    public void getDeviceListContentOfARoomTest() {
+    public void getDeviceListContentTest() {
         // Arrange
 
         //initiate Room
@@ -308,8 +308,8 @@ public class RoomTest {
 
 
         String expectedResult =
-                "1 - Name: Fridge1\n" +
-                        "2 - Name: Lamp1\n";
+                "1 - Name of the device: Fridge1\n" +
+                        "2 - Name of the device: Lamp1\n";
 
 
         // Act
@@ -317,6 +317,7 @@ public class RoomTest {
 
         // Assert
         assertEquals(expectedResult, result);
+
     }
 
     @Test

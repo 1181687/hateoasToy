@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
-import java.util.Objects;
 
 public class DeviceList {
     private List<Device> mDeviceList = new ArrayList<>();
@@ -182,5 +181,28 @@ public class DeviceList {
         return false;
     }
 
+    /**
+     * method that displays the device list content
+     *
+     * @return content of the device list
+     */
+    public String getDeviceListContent() {
+        StringBuilder content = new StringBuilder();
+        int deviceListLength = getLength();
+        int numberInTheList = 1;
+        for (int i = 1; i <= deviceListLength; i++) {
+            content.append(numberInTheList + " - Name of the device: " + getmDeviceList().get(i - 1).getmName());
+            content.append("\n");
+            numberInTheList++;
+        }
+        return content.toString();
+    }
+
+    /**
+     * method that check if the device list is empty
+     */
+    public boolean checkIfDeviceListIsEmpty() {
+        return mDeviceList.isEmpty();
+    }
 
 }

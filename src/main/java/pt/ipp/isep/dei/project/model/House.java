@@ -225,6 +225,16 @@ public class House {
         return mRoomList.getDeviceListContentOfARoom(position);
     }
 
+
+    /**
+     * Method that checks if the Device List of the room is empty
+     *
+     * @param position chosen room
+     */
+    public boolean checkIfDeviceListIsEmpty(int position) {
+        return mRoomList.checkIfDeviceListIsEmpty(position);
+    }
+
     /**
      * method that displays the sensor list content of a Room
      * @param position
@@ -261,15 +271,6 @@ public class House {
     public String getDeviceListContentNameTypeLocationByHG(int positionHG) {
         return this.mListHouseGrids.getHouseGridByPosition(positionHG).
                 getAllDevicesList().getContentNameLocationOrderedByType();
-    }
-
-    /**
-     * Method that checks if the Device List of the room is empty
-     *
-     * @param position chosen room
-     */
-    public boolean checkIfDeviceListIsEmpty(int position) {
-        return mRoomList.checkIfDeviceListIsEmpty(position);
     }
 
     public boolean checkIfHouseGridListIsEmpty(){

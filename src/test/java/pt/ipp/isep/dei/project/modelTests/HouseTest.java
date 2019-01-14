@@ -1145,6 +1145,7 @@ public class HouseTest {
         // Act
         String result = house.getDeviceListContentOfARoom(position);
 
+
         // Assert
         assertEquals(expectedResult, result);
     }
