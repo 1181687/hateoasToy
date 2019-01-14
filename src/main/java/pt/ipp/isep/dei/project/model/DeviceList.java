@@ -113,4 +113,74 @@ public class DeviceList {
         DeviceList listOne = (DeviceList) obj;
         return this.mDeviceList.equals(listOne.mDeviceList);
     }
+    //ELECTRIC WATER HEATER
+
+    public DeviceSpecs createNewElectricWaterHeater(double volumeOfWater) {
+
+        return new ElectricWaterHeater(volumeOfWater);
+    }
+
+    public Device newElectricWaterHeater(String name, Room selectedRoom, double nominalPower, double volumeOfWater) {
+
+        DeviceSpecs electricWaterHeater = createNewElectricWaterHeater(volumeOfWater);
+
+        return new Device(name, selectedRoom, electricWaterHeater, nominalPower);
+    }
+
+    //WASHING MACHINE
+
+    public DeviceSpecs createNewWashingMachine (double capacity){
+        return new WashingMachine(capacity);
+    }
+
+    public Device newWashingMachine (String name, Room selectedRoom, double nominalPower, double capacity){
+        DeviceSpecs washingMachine = createNewWashingMachine(capacity);
+        return new Device(name,selectedRoom, washingMachine, nominalPower);
+    }
+
+    //DISH WASHER
+    public DeviceSpecs createNewDishWasher (int capacity){
+        return new DishWasher(capacity);
+    }
+
+    public Device newDishWasher (String name, Room selectedRoom, double nominalPower, int capacity){
+        DeviceSpecs dishWasher = createNewDishWasher(capacity);
+        return new Device(name, selectedRoom, dishWasher, nominalPower);
+    }
+
+    //LAMP
+    public DeviceSpecs createNewLamp (double luminousFlux){
+        return new Lamp(luminousFlux);
+    }
+
+    public Device newLamp (String name, Room selectedRoom, double nominalPower, double luminousFlux){
+        DeviceSpecs lamp = createNewLamp(luminousFlux);
+        return new Device(name, selectedRoom, lamp, nominalPower);
+    }
+
+    //FRIDGE
+    public DeviceSpecs createNewFridge (double freezerCapacity, double refrigeratorCapacity){
+        return new Fridge(freezerCapacity, refrigeratorCapacity);
+    }
+
+    public Device newFridge (String name, Room selectedRoom, double nominalPower,double freezerCapacity, double refrigeratorCapacity){
+        DeviceSpecs fridge = createNewFridge(freezerCapacity, refrigeratorCapacity);
+        return new Device(name, selectedRoom, fridge, nominalPower);
+    }
+
+
+    /**
+     * Method that adds a device to the existing list.
+     * @param device
+     * @return
+     */
+    public boolean addDeviceToDeviceList (Device device){
+        if (!(mDeviceList.contains(device))) {
+            mDeviceList.add(device);
+            return true;
+        }
+        return false;
+    }
+
+
 }

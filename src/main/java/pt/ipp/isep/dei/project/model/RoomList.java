@@ -237,7 +237,7 @@ public class RoomList {
      * @return
      */
     public String getSensorListContentOfARoom (int position) {
-        return mRoomList.get(position).getSensorsListContent();
+        return mRoomList.get(position).getSensorListContent();
     }
 
     /**

@@ -161,4 +161,30 @@ public class SensorList {
     public int getLength () {
         return getmSensorList().size();
     }
+
+    /**
+     * method that displays the sensor list content
+     *
+     * @return content of sensor list
+     */
+    public String getSensorsListContent() {
+        StringBuilder content = new StringBuilder();
+        int sensorListLength = getLength();
+        int numberInTheList = 1;
+        for (int i = 1; i <= sensorListLength; i++) {
+            content.append(numberInTheList + " - Name of the sensor: " + getmSensorList().get(i-1).getmSensorName());
+            content.append("\n");
+            numberInTheList++;
+        }
+        return content.toString();
+    }
+
+    /**
+     * method that check if sensor list is empty
+     */
+    public boolean checkIfSensorListIsEmpty() {
+        return mSensorList.isEmpty();
+    }
+
+
 }

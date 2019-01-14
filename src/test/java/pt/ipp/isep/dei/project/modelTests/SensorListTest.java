@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class SensorListTest {
@@ -747,6 +748,67 @@ class SensorListTest {
 
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getSensorsListContentTest () {
+        // Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        SensorList sensorList = new SensorList();
+
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Temperatura");
+        Location locS0 = new Location(123, 345, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2010, 11, 2, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Temperatura");
+        Location locS1 = new Location(123, 300, 50);
+        Sensor s1 = new Sensor("A456", dataFuncionamento1, sensorType1, locS1);
+
+        sensorList.addSensorToTheListOfSensors(s0);
+        sensorList.addSensorToTheListOfSensors(s1);
+
+        String expectedResult =
+                "1 - Name of the sensor: A123\n" +
+                        "2 - Name of the sensor: A456\n";
+
+        // Act
+        String result = sensorList.getSensorsListContent();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void checkIfSensorListIsEmptyTestTrue () {
+        // Arrange
+        SensorList sensorList = new SensorList();
+
+        // Act
+        boolean result = sensorList.checkIfSensorListIsEmpty();
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkIfSensorListIsEmptyTestFalse () {
+        // Arrange
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Temperatura");
+        Location locS0 = new Location(123, 345, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+
+        SensorList sensorList = new SensorList();
+
+        sensorList.addSensorToTheListOfSensors(s0);
+
+        // Act
+        boolean result = sensorList.checkIfSensorListIsEmpty();
+
+        // Assert
+        assertFalse(result);
     }
 
 }
