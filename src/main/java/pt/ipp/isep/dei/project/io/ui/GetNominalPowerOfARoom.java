@@ -20,7 +20,7 @@ public class GetNominalPowerOfARoom {
             System.out.println("There are no devices in the room. Please, add one first");
         } else {
             double nominalPower = mController.getNominalPower();
-            System.out.println("The total nominal power of the selected room is " + nominalPower);
+            System.out.println("The total nominal power of the selected room is " + nominalPower + " kW");
         }
     }
 
