@@ -2,12 +2,12 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.*;
 
-public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridController{
+public class GetNominalPowerRoomsDevicesController {
     private House mHouse;
     private HouseGrid mSelectedHouseGrid;
     private MeasurableObjectsList mMeasurableList;
 
-    public GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridController(House house) {
+    public GetNominalPowerRoomsDevicesController(House house) {
         this.mHouse=house;
     }
 
@@ -56,7 +56,7 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridControll
     }
 
     public Device getDeviceFromPositionInList(int pos1, int pos2){
-        return mSelectedHouseGrid.getRoomByHGPosition(pos1).getDeviceList().getDeviceByPosition(pos2);
+        return mSelectedHouseGrid.getRoomByHGPosition(pos1).getmDeviceList().getDeviceByPosition(pos2);
     }
 
     public double getNominalPowerOfSelectedMeasurableObjects(){
