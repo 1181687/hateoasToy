@@ -11,8 +11,6 @@ public class DishWasher implements DeviceSpecs {
         this.mCapacity = mCapacity;
     }
 
-    public DishWasher() {
-    }
 
     @Override
     public String getmTypeName() {

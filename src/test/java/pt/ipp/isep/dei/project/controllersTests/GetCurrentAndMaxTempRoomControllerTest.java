@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
 import pt.ipp.isep.dei.project.model.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -356,39 +355,6 @@ public class GetCurrentAndMaxTempRoomControllerTest {
 
     }
 
-    @Test
-    public void testCreateANewDate() {
-
-        //Arrange
-        String zipCode = "4050";
-        double latitude = 42.1;
-        double longitude = -8.6;
-        double altitude = 100.0;
-        Location local = new Location(latitude, longitude, altitude);
-        Address address = new Address(zipCode, local);
-        HouseGridList houseGridList = new HouseGridList();
-        RoomList roomList = new RoomList();
-        AreaShape rectangleArea = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
-        House house = new House(roomList, houseGridList, address, insertedGeoArea);
-
-        SensorType sensorType0 = new SensorType("Temperature");
-
-        GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType0);
-
-        int year = 2001, month = 12, day = 1;
-        LocalDate dateLD = LocalDate.of(2001, 12, 1);
-
-        LocalDate expectedResult = dateLD;
-
-        //Act
-        LocalDate result = ctrl.createANewDate(year, month, day);
-
-        //Assert
-        assertEquals(expectedResult, result);
-
-    }
 
     @Test
     void testGetmType() {

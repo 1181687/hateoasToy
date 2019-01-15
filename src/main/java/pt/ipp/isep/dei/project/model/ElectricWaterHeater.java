@@ -13,8 +13,6 @@ public class ElectricWaterHeater implements DeviceSpecs {
         this.mVolumeOfWater = mVolumeOfWater;
     }
 
-    public ElectricWaterHeater() {
-    }
 
     @Override
     public String getmTypeName() {

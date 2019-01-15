@@ -75,7 +75,4 @@ public class GetCurrentAndMaxTempRoomController {
         return this.mHouse.getMaximumTemperatureOfARoomInASpecificDay(name, type, date);
     }
 
-    public LocalDate createANewDate(int year, int month, int day) {
-        return mHouse.createANewDate(year, month, day);
-    }
 }

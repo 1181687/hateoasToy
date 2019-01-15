@@ -784,31 +784,6 @@ public class HouseTest {
     }
 
     @Test
-    public void testOfCreateANewDate() {
-        //ARRANGE
-        String zipCode = "4050";
-        double latitude = 42.1;
-        double longitude = -8.6;
-        double altitude = 100.0;
-        Location local = new Location(latitude, longitude, altitude);
-        Address address = new Address(zipCode, local);
-        HouseGridList houseGridList = new HouseGridList();
-        RoomList roomList = new RoomList();
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
-        House house = new House(roomList, houseGridList, address, insertedGeoArea);
-        int year = 2001, month = 12, day = 1;
-        LocalDate expectedResult = LocalDate.of(2001, 12, 1);
-
-        //ACT
-        LocalDate result = house.createANewDate(year, month, day);
-        //ASSERT
-        assertEquals(expectedResult, result);
-
-    }
-
-    @Test
     public void testCheckIfNameAlreadyExists() {
         String nameToCheck = "Room one";
         String name = "ROOM ONE";

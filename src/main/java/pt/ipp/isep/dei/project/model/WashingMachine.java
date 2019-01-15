@@ -11,9 +11,6 @@ public class WashingMachine implements DeviceSpecs {
         this.mCapacity = mCapacity;
     }
 
-    public WashingMachine() {
-    }
-
     @Override
     public String getmTypeName() {
         return mTypeName;

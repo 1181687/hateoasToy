@@ -10,8 +10,6 @@ public class Lamp implements DeviceSpecs {
         this.mLuminousFlux = mLuminousFlux;
     }
 
-    public Lamp() {
-    }
 
     @Override
     public String getmTypeName() {

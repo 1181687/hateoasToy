@@ -3,16 +3,14 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
 import pt.ipp.isep.dei.project.model.DeviceList;
 import pt.ipp.isep.dei.project.model.Room;
-
-import java.util.List;
-import java.util.Scanner;
+import pt.ipp.isep.dei.project.model.RoomList;
 
 public class AddDeviceToRoom {
 
     private AddDeviceToRoomController mCtrl;
 
-    public AddDeviceToRoom(DeviceList deviceList) {
-        this.mCtrl = new AddDeviceToRoomController(deviceList);
+    public AddDeviceToRoom(DeviceList deviceList, RoomList roomList) {
+        this.mCtrl = new AddDeviceToRoomController(deviceList, roomList);
     }
 
     public void run() {
@@ -28,7 +26,7 @@ public class AddDeviceToRoom {
 
         //SELECT DEVICE TYPE FROM A LIST
         //eventualmente mudar este metodo para ser validado no input validator -- Ver attachRoomToHouseGrid
-        Scanner ler = new Scanner(System.in);
+       /* Scanner ler = new Scanner(System.in);
         List<String> deviceTypesList = mCtrl.getTypeNamesList();
         int selectedDeviceType = -1;
 
@@ -39,10 +37,10 @@ public class AddDeviceToRoom {
             selectedDeviceType = ler.nextInt();
         }
         while (selectedDeviceType < 1 || selectedDeviceType > deviceTypesList.size());
-
+*/
         //Escolher atributos do tipo escolhido
 
-        int option = selectedDeviceType;
+        int option = -1;
         while (option != 0) {
             switch (option) {
                 case 1:
@@ -89,13 +87,17 @@ public class AddDeviceToRoom {
                     double volumeOfWater = InputValidator.getDoublePos(label53);
 
                     mCtrl.createNewElectricWaterHeater(electricWaterHeaterDeviceName, selectedRoom, electricWaterHeaterNominalPower, volumeOfWater);
+                    if (mCtrl.addDeviceToRoom()) {
 
-                    StringBuilder content =new StringBuilder();
-                    content.append("The device"+electricWaterHeaterDeviceName+"was succesfully added to "+selectedRoom+
-                            " and created with the following specifications:\n");
-                    content.append("*Nominal Power: "+electricWaterHeaterNominalPower+"kW \n");
-                    content.append ("*Volume of water: "+volumeOfWater+"l\n");
-                    System.out.println(content.toString());
+                        StringBuilder content = new StringBuilder();
+                        content.append("The device" + electricWaterHeaterDeviceName + "was succesfully added to " + selectedRoom +
+                                " and created with the following specifications:\n");
+                        content.append("*Nominal Power: " + electricWaterHeaterNominalPower + "kW \n");
+                        content.append("*Volume of water: " + volumeOfWater + "l\n");
+                        System.out.println(content.toString());
+                    } else {
+                        System.out.println("Something went wrong. The device wasn't added to the room.");
+                    }
                     break;
                 default:
                     System.out.println("Invalid option. Please choose a number between 1 and 5.");

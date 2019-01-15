@@ -12,8 +12,6 @@ public class Fridge implements DeviceSpecs {
         this.mRefrigeratorCapacity = mRefrigeratorCapacity;
     }
 
-    public Fridge() {
-    }
 
     @Override
     public String getmTypeName() {
