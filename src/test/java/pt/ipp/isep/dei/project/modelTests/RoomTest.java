@@ -44,7 +44,7 @@ public class RoomTest {
     }
     
     @Test
-    void testhashCodeNotEquals() {
+    void testHashCodeNotEquals() {
         //Arrange
         String name = "roomOne";
         String name2 = "roomtwo";
@@ -62,7 +62,7 @@ public class RoomTest {
     void testEqualsTrue() {
         //Arrange
         Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("ROOM", 2, dim);
         Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
         Room room2 = new Room("Room", 2, dim2);
         //Act
