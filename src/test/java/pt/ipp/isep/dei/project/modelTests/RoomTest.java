@@ -42,7 +42,7 @@ public class RoomTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-    
+
     @Test
     void testHashCodeNotEquals() {
         //Arrange
@@ -171,7 +171,7 @@ public class RoomTest {
     }
 
     @Test
-    public void getSensorsListContentTest () {
+    public void getSensorsListContentTest() {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
@@ -201,7 +201,7 @@ public class RoomTest {
     }
 
     @Test
-    public void checkIfSensorListIsEmptyTestTrue () {
+    public void checkIfSensorListIsEmptyTestTrue() {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
@@ -214,7 +214,7 @@ public class RoomTest {
     }
 
     @Test
-    public void checkIfSensorListIsEmptyTestFalse () {
+    public void checkIfSensorListIsEmptyTestFalse() {
         // Arrange
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
@@ -417,5 +417,35 @@ public class RoomTest {
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    public void getDeviceListSize() {
+
+        // Arrange
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        double luminousFlux2 = 15.0;
+        double nominalPower2 = 2.0;
+
+        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
+
+        room.addDevice(dev1);
+        room.addDevice(dev2);
+
+        int expectResult = 2;
+        //act
+        int result = room.getSizeOfDevicesList();
+        //assert
+        assertEquals(expectResult, result);
     }
 }

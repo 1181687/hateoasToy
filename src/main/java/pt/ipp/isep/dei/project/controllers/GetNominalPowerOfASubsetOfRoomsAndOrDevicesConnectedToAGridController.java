@@ -56,7 +56,7 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridControll
     }
 
     public Device getDeviceFromPositionInList(int pos1, int pos2){
-        return mSelectedHouseGrid.getRoomByHGPosition(pos1).getDeviceList().getDeviceByPosition(pos2);
+        return mSelectedHouseGrid.getRoomByHGPosition(pos1).getmDeviceList().getDeviceByPosition(pos2);
     }
 
     public double getNominalPowerOfSelectedMeasurableObjects(){
