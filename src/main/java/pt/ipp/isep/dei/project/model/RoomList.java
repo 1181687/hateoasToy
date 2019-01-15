@@ -88,6 +88,7 @@ public class RoomList {
 
     /**
      * Method that checks if a Room List is Empty
+     *
      * @return true if it is empty
      */
     public boolean checkIfRoomListIsEmpty() {
@@ -96,6 +97,7 @@ public class RoomList {
 
     /**
      * Method that gives us the size of the Room List
+     *
      * @return Room List size
      */
     public int listSize() {
@@ -164,6 +166,7 @@ public class RoomList {
 
     /**
      * Method that goes through the room list and shows the room by name if that name matches a room with the same name in the list
+     *
      * @param name room name (string)
      * @return room
      */
@@ -202,7 +205,12 @@ public class RoomList {
         return getRoomByName(name).getMaximumMeasurementInAGivenDay(type, date);
     }
 
-
+    /**
+     * method that check if a name of a room already exists on the list of rooms.
+     *
+     * @param name
+     * @return boolean
+     */
     public boolean checkIfNameAlreadyExists(String name) {
 
         for (int i = 0; i < mRoomList.size(); i++) {
@@ -212,6 +220,7 @@ public class RoomList {
         }
         return false;
     }
+
     /**
      * Method that displays the device list content of a Room
      *
@@ -231,25 +240,38 @@ public class RoomList {
         return mRoomList.get(position).checkIfDeviceListIsEmpty();
     }
 
+    public boolean checkIfThereAreNoDevices() {
+
+        for (int i = 0; i < mRoomList.size(); i++) {
+            if (!checkIfDeviceListIsEmpty(i)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /**
      * Method that displays the sensor list content of a Room
+     *
      * @param position
      * @return
      */
-    public String getSensorListContentOfARoom (int position) {
+    public String getSensorListContentOfARoom(int position) {
         return mRoomList.get(position).getSensorListContent();
     }
 
     /**
      * method that check if the sensor list of the room is empty
+     *
      * @param position
      */
-    public boolean checkIfSensorListIsEmpty (int position) {
+    public boolean checkIfSensorListIsEmpty(int position) {
         return mRoomList.get(position).checkIfSensorListIsEmpty();
     }
 
     /**
      * method that gets a list of devices in all rooms of roomlist
+     *
      * @return DeviceList
      */
     public DeviceList getAllDevicesList() {
@@ -265,5 +287,39 @@ public class RoomList {
             }
         }
         return allDeviceList;
+    }
+
+    public String getRoomListToString() {
+        StringBuilder content = new StringBuilder();
+        for (int i = 1; i <= mRoomList.size(); i++) {
+            content.append(i + " - Name: " + mRoomList.get(i - 1).getmName());
+            content.append("\n");
+        }
+        return content.toString();
+    }
+
+    /**
+     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
+     * class Electric Water Heater.
+     *
+     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
+     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
+     */
+    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
+        for (int index = 0; index < mRoomList.size(); index++) {
+            mRoomList.get(index).setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
+        }
+    }
+
+    /**
+     * @param type
+     * @return
+     */
+    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
+        double energyConsumption = 0;
+        for (int index = 0; index < mRoomList.size(); index++) {
+            energyConsumption += mRoomList.get(index).getEnergyConsumptionInADayOfAllDevicesOfAType(type);
+        }
+        return energyConsumption;
     }
 }

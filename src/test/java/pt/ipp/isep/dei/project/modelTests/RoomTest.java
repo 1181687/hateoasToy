@@ -242,9 +242,9 @@ public class RoomTest {
         Fridge specFridge = new Fridge();
         WashingMachine specWashing = new WashingMachine();
         DishWasher specDishWasher = new DishWasher();
-        Device dev1 = new Device("FridgeAriston", room, specFridge, 300);
-        Device dev2 = new Device("WashingMachineBosh", room, specWashing, 300);
-        Device dev3 = new Device("DishWasher", room, specDishWasher, 400);
+        Device dev1 = new Device("FridgeAriston", room, specFridge);
+        Device dev2 = new Device("WashingMachineBosh", room, specWashing);
+        Device dev3 = new Device("DishWasher", room, specDishWasher);
 
         room.addDevice(dev1);
         room.addDevice(dev2);
@@ -267,7 +267,7 @@ public class RoomTest {
         Room room = new Room(name, 2, dim);
 
         Fridge specFridge = new Fridge();
-        Device dev1 = new Device("FridgeAriston", room, specFridge, 300);
+        Device dev1 = new Device("FridgeAriston", room, specFridge);
 
         DeviceList expectedResult = new DeviceList();
         expectedResult.addDevice(dev1);
@@ -280,7 +280,7 @@ public class RoomTest {
 
 
     @Test
-    public void getDeviceListContentOfARoomTest() {
+    public void getDeviceListContentTest() {
         // Arrange
 
         //initiate Room
@@ -292,24 +292,23 @@ public class RoomTest {
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
-        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity);
         double nominalPower = 100.5;
-        Device dev = new Device("Fridge1", room, deviceSpecs, nominalPower);
+        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        Device dev = new Device("Fridge1", room, deviceSpecs);
 
 
         double luminousFlux = 10.0;
-        double energyConsumption1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 0.0;
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev);
         room.addDevice(dev1);
 
 
         String expectedResult =
-                "1 - Name: Fridge1\n" +
-                        "2 - Name: Lamp1\n";
+                "1 - Name of the device: Fridge1\n" +
+                        "2 - Name of the device: Lamp1\n";
 
 
         // Act
@@ -317,6 +316,7 @@ public class RoomTest {
 
         // Assert
         assertEquals(expectedResult, result);
+
     }
 
     @Test
@@ -340,10 +340,9 @@ public class RoomTest {
         Room room = new Room("Room", 2, dim);
 
         double luminousFlux = 10.0;
-        double energyConsumption1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux);
         double nominalPower1 = 1.0;
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev1);
 
@@ -352,5 +351,71 @@ public class RoomTest {
 
         // Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void testGetNominalPower() {
+        // Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        Fridge specFridge = new Fridge(25, 50, 5000, 500);
+        WashingMachine specWashing = new WashingMachine(400, 250);
+        DishWasher specDishWasher = new DishWasher(400, 250);
+        Device dev1 = new Device("FridgeAriston", room, specFridge);
+        Device dev2 = new Device("WashingMachineBosh", room, specWashing);
+        Device dev3 = new Device("DishWasher", room, specDishWasher);
+
+        room.addDevice(dev1);
+        room.addDevice(dev2);
+        room.addDevice(dev3);
+
+        double expectedResult = 1000;
+
+        // Act
+        double result = room.getNominalPower();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getEnergyConsumptionInADayOfAllDevicesOfATypeTestWithValidValues() {
+        // Arrange
+        // Dimension Instantiation
+        double height = 3;
+        double length = 3.5;
+        double width = 3.5;
+        Dimensions dim = new Dimensions(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Room", 2, dim);
+
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp0 = 50;
+        double maximumVolume0 = 150;
+        double nominalPower0 = 100;
+        DeviceSpecs electricWaterHeater0 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0);
+        double hotWaterTemp1 = 60;
+        double maximumVolume1 = 200;
+        double nominalPower1 = 110;
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, nominalPower1);
+
+        // Device Instantiation
+        Device device0 = new Device("Electric Water Heater", room, electricWaterHeater0);
+        Device device1 = new Device("Electric Water Heater", room, electricWaterHeater1);
+
+        room.addDevice(device0);
+        room.addDevice(device1);
+
+        room.setColdWaterTempAndVolumeOfWaterToHeat(30, 100);
+
+        double expectedResult = 5233.5;
+
+        // Act
+        double result = room.getEnergyConsumptionInADayOfAllDevicesOfAType("Electric Water Heater");
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
     }
 }

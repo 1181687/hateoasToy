@@ -98,7 +98,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
 
         int expectResult = 2;
         //act
-        int result = ctrl.lengthOfRoomList();
+        int result = ctrl.getLengthOfRoomList();
         //assert
         assertEquals(expectResult, result);
     }

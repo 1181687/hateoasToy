@@ -19,14 +19,15 @@ public class HouseGrid implements Measurable {
 
     /**
      * constructor of a house grid that receives a name, a maximum contracted power and a list of rooms connected to the house grid.
-     * @param HouseGridName
-     * @param mMaximumContractedPower
-     * @param mRoomsConnectedToHouseGrid
+     *
+     * @param houseGridName
+     * @param maximumContractedPower
+     * @param roomsConnectedToHouseGrid
      */
-    public HouseGrid(String HouseGridName, double mMaximumContractedPower, RoomList mRoomsConnectedToHouseGrid) {
-        this.mHouseGridName = HouseGridName;
-        this.mMaximumContractedPower = mMaximumContractedPower;
-        this.mRoomsConnectedToHouseGrid = mRoomsConnectedToHouseGrid;
+    public HouseGrid(String houseGridName, double maximumContractedPower, RoomList roomsConnectedToHouseGrid) {
+        this.mHouseGridName = houseGridName;
+        this.mMaximumContractedPower = maximumContractedPower;
+        this.mRoomsConnectedToHouseGrid = roomsConnectedToHouseGrid;
     }
 
     /**
@@ -58,7 +59,7 @@ public class HouseGrid implements Measurable {
      * @param roomToDetach
      * @return
      */
-    public boolean detachRoom (Room roomToDetach) {
+    public boolean detachRoom(Room roomToDetach) {
         for (Room room : this.mRoomsConnectedToHouseGrid.getmRoomList()) {
             if (room.equals(roomToDetach)) {
                 this.mRoomsConnectedToHouseGrid.getmRoomList().remove(room);
@@ -105,15 +106,15 @@ public class HouseGrid implements Measurable {
         return mRoomsConnectedToHouseGrid.getmRoomList().contains(room);
     }
 
-    public String listPowerSources(){
+    public String listPowerSources() {
         return mPowerSourceList.getPowerSourcesListContent();
     }
 
     @Override
     public double getNominalPower() {
-        double totalNominalPower= 0;
-        for (Room room : mRoomsConnectedToHouseGrid.getmRoomList() ) {
-            totalNominalPower+=room.getNominalPower();
+        double totalNominalPower = 0;
+        for (Room room : mRoomsConnectedToHouseGrid.getmRoomList()) {
+            totalNominalPower += room.getNominalPower();
         }
         return totalNominalPower;
     }
@@ -124,5 +125,60 @@ public class HouseGrid implements Measurable {
      */
     public DeviceList getAllDevicesList() {
         return mRoomsConnectedToHouseGrid.getAllDevicesList();
+    }
+
+    public boolean checkIfThereAreNoDevices() {
+        return this.getmRoomsConnectedToHouseGrid().checkIfThereAreNoDevices();
+    }
+
+
+    public String getRoomListToStringInAGrid() {
+        return mRoomsConnectedToHouseGrid.getRoomListToString();
+    }
+
+    public int sizeOfTheRoomListInAGrid() {
+        return mRoomsConnectedToHouseGrid.listSize();
+    }
+
+    public Room getRoomInTheGridByPosition(int position) {
+        return mRoomsConnectedToHouseGrid.getRoomFromAPosition(position);
+    }
+
+    public String getDeviceListContent(int position) {
+        return mRoomsConnectedToHouseGrid.getRoomFromAPosition(position).getDeviceListContent();
+    }
+
+    public int getSizeOfListOfDevicesOfRoomAttachedToGrid(int position) {
+        return mRoomsConnectedToHouseGrid.getRoomFromAPosition(position).getSizeOfDevicesList();
+    }
+
+    public boolean checkIsRoomListIsEmpty() {
+        return mRoomsConnectedToHouseGrid.checkIfRoomListIsEmpty();
+    }
+
+    public boolean checkIfDeviceListIsEmpty(int position) {
+        return mRoomsConnectedToHouseGrid.getRoomFromAPosition(position).checkIfDeviceListIsEmpty();
+    }
+
+    //public Device getDeviceFromPositionInList(int positionRoom, int positionDevice){
+    //return mRoomsConnectedToHouseGrid.getRoomFromAPosition(positionRoom).getDeviceList().getDeviceByPosition(positionDevice);
+
+    /**
+     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
+     * class Electric Water Heater.
+     *
+     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
+     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
+     */
+    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
+        mRoomsConnectedToHouseGrid.setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
+    }
+
+    /**
+     * @param type
+     * @return
+     */
+    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
+        return mRoomsConnectedToHouseGrid.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
     }
 }

@@ -35,9 +35,9 @@ public class AddDeviceToRoomController {
         return mListOfRooms.getmRoomList().size();
     }
 
-    public List<String> getTypeNamesList() {
+    /*public List<String> getTypeNamesList (){
         return mDevice.getTypeNames();
-    }
+    }*/
 
     public Device createNewElectricWaterHeater(String nome, Room selectedRoom, double nominalPower, double volumeOfWater) {
         return mDevice = mDeviceList.newElectricWaterHeater(nome, selectedRoom, nominalPower, volumeOfWater);

@@ -78,7 +78,8 @@ public class AddDeviceToRoom {
                     String label43 = "What is the capacity (kg)?";
                     double washingMachineCapacity = InputValidator.getDoublePos(label43);
                     break;
-                case 5:
+                /*
+                    case 5:
                     String label51 = "What is the name of the electric water heater?";
                     String electricWaterHeaterDeviceName = InputValidator.getString(label51);
                     String label52 = "What is the nominal power (kW)?";
@@ -105,4 +106,3 @@ public class AddDeviceToRoom {
         }
     }
 }
-

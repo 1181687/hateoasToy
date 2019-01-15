@@ -34,14 +34,14 @@ public class GetCurrentAndMaxTempRoom {
      */
     public void run1() {
 
-        System.out.println(mctrl.getRoomListContent());
         if (mctrl.getRoomListContent().isEmpty()) {
             System.out.println("There are no rooms available\n");
             return;
         }
+        System.out.println(mctrl.getRoomListContent());
 
         String label0 = "Choose the room you want to get the current temperature";
-        int option = InputValidator.getIntRange(label0, 1, mctrl.lengthOfRoomList());
+        int option = InputValidator.getIntRange(label0, 1, mctrl.getLengthOfRoomList());
         String roomName = mctrl.getRoomNameByPos(option - 1);
         Measurement temp = mctrl.getLatestMeasurementByRoomName(roomName);
 
@@ -80,7 +80,7 @@ public class GetCurrentAndMaxTempRoom {
         }
 
         String label0 = "Choose the room you want to get the maximum temperature";
-        int option = InputValidator.getIntRange(label0, 1, mctrl.lengthOfRoomList());
+        int option = InputValidator.getIntRange(label0, 1, mctrl.getLengthOfRoomList());
         String roomName = mctrl.getRoomNameByPos(option - 1);
 
         String label1 = "Please insert the date when you want to get the maximum temperature (yyyy-MM-dd):";

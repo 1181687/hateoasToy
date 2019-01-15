@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SensorList {
-    private List<Sensor> mSensorList = new ArrayList<>();
+    private List<Sensor> mSensorList;
 
     /**
      * Constructor method.
      */
     public SensorList() {
+        this.mSensorList = new ArrayList<>();
     }
 
     /**
@@ -158,6 +159,9 @@ public class SensorList {
         return nearestSensors;
     }
 
+    /**
+     * method that get the length of the sensors list.
+     */
     public int getLength () {
         return getmSensorList().size();
     }
