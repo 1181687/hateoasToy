@@ -178,6 +178,12 @@ public class Room implements Measurable{
         return mSensorList.getLatestMeasurementBySensorType(type);
     }
 
+    /**
+     * Method that return the nominal power of the list of devices in the room.
+     * This method is the implementation of the measurable interface method.
+     *
+     * @return
+     */
     @Override
     public double getNominalPower() {
         double totalNominalPower = 0;
