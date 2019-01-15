@@ -1,46 +1,39 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
-import pt.ipp.isep.dei.project.model.DeviceList;
+import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
-import pt.ipp.isep.dei.project.model.RoomList;
 
 public class AddDeviceToRoom {
 
     private AddDeviceToRoomController mCtrl;
 
-    public AddDeviceToRoom(DeviceList deviceList, RoomList roomList) {
-        this.mCtrl = new AddDeviceToRoomController(deviceList, roomList);
+    public AddDeviceToRoom(House house) {
+        this.mCtrl = new AddDeviceToRoomController(house);
     }
 
     public void run() {
         //SELECT quarto
         String exit = "\r0 - Exit";
 
-        //nao considerei o facto de nao haver rooms na casa - devo considerar?
-        String label2 = "Please choose a room to be attached to the chosen house grid: \n" + mCtrl.getRoomListContent() + exit;
-        int indexSelectedRoom = InputValidator.getIntRange(label2, 0, mCtrl.roomListLength()) - 1;
-
-        Room selectedRoom = mCtrl.getRoomFromList(indexSelectedRoom);
+        // falta considerar o facto de nao haver rooms na casa
+        String label2 = "Please choose a room to attach a new device: \n" + mCtrl.getRoomListContent() + exit;
+        int indexSelectedRoom = InputValidator.getIntRange(label2, 0, mCtrl.roomListLength());
+        mCtrl.getRoom(indexSelectedRoom - 1);
+        Room selectedRoom = mCtrl.getSelectedRoom();
 
 
         //SELECT DEVICE TYPE FROM A LIST
         //eventualmente mudar este metodo para ser validado no input validator -- Ver attachRoomToHouseGrid
-       /* Scanner ler = new Scanner(System.in);
-        List<String> deviceTypesList = mCtrl.getTypeNamesList();
-        int selectedDeviceType = -1;
 
-        do {
-            for (int i = 1; i <= deviceTypesList.size(); i++) {
-                System.out.println(i + "-" + deviceTypesList.get(i - 1));
-            }
-            selectedDeviceType = ler.nextInt();
-        }
-        while (selectedDeviceType < 1 || selectedDeviceType > deviceTypesList.size());
-*/
+        String label0 = "Please select the Device Type: \n" + mCtrl.getDeviceTypeListContent() + exit;
+        int selectedType = InputValidator.getIntRange(label0, 1, 5);
+
+
         //Escolher atributos do tipo escolhido
 
-        int option = -1;
+        int option = selectedType;
+
         while (option != 0) {
             switch (option) {
                 case 1:
@@ -52,6 +45,7 @@ public class AddDeviceToRoom {
                     double freezerCapacity = InputValidator.getDoublePos(label13);
                     String label14 = "What is the refrigerator capacity (l)?";
                     double refrigeratorCapacity = InputValidator.getDoublePos(label14);
+
 
                     break;
                 case 2:
@@ -77,27 +71,30 @@ public class AddDeviceToRoom {
                     double washingMachineNominalPower = InputValidator.getDoublePos(label42);
                     String label43 = "What is the capacity (kg)?";
                     double washingMachineCapacity = InputValidator.getDoublePos(label43);
+
+
                     break;
-                    case 5:
+                case 5:
                     String label51 = "What is the name of the electric water heater?";
                     String electricWaterHeaterDeviceName = InputValidator.getString(label51);
                     String label52 = "What is the nominal power (kW)?";
                     double electricWaterHeaterNominalPower = InputValidator.getDoublePos(label52);
-                        String label53 = "What is the maximum temperature you want to configure on the electric water heater?";
-                        double maxHotTemperature = InputValidator.getDoublePos(label53);
-                        String label54 = "What is the capacity (l)?";
-                        double volumeOfWater = InputValidator.getDoublePos(label54);
+                    String label53 = "What is the maximum temperature you want to configure on the electric water heater?";
+                    double maxHotTemperature = InputValidator.getDoublePos(label53);
+                    String label54 = "What is the capacity (l)?";
+                    double volumeOfWater = InputValidator.getDoublePos(label54);
 
-                        mCtrl.createNewElectricWaterHeater(electricWaterHeaterDeviceName, selectedRoom, maxHotTemperature, volumeOfWater, electricWaterHeaterNominalPower);
+                    mCtrl.createNewElectricWaterHeater(electricWaterHeaterDeviceName, selectedRoom, maxHotTemperature, volumeOfWater, electricWaterHeaterNominalPower);
                     if (mCtrl.addDeviceToRoom()) {
 
                         StringBuilder content = new StringBuilder();
-                        content.append("The device" + electricWaterHeaterDeviceName + "was succesfully added to " + selectedRoom +
+                        content.append("The device " + electricWaterHeaterDeviceName + " was succesfully added to " + selectedRoom.getmName() +
                                 " and created with the following specifications:\n");
-                        content.append("- Nominal Power: " + electricWaterHeaterNominalPower + "kW \n");
-                        content.append("- Volume of water: " + volumeOfWater + "l\n");
-                        content.append("- Maximum temperature configured: " + maxHotTemperature + "ºC\n");
+                        content.append("- Nominal Power: " + electricWaterHeaterNominalPower + " kW \n");
+                        content.append("- Volume of water: " + volumeOfWater + " l\n");
+                        content.append("- Maximum temperature configured: " + maxHotTemperature + " ºC\n");
                         System.out.println(content.toString());
+
                     } else {
                         System.out.println("Something went wrong. The device wasn't added to the room. Please try again.");
                     }

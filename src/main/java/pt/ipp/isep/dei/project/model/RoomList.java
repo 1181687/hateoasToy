@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -280,7 +281,7 @@ public class RoomList {
         Device dev;
 
         for (int i = 0; i < mRoomList.size(); i++) {
-            roomDeviceList = mRoomList.get(i).getDeviceList();
+            roomDeviceList = mRoomList.get(i).getmDeviceList();
             for (int j = 0; j < roomDeviceList.getLength(); j++) {
                 dev = roomDeviceList.getDeviceByPosition(j);
                 allDeviceList.addDevice(dev);
