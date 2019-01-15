@@ -2,9 +2,6 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetListOfSensorsAndDevicesRoomController;
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.RoomList;
-
-import java.util.Scanner;
 
 /**
  * US201: As an Administrator, i want to get a list of all devices in a room, so that i can configure them.
@@ -43,26 +40,20 @@ public class GetListOfSensorsAndDevicesRoom {
 
 
     public void run2() {
-        System.out.println("In which room do you want to see the list of devices?");
-        RoomList listOfRooms = controller.getListOfRooms();
-        Scanner read = new Scanner(System.in);
-        int optionChoosed = -1;
+        String label2 = "In which room do you want to see the list of devices?";
         int chosenOption = -1;
-        int position = 0;
 
         do {
             System.out.println(controller.getRoomListContent());
-
-            chosenOption = read.nextInt();
+            chosenOption = InputValidator.getIntRange(label2, 1, controller.roomListSize());
         }
 
-        while (chosenOption < 1 || chosenOption > listOfRooms.listSize());
+        while (chosenOption < 1 || chosenOption > controller.roomListSize());
 
         String choosenRoom = controller.getRoomOfTheRoomList(chosenOption - 1);
-
         String listOfDevices = controller.getDeviceListContent(chosenOption - 1);
 
-        if (controller.checkIfDeviceListIsEmpty(optionChoosed - 1)) {
+        if (controller.checkIfDeviceListIsEmpty(chosenOption - 1)) {
             System.out.println("The list is empty. Please, add a device.");
 
         } else {

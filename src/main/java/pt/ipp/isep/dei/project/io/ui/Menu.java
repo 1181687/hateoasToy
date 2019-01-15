@@ -69,9 +69,11 @@ public class Menu {
         content.append("\n");
         content.append("6-Check the list of sensors in a room");
         content.append("\n");
+        content.append("7-Check the nominal power of all devices in a room");
+        content.append("\n");
         content.append("0-Return to the previous menu");
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 6);
+        return InputValidator.getIntRange(label, 0, 7);
     }
 
     public static int regularUserMenu() {
