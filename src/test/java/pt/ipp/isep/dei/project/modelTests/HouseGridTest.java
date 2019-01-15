@@ -20,8 +20,8 @@ public class HouseGridTest {
         String houseGridName = "hgname1";
         HouseGrid houseGrid1 = new HouseGrid(houseGridName);
 
-        houseGrid1.getmRoomsConnectedToHouseGrid().addRoom(room1);
-        houseGrid1.getmRoomsConnectedToHouseGrid().addRoom(room2);
+        houseGrid1.getRoomList().addRoom(room1);
+        houseGrid1.getRoomList().addRoom(room2);
 
         String expectedResult =
                 "1- Name: Kid's room, House Floor: 1, Dimensions - Height: 5.2, Dimensions - Length: 3.7, Dimensions - Width: 8.5\n" +
@@ -29,7 +29,7 @@ public class HouseGridTest {
                 "\n";
 
         // Act
-        String result = houseGrid1.getRoomsAttached();
+        String result = houseGrid1.getRoomListContent();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -44,10 +44,10 @@ public class HouseGridTest {
         Room room = new Room(roomName, houseFloor1, dimensions1);
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
-        grid.attachRoomToTheRoomList(room);
+        grid.attachRoom(room);
 
         // Act
-        boolean result = grid.getmRoomsConnectedToHouseGrid().getmRoomList().contains(room);
+        boolean result = grid.getRoomList().getmRoomList().contains(room);
 
         // Assert
         assertTrue(result);
@@ -68,7 +68,7 @@ public class HouseGridTest {
         String expectedResult="1- Power Source 1\n" +
                 "2- Power Source 2\n";
         //Act
-        String result=houseGrid.listPowerSources();
+        String result = houseGrid.getPowerSourceListContent();
         //Assert
         assertEquals(expectedResult,result);
     }
@@ -205,8 +205,8 @@ public class HouseGridTest {
         room2.addDevice(dev6);
 
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        grid1.attachRoomToTheRoomList(room1);
-        grid1.attachRoomToTheRoomList(room2);
+        grid1.attachRoom(room1);
+        grid1.attachRoom(room2);
 
         double expectedResult = 185;
 
