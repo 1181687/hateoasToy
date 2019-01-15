@@ -100,6 +100,10 @@ public class Admin {
                     GetListOfSensorsAndDevicesRoom ui250 = new GetListOfSensorsAndDevicesRoom(house);
                     ui250.run1();
                     break;
+                case 7:
+                    GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(house);
+                    ui230.run();
+                    break;
             }
             option = Menu.adminHouseMenu();
         }
@@ -128,6 +132,10 @@ public class Admin {
                 case 4:
                     DetachRoomFromHouseGrid ui149 = new DetachRoomFromHouseGrid(gridList, roomList);
                     ui149.run();
+                    break;
+                case 5:
+                    GetDevicesInHouseGrid ui160 = new GetDevicesInHouseGrid(house);
+                    ui160.run();
                     break;
             }
             option = Menu.houseGridMenu();

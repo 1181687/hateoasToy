@@ -8,7 +8,6 @@ public class HouseGrid implements Measurable {
 
     /**
      * constructor of a house grid that receives a name, a room list, a list of power sources and a maximum contracted power.
-     *
      * @param mHouseGridName
      */
     public HouseGrid(String mHouseGridName) {
@@ -72,7 +71,6 @@ public class HouseGrid implements Measurable {
 
     /**
      * Method that attaches a room in the house grid's room list.
-     *
      * @param room Speficied room to attach.
      */
     public void attachRoomToTheRoomList(Room room) {
@@ -81,7 +79,6 @@ public class HouseGrid implements Measurable {
 
     /**
      * Method that add a new power source to the list of power sources.
-     *
      * @param newPowerSource
      * @return
      */
@@ -124,12 +121,16 @@ public class HouseGrid implements Measurable {
 
     /**
      * method that gets a List of all Devices in all Rooms of a Housegrid
-     *
      * @return List <Device>
      */
     public DeviceList getAllDevicesList() {
         return mRoomsConnectedToHouseGrid.getAllDevicesList();
     }
+
+    public boolean checkIfThereAreNoDevices() {
+        return this.getmRoomsConnectedToHouseGrid().checkIfThereAreNoDevices();
+    }
+
 
     public String getRoomListToStringInAGrid() {
         return mRoomsConnectedToHouseGrid.getRoomListToString();
@@ -161,4 +162,23 @@ public class HouseGrid implements Measurable {
 
     //public Device getDeviceFromPositionInList(int positionRoom, int positionDevice){
     //return mRoomsConnectedToHouseGrid.getRoomFromAPosition(positionRoom).getDeviceList().getDeviceByPosition(positionDevice);
+
+    /**
+     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
+     * class Electric Water Heater.
+     *
+     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
+     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
+     */
+    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
+        mRoomsConnectedToHouseGrid.setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
+    }
+
+    /**
+     * @param type
+     * @return
+     */
+    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
+        return mRoomsConnectedToHouseGrid.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
+    }
 }

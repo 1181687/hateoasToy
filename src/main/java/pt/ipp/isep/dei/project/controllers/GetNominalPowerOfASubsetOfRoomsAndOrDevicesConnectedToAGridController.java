@@ -16,11 +16,11 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridControll
     }
 
     public String listHouseGrids(){
-        return this.mHouse.getHouseGridList();
+        return this.mHouse.getHouseGridListContent();
     }
 
     public int getHouseGridListLength(){
-        return mHouse.houseGridListLength();
+        return mHouse.getHouseGridListLength();
     }
 
     public void getHouseGridbyPosition(int position){

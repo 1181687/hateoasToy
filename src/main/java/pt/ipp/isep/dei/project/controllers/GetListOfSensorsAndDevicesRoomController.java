@@ -60,4 +60,9 @@ public class GetListOfSensorsAndDevicesRoomController {
     public boolean checkIfDeviceListIsEmpty(int position) {
         return this.mHouse.checkIfDeviceListIsEmpty(position);
     }
+
+    public int roomListSize () {
+        return mHouse.getRoomListSize();
+    }
+
 }
