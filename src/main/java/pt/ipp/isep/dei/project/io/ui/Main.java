@@ -48,7 +48,7 @@ public class Main {
         gridList.addHouseGridToTheList(houseGrid);
 
         // Rooms
-        String name = "B108";
+        String name = "B107";
         int houseFloor = 1;
         double height = 3.5;
         double length = 11;
@@ -57,6 +57,7 @@ public class Main {
         Room room1 = new Room(name, houseFloor, dimensions);
         houseEdificioB.addRoom(room1);
         room1.addSensorToTheListOfSensorsInTheRoom(sensor);
+        houseEdificioB.addRoom(room1);
 
         String name2 = "B109";
         Room room2 = new Room(name2, houseFloor, dimensions);
@@ -106,6 +107,15 @@ public class Main {
         gridList.addHouseGridToTheList(houseGrid1);
         gridList.addHouseGridToTheList(houseGrid2);
 
+        /*
+        //mock device
+        double luminousFlux = 10.0;
+        double nominalPower = 44;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower);
+        Device dev1 = new Device("Lamp1", room1, deviceSpecs1);
+
+        room1.addDevice(dev1);
+        */
 
         // Devices
         double hotWaterTemp = 55;

@@ -24,4 +24,11 @@ public class MeasurableObjectsList {
         }
         return totalNominalPower;
     }
+
+    public boolean checkIfMeasurableObjIsInList(Measurable measurable){
+        if (mMeasurableList.contains(measurable)){
+            return true;
+        }
+        else return false;
+    }
 }

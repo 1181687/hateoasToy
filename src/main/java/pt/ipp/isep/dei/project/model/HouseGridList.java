@@ -40,7 +40,7 @@ public class HouseGridList {
     public String getHouseGridListToString() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= mHouseGridsList.size(); i++) {
-            content.append(i + " - Name: " + mHouseGridsList.get(i - 1).getmHouseGridName());
+            content.append(i + " - Name: " + mHouseGridsList.get(i - 1).getName());
             content.append("\n");
         }
         return content.toString();
@@ -53,7 +53,7 @@ public class HouseGridList {
      * @return rooms in the house grid
      */
     public String getRoomsInTheHouseGrid(int position) {
-        return mHouseGridsList.get(position).getRoomsAttached();
+        return mHouseGridsList.get(position).getRoomListContent();
     }
 
     /**
@@ -75,7 +75,7 @@ public class HouseGridList {
      */
     public void attachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
         int index = mHouseGridsList.indexOf(houseGridSelected);
-        mHouseGridsList.get(index).attachRoomToTheRoomList(roomSelected);
+        mHouseGridsList.get(index).attachRoom(roomSelected);
     }
 
     /**
@@ -115,7 +115,7 @@ public class HouseGridList {
      */
     public boolean checkIfARoomIsAlreadyInAHouseGrid(HouseGrid chosenGrid, Room room) {
         int index = mHouseGridsList.indexOf(chosenGrid);
-        return mHouseGridsList.get(index).checkIfARoomIsAlreadyInTheGrid(room);
+        return mHouseGridsList.get(index).checkIfRoomIsInHouseGrid(room);
     }
 
     /**
@@ -126,7 +126,7 @@ public class HouseGridList {
      */
     public HouseGrid getTheGridWhereTheRoomIsConnected(Room room) {
         for (HouseGrid houseGrid : mHouseGridsList) {
-            if (houseGrid.checkIfARoomIsAlreadyInTheGrid(room)) {
+            if (houseGrid.checkIfRoomIsInHouseGrid(room)) {
                 return houseGrid;
             }
         }
@@ -147,7 +147,7 @@ public class HouseGridList {
         if (mHouseGridsList.isEmpty()) {
             return null;
         }
-        return mHouseGridsList.get(position).getmHouseGridName();
+        return mHouseGridsList.get(position).getName();
     }
 
     /**
@@ -176,10 +176,10 @@ public class HouseGridList {
     }
 
     public boolean checkIfSpecificRoomListOfGridIsEmpty(int position) {
-        return getmHouseGridsList().get(position).checkIsRoomListIsEmpty();
+        return getmHouseGridsList().get(position).checkIfRoomListIsEmpty();
     }
 
     public int getSizeOfRoomListInAGrid(int position){
-        return getmHouseGridsList().get(position).sizeOfTheRoomListInAGrid();
+        return getmHouseGridsList().get(position).getRoomListSize();
     }
 }

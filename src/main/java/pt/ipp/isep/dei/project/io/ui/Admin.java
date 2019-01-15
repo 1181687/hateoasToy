@@ -143,7 +143,7 @@ public class Admin {
                     ui160.run();
                     break;
                 case 6:
-                    GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGrid ui705 = new GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGrid(house);
+                    GetNominalPowerRoomsDevices ui705 = new GetNominalPowerRoomsDevices(house);
                     ui705.run();
             }
             option = Menu.houseGridMenu();

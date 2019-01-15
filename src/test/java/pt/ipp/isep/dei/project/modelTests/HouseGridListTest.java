@@ -64,7 +64,7 @@ public class HouseGridListTest {
         gridList.detachRoomInASpecificHouseGridInTheList(grid, room1);
 
         // Act
-        boolean result = gridList.getHouseGridByPosition(gridPosition).checkIfARoomIsAlreadyInTheGrid(room1);
+        boolean result = gridList.getHouseGridByPosition(gridPosition).checkIfRoomIsInHouseGrid(room1);
 
         // Assert
         assertFalse(result);
@@ -85,7 +85,7 @@ public class HouseGridListTest {
         int gridPosition = gridList.getmHouseGridsList().indexOf(grid);
 
         // Act
-        boolean result = gridList.getHouseGridByPosition(gridPosition).checkIfARoomIsAlreadyInTheGrid(room);
+        boolean result = gridList.getHouseGridByPosition(gridPosition).checkIfRoomIsInHouseGrid(room);
 
         // Assert
         assertTrue(result);
@@ -153,7 +153,7 @@ public class HouseGridListTest {
         HouseGrid grid1 = new HouseGrid(gridName1);
         String gridName2 = "Grid";
         HouseGrid grid2 = new HouseGrid(gridName2);
-        grid2.attachRoomToTheRoomList(room);
+        grid2.attachRoom(room);
 
         // Instantiate List of House Grids
         HouseGridList gridList = new HouseGridList();

@@ -2,12 +2,12 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.*;
 
-public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridController{
+public class GetNominalPowerRoomsDevicesController {
     private House mHouse;
     private HouseGrid mSelectedHouseGrid;
     private MeasurableObjectsList mMeasurableList;
 
-    public GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridController(House house) {
+    public GetNominalPowerRoomsDevicesController(House house) {
         this.mHouse=house;
     }
 
@@ -27,8 +27,16 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridControll
         mSelectedHouseGrid = this.mHouse.getHouseGridByPosition(position);
     }
 
+    public String getRoomListToStringInAGrid(){
+        return mSelectedHouseGrid.getRoomListToString();
+    }
+
+    public int getSizeOfRoomListConnectedToGrid(){
+        return mSelectedHouseGrid.getRoomListSize();
+    }
+
     public Room getChosenRoomInTheGrid(int position){
-        return mSelectedHouseGrid.getRoomInTheGridByPosition(position);
+        return mSelectedHouseGrid.getRoomByHGPosition(position);
     }
 
     public String getContentOfDeviceListInRoomOfGrid(int position){
@@ -36,10 +44,10 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridControll
     }
 
     public int getSizeOfListOfDevicesInARoom(int position){
-        return mSelectedHouseGrid.getSizeOfListOfDevicesOfRoomAttachedToGrid(position);
+        return mSelectedHouseGrid.getDeviceListSizeByRoomPosition(position);
     }
 
-    public boolean checkIfRoomListIfEmpty(int position){
+    public boolean checkIfRoomListIsEmpty(int position){
         return mHouse.checkIfRoomListInGridIsEmpty(position);
     }
 
@@ -48,7 +56,7 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridControll
     }
 
     public Device getDeviceFromPositionInList(int pos1, int pos2){
-       return mSelectedHouseGrid.getRoomInTheGridByPosition(pos1).getDeviceList().getDeviceByPosition(pos2);
+        return mSelectedHouseGrid.getRoomByHGPosition(pos1).getmDeviceList().getDeviceByPosition(pos2);
     }
 
     public double getNominalPowerOfSelectedMeasurableObjects(){
@@ -65,5 +73,9 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridControll
 
     public int getSizeOfRoomListInGrid(int position){
         return mHouse.getTheSizeOfRoomListInAGrid(position);
+    }
+
+    public boolean checkIfObjInList(Measurable measurable){
+        return mMeasurableList.checkIfMeasurableObjIsInList(measurable);
     }
 }
