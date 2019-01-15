@@ -41,6 +41,12 @@ public class Main {
         House houseEdificioB = new House(roomList, gridList, address, insertedGeoArea);
         houseEdificioB.getmInsertedGeoArea().setInsertedIn(insertedGeoArea);
 
+        // House Grids
+        String houseGridName = "Main Grid";
+        double maximumContractedPower = 200;
+        HouseGrid houseGrid = new HouseGrid(houseGridName, maximumContractedPower, roomList);
+        gridList.addHouseGridToTheList(houseGrid);
+
         // Rooms
         String name = "B107";
         int houseFloor = 1;
@@ -52,6 +58,7 @@ public class Main {
         houseEdificioB.addRoom(room1);
         room1.addSensorToTheListOfSensorsInTheRoom(sensor);
         houseEdificioB.addRoom(room1);
+        houseGrid.attachRoomToTheRoomList(room1);
 
         String name2 = "B109";
         Room room2 = new Room(name2, houseFloor, dimensions);
@@ -109,7 +116,15 @@ public class Main {
         Device dev1 = new Device("Lamp1", room1, deviceSpecs1);
 
         room1.addDevice(dev1);
-*/
+        */
+
+        // Devices
+        double hotWaterTemp = 55;
+        double maximumVolume = 100;
+        double nominalPower1 = 44;
+        DeviceSpecs deviceSpecs2 = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower1);
+        Device dev2 = new Device("Titan SCR2 N-120", room1, deviceSpecs2);
+        room1.addDevice(dev2);
 
         // Power Source Type (and List)
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");

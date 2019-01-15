@@ -112,9 +112,12 @@ public class Menu {
         content.append("\n");
         content.append("2-Maximum temperature of a room in a given day");
         content.append("\n");
+        // JUST TESTING
+        content.append("3-Estimate total energy used to heat water in a given day ");
+        content.append("\n");
         content.append("0-Return to the previous menu");
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 2);
+        return InputValidator.getIntRange(label, 0, 3);
     }
 
     public static int houseGridMenu() {
