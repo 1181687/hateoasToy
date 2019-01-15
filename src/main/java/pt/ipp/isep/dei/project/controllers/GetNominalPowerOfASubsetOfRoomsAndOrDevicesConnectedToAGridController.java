@@ -27,14 +27,6 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridControll
         mSelectedHouseGrid = this.mHouse.getHouseGridByPosition(position);
     }
 
-    public String getRoomListToStringInAGrid(){
-        return mSelectedHouseGrid.getRoomListToStringInAGrid();
-    }
-
-    public int getSizeOfRoomListConnectedToGrid(){
-        return mSelectedHouseGrid.sizeOfTheRoomListInAGrid();
-    }
-
     public Room getChosenRoomInTheGrid(int position){
         return mSelectedHouseGrid.getRoomInTheGridByPosition(position);
     }
@@ -47,13 +39,9 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridControll
         return mSelectedHouseGrid.getSizeOfListOfDevicesOfRoomAttachedToGrid(position);
     }
 
-    /*public void addRoomOrDeviceToMeasurableList(Measurable measurable){
-        mSelectedHouseGrid.addRoomOrDeviceToMeasurableList(measurable);
+    /*public boolean checkIfRoomListIfEmpty(int position){
+        return mHouse.checkIfRoomListInGridIsEmpty(position);
     }*/
-
-    public boolean checkIfRoomListIfEmpty(){
-        return mSelectedHouseGrid.checkIsRoomListIsEmpty();
-    }
 
     public boolean checkIfDeviceListIsEmpty(int position){
         return mSelectedHouseGrid.checkIfDeviceListIsEmpty(position);
@@ -70,4 +58,12 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridControll
     public boolean addAMeasurableObject(Measurable measurable){
         return mMeasurableList.addMeasurableObjToMeasurableList(measurable);
     }
+
+    /*public String getRoomsInTheHouseGrid(int position){
+        return mHouse.getRoomsInTheHouseGrid(position);
+    }
+
+    public int getSizeOfRoomListInGrid(int position){
+        return mHouse.getTheSizeOfRoomListInAGrid(position);
+    }*/
 }
