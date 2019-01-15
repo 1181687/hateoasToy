@@ -11,6 +11,7 @@ public class Main {
         GeoAreaTypeList geoAreaTypeList = new GeoAreaTypeList();
         GeoAreaList geoAreaList = new GeoAreaList();
         RoomList roomList = new RoomList();
+        DeviceList deviceList = new DeviceList();
         HouseGridList gridList = new HouseGridList();
 
         // MOCK OBJECTS
@@ -40,8 +41,13 @@ public class Main {
         House houseEdificioB = new House(roomList, gridList, address, insertedGeoArea);
         houseEdificioB.getmInsertedGeoArea().setInsertedIn(insertedGeoArea);
 
-        // Rooms
+        // House Grids
+        String houseGridName = "Main Grid";
+        double maximumContractedPower = 200;
+        HouseGrid houseGrid = new HouseGrid(houseGridName, maximumContractedPower, roomList);
+        gridList.addHouseGridToTheList(houseGrid);
 
+        // Rooms
         String name = "B107";
         int houseFloor = 1;
         double height = 3.5;
@@ -52,10 +58,73 @@ public class Main {
         houseEdificioB.addRoom(room1);
         room1.addSensorToTheListOfSensorsInTheRoom(sensor);
         houseEdificioB.addRoom(room1);
+        houseGrid.attachRoomToTheRoomList(room1);
 
         String name2 = "B109";
         Room room2 = new Room(name2, houseFloor, dimensions);
         houseEdificioB.addRoom(room2);
+
+        //GridList
+        String name3 = "C205";
+        int houseFloor3 = 1;
+        double height3 = 3.5;
+        double length3 = 11;
+        double width3 = 7;
+        Dimensions dimensions2 = new Dimensions(height3, length3, width3);
+        Room room3 = new Room(name3, houseFloor3, dimensions2);
+
+
+        double luminousFlux = 10.0;
+        double nominalPower = 44;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower);
+        Device dev1 = new Device("Lamp1", room1, deviceSpecs1);
+
+        DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
+        DeviceSpecs specWashing = new WashingMachine(100, 100);
+        DeviceSpecs specDishWasher = new DishWasher(100, 100);
+        Device dev100 = new Device("FridgeAriston", room1, specFridge);
+        Device dev200 = new Device("WashingMachineBosh", room1, specWashing);
+        Device dev300 = new Device("DishWasher", room1, specDishWasher);
+
+
+        room1.addDevice(dev1);
+        room1.addDevice(dev100);
+
+        luminousFlux = 10.0;
+        nominalPower = 44;
+        deviceSpecs1 = new Lamp(luminousFlux, nominalPower);
+        Device dev10 = new Device("Lamp2", room2, deviceSpecs1);
+        room2.addDevice(dev10);
+        room2.addDevice(dev200);
+        room3.addDevice(dev300);
+
+        roomList.addRoom(room1);
+        roomList.addRoom(room2);
+        RoomList roomList2 = new RoomList();
+        roomList.addRoom(room3);
+
+        HouseGrid houseGrid1 = new HouseGrid("HG1", 1000, roomList);
+        HouseGrid houseGrid2 = new HouseGrid("HG2", 1000, roomList2);
+        gridList.addHouseGridToTheList(houseGrid1);
+        gridList.addHouseGridToTheList(houseGrid2);
+
+        /*
+        //mock device
+        double luminousFlux = 10.0;
+        double nominalPower = 44;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower);
+        Device dev1 = new Device("Lamp1", room1, deviceSpecs1);
+
+        room1.addDevice(dev1);
+        */
+
+        // Devices
+        double hotWaterTemp = 55;
+        double maximumVolume = 100;
+        double nominalPower1 = 44;
+        DeviceSpecs deviceSpecs2 = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower1);
+        Device dev2 = new Device("Titan SCR2 N-120", room1, deviceSpecs2);
+        room1.addDevice(dev2);
 
         // Power Source Type (and List)
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
@@ -65,7 +134,7 @@ public class Main {
         powerSourceTypeList.addPowerSourceType(powerSourceType2);
 
         //UI levels
-        Admin admin = new Admin(geoAreaTypeList, geoAreaList, sensorTypeList, houseEdificioB, powerSourceTypeList, roomList, gridList);
+        Admin admin = new Admin(geoAreaTypeList, geoAreaList, deviceList, sensorTypeList, houseEdificioB, powerSourceTypeList, roomList, gridList);
         RegularUser regularUser = new RegularUser(geoAreaTypeList, geoAreaList, sensorTypeList, houseEdificioB, sensorTypeTemperature);
 
         int userOption = -1;

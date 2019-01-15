@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerOfAGridController;
 import pt.ipp.isep.dei.project.model.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -107,9 +108,9 @@ public class GetNominalPowerOfAGridControllerTest {
 
         Dimensions dimensions = new Dimensions(2,5,10);
         Room room1 = new Room("Quarto",1,dimensions);
-        DeviceSpecs specs = new Fridge(25,50);
-        Device fridge1 = new Device("Fridge",room1,specs,5);
-        Device fridge2 = new Device("Fridge",room1,specs,10);
+        DeviceSpecs specs = new Fridge(25, 50, 5000, 7.5);
+        Device fridge1 = new Device("Fridge", room1, specs);
+        Device fridge2 = new Device("Fridge", room1, specs);
 
         room1.addDevice(fridge1);
         room1.addDevice(fridge2);

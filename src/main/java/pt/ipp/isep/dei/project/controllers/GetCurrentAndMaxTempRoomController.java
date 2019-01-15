@@ -51,8 +51,8 @@ public class GetCurrentAndMaxTempRoomController {
      *
      * @return lenght of roomList
      */
-    public int lengthOfRoomList() {
-        return this.mHouse.listSize();
+    public int getLengthOfRoomList() {
+        return this.mHouse.getRoomListSize();
     }
 
     /**
@@ -73,9 +73,5 @@ public class GetCurrentAndMaxTempRoomController {
      */
     public double getMaximumTemperatureOfARoomInAGivenDay(String name, SensorType type, LocalDate date) {
         return this.mHouse.getMaximumTemperatureOfARoomInASpecificDay(name, type, date);
-    }
-
-    public LocalDate createANewDate(int year, int month, int day) {
-        return mHouse.createANewDate(year, month, day);
     }
 }

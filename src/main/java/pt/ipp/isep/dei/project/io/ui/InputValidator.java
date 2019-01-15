@@ -230,4 +230,28 @@ public class InputValidator {
 
         return validDate;
     }
+
+    /**
+     * Method that keeps displaying the string label until the input is a double.
+     *
+     * @param label string that is showed to the user, indicating what type of input he need to introduce
+     * @return a int number
+     */
+    public static double getDouble(String label) {
+        Scanner in = new Scanner(System.in);
+        double x = -1;
+        boolean flag;
+        do {
+            System.out.println(label);
+            try {
+                flag = false;
+                x = in.nextDouble();
+            } catch (Exception e) {
+                System.out.println("Error! Please insert a valid number.");
+                flag = true;
+                in.nextLine();
+            }
+        } while (flag);
+        return x;
+    }
 }

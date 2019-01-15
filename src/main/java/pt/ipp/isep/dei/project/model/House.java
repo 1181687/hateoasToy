@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class House {
     private RoomList mRoomList;
@@ -154,11 +155,13 @@ public class House {
      */
     public Measurement getLatestMeasurementBySensorType(String name, SensorType type) {
         Room room = mRoomList.getRoomByName(name);
-        if (room == null)
+        if (Objects.isNull(room)) {
             return null;
+        }
         Measurement measurement = room.getLatestMeasurementBySensorType(type);
-        if (measurement == null)
+        if (Objects.isNull(measurement)) {
             return null;
+        }
         return measurement;
     }
 
@@ -173,7 +176,7 @@ public class House {
      * Method that get the size of the room list.
      * @return size of the list of rooms.
      */
-    public int listSize() {
+    public int getRoomListSize() {
         return mRoomList.listSize();
     }
 
@@ -225,6 +228,16 @@ public class House {
         return mRoomList.getDeviceListContentOfARoom(position);
     }
 
+
+    /**
+     * Method that checks if the Device List of the room is empty
+     *
+     * @param position chosen room
+     */
+    public boolean checkIfDeviceListIsEmpty(int position) {
+        return mRoomList.checkIfDeviceListIsEmpty(position);
+    }
+
     /**
      * method that displays the sensor list content of a Room
      * @param position
@@ -263,20 +276,11 @@ public class House {
                 getAllDevicesList().getContentNameLocationOrderedByType();
     }
 
-    /**
-     * Method that checks if the Device List of the room is empty
-     *
-     * @param position chosen room
-     */
-    public boolean checkIfDeviceListIsEmpty(int position) {
-        return mRoomList.checkIfDeviceListIsEmpty(position);
-    }
-
     public boolean checkIfHouseGridListIsEmpty(){
         return mListHouseGrids.checkIfHouseGridListIsEmpty();
     }
 
-    public String getHouseGridList(){
+    public String getHouseGridListContent() {
         return mListHouseGrids.getHouseGridListToString();
     }
 
@@ -284,11 +288,44 @@ public class House {
         return mListHouseGrids.getHouseGridByPosition(position);
     }
 
-    public int houseGridListLength(){
+    public int getHouseGridListLength() {
        return this.mListHouseGrids.getmHouseGridsList().size();
     }
 
+    ////////////////////////////////////////////////////////
+    public HouseGridList getHouseGridList() {
+        return this.mListHouseGrids;
+    }
+
+    public boolean checkIfThereAreNoDevicesHGbyPosition(int position) {
+        return this.getHouseGridList().getHouseGridByPosition(position).checkIfThereAreNoDevices();
+    }
+
+
     public int houseRoomListLength() {
         return this.mRoomList.listSize();
+    }
+
+    public String getHGNameByHGPosition(int position) {
+        return this.mListHouseGrids.getNameByHGPosition(position);
+    }
+
+    /**
+     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
+     * class Electric Water Heater.
+     *
+     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
+     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
+     */
+    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
+        mListHouseGrids.setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
+    }
+
+    /**
+     * @param type
+     * @return
+     */
+    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
+        return mListHouseGrids.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
     }
 }

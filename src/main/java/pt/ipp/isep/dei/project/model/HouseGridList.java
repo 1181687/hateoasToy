@@ -83,7 +83,7 @@ public class HouseGridList {
      *
      * @return True or false.
      */
-    public boolean checkIfHouseGridListIsEmpty (){
+    public boolean checkIfHouseGridListIsEmpty() {
         return mHouseGridsList.isEmpty();
     }
 
@@ -110,7 +110,7 @@ public class HouseGridList {
      * Method that checks if a room isn't already in a specific grid in the list.
      *
      * @param chosenGrid Specified house grid in the list.
-     * @param room Specified room.
+     * @param room       Specified room.
      * @return True or false.
      */
     public boolean checkIfARoomIsAlreadyInAHouseGrid(HouseGrid chosenGrid, Room room) {
@@ -141,5 +141,37 @@ public class HouseGridList {
      */
     public DeviceList getAllDevicesListByPosition(int position) {
         return getmHouseGridsList().get(position).getAllDevicesList();
+    }
+
+    public String getNameByHGPosition(int position) {
+        if (mHouseGridsList.isEmpty()) {
+            return null;
+        }
+        return mHouseGridsList.get(position).getmHouseGridName();
+    }
+
+    /**
+     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
+     * class Electric Water Heater.
+     *
+     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
+     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
+     */
+    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
+        for (int index = 0; index < mHouseGridsList.size(); index++) {
+            mHouseGridsList.get(index).setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
+        }
+    }
+
+    /**
+     * @param type
+     * @return
+     */
+    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
+        double energyConsumption = 0;
+        for (int index = 0; index < mHouseGridsList.size(); index++) {
+            energyConsumption += mHouseGridsList.get(index).getEnergyConsumptionInADayOfAllDevicesOfAType(type);
+        }
+        return energyConsumption;
     }
 }

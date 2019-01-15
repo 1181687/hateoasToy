@@ -6,15 +6,17 @@ public class Admin {
     GeoAreaTypeList geoAreaTypeList;
     GeoAreaList geoAreaList;
     SensorTypeList sensorTypeList;
+    DeviceList deviceList;
     House house;
     PowerSourceTypeList powerSourceTypeList;
     RoomList roomList;
     HouseGridList gridList;
 
-    public Admin(GeoAreaTypeList geoAreaTypeList, GeoAreaList geoAreaList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseGridList gridList) {
+    public Admin(GeoAreaTypeList geoAreaTypeList, GeoAreaList geoAreaList, DeviceList deviceList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseGridList gridList) {
         this.geoAreaTypeList = geoAreaTypeList;
         this.geoAreaList = geoAreaList;
         this.sensorTypeList = sensorTypeList;
+        this.deviceList = deviceList;
         this.house = house;
         this.powerSourceTypeList = powerSourceTypeList;
         this.roomList = roomList;
@@ -91,10 +93,13 @@ public class Admin {
                     ui253.run();
                     break;
                 case 5:
-                    GetListOfSensorsRoom ui250 = new GetListOfSensorsRoom(house);
-                    ui250.run();
+                    GetListOfSensorsAndDevicesRoom ui201 = new GetListOfSensorsAndDevicesRoom(house);
+                    ui201.run2();
                     break;
-
+                case 6:
+                    GetListOfSensorsAndDevicesRoom ui250 = new GetListOfSensorsAndDevicesRoom(house);
+                    ui250.run1();
+                    break;
             }
             option = Menu.adminHouseMenu();
         }
@@ -123,6 +128,10 @@ public class Admin {
                 case 4:
                     DetachRoomFromHouseGrid ui149 = new DetachRoomFromHouseGrid(gridList, roomList);
                     ui149.run();
+                    break;
+                case 5:
+                    GetDevicesInHouseGrid ui160 = new GetDevicesInHouseGrid(house);
+                    ui160.run();
                     break;
             }
             option = Menu.houseGridMenu();

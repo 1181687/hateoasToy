@@ -59,6 +59,11 @@ public class RegularUser {
                     GetCurrentAndMaxTempRoom ui610 = new GetCurrentAndMaxTempRoom(house, mSensorTypeTemperature);
                     ui610.run2();
                     break;
+                case 3:
+                    // JUST TESTING
+                    EstimateEnergyUsedByElectricWaterHeater ui752 = new EstimateEnergyUsedByElectricWaterHeater(house);
+                    ui752.run();
+                    break;
             }
             option = Menu.regularUserRoomsMenu();
         }
