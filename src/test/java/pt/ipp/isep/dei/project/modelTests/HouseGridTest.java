@@ -205,8 +205,8 @@ public class HouseGridTest {
         room2.addDevice(dev6);
 
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        grid1.attachRoomToTheRoomList(room1);
-        grid1.attachRoomToTheRoomList(room2);
+        grid1.attachRoom(room1);
+        grid1.attachRoom(room2);
 
         double expectedResult = 185;
 

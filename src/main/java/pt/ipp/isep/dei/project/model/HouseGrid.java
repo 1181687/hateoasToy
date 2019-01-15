@@ -172,7 +172,7 @@ public class HouseGrid implements Measurable {
      * @param volumeOfWaterToHeat Sets the amount of water to be heated.
      */
     public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
-        mRoomsConnectedToHouseGrid.setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
+        mRoomList.setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
     }
 
     /**
@@ -180,6 +180,6 @@ public class HouseGrid implements Measurable {
      * @return
      */
     public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
-        return mRoomsConnectedToHouseGrid.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
+        return mRoomList.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
     }
 }

@@ -176,10 +176,10 @@ public class HouseGridList {
     }
 
     public boolean checkIfSpecificRoomListOfGridIsEmpty(int position) {
-        return getmHouseGridsList().get(position).checkIsRoomListIsEmpty();
+        return getmHouseGridsList().get(position).checkIfRoomListIsEmpty();
     }
 
     public int getSizeOfRoomListInAGrid(int position){
-        return getmHouseGridsList().get(position).sizeOfTheRoomListInAGrid();
+        return getmHouseGridsList().get(position).getRoomListSize();
     }
 }
