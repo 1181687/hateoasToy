@@ -136,16 +136,6 @@ public class House {
         return this.mRoomList.getMaximumTemperatureInARoomInAGivenDay(name, type, date);
     }
 
-    /**
-     * This method create a new date, with a year, a month and a day.
-     * @param year
-     * @param month
-     * @param day
-     * @return date.
-     */
-    public LocalDate createANewDate(int year, int month, int day) {
-        return LocalDate.of(year, month, day);
-    }
 
     /**
      * Method that get the latest measurement by sensor type.

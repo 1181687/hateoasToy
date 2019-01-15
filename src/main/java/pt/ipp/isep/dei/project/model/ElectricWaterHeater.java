@@ -17,8 +17,6 @@ public class ElectricWaterHeater implements DeviceSpecs {
         this.mNominalPower = mNominalPower;
     }
 
-    public ElectricWaterHeater() {
-    }
 
 
     @Override

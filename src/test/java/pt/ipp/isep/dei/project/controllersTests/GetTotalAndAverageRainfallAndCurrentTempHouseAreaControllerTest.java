@@ -4,40 +4,12 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetTotalAndAverageRainfallAndCurrentTempHouseAreaController;
 import pt.ipp.isep.dei.project.model.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
-    @Test
-    public void testOfCreateANewDate() {
-        //ARRANGE
-        String zipCode = "4050";
-        double latitude = 42.1;
-        double longitude = -8.6;
-        double altitude = 100.0;
-        Location local = new Location(latitude, longitude, altitude);
-        Address address = new Address(zipCode, local);
-        HouseGridList houseGridList = new HouseGridList();
-        RoomList roomList = new RoomList();
-        AreaShape rectangleArea = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
-        House house = new House(roomList, houseGridList, address, insertedGeoArea);
-
-        GetTotalAndAverageRainfallAndCurrentTempHouseAreaController ctrl = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
-
-        int year = 2001, month = 12, day = 1;
-        LocalDate expectedResult = LocalDate.of(2001, 12, 1);
-
-        //ACT
-        LocalDate result = ctrl.createANewDate(year, month, day);
-        //ASSERT
-        assertEquals(expectedResult, result);
-
-    }
 
     @Test
     public void testTotalDailyMeasurementInAHouseArea () {

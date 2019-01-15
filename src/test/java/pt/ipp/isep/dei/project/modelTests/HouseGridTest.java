@@ -73,7 +73,7 @@ public class HouseGridTest {
         assertEquals(expectedResult,result);
     }
 
-    @Test
+    /*@Test
     public void testGetAllDevicesList() {
         //Room ONE
         String name = "Kitchen";
@@ -120,7 +120,7 @@ public class HouseGridTest {
         DeviceList result = housegrid.getAllDevicesList();
 
         assertEquals(expectedResult, result);
-    }
+    }*/
 
     @Test
     public void getEnergyConsumptionInADayOfAllDevicesOfATypeTestWithValidValues() {
