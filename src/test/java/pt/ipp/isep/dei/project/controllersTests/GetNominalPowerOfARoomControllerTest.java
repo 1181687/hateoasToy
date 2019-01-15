@@ -4,7 +4,8 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerOfARoomController;
 import pt.ipp.isep.dei.project.model.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class GetNominalPowerOfARoomControllerTest {
@@ -119,7 +120,7 @@ class GetNominalPowerOfARoomControllerTest {
         assertEquals(result, expectedResult);
     }
 
-    @Test
+   /* @Test
     void getNominalPowerNoDevices() {
         RoomList roomList = new RoomList();
         HouseGridList houseGridList = new HouseGridList();
@@ -166,7 +167,8 @@ class GetNominalPowerOfARoomControllerTest {
         //Assert
 
         assertEquals(result, expectedResult);
-    }
+    }*/
+
 
     @Test
     void testGetRoomListLength() {
@@ -235,7 +237,7 @@ class GetNominalPowerOfARoomControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    /*@Test
     public void testifDeviceListIsEmptyWithDevices() {
         RoomList roomList = new RoomList();
         HouseGridList houseGridList = new HouseGridList();
@@ -276,5 +278,5 @@ class GetNominalPowerOfARoomControllerTest {
 
         //Assert
         assertFalse(result);
-    }
+    }*/
 }

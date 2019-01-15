@@ -42,10 +42,10 @@ public class Main {
         houseEdificioB.getmInsertedGeoArea().setInsertedIn(insertedGeoArea);
 
         // House Grids
-        /*String houseGridName = "Main Grid";
+        String houseGridName = "Main Grid";
         double maximumContractedPower = 200;
         HouseGrid houseGrid = new HouseGrid(houseGridName, maximumContractedPower, roomList);
-        gridList.addHouseGridToTheList(houseGrid);*/
+        gridList.addHouseGridToTheList(houseGrid);
 
         // Rooms
         String name = "B107";

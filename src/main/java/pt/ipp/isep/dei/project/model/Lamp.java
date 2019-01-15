@@ -12,8 +12,6 @@ public class Lamp implements DeviceSpecs {
         this.mNominalPower = mNominalPower;
     }
 
-    public Lamp() {
-    }
 
     @Override
     public String getmTypeName() {

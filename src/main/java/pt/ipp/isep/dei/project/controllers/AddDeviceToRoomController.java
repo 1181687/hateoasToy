@@ -5,16 +5,16 @@ import pt.ipp.isep.dei.project.model.DeviceList;
 import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.RoomList;
 
-import java.util.List;
-
 public class AddDeviceToRoomController {
 
     private Device mDevice;
     private DeviceList mDeviceList;
     private RoomList mListOfRooms;
+    private Room mRoom;
 
-    public AddDeviceToRoomController (DeviceList deviceList){
+    public AddDeviceToRoomController(DeviceList deviceList, RoomList roomList) {
         this.mDeviceList = deviceList;
+        this.mListOfRooms = roomList;
     }
 
     /*public boolean checkIfRoomListIsEmpty() {
@@ -26,19 +26,22 @@ public class AddDeviceToRoomController {
     }
 
     public Room getRoomFromList(int position) {
-        return mListOfRooms.getRoomFromAPosition(position);
+        return mRoom = mListOfRooms.getRoomFromAPosition(position);
     }
 
     public int roomListLength() {
         return mListOfRooms.getmRoomList().size();
     }
 
-    public List<String> getTypeNamesList (){
+    /*public List<String> getTypeNamesList (){
         return mDevice.getTypeNames();
-    }
+    }*/
 
     public Device createNewElectricWaterHeater(String nome, Room selectedRoom, double mHotWaterTemperature, double mMaximumVolume, double mNominalPower) {
-        return mDeviceList.newElectricWaterHeater(nome, selectedRoom, mHotWaterTemperature, mMaximumVolume, mNominalPower);
+        return mDevice = mDeviceList.newElectricWaterHeater(nome, selectedRoom, mHotWaterTemperature, mMaximumVolume, mNominalPower);
     }
 
+    public boolean addDeviceToRoom() {
+        return mRoom.addDevice(mDevice);
+    }
 }

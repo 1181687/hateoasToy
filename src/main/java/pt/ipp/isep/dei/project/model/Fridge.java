@@ -15,8 +15,6 @@ public class Fridge implements DeviceSpecs {
         this.mNominalPower = mNominalPower;
     }
 
-    public Fridge() {
-    }
 
     @Override
     public String getmTypeName() {

@@ -13,8 +13,6 @@ public class DishWasher implements DeviceSpecs {
         this.mNominalPower = mNominalPower;
     }
 
-    public DishWasher() {
-    }
 
     /**
      * @return
