@@ -20,7 +20,7 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGrid {
                 "and/or devices of your choosing connected to that grid: \n" + mController.listHouseGrids();
         int positionHG = InputValidator.getIntRange(label1, 1, mController.getHouseGridListLength());
         mController.getHouseGridbyPosition(positionHG - 1);
-        /*if (mController.checkIfRoomListIfEmpty(positionHG-1)) {
+        if (mController.checkIfRoomListIfEmpty(positionHG-1)) {
             System.out.println("There are no rooms in this house grid. Please, add one.\n");
             return;
         }
@@ -47,7 +47,5 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGrid {
                 if (addOtherDeviceOrNot == 0) {
                 }
             }
-
-        }*/
     }
 }
