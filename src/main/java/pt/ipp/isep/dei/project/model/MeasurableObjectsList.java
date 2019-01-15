@@ -2,9 +2,9 @@ package pt.ipp.isep.dei.project.model;
 
 import java.util.*;
 
-public class MeasurableObjectsList {
+public class MeasurableObjectsList implements Measurable {
     private Set<Measurable> mMeasurableList = new HashSet<>();
-    // private List<Measurable> mMeasurableList = new ArrayList<>();
+    //private List<Measurable> mMeasurableList = new ArrayList<>();
 
     public MeasurableObjectsList() {
     }
@@ -13,8 +13,12 @@ public class MeasurableObjectsList {
         return mMeasurableList;
     }
 
-    public boolean addMeasurableObjToMeasurableList(Measurable measurable) {
-        return this.mMeasurableList.add(measurable);
+    /*public List<Measurable> getmMeasurableList() {
+        return mMeasurableList;
+    }*/
+
+    public void addMeasurableObjToMeasurableList(Measurable measurable) {
+        this.mMeasurableList.add(measurable);
     }
 
     public double getNominalPower() {
