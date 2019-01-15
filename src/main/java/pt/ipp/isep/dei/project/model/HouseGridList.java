@@ -142,4 +142,29 @@ public class HouseGridList {
     public DeviceList getAllDevicesListByPosition(int position) {
         return getmHouseGridsList().get(position).getAllDevicesList();
     }
+
+    /**
+     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
+     * class Electric Water Heater.
+     *
+     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
+     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
+     */
+    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
+        for (int index = 0; index < mHouseGridsList.size(); index++) {
+            mHouseGridsList.get(index).setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
+        }
+    }
+
+    /**
+     * @param type
+     * @return
+     */
+    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
+        double energyConsumption = 0;
+        for (int index = 0; index < mHouseGridsList.size(); index++) {
+            energyConsumption += mHouseGridsList.get(index).getEnergyConsumptionInADayOfAllDevicesOfAType(type);
+        }
+        return energyConsumption;
+    }
 }

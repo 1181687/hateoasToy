@@ -27,23 +27,27 @@ public class ElectricWaterHeater implements DeviceSpecs {
     }
 
 
-    /**
-     * @param mVolumeOfWaterToHeat
+    /** Method that sets the volume of water to be heated.
+     * @param mVolumeOfWaterToHeat Volume of water to be heated.
      */
     public void setmVolumeOfWaterToHeat(double mVolumeOfWaterToHeat) {
+        if (mVolumeOfWaterToHeat > mMaximumVolume) {
+            throw new RuntimeException("The device can only take up a volume of " + mMaximumVolume
+                    + ". Please insert a valid value.");
+        }
         this.mVolumeOfWaterToHeat = mVolumeOfWaterToHeat;
     }
 
-    /**
-     * @param mColdWaterTemperature
+    /** Method that sets the cold-water temperature.
+     * @param mColdWaterTemperature Cold-water temperature to be used.
      */
     public void setmColdWaterTemperature(double mColdWaterTemperature) {
         this.mColdWaterTemperature = mColdWaterTemperature;
     }
 
     /**
-     * Method that returns the energy consumption of an Electric Water Heater in a given day based on the hours in use,
-     * the cold-water temperature and the volume of water produced.
+     * Method that returns the energy consumption of an Electric Water Heater in a given day based on the cold-water
+     * temperature and the volume of water to be heated.
      *
      * @return Energy consumption of the device in a given day.
      */
@@ -53,6 +57,11 @@ public class ElectricWaterHeater implements DeviceSpecs {
         return specificHeatOfWater * mVolumeOfWaterToHeat * differenceInTemperature * mPerformanceRatio;
     }
 
+    /**
+     * Method that returns the nominal power.
+     *
+     * @return Nominal power.
+     */
     @Override
     public double getmNominalPower() {
         return mNominalPower;
