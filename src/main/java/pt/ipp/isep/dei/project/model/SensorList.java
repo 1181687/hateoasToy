@@ -5,12 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SensorList {
-    private List<Sensor> mSensorList = new ArrayList<>();
+    private List<Sensor> mSensorList;
 
     /**
      * Constructor method.
      */
     public SensorList() {
+        this.mSensorList = new ArrayList<>();
     }
 
     /**

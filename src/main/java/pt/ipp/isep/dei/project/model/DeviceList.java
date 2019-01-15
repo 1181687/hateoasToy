@@ -205,4 +205,44 @@ public class DeviceList {
         return mDeviceList.isEmpty();
     }
 
+    /**
+     * @param type
+     * @return
+     */
+    public List<Device> getDevicesByType(String type) {
+        List<Device> newList = new ArrayList<>();
+        for (int index = 0; index < mDeviceList.size(); index++) {
+            if (mDeviceList.get(index).getType().equals(type)) {
+                newList.add(mDeviceList.get(index));
+            }
+        }
+        return newList;
+    }
+
+    /**
+     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
+     * class Electric Water Heater.
+     *
+     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
+     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
+     */
+    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
+        List<Device> newList = getDevicesByType("Electric Water Heater");
+        for (int index = 0; index < newList.size(); index++) {
+            newList.get(index).setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
+        }
+    }
+
+    /**
+     * @param type
+     * @return
+     */
+    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
+        double energyConsumption = 0;
+        List<Device> listOfDevicesWithTheType = getDevicesByType(type);
+        for (int index = 0; index < listOfDevicesWithTheType.size(); index++) {
+            energyConsumption += listOfDevicesWithTheType.get(index).getEnergyConsumptionInADay();
+        }
+        return energyConsumption;
+    }
 }

@@ -69,9 +69,11 @@ public class Menu {
         content.append("\n");
         content.append("6-Check the list of sensors in a room");
         content.append("\n");
+        content.append("7-Check the nominal power of all devices in a room");
+        content.append("\n");
         content.append("0-Return to the previous menu");
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 6);
+        return InputValidator.getIntRange(label, 0, 7);
     }
 
     public static int regularUserMenu() {
@@ -110,9 +112,12 @@ public class Menu {
         content.append("\n");
         content.append("2-Maximum temperature of a room in a given day");
         content.append("\n");
+        // JUST TESTING
+        content.append("3-Estimate total energy used to heat water in a given day ");
+        content.append("\n");
         content.append("0-Return to the previous menu");
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 2);
+        return InputValidator.getIntRange(label, 0, 3);
     }
 
     public static int houseGridMenu() {
@@ -129,8 +134,10 @@ public class Menu {
         content.append("\n");
         content.append("5-Get list of devices in a house grid");
         content.append("\n");
+        content.append("6-Get nominal power of a subset of room and/or devices");
+        content.append("\n");
         content.append("0-Return to the previous menu");
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 5);
+        return InputValidator.getIntRange(label, 0, 6);
     }
 }

@@ -980,31 +980,6 @@ public class HouseTest {
     }
 
     @Test
-    public void testOfCreateANewDate() {
-        //ARRANGE
-        String zipCode = "4050";
-        double latitude = 42.1;
-        double longitude = -8.6;
-        double altitude = 100.0;
-        Location local = new Location(latitude, longitude, altitude);
-        Address address = new Address(zipCode, local);
-        HouseGridList houseGridList = new HouseGridList();
-        RoomList roomList = new RoomList();
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
-        House house = new House(roomList, houseGridList, address, insertedGeoArea);
-        int year = 2001, month = 12, day = 1;
-        LocalDate expectedResult = LocalDate.of(2001, 12, 1);
-
-        //ACT
-        LocalDate result = house.createANewDate(year, month, day);
-        //ASSERT
-        assertEquals(expectedResult, result);
-
-    }
-
-    @Test
     public void testCheckIfNameAlreadyExists() {
         String nameToCheck = "Room one";
         String name = "ROOM ONE";
@@ -1259,7 +1234,7 @@ public class HouseTest {
     }
 
 
-    @Test
+   /* @Test
     public void TestGetAllDevicesListByGridPosition() {
         //Room ONE
         String name = "Kitchen";
@@ -1319,7 +1294,7 @@ public class HouseTest {
         DeviceList result = house.getAllDevicesListByGridPosition(0);
 
         assertEquals(expectedResult, result);
-    }
+    }*/
 
     /*@Test
     public void testGetDeviceListContentNameTypeLocationByHG() {
@@ -1418,4 +1393,59 @@ public class HouseTest {
 
     }
 
+    @Test
+    public void getEnergyConsumptionInADayOfAllDevicesOfATypeTestWithValidValues() {
+        // Arrange
+        // Dimension Instantiation
+        double height = 3;
+        double length = 3.5;
+        double width = 3.5;
+        Dimensions dim = new Dimensions(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Room", 2, dim);
+
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp0 = 50;
+        double maximumVolume0 = 150;
+        double nominalPower0 = 100;
+        DeviceSpecs electricWaterHeater0 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0);
+        double hotWaterTemp1 = 60;
+        double maximumVolume1 = 200;
+        double nominalPower1 = 110;
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, nominalPower1);
+
+        // Device Instantiation
+        Device device0 = new Device("Electric Water Heater", room, electricWaterHeater0);
+        Device device1 = new Device("Electric Water Heater", room, electricWaterHeater1);
+
+        room.addDevice(device0);
+        room.addDevice(device1);
+
+        // RoomList Instantiation
+        RoomList roomList = new RoomList();
+        roomList.addRoom(room);
+
+        // HouseGrid Instantiation
+        String houseGridName = "Main Grid";
+        double maximumContractedPower = 200;
+        HouseGrid houseGrid = new HouseGrid(houseGridName, maximumContractedPower, roomList);
+
+        // HouseGridList Instantiation
+        HouseGridList houseGridList = new HouseGridList();
+        houseGridList.addHouseGridToTheList(houseGrid);
+
+        // House Instantiation
+        House house = new House(roomList, houseGridList, null, null);
+
+        house.setColdWaterTempAndVolumeOfWaterToHeat(30, 100);
+
+        double expectedResult = 5233.5;
+
+        // Act
+        double result = house.getEnergyConsumptionInADayOfAllDevicesOfAType("Electric Water Heater");
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
+    }
 }

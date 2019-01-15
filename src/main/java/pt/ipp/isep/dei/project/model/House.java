@@ -136,16 +136,6 @@ public class House {
         return this.mRoomList.getMaximumTemperatureInARoomInAGivenDay(name, type, date);
     }
 
-    /**
-     * This method create a new date, with a year, a month and a day.
-     * @param year
-     * @param month
-     * @param day
-     * @return date.
-     */
-    public LocalDate createANewDate(int year, int month, int day) {
-        return LocalDate.of(year, month, day);
-    }
 
     /**
      * Method that get the latest measurement by sensor type.
@@ -308,5 +298,36 @@ public class House {
 
     public String getHGNameByHGPosition(int position) {
         return this.mListHouseGrids.getNameByHGPosition(position);
+    }
+
+    /**
+     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
+     * class Electric Water Heater.
+     *
+     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
+     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
+     */
+    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
+        mListHouseGrids.setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
+    }
+
+    /**
+     * @param type
+     * @return
+     */
+    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
+        return mListHouseGrids.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
+    }
+
+    public String getRoomsInTheHouseGrid(int position){
+        return mListHouseGrids.getRoomsInTheHouseGrid(position);
+    }
+
+    public boolean checkIfRoomListInGridIsEmpty(int position){
+        return mListHouseGrids.checkIfSpecificRoomListOfGridIsEmpty(position);
+    }
+
+    public int getTheSizeOfRoomListInAGrid(int position){
+        return mListHouseGrids.getSizeOfRoomListInAGrid(position);
     }
 }

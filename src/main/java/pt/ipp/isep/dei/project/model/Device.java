@@ -1,8 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
 
-import java.util.List;
-
 public class Device implements Measurable {
     private String mName;
     private Room mLocation;
@@ -23,7 +21,7 @@ public class Device implements Measurable {
         return this.mLocation;
     }
 
-    public List<String> getTypeNames (){
+   /* public List<String> getTypeNames (){
 
         List <String> listOfTypeNames = null;
 
@@ -44,7 +42,7 @@ public class Device implements Measurable {
 
         return listOfTypeNames;
     }
-
+*/
 
     /**
      * get method
@@ -71,5 +69,26 @@ public class Device implements Measurable {
      */
     public String getType() {
         return mSpec.getmTypeName();
+    }
+
+    /**
+     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
+     * class Electric Water Heater.
+     *
+     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
+     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
+     */
+    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
+        ((ElectricWaterHeater) mSpec).setmColdWaterTemperature(coldWaterTemp);
+        ((ElectricWaterHeater) mSpec).setmVolumeOfWaterToHeat(volumeOfWaterToHeat);
+    }
+
+    /**
+     * Method that gets the energy consumption in a day.
+     *
+     * @return Energy consumption of the device in a given day.
+     */
+    public double getEnergyConsumptionInADay() {
+        return mSpec.getEnergyConsumptionInADay();
     }
 }
