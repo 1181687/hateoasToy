@@ -140,7 +140,7 @@ public class HouseGrid implements Measurable {
         return mRoomList.listSize();
     }
 
-    public Room getRoomByHGPosition(int position) {
+    public Room getRoomByPosition(int position) {
         return mRoomList.getRoomFromAPosition(position);
     }
 

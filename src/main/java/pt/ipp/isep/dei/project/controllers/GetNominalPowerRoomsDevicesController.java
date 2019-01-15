@@ -2,13 +2,14 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.*;
 
-public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridController{
+public class GetNominalPowerRoomsDevicesController {
     private House mHouse;
     private HouseGrid mSelectedHouseGrid;
     private MeasurableObjectsList mMeasurableList;
 
-    public GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridController(House house) {
+    public GetNominalPowerRoomsDevicesController(House house) {
         this.mHouse=house;
+        this.mMeasurableList=new MeasurableObjectsList();
     }
 
     public boolean checkIfGridListIsEmpty(){
@@ -36,7 +37,7 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridControll
     }
 
     public Room getChosenRoomInTheGrid(int position){
-        return mSelectedHouseGrid.getRoomByHGPosition(position);
+        return mSelectedHouseGrid.getRoomByPosition(position);
     }
 
     public String getContentOfDeviceListInRoomOfGrid(int position){
@@ -56,15 +57,15 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridControll
     }
 
     public Device getDeviceFromPositionInList(int pos1, int pos2){
-        return mSelectedHouseGrid.getRoomByHGPosition(pos1).getmDeviceList().getDeviceByPosition(pos2);
+        return mSelectedHouseGrid.getRoomByPosition(pos1).getmDeviceList().getDeviceByPosition(pos2);
     }
 
     public double getNominalPowerOfSelectedMeasurableObjects(){
         return mMeasurableList.getNominalPower();
     }
 
-    public boolean addAMeasurableObject(Measurable measurable){
-        return mMeasurableList.addMeasurableObjToMeasurableList(measurable);
+    public void addAMeasurableObject(Measurable measurable){
+        mMeasurableList.addMeasurableObjToMeasurableList(measurable);
     }
 
     public String getRoomsInTheHouseGrid(int position){

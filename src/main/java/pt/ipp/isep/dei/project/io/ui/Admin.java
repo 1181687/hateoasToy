@@ -3,14 +3,15 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.model.*;
 
 public class Admin {
-    GeoAreaTypeList geoAreaTypeList;
-    GeoAreaList geoAreaList;
-    SensorTypeList sensorTypeList;
-    DeviceList deviceList;
-    House house;
-    PowerSourceTypeList powerSourceTypeList;
-    RoomList roomList;
-    HouseGridList gridList;
+    private GeoAreaTypeList geoAreaTypeList;
+    private GeoAreaList geoAreaList;
+    private SensorTypeList sensorTypeList;
+    private DeviceList deviceList;
+    private House house;
+    private PowerSourceTypeList powerSourceTypeList;
+    private RoomList roomList;
+    private HouseGridList gridList;
+    private DeviceTypes deviceTypes;
 
     public Admin(GeoAreaTypeList geoAreaTypeList, GeoAreaList geoAreaList, DeviceList deviceList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseGridList gridList) {
         this.geoAreaTypeList = geoAreaTypeList;
@@ -104,6 +105,10 @@ public class Admin {
                     GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(house);
                     ui230.run();
                     break;
+                case 8:
+                    AddDeviceToRoom ui210 = new AddDeviceToRoom(house);
+                    ui210.run();
+                    break;
             }
             option = Menu.adminHouseMenu();
         }
@@ -138,7 +143,7 @@ public class Admin {
                     ui160.run();
                     break;
                 case 6:
-                    GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGrid ui705 = new GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGrid(house);
+                    GetNominalPowerRoomsDevices ui705 = new GetNominalPowerRoomsDevices(house);
                     ui705.run();
             }
             option = Menu.houseGridMenu();

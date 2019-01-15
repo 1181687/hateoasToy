@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridController;
+import pt.ipp.isep.dei.project.controllers.GetNominalPowerRoomsDevicesController;
 import pt.ipp.isep.dei.project.model.House;
 
-public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGrid {
+public class GetNominalPowerRoomsDevices {
 
-    private GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridController mController;
+    private GetNominalPowerRoomsDevicesController mController;
 
-    public GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGrid(House house) {
-        this.mController = new GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridController(house);
+    public GetNominalPowerRoomsDevices(House house) {
+        this.mController = new GetNominalPowerRoomsDevicesController(house);
     }
 
     public void run() {
@@ -42,21 +42,22 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGrid {
                     + mController.getContentOfDeviceListInRoomOfGrid(positionRoom) +
                     (mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1) + " - Total nominal power of room\n" + exit;
             int positionDevice = InputValidator.getIntRange(label3, 0, mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1);
-            if (positionDevice == -1) {
+            if (positionDevice == 0) {
                 return;
             }
             if (positionDevice == mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1) {
                 mController.addAMeasurableObject(mController.getChosenRoomInTheGrid(positionRoom));
                 return;
             } else {
-                mController.addAMeasurableObject(mController.getDeviceFromPositionInList(positionRoom, positionDevice));
+                mController.addAMeasurableObject(mController.getDeviceFromPositionInList(positionRoom, (positionDevice-1)));
                 String label4 = "Would you like to add any other device of this room to the nominal power calculations? If yes," +
-                        "please type the number of that device; if not, type 0";
-                int addOtherDeviceOrNot = InputValidator.getIntRange(label4, 0, mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1);
+                        "please type the number of that device; if not, please type 0.";
+                int addOtherDeviceOrNot = -1;
                 while (addOtherDeviceOrNot != 0) {
-                    if (mController.checkIfObjInList(mController.getDeviceFromPositionInList(positionRoom, positionDevice))) {
-                        System.out.println("That device was already chosen. Please choose another one (type the number of a device that wasn't chosen yet).");
-                        addOtherDeviceOrNot = InputValidator.getIntRange(label4, 0, mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1);
+                    addOtherDeviceOrNot = InputValidator.getIntRange(label4, 0, mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1);
+                    if (mController.checkIfObjInList(mController.getDeviceFromPositionInList(positionRoom, addOtherDeviceOrNot-1))) {
+                       String label5 = "That device was already chosen. Please choose another one (type the number of a device that wasn't chosen yet.)";
+                        addOtherDeviceOrNot = InputValidator.getIntRange(label5, 0, mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1);
                     } else {
                         mController.addAMeasurableObject(mController.getDeviceFromPositionInList(positionRoom, addOtherDeviceOrNot));
                         addOtherDeviceOrNot = InputValidator.getIntRange(label4, 0, mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1);
