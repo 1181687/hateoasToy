@@ -757,14 +757,6 @@ public class RoomListTest {
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
-        HouseGridList listHG = new HouseGridList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeoAreaType GAType = new GeoAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, listHG, address, geo);
-
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
@@ -772,8 +764,6 @@ public class RoomListTest {
 
         roomList.addRoom(room);
         room.addDevice(dev1);
-        house.addRoom(room);
-
 
         int position = 0;
 
@@ -782,6 +772,60 @@ public class RoomListTest {
 
         // Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void testCheckIfThereAreNoDevicesFalse() {
+        // Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //Room TWO
+        String name2 = "KitchenBasement";
+        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Room room2 = new Room(name2, -1, dim2);
+
+        DishWasher dishWasher = new DishWasher();
+        ElectricWaterHeater specWaterHeater = new ElectricWaterHeater();
+        double freezerCapacity = 5.5;
+        double refrigeratorCapacity = 15.5;
+        double annualEnergyConsumption = 5000;
+        double nominalPower = 100.5;
+        Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        Device dev4 = new Device("FridgeSiemens", room2, fridge);
+        Device dev5 = new Device("DishWasherTeka", room2, dishWasher);
+        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
+
+        room2.addDevice(dev4);
+        room2.addDevice(dev5);
+        room2.addDevice(dev6);
+
+        roomList.addRoom(room);
+        roomList.addRoom(room2);
+
+        // Act
+        boolean result = roomList.checkIfThereAreNoDevices();
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testCheckIfThereAreNoDevicesTrue() {
+        // Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        roomList.addRoom(room);
+
+        // Act
+        boolean result = roomList.checkIfThereAreNoDevices();
+
+        // Assert
+        assertTrue(result);
     }
 
     @Test

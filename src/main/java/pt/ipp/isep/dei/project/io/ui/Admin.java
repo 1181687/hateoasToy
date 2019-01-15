@@ -129,6 +129,10 @@ public class Admin {
                     DetachRoomFromHouseGrid ui149 = new DetachRoomFromHouseGrid(gridList, roomList);
                     ui149.run();
                     break;
+                case 5:
+                    GetDevicesInHouseGrid ui160 = new GetDevicesInHouseGrid(house);
+                    ui160.run();
+                    break;
             }
             option = Menu.houseGridMenu();
         }

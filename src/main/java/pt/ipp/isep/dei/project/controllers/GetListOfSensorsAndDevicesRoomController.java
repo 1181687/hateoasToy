@@ -61,4 +61,8 @@ public class GetListOfSensorsAndDevicesRoomController {
         return this.mHouse.checkIfDeviceListIsEmpty(position);
     }
 
+    public int roomListSize () {
+        return mHouse.getRoomListSize();
+    }
+
 }

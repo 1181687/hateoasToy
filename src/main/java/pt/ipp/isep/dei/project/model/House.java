@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class House {
     private RoomList mRoomList;
@@ -154,11 +155,13 @@ public class House {
      */
     public Measurement getLatestMeasurementBySensorType(String name, SensorType type) {
         Room room = mRoomList.getRoomByName(name);
-        if (room == null)
+        if (Objects.isNull(room)) {
             return null;
+        }
         Measurement measurement = room.getLatestMeasurementBySensorType(type);
-        if (measurement == null)
+        if (Objects.isNull(measurement)) {
             return null;
+        }
         return measurement;
     }
 
@@ -173,7 +176,7 @@ public class House {
      * Method that get the size of the room list.
      * @return size of the list of rooms.
      */
-    public int listSize() {
+    public int getRoomListSize() {
         return mRoomList.listSize();
     }
 
@@ -277,7 +280,7 @@ public class House {
         return mListHouseGrids.checkIfHouseGridListIsEmpty();
     }
 
-    public String getHouseGridList(){
+    public String getHouseGridListContent() {
         return mListHouseGrids.getHouseGridListToString();
     }
 
@@ -285,12 +288,26 @@ public class House {
         return mListHouseGrids.getHouseGridByPosition(position);
     }
 
-    public int houseGridListLength(){
+    public int getHouseGridListLength() {
        return this.mListHouseGrids.getmHouseGridsList().size();
     }
 
+    ////////////////////////////////////////////////////////
+    public HouseGridList getHouseGridList() {
+        return this.mListHouseGrids;
+    }
+
+    public boolean checkIfThereAreNoDevicesHGbyPosition(int position) {
+        return this.getHouseGridList().getHouseGridByPosition(position).checkIfThereAreNoDevices();
+    }
+
+
     public int houseRoomListLength() {
         return this.mRoomList.listSize();
+    }
+
+    public String getHGNameByHGPosition(int position) {
+        return this.mListHouseGrids.getNameByHGPosition(position);
     }
 
     /**
