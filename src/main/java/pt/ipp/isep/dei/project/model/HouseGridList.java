@@ -174,4 +174,12 @@ public class HouseGridList {
         }
         return energyConsumption;
     }
+
+    public boolean checkIfSpecificRoomListOfGridIsEmpty(int position) {
+        return getmHouseGridsList().get(position).checkIsRoomListIsEmpty();
+    }
+
+    public int getSizeOfRoomListInAGrid(int position){
+        return getmHouseGridsList().get(position).sizeOfTheRoomListInAGrid();
+    }
 }
