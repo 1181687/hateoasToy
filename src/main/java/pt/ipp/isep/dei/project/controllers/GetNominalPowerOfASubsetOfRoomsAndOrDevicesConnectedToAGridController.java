@@ -39,7 +39,7 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridControll
         return mSelectedHouseGrid.getSizeOfListOfDevicesOfRoomAttachedToGrid(position);
     }
 
-    public boolean checkIfRoomListIfEmpty(int position){
+    public boolean checkIfRoomListIsEmpty(int position){
         return mHouse.checkIfRoomListInGridIsEmpty(position);
     }
 
@@ -65,5 +65,9 @@ public class GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGridControll
 
     public int getSizeOfRoomListInGrid(int position){
         return mHouse.getTheSizeOfRoomListInAGrid(position);
+    }
+
+    public boolean checkIfObjInList(Measurable measurable){
+        return mMeasurableList.checkIfMeasurableObjIsInList(measurable);
     }
 }

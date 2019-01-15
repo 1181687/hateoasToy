@@ -42,10 +42,10 @@ public class Main {
         houseEdificioB.getmInsertedGeoArea().setInsertedIn(insertedGeoArea);
 
         // House Grids
-        String houseGridName = "Main Grid";
+        /*String houseGridName = "Main Grid";
         double maximumContractedPower = 200;
         HouseGrid houseGrid = new HouseGrid(houseGridName, maximumContractedPower, roomList);
-        gridList.addHouseGridToTheList(houseGrid);
+        gridList.addHouseGridToTheList(houseGrid);*/
 
         // Rooms
         String name = "B107";
@@ -58,7 +58,6 @@ public class Main {
         houseEdificioB.addRoom(room1);
         room1.addSensorToTheListOfSensorsInTheRoom(sensor);
         houseEdificioB.addRoom(room1);
-        houseGrid.attachRoomToTheRoomList(room1);
 
         String name2 = "B109";
         Room room2 = new Room(name2, houseFloor, dimensions);
