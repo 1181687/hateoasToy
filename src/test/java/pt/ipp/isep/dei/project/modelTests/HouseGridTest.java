@@ -20,8 +20,8 @@ public class HouseGridTest {
         String houseGridName = "hgname1";
         HouseGrid houseGrid1 = new HouseGrid(houseGridName);
 
-        houseGrid1.getmRoomsConnectedToHouseGrid().addRoom(room1);
-        houseGrid1.getmRoomsConnectedToHouseGrid().addRoom(room2);
+        houseGrid1.getRoomList().addRoom(room1);
+        houseGrid1.getRoomList().addRoom(room2);
 
         String expectedResult =
                 "1- Name: Kid's room, House Floor: 1, Dimensions - Height: 5.2, Dimensions - Length: 3.7, Dimensions - Width: 8.5\n" +
@@ -29,7 +29,7 @@ public class HouseGridTest {
                 "\n";
 
         // Act
-        String result = houseGrid1.getRoomsAttached();
+        String result = houseGrid1.getRoomListContent();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -44,10 +44,10 @@ public class HouseGridTest {
         Room room = new Room(roomName, houseFloor1, dimensions1);
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
-        grid.attachRoomToTheRoomList(room);
+        grid.attachRoom(room);
 
         // Act
-        boolean result = grid.getmRoomsConnectedToHouseGrid().getmRoomList().contains(room);
+        boolean result = grid.getRoomList().getmRoomList().contains(room);
 
         // Assert
         assertTrue(result);
@@ -68,12 +68,12 @@ public class HouseGridTest {
         String expectedResult="1- Power Source 1\n" +
                 "2- Power Source 2\n";
         //Act
-        String result=houseGrid.listPowerSources();
+        String result = houseGrid.getPowerSourceListContent();
         //Assert
         assertEquals(expectedResult,result);
     }
 
-    @Test
+    /*@Test
     public void testGetAllDevicesList() {
         //Room ONE
         String name = "Kitchen";
@@ -120,7 +120,7 @@ public class HouseGridTest {
         DeviceList result = housegrid.getAllDevicesList();
 
         assertEquals(expectedResult, result);
-    }
+    }*/
 
     @Test
     public void getEnergyConsumptionInADayOfAllDevicesOfATypeTestWithValidValues() {
@@ -169,5 +169,51 @@ public class HouseGridTest {
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    public void getNominalPower(){
+        //Assert
+
+        //Room ONE
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Room room1 = new Room(name, 2, dim);
+
+        DeviceSpecs specFridge = new Fridge(500,25,125,25);
+        DeviceSpecs specWashing = new WashingMachine(500,50);
+        DeviceSpecs specDishWasher = new DishWasher(500,25);
+        Device dev1 = new Device("FridgeAriston", room1, specFridge);
+        Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
+        Device dev3 = new Device("DishWasher", room1, specDishWasher);
+
+        room1.addDevice(dev1);
+        room1.addDevice(dev2);
+        room1.addDevice(dev3);
+
+        //Room TWO
+        String name2 = "KitchenBasement";
+        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Room room2 = new Room(name2, -1, dim2);
+        DeviceSpecs specWaterHeater = new ElectricWaterHeater(50,50,35);
+        Device dev4 = new Device("FridgeSiemens", room2, specFridge);
+        Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
+        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
+
+        room2.addDevice(dev4);
+        room2.addDevice(dev5);
+        room2.addDevice(dev6);
+
+        HouseGrid grid1 = new HouseGrid("Grid 1");
+        grid1.attachRoom(room1);
+        grid1.attachRoom(room2);
+
+        double expectedResult = 185;
+
+        //Act
+        double result = grid1.getNominalPower();
+
+        //Assert
+        assertEquals(expectedResult,result,0.001);
     }
 }

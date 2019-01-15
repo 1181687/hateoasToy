@@ -50,10 +50,10 @@ public class AddPowerSourceToHouseGridController {
     }
 
     public String getHouseGridName(){
-        return mSelectedHouseGrid.getmHouseGridName();
+        return mSelectedHouseGrid.getName();
     }
 
     public String listPowerSourcesConnectedToHouseGrid(){
-        return mSelectedHouseGrid.listPowerSources();
+        return mSelectedHouseGrid.getPowerSourceListContent();
     }
 }

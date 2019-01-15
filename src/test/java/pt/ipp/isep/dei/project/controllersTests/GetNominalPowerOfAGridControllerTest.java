@@ -21,9 +21,6 @@ public class GetNominalPowerOfAGridControllerTest {
         GeoAreaType geoAreaType = new GeoAreaType("Urban area");
         GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geoAreaType, location, areaShape);
 
-        //Grid
-        HouseGrid grid1 = new HouseGrid("Grid 1");
-
         //House
         RoomList roomList = new RoomList();
         this.houseGridList = new HouseGridList();
@@ -117,7 +114,7 @@ public class GetNominalPowerOfAGridControllerTest {
 
         room1.addDevice(fridge1);
         room1.addDevice(fridge2);
-        grid1.attachRoomToTheRoomList(room1);
+        grid1.attachRoom(room1);
 
         controller.getHouseGridbyPosition(0);
 

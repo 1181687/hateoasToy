@@ -31,10 +31,6 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
         return mHouse.getAverageDailyMeasurement(mTypeRainfall, date1, date2);
     }
 
-    public LocalDate createANewDate(int year, int month, int day) {
-        return mHouse.createANewDate(year, month, day);
-    }
-
     public double getMostRecentAvailableMeasurementInTheHouseArea() {
         return mHouse.getLastMeasurement(mTypeTemperature);
     }

@@ -13,9 +13,6 @@ public class WashingMachine implements DeviceSpecs {
         this.mNominalPower = mNominalPower;
     }
 
-    public WashingMachine() {
-    }
-
     @Override
     public String getmTypeName() {
         return mTypeName;

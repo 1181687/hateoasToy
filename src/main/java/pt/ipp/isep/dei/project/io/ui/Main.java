@@ -58,7 +58,6 @@ public class Main {
         houseEdificioB.addRoom(room1);
         room1.addSensorToTheListOfSensorsInTheRoom(sensor);
         houseEdificioB.addRoom(room1);
-        houseGrid.attachRoomToTheRoomList(room1);
 
         String name2 = "B109";
         Room room2 = new Room(name2, houseFloor, dimensions);
