@@ -33,9 +33,10 @@ public class Sensor {
 
     /**
      * Constructor method
+     *
      * @param mSensorName name of the sensor (string)
      * @param mSensorType Type of Sensor
-     * @param mLocation Locatiom of the Sensor
+     * @param mLocation   Locatiom of the Sensor
      */
     public Sensor(String mSensorName, SensorType mSensorType, Location mLocation) {
         this.mSensorName = mSensorName;
@@ -46,6 +47,7 @@ public class Sensor {
 
     /**
      * Get method
+     *
      * @return Sensor Name
      */
     public String getmSensorName() {
@@ -54,6 +56,7 @@ public class Sensor {
 
     /**
      * Get method
+     *
      * @return Starting date of a sensor
      */
     public LocalDateTime getmStartingDate() {
@@ -62,6 +65,7 @@ public class Sensor {
 
     /**
      * Get method
+     *
      * @return Sensor Type
      */
     public SensorType getmSensorType() {
@@ -70,6 +74,7 @@ public class Sensor {
 
     /**
      * Get method
+     *
      * @return Sensor Location
      */
     public Location getmLocation() {
@@ -78,6 +83,7 @@ public class Sensor {
 
     /**
      * Equals method to determine if two Sensors are equal. They are equals if all atributtes are equal
+     *
      * @param objeto receives an object
      * @return boolean
      */
@@ -94,6 +100,7 @@ public class Sensor {
 
     /**
      * method that creates the same hashcode to Sensors with the same attribute
+     *
      * @return the hashcode created
      */
     public int hashCode() {
@@ -102,6 +109,7 @@ public class Sensor {
 
     /**
      * Method that calculates the distance between two locations
+     *
      * @param sensor1 a sensor
      * @return distance between two locations
      */
@@ -112,8 +120,9 @@ public class Sensor {
 
     /**
      * Method that goes through a list of measurements and adds the value of the measurements to a list if they are equal or after the starting date and equal or before the end date
+     *
      * @param startDate starting date of measurements
-     * @param endDate end date of measurements
+     * @param endDate   end date of measurements
      * @return measurements between two dates
      */
     public List<Double> getMeasurementValueBetweenDates(LocalDate startDate, LocalDate endDate) {
@@ -130,8 +139,9 @@ public class Sensor {
 
     /**
      * Boolean method that checks if a list of measurements between two dates (start and end) is not empty
+     *
      * @param startDate starting date of measurements
-     * @param endDate end date of measurements
+     * @param endDate   end date of measurements
      * @return existence of measurement between two dates
      */
     public boolean checkMeasurementExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
@@ -167,6 +177,7 @@ public class Sensor {
 
     /**
      * Method that returns the biggest measurement
+     *
      * @param date a date
      * @return
      */
@@ -179,7 +190,14 @@ public class Sensor {
         if (measurementsBetweenDates.isEmpty()) {
             return Double.NaN;
         }
-        return measurementsBetweenDates.get(0);
+        double biggestMeasurement = measurementsBetweenDates.get(0);
+
+        for (Double measurement : measurementsBetweenDates) {
+            if (measurement > biggestMeasurement) {
+                biggestMeasurement = measurement;
+            }
+        }
+        return biggestMeasurement;
     }
 
     /**
@@ -206,6 +224,7 @@ public class Sensor {
 
     /**
      * Method that calculates the monthly average measurement going trough all the measurements between two dates (first and last day of the month),
+     *
      * @param date a date
      * @return Monthly Average measurement
      */
@@ -231,6 +250,7 @@ public class Sensor {
 
     /**
      * Method that adds a measurement to a list of measurements
+     *
      * @param measurement measurement of a sensor
      */
     public void addMeasurementToList(Measurement measurement) {
@@ -239,6 +259,7 @@ public class Sensor {
 
     /**
      * Boolean method that checks if a list of measurements is empty
+     *
      * @return empty list of measurements
      */
     public boolean measurementListIsEmpty() {
@@ -247,6 +268,7 @@ public class Sensor {
 
     /**
      * Get method for the last measurement of a sensor
+     *
      * @return last measurement
      */
     public Measurement getLastMeasurement() {
@@ -260,6 +282,7 @@ public class Sensor {
 
     /**
      * Boolean method that compares a Sensor Type to another Sensor and they are equal
+     *
      * @param tipo Type of Sensor
      * @return a type of sensor is equal to the sensor type being compared
      */
@@ -270,6 +293,7 @@ public class Sensor {
 
     /**
      * Method that gets the measurements of a given day (if they are not invalid (double nan) and belong to the given day)
+     *
      * @param date a given day
      * @return the measurements of a given day
      */
@@ -288,7 +312,8 @@ public class Sensor {
 
     /**
      * Boolean method that compares days (two days are equal)
-     * @param firstDate first day
+     *
+     * @param firstDate  first day
      * @param secondDate second day
      * @return the first day is equal to the second day
      */
@@ -298,6 +323,7 @@ public class Sensor {
 
     /**
      * Method that goes through the list of measurements of the day and gets the lowest measurement
+     *
      * @param data a given day
      * @return Lowest measurement of a day
      */
@@ -316,6 +342,7 @@ public class Sensor {
 
     /**
      * Method that gets the first day of the week
+     *
      * @param date a specific date
      * @return
      */
@@ -328,6 +355,7 @@ public class Sensor {
 
     /**
      * Method that gets the lowest measurements of the week (after defining first and last day of a week and if the lowest values of a day are not double nan (invalid))
+     *
      * @param date a given date
      * @return lowest measurements of the week
      */
@@ -347,6 +375,7 @@ public class Sensor {
 
     /**
      * Method that gets the average of the lowest measurements of a week
+     *
      * @param date a given date
      * @return average of lowest measurements of a week
      */
@@ -369,6 +398,7 @@ public class Sensor {
 
     /**
      * Method that calculates the max value (measurement) of a given day
+     *
      * @param date a given day
      * @return the maximum value of measurements
      */
@@ -387,9 +417,9 @@ public class Sensor {
 
     /**
      * Method that gets the biggest measurements of the week (after defining first and last day of a week and if the biggest values of a day are not double nan (invalid))
+     *
      * @param date a given date
      * @return lowest measurements of the week
-
      */
     public List<Double> biggestWeeklyMeasurements(LocalDate date) {
         List<Double> registosMaximosSemana = new ArrayList<>();
@@ -408,6 +438,7 @@ public class Sensor {
 
     /**
      * Method that gets the average of the biggest measurements of a week
+     *
      * @param date a given date
      * @return average of biggest measurements of a week
      */
@@ -429,6 +460,7 @@ public class Sensor {
 
     /**
      * Method that calculates the distance between a sensor and a location
+     *
      * @param location a given location
      * @return distance between a sensor and a location
      */
@@ -438,6 +470,7 @@ public class Sensor {
 
     /**
      * Method that returns the daily measurements of a given day
+     *
      * @param day a given day
      * @return sum of daily measurements (total)
      */
@@ -454,6 +487,7 @@ public class Sensor {
 
     /**
      * Method that returns the daily average on a given day
+     *
      * @param date a given day
      * @return daily average
      */

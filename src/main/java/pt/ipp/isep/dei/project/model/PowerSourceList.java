@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PowerSourceList {
-    private List<PowerSource> mPowerSourceList = new ArrayList<>();
+    private List<PowerSource> mPowerSourceList;
 
     /**
      * Power Source List constructor
      */
     public PowerSourceList() {
+        this.mPowerSourceList = new ArrayList<>();
     }
 
     /**
