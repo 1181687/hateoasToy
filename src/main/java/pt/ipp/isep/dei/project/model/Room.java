@@ -125,7 +125,7 @@ public class Room implements Measurable{
     /**
      * Equals method to determine if two Rooms are equal.
      * They are equals if name are equal.
-     *
+     * Names are case insensitive.
      * @param obj receives an object
      * @return boolean
      */
@@ -138,7 +138,7 @@ public class Room implements Measurable{
             return false;
         }
         Room roomOne = (Room) obj;
-        return this.mName.equals(roomOne.mName);
+        return this.mName.equalsIgnoreCase(roomOne.mName);
     }
 
     /**
