@@ -318,4 +318,16 @@ public class House {
     public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
         return mListHouseGrids.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
     }
+
+    public String getRoomsInTheHouseGrid(int position){
+        return mListHouseGrids.getRoomsInTheHouseGrid(position);
+    }
+
+    public boolean checkIfRoomListInGridIsEmpty(int position){
+        return mListHouseGrids.checkIfSpecificRoomListOfGridIsEmpty(position);
+    }
+
+    public int getTheSizeOfRoomListInAGrid(int position){
+        return mListHouseGrids.getSizeOfRoomListInAGrid(position);
+    }
 }

@@ -703,7 +703,6 @@ public class RoomListTest {
         room.addDevice(dev1);
 
         roomList.addRoom(room);
-        house.addRoom(room);
 
 
         int position = 0;
@@ -736,9 +735,6 @@ public class RoomListTest {
         House house = new House(roomList, listHG, address, geo);
 
         roomList.addRoom(room);
-
-        house.addRoom(room);
-
 
         int position = 0;
 

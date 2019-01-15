@@ -137,6 +137,9 @@ public class Admin {
                     GetDevicesInHouseGrid ui160 = new GetDevicesInHouseGrid(house);
                     ui160.run();
                     break;
+                case 6:
+                    GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGrid ui705 = new GetNominalPowerOfASubsetOfRoomsAndOrDevicesConnectedToAGrid(house);
+                    ui705.run();
             }
             option = Menu.houseGridMenu();
         }
