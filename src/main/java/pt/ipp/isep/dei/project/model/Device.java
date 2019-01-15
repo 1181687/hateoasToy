@@ -23,23 +23,23 @@ public class Device implements Measurable {
         return this.mLocation;
     }
 
-    public List<String> getTypeNames (){
+    public List<String> getTypeNames() {
 
-        List <String> listOfTypeNames = null;
+        List<String> listOfTypeNames = null;
 
         DeviceSpecs fridge = new Fridge();
         listOfTypeNames.add(fridge.getmTypeName());
 
-        DeviceSpecs lamp= new Lamp();
+        DeviceSpecs lamp = new Lamp();
         listOfTypeNames.add(lamp.getmTypeName());
 
-        DeviceSpecs dishWasher= new DishWasher();
+        DeviceSpecs dishWasher = new DishWasher();
         listOfTypeNames.add(dishWasher.getmTypeName());
 
         DeviceSpecs washingMachine = new WashingMachine();
         listOfTypeNames.add(washingMachine.getmTypeName());
 
-        DeviceSpecs electricWaterHeater =new ElectricWaterHeater();
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeater();
         listOfTypeNames.add(electricWaterHeater.getmTypeName());
 
         return listOfTypeNames;
@@ -93,4 +93,46 @@ public class Device implements Measurable {
     public double getEnergyConsumptionInADay() {
         return mSpec.getEnergyConsumptionInADay();
     }
+
+    public boolean setmName(String mName) {
+        if (this.mName == mName) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean setmLocation(Room mLocation) {
+        if (this.mLocation == mLocation) {
+            return true;
+        }
+        return false;
+    }
+
+    public String getSpecsAttributesToString() {
+        return mSpec.getAttributesToString();
+    }
+
+    /* public boolean setDeviceAttribute(int attribute, String name, Room room) {
+        switch (attribute) {
+            case 1:
+                return setmName(name);
+            case 2:
+                return setDeviceAttribute(attribute, name, room);
+            case 3:
+                return setmLocation(room);
+        }
+        System.out.println("Please select a valid number.");
+        return false;
+    } */
+
+    public String getAttributesToString() {
+
+        StringBuilder attributes = new StringBuilder();
+        attributes.append("1 - Name: " + mName + "\n");
+        attributes.append("2 - Device Specifications\n");
+        attributes.append("3 - Location: " + mLocation + "\n");
+        String deviceAttributes = attributes.toString();
+        return  deviceAttributes;
+    }
+
 }

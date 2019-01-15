@@ -7,4 +7,9 @@ public interface DeviceSpecs {
     double getEnergyConsumptionInADay();
 
     double getmNominalPower();
+
+    String getAttributesToString();
+
+    boolean setAttribute (int attribute, double value);
+
 }
