@@ -202,16 +202,16 @@ public class HouseGridListTest {
         assertEquals(expectedResult, result);
     }
 
-    /*@Test
+    @Test
     public void TestGetAllDevicesListByPosition() {
         //Room ONE
         String name = "Kitchen";
         Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
-        DeviceSpecs specFridge = new Fridge();
-        DeviceSpecs specWashing = new WashingMachine();
-        DeviceSpecs specDishWasher = new DishWasher();
+        DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
+        DeviceSpecs specWashing = new WashingMachine(100, 100);
+        DeviceSpecs specDishWasher = new DishWasher(100, 100);
         Device dev1 = new Device("FridgeAriston", room1, specFridge);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
         Device dev3 = new Device("DishWasher", room1, specDishWasher);
@@ -224,7 +224,7 @@ public class HouseGridListTest {
         String name2 = "KitchenBasement";
         Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim);
-        DeviceSpecs specWaterHeater = new ElectricWaterHeater();
+        DeviceSpecs specWaterHeater = new ElectricWaterHeater(100, 100, 100);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
         Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
         Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
@@ -264,9 +264,9 @@ public class HouseGridListTest {
         Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
-        DeviceSpecs specFridge = new Fridge();
-        DeviceSpecs specWashing = new WashingMachine();
-        DeviceSpecs specDishWasher = new DishWasher();
+        DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
+        DeviceSpecs specWashing = new WashingMachine(100, 100);
+        DeviceSpecs specDishWasher = new DishWasher(100, 100);
         Device dev1 = new Device("FridgeAriston", room1, specFridge);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
         Device dev3 = new Device("DishWasher", room1, specDishWasher);
@@ -279,7 +279,7 @@ public class HouseGridListTest {
         String name2 = "KitchenBasement";
         Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim);
-        DeviceSpecs specWaterHeater = new ElectricWaterHeater();
+        DeviceSpecs specWaterHeater = new ElectricWaterHeater(100, 100, 100);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
         Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
         Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
@@ -305,7 +305,8 @@ public class HouseGridListTest {
 
         assertEquals(expectedResult, result);
     }
-*/
+
+
     @Test
     public void getEnergyConsumptionInADayOfAllDevicesOfATypeTestWithValidValues() {
         // Arrange
@@ -358,4 +359,48 @@ public class HouseGridListTest {
         // Assert
         assertEquals(expectedResult, result, 0.000001);
     }
+
+    @Test
+    public void getNameByHGPosition() {
+        // Arrange
+        // Instantiate House Grids
+        String gridName0 = "Grid0";
+        HouseGrid grid0 = new HouseGrid(gridName0);
+        String gridName1 = "Grid1";
+        HouseGrid grid1 = new HouseGrid(gridName1);
+        String gridName2 = "Grid2";
+        HouseGrid grid2 = new HouseGrid(gridName2);
+
+        // Instantiate List of House Grids
+        HouseGridList gridList = new HouseGridList();
+        gridList.addHouseGridToTheList(grid0);
+        gridList.addHouseGridToTheList(grid1);
+        gridList.addHouseGridToTheList(grid2);
+
+        int position = 0;
+        String expectedResult = "Grid0";
+
+        // Act
+        String result = gridList.getNameByHGPosition(position);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getNameByHGPositionEmpty() {
+        // Arrange
+        // Instantiate List of House Grids
+        HouseGridList gridList = new HouseGridList();
+
+        int position = 0;
+        String expectedResult = null;
+
+        // Act
+        String result = gridList.getNameByHGPosition(position);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
 }

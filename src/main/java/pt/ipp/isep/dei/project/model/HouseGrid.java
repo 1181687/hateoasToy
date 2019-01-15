@@ -127,6 +127,11 @@ public class HouseGrid implements Measurable {
         return mRoomList.getAllDevicesList();
     }
 
+    /**
+     * method that checks if there are no devices in the RoomList
+     *
+     * @return true if there aren't devices. False if there are devices
+     */
     public boolean checkIfThereAreNoDevices() {
         return this.getRoomList().checkIfThereAreNoDevices();
     }

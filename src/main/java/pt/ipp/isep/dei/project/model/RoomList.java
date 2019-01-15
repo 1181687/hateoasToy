@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.model;
 
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -241,6 +240,11 @@ public class RoomList {
         return mRoomList.get(position).checkIfDeviceListIsEmpty();
     }
 
+    /**
+     * method that checks if there are no devices in the RoomList
+     *
+     * @return true if there aren't devices. False if there are devices
+     */
     public boolean checkIfThereAreNoDevices() {
 
         for (int i = 0; i < mRoomList.size(); i++) {
