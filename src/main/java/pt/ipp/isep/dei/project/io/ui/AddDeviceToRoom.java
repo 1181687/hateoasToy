@@ -78,26 +78,28 @@ public class AddDeviceToRoom {
                     String label43 = "What is the capacity (kg)?";
                     double washingMachineCapacity = InputValidator.getDoublePos(label43);
                     break;
-                /*
                     case 5:
                     String label51 = "What is the name of the electric water heater?";
                     String electricWaterHeaterDeviceName = InputValidator.getString(label51);
                     String label52 = "What is the nominal power (kW)?";
                     double electricWaterHeaterNominalPower = InputValidator.getDoublePos(label52);
-                    String label53 = "What is the volume of water (l)?";
-                    double volumeOfWater = InputValidator.getDoublePos(label53);
+                        String label53 = "What is the maximum temperature you want to configure on the electric water heater?";
+                        double maxHotTemperature = InputValidator.getDoublePos(label53);
+                        String label54 = "What is the capacity (l)?";
+                        double volumeOfWater = InputValidator.getDoublePos(label54);
 
-                    mCtrl.createNewElectricWaterHeater(electricWaterHeaterDeviceName, selectedRoom, electricWaterHeaterNominalPower, volumeOfWater);
+                        mCtrl.createNewElectricWaterHeater(electricWaterHeaterDeviceName, selectedRoom, maxHotTemperature, volumeOfWater, electricWaterHeaterNominalPower);
                     if (mCtrl.addDeviceToRoom()) {
 
                         StringBuilder content = new StringBuilder();
                         content.append("The device" + electricWaterHeaterDeviceName + "was succesfully added to " + selectedRoom +
                                 " and created with the following specifications:\n");
-                        content.append("*Nominal Power: " + electricWaterHeaterNominalPower + "kW \n");
-                        content.append("*Volume of water: " + volumeOfWater + "l\n");
+                        content.append("- Nominal Power: " + electricWaterHeaterNominalPower + "kW \n");
+                        content.append("- Volume of water: " + volumeOfWater + "l\n");
+                        content.append("- Maximum temperature configured: " + maxHotTemperature + "ºC\n");
                         System.out.println(content.toString());
                     } else {
-                        System.out.println("Something went wrong. The device wasn't added to the room.");
+                        System.out.println("Something went wrong. The device wasn't added to the room. Please try again.");
                     }
                     break;
                 default:

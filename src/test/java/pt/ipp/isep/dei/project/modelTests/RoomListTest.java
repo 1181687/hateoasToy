@@ -616,7 +616,7 @@ public class RoomListTest {
         assertFalse(result);
     }
 
-    @Test
+    /*@Test
     public void testGetAllDevicesList() {
         //Room ONE
         String name = "Kitchen";
@@ -664,7 +664,7 @@ public class RoomListTest {
 
         assertEquals(expectedResult, result);
     }
-
+*/
 
     @Test
     public void getDeviceListContentOfARoomTest() {
@@ -770,7 +770,7 @@ public class RoomListTest {
         assertFalse(result);
     }
 
-    @Test
+    /*@Test
     public void testCheckIfThereAreNoDevicesFalse() {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
@@ -806,7 +806,7 @@ public class RoomListTest {
 
         // Assert
         assertFalse(result);
-    }
+    }*/
 
     @Test
     public void testCheckIfThereAreNoDevicesTrue() {

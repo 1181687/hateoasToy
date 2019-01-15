@@ -52,7 +52,7 @@ public class GetCurrentAndMaxTempRoomController {
      * @return lenght of roomList
      */
     public int getLengthOfRoomList() {
-        return this.mHouse.listSize();
+        return this.mHouse.getRoomListSize();
     }
 
     /**

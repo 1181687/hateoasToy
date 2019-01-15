@@ -5,8 +5,6 @@ import pt.ipp.isep.dei.project.model.DeviceList;
 import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.RoomList;
 
-import java.util.List;
-
 public class AddDeviceToRoomController {
 
     private Device mDevice;
@@ -39,8 +37,8 @@ public class AddDeviceToRoomController {
         return mDevice.getTypeNames();
     }*/
 
-    public Device createNewElectricWaterHeater(String nome, Room selectedRoom, double nominalPower, double volumeOfWater) {
-        return mDevice = mDeviceList.newElectricWaterHeater(nome, selectedRoom, nominalPower, volumeOfWater);
+    public Device createNewElectricWaterHeater(String nome, Room selectedRoom, double mHotWaterTemperature, double mMaximumVolume, double mNominalPower) {
+        return mDevice = mDeviceList.newElectricWaterHeater(nome, selectedRoom, mHotWaterTemperature, mMaximumVolume, mNominalPower);
     }
 
     public boolean addDeviceToRoom() {
