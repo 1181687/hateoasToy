@@ -125,6 +125,7 @@ class EditConfigurationDeviceControllerTest {
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
+
         //initiate Room
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
@@ -161,15 +162,45 @@ class EditConfigurationDeviceControllerTest {
     }
 
     @Test
-    void getDeviceByPosition() {
-
-
-    }
-
-    @Test
     void getDeviceAttributesToString() {
+        // initiate House
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
 
+        //initiate Room
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
 
+        //initiate Devices
+        double freezerCapacity = 5.5;
+        double refrigeratorCapacity = 15.5;
+        double annualEnergyConsumption = 3000.0;
+        double nominalPower = 100.5;
+        Fridge deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        Device dev = new Device("Fridge1", room, deviceSpecs);
+
+        int position = 0;
+        room.addDevice(dev);
+        house.addRoom(room);
+
+        EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
+        controller.getRoomByPosition(position);
+        controller.getDeviceByPosition(position);
+
+        String expectedResult = "1 - Name: Fridge1" + "\n" +
+                "2 - Device Specifications\n" +
+                "3 - Location: pt.ipp.isep.dei.project.model.Room@26f51a\n";
+        // act
+        String result = controller.getDeviceAttributesToString();
+
+        // assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
