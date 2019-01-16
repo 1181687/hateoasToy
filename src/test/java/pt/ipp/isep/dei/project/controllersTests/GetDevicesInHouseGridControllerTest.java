@@ -31,7 +31,7 @@ public class GetDevicesInHouseGridControllerTest {
         String name2 = "KitchenBasement";
         Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
-        DeviceSpecs specWaterHeater = new ElectricWaterHeater(100, 100, 100);
+        DeviceSpecs specWaterHeater = new ElectricWaterHeater(100, 100, 100, 0.9);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
         Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
         Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
@@ -186,7 +186,7 @@ public class GetDevicesInHouseGridControllerTest {
         Room room2 = new Room(name2, -1, dim2);
 
         DishWasher dishWasher = new DishWasher(100, 100);
-        ElectricWaterHeater specWaterHeater = new ElectricWaterHeater(100, 100, 100);
+        ElectricWaterHeater specWaterHeater = new ElectricWaterHeater(100, 100, 100, 0.9);
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 5000;
@@ -240,7 +240,7 @@ public class GetDevicesInHouseGridControllerTest {
         Room room2 = new Room(name2, -1, dim2);
 
         DishWasher dishWasher = new DishWasher(100, 100);
-        ElectricWaterHeater specWaterHeater = new ElectricWaterHeater(100, 100, 100);
+        ElectricWaterHeater specWaterHeater = new ElectricWaterHeater(100, 100, 100, 0.9);
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 5000;

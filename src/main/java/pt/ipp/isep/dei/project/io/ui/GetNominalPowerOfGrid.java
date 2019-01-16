@@ -18,7 +18,7 @@ public class GetNominalPowerOfGrid {
             String label1 = "Please select a House Grid to see its total nominal power: \n" + mController.listHouseGrids();
             int gridListLength = mController.getHouseGridListLength();
             int position = InputValidator.getIntRange(label1, 1, gridListLength);
-            mController.getHouseGridbyPosition(position);
+            mController.getHouseGridByPosition(position);
 
             double nominalPower = mController.getHouseGridTotalNominalPower();
             System.out.println("The total nominal power of the selected house grid is " + nominalPower);

@@ -73,6 +73,8 @@ public class DishWasher implements DeviceSpecs {
         return false;
     }
 
-
-
+    @Override
+    public int getNumberOfAttributes() {
+        return 2;
+    }
 }

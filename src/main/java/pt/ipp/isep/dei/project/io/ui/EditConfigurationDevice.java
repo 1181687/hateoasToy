@@ -43,7 +43,7 @@ public class EditConfigurationDevice {
                         break;
                     case 2:
                         String label5 = "Choose the specification you want to change. \n" + controller.getSpecsAttributesToString();
-                        int attribute = InputValidator.getInt(label5);
+                        int attribute = InputValidator.getIntRange(label5,1,controller.getNumberOfAttributesInDeviceSpecs());
                         String label6 = "What is the new value?";
                         int value = InputValidator.getInt(label6);
                         controller.setDeviceSpecs(attribute, value);

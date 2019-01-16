@@ -39,13 +39,52 @@ public class AddDeviceToRoomController {
         return mDeviceList.getDeviceTypeListContent();
     }
 
+    /*public DeviceList getDeviceList (){
+        return mDeviceList = mHouse.getRoomList().getAllDevicesList();
+    }*/
 
-
-    public Device createNewElectricWaterHeater(String nome, Room selectedRoom, double mHotWaterTemperature, double mMaximumVolume, double mNominalPower) {
-        return mDevice = mDeviceList.newElectricWaterHeater(nome, selectedRoom, mHotWaterTemperature, mMaximumVolume, mNominalPower);
-    }
-
+    /**
+     * Method that verifies if the device has been added to the room.
+     *
+     * @return true if it has been added or false if it hasn't.
+     */
     public boolean addDeviceToRoom() {
         return mRoom.addDevice(mDevice);
     }
+
+
+    /**
+     * Method that create a new Fridge in a selected Room.
+     *
+     * @param name                    of Fridge
+     * @param selectedRoom            room where will be created the device
+     * @param annualEnergyConsumption the annual Energy Consumption of the Fridge (a specification of the Fridge)
+     * @param nominalPower            the nominal power of the Fridge (a specification of the Fridge)
+     * @param freezerCapacity         the freezer capacity of the Fridge (a specification of the Fridge)
+     * @param refrigeratorCapacity    the refrigerator capacity of the Fridge (a specification of the Fridge)
+     * @return the Device that is being created
+     */
+    public Device createNewFridge(String name, Room selectedRoom, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
+        return mDevice = mDeviceList.newFridge(name, selectedRoom, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
+    }
+
+    public Device createNewWashingMachine(String name, Room selectedRoom, double nominalPower, double capacity) {
+        return mDevice = mDeviceList.newWashingMachine(name, selectedRoom, nominalPower, capacity);
+    }
+
+    /**
+     * Method that create a new Electric Water Heater in a selected Room.
+     *
+     * @param name                 of Electric Water Heater
+     * @param selectedRoom         room where will be created the device
+     * @param mHotWaterTemperature the temperature that is configured by the user (a specification of the Electric Water Heater and the user)
+     * @param mMaximumVolume       the capacity in l of the Electric Water Heater (a specification of the Electric Water Heater)
+     * @param mNominalPower        the nominal power of the Electric Water Heater (a specification of the Electric Water Heater)
+     * @return the Device that is being created
+     */
+    public Device createNewElectricWaterHeater(String name, Room selectedRoom, double mHotWaterTemperature, double mMaximumVolume, double mNominalPower, double mPerformanceRatio) {
+        return mDevice = mDeviceList.newElectricWaterHeater(name, selectedRoom, mHotWaterTemperature, mMaximumVolume, mNominalPower, mPerformanceRatio);
+    }
+
+
 }

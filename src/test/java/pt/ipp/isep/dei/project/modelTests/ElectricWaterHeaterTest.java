@@ -14,7 +14,8 @@ class ElectricWaterHeaterTest {
         double hotWaterTemp = 50;
         double maximumVolume = 150;
         double nominalPower = 100;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower);
+        double performanceRatio = 0.9;
+        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower, performanceRatio);
 
         electricWaterHeater.setmColdWaterTemperature(30);
         electricWaterHeater.setmVolumeOfWaterToHeat(100);

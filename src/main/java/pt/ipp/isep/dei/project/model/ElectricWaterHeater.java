@@ -9,11 +9,11 @@ public class ElectricWaterHeater implements DeviceSpecs {
     private double mMaximumVolume;
     private double mNominalPower;
 
-    public ElectricWaterHeater(double mHotWaterTemperature, double mMaximumVolume, double mNominalPower) {
+    public ElectricWaterHeater(double mHotWaterTemperature, double mMaximumVolume, double mNominalPower, double mPerformanceRatio) {
         this.mTypeName = "Electric Water Heater";
         this.mHotWaterTemperature = mHotWaterTemperature;
         this.mMaximumVolume = mMaximumVolume;
-        this.mPerformanceRatio = 0.9;
+        this.mPerformanceRatio = mPerformanceRatio;
         this.mNominalPower = mNominalPower;
     }
 
@@ -101,5 +101,10 @@ public class ElectricWaterHeater implements DeviceSpecs {
         }
         System.out.println("Please select a valid number.");
         return false;
+    }
+
+    @Override
+    public int getNumberOfAttributes() {
+        return 3;
     }
 }
