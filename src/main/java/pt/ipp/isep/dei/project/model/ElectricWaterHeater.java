@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 public class ElectricWaterHeater implements DeviceSpecs {
     private String mTypeName;
     private double mVolumeOfWaterToHeat;
@@ -66,15 +68,35 @@ public class ElectricWaterHeater implements DeviceSpecs {
     }
 
     public boolean setmHotWaterTemperature(double mHotWaterTemperature) {
-        return this.mHotWaterTemperature == mHotWaterTemperature;
+        if (Utils.isSameDouble(this.mHotWaterTemperature, mHotWaterTemperature)) {
+            return false;
+        }
+        this.mHotWaterTemperature = mHotWaterTemperature;
+        return true;
     }
 
     public boolean setmMaximumVolume(double mMaximumVolume) {
-        return this.mMaximumVolume == mMaximumVolume;
+        if (Utils.isSameDouble(this.mMaximumVolume, mMaximumVolume)) {
+            return false;
+        }
+        this.mMaximumVolume = mMaximumVolume;
+        return true;
+    }
+
+    public boolean setmPerformanceRatio(double mPerformanceRatio) {
+        if (Utils.isSameDouble(this.mPerformanceRatio, mPerformanceRatio)) {
+            return false;
+        }
+        this.mPerformanceRatio = mPerformanceRatio;
+        return true;
     }
 
     public boolean setmNominalPower(double mNominalPower) {
-        return this.mNominalPower == mNominalPower;
+        if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
+            return false;
+        }
+        this.mNominalPower = mNominalPower;
+        return true;
     }
 
     @Override
@@ -82,7 +104,8 @@ public class ElectricWaterHeater implements DeviceSpecs {
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Hot Water Temperature: " + mHotWaterTemperature + "\n");
         attributes.append("2 - Maximum Volume: " + mMaximumVolume + "\n");
-        attributes.append("3 - Nominal Power: " + mNominalPower + "\n");
+        attributes.append("3 - Performance Ratio:" + mPerformanceRatio + "\n");
+        attributes.append("4 - Nominal Power: " + mNominalPower + "\n");
         String electricWaterHeaterAttributes = attributes.toString();
         return electricWaterHeaterAttributes;
     }
@@ -95,6 +118,8 @@ public class ElectricWaterHeater implements DeviceSpecs {
             case 2:
                 return setmMaximumVolume(value);
             case 3:
+                return setmPerformanceRatio(value);
+            case 4:
                 return setmNominalPower(value);
         }
         System.out.println("Please select a valid number.");
@@ -103,6 +128,6 @@ public class ElectricWaterHeater implements DeviceSpecs {
 
     @Override
     public int getNumberOfAttributes() {
-        return 3;
+        return 4;
     }
 }

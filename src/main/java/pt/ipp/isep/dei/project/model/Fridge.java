@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
-import java.util.Scanner;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 public class Fridge implements DeviceSpecs {
     private String mTypeName;
@@ -39,31 +39,35 @@ public class Fridge implements DeviceSpecs {
     }
 
     public boolean setmFreezerCapacity(double mFreezerCapacity) {
-        if (this.mFreezerCapacity == mFreezerCapacity) {
-            return true;
+        if (Utils.isSameDouble(this.mFreezerCapacity, mFreezerCapacity)) {
+            return false;
         }
-        return false;
+        this.mFreezerCapacity = mFreezerCapacity;
+        return true;
     }
 
     public boolean setmRefrigeratorCapacity(double mRefrigeratorCapacity) {
-        if (this.mRefrigeratorCapacity == mRefrigeratorCapacity) {
-            return true;
+        if (Utils.isSameDouble(this.mRefrigeratorCapacity, mRefrigeratorCapacity)) {
+            return false;
         }
-        return false;
+        this.mRefrigeratorCapacity = mRefrigeratorCapacity;
+        return true;
     }
 
     public boolean setmAnnualEnergyConsumption(double mAnnualEnergyConsumption) {
-        if (this.mAnnualEnergyConsumption == mAnnualEnergyConsumption) {
-            return true;
+        if (Utils.isSameDouble(this.mAnnualEnergyConsumption, mAnnualEnergyConsumption)) {
+            return false;
         }
-        return false;
+        this.mAnnualEnergyConsumption = mAnnualEnergyConsumption;
+        return true;
     }
 
     public boolean setmNominalPower(double mNominalPower) {
-        if (this.mNominalPower == mNominalPower) {
-            return true;
+        if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
+            return false;
         }
-        return false;
+        this.mNominalPower = mNominalPower;
+        return true;
     }
 
     @Override
@@ -90,11 +94,8 @@ public class Fridge implements DeviceSpecs {
             case 4:
                 return setmNominalPower(value);
         }
-
-
         System.out.println("Please select a valid number.");
         return false;
-
     }
 
     @Override
