@@ -1,0 +1,47 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor DeepSkyBlue
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor #A9DCDF
+
+	ParticipantBorderColor DeepSkyBlue
+	ParticipantBackgroundColor DodgerBlue
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+autonumber
+actor User
+User -> UI: GetListOfSensorsInARoom
+UI -> Controller: RoomListSize()
+UI <-- Controller: RoomListSize()
+UI -> Controller: GetRoomOftheRoomList()
+Controller -> House: GetNameofTheChosenRoomInASpecificPosition()
+House -> RoomList: GetNameofTheChosenRoomInASpecificPosition()
+House <-- RoomList: GetNameofTheChosenRoomInASpecificPosition()
+Controller <-- House: GetNameofTheChosenRoomInASpecificPosition()
+UI <-- Controller: GetNameofTheChosenRoomInASpecificPosition()
+
+User -> UI: ChooseRoomFromList
+UI -> Controller: GetSensorsListContent()
+Controller -> House: GetSensorListContentOfARoom()
+House -> RoomList: GetSensorListContentOfARoom()
+House <-- RoomList: GetSensorListContentOfARoom()
+Controller <-- House: GetSensorListContentOfARoom()
+UI <-- Controller: GetSensorsListContent()
+
+UI -> Controller: CheckIfListIsEmpty()
+Controller -> House: CheckIfSensorListIsEmpty()
+House -> RoomList: CheckIfSensorListIsEmpty()
+RoomList -> DeviceList: CheckIfSensorListIsEmpty()
+RoomList <-- DeviceList: CheckIfSensorListIsEmpty()
+House <-- RoomList: CheckIfSensorListIsEmpty()
+Controller <-- House: CheckIfSensorListIsEmpty()
+UI <-- Controller: CheckIfSensorListIsEmpty()
+@enduml

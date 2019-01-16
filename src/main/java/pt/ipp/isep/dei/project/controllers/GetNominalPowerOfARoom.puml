@@ -8,6 +8,7 @@ skinparam sequence {
 
 	ParticipantBorderColor DeepSkyBlue
 	ParticipantBackgroundColor DodgerBlue
+	ParticipantFontStyle Bold
 
 	ActorBackgroundColor DimGrey
 	ActorFontColor DeepSkyBlue
@@ -17,25 +18,25 @@ skinparam sequence {
 
 autonumber
 actor User
-User -> Ui: GetNominalPowerOfARoom
-Ui -> Controller: GetListOfRooms
-Controller -> House: GetListOfRooms
+User -> Ui: GetNominalPowerOfARoom ()
+Ui -> Controller: GetListOfRooms ()
+Controller -> House: GetListOfRooms ()
 
-House -> RoomList: getRoomFromAPosition
-Ui <-- RoomList: Room list
+House -> RoomList: getRoomFromAPosition ()
+Ui <-- RoomList: Room list ()
 
-User -> Ui: Choose room from list
-Ui -> Controller: CheckIfDeviceListIsEmpty
-Controller -> House: CheckIfDeviceListIsEmpty
-House -> RoomList: CheckIfDeviceListIsEmpty
-RoomList -> Room: CheckIfDeviceListIsEmpty
-Room -> DeviceList: CheckIfDeviceListIsEmpty
-Controller <-- DeviceList: boolean
+User -> Ui: Choose room from list ()
+Ui -> Controller: CheckIfDeviceListIsEmpty ()
+Controller -> House: CheckIfDeviceListIsEmpty ()
+House -> RoomList: CheckIfDeviceListIsEmpty ()
+RoomList -> Room: CheckIfDeviceListIsEmpty ()
+Room -> DeviceList: CheckIfDeviceListIsEmpty ()
+Controller <-- DeviceList: boolean ()
 
 
-Controller -> House: getNominalPowerOfARoom
-House -> RoomList: getNominalPowerOfARoom
-RoomList -> Room: getNominalPowerOfARoom
-Ui <-- Room: NominalPowerOfARoom
-User <-- Ui: double NominalPowerOfARoom
+Controller -> House: getNominalPowerOfARoom ()
+House -> RoomList: getNominalPowerOfARoom ()
+RoomList -> Room: getNominalPowerOfARoom ()
+Ui <-- Room: NominalPowerOfARoom ()
+User <-- Ui: double NominalPowerOfARoom ()
 @enduml
