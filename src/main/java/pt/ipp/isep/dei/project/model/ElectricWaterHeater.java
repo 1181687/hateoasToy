@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 public class ElectricWaterHeater implements DeviceSpecs {
     private String mTypeName;
     private double mVolumeOfWaterToHeat;
@@ -66,7 +68,7 @@ public class ElectricWaterHeater implements DeviceSpecs {
     }
 
     public boolean setmHotWaterTemperature(double mHotWaterTemperature) {
-        if (this.mHotWaterTemperature == mHotWaterTemperature) {
+        if (Utils.isSameDouble(this.mHotWaterTemperature, mHotWaterTemperature)) {
             return false;
         }
         this.mHotWaterTemperature = mHotWaterTemperature;
@@ -74,7 +76,7 @@ public class ElectricWaterHeater implements DeviceSpecs {
     }
 
     public boolean setmMaximumVolume(double mMaximumVolume) {
-        if (this.mMaximumVolume == mMaximumVolume) {
+        if (Utils.isSameDouble(this.mMaximumVolume, mMaximumVolume)) {
             return false;
         }
         this.mMaximumVolume = mMaximumVolume;
@@ -82,7 +84,7 @@ public class ElectricWaterHeater implements DeviceSpecs {
     }
 
     public boolean setmPerformanceRatio(double mPerformanceRatio) {
-        if (this.mPerformanceRatio == mPerformanceRatio) {
+        if (Utils.isSameDouble(this.mPerformanceRatio, mPerformanceRatio)) {
             return false;
         }
         this.mPerformanceRatio = mPerformanceRatio;
@@ -90,7 +92,7 @@ public class ElectricWaterHeater implements DeviceSpecs {
     }
 
     public boolean setmNominalPower(double mNominalPower) {
-        if (this.mNominalPower == mNominalPower) {
+        if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
             return false;
         }
         this.mNominalPower = mNominalPower;
@@ -126,6 +128,6 @@ public class ElectricWaterHeater implements DeviceSpecs {
 
     @Override
     public int getNumberOfAttributes() {
-        return 3;
+        return 4;
     }
 }

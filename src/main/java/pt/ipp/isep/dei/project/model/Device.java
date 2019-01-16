@@ -70,6 +70,9 @@ public class Device implements Measurable {
     }
 
     public boolean setmName(String mName) {
+        if (this.mName == mName) {
+            return false;
+        }
         this.mName = mName;
         return true;
     }

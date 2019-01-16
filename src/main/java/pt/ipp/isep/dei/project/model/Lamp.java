@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 public class Lamp implements DeviceSpecs {
     private String mTypeName ;
     private double mLuminousFlux;
@@ -29,11 +31,17 @@ public class Lamp implements DeviceSpecs {
     }
 
     public boolean setmLuminousFlux(double mLuminousFlux) {
+        if (Utils.isSameDouble(this.mLuminousFlux, mLuminousFlux)) {
+            return false;
+        }
         this.mLuminousFlux = mLuminousFlux;
         return true;
     }
 
     public boolean setmNominalPower(double mNominalPower) {
+        if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
+            return false;
+        }
         this.mNominalPower = mNominalPower;
         return true;
     }
