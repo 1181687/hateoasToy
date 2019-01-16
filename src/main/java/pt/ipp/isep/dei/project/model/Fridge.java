@@ -23,21 +23,28 @@ public class Fridge implements DeviceSpecs {
         return mTypeName;
     }
 
-    /**
-     * @return
+    /** get method
+     * @return energy consumption in a day
      */
     public double getEnergyConsumptionInADay() {
         return mAnnualEnergyConsumption / 365;
     }
 
-    /**
-     * @return
+    /** get method
+     * @return nominal power
      */
     @Override
     public double getmNominalPower() {
         return mNominalPower;
     }
 
+
+    /**
+     * set method
+     *
+     * @param mFreezerCapacity capacity of freezer
+     * @return capacity of freezer
+     */
     public boolean setmFreezerCapacity(double mFreezerCapacity) {
         if (Utils.isSameDouble(this.mFreezerCapacity, mFreezerCapacity)) {
             return false;
@@ -46,6 +53,10 @@ public class Fridge implements DeviceSpecs {
         return true;
     }
 
+    /**
+     * set method
+     * @param mRefrigeratorCapacity capacity of refrigerator
+     */
     public boolean setmRefrigeratorCapacity(double mRefrigeratorCapacity) {
         if (Utils.isSameDouble(this.mRefrigeratorCapacity, mRefrigeratorCapacity)) {
             return false;
@@ -54,6 +65,10 @@ public class Fridge implements DeviceSpecs {
         return true;
     }
 
+    /**
+     * set method
+     * @param mAnnualEnergyConsumption annual energy comsumption
+     */
     public boolean setmAnnualEnergyConsumption(double mAnnualEnergyConsumption) {
         if (Utils.isSameDouble(this.mAnnualEnergyConsumption, mAnnualEnergyConsumption)) {
             return false;
@@ -62,6 +77,10 @@ public class Fridge implements DeviceSpecs {
         return true;
     }
 
+    /**
+     * set method
+     * @param mNominalPower nominal power
+     */
     public boolean setmNominalPower(double mNominalPower) {
         if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
             return false;
