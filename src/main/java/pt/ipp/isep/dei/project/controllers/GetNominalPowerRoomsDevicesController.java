@@ -21,19 +21,11 @@ public class GetNominalPowerRoomsDevicesController {
     }
 
     public int getHouseGridListLength(){
-        return mHouse.getHouseGridListLength();
+        return this.mHouse.getHouseGridListLength();
     }
 
     public void getHouseGridbyPosition(int position){
         mSelectedHouseGrid = this.mHouse.getHouseGridByPosition(position);
-    }
-
-    public String getRoomListToStringInAGrid(){
-        return mSelectedHouseGrid.getRoomListToString();
-    }
-
-    public int getSizeOfRoomListConnectedToGrid(){
-        return mSelectedHouseGrid.getRoomListSize();
     }
 
     public Room getChosenRoomInTheGrid(int position){
@@ -68,15 +60,19 @@ public class GetNominalPowerRoomsDevicesController {
         mMeasurableList.addMeasurableObjToMeasurableList(measurable);
     }
 
-    public String getRoomsInTheHouseGrid(int position){
-        return mHouse.getRoomsInTheHouseGrid(position);
+    public String getRoomsInTheHouseGrid() {
+        return mSelectedHouseGrid.getRoomListContent();
     }
 
-    public int getSizeOfRoomListInGrid(int position){
-        return mHouse.getTheSizeOfRoomListInAGrid(position);
+    public int getSizeOfRoomListInGrid() {
+        return mSelectedHouseGrid.getRoomListSize();
     }
 
     public boolean checkIfObjInList(Measurable measurable){
         return mMeasurableList.checkIfMeasurableObjIsInList(measurable);
+    }
+
+    public boolean checkIfMeasurableListIsEmpty() {
+        return mMeasurableList.checkIsMeasurableListIsEmpty();
     }
 }

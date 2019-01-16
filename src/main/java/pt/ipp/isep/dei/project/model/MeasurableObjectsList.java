@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MeasurableObjectsList implements Measurable {
     private Set<Measurable> mMeasurableList = new HashSet<>();
@@ -8,14 +9,6 @@ public class MeasurableObjectsList implements Measurable {
 
     public MeasurableObjectsList() {
     }
-
-    public Set<Measurable> mMeasurableList() {
-        return mMeasurableList;
-    }
-
-    /*public List<Measurable> getmMeasurableList() {
-        return mMeasurableList;
-    }*/
 
     public void addMeasurableObjToMeasurableList(Measurable measurable) {
         this.mMeasurableList.add(measurable);
@@ -29,10 +22,11 @@ public class MeasurableObjectsList implements Measurable {
         return totalNominalPower;
     }
 
-    public boolean checkIfMeasurableObjIsInList(Measurable measurable){
-        if (mMeasurableList.contains(measurable)){
-            return true;
-        }
-        else return false;
+    public boolean checkIfMeasurableObjIsInList(Measurable measurable) {
+        return mMeasurableList.contains(measurable);
+    }
+
+    public boolean checkIsMeasurableListIsEmpty() {
+        return mMeasurableList.isEmpty();
     }
 }

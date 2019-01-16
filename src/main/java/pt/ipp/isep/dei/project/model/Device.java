@@ -1,15 +1,17 @@
 package pt.ipp.isep.dei.project.model;
 
 
+import java.util.Objects;
+
 public class Device implements Measurable {
     private String mName;
     private Room mLocation;
     private DeviceSpecs mSpec;
 
-    public Device(String mName, Room mLocation, DeviceSpecs mSpec) {
-        this.mName = mName;
-        this.mLocation = mLocation;
-        this.mSpec = mSpec;
+    public Device(String name, Room location, DeviceSpecs spec) {
+        this.mName = name;
+        this.mLocation = location;
+        this.mSpec = spec;
     }
 
     @Override
@@ -26,7 +28,7 @@ public class Device implements Measurable {
      *
      * @return name of device
      */
-    public String getmName() {
+    public String getName() {
         return this.mName;
     }
 
@@ -57,8 +59,22 @@ public class Device implements Measurable {
         return mSpec.getEnergyConsumptionInADay();
     }
 
-    public boolean setmName(String mName) {
-        this.mName = mName;
+
+    /**
+     * method that set the given name only if the name don't exists in DeviceList
+     * and if it is different than the name that the Device has.
+     *
+     * @param name String given name
+     * @return true if sets false if don't
+     */
+    public boolean setName(String name) {
+        if (this.mLocation.checkIfNameAlreadyExists(name)) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
+        if (this.mName == name) {
+            return false;
+        }
+        this.mName = name;
         return true;
     }
 
@@ -88,6 +104,34 @@ public class Device implements Measurable {
 
     public boolean setAttributesDevType(int attribute, double value) {
         return this.mSpec.setAttribute(attribute, value);
+    }
+
+    /**
+     * method that creates the hashcode to two devices that are have the same name.
+     *
+     * @return the hashcode created
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.mName);
+    }
+
+    /**
+     * Equals method to determine if two Device are equal.     *
+     *
+     * @param obj receives an object
+     * @return boolean true if are equal and false if are not.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Device)) {
+            return false;
+        }
+        Device listOne = (Device) obj;
+        return this.mName.equalsIgnoreCase(listOne.mName);
     }
 
     public int getNumberOfSpecsAttributes(){

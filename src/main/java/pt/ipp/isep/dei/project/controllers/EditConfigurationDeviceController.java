@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
-import pt.ipp.isep.dei.project.model.RoomList;
 
 public class EditConfigurationDeviceController {
 
@@ -20,8 +19,8 @@ public class EditConfigurationDeviceController {
         return this.mHouse.getRoomListContent();
     }
 
-    public RoomList getListOfRooms () {
-        return this.mHouse.getRoomList();
+    public String getRoomName (int position) {
+        return this.mHouse.getNameOfTheChosenRoomInSpecificPos(position);
     }
 
     public void getRoomByPosition (int option) {
@@ -41,7 +40,7 @@ public class EditConfigurationDeviceController {
     }
 
     public boolean setDeviceName (String newName) {
-        return this.mDevice.setmName(newName);
+        return this.mDevice.setName(newName);
     }
 
     public boolean setDeviceSpecs (int attribute, double value) {

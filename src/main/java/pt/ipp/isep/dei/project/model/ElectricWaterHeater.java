@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 public class ElectricWaterHeater implements DeviceSpecs {
     private String mTypeName;
     private double mVolumeOfWaterToHeat;
@@ -67,33 +69,80 @@ public class ElectricWaterHeater implements DeviceSpecs {
         return mNominalPower;
     }
 
+    /**
+     * methods that determine if the value of the hotWaterTemperature is the same that the method receive.
+     * @param mHotWaterTemperature
+     * @return false if is the same value. Return true if not, and save the new value.
+     */
     public boolean setmHotWaterTemperature(double mHotWaterTemperature) {
-        return this.mHotWaterTemperature == mHotWaterTemperature;
-    }
-
-    public boolean setmMaximumVolume(double mMaximumVolume) {
-        return this.mMaximumVolume == mMaximumVolume;
-    }
-
-    public boolean setmNominalPower(double mNominalPower) {
-        return this.mNominalPower == mNominalPower;
+        if (Utils.isSameDouble(this.mHotWaterTemperature, mHotWaterTemperature)) {
+            return false;
+        }
+        this.mHotWaterTemperature = mHotWaterTemperature;
+        return true;
     }
 
     /**
-     * Method that returns the content of the non-optional attributes of the class.
+     * methods that determine if the value of the maximumVolume is the same that the method receive.
      *
-     * @return String with the non-optional attributes.
+     * @param mMaximumVolume
+     * @return false if is the same value. Return true if not, and save the new value.
+     */
+    public boolean setmMaximumVolume(double mMaximumVolume) {
+        if (Utils.isSameDouble(this.mMaximumVolume, mMaximumVolume)) {
+            return false;
+        }
+        this.mMaximumVolume = mMaximumVolume;
+        return true;
+    }
+
+    /**
+     * method that determine if the value of the performanceRatio is the same that the method receive.
+     * @param mPerformanceRatio
+     * @return false if is the same value. Return true if not, and save the new value.
+     */
+    public boolean setmPerformanceRatio(double mPerformanceRatio) {
+        if (Utils.isSameDouble(this.mPerformanceRatio, mPerformanceRatio)) {
+            return false;
+        }
+        this.mPerformanceRatio = mPerformanceRatio;
+        return true;
+    }
+
+    /**
+     * method that determine if the value of the nominalPower is the same that the method receive.
+     * @param mNominalPower
+     * @return false if is the same value. Return true if not, and save the new value.
+     */
+    public boolean setmNominalPower(double mNominalPower) {
+        if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
+            return false;
+        }
+        this.mNominalPower = mNominalPower;
+        return true;
+    }
+
+    /**
+     * method that get the attributes by strings.
+     * @return an attribute of the electricWater.
      */
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Hot Water Temperature: " + mHotWaterTemperature + "\n");
         attributes.append("2 - Maximum Volume: " + mMaximumVolume + "\n");
-        attributes.append("3 - Nominal Power: " + mNominalPower + "\n");
+        attributes.append("3 - Performance Ratio: " + mPerformanceRatio + "\n");
+        attributes.append("4 - Nominal Power: " + mNominalPower + "\n");
         String electricWaterHeaterAttributes = attributes.toString();
         return electricWaterHeaterAttributes;
     }
 
+    /**
+     * method that set a value of an attribute by a position.
+     * @param attribute
+     * @param value
+     * @return the attributes with new value if true. If not, return false.
+     */
     @Override
     public boolean setAttribute(int attribute, double value) {
         switch (attribute) {
@@ -102,18 +151,23 @@ public class ElectricWaterHeater implements DeviceSpecs {
             case 2:
                 return setmMaximumVolume(value);
             case 3:
-                return setmNominalPower(value);
+                return setmPerformanceRatio(value);
             case 4:
-                return setmColdWaterTemperature(value);
+                return setmNominalPower(value);
             case 5:
+                return setmColdWaterTemperature(value);
+            case 6:
                 return setmVolumeOfWaterToHeat(value);
         }
-        System.out.println("Please select a valid number.");
         return false;
     }
 
+    /**
+     * method that get the number of the attributes of the device.
+     * @return the number of attributes.
+     */
     @Override
     public int getNumberOfAttributes() {
-        return 3;
+        return 4;
     }
 }
