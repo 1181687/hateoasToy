@@ -69,9 +69,9 @@ public class DeviceTest {
         // Device Instantiation
         Device device = new Device("Electric Water Heater", room, electricWaterHeater);
 
-        int coldWaterTempPosition = 4;
+        int coldWaterTempPosition = 5;
         device.setAttributesDevType(coldWaterTempPosition, 30);
-        int volumeOfWaterToHeatPosition = 5;
+        int volumeOfWaterToHeatPosition = 6;
         device.setAttributesDevType(volumeOfWaterToHeatPosition, 100);
 
         double expectedResult = 2093.4;
