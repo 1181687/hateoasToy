@@ -64,11 +64,8 @@ public class EditConfigurationDevice {
                         content.append("! \n");
                         break;
                 }
-
             }
-
         }
         System.out.println(content.toString());
-
     }
 }

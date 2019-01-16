@@ -70,6 +70,9 @@ public class Room implements Measurable{
      * @param mName name of a room (string)
      */
     public void setmName(String mName) {
+        //  if (Roomlist.checkIfNameAlreadyExists(name)) {
+        //      throw new RuntimeException("Name already exists. Please write a new one.");
+        //  }
         this.mName = mName;
     }
 
@@ -119,7 +122,7 @@ public class Room implements Measurable{
      */
     @Override
     public int hashCode() {
-        return Objects.hash(mName);
+        return Objects.hash(this.mName);
     }
 
     /**
@@ -266,5 +269,15 @@ public class Room implements Measurable{
      */
     public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
         return mDeviceList.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
+    }
+
+    /**
+     * method that check if a name of a Device already exists on the list of devices.
+     *
+     * @param name name of device
+     * @return boolean true if exists, false if it doesn't
+     */
+    public boolean checkIfNameAlreadyExists(String name) {
+        return this.mDeviceList.checkIfNameAlreadyExists(name);
     }
 }
