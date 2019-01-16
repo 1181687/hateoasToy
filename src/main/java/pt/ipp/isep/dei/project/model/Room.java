@@ -253,22 +253,12 @@ public class Room implements Measurable{
     }
 
     /**
-     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
-     * class Electric Water Heater.
      *
-     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
-     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
-     */
-    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
-        mDeviceList.setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
-    }
-
-    /**
      * @param type
      * @return
      */
-    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
-        return mDeviceList.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
+    public DeviceList getAllDevicesOfAType(String type) {
+        return mDeviceList.getAllDevicesOfAType(type);
     }
 
     /**

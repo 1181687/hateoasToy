@@ -1411,17 +1411,10 @@ public class HouseTest {
         double nominalPower0 = 100;
         double performanceRatio = 0.9;
         DeviceSpecs electricWaterHeater0 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
-        double hotWaterTemp1 = 60;
-        double maximumVolume1 = 200;
-        double nominalPower1 = 110;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, nominalPower1, performanceRatio);
 
         // Device Instantiation
-        Device device0 = new Device("Electric Water Heater A", room, electricWaterHeater0);
-        Device device1 = new Device("Electric Water Heater B", room, electricWaterHeater1);
-
+        Device device0 = new Device("Electric Water Heater", room, electricWaterHeater0);
         room.addDevice(device0);
-        room.addDevice(device1);
 
         // RoomList Instantiation
         RoomList roomList = new RoomList();
@@ -1439,12 +1432,15 @@ public class HouseTest {
         // House Instantiation
         House house = new House(roomList, houseGridList, null, null);
 
-        house.setColdWaterTempAndVolumeOfWaterToHeat(30, 100);
+        int coldWaterTempPosition = 5;
+        house.setAttribute("Electric Water Heater", 0, coldWaterTempPosition, 30);
+        int volumeOfWaterToHeatPosition = 6;
+        house.setAttribute("Electric Water Heater", 0, volumeOfWaterToHeatPosition, 100);
 
-        double expectedResult = 5233.5;
+        double expectedResult = 2093.4;
 
         // Act
-        double result = house.getEnergyConsumptionInADayOfAllDevicesOfAType("Electric Water Heater");
+        double result = house.getEnergyConsumptionOfADevice("Electric Water Heater", 0);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
