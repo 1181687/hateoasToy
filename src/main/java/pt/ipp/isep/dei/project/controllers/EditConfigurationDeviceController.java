@@ -20,8 +20,8 @@ public class EditConfigurationDeviceController {
         return this.mHouse.getRoomListContent();
     }
 
-    public RoomList getListOfRooms () {
-        return this.mHouse.getRoomList();
+    public String getRoomName (int position) {
+        return this.mHouse.getNameOfTheChosenRoomInSpecificPos(position);
     }
 
     public void getRoomByPosition (int option) {
