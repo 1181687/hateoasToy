@@ -3,7 +3,9 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Objects;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DeviceTest {
 
@@ -76,5 +78,76 @@ public class DeviceTest {
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    void testHashCode() {
+        //Arrange
+        String name = "LAMP ONE";
+        double nominalPower = 200;
+        int capacity = 100;
+        Dimensions dim = new Dimensions(3.5, 6.5, 7.5);
+        Room room1 = new Room("Room1", 2, dim);
+        DeviceSpecs lamp = new Lamp(capacity, nominalPower);
+        Device lamp1 = new Device(name, room1, lamp);
+
+        int expectedResult = Objects.hash(name);
+
+        // Act
+        int result = lamp1.hashCode();
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testEqualsTrue() {
+        //Arrange
+        String name = "LAMP ONE";
+        double nominalPower = 200;
+        int capacity = 100;
+        Dimensions dim = new Dimensions(3.5, 6.5, 7.5);
+        Room room1 = new Room("Room1", 2, dim);
+        DeviceSpecs lamp = new Lamp(capacity, nominalPower);
+        Device lamp1 = new Device(name, room1, lamp);
+        Device lamp2 = new Device("lamp one", room1, lamp);
+        //Act
+        boolean result = lamp1.equals(lamp2);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void testEqualsFalse() {
+        //Arrange
+        String name = "LAMP ONE";
+        double nominalPower = 200;
+        int capacity = 100;
+        Dimensions dim = new Dimensions(3.5, 6.5, 7.5);
+        Room room1 = new Room("Room1", 2, dim);
+        DeviceSpecs lamp = new Lamp(capacity, nominalPower);
+        Device lamp1 = new Device(name, room1, lamp);
+        Device lamp2 = new Device("lamp two", room1, lamp);
+        //Act
+        boolean result = lamp1.equals(lamp2);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testEqualsFalseDifTypes() {
+        //Arrange
+        String name = "LAMP ONE";
+        double nominalPower = 200;
+        int capacity = 100;
+        Dimensions dim = new Dimensions(3.5, 6.5, 7.5);
+        Room room1 = new Room("Room1", 2, dim);
+        DeviceSpecs lamp = new Lamp(capacity, nominalPower);
+        Device lamp1 = new Device(name, room1, lamp);
+        Device lamp2 = new Device("lamp two", room1, lamp);
+
+        //Act
+        boolean result = lamp1.equals(room1);
+        //Assert
+        assertFalse(result);
     }
 }
