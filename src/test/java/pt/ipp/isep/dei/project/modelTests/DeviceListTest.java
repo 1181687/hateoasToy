@@ -67,6 +67,18 @@ public class DeviceListTest {
     }
 
     @Test
+    void testEqualsTrueSameObj() {
+        //Arrange
+
+        DeviceList deviceList1 = new DeviceList();
+
+        //Act
+        boolean result = deviceList1.equals(deviceList1);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
     void testEqualsTrueFalse() {
         //Arrange
 
@@ -164,9 +176,10 @@ public class DeviceListTest {
         // ElectricWaterHeater Instantiation
         double hotWaterTemp0 = 50;
         double maximumVolume0 = 150;
-        double nominalPower0 = 100;
         double performanceRatio = 0.9;
-        DeviceSpecs electricWaterHeater0 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
+        double nominalPower0 = 100;
+
+        DeviceSpecs electricWaterHeater0 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, performanceRatio, nominalPower0);
 
         // Device Instantiation
         Device device0 = new Device("Electric Water Heater", room, electricWaterHeater0);
