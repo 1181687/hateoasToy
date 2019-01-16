@@ -29,17 +29,13 @@ public class Lamp implements DeviceSpecs {
     }
 
     public boolean setmLuminousFlux(double mLuminousFlux) {
-        if (this.mLuminousFlux == mLuminousFlux) {
-            return true;
-        }
-        return false;
+        this.mLuminousFlux = mLuminousFlux;
+        return true;
     }
 
     public boolean setmNominalPower(double mNominalPower) {
-        if (this.mNominalPower == mNominalPower) {
-            return true;
-        }
-        return false;
+        this.mNominalPower = mNominalPower;
+        return true;
     }
 
     @Override
@@ -61,5 +57,10 @@ public class Lamp implements DeviceSpecs {
         }
         System.out.println("Please select a valid number.");
         return false;
+    }
+
+    @Override
+    public int getNumberOfAttributes() {
+        return 2;
     }
 }

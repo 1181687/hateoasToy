@@ -40,30 +40,34 @@ public class Fridge implements DeviceSpecs {
 
     public boolean setmFreezerCapacity(double mFreezerCapacity) {
         if (this.mFreezerCapacity == mFreezerCapacity) {
-            return true;
+            return false;
         }
-        return false;
+        this.mFreezerCapacity = mFreezerCapacity;
+        return true;
     }
 
     public boolean setmRefrigeratorCapacity(double mRefrigeratorCapacity) {
         if (this.mRefrigeratorCapacity == mRefrigeratorCapacity) {
-            return true;
+            return false;
         }
-        return false;
+        this.mRefrigeratorCapacity = mRefrigeratorCapacity;
+        return true;
     }
 
     public boolean setmAnnualEnergyConsumption(double mAnnualEnergyConsumption) {
         if (this.mAnnualEnergyConsumption == mAnnualEnergyConsumption) {
-            return true;
+            return false;
         }
-        return false;
+        this.mAnnualEnergyConsumption = mAnnualEnergyConsumption;
+        return true;
     }
 
     public boolean setmNominalPower(double mNominalPower) {
         if (this.mNominalPower == mNominalPower) {
-            return true;
+            return false;
         }
-        return false;
+        this.mNominalPower = mNominalPower;
+        return true;
     }
 
     @Override
@@ -79,11 +83,6 @@ public class Fridge implements DeviceSpecs {
 
     @Override
     public boolean setAttribute(int attribute, double value) {
-        Scanner in = new Scanner(System.in);
-        while (attribute < 1 || attribute > 4) {
-            System.out.println("Select a number between 1 and 4");
-            attribute = in.nextInt();
-        }
 
         switch (attribute) {
             case 1:
@@ -95,10 +94,12 @@ public class Fridge implements DeviceSpecs {
             case 4:
                 return setmNominalPower(value);
         }
-
-
         System.out.println("Please select a valid number.");
         return false;
+    }
 
+    @Override
+    public int getNumberOfAttributes() {
+        return 4;
     }
 }

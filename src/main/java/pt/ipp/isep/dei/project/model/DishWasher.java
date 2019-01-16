@@ -39,17 +39,13 @@ public class DishWasher implements DeviceSpecs {
     }
 
     public boolean setmCapacity(int mCapacity) {
-        if (this.mCapacity == mCapacity) {
-            return true;
-        }
-        return false;
+        this.mCapacity = mCapacity;
+        return true;
     }
 
     public boolean setmNominalPower(double mNominalPower) {
-        if (this.mNominalPower == mNominalPower) {
-            return true;
-        }
-        return false;
+        this.mNominalPower = mNominalPower;
+        return true;
     }
 
     public String getAttributesToString() {
@@ -73,6 +69,8 @@ public class DishWasher implements DeviceSpecs {
         return false;
     }
 
-
-
+    @Override
+    public int getNumberOfAttributes() {
+        return 2;
+    }
 }

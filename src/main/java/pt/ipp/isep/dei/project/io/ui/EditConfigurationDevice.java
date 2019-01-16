@@ -13,6 +13,7 @@ public class EditConfigurationDevice {
 
     public void run() {
 
+        StringBuilder content = new StringBuilder();
         if (this.controller.checkIfRoomListIsEmpty()) {
             System.out.println("There are no rooms in the house. Please create a room.");
 
@@ -40,27 +41,33 @@ public class EditConfigurationDevice {
                         String label4 = "What name do you want to assign to the device?";
                         String newName = InputValidator.getString(label4);
                         controller.setDeviceName(newName);
+                        content.append("The name was changed with success! Now, this device call " + newName + "! \n");
                         break;
                     case 2:
                         String label5 = "Choose the specification you want to change. \n" + controller.getSpecsAttributesToString();
-                        int attribute = InputValidator.getInt(label5);
+                        int attribute = InputValidator.getIntRange(label5,1,controller.getNumberOfAttributesInDeviceSpecs());
                         String label6 = "What is the new value?";
-                        int value = InputValidator.getInt(label6);
+                        double value = InputValidator.getDouble(label6);
                         controller.setDeviceSpecs(attribute, value);
+                        content.append("The value was changed with success! Now, the value is " + value + "! \n");
                         break;
                     case 3:
-                        String label7 = "To which room do you to change the device? \n" + controller.getRoomListContent();
+                        String label7 = "To which room do you want to change the device? \n" + controller.getRoomListContent();
                         int roomListLength1 = controller.roomListSize();
                         int positionRoom = InputValidator.getIntRange(label7, 1, roomListLength1)-1;
                         controller.getNewRoom(positionRoom);
                         controller.setLocation();
+                        content.append("The location of the device was changed with success! Now, the room is ");
+                        String room = controller.getRoomName(positionRoom);
+                        content.append(room);
+                        content.append("! \n");
                         break;
                 }
 
             }
 
         }
-
+        System.out.println(content.toString());
 
     }
 }
