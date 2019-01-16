@@ -12,36 +12,64 @@ public class AddDeviceToRoomController {
     private DeviceList mDeviceList;
     private Room mRoom;
 
+    /**
+     * Constructor.
+     *
+     * @param house
+     */
     public AddDeviceToRoomController(House house) {
         this.mHouse = house;
         this.mDeviceList = new DeviceList();
     }
 
 
+    /**
+     * Method that asks for the list of rooms from the class RoomList.
+     *
+     * @return List of house grids.
+     */
     public String getRoomListContent() {
         return mHouse.getRoomListContent();
     }
 
+
+    /**
+     * Method that asks for the room in a specific position in the list.
+     * @param position Specifies the position of the room in the list.
+     * @return The respective room.
+     */
     public void getRoom(int position) {
         mRoom = mHouse.getRoomOfTheRoomList(position);
     }
 
+
+    /**
+     * Method that show the room selected.
+     * @return selected room
+     */
     public Room getSelectedRoom() {
         return mRoom;
     }
 
+
+    /**
+     * Method that asks for the size of the list of rooms.
+     *
+     * @return Size of the list.
+     */
     public int roomListLength() {
         return mHouse.getRoomListSize();
     }
 
 
+    /**
+     * Method that asks for the content (that is the name of the device type) of list of devices from the class DeviceList.
+     * @return the name of the device types in the device types list.
+     */
     public String getDeviceTypeListContent() {
         return mDeviceList.getDeviceTypeListContent();
     }
 
-    /*public DeviceList getDeviceList (){
-        return mDeviceList = mHouse.getRoomList().getAllDevicesList();
-    }*/
 
     /**
      * Method that verifies if the device has been added to the room.
@@ -81,6 +109,7 @@ public class AddDeviceToRoomController {
         return mDevice = mDeviceList.newLamp(name, selectedRoom, nominalPower, luminousFlux);
     }
 
+
     /**
      * Method that create a new Dish Washer in a selected Room.
      *
@@ -107,6 +136,7 @@ public class AddDeviceToRoomController {
     public Device createNewWashingMachine(String name, Room selectedRoom, double nominalPower, double capacity) {
         return mDevice = mDeviceList.newWashingMachine(name, selectedRoom, nominalPower, capacity);
     }
+
 
     /**
      * Method that create a new Electric Water Heater in a selected Room.
