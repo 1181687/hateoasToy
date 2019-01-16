@@ -47,7 +47,7 @@ public class EditConfigurationDevice {
                         String label5 = "Choose the specification you want to change. \n" + controller.getSpecsAttributesToString();
                         int attribute = InputValidator.getIntRange(label5,1,controller.getNumberOfAttributesInDeviceSpecs());
                         String label6 = "What is the new value?";
-                        int value = InputValidator.getInt(label6);
+                        double value = InputValidator.getDouble(label6);
                         controller.setDeviceSpecs(attribute, value);
                         content.append("The value was changed with success! Now, the value is " + value + "! \n");
                         break;
@@ -57,7 +57,7 @@ public class EditConfigurationDevice {
                         int positionRoom = InputValidator.getIntRange(label7, 1, roomListLength1)-1;
                         controller.getNewRoom(positionRoom);
                         controller.setLocation();
-                        content.append("The room was changed with success! Now, the room is ");
+                        content.append("The location of the device was changed with success! Now, the room is ");
                         String room = controller.getRoomName(positionRoom);
                         content.append(room);
                         content.append("! \n");

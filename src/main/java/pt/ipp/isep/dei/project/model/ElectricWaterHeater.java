@@ -67,23 +67,34 @@ public class ElectricWaterHeater implements DeviceSpecs {
 
     public boolean setmHotWaterTemperature(double mHotWaterTemperature) {
         if (this.mHotWaterTemperature == mHotWaterTemperature) {
-            return true;
+            return false;
         }
-        return false;
+        this.mHotWaterTemperature = mHotWaterTemperature;
+        return true;
     }
 
     public boolean setmMaximumVolume(double mMaximumVolume) {
         if (this.mMaximumVolume == mMaximumVolume) {
-            return true;
+            return false;
         }
-        return false;
+        this.mMaximumVolume = mMaximumVolume;
+        return true;
+    }
+
+    public boolean setmPerformanceRatio(double mPerformanceRatio) {
+        if (this.mPerformanceRatio == mPerformanceRatio) {
+            return false;
+        }
+        this.mPerformanceRatio = mPerformanceRatio;
+        return true;
     }
 
     public boolean setmNominalPower(double mNominalPower) {
         if (this.mNominalPower == mNominalPower) {
-            return true;
+            return false;
         }
-        return false;
+        this.mNominalPower = mNominalPower;
+        return true;
     }
 
     @Override
@@ -91,7 +102,8 @@ public class ElectricWaterHeater implements DeviceSpecs {
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Hot Water Temperature: " + mHotWaterTemperature + "\n");
         attributes.append("2 - Maximum Volume: " + mMaximumVolume + "\n");
-        attributes.append("3 - Nominal Power: " + mNominalPower + "\n");
+        attributes.append("3 - Performance Ratio:" + mPerformanceRatio + "\n");
+        attributes.append("4 - Nominal Power: " + mNominalPower + "\n");
         String electricWaterHeaterAttributes = attributes.toString();
         return electricWaterHeaterAttributes;
     }
@@ -104,6 +116,8 @@ public class ElectricWaterHeater implements DeviceSpecs {
             case 2:
                 return setmMaximumVolume(value);
             case 3:
+                return setmPerformanceRatio(value);
+            case 4:
                 return setmNominalPower(value);
         }
         System.out.println("Please select a valid number.");
