@@ -8,7 +8,7 @@ import java.util.stream.Collectors;
 
 public class DeviceList {
     private List<Device> mDeviceList;
-    private static final String sameName = "Name already exists. Please write a new one.";
+    private static final String SAME_NAME = "Name already exists. Please write a new one.";
 
     public DeviceList() {
         this.mDeviceList = new ArrayList<>();
@@ -140,7 +140,7 @@ public class DeviceList {
     public Device newElectricWaterHeater(String name, Room selectedRoom, double mHotWaterTemperature,
                                          double mMaximumVolume, double mNominalPower, double mPerformanceRatio) {
         if (checkIfNameAlreadyExists(name)) {
-            throw new RuntimeException(sameName);
+            throw new RuntimeException(SAME_NAME);
         }
         DeviceSpecs electricWaterHeater = createNewElectricWaterHeater(mHotWaterTemperature, mMaximumVolume,
                 mNominalPower, mPerformanceRatio);
@@ -156,7 +156,7 @@ public class DeviceList {
 
     public Device newWashingMachine (String name, Room selectedRoom, double nominalPower, double capacity) {
         if (checkIfNameAlreadyExists(name)) {
-            throw new RuntimeException(sameName);
+            throw new RuntimeException(SAME_NAME);
         }
         DeviceSpecs washingMachine = createNewWashingMachine(capacity, nominalPower);
         return new Device(name, selectedRoom, washingMachine);
@@ -169,7 +169,7 @@ public class DeviceList {
 
     public Device newDishWasher (String name, Room selectedRoom, double nominalPower, int capacity) {
         if (checkIfNameAlreadyExists(name)) {
-            throw new RuntimeException(sameName);
+            throw new RuntimeException(SAME_NAME);
         }
         DeviceSpecs dishWasher = createNewDishWasher(capacity, nominalPower);
         return new Device(name, selectedRoom, dishWasher);
@@ -182,7 +182,7 @@ public class DeviceList {
 
     public Device newLamp (String name, Room selectedRoom, double nominalPower, double luminousFlux) {
         if (checkIfNameAlreadyExists(name)) {
-            throw new RuntimeException(sameName);
+            throw new RuntimeException(SAME_NAME);
         }
         DeviceSpecs lamp = createNewLamp(luminousFlux, nominalPower);
         return new Device(name, selectedRoom, lamp);
@@ -195,7 +195,7 @@ public class DeviceList {
 
     public Device newFridge(String name, Room selectedRoom, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
         if (checkIfNameAlreadyExists(name)) {
-            throw new RuntimeException(sameName);
+            throw new RuntimeException(SAME_NAME);
         }
         DeviceSpecs fridge = createNewFridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
         return new Device(name, selectedRoom, fridge);
