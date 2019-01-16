@@ -89,6 +89,11 @@ public class Fridge implements DeviceSpecs {
         return true;
     }
 
+    /**
+     * method that displays a string of the choosen attribute (name of the attribute and its value)
+     *
+     * @return
+     */
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
@@ -100,6 +105,12 @@ public class Fridge implements DeviceSpecs {
         return fridgeAttributes;
     }
 
+    /**
+     * set method
+     * @param attribute position of the attribute
+     * @param value
+     * @return
+     */
     @Override
     public boolean setAttribute(int attribute, double value) {
 

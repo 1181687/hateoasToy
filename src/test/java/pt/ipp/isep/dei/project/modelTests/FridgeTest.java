@@ -17,8 +17,6 @@ public class FridgeTest {
         double nominalPower = 100.0;
         Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
-        fridge.getEnergyConsumptionInADay();
-
         double expectedResult = 27.3972;
 
         // Act
@@ -38,7 +36,6 @@ public class FridgeTest {
         double nominalPower = 100.0;
         Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
-        fridge.getmNominalPower();
         double expectedResult = 100.0;
 
         //Act
