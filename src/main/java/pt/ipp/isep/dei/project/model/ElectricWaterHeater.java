@@ -11,7 +11,7 @@ public class ElectricWaterHeater implements DeviceSpecs {
     private double mMaximumVolume;
     private double mNominalPower;
 
-    public ElectricWaterHeater(double mHotWaterTemperature, double mMaximumVolume, double mNominalPower, double mPerformanceRatio) {
+    public ElectricWaterHeater(double mHotWaterTemperature, double mMaximumVolume, double mPerformanceRatio, double mNominalPower) {
         this.mTypeName = "Electric Water Heater";
         this.mHotWaterTemperature = mHotWaterTemperature;
         this.mMaximumVolume = mMaximumVolume;

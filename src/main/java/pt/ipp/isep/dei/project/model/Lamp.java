@@ -109,7 +109,6 @@ public class Lamp implements DeviceSpecs {
             case 2:
                 return setmNominalPower(value);
         }
-        System.out.println("Please select a valid number.");
         return false;
     }
 

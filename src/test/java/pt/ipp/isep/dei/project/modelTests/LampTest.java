@@ -185,6 +185,21 @@ public class LampTest {
     }
 
     @Test
+    public void setAttributeFalse() {
+        // Arrange
+        double luminousFlux = 50.0;
+        double nominalPower = 100.0;
+        Lamp lamp = new Lamp(luminousFlux, nominalPower);
+
+
+        // Act
+        boolean result = lamp.setAttribute(3, 100.0);
+
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
     public void getNumberOfAttributes() {
         // Arrange
         double luminousFlux = 50.0;

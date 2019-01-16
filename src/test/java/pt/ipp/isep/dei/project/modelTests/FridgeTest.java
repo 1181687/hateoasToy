@@ -333,6 +333,22 @@ public class FridgeTest {
         assertFalse(result);
     }
 
+    @Test
+    public void setAttributeFalse() {
+        // Arrange
+        double freezerCapacity = 20.0;
+        double refrigeratorCapacity = 100.0;
+        double annualEnergyConsumption = 10000.0;
+        double nominalPower = 100.0;
+        Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        // Act
+        boolean result = fridge.setAttribute(5, 100.0);
+
+        // assert
+        assertFalse(result);
+    }
+
 
     @Test
     public void getNumberOfAttributes() {
