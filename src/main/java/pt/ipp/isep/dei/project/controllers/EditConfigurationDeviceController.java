@@ -44,7 +44,7 @@ public class EditConfigurationDeviceController {
     }
 
     public boolean setDeviceSpecs (int attribute, double value) {
-        return this.mDevice.setAttributes(attribute, value);
+        return this.mDevice.setAttributesDevType(attribute, value);
     }
 
     public String getSpecsAttributesToString () {

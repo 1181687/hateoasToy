@@ -168,23 +168,4 @@ public class HouseGrid implements Measurable {
     //public Device getDeviceFromPositionInList(int positionRoom, int positionDevice){
     //return mRoomList.getRoomFromAPosition(positionRoom).getDeviceList().getDeviceByPosition(positionDevice);
     //return mRoomsConnectedToHouseGrid.getRoomFromAPosition(positionRoom).getDeviceList().getDeviceByPosition(positionDevice);
-
-    /**
-     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
-     * class Electric Water Heater.
-     *
-     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
-     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
-     */
-    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
-        mRoomList.setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
-    }
-
-    /**
-     * @param type
-     * @return
-     */
-    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
-        return mRoomList.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
-    }
 }

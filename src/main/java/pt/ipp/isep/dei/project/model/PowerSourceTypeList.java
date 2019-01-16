@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PowerSourceTypeList {
-    private List<PowerSourceType> mPowerSourceTypeList = new ArrayList<>();
+    private List<PowerSourceType> mPowerSourceTypeList;
 
     public PowerSourceTypeList() {
+        this.mPowerSourceTypeList = new ArrayList<>();
     }
 
     /**
