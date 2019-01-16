@@ -62,4 +62,9 @@ public class Lamp implements DeviceSpecs {
         System.out.println("Please select a valid number.");
         return false;
     }
+
+    @Override
+    public int getNumberOfAttributes() {
+        return 2;
+    }
 }

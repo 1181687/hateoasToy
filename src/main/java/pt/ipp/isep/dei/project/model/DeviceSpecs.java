@@ -12,4 +12,6 @@ public interface DeviceSpecs {
 
     boolean setAttribute (int attribute, double value);
 
+    int getNumberOfAttributes();
+
 }
