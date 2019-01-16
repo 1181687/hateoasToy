@@ -69,7 +69,7 @@ public class Menu {
         content.append("\n");
         content.append("6-Check the list of sensors in a room");
         content.append("\n");
-        content.append("7- Edit a device in a room");
+        content.append("7-Edit a device in a room");
         content.append("\n");
         content.append("8-Check the nominal power of all devices in a room");
         content.append("\n");
