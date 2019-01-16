@@ -1507,4 +1507,128 @@ public class HouseTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void checkIfHouseGridListIsEmptyWithPositiveTest() {
+        // Arrange
+        HouseGridList gridList = new HouseGridList();
+        RoomList roomList = new RoomList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, gridList, address, geo);
+
+        // Act
+        boolean result = house.checkIfHouseGridListIsEmpty();
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkIfHouseGridListIsEmptyWithNegativeTest() {
+        // Arrange
+        HouseGridList gridList = new HouseGridList();
+        RoomList roomList = new RoomList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, gridList, address, geo);
+
+        String gridName = "Grid";
+        HouseGrid grid = new HouseGrid(gridName);
+        gridList.addHouseGridToTheList(grid);
+        // Act
+        boolean result = house.checkIfHouseGridListIsEmpty();
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void displayOfTheContentOfTheHouseGrids() {
+        // Arrange
+        //house
+        HouseGridList gridList = new HouseGridList();
+        RoomList roomList = new RoomList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, gridList, address, geo);
+
+        //grid
+        String gridName = "Grid";
+        HouseGrid grid0 = new HouseGrid(gridName);
+        HouseGrid grid1 = new HouseGrid(gridName);
+        gridList.getmHouseGridsList().add(grid0);
+        gridList.getmHouseGridsList().add(grid1);
+        String expectedResult = "1 - Name: Grid\n2 - Name: Grid\n";
+
+        // Act
+        String result = house.getHouseGridListContent();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getHouseGridListLengthTest() {
+        // Arrange
+        //house
+        HouseGridList gridList = new HouseGridList();
+        RoomList roomList = new RoomList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, gridList, address, geo);
+
+        //grid
+        String gridName = "Grid";
+        HouseGrid grid0 = new HouseGrid(gridName);
+        HouseGrid grid1 = new HouseGrid(gridName);
+        gridList.getmHouseGridsList().add(grid0);
+        gridList.getmHouseGridsList().add(grid1);
+        int expectedResult = 2;
+
+        // Act
+        int result = house.getHouseGridListLength();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getHouseGridListLengthEmptyListTest() {
+        // Arrange
+        //house
+        HouseGridList gridList = new HouseGridList();
+        RoomList roomList = new RoomList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, gridList, address, geo);
+
+        //grid
+        String gridName = "Grid";
+        HouseGrid grid0 = new HouseGrid(gridName);
+        HouseGrid grid1 = new HouseGrid(gridName);
+
+        int expectedResult = 0;
+
+        // Act
+        int result = house.getHouseGridListLength();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 }

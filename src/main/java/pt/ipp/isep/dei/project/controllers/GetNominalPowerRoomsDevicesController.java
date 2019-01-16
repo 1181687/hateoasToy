@@ -21,7 +21,7 @@ public class GetNominalPowerRoomsDevicesController {
     }
 
     public int getHouseGridListLength(){
-        return mHouse.getHouseGridListLength();
+        return this.mHouse.getHouseGridListLength();
     }
 
     public void getHouseGridbyPosition(int position){

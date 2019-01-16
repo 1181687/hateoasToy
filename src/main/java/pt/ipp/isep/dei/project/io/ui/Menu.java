@@ -138,7 +138,7 @@ public class Menu {
         content.append("\n");
         content.append("5-Get list of devices in a house grid");
         content.append("\n");
-        content.append("6-Get nominal power of a subset of room and/or devices");
+        content.append("6-Get nominal power of a subset of rooms and/or devices in a house grid");
         content.append("\n");
         content.append("0-Return to the previous menu");
         String label = content.toString();
