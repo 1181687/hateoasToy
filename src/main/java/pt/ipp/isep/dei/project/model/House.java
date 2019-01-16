@@ -299,7 +299,6 @@ public class House {
         return this.getHouseGridList().getHouseGridByPosition(position).checkIfThereAreNoDevices();
     }
 
-
     public int houseRoomListLength() {
         return this.mRoomList.listSize();
     }
@@ -313,24 +312,6 @@ public class House {
         return this.mListHouseGrids.getNameByHGPosition(position);
     }
 
-    /**
-     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
-     * class Electric Water Heater.
-     *
-     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
-     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
-     */
-    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
-        mListHouseGrids.setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
-    }
-
-    /**
-     * @param type
-     * @return
-     */
-    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
-        return mListHouseGrids.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
-    }
 
     public String getRoomsInTheHouseGrid(int position){
         return mListHouseGrids.getRoomsInTheHouseGrid(position);
@@ -342,5 +323,62 @@ public class House {
 
     public int getTheSizeOfRoomListInAGrid(int position){
         return mListHouseGrids.getSizeOfRoomListInAGrid(position);
+    }
+
+    /**
+     * TO DO - LUÍS
+     *
+     * @param type
+     * @return
+     */
+    public DeviceList getAllDevicesOfAType(String type) {
+        return mRoomList.getAllDevicesOfAType(type);
+    }
+
+    /**
+     * TO DO - LUÍS
+     *
+     * @param type
+     * @return
+     */
+    public int getNumberOfDevicesOfAType(String type) {
+        return getAllDevicesOfAType(type).getLength();
+    }
+
+    /**
+     * TO DO - LUÍS
+     *
+     * @param type
+     * @param devicePosition
+     * @param attribute
+     * @param value
+     * @return
+     */
+    public boolean setAttribute(String type, int devicePosition, int attribute, double value) {
+        DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);
+        return listWithAllDevicesOfAType.setAttribute(devicePosition, attribute, value);
+    }
+
+    /**
+     * TO DO - LUÍS
+     *
+     * @param type
+     * @param devicePosition
+     * @return
+     */
+    public double getEnergyConsumptionOfADevice(String type, int devicePosition) {
+        DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);
+        return listWithAllDevicesOfAType.getEnergyConsumptionOfADevice(devicePosition);
+    }
+
+    /**
+     * TO DO - LUÍS
+     *
+     * @param type
+     * @return
+     */
+    public double getTotalEnergyConsumptionInTheHouse(String type) {
+        DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);
+        return listWithAllDevicesOfAType.getTotalEnergyConsumption();
     }
 }
