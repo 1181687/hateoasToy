@@ -266,6 +266,11 @@ public class House {
                 getAllDevicesList().getContentNameLocationOrderedByType();
     }
 
+    /**
+     * Method that checks if the house grid's list is empty.
+     *
+     * @return True or false.
+     */
     public boolean checkIfHouseGridListIsEmpty(){
         return mListHouseGrids.checkIfHouseGridListIsEmpty();
     }
@@ -278,11 +283,14 @@ public class House {
         return mListHouseGrids.getHouseGridByPosition(position);
     }
 
+    /**
+     * method that gets the size of House Grid List
+     * @return integer
+     */
     public int getHouseGridListLength() {
-       return this.mListHouseGrids.getmHouseGridsList().size();
+        return this.mListHouseGrids.getmHouseGridsList().size();
     }
 
-    ////////////////////////////////////////////////////////
     public HouseGridList getHouseGridList() {
         return this.mListHouseGrids;
     }
@@ -296,6 +304,11 @@ public class House {
         return this.mRoomList.listSize();
     }
 
+    /**
+     * method that gets the name of House Grid by it's position in the HousegridList.
+     * @param position position of the House Grid
+     * @return String name
+     */
     public String getHGNameByHGPosition(int position) {
         return this.mListHouseGrids.getNameByHGPosition(position);
     }

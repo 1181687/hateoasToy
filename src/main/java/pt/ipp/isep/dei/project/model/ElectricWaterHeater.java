@@ -64,4 +64,50 @@ public class ElectricWaterHeater implements DeviceSpecs {
     public double getmNominalPower() {
         return mNominalPower;
     }
+
+    public boolean setmHotWaterTemperature(double mHotWaterTemperature) {
+        if (this.mHotWaterTemperature == mHotWaterTemperature) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean setmMaximumVolume(double mMaximumVolume) {
+        if (this.mMaximumVolume == mMaximumVolume) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean setmNominalPower(double mNominalPower) {
+        if (this.mNominalPower == mNominalPower) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String getAttributesToString() {
+        StringBuilder attributes = new StringBuilder();
+        attributes.append("1 - Hot Water Temperature: " + mHotWaterTemperature + "\n");
+        attributes.append("2 - Maximum Volume: " + mMaximumVolume + "\n");
+        attributes.append("3 - Nominal Power: " + mNominalPower + "\n");
+        String electricWaterHeaterAttributes = attributes.toString();
+        return electricWaterHeaterAttributes;
+    }
+
+    @Override
+    public boolean setAttribute(int attribute, double value) {
+        switch (attribute) {
+            case 1:
+                return setmHotWaterTemperature(value);
+            case 2:
+                return setmMaximumVolume(value);
+            case 3:
+                return setmNominalPower(value);
+        }
+        System.out.println("Please select a valid number.");
+        return false;
+    }
+
 }

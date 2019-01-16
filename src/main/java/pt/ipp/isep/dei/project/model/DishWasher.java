@@ -37,4 +37,42 @@ public class DishWasher implements DeviceSpecs {
     public double getmNominalPower() {
         return mNominalPower;
     }
+
+    public boolean setmCapacity(int mCapacity) {
+        if (this.mCapacity == mCapacity) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean setmNominalPower(double mNominalPower) {
+        if (this.mNominalPower == mNominalPower) {
+            return true;
+        }
+        return false;
+    }
+
+    public String getAttributesToString() {
+        StringBuilder attributes = new StringBuilder();
+        attributes.append("1 - Capacity: " + mCapacity + "\n");
+        attributes.append("2 - Nominal Power: " + mNominalPower + "\n");
+        String dishWasherAttributes = attributes.toString();
+        return dishWasherAttributes;
+    }
+
+    @Override
+    public boolean setAttribute(int attribute, double value) {
+        switch (attribute) {
+            case 1:
+                int intValue = (int) value;
+                return setmCapacity(intValue);
+            case 2:
+                return setmNominalPower(value);
+        }
+        System.out.println("Please select a valid number.");
+        return false;
+    }
+
+
+
 }

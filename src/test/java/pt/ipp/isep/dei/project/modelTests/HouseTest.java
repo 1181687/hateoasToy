@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class HouseTest {
 
     @Test
-    public void getRoomListTest () {
+    public void getRoomListTest() {
         // Arrange
         RoomList rList = new RoomList();
         Dimensions dim = new Dimensions(4, 4, 4);
@@ -1447,5 +1447,63 @@ public class HouseTest {
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    public void getNameByHGPosition() {
+        // Arrange
+        // Instantiate House Grids
+        String gridName0 = "Grid0";
+        HouseGrid grid0 = new HouseGrid(gridName0);
+        String gridName1 = "Grid1";
+        HouseGrid grid1 = new HouseGrid(gridName1);
+        String gridName2 = "Grid2";
+        HouseGrid grid2 = new HouseGrid(gridName2);
+
+        // Instantiate List of House Grids
+        HouseGridList gridList = new HouseGridList();
+        gridList.addHouseGridToTheList(grid0);
+        gridList.addHouseGridToTheList(grid1);
+        gridList.addHouseGridToTheList(grid2);
+
+        RoomList roomList = new RoomList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, gridList, address, geo);
+
+        int position = 0;
+        String expectedResult = "Grid0";
+
+        // Act
+        String result = house.getHGNameByHGPosition(position);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getNameByHGPositionEmpty() {
+        // Arrange
+        HouseGridList gridList = new HouseGridList();
+
+        RoomList roomList = new RoomList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, gridList, address, geo);
+
+        int position = 0;
+        String expectedResult = null;
+
+        // Act
+        String result = house.getHGNameByHGPosition(position);
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 }

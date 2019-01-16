@@ -50,7 +50,7 @@ public class Menu {
         content.append("\n");
         content.append("0-Return to the previous menu");
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 8);
+        return InputValidator.getIntRange(label, 0, 9);
     }
 
     public static int adminHouseMenu() {
@@ -69,7 +69,9 @@ public class Menu {
         content.append("\n");
         content.append("6-Check the list of sensors in a room");
         content.append("\n");
-        content.append("7-Check the nominal power of all devices in a room");
+        content.append("7- Edit a device in a room");
+        content.append("\n");
+        content.append("8-Check the nominal power of all devices in a room");
         content.append("\n");
         content.append("8-Add a new device to a room");
         content.append("\n");

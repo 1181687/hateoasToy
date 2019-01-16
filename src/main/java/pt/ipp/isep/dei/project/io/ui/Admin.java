@@ -102,6 +102,10 @@ public class Admin {
                     ui250.run1();
                     break;
                 case 7:
+                    EditConfigurationDevice ui215 = new EditConfigurationDevice(house);
+                    ui215.run();
+                    break;
+                case 8:
                     GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(house);
                     ui230.run();
                     break;
