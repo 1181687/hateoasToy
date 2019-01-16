@@ -68,10 +68,26 @@ public class AddDeviceToRoom {
                     break;
                 case 2:
                     String label21 = "What is the name of the lamp?";
-                    String LampDeviceName = InputValidator.getString(label21);
+                    String lampDeviceName = InputValidator.getString(label21);
                     String label22 = "What is the nominal power (kW)?";
-                    double LampNominalPower = InputValidator.getDoublePos(label22);
+                    double lampNominalPower = InputValidator.getDoublePos(label22);
                     String label23 = "What is the luminous flux (lm)?";
+                    double luminousFlux = InputValidator.getDoublePos(label23);
+
+                    mCtrl.createNewLamp(lampDeviceName, selectedRoom, lampNominalPower, luminousFlux);
+
+                    if (mCtrl.addDeviceToRoom()) {
+
+                        StringBuilder content = new StringBuilder();
+                        content.append("The device " + lampDeviceName + " was succesfully added to " + selectedRoom.getmName() +
+                                " and created with the following specifications:\n");
+                        content.append("- Nominal Power: " + lampNominalPower + " kW \n");
+                        content.append("- Luminous Flux: " + luminousFlux + " lm \n");
+                        System.out.println(content.toString());
+                        return;
+                    } else {
+                        System.out.println("Something went wrong. The device wasn't added to the room. Please try again.");
+                    }
 
                     break;
                 case 3:
