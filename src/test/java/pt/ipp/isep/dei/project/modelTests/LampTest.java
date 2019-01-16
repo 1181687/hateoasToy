@@ -11,7 +11,7 @@ public class LampTest {
     public void getEnergyConsumptionInADayTestWithValidValues() {
         // Arrange
         // Lamp Instantiation
-        double time = 10.0;
+
         double luminousFlux = 50.0;
         double nominalPower = 100.0;
         Lamp lamp = new Lamp(luminousFlux, nominalPower);
@@ -75,18 +75,21 @@ public class LampTest {
         assertTrue(result);
     }
 
+
     @Test
-    public void setmLuminousFluxFalse() {
+    public void setmTimeFalse() {
 
         // Arrange
         // Lamp Instantiation
+
         double luminousFlux = 50.0;
         double nominalPower = 100.0;
         Lamp lamp = new Lamp(luminousFlux, nominalPower);
 
+        lamp.setmTime(50.0);
 
         //act
-        boolean result = lamp.setmLuminousFlux(50.0);
+        boolean result = lamp.setmTime(50.0);
 
         assertFalse(result);
     }
@@ -179,6 +182,21 @@ public class LampTest {
 
         // Act
         boolean result = lamp.setAttribute(2, 100.0);
+
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void setAttributeFalse() {
+        // Arrange
+        double luminousFlux = 50.0;
+        double nominalPower = 100.0;
+        Lamp lamp = new Lamp(luminousFlux, nominalPower);
+
+
+        // Act
+        boolean result = lamp.setAttribute(3, 100.0);
 
         // assert
         assertFalse(result);

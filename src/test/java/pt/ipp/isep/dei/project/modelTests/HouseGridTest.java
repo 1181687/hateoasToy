@@ -146,7 +146,7 @@ public class HouseGridTest {
         String name2 = "KitchenBasement";
         Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
-        DeviceSpecs specWaterHeater = new ElectricWaterHeater(50, 50, 35, 0.9);
+        DeviceSpecs specWaterHeater = new ElectricWaterHeater(50, 50, 0.9, 35);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
         Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
         Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);

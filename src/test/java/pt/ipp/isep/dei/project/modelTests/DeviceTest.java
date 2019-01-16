@@ -62,9 +62,9 @@ public class DeviceTest {
         // ElectricWaterHeater Instantiation
         double hotWaterTemp = 50;
         double maximumVolume = 150;
-        double nominalPower = 100;
         double performanceRatio = 0.9;
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower, performanceRatio);
+        double nominalPower = 100;
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
 
         // Device Instantiation
         Device device = new Device("Electric Water Heater", room, electricWaterHeater);
