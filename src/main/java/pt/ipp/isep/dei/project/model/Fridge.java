@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
-import java.util.Scanner;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 public class Fridge implements DeviceSpecs {
     private String mTypeName;
@@ -39,7 +39,7 @@ public class Fridge implements DeviceSpecs {
     }
 
     public boolean setmFreezerCapacity(double mFreezerCapacity) {
-        if (this.mFreezerCapacity == mFreezerCapacity) {
+        if (Utils.isSameDouble(this.mFreezerCapacity, mFreezerCapacity)) {
             return false;
         }
         this.mFreezerCapacity = mFreezerCapacity;
@@ -47,7 +47,7 @@ public class Fridge implements DeviceSpecs {
     }
 
     public boolean setmRefrigeratorCapacity(double mRefrigeratorCapacity) {
-        if (this.mRefrigeratorCapacity == mRefrigeratorCapacity) {
+        if (Utils.isSameDouble(this.mRefrigeratorCapacity, mRefrigeratorCapacity)) {
             return false;
         }
         this.mRefrigeratorCapacity = mRefrigeratorCapacity;
@@ -55,7 +55,7 @@ public class Fridge implements DeviceSpecs {
     }
 
     public boolean setmAnnualEnergyConsumption(double mAnnualEnergyConsumption) {
-        if (this.mAnnualEnergyConsumption == mAnnualEnergyConsumption) {
+        if (Utils.isSameDouble(this.mAnnualEnergyConsumption, mAnnualEnergyConsumption)) {
             return false;
         }
         this.mAnnualEnergyConsumption = mAnnualEnergyConsumption;
@@ -63,7 +63,7 @@ public class Fridge implements DeviceSpecs {
     }
 
     public boolean setmNominalPower(double mNominalPower) {
-        if (this.mNominalPower == mNominalPower) {
+        if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
             return false;
         }
         this.mNominalPower = mNominalPower;
