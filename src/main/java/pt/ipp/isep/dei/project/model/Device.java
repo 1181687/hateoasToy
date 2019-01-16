@@ -69,5 +69,35 @@ public class Device implements Measurable {
         return mSpec.getEnergyConsumptionInADay();
     }
 
+    public boolean setmName(String mName) {
+        this.mName = mName;
+        return true;
+    }
 
+    public boolean setmLocation(Room mLocation) {
+        this.mLocation = mLocation;
+        return true;
+    }
+
+    public String getSpecsAttributesToString() {
+        return mSpec.getAttributesToString();
+    }
+
+    public String getAttributesToString() {
+
+        StringBuilder attributes = new StringBuilder();
+        attributes.append("1 - Name: " + mName + "\n");
+        attributes.append("2 - Device Specifications\n");
+        attributes.append("3 - Location: " + mLocation + "\n");
+        String deviceAttributes = attributes.toString();
+        return  deviceAttributes;
+    }
+
+    public boolean setAttributes (int attribute, double value) {
+        return this.mSpec.setAttribute(attribute, value);
+    }
+
+    public int getNumberOfSpecsAttributes(){
+        return mSpec.getNumberOfAttributes();
+    }
 }

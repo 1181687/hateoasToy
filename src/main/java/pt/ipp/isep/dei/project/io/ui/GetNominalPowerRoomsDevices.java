@@ -47,29 +47,37 @@ public class GetNominalPowerRoomsDevices {
             }
             if (positionDevice == mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1) {
                 mController.addAMeasurableObject(mController.getChosenRoomInTheGrid(positionRoom));
-                return;
+                continue;
             } else {
-                mController.addAMeasurableObject(mController.getDeviceFromPositionInList(positionRoom, (positionDevice-1)));
+                if (mController.checkIfObjInList(mController.getDeviceFromPositionInList(positionRoom, positionDevice - 1))) {
+                    System.out.println("That device was already chosen. Please choose another one (type the number of a device that wasn't chosen yet.)");
+                }
+                mController.addAMeasurableObject(mController.getDeviceFromPositionInList(positionRoom, (positionDevice - 1)));
                 String label4 = "Would you like to add any other device of this room to the nominal power calculations? If yes," +
                         "please type the number of that device; if not, please type 0.";
-                int addOtherDeviceOrNot = -1;
-                while (addOtherDeviceOrNot != 0) {
-                    addOtherDeviceOrNot = InputValidator.getIntRange(label4, 0, mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1);
-                    if (mController.checkIfObjInList(mController.getDeviceFromPositionInList(positionRoom, addOtherDeviceOrNot-1))) {
-                       String label5 = "That device was already chosen. Please choose another one (type the number of a device that wasn't chosen yet.)";
-                        addOtherDeviceOrNot = InputValidator.getIntRange(label5, 0, mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1);
+                boolean flag2 = true;
+                do {
+                    int addOtherDeviceOrNot = InputValidator.getIntRange(label4, 0, mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1);
+                    if (addOtherDeviceOrNot == 0) {
+                        break;
+                    }
+                    if (addOtherDeviceOrNot == mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1) {
+                        System.out.println("You have already selected a device from this room. It is not possible to select all of the devices of the room. Please select another device.");
+                        continue;
                     } else {
-                        mController.addAMeasurableObject(mController.getDeviceFromPositionInList(positionRoom, addOtherDeviceOrNot));
-                        addOtherDeviceOrNot = InputValidator.getIntRange(label4, 0, mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1);
-                        if (addOtherDeviceOrNot == 0) {
-                            addOtherDeviceOrNot = 0;
+                        if (mController.checkIfObjInList(mController.getDeviceFromPositionInList(positionRoom, addOtherDeviceOrNot - 1))) {
+                            label4 = "That device was already chosen. Please choose another one (type the number of a device that wasn't chosen yet.)";
+                        } else {
+                            mController.addAMeasurableObject(mController.getDeviceFromPositionInList(positionRoom, addOtherDeviceOrNot - 1));
+                            label4 = "Would you like to add any other device of this room to the nominal power calculations? If yes," +
+                                    "please type the number of that device; if not, please type 0.";
                         }
                     }
-                    String label5 = "Do you want to add other rooms or devices of the other rooms? (Y/N)";
-                    String confirmation = InputValidator.confirmValidation(label5);
-                    if ("N".equals(confirmation) || "n".equals(confirmation)) {
-                        flag = false;
-                    }
+                } while (flag2);
+                String label5 = "Do you want to add other rooms or devices of the other rooms? (Y/N)";
+                String confirmation = InputValidator.confirmValidation(label5);
+                if ("N".equals(confirmation) || "n".equals(confirmation)) {
+                    flag = false;
                 }
             }
         } while (flag);

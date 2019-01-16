@@ -9,11 +9,11 @@ public class ElectricWaterHeater implements DeviceSpecs {
     private double mMaximumVolume;
     private double mNominalPower;
 
-    public ElectricWaterHeater(double mHotWaterTemperature, double mMaximumVolume, double mNominalPower) {
+    public ElectricWaterHeater(double mHotWaterTemperature, double mMaximumVolume, double mNominalPower, double mPerformanceRatio) {
         this.mTypeName = "Electric Water Heater";
         this.mHotWaterTemperature = mHotWaterTemperature;
         this.mMaximumVolume = mMaximumVolume;
-        this.mPerformanceRatio = 0.9;
+        this.mPerformanceRatio = mPerformanceRatio;
         this.mNominalPower = mNominalPower;
     }
 
@@ -63,5 +63,46 @@ public class ElectricWaterHeater implements DeviceSpecs {
     @Override
     public double getmNominalPower() {
         return mNominalPower;
+    }
+
+    public boolean setmHotWaterTemperature(double mHotWaterTemperature) {
+        return this.mHotWaterTemperature == mHotWaterTemperature;
+    }
+
+    public boolean setmMaximumVolume(double mMaximumVolume) {
+        return this.mMaximumVolume == mMaximumVolume;
+    }
+
+    public boolean setmNominalPower(double mNominalPower) {
+        return this.mNominalPower == mNominalPower;
+    }
+
+    @Override
+    public String getAttributesToString() {
+        StringBuilder attributes = new StringBuilder();
+        attributes.append("1 - Hot Water Temperature: " + mHotWaterTemperature + "\n");
+        attributes.append("2 - Maximum Volume: " + mMaximumVolume + "\n");
+        attributes.append("3 - Nominal Power: " + mNominalPower + "\n");
+        String electricWaterHeaterAttributes = attributes.toString();
+        return electricWaterHeaterAttributes;
+    }
+
+    @Override
+    public boolean setAttribute(int attribute, double value) {
+        switch (attribute) {
+            case 1:
+                return setmHotWaterTemperature(value);
+            case 2:
+                return setmMaximumVolume(value);
+            case 3:
+                return setmNominalPower(value);
+        }
+        System.out.println("Please select a valid number.");
+        return false;
+    }
+
+    @Override
+    public int getNumberOfAttributes() {
+        return 3;
     }
 }
