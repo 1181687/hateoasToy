@@ -237,22 +237,6 @@ public class Room implements Measurable{
     }
 
     /**
-     * method that gets a List of all Devices in a Room
-     *
-     * @return List <Device>
-     */
-    public DeviceList getDeviceList() {
-        Device dev;
-        DeviceList allDeviceList = new DeviceList();
-
-        for (int j = 0; j < mDeviceList.getLength(); j++) {
-            dev = mDeviceList.getDeviceByPosition(j);
-            allDeviceList.addDevice(dev);
-        }
-        return allDeviceList;
-    }
-
-    /**
      * Method that adds a device to the list of Devices of the room
      * @param device the device to be added
      * @return true if it adds, false if it doesn't add
