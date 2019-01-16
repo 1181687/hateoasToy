@@ -193,7 +193,7 @@ class ElectricWaterHeaterTest {
         // assert
         assertTrue(result);
     }
-    
+
     @Test
     public void setAttributeFalse() {
         // Arrange
