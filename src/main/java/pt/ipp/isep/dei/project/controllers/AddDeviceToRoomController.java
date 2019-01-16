@@ -2,40 +2,44 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.DeviceList;
+import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
-import pt.ipp.isep.dei.project.model.RoomList;
 
 public class AddDeviceToRoomController {
 
+    private House mHouse;
     private Device mDevice;
     private DeviceList mDeviceList;
-    private RoomList mListOfRooms;
     private Room mRoom;
 
-    public AddDeviceToRoomController(DeviceList deviceList, RoomList roomList) {
-        this.mDeviceList = deviceList;
-        this.mListOfRooms = roomList;
+    public AddDeviceToRoomController(House house) {
+        this.mHouse = house;
+        this.mDeviceList = new DeviceList();
     }
 
-    /*public boolean checkIfRoomListIsEmpty() {
-        return mListOfRooms.checkIfRoomListIsEmpty();
-    } --> para ser usado caso se decida adicionar a validação dos quartos*/
 
     public String getRoomListContent() {
-        return mListOfRooms.getRoomListContent();
+        return mHouse.getRoomListContent();
     }
 
-    public Room getRoomFromList(int position) {
-        return mRoom = mListOfRooms.getRoomFromAPosition(position);
+    public void getRoom(int position) {
+        mRoom = mHouse.getRoomOfTheRoomList(position);
+    }
+
+    public Room getSelectedRoom() {
+        return mRoom;
     }
 
     public int roomListLength() {
-        return mListOfRooms.getmRoomList().size();
+        return mHouse.getRoomListSize();
     }
 
-    /*public List<String> getTypeNamesList (){
-        return mDevice.getTypeNames();
-    }*/
+
+    public String getDeviceTypeListContent() {
+        return mDeviceList.getDeviceTypeListContent();
+    }
+
+
 
     public Device createNewElectricWaterHeater(String nome, Room selectedRoom, double mHotWaterTemperature, double mMaximumVolume, double mNominalPower) {
         return mDevice = mDeviceList.newElectricWaterHeater(nome, selectedRoom, mHotWaterTemperature, mMaximumVolume, mNominalPower);

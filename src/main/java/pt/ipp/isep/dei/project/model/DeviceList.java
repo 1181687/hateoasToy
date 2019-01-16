@@ -245,4 +245,20 @@ public class DeviceList {
         }
         return energyConsumption;
     }
+
+    public String getDeviceTypeListContent() {
+        StringBuilder content = new StringBuilder();
+        int numberInTheList = 1;
+        for (DeviceTypes deviceTypeName : DeviceTypes.values()) {
+            String deviceType = deviceTypeName.getDeviceTypeName();
+            content.append(numberInTheList + "- ");
+            content.append(deviceType);
+            content.append("\n");
+            numberInTheList++;
+        }
+        return content.toString();
+    }
+
+
+
 }

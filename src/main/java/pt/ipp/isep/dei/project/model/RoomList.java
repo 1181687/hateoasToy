@@ -240,6 +240,11 @@ public class RoomList {
         return mRoomList.get(position).checkIfDeviceListIsEmpty();
     }
 
+    /**
+     * method that checks if there are no devices in the RoomList
+     *
+     * @return true if there aren't devices. False if there are devices
+     */
     public boolean checkIfThereAreNoDevices() {
 
         for (int i = 0; i < mRoomList.size(); i++) {
@@ -280,7 +285,7 @@ public class RoomList {
         Device dev;
 
         for (int i = 0; i < mRoomList.size(); i++) {
-            roomDeviceList = mRoomList.get(i).getDeviceList();
+            roomDeviceList = mRoomList.get(i).getmDeviceList();
             for (int j = 0; j < roomDeviceList.getLength(); j++) {
                 dev = roomDeviceList.getDeviceByPosition(j);
                 allDeviceList.addDevice(dev);

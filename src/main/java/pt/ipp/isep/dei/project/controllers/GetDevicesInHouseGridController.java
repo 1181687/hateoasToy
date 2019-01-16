@@ -23,24 +23,45 @@ public class GetDevicesInHouseGridController {
         return mHouse.getDeviceListContentNameTypeLocationByHG(position);
     }
 
+    /**
+     * Method that shows the content of the house grids in the list.
+     *
+     * @return String
+     */
     public String getHouseGridListToString() {
         return this.mHouse.getHouseGridList().getHouseGridListToString();
     }
 
+    /**
+     * Method that checks if the house grid's list is empty.
+     * @return True or false.
+     */
     public boolean checkIfHouseGridListIsEmpty() {
         return mHouse.checkIfHouseGridListIsEmpty();
     }
 
+    /**
+     * method that gets the size of House Grid List
+     * @return integer
+     */
     public int getHouseGridListLength() {
         return this.mHouse.getHouseGridListLength();
     }
 
+    /**
+     * method that checks if there are no devices in the RoomList
+     * @return true if there aren't devices. False if there are devices
+     */
     public boolean checkIfThereAreNoDevicesHGbyPosition(int position) {
         return this.mHouse.checkIfThereAreNoDevicesHGbyPosition(position);
     }
 
+    /**
+     * method that gets the name of House Grid by it's position in the HouseGridList.
+     * @param position position of the House Grid
+     * @return String name
+     */
     public String getHGNameByHGPosition(int position) {
         return this.mHouse.getHGNameByHGPosition(position);
     }
-
 }

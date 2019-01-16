@@ -129,6 +129,21 @@ public class RoomListTest {
     }
 
     @Test
+    public void testNewRoomFalseDuplicatedName() {
+        //arrange
+        RoomList list = new RoomList();
+        Dimensions dim = new Dimensions(3.5, 6.5, 7.5);
+        Room room1 = new Room("Room1", 2, dim);
+        list.addRoom(room1);
+
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                list.newRoom("ROOM1", 3, 3.5, 6.5, 7.5)
+        );
+
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
     public void getDisplayOfTheChosenRoomTest() {
         //arrange
         RoomList rList = new RoomList();
@@ -616,7 +631,7 @@ public class RoomListTest {
         assertFalse(result);
     }
 
-    /*@Test
+    @Test
     public void testGetAllDevicesList() {
         //Room ONE
         String name = "Kitchen";
@@ -624,9 +639,9 @@ public class RoomListTest {
         Room room1 = new Room(name, 2, dim);
 
         //DeviceSpecs specFridge = new Fridge();
-        Fridge specFridge = new Fridge();
-        WashingMachine specWashing = new WashingMachine();
-        DishWasher specDishWasher = new DishWasher();
+        Fridge specFridge = new Fridge(100, 100, 100, 100);
+        WashingMachine specWashing = new WashingMachine(100, 100);
+        DishWasher specDishWasher = new DishWasher(100, 100);
         Device dev1 = new Device("FridgeAriston", room1, specFridge);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
         Device dev3 = new Device("DishWasher", room1, specDishWasher);
@@ -639,7 +654,7 @@ public class RoomListTest {
         String name2 = "KitchenBasement";
         Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
-        ElectricWaterHeater specWaterHeater = new ElectricWaterHeater();
+        ElectricWaterHeater specWaterHeater = new ElectricWaterHeater(100, 100, 100);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
         Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
         Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
@@ -664,7 +679,6 @@ public class RoomListTest {
 
         assertEquals(expectedResult, result);
     }
-*/
 
     @Test
     public void getDeviceListContentOfARoomTest() {
@@ -770,7 +784,7 @@ public class RoomListTest {
         assertFalse(result);
     }
 
-    /*@Test
+    @Test
     public void testCheckIfThereAreNoDevicesFalse() {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
@@ -782,8 +796,8 @@ public class RoomListTest {
         Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
 
-        DishWasher dishWasher = new DishWasher();
-        ElectricWaterHeater specWaterHeater = new ElectricWaterHeater();
+        DishWasher dishWasher = new DishWasher(100, 100);
+        ElectricWaterHeater specWaterHeater = new ElectricWaterHeater(100, 100, 100);
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 5000;
@@ -806,7 +820,7 @@ public class RoomListTest {
 
         // Assert
         assertFalse(result);
-    }*/
+    }
 
     @Test
     public void testCheckIfThereAreNoDevicesTrue() {
@@ -866,5 +880,25 @@ public class RoomListTest {
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    public void testGetRoomListToString() {
+        //Arrange
+        RoomList rList = new RoomList();
+        Dimensions dim0 = new Dimensions(3, 3.5, 3.5);
+        Dimensions dim1 = new Dimensions(3, 3.5, 3.5);
+        Room room0 = new Room("RoomOne", 2, dim0);
+        Room room1 = new Room("RoomTwo", 2, dim1);
+
+        rList.addRoom(room0);
+        rList.addRoom(room1);
+
+        String expectedResult = "1 - Name: RoomOne\n" +
+                "2 - Name: RoomTwo\n";
+        //Act
+        String result = rList.getRoomListToString();
+        //Assert
+        assertEquals(expectedResult, result);
     }
 }

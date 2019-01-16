@@ -80,7 +80,6 @@ public class HouseGridList {
 
     /**
      * Method that checks if the house grid's list is empty.
-     *
      * @return True or false.
      */
     public boolean checkIfHouseGridListIsEmpty() {
@@ -143,6 +142,12 @@ public class HouseGridList {
         return getmHouseGridsList().get(position).getAllDevicesList();
     }
 
+    /**
+     * method that gets the name of House Grid by it's position in the HousegridList.
+     *
+     * @param position position of the House Grid
+     * @return String name
+     */
     public String getNameByHGPosition(int position) {
         if (mHouseGridsList.isEmpty()) {
             return null;
