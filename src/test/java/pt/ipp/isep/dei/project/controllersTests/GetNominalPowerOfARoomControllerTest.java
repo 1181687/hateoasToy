@@ -105,9 +105,9 @@ class GetNominalPowerOfARoomControllerTest {
         Device d2 = new Device("Dish Washer1", room1, dishWasher1);
 
 
-        room1.getmDeviceList().getmDeviceList().add(d1);
+        room1.addDevice(d1);
 
-        room1.getmDeviceList().getmDeviceList().add(d2);
+        room1.addDevice(d2);
 
         double expectedResult = 220;
 
@@ -153,8 +153,8 @@ class GetNominalPowerOfARoomControllerTest {
 
         Device d2 = new Device("Dish Washer1", room1, dishWasher1);
 
-        room2.getmDeviceList().getmDeviceList().add(d1);
-        room2.getmDeviceList().getmDeviceList().add(d2);
+        room2.addDevice(d1);
+        room2.addDevice(d2);
 
         double expectedResult = 0;
 
@@ -163,7 +163,7 @@ class GetNominalPowerOfARoomControllerTest {
 
         //Assert
 
-        assertEquals(result, expectedResult);
+        assertEquals(expectedResult, result);
     }
 
 

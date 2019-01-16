@@ -9,6 +9,7 @@ public class Device implements Measurable {
     public Device(String mName, Room mLocation, DeviceSpecs mSpec) {
         this.mName = mName;
         this.mLocation = mLocation;
+        this.mLocation.addDevice(this);
         this.mSpec = mSpec;
     }
 
@@ -74,17 +75,22 @@ public class Device implements Measurable {
         return true;
     }
 
-    public boolean setmLocation(Room mLocation) {
-        this.mLocation = mLocation;
+    public boolean setmLocation(Room location) {
+        if (this.mLocation.equals(location)) {
+            return false;
+        }
+        this.mLocation.getmDeviceList().removeDevice(this);
+        this.mLocation = location;
+        this.mLocation.addDevice(this);
         return true;
     }
+
 
     public String getSpecsAttributesToString() {
         return mSpec.getAttributesToString();
     }
 
     public String getAttributesToString() {
-
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Name: " + mName + "\n");
         attributes.append("2 - Device Specifications\n");
