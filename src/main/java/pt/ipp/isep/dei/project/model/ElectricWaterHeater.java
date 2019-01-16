@@ -67,6 +67,12 @@ public class ElectricWaterHeater implements DeviceSpecs {
         return mNominalPower;
     }
 
+    /**
+     * methods that
+     *
+     * @param mHotWaterTemperature
+     * @return
+     */
     public boolean setmHotWaterTemperature(double mHotWaterTemperature) {
         if (Utils.isSameDouble(this.mHotWaterTemperature, mHotWaterTemperature)) {
             return false;
