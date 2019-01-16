@@ -28,14 +28,6 @@ public class GetNominalPowerRoomsDevicesController {
         mSelectedHouseGrid = this.mHouse.getHouseGridByPosition(position);
     }
 
-    public String getRoomListToStringInAGrid(){
-        return mSelectedHouseGrid.getRoomListToString();
-    }
-
-    public int getSizeOfRoomListConnectedToGrid(){
-        return mSelectedHouseGrid.getRoomListSize();
-    }
-
     public Room getChosenRoomInTheGrid(int position){
         return mSelectedHouseGrid.getRoomByPosition(position);
     }
