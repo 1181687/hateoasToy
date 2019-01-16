@@ -96,7 +96,23 @@ public class AddDeviceToRoom {
                     String label32 = "What is the nominal power (kW)?";
                     double dishWasherNominalPower = InputValidator.getDoublePos(label32);
                     String label33 = "What is the capacity (in dish sets)?";
-                    int dishWasherCapacity = InputValidator.getIntPos(label33);
+                    int capacity = InputValidator.getIntPos(label33);
+
+                    mCtrl.createNewDishWasher(dishWasherDeviceName, selectedRoom, dishWasherNominalPower, capacity);
+
+                    if (mCtrl.addDeviceToRoom()) {
+
+                        StringBuilder content = new StringBuilder();
+                        content.append("The device " + dishWasherDeviceName + " was succesfully added to " + selectedRoom.getmName() +
+                                " and created with the following specifications:\n");
+                        content.append("- Nominal Power: " + dishWasherNominalPower + " kW \n");
+                        content.append("- Capacity: " + capacity + " dish sets \n");
+                        System.out.println(content.toString());
+                        return;
+                    } else {
+                        System.out.println("Something went wrong. The device wasn't added to the room. Please try again.");
+                    }
+
                     break;
                 case 4:
                     String label41 = "What is the name of the washing machine?";

@@ -82,13 +82,27 @@ public class AddDeviceToRoomController {
     }
 
     /**
+     * Method that create a new Dish Washer in a selected Room.
+     *
+     * @param name         of the Dish Washer
+     * @param selectedRoom room where will be created the device
+     * @param nominalPower the nominal power of the Dish Washer (a specification of the Dish Washer)
+     * @param capacity     the capacity of the Dish Washer (a specification of the Dish Washer)
+     * @return the Device that has been created
+     */
+    public Device createNewDishWasher(String name, Room selectedRoom, double nominalPower, int capacity) {
+        return mDevice = mDeviceList.newDishWasher(name, selectedRoom, nominalPower, capacity);
+    }
+
+
+    /**
      * Method that create a new Washing Machine in a selected Room.
      *
      * @param name         of the Washing Machine
      * @param selectedRoom room where will be created the device
      * @param nominalPower the nominal power of the Washing Machine (a specification of the Washing Machine)
      * @param capacity     the capacity of the Washing Machine (a specification of the Washing Machine)
-     * @return tthe Device that has been created
+     * @return the Device that has been created
      */
     public Device createNewWashingMachine(String name, Room selectedRoom, double nominalPower, double capacity) {
         return mDevice = mDeviceList.newWashingMachine(name, selectedRoom, nominalPower, capacity);
