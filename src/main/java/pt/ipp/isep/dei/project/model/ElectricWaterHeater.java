@@ -110,7 +110,7 @@ public class ElectricWaterHeater implements DeviceSpecs {
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Hot Water Temperature: " + mHotWaterTemperature + "\n");
         attributes.append("2 - Maximum Volume: " + mMaximumVolume + "\n");
-        attributes.append("3 - Performance Ratio:" + mPerformanceRatio + "\n");
+        attributes.append("3 - Performance Ratio: " + mPerformanceRatio + "\n");
         attributes.append("4 - Nominal Power: " + mNominalPower + "\n");
         String electricWaterHeaterAttributes = attributes.toString();
         return electricWaterHeaterAttributes;
@@ -128,7 +128,6 @@ public class ElectricWaterHeater implements DeviceSpecs {
             case 4:
                 return setmNominalPower(value);
         }
-        System.out.println("Please select a valid number.");
         return false;
     }
 
