@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
-import pt.ipp.isep.dei.project.model.RoomList;
 
 public class EditConfigurationDeviceController {
 
