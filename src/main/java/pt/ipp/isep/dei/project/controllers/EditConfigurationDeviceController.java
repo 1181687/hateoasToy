@@ -40,7 +40,7 @@ public class EditConfigurationDeviceController {
     }
 
     public boolean setDeviceName (String newName) {
-        return this.mDevice.setmName(newName);
+        return this.mDevice.setName(newName);
     }
 
     public boolean setDeviceSpecs (int attribute, double value) {
