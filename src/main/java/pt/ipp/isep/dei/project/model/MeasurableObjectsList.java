@@ -9,13 +9,9 @@ public class MeasurableObjectsList implements Measurable {
     public MeasurableObjectsList() {
     }
 
-    public Set<Measurable> mMeasurableList() {
+    public Set<Measurable> getmMeasurableList() {
         return mMeasurableList;
     }
-
-    /*public List<Measurable> getmMeasurableList() {
-        return mMeasurableList;
-    }*/
 
     public void addMeasurableObjToMeasurableList(Measurable measurable) {
         this.mMeasurableList.add(measurable);
@@ -29,10 +25,9 @@ public class MeasurableObjectsList implements Measurable {
         return totalNominalPower;
     }
 
-    public boolean checkIfMeasurableObjIsInList(Measurable measurable){
-        if (mMeasurableList.contains(measurable)){
+    public boolean checkIfMeasurableObjIsInList(Measurable measurable) {
+        if (mMeasurableList.contains(measurable)) {
             return true;
-        }
-        else return false;
+        } else return false;
     }
 }
