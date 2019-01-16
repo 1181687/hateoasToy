@@ -125,7 +125,7 @@ public class LampTest {
     }
 
     @Test
-    public void setAttributeTrue() {
+    public void setAttributeTrueLuminousFlux() {
         // Arrange
         double luminousFlux = 50.0;
         double nominalPower = 100.0;
@@ -140,7 +140,7 @@ public class LampTest {
     }
 
     @Test
-    public void setAttributeFalse() {
+    public void setAttributeFalseLuminousFlux() {
         // Arrange
         double luminousFlux = 50.0;
         double nominalPower = 100.0;
@@ -149,6 +149,36 @@ public class LampTest {
 
         // Act
         boolean result = lamp.setAttribute(1, 50.0);
+
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void setAttributeTrueNominalPower() {
+        // Arrange
+        double luminousFlux = 50.0;
+        double nominalPower = 100.0;
+        Lamp lamp = new Lamp(luminousFlux, nominalPower);
+
+
+        // Act
+        boolean result = lamp.setAttribute(2, 101);
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void setAttributeFalseNominalPower() {
+        // Arrange
+        double luminousFlux = 50.0;
+        double nominalPower = 100.0;
+        Lamp lamp = new Lamp(luminousFlux, nominalPower);
+
+
+        // Act
+        boolean result = lamp.setAttribute(2, 100.0);
 
         // assert
         assertFalse(result);

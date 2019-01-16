@@ -128,6 +128,11 @@ public class Fridge implements DeviceSpecs {
         return false;
     }
 
+    /**
+     * get method
+     *
+     * @return number of Fridge attributes
+     */
     @Override
     public int getNumberOfAttributes() {
         return 4;

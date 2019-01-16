@@ -81,7 +81,7 @@ public class Lamp implements DeviceSpecs {
     }
 
     /**
-     *
+     * method that displays a string of the choosen attribute (name of the attribute and its value)
      * @return
      */
     @Override
@@ -93,6 +93,14 @@ public class Lamp implements DeviceSpecs {
         return lampAttributes;
     }
 
+
+    /**
+     * set method
+     *
+     * @param attribute position of the attribute
+     * @param value
+     * @return
+     */
     @Override
     public boolean setAttribute(int attribute, double value) {
         switch (attribute) {
@@ -105,6 +113,10 @@ public class Lamp implements DeviceSpecs {
         return false;
     }
 
+    /**
+     * get method
+     * @return number of Fridge attributes
+     */
     @Override
     public int getNumberOfAttributes() {
         return 2;
