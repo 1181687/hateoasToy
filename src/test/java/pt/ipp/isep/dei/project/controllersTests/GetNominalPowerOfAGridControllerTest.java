@@ -116,7 +116,7 @@ public class GetNominalPowerOfAGridControllerTest {
         room1.addDevice(fridge2);
         grid1.attachRoom(room1);
 
-        controller.getHouseGridbyPosition(0);
+        controller.getHouseGridByPosition(0);
 
         double expectedResult = 15;
         //Act

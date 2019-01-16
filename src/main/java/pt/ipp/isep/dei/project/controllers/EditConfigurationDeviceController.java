@@ -75,4 +75,8 @@ public class EditConfigurationDeviceController {
     public void getNewRoom (int position) {
         this.newRoom = mHouse.getRoomOfTheRoomList(position);
     }
+
+    public int getNumberOfAttributesInDeviceSpecs(){
+        return mDevice.getNumberOfSpecsAttributes();
+    }
 }

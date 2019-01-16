@@ -97,4 +97,7 @@ public class Device implements Measurable {
         return this.mSpec.setAttribute(attribute, value);
     }
 
+    public int getNumberOfSpecsAttributes(){
+        return mSpec.getNumberOfAttributes();
+    }
 }
