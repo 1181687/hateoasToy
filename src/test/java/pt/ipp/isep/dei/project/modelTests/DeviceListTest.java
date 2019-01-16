@@ -152,26 +152,23 @@ public class DeviceListTest {
         double nominalPower0 = 100;
         double performanceRatio = 0.9;
         DeviceSpecs electricWaterHeater0 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
-        double hotWaterTemp1 = 60;
-        double maximumVolume1 = 200;
-        double nominalPower1 = 110;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, nominalPower1, performanceRatio);
 
         // Device Instantiation
         Device device0 = new Device("Electric Water Heater", room, electricWaterHeater0);
-        Device device1 = new Device("Electric Water Heater", room, electricWaterHeater1);
 
         // DeviceList Instantiation
         DeviceList deviceList = new DeviceList();
         deviceList.addDevice(device0);
-        deviceList.addDevice(device1);
 
-        deviceList.setColdWaterTempAndVolumeOfWaterToHeat(30, 100);
+        int coldWaterTempPosition = 4;
+        deviceList.setAttribute(0, coldWaterTempPosition, 30);
+        int volumeOfWaterToHeat = 5;
+        deviceList.setAttribute(0, volumeOfWaterToHeat, 100);
 
-        double expectedResult = 5233.5;
+        double expectedResult = 2093.4;
 
         // Act
-        double result = deviceList.getEnergyConsumptionInADayOfAllDevicesOfAType("Electric Water Heater");
+        double result = deviceList.getEnergyConsumptionOfADevice(0);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);

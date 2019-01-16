@@ -4,28 +4,60 @@ import pt.ipp.isep.dei.project.model.House;
 
 public class EstimateEnergyOfWaterHeaterController {
     private House mHouse;
+    private String mType = "Electric Water Heater";
 
+    /**
+     * Constructor.
+     *
+     * @param mHouse House to be used.
+     */
     public EstimateEnergyOfWaterHeaterController(House mHouse) {
         this.mHouse = mHouse;
     }
 
     /**
-     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
-     * class Electric Water Heater.
+     * TO DO
      *
-     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
-     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
+     * @return
      */
-    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
-        mHouse.setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
+    public int getNumberOfWaterHeaters() {
+        return mHouse.getNumberOfDevicesOfAType(mType);
     }
 
     /**
-     * @param type
-     * @return
+     * TO DO
+     *
+     * @param devicePosition
+     * @param coldWaterTemperature
      */
-    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
-        return mHouse.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
+    public void setColdWaterTemp(int devicePosition, double coldWaterTemperature) {
+        mHouse.setAttribute(mType, devicePosition, 4, coldWaterTemperature);
     }
 
+    /**
+     * TO DO
+     * @param devicePosition
+     * @param volumeOfWaterToHeat
+     */
+    public void setVolumeOfWaterToHeat(int devicePosition, double volumeOfWaterToHeat) {
+        mHouse.setAttribute(mType, devicePosition, 5, volumeOfWaterToHeat);
+    }
+
+    /**
+     * TO DO
+     * @param devicePosition
+     * @return
+     */
+    public double getEnergyConsumptionOfADevice(int devicePosition) {
+        return mHouse.getEnergyConsumptionOfADevice(mType, devicePosition);
+    }
+
+    /**
+     * TO DO
+     *
+     * @return
+     */
+    public double getTotalEnergyConsumptionOfAllDevicesOfAType() {
+        return mHouse.getTotalEnergyConsumptionInTheHouse(mType);
+    }
 }

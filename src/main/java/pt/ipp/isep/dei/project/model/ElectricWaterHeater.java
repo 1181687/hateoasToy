@@ -26,23 +26,23 @@ public class ElectricWaterHeater implements DeviceSpecs {
     /** Method that sets the volume of water to be heated.
      * @param mVolumeOfWaterToHeat Volume of water to be heated.
      */
-    public void setmVolumeOfWaterToHeat(double mVolumeOfWaterToHeat) {
-        if (mVolumeOfWaterToHeat > mMaximumVolume) {
-            throw new RuntimeException("The device can only take up a volume of " + mMaximumVolume
-                    + ". Please insert a valid value.");
+    public boolean setmVolumeOfWaterToHeat(double mVolumeOfWaterToHeat) {
+        if (mVolumeOfWaterToHeat > 0) {
+            this.mVolumeOfWaterToHeat = mVolumeOfWaterToHeat;
+            return true;
         }
-        this.mVolumeOfWaterToHeat = mVolumeOfWaterToHeat;
+        return false;
     }
 
     /** Method that sets the cold-water temperature.
      * @param mColdWaterTemperature Cold-water temperature to be used.
      */
-    public void setmColdWaterTemperature(double mColdWaterTemperature) {
-        if (mColdWaterTemperature > mHotWaterTemperature) {
-            throw new RuntimeException("The cold-water temperature cannot be higher that the hot-water temperature, " +
-                    "which is: can only take up a volume of " + mHotWaterTemperature + ". Please insert a valid value.");
+    public boolean setmColdWaterTemperature(double mColdWaterTemperature) {
+        if (mColdWaterTemperature < this.mHotWaterTemperature) {
+            this.mColdWaterTemperature = mColdWaterTemperature;
+            return true;
         }
-        this.mColdWaterTemperature = mColdWaterTemperature;
+        return false;
     }
 
     /**
@@ -79,6 +79,11 @@ public class ElectricWaterHeater implements DeviceSpecs {
         return this.mNominalPower == mNominalPower;
     }
 
+    /**
+     * Method that returns the content of the non-optional attributes of the class.
+     *
+     * @return String with the non-optional attributes.
+     */
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
@@ -98,6 +103,10 @@ public class ElectricWaterHeater implements DeviceSpecs {
                 return setmMaximumVolume(value);
             case 3:
                 return setmNominalPower(value);
+            case 4:
+                return setmColdWaterTemperature(value);
+            case 5:
+                return setmVolumeOfWaterToHeat(value);
         }
         System.out.println("Please select a valid number.");
         return false;

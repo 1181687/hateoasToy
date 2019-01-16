@@ -205,47 +205,6 @@ public class DeviceList {
         return mDeviceList.isEmpty();
     }
 
-    /**
-     * @param type
-     * @return
-     */
-    public List<Device> getDevicesByType(String type) {
-        List<Device> newList = new ArrayList<>();
-        for (int index = 0; index < mDeviceList.size(); index++) {
-            if (mDeviceList.get(index).getType().equals(type)) {
-                newList.add(mDeviceList.get(index));
-            }
-        }
-        return newList;
-    }
-
-    /**
-     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
-     * class Electric Water Heater.
-     *
-     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
-     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
-     */
-    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
-        List<Device> newList = getDevicesByType("Electric Water Heater");
-        for (int index = 0; index < newList.size(); index++) {
-            newList.get(index).setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
-        }
-    }
-
-    /**
-     * @param type
-     * @return
-     */
-    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
-        double energyConsumption = 0;
-        List<Device> listOfDevicesWithTheType = getDevicesByType(type);
-        for (int index = 0; index < listOfDevicesWithTheType.size(); index++) {
-            energyConsumption += listOfDevicesWithTheType.get(index).getEnergyConsumptionInADay();
-        }
-        return energyConsumption;
-    }
-
     public String getDeviceTypeListContent() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
@@ -259,6 +218,56 @@ public class DeviceList {
         return content.toString();
     }
 
+    /**
+     * TO DO - LUÍS
+     *
+     * @param type
+     * @return
+     */
+    public DeviceList getAllDevicesOfAType(String type) {
+        DeviceList listOfDevicesWithTheType = new DeviceList();
+        for (Device device : mDeviceList) {
+            if (device.getType().equals(type)) {
+                listOfDevicesWithTheType.addDevice(device);
+            }
+        }
+        return listOfDevicesWithTheType;
+    }
 
+    /**
+     * TO DO - LUÍS
+     *
+     * @param devicePosition
+     * @param attribute
+     * @param value
+     * @return
+     */
+    public boolean setAttribute(int devicePosition, int attribute, double value) {
+        Device device = mDeviceList.get(devicePosition);
+        return device.setAttributesDevType(attribute, value);
+    }
 
+    /**
+     * TO DO - LUÍS
+     *
+     * @param devicePosition
+     * @return
+     */
+    public double getEnergyConsumptionOfADevice(int devicePosition) {
+        Device device = mDeviceList.get(devicePosition);
+        return device.getEnergyConsumptionInADay();
+    }
+
+    /**
+     * TO DO - LUÍS
+     *
+     * @return
+     */
+    public double getTotalEnergyConsumption() {
+        double totalEnergyConsumption = 0;
+        for (Device device : mDeviceList) {
+            totalEnergyConsumption += device.getEnergyConsumptionInADay();
+        }
+        return totalEnergyConsumption;
+    }
 }

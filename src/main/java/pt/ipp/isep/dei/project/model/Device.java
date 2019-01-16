@@ -49,18 +49,6 @@ public class Device implements Measurable {
     }
 
     /**
-     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
-     * class Electric Water Heater.
-     *
-     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
-     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
-     */
-    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
-        ((ElectricWaterHeater) mSpec).setmColdWaterTemperature(coldWaterTemp);
-        ((ElectricWaterHeater) mSpec).setmVolumeOfWaterToHeat(volumeOfWaterToHeat);
-    }
-
-    /**
      * Method that gets the energy consumption in a day.
      *
      * @return Energy consumption of the device in a given day.
@@ -79,6 +67,11 @@ public class Device implements Measurable {
         return true;
     }
 
+    /**
+     * Method that returns the content of the non-optional attributes of the each .
+     *
+     * @return String with the non-optional attributes.
+     */
     public String getSpecsAttributesToString() {
         return mSpec.getAttributesToString();
     }
@@ -93,7 +86,7 @@ public class Device implements Measurable {
         return  deviceAttributes;
     }
 
-    public boolean setAttributes (int attribute, double value) {
+    public boolean setAttributesDevType(int attribute, double value) {
         return this.mSpec.setAttribute(attribute, value);
     }
 
