@@ -101,4 +101,8 @@ public class ElectricWaterHeater implements DeviceSpecs {
         return false;
     }
 
+    @Override
+    public int getNumberOfAttributes() {
+        return 3;
+    }
 }

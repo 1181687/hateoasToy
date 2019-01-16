@@ -1,0 +1,12 @@
+@startuml
+
+actor User
+User -> UI: GetNominalPowerOfAGrid
+UI -> Controller: checkIfGridListIsEmpty()
+Controller -> House: checkIfGridListIsEmpty()
+House -> HouseGridList: checkIfGridListIsEmpty()
+HouseGridList --> UI: Grid List is not empty
+alt successful case
+UI->Controller:
+
+@enduml
