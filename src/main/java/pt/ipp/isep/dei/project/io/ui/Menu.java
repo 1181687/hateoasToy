@@ -73,11 +73,13 @@ public class Menu {
         content.append("\n");
         content.append("8-Check the nominal power of all devices in a room");
         content.append("\n");
-        content.append("9-Add a new device to a room");
+        content.append("9-Check the nominal power of House Grid");
+        content.append("\n");
+        content.append("10-Add a new device to a room");
         content.append("\n");
         content.append("0-Return to the previous menu");
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 9);
+        return InputValidator.getIntRange(label, 0, 10);
     }
 
     public static int regularUserMenu() {

@@ -110,6 +110,10 @@ public class Admin {
                     ui230.run();
                     break;
                 case 9:
+                    GetNominalPowerOfGrid ui172 = new GetNominalPowerOfGrid(house);
+                    ui172.run();
+                    break;
+                case 10:
                     AddDeviceToRoom ui210 = new AddDeviceToRoom(house);
                     ui210.run();
                     break;
