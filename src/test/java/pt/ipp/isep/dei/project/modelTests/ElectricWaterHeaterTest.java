@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ElectricWaterHeaterTest {
 
     @Test
-    public void getEnergyConsumptionInADayTestWithValidValues() {
+    public void getEnergyConsumptionInADayTest1() {
         // Arrange
         // ElectricWaterHeater Instantiation
         double hotWaterTemp = 50;
@@ -30,6 +30,27 @@ class ElectricWaterHeaterTest {
     }
 
     @Test
+    public void getEnergyConsumptionInADayTest2() {
+        // Arrange
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+
+        electricWaterHeater.setmColdWaterTemperature(100);
+        electricWaterHeater.setmVolumeOfWaterToHeat(30);
+
+        double expectedResult = 1570.05;
+
+        // Act
+        double result = electricWaterHeater.getEnergyConsumptionInADay();
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
+    }
+    @Test
     public void setmHotWaterTemperatureTrue() {
         // Arrange
         // ElectricWaterHeater Instantiation
@@ -44,6 +65,23 @@ class ElectricWaterHeaterTest {
 
         // assert
         assertTrue(result);
+    }
+
+    @Test
+    public void setmVolumeOfWaterToHeatEqualZero() {
+        // Arrange
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double nominalPower = 100;
+        double performanceRatio = 0.9;
+        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower, performanceRatio);
+
+        // Act
+        boolean result = electricWaterHeater.setmVolumeOfWaterToHeat(0.0);
+
+        // assert
+        assertFalse(result);
     }
 
     @Test
@@ -319,7 +357,7 @@ class ElectricWaterHeaterTest {
         ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
 
         // Act
-        boolean result = electricWaterHeater.setAttribute(5, 0.9);
+        boolean result = electricWaterHeater.setAttribute(7, 30.0);
 
         // assert
         assertFalse(result);
