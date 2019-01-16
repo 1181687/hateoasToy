@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.project.model.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EstimateEnergyUsedByElectricWaterHeaterControllerTest {
+
     @Test
     public void getEnergyConsumptionInADayOfAllDevicesOfATypeTestWithValidValues() {
         // Arrange
@@ -31,8 +32,8 @@ class EstimateEnergyUsedByElectricWaterHeaterControllerTest {
         DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, nominalPower1, performanceRatio);
 
         // Device Instantiation
-        Device device0 = new Device("Electric Water Heater", room, electricWaterHeater0);
-        Device device1 = new Device("Electric Water Heater", room, electricWaterHeater1);
+        Device device0 = new Device("Electric Water Heater A", room, electricWaterHeater0);
+        Device device1 = new Device("Electric Water Heater B", room, electricWaterHeater1);
 
         room.addDevice(device0);
         room.addDevice(device1);

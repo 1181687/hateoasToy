@@ -1,16 +1,13 @@
 package pt.ipp.isep.dei.project.model;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 public class MeasurableObjectsList implements Measurable {
     private Set<Measurable> mMeasurableList = new HashSet<>();
     //private List<Measurable> mMeasurableList = new ArrayList<>();
 
     public MeasurableObjectsList() {
-    }
-
-    public Set<Measurable> getmMeasurableList() {
-        return mMeasurableList;
     }
 
     public void addMeasurableObjToMeasurableList(Measurable measurable) {
@@ -26,8 +23,10 @@ public class MeasurableObjectsList implements Measurable {
     }
 
     public boolean checkIfMeasurableObjIsInList(Measurable measurable) {
-        if (mMeasurableList.contains(measurable)) {
-            return true;
-        } else return false;
+        return mMeasurableList.contains(measurable);
+    }
+
+    public boolean checkIsMeasurableListIsEmpty() {
+        return mMeasurableList.isEmpty();
     }
 }

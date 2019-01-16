@@ -70,6 +70,9 @@ public class Room implements Measurable{
      * @param mName name of a room (string)
      */
     public void setmName(String mName) {
+        //  if (Roomlist.checkIfNameAlreadyExists(name)) {
+        //      throw new RuntimeException("Name already exists. Please write a new one.");
+        //  }
         this.mName = mName;
     }
 
@@ -119,7 +122,7 @@ public class Room implements Measurable{
      */
     @Override
     public int hashCode() {
-        return Objects.hash(mName);
+        return Objects.hash(this.mName);
     }
 
     /**
