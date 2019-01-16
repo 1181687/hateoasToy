@@ -34,6 +34,8 @@ class EditConfigurationDeviceControllerTest {
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
+        int position = 0;
+        controller.getRoomByPosition(position);
 
         //act
         String result = controller.getRoomListContent();
@@ -63,7 +65,7 @@ class EditConfigurationDeviceControllerTest {
     }
 
     @Test
-    public void testGetNameOfRoomInListOfRooms() {
+    public void testGetRoomName() {
         //Arrange
         RoomList rList = new RoomList();
         Dimensions dim0 = new Dimensions(4, 4, 4);
@@ -91,7 +93,7 @@ class EditConfigurationDeviceControllerTest {
     }
 
     @Test
-    public void testGetNameOfRoomInEmptyListOfRooms() {
+    public void testGetRoomNameEmpty() {
         //Arrange
         RoomList rList = new RoomList();
         HouseGridList gridlist = new HouseGridList();
@@ -112,15 +114,50 @@ class EditConfigurationDeviceControllerTest {
     }
 
     @Test
-    void getRoomByPosition() {
+    public void getDevicesInTheRoomTest() {
+        // Arrange
+        // initiate House
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+        //initiate Room
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
 
+        //initiate Devices
+        double freezerCapacity = 5.5;
+        double refrigeratorCapacity = 15.5;
+        double annualEnergyConsumption = 3000.0;
+        double nominalPower = 100.5;
+        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        Device dev = new Device("Fridge1", room, deviceSpecs);
 
-    }
+        double luminousFlux = 10.0;
+        double nominalPower1 = 0.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
-    @Test
-    void getDevicesInTheRoom() {
+        room.addDevice(dev);
+        room.addDevice(dev1);
+        house.addRoom(room);
+        int option = 0;
 
+        String expectedResult =
+                "1 - Name of the device: Fridge1\n" +
+                        "2 - Name of the device: Lamp1\n";
 
+        EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
+        controller.getRoomByPosition(option);
+        // Act
+        String result = controller.getDevicesInTheRoom();
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
