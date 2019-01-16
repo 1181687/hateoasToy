@@ -233,15 +233,15 @@ public class RoomTest {
         assertFalse(result);
     }
 
-    /*@Test
+    @Test
     public void testGetDeviceList() {
         String name = "Kitchen";
         Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-        Fridge specFridge = new Fridge();
-        WashingMachine specWashing = new WashingMachine();
-        DishWasher specDishWasher = new DishWasher();
+        Fridge specFridge = new Fridge(100, 100, 100, 100);
+        WashingMachine specWashing = new WashingMachine(100, 100);
+        DishWasher specDishWasher = new DishWasher(100, 100);
         Device dev1 = new Device("FridgeAriston", room, specFridge);
         Device dev2 = new Device("WashingMachineBosh", room, specWashing);
         Device dev3 = new Device("DishWasher", room, specDishWasher);
@@ -255,28 +255,28 @@ public class RoomTest {
         expectedResult.addDevice(dev2);
         expectedResult.addDevice(dev3);
 
-        DeviceList result = room.getDeviceList();
+        DeviceList result = room.getmDeviceList();
 
         assertEquals(expectedResult, result);
-    }*/
+    }
 
-   /* @Test
+    @Test
     public void testAddDevice() {
         String name = "Kitchen";
         Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-        Fridge specFridge = new Fridge();
+        Fridge specFridge = new Fridge(100, 100, 100, 100);
         Device dev1 = new Device("FridgeAriston", room, specFridge);
 
         DeviceList expectedResult = new DeviceList();
         expectedResult.addDevice(dev1);
 
         room.addDevice(dev1);
-        DeviceList result = room.getDeviceList();
+        DeviceList result = room.getmDeviceList();
 
         assertEquals(expectedResult, result);
-    }*/
+    }
 
 
     @Test

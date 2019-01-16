@@ -67,6 +67,18 @@ public class DeviceListTest {
     }
 
     @Test
+    void testEqualsTrueSameObj() {
+        //Arrange
+
+        DeviceList deviceList1 = new DeviceList();
+
+        //Act
+        boolean result = deviceList1.equals(deviceList1);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
     void testEqualsTrueFalse() {
         //Arrange
 

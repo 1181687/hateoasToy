@@ -70,9 +70,6 @@ public class Room implements Measurable{
      * @param mName name of a room (string)
      */
     public void setmName(String mName) {
-        //  if (Roomlist.checkIfNameAlreadyExists(name)) {
-        //      throw new RuntimeException("Name already exists. Please write a new one.");
-        //  }
         this.mName = mName;
     }
 
