@@ -1,7 +1,9 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 public class DishWasher implements DeviceSpecs {
-    private String mTypeName ;
+    private String mTypeName;
     private int mCapacity;
     private double mDuration;
     private double mEnergyConsumptionProgram1;
@@ -23,7 +25,6 @@ public class DishWasher implements DeviceSpecs {
     }
 
     /**
-     *
      * @return
      */
     public double getEnergyConsumptionInADay() {
@@ -39,17 +40,19 @@ public class DishWasher implements DeviceSpecs {
     }
 
     public boolean setmCapacity(int mCapacity) {
-        if (this.mCapacity == mCapacity) {
-            return true;
+        if (Utils.isSameDouble(this.mCapacity, mCapacity)) {
+            return false;
         }
-        return false;
+        this.mCapacity = mCapacity;
+        return true;
     }
 
     public boolean setmNominalPower(double mNominalPower) {
-        if (this.mNominalPower == mNominalPower) {
-            return true;
+        if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
+            return false;
         }
-        return false;
+        this.mNominalPower = mNominalPower;
+        return true;
     }
 
     public String getAttributesToString() {
@@ -73,6 +76,8 @@ public class DishWasher implements DeviceSpecs {
         return false;
     }
 
-
-
+    @Override
+    public int getNumberOfAttributes() {
+        return 2;
+    }
 }

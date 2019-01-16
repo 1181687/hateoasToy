@@ -121,7 +121,8 @@ public class Main {
         double hotWaterTemp = 55;
         double maximumVolume = 100;
         double nominalPower1 = 44;
-        DeviceSpecs deviceSpecs2 = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower1);
+        double performanceRatio = 0.9;
+        DeviceSpecs deviceSpecs2 = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower1, performanceRatio);
         Device dev2 = new Device("Titan SCR2 N-120", room1, deviceSpecs2);
         room1.addDevice(dev2);
 

@@ -23,7 +23,7 @@ public class GetNominalPowerOfAGridController {
         return mHouse.getHouseGridListLength();
     }
 
-    public void getHouseGridbyPosition(int position){
+    public void getHouseGridByPosition(int position){
         mSelectedHouseGrid = this.mHouse.getHouseGridByPosition(position);
     }
 

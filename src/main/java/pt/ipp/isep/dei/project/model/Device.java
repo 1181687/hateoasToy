@@ -75,6 +75,9 @@ public class Device implements Measurable {
         // if (DeviceList.checkIfNameAlreadyExists(name)) {
         //     throw new RuntimeException("Name already exists. Please write a new one.");
         // }
+        if (this.mName == mName) {
+            return false;
+        }
         this.mName = mName;
         return true;
     }
@@ -130,4 +133,7 @@ public class Device implements Measurable {
         return this.mName.equalsIgnoreCase(listOne.mName);
     }
 
+    public int getNumberOfSpecsAttributes(){
+        return mSpec.getNumberOfAttributes();
+    }
 }
