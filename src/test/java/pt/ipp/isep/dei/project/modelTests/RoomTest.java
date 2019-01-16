@@ -449,4 +449,62 @@ public class RoomTest {
         //assert
         assertEquals(expectResult, result);
     }
+
+    @Test
+    public void testAddDeviceDevicePointer() {
+        //Arrange
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room1 = new Room(name, 2, dim);
+
+        String name2 = "Bedroom";
+        Dimensions dim2 = new Dimensions(3, 3.5, 3.5);
+        Room room2 = new Room(name2, 2, dim2);
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room1, deviceSpecs1);
+
+        room1.addDevice(dev1);
+
+        room2.addDevice(dev1);
+
+        Room expectedResult = room2;
+
+        //act
+        Room result = dev1.getLocation();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddDeviceDeviceListPointer() {
+        //Arrange
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room1 = new Room(name, 2, dim);
+
+        String name2 = "Bedroom";
+        Dimensions dim2 = new Dimensions(3, 3.5, 3.5);
+        Room room2 = new Room(name2, 2, dim2);
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room1, deviceSpecs1);
+
+        room1.addDevice(dev1);
+
+        room2.addDevice(dev1);
+
+        Device expectedResult = dev1;
+
+        //act
+        Device result = room2.getmDeviceList().getDeviceByPosition(0);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 }

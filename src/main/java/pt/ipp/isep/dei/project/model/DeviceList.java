@@ -259,6 +259,13 @@ public class DeviceList {
         return content.toString();
     }
 
+    public boolean removeDevice(Device device) {
+        if (this.getmDeviceList().remove(device)) {
+            return true;
+        }
+        return false;
+    }
+
 
 
 }
