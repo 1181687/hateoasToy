@@ -68,6 +68,10 @@ public class AddDeviceToRoomController {
         return mDevice = mDeviceList.newFridge(name, selectedRoom, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
     }
 
+    public Device createNewWashingMachine(String name, Room selectedRoom, double nominalPower, double capacity) {
+        return mDevice = mDeviceList.newWashingMachine(name, selectedRoom, nominalPower, capacity);
+    }
+
     /**
      * Method that create a new Electric Water Heater in a selected Room.
      *

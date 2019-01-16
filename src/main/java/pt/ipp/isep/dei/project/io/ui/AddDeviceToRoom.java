@@ -90,6 +90,22 @@ public class AddDeviceToRoom {
                     String label43 = "What is the capacity (kg)?";
                     double washingMachineCapacity = InputValidator.getDoublePos(label43);
 
+                    mCtrl.createNewWashingMachine(washingMachineDeviceName, selectedRoom, washingMachineNominalPower, washingMachineCapacity);
+
+                    if (mCtrl.addDeviceToRoom()) {
+
+                        StringBuilder content = new StringBuilder();
+                        content.append("The device " + washingMachineDeviceName + " was succesfully added to " + selectedRoom.getmName() +
+                                " and created with the following specifications:\n");
+                        content.append("- Capacity: " + washingMachineCapacity + " kg \n");
+                        content.append("- Nominal Power: " + washingMachineNominalPower + " kW \n");
+
+                        System.out.println(content.toString());
+                        return;
+                    } else {
+                        System.out.println("Something went wrong. The device wasn't added to the room. Please try again.");
+                    }
+
 
                     break;
                 case 5:
