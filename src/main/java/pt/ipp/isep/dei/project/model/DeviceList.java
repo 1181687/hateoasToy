@@ -64,7 +64,7 @@ public class DeviceList {
     public boolean checkIfNameAlreadyExists(String name) {
 
         for (int i = 0; i < mDeviceList.size(); i++) {
-            if (mDeviceList.get(i).getmName().equalsIgnoreCase(name)) {
+            if (mDeviceList.get(i).getName().equalsIgnoreCase(name)) {
                 return true;
             }
         }
@@ -90,7 +90,7 @@ public class DeviceList {
             for (Device dev : entry.getValue()) {
 
                 content.append("- Device Name: ");
-                content.append(dev.getmName());
+                content.append(dev.getName());
                 content.append(", Location: ");
                 content.append(dev.getLocation().getmName());
                 content.append(".\n");
@@ -129,16 +129,19 @@ public class DeviceList {
     }
     //ELECTRIC WATER HEATER
 
-    public DeviceSpecs createNewElectricWaterHeater(double mHotWaterTemperature, double mMaximumVolume, double mNominalPower, double performanceRatio) {
+    public DeviceSpecs createNewElectricWaterHeater(double mHotWaterTemperature, double mMaximumVolume,
+                                                    double mNominalPower, double performanceRatio) {
 
         return new ElectricWaterHeater(mHotWaterTemperature, mMaximumVolume, mNominalPower, performanceRatio);
     }
 
-    public Device newElectricWaterHeater(String name, Room selectedRoom, double mHotWaterTemperature, double mMaximumVolume, double mNominalPower, double mPerformanceRatio) {
+    public Device newElectricWaterHeater(String name, Room selectedRoom, double mHotWaterTemperature,
+                                         double mMaximumVolume, double mNominalPower, double mPerformanceRatio) {
         if (checkIfNameAlreadyExists(name)) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
-        DeviceSpecs electricWaterHeater = createNewElectricWaterHeater(mHotWaterTemperature, mMaximumVolume, mNominalPower, mPerformanceRatio);
+        DeviceSpecs electricWaterHeater = createNewElectricWaterHeater(mHotWaterTemperature, mMaximumVolume,
+                mNominalPower, mPerformanceRatio);
 
         return new Device(name, selectedRoom, electricWaterHeater);
     }
@@ -220,7 +223,7 @@ public class DeviceList {
         int deviceListLength = getLength();
         int numberInTheList = 1;
         for (int i = 1; i <= deviceListLength; i++) {
-            content.append(numberInTheList + " - Name of the device: " + getmDeviceList().get(i - 1).getmName());
+            content.append(numberInTheList + " - Name of the device: " + getmDeviceList().get(i - 1).getName());
             content.append("\n");
             numberInTheList++;
         }

@@ -270,4 +270,14 @@ public class Room implements Measurable{
     public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
         return mDeviceList.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
     }
+
+    /**
+     * method that check if a name of a Device already exists on the list of devices.
+     *
+     * @param name name of device
+     * @return boolean true if exists, false if it doesn't
+     */
+    public boolean checkIfNameAlreadyExists(String name) {
+        return this.mDeviceList.checkIfNameAlreadyExists(name);
+    }
 }

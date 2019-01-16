@@ -22,7 +22,7 @@ public class DeviceTest {
         String expectedResult = "Lamp1";
 
         //Act
-        String result = dev1.getmName();
+        String result = dev1.getName();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -149,5 +149,77 @@ public class DeviceTest {
         boolean result = lamp1.equals(room1);
         //Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void testSetNameSameNameFalse() {
+        // Arrange
+
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        DeviceList deviceList = new DeviceList();
+        deviceList.addDeviceToDeviceList(dev1);
+
+        // Act
+        boolean result = dev1.setName("Lamp1");
+
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetNameAlreadyInListFalse() {
+        // Arrange
+
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device dev2 = new Device("Lamp2", room, deviceSpecs1);
+        room.addDevice(dev1);
+        room.addDevice(dev2);
+
+
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                dev1.setName("Lamp1")
+        );
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+
+    }
+
+    @Test
+    public void testSetNameTrue() {
+        // Arrange
+
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        DeviceList deviceList = new DeviceList();
+        deviceList.addDeviceToDeviceList(dev1);
+        Device dev2 = new Device("Lamp3", room, deviceSpecs1);
+        deviceList.addDevice(dev2);
+
+        // Act
+        boolean result = dev1.setName("Lamp10");
+
+        // Assert
+        assertTrue(result);
     }
 }
