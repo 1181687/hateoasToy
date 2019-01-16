@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.model;
 
 
+import java.util.Objects;
+
 public class Device implements Measurable {
     private String mName;
     private Room mLocation;
@@ -70,6 +72,9 @@ public class Device implements Measurable {
     }
 
     public boolean setmName(String mName) {
+        // if (DeviceList.checkIfNameAlreadyExists(name)) {
+        //     throw new RuntimeException("Name already exists. Please write a new one.");
+        // }
         this.mName = mName;
         return true;
     }
@@ -95,6 +100,34 @@ public class Device implements Measurable {
 
     public boolean setAttributes (int attribute, double value) {
         return this.mSpec.setAttribute(attribute, value);
+    }
+
+    /**
+     * method that creates the hashcode to two devices that are have the same name.
+     *
+     * @return the hashcode created
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.mName);
+    }
+
+    /**
+     * Equals method to determine if two Device are equal.     *
+     *
+     * @param obj receives an object
+     * @return boolean true if are equal and false if are not.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Device)) {
+            return false;
+        }
+        Device listOne = (Device) obj;
+        return this.mName.equalsIgnoreCase(listOne.mName);
     }
 
 }
