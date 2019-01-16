@@ -1,13 +1,13 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.EstimateEnergyUsedByElectricWaterHeaterController;
+import pt.ipp.isep.dei.project.controllers.EstimateEnergyOfWaterHeaterController;
 import pt.ipp.isep.dei.project.model.House;
 
-public class EstimateEnergyUsedByElectricWaterHeater {
-    private EstimateEnergyUsedByElectricWaterHeaterController mCtrl;
+public class EstimateEnergyOfWaterHeater {
+    private EstimateEnergyOfWaterHeaterController mCtrl;
 
-    public EstimateEnergyUsedByElectricWaterHeater(House house) {
-        this.mCtrl = new EstimateEnergyUsedByElectricWaterHeaterController(house);
+    public EstimateEnergyOfWaterHeater(House house) {
+        this.mCtrl = new EstimateEnergyOfWaterHeaterController(house);
     }
 
     public void run() {

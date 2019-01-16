@@ -1,12 +1,12 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.EstimateEnergyUsedByElectricWaterHeaterController;
+import pt.ipp.isep.dei.project.controllers.EstimateEnergyOfWaterHeaterController;
 import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class EstimateEnergyUsedByElectricWaterHeaterControllerTest {
+class EstimateEnergyOfWaterHeaterControllerTest {
     @Test
     public void getEnergyConsumptionInADayOfAllDevicesOfATypeTestWithValidValues() {
         // Arrange
@@ -53,7 +53,7 @@ class EstimateEnergyUsedByElectricWaterHeaterControllerTest {
         House house = new House(roomList, houseGridList, null, null);
 
         // Controller Instantiation
-        EstimateEnergyUsedByElectricWaterHeaterController ctrl = new EstimateEnergyUsedByElectricWaterHeaterController(house);
+        EstimateEnergyOfWaterHeaterController ctrl = new EstimateEnergyOfWaterHeaterController(house);
 
         ctrl.setColdWaterTempAndVolumeOfWaterToHeat(30, 100);
 

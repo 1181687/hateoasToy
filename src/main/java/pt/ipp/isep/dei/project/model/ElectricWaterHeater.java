@@ -17,8 +17,6 @@ public class ElectricWaterHeater implements DeviceSpecs {
         this.mNominalPower = mNominalPower;
     }
 
-
-
     @Override
     public String getmTypeName() {
         return mTypeName;
@@ -40,6 +38,10 @@ public class ElectricWaterHeater implements DeviceSpecs {
      * @param mColdWaterTemperature Cold-water temperature to be used.
      */
     public void setmColdWaterTemperature(double mColdWaterTemperature) {
+        if (mColdWaterTemperature > mHotWaterTemperature) {
+            throw new RuntimeException("The cold-water temperature cannot be higher that the hot-water temperature, " +
+                    "which is: can only take up a volume of " + mHotWaterTemperature + ". Please insert a valid value.");
+        }
         this.mColdWaterTemperature = mColdWaterTemperature;
     }
 
@@ -66,24 +68,15 @@ public class ElectricWaterHeater implements DeviceSpecs {
     }
 
     public boolean setmHotWaterTemperature(double mHotWaterTemperature) {
-        if (this.mHotWaterTemperature == mHotWaterTemperature) {
-            return true;
-        }
-        return false;
+        return this.mHotWaterTemperature == mHotWaterTemperature;
     }
 
     public boolean setmMaximumVolume(double mMaximumVolume) {
-        if (this.mMaximumVolume == mMaximumVolume) {
-            return true;
-        }
-        return false;
+        return this.mMaximumVolume == mMaximumVolume;
     }
 
     public boolean setmNominalPower(double mNominalPower) {
-        if (this.mNominalPower == mNominalPower) {
-            return true;
-        }
-        return false;
+        return this.mNominalPower == mNominalPower;
     }
 
     @Override
@@ -109,5 +102,4 @@ public class ElectricWaterHeater implements DeviceSpecs {
         System.out.println("Please select a valid number.");
         return false;
     }
-
 }

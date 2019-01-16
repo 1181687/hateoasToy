@@ -2,10 +2,10 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.House;
 
-public class EstimateEnergyUsedByElectricWaterHeaterController {
+public class EstimateEnergyOfWaterHeaterController {
     private House mHouse;
 
-    public EstimateEnergyUsedByElectricWaterHeaterController(House mHouse) {
+    public EstimateEnergyOfWaterHeaterController(House mHouse) {
         this.mHouse = mHouse;
     }
 
@@ -27,4 +27,5 @@ public class EstimateEnergyUsedByElectricWaterHeaterController {
     public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
         return mHouse.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
     }
+
 }
