@@ -64,8 +64,6 @@ public class AddDeviceToRoom {
                     } else {
                         System.out.println("Something went wrong. The device wasn't added to the room. Please try again.");
                     }
-                    break;
-
 
                     break;
                 case 2:
