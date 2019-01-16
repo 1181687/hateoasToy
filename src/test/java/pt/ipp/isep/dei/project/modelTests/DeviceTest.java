@@ -195,9 +195,7 @@ public class DeviceTest {
         room.addDevice(dev2);
 
 
-        Throwable exception = assertThrows(RuntimeException.class, () ->
-                dev1.setName("Lamp1")
-        );
+        Throwable exception = assertThrows(RuntimeException.class, () -> dev1.setName("Lamp1"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
 
     }
