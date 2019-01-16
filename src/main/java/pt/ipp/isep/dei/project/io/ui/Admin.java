@@ -109,7 +109,7 @@ public class Admin {
                     GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(house);
                     ui230.run();
                     break;
-                case 8:
+                case 9:
                     AddDeviceToRoom ui210 = new AddDeviceToRoom(house);
                     ui210.run();
                     break;
