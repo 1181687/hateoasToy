@@ -134,7 +134,7 @@ public class DeviceList {
         return new ElectricWaterHeater(mHotWaterTemperature, mMaximumVolume, mNominalPower, performanceRatio);
     }
 
-    public Device newElectricWaterHeater(String name, Room selectedRoom, double mHotWaterTemperature, double mMaximumVolume, double mNominalPower) {
+    public Device newElectricWaterHeater(String name, Room selectedRoom, double mHotWaterTemperature, double mMaximumVolume, double mNominalPower, double mPerformanceRatio) {
         if (checkIfNameAlreadyExists(name)) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }

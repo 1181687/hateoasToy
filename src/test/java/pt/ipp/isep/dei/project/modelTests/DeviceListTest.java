@@ -198,7 +198,8 @@ public class DeviceListTest {
         double hotWaterTemp0 = 50;
         double maximumVolume0 = 150;
         double nominalPower0 = 100;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0);
+        double performanceRatio = 100;
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
@@ -209,7 +210,7 @@ public class DeviceListTest {
         Device expectedResult = new Device("Electric", room, electricWaterHeater1);
         String name = "Electric";
 
-        Device result = devList.newElectricWaterHeater(name, room, hotWaterTemp0, maximumVolume0, nominalPower0);
+        Device result = devList.newElectricWaterHeater(name, room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
         assertEquals(expectedResult, result);
     }
@@ -220,7 +221,9 @@ public class DeviceListTest {
         double hotWaterTemp0 = 50;
         double maximumVolume0 = 150;
         double nominalPower0 = 100;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0);
+        double performanceRatio = 100;
+
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
@@ -231,7 +234,7 @@ public class DeviceListTest {
         String name = "ELECTRIC2";
 
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                devList.newElectricWaterHeater(name, room, hotWaterTemp0, maximumVolume0, nominalPower0)
+                devList.newElectricWaterHeater(name, room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio)
         );
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -410,8 +413,8 @@ public class DeviceListTest {
                 devList.newFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity)
         );
 
+
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
-
 }
 
