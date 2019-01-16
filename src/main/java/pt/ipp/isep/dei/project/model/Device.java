@@ -8,10 +8,10 @@ public class Device implements Measurable {
     private Room mLocation;
     private DeviceSpecs mSpec;
 
-    public Device(String mName, Room mLocation, DeviceSpecs mSpec) {
-        this.mName = mName;
-        this.mLocation = mLocation;
-        this.mSpec = mSpec;
+    public Device(String name, Room location, DeviceSpecs spec) {
+        this.mName = name;
+        this.mLocation = location;
+        this.mSpec = spec;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class Device implements Measurable {
      *
      * @return name of device
      */
-    public String getmName() {
+    public String getName() {
         return this.mName;
     }
 
@@ -71,14 +71,22 @@ public class Device implements Measurable {
         return mSpec.getEnergyConsumptionInADay();
     }
 
-    public boolean setmName(String mName) {
-        // if (DeviceList.checkIfNameAlreadyExists(name)) {
-        //     throw new RuntimeException("Name already exists. Please write a new one.");
-        // }
-        if (this.mName == mName) {
+
+    /**
+     * method that set the given name only if the name don't exists in DeviceList
+     * and if it is different than the name that the Device has.
+     *
+     * @param name String given name
+     * @return true if sets false if don't
+     */
+    public boolean setName(String name) {
+        if (this.mLocation.checkIfNameAlreadyExists(name)) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
+        if (this.mName == name) {
             return false;
         }
-        this.mName = mName;
+        this.mName = name;
         return true;
     }
 
