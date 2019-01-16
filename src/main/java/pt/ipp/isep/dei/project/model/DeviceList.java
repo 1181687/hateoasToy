@@ -7,9 +7,10 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class DeviceList {
-    private List<Device> mDeviceList = new ArrayList<>();
+    private List<Device> mDeviceList;
 
     public DeviceList() {
+        this.mDeviceList = new ArrayList<>();
     }
 
     /**
