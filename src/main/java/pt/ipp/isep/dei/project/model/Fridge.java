@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.util.Scanner;
+
 public class Fridge implements DeviceSpecs {
     private String mTypeName;
     private double mFreezerCapacity;
@@ -77,6 +79,12 @@ public class Fridge implements DeviceSpecs {
 
     @Override
     public boolean setAttribute(int attribute, double value) {
+        Scanner in = new Scanner(System.in);
+        while (attribute < 1 || attribute > 4) {
+            System.out.println("Select a number between 1 and 4");
+            attribute = in.nextInt();
+        }
+
         switch (attribute) {
             case 1:
                 return setmFreezerCapacity(value);
@@ -87,7 +95,10 @@ public class Fridge implements DeviceSpecs {
             case 4:
                 return setmNominalPower(value);
         }
+
+
         System.out.println("Please select a valid number.");
         return false;
+
     }
 }

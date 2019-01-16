@@ -93,35 +93,18 @@ public class Device implements Measurable {
     }
 
     public boolean setmName(String mName) {
-        if (this.mName == mName) {
-            return true;
-        }
-        return false;
+        this.mName = mName;
+        return true;
     }
 
     public boolean setmLocation(Room mLocation) {
-        if (this.mLocation == mLocation) {
-            return true;
-        }
-        return false;
+        this.mLocation = mLocation;
+        return true;
     }
 
     public String getSpecsAttributesToString() {
         return mSpec.getAttributesToString();
     }
-
-    /* public boolean setDeviceAttribute(int attribute, String name, Room room) {
-        switch (attribute) {
-            case 1:
-                return setmName(name);
-            case 2:
-                return setDeviceAttribute(attribute, name, room);
-            case 3:
-                return setmLocation(room);
-        }
-        System.out.println("Please select a valid number.");
-        return false;
-    } */
 
     public String getAttributesToString() {
 
@@ -131,6 +114,10 @@ public class Device implements Measurable {
         attributes.append("3 - Location: " + mLocation + "\n");
         String deviceAttributes = attributes.toString();
         return  deviceAttributes;
+    }
+
+    public boolean setAttributes (int attribute, double value) {
+        return this.mSpec.setAttribute(attribute, value);
     }
 
 }

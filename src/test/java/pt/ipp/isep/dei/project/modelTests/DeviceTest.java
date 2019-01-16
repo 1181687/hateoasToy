@@ -76,24 +76,4 @@ public class DeviceTest {
         // Assert
         assertEquals(expectedResult, result, 0.000001);
     }
-
-    @Test
-    public void getSpecsAttributes () {
-        DeviceSpecs lamp = new Lamp(100, 30);
-        Dimensions di = new Dimensions(45, 45, 45);
-        Room room = new Room("name", 4, di);
-        Device lamp1 = new Device("cenas", room, lamp);
-
-        String lampAttributes = lamp1.getSpecsAttributes();
-
-
-        DeviceSpecs washMach = new WashingMachine(4, 67);
-        Device washMach1 = new Device("coiso", room, washMach);
-
-        String washMachAttributes = washMach1.getSpecsAttributes();
-
-        System.out.println(lampAttributes + washMachAttributes);
-
-
-    }
 }
