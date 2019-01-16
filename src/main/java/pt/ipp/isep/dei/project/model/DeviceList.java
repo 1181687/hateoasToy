@@ -115,14 +115,14 @@ public class DeviceList {
     }
     //ELECTRIC WATER HEATER
 
-    public DeviceSpecs createNewElectricWaterHeater(double mHotWaterTemperature, double mMaximumVolume, double mNominalPower) {
+    public DeviceSpecs createNewElectricWaterHeater(double mHotWaterTemperature, double mMaximumVolume, double mNominalPower, double performanceRatio) {
 
-        return new ElectricWaterHeater(mHotWaterTemperature, mMaximumVolume, mNominalPower);
+        return new ElectricWaterHeater(mHotWaterTemperature, mMaximumVolume, mNominalPower, performanceRatio);
     }
 
-    public Device newElectricWaterHeater(String name, Room selectedRoom, double mHotWaterTemperature, double mMaximumVolume, double mNominalPower) {
+    public Device newElectricWaterHeater(String name, Room selectedRoom, double mHotWaterTemperature, double mMaximumVolume, double mNominalPower, double mPerformanceRatio) {
 
-        DeviceSpecs electricWaterHeater = createNewElectricWaterHeater(mHotWaterTemperature, mMaximumVolume, mNominalPower);
+        DeviceSpecs electricWaterHeater = createNewElectricWaterHeater(mHotWaterTemperature, mMaximumVolume, mNominalPower, mPerformanceRatio);
 
         return new Device(name, selectedRoom, electricWaterHeater);
     }

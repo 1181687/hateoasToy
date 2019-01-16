@@ -23,11 +23,12 @@ class EstimateEnergyUsedByElectricWaterHeaterControllerTest {
         double hotWaterTemp0 = 50;
         double maximumVolume0 = 150;
         double nominalPower0 = 100;
-        DeviceSpecs electricWaterHeater0 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0);
+        double performanceRatio = 0.9;
+        DeviceSpecs electricWaterHeater0 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
         double hotWaterTemp1 = 60;
         double maximumVolume1 = 200;
         double nominalPower1 = 110;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, nominalPower1);
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, nominalPower1, performanceRatio);
 
         // Device Instantiation
         Device device0 = new Device("Electric Water Heater", room, electricWaterHeater0);

@@ -27,7 +27,7 @@ public class AddDeviceToRoom {
         //eventualmente mudar este metodo para ser validado no input validator -- Ver attachRoomToHouseGrid
 
         String label0 = "Please select the Device Type: \n" + mCtrl.getDeviceTypeListContent() + exit;
-        int selectedType = InputValidator.getIntRange(label0, 1, 5);
+        int selectedType = InputValidator.getIntRange(label0, 0, 5);
 
 
         //Escolher atributos do tipo escolhido
@@ -45,7 +45,25 @@ public class AddDeviceToRoom {
                     double freezerCapacity = InputValidator.getDoublePos(label13);
                     String label14 = "What is the refrigerator capacity (l)?";
                     double refrigeratorCapacity = InputValidator.getDoublePos(label14);
+                    String label15 = "What is the annual energy consumption (kWh)?";
+                    double annualEnergyConsumption = InputValidator.getDoublePos(label15);
 
+                    mCtrl.createNewFridge(fridgeDeviceName, selectedRoom, annualEnergyConsumption, fridgeNominalPower, freezerCapacity, refrigeratorCapacity);
+
+                    if (mCtrl.addDeviceToRoom()) {
+
+                        StringBuilder content = new StringBuilder();
+                        content.append("The device " + fridgeDeviceName + " was succesfully added to " + selectedRoom.getmName() +
+                                " and created with the following specifications:\n");
+                        content.append("- Annual Energy Consumption: " + annualEnergyConsumption + " kWh \n");
+                        content.append("- Nominal Power: " + fridgeNominalPower + " kW \n");
+                        content.append("- Freezer Capacity: " + freezerCapacity + " l \n");
+                        content.append("- Refrigerator Capacity: " + refrigeratorCapacity + " l \n");
+                        System.out.println(content.toString());
+                        return;
+                    } else {
+                        System.out.println("Something went wrong. The device wasn't added to the room. Please try again.");
+                    }
 
                     break;
                 case 2:
@@ -72,6 +90,22 @@ public class AddDeviceToRoom {
                     String label43 = "What is the capacity (kg)?";
                     double washingMachineCapacity = InputValidator.getDoublePos(label43);
 
+                    mCtrl.createNewWashingMachine(washingMachineDeviceName, selectedRoom, washingMachineNominalPower, washingMachineCapacity);
+
+                    if (mCtrl.addDeviceToRoom()) {
+
+                        StringBuilder content = new StringBuilder();
+                        content.append("The device " + washingMachineDeviceName + " was succesfully added to " + selectedRoom.getmName() +
+                                " and created with the following specifications:\n");
+                        content.append("- Capacity: " + washingMachineCapacity + " kg \n");
+                        content.append("- Nominal Power: " + washingMachineNominalPower + " kW \n");
+
+                        System.out.println(content.toString());
+                        return;
+                    } else {
+                        System.out.println("Something went wrong. The device wasn't added to the room. Please try again.");
+                    }
+
 
                     break;
                 case 5:
@@ -83,8 +117,10 @@ public class AddDeviceToRoom {
                     double maxHotTemperature = InputValidator.getDoublePos(label53);
                     String label54 = "What is the capacity (l)?";
                     double volumeOfWater = InputValidator.getDoublePos(label54);
+                    String label55 = "What is the performance ratio (tipically 0.9)?";
+                    double performanceRatio = InputValidator.getDoublePos(label55);
 
-                    mCtrl.createNewElectricWaterHeater(electricWaterHeaterDeviceName, selectedRoom, maxHotTemperature, volumeOfWater, electricWaterHeaterNominalPower);
+                    mCtrl.createNewElectricWaterHeater(electricWaterHeaterDeviceName, selectedRoom, maxHotTemperature, volumeOfWater, electricWaterHeaterNominalPower, performanceRatio);
                     if (mCtrl.addDeviceToRoom()) {
 
                         StringBuilder content = new StringBuilder();
@@ -94,7 +130,7 @@ public class AddDeviceToRoom {
                         content.append("- Volume of water: " + volumeOfWater + " l\n");
                         content.append("- Maximum temperature configured: " + maxHotTemperature + " ºC\n");
                         System.out.println(content.toString());
-
+                        return;
                     } else {
                         System.out.println("Something went wrong. The device wasn't added to the room. Please try again.");
                     }
