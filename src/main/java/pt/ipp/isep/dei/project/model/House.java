@@ -313,7 +313,7 @@ public class House {
     }
 
 
-    public String getRoomsInTheHouseGrid(int position){
+    /*public String getRoomsInTheHouseGrid(int position){
         return mListHouseGrids.getRoomsInTheHouseGrid(position);
     }
 
@@ -323,7 +323,7 @@ public class House {
 
     public int getTheSizeOfRoomListInAGrid(int position){
         return mListHouseGrids.getSizeOfRoomListInAGrid(position);
-    }
+    }*/
 
     /**
      * TO DO - LUÍS
@@ -380,5 +380,9 @@ public class House {
     public double getTotalEnergyConsumptionInTheHouse(String type) {
         DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);
         return listWithAllDevicesOfAType.getTotalEnergyConsumption();
+    }
+
+    public MeasurableObjectsList getNewMeasurableObjList() {
+        return new MeasurableObjectsList();
     }
 }

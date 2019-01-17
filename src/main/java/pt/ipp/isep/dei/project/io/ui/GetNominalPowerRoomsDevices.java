@@ -22,7 +22,7 @@ public class GetNominalPowerRoomsDevices {
                 return false;
             }
             mController.getHouseGridbyPosition(positionHG - 1);
-            if (mController.checkIfRoomListIsEmpty(positionHG - 1)) {
+            if (mController.checkIfRoomListIsEmpty()) {
                 System.out.println("There are no rooms in this house grid. Please, choose another grid or add rooms to the chosen grid.\n");
                 continue;
             } else flag = false;

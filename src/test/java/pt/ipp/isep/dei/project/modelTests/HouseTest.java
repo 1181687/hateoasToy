@@ -1628,4 +1628,33 @@ public class HouseTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void getAGridFromASpecificPosition() {
+        // Arrange
+        //house
+        HouseGridList list = new HouseGridList();
+        RoomList roomList = new RoomList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, list, address, geo);
+
+        //grid
+        String gridName = "Grid";
+        HouseGrid grid0 = new HouseGrid(gridName);
+        HouseGrid grid1 = new HouseGrid(gridName);
+        list.getmHouseGridsList().add(grid0);
+        list.getmHouseGridsList().add(grid1);
+        HouseGrid expectedResult = grid0;
+
+        // Act
+        HouseGrid result = list.getHouseGridByPosition(0);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 }
+
