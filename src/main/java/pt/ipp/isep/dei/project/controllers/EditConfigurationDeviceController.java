@@ -35,7 +35,7 @@ public class EditConfigurationDeviceController {
      * @return the name of the room by position.
      */
     public String getRoomName (int position) {
-        return this.mHouse.getNameOfTheChosenRoomInSpecificPos(position);
+        return this.mHouse.getRoomNameByPosition(position);
     }
 
     /**

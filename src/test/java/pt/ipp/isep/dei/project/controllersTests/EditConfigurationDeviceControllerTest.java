@@ -34,7 +34,8 @@ public class EditConfigurationDeviceControllerTest {
         house.addRoom(room2);
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
-        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
+        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Length: 2.0, Width: 2.0\n" +
+                "2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Length: 1.5, Width: 1.3\n";
         int position = 0;
         controller.getRoomByPosition(position);
 

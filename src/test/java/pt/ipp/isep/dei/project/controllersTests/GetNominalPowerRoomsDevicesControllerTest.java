@@ -531,10 +531,8 @@ class GetNominalPowerRoomsDevicesControllerTest {
         houseGrid.getRoomList().addRoom(room1);
         houseGrid.getRoomList().addRoom(room2);
 
-        String expectedResult =
-                "1- Name: Kid's room, House Floor: 1, Dimensions - Height: 5.2, Dimensions - Length: 3.7, Dimensions - Width: 8.5\n" +
-                        "2- Name: Bathroom, House Floor: 1, Dimensions - Height: 5.2, Dimensions - Length: 3.7, Dimensions - Width: 8.5" +
-                        "\n";
+        String expectedResult = "1- Name: Kid's room, House Floor: 1, Dimensions - Height: 5.2, Length: 3.7, Width: 8.5\n" +
+                "2- Name: Bathroom, House Floor: 1, Dimensions - Height: 5.2, Length: 3.7, Width: 8.5\n";
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 

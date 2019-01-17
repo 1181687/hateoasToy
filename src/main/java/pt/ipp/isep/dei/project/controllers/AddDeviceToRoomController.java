@@ -159,7 +159,7 @@ public class AddDeviceToRoomController {
      * @return list of devices of a roomMethod that displays the content
      */
     public String getDeviceListContentOfARoom(int selectedRoom) {
-        return mHouse.getDeviceListContentOfARoom(selectedRoom);
+        return mHouse.getDeviceListContentOfRoomByPosition(selectedRoom);
     }
 
     public List<Program> addToProgramList(String programName, double duration, double energyConsumption) {

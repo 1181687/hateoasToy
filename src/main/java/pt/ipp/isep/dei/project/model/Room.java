@@ -110,8 +110,8 @@ public class Room implements Measurable {
         content.append("Name: " + getmName());
         content.append(", House Floor: " + getmHouseFloor());
         content.append(", Dimensions - Height: " + getmDimensions().getmHeight());
-        content.append(", Dimensions - Length: " + getmDimensions().getmLength());
-        content.append(", Dimensions - Width: " + getmDimensions().getmWidth());
+        content.append(", Length: " + getmDimensions().getmLength());
+        content.append(", Width: " + getmDimensions().getmWidth());
         return content.toString();
     }
 

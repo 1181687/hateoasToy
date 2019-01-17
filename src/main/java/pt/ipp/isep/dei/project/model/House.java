@@ -175,8 +175,8 @@ public class House {
      * @param position
      * @return a position.
      */
-    public String getNameOfTheChosenRoomInSpecificPos(int position) {
-        return mRoomList.getNameOfTheChosenRoomInSpecificPosition(position);
+    public String getRoomNameByPosition(int position) {
+        return mRoomList.getRoomNameByPosition(position);
     }
 
     /**
@@ -214,8 +214,8 @@ public class House {
      * @param position position of the room in the room list
      * @return list of devices of a roomMethod that displays the content
      */
-    public String getDeviceListContentOfARoom(int position) {
-        return mRoomList.getDeviceListContentOfARoom(position);
+    public String getDeviceListContentOfRoomByPosition(int position) {
+        return mRoomList.getDeviceListContentByPosition(position);
     }
 
 
