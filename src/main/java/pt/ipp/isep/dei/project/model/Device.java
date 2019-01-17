@@ -20,6 +20,11 @@ public class Device implements Measurable {
         return mSpec.getmNominalPower();
     }
 
+    /**
+     * method that get a location (room) of a device.
+     *
+     * @return the location.
+     */
     public Room getLocation() {
         return this.mLocation;
     }
@@ -79,6 +84,11 @@ public class Device implements Measurable {
         return true;
     }
 
+    /**
+     * method that set the location (room) of a added device.
+     * @param location
+     * @return false if the location is equals to another device. True if not.
+     */
     public boolean setmLocation(Room location) {
         if (this.mLocation.equals(location)) {
             return false;
@@ -140,6 +150,10 @@ public class Device implements Measurable {
         return this.mName.equalsIgnoreCase(listOne.mName);
     }
 
+    /**
+     * method that get the number of specifications of a device.
+     * @return the number of attributes.
+     */
     public int getNumberOfSpecsAttributes(){
         return mSpec.getNumberOfAttributes();
     }
