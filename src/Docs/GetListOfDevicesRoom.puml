@@ -21,57 +21,57 @@ actor User
 User -> UI: GetListOfDevicesInARoom
 activate UI
 
-UI -> Controller: GetRoomListContent()
+UI -> Controller: getRoomListContent()
 activate Controller
-Controller -> House: GetRoomListContent()
+Controller -> House: getRoomListContent()
 activate House
-House -> RoomList: GetRoomListContent()
+House -> RoomList: getRoomListContent()
 activate RoomList
-UI <-- RoomList: GetRoomListContent()
+UI <-- RoomList: RoomListContent()
 deactivate RoomList
 deactivate House
 deactivate Controller
-User <-- UI: GetRoomListContent()
+User <-- UI: RoomListContent
 
 
 
-User -> UI: ChooseRoomFromList
-UI -> Controller: GetRoomNameByPosition()
+User -> UI: Int Position
+UI -> Controller: getRoomName(position)
 activate Controller
-Controller -> House: GetRoomNameByPosition()
+Controller -> House: getRoomName(position)
 activate House
-House -> RoomList: GetRoomNameByPosition()
+House -> RoomList: getRoomName(position)
 activate RoomList
-RoomList -> Room: GetName()
+RoomList -> Room: getName()
 activate Room
-RoomList <-- Room: GetName()
+RoomList <-- Room: getName()
 deactivate Room
-UI <-- RoomList: GetRoomNameByPosition()
+UI <-- RoomList: RoomName(position)
 deactivate RoomList
 deactivate House
 deactivate Controller
-UI -> Controller: GetDeviceListContentOfRoomByPosition()
+UI -> Controller: getDeviceListContent(position)
 activate Controller
-Controller -> House: GetDeviceListContentOfRoomByPosition()
+Controller -> House: getDeviceListContent(position)
 activate House
-House -> RoomList: GetDeviceListContentByPosition ()
+House -> RoomList: getDeviceListContent(position)
 activate RoomList
-RoomList -> Room: GetDeviceListContent()
+RoomList -> Room: getDeviceListContent(position)
 activate Room
-Room -> DeviceList: GetDeviceListContent()
+Room -> DeviceList: getDeviceListContent(position)
 activate DeviceList
-DeviceList -> DeviceList: GetLength()
-DeviceList -> DeviceList: GetDeviceList()
-DeviceList -> Device: GetName()
+DeviceList -> DeviceList: getLength()
+DeviceList -> DeviceList: getDeviceList()
+DeviceList -> Device: getName()
 activate Device
-DeviceList <-- Device: GetName()
+DeviceList <-- Device: Name()
 deactivate Device
-UI <-- DeviceList: GetDeviceListContent()
+UI <-- DeviceList: DeviceListContent()
 deactivate DeviceList
 deactivate Room
 deactivate RoomList
 deactivate House
 deactivate Controller
-User <-- UI: GetDeviceListContent()
+User <-- UI: DeviceListContent
 deactivate UI
 @enduml
