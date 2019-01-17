@@ -17,27 +17,38 @@ public class Fridge implements DeviceSpecs {
         this.mNominalPower = mNominalPower;
     }
 
-
+    /**
+     * get method
+     *
+     * @return type of device
+     */
     @Override
     public String getmTypeName() {
         return mTypeName;
     }
 
-    /**
-     * @return
+    /** get method
+     * @return energy consumption in a day
      */
     public double getEnergyConsumptionInADay() {
         return mAnnualEnergyConsumption / 365;
     }
 
-    /**
-     * @return
+    /** get method
+     * @return nominal power
      */
     @Override
     public double getmNominalPower() {
         return mNominalPower;
     }
 
+
+    /**
+     * set method
+     *
+     * @param mFreezerCapacity capacity of freezer
+     * @return capacity of freezer
+     */
     public boolean setmFreezerCapacity(double mFreezerCapacity) {
         if (Utils.isSameDouble(this.mFreezerCapacity, mFreezerCapacity)) {
             return false;
@@ -46,6 +57,10 @@ public class Fridge implements DeviceSpecs {
         return true;
     }
 
+    /**
+     * set method
+     * @param mRefrigeratorCapacity capacity of refrigerator
+     */
     public boolean setmRefrigeratorCapacity(double mRefrigeratorCapacity) {
         if (Utils.isSameDouble(this.mRefrigeratorCapacity, mRefrigeratorCapacity)) {
             return false;
@@ -54,6 +69,10 @@ public class Fridge implements DeviceSpecs {
         return true;
     }
 
+    /**
+     * set method
+     * @param mAnnualEnergyConsumption annual energy comsumption
+     */
     public boolean setmAnnualEnergyConsumption(double mAnnualEnergyConsumption) {
         if (Utils.isSameDouble(this.mAnnualEnergyConsumption, mAnnualEnergyConsumption)) {
             return false;
@@ -62,6 +81,10 @@ public class Fridge implements DeviceSpecs {
         return true;
     }
 
+    /**
+     * set method
+     * @param mNominalPower nominal power
+     */
     public boolean setmNominalPower(double mNominalPower) {
         if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
             return false;
@@ -70,6 +93,11 @@ public class Fridge implements DeviceSpecs {
         return true;
     }
 
+    /**
+     * method that displays a string of the choosen attribute (name of the attribute and its value)
+     *
+     * @return
+     */
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
@@ -81,6 +109,12 @@ public class Fridge implements DeviceSpecs {
         return fridgeAttributes;
     }
 
+    /**
+     * set method
+     * @param attribute position of the attribute
+     * @param value
+     * @return
+     */
     @Override
     public boolean setAttribute(int attribute, double value) {
 
@@ -94,10 +128,14 @@ public class Fridge implements DeviceSpecs {
             case 4:
                 return setmNominalPower(value);
         }
-        System.out.println("Please select a valid number.");
         return false;
     }
 
+    /**
+     * get method
+     *
+     * @return number of Fridge attributes
+     */
     @Override
     public int getNumberOfAttributes() {
         return 4;

@@ -5,7 +5,7 @@ import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
-public class Room implements Measurable{
+public class Room implements Measurable {
     private String mName;
     private int mHouseFloor;
     private Dimensions mDimensions;
@@ -75,6 +75,7 @@ public class Room implements Measurable{
 
     /**
      * Get Method
+     *
      * @return mHouseFloor
      */
     public int getmHouseFloor() {
@@ -92,6 +93,7 @@ public class Room implements Measurable{
 
     /**
      * Get Method
+     *
      * @return mDimensions
      */
     public Dimensions getmDimensions() {
@@ -100,6 +102,7 @@ public class Room implements Measurable{
 
     /**
      * method that displays a Room with its characteristics (name, house floor, height, length and width)
+     *
      * @return Rooms
      */
     public String getRoomContent() {
@@ -119,13 +122,14 @@ public class Room implements Measurable{
      */
     @Override
     public int hashCode() {
-        return Objects.hash(mName);
+        return Objects.hash(this.mName);
     }
 
     /**
      * Equals method to determine if two Rooms are equal.
      * They are equals if name are equal.
      * Names are case insensitive.
+     *
      * @param obj receives an object
      * @return boolean
      */
@@ -171,6 +175,7 @@ public class Room implements Measurable{
 
     /**
      * Method that gets the latest measurement by type of sensor
+     *
      * @param type type of sensor
      * @return latest measurement by sensor type
      */
@@ -200,14 +205,14 @@ public class Room implements Measurable{
      *
      * @return sensor list content
      */
-    public String getSensorListContent () {
+    public String getSensorListContent() {
         return this.mSensorList.getSensorsListContent();
     }
 
     /**
      * method that check if the sensor list of the room is empty
      */
-    public boolean checkIfSensorListIsEmpty () {
+    public boolean checkIfSensorListIsEmpty() {
         return this.mSensorList.checkIfSensorListIsEmpty();
     }
 
@@ -230,6 +235,7 @@ public class Room implements Measurable{
 
     /**
      * get method
+     *
      * @return device list
      */
     public DeviceList getmDeviceList() {
@@ -238,33 +244,44 @@ public class Room implements Measurable{
 
     /**
      * Method that adds a device to the list of Devices of the room
+     *
      * @param device the device to be added
      * @return true if it adds, false if it doesn't add
      */
     public boolean addDevice(Device device) {
-        return mDeviceList.addDevice(device);
+        if (this.equals(device.getLocation()) && this.mDeviceList.getmDeviceList().contains(device)) {
+            return false;
+        }
+        device.getLocation().removeDevice(device);
+        device.setmLocation(this);
+        this.mDeviceList.addDevice(device);
+        return true;
     }
 
-    public int getSizeOfDevicesList(){
+    public boolean removeDevice(Device device) {
+        return this.mDeviceList.removeDevice(device);
+    }
+
+    public int getSizeOfDevicesList() {
         return mDeviceList.getLength();
     }
 
     /**
-     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
-     * class Electric Water Heater.
      *
-     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
-     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
-     */
-    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
-        mDeviceList.setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
-    }
-
-    /**
      * @param type
      * @return
      */
-    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
-        return mDeviceList.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
+    public DeviceList getAllDevicesOfAType(String type) {
+        return mDeviceList.getAllDevicesOfAType(type);
+    }
+
+    /**
+     * method that check if a name of a Device already exists on the list of devices.
+     *
+     * @param name name of device
+     * @return boolean true if exists, false if it doesn't
+     */
+    public boolean checkIfNameAlreadyExists(String name) {
+        return this.mDeviceList.checkIfNameAlreadyExists(name);
     }
 }

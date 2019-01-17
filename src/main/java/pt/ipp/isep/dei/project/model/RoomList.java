@@ -304,27 +304,15 @@ public class RoomList {
     }
 
     /**
-     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
-     * class Electric Water Heater.
+     * TO DO - LUÍS
      *
-     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
-     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
-     */
-    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
-        for (int index = 0; index < mRoomList.size(); index++) {
-            mRoomList.get(index).setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
-        }
-    }
-
-    /**
-     * @param type
      * @return
      */
-    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
-        double energyConsumption = 0;
-        for (int index = 0; index < mRoomList.size(); index++) {
-            energyConsumption += mRoomList.get(index).getEnergyConsumptionInADayOfAllDevicesOfAType(type);
+    public DeviceList getAllDevicesOfAType(String type) {
+        DeviceList listWithDevicesOfAType = new DeviceList();
+        for (Room room : mRoomList) {
+            listWithDevicesOfAType.getmDeviceList().addAll(room.getAllDevicesOfAType(type).getmDeviceList());
         }
-        return energyConsumption;
+        return listWithDevicesOfAType;
     }
 }

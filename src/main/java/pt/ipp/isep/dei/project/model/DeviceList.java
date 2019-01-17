@@ -7,9 +7,11 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class DeviceList {
-    private List<Device> mDeviceList = new ArrayList<>();
+    private List<Device> mDeviceList;
+    private static final String SAME_NAME = "Name already exists. Please write a new one.";
 
     public DeviceList() {
+        this.mDeviceList = new ArrayList<>();
     }
 
     /**
@@ -23,7 +25,6 @@ public class DeviceList {
 
     /**
      * get size of list of devices
-     *
      * @return integer
      */
     public int getLength() {
@@ -57,6 +58,22 @@ public class DeviceList {
     }
 
     /**
+     * method that check if a name of a Device already exists on the list of devices.
+     *
+     * @param name name of device
+     * @return boolean true if exists, false if it doesn't
+     */
+    public boolean checkIfNameAlreadyExists(String name) {
+
+        for (int i = 0; i < mDeviceList.size(); i++) {
+            if (mDeviceList.get(i).getName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * method that get the String content Name and Location of all devices in the list,
      * grouped by device type.
      *
@@ -75,7 +92,7 @@ public class DeviceList {
             for (Device dev : entry.getValue()) {
 
                 content.append("- Device Name: ");
-                content.append(dev.getmName());
+                content.append(dev.getName());
                 content.append(", Location: ");
                 content.append(dev.getLocation().getmName());
                 content.append(".\n");
@@ -87,8 +104,7 @@ public class DeviceList {
 
 
     /**
-     * method that gets the List of devices ordered by Type
-     *
+     * method that creates the same hashCode to the same DeviceLists
      * @return the hashcode created
      */
     @Override
@@ -117,6 +133,9 @@ public class DeviceList {
 
     public Device newElectricWaterHeater(String name, Room selectedRoom, double hotWaterTemperature, double maximumVolume, double nominalPower, double performanceRatio) {
 
+        if (checkIfNameAlreadyExists(name)) {
+            throw new RuntimeException(SAME_NAME);
+        }
         ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, nominalPower, performanceRatio);
 
         return new Device(name, selectedRoom, electricWaterHeater);
@@ -126,6 +145,9 @@ public class DeviceList {
 
     public Device newWashingMachine(String name, Room selectedRoom, double nominalPower, double capacity,
                                     List<Program> programList) {
+        if (checkIfNameAlreadyExists(name)) {
+            throw new RuntimeException(SAME_NAME);
+        }
         WashingMachine washingMachine = new WashingMachine(capacity, nominalPower, programList);
         return new Device(name, selectedRoom, washingMachine);
     }
@@ -133,6 +155,9 @@ public class DeviceList {
     //DISH WASHER
 
     public Device newDishWasher(String name, Room selectedRoom, double nominalPower, double capacity, List<Program> programList) {
+        if (checkIfNameAlreadyExists(name)) {
+            throw new RuntimeException(SAME_NAME);
+        }
         WashingMachine washingMachine = new WashingMachine(capacity, nominalPower, programList);
         return new Device(name, selectedRoom, washingMachine);
     }
@@ -140,6 +165,9 @@ public class DeviceList {
     //LAMP
 
     public Device newLamp(String name, Room selectedRoom, double nominalPower, double luminousFlux) {
+        if (checkIfNameAlreadyExists(name)) {
+            throw new RuntimeException(SAME_NAME);
+        }
         DeviceSpecs lamp = new Lamp(luminousFlux, nominalPower);
         return new Device(name, selectedRoom, lamp);
     }
@@ -147,7 +175,10 @@ public class DeviceList {
     //FRIDGE
 
     public Device newFridge(String name, Room selectedRoom, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
-        DeviceSpecs fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        if (checkIfNameAlreadyExists(name)) {
+            throw new RuntimeException(SAME_NAME);
+        }
+        Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
         return new Device(name, selectedRoom, fridge);
     }
 
@@ -176,7 +207,7 @@ public class DeviceList {
         int deviceListLength = getLength();
         int numberInTheList = 1;
         for (int i = 1; i <= deviceListLength; i++) {
-            content.append(numberInTheList + " - Name of the device: " + getmDeviceList().get(i - 1).getmName());
+            content.append(numberInTheList + " - Name of the device: " + getmDeviceList().get(i - 1).getName());
             content.append("\n");
             numberInTheList++;
         }
@@ -188,47 +219,6 @@ public class DeviceList {
      */
     public boolean checkIfDeviceListIsEmpty() {
         return mDeviceList.isEmpty();
-    }
-
-    /**
-     * @param type
-     * @return
-     */
-    public List<Device> getDevicesByType(String type) {
-        List<Device> newList = new ArrayList<>();
-        for (int index = 0; index < mDeviceList.size(); index++) {
-            if (mDeviceList.get(index).getType().equals(type)) {
-                newList.add(mDeviceList.get(index));
-            }
-        }
-        return newList;
-    }
-
-    /**
-     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
-     * class Electric Water Heater.
-     *
-     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
-     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
-     */
-    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
-        List<Device> newList = getDevicesByType("Electric Water Heater");
-        for (int index = 0; index < newList.size(); index++) {
-            newList.get(index).setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
-        }
-    }
-
-    /**
-     * @param type
-     * @return
-     */
-    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
-        double energyConsumption = 0;
-        List<Device> listOfDevicesWithTheType = getDevicesByType(type);
-        for (int index = 0; index < listOfDevicesWithTheType.size(); index++) {
-            energyConsumption += listOfDevicesWithTheType.get(index).getEnergyConsumptionInADay();
-        }
-        return energyConsumption;
     }
 
     public String getDeviceTypeListContent() {
@@ -244,12 +234,69 @@ public class DeviceList {
         return content.toString();
     }
 
+    public boolean removeDevice(Device device) {
+        if (this.getmDeviceList().remove(device)) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * TO DO - LUÍS
+     *
+     * @param type
+     * @return
+     */
+    public DeviceList getAllDevicesOfAType(String type) {
+        DeviceList listOfDevicesWithTheType = new DeviceList();
+        for (Device device : mDeviceList) {
+            if (device.getType().equals(type)) {
+                listOfDevicesWithTheType.addDevice(device);
+            }
+        }
+        return listOfDevicesWithTheType;
+    }
     public List<Program> addToProgramList(String programName, double duration, double energyConsumption) {
         List<Program> programList = new ArrayList<>();
         Program program = new Program(programName, duration, energyConsumption);
         programList.add(program);
 
+    /**
+     * TO DO - LUÍS
+     *
+     * @param devicePosition
+     * @param attribute
+     * @param value
+     * @return
+     */
+    public boolean setAttribute(int devicePosition, int attribute, double value) {
+        Device device = mDeviceList.get(devicePosition);
+        return device.setAttributesDevType(attribute, value);
+    }
         return programList;
     }
 
+    /**
+     * TO DO - LUÍS
+     *
+     * @param devicePosition
+     * @return
+     */
+    public double getEnergyConsumptionOfADevice(int devicePosition) {
+        Device device = mDeviceList.get(devicePosition);
+        return device.getEnergyConsumptionInADay();
+    }
+
+    /**
+     * TO DO - LUÍS
+     *
+     * @return
+     */
+    public double getTotalEnergyConsumption() {
+        double totalEnergyConsumption = 0;
+        for (Device device : mDeviceList) {
+            totalEnergyConsumption += device.getEnergyConsumptionInADay();
+        }
+        return totalEnergyConsumption;
+    }
 }

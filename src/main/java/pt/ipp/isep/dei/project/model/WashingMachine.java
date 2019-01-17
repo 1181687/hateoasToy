@@ -19,21 +19,38 @@ public class WashingMachine implements DeviceSpecs {
         this.mProgramList = programList;
     }
 
+    /**
+     * get method
+     *
+     * @return type of device
+     */
     @Override
     public String getmTypeName() {
         return mTypeName;
     }
 
+    /**
+     * get method
+     * @return nominal power
+     */
     @Override
     public double getmNominalPower() {
         return mNominalPower;
     }
 
+    /**
+     * get method
+     * @return energy consumption
+     */
     @Override
     public double getEnergyConsumptionInADay() {
         return mEnergyConsumption;
     }
 
+    /**
+     * set method
+     * @param mCapacity
+     */
     public boolean setmCapacity(double mCapacity) {
         if (Utils.isSameDouble(this.mCapacity, mCapacity)) {
             return false;
@@ -42,6 +59,10 @@ public class WashingMachine implements DeviceSpecs {
         return true;
     }
 
+    /**
+     * set method
+     * @param mNominalPower
+     */
     public boolean setmNominalPower(double mNominalPower) {
         if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
             return false;
@@ -50,6 +71,10 @@ public class WashingMachine implements DeviceSpecs {
         return true;
     }
 
+    /**
+     * method that displays a string of the choosen attribute (name of the attribute and its value)
+     * @return
+     */
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
@@ -59,6 +84,12 @@ public class WashingMachine implements DeviceSpecs {
         return dishWasherAttributes;
     }
 
+    /**
+     * set method
+     * @param attribute position of the attribute
+     * @param value
+     * @return
+     */
     @Override
     public boolean setAttribute(int attribute, double value) {
         switch (attribute) {
@@ -67,10 +98,13 @@ public class WashingMachine implements DeviceSpecs {
             case 2:
                 return setmNominalPower(value);
         }
-        System.out.println("Please select a valid number.");
         return false;
     }
 
+    /**
+     * get method
+     * @return number of Washing Machine attributes
+     */
     @Override
     public int getNumberOfAttributes() {
         return 2;

@@ -21,7 +21,8 @@ public class DishWasher implements DeviceSpecs {
 
 
     /**
-     * @return
+     * Get method
+     * @return type of device
      */
     @Override
     public String getmTypeName() {
@@ -29,20 +30,29 @@ public class DishWasher implements DeviceSpecs {
     }
 
     /**
-     * @return
+     * get method
+     * @return energy consumption
      */
     public double getEnergyConsumptionInADay() {
         return mEnergyConsumptionProgram1;
     }
 
+
     /**
-     * @return
+     * get method
+     * @return nominal power
      */
     @Override
     public double getmNominalPower() {
         return mNominalPower;
     }
 
+    /**
+     * set method
+     *
+     * @param mCapacity
+     * @return
+     */
     public boolean setmCapacity(int mCapacity) {
         if (Utils.isSameDouble(this.mCapacity, mCapacity)) {
             return false;
@@ -51,6 +61,11 @@ public class DishWasher implements DeviceSpecs {
         return true;
     }
 
+    /**
+     * set method
+     * @param mNominalPower
+     * @return
+     */
     public boolean setmNominalPower(double mNominalPower) {
         if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
             return false;
@@ -59,6 +74,10 @@ public class DishWasher implements DeviceSpecs {
         return true;
     }
 
+    /**
+     * method that get the attributes by strings.
+     * @return an attribute of the Dish Washer.
+     */
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Capacity: " + mCapacity + "\n");
@@ -67,6 +86,12 @@ public class DishWasher implements DeviceSpecs {
         return dishWasherAttributes;
     }
 
+    /**
+     * method that set a value of an attribute by a position.
+     * @param attribute
+     * @param value
+     * @return the attributes with new value if true. If not, return false.
+     */
     @Override
     public boolean setAttribute(int attribute, double value) {
         switch (attribute) {
@@ -76,10 +101,13 @@ public class DishWasher implements DeviceSpecs {
             case 2:
                 return setmNominalPower(value);
         }
-        System.out.println("Please select a valid number.");
         return false;
     }
 
+    /**
+     * method that get the number of the attributes of the device.
+     * @return the number of attributes.
+     */
     @Override
     public int getNumberOfAttributes() {
         return 2;
