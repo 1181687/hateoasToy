@@ -255,7 +255,7 @@ class WashingMachineTest {
         ProgramList programList = new ProgramList();
         WashingMachine washingMachine = new WashingMachine(capacity, nominalPower, programList);
 
-        String expectedResult = "Dish Washer";
+        String expectedResult = "Washing Machine";
 
         //Act
         String result = washingMachine.getmTypeName();
@@ -375,12 +375,12 @@ class WashingMachineTest {
     @Test
     public void testGetAttributesToString() {
         //Arrange
-        int capacity = 20;
+        double capacity = 20;
         double nominalPower = 30;
         ProgramList programList = new ProgramList();
         WashingMachine washingMachine = new WashingMachine(capacity, nominalPower, programList);
 
-        String expectedResult = "1 - Capacity: 20\n" +
+        String expectedResult = "1 - Capacity: 20.0\n" +
                 "2 - Nominal Power: 30.0\n";
 
         //Act
