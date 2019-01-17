@@ -233,7 +233,7 @@ public class RoomTest {
         assertFalse(result);
     }
 
-    @Test
+   /* @Test
     public void testGetDeviceList() {
         String name = "Kitchen";
         Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
@@ -258,7 +258,7 @@ public class RoomTest {
         DeviceList result = room.getmDeviceList();
 
         assertEquals(expectedResult, result);
-    }
+    } */
 
     @Test
     public void testAddDevice() {

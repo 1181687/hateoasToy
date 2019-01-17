@@ -251,7 +251,7 @@ public class DeviceListTest {
 
     }
 
-    @Test
+    /*@Test
     public void testNewWashingMachine() {
         // newWashingMachine Instantiation
         String name = "Washing Machine Bosh";
@@ -271,9 +271,9 @@ public class DeviceListTest {
         Device result = devList.newWashingMachine(name, room, nominalPower, capacity);
 
         assertEquals(expectedResult, result);
-    }
+    }*/
 
-    @Test
+   /* @Test
     public void testNewWashingMachineNegative() {
         // newWashingMachine Instantiation
         String name = "Washing Machine Bosh";
@@ -295,8 +295,8 @@ public class DeviceListTest {
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
-
-    @Test
+*/
+   /* @Test
     public void testNewDishWasher() {
         String name = "Dish Washer Ariston";
 
@@ -315,9 +315,9 @@ public class DeviceListTest {
         Device result = devList.newDishWasher(name, room, nominalPower, capacity);
 
         assertEquals(expectedResult, result);
-    }
+    }*/
 
-    @Test
+  /*  @Test
     public void testNewDishWasherNegative() {
         String name = "Dish Washer Ariston";
 
@@ -336,9 +336,9 @@ public class DeviceListTest {
         );
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
+    } */
 
-    @Test
+   /* @Test
     public void testNewLamp() {
         String name = "Lamp one";
 
@@ -357,7 +357,7 @@ public class DeviceListTest {
         Device result = devList.newDishWasher(name, room, nominalPower, capacity);
 
         assertEquals(expectedResult, result);
-    }
+    } */
 
     @Test
     public void testNewLampNegative() {
