@@ -6,7 +6,6 @@ public class GetNominalPowerRoomsDevicesController {
     private House mHouse;
     private HouseGrid mSelectedHouseGrid;
     private MeasurableObjectsList mMeasurableList;
-    private Room mRoom;
 
     public GetNominalPowerRoomsDevicesController(House house) {
         this.mHouse=house;
@@ -34,9 +33,6 @@ public class GetNominalPowerRoomsDevicesController {
         return mSelectedHouseGrid.getRoomByPosition(position);
     }
 
-    public void roomByPos(int position) {
-        mRoom = mSelectedHouseGrid.getRoomByPosition(position);
-    }
 
     public String getContentOfDeviceListInRoomOfGrid(int position){
         return mSelectedHouseGrid.getDeviceListContent(position);
