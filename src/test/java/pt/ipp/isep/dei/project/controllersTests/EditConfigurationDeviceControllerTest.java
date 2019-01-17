@@ -278,7 +278,7 @@ public class EditConfigurationDeviceControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    /* @Test
     void testGetSpecsAttributesToString() {
         // Arrange
         // initiate House
@@ -322,7 +322,7 @@ public class EditConfigurationDeviceControllerTest {
 
         // assert
         assertEquals(expectedResult, result);
-    }
+    } */
 
     @Test
     void testSetLocation() {
