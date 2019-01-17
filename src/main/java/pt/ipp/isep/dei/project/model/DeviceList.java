@@ -55,8 +55,9 @@ public class DeviceList {
         }
         if (!(mDeviceList.contains(device))) {
             this.mDeviceList.add(device);
+            return true;
         }
-        return true;
+        return false;
     }
 
     /**
@@ -132,8 +133,18 @@ public class DeviceList {
         DeviceList listOne = (DeviceList) obj;
         return this.mDeviceList.equals(listOne.mDeviceList);
     }
-    //ELECTRIC WATER HEATER
 
+    /**
+     * Method that create a new Device ELECTRIC WATER HEATER
+     *
+     * @param name                name of the device
+     * @param selectedRoom        Room where the device will be installed
+     * @param hotWaterTemperature maximum temperature configured by user
+     * @param maximumVolume       capacity in liters of the Electric Water Heater
+     * @param nominalPower        nominal power of the device
+     * @param performanceRatio    performance ratio introduced by user that typically is 0,9
+     * @return a new device
+     */
     public Device newElectricWaterHeater(String name, Room selectedRoom, double hotWaterTemperature, double maximumVolume, double nominalPower, double performanceRatio) {
 
         if (checkIfNameAlreadyExists(name)) {
@@ -144,10 +155,19 @@ public class DeviceList {
         return new Device(name, selectedRoom, electricWaterHeater);
     }
 
-    //WASHING MACHINE
 
+    /**
+     * Method that create a new Device WASHING MACHINE
+     *
+     * @param name name of the device
+     * @param selectedRoom Room where the device will be installed
+     * @param nominalPower nominal power of the device
+     * @param capacity capacity in kilograms of the Electric Water Heater
+     * @param programList list of programs
+     * @return a new device
+     */
     public Device newWashingMachine(String name, Room selectedRoom, double nominalPower, double capacity,
-                                    List<Program> programList) {
+                                    ProgramList programList) {
         if (checkIfNameAlreadyExists(name)) {
             throw new RuntimeException(SAME_NAME);
         }
@@ -155,17 +175,35 @@ public class DeviceList {
         return new Device(name, selectedRoom, washingMachine);
     }
 
-    //DISH WASHER
 
-    public Device newDishWasher(String name, Room selectedRoom, double nominalPower, double capacity, List<Program> programList) {
+    /**
+     * Method that create a new Device DISH WASHER
+     *
+     * @param name         name of the device
+     * @param selectedRoom Room where the device will be installed
+     * @param nominalPower nominal power of the device
+     * @param capacity     capacity in dish sets of the Electric Water Heater
+     * @param programList  list of programs
+     * @return a new device
+     */
+    public Device newDishWasher(String name, Room selectedRoom, double nominalPower, int capacity, ProgramList programList) {
         if (checkIfNameAlreadyExists(name)) {
             throw new RuntimeException(SAME_NAME);
         }
-        WashingMachine washingMachine = new WashingMachine(capacity, nominalPower, programList);
-        return new Device(name, selectedRoom, washingMachine);
+        DishWasher dishwasher = new DishWasher(capacity, nominalPower, programList);
+        return new Device(name, selectedRoom, dishwasher);
     }
 
-    //LAMP
+
+    /**
+     * Method that create a new Device LAMP
+     *
+     * @param name name of the device
+     * @param selectedRoom Room where the device will be installed
+     * @param nominalPower nominal power of the device
+     * @param luminousFlux luminous flux of the lamp
+     * @return a new device
+     */
 
     public Device newLamp(String name, Room selectedRoom, double nominalPower, double luminousFlux) {
         if (checkIfNameAlreadyExists(name)) {
@@ -175,8 +213,17 @@ public class DeviceList {
         return new Device(name, selectedRoom, lamp);
     }
 
-    //FRIDGE
-
+    /**
+     * Method that create a new Device FRIDGE
+     *
+     * @param name name of the device
+     * @param selectedRoom Room where the device will be installed
+     * @param annualEnergyConsumption annual ennergy consumption of the fridge
+     * @param nominalPower nominal power of the device
+     * @param freezerCapacity freezer Capacity
+     * @param refrigeratorCapacity refrigerator Capacity
+     * @return a new device
+     */
     public Device newFridge(String name, Room selectedRoom, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
         if (checkIfNameAlreadyExists(name)) {
             throw new RuntimeException(SAME_NAME);
@@ -257,12 +304,6 @@ public class DeviceList {
         return listOfDevicesWithTheType;
     }
 
-    public List<Program> addToProgramList(String programName, double duration, double energyConsumption) {
-        List<Program> programList = new ArrayList<>();
-        Program program = new Program(programName, duration, energyConsumption);
-        programList.add(program);
-        return programList;
-    }
 
     /**
      * TODO - LUíS
@@ -312,5 +353,6 @@ public class DeviceList {
         DecimalFormat df = new DecimalFormat("#.##");
         return Double.parseDouble(df.format(totalEnergyConsumption));
     }
+
 
 }

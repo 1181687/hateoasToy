@@ -424,5 +424,30 @@ public class DeviceListTest {
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
+/*
+    @Test
+    public void testAddToProgramList (){
+        //Arrange
+        String programName1 = "p1";
+        double duration1 = 15;
+        double energyConsumption1 = 0.9;
+        Program program1 = new Program(programName1, duration1,energyConsumption1);
+
+        String programName2 = "p2";
+        double duration2 = 20;
+        double energyConsumption2 = 0.7;
+        Program program2 = new Program(programName2, duration2,energyConsumption2);
+
+        DeviceList devList = new DeviceList();
+
+
+
+
+
+        //Act
+        List<Program> result = devList.addToProgramList(programName, duration,energyConsumption);
+        //Assert
+
+    }*/
 }
 

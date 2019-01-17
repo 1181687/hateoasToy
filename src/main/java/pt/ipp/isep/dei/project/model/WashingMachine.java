@@ -17,9 +17,9 @@ public class WashingMachine implements DeviceSpecs {
     private double mDuration;
     private double mEnergyConsumption;
     private double mNominalPower;
-    private List<Program> mProgramList;
+    private ProgramList mProgramList;
 
-    public WashingMachine(double capacity, double nominalPower, List<Program> programList) {
+    public WashingMachine(double capacity, double nominalPower, ProgramList programList) {
         this.mTypeName = "Washing Machine";
         this.mCapacity = capacity;
         this.mNominalPower = nominalPower;
@@ -193,13 +193,6 @@ public class WashingMachine implements DeviceSpecs {
     public int getNumberOfAttributes() {
         return 2;
     }
-
-    /**
-     * Method that adds a program to the list of Programs.
-     *
-     * @param program the program to be added
-     * @return true if it adds, false if it doesn't add, because it already contains it or the device is null
-     */
 
 
 

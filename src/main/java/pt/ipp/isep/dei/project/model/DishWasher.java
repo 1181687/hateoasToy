@@ -17,9 +17,9 @@ public class DishWasher implements DeviceSpecs {
     private double mDuration;
     private double mEnergyConsumptionProgram1;
     private double mNominalPower;
-    private List<Program> mProgramList;
+    private ProgramList mProgramList;
 
-    public DishWasher(int capacity, double nominalPower, List<Program> programList) {
+    public DishWasher(int capacity, double nominalPower, ProgramList programList) {
         this.mTypeName = "Dish Washer";
         this.mCapacity = capacity;
         this.mNominalPower = nominalPower;
