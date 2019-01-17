@@ -2,7 +2,11 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
 import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.Program;
 import pt.ipp.isep.dei.project.model.Room;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddDeviceToRoom {
 
@@ -101,7 +105,7 @@ public class AddDeviceToRoom {
                         }
 
                         break;
-                        
+
                     case 3:
                         //CREATION OF A DISH WASHER
                         String label31 = "What is the name of the dish washer?";
@@ -109,18 +113,20 @@ public class AddDeviceToRoom {
                         String label32 = "What is the nominal power (kW)?";
                         double dishWasherNominalPower = InputValidator.getDoublePos(label32);
                         String label33 = "What is the capacity (in dish sets)?";
-                        int capacity = InputValidator.getIntPos(label33);
+                        int dishWasherCapacity = InputValidator.getIntPos(label33);
+                        String label34 = "How many programs has the washing machine?";
+                        int dwNumberOfPrograms = InputValidator.getIntPos(label34);
+                        String dwProgramName = "";
+                        double dwProgramDuration = 0;
+                        double dwProgramEnergyConsumption = 0;
+                        getListOfPrograms(dwNumberOfPrograms);
 
-                        //mCtrl.createNewDishWasher(dishWasherDeviceName, selectedRoom, dishWasherNominalPower, capacity);
+                        mCtrl.createNewDishWasher(dishWasherDeviceName, selectedRoom, dishWasherNominalPower,
+                                dishWasherCapacity);
+
 
                         if (mCtrl.addDeviceToRoom()) {
-
-                            StringBuilder content = new StringBuilder();
-                            content.append("The device " + dishWasherDeviceName + " was succesfully added to " + selectedRoom.getmName() +
-                                    " and created with the following specifications:\n");
-                            content.append("- Nominal Power: " + dishWasherNominalPower + " kW \n");
-                            content.append("- Capacity: " + capacity + " dish sets \n");
-                            System.out.println(content.toString());
+                            getSuccessMessage(dishWasherDeviceName, selectedRoom, dishWasherCapacity, dishWasherNominalPower, dwNumberOfPrograms, dwProgramName, dwProgramDuration, dwProgramEnergyConsumption);
                             option = 0;
                         } else {
                             System.out.println("Something went wrong. The device wasn't added to the room. Please try again.");
@@ -140,38 +146,14 @@ public class AddDeviceToRoom {
                         String programName = "";
                         double programDuration = 0;
                         double programEnergyConsumption = 0;
-                        for (int i = 0; i < numberOfPrograms; i++) {
-                            System.out.println("PROGRAM " + (i + 1));
-                            String label45 = "What is the name of this program?";
-                            programName = InputValidator.getString(label45);
-                            String label46 = "What is the duration of this program?";
-                            programDuration = InputValidator.getDoublePos(label46);
-                            String label47 = "What is the energy consumption of this program?";
-                            programEnergyConsumption = InputValidator.getDoublePos(label47);
-                            mCtrl.addToProgramList(programName, programDuration, programEnergyConsumption);
-                        }
+
+                        getListOfPrograms(numberOfPrograms);
 
                         mCtrl.createNewWashingMachine(washingMachineDeviceName, selectedRoom, washingMachineNominalPower,
                                 washingMachineCapacity);
 
                         if (mCtrl.addDeviceToRoom()) {
-
-                            StringBuilder content = new StringBuilder();
-                            content.append("The device " + washingMachineDeviceName + " was succesfully added to " + selectedRoom.getmName() +
-                                    " and created with the following specifications:\n");
-                            content.append("- Capacity: " + washingMachineCapacity + " kg \n");
-                            content.append("- Nominal Power: " + washingMachineNominalPower + " kW \n");
-                            content.append("- " + numberOfPrograms + " programs: \n");
-                            System.out.println(content.toString());
-                            if (numberOfPrograms > 0) {
-                                for (int i = 0; i < numberOfPrograms; i++) {
-                                    content.append("     - " + programName + "\n");
-                                    content.append("      Duration: " + programDuration + " min \n");
-                                    content.append("      Energy Consumption:" + programEnergyConsumption + " kWh \n");
-                                    System.out.println(content.toString());
-
-                                }
-                            }
+                            getSuccessMessage(washingMachineDeviceName, selectedRoom, washingMachineCapacity, washingMachineNominalPower, numberOfPrograms, programName, programDuration, programEnergyConsumption);
                             option = 0;
                         } else {
                             System.out.println("Something went wrong. The device wasn't added to the room. Please try again.");
@@ -221,6 +203,43 @@ public class AddDeviceToRoom {
         } else {
             return;
         }
+
+    }
+
+    public List<Program> getListOfPrograms(int numberOfPrograms) {
+        String programName = "";
+        double programDuration = 0;
+        double programEnergyConsumption = 0;
+        List<Program> listOfPrograms = new ArrayList<>();
+        for (int i = 0; i < numberOfPrograms; i++) {
+            System.out.println("PROGRAM " + (i + 1));
+            String label45 = "What is the name of this program?";
+            programName = InputValidator.getString(label45);
+            String label46 = "What is the duration of this program?";
+            programDuration = InputValidator.getDoublePos(label46);
+            String label47 = "What is the energy consumption of this program?";
+            programEnergyConsumption = InputValidator.getDoublePos(label47);
+            listOfPrograms = mCtrl.addToProgramList(programName, programDuration, programEnergyConsumption);
+        }
+        return listOfPrograms;
+    }
+
+    public String getSuccessMessage(String deviceName, Room selectedRoom, double capacity, double nominalPower,
+                                    int numberOfPrograms, String programName, double programDuration, double programEnergyConsumption) {
+        StringBuilder content = new StringBuilder();
+        content.append("The device " + deviceName + " was succesfully added to " + selectedRoom.getmName() +
+                " and created with the following specifications:\n");
+        content.append("- Capacity: " + capacity + " kg \n");
+        content.append("- Nominal Power: " + nominalPower + " kW \n");
+        content.append("- " + numberOfPrograms + " programs: \n");
+        System.out.println(content.toString());
+        for (int i = 0; i < numberOfPrograms; i++) {
+            content.append("     - " + programName + "\n");
+            content.append("      Duration: " + programDuration + " min \n");
+            content.append("      Energy Consumption:" + programEnergyConsumption + " kWh \n");
+            System.out.println(content.toString());
+        }
+        return content.toString();
 
     }
 }

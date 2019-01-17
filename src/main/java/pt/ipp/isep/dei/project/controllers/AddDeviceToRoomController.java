@@ -119,9 +119,8 @@ public class AddDeviceToRoomController {
      * @param capacity     the capacity of the Dish Washer (a specification of the Dish Washer)
      * @return the Device that has been created
      */
-    public Device createNewDishWasher(String name, Room selectedRoom, double nominalPower, double capacity, String programName,
-                                      double duration, double energyConsumption, int numberOfPrograms) {
-        return mDevice = mDeviceList.newDishWasher(name, selectedRoom, nominalPower, capacity, programName, duration, energyConsumption, numberOfPrograms);
+    public Device createNewDishWasher(String name, Room selectedRoom, double nominalPower, double capacity) {
+        return mDevice = mDeviceList.newDishWasher(name, selectedRoom, nominalPower, capacity, mProgramList);
     }
 
 

@@ -122,17 +122,6 @@ public class DeviceList {
         return new Device(name, selectedRoom, electricWaterHeater);
     }
 
-    //METODO COMUM A WASHING MACHINE E DISH WASHER
-
-    public List<Program> newProgramList(String programName, double duration, double energyConsumption, int numberOfPrograms) {
-        List<Program> programList = new ArrayList<>();
-        Program program = new Program(programName, duration, energyConsumption);
-        for (int i = 1; i == numberOfPrograms; i++) {
-            programList.add(program);
-        }
-        return programList;
-    }
-
     //WASHING MACHINE
 
     public Device newWashingMachine(String name, Room selectedRoom, double nominalPower, double capacity,
@@ -143,9 +132,7 @@ public class DeviceList {
 
     //DISH WASHER
 
-    public Device newDishWasher(String name, Room selectedRoom, double nominalPower, double capacity, String programName,
-                                double duration, double energyConsumption, int numberOfPrograms) {
-        List<Program> programList = newProgramList(programName, duration, energyConsumption, numberOfPrograms);
+    public Device newDishWasher(String name, Room selectedRoom, double nominalPower, double capacity, List<Program> programList) {
         WashingMachine washingMachine = new WashingMachine(capacity, nominalPower, programList);
         return new Device(name, selectedRoom, washingMachine);
     }
