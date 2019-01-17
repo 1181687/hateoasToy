@@ -95,8 +95,8 @@ class AttachRoomToHouseGridControllerTest {
         roomList.addRoom(room1);
         roomList.addRoom(room2);
         AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
-        String expectedResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
-
+        String expectedResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Length: 2.0, Width: 2.0\n" +
+                "2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Length: 1.5, Width: 1.3\n";
         // Act
         String result = Ctrl.listAllTheRoomsInTheList();
 

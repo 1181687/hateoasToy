@@ -35,6 +35,20 @@ public class Lamp implements DeviceSpecs {
     }
 
     /**
+     * TODO
+     *
+     * @return
+     */
+    public String getEditableAttributesContent() {
+        StringBuilder content = new StringBuilder();
+        content.append("1 - " + ATTRIBUTE_LUMINIOUS_FLUX);
+        content.append("\n");
+        content.append("2 - " + ATTRIBUTE_NOMINAL_POWER);
+        content.append("\n");
+        return content.toString();
+    }
+
+    /**
      * TODO - LUÍS
      *
      * @param attributeName

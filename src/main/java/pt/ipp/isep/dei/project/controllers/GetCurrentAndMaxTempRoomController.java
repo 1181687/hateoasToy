@@ -62,7 +62,7 @@ public class GetCurrentAndMaxTempRoomController {
      * @return a String with the name of room
      */
     public String getRoomNameByPos(int position) {
-        return this.mHouse.getNameOfTheChosenRoomInSpecificPos(position);
+        return this.mHouse.getRoomNameByPosition(position);
     }
 
     /**

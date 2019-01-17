@@ -35,7 +35,8 @@ class GetNominalPowerOfARoomControllerTest {
         house.addRoom(room1);
         house.addRoom(room2);
 
-        String expectedResult = "1- Name: r1, House Floor: 1, Dimensions - Height: 4.0, Dimensions - Length: 4.0, Dimensions - Width: 4.0\n2- Name: r2, House Floor: 1, Dimensions - Height: 4.0, Dimensions - Length: 4.0, Dimensions - Width: 4.0\n";
+        String expectedResult = "1- Name: r1, House Floor: 1, Dimensions - Height: 4.0, Length: 4.0, Width: 4.0\n" +
+                "2- Name: r2, House Floor: 1, Dimensions - Height: 4.0, Length: 4.0, Width: 4.0\n";
 
         //Act
 

@@ -4,6 +4,8 @@ import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
 
+import java.util.List;
+
 public class EditConfigurationDeviceController {
 
     private House mHouse;
@@ -35,7 +37,7 @@ public class EditConfigurationDeviceController {
      * @return the name of the room by position.
      */
     public String getRoomName (int position) {
-        return this.mHouse.getNameOfTheChosenRoomInSpecificPos(position);
+        return this.mHouse.getRoomNameByPosition(position);
     }
 
     /**
@@ -71,6 +73,15 @@ public class EditConfigurationDeviceController {
     }
 
     /**
+     * TODO
+     *
+     * @return
+     */
+    public String getEditableAttributesContent() {
+        return this.mDevice.getEditableAttributesContent();
+    }
+
+    /**
      * method that set the device with a new name.
      * @param newName
      * @return a boolean.
@@ -89,11 +100,15 @@ public class EditConfigurationDeviceController {
         return this.mDevice.setAttributesDevType(attribute, value);
     }
 
+    public boolean setAttributesDevType1(String attributeName, Object attributeValue) {
+        return this.mDevice.setAttributesDevType1(attributeName, attributeValue);
+    }
+
     /**
      * method that get the specifications of the attribute to a string
      * @return the specifications of the attribute.
      */
-    public String getSpecsAttributesToString () {
+    public List<String> getSpecsAttributesToString () {
         return this.mDevice.getSpecsAttributesToString();
     }
 

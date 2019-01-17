@@ -19,7 +19,7 @@ public class RoomTest {
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
         Room room = new Room(name1, houseFloor1, dimensions1);
 
-        String expectResult = "Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0";
+        String expectResult = "Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Length: 2.0, Width: 2.0";
 
         //act
         String result = room.getRoomContent();

@@ -153,7 +153,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
                 "1 - Name of the device: Fridge1\n" +
                         "2 - Name of the device: Lamp1\n";
         // Act
-        String result = controller.getDeviceListContent(position);
+        String result = controller.getDeviceListContentOfRoomByPosition(position);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -345,7 +345,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         String expectedResult = "RoomTwo";
         int roomPos = 1;
         //Act
-        String result = controller.getRoomOfTheRoomList(roomPos);
+        String result = controller.getRoomNameByPosition(roomPos);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -366,7 +366,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         String expectedResult = null;
         int roomPos = 0;
         //Act
-        String result = controller.getRoomOfTheRoomList(roomPos);
+        String result = controller.getRoomNameByPosition(roomPos);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -397,7 +397,8 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         house.addRoom(room2);
 
         GetListOfSensorsAndDevicesRoomController controller = new GetListOfSensorsAndDevicesRoomController(house);
-        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
+        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Length: 2.0, Width: 2.0\n" +
+                "2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Length: 1.5, Width: 1.3\n";
 
         //act
         String result = controller.getRoomListContent();
