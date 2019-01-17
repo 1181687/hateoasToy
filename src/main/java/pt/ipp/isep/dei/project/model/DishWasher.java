@@ -84,6 +84,7 @@ public class DishWasher implements DeviceSpecs {
                     this.mDuration = (Double) attributeValue;
                     return true;
                 }
+                return false;
             case ATTRIBUTE_ENERGY_CONSUMPTION_PROGRAM1:
                 if (attributeValue instanceof Double) {
                     this.mEnergyConsumptionProgram1 = (Double) attributeValue;
@@ -96,12 +97,13 @@ public class DishWasher implements DeviceSpecs {
                     return true;
                 }
                 return false;
+                /*
             case ATTRIBUTE_LIST_OF_PROGRAMS:
                 if (attributeValue instanceof List) {
                     this.mProgramList = (List<Program>) attributeValue;
                     return true;
                 }
-                return false;
+                return false;*/
             default:
                 return false;
         }

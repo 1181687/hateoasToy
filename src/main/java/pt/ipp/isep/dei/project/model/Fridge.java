@@ -80,6 +80,7 @@ public class Fridge implements DeviceSpecs {
                     this.mRefrigeratorCapacity = (Double) attributeValue;
                     return true;
                 }
+                return false;
             case ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION:
                 if (attributeValue instanceof Double) {
                     this.mAnnualEnergyConsumption = (Double) attributeValue;

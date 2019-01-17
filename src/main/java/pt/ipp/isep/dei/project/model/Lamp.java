@@ -73,6 +73,7 @@ public class Lamp implements DeviceSpecs {
                     this.mTime = (Double) attributeValue;
                     return true;
                 }
+                return false;
             case ATTRIBUTE_NOMINAL_POWER:
                 if (attributeValue instanceof Double) {
                     this.mNominalPower = (Double) attributeValue;

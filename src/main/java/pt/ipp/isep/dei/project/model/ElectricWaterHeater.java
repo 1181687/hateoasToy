@@ -90,6 +90,7 @@ public class ElectricWaterHeater implements DeviceSpecs {
                     this.mColdWaterTemperature = (Double) attributeValue;
                     return true;
                 }
+                return false;
             case ATTRIBUTE_HOT_WATER_TEMP:
                 if (attributeValue instanceof Double) {
                     this.mHotWaterTemperature = (Double) attributeValue;
