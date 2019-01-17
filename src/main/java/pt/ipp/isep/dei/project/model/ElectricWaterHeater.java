@@ -19,6 +19,11 @@ public class ElectricWaterHeater implements DeviceSpecs {
         this.mNominalPower = mNominalPower;
     }
 
+    /**
+     * get method
+     *
+     * @return type of device
+     */
     @Override
     public String getmTypeName() {
         return mTypeName;

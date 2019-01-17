@@ -14,7 +14,11 @@ public class Lamp implements DeviceSpecs {
         this.mNominalPower = mNominalPower;
     }
 
-
+    /**
+     * get method
+     *
+     * @return type of device
+     */
     @Override
     public String getmTypeName() {
         return mTypeName;
@@ -23,7 +27,6 @@ public class Lamp implements DeviceSpecs {
 
     /**
      * get Method
-     *
      * @return nominal power
      */
     @Override
@@ -55,7 +58,6 @@ public class Lamp implements DeviceSpecs {
 
     /**
      * set method
-     *
      * @param mTime
      * @return
      */
@@ -96,7 +98,6 @@ public class Lamp implements DeviceSpecs {
 
     /**
      * set method
-     *
      * @param attribute position of the attribute
      * @param value
      * @return
