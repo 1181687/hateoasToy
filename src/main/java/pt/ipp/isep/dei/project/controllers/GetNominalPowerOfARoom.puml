@@ -6,8 +6,8 @@ skinparam sequence {
 	LifeLineBorderColor black
 	LifeLineBackgroundColor #A9DCDF
 
-	ParticipantBorderColor DeepSkyBlue
-	ParticipantBackgroundColor DodgerBlue
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor DeepSkyBlue
 	ParticipantFontStyle Bold
 
 	ActorBackgroundColor DimGrey

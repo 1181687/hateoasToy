@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 public class Menu {
 
+    private static final String CHOOSE_OPTIONS = "Choose one of the options:";
+
     public static int usersMenu() {
         StringBuilder content = new StringBuilder();
         content.append("What type of user are you?");
@@ -10,14 +12,18 @@ public class Menu {
         content.append("\n");
         content.append("2-Regular User");
         content.append("\n");
+        content.append("3-Power User");
+        content.append("\n");
+        content.append("4-Room Owner");
+        content.append("\n");
         content.append("0-Exit");
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 2);
+        return InputValidator.getIntRange(label, 0, 4);
     }
 
     public static int adminMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("Please choose an option:");
+        content.append(CHOOSE_OPTIONS);
         content.append("\n");
         content.append("1-Geographical Area");
         content.append("\n");
@@ -30,7 +36,7 @@ public class Menu {
 
     public static int adminGeoAreaMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("Choose one of the following options:");
+        content.append(CHOOSE_OPTIONS);
         content.append("\n");
         content.append("1-Create new type of geographical area");
         content.append("\n");
@@ -55,7 +61,7 @@ public class Menu {
 
     public static int adminHouseMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("Choose one of the following options:");
+        content.append(CHOOSE_OPTIONS);
         content.append("\n");
         content.append("1-Configure the location of the house");
         content.append("\n");
@@ -84,7 +90,7 @@ public class Menu {
 
     public static int regularUserMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("Choose one of the options:");
+        content.append(CHOOSE_OPTIONS);
         content.append("\n");
         content.append("1-House Area");
         content.append("\n");
@@ -97,7 +103,7 @@ public class Menu {
 
     public static int regularUserHouseAreaMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("Choose one of the options:");
+        content.append(CHOOSE_OPTIONS);
         content.append("\n");
         content.append("1-Get current temperature in the house area");
         content.append("\n");
@@ -112,7 +118,7 @@ public class Menu {
 
     public static int regularUserRoomsMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("Choose one of the options:");
+        content.append(CHOOSE_OPTIONS);
         content.append("\n");
         content.append("1-Current temperature in a room");
         content.append("\n");
@@ -128,7 +134,7 @@ public class Menu {
 
     public static int houseGridMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("Choose one of the options:");
+        content.append(CHOOSE_OPTIONS);
         content.append("\n");
         content.append("1-Create a House Grid");
         content.append("\n");
@@ -145,5 +151,73 @@ public class Menu {
         content.append("0-Return to the previous menu");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 6);
+    }
+
+    public static int regularUserPowerConsuptionManagement() {
+        StringBuilder content = new StringBuilder();
+        content.append(CHOOSE_OPTIONS);
+        content.append("\n");
+        content.append("1-Check Nominal Power of a room.");
+        content.append("\n");
+        content.append("0-Return to the previous menu");
+        content.append("\n");
+        String label = content.toString();
+        return InputValidator.getIntRange(label, 0, 1);
+    }
+
+    public static int powerUserMenu() {
+        StringBuilder content = new StringBuilder();
+        content.append(CHOOSE_OPTIONS);
+        content.append("\n");
+        content.append("1-House configuration.");
+        content.append("\n");
+        content.append("2-Energy consumption management.");
+        content.append("\n");
+        content.append("0-Return to the previous menu");
+        content.append("\n");
+        String label = content.toString();
+        return InputValidator.getIntRange(label, 0, 2);
+    }
+
+    public static int powerUserHouseMenu() {
+        StringBuilder content = new StringBuilder();
+        content.append(CHOOSE_OPTIONS);
+        content.append("\n");
+        content.append("1-List all devices connected to a grid.");
+        content.append("\n");
+        content.append("2-Check nominal power of a house grid.");
+        content.append("\n");
+        content.append("3-Check nominal power of a room");
+        content.append("\n");
+        content.append("0-Return to the previous menu");
+        content.append("\n");
+        String label = content.toString();
+        return InputValidator.getIntRange(label, 0, 3);
+    }
+
+    public static int powerUserEnergyConsumtionMenu() {
+        StringBuilder content = new StringBuilder();
+        content.append(CHOOSE_OPTIONS);
+        content.append("\n");
+        content.append("1-Total nominal power of a subset of rooms and/or devices.");
+        content.append("\n");
+        content.append("2-Estimate the total energy used in heating water in a day.");
+        content.append("\n");
+        content.append("0-Return to the previous menu");
+        content.append("\n");
+        String label = content.toString();
+        return InputValidator.getIntRange(label, 0, 2);
+    }
+
+    public static int roomOwnerMenu() {
+        StringBuilder content = new StringBuilder();
+        content.append(CHOOSE_OPTIONS);
+        content.append("\n");
+        content.append("1-Check nominal power of a room.");
+        content.append("\n");
+        content.append("0-Return to the previous menu");
+        content.append("\n");
+        String label = content.toString();
+        return InputValidator.getIntRange(label, 0, 1);
     }
 }

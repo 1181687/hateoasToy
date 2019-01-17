@@ -72,7 +72,7 @@ public class DimensionsTest {
     }
 
     @Test
-    void testEqualsTrue() {
+    void testEqualsTrueAllDimensions() {
         //Arrange
         Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
         Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
@@ -83,9 +83,31 @@ public class DimensionsTest {
     }
 
     @Test
-    void testEqualsFalse() {
+    void testEqualsFalseHeight() {
         //Arrange
         Dimensions dim = new Dimensions(2, 3.5, 3.5);
+        Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
+        //Act
+        boolean result = dim.equals(dim2);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testEqualsFalseLength() {
+        //Arrange
+        Dimensions dim = new Dimensions(3.5, 2, 3.5);
+        Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
+        //Act
+        boolean result = dim.equals(dim2);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testEqualsFalseWidth() {
+        //Arrange
+        Dimensions dim = new Dimensions(3.5, 3.5, 2);
         Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
         //Act
         boolean result = dim.equals(dim2);
