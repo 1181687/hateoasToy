@@ -22,6 +22,7 @@ public class EditConfigurationDeviceController {
 
     /**
      * this method get the content of the room list
+     *
      * @return the content of the room list.
      */
     public String getRoomListContent () {

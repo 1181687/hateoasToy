@@ -21,7 +21,7 @@ public class GetListOfSensorsAndDevicesRoom {
 
         do {
             System.out.println(controller.getRoomListContent());
-            choosenOption = InputValidator.getIntRange(label,1, controller.roomListSize());
+            choosenOption = InputValidator.getIntRange(label, 1, controller.roomListSize());
         }
 
         while (choosenOption < 1 || choosenOption > controller.roomListSize());

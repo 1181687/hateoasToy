@@ -150,6 +150,7 @@ public class DishWasher implements DeviceSpecs {
 
     /**
      * set method
+     *
      * @param mNominalPower
      * @return
      */

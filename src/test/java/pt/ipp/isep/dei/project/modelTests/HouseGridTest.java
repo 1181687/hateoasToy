@@ -3,8 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class HouseGridTest {
 
@@ -167,4 +166,263 @@ public class HouseGridTest {
         //Assert
         assertEquals(expectedResult,result,0.001);
     }*/
+
+    @Test
+    public void getRoomFromAPosition() {
+        //arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimensions2);
+
+        houseGrid.attachRoom(room1);
+        houseGrid.attachRoom(room2);
+
+        Room expectResult = room1;
+
+        //act
+        Room result = houseGrid.getRoomByPosition(0);
+        //assert
+        assertEquals(expectResult, result);
+    }
+
+    @Test
+    public void getDeviceListContentTest() {
+        // Arrange
+
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
+
+        //initiate Room
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        houseGrid.attachRoom(room);
+
+        //initiate Devices
+
+        double freezerCapacity = 5.5;
+        double refrigeratorCapacity = 15.5;
+        double annualEnergyConsumption = 3000.0;
+        double nominalPower = 100.5;
+        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        Device dev = new Device("Fridge1", room, deviceSpecs);
+
+
+        double luminousFlux = 10.0;
+        double nominalPower1 = 0.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        room.addDevice(dev);
+        room.addDevice(dev1);
+
+
+        String expectedResult =
+                "1 - Name of the device: Fridge1\n" +
+                        "2 - Name of the device: Lamp1\n";
+
+
+        // Act
+        String result = houseGrid.getDeviceListContent(0);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getDeviceListSize() {
+
+        // Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
+
+        //initiate Room
+
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        houseGrid.attachRoom(room);
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        double luminousFlux2 = 15.0;
+        double nominalPower2 = 2.0;
+
+        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
+
+        room.addDevice(dev1);
+        room.addDevice(dev2);
+
+        int expectResult = 2;
+        //act
+        int result = houseGrid.getDeviceListSizeByRoomPosition(0);
+        //assert
+        assertEquals(expectResult, result);
+    }
+
+    @Test
+    public void checkIfRoomListIsEmptyTrue() {
+        // Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
+
+        //act
+        boolean result = houseGrid.checkIfRoomListIsEmpty();
+        //assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkIfRoomListIsEmptyFalse() {
+        //arrange
+        RoomList rList = new RoomList();
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
+
+        rList.addRoom(room1);
+        //act
+        boolean result = rList.checkIfRoomListIsEmpty();
+        //assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void checkIfDeviceListIsEmptyTestTrue() {
+        // Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
+
+        //initiate Room
+
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        houseGrid.attachRoom(room);
+
+        // Act
+        boolean result = room.checkIfDeviceListIsEmpty();
+
+        // Assert
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void checkIfDeviceListIsEmptyTestFalse() {
+        // Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
+
+        //initiate Room
+
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        houseGrid.attachRoom(room);
+
+        //initiate Device
+        double luminousFlux = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        room.addDevice(dev1);
+
+        // Act
+        boolean result = room.checkIfDeviceListIsEmpty();
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void getDeviceFromPositionInList() {
+        // Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
+
+        //initiate Room
+
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        houseGrid.attachRoom(room);
+
+        //initiate Device
+        double luminousFlux = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        room.addDevice(dev1);
+
+        Device expectedResult = dev1;
+
+        // Act
+        Device result = houseGrid.getDeviceFromPositionInList(0, 0);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getListSize() {
+        // Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimensions2);
+
+        houseGrid.attachRoom(room1);
+        houseGrid.attachRoom(room2);
+
+
+        int expectResult = 2;
+        //act
+        int result = houseGrid.getRoomListSize();
+        //assert
+        assertEquals(expectResult, result);
+    }
+
+    @Test
+    public void getListSizeEmptyList() {
+        //arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
+
+        int expectResult = 0;
+        //act
+        int result = houseGrid.getRoomListSize();
+        //assert
+        assertEquals(expectResult, result);
+    }
 }

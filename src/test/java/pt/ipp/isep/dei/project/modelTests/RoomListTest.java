@@ -857,4 +857,30 @@ public class RoomListTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void getRoomFromAPosition() {
+        //arrange
+        RoomList rList = new RoomList();
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimensions1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimensions2);
+
+        rList.addRoom(room1);
+        rList.addRoom(room2);
+
+        Room expectResult = room1;
+
+        //act
+        Room result = rList.getRoomFromAPosition(0);
+        //assert
+        assertEquals(expectResult, result);
+    }
 }
