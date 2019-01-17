@@ -21,8 +21,13 @@ User -> UI: GetNominalPowerOfAGrid
 UI -> Controller: checkIfGridListIsEmpty()
 Controller -> House: checkIfGridListIsEmpty()
 House -> HouseGridList: checkIfGridListIsEmpty()
-HouseGridList --> UI: Grid List is not empty
-alt successful case
-UI->Controller:
+HouseGridList --> UI: boolean
+UI->Controller: listHouseGrids()
+Controller->House:getHouseGridListToString()
+House->HouseGridList:getHouseGridListToString()
+HouseGridList-->UI: Shows list of house grids available
+User->UI: selects house grid int p
+UI->Controller: getHouseGridByPosition(p)
+
 
 @enduml
