@@ -79,11 +79,11 @@ public class Main {
         Device dev1 = new Device("Lamp1", room1, deviceSpecs1);
 
         DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
-        DeviceSpecs specWashing = new WashingMachine(100, 100);
-        DeviceSpecs specDishWasher = new DishWasher(100, 100);
+        //DeviceSpecs specWashing = new WashingMachine(100, 100);
+        //DeviceSpecs specDishWasher = new DishWasher(100, 100);
         Device dev100 = new Device("FridgeAriston", room1, specFridge);
-        Device dev200 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev300 = new Device("DishWasher", room1, specDishWasher);
+        //Device dev200 = new Device("WashingMachineBosh", room1, specWashing);
+        //Device dev300 = new Device("DishWasher", room1, specDishWasher);
 
 
         room1.addDevice(dev1);
@@ -94,8 +94,8 @@ public class Main {
         deviceSpecs1 = new Lamp(luminousFlux, nominalPower);
         Device dev10 = new Device("Lamp2", room2, deviceSpecs1);
         room2.addDevice(dev10);
-        room2.addDevice(dev200);
-        room3.addDevice(dev300);
+        //room2.addDevice(dev200);
+        //room3.addDevice(dev300);
 
         roomList.addRoom(room1);
         roomList.addRoom(room2);

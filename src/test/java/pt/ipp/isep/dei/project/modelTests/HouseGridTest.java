@@ -122,7 +122,7 @@ public class HouseGridTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    /*@Test
     public void getNominalPower(){
         //Assert
 
@@ -166,5 +166,5 @@ public class HouseGridTest {
 
         //Assert
         assertEquals(expectedResult,result,0.001);
-    }
+    }*/
 }

@@ -2,17 +2,21 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.util.List;
+
 public class WashingMachine implements DeviceSpecs {
-    private String mTypeName ;
+    private String mTypeName;
     private double mCapacity;
     private double mDuration;
     private double mEnergyConsumption;
     private double mNominalPower;
+    private List<Program> mProgramList;
 
-    public WashingMachine(double mCapacity, double mNominalPower) {
+    public WashingMachine(double capacity, double nominalPower, List<Program> programList) {
         this.mTypeName = "Washing Machine";
-        this.mCapacity = mCapacity;
-        this.mNominalPower = mNominalPower;
+        this.mCapacity = capacity;
+        this.mNominalPower = nominalPower;
+        this.mProgramList = programList;
     }
 
     /**
@@ -105,4 +109,15 @@ public class WashingMachine implements DeviceSpecs {
     public int getNumberOfAttributes() {
         return 2;
     }
+
+    /**
+     * Method that adds a program to the list of Programs.
+     *
+     * @param program the program to be added
+     * @return true if it adds, false if it doesn't add, because it already contains it or the device is null
+     */
+
+
+
+
 }

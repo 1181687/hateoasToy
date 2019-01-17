@@ -353,7 +353,7 @@ public class RoomTest {
         assertFalse(result);
     }
 
-    @Test
+   /* @Test
     public void testGetNominalPower() {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
@@ -377,7 +377,7 @@ public class RoomTest {
 
         // Assert
         assertEquals(expectedResult, result);
-    }
+    }*/
 
     @Test
     public void getDeviceListSize() {
