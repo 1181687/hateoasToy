@@ -69,11 +69,8 @@ public class Device implements Measurable {
      * @return true if sets false if don't
      */
     public boolean setName(String name) {
-        if (this.mLocation.checkIfNameAlreadyExists(name)) {
+        if (this.mLocation.checkIfNameAlreadyExists(name) || this.mName == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
-        }
-        if (this.mName == name) {
-            return false;
         }
         this.mName = name;
         return true;
