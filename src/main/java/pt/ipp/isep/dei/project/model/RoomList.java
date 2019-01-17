@@ -78,7 +78,9 @@ public class RoomList {
         int numberInTheList = 1;
         for (int i = 0; i < mRoomList.size(); i++) {
             String displayOfTheRoom = mRoomList.get(i).getRoomContent();
-            content.append(numberInTheList + "- ");
+            //   content.append("\n");
+            content.append(numberInTheList);
+            content.append("- ");
             content.append(displayOfTheRoom);
             content.append("\n");
             numberInTheList++;
@@ -188,7 +190,7 @@ public class RoomList {
      * @return if the List is empty, returns null. Else returns the name of room in that position
      */
 
-    public String getNameOfTheChosenRoomInSpecificPosition(int position) {
+    public String getRoomNameByPosition(int position) {
         if (mRoomList.isEmpty()) {
             return null;
         }
@@ -227,7 +229,7 @@ public class RoomList {
      * @param position position of the room in the room list
      * @return list of devices of a room
      */
-    public String getDeviceListContentOfARoom(int position) {
+    public String getDeviceListContentByPosition(int position) {
         return mRoomList.get(position).getDeviceListContent();
     }
 

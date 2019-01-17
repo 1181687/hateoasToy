@@ -99,6 +99,24 @@ public class Fridge implements DeviceSpecs {
     }
 
     /**
+     * TODO
+     *
+     * @return
+     */
+    public String getEditableAttributesContent() {
+        StringBuilder content = new StringBuilder();
+        content.append("1 - " + ATTRIBUTE_FREEZER_CAPACITY);
+        content.append("\n");
+        content.append("2 - " + ATTRIBUTE_REFRIGERATOR_CAPACITY);
+        content.append("\n");
+        content.append("3 - " + ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION);
+        content.append("\n");
+        content.append("4 - " + ATTRIBUTE_NOMINAL_POWER);
+        content.append("\n");
+        return content.toString();
+    }
+
+    /**
      * get method
      *
      * @return type of device

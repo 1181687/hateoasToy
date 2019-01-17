@@ -28,7 +28,8 @@ public class RoomListTest {
         rList.addRoom(room1);
         rList.addRoom(room2);
 
-        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
+        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Length: 2.0, Width: 2.0\n" +
+                "2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Length: 1.5, Width: 1.3\n";
 
         //act
         String result = rList.getRoomListContent();
@@ -406,7 +407,7 @@ public class RoomListTest {
         String expectedResult = "RoomTwo";
         int roomPos = 1;
         //Act
-        String result = rList.getNameOfTheChosenRoomInSpecificPosition(roomPos);
+        String result = rList.getRoomNameByPosition(roomPos);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -418,7 +419,7 @@ public class RoomListTest {
         String expectedResult = null;
         int roomPos = 0;
         //Act
-        String result = rList.getNameOfTheChosenRoomInSpecificPosition(roomPos);
+        String result = rList.getRoomNameByPosition(roomPos);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -727,7 +728,7 @@ public class RoomListTest {
 
 
         // Act
-        String result = roomList.getDeviceListContentOfARoom(position);
+        String result = roomList.getDeviceListContentByPosition(position);
 
         // Assert
         assertEquals(expectedResult, result);
