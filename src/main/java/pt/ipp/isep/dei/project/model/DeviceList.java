@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -252,7 +253,7 @@ public class DeviceList {
     }
 
     /**
-     * TO DO - LUÍS
+     * TODO - LUíS
      *
      * @param type
      * @return
@@ -268,7 +269,17 @@ public class DeviceList {
     }
 
     /**
-     * TO DO - LUÍS
+     * TODO - LUíS
+     * @param devicePosition
+     * @return
+     */
+    public String getDeviceName(int devicePosition) {
+        Device device = mDeviceList.get(devicePosition);
+        return device.getName();
+    }
+
+    /**
+     * TODO - LUíS
      *
      * @param devicePosition
      * @param attribute
@@ -281,7 +292,7 @@ public class DeviceList {
     }
 
     /**
-     * TO DO - LUÍS
+     * TODO - LUíS
      *
      * @param devicePosition
      * @return
@@ -292,7 +303,7 @@ public class DeviceList {
     }
 
     /**
-     * TO DO - LUÍS
+     * TODO - LUíS
      *
      * @return
      */
@@ -301,6 +312,7 @@ public class DeviceList {
         for (Device device : mDeviceList) {
             totalEnergyConsumption += device.getEnergyConsumptionInADay();
         }
-        return totalEnergyConsumption;
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Double.parseDouble(df.format(totalEnergyConsumption));
     }
 }

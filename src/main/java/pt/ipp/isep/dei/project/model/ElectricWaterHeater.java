@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.text.DecimalFormat;
+
 public class ElectricWaterHeater implements DeviceSpecs {
     private String mTypeName;
     private double mVolumeOfWaterToHeat;
@@ -56,7 +58,9 @@ public class ElectricWaterHeater implements DeviceSpecs {
     public double getEnergyConsumptionInADay() {
         double specificHeatOfWater = 1.163;
         double differenceInTemperature = mHotWaterTemperature - mColdWaterTemperature;
-        return specificHeatOfWater * mVolumeOfWaterToHeat * differenceInTemperature * mPerformanceRatio;
+        DecimalFormat df = new DecimalFormat("#.##");
+        return Double.parseDouble(df.format((specificHeatOfWater * mVolumeOfWaterToHeat * differenceInTemperature
+                * mPerformanceRatio)));
     }
 
     /**

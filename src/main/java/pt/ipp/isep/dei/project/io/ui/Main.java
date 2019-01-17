@@ -125,10 +125,10 @@ public class Main {
         DeviceSpecs deviceSpecs2 = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower1, performanceRatio);
         Device dev2 = new Device("Titan SCR2 N-120", room1, deviceSpecs2);
         room1.addDevice(dev2);
-        double hotWaterTemp2 = 50;
+        double hotWaterTemp2 = 55;
         double maximumVolume2 = 100;
         double nominalPower2 = 44;
-        double performanceRatio2 = 0.7;
+        double performanceRatio2 = 0.8;
         DeviceSpecs deviceSpecs3 = new ElectricWaterHeater(hotWaterTemp2, maximumVolume2, nominalPower2, performanceRatio2);
         Device dev3 = new Device("Bosch Tronic 3000", room1, deviceSpecs3);
         room1.addDevice(dev3);
