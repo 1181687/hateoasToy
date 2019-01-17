@@ -208,4 +208,16 @@ public class Menu {
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 2);
     }
+
+    public static int roomOwnerMenu() {
+        StringBuilder content = new StringBuilder();
+        content.append(CHOOSE_OPTIONS);
+        content.append("\n");
+        content.append("1-Check nominal power of a room.");
+        content.append("\n");
+        content.append("0-Return to the previous menu");
+        content.append("\n");
+        String label = content.toString();
+        return InputValidator.getIntRange(label, 0, 1);
+    }
 }

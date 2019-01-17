@@ -144,22 +144,7 @@ public class Main {
         Admin admin = new Admin(geoAreaTypeList, geoAreaList, deviceList, sensorTypeList, houseEdificioB, powerSourceTypeList, roomList, gridList);
         RegularUser regularUser = new RegularUser(geoAreaTypeList, geoAreaList, sensorTypeList, houseEdificioB, sensorTypeTemperature);
         PowerUser powerUser = new PowerUser(houseEdificioB);
-        //RoomOwner roomOwner = new RoomOwner(houseEdificioB);
-
-
-//        while (userOption != 0) {
-//            userOption = Menu.usersMenu();
-//
-//            if (userOption == 1) {
-//                admin.runAdminOption();
-//            }
-//            if (userOption == 2) {
-//                regularUser.runRegularUserOption();
-//            }
-//            if (userOption == 4){
-//                powerUser.runPowerUserMenu();
-//            }
-//        }
+        RoomOwner roomOwner = new RoomOwner(houseEdificioB);
 
         int option = Menu.usersMenu();
         if (option == 0) {
@@ -175,6 +160,9 @@ public class Main {
                     break;
                 case 3:
                     powerUser.runPowerUserMenu();
+                    break;
+                case 4:
+                    roomOwner.runRoomOwnerMenu();
                     break;
             }
             option = Menu.usersMenu();
