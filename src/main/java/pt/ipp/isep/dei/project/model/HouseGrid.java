@@ -165,6 +165,10 @@ public class HouseGrid implements Measurable {
         return mRoomList.getRoomFromAPosition(position).checkIfDeviceListIsEmpty();
     }
 
+    public Device getDeviceFromPositionInList(int pos1, int pos2) {
+        return getRoomByPosition(pos1).getmDeviceList().getDeviceByPosition(pos2);
+    }
+
     //public Device getDeviceFromPositionInList(int positionRoom, int positionDevice){
     //return mRoomList.getRoomFromAPosition(positionRoom).getDeviceList().getDeviceByPosition(positionDevice);
     //return mRoomsConnectedToHouseGrid.getRoomFromAPosition(positionRoom).getDeviceList().getDeviceByPosition(positionDevice);

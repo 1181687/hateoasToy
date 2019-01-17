@@ -1,7 +1,10 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Dimensions;
+import pt.ipp.isep.dei.project.model.HouseGrid;
+import pt.ipp.isep.dei.project.model.HouseGridList;
+import pt.ipp.isep.dei.project.model.Room;
 
 import static org.junit.jupiter.api.Assertions.*;
 

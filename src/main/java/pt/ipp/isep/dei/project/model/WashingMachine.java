@@ -31,6 +31,7 @@ public class WashingMachine implements DeviceSpecs {
 
     /**
      * get method
+     *
      * @return nominal power
      */
     @Override
