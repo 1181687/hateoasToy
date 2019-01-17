@@ -143,18 +143,42 @@ public class Main {
         //UI levels
         Admin admin = new Admin(geoAreaTypeList, geoAreaList, deviceList, sensorTypeList, houseEdificioB, powerSourceTypeList, roomList, gridList);
         RegularUser regularUser = new RegularUser(geoAreaTypeList, geoAreaList, sensorTypeList, houseEdificioB, sensorTypeTemperature);
+        PowerUser powerUser = new PowerUser(houseEdificioB);
+        //RoomOwner roomOwner = new RoomOwner(houseEdificioB);
 
-        int userOption = -1;
 
-        while (userOption != 0) {
-            userOption = Menu.usersMenu();
+//        while (userOption != 0) {
+//            userOption = Menu.usersMenu();
+//
+//            if (userOption == 1) {
+//                admin.runAdminOption();
+//            }
+//            if (userOption == 2) {
+//                regularUser.runRegularUserOption();
+//            }
+//            if (userOption == 4){
+//                powerUser.runPowerUserMenu();
+//            }
+//        }
 
-            if (userOption == 1) {
-                admin.runAdminOption();
-            }
-            if (userOption == 2) {
-                regularUser.runRegularUserOption();
-            }
+        int option = Menu.usersMenu();
+        if (option == 0) {
+            return;
         }
+        while (option != 0) {
+            switch (option) {
+                case 1:
+                    admin.runAdminOption();
+                    break;
+                case 2:
+                    regularUser.runRegularUserOption();
+                    break;
+                case 3:
+                    powerUser.runPowerUserMenu();
+                    break;
+            }
+            option = Menu.usersMenu();
+        }
+
     }
 }
