@@ -204,47 +204,6 @@ public class EditConfigurationDeviceControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    /* @Test
-    public void testSetNameSameNameFalse() {
-        // Arrange
-        // initiate House
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
-        //initiate Room
-        String name = "Kitchen";
-        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        double luminousFlux1 = 10.0;
-        double nominalPower1 = 1.0;
-        String deviceName = "Lamp1";
-        Lamp deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
-        Device dev1 = new Device(deviceName, room, deviceSpecs1);
-
-        int position = 0;
-
-        dev1.setName(deviceName);
-        room.addDevice(dev1);
-        house.addRoom(room);
-
-        EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
-        controller.getRoomByPosition(position);
-        controller.getDeviceByPosition(position);
-
-        // Act
-        boolean result = controller.setDeviceName("Lamp1");
-
-        // Assert
-        assertFalse(result);
-    } */
-
     @Test
     public void testSetNameAlreadyInListFalse() {
         // Arrange

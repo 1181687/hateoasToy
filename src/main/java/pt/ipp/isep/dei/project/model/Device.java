@@ -15,6 +15,11 @@ public class Device implements Measurable {
         this.mSpec = spec;
     }
 
+    /**
+     * method that get the nominal power of th devices.
+     *
+     * @return the nominal power of the device.
+     */
     @Override
     public double getNominalPower() {
         return mSpec.getmNominalPower();
@@ -40,7 +45,6 @@ public class Device implements Measurable {
 
     /**
      * method that gets the DeviceSpecs
-     *
      * @return DeviceSpecs
      */
     public DeviceSpecs getDeviceSpecs() {
@@ -49,7 +53,6 @@ public class Device implements Measurable {
 
     /**
      * method that gets the Type
-     *
      * @return String
      */
     public String getType() {
@@ -105,6 +108,10 @@ public class Device implements Measurable {
         return mSpec.getAttributesToString();
     }
 
+    /**
+     * method that get all attributes of a device by strings.
+     * @return the device attributes.
+     */
     public String getAttributesToString() {
 
         StringBuilder attributes = new StringBuilder();
@@ -115,6 +122,12 @@ public class Device implements Measurable {
         return  deviceAttributes;
     }
 
+    /**
+     * method that set the attributes of a device type.
+     * @param attribute
+     * @param value
+     * @return the position of an attribute and the value of it.
+     */
     public boolean setAttributesDevType(int attribute, double value) {
         return this.mSpec.setAttribute(attribute, value);
     }
