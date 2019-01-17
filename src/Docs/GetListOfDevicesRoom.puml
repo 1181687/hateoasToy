@@ -19,33 +19,40 @@ skinparam sequence {
 autonumber
 actor User
 User -> UI: GetListOfDevicesInARoom
+activate UI
 UI -> Controller: RoomListSize()
+activate Controller
 UI <-- Controller: RoomListSize()
+deactivate Controller
 UI -> Controller: GetRoomOftheRoomList()
+activate Controller
 Controller -> House: GetNameofTheChosenRoomInASpecificPosition()
+activate House
 House -> RoomList: GetNameofTheChosenRoomInASpecificPosition()
+activate RoomList
 House <-- RoomList: GetNameofTheChosenRoomInASpecificPosition()
+deactivate RoomList
 Controller <-- House: GetNameofTheChosenRoomInASpecificPosition()
+deactivate House
 UI <-- Controller: GetNameofTheChosenRoomInASpecificPosition()
+deactivate Controller
 User <-- UI: GetNameofTheChosenRoomInASpecificPosition()
 
 User -> UI: ChooseRoomFromList
 UI -> Controller: GetDeviceListContent()
+activate Controller
 Controller -> House: GetDeviceListContentOfARoom()
+activate House
 House -> RoomList: GetDeviceListContentOfARoom()
+activate RoomList
 House <-- RoomList: GetDeviceListContentOfARoom()
+deactivate RoomList
 Controller <-- House: GetDeviceListContentOfARoom()
+deactivate House
 UI <-- Controller: GetDeviceListContent()
-
-UI -> Controller: CheckIfDeviceListIsEmpty()
-Controller -> House: CheckIfDeviceListIsEmpty()
-House -> RoomList: CheckIfDeviceListIsEmpty()
-RoomList -> DeviceList: CheckIfDeviceListIsEmpty()
-RoomList <-- DeviceList: CheckIfDeviceListIsEmpty()
-House <-- RoomList: CheckIfDeviceListIsEmpty()
-Controller <-- House: CheckIfDeviceListIsEmpty()
-UI <-- Controller: CheckIfDeviceListIsEmpty()
+deactivate Controller
 User <-- UI: GetDeviceListContent()
+deactivate UI
 
 
 @enduml
