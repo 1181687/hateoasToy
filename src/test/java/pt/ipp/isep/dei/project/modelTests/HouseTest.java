@@ -1234,7 +1234,7 @@ public class HouseTest {
     }
 
 
-    @Test
+    /*@Test
     public void TestGetAllDevicesListByGridPosition() {
         //Room ONE
         String name = "Kitchen";
@@ -1294,9 +1294,9 @@ public class HouseTest {
         DeviceList result = house.getAllDevicesListByGridPosition(0);
 
         assertEquals(expectedResult, result);
-    }
+    }*/
 
-    @Test
+   /* @Test
     public void testGetDeviceListContentNameTypeLocationByHG() {
         //Room ONE
         String name = "Kitchen";
@@ -1351,7 +1351,7 @@ public class HouseTest {
 
         String result = house.getDeviceListContentNameTypeLocationByHG(0);
         assertEquals(expectedResult, result);
-    }
+    }*/
 
 
     @Test

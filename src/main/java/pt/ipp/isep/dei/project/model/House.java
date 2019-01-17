@@ -326,7 +326,7 @@ public class House {
     }*/
 
     /**
-     * TO DO - LUÍS
+     * TODO - LUíS
      *
      * @param type
      * @return
@@ -336,7 +336,7 @@ public class House {
     }
 
     /**
-     * TO DO - LUÍS
+     * TODO - LUíS
      *
      * @param type
      * @return
@@ -346,7 +346,18 @@ public class House {
     }
 
     /**
-     * TO DO - LUÍS
+     * TODO - LUíS
+     * @param type
+     * @param devicePosition
+     * @return
+     */
+    public String getDeviceName(String type, int devicePosition) {
+        DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);
+        return listWithAllDevicesOfAType.getDeviceName(devicePosition);
+    }
+
+    /**
+     * TODO - LUíS
      *
      * @param type
      * @param devicePosition
@@ -360,7 +371,7 @@ public class House {
     }
 
     /**
-     * TO DO - LUÍS
+     * TODO - LUíS
      *
      * @param type
      * @param devicePosition
@@ -372,7 +383,7 @@ public class House {
     }
 
     /**
-     * TO DO - LUÍS
+     * TODO - LUíS
      *
      * @param type
      * @return

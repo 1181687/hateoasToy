@@ -1,7 +1,9 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.PowerSource;
+import pt.ipp.isep.dei.project.model.PowerSourceType;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PowerSourceTest {
@@ -25,12 +27,31 @@ public class PowerSourceTest {
     }
 
     @Test
-    public void testingEqualsWithNonRechargeablePowerSourcesNegativeTest(){
+    public void testingEqualsNegativeTestDifferentTypes() {
+        //Arrange
+        String powerSourceName1 = "ps1";
+        String powerSourceName2 = "ps1";
+        PowerSourceType powerSourceType1 = new PowerSourceType("public electric grid");
+        PowerSourceType powerSourceType2 = new PowerSourceType("photovoltaic panels");
+
+
+        PowerSource powerSource1 = new PowerSource(powerSourceName1, powerSourceType1);
+        PowerSource powerSource2 = new PowerSource(powerSourceName2, powerSourceType2);
+
+        //Act
+        boolean result = powerSource1.equals(powerSource2);
+
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testingEqualsNegativeTestDifferentNames() {
         //Arrange
         String powerSourceName1 = "ps1";
         String powerSourceName2 = "ps2";
         PowerSourceType powerSourceType1 = new PowerSourceType("public electric grid");
-        PowerSourceType powerSourceType2 = new PowerSourceType("photovoltaic panels");
+        PowerSourceType powerSourceType2 = new PowerSourceType("public electric grid");
 
 
         PowerSource powerSource1 = new PowerSource(powerSourceName1, powerSourceType1);

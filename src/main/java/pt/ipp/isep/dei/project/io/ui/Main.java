@@ -79,11 +79,11 @@ public class Main {
         Device dev1 = new Device("Lamp1", room1, deviceSpecs1);
 
         DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
-        DeviceSpecs specWashing = new WashingMachine(100, 100);
-        DeviceSpecs specDishWasher = new DishWasher(100, 100);
+        //DeviceSpecs specWashing = new WashingMachine(100, 100);
+        //DeviceSpecs specDishWasher = new DishWasher(100, 100);
         Device dev100 = new Device("FridgeAriston", room1, specFridge);
-        Device dev200 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev300 = new Device("DishWasher", room1, specDishWasher);
+        //Device dev200 = new Device("WashingMachineBosh", room1, specWashing);
+        //Device dev300 = new Device("DishWasher", room1, specDishWasher);
 
 
         room1.addDevice(dev1);
@@ -94,8 +94,8 @@ public class Main {
         deviceSpecs1 = new Lamp(luminousFlux, nominalPower);
         Device dev10 = new Device("Lamp2", room2, deviceSpecs1);
         room2.addDevice(dev10);
-        room2.addDevice(dev200);
-        room3.addDevice(dev300);
+        //room2.addDevice(dev200);
+        //room3.addDevice(dev300);
 
         roomList.addRoom(room1);
         roomList.addRoom(room2);
@@ -125,10 +125,10 @@ public class Main {
         DeviceSpecs deviceSpecs2 = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower1, performanceRatio);
         Device dev2 = new Device("Titan SCR2 N-120", room1, deviceSpecs2);
         room1.addDevice(dev2);
-        double hotWaterTemp2 = 50;
+        double hotWaterTemp2 = 55;
         double maximumVolume2 = 100;
         double nominalPower2 = 44;
-        double performanceRatio2 = 0.7;
+        double performanceRatio2 = 0.8;
         DeviceSpecs deviceSpecs3 = new ElectricWaterHeater(hotWaterTemp2, maximumVolume2, nominalPower2, performanceRatio2);
         Device dev3 = new Device("Bosch Tronic 3000", room1, deviceSpecs3);
         room1.addDevice(dev3);
@@ -143,18 +143,30 @@ public class Main {
         //UI levels
         Admin admin = new Admin(geoAreaTypeList, geoAreaList, deviceList, sensorTypeList, houseEdificioB, powerSourceTypeList, roomList, gridList);
         RegularUser regularUser = new RegularUser(geoAreaTypeList, geoAreaList, sensorTypeList, houseEdificioB, sensorTypeTemperature);
+        PowerUser powerUser = new PowerUser(houseEdificioB);
+        RoomOwner roomOwner = new RoomOwner(houseEdificioB);
 
-        int userOption = -1;
-
-        while (userOption != 0) {
-            userOption = Menu.usersMenu();
-
-            if (userOption == 1) {
-                admin.runAdminOption();
-            }
-            if (userOption == 2) {
-                regularUser.runRegularUserOption();
-            }
+        int option = Menu.usersMenu();
+        if (option == 0) {
+            return;
         }
+        while (option != 0) {
+            switch (option) {
+                case 1:
+                    admin.runAdminOption();
+                    break;
+                case 2:
+                    regularUser.runRegularUserOption();
+                    break;
+                case 3:
+                    powerUser.runPowerUserMenu();
+                    break;
+                case 4:
+                    roomOwner.runRoomOwnerMenu();
+                    break;
+            }
+            option = Menu.usersMenu();
+        }
+
     }
 }
