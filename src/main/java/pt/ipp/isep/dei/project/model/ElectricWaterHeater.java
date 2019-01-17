@@ -2,9 +2,17 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ElectricWaterHeater implements DeviceSpecs {
+    private static final String ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT = "Volume of water to heat";
+    private static final String ATTRIBUTE_COLD_WATER_TEMP = "Cold-water temperature";
+    private static final String ATTRIBUTE_HOT_WATER_TEMP = "Hot-water temperature";
+    private static final String ATTRIBUTE_PERFORMANCE_RATIO = "Performance ratio";
+    private static final String ATTRIBUTE_MAXIMUM_VOLUME = "Maximum volume";
+    private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal power";
+
     private String mTypeName;
     private double mVolumeOfWaterToHeat;
     private double mColdWaterTemperature;
@@ -19,6 +27,97 @@ public class ElectricWaterHeater implements DeviceSpecs {
         this.mMaximumVolume = mMaximumVolume;
         this.mPerformanceRatio = mPerformanceRatio;
         this.mNominalPower = mNominalPower;
+    }
+
+    /**
+     * TODO - LUÍS
+     *
+     * @return
+     */
+    public List<String> getAttributeNames() {
+        List<String> result = new ArrayList<>();
+        result.add(ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT);
+        result.add(ATTRIBUTE_COLD_WATER_TEMP);
+        result.add(ATTRIBUTE_HOT_WATER_TEMP);
+        result.add(ATTRIBUTE_PERFORMANCE_RATIO);
+        result.add(ATTRIBUTE_MAXIMUM_VOLUME);
+        result.add(ATTRIBUTE_NOMINAL_POWER);
+        return result;
+    }
+
+    /**
+     * TODO - LUÍS
+     *
+     * @param attributeName
+     * @return
+     */
+    public Object getAttributeValue(String attributeName) {
+        switch (attributeName) {
+            case ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT:
+                return mVolumeOfWaterToHeat;
+            case ATTRIBUTE_COLD_WATER_TEMP:
+                return mColdWaterTemperature;
+            case ATTRIBUTE_HOT_WATER_TEMP:
+                return mHotWaterTemperature;
+            case ATTRIBUTE_PERFORMANCE_RATIO:
+                return mPerformanceRatio;
+            case ATTRIBUTE_MAXIMUM_VOLUME:
+                return mMaximumVolume;
+            case ATTRIBUTE_NOMINAL_POWER:
+                return mNominalPower;
+            default:
+                return 0;
+        }
+    }
+
+    /**
+     * TODO - LUÍS
+     *
+     * @param attributeName
+     * @param attributeValue
+     * @return
+     */
+    public boolean setAttributeValue(String attributeName, Object attributeValue) {
+        switch (attributeName) {
+            case ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT:
+                if (attributeValue instanceof Double) {
+                    this.mVolumeOfWaterToHeat = (Double) attributeValue;
+                    return true;
+                }
+                return false;
+            case ATTRIBUTE_COLD_WATER_TEMP:
+                if (attributeValue instanceof Double) {
+                    this.mColdWaterTemperature = (Double) attributeValue;
+                    return true;
+                }
+                return false;
+            case ATTRIBUTE_HOT_WATER_TEMP:
+                if (attributeValue instanceof Double) {
+                    this.mHotWaterTemperature = (Double) attributeValue;
+                    return true;
+                }
+                return false;
+            case ATTRIBUTE_PERFORMANCE_RATIO:
+                if (attributeValue instanceof Double) {
+                    this.mPerformanceRatio = (Double) attributeValue;
+                    return true;
+                }
+                return false;
+            case ATTRIBUTE_MAXIMUM_VOLUME:
+                if (attributeValue instanceof Double) {
+                    this.mMaximumVolume = (Double) attributeValue;
+                    return true;
+                }
+                return false;
+            case ATTRIBUTE_NOMINAL_POWER:
+                if (attributeValue instanceof Double) {
+                    this.mNominalPower = (Double) attributeValue;
+                    return true;
+                }
+                return false;
+            default:
+                return false;
+        }
     }
 
     /**
@@ -61,11 +160,11 @@ public class ElectricWaterHeater implements DeviceSpecs {
      * @return Energy consumption of the device in a given day.
      */
     public double getEnergyConsumptionInADay() {
+
         double specificHeatOfWater = 1.163;
         double differenceInTemperature = mHotWaterTemperature - mColdWaterTemperature;
-        DecimalFormat df = new DecimalFormat("#.##");
-        return Double.parseDouble(df.format((specificHeatOfWater * mVolumeOfWaterToHeat * differenceInTemperature
-                * mPerformanceRatio)));
+        return Math.floor(specificHeatOfWater * mVolumeOfWaterToHeat * differenceInTemperature
+                * mPerformanceRatio * 1000) / 1000;
     }
 
     /**

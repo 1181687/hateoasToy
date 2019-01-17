@@ -42,9 +42,9 @@ public class EditConfigurationDevice {
                         boolean flag = true;
                         String newName;
                         do {
-                            newName=InputValidator.getString(label4);
+                            newName = InputValidator.getString(label4);
                             try {
-                                if(controller.setDeviceName(newName)){
+                                if (controller.setDeviceName(newName)) {
                                     System.out.println("The name was changed with success! Now, this device call " + newName + "!");
                                 }
                                 flag = false;

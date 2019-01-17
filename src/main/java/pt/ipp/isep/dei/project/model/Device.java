@@ -86,6 +86,7 @@ public class Device implements Measurable {
 
     /**
      * method that set the location (room) of a added device.
+     *
      * @param location
      * @return false if the location is equals to another device. True if not.
      */

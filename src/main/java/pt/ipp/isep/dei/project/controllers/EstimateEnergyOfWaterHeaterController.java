@@ -24,6 +24,12 @@ public class EstimateEnergyOfWaterHeaterController {
         return mHouse.getNumberOfDevicesOfAType(mType);
     }
 
+    /**
+     * TODO
+     *
+     * @param devicePosition
+     * @return
+     */
     public String getNameOfWaterHeater(int devicePosition) {
         return mHouse.getDeviceName(mType, devicePosition);
     }

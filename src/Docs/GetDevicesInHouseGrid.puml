@@ -19,31 +19,13 @@ skinparam sequence {
 autonumber
 actor User
 User -> UI: GetDevicesInHouseGrid
-UI -> Controller: CheckIfHouseGridListIsEmpty()
-Controller -> House: CheckIfHouseGridListIsEmpty()
-House -> HouseGridList: CheckIfHouseGridListIsEmpty()
-House <-- HouseGridList: CheckIfHouseGridListIsEmpty()
-Controller <-- House: CheckIfHouseGridListIsEmpty()
-UI <-- Controller: CheckIfHouseGridListIsEmpty()
+UI -> Controller: GetHouseGridListToString()
+Controller -> House: GetHouseGridListToString()
+House -> HouseGridList: GetHouseGridListToString()
+UI <-- HouseGridList: GetHouseGridListToString()
 User <-- UI: GetHouseGridListToString()
+
 User -> UI: ChooseHouseGrid
-
-UI -> Controller: CheckIfThereAreNoDevicesHGByPosition()
-Controller -> House: CheckIfThereAreNoDevicesHGByPosition()
-House -> HouseGridList: GetHouseGridByPosition()
-House <-- HouseGridList: GetHouseGridByPosition()
-House -> HouseGrid: CheckIfThereAreNoDevices()
-HouseGrid -> RoomList: CheckIfThereAreNoDevices()
-RoomList -> RoomList: CheckIfDeviceListIsEmpty()
-RoomList -> Room: CheckIfDeviceListIsEmpty()
-Room -> DeviceList: CheckIfDeviceListIsEmpty()
-Room <-- DeviceList: CheckIfDeviceListIsEmpty()
-RoomList <-- Room: CheckIfDeviceListIsEmpty()
-HouseGrid <-- RoomList: CheckIfThereAreNoDevices()
-House <-- HouseGrid: CheckIfThereAreNoDevices()
-Controller <-- House: CheckIfThereAreNoDevicesHGByPosition()
-UI <-- Controller: CheckIfThereAreNoDevicesHGByPosition()
-
 UI -> Controller: GetHGNameByHGPosition()
 Controller -> House: GetHGNameByHGPosition()
 House -> HouseGridList: GetNameByHGPosition()
