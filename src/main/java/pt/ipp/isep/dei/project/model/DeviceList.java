@@ -23,6 +23,7 @@ public class DeviceList {
 
     /**
      * get size of list of devices
+     *
      * @return integer
      */
     public int getLength() {
@@ -114,66 +115,63 @@ public class DeviceList {
     }
     //ELECTRIC WATER HEATER
 
-    public DeviceSpecs createNewElectricWaterHeater(double mHotWaterTemperature, double mMaximumVolume, double mNominalPower, double performanceRatio) {
+    public Device newElectricWaterHeater(String name, Room selectedRoom, double hotWaterTemperature, double maximumVolume, double nominalPower, double performanceRatio) {
 
-        return new ElectricWaterHeater(mHotWaterTemperature, mMaximumVolume, mNominalPower, performanceRatio);
-    }
-
-    public Device newElectricWaterHeater(String name, Room selectedRoom, double mHotWaterTemperature, double mMaximumVolume, double mNominalPower, double mPerformanceRatio) {
-
-        DeviceSpecs electricWaterHeater = createNewElectricWaterHeater(mHotWaterTemperature, mMaximumVolume, mNominalPower, mPerformanceRatio);
+        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, nominalPower, performanceRatio);
 
         return new Device(name, selectedRoom, electricWaterHeater);
     }
 
-    //WASHING MACHINE
+    //METODO COMUM A WASHING MACHINE E DISH WASHER
 
-    public DeviceSpecs createNewWashingMachine(double capacity, double nominalPower) {
-        return new WashingMachine(capacity, nominalPower);
+    public List<Program> newProgramList(String programName, double duration, double energyConsumption, int numberOfPrograms) {
+        List<Program> programList = new ArrayList<>();
+        Program program = new Program(programName, duration, energyConsumption);
+        for (int i = 1; i == numberOfPrograms; i++) {
+            programList.add(program);
+        }
+        return programList;
     }
 
-    public Device newWashingMachine (String name, Room selectedRoom, double nominalPower, double capacity){
-        DeviceSpecs washingMachine = createNewWashingMachine(capacity, nominalPower);
+    //WASHING MACHINE
+
+    public Device newWashingMachine(String name, Room selectedRoom, double nominalPower, double capacity,
+                                    List<Program> programList) {
+        WashingMachine washingMachine = new WashingMachine(capacity, nominalPower, programList);
         return new Device(name, selectedRoom, washingMachine);
     }
 
     //DISH WASHER
-    public DeviceSpecs createNewDishWasher(int capacity, double nominalPower) {
-        return new DishWasher(capacity, nominalPower);
-    }
 
-    public Device newDishWasher (String name, Room selectedRoom, double nominalPower, int capacity){
-        DeviceSpecs dishWasher = createNewDishWasher(capacity, nominalPower);
-        return new Device(name, selectedRoom, dishWasher);
+    public Device newDishWasher(String name, Room selectedRoom, double nominalPower, double capacity, String programName,
+                                double duration, double energyConsumption, int numberOfPrograms) {
+        List<Program> programList = newProgramList(programName, duration, energyConsumption, numberOfPrograms);
+        WashingMachine washingMachine = new WashingMachine(capacity, nominalPower, programList);
+        return new Device(name, selectedRoom, washingMachine);
     }
 
     //LAMP
-    public DeviceSpecs createNewLamp(double luminousFlux, double nominalPower) {
-        return new Lamp(luminousFlux, nominalPower);
-    }
 
-    public Device newLamp (String name, Room selectedRoom, double nominalPower, double luminousFlux){
-        DeviceSpecs lamp = createNewLamp(luminousFlux, nominalPower);
+    public Device newLamp(String name, Room selectedRoom, double nominalPower, double luminousFlux) {
+        DeviceSpecs lamp = new Lamp(luminousFlux, nominalPower);
         return new Device(name, selectedRoom, lamp);
     }
 
     //FRIDGE
-    public DeviceSpecs createNewFridge(double freezerCapacity, double refrigeratorCapacity, double annualEnergyConsumption, double nominalPower) {
-        return new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-    }
 
     public Device newFridge(String name, Room selectedRoom, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
-        DeviceSpecs fridge = createNewFridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        DeviceSpecs fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
         return new Device(name, selectedRoom, fridge);
     }
 
 
     /**
      * Method that adds a device to the existing list.
+     *
      * @param device
      * @return
      */
-    public boolean addDeviceToDeviceList (Device device){
+    public boolean addDeviceToDeviceList(Device device) {
         if (!(mDeviceList.contains(device))) {
             mDeviceList.add(device);
             return true;
@@ -259,6 +257,12 @@ public class DeviceList {
         return content.toString();
     }
 
+    public List<Program> addToProgramList(String programName, double duration, double energyConsumption) {
+        List<Program> programList = new ArrayList<>();
+        Program program = new Program(programName, duration, energyConsumption);
+        programList.add(program);
 
+        return programList;
+    }
 
 }

@@ -1,9 +1,8 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Device;
-import pt.ipp.isep.dei.project.model.DeviceList;
-import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.*;
+
+import java.util.List;
 
 public class AddDeviceToRoomController {
 
@@ -11,6 +10,7 @@ public class AddDeviceToRoomController {
     private Device mDevice;
     private DeviceList mDeviceList;
     private Room mRoom;
+    private List<Program> mProgramList;
 
     /**
      * Constructor.
@@ -119,8 +119,9 @@ public class AddDeviceToRoomController {
      * @param capacity     the capacity of the Dish Washer (a specification of the Dish Washer)
      * @return the Device that has been created
      */
-    public Device createNewDishWasher(String name, Room selectedRoom, double nominalPower, int capacity) {
-        return mDevice = mDeviceList.newDishWasher(name, selectedRoom, nominalPower, capacity);
+    public Device createNewDishWasher(String name, Room selectedRoom, double nominalPower, double capacity, String programName,
+                                      double duration, double energyConsumption, int numberOfPrograms) {
+        return mDevice = mDeviceList.newDishWasher(name, selectedRoom, nominalPower, capacity, programName, duration, energyConsumption, numberOfPrograms);
     }
 
 
@@ -134,7 +135,7 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewWashingMachine(String name, Room selectedRoom, double nominalPower, double capacity) {
-        return mDevice = mDeviceList.newWashingMachine(name, selectedRoom, nominalPower, capacity);
+        return mDevice = mDeviceList.newWashingMachine(name, selectedRoom, nominalPower, capacity, mProgramList);
     }
 
 
@@ -152,5 +153,21 @@ public class AddDeviceToRoomController {
         return mDevice = mDeviceList.newElectricWaterHeater(name, selectedRoom, mHotWaterTemperature, mMaximumVolume, mNominalPower, mPerformanceRatio);
     }
 
+    /**
+     * Method that displays the device list content of a Room
+     *
+     * @param selectedRoom position of the room in the room list
+     * @return list of devices of a roomMethod that displays the content
+     */
+    public String getDeviceListContentOfARoom(int selectedRoom) {
+        return mHouse.getDeviceListContentOfARoom(selectedRoom);
+    }
 
+    public List<Program> addToProgramList(String programName, double duration, double energyConsumption) {
+        return mProgramList = mDeviceList.addToProgramList(programName, duration, energyConsumption);
+    }
+
+    public List<Program> getmProgramList() {
+        return mProgramList;
+    }
 }

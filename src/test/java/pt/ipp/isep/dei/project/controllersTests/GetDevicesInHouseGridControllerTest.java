@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GetDevicesInHouseGridControllerTest {
 
 
-    @Test
+    /*@Test
     public void testGetDeviceListContentNameTypeLocationByHG() {
         //Room ONE
         String name = "Kitchen";
@@ -66,7 +66,7 @@ public class GetDevicesInHouseGridControllerTest {
         String result = ctrl.getDeviceListContentNameTypeLocationByHG(0);
 
         assertEquals(expectedResult, result);
-    }
+    }*/
 
     @Test
     public void displayOfTheContentOfTheHouseGrids() {
@@ -173,7 +173,7 @@ public class GetDevicesInHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    /*@Test
     public void testCheckIfThereAreNoDevicesHGbyPositionFalse() {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
@@ -225,9 +225,9 @@ public class GetDevicesInHouseGridControllerTest {
 
         // Assert
         assertFalse(result);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void testCheckIfThereAreNoDevicesHGbyPositionTrue() {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
@@ -279,7 +279,7 @@ public class GetDevicesInHouseGridControllerTest {
 
         // Assert
         assertTrue(result);
-    }
+    }*/
 
     @Test
     public void getNameByHGPosition() {

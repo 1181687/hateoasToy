@@ -2,17 +2,21 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.util.List;
+
 public class DishWasher implements DeviceSpecs {
     private String mTypeName;
     private int mCapacity;
     private double mDuration;
     private double mEnergyConsumptionProgram1;
     private double mNominalPower;
+    private List<Program> mProgramList;
 
-    public DishWasher(int mCapacity, double mNominalPower) {
+    public DishWasher(int capacity, double nominalPower, List<Program> programList) {
         this.mTypeName = "Dish Washer";
-        this.mCapacity = mCapacity;
-        this.mNominalPower = mNominalPower;
+        this.mCapacity = capacity;
+        this.mNominalPower = nominalPower;
+        this.mProgramList = programList;
     }
 
 
@@ -80,4 +84,6 @@ public class DishWasher implements DeviceSpecs {
     public int getNumberOfAttributes() {
         return 2;
     }
+
+
 }
