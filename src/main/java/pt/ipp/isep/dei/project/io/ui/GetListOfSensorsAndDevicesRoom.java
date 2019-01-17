@@ -55,6 +55,7 @@ public class GetListOfSensorsAndDevicesRoom {
             return;
         }
 
+        content.delete(0, content.length());
 
         int positionRoom = chosenOption - 1;
         String choosenRoom = controller.getRoomNameByPosition(positionRoom);

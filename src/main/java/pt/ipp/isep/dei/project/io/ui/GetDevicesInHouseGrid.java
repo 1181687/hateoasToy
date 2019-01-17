@@ -34,22 +34,23 @@ public class GetDevicesInHouseGrid {
         StringBuilder content = new StringBuilder();
         content.append(mctrl.getHouseGridListToString());
         content.append("0 - Exit");
-        System.out.println(content.toString());
+        String listContentRoom = content.toString();
 
         int maxPosition = mctrl.getHouseGridListLength();
-        String label1 = "Choose the House Grid you want to get the list of devices";
+        String label1 = "\nChoose the House Grid you want to get the list of devices\n" + listContentRoom;
         int selection = InputValidator.getIntRange(label1, 0, maxPosition);
         int positionHG = (selection - 1);
         if (selection == 0) {
             return;
         }
+        content.delete(0, content.length());
 
         if (mctrl.checkIfThereAreNoDevicesHGbyPosition(positionHG)) {
             System.out.println("There aren't devices in the chosen House Grid.\n");
             return;
         }
 
-        content.append("\nThe list of devices in House Grid ");
+        content.append("\n\nThe list of devices in House Grid ");
         content.append(mctrl.getHGNameByHGPosition(positionHG));
         content.append(" is:\n\n");
         content.append(mctrl.getDeviceListContentNameTypeLocationByHG(positionHG));
