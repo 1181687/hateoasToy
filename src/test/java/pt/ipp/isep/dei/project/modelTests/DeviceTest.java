@@ -331,7 +331,7 @@ public class DeviceTest {
         assertTrue(result);
     }
 
-    @Test
+    /* @Test
     void testGetSpecsAttributesToString() {
         // Arrange
         // Dimension Instantiation
@@ -359,7 +359,7 @@ public class DeviceTest {
 
         // assert
         assertEquals(expectedResult, result);
-    }
+    } */
 
     @Test
     void testGetDeviceAttributesToString() {

@@ -188,10 +188,8 @@ public class DeviceListTest {
         DeviceList deviceList = new DeviceList();
         deviceList.addDevice(device0);
 
-        int coldWaterTempPosition = 5;
-        deviceList.setAttribute(0, coldWaterTempPosition, 30);
-        int volumeOfWaterToHeatPosition = 6;
-        deviceList.setAttribute(0, volumeOfWaterToHeatPosition, 100);
+        deviceList.setAttribute(0, "Cold-water temperature", 30);
+        deviceList.setAttribute(0, "Volume of water to heat", 100);
 
         double expectedResult = 2093.4;
 
@@ -426,5 +424,30 @@ public class DeviceListTest {
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
+/*
+    @Test
+    public void testAddToProgramList (){
+        //Arrange
+        String programName1 = "p1";
+        double duration1 = 15;
+        double energyConsumption1 = 0.9;
+        Program program1 = new Program(programName1, duration1,energyConsumption1);
+
+        String programName2 = "p2";
+        double duration2 = 20;
+        double energyConsumption2 = 0.7;
+        Program program2 = new Program(programName2, duration2,energyConsumption2);
+
+        DeviceList devList = new DeviceList();
+
+
+
+
+
+        //Act
+        List<Program> result = devList.addToProgramList(programName, duration,energyConsumption);
+        //Assert
+
+    }*/
 }
 

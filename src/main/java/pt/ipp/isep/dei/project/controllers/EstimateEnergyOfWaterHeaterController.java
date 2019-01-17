@@ -24,6 +24,12 @@ public class EstimateEnergyOfWaterHeaterController {
         return mHouse.getNumberOfDevicesOfAType(mType);
     }
 
+    /**
+     * TODO
+     *
+     * @param devicePosition
+     * @return
+     */
     public String getNameOfWaterHeater(int devicePosition) {
         return mHouse.getDeviceName(mType, devicePosition);
     }
@@ -35,7 +41,7 @@ public class EstimateEnergyOfWaterHeaterController {
      * @param coldWaterTemperature
      */
     public void setColdWaterTemp(int devicePosition, double coldWaterTemperature) {
-        mHouse.setAttribute(mType, devicePosition, 5, coldWaterTemperature);
+        mHouse.setAttribute(mType, devicePosition, "Cold-water temperature", coldWaterTemperature);
     }
 
     /**
@@ -44,7 +50,7 @@ public class EstimateEnergyOfWaterHeaterController {
      * @param volumeOfWaterToHeat
      */
     public void setVolumeOfWaterToHeat(int devicePosition, double volumeOfWaterToHeat) {
-        mHouse.setAttribute(mType, devicePosition, 6, volumeOfWaterToHeat);
+        mHouse.setAttribute(mType, devicePosition, "Volume of water to heat", volumeOfWaterToHeat);
     }
 
     /**

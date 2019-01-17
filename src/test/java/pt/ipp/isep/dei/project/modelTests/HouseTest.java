@@ -1433,10 +1433,8 @@ public class HouseTest {
         // House Instantiation
         House house = new House(roomList, houseGridList, null, null);
 
-        int coldWaterTempPosition = 5;
-        house.setAttribute("Electric Water Heater", 0, coldWaterTempPosition, 30);
-        int volumeOfWaterToHeatPosition = 6;
-        house.setAttribute("Electric Water Heater", 0, volumeOfWaterToHeatPosition, 100);
+        house.setAttribute("Electric Water Heater", 0, "Cold-water temperature", 30);
+        house.setAttribute("Electric Water Heater", 0, "Volume of water to heat", 100);
 
         double expectedResult = 2093.4;
 

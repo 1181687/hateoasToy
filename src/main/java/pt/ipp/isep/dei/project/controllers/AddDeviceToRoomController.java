@@ -2,15 +2,13 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.*;
 
-import java.util.List;
-
 public class AddDeviceToRoomController {
 
     private House mHouse;
     private Device mDevice;
     private DeviceList mDeviceList;
     private Room mRoom;
-    private List<Program> mProgramList;
+    private ProgramList mProgramList;
 
     /**
      * Constructor.
@@ -20,6 +18,7 @@ public class AddDeviceToRoomController {
     public AddDeviceToRoomController(House house) {
         this.mHouse = house;
         this.mDeviceList = new DeviceList();
+        this.mProgramList = new ProgramList();
     }
 
 
@@ -119,7 +118,7 @@ public class AddDeviceToRoomController {
      * @param capacity     the capacity of the Dish Washer (a specification of the Dish Washer)
      * @return the Device that has been created
      */
-    public Device createNewDishWasher(String name, Room selectedRoom, double nominalPower, double capacity) {
+    public Device createNewDishWasher(String name, Room selectedRoom, double nominalPower, int capacity) {
         return mDevice = mDeviceList.newDishWasher(name, selectedRoom, nominalPower, capacity, mProgramList);
     }
 
@@ -162,11 +161,15 @@ public class AddDeviceToRoomController {
         return mHouse.getDeviceListContentOfRoomByPosition(selectedRoom);
     }
 
-    public List<Program> addToProgramList(String programName, double duration, double energyConsumption) {
-        return mProgramList = mDeviceList.addToProgramList(programName, duration, energyConsumption);
+    public Program createNewProgram(String programName, double duration, double energyConsumption) {
+        return mProgramList.newProgram(programName, duration, energyConsumption);
     }
 
-    public List<Program> getmProgramList() {
+    public boolean addProgramToList(Program program) {
+        return mProgramList.addProgram(program);
+    }
+
+    public ProgramList getmProgramList() {
         return mProgramList;
     }
 }
