@@ -3,15 +3,175 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Lamp;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LampTest {
 
     @Test
+    public void testgetAttributeNames() {
+        //Arrange
+        // Lamp Instantiation
+        double luminousFlux = 50.0;
+        double nominalPower = 100.0;
+        Lamp lamp = new Lamp(luminousFlux, nominalPower);
+
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("Luminous flux");
+        expectedResult.add("Time");
+        expectedResult.add("Nominal power");
+
+        //Act
+        List<String> result = lamp.getAttributeNames();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueLuminousFlux() {
+        //Arrange
+        double luminousFlux2 = 30;
+
+        // Lamp Instantiation
+        double luminousFlux = 50.0;
+        double nominalPower = 100.0;
+        Lamp lamp = new Lamp(luminousFlux, nominalPower);
+        String attributeName = "Luminous flux";
+        Object obj = new Double(luminousFlux2);
+        lamp.setAttributeValue(attributeName, obj);
+        double expectedResult = 30.0;
+
+        //Act
+        Object result = lamp.getAttributeValue(attributeName);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueTime() {
+        //Arrange
+        // Lamp Instantiation
+        double luminousFlux = 50.0;
+        double nominalPower = 100.0;
+        double time = 20.0;
+        Lamp lamp = new Lamp(luminousFlux, nominalPower);
+        String attributeName = "Time";
+        Object obj = new Double(time);
+        lamp.setAttributeValue(attributeName, obj);
+        double expectedResult = 20.0;
+
+        //Act
+        Object result = lamp.getAttributeValue(attributeName);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueNominalPower() {
+        //Arrange
+        double nominalPower2 = 10;
+
+        // Lamp Instantiation
+        double luminousFlux = 50.0;
+        double nominalPower = 100.0;
+        Lamp lamp = new Lamp(luminousFlux, nominalPower);
+        String attributeName = "Nominal power";
+        Object obj = new Double(nominalPower2);
+        lamp.setAttributeValue(attributeName, obj);
+        double expectedResult = 10;
+
+        //Act
+        Object result = lamp.getAttributeValue(attributeName);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeNonexistent() {
+        //Arrange
+        int nominalPower2 = 10;
+
+        // Lamp Instantiation
+        double luminousFlux = 50.0;
+        double nominalPower = 100.0;
+        Lamp lamp = new Lamp(luminousFlux, nominalPower);
+        String attributeName = "NonExistent";
+        Object obj = new Integer(nominalPower2);
+        lamp.setAttributeValue(attributeName, obj);
+        int expectedResult = 0;
+
+        //Act
+        Object result = lamp.getAttributeValue(attributeName);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeValueFalseLuminousFlux() {
+        //Arrange
+        String luminousFlux2 = "30";
+
+        // Lamp Instantiation
+        double luminousFlux = 50.0;
+        double nominalPower = 100.0;
+        Lamp lamp = new Lamp(luminousFlux, nominalPower);
+        String attributeName = "Luminous flux";
+        Object obj = new Integer(luminousFlux2);
+
+        boolean expectedResult = false;
+
+        //Act
+        Object result = lamp.setAttributeValue(attributeName, obj);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeValueFalseTime() {
+        //Arrange
+        String time = "30";
+
+        // Lamp Instantiation
+        double luminousFlux = 50.0;
+        double nominalPower = 100.0;
+        Lamp lamp = new Lamp(luminousFlux, nominalPower);
+        String attributeName = "Time";
+        Object obj = new Integer(time);
+
+        boolean expectedResult = false;
+
+        //Act
+        Object result = lamp.setAttributeValue(attributeName, obj);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeValueFalseNominalPower() {
+        //Arrange
+        String nominalPower2 = "30";
+
+        // Lamp Instantiation
+        double luminousFlux = 50.0;
+        double nominalPower = 100.0;
+        Lamp lamp = new Lamp(luminousFlux, nominalPower);
+        String attributeName = "Nominal power";
+        Object obj = new Integer(nominalPower2);
+
+        boolean expectedResult = false;
+
+        //Act
+        Object result = lamp.setAttributeValue(attributeName, obj);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void getEnergyConsumptionInADayTestWithValidValues() {
         // Arrange
         // Lamp Instantiation
-
         double luminousFlux = 50.0;
         double nominalPower = 100.0;
         Lamp lamp = new Lamp(luminousFlux, nominalPower);
