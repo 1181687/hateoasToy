@@ -220,4 +220,5 @@ public class DeviceTest {
         // Assert
         assertTrue(result);
     }
+
 }
