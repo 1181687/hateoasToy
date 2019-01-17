@@ -361,13 +361,13 @@ public class House {
      *
      * @param type
      * @param devicePosition
-     * @param attribute
+     * @param attributeName
      * @param value
      * @return
      */
-    public boolean setAttribute(String type, int devicePosition, int attribute, double value) {
+    public boolean setAttribute(String type, int devicePosition, String attributeName, double value) {
         DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);
-        return listWithAllDevicesOfAType.setAttribute(devicePosition, attribute, value);
+        return listWithAllDevicesOfAType.setAttribute(devicePosition, attributeName, value);
     }
 
     /**

@@ -133,6 +133,10 @@ public class Device implements Measurable {
         return this.mSpec.setAttribute(attribute, value);
     }
 
+    public boolean setAttributesDevType1(String attributeName, Object attributeValue) {
+        return this.mSpec.setAttributeValue(attributeName, attributeValue);
+    }
+
     /**
      * method that creates the hashcode to two devices that are have the same name.
      *
