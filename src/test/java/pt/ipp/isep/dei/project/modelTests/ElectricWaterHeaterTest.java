@@ -3,9 +3,239 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.ElectricWaterHeater;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class ElectricWaterHeaterTest {
+
+    @Test
+    public void testgetAttributeNames() {
+        //Arrange
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+
+
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("Volume of water to heat");
+        expectedResult.add("Cold-water temperature");
+        expectedResult.add("Hot-water temperature");
+        expectedResult.add("Performance ratio");
+        expectedResult.add("Maximum volume");
+        expectedResult.add("Nominal power");
+
+        //Act
+        List<String> result = electricWaterHeater.getAttributeNames();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueHotWaterTemp() {
+        //Arrange
+        double hotWaterTemp1 = 30.0;
+
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+
+        String attributeName = "Hot-water temperature";
+        Object obj = new Double(hotWaterTemp1);
+        electricWaterHeater.setAttributeValue(attributeName, obj);
+        double expectedResult = 30.0;
+
+        //Act
+        Object result = electricWaterHeater.getAttributeValue(attributeName);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueMaximumVolume() {
+        //Arrange
+        double maximumVolume1 = 30.0;
+
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+
+        String attributeName = "Maximum volume";
+        Object obj = new Double(maximumVolume1);
+        electricWaterHeater.setAttributeValue(attributeName, obj);
+        double expectedResult = 30.0;
+
+        //Act
+        Object result = electricWaterHeater.getAttributeValue(attributeName);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValuePerformanceRatio() {
+        //Arrange
+        double performanceRatio1 = 0.8;
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+
+        String attributeName = "Performance ratio";
+        Object obj = new Double(performanceRatio1);
+        electricWaterHeater.setAttributeValue(attributeName, obj);
+        double expectedResult = 0.8;
+
+        //Act
+        Object result = electricWaterHeater.getAttributeValue(attributeName);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueNominalPower() {
+        //Arrange
+        double nominalPower2 = 10;
+
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+
+        String attributeName = "Nominal power";
+        Object obj = new Double(nominalPower2);
+        electricWaterHeater.setAttributeValue(attributeName, obj);
+        double expectedResult = 10;
+
+        //Act
+        Object result = electricWaterHeater.getAttributeValue(attributeName);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeNonexistent() {
+        //Arrange
+        int nominalPower2 = 10;
+
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+
+        String attributeName = "NonExistent";
+        Object obj = new Integer(nominalPower2);
+        electricWaterHeater.setAttributeValue(attributeName, obj);
+        int expectedResult = 0;
+
+        //Act
+        Object result = electricWaterHeater.getAttributeValue(attributeName);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeValueFalseHotWaterTemp() {
+        //Arrange
+        String hotWaterTemp1 = "30";
+
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        String attributeName = "Hot-water temperature";
+        Object obj = new Integer(hotWaterTemp1);
+
+        boolean expectedResult = false;
+
+        //Act
+        Object result = electricWaterHeater.setAttributeValue(attributeName, obj);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeValueFalseMaximumVolume() {
+        //Arrange
+        String maximumVolume2 = "30";
+
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        String attributeName = "Maximum volume";
+        Object obj = new Integer(maximumVolume2);
+
+        boolean expectedResult = false;
+
+        //Act
+        Object result = electricWaterHeater.setAttributeValue(attributeName, obj);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeValueFalsePerformanceRatio() {
+        //Arrange
+        String performanceRatio1 = "30";
+
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        String attributeName = "Performance ratio";
+        Object obj = new Integer(performanceRatio1);
+
+        boolean expectedResult = false;
+
+        //Act
+        Object result = electricWaterHeater.setAttributeValue(attributeName, obj);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeValueFalseNominalPower() {
+        //Arrange
+        String nominalPower2 = "30";
+
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        String attributeName = "Nominal power";
+        Object obj = new Integer(nominalPower2);
+
+        boolean expectedResult = false;
+
+        //Act
+        Object result = electricWaterHeater.setAttributeValue(attributeName, obj);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 
     @Test
     public void getEnergyConsumptionInADayTest1() {
