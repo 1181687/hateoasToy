@@ -386,6 +386,7 @@ public class EditConfigurationDeviceControllerTest {
 
         // Room Instantiation
         Room room = new Room("Room", 2, dim);
+        Room room2 = new Room("Bedroom", 1, dim);
 
         // Device Instantiation
         double luminousFlux = 10.0;
@@ -398,8 +399,10 @@ public class EditConfigurationDeviceControllerTest {
         int position = 0;
         room.addDevice(device);
         house.addRoom(room);
+        house.addRoom(room2);
         controller.getRoomByPosition(position);
         controller.getDeviceByPosition(position);
+        controller.getNewRoom(1);
 
         // act
         boolean result = controller.setLocation();

@@ -170,12 +170,9 @@ public class DeviceTest {
         DeviceList deviceList = new DeviceList();
         deviceList.addDeviceToDeviceList(dev1);
 
-        // Act
-        boolean result = dev1.setName("Lamp1");
-
-
         // Assert
-        assertFalse(result);
+        Throwable exception = assertThrows(RuntimeException.class, () -> dev1.setName("Lamp1"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
