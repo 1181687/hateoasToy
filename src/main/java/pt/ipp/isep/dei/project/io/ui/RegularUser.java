@@ -87,4 +87,19 @@ public class RegularUser {
             option = Menu.regularUserMenu();
         }
     }
+
+    public void runRegularUserPowerConsuptionManagement() {
+        int option = Menu.regularUserPowerConsuptionManagement();
+        if (option == 0) {
+            return;
+        }
+        while (option != 0) {
+            switch (option) {
+                case 1:
+                    GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(house);
+                    ui230.run();
+                    break;
+            }
+        }
+    }
 }

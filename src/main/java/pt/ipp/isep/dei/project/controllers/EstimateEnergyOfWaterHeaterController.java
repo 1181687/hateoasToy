@@ -16,7 +16,7 @@ public class EstimateEnergyOfWaterHeaterController {
     }
 
     /**
-     * TO DO
+     * TODO
      *
      * @return
      */
@@ -24,8 +24,12 @@ public class EstimateEnergyOfWaterHeaterController {
         return mHouse.getNumberOfDevicesOfAType(mType);
     }
 
+    public String getNameOfWaterHeater(int devicePosition) {
+        return mHouse.getDeviceName(mType, devicePosition);
+    }
+
     /**
-     * TO DO
+     * TODO
      *
      * @param devicePosition
      * @param coldWaterTemperature
@@ -35,7 +39,7 @@ public class EstimateEnergyOfWaterHeaterController {
     }
 
     /**
-     * TO DO
+     * TODO
      * @param devicePosition
      * @param volumeOfWaterToHeat
      */
@@ -44,7 +48,7 @@ public class EstimateEnergyOfWaterHeaterController {
     }
 
     /**
-     * TO DO
+     * TODO
      * @param devicePosition
      * @return
      */
@@ -53,7 +57,7 @@ public class EstimateEnergyOfWaterHeaterController {
     }
 
     /**
-     * TO DO
+     * TODO
      *
      * @return
      */
