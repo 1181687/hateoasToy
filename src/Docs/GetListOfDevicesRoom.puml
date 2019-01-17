@@ -60,6 +60,12 @@ RoomList -> Room: GetDeviceListContent()
 activate Room
 Room -> DeviceList: GetDeviceListContent()
 activate DeviceList
+DeviceList -> DeviceList: GetLength()
+DeviceList -> DeviceList: GetDeviceList()
+DeviceList -> Device: GetName()
+activate Device
+DeviceList <-- Device: GetName()
+deactivate Device
 UI <-- DeviceList: GetDeviceListContent()
 deactivate DeviceList
 deactivate Room
