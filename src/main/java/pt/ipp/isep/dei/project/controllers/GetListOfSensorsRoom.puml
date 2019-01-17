@@ -27,6 +27,7 @@ House -> RoomList: GetNameofTheChosenRoomInASpecificPosition()
 House <-- RoomList: GetNameofTheChosenRoomInASpecificPosition()
 Controller <-- House: GetNameofTheChosenRoomInASpecificPosition()
 UI <-- Controller: GetNameofTheChosenRoomInASpecificPosition()
+User <-- UI: GetNameofTheChosenRoomInASpecificPosition()
 
 User -> UI: ChooseRoomFromList
 UI -> Controller: GetSensorsListContent()
@@ -44,4 +45,5 @@ RoomList <-- DeviceList: CheckIfSensorListIsEmpty()
 House <-- RoomList: CheckIfSensorListIsEmpty()
 Controller <-- House: CheckIfSensorListIsEmpty()
 UI <-- Controller: CheckIfSensorListIsEmpty()
+User <-- UI: GetSensorListContent()
 @enduml

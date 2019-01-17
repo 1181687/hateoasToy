@@ -1,0 +1,61 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor DeepSkyBlue
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor #A9DCDF
+
+	ParticipantBorderColor DeepSkyBlue
+	ParticipantBackgroundColor DodgerBlue
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+autonumber
+actor User
+User -> UI: GetDevicesInHouseGrid
+UI -> Controller: CheckIfHouseGridListIsEmpty()
+Controller -> House: CheckIfHouseGridListIsEmpty()
+House -> HouseGridList: CheckIfHouseGridListIsEmpty()
+House <-- HouseGridList: CheckIfHouseGridListIsEmpty()
+Controller <-- House: CheckIfHouseGridListIsEmpty()
+UI <-- Controller: CheckIfHouseGridListIsEmpty()
+User <-- UI: GetHouseGridListToString()
+User -> UI: ChooseHouseGrid
+
+UI -> Controller: CheckIfThereAreNoDevicesHGByPosition()
+Controller -> House: CheckIfThereAreNoDevicesHGByPosition()
+House -> HouseGridList: GetHouseGridByPosition()
+House <-- HouseGridList: GetHouseGridByPosition()
+House -> HouseGrid: CheckIfThereAreNoDevices()
+HouseGrid -> RoomList: CheckIfThereAreNoDevices()
+RoomList -> RoomList: CheckIfDeviceListIsEmpty()
+RoomList -> Room: CheckIfDeviceListIsEmpty()
+Room -> DeviceList: CheckIfDeviceListIsEmpty()
+Room <-- DeviceList: CheckIfDeviceListIsEmpty()
+RoomList <-- Room: CheckIfDeviceListIsEmpty()
+HouseGrid <-- RoomList: CheckIfThereAreNoDevices()
+House <-- HouseGrid: CheckIfThereAreNoDevices()
+Controller <-- House: CheckIfThereAreNoDevicesHGByPosition()
+UI <-- Controller: CheckIfThereAreNoDevicesHGByPosition()
+
+UI -> Controller: GetHGNameByHGPosition()
+Controller -> House: GetHGNameByHGPosition()
+House -> HouseGridList: GetNameByHGPosition()
+House <-- HouseGridList: GetNameByHGPosition()
+Controller <-- House: GetHGNameByHGPosition()
+UI <-- Controller: GetHGNameByHGPosition()
+
+UI -> Controller: GetDeviceListContentNameTypeLocationByHG()
+Controller -> House: GetDeviceListContentNameTypeLocationByHG()
+House -> HouseGridList: GetHGByPosition()
+House <-- HouseGridList: GetHGByPosition()
+Controller <-- House: GetDeviceListContentNameTypeLocationByHG()
+UI <-- Controller: GetDeviceListContentNameTypeLocationByHG()
+User <-- UI: GetDeviceListContentNameTypeLocationByHG()
+@enduml

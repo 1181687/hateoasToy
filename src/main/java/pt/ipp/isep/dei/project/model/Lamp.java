@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 public class Lamp implements DeviceSpecs {
     private String mTypeName ;
     private double mLuminousFlux;
@@ -18,26 +20,70 @@ public class Lamp implements DeviceSpecs {
         return mTypeName;
     }
 
+
+    /**
+     * get Method
+     *
+     * @return nominal power
+     */
     @Override
     public double getmNominalPower() {
         return mNominalPower;
     }
 
+    /**
+     * get method
+     * @return energy consumption in a Day
+     */
     @Override
     public double getEnergyConsumptionInADay() {
         return mNominalPower * mTime;
     }
 
+    /**
+     * set method
+     * @param mLuminousFlux
+     * @return
+     */
     public boolean setmLuminousFlux(double mLuminousFlux) {
+        if (Utils.isSameDouble(this.mLuminousFlux, mLuminousFlux)) {
+            return false;
+        }
         this.mLuminousFlux = mLuminousFlux;
         return true;
     }
 
+    /**
+     * set method
+     *
+     * @param mTime
+     * @return
+     */
+    public boolean setmTime(double mTime) {
+        if (Utils.isSameDouble(this.mTime, mTime)) {
+            return false;
+        }
+        this.mTime = mTime;
+        return true;
+    }
+
+    /**
+     * set method
+     * @param mNominalPower
+     * @return
+     */
     public boolean setmNominalPower(double mNominalPower) {
+        if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
+            return false;
+        }
         this.mNominalPower = mNominalPower;
         return true;
     }
 
+    /**
+     * method that displays a string of the choosen attribute (name of the attribute and its value)
+     * @return
+     */
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
@@ -47,6 +93,14 @@ public class Lamp implements DeviceSpecs {
         return lampAttributes;
     }
 
+
+    /**
+     * set method
+     *
+     * @param attribute position of the attribute
+     * @param value
+     * @return
+     */
     @Override
     public boolean setAttribute(int attribute, double value) {
         switch (attribute) {
@@ -55,10 +109,13 @@ public class Lamp implements DeviceSpecs {
             case 2:
                 return setmNominalPower(value);
         }
-        System.out.println("Please select a valid number.");
         return false;
     }
 
+    /**
+     * get method
+     * @return number of Fridge attributes
+     */
     @Override
     public int getNumberOfAttributes() {
         return 2;

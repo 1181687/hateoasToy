@@ -53,12 +53,5 @@ public class AddRoom {
         content.append(name);
         content.append(" was created with sucess!\n");
         System.out.println(content.toString());
-/*
-        "Pretende ver a lista de quartos existentes?"
-
-                YN
-                        getroomlist e apresentar
-
-                        */
     }
 }

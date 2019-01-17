@@ -385,7 +385,7 @@ public class Sensor {
 
         int contador = 0;
         double somaRegistosMinSemana = 0;
-        if (registosMinSemana.size() == 0) {
+        if (registosMinSemana.isEmpty()) {
             return Double.NaN;
         }
         while (contador < registosMinSemana.size()) {

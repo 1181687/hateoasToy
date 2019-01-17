@@ -21,7 +21,7 @@ public class GetNominalPowerOfGrid {
             mController.getHouseGridByPosition(position);
 
             double nominalPower = mController.getHouseGridTotalNominalPower();
-            System.out.println("The total nominal power of the selected house grid is " + nominalPower);
+            System.out.println("The total nominal power of the selected house grid is " + nominalPower + "kW.");
 
         }
     }

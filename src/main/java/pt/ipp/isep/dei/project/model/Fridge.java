@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
-import java.util.Scanner;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 public class Fridge implements DeviceSpecs {
     private String mTypeName;
@@ -23,53 +23,77 @@ public class Fridge implements DeviceSpecs {
         return mTypeName;
     }
 
-    /**
-     * @return
+    /** get method
+     * @return energy consumption in a day
      */
     public double getEnergyConsumptionInADay() {
         return mAnnualEnergyConsumption / 365;
     }
 
-    /**
-     * @return
+    /** get method
+     * @return nominal power
      */
     @Override
     public double getmNominalPower() {
         return mNominalPower;
     }
 
+
+    /**
+     * set method
+     *
+     * @param mFreezerCapacity capacity of freezer
+     * @return capacity of freezer
+     */
     public boolean setmFreezerCapacity(double mFreezerCapacity) {
-        if (this.mFreezerCapacity == mFreezerCapacity) {
+        if (Utils.isSameDouble(this.mFreezerCapacity, mFreezerCapacity)) {
             return false;
         }
         this.mFreezerCapacity = mFreezerCapacity;
         return true;
     }
 
+    /**
+     * set method
+     * @param mRefrigeratorCapacity capacity of refrigerator
+     */
     public boolean setmRefrigeratorCapacity(double mRefrigeratorCapacity) {
-        if (this.mRefrigeratorCapacity == mRefrigeratorCapacity) {
+        if (Utils.isSameDouble(this.mRefrigeratorCapacity, mRefrigeratorCapacity)) {
             return false;
         }
         this.mRefrigeratorCapacity = mRefrigeratorCapacity;
         return true;
     }
 
+    /**
+     * set method
+     * @param mAnnualEnergyConsumption annual energy comsumption
+     */
     public boolean setmAnnualEnergyConsumption(double mAnnualEnergyConsumption) {
-        if (this.mAnnualEnergyConsumption == mAnnualEnergyConsumption) {
+        if (Utils.isSameDouble(this.mAnnualEnergyConsumption, mAnnualEnergyConsumption)) {
             return false;
         }
         this.mAnnualEnergyConsumption = mAnnualEnergyConsumption;
         return true;
     }
 
+    /**
+     * set method
+     * @param mNominalPower nominal power
+     */
     public boolean setmNominalPower(double mNominalPower) {
-        if (this.mNominalPower == mNominalPower) {
+        if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
             return false;
         }
         this.mNominalPower = mNominalPower;
         return true;
     }
 
+    /**
+     * method that displays a string of the choosen attribute (name of the attribute and its value)
+     *
+     * @return
+     */
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
@@ -81,6 +105,12 @@ public class Fridge implements DeviceSpecs {
         return fridgeAttributes;
     }
 
+    /**
+     * set method
+     * @param attribute position of the attribute
+     * @param value
+     * @return
+     */
     @Override
     public boolean setAttribute(int attribute, double value) {
 
@@ -94,10 +124,14 @@ public class Fridge implements DeviceSpecs {
             case 4:
                 return setmNominalPower(value);
         }
-        System.out.println("Please select a valid number.");
         return false;
     }
 
+    /**
+     * get method
+     *
+     * @return number of Fridge attributes
+     */
     @Override
     public int getNumberOfAttributes() {
         return 4;

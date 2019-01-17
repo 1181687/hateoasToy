@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 public class WashingMachine implements DeviceSpecs {
     private String mTypeName ;
     private double mCapacity;
@@ -29,7 +31,7 @@ public class WashingMachine implements DeviceSpecs {
     }
 
     public boolean setmCapacity(double mCapacity) {
-        if (this.mCapacity == mCapacity) {
+        if (Utils.isSameDouble(this.mCapacity, mCapacity)) {
             return false;
         }
         this.mCapacity = mCapacity;
@@ -37,7 +39,7 @@ public class WashingMachine implements DeviceSpecs {
     }
 
     public boolean setmNominalPower(double mNominalPower) {
-        if (this.mNominalPower == mNominalPower) {
+        if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
             return false;
         }
         this.mNominalPower = mNominalPower;
@@ -61,7 +63,6 @@ public class WashingMachine implements DeviceSpecs {
             case 2:
                 return setmNominalPower(value);
         }
-        System.out.println("Please select a valid number.");
         return false;
     }
 

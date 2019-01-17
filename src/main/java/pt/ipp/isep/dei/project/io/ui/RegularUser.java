@@ -61,7 +61,7 @@ public class RegularUser {
                     break;
                 case 3:
                     // JUST TESTING
-                    EstimateEnergyUsedByElectricWaterHeater ui752 = new EstimateEnergyUsedByElectricWaterHeater(house);
+                    EstimateEnergyOfWaterHeater ui752 = new EstimateEnergyOfWaterHeater(house);
                     ui752.run();
                     break;
             }

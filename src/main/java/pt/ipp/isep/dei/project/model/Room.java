@@ -122,7 +122,7 @@ public class Room implements Measurable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(mName);
+        return Objects.hash(this.mName);
     }
 
     /**
@@ -267,21 +267,21 @@ public class Room implements Measurable {
     }
 
     /**
-     * Method that allows the possibility of setting the cold-water temperature and the volume of water to heat in the
-     * class Electric Water Heater.
      *
-     * @param coldWaterTemp       Sets the current temperature of the water that is going to be heated.
-     * @param volumeOfWaterToHeat Sets the amount of water to be heated.
-     */
-    public void setColdWaterTempAndVolumeOfWaterToHeat(double coldWaterTemp, double volumeOfWaterToHeat) {
-        mDeviceList.setColdWaterTempAndVolumeOfWaterToHeat(coldWaterTemp, volumeOfWaterToHeat);
-    }
-
-    /**
      * @param type
      * @return
      */
-    public double getEnergyConsumptionInADayOfAllDevicesOfAType(String type) {
-        return mDeviceList.getEnergyConsumptionInADayOfAllDevicesOfAType(type);
+    public DeviceList getAllDevicesOfAType(String type) {
+        return mDeviceList.getAllDevicesOfAType(type);
+    }
+
+    /**
+     * method that check if a name of a Device already exists on the list of devices.
+     *
+     * @param name name of device
+     * @return boolean true if exists, false if it doesn't
+     */
+    public boolean checkIfNameAlreadyExists(String name) {
+        return this.mDeviceList.checkIfNameAlreadyExists(name);
     }
 }

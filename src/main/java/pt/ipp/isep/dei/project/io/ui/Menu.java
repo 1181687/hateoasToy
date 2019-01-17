@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 public class Menu {
 
+    private static final String CHOOSE_OPTIONS = "Choose one of the options:";
+
     public static int usersMenu() {
         StringBuilder content = new StringBuilder();
         content.append("What type of user are you?");
@@ -17,7 +19,7 @@ public class Menu {
 
     public static int adminMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("Please choose an option:");
+        content.append(CHOOSE_OPTIONS);
         content.append("\n");
         content.append("1-Geographical Area");
         content.append("\n");
@@ -30,7 +32,7 @@ public class Menu {
 
     public static int adminGeoAreaMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("Choose one of the following options:");
+        content.append(CHOOSE_OPTIONS);
         content.append("\n");
         content.append("1-Create new type of geographical area");
         content.append("\n");
@@ -55,7 +57,7 @@ public class Menu {
 
     public static int adminHouseMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("Choose one of the following options:");
+        content.append(CHOOSE_OPTIONS);
         content.append("\n");
         content.append("1-Configure the location of the house");
         content.append("\n");
@@ -69,20 +71,22 @@ public class Menu {
         content.append("\n");
         content.append("6-Check the list of sensors in a room");
         content.append("\n");
-        content.append("7- Edit a device in a room");
+        content.append("7-Edit a device in a room");
         content.append("\n");
         content.append("8-Check the nominal power of all devices in a room");
         content.append("\n");
-        content.append("9-Add a new device to a room");
+        content.append("9-Check the nominal power of House Grid");
+        content.append("\n");
+        content.append("10-Add a new device to a room");
         content.append("\n");
         content.append("0-Return to the previous menu");
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 9);
+        return InputValidator.getIntRange(label, 0, 10);
     }
 
     public static int regularUserMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("Choose one of the options:");
+        content.append(CHOOSE_OPTIONS);
         content.append("\n");
         content.append("1-House Area");
         content.append("\n");
@@ -95,7 +99,7 @@ public class Menu {
 
     public static int regularUserHouseAreaMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("Choose one of the options:");
+        content.append(CHOOSE_OPTIONS);
         content.append("\n");
         content.append("1-Get current temperature in the house area");
         content.append("\n");
@@ -110,7 +114,7 @@ public class Menu {
 
     public static int regularUserRoomsMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("Choose one of the options:");
+        content.append(CHOOSE_OPTIONS);
         content.append("\n");
         content.append("1-Current temperature in a room");
         content.append("\n");
@@ -126,7 +130,7 @@ public class Menu {
 
     public static int houseGridMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("Choose one of the options:");
+        content.append(CHOOSE_OPTIONS);
         content.append("\n");
         content.append("1-Create a House Grid");
         content.append("\n");
@@ -138,7 +142,7 @@ public class Menu {
         content.append("\n");
         content.append("5-Get list of devices in a house grid");
         content.append("\n");
-        content.append("6-Get nominal power of a subset of room and/or devices");
+        content.append("6-Get nominal power of a subset of rooms and/or devices in a house grid");
         content.append("\n");
         content.append("0-Return to the previous menu");
         String label = content.toString();

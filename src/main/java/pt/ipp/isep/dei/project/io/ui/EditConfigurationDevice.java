@@ -43,6 +43,7 @@ public class EditConfigurationDevice {
                         controller.setDeviceName(newName);
                         content.append("The name was changed with success! Now, this device call " + newName + "! \n");
                         break;
+
                     case 2:
                         String label5 = "Choose the specification you want to change. \n" + controller.getSpecsAttributesToString();
                         int attribute = InputValidator.getIntRange(label5,1,controller.getNumberOfAttributesInDeviceSpecs());
@@ -63,11 +64,8 @@ public class EditConfigurationDevice {
                         content.append("! \n");
                         break;
                 }
-
             }
-
         }
         System.out.println(content.toString());
-
     }
 }

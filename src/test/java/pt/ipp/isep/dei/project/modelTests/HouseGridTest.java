@@ -73,16 +73,16 @@ public class HouseGridTest {
         assertEquals(expectedResult,result);
     }
 
-    /*@Test
+    @Test
     public void testGetAllDevicesList() {
         //Room ONE
         String name = "Kitchen";
         Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
-        DeviceSpecs specFridge = new Fridge();
-        DeviceSpecs specWashing = new WashingMachine();
-        DeviceSpecs specDishWasher = new DishWasher();
+        DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
+        DeviceSpecs specWashing = new WashingMachine(100, 100);
+        DeviceSpecs specDishWasher = new DishWasher(100, 100);
         Device dev1 = new Device("FridgeAriston", room1, specFridge);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
         Device dev3 = new Device("DishWasher", room1, specDishWasher);
@@ -95,7 +95,7 @@ public class HouseGridTest {
         String name2 = "KitchenBasement";
         Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim);
-        DeviceSpecs specWaterHeater = new ElectricWaterHeater();
+        DeviceSpecs specWaterHeater = new ElectricWaterHeater(100, 100, 100, 100);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
         Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
         Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
@@ -120,56 +120,6 @@ public class HouseGridTest {
         DeviceList result = housegrid.getAllDevicesList();
 
         assertEquals(expectedResult, result);
-    }*/
-
-    @Test
-    public void getEnergyConsumptionInADayOfAllDevicesOfATypeTestWithValidValues() {
-        // Arrange
-        // Dimension Instantiation
-        double height = 3;
-        double length = 3.5;
-        double width = 3.5;
-        Dimensions dim = new Dimensions(height, length, width);
-
-        // Room Instantiation
-        Room room = new Room("Room", 2, dim);
-
-        // ElectricWaterHeater Instantiation
-        double hotWaterTemp0 = 50;
-        double maximumVolume0 = 150;
-        double nominalPower0 = 100;
-        double performanceRatio = 0.9;
-        DeviceSpecs electricWaterHeater0 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
-        double hotWaterTemp1 = 60;
-        double maximumVolume1 = 200;
-        double nominalPower1 = 110;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, nominalPower1, performanceRatio);
-
-        // Device Instantiation
-        Device device0 = new Device("Electric Water Heater", room, electricWaterHeater0);
-        Device device1 = new Device("Electric Water Heater", room, electricWaterHeater1);
-
-        room.addDevice(device0);
-        room.addDevice(device1);
-
-        // RoomList Instantiation
-        RoomList roomList = new RoomList();
-        roomList.addRoom(room);
-
-        // HouseGrid Instantiation
-        String houseGridName = "Main Grid";
-        double maximumContractedPower = 200;
-        HouseGrid houseGrid = new HouseGrid(houseGridName, maximumContractedPower, roomList);
-
-        houseGrid.setColdWaterTempAndVolumeOfWaterToHeat(30, 100);
-
-        double expectedResult = 5233.5;
-
-        // Act
-        double result = houseGrid.getEnergyConsumptionInADayOfAllDevicesOfAType("Electric Water Heater");
-
-        // Assert
-        assertEquals(expectedResult, result, 0.000001);
     }
 
     @Test
@@ -196,7 +146,7 @@ public class HouseGridTest {
         String name2 = "KitchenBasement";
         Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
-        DeviceSpecs specWaterHeater = new ElectricWaterHeater(50, 50, 35, 0.9);
+        DeviceSpecs specWaterHeater = new ElectricWaterHeater(50, 50, 0.9, 35);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
         Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
         Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
