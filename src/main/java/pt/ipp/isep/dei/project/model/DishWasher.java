@@ -98,7 +98,7 @@ public class DishWasher implements DeviceSpecs {
                 return false;
             case ATTRIBUTE_LIST_OF_PROGRAMS:
                 if (attributeValue instanceof List) {
-                    this.mProgramList = (List) attributeValue;
+                    this.mProgramList = (List<Program>) attributeValue;
                     return true;
                 }
                 return false;
