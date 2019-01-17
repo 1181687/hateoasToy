@@ -95,6 +95,23 @@ public class LampTest {
     }
 
     @Test
+    public void setmTimeTrue() {
+        //Arrange
+        // Lamp Instantiation
+
+        double luminousFlux = 50.0;
+        double nominalPower = 100.0;
+        Lamp lamp = new Lamp(luminousFlux, nominalPower);
+
+        lamp.setmTime(50.0);
+
+        //act
+        boolean result = lamp.setmTime(10.0);
+
+        assertTrue(result);
+    }
+
+    @Test
     public void setmLuminousFluxTrue() {
         // Arrange
 
