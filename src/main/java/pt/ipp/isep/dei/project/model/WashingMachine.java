@@ -97,13 +97,6 @@ public class WashingMachine implements DeviceSpecs {
                     return true;
                 }
                 return false;
-                /*
-            case ATTRIBUTE_LIST_OF_PROGRAMS:
-                if (attributeValue instanceof List) {
-                    this.mProgramList = (List<Program>) attributeValue;
-                    return true;
-                }
-                return false;*/
             default:
                 return false;
         }

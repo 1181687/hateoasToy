@@ -278,13 +278,13 @@ public class DeviceList {
      * TODO - LUíS
      *
      * @param devicePosition
-     * @param attribute
+     * @param attributeName
      * @param value
      * @return
      */
-    public boolean setAttribute(int devicePosition, int attribute, double value) {
+    public boolean setAttribute(int devicePosition, String attributeName, double value) {
         Device device = mDeviceList.get(devicePosition);
-        return device.setAttributesDevType(attribute, value);
+        return device.setAttributesDevType1(attributeName, value);
     }
 
 

@@ -188,10 +188,8 @@ public class DeviceListTest {
         DeviceList deviceList = new DeviceList();
         deviceList.addDevice(device0);
 
-        int coldWaterTempPosition = 5;
-        deviceList.setAttribute(0, coldWaterTempPosition, 30);
-        int volumeOfWaterToHeatPosition = 6;
-        deviceList.setAttribute(0, volumeOfWaterToHeatPosition, 100);
+        deviceList.setAttribute(0, "Cold-water temperature", 30);
+        deviceList.setAttribute(0, "Volume of water to heat", 100);
 
         double expectedResult = 2093.4;
 
