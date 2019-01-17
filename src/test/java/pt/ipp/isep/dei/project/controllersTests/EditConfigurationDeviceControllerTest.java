@@ -641,4 +641,53 @@ public class EditConfigurationDeviceControllerTest {
         // assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void testSetDeviceSpecs() {
+        // Arrange
+        // initiate House
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+        // Dimension Instantiation
+        double height = 3;
+        double length = 3.5;
+        double width = 3.5;
+        Dimensions dim = new Dimensions(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Room", 2, dim);
+
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+
+        int coldWaterTempPosition = 5;
+        // Device Instantiation
+        Device device = new Device("Electric Water Heater", room, electricWaterHeater);
+
+        EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
+
+        int position = 0;
+        room.addDevice(device);
+        house.addRoom(room);
+        controller.getRoomByPosition(position);
+        controller.getDeviceByPosition(position);
+        controller.getNewRoom(0);
+
+        // Act
+        boolean result = controller.setDeviceSpecs(coldWaterTempPosition, 30);
+
+        // Assert
+        assertTrue(result);
+    }
 }
