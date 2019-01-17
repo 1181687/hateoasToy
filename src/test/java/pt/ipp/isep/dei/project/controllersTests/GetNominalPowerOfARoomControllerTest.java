@@ -276,5 +276,5 @@ class GetNominalPowerOfARoomControllerTest {
 
         //Assert
         assertFalse(result);
-    }/*
+    }*/
 }

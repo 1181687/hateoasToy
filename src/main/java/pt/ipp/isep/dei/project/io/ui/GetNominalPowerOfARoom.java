@@ -11,10 +11,14 @@ public class GetNominalPowerOfARoom {
     }
 
     public void run() {
+        String exit = "0- Exit";
         mController.getListOfRooms();
         int roomListLength = mController.getRoomListLength();
-        String label1 = "Please select a room to see its total nominal power: \n" + mController.getListOfRooms();
-        int position = InputValidator.getIntRange(label1, 1, roomListLength);
+        String label1 = "Please select a room to see its total nominal power: \n" + mController.getListOfRooms() + exit;
+        int position = InputValidator.getIntRange(label1, 0, roomListLength);
+        if (position == 0) {
+            return;
+        }
         mController.getRoom(position - 1);
         if (mController.checkIfDeviceListIsEmpty(position-1)) {
             System.out.println("There are no devices in the room. Please, add one first");

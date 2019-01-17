@@ -25,6 +25,7 @@ public class DeviceList {
 
     /**
      * get size of list of devices
+     *
      * @return integer
      */
     public int getLength() {
@@ -105,6 +106,7 @@ public class DeviceList {
 
     /**
      * method that creates the same hashCode to the same DeviceLists
+     *
      * @return the hashcode created
      */
     @Override
@@ -235,10 +237,7 @@ public class DeviceList {
     }
 
     public boolean removeDevice(Device device) {
-        if (this.getmDeviceList().remove(device)) {
-            return true;
-        }
-        return false;
+        return this.getmDeviceList().remove(device);
     }
 
     /**
@@ -256,10 +255,13 @@ public class DeviceList {
         }
         return listOfDevicesWithTheType;
     }
+
     public List<Program> addToProgramList(String programName, double duration, double energyConsumption) {
         List<Program> programList = new ArrayList<>();
         Program program = new Program(programName, duration, energyConsumption);
         programList.add(program);
+        return programList;
+    }
 
     /**
      * TO DO - LUÍS
@@ -273,8 +275,7 @@ public class DeviceList {
         Device device = mDeviceList.get(devicePosition);
         return device.setAttributesDevType(attribute, value);
     }
-        return programList;
-    }
+
 
     /**
      * TO DO - LUÍS
@@ -299,4 +300,5 @@ public class DeviceList {
         }
         return totalEnergyConsumption;
     }
+
 }
