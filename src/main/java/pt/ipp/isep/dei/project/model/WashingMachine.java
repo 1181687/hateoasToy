@@ -27,9 +27,8 @@ public class WashingMachine implements DeviceSpecs {
     }
 
     /**
-     * TODO - LUÍS
-     *
-     * @return
+     * this method get the names of the attributes of the washing machine.
+     * @return a list of attributes.
      */
     public List<String> getAttributeNames() {
         List<String> result = new ArrayList<>();
@@ -42,10 +41,9 @@ public class WashingMachine implements DeviceSpecs {
     }
 
     /**
-     * TODO - LUÍS
-     *
+     * method that get the name of the attribute.
      * @param attributeName
-     * @return
+     * @return the name of the attribute. The default return 0.
      */
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
@@ -65,11 +63,10 @@ public class WashingMachine implements DeviceSpecs {
     }
 
     /**
-     * TODO - LUÍS
-     *
+     * method hat set the attributes with a name and a value.
      * @param attributeName
      * @param attributeValue
-     * @return
+     * @return if true, set the name and the value. By default return false.
      */
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
@@ -103,9 +100,8 @@ public class WashingMachine implements DeviceSpecs {
     }
 
     /**
-     * TODO
-     *
-     * @return
+     * method that get the editable attributes.
+     * @return a string builder with the editable attributes.
      */
     public String getEditableAttributesContent() {
         StringBuilder content = new StringBuilder();
@@ -117,8 +113,7 @@ public class WashingMachine implements DeviceSpecs {
     }
 
     /**
-     * get method
-     *
+     * get method tht get the name of the device type.
      * @return type of device
      */
     @Override

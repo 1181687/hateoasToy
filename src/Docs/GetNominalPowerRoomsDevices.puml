@@ -1,0 +1,69 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor DeepSkyBlue
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor #A9DCDF
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor DeepSkyBlue
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+autonumber
+actor User
+User -> UI: getNominalPowerRoomsDevices
+activate UI
+UI -> Controller: listOfHouseGrids ()
+activate Controller
+UI <-- Controller: listOfHouseGrids ()
+deactivate Controller
+User <-- UI: listOfHouseGrids
+User -> UI: Int Position (HouseGrid)
+UI -> Controller: getHouseGrid(position)
+activate Controller
+Controller -> House: getHouseGrid(position)
+activate House
+House -> HouseGridList: getHouseGrid(position)
+activate HouseGridList
+Controller <-- HouseGridList: getHouseGrid(position)
+deactivate HouseGridList
+Controller -> HouseGrid: getRoomListContent
+activate HouseGrid
+HouseGrid -> RoomList: getRoomListContent
+activate RoomList
+UI <-- RoomList: getRoomListContent()
+deactivate RoomList
+User <-- UI: RoomListContent
+User -> UI: Int Position (Room)
+UI -> Controller: getDeviceList(Room)
+Controller -> HouseGrid: getDeviceList(Room)
+HouseGrid -> RoomList: getDeviceList(Room)
+activate RoomList
+RoomList -> Room: getDeviceList(Room)
+activate Room
+Room -> DeviceList: getDeviceList(Room)
+activate DeviceList
+UI <-- DeviceList: getDeviceList(Room)
+deactivate DeviceList
+User <-- UI: DeviceList
+User -> UI: Int Position (Device)
+UI -> Controller: addAMeasurableObject(Device)
+Controller -> MeasurableObjectsList: addAMeasurableObject(Device)
+activate MeasurableObjectsList
+UI <-- MeasurableObjectsList: addAMeasurableObject(Device)
+deactivate MeasurableObjectsList
+UI -> Controller:  getNominalPower()
+Controller -> MeasurableObjectsList: getNominalPower()
+activate MeasurableObjectsList
+UI <-- MeasurableObjectsList: getNominalPower()
+deactivate MeasurableObjectsList
+User <-- UI: NominalPower
+deactivate UI
+@enduml
