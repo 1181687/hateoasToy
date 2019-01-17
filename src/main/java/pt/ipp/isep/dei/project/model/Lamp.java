@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lamp implements DeviceSpecs {
-    private static final String ATTRIBUTE_LUMINIOUS_FLUX = "Luminous flux";
+    private static final String ATTRIBUTE_LUMINOUS_FLUX = "Luminous flux";
     private static final String ATTRIBUTE_TIME = "Time";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal power";
 
@@ -28,7 +28,7 @@ public class Lamp implements DeviceSpecs {
      */
     public List<String> getAttributeNames() {
         List<String> result = new ArrayList<>();
-        result.add(ATTRIBUTE_LUMINIOUS_FLUX);
+        result.add(ATTRIBUTE_LUMINOUS_FLUX);
         result.add(ATTRIBUTE_TIME);
         result.add(ATTRIBUTE_NOMINAL_POWER);
         return result;
@@ -41,7 +41,7 @@ public class Lamp implements DeviceSpecs {
      */
     public String getEditableAttributesContent() {
         StringBuilder content = new StringBuilder();
-        content.append("1 - " + ATTRIBUTE_LUMINIOUS_FLUX);
+        content.append("1 - " + ATTRIBUTE_LUMINOUS_FLUX);
         content.append("\n");
         content.append("2 - " + ATTRIBUTE_NOMINAL_POWER);
         content.append("\n");
@@ -56,7 +56,7 @@ public class Lamp implements DeviceSpecs {
      */
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
-            case ATTRIBUTE_LUMINIOUS_FLUX:
+            case ATTRIBUTE_LUMINOUS_FLUX:
                 return mLuminousFlux;
             case ATTRIBUTE_TIME:
                 return mTime;
@@ -76,7 +76,7 @@ public class Lamp implements DeviceSpecs {
      */
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
-            case ATTRIBUTE_LUMINIOUS_FLUX:
+            case ATTRIBUTE_LUMINOUS_FLUX:
                 if (attributeValue instanceof Double) {
                     this.mLuminousFlux = (Double) attributeValue;
                     return true;
