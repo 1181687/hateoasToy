@@ -233,20 +233,6 @@ public class DeviceList {
 
 
     /**
-     * Method that adds a device to the existing list.
-     *
-     * @param device
-     * @return
-     */
-    public boolean addDeviceToDeviceList(Device device) {
-        if (!(mDeviceList.contains(device))) {
-            mDeviceList.add(device);
-            return true;
-        }
-        return false;
-    }
-
-    /**
      * method that displays the device list content
      *
      * @return content of the device list

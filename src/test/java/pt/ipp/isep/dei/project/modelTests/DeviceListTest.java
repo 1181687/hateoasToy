@@ -111,8 +111,8 @@ public class DeviceListTest {
         DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
         Device dev2 = new Device("Lamp2", room, deviceSpecs2);
 
-        deviceList.addDeviceToDeviceList(dev1);
-        deviceList.addDeviceToDeviceList(dev2);
+        deviceList.addDevice(dev1);
+        deviceList.addDevice(dev2);
 
         String expectedResult =
                 "1 - Name of the device: Lamp1\n" +
@@ -152,7 +152,7 @@ public class DeviceListTest {
 
         DeviceList deviceList = new DeviceList();
 
-        deviceList.addDeviceToDeviceList(dev1);
+        deviceList.addDevice(dev1);
 
         // Act
         boolean result = deviceList.checkIfDeviceListIsEmpty();
@@ -456,7 +456,7 @@ public class DeviceListTest {
         boolean expectedResult = false;
 
         //Act
-        boolean result = deviceList.addDeviceToDeviceList(d3);
+        boolean result = deviceList.addDevice(d3);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -546,8 +546,8 @@ public class DeviceListTest {
 
         // DeviceList Instantiation
         DeviceList deviceList = new DeviceList();
-        deviceList.addDeviceToDeviceList(device);
-        deviceList.addDeviceToDeviceList(device1);
+        deviceList.addDevice(device);
+        deviceList.addDevice(device1);
 
         int coldWaterTempPosition = 5;
         int volumeOfWaterToHeatPosition = 6;
@@ -562,6 +562,63 @@ public class DeviceListTest {
         double result = deviceList.getTotalEnergyConsumption();
         //Assert
         assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    public void testGetContentNameLocationOrderedByType() {
+        // Arrange
+        String roomKitchen = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room kitchen = new Room(roomKitchen, 2, dim);
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", kitchen, deviceSpecs1);
+
+        double luminousFlux2 = 15.0;
+        double nominalPower2 = 2.0;
+        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        Device dev2 = new Device("Lamp2", kitchen, deviceSpecs2);
+
+        double nominalPower = 200;
+        double annualEnergyConsumption = 1000;
+        double freezerCapacity = 20;
+        double refrigeratorCapacity = 50;
+        DeviceSpecs fridgeSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        Device dev3 = new Device("Fridge Balay", kitchen, fridgeSpecs);
+
+        Room basement = new Room("Basement", -1, dim);
+        double luminousFlux3 = 30.0;
+        double nominalPower3 = 1.0;
+        DeviceSpecs deviceSpecs4 = new Lamp(luminousFlux3, nominalPower3);
+        Device dev4 = new Device("Lamp4", basement, deviceSpecs4);
+        DeviceSpecs fridgeSpecs5 = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        Device dev5 = new Device("Fridge Teka", basement, fridgeSpecs5);
+
+        DeviceList allDeviceList = new DeviceList();
+        allDeviceList.addDevice(dev1);
+        allDeviceList.addDevice(dev2);
+        allDeviceList.addDevice(dev3);
+        allDeviceList.addDevice(dev4);
+        allDeviceList.addDevice(dev5);
+
+        String expectedResult =
+                "Lamp\n" +
+                        "- Device Name: Lamp1, Location: Kitchen.\n" +
+                        "- Device Name: Lamp2, Location: Kitchen.\n" +
+                        "- Device Name: Lamp4, Location: Basement.\n" +
+                        "\n" +
+                        "Fridge\n" +
+                        "- Device Name: Fridge Balay, Location: Kitchen.\n" +
+                        "- Device Name: Fridge Teka, Location: Basement.\n" +
+                        "\n";
+
+        // Act
+        String result = allDeviceList.getContentNameLocationOrderedByType();
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 }
 

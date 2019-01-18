@@ -215,4 +215,36 @@ class AddGeoAreaToAnotherGeoAreaControllerTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void testGetSizeList() {
+        //Arrange
+        GeoAreaList listaDeAGs = new GeoAreaList();
+
+        String nomeAG1 = "Porto";
+        GeoAreaType tipo1 = new GeoAreaType("Cidade");
+        Location local1 = new Location(41.1496, -8.6109, 97);
+        AreaShape area1 = new AreaShape(10, 10, local1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+
+        String nomeAG2 = "Rua do Bonfim";
+        GeoAreaType tipo2 = new GeoAreaType("Rua");
+        Location local2 = new Location(41.1496, -8.6109, 97);
+        AreaShape area2 = new AreaShape(10, 10, local1);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+
+        listaDeAGs.addGeoArea(ag1);
+
+        AddGeoAreaToAnotherGeoAreaController ctrl = new AddGeoAreaToAnotherGeoAreaController(listaDeAGs);
+
+        ctrl.adicionarAGListaPosicaoEspecifica(0, ag2);
+
+        int expectedResult = 2;
+
+        //Act
+        int result = ctrl.getSizeList();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 }
