@@ -632,17 +632,17 @@ public class RoomListTest {
         assertFalse(result);
     }
 
-    /*@Test
+    @Test
     public void testGetAllDevicesList() {
         //Room ONE
         String name = "Kitchen";
         Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
-        //DeviceSpecs specFridge = new Fridge();
+        ProgramList pgList = new ProgramList();
         Fridge specFridge = new Fridge(100, 100, 100, 100);
-        WashingMachine specWashing = new WashingMachine(100, 100);
-        DishWasher specDishWasher = new DishWasher(100, 100);
+        WashingMachine specWashing = new WashingMachine(100, 100, pgList);
+        DishWasher specDishWasher = new DishWasher(100, 100, pgList);
         Device dev1 = new Device("FridgeAriston", room1, specFridge);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
         Device dev3 = new Device("DishWasher", room1, specDishWasher);
@@ -679,7 +679,7 @@ public class RoomListTest {
         DeviceList result = roomList.getAllDevicesList();
 
         assertEquals(expectedResult, result);
-    }*/
+    }
 
     @Test
     public void getDeviceListContentOfARoomTest() {
@@ -785,7 +785,7 @@ public class RoomListTest {
         assertFalse(result);
     }
 
-   /* @Test
+    @Test
     public void testCheckIfThereAreNoDevicesFalse() {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
@@ -797,7 +797,8 @@ public class RoomListTest {
         Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
 
-        DishWasher dishWasher = new DishWasher(100, 100);
+        ProgramList pglist = new ProgramList();
+        DishWasher dishWasher = new DishWasher(100, 100, pglist);
         ElectricWaterHeater specWaterHeater = new ElectricWaterHeater(100, 100, 100, 0.9);
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
@@ -821,16 +822,13 @@ public class RoomListTest {
 
         // Assert
         assertFalse(result);
-    }*/
+    }
+
 
     @Test
     public void testCheckIfThereAreNoDevicesTrue() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
-
-        roomList.addRoom(room);
 
         // Act
         boolean result = roomList.checkIfThereAreNoDevices();
