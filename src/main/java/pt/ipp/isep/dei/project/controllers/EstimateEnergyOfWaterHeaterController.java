@@ -4,7 +4,7 @@ import pt.ipp.isep.dei.project.model.House;
 
 public class EstimateEnergyOfWaterHeaterController {
     private House mHouse;
-    private String mType = "Electric Water Heater";
+    private String mType;
 
     /**
      * Constructor.
@@ -13,6 +13,7 @@ public class EstimateEnergyOfWaterHeaterController {
      */
     public EstimateEnergyOfWaterHeaterController(House mHouse) {
         this.mHouse = mHouse;
+        this.mType = "Electric Water Heater";
     }
 
     /**

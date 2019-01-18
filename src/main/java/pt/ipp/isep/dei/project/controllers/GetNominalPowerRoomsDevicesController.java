@@ -74,7 +74,4 @@ public class GetNominalPowerRoomsDevicesController {
         return mMeasurableList.checkIfMeasurableObjIsInList(measurable);
     }
 
-    public boolean checkIfMeasurableListIsEmpty() {
-        return mMeasurableList.checkIsMeasurableListIsEmpty();
-    }
 }

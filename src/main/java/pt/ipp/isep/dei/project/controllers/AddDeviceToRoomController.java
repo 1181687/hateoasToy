@@ -71,16 +71,6 @@ public class AddDeviceToRoomController {
 
 
     /**
-     * Method that verifies if the device has been added to the room.
-     *
-     * @return true if it has been added or false if it hasn't.
-     */
-    public boolean addDeviceToRoom() {
-        return mRoom.addDevice(mDevice);
-    }
-
-
-    /**
      * Method that create a new Fridge in a selected Room.
      *
      * @param name                    of the Fridge
