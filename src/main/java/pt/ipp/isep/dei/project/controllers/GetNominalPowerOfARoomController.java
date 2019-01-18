@@ -46,7 +46,7 @@ public class GetNominalPowerOfARoomController {
     }
 
     /**
-     * Method that return the nominal power of the room previously chosen.
+     * Method that returns the nominal power of the room previously chosen.
      * @return
      */
     public double getNominalPower() {

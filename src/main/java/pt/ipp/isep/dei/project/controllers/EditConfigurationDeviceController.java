@@ -100,10 +100,6 @@ public class EditConfigurationDeviceController {
         return this.mDevice.setAttributesDevType(attribute, value);
     }
 
-    public boolean setAttributesDevType1(String attributeName, Object attributeValue) {
-        return this.mDevice.setAttributesDevType1(attributeName, attributeValue);
-    }
-
     /**
      * method that get the specifications of the attribute to a string
      * @return the specifications of the attribute.

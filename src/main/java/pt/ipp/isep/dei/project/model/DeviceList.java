@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.model;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -234,20 +233,6 @@ public class DeviceList {
 
 
     /**
-     * Method that adds a device to the existing list.
-     *
-     * @param device
-     * @return
-     */
-    public boolean addDeviceToDeviceList(Device device) {
-        if (!(mDeviceList.contains(device))) {
-            mDeviceList.add(device);
-            return true;
-        }
-        return false;
-    }
-
-    /**
      * method that displays the device list content
      *
      * @return content of the device list
@@ -289,10 +274,10 @@ public class DeviceList {
     }
 
     /**
-     * TODO - LUíS
+     * Method that gets all the devices of a certain type.
      *
-     * @param type
-     * @return
+     * @param type Required type.
+     * @return DeviceList with all the devices of the required type.
      */
     public DeviceList getAllDevicesOfAType(String type) {
         DeviceList listOfDevicesWithTheType = new DeviceList();
@@ -304,11 +289,10 @@ public class DeviceList {
         return listOfDevicesWithTheType;
     }
 
-
     /**
-     * TODO - LUíS
-     * @param devicePosition
-     * @return
+     * Method that gets the name of a device.
+     * @param devicePosition Device position in the list of devices.
+     * @return String with the device name.
      */
     public String getDeviceName(int devicePosition) {
         Device device = mDeviceList.get(devicePosition);
@@ -316,24 +300,23 @@ public class DeviceList {
     }
 
     /**
-     * TODO - LUíS
+     * Method that sets the value of an attribute of a device.
      *
-     * @param devicePosition
-     * @param attributeName
-     * @param value
-     * @return
+     * @param devicePosition Device position in the list of devices.
+     * @param attributePosition Position of the attribute to be set.
+     * @param value Value to be used.
+     * @return True or false.
      */
-    public boolean setAttribute(int devicePosition, String attributeName, double value) {
+    public boolean setAttribute(int devicePosition, int attributePosition, double value) {
         Device device = mDeviceList.get(devicePosition);
-        return device.setAttributesDevType1(attributeName, value);
+        return device.setAttributesDevType(attributePosition, value);
     }
 
-
     /**
-     * TODO - LUíS
+     * Method that returns the energy consumption of a device.
      *
-     * @param devicePosition
-     * @return
+     * @param devicePosition Device position in the list of devices.
+     * @return Double with the energy consumption.
      */
     public double getEnergyConsumptionOfADevice(int devicePosition) {
         Device device = mDeviceList.get(devicePosition);
@@ -341,18 +324,15 @@ public class DeviceList {
     }
 
     /**
-     * TODO - LUíS
+     * Method that returns the combined energy consumption of all the devices in a list.
      *
-     * @return
+     * @return Double with the combined energy consumption.
      */
     public double getTotalEnergyConsumption() {
         double totalEnergyConsumption = 0;
         for (Device device : mDeviceList) {
             totalEnergyConsumption += device.getEnergyConsumptionInADay();
         }
-        DecimalFormat df = new DecimalFormat("#.##");
-        return Double.parseDouble(df.format(totalEnergyConsumption));
+        return totalEnergyConsumption;
     }
-
-
 }
