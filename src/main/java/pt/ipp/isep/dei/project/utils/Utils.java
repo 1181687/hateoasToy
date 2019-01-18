@@ -2,6 +2,10 @@ package pt.ipp.isep.dei.project.utils;
 
 public class Utils {
 
+    private Utils() {
+        //intentionally empty
+    }
+
     /**
      * method that compares two double values.
      *

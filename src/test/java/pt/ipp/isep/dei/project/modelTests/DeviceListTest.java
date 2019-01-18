@@ -111,8 +111,8 @@ public class DeviceListTest {
         DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
         Device dev2 = new Device("Lamp2", room, deviceSpecs2);
 
-        deviceList.addDeviceToDeviceList(dev1);
-        deviceList.addDeviceToDeviceList(dev2);
+        deviceList.addDevice(dev1);
+        deviceList.addDevice(dev2);
 
         String expectedResult =
                 "1 - Name of the device: Lamp1\n" +
@@ -152,7 +152,7 @@ public class DeviceListTest {
 
         DeviceList deviceList = new DeviceList();
 
-        deviceList.addDeviceToDeviceList(dev1);
+        deviceList.addDevice(dev1);
 
         // Act
         boolean result = deviceList.checkIfDeviceListIsEmpty();
@@ -188,8 +188,10 @@ public class DeviceListTest {
         DeviceList deviceList = new DeviceList();
         deviceList.addDevice(device0);
 
-        deviceList.setAttribute(0, "Cold-water temperature", 30);
-        deviceList.setAttribute(0, "Volume of water to heat", 100);
+        int coldWaterTempPosition = 5;
+        int volumeOfWaterToHeatPosition = 6;
+        deviceList.setAttribute(0, coldWaterTempPosition, 30);
+        deviceList.setAttribute(0, volumeOfWaterToHeatPosition, 100);
 
         double expectedResult = 2093.4;
 
@@ -454,7 +456,7 @@ public class DeviceListTest {
         boolean expectedResult = false;
 
         //Act
-        boolean result = deviceList.addDeviceToDeviceList(d3);
+        boolean result = deviceList.addDevice(d3);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -513,7 +515,7 @@ public class DeviceListTest {
         assertEquals(expectedResult, result);
     }
 
-    /*@Test
+    @Test
     public void testGetTotalEnergyConsumption (){
         //Arrange
         // Arrange
@@ -532,26 +534,35 @@ public class DeviceListTest {
         double performanceRatio = 0.9;
         double nominalPower = 100;
         DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        double hotWaterTemp1 = 50;
+        double maximumVolume1 = 150;
+        double performanceRatio1 = 0.8;
+        double nominalPower1 = 100;
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
 
         // Device Instantiation
-        Device device = new Device("Electric Water Heater", room, electricWaterHeater);
+        Device device = new Device("Titan RX-Coiso", room, electricWaterHeater);
+        Device device1 = new Device("Bosch Tronic 3000", room, electricWaterHeater1);
 
-        int coldWaterTempPosition = 5;
-        device.setAttributesDevType(coldWaterTempPosition, 30);
-        int volumeOfWaterToHeatPosition = 6;
-        device.setAttributesDevType(volumeOfWaterToHeatPosition, 100);
-
-        double expectedResult = 2093.4;
-
+        // DeviceList Instantiation
         DeviceList deviceList = new DeviceList();
         deviceList.addDevice(device);
+        deviceList.addDevice(device1);
+
+        int coldWaterTempPosition = 5;
+        int volumeOfWaterToHeatPosition = 6;
+        deviceList.setAttribute(0, coldWaterTempPosition, 30);
+        deviceList.setAttribute(0, volumeOfWaterToHeatPosition, 100);
+        deviceList.setAttribute(1, coldWaterTempPosition, 30);
+        deviceList.setAttribute(1, volumeOfWaterToHeatPosition, 100);
+
+        double expectedResult = 3954.2;
+
         //Act
         double result = deviceList.getTotalEnergyConsumption();
         //Assert
         assertEquals(expectedResult, result, 0.000001);
-    }*/
-
-
+    }
 
     @Test
     public void testGetContentNameLocationOrderedByType() {
@@ -586,11 +597,11 @@ public class DeviceListTest {
         Device dev5 = new Device("Fridge Teka", basement, fridgeSpecs5);
 
         DeviceList allDeviceList = new DeviceList();
-        allDeviceList.addDeviceToDeviceList(dev1);
-        allDeviceList.addDeviceToDeviceList(dev2);
-        allDeviceList.addDeviceToDeviceList(dev3);
-        allDeviceList.addDeviceToDeviceList(dev4);
-        allDeviceList.addDeviceToDeviceList(dev5);
+        allDeviceList.addDevice(dev1);
+        allDeviceList.addDevice(dev2);
+        allDeviceList.addDevice(dev3);
+        allDeviceList.addDevice(dev4);
+        allDeviceList.addDevice(dev5);
 
         String expectedResult =
                 "Lamp\n" +

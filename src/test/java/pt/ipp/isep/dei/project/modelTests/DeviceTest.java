@@ -197,7 +197,7 @@ public class DeviceTest {
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         DeviceList deviceList = new DeviceList();
-        deviceList.addDeviceToDeviceList(dev1);
+        deviceList.addDevice(dev1);
 
         // Assert
         Throwable exception = assertThrows(RuntimeException.class, () -> dev1.setName("Lamp1"));
@@ -239,7 +239,7 @@ public class DeviceTest {
         DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
         DeviceList deviceList = new DeviceList();
-        deviceList.addDeviceToDeviceList(dev1);
+        deviceList.addDevice(dev1);
         Device dev2 = new Device("Lamp3", room, deviceSpecs1);
         deviceList.addDevice(dev2);
 
