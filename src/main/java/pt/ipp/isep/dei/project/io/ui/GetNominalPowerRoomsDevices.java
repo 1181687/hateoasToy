@@ -51,7 +51,7 @@ public class GetNominalPowerRoomsDevices {
                             (mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1) + " - Total nominal power of room\n" + exit;
                     int positionDevice = InputValidator.getIntRange(label3, 0, mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1);
                     if (positionDevice == 0) {
-                        return;
+                        continue;
                     }
                     if (positionDevice == mController.getSizeOfListOfDevicesInARoom(positionRoom) + 1) {
                         mController.addAMeasurableObject(mController.getChosenRoomInTheGrid(positionRoom));
