@@ -150,9 +150,6 @@ public class Admin {
                     GetDevicesInHouseGrid ui160 = new GetDevicesInHouseGrid(house);
                     ui160.run();
                     break;
-                case 6:
-                    GetNominalPowerRoomsDevices ui705 = new GetNominalPowerRoomsDevices(house);
-                    ui705.run();
             }
             option = Menu.houseGridMenu();
         }
