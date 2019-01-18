@@ -40,8 +40,6 @@ public class GetListOfSensorsAndDevicesRoom {
 
 
     public void run2() {
-
-
         StringBuilder content = new StringBuilder();
 
         content.append(controller.getRoomListContent());

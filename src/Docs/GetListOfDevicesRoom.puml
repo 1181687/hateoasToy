@@ -34,7 +34,6 @@ deactivate Controller
 User <-- UI: RoomListContent
 
 
-
 User -> UI: Int Position
 UI -> Controller: getRoomName(position)
 activate Controller
@@ -50,6 +49,8 @@ UI <-- RoomList: RoomName(position)
 deactivate RoomList
 deactivate House
 deactivate Controller
+
+
 UI -> Controller: getDeviceListContent(position)
 activate Controller
 Controller -> House: getDeviceListContent(position)

@@ -18,32 +18,77 @@ skinparam sequence {
 
 autonumber
 actor User
-User -> UI: GetListOfSensorsInARoom
-UI -> Controller: RoomListSize()
-UI <-- Controller: RoomListSize()
-UI -> Controller: GetRoomOftheRoomList()
-Controller -> House: GetNameofTheChosenRoomInASpecificPosition()
-House -> RoomList: GetNameofTheChosenRoomInASpecificPosition()
-House <-- RoomList: GetNameofTheChosenRoomInASpecificPosition()
-Controller <-- House: GetNameofTheChosenRoomInASpecificPosition()
-UI <-- Controller: GetNameofTheChosenRoomInASpecificPosition()
-User <-- UI: GetNameofTheChosenRoomInASpecificPosition()
+User -> UI: ListOfSensorsInARoom
+activate UI
 
-User -> UI: ChooseRoomFromList
-UI -> Controller: GetSensorsListContent()
-Controller -> House: GetSensorListContentOfARoom()
-House -> RoomList: GetSensorListContentOfARoom()
-House <-- RoomList: GetSensorListContentOfARoom()
-Controller <-- House: GetSensorListContentOfARoom()
-UI <-- Controller: GetSensorsListContent()
+UI -> Controller: getRoomListContent()
+activate Controller
 
-UI -> Controller: CheckIfListIsEmpty()
-Controller -> House: CheckIfSensorListIsEmpty()
-House -> RoomList: CheckIfSensorListIsEmpty()
-RoomList -> DeviceList: CheckIfSensorListIsEmpty()
-RoomList <-- DeviceList: CheckIfSensorListIsEmpty()
-House <-- RoomList: CheckIfSensorListIsEmpty()
-Controller <-- House: CheckIfSensorListIsEmpty()
-UI <-- Controller: CheckIfSensorListIsEmpty()
-User <-- UI: GetSensorListContent()
+Controller -> House: getRoomListContent()
+activate House
+
+House -> RoomList: getRoomListContent()
+activate RoomList
+
+UI <-- RoomList: RoomListContent
+deactivate RoomList
+deactivate House
+deactivate Controller
+
+User <-- UI: RoomListContent
+
+
+User -> UI: Int Position
+UI -> Controller: getRoomName(position)
+
+activate Controller
+Controller -> House: getRoomName(position)
+
+activate House
+House -> RoomList: getRoomName(position)
+
+activate RoomList
+RoomList -> Room: getName()
+
+activate Room
+RoomList <-- Room: Name
+
+deactivate Room
+UI <-- RoomList: RoomName(position)
+deactivate RoomList
+deactivate House
+deactivate Controller
+
+
+UI -> Controller: getSensorListContent(position)
+activate Controller
+Controller -> House: getSensorListContent(position)
+activate House
+House -> RoomList: getSensorListContent(position)
+activate RoomList
+RoomList -> Room: getSensorListContent(position)
+activate Room
+Room -> SensorList: SensorListContent(position)
+activate SensorList
+
+SensorList -> SensorList: getLength()
+SensorList -> SensorList: getSensorList()
+SensorList -> Sensor: getName()
+activate Sensor
+
+SensorList <-- Sensor: Name
+deactivate Sensor
+
+UI <-- SensorList: SensorListContent
+deactivate SensorList
+deactivate Room
+deactivate RoomList
+deactivate House
+deactivate Controller
+
+User <-- UI: SensorListContent
+deactivate UI
+
+
+
 @enduml
