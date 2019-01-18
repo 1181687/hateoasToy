@@ -90,6 +90,6 @@ public class GetNominalPowerRoomsDevices {
                 }
             } while (flag2);
         } while (flag);
-        System.out.println("The total nominal power for the selected subset of rooms and/or devices is " + mController.getNominalPowerOfSelectedMeasurableObjects() + "\n");
+        System.out.println("The total nominal power for the selected subset of rooms and/or devices is " + mController.getNominalPowerOfSelectedMeasurableObjects() + " kW\n");
     }
 }
