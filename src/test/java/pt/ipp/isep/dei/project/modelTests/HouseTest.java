@@ -1234,16 +1234,17 @@ public class HouseTest {
     }
 
 
-    /*@Test
+    @Test
     public void TestGetAllDevicesListByGridPosition() {
         //Room ONE
         String name = "Kitchen";
         Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
+        ProgramList programList = new ProgramList();
         DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
-        DeviceSpecs specWashing = new WashingMachine(100, 100);
-        DeviceSpecs specDishWasher = new DishWasher(100, 100);
+        DeviceSpecs specWashing = new WashingMachine(10, 100, programList);
+        DeviceSpecs specDishWasher = new DishWasher(100, 100, programList);
         Device dev1 = new Device("FridgeAriston", room1, specFridge);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
         Device dev3 = new Device("DishWasher", room1, specDishWasher);
@@ -1294,18 +1295,19 @@ public class HouseTest {
         DeviceList result = house.getAllDevicesListByGridPosition(0);
 
         assertEquals(expectedResult, result);
-    }*/
+    }
 
-   /* @Test
+    @Test
     public void testGetDeviceListContentNameTypeLocationByHG() {
         //Room ONE
         String name = "Kitchen";
         Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
+        ProgramList programList = new ProgramList();
         Fridge specFridge = new Fridge(100, 100, 100, 100);
-        WashingMachine specWashing = new WashingMachine(100, 100);
-        DishWasher specDishWasher = new DishWasher(100, 100);
+        WashingMachine specWashing = new WashingMachine(100, 100, programList);
+        DishWasher specDishWasher = new DishWasher(100, 100, programList);
         Device dev1 = new Device("FridgeAriston", room1, specFridge);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
         Device dev3 = new Device("DishWasher", room1, specDishWasher);
@@ -1351,7 +1353,7 @@ public class HouseTest {
 
         String result = house.getDeviceListContentNameTypeLocationByHG(0);
         assertEquals(expectedResult, result);
-    }*/
+    }
 
 
     @Test

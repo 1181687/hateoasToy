@@ -249,7 +249,7 @@ public class DeviceListTest {
 
     }
 
-    /*@Test
+    @Test
     public void testNewWashingMachine() {
         // newWashingMachine Instantiation
         String name = "Washing Machine Bosh";
@@ -258,7 +258,8 @@ public class DeviceListTest {
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         double capacity = 100;
-        DeviceSpecs washingMachine = new WashingMachine(capacity, nominalPower);
+        ProgramList programList = new ProgramList();
+        DeviceSpecs washingMachine = new WashingMachine(capacity, nominalPower, programList);
 
         Device d2 = new Device("Device2", room, washingMachine);
         DeviceList devList = new DeviceList();
@@ -266,12 +267,12 @@ public class DeviceListTest {
 
         Device expectedResult = new Device(name, room, washingMachine);
 
-        Device result = devList.newWashingMachine(name, room, nominalPower, capacity);
+        Device result = devList.newWashingMachine(name, room, nominalPower, capacity, programList);
 
         assertEquals(expectedResult, result);
-    }*/
+    }
 
-   /* @Test
+    @Test
     public void testNewWashingMachineNegative() {
         // newWashingMachine Instantiation
         String name = "Washing Machine Bosh";
@@ -280,7 +281,8 @@ public class DeviceListTest {
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         double capacity = 100;
-        DeviceSpecs washingMachine = new WashingMachine(capacity, nominalPower);
+        ProgramList programList = new ProgramList();
+        DeviceSpecs washingMachine = new WashingMachine(capacity, nominalPower, programList);
 
         Device d2 = new Device("Washing Machine Bosh", room, washingMachine);
         DeviceList devList = new DeviceList();
@@ -288,13 +290,13 @@ public class DeviceListTest {
 
 
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                devList.newWashingMachine(name, room, nominalPower, capacity)
+                devList.newWashingMachine(name, room, nominalPower, capacity, programList)
         );
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
-*/
-   /* @Test
+
+    @Test
     public void testNewDishWasher() {
         String name = "Dish Washer Ariston";
 
@@ -302,7 +304,9 @@ public class DeviceListTest {
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         int capacity = 100;
-        DeviceSpecs dishWasher = new DishWasher(capacity, nominalPower);
+        ProgramList programList = new ProgramList();
+
+        DeviceSpecs dishWasher = new DishWasher(capacity, nominalPower, programList);
 
         Device d2 = new Device("Device2", room, dishWasher);
         DeviceList devList = new DeviceList();
@@ -310,12 +314,12 @@ public class DeviceListTest {
 
         Device expectedResult = new Device(name, room, dishWasher);
 
-        Device result = devList.newDishWasher(name, room, nominalPower, capacity);
+        Device result = devList.newDishWasher(name, room, nominalPower, capacity, programList);
 
         assertEquals(expectedResult, result);
-    }*/
+    }
 
-  /*  @Test
+    @Test
     public void testNewDishWasherNegative() {
         String name = "Dish Washer Ariston";
 
@@ -323,39 +327,43 @@ public class DeviceListTest {
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         int capacity = 100;
-        DeviceSpecs dishWasher = new DishWasher(capacity, nominalPower);
+        ProgramList programList = new ProgramList();
+
+        DeviceSpecs dishWasher = new DishWasher(capacity, nominalPower, programList);
 
         Device d2 = new Device("Dish Washer Ariston", room, dishWasher);
         DeviceList devList = new DeviceList();
         devList.addDevice(d2);
 
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                devList.newDishWasher(name, room, nominalPower, capacity)
+                devList.newDishWasher(name, room, nominalPower, capacity, programList)
         );
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    } */
+    }
 
-   /* @Test
+    @Test
     public void testNewLamp() {
         String name = "Lamp one";
 
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
-        int capacity = 100;
-        DeviceSpecs lamp = new Lamp(capacity, nominalPower);
+        double luminousFlux = 100;
+        DeviceSpecs lamp = new Lamp(luminousFlux, nominalPower);
+        ProgramList programList = new ProgramList();
 
         Device d2 = new Device("Device2", room, lamp);
         DeviceList devList = new DeviceList();
         devList.addDevice(d2);
 
+
         Device expectedResult = new Device(name, room, lamp);
 
-        Device result = devList.newDishWasher(name, room, nominalPower, capacity);
+        Device result = devList.newLamp(name, room, luminousFlux, nominalPower);
 
         assertEquals(expectedResult, result);
-    } */
+    }
 
     @Test
     public void testNewLampNegative() {
@@ -402,7 +410,7 @@ public class DeviceListTest {
     }
 
     @Test
-    public void testNewFrigdeNegative() {
+    public void testNewFridgeNegative() {
         String name = "Fridge Balay";
 
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
@@ -421,33 +429,185 @@ public class DeviceListTest {
                 devList.newFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity)
         );
 
-
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
-/*
+
     @Test
-    public void testAddToProgramList (){
+    public void testAddDeviceToDeviceList() {
         //Arrange
-        String programName1 = "p1";
-        double duration1 = 15;
-        double energyConsumption1 = 0.9;
-        Program program1 = new Program(programName1, duration1,energyConsumption1);
 
-        String programName2 = "p2";
-        double duration2 = 20;
-        double energyConsumption2 = 0.7;
-        Program program2 = new Program(programName2, duration2,energyConsumption2);
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        String name = "Fridge Balay";
+        double nominalPower = 200;
+        double annualEnergyConsumption = 1000;
+        double freezerCapacity = 20;
+        double refrigeratorCapacity = 50;
+        DeviceSpecs fridgeSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
-        DeviceList devList = new DeviceList();
+        Device d2 = new Device(name, room, fridgeSpecs);
+        Device d3 = new Device(name, room, fridgeSpecs);
 
+        DeviceList deviceList = new DeviceList();
+        deviceList.addDevice(d2);
 
-
-
+        boolean expectedResult = false;
 
         //Act
-        List<Program> result = devList.addToProgramList(programName, duration,energyConsumption);
+        boolean result = deviceList.addDeviceToDeviceList(d3);
         //Assert
+        assertEquals(expectedResult, result);
+    }
 
+    @Test
+    public void testGetDeviceTypeListContent() {
+        //Arrange
+        DeviceList deviceList = new DeviceList();
+        String expectedResult = "1- Fridge\n" +
+                "2- Lamp\n" +
+                "3- Dish Washer\n" +
+                "4- Washing Machine\n" +
+                "5- Electric Water Heater\n";
+        //Act
+        String result = deviceList.getDeviceTypeListContent();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetDeviceName() {
+        //Arrange
+        //device d1
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        String name = "Fridge Balay";
+        double nominalPower = 200;
+        double annualEnergyConsumption = 1000;
+        double freezerCapacity = 20;
+        double refrigeratorCapacity = 50;
+        DeviceSpecs fridgeSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        Device fridge = new Device(name, room, fridgeSpecs);
+
+        //device d2
+        Dimensions dim2 = new Dimensions(3, 3.5, 3.5);
+        Room room2 = new Room("Room", 2, dim);
+        String lampName = "Kitchen Lamp";
+        double lampNominalPower = 200;
+        double luminousFlux = 1000;
+        DeviceSpecs lampSpec = new Lamp(luminousFlux, lampNominalPower);
+
+        Device lamp = new Device(lampName, room, fridgeSpecs);
+
+        DeviceList deviceList = new DeviceList();
+        deviceList.addDevice(fridge);
+        deviceList.addDevice(lamp);
+
+        int devicePosition = 1;
+
+        String expectedResult = "Kitchen Lamp";
+        //Act
+        String result = deviceList.getDeviceName(devicePosition);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /*@Test
+    public void testGetTotalEnergyConsumption (){
+        //Arrange
+        // Arrange
+        // Dimension Instantiation
+        double height = 3;
+        double length = 3.5;
+        double width = 3.5;
+        Dimensions dim = new Dimensions(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Room", 2, dim);
+
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+
+        // Device Instantiation
+        Device device = new Device("Electric Water Heater", room, electricWaterHeater);
+
+        int coldWaterTempPosition = 5;
+        device.setAttributesDevType(coldWaterTempPosition, 30);
+        int volumeOfWaterToHeatPosition = 6;
+        device.setAttributesDevType(volumeOfWaterToHeatPosition, 100);
+
+        double expectedResult = 2093.4;
+
+        DeviceList deviceList = new DeviceList();
+        deviceList.addDevice(device);
+        //Act
+        double result = deviceList.getTotalEnergyConsumption();
+        //Assert
+        assertEquals(expectedResult, result, 0.000001);
     }*/
+
+
+
+    @Test
+    public void testGetContentNameLocationOrderedByType() {
+        // Arrange
+        String roomKitchen = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room kitchen = new Room(roomKitchen, 2, dim);
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", kitchen, deviceSpecs1);
+
+        double luminousFlux2 = 15.0;
+        double nominalPower2 = 2.0;
+        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        Device dev2 = new Device("Lamp2", kitchen, deviceSpecs2);
+
+        double nominalPower = 200;
+        double annualEnergyConsumption = 1000;
+        double freezerCapacity = 20;
+        double refrigeratorCapacity = 50;
+        DeviceSpecs fridgeSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        Device dev3 = new Device("Fridge Balay", kitchen, fridgeSpecs);
+
+        Room basement = new Room("Basement", -1, dim);
+        double luminousFlux3 = 30.0;
+        double nominalPower3 = 1.0;
+        DeviceSpecs deviceSpecs4 = new Lamp(luminousFlux3, nominalPower3);
+        Device dev4 = new Device("Lamp4", basement, deviceSpecs4);
+        DeviceSpecs fridgeSpecs5 = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        Device dev5 = new Device("Fridge Teka", basement, fridgeSpecs5);
+
+        DeviceList allDeviceList = new DeviceList();
+        allDeviceList.addDeviceToDeviceList(dev1);
+        allDeviceList.addDeviceToDeviceList(dev2);
+        allDeviceList.addDeviceToDeviceList(dev3);
+        allDeviceList.addDeviceToDeviceList(dev4);
+        allDeviceList.addDeviceToDeviceList(dev5);
+
+        String expectedResult =
+                "Lamp\n" +
+                        "- Device Name: Lamp1, Location: Kitchen.\n" +
+                        "- Device Name: Lamp2, Location: Kitchen.\n" +
+                        "- Device Name: Lamp4, Location: Basement.\n" +
+                        "\n" +
+                        "Fridge\n" +
+                        "- Device Name: Fridge Balay, Location: Kitchen.\n" +
+                        "- Device Name: Fridge Teka, Location: Basement.\n" +
+                        "\n";
+
+        // Act
+        String result = allDeviceList.getContentNameLocationOrderedByType();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 }
 
