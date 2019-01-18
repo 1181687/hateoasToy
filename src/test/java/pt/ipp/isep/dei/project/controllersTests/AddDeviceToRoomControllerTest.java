@@ -1,6 +1,7 @@
-package pt.ipp.isep.dei.project.controllers;
+package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
 import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -219,8 +220,8 @@ class AddDeviceToRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    /* @Test
-    public void testNewFridgeNegative() {
+    @Test
+    public void testNewFridgeNegative() throws RuntimeException {
         // arrange
         RoomList rList = new RoomList();
         HouseGridList gridlist = new HouseGridList();
@@ -249,14 +250,9 @@ class AddDeviceToRoomControllerTest {
         room.addDevice(d2);
         house.addRoom(room);
 
-        // act
-        Throwable exception = assertThrows(RuntimeException.class, () ->
-                controller.createNewFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity)
-        );
-
-        // assert
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    } */
+        //Act
+        house.addRoom(room);
+    }
 
     @Test
     public void testNewLamp() {
@@ -365,8 +361,8 @@ class AddDeviceToRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    /* @Test
-    public void testNewWashingMachineNegative() {
+    @Test
+    public void testNewWashingMachineNegative() throws RuntimeException {
         // arrange
         RoomList rList = new RoomList();
         HouseGridList gridlist = new HouseGridList();
@@ -393,13 +389,7 @@ class AddDeviceToRoomControllerTest {
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
         room.addDevice(d2);
         house.addRoom(room);
-
-        Throwable exception = assertThrows(RuntimeException.class, () ->
-                controller.createNewWashingMachine(name, room, nominalPower, capacity)
-        );
-
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    } */
+    }
 
     @Test
     public void newElectricWaterHeater() {
@@ -438,8 +428,8 @@ class AddDeviceToRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    /* @Test
-    public void newElectricWaterHeaterNegative() {
+    @Test
+    public void newElectricWaterHeaterNegative() throws RuntimeException {
 
         RoomList rList = new RoomList();
         HouseGridList gridlist = new HouseGridList();
@@ -469,12 +459,14 @@ class AddDeviceToRoomControllerTest {
         room.addDevice(d2);
         house.addRoom(room);
 
-        Throwable exception = assertThrows(RuntimeException.class, () ->
-                controller.createNewElectricWaterHeater(name, room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio)
-        );
+        room.addDevice(d2);
 
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    } */
+//        Throwable exception = assertThrows(RuntimeException.class, () ->
+//                controller.createNewElectricWaterHeater(name, room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio)
+//        );
+//
+//        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
 
     @Test
     public void getDeviceListContentOfARoomTest() {
