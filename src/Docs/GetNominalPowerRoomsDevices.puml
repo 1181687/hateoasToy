@@ -20,20 +20,25 @@ autonumber
 actor User
 User -> UI: getNominalPowerRoomsDevices
 activate UI
-UI -> Controller: listOfHouseGrids ()
-activate Controller
-UI <-- Controller: listOfHouseGrids ()
-deactivate Controller
+UI -> Controller: listOfHouseGrids()
+
+Controller -> House: listOfHouseGrids()
+House -> HouseGridList: listOfHouseGrids()
+activate HouseGridList
+UI <-- HouseGridList: listOfHouseGrids()
+deactivate HouseGridList
 User <-- UI: listOfHouseGrids
 User -> UI: Int Position (HouseGrid)
-UI -> Controller: getHouseGrid(position)
+UI -> Controller: getHouseGrid (HouseGrid)
 activate Controller
-Controller -> House: getHouseGrid(position)
+Controller -> House: getHouseGrid (HouseGrid)
 activate House
-House -> HouseGridList: getHouseGrid(position)
+House -> HouseGridList: getHouseGrid (HouseGrid)
 activate HouseGridList
-Controller <-- HouseGridList: getHouseGrid(position)
+Controller <-- HouseGridList: getHouseGrid (HouseGrid)
 deactivate HouseGridList
+UI <-- Controller: getHouseGrid (HouseGrid)
+UI -> Controller: getRoomListContent
 Controller -> HouseGrid: getRoomListContent
 activate HouseGrid
 HouseGrid -> RoomList: getRoomListContent
@@ -42,28 +47,28 @@ UI <-- RoomList: getRoomListContent()
 deactivate RoomList
 User <-- UI: RoomListContent
 User -> UI: Int Position (Room)
-UI -> Controller: getDeviceList(Room)
-Controller -> HouseGrid: getDeviceList(Room)
-HouseGrid -> RoomList: getDeviceList(Room)
+UI -> Controller: getDeviceList (Room)
+Controller -> HouseGrid: getDeviceList (Room)
+HouseGrid -> RoomList: getDeviceList (Room)
 activate RoomList
-RoomList -> Room: getDeviceList(Room)
+RoomList -> Room: getDeviceList (Room)
 activate Room
-Room -> DeviceList: getDeviceList(Room)
+Room -> DeviceList: getDeviceList (Room)
 activate DeviceList
-UI <-- DeviceList: getDeviceList(Room)
+UI <-- DeviceList: getDeviceList (Room)
 deactivate DeviceList
 User <-- UI: DeviceList
 User -> UI: Int Position (Device)
-UI -> Controller: addAMeasurableObject(Device)
-Controller -> MeasurableObjectsList: addAMeasurableObject(Device)
-activate MeasurableObjectsList
-UI <-- MeasurableObjectsList: addAMeasurableObject(Device)
-deactivate MeasurableObjectsList
+UI -> Controller: addMeasurable (Device)
+Controller -> MeasurableList: addMeasurable (Device)
+activate MeasurableList
+UI <-- MeasurableList: addMeasurable (Device)
+deactivate MeasurableList
 UI -> Controller:  getNominalPower()
-Controller -> MeasurableObjectsList: getNominalPower()
-activate MeasurableObjectsList
-UI <-- MeasurableObjectsList: getNominalPower()
-deactivate MeasurableObjectsList
+Controller -> MeasurableList: getNominalPower()
+activate MeasurableList
+UI <-- MeasurableList: getNominalPower()
+deactivate MeasurableList
 User <-- UI: NominalPower
 deactivate UI
 @enduml
