@@ -38,45 +38,49 @@ deactivate Controller
 User <-- UI: RoomListContent
 
 
-User -> UI: Int Position
-UI -> Controller: getRoomName(position)
+User -> UI: Int position: Room
+UI -> Controller: getRoomName(Room)
 
 activate Controller
-Controller -> House: getRoomName(position)
+Controller -> House: getRoomName(Room)
 
 activate House
-House -> RoomList: getRoomName(position)
+House -> RoomList: getRoomName(Room)
 
 activate RoomList
 RoomList -> Room: getName()
 
 activate Room
-RoomList <-- Room: Name
+RoomList <-- Room: RoomName
 
 deactivate Room
-UI <-- RoomList: RoomName(position)
+UI <-- RoomList: RoomName
 deactivate RoomList
 deactivate House
 deactivate Controller
 
 
-UI -> Controller: getSensorListContent(position)
+UI -> Controller: getSensorListContent(Room)
 activate Controller
-Controller -> House: getSensorListContent(position)
+
+Controller -> House: getSensorListContent(Room)
 activate House
-House -> RoomList: getSensorListContent(position)
+
+House -> RoomList: getSensorListContent(Room)
 activate RoomList
-RoomList -> Room: getSensorListContent(position)
+
+RoomList -> Room: getSensorListContent(Room)
 activate Room
-Room -> SensorList: SensorListContent(position)
+
+Room -> SensorList: getSensorListContent(Room)
 activate SensorList
 
-SensorList -> SensorList: getLength()
-SensorList -> SensorList: getSensorList()
+SensorList -> SensorList: LengthSensorList
+SensorList -> SensorList: SensorList
 SensorList -> Sensor: getName()
 activate Sensor
 
-SensorList <-- Sensor: Name
+SensorList <-- Sensor: SensorName
 deactivate Sensor
 
 UI <-- SensorList: SensorListContent
@@ -88,7 +92,5 @@ deactivate Controller
 
 User <-- UI: SensorListContent
 deactivate UI
-
-
 
 @enduml
