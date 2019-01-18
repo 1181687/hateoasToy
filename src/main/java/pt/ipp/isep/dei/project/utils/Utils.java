@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.utils;
 public class Utils {
 
     private Utils() {
-        throw new IllegalStateException("Utility class");
+        //intentionally empty
     }
 
     /**

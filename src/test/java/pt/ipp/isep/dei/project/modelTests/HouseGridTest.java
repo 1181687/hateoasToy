@@ -423,4 +423,46 @@ public class HouseGridTest {
         //assert
         assertEquals(expectResult, result);
     }
+
+    @Test
+    public void testCheckThereAreNoDevices() {
+        //arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
+        //Act
+
+        boolean result = houseGrid.checkIfThereAreNoDevices();
+
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testCheckThereAreNoDevicesWithDevices() {
+        //arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
+
+        //initiate Room
+
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        houseGrid.attachRoom(room);
+
+        //initiate Device
+        double luminousFlux = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        room.addDevice(dev1);
+        //Act
+
+        boolean result = houseGrid.checkIfThereAreNoDevices();
+
+        //Assert
+        assertFalse(result);
+    }
 }

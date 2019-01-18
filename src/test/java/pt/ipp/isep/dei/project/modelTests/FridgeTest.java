@@ -569,7 +569,6 @@ public class FridgeTest {
         assertFalse(result);
     }
 
-
     @Test
     public void getNumberOfAttributes() {
         // Arrange
@@ -585,6 +584,112 @@ public class FridgeTest {
         int result = fridge.getNumberOfAttributes();
 
         // assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void setAttributeValueFreezerCapacityTest() {
+        //Arrange
+        // Fridge Instantiation
+        double freezerCapacity = 20.0;
+        double refrigeratorCapacity = 100.0;
+        double annualEnergyConsumption = 10000.0;
+        double nominalPower = 100.0;
+        Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        String attributeName = "Freezer capacity";
+        double newFreezerCapacity = 30.0;
+        fridge.setAttributeValue(attributeName, newFreezerCapacity);
+        double expectedResult = 30.0;
+
+        //Act
+        Object result = fridge.getAttributeValue(attributeName);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void setAttributeValueFreezerCapacityTestFalse() {
+        //Arrange
+        // Fridge Instantiation
+        double freezerCapacity = 20.0;
+        double refrigeratorCapacity = 100.0;
+        double annualEnergyConsumption = 10000.0;
+        double nominalPower = 100.0;
+        Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        String attributeName = "Freezer capacity";
+        int newFreezerCapacity = 30;
+        fridge.setAttributeValue(attributeName, newFreezerCapacity);
+        double expectedResult = 20.0;
+
+        //Act
+        Object result = fridge.getAttributeValue(attributeName);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void setAttributeValueRefrigeratorCapacityTestFalse() {
+        //Arrange
+        // Fridge Instantiation
+        double freezerCapacity = 20.0;
+        double refrigeratorCapacity = 100.0;
+        double annualEnergyConsumption = 10000.0;
+        double nominalPower = 100.0;
+        Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        String attributeName = "Refrigerator capacity";
+        int newRefrigeratorCapacity = 30;
+        fridge.setAttributeValue(attributeName, newRefrigeratorCapacity);
+        double expectedResult = 100.0;
+
+        //Act
+        Object result = fridge.getAttributeValue(attributeName);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void setAttributeValueAnnualEnergyConsumptionTestFalse() {
+        //Arrange
+        // Fridge Instantiation
+        double freezerCapacity = 20.0;
+        double refrigeratorCapacity = 100.0;
+        double annualEnergyConsumption = 10000.0;
+        double nominalPower = 100.0;
+        Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        String attributeName = "Annual energy consumption";
+        int newAnnualEnergyConsumtion = 3000;
+        fridge.setAttributeValue(attributeName, newAnnualEnergyConsumtion);
+        double expectedResult = 10000.0;
+
+        //Act
+        Object result = fridge.getAttributeValue(attributeName);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getEditableAttributesContentTest() {
+        // Arrange
+        // Fridge Instantiation
+        double freezerCapacity = 20.0;
+        double refrigeratorCapacity = 100.0;
+        double annualEnergyConsumption = 10000.0;
+        double nominalPower = 100.0;
+        Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        String expectedResult = "1 - Freezer capacity\n" +
+                "2 - Refrigerator capacity\n" +
+                "3 - Annual energy consumption\n" +
+                "4 - Nominal power\n";
+
+        // Act
+        String result = fridge.getEditableAttributesContent();
+
+        // Assert
         assertEquals(expectedResult, result);
     }
 }
