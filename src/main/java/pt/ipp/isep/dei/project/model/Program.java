@@ -42,5 +42,4 @@ public class Program {
         Program programOne = (Program) obj;
         return this.mName.equalsIgnoreCase(programOne.mName);
     }
-
 }

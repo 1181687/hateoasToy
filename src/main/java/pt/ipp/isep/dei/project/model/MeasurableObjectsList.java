@@ -24,8 +24,5 @@ public class MeasurableObjectsList {
     public boolean checkIfMeasurableObjIsInList(Measurable measurable) {
         return mMeasurableList.contains(measurable);
     }
-
-    public boolean checkIsMeasurableListIsEmpty() {
-        return mMeasurableList.isEmpty();
-    }
 }
+

@@ -95,6 +95,7 @@ public class AddDeviceToRoom {
                         String dwProgramName = "";
                         double dwProgramDuration = 0;
                         double dwProgramEnergyConsumption = 0;
+
                         getListOfPrograms(dwNumberOfPrograms);
 
                         mCtrl.createNewDishWasher(dishWasherDeviceName, selectedRoom, dishWasherNominalPower,

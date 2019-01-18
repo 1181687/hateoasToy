@@ -6,7 +6,6 @@ import pt.ipp.isep.dei.project.model.Program;
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class ProgramTest {
 
@@ -85,32 +84,16 @@ class ProgramTest {
         String name = "Program 1";
         double duration = 6;
         double energyConsumption = 200;
+        Program program = new Program(name, duration, energyConsumption);
 
-        int hash1 = Objects.hash(name, duration, energyConsumption);
-        int hash2 = Objects.hash(name, duration, energyConsumption);
+
+        int expectedResult = Objects.hash(name);
 
         // Act
-        int result = hash1;
-        int expectedResult = hash2;
+        int result = program.hashCode();
+
         // Assert
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    void testhashCodeFalse() {
-        //Arrange
-        String name = "Program 1";
-        double duration = 6;
-        double energyConsumption = 200;
-        double energyConsumption1 = 201;
-
-        int hash1 = Objects.hash(name, duration, energyConsumption);
-        int hash2 = Objects.hash(name, duration, energyConsumption1);
-
-        // Act
-        int result = hash1;
-        int expectedResult = hash2;
-        // Assert
-        assertNotEquals(expectedResult, result);
-    }
 }
