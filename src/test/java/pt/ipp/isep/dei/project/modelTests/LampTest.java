@@ -396,4 +396,21 @@ public class LampTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void testGetEditableAttributesContent() {
+        //Arrange
+        int luminousFlux = 100;
+        double nominalPower = 30;
+        Lamp lamp = new Lamp(luminousFlux, nominalPower);
+
+        String expectedResult = "1 - Luminous flux\n" +
+                "2 - Nominal power\n";
+
+        //Act
+        String result = lamp.getEditableAttributesContent();
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
+
 }

@@ -460,4 +460,22 @@ class WashingMachineTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void testGetEditableAttributesContent() {
+        //Arrange
+        int capacity = 7;
+        double nominalPower = 30;
+        ProgramList programList = new ProgramList();
+        WashingMachine washingMachine = new WashingMachine(capacity, nominalPower, programList);
+
+        String expectedResult = "1 - Capacity\n" +
+                "2 - Nominal power\n";
+
+        //Act
+        String result = washingMachine.getEditableAttributesContent();
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
+
 }
