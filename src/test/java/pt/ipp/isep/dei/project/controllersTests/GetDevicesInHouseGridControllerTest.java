@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GetDevicesInHouseGridControllerTest {
 
 
-    /*@Test
+    @Test
     public void testGetDeviceListContentNameTypeLocationByHG() {
         //Room ONE
         String name = "Kitchen";
@@ -17,8 +17,11 @@ public class GetDevicesInHouseGridControllerTest {
         Room room1 = new Room(name, 2, dim);
 
         DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
-        DeviceSpecs specWashing = new WashingMachine(100, 100);
-        DeviceSpecs specDishWasher = new DishWasher(100, 100);
+        ProgramList wmProgramList = new ProgramList();
+        ProgramList dwProgramList = new ProgramList();
+
+        DeviceSpecs specWashing = new WashingMachine(100, 100, wmProgramList);
+        DeviceSpecs specDishWasher = new DishWasher(100, 100, dwProgramList);
         Device dev1 = new Device("FridgeAriston", room1, specFridge);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
         Device dev3 = new Device("DishWasher", room1, specDishWasher);
@@ -66,7 +69,7 @@ public class GetDevicesInHouseGridControllerTest {
         String result = ctrl.getDeviceListContentNameTypeLocationByHG(0);
 
         assertEquals(expectedResult, result);
-    }*/
+    }
 
     @Test
     public void displayOfTheContentOfTheHouseGrids() {
@@ -173,7 +176,7 @@ public class GetDevicesInHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    /*@Test
+    @Test
     public void testCheckIfThereAreNoDevicesHGbyPositionFalse() {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
@@ -184,8 +187,10 @@ public class GetDevicesInHouseGridControllerTest {
         String name2 = "KitchenBasement";
         Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
+        ProgramList dwProgramList = new ProgramList();
 
-        DishWasher dishWasher = new DishWasher(100, 100);
+
+        DishWasher dishWasher = new DishWasher(100, 100, dwProgramList);
         ElectricWaterHeater specWaterHeater = new ElectricWaterHeater(100, 100, 100, 0.9);
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
@@ -225,9 +230,9 @@ public class GetDevicesInHouseGridControllerTest {
 
         // Assert
         assertFalse(result);
-    }*/
+    }
 
-    /*@Test
+    @Test
     public void testCheckIfThereAreNoDevicesHGbyPositionTrue() {
         // Arrange
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
@@ -239,7 +244,8 @@ public class GetDevicesInHouseGridControllerTest {
         Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
 
-        DishWasher dishWasher = new DishWasher(100, 100);
+        ProgramList dwProgramList = new ProgramList();
+        DishWasher dishWasher = new DishWasher(100, 100, dwProgramList);
         ElectricWaterHeater specWaterHeater = new ElectricWaterHeater(100, 100, 100, 0.9);
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
@@ -279,7 +285,7 @@ public class GetDevicesInHouseGridControllerTest {
 
         // Assert
         assertTrue(result);
-    }*/
+    }
 
     @Test
     public void getNameByHGPosition() {
