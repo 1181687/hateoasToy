@@ -25,28 +25,28 @@ UI -> Controller: listOfHouseGrids()
 Controller -> House: listOfHouseGrids()
 House -> HouseGridList: listOfHouseGrids()
 activate HouseGridList
-UI <-- HouseGridList: listOfHouseGrids()
+UI <-- HouseGridList: listOfHouseGrids
 deactivate HouseGridList
 User <-- UI: listOfHouseGrids
-User -> UI: Int Position (HouseGrid)
+User -> UI: Int Position: HouseGrid
 UI -> Controller: getHouseGrid (HouseGrid)
 activate Controller
 Controller -> House: getHouseGrid (HouseGrid)
 activate House
 House -> HouseGridList: getHouseGrid (HouseGrid)
 activate HouseGridList
-Controller <-- HouseGridList: getHouseGrid (HouseGrid)
+Controller <-- HouseGridList: HouseGrid
 deactivate HouseGridList
-UI <-- Controller: getHouseGrid (HouseGrid)
-UI -> Controller: getRoomListContent
-Controller -> HouseGrid: getRoomListContent
+UI <-- Controller: HouseGrid
+UI -> Controller: getRoomListContent()
+Controller -> HouseGrid: getRoomListContent()
 activate HouseGrid
-HouseGrid -> RoomList: getRoomListContent
+HouseGrid -> RoomList: getRoomListContent()
 activate RoomList
-UI <-- RoomList: getRoomListContent()
+UI <-- RoomList: RoomListContent
 deactivate RoomList
 User <-- UI: RoomListContent
-User -> UI: Int Position (Room)
+User -> UI: Int Position: Room
 UI -> Controller: getDeviceList (Room)
 Controller -> HouseGrid: getDeviceList (Room)
 HouseGrid -> RoomList: getDeviceList (Room)
@@ -55,19 +55,19 @@ RoomList -> Room: getDeviceList (Room)
 activate Room
 Room -> DeviceList: getDeviceList (Room)
 activate DeviceList
-UI <-- DeviceList: getDeviceList (Room)
+UI <-- DeviceList: DeviceList (Room)
 deactivate DeviceList
 User <-- UI: DeviceList
-User -> UI: Int Position (Device)
-UI -> Controller: addMeasurable (Device)
-Controller -> MeasurableList: addMeasurable (Device)
+User -> UI: Int Position: Device/Room
+UI -> Controller: addMeasurable (Device/Room)
+Controller -> MeasurableList: addMeasurable (Device/Room)
 activate MeasurableList
-UI <-- MeasurableList: addMeasurable (Device)
+UI <-- MeasurableList: Measurable (Device/Room)
 deactivate MeasurableList
 UI -> Controller:  getNominalPower()
 Controller -> MeasurableList: getNominalPower()
 activate MeasurableList
-UI <-- MeasurableList: getNominalPower()
+UI <-- MeasurableList: NominalPower
 deactivate MeasurableList
 User <-- UI: NominalPower
 deactivate UI

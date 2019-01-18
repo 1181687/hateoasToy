@@ -20,54 +20,51 @@ autonumber
 actor User
 User -> UI: GetListOfDevicesInARoom
 activate UI
-
 UI -> Controller: getRoomListContent()
 activate Controller
 Controller -> House: getRoomListContent()
 activate House
 House -> RoomList: getRoomListContent()
 activate RoomList
-UI <-- RoomList: RoomListContent()
+UI <-- RoomList: RoomListContent
 deactivate RoomList
 deactivate House
 deactivate Controller
 User <-- UI: RoomListContent
 
 
-User -> UI: Int Position
-UI -> Controller: getRoomName(position)
+User -> UI: Int position: Room
+UI -> Controller: getRoomName(Room)
 activate Controller
-Controller -> House: getRoomName(position)
+Controller -> House: getRoomName(Room)
 activate House
-House -> RoomList: getRoomName(position)
+House -> RoomList: getRoomName(Room)
 activate RoomList
 RoomList -> Room: getName()
 activate Room
-RoomList <-- Room: getName()
+RoomList <-- Room: RoomName
 deactivate Room
-UI <-- RoomList: RoomName(position)
+UI <-- RoomList: RoomName
 deactivate RoomList
 deactivate House
 deactivate Controller
-
-
-UI -> Controller: getDeviceListContent(position)
+UI -> Controller: getDeviceListContent(Room)
 activate Controller
-Controller -> House: getDeviceListContent(position)
+Controller -> House: getDeviceListContent(Room)
 activate House
-House -> RoomList: getDeviceListContent(position)
+House -> RoomList: getDeviceListContent(Room)
 activate RoomList
-RoomList -> Room: getDeviceListContent(position)
+RoomList -> Room: getDeviceListContent (Room)
 activate Room
-Room -> DeviceList: getDeviceListContent(position)
+Room -> DeviceList: getDeviceListContent(Room)
 activate DeviceList
-DeviceList -> DeviceList: getLength()
-DeviceList -> DeviceList: getDeviceList()
+DeviceList -> DeviceList: LengthDeviceList
+DeviceList -> DeviceList: DeviceList
 DeviceList -> Device: getName()
 activate Device
-DeviceList <-- Device: Name()
+DeviceList <-- Device: DeviceName
 deactivate Device
-UI <-- DeviceList: DeviceListContent()
+UI <-- DeviceList: DeviceListContent
 deactivate DeviceList
 deactivate Room
 deactivate RoomList
