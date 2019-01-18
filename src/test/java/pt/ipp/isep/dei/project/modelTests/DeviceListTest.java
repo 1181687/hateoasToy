@@ -188,8 +188,10 @@ public class DeviceListTest {
         DeviceList deviceList = new DeviceList();
         deviceList.addDevice(device0);
 
-        deviceList.setAttribute(0, "Cold-water temperature", 30);
-        deviceList.setAttribute(0, "Volume of water to heat", 100);
+        int coldWaterTempPosition = 5;
+        int volumeOfWaterToHeatPosition = 6;
+        deviceList.setAttribute(0, coldWaterTempPosition, 30);
+        deviceList.setAttribute(0, volumeOfWaterToHeatPosition, 100);
 
         double expectedResult = 2093.4;
 
@@ -513,7 +515,7 @@ public class DeviceListTest {
         assertEquals(expectedResult, result);
     }
 
-    /*@Test
+    @Test
     public void testGetTotalEnergyConsumption (){
         //Arrange
         // Arrange
@@ -532,25 +534,34 @@ public class DeviceListTest {
         double performanceRatio = 0.9;
         double nominalPower = 100;
         DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        double hotWaterTemp1 = 50;
+        double maximumVolume1 = 150;
+        double performanceRatio1 = 0.8;
+        double nominalPower1 = 100;
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
 
         // Device Instantiation
-        Device device = new Device("Electric Water Heater", room, electricWaterHeater);
+        Device device = new Device("Titan RX-Coiso", room, electricWaterHeater);
+        Device device1 = new Device("Bosch Tronic 3000", room, electricWaterHeater1);
+
+        // DeviceList Instantiation
+        DeviceList deviceList = new DeviceList();
+        deviceList.addDeviceToDeviceList(device);
+        deviceList.addDeviceToDeviceList(device1);
 
         int coldWaterTempPosition = 5;
-        device.setAttributesDevType(coldWaterTempPosition, 30);
         int volumeOfWaterToHeatPosition = 6;
-        device.setAttributesDevType(volumeOfWaterToHeatPosition, 100);
+        deviceList.setAttribute(0, coldWaterTempPosition, 30);
+        deviceList.setAttribute(0, volumeOfWaterToHeatPosition, 100);
+        deviceList.setAttribute(1, coldWaterTempPosition, 30);
+        deviceList.setAttribute(1, volumeOfWaterToHeatPosition, 100);
 
-        double expectedResult = 2093.4;
+        double expectedResult = 3954.2;
 
-        DeviceList deviceList = new DeviceList();
-        deviceList.addDevice(device);
         //Act
         double result = deviceList.getTotalEnergyConsumption();
         //Assert
         assertEquals(expectedResult, result, 0.000001);
-    }*/
-
-
+    }
 }
 
