@@ -111,8 +111,8 @@ public class DeviceListTest {
         DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
         Device dev2 = new Device("Lamp2", room, deviceSpecs2);
 
-        deviceList.addDeviceToDeviceList(dev1);
-        deviceList.addDeviceToDeviceList(dev2);
+        deviceList.addDevice(dev1);
+        deviceList.addDevice(dev2);
 
         String expectedResult =
                 "1 - Name of the device: Lamp1\n" +
@@ -152,7 +152,7 @@ public class DeviceListTest {
 
         DeviceList deviceList = new DeviceList();
 
-        deviceList.addDeviceToDeviceList(dev1);
+        deviceList.addDevice(dev1);
 
         // Act
         boolean result = deviceList.checkIfDeviceListIsEmpty();
@@ -454,7 +454,7 @@ public class DeviceListTest {
         boolean expectedResult = false;
 
         //Act
-        boolean result = deviceList.addDeviceToDeviceList(d3);
+        boolean result = deviceList.addDevice(d3);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -586,11 +586,11 @@ public class DeviceListTest {
         Device dev5 = new Device("Fridge Teka", basement, fridgeSpecs5);
 
         DeviceList allDeviceList = new DeviceList();
-        allDeviceList.addDeviceToDeviceList(dev1);
-        allDeviceList.addDeviceToDeviceList(dev2);
-        allDeviceList.addDeviceToDeviceList(dev3);
-        allDeviceList.addDeviceToDeviceList(dev4);
-        allDeviceList.addDeviceToDeviceList(dev5);
+        allDeviceList.addDevice(dev1);
+        allDeviceList.addDevice(dev2);
+        allDeviceList.addDevice(dev3);
+        allDeviceList.addDevice(dev4);
+        allDeviceList.addDevice(dev5);
 
         String expectedResult =
                 "Lamp\n" +
