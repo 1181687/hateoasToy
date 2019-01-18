@@ -78,7 +78,7 @@ class ProgramTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-    
+
     @Test
     void testhashCodeTrue() {
         //Arrange
