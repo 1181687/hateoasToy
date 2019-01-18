@@ -460,4 +460,23 @@ public class DishWasherTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void getEditableAttributesContentTest() {
+        // Arrange
+        // DishWasher Instantiation
+        int capacity = 20;
+        double nominalPower = 30;
+        ProgramList programList = new ProgramList();
+        DishWasher dishWasher = new DishWasher(capacity, nominalPower, programList);
+
+        String expectedResult = "1 - Capacity\n" +
+                "2 - Nominal power\n";
+
+        // Act
+        String result = dishWasher.getEditableAttributesContent();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 }
