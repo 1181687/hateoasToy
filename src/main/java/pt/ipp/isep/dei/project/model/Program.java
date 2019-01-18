@@ -13,19 +13,6 @@ public class Program {
         this.mEnergyConsumption = energyConsumption;
     }
 
-    public String getmName() {
-        return mName;
-    }
-
-    public double getDuration() {
-        return mDuration;
-    }
-
-    public double getEnergyConsumption() {
-        return mEnergyConsumption;
-    }
-
-
     /**
      * method that creates the same hashcode to programs with the same attribute name.
      *

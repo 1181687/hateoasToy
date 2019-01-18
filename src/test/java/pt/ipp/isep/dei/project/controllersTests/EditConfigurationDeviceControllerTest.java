@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.EditConfigurationDeviceController;
 import pt.ipp.isep.dei.project.model.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EditConfigurationDeviceControllerTest {
@@ -34,7 +37,8 @@ public class EditConfigurationDeviceControllerTest {
         house.addRoom(room2);
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
-        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Dimensions - Length: 2.0, Dimensions - Width: 2.0\n2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Dimensions - Length: 1.5, Dimensions - Width: 1.3\n";
+        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Length: 2.0, Width: 2.0\n" +
+                "2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Length: 1.5, Width: 1.3\n";
         int position = 0;
         controller.getRoomByPosition(position);
 
@@ -304,7 +308,7 @@ public class EditConfigurationDeviceControllerTest {
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
-        Device device = new Device("Electric Water Heater", room, deviceSpecs1);
+        Device device = new Device("Lamp1", room, deviceSpecs1);
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
 
@@ -314,11 +318,16 @@ public class EditConfigurationDeviceControllerTest {
         controller.getRoomByPosition(position);
         controller.getDeviceByPosition(position);
 
-        String expectedResult = "1 - Luminous Flux: 10.0\n" +
-                "2 - Nominal Power: 1.0\n";
+        List<String> expectedResult = new ArrayList<>();
+        String attribute1 = "Luminous flux";
+        String attribute2 = "Time";
+        String attribute3 = "Nominal power";
+        expectedResult.add(attribute1);
+        expectedResult.add(attribute2);
+        expectedResult.add(attribute3);
 
         // act
-        String result = controller.getSpecsAttributesToString();
+        List<String> result = controller.getSpecsAttributesToString();
 
         // assert
         assertEquals(expectedResult, result);
@@ -689,5 +698,58 @@ public class EditConfigurationDeviceControllerTest {
 
         // Assert
         assertTrue(result);
+    }
+
+    @Test
+    public void testGetEditableAttributesContent() {
+        //Arrange
+        // Arrange
+        // initiate House
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+        // Dimension Instantiation
+        double height = 3;
+        double length = 3.5;
+        double width = 3.5;
+        Dimensions dim = new Dimensions(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Room", 2, dim);
+
+        // Device Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        // Device Instantiation
+        Device device = new Device("Electric Water Heater", room, electricWaterHeater);
+
+        EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
+        int position = 0;
+        room.addDevice(device);
+        house.addRoom(room);
+        controller.getRoomByPosition(position);
+        controller.getDeviceByPosition(position);
+        controller.getNewRoom(0);
+
+        String expectedResult = "1 - Hot-water temperature\n" +
+                "2 - Performance ratio\n" +
+                "3 - Maximum volume\n" +
+                "4 - Nominal power\n";
+
+        //Act
+        String result = controller.getEditableAttributesContent();
+
+        //Assert
+        assertEquals(expectedResult, result);
+
     }
 }

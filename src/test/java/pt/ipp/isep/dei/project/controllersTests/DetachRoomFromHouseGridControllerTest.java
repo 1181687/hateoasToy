@@ -91,12 +91,12 @@ class DetachRoomFromHouseGridControllerTest {
         houseGridList.getmHouseGridsList().add(newGrid0);
         houseGridList.getmHouseGridsList().add(newGrid1);
         DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
-        String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimensions - Height: 2.0, Dimensions - Length: 3.0, Dimensions - Width: 4.0\n" +
-                "2- Name: Living Room, House Floor: 2, Dimensions - Height: 2.0, Dimensions - Length: 3.0, Dimensions - Width: 3.0" + "\n";
+        String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimensions - Height: 2.0, Length: 3.0, Width: 4.0\n" +
+                "2- Name: Living Room, House Floor: 2, Dimensions - Height: 2.0, Length: 3.0, Width: 3.0\n";
         //Act
         String result = ctrl.getListOfRooms();
         //Assert
-        assertEquals(result, expectedResult);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -140,11 +140,11 @@ class DetachRoomFromHouseGridControllerTest {
         houseGridList.getmHouseGridsList().add(newGrid1);
         DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
         ctrl.detachRoomFromGridList(newGrid0, r1);
-        String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimensions - Height: 2.0, Dimensions - Length: 3.0, Dimensions - Width: 4.0\n";
-        //Act
+        String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimensions - Height: 2.0, Length: 3.0, Width: 4.0\n";
+
         String result = ctrl.getListOfRoomsInACertainHouseGrid(0);
         //Assert
-        assertEquals(result, expectedResult);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -167,8 +167,9 @@ class DetachRoomFromHouseGridControllerTest {
         houseGridList.getmHouseGridsList().add(newGrid1);
         DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
         ctrl.detachRoomFromGridList(newGrid0, r2);
-        String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimensions - Height: 2.0, Dimensions - Length: 3.0, Dimensions - Width: 4.0\n" +
-                "2- Name: Living Room, House Floor: 2, Dimensions - Height: 2.0, Dimensions - Length: 3.0, Dimensions - Width: 3.0" + "\n";
+        String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimensions - Height: 2.0, Length: 3.0, Width: 4.0\n" +
+                "2- Name: Living Room, House Floor: 2, Dimensions - Height: 2.0, Length: 3.0, Width: 3.0\n";
+
         //Act
         String result = ctrl.getListOfRoomsInACertainHouseGrid(0);
         //Assert

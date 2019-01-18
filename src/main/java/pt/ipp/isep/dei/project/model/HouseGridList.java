@@ -154,12 +154,4 @@ public class HouseGridList {
         }
         return mHouseGridsList.get(position).getName();
     }
-
-    public boolean checkIfSpecificRoomListOfGridIsEmpty(int position) {
-        return getmHouseGridsList().get(position).checkIfRoomListIsEmpty();
-    }
-
-    public int getSizeOfRoomListInAGrid(int position){
-        return getmHouseGridsList().get(position).getRoomListSize();
-    }
 }

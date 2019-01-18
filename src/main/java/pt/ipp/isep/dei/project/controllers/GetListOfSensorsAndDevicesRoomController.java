@@ -20,12 +20,12 @@ public class GetListOfSensorsAndDevicesRoomController {
     }
 
     /**
-     * method that return the method getRoomOfTheRoomList of the class House
+     * method that return the method getRoomNameByPosition of the class House
      * @param option
      * @return the name of the chosen room in a specific position of the room list.
      */
-    public String getRoomOfTheRoomList (int option) {
-        return this.mHouse.getNameOfTheChosenRoomInSpecificPos(option);
+    public String getRoomNameByPosition(int option) {
+        return this.mHouse.getRoomNameByPosition(option);
     }
 
     /**
@@ -54,13 +54,13 @@ public class GetListOfSensorsAndDevicesRoomController {
     }
 
     /**
-     * method that returns the method getDeviceListContent of the class House
+     * method that returns the method getDeviceListContentByPosition of the class House
      *
      * @param position
      * @return the device list content of a room by position
      */
-    public String getDeviceListContent(int position) {
-        return this.mHouse.getDeviceListContentOfARoom(position);
+    public String getDeviceListContentOfRoomByPosition(int position) {
+        return this.mHouse.getDeviceListContentOfRoomByPosition(position);
     }
 
     /**

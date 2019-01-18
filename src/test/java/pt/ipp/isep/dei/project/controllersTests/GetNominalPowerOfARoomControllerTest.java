@@ -4,8 +4,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerOfARoomController;
 import pt.ipp.isep.dei.project.model.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class GetNominalPowerOfARoomControllerTest {
@@ -35,7 +34,8 @@ class GetNominalPowerOfARoomControllerTest {
         house.addRoom(room1);
         house.addRoom(room2);
 
-        String expectedResult = "1- Name: r1, House Floor: 1, Dimensions - Height: 4.0, Dimensions - Length: 4.0, Dimensions - Width: 4.0\n2- Name: r2, House Floor: 1, Dimensions - Height: 4.0, Dimensions - Length: 4.0, Dimensions - Width: 4.0\n";
+        String expectedResult = "1- Name: r1, House Floor: 1, Dimensions - Height: 4.0, Length: 4.0, Width: 4.0\n" +
+                "2- Name: r2, House Floor: 1, Dimensions - Height: 4.0, Length: 4.0, Width: 4.0\n";
 
         //Act
 
@@ -71,7 +71,7 @@ class GetNominalPowerOfARoomControllerTest {
         assertEquals(result, expectedResult);
     }
 
-   /* @Test
+    @Test
     void getNominalPower() {
         RoomList roomList = new RoomList();
         HouseGridList houseGridList = new HouseGridList();
@@ -99,7 +99,8 @@ class GetNominalPowerOfARoomControllerTest {
         ctrl.getRoom(0);
 
         Fridge fridge1 = new Fridge(25, 50, 5000, 110);
-        DishWasher dishWasher1 = new DishWasher(400, 110);
+        ProgramList programList = new ProgramList();
+        DishWasher dishWasher1 = new DishWasher(400, 110, programList);
 
         Device d1 = new Device("Fridge1", room1, fridge1);
 
@@ -118,9 +119,9 @@ class GetNominalPowerOfARoomControllerTest {
         //Assert
 
         assertEquals(result, expectedResult);
-    }*/
+    }
 
-   /* @Test
+    @Test
     void getNominalPowerNoDevices() {
         RoomList roomList = new RoomList();
         HouseGridList houseGridList = new HouseGridList();
@@ -148,7 +149,8 @@ class GetNominalPowerOfARoomControllerTest {
         ctrl.getRoom(0);
 
         Fridge fridge1 = new Fridge(20, 20, 50, 400);
-        DishWasher dishWasher1 = new DishWasher(50, 250);
+        ProgramList programList = new ProgramList();
+        DishWasher dishWasher1 = new DishWasher(50, 250, programList);
 
         Device d1 = new Device("Fridge1", room1, fridge1);
 
@@ -165,7 +167,7 @@ class GetNominalPowerOfARoomControllerTest {
         //Assert
 
         assertEquals(expectedResult, result);
-    }*/
+    }
 
 
     @Test
@@ -235,7 +237,7 @@ class GetNominalPowerOfARoomControllerTest {
         assertTrue(result);
     }
 
-    /*@Test
+    @Test
     public void testifDeviceListIsEmptyWithDevices() {
         RoomList roomList = new RoomList();
         HouseGridList houseGridList = new HouseGridList();
@@ -261,7 +263,8 @@ class GetNominalPowerOfARoomControllerTest {
         house.addRoom(room2);
 
         Fridge fridge1 = new Fridge(20, 20, 50, 400);
-        DishWasher dishWasher1 = new DishWasher(50, 250);
+        ProgramList programList = new ProgramList();
+        DishWasher dishWasher1 = new DishWasher(20, 450, programList);
 
         Device d1 = new Device("Fridge", room1, fridge1);
 
@@ -276,5 +279,5 @@ class GetNominalPowerOfARoomControllerTest {
 
         //Assert
         assertFalse(result);
-    }*/
+    }
 }

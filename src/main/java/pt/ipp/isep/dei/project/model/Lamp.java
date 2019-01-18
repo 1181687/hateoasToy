@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Lamp implements DeviceSpecs {
-    private static final String ATTRIBUTE_LUMINIOUS_FLUX = "Luminous flux";
+    private static final String ATTRIBUTE_LUMINOUS_FLUX = "Luminous flux";
     private static final String ATTRIBUTE_TIME = "Time";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal power";
 
@@ -22,27 +22,41 @@ public class Lamp implements DeviceSpecs {
     }
 
     /**
-     * TODO - LUÍS
+     * Method that returns the names of the attributes.
      *
-     * @return
+     * @return List of string with the names of each attribute.
      */
     public List<String> getAttributeNames() {
         List<String> result = new ArrayList<>();
-        result.add(ATTRIBUTE_LUMINIOUS_FLUX);
+        result.add(ATTRIBUTE_LUMINOUS_FLUX);
         result.add(ATTRIBUTE_TIME);
         result.add(ATTRIBUTE_NOMINAL_POWER);
         return result;
     }
 
     /**
-     * TODO - LUÍS
+     * Method that gets the content of the attributes that are editable.
      *
-     * @param attributeName
-     * @return
+     * @return String with the required attributes.
+     */
+    public String getEditableAttributesContent() {
+        StringBuilder content = new StringBuilder();
+        content.append("1 - " + ATTRIBUTE_LUMINOUS_FLUX);
+        content.append("\n");
+        content.append("2 - " + ATTRIBUTE_NOMINAL_POWER);
+        content.append("\n");
+        return content.toString();
+    }
+
+    /**
+     * Method that gets the value of a chosen attribute.
+     *
+     * @param attributeName Name of the chosen attribute.
+     * @return Object with the value of the attribute.
      */
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
-            case ATTRIBUTE_LUMINIOUS_FLUX:
+            case ATTRIBUTE_LUMINOUS_FLUX:
                 return mLuminousFlux;
             case ATTRIBUTE_TIME:
                 return mTime;
@@ -54,15 +68,15 @@ public class Lamp implements DeviceSpecs {
     }
 
     /**
-     * TODO - LUÍS
+     * Method that sets the value of an attribute.
      *
-     * @param attributeName
-     * @param attributeValue
-     * @return
+     * @param attributeName Name of the chosen attribute.
+     * @param attributeValue Value to be used.
+     * @return True or false.
      */
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
-            case ATTRIBUTE_LUMINIOUS_FLUX:
+            case ATTRIBUTE_LUMINOUS_FLUX:
                 if (attributeValue instanceof Double) {
                     this.mLuminousFlux = (Double) attributeValue;
                     return true;

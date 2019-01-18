@@ -17,9 +17,9 @@ public class DishWasher implements DeviceSpecs {
     private double mDuration;
     private double mEnergyConsumptionProgram1;
     private double mNominalPower;
-    private List<Program> mProgramList;
+    private ProgramList mProgramList;
 
-    public DishWasher(int capacity, double nominalPower, List<Program> programList) {
+    public DishWasher(int capacity, double nominalPower, ProgramList programList) {
         this.mTypeName = "Dish Washer";
         this.mCapacity = capacity;
         this.mNominalPower = nominalPower;
@@ -27,9 +27,8 @@ public class DishWasher implements DeviceSpecs {
     }
 
     /**
-     * TODO - LUÍS
-     *
-     * @return
+     * this method get the names of the attributes of the Dish Washer.
+     * @return a list of attributes.
      */
     public List<String> getAttributeNames() {
         List<String> result = new ArrayList<>();
@@ -42,10 +41,9 @@ public class DishWasher implements DeviceSpecs {
     }
 
     /**
-     * TODO - LUÍS
-     *
+     * method that get the name of the attribute.
      * @param attributeName
-     * @return
+     * @return the name of the attribute. The default return 0.
      */
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
@@ -65,11 +63,10 @@ public class DishWasher implements DeviceSpecs {
     }
 
     /**
-     * TODO - LUÍS
-     *
+     * method hat set the attributes with a name and a value.
      * @param attributeName
      * @param attributeValue
-     * @return
+     * @return if true, set the name and the value. By default return false.
      */
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
@@ -103,7 +100,20 @@ public class DishWasher implements DeviceSpecs {
     }
 
     /**
-     * Get method
+     * method that get the editable attributes.
+     * @return a string builder with the editable attributes.
+     */
+    public String getEditableAttributesContent() {
+        StringBuilder content = new StringBuilder();
+        content.append("1 - " + ATTRIBUTE_CAPACITY);
+        content.append("\n");
+        content.append("2 - " + ATTRIBUTE_NOMINAL_POWER);
+        content.append("\n");
+        return content.toString();
+    }
+
+    /**
+     * get method tht get the name of the device type.
      * @return type of device
      */
     @Override

@@ -10,6 +10,7 @@ public class GetNominalPowerRoomsDevicesController {
     public GetNominalPowerRoomsDevicesController(House house) {
         this.mHouse=house;
         this.mMeasurableList = house.getNewMeasurableObjList();
+
     }
 
     public boolean checkIfGridListIsEmpty(){
@@ -31,6 +32,7 @@ public class GetNominalPowerRoomsDevicesController {
     public Room getChosenRoomInTheGrid(int position){
         return mSelectedHouseGrid.getRoomByPosition(position);
     }
+
 
     public String getContentOfDeviceListInRoomOfGrid(int position){
         return mSelectedHouseGrid.getDeviceListContent(position);
@@ -72,7 +74,4 @@ public class GetNominalPowerRoomsDevicesController {
         return mMeasurableList.checkIfMeasurableObjIsInList(measurable);
     }
 
-    public boolean checkIfMeasurableListIsEmpty() {
-        return mMeasurableList.checkIsMeasurableListIsEmpty();
-    }
 }

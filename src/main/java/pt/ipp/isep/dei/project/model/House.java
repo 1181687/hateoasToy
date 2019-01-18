@@ -175,8 +175,8 @@ public class House {
      * @param position
      * @return a position.
      */
-    public String getNameOfTheChosenRoomInSpecificPos(int position) {
-        return mRoomList.getNameOfTheChosenRoomInSpecificPosition(position);
+    public String getRoomNameByPosition(int position) {
+        return mRoomList.getRoomNameByPosition(position);
     }
 
     /**
@@ -214,8 +214,8 @@ public class House {
      * @param position position of the room in the room list
      * @return list of devices of a roomMethod that displays the content
      */
-    public String getDeviceListContentOfARoom(int position) {
-        return mRoomList.getDeviceListContentOfARoom(position);
+    public String getDeviceListContentOfRoomByPosition(int position) {
+        return mRoomList.getDeviceListContentByPosition(position);
     }
 
 
@@ -326,30 +326,30 @@ public class House {
     }*/
 
     /**
-     * TODO - LUíS
+     * Method that gets all the devices of a certain type in the house.
      *
-     * @param type
-     * @return
+     * @param type Required type.
+     * @return DeviceList with all the devices of the required type.
      */
     public DeviceList getAllDevicesOfAType(String type) {
         return mRoomList.getAllDevicesOfAType(type);
     }
 
     /**
-     * TODO - LUíS
+     * Method that returns the number of devices of a certain type in the house.
      *
-     * @param type
-     * @return
+     * @param type Required type.
+     * @return Integer with the number of devices.
      */
     public int getNumberOfDevicesOfAType(String type) {
         return getAllDevicesOfAType(type).getLength();
     }
 
     /**
-     * TODO - LUíS
-     * @param type
-     * @param devicePosition
-     * @return
+     * Method that gets the name of a device of a certain type in the house.
+     * @param type Type of the device.
+     * @param devicePosition Device position in the list of devices.
+     * @return String with the device name.
      */
     public String getDeviceName(String type, int devicePosition) {
         DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);
@@ -357,25 +357,25 @@ public class House {
     }
 
     /**
-     * TODO - LUíS
+     * Method that sets the value of an attribute of a device of a certain type in the house.
      *
-     * @param type
-     * @param devicePosition
-     * @param attributeName
-     * @param value
-     * @return
+     * @param type Type of the device.
+     * @param devicePosition Device position in the list of devices.
+     * @param attributePosition Position of the attribute to be set.
+     * @param value Value to be used.
+     * @return True or false.
      */
-    public boolean setAttribute(String type, int devicePosition, String attributeName, double value) {
+    public boolean setAttribute(String type, int devicePosition, int attributePosition, double value) {
         DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);
-        return listWithAllDevicesOfAType.setAttribute(devicePosition, attributeName, value);
+        return listWithAllDevicesOfAType.setAttribute(devicePosition, attributePosition, value);
     }
 
     /**
-     * TODO - LUíS
+     * Method that returns the energy consumption of a device of a certain type in the house.
      *
-     * @param type
-     * @param devicePosition
-     * @return
+     * @param type Type of the device.
+     * @param devicePosition Device position in the list of devices.
+     * @return Double with the energy consumption.
      */
     public double getEnergyConsumptionOfADevice(String type, int devicePosition) {
         DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);
@@ -383,10 +383,10 @@ public class House {
     }
 
     /**
-     * TODO - LUíS
+     * Method that returns the combined energy consumption of all the devices of a certain type in the house.
      *
-     * @param type
-     * @return
+     * @param type Type of the devices.
+     * @return Double with the combined energy consumption.
      */
     public double getTotalEnergyConsumptionInTheHouse(String type) {
         DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);

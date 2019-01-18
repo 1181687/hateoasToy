@@ -30,9 +30,9 @@ public class ElectricWaterHeater implements DeviceSpecs {
     }
 
     /**
-     * TODO - LUÍS
+     * Method that returns the names of the attributes.
      *
-     * @return
+     * @return List of string with the names of each attribute.
      */
     public List<String> getAttributeNames() {
         List<String> result = new ArrayList<>();
@@ -46,10 +46,10 @@ public class ElectricWaterHeater implements DeviceSpecs {
     }
 
     /**
-     * TODO - LUÍS
+     * Method that gets the value of a chosen attribute.
      *
-     * @param attributeName
-     * @return
+     * @param attributeName Name of the chosen attribute.
+     * @return Object with the value of the attribute.
      */
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
@@ -71,11 +71,11 @@ public class ElectricWaterHeater implements DeviceSpecs {
     }
 
     /**
-     * TODO - LUÍS
+     * Method that sets the value of an attribute.
      *
-     * @param attributeName
-     * @param attributeValue
-     * @return
+     * @param attributeName Name of the chosen attribute.
+     * @param attributeValue Value to be used.
+     * @return True or false.
      */
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
@@ -118,6 +118,24 @@ public class ElectricWaterHeater implements DeviceSpecs {
             default:
                 return false;
         }
+    }
+
+    /**
+     * Method that gets the content of the attributes that are editable.
+     *
+     * @return String with the required attributes.
+     */
+    public String getEditableAttributesContent() {
+        StringBuilder content = new StringBuilder();
+        content.append("1 - " + ATTRIBUTE_HOT_WATER_TEMP);
+        content.append("\n");
+        content.append("2 - " + ATTRIBUTE_PERFORMANCE_RATIO);
+        content.append("\n");
+        content.append("3 - " + ATTRIBUTE_MAXIMUM_VOLUME);
+        content.append("\n");
+        content.append("4 - " + ATTRIBUTE_NOMINAL_POWER);
+        content.append("\n");
+        return content.toString();
     }
 
     /**

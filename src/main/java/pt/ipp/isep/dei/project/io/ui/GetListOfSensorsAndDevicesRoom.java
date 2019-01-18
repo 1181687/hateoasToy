@@ -5,7 +5,7 @@ import pt.ipp.isep.dei.project.model.House;
 
 /**
  * US201: As an Administrator, i want to get a list of all devices in a room, so that i can configure them.
- *  and US250: As an Administrator, i want to get a list of all sensors in a room, so that i can configure them.
+ * and US250: As an Administrator, i want to get a list of all sensors in a room, so that i can configure them.
  */
 public class GetListOfSensorsAndDevicesRoom {
 
@@ -26,7 +26,7 @@ public class GetListOfSensorsAndDevicesRoom {
 
         while (choosenOption < 1 || choosenOption > controller.roomListSize());
 
-        String roomChoosed = controller.getRoomOfTheRoomList(choosenOption - 1);
+        String roomChoosed = controller.getRoomNameByPosition(choosenOption - 1);
         String listOfSensors = controller.getSensorsListContent(choosenOption - 1);
 
         if (controller.checkIfListIsEmpty(choosenOption - 1)) {
@@ -40,26 +40,37 @@ public class GetListOfSensorsAndDevicesRoom {
 
 
     public void run2() {
-        String label2 = "In which room do you want to see the list of devices?";
-        int chosenOption = -1;
 
-        do {
-            System.out.println(controller.getRoomListContent());
-            chosenOption = InputValidator.getIntRange(label2, 1, controller.roomListSize());
+
+        StringBuilder content = new StringBuilder();
+
+        content.append(controller.getRoomListContent());
+        content.append("0- Exit\n");
+        String listContentRoom = content.toString();
+
+        String label2 = "\nIn which room do you want to see the list of devices?\n" + listContentRoom;
+        int maxPosition = controller.roomListSize();
+        int chosenOption = InputValidator.getIntRange(label2, 0, maxPosition);
+        if (chosenOption == 0) {
+            return;
         }
 
-        while (chosenOption < 1 || chosenOption > controller.roomListSize());
+        content.delete(0, content.length());
 
-        String choosenRoom = controller.getRoomOfTheRoomList(chosenOption - 1);
-        String listOfDevices = controller.getDeviceListContent(chosenOption - 1);
+        int positionRoom = chosenOption - 1;
+        String choosenRoom = controller.getRoomNameByPosition(positionRoom);
+        String listOfDevices = controller.getDeviceListContentOfRoomByPosition(positionRoom);
 
-        if (controller.checkIfDeviceListIsEmpty(chosenOption - 1)) {
-            System.out.println("The list is empty. Please, add a device.");
-
-        } else {
-            System.out.println("This is the list of existing devices in the room" + choosenRoom + ":");
+        if (controller.checkIfDeviceListIsEmpty(positionRoom)) {
+            System.out.println("\nThe list is empty.\n");
+            return;
         }
-        System.out.println(listOfDevices);
+
+        content.append("\nThis is the list of existing devices in the room");
+        content.append(choosenRoom);
+        content.append(":\n\n");
+        content.append(listOfDevices);
+        System.out.println(content.toString());
 
     }
 }

@@ -4,7 +4,7 @@ import pt.ipp.isep.dei.project.model.House;
 
 public class EstimateEnergyOfWaterHeaterController {
     private House mHouse;
-    private String mType = "Electric Water Heater";
+    private String mType;
 
     /**
      * Constructor.
@@ -13,59 +13,61 @@ public class EstimateEnergyOfWaterHeaterController {
      */
     public EstimateEnergyOfWaterHeaterController(House mHouse) {
         this.mHouse = mHouse;
+        this.mType = "Electric Water Heater";
     }
 
     /**
-     * TODO
+     * Method that returns the number of water heaters.
      *
-     * @return
+     * @return Integer with the number of water heaters
      */
     public int getNumberOfWaterHeaters() {
         return mHouse.getNumberOfDevicesOfAType(mType);
     }
 
     /**
-     * TODO
+     * Method that returns the name of the water heater.
      *
-     * @param devicePosition
-     * @return
+     * @param devicePosition Device position in the list of water heaters in the house.
+     * @return String with the name of the water heater.
      */
     public String getNameOfWaterHeater(int devicePosition) {
         return mHouse.getDeviceName(mType, devicePosition);
     }
 
     /**
-     * TODO
+     * Method that sets the attribute cold-water temperature with an inputted value.
      *
-     * @param devicePosition
-     * @param coldWaterTemperature
+     * @param devicePosition Device position in the list of water heaters in the house.
+     * @param coldWaterTemperature Inputted value to be used.
      */
     public void setColdWaterTemp(int devicePosition, double coldWaterTemperature) {
-        mHouse.setAttribute(mType, devicePosition, "Cold-water temperature", coldWaterTemperature);
+        mHouse.setAttribute(mType, devicePosition, 5, coldWaterTemperature);
     }
 
     /**
-     * TODO
-     * @param devicePosition
-     * @param volumeOfWaterToHeat
+     * Method that sets the attribute volume of water to heat with an inputted value.
+     *
+     * @param devicePosition Device position in the list of water heaters in the house.
+     * @param volumeOfWaterToHeat Inputted value to be used.
      */
     public void setVolumeOfWaterToHeat(int devicePosition, double volumeOfWaterToHeat) {
-        mHouse.setAttribute(mType, devicePosition, "Volume of water to heat", volumeOfWaterToHeat);
+        mHouse.setAttribute(mType, devicePosition, 6, volumeOfWaterToHeat);
     }
 
     /**
-     * TODO
-     * @param devicePosition
+     * Method that gets the energy consumption of a water heater.
+     * @param devicePosition Device position in the list of water heaters in the house.
      * @return
      */
-    public double getEnergyConsumptionOfADevice(int devicePosition) {
+    public double getEnergyConsumptionOfAWaterHeater(int devicePosition) {
         return mHouse.getEnergyConsumptionOfADevice(mType, devicePosition);
     }
 
     /**
-     * TODO
+     * Method that gets the combined energy consumption of all the water heaters in the house.
      *
-     * @return
+     * @return Double with the combined energy consumption of all the water heaters in the house.
      */
     public double getTotalEnergyConsumptionOfAllDevicesOfAType() {
         return mHouse.getTotalEnergyConsumptionInTheHouse(mType);

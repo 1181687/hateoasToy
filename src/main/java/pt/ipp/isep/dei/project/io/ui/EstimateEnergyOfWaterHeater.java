@@ -22,7 +22,7 @@ public class EstimateEnergyOfWaterHeater {
             String label1 = "Please insert the volume of water to be heated.";
             double volumeOfWaterToHeat = InputValidator.getDouble(label1);
             mCtrl.setVolumeOfWaterToHeat(devicePosition, volumeOfWaterToHeat);
-            System.out.println("The energy used by this device will be " + mCtrl.getEnergyConsumptionOfADevice(devicePosition) + " kWh.\n");
+            System.out.println("The energy used by this device will be " + mCtrl.getEnergyConsumptionOfAWaterHeater(devicePosition) + " kWh.\n");
             devicePosition++;
         }
         System.out.println("The total energy used by the electric water heaters in the house (based on the values " +
