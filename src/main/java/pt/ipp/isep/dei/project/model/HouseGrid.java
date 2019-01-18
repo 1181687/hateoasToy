@@ -137,10 +137,6 @@ public class HouseGrid implements Measurable {
     }
 
 
-    public String getRoomListToString() {
-        return mRoomList.getRoomListToString();
-    }
-
     public int getRoomListSize() {
         return mRoomList.listSize();
     }
@@ -169,7 +165,4 @@ public class HouseGrid implements Measurable {
         return getRoomByPosition(pos1).getmDeviceList().getDeviceByPosition(pos2);
     }
 
-    //public Device getDeviceFromPositionInList(int positionRoom, int positionDevice){
-    //return mRoomList.getRoomFromAPosition(positionRoom).getDeviceList().getDeviceByPosition(positionDevice);
-    //return mRoomsConnectedToHouseGrid.getRoomFromAPosition(positionRoom).getDeviceList().getDeviceByPosition(positionDevice);
 }
