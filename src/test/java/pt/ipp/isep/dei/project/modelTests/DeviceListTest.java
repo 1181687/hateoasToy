@@ -620,5 +620,90 @@ public class DeviceListTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void testsRemoveDevice() {
+        //Arrange
+        double height = 3;
+        double length = 3.5;
+        double width = 3.5;
+        Dimensions dim = new Dimensions(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Room", 2, dim);
+
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        double hotWaterTemp1 = 50;
+        double maximumVolume1 = 150;
+        double performanceRatio1 = 0.8;
+        double nominalPower1 = 100;
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
+
+
+        // Device Instantiation
+        Device device = new Device("Titan RX-Coiso", room, electricWaterHeater);
+        Device device1 = new Device("Bosch Tronic 3000", room, electricWaterHeater1);
+
+
+        room.addDevice(device);
+        room.addDevice(device1);
+
+        room.removeDevice(device1);
+
+        DeviceList compareList = new DeviceList();
+
+        compareList.addDevice(device);
+
+        DeviceList expectedResult = compareList;
+
+        //Act
+        DeviceList result = room.getmDeviceList();
+
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    public void testsRemoveDeviceBoolean() {
+        //Arrange
+        double height = 3;
+        double length = 3.5;
+        double width = 3.5;
+        Dimensions dim = new Dimensions(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Room", 2, dim);
+
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        double hotWaterTemp1 = 50;
+        double maximumVolume1 = 150;
+        double performanceRatio1 = 0.8;
+        double nominalPower1 = 100;
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
+
+        // Device Instantiation
+        Device device = new Device("Titan RX-Coiso", room, electricWaterHeater);
+        Device device1 = new Device("Bosch Tronic 3000", room, electricWaterHeater1);
+
+        room.addDevice(device);
+        room.addDevice(device1);
+
+        //Act
+        boolean result = room.removeDevice(device1);
+
+        //Assert
+        assertTrue(result);
+    }
 }
 
