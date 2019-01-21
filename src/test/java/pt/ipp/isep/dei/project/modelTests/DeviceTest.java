@@ -227,6 +227,28 @@ public class DeviceTest {
     }
 
     @Test
+    public void testSetNameEmpty() {
+        // Arrange
+
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        DeviceList deviceList = new DeviceList();
+        deviceList.addDevice(dev1);
+
+        // Act
+        boolean result = dev1.setName("");
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
     public void testSetNameTrue() {
         // Arrange
 

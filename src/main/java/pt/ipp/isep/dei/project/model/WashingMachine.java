@@ -190,6 +190,8 @@ public class WashingMachine implements DeviceSpecs {
                 return setmCapacity(value);
             case 2:
                 return setmNominalPower(value);
+            default:
+                System.out.println("Invalid option. Please choose a number between 1 and 2.");
         }
         return false;
     }

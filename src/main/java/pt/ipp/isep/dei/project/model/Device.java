@@ -121,8 +121,7 @@ public class Device implements Measurable {
         attributes.append("1 - Name: " + mName + "\n");
         attributes.append("2 - Device Specifications\n");
         attributes.append("3 - Location: " + mLocation.getmName() + "\n");
-        String deviceAttributes = attributes.toString();
-        return  deviceAttributes;
+        return attributes.toString();
     }
 
     /**

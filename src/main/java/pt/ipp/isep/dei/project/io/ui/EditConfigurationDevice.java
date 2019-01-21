@@ -71,7 +71,6 @@ public class EditConfigurationDevice {
                                     }
                                     while (flag);
                                     break;
-
                                 case 2:
                                     String label5 = "Choose the specification you want to change.\n" + controller.getEditableAttributesContent() + exit;
                                     int attributePosition = InputValidator.getIntRange(label5, 0, controller.getEditableAttributesContent().split("\n").length);
@@ -80,9 +79,14 @@ public class EditConfigurationDevice {
                                     }
                                     String label6 = "What is the new value?";
                                     double value = InputValidator.getDouble(label6);
-                                    controller.setDeviceSpecs(attributePosition, value);
-                                    content.append("The value was changed with success!\nNow, the value is " + value + "! \n");
-                                    break;
+                                    if (value == 0) {
+                                        System.out.println("This value is not valid.");
+                                        continue;
+                                    } else {
+                                        controller.setDeviceSpecs(attributePosition, value);
+                                        System.out.println("The value was changed with success!\nNow, the value is " + value + "! \n");
+                                        break;
+                                    }
                                 case 3:
                                     String label7 = "To which room do you want to change the device?\n" + controller.getRoomListContent() + exit;
                                     int roomListLength1 = controller.roomListSize();
