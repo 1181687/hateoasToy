@@ -73,9 +73,8 @@ public class EditConfigurationDeviceController {
     }
 
     /**
-     * TODO
-     *
-     * @return
+     * method that get the attributes that are editable.
+     * @return the editable attributes content.
      */
     public String getEditableAttributesContent() {
         return this.mDevice.getEditableAttributesContent();
