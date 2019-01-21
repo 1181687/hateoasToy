@@ -17,10 +17,8 @@ public class AddDeviceToRoomController {
      */
     public AddDeviceToRoomController(House house) {
         this.mHouse = house;
-        this.mDeviceList = new DeviceList();
         this.mProgramList = new ProgramList();
     }
-
 
     /**
      * Method that asks for the list of rooms from the class RoomList.
@@ -32,8 +30,7 @@ public class AddDeviceToRoomController {
     }
 
 
-    /**
-     * Method that asks for the room in a specific position in the list.
+    /** Method that asks for the room in a specific position in the list.
      * @param position Specifies the position of the room in the list.
      * @return The respective room.
      */
@@ -42,6 +39,9 @@ public class AddDeviceToRoomController {
     }
 
 
+    public void getDeviceList() {
+        mDeviceList = this.mRoom.getmDeviceList();
+    }
     /**
      * Method that show the room selected.
      * @return selected room
@@ -161,5 +161,9 @@ public class AddDeviceToRoomController {
 
     public ProgramList getmProgramList() {
         return mProgramList;
+    }
+
+    public Device getDevice(int position) {
+        return this.mDeviceList.getDeviceByPosition(position);
     }
 }
