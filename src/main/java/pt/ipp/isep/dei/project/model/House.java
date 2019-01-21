@@ -312,19 +312,6 @@ public class House {
         return this.mListHouseGrids.getNameByHGPosition(position);
     }
 
-
-    /*public String getRoomsInTheHouseGrid(int position){
-        return mListHouseGrids.getRoomsInTheHouseGrid(position);
-    }
-
-    public boolean checkIfRoomListInGridIsEmpty(int position){
-        return mListHouseGrids.checkIfSpecificRoomListOfGridIsEmpty(position);
-    }
-
-    public int getTheSizeOfRoomListInAGrid(int position){
-        return mListHouseGrids.getSizeOfRoomListInAGrid(position);
-    }*/
-
     /**
      * Method that gets all the devices of a certain type in the house.
      *

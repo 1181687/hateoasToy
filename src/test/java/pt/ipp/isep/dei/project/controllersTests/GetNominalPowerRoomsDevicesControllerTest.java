@@ -81,7 +81,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
         // Act
-        String result = ctrl.listHouseGrids();
+        String result = ctrl.getHouseGridsListToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -111,7 +111,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
         // Act
-        int result = ctrl.getHouseGridListLength();
+        int result = ctrl.getHouseGridListSize();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -140,7 +140,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         int expectedResult = 0;
 
         // Act
-        int result = ctrl.getHouseGridListLength();
+        int result = ctrl.getHouseGridListSize();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -181,10 +181,10 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
-        ctrl.getHouseGridbyPosition(0);
+        ctrl.getHouseGridByPosition(0);
 
         //act
-        Room result = ctrl.getChosenRoomInTheGrid(0);
+        Room result = ctrl.getRoomOfHouseGridByPosition(0);
         //assert
         assertEquals(expectResult, result);
     }
@@ -233,7 +233,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
-        ctrl.getHouseGridbyPosition(0);
+        ctrl.getHouseGridByPosition(0);
 
         String expectedResult =
                 "1 - Name of the device: Fridge1\n" +
@@ -241,7 +241,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
 
         // Act
-        String result = ctrl.getContentOfDeviceListInRoomOfGrid(0);
+        String result = ctrl.getDeviceListToString(0);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -289,11 +289,11 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
-        ctrl.getHouseGridbyPosition(0);
+        ctrl.getHouseGridByPosition(0);
 
         int expectResult = 2;
         //act
-        int result = ctrl.getSizeOfListOfDevicesInARoom(0);
+        int result = ctrl.getDeviceListSize(0);
         //assert
         assertEquals(expectResult, result);
     }
@@ -319,10 +319,10 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
-        ctrl.getHouseGridbyPosition(0);
+        ctrl.getHouseGridByPosition(0);
 
         //act
-        boolean result = ctrl.checkIfRoomListIsEmpty();
+        boolean result = ctrl.roomListOfHouseGridIsEmpty();
 
         //assert
         assertTrue(result);
@@ -363,9 +363,9 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
-        ctrl.getHouseGridbyPosition(0);
+        ctrl.getHouseGridByPosition(0);
         //act
-        boolean result = ctrl.checkIfRoomListIsEmpty();
+        boolean result = ctrl.roomListOfHouseGridIsEmpty();
 
         //assert
         assertFalse(result);
@@ -399,10 +399,10 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
-        ctrl.getHouseGridbyPosition(0);
+        ctrl.getHouseGridByPosition(0);
 
         // Act
-        boolean result = ctrl.checkIfDeviceListIsEmpty(0);
+        boolean result = ctrl.deviceListIsEmpty(0);
 
         // Assert
         assertTrue(result);
@@ -445,10 +445,10 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
-        ctrl.getHouseGridbyPosition(0);
+        ctrl.getHouseGridByPosition(0);
 
         // Act
-        boolean result = ctrl.checkIfDeviceListIsEmpty(0);
+        boolean result = ctrl.deviceListIsEmpty(0);
 
         // Assert
         assertFalse(result);
@@ -493,10 +493,10 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
-        ctrl.getHouseGridbyPosition(0);
+        ctrl.getHouseGridByPosition(0);
 
         // Act
-        Device result = ctrl.getDeviceFromPositionInList(0, 0);
+        Device result = ctrl.getDeviceListByPosition(0, 0);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -536,10 +536,10 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
-        ctrl.getHouseGridbyPosition(0);
+        ctrl.getHouseGridByPosition(0);
 
         // Act
-        String result = ctrl.getRoomsInTheHouseGrid();
+        String result = ctrl.getRoomListInHouseGridToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -578,10 +578,10 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
-        ctrl.getHouseGridbyPosition(0);
+        ctrl.getHouseGridByPosition(0);
         int expectResult = 2;
         //act
-        int result = ctrl.getSizeOfRoomListInGrid();
+        int result = ctrl.getRoomListInHouseGridSize();
         //assert
         assertEquals(expectResult, result);
     }
@@ -607,9 +607,9 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
-        ctrl.getHouseGridbyPosition(0);
+        ctrl.getHouseGridByPosition(0);
         //act
-        int result = ctrl.getSizeOfRoomListInGrid();
+        int result = ctrl.getRoomListInHouseGridSize();
         //assert
         assertEquals(expectResult, result);
     }
@@ -651,7 +651,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
-        ctrl.getHouseGridbyPosition(0);
+        ctrl.getHouseGridByPosition(0);
 
         ctrl.addAMeasurableObject(dev1);
 
@@ -659,7 +659,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         //Act
 
-        double result = ctrl.getNominalPowerOfSelectedMeasurableObjects();
+        double result = ctrl.getNominalPowerOfMeasurableObjects();
 
         //Assert
         assertEquals(expectedResult, result, 0.00001);
@@ -702,11 +702,11 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
-        ctrl.getHouseGridbyPosition(0);
+        ctrl.getHouseGridByPosition(0);
 
         ctrl.addAMeasurableObject(dev1);
 
-        boolean result = ctrl.checkIfObjInList(dev1);
+        boolean result = ctrl.measurableListIsEmpty(dev1);
 
         //Assert
 
@@ -758,11 +758,11 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
-        ctrl.getHouseGridbyPosition(0);
+        ctrl.getHouseGridByPosition(0);
 
         ctrl.addAMeasurableObject(dev1);
 
-        boolean result = ctrl.checkIfObjInList(dev2);
+        boolean result = ctrl.measurableListIsEmpty(dev2);
 
         //Assert
 
