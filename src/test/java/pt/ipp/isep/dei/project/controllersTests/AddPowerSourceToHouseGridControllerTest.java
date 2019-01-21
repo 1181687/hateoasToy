@@ -111,7 +111,7 @@ class AddPowerSourceToHouseGridControllerTest {
 
         int expectedResult=1;
         //Act
-        int result = addPowerSourceToHouseGridController.powerSourceTypeListLength();
+        int result = addPowerSourceToHouseGridController.getPowerSourceTypeListSize();
 
         //Assert
         assertEquals(expectedResult,result);
@@ -136,7 +136,7 @@ class AddPowerSourceToHouseGridControllerTest {
 
         AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
         controller.getHouseGridFromListByPosition(position);
-        controller.getPowerSourceTypeFromListByPosition(positionOfPowerSource);
+        controller.getPowerSourceTypeByPosition(positionOfPowerSource);
 
         //Act
         boolean result = controller.createAndAddPowerSourceToHouseGrid(powerSourceName);
@@ -168,7 +168,7 @@ class AddPowerSourceToHouseGridControllerTest {
 
         AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
         controller.getHouseGridFromListByPosition(position);
-        controller.getPowerSourceTypeFromListByPosition(positionOfPowerSource);
+        controller.getPowerSourceTypeByPosition(positionOfPowerSource);
 
         //Act
         boolean result = controller.createAndAddPowerSourceToHouseGrid(powerSourceName);
@@ -197,7 +197,7 @@ class AddPowerSourceToHouseGridControllerTest {
 
         AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
         controller.getHouseGridFromListByPosition(position);
-        controller.getPowerSourceTypeFromListByPosition(position);
+        controller.getPowerSourceTypeByPosition(position);
         controller.createAndAddPowerSourceToHouseGrid(powerSourceName1);
 
         //Act
@@ -225,7 +225,7 @@ class AddPowerSourceToHouseGridControllerTest {
         String expectedResult = "1 - Power Source Type: public electric grid\n";
 
         //Act
-        String result = controller.getPowerSourceTypeListContent();
+        String result = controller.getPowerSourceTypeListToString();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -249,7 +249,7 @@ class AddPowerSourceToHouseGridControllerTest {
 
         AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
         controller.getHouseGridFromListByPosition(position);
-        controller.getPowerSourceTypeFromListByPosition(position);
+        controller.getPowerSourceTypeByPosition(position);
         controller.createAndAddPowerSourceToHouseGrid(powerSourceName1);
 
         String expectedResult= "1- ps1\n";
@@ -275,7 +275,7 @@ class AddPowerSourceToHouseGridControllerTest {
 
         AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
         controller.getHouseGridFromListByPosition(position);
-        controller.getPowerSourceTypeFromListByPosition(position);
+        controller.getPowerSourceTypeByPosition(position);
 
         String expectedResult = "hgname1";
 

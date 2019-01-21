@@ -16,7 +16,7 @@ public class AddPowerSourceToHouseGridController {
     }
 
     /**
-     * Checks if the HouseGridList is empty.
+     * Method that checks if the HouseGridList is empty.
      * @return boolean
      */
 
@@ -25,7 +25,7 @@ public class AddPowerSourceToHouseGridController {
     }
 
     /**
-     * Lists the House Grids in the HouseGridList
+     * Method that lists the House Grids in the HouseGridList.
      * @return String
      */
     public String getHouseGridListToString() {
@@ -33,39 +33,74 @@ public class AddPowerSourceToHouseGridController {
     }
 
     /**
-     * Calculates the
-     * @return
+     * Method that calculates the size of the HouseGrid list.
+     * @return int
      */
 
     public int houseGridListLength(){
         return mHouseGridList.getmHouseGridsList().size();
     }
 
+    /**
+     * Method that gets a HouseGrid from the HouseGridList by position.
+     * @param position
+     */
+
     public void getHouseGridFromListByPosition(int position) {
         this.mSelectedHouseGrid = this.mHouseGridList.getHouseGridByPosition(position);
     }
+
+    /**
+     * Method that creates a PowerSource and adds it to the PowerSourceList in the selected HouseGrid.
+     * @param name of the Power Source.
+     * @return true if the Power Source is created and added with success to the HouseGrid or false if the PowerSource is not added
+     */
 
     public boolean createAndAddPowerSourceToHouseGrid(String name) {
         PowerSource newPowerSource = this.mSelectedHouseGrid.getPowerSourceList().createNewPowerSource(name, this.mSelectedPowerSourceType);
         return this.mSelectedHouseGrid.addPowerSource(newPowerSource);
     }
 
-    public String getPowerSourceTypeListContent() {
+    /**
+     * Returns a list of Power Source Types.
+     * @return String
+     */
+
+    public String getPowerSourceTypeListToString() {
         return mPowerSourceTypeList.getPowerSourceTypeListContent();
     }
 
-    public int powerSourceTypeListLength(){
+    /**
+     * Returns the number of elements contained in the PowerSourceTypeList.
+     * @return
+     */
+
+    public int getPowerSourceTypeListSize(){
         return mPowerSourceTypeList.powerSourceTypeListLength();
     }
 
-    public void getPowerSourceTypeFromListByPosition(int position) {
+    /**
+     * Method that, given a position, retrieves a PowerSourceType from a PowerSourceTypeList.
+     * @param position
+     */
+
+    public void getPowerSourceTypeByPosition(int position) {
         this.mSelectedPowerSourceType = this.mPowerSourceTypeList.getPowerSourceTypeFromASpecificPosition(position);
     }
+
+    /**
+     * Returns the selected HouseGrid name.
+     * @return String
+     */
 
     public String getHouseGridName(){
         return mSelectedHouseGrid.getName();
     }
 
+    /**
+     * Returns a list of PowerSources that have been added to the HouseGrid's PowerSourceList.
+     * @return
+     */
     public String listPowerSourcesConnectedToHouseGrid(){
         return mSelectedHouseGrid.getPowerSourceListContent();
     }
