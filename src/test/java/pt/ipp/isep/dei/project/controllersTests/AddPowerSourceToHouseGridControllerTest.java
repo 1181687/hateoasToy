@@ -21,7 +21,7 @@ class AddPowerSourceToHouseGridControllerTest {
         AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
 
         // Act
-        boolean result = addPowerSourceToHouseGridController.checkIfHouseGridListIsEmpty();
+        boolean result = addPowerSourceToHouseGridController.houseGridListIsEmpty();
 
         // Assert
         assertTrue(result);
@@ -43,7 +43,7 @@ class AddPowerSourceToHouseGridControllerTest {
         AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
 
         // Act
-        boolean result = addPowerSourceToHouseGridController.checkIfHouseGridListIsEmpty();
+        boolean result = addPowerSourceToHouseGridController.houseGridListIsEmpty();
 
         // Assert
         assertFalse(result);
@@ -68,7 +68,7 @@ class AddPowerSourceToHouseGridControllerTest {
         String expectedResult = "1 - Name: hgname1\n";
 
         // Act
-        String result = addPowerSourceToHouseGridController.getHouseGridListContent();
+        String result = addPowerSourceToHouseGridController.getHouseGridListToString();
         // Assert
         assertEquals(expectedResult, result);
     }

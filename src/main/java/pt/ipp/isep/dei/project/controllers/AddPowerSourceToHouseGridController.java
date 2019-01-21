@@ -15,13 +15,27 @@ public class AddPowerSourceToHouseGridController {
         this.mPowerSourceTypeList = powerSourceTypeList;
     }
 
-    public boolean checkIfHouseGridListIsEmpty() {
+    /**
+     * Checks if the HouseGridList is empty.
+     * @return boolean
+     */
+
+    public boolean houseGridListIsEmpty() {
         return mHouseGridList.checkIfHouseGridListIsEmpty();
     }
 
-    public String getHouseGridListContent() {
+    /**
+     * Lists the House Grids in the HouseGridList
+     * @return String
+     */
+    public String getHouseGridListToString() {
         return mHouseGridList.getHouseGridListToString();
     }
+
+    /**
+     * Calculates the
+     * @return
+     */
 
     public int houseGridListLength(){
         return mHouseGridList.getmHouseGridsList().size();
