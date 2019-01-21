@@ -19,25 +19,42 @@ skinparam sequence {
 autonumber
 actor User
 User -> UI: GetDevicesInHouseGrid
+activate UI
 UI -> Controller: GetHouseGridListToString()
+activate Controller
 Controller -> House: GetHouseGridListToString()
+activate House
 House -> HouseGridList: GetHouseGridListToString()
-UI <-- HouseGridList: GetHouseGridListToString()
-User <-- UI: GetHouseGridListToString()
+activate HouseGridList
+UI <-- HouseGridList: HouseGridListToString
+deactivate HouseGridList
+deactivate House
+User <-- UI: HouseGridListToString
 
 User -> UI: ChooseHouseGrid
 UI -> Controller: GetHGNameByHGPosition()
 Controller -> House: GetHGNameByHGPosition()
+activate House
 House -> HouseGridList: GetNameByHGPosition()
-House <-- HouseGridList: GetNameByHGPosition()
-Controller <-- House: GetHGNameByHGPosition()
-UI <-- Controller: GetHGNameByHGPosition()
+activate HouseGridList
+House <-- HouseGridList: NameByHGPosition
+deactivate HouseGridList
+Controller <-- House: HGNameByHGPosition
+deactivate House
+UI <-- Controller: HGNameByHGPosition
+
 
 UI -> Controller: GetDeviceListContentNameTypeLocationByHG()
+
 Controller -> House: GetDeviceListContentNameTypeLocationByHG()
+activate House
 House -> HouseGridList: GetHGByPosition()
-House <-- HouseGridList: GetHGByPosition()
-Controller <-- House: GetDeviceListContentNameTypeLocationByHG()
-UI <-- Controller: GetDeviceListContentNameTypeLocationByHG()
-User <-- UI: GetDeviceListContentNameTypeLocationByHG()
+activate HouseGridList
+House <-- HouseGridList: HGByPosition
+deactivate HouseGridList
+Controller <-- House: DeviceListContentNameTypeLocationByHG
+deactivate House
+UI <-- Controller: DeviceListContentNameTypeLocationByHG
+deactivate Controller
+User <-- UI: DeviceListContentNameTypeLocationByHG
 @enduml

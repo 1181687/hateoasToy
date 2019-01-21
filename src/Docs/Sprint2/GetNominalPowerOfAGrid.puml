@@ -18,22 +18,39 @@ skinparam sequence {
 
 actor User
 User -> UI: GetNominalPowerOfAGrid
+activate UI
 UI -> Controller: checkIfGridListIsEmpty()
+activate Controller
 Controller -> House: checkIfGridListIsEmpty()
+activate House
 House -> HouseGridList: checkIfGridListIsEmpty()
-HouseGridList --> UI: boolean
-UI->Controller: listHouseGrids()
-Controller->House:getHouseGridListToString()
-House->HouseGridList:getHouseGridListToString()
-HouseGridList-->UI: House Grid List
-UI-->User:Shows list of house grids available
-User->UI: Selects house grid :int p
-UI->Controller: getHouseGridByPosition(p)
-Controller->House: getHouseGridByPosition(p)
-House->HouseGridList: getHouseGridByPosition(p)
-HouseGridList->UI:HouseGrid hg
-UI->Controller:getNominalPower();
-Controller->HouseGrid:getNominalPower();
-HouseGrid-->UI: double nominalPower
+activate HouseGridList
+UI <-- HouseGridList: boolean
+deactivate HouseGridList
+deactivate Controller
+UI -> Controller: listHouseGrids()
+activate Controller
+Controller -> House:getHouseGridListToString()
+
+House -> HouseGridList:getHouseGridListToString()
+activate HouseGridList
+UI <-- HouseGridList: HouseGridList
+deactivate House
+deactivate HouseGridList
+deactivate Controller
+UI <-- User: List Of House Grid
+User -> UI: Select house grid :int p
+UI -> Controller: getHouseGridByPosition(p)
+activate Controller
+Controller -> House: getHouseGridByPosition(p)
+activate House
+House -> HouseGridList: getHouseGridByPosition(p)
+activate HouseGridList
+HouseGridList -> UI:HouseGrid hg
+UI -> Controller: getNominalPower()
+Controller -> HouseGrid:getNominalPower()
+activate HouseGrid
+UI <-- HouseGrid: double nominalPower
+deactivate HouseGrid
 
 @enduml
