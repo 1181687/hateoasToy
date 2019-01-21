@@ -4,15 +4,15 @@ import pt.ipp.isep.dei.project.model.SensorType;
 import pt.ipp.isep.dei.project.model.SensorTypeList;
 
 public class DefineSensorTypeController {
-    private SensorTypeList mListaTipoSensores;
+    private SensorTypeList sensorTypeList;
 
 
-    public DefineSensorTypeController(SensorTypeList listaTipoSensores) {
-        this.mListaTipoSensores = listaTipoSensores;
+    public DefineSensorTypeController(SensorTypeList sensorTypeList) {
+        this.sensorTypeList = sensorTypeList;
     }
 
-    public boolean criarEAdicionarTipoDeSensor (String tipoDeSensor){
-        SensorType novoSensorType = this.mListaTipoSensores.newSensorType(tipoDeSensor);
-        return this.mListaTipoSensores.addSensorType(novoSensorType);
+    public boolean createAndAddSensorType(String sensorType){
+        SensorType newSensorType = this.sensorTypeList.newSensorType(sensorType);
+        return this.sensorTypeList.addSensorType(newSensorType);
     }
 }
