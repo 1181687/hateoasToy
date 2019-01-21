@@ -46,7 +46,6 @@ deactivate Room
 deactivate RoomList
 deactivate House
 deactivate Controller
-User <-- UI: Room
 
 User -> UI: GetDevicesInTheRoom
 UI -> Controller: getDevicesInTheRoom()
@@ -72,7 +71,6 @@ UI <-- DeviceList: Device
 deactivate DeviceList
 deactivate Room
 deactivate Controller
-User <-- UI: Device
 
 User -> UI: GetDeviceAttributes
 UI -> Controller: getDeviceAttributesToString()
