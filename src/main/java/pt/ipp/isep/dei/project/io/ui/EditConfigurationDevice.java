@@ -97,6 +97,8 @@ public class EditConfigurationDevice {
                                     content.append(room);
                                     content.append("! \n");
                                     break;
+                                default:
+                                    System.out.println("Invalid option. Please choose a number between 1 and 3.");
                             }
                             flag2 = false;
                         }

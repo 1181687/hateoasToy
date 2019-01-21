@@ -5,9 +5,9 @@ import java.util.Set;
 
 public class MeasurableObjectsList {
     private Set<Measurable> mMeasurableList = new HashSet<>();
-    //private List<Measurable> mMeasurableList = new ArrayList<>();
 
     public MeasurableObjectsList() {
+        //intentionally empty
     }
 
     public void addMeasurableObjToMeasurableList(Measurable measurable) {

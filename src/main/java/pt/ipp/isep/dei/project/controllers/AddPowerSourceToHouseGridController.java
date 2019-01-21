@@ -5,7 +5,6 @@ import pt.ipp.isep.dei.project.model.*;
 public class AddPowerSourceToHouseGridController {
 
     private HouseGridList mHouseGridList;
-    private PowerSource mPowerSource;
     private PowerSourceTypeList mPowerSourceTypeList;
     private HouseGrid mSelectedHouseGrid;
     private PowerSourceType mSelectedPowerSourceType;
@@ -33,8 +32,8 @@ public class AddPowerSourceToHouseGridController {
     }
 
     public boolean createAndAddPowerSourceToHouseGrid(String name) {
-        mPowerSource = this.mSelectedHouseGrid.getPowerSourceList().createNewPowerSource(name, this.mSelectedPowerSourceType);
-        return this.mSelectedHouseGrid.addPowerSource(mPowerSource);
+        PowerSource newPowerSource = this.mSelectedHouseGrid.getPowerSourceList().createNewPowerSource(name, this.mSelectedPowerSourceType);
+        return this.mSelectedHouseGrid.addPowerSource(newPowerSource);
     }
 
     public String getPowerSourceTypeListContent() {

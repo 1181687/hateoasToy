@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.utils;
 
-public class Utils {
+public final class Utils {
 
     private Utils() {
         //intentionally empty
@@ -8,7 +8,6 @@ public class Utils {
 
     /**
      * method that compares two double values.
-     *
      * @param value1
      * @param value2
      * @return the comparison between two values.
