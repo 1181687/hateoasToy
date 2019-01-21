@@ -4,8 +4,6 @@ import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
 
-import java.util.List;
-
 public class EditConfigurationDeviceController {
 
     private House mHouse;
@@ -76,8 +74,8 @@ public class EditConfigurationDeviceController {
      * method that get the attributes that are editable.
      * @return the editable attributes content.
      */
-    public String getEditableAttributesContent() {
-        return this.mDevice.getEditableAttributesContent();
+    public String getDevSpecsAttributesToString() {
+        return this.mDevice.getDevSpecsAttributesToString();
     }
 
     /**
@@ -97,14 +95,6 @@ public class EditConfigurationDeviceController {
      */
     public boolean setDeviceSpecs (int attribute, double value) {
         return this.mDevice.setAttributesDevType(attribute, value);
-    }
-
-    /**
-     * method that get the specifications of the attribute to a string
-     * @return the specifications of the attribute.
-     */
-    public List<String> getSpecsAttributesToString () {
-        return this.mDevice.getSpecsAttributesToString();
     }
 
     /**

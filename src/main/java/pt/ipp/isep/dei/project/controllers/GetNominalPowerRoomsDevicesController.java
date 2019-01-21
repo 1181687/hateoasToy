@@ -17,44 +17,44 @@ public class GetNominalPowerRoomsDevicesController {
         return this.mHouse.checkIfHouseGridListIsEmpty();
     }
 
-    public String listHouseGrids(){
+    public String getHouseGridsListToString(){
         return this.mHouse.getHouseGridListContent();
     }
 
-    public int getHouseGridListLength(){
+    public int getHouseGridListSize(){
         return this.mHouse.getHouseGridListLength();
     }
 
-    public void getHouseGridbyPosition(int position){
+    public void getHouseGridByPosition(int position){
         mSelectedHouseGrid = this.mHouse.getHouseGridByPosition(position);
     }
 
-    public Room getChosenRoomInTheGrid(int position){
+    public Room getRoomOfHouseGridByPosition(int position){
         return mSelectedHouseGrid.getRoomByPosition(position);
     }
 
 
-    public String getContentOfDeviceListInRoomOfGrid(int position){
+    public String getDeviceListToString(int position){
         return mSelectedHouseGrid.getDeviceListContent(position);
     }
 
-    public int getSizeOfListOfDevicesInARoom(int position){
+    public int getDeviceListSize(int position){
         return mSelectedHouseGrid.getDeviceListSizeByRoomPosition(position);
     }
 
-    public boolean checkIfRoomListIsEmpty() {
+    public boolean roomListOfHouseGridIsEmpty() {
         return mSelectedHouseGrid.checkIfRoomListIsEmpty();
     }
 
-    public boolean checkIfDeviceListIsEmpty(int position){
+    public boolean deviceListIsEmpty(int position){
         return mSelectedHouseGrid.checkIfDeviceListIsEmpty(position);
     }
 
-    public Device getDeviceFromPositionInList(int pos1, int pos2){
+    public Device getDeviceListByPosition(int pos1, int pos2){
         return mSelectedHouseGrid.getDeviceFromPositionInList(pos1, pos2);
     }
 
-    public double getNominalPowerOfSelectedMeasurableObjects(){
+    public double getNominalPowerOfMeasurableObjects(){
         return mMeasurableList.getNominalPower();
     }
 
@@ -62,15 +62,15 @@ public class GetNominalPowerRoomsDevicesController {
         mMeasurableList.addMeasurableObjToMeasurableList(measurable);
     }
 
-    public String getRoomsInTheHouseGrid() {
+    public String getRoomListInHouseGridToString() {
         return mSelectedHouseGrid.getRoomListContent();
     }
 
-    public int getSizeOfRoomListInGrid() {
+    public int getRoomListInHouseGridSize() {
         return mSelectedHouseGrid.getRoomListSize();
     }
 
-    public boolean checkIfObjInList(Measurable measurable){
+    public boolean measurableListIsEmpty(Measurable measurable){
         return mMeasurableList.checkIfMeasurableObjIsInList(measurable);
     }
 

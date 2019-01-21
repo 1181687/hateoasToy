@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import static java.util.Objects.isNull;
+
 public class HouseGrid implements Measurable {
     private String mName;
     private double mMaximumContractedPower;
@@ -8,11 +10,13 @@ public class HouseGrid implements Measurable {
 
     /**
      * constructor of a house grid that receives a name, a room list, a list of power sources and a maximum contracted power.
-     * @param mHouseGridName
+     * @param houseGridName
      */
 
-    public HouseGrid(String mHouseGridName) {
-        this.mName = mHouseGridName;
+    public HouseGrid(String houseGridName) {
+        validateName(houseGridName);
+
+        this.mName = houseGridName;
         this.mRoomList = new RoomList();
         this.mPowerSourceList = new PowerSourceList();
         this.mMaximumContractedPower = 0;
@@ -26,9 +30,17 @@ public class HouseGrid implements Measurable {
      * @param roomsConnectedToHouseGrid
      */
     public HouseGrid(String houseGridName, double maximumContractedPower, RoomList roomsConnectedToHouseGrid) {
+        validateName(houseGridName);
+
         this.mName = houseGridName;
         this.mMaximumContractedPower = maximumContractedPower;
         this.mRoomList = roomsConnectedToHouseGrid;
+    }
+
+    private static void validateName(String name) {
+        if (isNull(name) || name.trim().length() == 0) {
+            throw new RuntimeException("Please enter a valid name. Name should not be empty");
+        }
     }
 
     /**

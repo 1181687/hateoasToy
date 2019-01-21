@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.EditConfigurationDeviceController;
 import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 public class EditConfigurationDevice {
 
@@ -72,14 +73,14 @@ public class EditConfigurationDevice {
                                     while (flag);
                                     break;
                                 case 2:
-                                    String label5 = "Choose the specification you want to change.\n" + controller.getEditableAttributesContent() + exit;
-                                    int attributePosition = InputValidator.getIntRange(label5, 0, controller.getEditableAttributesContent().split("\n").length);
+                                    String label5 = "Choose the specification you want to change.\n" + controller.getDevSpecsAttributesToString() + exit;
+                                    int attributePosition = InputValidator.getIntRange(label5, 0, controller.getNumberOfAttributesInDeviceSpecs());
                                     if (attributePosition == 0) {
                                         continue;
                                     }
                                     String label6 = "What is the new value?";
                                     double value = InputValidator.getDouble(label6);
-                                    if (value == 0) {
+                                    if (Utils.isSameDouble(value, 0)) {
                                         System.out.println("This value is not valid.");
                                         continue;
                                     } else {

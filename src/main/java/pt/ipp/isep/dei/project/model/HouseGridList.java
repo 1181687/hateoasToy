@@ -150,7 +150,7 @@ public class HouseGridList {
      */
     public String getNameByHGPosition(int position) {
         if (mHouseGridsList.isEmpty()) {
-            return null;
+            return "There are no Grids in the house";
         }
         return mHouseGridsList.get(position).getName();
     }

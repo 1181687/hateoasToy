@@ -18,7 +18,7 @@ skinparam sequence {
 
 autonumber
 actor User
-User -> UI: GetRoomListContent
+User -> UI: EditConfigurationDevice
 activate UI
 UI -> Controller: getRoomListContent()
 activate Controller
@@ -41,27 +41,25 @@ House -> RoomList: getRoom(Room)
 activate RoomList
 RoomList -> Room: getRoom(Room)
 activate Room
-RoomList <-- Room: GetRoom
+UI <-- Room: Room
 deactivate Room
-UI <-- RoomList: GetRoom
 deactivate RoomList
 deactivate House
 deactivate Controller
-User <-- UI: GetRoom
+User <-- UI: Room
 
 User -> UI: GetDevicesInTheRoom
-activate UI
 UI -> Controller: getDevicesInTheRoom()
 activate Controller
 Controller -> Room: getDevicesInTheRoom()
 activate Room
 Room -> DeviceList: getDevicesInTheRoom()
 activate DeviceList
-UI <-- DeviceList: GetDevicesInTheRoom
+UI <-- DeviceList: DevicesInTheRoom
 deactivate DeviceList
 deactivate Room
 deactivate Controller
-User <-- UI: GetDevicesInTheRoom
+User <-- UI: DevicesInTheRoom
 
 User -> UI: Int position: Device
 UI -> Controller: getDevice(Device)
@@ -70,90 +68,88 @@ Controller -> Room: getDevice(Device)
 activate Room
 Room -> DeviceList: getDevice(Device)
 activate DeviceList
-UI <-- DeviceList: GetDevice
+UI <-- DeviceList: Device
 deactivate DeviceList
+deactivate Room
 deactivate Controller
-User <-- UI: GetDevice
+User <-- UI: Device
 
 User -> UI: GetDeviceAttributes
 UI -> Controller: getDeviceAttributesToString()
 activate Controller
 Controller -> Device: getDeviceAttributesToString()
 activate Device
-UI <-- Device: GetDeviceAttributesToString
+UI <-- Device: DeviceAttributesToString
 deactivate Device
 deactivate Controller
-User <-- UI: GetDeviceAttributesToString
+User <-- UI: DeviceAttributesToString
 
 User -> UI: SetDeviceName
 UI -> Controller: setDeviceName()
 activate Controller
 Controller -> Device: setDeviceName()
 activate Device
-UI <-- Device: SetDeviceName
+UI <-- Device: DeviceName
 deactivate Device
 deactivate Controller
-User <-- UI: SetDeviceName
+User <-- UI: DeviceName
 
 User -> UI: GetEditableAttributesContent
 UI -> Controller: getEditableAttributesContent()
 activate Controller
 Controller -> Device: getEditableAttributesContent()
 activate Device
-UI <-- Device: GetEditableAttributesContent
+UI <-- Device: EditableAttributesContent
 deactivate Device
 deactivate Controller
-User <-- UI: GetEditableAttributesContent
+User <-- UI: EditableAttributesContent
 
 User -> UI: SetDeviceSpecs
 UI -> Controller: setDeviceSpecs()
 activate Controller
 Controller -> Device: setAttributesDevType()
 activate Device
-UI <-- Device: SetDeviceSpecs
+UI <-- Device: DeviceSpecs
 deactivate Device
 deactivate Controller
-User <-- UI: SetDeviceSpecs
+User <-- UI: DeviceSpecs
 
 User -> UI: GetRoomList
-activate UI
 UI -> Controller: getRoomListContent()
 activate Controller
 Controller -> House: getRoomListContent()
 activate House
 House -> RoomList: getRoomListContent()
 activate RoomList
-UI <-- RoomList: GetRoomList
+UI <-- RoomList: RoomList
 deactivate RoomList
 deactivate House
 deactivate Controller
-User <-- UI: GetRoomList
+User <-- UI: RoomList
 
 User -> UI: GetNewRoom(Room)
-activate UI
 UI -> Controller: getNewRoom(Room)
 activate Controller
 Controller -> House: getRoomOfTheRoomList(Room)
 activate House
 House -> RoomList: getRoom(Room)
 activate RoomList
-UI <-- RoomList: GetNewRoom
+UI <-- RoomList: NewRoom
 deactivate RoomList
 deactivate House
 deactivate Controller
-User <-- UI: GetNewRoom
+User <-- UI: NewRoom
 
 User -> UI: SetLocation(Room)
-activate UI
 UI -> Controller: setLocation(Room)
 activate Controller
 Controller -> Device: setLocation(Room)
 activate Device
-UI <-- Device: SetLocation
+UI <-- Device: Location
 deactivate Device
 deactivate House
 deactivate Controller
-User <-- UI: SetLocation
+User <-- UI: Location
 
 @enduml
 
