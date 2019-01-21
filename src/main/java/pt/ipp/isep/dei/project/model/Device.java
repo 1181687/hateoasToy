@@ -112,19 +112,6 @@ public class Device implements Measurable {
     }
 
     /**
-     * method that gets the DeviceSpecs
-     * @return DeviceSpecs
-     *//*
-    public String getEditableAttributeByLine(int line) {
-        String editableContent = getEditableAttributesContent().substring(line, "\n");
-        String line1 = str23.substring(0, str23.indexOf("\n"));
-        String line2 = str23.substring(str23.indexOf("\n")+1, str23.length());
-        String chosenLine =
-        editableContent.split("\n", line+1);
-        return editableContent;
-    }*/
-
-    /**
      * method that get all attributes of a device by strings.
      * @return the device attributes.
      */
