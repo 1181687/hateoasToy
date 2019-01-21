@@ -2,17 +2,7 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ElectricWaterHeater implements DeviceSpecs {
-    private static final String ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT = "Volume of water to heat";
-    private static final String ATTRIBUTE_COLD_WATER_TEMP = "Cold-water temperature";
-    private static final String ATTRIBUTE_HOT_WATER_TEMP = "Hot-water temperature";
-    private static final String ATTRIBUTE_PERFORMANCE_RATIO = "Performance ratio";
-    private static final String ATTRIBUTE_MAXIMUM_VOLUME = "Maximum volume";
-    private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal power";
-
     private String mTypeName;
     private double mVolumeOfWaterToHeat;
     private double mColdWaterTemperature;
@@ -27,115 +17,6 @@ public class ElectricWaterHeater implements DeviceSpecs {
         this.mMaximumVolume = mMaximumVolume;
         this.mPerformanceRatio = mPerformanceRatio;
         this.mNominalPower = mNominalPower;
-    }
-
-    /**
-     * Method that returns the names of the attributes.
-     *
-     * @return List of string with the names of each attribute.
-     */
-    public List<String> getAttributeNames() {
-        List<String> result = new ArrayList<>();
-        result.add(ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT);
-        result.add(ATTRIBUTE_COLD_WATER_TEMP);
-        result.add(ATTRIBUTE_HOT_WATER_TEMP);
-        result.add(ATTRIBUTE_PERFORMANCE_RATIO);
-        result.add(ATTRIBUTE_MAXIMUM_VOLUME);
-        result.add(ATTRIBUTE_NOMINAL_POWER);
-        return result;
-    }
-
-    /**
-     * Method that gets the value of a chosen attribute.
-     *
-     * @param attributeName Name of the chosen attribute.
-     * @return Object with the value of the attribute.
-     */
-    public Object getAttributeValue(String attributeName) {
-        switch (attributeName) {
-            case ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT:
-                return mVolumeOfWaterToHeat;
-            case ATTRIBUTE_COLD_WATER_TEMP:
-                return mColdWaterTemperature;
-            case ATTRIBUTE_HOT_WATER_TEMP:
-                return mHotWaterTemperature;
-            case ATTRIBUTE_PERFORMANCE_RATIO:
-                return mPerformanceRatio;
-            case ATTRIBUTE_MAXIMUM_VOLUME:
-                return mMaximumVolume;
-            case ATTRIBUTE_NOMINAL_POWER:
-                return mNominalPower;
-            default:
-                return 0;
-        }
-    }
-
-    /**
-     * Method that sets the value of an attribute.
-     *
-     * @param attributeName Name of the chosen attribute.
-     * @param attributeValue Value to be used.
-     * @return True or false.
-     */
-    public boolean setAttributeValue(String attributeName, Object attributeValue) {
-        switch (attributeName) {
-            case ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT:
-                if (attributeValue instanceof Double) {
-                    this.mVolumeOfWaterToHeat = (Double) attributeValue;
-                    return true;
-                }
-                return false;
-            case ATTRIBUTE_COLD_WATER_TEMP:
-                if (attributeValue instanceof Double) {
-                    this.mColdWaterTemperature = (Double) attributeValue;
-                    return true;
-                }
-                return false;
-            case ATTRIBUTE_HOT_WATER_TEMP:
-                if (attributeValue instanceof Double) {
-                    this.mHotWaterTemperature = (Double) attributeValue;
-                    return true;
-                }
-                return false;
-            case ATTRIBUTE_PERFORMANCE_RATIO:
-                if (attributeValue instanceof Double) {
-                    this.mPerformanceRatio = (Double) attributeValue;
-                    return true;
-                }
-                return false;
-            case ATTRIBUTE_MAXIMUM_VOLUME:
-                if (attributeValue instanceof Double) {
-                    this.mMaximumVolume = (Double) attributeValue;
-                    return true;
-                }
-                return false;
-            case ATTRIBUTE_NOMINAL_POWER:
-                if (attributeValue instanceof Double) {
-                    this.mNominalPower = (Double) attributeValue;
-                    return true;
-                }
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    /**
-     * Method that gets the content of the attributes that are editable.
-     *
-     * @return String with the required attributes.
-     */
-    public String getEditableAttributesContent() {
-        StringBuilder content = new StringBuilder();
-        content.append("1 - " + ATTRIBUTE_HOT_WATER_TEMP);
-        content.append("\n");
-        content.append("2 - " + ATTRIBUTE_PERFORMANCE_RATIO);
-        content.append("\n");
-        content.append("3 - " + ATTRIBUTE_MAXIMUM_VOLUME);
-        content.append("\n");
-        content.append("4 - " + ATTRIBUTE_NOMINAL_POWER);
-        content.append("\n");
-        return content.toString();
     }
 
     /**

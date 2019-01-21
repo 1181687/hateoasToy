@@ -73,8 +73,8 @@ public class EditConfigurationDevice {
                                     break;
 
                                 case 2:
-                                    String label5 = "Choose the specification you want to change.\n" + controller.getEditableAttributesContent() + exit;
-                                    int attributePosition = InputValidator.getIntRange(label5, 0, controller.getEditableAttributesContent().split("\n").length);
+                                    String label5 = "Choose the specification you want to change.\n" + controller.getDevSpecsAttributesToString() + exit;
+                                    int attributePosition = InputValidator.getIntRange(label5, 0, controller.getNumberOfAttributesInDeviceSpecs());
                                     if (attributePosition == 0) {
                                         continue;
                                     }

@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
 
-import java.util.List;
 import java.util.Objects;
 
 public class Device implements Measurable {
@@ -94,21 +93,11 @@ public class Device implements Measurable {
     }
 
     /**
-     * Method that returns the content of the non-optional attributes of the each .
-     *
-     * @return String with the non-optional attributes.
+     * Method that returns the attributes of the device specs.
+     * @return String with the attributes.
      */
-    public List<String> getSpecsAttributesToString() {
-        return mSpec.getAttributeNames();
-    }
-
-    /**
-     * method that gets the DeviceSpecs
-     *
-     * @return DeviceSpecs
-     */
-    public String getEditableAttributesContent() {
-        return mSpec.getEditableAttributesContent();
+    public String getDevSpecsAttributesToString() {
+        return mSpec.getAttributesToString();
     }
 
     /**
