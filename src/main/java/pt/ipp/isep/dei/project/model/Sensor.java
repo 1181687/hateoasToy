@@ -360,17 +360,16 @@ public class Sensor {
      * @return lowest measurements of the week
      */
     public List<Double> lowestMeasurementsOfWeek(LocalDate date) {
-        List<Double> registosMinimosSemana = new ArrayList<>();
-        LocalDate primeiroDiaSemana = getFirstDayOfWeek(date);
-        LocalDate ultimoDiaSemana = primeiroDiaSemana.plusDays(6);
-        for (LocalDate diaDaSemana = primeiroDiaSemana; diaDaSemana.isBefore(ultimoDiaSemana.plusDays(1)); diaDaSemana.plusDays(1)) {
-            double minimoDia = getLowestMeasurementOfDay(diaDaSemana);
+        List<Double> lowestMeasurementOfWeek = new ArrayList<>();
+        LocalDate firstDayOfWeek = getFirstDayOfWeek(date);
+        LocalDate lastDayOfWeek = firstDayOfWeek.plusDays(6);
+        for (LocalDate weekDay = firstDayOfWeek; weekDay.isBefore(lastDayOfWeek.plusDays(1)); weekDay = weekDay.plusDays(1)) {
+            double minimoDia = getLowestMeasurementOfDay(weekDay);
             if (!Double.isNaN(minimoDia)) {
-                registosMinimosSemana.add(minimoDia);
+                lowestMeasurementOfWeek.add(minimoDia);
             }
-            diaDaSemana = diaDaSemana.plusDays(1);
         }
-        return registosMinimosSemana;
+        return lowestMeasurementOfWeek;
     }
 
     /**
@@ -381,18 +380,18 @@ public class Sensor {
      */
     public double getAverageOfLowestMeasurementsWeek(LocalDate date) {
 
-        List<Double> registosMinSemana = this.lowestMeasurementsOfWeek(date);
+        List<Double> lowestMeasurementOfWeek = this.lowestMeasurementsOfWeek(date);
 
-        int contador = 0;
-        double somaRegistosMinSemana = 0;
-        if (registosMinSemana.isEmpty()) {
+        int iterator = 0;
+        double sumOfLowestMeasurementOfWeek = 0;
+        if (lowestMeasurementOfWeek.isEmpty()) {
             return Double.NaN;
         }
-        while (contador < registosMinSemana.size()) {
-            somaRegistosMinSemana += registosMinSemana.get(contador);
-            contador++;
+        while (iterator < lowestMeasurementOfWeek.size()) {
+            sumOfLowestMeasurementOfWeek += lowestMeasurementOfWeek.get(iterator);
+            iterator++;
         }
-        return somaRegistosMinSemana / registosMinSemana.size();
+        return sumOfLowestMeasurementOfWeek / lowestMeasurementOfWeek.size();
 
     }
 
@@ -404,13 +403,13 @@ public class Sensor {
      */
     public double getMaximumValueOfDay(LocalDate date) {
         if (!getDailyMeasurement(date).isEmpty()) {
-            double valorMaximoDoDia = getDailyMeasurement(date).get(0).getmValue();
-            for (Measurement registo : getDailyMeasurement(date)) {
-                if (valorMaximoDoDia < registo.getmValue()) {
-                    valorMaximoDoDia = registo.getmValue();
+            double maximumValueOfDay = getDailyMeasurement(date).get(0).getmValue();
+            for (Measurement measurement : getDailyMeasurement(date)) {
+                if (maximumValueOfDay < measurement.getmValue()) {
+                    maximumValueOfDay = measurement.getmValue();
                 }
             }
-            return valorMaximoDoDia;
+            return maximumValueOfDay;
         }
         return Double.NaN;
     }
@@ -422,18 +421,18 @@ public class Sensor {
      * @return lowest measurements of the week
      */
     public List<Double> biggestWeeklyMeasurements(LocalDate date) {
-        List<Double> registosMaximosSemana = new ArrayList<>();
-        LocalDate primeiroDiaSemana = getFirstDayOfWeek(date);
-        int contador = 1;
-        while (contador < 8) {
-            double maximoDia = getMaximumValueOfDay(primeiroDiaSemana);
-            if (!Double.isNaN(maximoDia)) {
-                registosMaximosSemana.add(maximoDia);
+        List<Double> biggestWeeklyMeasurements = new ArrayList<>();
+        LocalDate firstDayOfWeek = getFirstDayOfWeek(date);
+        int iterator = 1;
+        while (iterator < 8) {
+            double maximumValueOfDay = getMaximumValueOfDay(firstDayOfWeek);
+            if (!Double.isNaN(maximumValueOfDay)) {
+                biggestWeeklyMeasurements.add(maximumValueOfDay);
             }
-            primeiroDiaSemana = primeiroDiaSemana.plusDays(1);
-            contador++;
+            firstDayOfWeek = firstDayOfWeek.plusDays(1);
+            iterator++;
         }
-        return registosMaximosSemana;
+        return biggestWeeklyMeasurements;
     }
 
     /**
@@ -444,18 +443,18 @@ public class Sensor {
      */
     public double getAverageOfBiggestMeasurementsWeek(LocalDate date) {
 
-        List<Double> registosMaxSemana = this.biggestWeeklyMeasurements(date);
+        List<Double> biggestWeeklyMeasurements = this.biggestWeeklyMeasurements(date);
 
-        int contador = 0;
-        double somaRegistosMaxSemana = 0;
-        if (registosMaxSemana.isEmpty()) {
+        int iterator = 0;
+        double sumOfBiggestMeasurementOfWeek = 0;
+        if (biggestWeeklyMeasurements.isEmpty()) {
             return Double.NaN;
         }
-        while (contador < registosMaxSemana.size()) {
-            somaRegistosMaxSemana += registosMaxSemana.get(contador);
-            contador++;
+        while (iterator < biggestWeeklyMeasurements.size()) {
+            sumOfBiggestMeasurementOfWeek += biggestWeeklyMeasurements.get(iterator);
+            iterator++;
         }
-        return somaRegistosMaxSemana / registosMaxSemana.size();
+        return sumOfBiggestMeasurementOfWeek / biggestWeeklyMeasurements.size();
     }
 
     /**
