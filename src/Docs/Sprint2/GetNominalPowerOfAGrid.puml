@@ -1,0 +1,56 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor DeepSkyBlue
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor #A9DCDF
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor DeepSkyBlue
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+actor User
+User -> UI: GetNominalPowerOfAGrid
+activate UI
+UI -> Controller: checkIfGridListIsEmpty()
+activate Controller
+Controller -> House: checkIfGridListIsEmpty()
+activate House
+House -> HouseGridList: checkIfGridListIsEmpty()
+activate HouseGridList
+UI <-- HouseGridList: boolean
+deactivate HouseGridList
+deactivate Controller
+UI -> Controller: listHouseGrids()
+activate Controller
+Controller -> House:getHouseGridListToString()
+
+House -> HouseGridList:getHouseGridListToString()
+activate HouseGridList
+UI <-- HouseGridList: HouseGridList
+deactivate House
+deactivate HouseGridList
+deactivate Controller
+UI <-- User: List Of House Grid
+User -> UI: Select house grid :int p
+UI -> Controller: getHouseGridByPosition(p)
+activate Controller
+Controller -> House: getHouseGridByPosition(p)
+activate House
+House -> HouseGridList: getHouseGridByPosition(p)
+activate HouseGridList
+HouseGridList -> UI:HouseGrid hg
+UI -> Controller: getNominalPower()
+Controller -> HouseGrid:getNominalPower()
+activate HouseGrid
+UI <-- HouseGrid: double nominalPower
+deactivate HouseGrid
+
+@enduml

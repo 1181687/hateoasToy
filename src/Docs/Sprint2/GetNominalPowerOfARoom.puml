@@ -1,0 +1,55 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor DeepSkyBlue
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor #A9DCDF
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor DeepSkyBlue
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+autonumber
+actor User
+User -> UI: GetNominalPowerOfARoom ()
+activate UI
+UI -> Controller: GetListOfRooms ()
+activate Controller
+Controller -> House: GetListOfRooms ()
+activate House
+
+House -> RoomList: GetListOfRooms ()
+activate RoomList
+UI <-- RoomList: Room list
+deactivate RoomList
+deactivate House
+deactivate Controller
+
+User <- UI: Choose room from list
+
+User -> UI: int Position
+UI -> Controller: getNominalPower(Position)
+activate Controller
+
+Controller -> House: getNominalPower(Position)
+activate House
+
+House -> RoomList: getNominalPower(Position)
+activate RoomList
+RoomList -> Room: getNominalPower(Position)
+activate Room
+UI <-- Room: NominalPowerOfARoom
+deactivate Room
+deactivate RoomList
+deactivate House
+deactivate Controller
+User <-- UI: NominalPowerOfARoom
+deactivate UI
+@enduml

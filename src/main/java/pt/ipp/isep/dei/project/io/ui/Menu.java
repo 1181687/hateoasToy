@@ -4,6 +4,8 @@ public class Menu {
 
     private static final String CHOOSE_OPTIONS = "Choose one of the options:";
 
+    private static final String RETURN_MENU = "0-Return to the previous menu";
+
     public static int usersMenu() {
         StringBuilder content = new StringBuilder();
         content.append("What type of user are you?");
@@ -29,7 +31,7 @@ public class Menu {
         content.append("\n");
         content.append("2-House");
         content.append("\n");
-        content.append("0-Return to the previous menu");
+        content.append(RETURN_MENU);
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 2);
     }
@@ -54,7 +56,7 @@ public class Menu {
         content.append("\n");
         content.append("8-Verify if one geographical area is included in another one");
         content.append("\n");
-        content.append("0-Return to the previous menu");
+        content.append(RETURN_MENU);
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 9);
     }
@@ -83,7 +85,7 @@ public class Menu {
         content.append("\n");
         content.append("10-Add a new device to a room");
         content.append("\n");
-        content.append("0-Return to the previous menu");
+        content.append(RETURN_MENU);
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 10);
     }
@@ -96,7 +98,7 @@ public class Menu {
         content.append("\n");
         content.append("2-Rooms");
         content.append("\n");
-        content.append("0-Return to the previous menu");
+        content.append(RETURN_MENU);
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 2);
     }
@@ -111,7 +113,7 @@ public class Menu {
         content.append("\n");
         content.append("3-Get average daily rainfall in the house area");
         content.append("\n");
-        content.append("0-Return to the previous menu");
+        content.append(RETURN_MENU);
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 3);
     }
@@ -124,10 +126,9 @@ public class Menu {
         content.append("\n");
         content.append("2-Maximum temperature of a room in a given day");
         content.append("\n");
-        // JUST TESTING
         content.append("3-Estimate total energy used to heat water in a given day ");
         content.append("\n");
-        content.append("0-Return to the previous menu");
+        content.append(RETURN_MENU);
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 3);
     }
@@ -146,7 +147,7 @@ public class Menu {
         content.append("\n");
         content.append("5-Get list of devices in a house grid");
         content.append("\n");
-        content.append("0-Return to the previous menu");
+        content.append(RETURN_MENU);
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 5);
     }
@@ -157,7 +158,7 @@ public class Menu {
         content.append("\n");
         content.append("1-Check Nominal Power of a room.");
         content.append("\n");
-        content.append("0-Return to the previous menu");
+        content.append(RETURN_MENU);
         content.append("\n");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 1);
@@ -171,7 +172,7 @@ public class Menu {
         content.append("\n");
         content.append("2-Energy consumption management.");
         content.append("\n");
-        content.append("0-Return to the previous menu");
+        content.append(RETURN_MENU);
         content.append("\n");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 2);
@@ -187,7 +188,7 @@ public class Menu {
         content.append("\n");
         content.append("3-Check nominal power of a room");
         content.append("\n");
-        content.append("0-Return to the previous menu");
+        content.append(RETURN_MENU);
         content.append("\n");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 3);
@@ -201,7 +202,7 @@ public class Menu {
         content.append("\n");
         content.append("2-Estimate the total energy used in heating water in a day.");
         content.append("\n");
-        content.append("0-Return to the previous menu");
+        content.append(RETURN_MENU);
         content.append("\n");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 2);
@@ -213,7 +214,7 @@ public class Menu {
         content.append("\n");
         content.append("1-Check nominal power of a room.");
         content.append("\n");
-        content.append("0-Return to the previous menu");
+        content.append(RETURN_MENU);
         content.append("\n");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 1);

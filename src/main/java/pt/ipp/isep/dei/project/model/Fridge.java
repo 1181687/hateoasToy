@@ -2,15 +2,7 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Fridge implements DeviceSpecs {
-    private static final String ATTRIBUTE_FREEZER_CAPACITY = "Freezer capacity";
-    private static final String ATTRIBUTE_REFRIGERATOR_CAPACITY = "Refrigerator capacity";
-    private static final String ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION = "Annual energy consumption";
-    private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal power";
-
     private String mTypeName;
     private double mFreezerCapacity;
     private double mRefrigeratorCapacity;
@@ -23,97 +15,6 @@ public class Fridge implements DeviceSpecs {
         this.mRefrigeratorCapacity = mRefrigeratorCapacity;
         this.mAnnualEnergyConsumption = mAnnualEnergyConsumption;
         this.mNominalPower = mNominalPower;
-    }
-
-    /**
-     * Method that returns the names of the attributes.
-     *
-     * @return List of string with the names of each attribute.
-     */
-    public List<String> getAttributeNames() {
-        List<String> result = new ArrayList<>();
-        result.add(ATTRIBUTE_FREEZER_CAPACITY);
-        result.add(ATTRIBUTE_REFRIGERATOR_CAPACITY);
-        result.add(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION);
-        result.add(ATTRIBUTE_NOMINAL_POWER);
-        return result;
-    }
-
-    /**
-     * Method that gets the value of a chosen attribute.
-     *
-     * @param attributeName Name of the chosen attribute.
-     * @return Object with the value of the attribute.
-     */
-    public Object getAttributeValue(String attributeName) {
-        switch (attributeName) {
-            case ATTRIBUTE_FREEZER_CAPACITY:
-                return mFreezerCapacity;
-            case ATTRIBUTE_REFRIGERATOR_CAPACITY:
-                return mRefrigeratorCapacity;
-            case ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION:
-                return mAnnualEnergyConsumption;
-            case ATTRIBUTE_NOMINAL_POWER:
-                return mNominalPower;
-            default:
-                return 0;
-        }
-    }
-
-    /**
-     * Method that sets the value of an attribute.
-     *
-     * @param attributeName Name of the chosen attribute.
-     * @param attributeValue Value to be used.
-     * @return True or false.
-     */
-    public boolean setAttributeValue(String attributeName, Object attributeValue) {
-        switch (attributeName) {
-            case ATTRIBUTE_FREEZER_CAPACITY:
-                if (attributeValue instanceof Double) {
-                    this.mFreezerCapacity = (Double) attributeValue;
-                    return true;
-                }
-                return false;
-            case ATTRIBUTE_REFRIGERATOR_CAPACITY:
-                if (attributeValue instanceof Double) {
-                    this.mRefrigeratorCapacity = (Double) attributeValue;
-                    return true;
-                }
-                return false;
-            case ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION:
-                if (attributeValue instanceof Double) {
-                    this.mAnnualEnergyConsumption = (Double) attributeValue;
-                    return true;
-                }
-                return false;
-            case ATTRIBUTE_NOMINAL_POWER:
-                if (attributeValue instanceof Double) {
-                    this.mNominalPower = (Double) attributeValue;
-                    return true;
-                }
-                return false;
-            default:
-                return false;
-        }
-    }
-
-    /**
-     * Method that gets the content of the attributes that are editable.
-     *
-     * @return String with the required attributes.
-     */
-    public String getEditableAttributesContent() {
-        StringBuilder content = new StringBuilder();
-        content.append("1 - " + ATTRIBUTE_FREEZER_CAPACITY);
-        content.append("\n");
-        content.append("2 - " + ATTRIBUTE_REFRIGERATOR_CAPACITY);
-        content.append("\n");
-        content.append("3 - " + ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION);
-        content.append("\n");
-        content.append("4 - " + ATTRIBUTE_NOMINAL_POWER);
-        content.append("\n");
-        return content.toString();
     }
 
     /**

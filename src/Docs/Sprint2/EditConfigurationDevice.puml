@@ -1,0 +1,155 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor DeepSkyBlue
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor #A9DCDF
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor DeepSkyBlue
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+autonumber
+actor User
+User -> UI: EditConfigurationDevice
+activate UI
+UI -> Controller: getRoomListContent()
+activate Controller
+Controller -> House: getRoomListContent()
+activate House
+House -> RoomList: getRoomListContent()
+activate RoomList
+UI <-- RoomList: RoomListContent
+deactivate RoomList
+deactivate House
+deactivate Controller
+User <-- UI: RoomListContent
+
+User -> UI: Int position: Room
+UI -> Controller: getRoom(Room)
+activate Controller
+Controller -> House: getRoom(Room)
+activate House
+House -> RoomList: getRoom(Room)
+activate RoomList
+RoomList -> Room: getRoom(Room)
+activate Room
+UI <-- Room: Room
+deactivate Room
+deactivate RoomList
+deactivate House
+deactivate Controller
+User <-- UI: Room
+
+User -> UI: GetDevicesInTheRoom
+UI -> Controller: getDevicesInTheRoom()
+activate Controller
+Controller -> Room: getDevicesInTheRoom()
+activate Room
+Room -> DeviceList: getDevicesInTheRoom()
+activate DeviceList
+UI <-- DeviceList: DevicesInTheRoom
+deactivate DeviceList
+deactivate Room
+deactivate Controller
+User <-- UI: DevicesInTheRoom
+
+User -> UI: Int position: Device
+UI -> Controller: getDevice(Device)
+activate Controller
+Controller -> Room: getDevice(Device)
+activate Room
+Room -> DeviceList: getDevice(Device)
+activate DeviceList
+UI <-- DeviceList: Device
+deactivate DeviceList
+deactivate Room
+deactivate Controller
+User <-- UI: Device
+
+User -> UI: GetDeviceAttributes
+UI -> Controller: getDeviceAttributesToString()
+activate Controller
+Controller -> Device: getDeviceAttributesToString()
+activate Device
+UI <-- Device: DeviceAttributesToString
+deactivate Device
+deactivate Controller
+User <-- UI: DeviceAttributesToString
+
+User -> UI: SetDeviceName
+UI -> Controller: setDeviceName()
+activate Controller
+Controller -> Device: setDeviceName()
+activate Device
+UI <-- Device: DeviceName
+deactivate Device
+deactivate Controller
+User <-- UI: DeviceName
+
+User -> UI: GetEditableAttributesContent
+UI -> Controller: getEditableAttributesContent()
+activate Controller
+Controller -> Device: getEditableAttributesContent()
+activate Device
+UI <-- Device: EditableAttributesContent
+deactivate Device
+deactivate Controller
+User <-- UI: EditableAttributesContent
+
+User -> UI: SetDeviceSpecs
+UI -> Controller: setDeviceSpecs()
+activate Controller
+Controller -> Device: setAttributesDevType()
+activate Device
+UI <-- Device: DeviceSpecs
+deactivate Device
+deactivate Controller
+User <-- UI: DeviceSpecs
+
+User -> UI: GetRoomList
+UI -> Controller: getRoomListContent()
+activate Controller
+Controller -> House: getRoomListContent()
+activate House
+House -> RoomList: getRoomListContent()
+activate RoomList
+UI <-- RoomList: RoomList
+deactivate RoomList
+deactivate House
+deactivate Controller
+User <-- UI: RoomList
+
+User -> UI: GetNewRoom(Room)
+UI -> Controller: getNewRoom(Room)
+activate Controller
+Controller -> House: getRoomOfTheRoomList(Room)
+activate House
+House -> RoomList: getRoom(Room)
+activate RoomList
+UI <-- RoomList: NewRoom
+deactivate RoomList
+deactivate House
+deactivate Controller
+User <-- UI: NewRoom
+
+User -> UI: SetLocation(Room)
+UI -> Controller: setLocation(Room)
+activate Controller
+Controller -> Device: setLocation(Room)
+activate Device
+UI <-- Device: Location
+deactivate Device
+deactivate House
+deactivate Controller
+User <-- UI: Location
+
+@enduml
+

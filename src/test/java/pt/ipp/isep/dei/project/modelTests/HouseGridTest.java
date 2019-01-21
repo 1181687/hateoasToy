@@ -465,4 +465,30 @@ public class HouseGridTest {
         //Assert
         assertFalse(result);
     }
+
+    @Test
+    public void testValidateNameWithEmptyNameShouldThrowException(){
+        //Arrange
+        String name = " ";
+
+        //Act
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new HouseGrid(name)
+        );
+        //Assert
+        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+    }
+
+    @Test
+    public void testValidateNameWithNullNameShouldThrowException(){
+        //Arrange
+        String name = null;
+
+        //Act
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new HouseGrid(name)
+        );
+        //Assert
+        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+    }
 }

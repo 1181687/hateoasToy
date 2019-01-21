@@ -4,9 +4,6 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.EditConfigurationDeviceController;
 import pt.ipp.isep.dei.project.model.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EditConfigurationDeviceControllerTest {
@@ -318,16 +315,10 @@ public class EditConfigurationDeviceControllerTest {
         controller.getRoomByPosition(position);
         controller.getDeviceByPosition(position);
 
-        List<String> expectedResult = new ArrayList<>();
-        String attribute1 = "Luminous flux";
-        String attribute2 = "Time";
-        String attribute3 = "Nominal power";
-        expectedResult.add(attribute1);
-        expectedResult.add(attribute2);
-        expectedResult.add(attribute3);
-
+        String expectedResult = "1 - Luminous Flux: 10.0\n" +
+                "2 - Nominal Power: 1.0\n";
         // act
-        List<String> result = controller.getSpecsAttributesToString();
+        String result = controller.getDevSpecsAttributesToString();
 
         // assert
         assertEquals(expectedResult, result);
@@ -740,13 +731,13 @@ public class EditConfigurationDeviceControllerTest {
         controller.getDeviceByPosition(position);
         controller.getNewRoom(0);
 
-        String expectedResult = "1 - Hot-water temperature\n" +
-                "2 - Performance ratio\n" +
-                "3 - Maximum volume\n" +
-                "4 - Nominal power\n";
+        String expectedResult = "1 - Hot Water Temperature: 50.0\n" +
+                "2 - Maximum Volume: 150.0\n" +
+                "3 - Performance Ratio: 0.9\n" +
+                "4 - Nominal Power: 100.0\n";
 
         //Act
-        String result = controller.getEditableAttributesContent();
+        String result = controller.getDevSpecsAttributesToString();
 
         //Assert
         assertEquals(expectedResult, result);

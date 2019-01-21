@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.EditConfigurationDeviceController;
 import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 public class EditConfigurationDevice {
 
@@ -71,18 +72,22 @@ public class EditConfigurationDevice {
                                     }
                                     while (flag);
                                     break;
-
                                 case 2:
-                                    String label5 = "Choose the specification you want to change.\n" + controller.getEditableAttributesContent() + exit;
-                                    int attributePosition = InputValidator.getIntRange(label5, 0, controller.getEditableAttributesContent().split("\n").length);
+                                    String label5 = "Choose the specification you want to change.\n" + controller.getDevSpecsAttributesToString() + exit;
+                                    int attributePosition = InputValidator.getIntRange(label5, 0, controller.getNumberOfAttributesInDeviceSpecs());
                                     if (attributePosition == 0) {
                                         continue;
                                     }
                                     String label6 = "What is the new value?";
                                     double value = InputValidator.getDouble(label6);
-                                    controller.setDeviceSpecs(attributePosition, value);
-                                    content.append("The value was changed with success!\nNow, the value is " + value + "! \n");
-                                    break;
+                                    if (Utils.isSameDouble(value, 0)) {
+                                        System.out.println("This value is not valid.");
+                                        continue;
+                                    } else {
+                                        controller.setDeviceSpecs(attributePosition, value);
+                                        System.out.println("The value was changed with success!\nNow, the value is " + value + "! \n");
+                                        break;
+                                    }
                                 case 3:
                                     String label7 = "To which room do you want to change the device?\n" + controller.getRoomListContent() + exit;
                                     int roomListLength1 = controller.roomListSize();
@@ -97,6 +102,8 @@ public class EditConfigurationDevice {
                                     content.append(room);
                                     content.append("! \n");
                                     break;
+                                default:
+                                    System.out.println("Invalid option. Please choose a number between 1 and 3.");
                             }
                             flag2 = false;
                         }
