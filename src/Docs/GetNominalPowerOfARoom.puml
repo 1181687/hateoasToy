@@ -18,25 +18,20 @@ skinparam sequence {
 
 autonumber
 actor User
-User -> Ui: GetNominalPowerOfARoom ()
-Ui -> Controller: GetListOfRooms ()
+User -> UI: GetNominalPowerOfARoom ()
+UI -> Controller: GetListOfRooms ()
 Controller -> House: GetListOfRooms ()
 
-House -> RoomList: getRoomFromAPosition ()
-Ui <-- RoomList: Room list ()
+House -> RoomList: GetListOfRooms ()
+UI <-- RoomList: Room list()
 
-User -> Ui: Choose room from list ()
-Ui -> Controller: CheckIfDeviceListIsEmpty ()
-Controller -> House: CheckIfDeviceListIsEmpty ()
-House -> RoomList: CheckIfDeviceListIsEmpty ()
-RoomList -> Room: CheckIfDeviceListIsEmpty ()
-Room -> DeviceList: CheckIfDeviceListIsEmpty ()
-Controller <-- DeviceList: boolean ()
+User <- UI: Choose room from list
+User -> UI: int Position
+UI -> Controller: getNominalPower(Position)
 
-
-Controller -> House: getNominalPowerOfARoom ()
-House -> RoomList: getNominalPowerOfARoom ()
-RoomList -> Room: getNominalPowerOfARoom ()
-Ui <-- Room: NominalPowerOfARoom ()
-User <-- Ui: double NominalPowerOfARoom ()
+Controller -> House: getNominalPower(Position)
+House -> RoomList: getNominalPower(Position)
+RoomList -> Room: getNominalPower(Position)
+UI <-- Room: NominalPowerOfARoom
+User <-- UI: NominalPowerOfARoom
 @enduml
