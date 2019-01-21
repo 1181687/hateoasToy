@@ -20,36 +20,27 @@ autonumber
 actor User
 User -> UI: ListOfSensorsInARoom
 activate UI
-
 UI -> Controller: getRoomListContent()
 activate Controller
-
 Controller -> House: getRoomListContent()
 activate House
-
 House -> RoomList: getRoomListContent()
 activate RoomList
-
 UI <-- RoomList: RoomListContent
 deactivate RoomList
 deactivate House
 deactivate Controller
-
 User <-- UI: RoomListContent
 
 
 User -> UI: Int position: Room
 UI -> Controller: getRoomName(Room)
-
 activate Controller
 Controller -> House: getRoomName(Room)
-
 activate House
 House -> RoomList: getRoomName(Room)
-
 activate RoomList
 RoomList -> Room: getName()
-
 activate Room
 RoomList <-- Room: RoomName
 
@@ -59,22 +50,16 @@ deactivate RoomList
 deactivate House
 deactivate Controller
 
-
 UI -> Controller: getSensorListContent(Room)
 activate Controller
-
 Controller -> House: getSensorListContent(Room)
 activate House
-
 House -> RoomList: getSensorListContent(Room)
 activate RoomList
-
 RoomList -> Room: getSensorListContent(Room)
 activate Room
-
 Room -> SensorList: getSensorListContent(Room)
 activate SensorList
-
 SensorList -> SensorList: LengthSensorList
 SensorList -> SensorList: SensorList
 SensorList -> Sensor: getName()
