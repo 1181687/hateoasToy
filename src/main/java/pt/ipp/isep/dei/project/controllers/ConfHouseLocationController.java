@@ -28,13 +28,13 @@ public class ConfHouseLocationController {
      * @param altitude attribute of Location. Double given by user
      */
     public void defineNewAddress(String zipCode, double latitude, double longitude, double altitude) {
-        this.mAddress = mHouse.newAddresses(zipCode, latitude, longitude, altitude);
+        this.mAddress = mHouse.newAddress(zipCode, latitude, longitude, altitude);
     }
 
     /**
      * Method that sets the Address to the House
      */
     public void setAddressToTheHouse() {
-        mHouse.setmAddress(mAddress);
+        mHouse.setAddress(mAddress);
     }
 }

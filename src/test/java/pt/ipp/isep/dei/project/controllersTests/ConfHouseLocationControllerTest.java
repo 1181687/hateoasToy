@@ -38,7 +38,7 @@ public class ConfHouseLocationControllerTest {
         ctrl.setAddressToTheHouse();
 
         //Act
-        boolean result = ctrl.getmHouse().getmAddress().equals(newAddress);
+        boolean result = ctrl.getmHouse().getAddress().equals(newAddress);
 
         //Assert
         assertTrue(result);

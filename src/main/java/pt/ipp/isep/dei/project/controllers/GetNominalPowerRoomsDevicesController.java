@@ -136,7 +136,7 @@ public class GetNominalPowerRoomsDevicesController {
      * @param measurable matches an object: room or device
      * @return true if measurable list is empty and false if it is not
      */
-    public boolean measurableListIsEmpty(Measurable measurable){
+    public boolean checkIfMeasurableObjIsInList(Measurable measurable){
         return mMeasurableList.checkIfMeasurableObjIsInList(measurable);
     }
 
