@@ -338,7 +338,7 @@ public class GetDevicesInHouseGridControllerTest {
         GetDevicesInHouseGridController ctrl = new GetDevicesInHouseGridController(house);
 
         int position = 0;
-        String expectedResult = null;
+        String expectedResult = "There are no Grids in the house";
 
         // Act
         String result = ctrl.getHGNameByHGPosition(position);

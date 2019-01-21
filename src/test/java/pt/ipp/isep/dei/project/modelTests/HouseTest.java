@@ -1498,7 +1498,7 @@ public class HouseTest {
         House house = new House(roomList, gridList, address, geo);
 
         int position = 0;
-        String expectedResult = null;
+        String expectedResult = "There are no Grids in the house";
 
         // Act
         String result = house.getHGNameByHGPosition(position);

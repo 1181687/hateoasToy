@@ -342,7 +342,7 @@ public class HouseGridListTest {
         HouseGridList gridList = new HouseGridList();
 
         int position = 0;
-        String expectedResult = null;
+        String expectedResult = "There are no Grids in the house";
 
         // Act
         String result = gridList.getNameByHGPosition(position);
