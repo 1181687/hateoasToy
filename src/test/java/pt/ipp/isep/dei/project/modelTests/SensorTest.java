@@ -1703,4 +1703,22 @@ class SensorTest {
         //Assert
         assertEquals(expectedResult,result);
     }
+
+    @Test
+    public void testsGetBiggestMeasurementNoValues(){
+        //Arrange
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("T123", data, sensorType, locS1);
+
+        double expectedResult = Double.NaN;
+
+        //Act
+        double result = sensor1.getBiggestMeasurement(data.toLocalDate());
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
 }
