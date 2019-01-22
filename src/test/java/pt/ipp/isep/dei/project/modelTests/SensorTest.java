@@ -43,7 +43,7 @@ class SensorTest {
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         String expectedResult = "A123";
         //Act
-        String result = s1.getmSensorName();
+        String result = s1.getSensorName();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -57,7 +57,7 @@ class SensorTest {
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         LocalDate expectedResult = dataFuncionamento.toLocalDate();
         //Act
-        LocalDate result = s1.getmStartingDate().toLocalDate();
+        LocalDate result = s1.getStartingDate().toLocalDate();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -71,7 +71,7 @@ class SensorTest {
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         SensorType expectedResult = sensorType;
         //Act
-        SensorType result = s1.getmSensorType();
+        SensorType result = s1.getSensorType();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -142,7 +142,7 @@ class SensorTest {
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
         Location expectedResult = locS1;
         //Act
-        Location result = s1.getmLocation();
+        Location result = s1.getLocation();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -215,7 +215,7 @@ class SensorTest {
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
         //Act
-        boolean result = s1.measurementListIsEmpty();
+        boolean result = s1.isMeasurementListEmpty();
 
         //Assert
         assertTrue(result);
@@ -235,7 +235,7 @@ class SensorTest {
         s1.addMeasurementToList(measurement1);
 
         //Act
-        boolean result = s1.measurementListIsEmpty();
+        boolean result = s1.isMeasurementListEmpty();
 
         //Assert
         assertFalse(result);

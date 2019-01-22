@@ -47,10 +47,10 @@ public class LocationTest {
         double longitude = -8.6109;
         double altitude = 97;
         Location local = new Location(latitude, longitude, altitude);
-        local.setmLatitude(90);
+        local.setLatitude(90);
         double expectedResult = 90;
         //act
-        double result = local.getmLatitude();
+        double result = local.getLatitude();
         //assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -62,10 +62,10 @@ public class LocationTest {
         double longitude = -8.6109;
         double altitude = 97;
         Location local = new Location(latitude, longitude, altitude);
-        local.setmLatitude(-90);
+        local.setLatitude(-90);
         double expectedResult = -90;
         //act
-        double result = local.getmLatitude();
+        double result = local.getLatitude();
         //assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -77,10 +77,10 @@ public class LocationTest {
         double longitude = -8.6109;
         double altitude = 97;
         Location local = new Location(latitude, longitude, altitude);
-        local.setmLatitude(-91);
+        local.setLatitude(-91);
         double expectedResult = Double.NaN;
         //act
-        double result = local.getmLatitude();
+        double result = local.getLatitude();
         //assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -92,10 +92,10 @@ public class LocationTest {
         double longitude = -8.6109;
         double altitude = 97;
         Location local = new Location(latitude, longitude, altitude);
-        local.setmLatitude(91);
+        local.setLatitude(91);
         double expectedResult = Double.NaN;
         //act
-        double result = local.getmLatitude();
+        double result = local.getLatitude();
         //assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -107,10 +107,10 @@ public class LocationTest {
         double longitude = -8.6109;
         double altitude = 97;
         Location local = new Location(latitude, longitude, altitude);
-        local.setmLongitude(180);
+        local.setLongitude(180);
         double expectedResult = 180;
         //act
-        double result = local.getmLongitude();
+        double result = local.getLongitude();
         //assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -122,10 +122,10 @@ public class LocationTest {
         double longitude = -8.6109;
         double altitude = 97;
         Location local = new Location(latitude, longitude, altitude);
-        local.setmLongitude(-180);
+        local.setLongitude(-180);
         double expectedResult = -180;
         //act
-        double result = local.getmLongitude();
+        double result = local.getLongitude();
         //assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -137,10 +137,10 @@ public class LocationTest {
         double longitude = -8.6109;
         double altitude = 97;
         Location local = new Location(latitude, longitude, altitude);
-        local.setmLongitude(181);
+        local.setLongitude(181);
         double expectedResult = Double.NaN;
         //act
-        double result = local.getmLongitude();
+        double result = local.getLongitude();
         //assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -152,10 +152,10 @@ public class LocationTest {
         double longitude = -8.6109;
         double altitude = 97;
         Location local = new Location(latitude, longitude, altitude);
-        local.setmLongitude(-181);
+        local.setLongitude(-181);
         double expectedResult = Double.NaN;
         //act
-        double result = local.getmLongitude();
+        double result = local.getLongitude();
         //assert
         assertEquals(expectedResult,result,0.001);
     }

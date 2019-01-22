@@ -29,7 +29,7 @@ public class PowerSourceTypeList {
      *
      * @return Content of Power Source Type List
      */
-    public String getPowerSourceTypeListContent() {
+    public String getPowerSourceTypeListToString() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= this.mPowerSourceTypeList.size(); i++) {
             content.append(i + " - Power Source Type: " + this.mPowerSourceTypeList.get(i - 1).getPowerSourceType());
@@ -52,7 +52,7 @@ public class PowerSourceTypeList {
      * Method that gives us the size of the Power Source List
      * @return Power Source List size
      */
-    public int powerSourceTypeListLength(){
+    public int getLength() {
         return this.mPowerSourceTypeList.size();
     }
 }

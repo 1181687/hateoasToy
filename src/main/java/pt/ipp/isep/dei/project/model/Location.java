@@ -8,20 +8,20 @@ public class Location {
 
     /**
      * constructor of Location that receives a latitude, a longitude and an altitude.
-     * @param mLatitude
-     * @param mLongitude
-     * @param mAltitude
+     * @param latitude
+     * @param longitude
+     * @param altitude
      */
-    public Location(double mLatitude, double mLongitude, double mAltitude) {
-        setmLatitude(mLatitude);
-        setmLongitude(mLongitude);
-        this.mAltitude = mAltitude;
+    public Location(double latitude, double longitude, double altitude) {
+        setLatitude(latitude);
+        setLongitude(longitude);
+        this.mAltitude = altitude;
     }
 
     /**
      * method that get the latitude.
      */
-    public double getmLatitude() {
+    public double getLatitude() {
         return mLatitude;
     }
 
@@ -29,7 +29,7 @@ public class Location {
      * that method set the latitude.
      * @param latitude
      */
-    public void setmLatitude(double latitude) {
+    public void setLatitude(double latitude) {
         if (latitude < -90 || latitude > 90) {
             this.mLatitude = Double.NaN;
         } else this.mLatitude = latitude;
@@ -38,24 +38,24 @@ public class Location {
     /**
      * method that get the longitude.
      */
-    public double getmLongitude() {
+    public double getLongitude() {
         return mLongitude;
     }
 
     /**
      * method that set the longitude.
-     * @param mLongitude
+     * @param longitude
      */
-    public void setmLongitude(double mLongitude) {
-        if (mLongitude < -180 || mLongitude > 180) {
+    public void setLongitude(double longitude) {
+        if (longitude < -180 || longitude > 180) {
             this.mLongitude = Double.NaN;
-        } else this.mLongitude = mLongitude;
+        } else this.mLongitude = longitude;
     }
 
     /**
      * method that get the altitude.
      */
-    public double getmAltitude() {
+    public double getAltitude() {
         return mAltitude;
     }
 
@@ -67,9 +67,9 @@ public class Location {
     public double distanceBetweenTwoLocations(Location novoLocal) {
 
         final int raioDaTerra = 6371; // raio da Terra
-        double lonNovoLocal = novoLocal.getmLongitude();
-        double altNovoLocal = novoLocal.getmAltitude();
-        double latNovoLocal = novoLocal.getmLatitude();
+        double lonNovoLocal = novoLocal.getLongitude();
+        double altNovoLocal = novoLocal.getAltitude();
+        double latNovoLocal = novoLocal.getLatitude();
 
         double distEntreLon = Math.toRadians(lonNovoLocal - this.mLongitude);
 
@@ -106,15 +106,15 @@ public class Location {
         }
 
         Location local = (Location) obj;
-        Double comparablemLatitude = mLatitude;
-        Double comparablemLongitude = mLongitude;
-        Double comparablemAltitude = mAltitude;
+        Double comparableLatitude = mLatitude;
+        Double comparableLongitude = mLongitude;
+        Double comparableAltitude = mAltitude;
         Double comparableLocalLatitude = local.mLatitude;
         Double comparableLocalLongitude = local.mLongitude;
         Double comparableLocalAltitude = local.mAltitude;
-        return comparableLocalLatitude.equals(comparablemLatitude)
-                && comparableLocalLongitude.equals(comparablemLongitude)
-                && comparableLocalAltitude.equals(comparablemAltitude);
+        return comparableLocalLatitude.equals(comparableLatitude)
+                && comparableLocalLongitude.equals(comparableLongitude)
+                && comparableLocalAltitude.equals(comparableAltitude);
     }
 
 }

@@ -18,7 +18,7 @@ public class DishWasherTest {
         String expectedResult = "Dish Washer";
 
         //Act
-        String result = dishWasher.getmTypeName();
+        String result = dishWasher.getTypeName();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -35,7 +35,7 @@ public class DishWasherTest {
         double expectedResult = 30;
 
         //Act
-        double result = dishWasher.getmNominalPower();
+        double result = dishWasher.getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -52,7 +52,7 @@ public class DishWasherTest {
         boolean expectedResult = false;
 
         //Act
-        boolean result = dishWasher.setmCapacity(capacity);
+        boolean result = dishWasher.setCapacity(capacity);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -70,7 +70,7 @@ public class DishWasherTest {
         boolean expectedResult = true;
 
         //Act
-        boolean result = dishWasher.setmCapacity(capacity2);
+        boolean result = dishWasher.setCapacity(capacity2);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -87,7 +87,7 @@ public class DishWasherTest {
         boolean expectedResult = false;
 
         //Act
-        boolean result = dishWasher.setmNominalPower(nominalPower);
+        boolean result = dishWasher.setNominalPower(nominalPower);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -105,7 +105,7 @@ public class DishWasherTest {
         boolean expectedResult = true;
 
         //Act
-        boolean result = dishWasher.setmNominalPower(nominalPower2);
+        boolean result = dishWasher.setNominalPower(nominalPower2);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -155,7 +155,7 @@ public class DishWasherTest {
         DishWasher dishWasher = new DishWasher(capacity, nominalPower, programList);
         int attribute = 3;
         double value = 20.6;
-        dishWasher.setmCapacity(capacity);
+        dishWasher.setCapacity(capacity);
 
         boolean expectedResult = false;
 

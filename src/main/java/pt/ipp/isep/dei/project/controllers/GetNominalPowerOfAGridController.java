@@ -12,7 +12,7 @@ public class GetNominalPowerOfAGridController {
     }
 
     public boolean checkIfGridListIsEmpty(){
-        return this.mHouse.checkIfHouseGridListIsEmpty();
+        return this.mHouse.isHouseGridListEmpty();
     }
 
     public String listHouseGrids(){
@@ -20,7 +20,7 @@ public class GetNominalPowerOfAGridController {
     }
 
     public int getHouseGridListLength(){
-        return mHouse.getHouseGridListLength();
+        return mHouse.getHouseGridListSize();
     }
 
     public void getHouseGridByPosition(int position){

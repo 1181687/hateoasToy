@@ -14,23 +14,23 @@ public class GeographicalArea {
 
     /**
      * constructor of geographical area that receives a name, type, insertedIn, location, areaShape and a sensor list.
-     * @param mGeoAreaName
-     * @param mGeoAreaType
-     * @param mLocation
-     * @param mAreaShape
+     * @param geoAreaName
+     * @param geoAreaType
+     * @param location
+     * @param areaShape
      */
-    public GeographicalArea(String mGeoAreaName, GeoAreaType mGeoAreaType, Location mLocation, AreaShape mAreaShape) {
-        this.mGeoAreaName = mGeoAreaName;
-        this.mGeoAreaType = mGeoAreaType;
-        this.mLocation = mLocation;
-        this.mAreaShape = mAreaShape;
+    public GeographicalArea(String geoAreaName, GeoAreaType geoAreaType, Location location, AreaShape areaShape) {
+        this.mGeoAreaName = geoAreaName;
+        this.mGeoAreaType = geoAreaType;
+        this.mLocation = location;
+        this.mAreaShape = areaShape;
     }
 
     /**
      * get a sensor list in the geographical area.
      * @return a sensor list.
      */
-    public SensorList getmSensorListInTheGeographicArea() {
+    public SensorList getSensorListInTheGeographicArea() {
         return mSensorList;
     }
 
@@ -117,7 +117,7 @@ public class GeographicalArea {
      */
     public boolean checkIfSensorInInsideOfGeoArea(Sensor sensor) {
 
-        return mAreaShape.checkIfLocationIsInsertedInAnArea(sensor.getmLocation());
+        return mAreaShape.checkIfLocationIsInsertedInAnArea(sensor.getLocation());
 
     }
 
@@ -130,7 +130,7 @@ public class GeographicalArea {
     public List<Sensor> sortSensorsByType(SensorType sensorType, List<Sensor> listOfSensors) {
         List<Sensor> listOfInsertedSensors = new ArrayList<>();
         for (Sensor sensor : listOfSensors) {
-            if (checkIfSensorInInsideOfGeoArea(sensor) && sensor.getmSensorType().equals(sensorType)) {
+            if (checkIfSensorInInsideOfGeoArea(sensor) && sensor.getSensorType().equals(sensorType)) {
                 listOfInsertedSensors.add(sensor);
             }
         }
@@ -190,13 +190,13 @@ public class GeographicalArea {
 
     /**
      * that method create a new location with a latitude, longitude and altitude
-     * @param mLatitude
-     * @param mLongitude
-     * @param mAltitude
+     * @param latitude
+     * @param longitude
+     * @param altitude
      * @return a new location.
      */
-    public Location newLocation(double mLatitude, double mLongitude, double mAltitude) {
-        return new Location(mLatitude, mLongitude, mAltitude);
+    public Location newLocation(double latitude, double longitude, double altitude) {
+        return new Location(latitude, longitude, altitude);
     }
 
     /** Method that get the list of sensors that exists in an area, with a certain type of sensor.
@@ -206,15 +206,15 @@ public class GeographicalArea {
     public SensorList getTheSensorListOfAGivenType(SensorType type) {
         GeographicalArea areaToBeUsed = new GeographicalArea(mGeoAreaName, mGeoAreaType, mLocation, mAreaShape);
         areaToBeUsed.setInsertedIn(mInsertedIn);
-        areaToBeUsed.getmSensorListInTheGeographicArea().setmSensorList(mSensorList.getmSensorList());
+        areaToBeUsed.getSensorListInTheGeographicArea().setSensorList(mSensorList.getSensorList());
 
         SensorList sensorList = new SensorList();
-        sensorList.setmSensorList(sortSensorsByType(type, areaToBeUsed.getmSensorListInTheGeographicArea().getmSensorList()));
-        while (sensorList.getmSensorList().isEmpty()) {
+        sensorList.setSensorList(sortSensorsByType(type, areaToBeUsed.getSensorListInTheGeographicArea().getSensorList()));
+        while (sensorList.getSensorList().isEmpty()) {
             if (areaToBeUsed.getInsertedIn() != null) {
-                areaToBeUsed.getmSensorListInTheGeographicArea().setmSensorList(areaToBeUsed.getInsertedIn().getmSensorListInTheGeographicArea().getmSensorList());
+                areaToBeUsed.getSensorListInTheGeographicArea().setSensorList(areaToBeUsed.getInsertedIn().getSensorListInTheGeographicArea().getSensorList());
                 areaToBeUsed.setInsertedIn(areaToBeUsed.getInsertedIn().getInsertedIn());
-                sensorList.setmSensorList(areaToBeUsed.getmSensorListInTheGeographicArea().getmSensorList());
+                sensorList.setSensorList(areaToBeUsed.getSensorListInTheGeographicArea().getSensorList());
             } else {
                 return sensorList;
             }
@@ -232,20 +232,20 @@ public class GeographicalArea {
     public double getTheLastMeasurement(Location location, SensorType type) {
         SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
         double latestMeasurementValue = Double.NaN;
-        if (!sensorListWithTheRequiredType.getmSensorList().isEmpty()) {
-            SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToALocation(location);
+        if (!sensorListWithTheRequiredType.getSensorList().isEmpty()) {
+            SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
             Measurement latestMeasurement = null;
-            if (nearestSensors.getmSensorList().size() > 1) {
-                for (Sensor sensor : nearestSensors.getmSensorList()) {
-                    if (latestMeasurement == null || sensor.getLastMeasurement().getmDateTime().isAfter(latestMeasurement.getmDateTime())) {
+            if (nearestSensors.getSensorList().size() > 1) {
+                for (Sensor sensor : nearestSensors.getSensorList()) {
+                    if (latestMeasurement == null || sensor.getLastMeasurement().getDateTime().isAfter(latestMeasurement.getDateTime())) {
                         latestMeasurement = sensor.getLastMeasurement();
-                        latestMeasurementValue = sensor.getLastMeasurement().getmValue();
+                        latestMeasurementValue = sensor.getLastMeasurement().getValue();
                     }
                 }
             } else {
-                Sensor nearestSensor = nearestSensors.getmSensorList().get(0);
+                Sensor nearestSensor = nearestSensors.getSensorList().get(0);
                 if (nearestSensor.getLastMeasurement() != null) {
-                    latestMeasurementValue = nearestSensor.getLastMeasurement().getmValue();
+                    latestMeasurementValue = nearestSensor.getLastMeasurement().getValue();
                 }
             }
         }
@@ -279,7 +279,7 @@ public class GeographicalArea {
      */
     public List<Double> getDailyAverageMeasurement(SensorType sensorType, LocalDate startDate, LocalDate endDate) {
         List<Double> listOfDailyAverages = new ArrayList<>();
-        List<Sensor> sensorListWithRightTypeDuringPeriod = listSensorsOfACertainTypeInAGivenPeriod(sensorType, this.mSensorList.getmSensorList(), startDate, endDate);
+        List<Sensor> sensorListWithRightTypeDuringPeriod = listSensorsOfACertainTypeInAGivenPeriod(sensorType, this.mSensorList.getSensorList(), startDate, endDate);
 
         for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate); dateIterator = dateIterator.plusDays(1)) {
             double dailyAverage = getDailyAverageOfAListOfSensors(sensorListWithRightTypeDuringPeriod, dateIterator);
@@ -300,7 +300,7 @@ public class GeographicalArea {
      */
     public double getTotalDailyMeasurement(SensorType sensorType, LocalDate day) {
         double totalDailyMeasurement = 0;
-        List<Sensor> sensorListWithSameTypeDuringADay = sortSensorTypesInADay(sensorType, this.mSensorList.getmSensorList(), day);
+        List<Sensor> sensorListWithSameTypeDuringADay = sortSensorTypesInADay(sensorType, this.mSensorList.getSensorList(), day);
         if(!sensorListWithSameTypeDuringADay.isEmpty()) {
             for (Sensor sensor : sensorListWithSameTypeDuringADay) {
                 if (totalDailyMeasurement < sensor.getTotalDailyMeasurements(day)) {

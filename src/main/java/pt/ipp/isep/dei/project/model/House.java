@@ -13,16 +13,16 @@ public class House {
 
     /**
      * constructor of house that receives a room list, a list of house grids, an address and an insertedGeoArea.
-     * @param mRoomList
-     * @param mListHouseGrids
-     * @param mAddress
-     * @param mInsertedGeoArea
+     * @param roomList
+     * @param listHouseGrids
+     * @param address
+     * @param insertedGeoArea
      */
-    public House(RoomList mRoomList, HouseGridList mListHouseGrids, Address mAddress, GeographicalArea mInsertedGeoArea) {
-        this.mRoomList = mRoomList;
-        this.mListHouseGrids = mListHouseGrids;
-        this.mAddress = mAddress;
-        this.mInsertedGeoArea = mInsertedGeoArea;
+    public House(RoomList roomList, HouseGridList listHouseGrids, Address address, GeographicalArea insertedGeoArea) {
+        this.mRoomList = roomList;
+        this.mListHouseGrids = listHouseGrids;
+        this.mAddress = address;
+        this.mInsertedGeoArea = insertedGeoArea;
     }
 
     public RoomList getRoomList() {
@@ -34,38 +34,38 @@ public class House {
      *
      * @return mAddress
      */
-    public Address getmAddress() {
+    public Address getAddress() {
         return mAddress;
     }
 
     /**
      * Set Method of address
      *
-     * @param mAddress
+     * @param address
      */
-    public void setmAddress(Address mAddress) {
-        this.mAddress = mAddress;
+    public void setAddress(Address address) {
+        this.mAddress = address;
     }
 
     /**
      * Method that creates a new address considering the parameters below
      *
-     * @param mZipCode   String zipCode
-     * @param mLatitude  attribute of Location. Double
-     * @param mLongitude attribute of Location. Double
-     * @param mAltitude  attribute of Location. Double
+     * @param zipCode   String zipCode
+     * @param latitude  attribute of Location. Double
+     * @param longitude attribute of Location. Double
+     * @param altitude  attribute of Location. Double
      * @return method for the creation of a new Address
      */
-    public Address newAddresses(String mZipCode, double mLatitude, double mLongitude, double mAltitude) {
-        Location location = new Location(mLatitude, mLongitude, mAltitude);
-        return new Address(mZipCode, location);
+    public Address newAddresses(String zipCode, double latitude, double longitude, double altitude) {
+        Location location = new Location(latitude, longitude, altitude);
+        return new Address(zipCode, location);
     }
 
     /**
      * method that get inserted geo area
      * @return inserted geo area.
      */
-    public GeographicalArea getmInsertedGeoArea() {
+    public GeographicalArea getInsertedGeoArea() {
         return mInsertedGeoArea;
     }
 
@@ -133,7 +133,7 @@ public class House {
      * @return returns the maximum temperature in a specific day
      */
     public double getMaximumTemperatureOfARoomInASpecificDay(String name, SensorType type, LocalDate date) {
-        return this.mRoomList.getMaximumTemperatureInARoomInAGivenDay(name, type, date);
+        return this.mRoomList.getMaximumTemperatureInRoomInGivenDay(name, type, date);
     }
 
 
@@ -167,7 +167,7 @@ public class House {
      * @return size of the list of rooms.
      */
     public int getRoomListSize() {
-        return mRoomList.listSize();
+        return mRoomList.getLength();
     }
 
     /**
@@ -196,8 +196,8 @@ public class House {
      * method that check if a name of a room already exists on the list of rooms.
      * @param name
      */
-    public boolean checkIfNameAlreadyExists(String name) {
-        return this.mRoomList.checkIfNameAlreadyExists(name);
+    public boolean isNameExistant(String name) {
+        return this.mRoomList.isNameExistant(name);
     }
 
     /**
@@ -205,7 +205,7 @@ public class House {
      * @param option
      */
     public Room getRoomOfTheRoomList(int option) {
-        return mRoomList.getRoomFromAPosition(option);
+        return mRoomList.getRoomFromPosition(option);
     }
 
     /**
@@ -214,7 +214,7 @@ public class House {
      * @param position position of the room in the room list
      * @return list of devices of a roomMethod that displays the content
      */
-    public String getDeviceListContentOfRoomByPosition(int position) {
+    public String getDeviceListContentRoom(int position) {
         return mRoomList.getDeviceListContentByPosition(position);
     }
 
@@ -224,8 +224,8 @@ public class House {
      *
      * @param position chosen room
      */
-    public boolean checkIfDeviceListIsEmpty(int position) {
-        return mRoomList.checkIfDeviceListIsEmpty(position);
+    public boolean isDeviceListEmpty(int position) {
+        return mRoomList.isDeviceListEmpty(position);
     }
 
     /**
@@ -233,15 +233,15 @@ public class House {
      * @param position
      */
     public String getSensorListContentOfARoom(int position) {
-        return mRoomList.getSensorListContentOfARoom(position);
+        return mRoomList.getSensorListContentOfRoom(position);
     }
 
     /**
      * method that check if the sensor list of the room is empty
      * @param position
      */
-    public boolean checkIfSensorListIsEmpty(int position) {
-        return mRoomList.checkIfSensorListIsEmpty(position);
+    public boolean isSensorListEmpty(int position) {
+        return mRoomList.isSensorListEmpty(position);
     }
 
     /**
@@ -271,8 +271,8 @@ public class House {
      *
      * @return True or false.
      */
-    public boolean checkIfHouseGridListIsEmpty(){
-        return mListHouseGrids.checkIfHouseGridListIsEmpty();
+    public boolean isHouseGridListEmpty() {
+        return mListHouseGrids.isHouseGridListEmpty();
     }
 
     public String getHouseGridListContent() {
@@ -287,7 +287,7 @@ public class House {
      * method that gets the size of House Grid List
      * @return integer
      */
-    public int getHouseGridListLength() {
+    public int getHouseGridListSize() {
         return this.mListHouseGrids.getmHouseGridsList().size();
     }
 
@@ -296,11 +296,11 @@ public class House {
     }
 
     public boolean checkIfThereAreNoDevicesHGbyPosition(int position) {
-        return this.getHouseGridList().getHouseGridByPosition(position).checkIfThereAreNoDevices();
+        return this.getHouseGridList().getHouseGridByPosition(position).isDeviceListOfAllRoomsEmpty();
     }
 
-    public int houseRoomListLength() {
-        return this.mRoomList.listSize();
+    public int houseRoomListSize() {
+        return this.mRoomList.getLength();
     }
 
     /**
@@ -329,7 +329,7 @@ public class House {
      * @return Integer with the number of devices.
      */
     public int getNumberOfDevicesOfAType(String type) {
-        return getAllDevicesOfAType(type).getLength();
+        return getAllDevicesOfAType(type).getSize();
     }
 
     /**

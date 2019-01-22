@@ -14,7 +14,7 @@ public class GetNominalPowerRoomsDevicesController {
     }
 
     public boolean checkIfGridListIsEmpty(){
-        return this.mHouse.checkIfHouseGridListIsEmpty();
+        return this.mHouse.isHouseGridListEmpty();
     }
 
     public String getHouseGridsListToString(){
@@ -22,7 +22,7 @@ public class GetNominalPowerRoomsDevicesController {
     }
 
     public int getHouseGridListSize(){
-        return this.mHouse.getHouseGridListLength();
+        return this.mHouse.getHouseGridListSize();
     }
 
     public void getHouseGridByPosition(int position){
@@ -43,11 +43,11 @@ public class GetNominalPowerRoomsDevicesController {
     }
 
     public boolean roomListOfHouseGridIsEmpty() {
-        return mSelectedHouseGrid.checkIfRoomListIsEmpty();
+        return mSelectedHouseGrid.isRoomListEmpty();
     }
 
     public boolean deviceListIsEmpty(int position){
-        return mSelectedHouseGrid.checkIfDeviceListIsEmpty(position);
+        return mSelectedHouseGrid.isDeviceListOfRoomEmpty(position);
     }
 
     public Device getDeviceListByPosition(int pos1, int pos2){

@@ -35,6 +35,6 @@ public class ConfHouseLocationController {
      * Method that sets the Address to the House
      */
     public void setAddressToTheHouse() {
-        mHouse.setmAddress(mAddress);
+        mHouse.setAddress(mAddress);
     }
 }

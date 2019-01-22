@@ -18,7 +18,7 @@ public class RoomList {
      *
      * @return mRoomList.
      */
-    public List<Room> getmRoomList() {
+    public List<Room> getRoomList() {
         return mRoomList;
     }
 
@@ -28,7 +28,7 @@ public class RoomList {
      * @param position Specifies the position of the room in the list.
      * @return The respective room.
      */
-    public Room getRoomFromAPosition(int position) {
+    public Room getRoomFromPosition(int position) {
         return mRoomList.get(position);
     }
 
@@ -61,10 +61,10 @@ public class RoomList {
      * @return the new room
      */
     public Room newRoom(String name, int housefloor, double height, double length, double width) {
-        if (checkIfNameAlreadyExists(name)) {
+        if (isNameExistant(name)) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
-        Dimensions newDimension = new Dimensions(height, length, width);
+        Dimension newDimension = new Dimension(height, length, width);
         return new Room(name, housefloor, newDimension);
     }
 
@@ -77,7 +77,7 @@ public class RoomList {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
         for (int i = 0; i < mRoomList.size(); i++) {
-            String displayOfTheRoom = mRoomList.get(i).getRoomContent();
+            String displayOfTheRoom = mRoomList.get(i).getRoomToString();
             //   content.append("\n");
             content.append(numberInTheList);
             content.append("- ");
@@ -93,7 +93,7 @@ public class RoomList {
      *
      * @return true if it is empty
      */
-    public boolean checkIfRoomListIsEmpty() {
+    public boolean isEmpty() {
         return mRoomList.isEmpty();
     }
 
@@ -102,7 +102,7 @@ public class RoomList {
      *
      * @return Room List size
      */
-    public int listSize() {
+    public int getLength() {
         return mRoomList.size();
     }
 
@@ -112,17 +112,17 @@ public class RoomList {
      * @param position position of the Room in the Room List
      * @return Content of the Room
      */
-    public String getChosenRoomContent(int position) {
+    public String getChosenRoomToString(int position) {
         StringBuilder content = new StringBuilder();
-        content.append("1 - Name: " + mRoomList.get(position).getmName());
+        content.append("1 - Name: " + mRoomList.get(position).getName());
         content.append("\n");
-        content.append("2 - House Floor: " + mRoomList.get(position).getmHouseFloor());
+        content.append("2 - House Floor: " + mRoomList.get(position).getHouseFloor());
         content.append("\n");
-        content.append("3 - Dimensions - Height: " + mRoomList.get(position).getmDimensions().getmHeight());
+        content.append("3 - Dimension - Height: " + mRoomList.get(position).getDimension().getHeight());
         content.append("\n");
-        content.append("4 - Dimensions - Length: " + mRoomList.get(position).getmDimensions().getmLength());
+        content.append("4 - Dimension - Length: " + mRoomList.get(position).getDimension().getLength());
         content.append("\n");
-        content.append("5 - Dimensions - Width: " + mRoomList.get(position).getmDimensions().getmWidth());
+        content.append("5 - Dimension - Width: " + mRoomList.get(position).getDimension().getWidth());
         content.append("\n");
         return content.toString();
     }
@@ -134,7 +134,7 @@ public class RoomList {
      * @param changeName new name for the room
      */
     public void changeRoomName(int chosenRoom, String changeName) {
-        mRoomList.get(chosenRoom).setmName(changeName);
+        mRoomList.get(chosenRoom).setName(changeName);
     }
 
     /**
@@ -144,7 +144,7 @@ public class RoomList {
      * @param changeHouseFloor new house floor for the room
      */
     public void setRoomFloor(int chosenRoom, int changeHouseFloor) {
-        mRoomList.get(chosenRoom).setmHouseFloor(changeHouseFloor);
+        mRoomList.get(chosenRoom).setHouseFloor(changeHouseFloor);
     }
 
     /**
@@ -156,14 +156,14 @@ public class RoomList {
      */
     public void setRoomDimensions(int chosenRoom, int chosenFeature, double changeDimension) {
         if (chosenFeature == 3) {
-            mRoomList.get(chosenRoom).getmDimensions().setmHeight(changeDimension);
-        } else mRoomList.get(chosenRoom).getmDimensions().getmHeight();
+            mRoomList.get(chosenRoom).getDimension().setHeight(changeDimension);
+        } else mRoomList.get(chosenRoom).getDimension().getHeight();
         if (chosenFeature == 4) {
-            mRoomList.get(chosenRoom).getmDimensions().setmLength(changeDimension);
-        } else mRoomList.get(chosenRoom).getmDimensions().getmLength();
+            mRoomList.get(chosenRoom).getDimension().setLength(changeDimension);
+        } else mRoomList.get(chosenRoom).getDimension().getLength();
         if (chosenFeature == 5) {
-            mRoomList.get(chosenRoom).getmDimensions().setmWidth(changeDimension);
-        } else mRoomList.get(chosenRoom).getmDimensions().getmWidth();
+            mRoomList.get(chosenRoom).getDimension().setWidth(changeDimension);
+        } else mRoomList.get(chosenRoom).getDimension().getWidth();
     }
 
     /**
@@ -176,7 +176,7 @@ public class RoomList {
     public Room getRoomByName(String name) {
 
         for (Room room : mRoomList) {
-            if (room.getmName().equals(name)) {
+            if (room.getName().equals(name)) {
                 return room;
             }
         }
@@ -194,7 +194,7 @@ public class RoomList {
         if (mRoomList.isEmpty()) {
             return null;
         }
-        return mRoomList.get(position).getmName();
+        return mRoomList.get(position).getName();
     }
 
     /**
@@ -203,8 +203,8 @@ public class RoomList {
      * @param date any given day
      * @return the maximum temperature in a specific Room in a given day
      */
-    public double getMaximumTemperatureInARoomInAGivenDay(String name, SensorType type, LocalDate date) {
-        return getRoomByName(name).getMaximumMeasurementInAGivenDay(type, date);
+    public double getMaximumTemperatureInRoomInGivenDay(String name, SensorType type, LocalDate date) {
+        return getRoomByName(name).getMaximumMeasurementInGivenDay(type, date);
     }
 
     /**
@@ -213,10 +213,10 @@ public class RoomList {
      * @param name
      * @return boolean
      */
-    public boolean checkIfNameAlreadyExists(String name) {
+    public boolean isNameExistant(String name) {
 
         for (int i = 0; i < mRoomList.size(); i++) {
-            if (mRoomList.get(i).getmName().equalsIgnoreCase(name)) {
+            if (mRoomList.get(i).getName().equalsIgnoreCase(name)) {
                 return true;
             }
         }
@@ -238,8 +238,8 @@ public class RoomList {
      *
      * @param position chosen room
      */
-    public boolean checkIfDeviceListIsEmpty(int position) {
-        return mRoomList.get(position).checkIfDeviceListIsEmpty();
+    public boolean isDeviceListEmpty(int position) {
+        return mRoomList.get(position).isDeviceListEmpty();
     }
 
     /**
@@ -247,10 +247,10 @@ public class RoomList {
      *
      * @return true if there aren't devices. False if there are devices
      */
-    public boolean checkIfThereAreNoDevices() {
+    public boolean isDeviceListOfAllRoomsEmpty() {
 
         for (int i = 0; i < mRoomList.size(); i++) {
-            if (!checkIfDeviceListIsEmpty(i)) {
+            if (!isDeviceListEmpty(i)) {
                 return false;
             }
         }
@@ -263,7 +263,7 @@ public class RoomList {
      * @param position
      * @return
      */
-    public String getSensorListContentOfARoom(int position) {
+    public String getSensorListContentOfRoom(int position) {
         return mRoomList.get(position).getSensorListContent();
     }
 
@@ -272,8 +272,8 @@ public class RoomList {
      *
      * @param position
      */
-    public boolean checkIfSensorListIsEmpty(int position) {
-        return mRoomList.get(position).checkIfSensorListIsEmpty();
+    public boolean isSensorListEmpty(int position) {
+        return mRoomList.get(position).isSensorListEmpty();
     }
 
     /**
@@ -287,8 +287,8 @@ public class RoomList {
         Device dev;
 
         for (int i = 0; i < mRoomList.size(); i++) {
-            roomDeviceList = mRoomList.get(i).getmDeviceList();
-            for (int j = 0; j < roomDeviceList.getLength(); j++) {
+            roomDeviceList = mRoomList.get(i).getDeviceList();
+            for (int j = 0; j < roomDeviceList.getSize(); j++) {
                 dev = roomDeviceList.getDeviceByPosition(j);
                 allDeviceList.addDevice(dev);
             }
@@ -299,7 +299,7 @@ public class RoomList {
     public String getRoomListToString() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= mRoomList.size(); i++) {
-            content.append(i + " - Name: " + mRoomList.get(i - 1).getmName());
+            content.append(i + " - Name: " + mRoomList.get(i - 1).getName());
             content.append("\n");
         }
         return content.toString();
@@ -313,7 +313,7 @@ public class RoomList {
     public DeviceList getAllDevicesOfAType(String type) {
         DeviceList listWithDevicesOfAType = new DeviceList();
         for (Room room : mRoomList) {
-            listWithDevicesOfAType.getmDeviceList().addAll(room.getAllDevicesOfAType(type).getmDeviceList());
+            listWithDevicesOfAType.getDeviceList().addAll(room.getAllDevicesOfType(type).getDeviceList());
         }
         return listWithDevicesOfAType;
     }

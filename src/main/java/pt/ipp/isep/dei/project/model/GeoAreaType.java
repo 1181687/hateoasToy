@@ -5,10 +5,10 @@ public class GeoAreaType {
 
     /**
      * constructor that receives a type of geographical area.
-     * @param mGeoAreaType
+     * @param geoAreaType
      */
-    public GeoAreaType(String mGeoAreaType) {
-        this.mGeoAreaType = mGeoAreaType;
+    public GeoAreaType(String geoAreaType) {
+        this.mGeoAreaType = geoAreaType;
     }
 
     /**

@@ -27,7 +27,7 @@ public class AttachRoomToHouseGridController {
      * @return True or false.
      */
     public boolean checkIfHouseGridListIsEmpty() {
-        return mListOfHouseGrids.checkIfHouseGridListIsEmpty();
+        return mListOfHouseGrids.isHouseGridListEmpty();
     }
 
     /**
@@ -62,7 +62,7 @@ public class AttachRoomToHouseGridController {
      * @return True or false.
      */
     public boolean checkIfRoomListIsEmpty() {
-        return mListOfRooms.checkIfRoomListIsEmpty();
+        return mListOfRooms.isEmpty();
     }
 
     /**
@@ -79,7 +79,7 @@ public class AttachRoomToHouseGridController {
      * @return Size of the list.
      */
     public int roomListLength() {
-        return mListOfRooms.getmRoomList().size();
+        return mListOfRooms.getRoomList().size();
     }
 
     /**
@@ -88,7 +88,7 @@ public class AttachRoomToHouseGridController {
      * @return The respective room.
      */
     public Room getRoomFromTheList(int position) {
-        return mListOfRooms.getRoomFromAPosition(position);
+        return mListOfRooms.getRoomFromPosition(position);
     }
 
     /**
@@ -114,7 +114,7 @@ public class AttachRoomToHouseGridController {
      * @return True or false.
      */
     public boolean checkIfTheChosenRoomIsAlreadyInTheChosenGrid() {
-        return mListOfHouseGrids.checkIfARoomIsAlreadyInAHouseGrid(mGridToBeUsed, mRoomToBeAttached);
+        return mListOfHouseGrids.checkIfRoomIsAlreadyInHouseGrid(mGridToBeUsed, mRoomToBeAttached);
     }
 
     /**

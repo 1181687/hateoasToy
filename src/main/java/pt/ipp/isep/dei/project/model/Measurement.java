@@ -9,19 +9,19 @@ public class Measurement {
     /**
      * constructor that receives a value and a date
      *
-     * @param mValue    value
-     * @param mDateTime date
+     * @param value    value
+     * @param dateTime date
      */
-    public Measurement(double mValue, LocalDateTime mDateTime) {
-        this.mValue = mValue;
-        this.mDateTime = mDateTime;
+    public Measurement(double value, LocalDateTime dateTime) {
+        this.mValue = value;
+        this.mDateTime = dateTime;
     }
 
     /**
      * Get method
      * @return mValue
      */
-    public double getmValue() {
+    public double getValue() {
         return mValue;
     }
 
@@ -29,7 +29,7 @@ public class Measurement {
      * Get method
      * @return mDateTime
      */
-    public LocalDateTime getmDateTime() {
+    public LocalDateTime getDateTime() {
         return mDateTime;
     }
 

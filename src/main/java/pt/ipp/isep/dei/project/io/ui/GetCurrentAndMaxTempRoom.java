@@ -50,7 +50,7 @@ public class GetCurrentAndMaxTempRoom {
             return;
         }
 
-        this.displayResults(roomName, temp.getmValue(), temp.getmDateTime().toString());
+        this.displayResults(roomName, temp.getValue(), temp.getDateTime().toString());
     }
 
     /**

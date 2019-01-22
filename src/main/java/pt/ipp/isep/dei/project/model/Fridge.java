@@ -9,12 +9,12 @@ public class Fridge implements DeviceSpecs {
     private double mAnnualEnergyConsumption;
     private double mNominalPower;
 
-    public Fridge(double mFreezerCapacity, double mRefrigeratorCapacity, double mAnnualEnergyConsumption, double mNominalPower) {
+    public Fridge(double freezerCapacity, double refrigeratorCapacity, double annualEnergyConsumption, double nominalPower) {
         this.mTypeName = "Fridge";
-        this.mFreezerCapacity = mFreezerCapacity;
-        this.mRefrigeratorCapacity = mRefrigeratorCapacity;
-        this.mAnnualEnergyConsumption = mAnnualEnergyConsumption;
-        this.mNominalPower = mNominalPower;
+        this.mFreezerCapacity = freezerCapacity;
+        this.mRefrigeratorCapacity = refrigeratorCapacity;
+        this.mAnnualEnergyConsumption = annualEnergyConsumption;
+        this.mNominalPower = nominalPower;
     }
 
     /**
@@ -23,7 +23,7 @@ public class Fridge implements DeviceSpecs {
      * @return type of device
      */
     @Override
-    public String getmTypeName() {
+    public String getTypeName() {
         return mTypeName;
     }
 
@@ -38,7 +38,7 @@ public class Fridge implements DeviceSpecs {
      * @return nominal power
      */
     @Override
-    public double getmNominalPower() {
+    public double getNominalPower() {
         return mNominalPower;
     }
 
@@ -46,50 +46,50 @@ public class Fridge implements DeviceSpecs {
     /**
      * set method
      *
-     * @param mFreezerCapacity capacity of freezer
+     * @param freezerCapacity capacity of freezer
      * @return capacity of freezer
      */
-    public boolean setmFreezerCapacity(double mFreezerCapacity) {
-        if (Utils.isSameDouble(this.mFreezerCapacity, mFreezerCapacity)) {
+    public boolean setFreezerCapacity(double freezerCapacity) {
+        if (Utils.isSameDouble(this.mFreezerCapacity, freezerCapacity)) {
             return false;
         }
-        this.mFreezerCapacity = mFreezerCapacity;
+        this.mFreezerCapacity = freezerCapacity;
         return true;
     }
 
     /**
      * set method
-     * @param mRefrigeratorCapacity capacity of refrigerator
+     * @param refrigeratorCapacity capacity of refrigerator
      */
-    public boolean setmRefrigeratorCapacity(double mRefrigeratorCapacity) {
-        if (Utils.isSameDouble(this.mRefrigeratorCapacity, mRefrigeratorCapacity)) {
+    public boolean setRefrigeratorCapacity(double refrigeratorCapacity) {
+        if (Utils.isSameDouble(this.mRefrigeratorCapacity, refrigeratorCapacity)) {
             return false;
         }
-        this.mRefrigeratorCapacity = mRefrigeratorCapacity;
+        this.mRefrigeratorCapacity = refrigeratorCapacity;
         return true;
     }
 
     /**
      * set method
-     * @param mAnnualEnergyConsumption annual energy comsumption
+     * @param annualEnergyConsumption annual energy comsumption
      */
-    public boolean setmAnnualEnergyConsumption(double mAnnualEnergyConsumption) {
-        if (Utils.isSameDouble(this.mAnnualEnergyConsumption, mAnnualEnergyConsumption)) {
+    public boolean setAnnualEnergyConsumption(double annualEnergyConsumption) {
+        if (Utils.isSameDouble(this.mAnnualEnergyConsumption, annualEnergyConsumption)) {
             return false;
         }
-        this.mAnnualEnergyConsumption = mAnnualEnergyConsumption;
+        this.mAnnualEnergyConsumption = annualEnergyConsumption;
         return true;
     }
 
     /**
      * set method
-     * @param mNominalPower nominal power
+     * @param nominalPower nominal power
      */
-    public boolean setmNominalPower(double mNominalPower) {
-        if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
+    public boolean setNominalPower(double nominalPower) {
+        if (Utils.isSameDouble(this.mNominalPower, nominalPower)) {
             return false;
         }
-        this.mNominalPower = mNominalPower;
+        this.mNominalPower = nominalPower;
         return true;
     }
 
@@ -120,13 +120,13 @@ public class Fridge implements DeviceSpecs {
 
         switch (attribute) {
             case 1:
-                return setmFreezerCapacity(value);
+                return setFreezerCapacity(value);
             case 2:
-                return setmRefrigeratorCapacity(value);
+                return setRefrigeratorCapacity(value);
             case 3:
-                return setmAnnualEnergyConsumption(value);
+                return setAnnualEnergyConsumption(value);
             case 4:
-                return setmNominalPower(value);
+                return setNominalPower(value);
         }
         return false;
     }

@@ -16,7 +16,7 @@ public class AddPowerSourceToHouseGridController {
     }
 
     public boolean checkIfHouseGridListIsEmpty() {
-        return mHouseGridList.checkIfHouseGridListIsEmpty();
+        return mHouseGridList.isHouseGridListEmpty();
     }
 
     public String getHouseGridListContent() {
@@ -37,11 +37,11 @@ public class AddPowerSourceToHouseGridController {
     }
 
     public String getPowerSourceTypeListContent() {
-        return mPowerSourceTypeList.getPowerSourceTypeListContent();
+        return mPowerSourceTypeList.getPowerSourceTypeListToString();
     }
 
     public int powerSourceTypeListLength(){
-        return mPowerSourceTypeList.powerSourceTypeListLength();
+        return mPowerSourceTypeList.getLength();
     }
 
     public void getPowerSourceTypeFromListByPosition(int position) {

@@ -294,19 +294,19 @@ class GeographicalAreaTest {
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(40, -5, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        ag1.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(41, -6, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        ag1.getSensorListInTheGeographicArea().addSensor(s1);
 
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Temperatura");
         Location locS2 = new Location(42, -7, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
+        ag1.getSensorListInTheGeographicArea().addSensor(s2);
 
         //Instanciar Measurement
         // Sensor0
@@ -375,19 +375,19 @@ class GeographicalAreaTest {
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(40, -5, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        ag1.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(41, -6, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        ag1.getSensorListInTheGeographicArea().addSensor(s1);
 
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Temperatura");
         Location locS2 = new Location(42, -7, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
+        ag1.getSensorListInTheGeographicArea().addSensor(s2);
 
         //Instanciar Measurement
         // Sensor0
@@ -485,7 +485,7 @@ class GeographicalAreaTest {
         Sensor s1 = new Sensor("s1", data, tipo, local);
 
         //Act
-        boolean resultado = ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        boolean resultado = ag1.getSensorListInTheGeographicArea().addSensor(s1);
 
         //Assert
         assertTrue(resultado);
@@ -505,10 +505,10 @@ class GeographicalAreaTest {
         Location local = new Location(45, 45, 45);
         Sensor s1 = new Sensor("s1", data, tipo, local);
         Sensor s2 = new Sensor("s2", data, tipo, local);
-        ag1.getmSensorListInTheGeographicArea().getmSensorList().add(s1);
+        ag1.getSensorListInTheGeographicArea().getSensorList().add(s1);
 
         //Act
-        boolean resultado = ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
+        boolean resultado = ag1.getSensorListInTheGeographicArea().addSensor(s2);
 
         //Assert
         assertTrue(resultado);
@@ -528,10 +528,10 @@ class GeographicalAreaTest {
         Location local = new Location(45, 45, 45);
         Sensor s1 = new Sensor("s1", data, tipo, local);
         Sensor s2 = new Sensor("s1", data, tipo, local);
-        ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        ag1.getSensorListInTheGeographicArea().addSensor(s1);
 
         //Act
-        boolean resultado = ag1.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
+        boolean resultado = ag1.getSensorListInTheGeographicArea().addSensor(s2);
 
         //Assert
         assertFalse(resultado);
@@ -642,13 +642,13 @@ class GeographicalAreaTest {
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(-1, 30, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        ag2.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(0, 30, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        ag2.getSensorListInTheGeographicArea().addSensor(s1);
 
 
         // Instantiate Measurements
@@ -675,7 +675,7 @@ class GeographicalAreaTest {
         SensorType typeRequired = new SensorType("Temperature");
 
         //Act
-        Boolean result = ag.getTheSensorListOfAGivenType(typeRequired).getmSensorList().isEmpty();
+        Boolean result = ag.getTheSensorListOfAGivenType(typeRequired).getSensorList().isEmpty();
 
         //Assert
         assertFalse(result);
@@ -708,7 +708,7 @@ class GeographicalAreaTest {
         SensorType typeRequired = new SensorType("Temperature");
 
         //Act
-        Boolean result = ag.getTheSensorListOfAGivenType(typeRequired).getmSensorList().isEmpty();
+        Boolean result = ag.getTheSensorListOfAGivenType(typeRequired).getSensorList().isEmpty();
 
         //Assert
         assertTrue(result);
@@ -744,13 +744,13 @@ class GeographicalAreaTest {
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(-1, 30, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        ag2.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(0, 30, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        ag2.getSensorListInTheGeographicArea().addSensor(s1);
 
         // Instantiate Measurements
         // Sensor0
@@ -853,13 +853,13 @@ class GeographicalAreaTest {
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(-1, 30, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        ag2.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(0, 30, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        ag2.getSensorListInTheGeographicArea().addSensor(s1);
 
 
         Location location = new Location(0,30,50);
@@ -904,13 +904,13 @@ class GeographicalAreaTest {
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(-1, 30, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        ag2.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(-1, 30, 50);
         Sensor s1 = new Sensor("A12555", dataFuncionamento1, sensorType1, locS1);
-        ag2.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        ag2.getSensorListInTheGeographicArea().addSensor(s1);
 
         // Instantiate Measurements
         // Sensor0
@@ -961,13 +961,13 @@ class GeographicalAreaTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        ag.getSensorListInTheGeographicArea().addSensor(s1);
 
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -1024,13 +1024,13 @@ class GeographicalAreaTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        ag.getSensorListInTheGeographicArea().addSensor(s1);
 
         LocalDate startDate = LocalDate.of(2018, 12, 1);
         LocalDate endDate = LocalDate.of(2018, 12, 6);
@@ -1061,13 +1061,13 @@ class GeographicalAreaTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        ag.getSensorListInTheGeographicArea().addSensor(s1);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
@@ -1084,7 +1084,7 @@ class GeographicalAreaTest {
         double expectedResult = 23.5;
 
         //Act
-        double result = ag.getDailyAverageOfAListOfSensors(ag.getmSensorListInTheGeographicArea().getmSensorList(), searchDate);
+        double result = ag.getDailyAverageOfAListOfSensors(ag.getSensorListInTheGeographicArea().getSensorList(), searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1105,13 +1105,13 @@ class GeographicalAreaTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        ag.getSensorListInTheGeographicArea().addSensor(s1);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
@@ -1128,7 +1128,7 @@ class GeographicalAreaTest {
         double expectedResult = Double.NaN;
 
         //Act
-        double result = ag.getDailyAverageOfAListOfSensors(ag.getmSensorListInTheGeographicArea().getmSensorList(), searchDate);
+        double result = ag.getDailyAverageOfAListOfSensors(ag.getSensorListInTheGeographicArea().getSensorList(), searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1152,7 +1152,7 @@ class GeographicalAreaTest {
         Location locS1 = new Location(42.1496, -8.6109, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         //  add Sensor to the List of Sensors in the GeoArea
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        ag.getSensorListInTheGeographicArea().addSensor(s1);
         //  add measurements to Sensor 1
 
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 1, 8, 59, 13);
@@ -1170,7 +1170,7 @@ class GeographicalAreaTest {
         Location locS2 = new Location(45.1496, -8.6109, 97);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
         //  add Sensor to the List of Sensors in the GeoArea
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
+        ag.getSensorListInTheGeographicArea().addSensor(s2);
         //  add measurements to Sensor 2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
@@ -1223,7 +1223,7 @@ class GeographicalAreaTest {
         Location locS1 = new Location(42.1496, -8.6109, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         //  add Sensor to the List of Sensors in the GeoArea
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        ag.getSensorListInTheGeographicArea().addSensor(s1);
         //  add measurements to Sensor 1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 2, 8, 59, 13);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 2, 2, 05, 27);
@@ -1240,7 +1240,7 @@ class GeographicalAreaTest {
         Location locS2 = new Location(45.1496, -8.6109, 97);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
         //  add Sensor to the List of Sensors in the GeoArea
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
+        ag.getSensorListInTheGeographicArea().addSensor(s2);
         //  add measurements to Sensor 2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
@@ -1292,7 +1292,7 @@ class GeographicalAreaTest {
         Location locS1 = new Location(42.1496, -8.6109, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         //  add Sensor to the List of Sensors in the GeoArea
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        ag.getSensorListInTheGeographicArea().addSensor(s1);
         //  add measurements to Sensor 1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 1, 8, 59, 13);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 1, 2, 05, 27);
@@ -1310,7 +1310,7 @@ class GeographicalAreaTest {
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
         //  add Sensor to the List of Sensors in the GeoArea
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
+        ag.getSensorListInTheGeographicArea().addSensor(s2);
 
         //  add measurements to Sensor 2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
@@ -1364,7 +1364,7 @@ class GeographicalAreaTest {
         Sensor s1 = new Sensor("A124", dataFuncionamento1, sensorType1, locS1);
 
         //  add Sensor to the List of Sensors in the GeoArea
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        ag.getSensorListInTheGeographicArea().addSensor(s1);
 
         //  add measurements to Sensor 1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 1, 8, 59, 13);
@@ -1381,7 +1381,7 @@ class GeographicalAreaTest {
         Location locS2 = new Location(42.1496, -8.6109, 97);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
         //  add Sensor to the List of Sensors in the GeoArea
-        ag.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s2);
+        ag.getSensorListInTheGeographicArea().addSensor(s2);
         //  add measurements to Sensor 2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
         Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);

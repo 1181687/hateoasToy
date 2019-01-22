@@ -16,13 +16,13 @@ public class RoomTest {
         //arrange
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room = new Room(name1, houseFloor1, dimension1);
 
-        String expectResult = "Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Length: 2.0, Width: 2.0";
+        String expectResult = "Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0";
 
         //act
-        String result = room.getRoomContent();
+        String result = room.getRoomToString();
         //assert
         assertEquals(expectResult, result);
     }
@@ -32,7 +32,7 @@ public class RoomTest {
         //Arrange
         String name = "roomOne";
         int housefloor = 2;
-        Dimensions dim = new Dimensions(4, 10.5, 7.5);
+        Dimension dim = new Dimension(4, 10.5, 7.5);
         Room room = new Room(name, housefloor, dim);
 
         int expectedResult = Objects.hash(name);
@@ -49,7 +49,7 @@ public class RoomTest {
         String name = "roomOne";
         String name2 = "roomtwo";
         int housefloor = 2;
-        Dimensions dim = new Dimensions(4, 10.5, 7.5);
+        Dimension dim = new Dimension(4, 10.5, 7.5);
 
         // Act
         int hash1 = Objects.hash(name, housefloor, dim);
@@ -61,9 +61,9 @@ public class RoomTest {
     @Test
     void testEqualsTrue() {
         //Arrange
-        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room("ROOM", 2, dim);
-        Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
+        Dimension dim2 = new Dimension(3.5, 3.5, 3.5);
         Room room2 = new Room("Room", 2, dim2);
         //Act
         boolean result = room.equals(room2);
@@ -74,9 +74,9 @@ public class RoomTest {
     @Test
     void testEqualsFalse() {
         //Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-        Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
+        Dimension dim2 = new Dimension(3.5, 3.5, 3.5);
         Room room2 = new Room("RoomTwo", 2, dim2);
         //Act
         boolean result = room.equals(room2);
@@ -87,7 +87,7 @@ public class RoomTest {
     @Test
     void testEqualsFalseDifTypes() {
         //Arrange
-        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
         SensorType tipo = new SensorType("humidade");
@@ -107,12 +107,12 @@ public class RoomTest {
 
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
 
         Room room = new Room("Room", 2, dim);
 
         // Act
-        boolean result = room.addSensorToTheListOfSensorsInTheRoom(s1);
+        boolean result = room.addSensorToListOfSensorsInRoom(s1);
 
         // Assert
         assertTrue(result);
@@ -128,14 +128,14 @@ public class RoomTest {
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        room.addSensorToTheListOfSensorsInTheRoom(s0);
-        sensorList.addSensorToTheListOfSensors(s0);
-        List<Sensor> expectedResult = sensorList.getmSensorList();
+        room.addSensorToListOfSensorsInRoom(s0);
+        sensorList.addSensor(s0);
+        List<Sensor> expectedResult = sensorList.getSensorList();
         //Act
-        List<Sensor> result = room.getSensorList().getmSensorList();
+        List<Sensor> result = room.getSensorList().getSensorList();
         //Assert
         assertEquals(result, expectedResult);
     }
@@ -143,7 +143,7 @@ public class RoomTest {
     @Test
     public void testValidateNameNull() {
         String name = null;
-        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Throwable exception = assertThrows(RuntimeException.class, () ->
                 new Room(name, 2, dim)
         );
@@ -153,7 +153,7 @@ public class RoomTest {
     @Test
     public void testValidateNameEmpty() {
         String name = "  ";
-        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Throwable exception = assertThrows(RuntimeException.class, () ->
                 new Room(name, 2, dim)
         );
@@ -163,17 +163,17 @@ public class RoomTest {
     @Test
     public void testValidateDimensions() {
         String name = "Room 1";
-        Dimensions dim = null;
+        Dimension dim = null;
         Throwable exception = assertThrows(RuntimeException.class, () ->
                 new Room(name, 2, dim)
         );
-        assertEquals("Dimensions should not be null", exception.getMessage());
+        assertEquals("Dimension should not be null", exception.getMessage());
     }
 
     @Test
     public void getSensorsListContentTest() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         SensorList sensorList = new SensorList();
 
@@ -187,8 +187,8 @@ public class RoomTest {
         Location locS1 = new Location(123, 300, 50);
         Sensor s1 = new Sensor("A456", dataFuncionamento1, sensorType1, locS1);
 
-        room.addSensorToTheListOfSensorsInTheRoom(s0);
-        room.addSensorToTheListOfSensorsInTheRoom(s1);
+        room.addSensorToListOfSensorsInRoom(s0);
+        room.addSensorToListOfSensorsInRoom(s1);
 
         String expectedResult =
                 "1 - Name of the sensor: A123\n" +
@@ -203,11 +203,11 @@ public class RoomTest {
     @Test
     public void checkIfSensorListIsEmptyTestTrue() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
         // Act
-        boolean result = room.checkIfSensorListIsEmpty();
+        boolean result = room.isSensorListEmpty();
 
         // Assert
         assertTrue(result);
@@ -221,13 +221,13 @@ public class RoomTest {
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        room.addSensorToTheListOfSensorsInTheRoom(s0);
+        room.addSensorToListOfSensorsInRoom(s0);
 
         // Act
-        boolean result = room.checkIfSensorListIsEmpty();
+        boolean result = room.isSensorListEmpty();
 
         // Assert
         assertFalse(result);
@@ -236,7 +236,7 @@ public class RoomTest {
     @Test
     public void testGetDeviceList() {
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         ProgramList pgList = new ProgramList();
@@ -256,7 +256,7 @@ public class RoomTest {
         expectedResult.addDevice(dev2);
         expectedResult.addDevice(dev3);
 
-        DeviceList result = room.getmDeviceList();
+        DeviceList result = room.getDeviceList();
 
         assertEquals(expectedResult, result);
     }
@@ -264,7 +264,7 @@ public class RoomTest {
     @Test
     public void testAddDevice() {
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         Fridge specFridge = new Fridge(100, 100, 100, 100);
@@ -274,7 +274,7 @@ public class RoomTest {
         expectedResult.addDevice(dev1);
 
         room.addDevice(dev1);
-        DeviceList result = room.getmDeviceList();
+        DeviceList result = room.getDeviceList();
 
         assertEquals(expectedResult, result);
     }
@@ -285,7 +285,7 @@ public class RoomTest {
         // Arrange
 
         //initiate Room
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
         //initiate Devices
@@ -323,11 +323,11 @@ public class RoomTest {
     @Test
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
         // Act
-        boolean result = room.checkIfDeviceListIsEmpty();
+        boolean result = room.isDeviceListEmpty();
 
         // Assert
         assertTrue(result);
@@ -337,7 +337,7 @@ public class RoomTest {
     @Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
         double luminousFlux = 10.0;
@@ -348,7 +348,7 @@ public class RoomTest {
         room.addDevice(dev1);
 
         // Act
-        boolean result = room.checkIfDeviceListIsEmpty();
+        boolean result = room.isDeviceListEmpty();
 
         // Assert
         assertFalse(result);
@@ -357,7 +357,7 @@ public class RoomTest {
    /* @Test
     public void testGetNominalPower() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
         Fridge specFridge = new Fridge(25, 50, 5000, 500);
@@ -385,7 +385,7 @@ public class RoomTest {
 
         // Arrange
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
         DeviceList deviceList = new DeviceList();
 
@@ -405,7 +405,7 @@ public class RoomTest {
 
         int expectResult = 2;
         //act
-        int result = room.getSizeOfDevicesList();
+        int result = room.getDevicesListLength();
         //assert
         assertEquals(expectResult, result);
     }
@@ -414,11 +414,11 @@ public class RoomTest {
     public void testAddDeviceDevicePointer() {
         //Arrange
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room1 = new Room(name, 2, dim);
 
         String name2 = "Bedroom";
-        Dimensions dim2 = new Dimensions(3, 3.5, 3.5);
+        Dimension dim2 = new Dimension(3, 3.5, 3.5);
         Room room2 = new Room(name2, 2, dim2);
 
         double luminousFlux1 = 10.0;
@@ -443,11 +443,11 @@ public class RoomTest {
     public void testAddDeviceDeviceListPointer() {
         //Arrange
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room1 = new Room(name, 2, dim);
 
         String name2 = "Bedroom";
-        Dimensions dim2 = new Dimensions(3, 3.5, 3.5);
+        Dimension dim2 = new Dimension(3, 3.5, 3.5);
         Room room2 = new Room(name2, 2, dim2);
 
         double luminousFlux1 = 10.0;
@@ -462,7 +462,7 @@ public class RoomTest {
         Device expectedResult = dev1;
 
         //act
-        Device result = room2.getmDeviceList().getDeviceByPosition(0);
+        Device result = room2.getDeviceList().getDeviceByPosition(0);
 
         //Assert
         assertEquals(expectedResult, result);

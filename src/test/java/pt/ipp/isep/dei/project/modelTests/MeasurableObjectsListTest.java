@@ -13,7 +13,7 @@ class MeasurableObjectsListTest {
     void getNominalPower() {
         // Arrange
         MeasurableObjectsList mList = new MeasurableObjectsList();
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room1 = new Room("Room", 2, dim);
         Room room2 = new Room("Room", 2, dim);
 
@@ -48,7 +48,7 @@ class MeasurableObjectsListTest {
     void checkIfMeasurableObjIsInListTrue() {
         // Arrange
         MeasurableObjectsList mList = new MeasurableObjectsList();
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room1 = new Room("Room", 2, dim);
         Room room2 = new Room("Room", 2, dim);
 
@@ -83,7 +83,7 @@ class MeasurableObjectsListTest {
     void checkIfMeasurableObjIsInListFalse() {
         // Arrange
         MeasurableObjectsList mList = new MeasurableObjectsList();
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room1 = new Room("Room", 2, dim);
         Room room2 = new Room("Room", 2, dim);
 

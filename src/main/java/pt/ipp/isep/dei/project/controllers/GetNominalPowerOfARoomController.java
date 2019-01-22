@@ -25,7 +25,7 @@ public class GetNominalPowerOfARoomController {
      * @return integer
      */
     public int getRoomListLength() {
-        return mHouse.houseRoomListLength();
+        return mHouse.houseRoomListSize();
     }
 
     /**
@@ -34,7 +34,7 @@ public class GetNominalPowerOfARoomController {
      * @return
      */
     public boolean checkIfDeviceListIsEmpty(int option) {
-        return mHouse.checkIfDeviceListIsEmpty(option);
+        return mHouse.isDeviceListEmpty(option);
     }
 
     /**

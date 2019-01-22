@@ -61,7 +61,7 @@ class GeoAreaTypeListTest {
         lista.add(tipo2);
         GeoAreaTypeList novaLista = new GeoAreaTypeList(lista);
         //Act
-        boolean resultado = novaLista.getmGeoAreaTypeList().isEmpty();
+        boolean resultado = novaLista.getGeoAreaTypeList().isEmpty();
         //Assert
         assertFalse(resultado);
     }
