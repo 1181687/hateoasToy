@@ -52,7 +52,7 @@ public class PowerSourceTypeList {
      * Method that gives us the size of the Power Source List
      * @return Power Source List size
      */
-    public int getLength() {
+    public int getSize() {
         return this.mPowerSourceTypeList.size();
     }
 }

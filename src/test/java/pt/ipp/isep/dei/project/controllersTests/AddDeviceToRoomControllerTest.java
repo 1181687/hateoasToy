@@ -124,7 +124,7 @@ class AddDeviceToRoomControllerTest {
 
         int expectResult = 2;
         //act
-        int result = controller.roomListLength();
+        int result = controller.roomListSize();
         //assert
         assertEquals(expectResult, result);
     }
@@ -145,7 +145,7 @@ class AddDeviceToRoomControllerTest {
 
         int expectResult = 0;
         //act
-        int result = controller.roomListLength();
+        int result = controller.roomListSize();
         //assert
         assertEquals(expectResult, result);
     }

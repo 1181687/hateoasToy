@@ -263,18 +263,18 @@ public class DeviceList {
      *
      * @return the content of the list by string
      */
-        public String getDeviceTypeListToString() {
-            StringBuilder content = new StringBuilder();
-            int numberInTheList = 1;
-            for (DeviceTypes deviceTypeName : DeviceTypes.values()) {
-                String deviceType = deviceTypeName.getDeviceTypeName();
-                content.append(numberInTheList + "- ");
-                content.append(deviceType);
-                content.append("\n");
-                numberInTheList++;
-            }
-            return content.toString();
+    public String getDeviceTypeListToString() {
+        StringBuilder content = new StringBuilder();
+        int numberInTheList = 1;
+        for (DeviceTypes deviceTypeName : DeviceTypes.values()) {
+            String deviceType = deviceTypeName.getDeviceTypeName();
+            content.append(numberInTheList + "- ");
+            content.append(deviceType);
+            content.append("\n");
+            numberInTheList++;
         }
+        return content.toString();
+    }
 
     /**
      * Method that remove a device from the list of devices

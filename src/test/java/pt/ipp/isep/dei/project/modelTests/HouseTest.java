@@ -971,7 +971,7 @@ public class HouseTest {
         double expectedResult = -10.0;
 
         //Act
-        double result = house.getMaximumTemperatureOfARoomInASpecificDay(name, sensorType0, dayNeeded);
+        double result = house.getMaximumTemperatureOfRoomInSpecificDay(name, sensorType0, dayNeeded);
 
 
         //Assert

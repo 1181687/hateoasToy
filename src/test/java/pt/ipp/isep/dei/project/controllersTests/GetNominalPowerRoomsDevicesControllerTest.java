@@ -791,7 +791,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         list.getmHouseGridsList().add(houseGrid);
 
         //initiate Room
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room1 = new Room("Room1", 2, dim);
         Room room2 = new Room("Room2", 2, dim);
 

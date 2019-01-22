@@ -442,7 +442,7 @@ public class DeviceTest {
     @Test
     public void testGetNameToString() {
         //Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room1", 2, dim);
 
         double luminousFlux1 = 10.0;

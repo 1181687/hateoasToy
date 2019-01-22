@@ -163,7 +163,7 @@ public class Device implements Measurable {
     public String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
         nameLocation.append("Device: " + mName);
-        nameLocation.append(", located in room: " + mLocation.getmName() + "\n");
+        nameLocation.append(", located in room: " + mLocation.getName() + "\n");
         return nameLocation.toString();
     }
 }

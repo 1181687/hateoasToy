@@ -13,6 +13,7 @@ public class GetNominalPowerOfAGridController {
 
     /**
      * Method that checks if there are no HouseGrids in the House.
+     *
      * @return true in case there are no HouseGrids or false if there is at least one HouseGrid in the House.
      */
     public boolean checkIfGridListIsEmpty() {
@@ -31,6 +32,7 @@ public class GetNominalPowerOfAGridController {
 
     /**
      * Returns the number of HouseGrids contained in the House's HouseGridList.
+     *
      * @return integer
      */
 

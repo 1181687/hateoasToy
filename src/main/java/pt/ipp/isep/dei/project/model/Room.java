@@ -268,6 +268,7 @@ public class Room implements Measurable {
 
     /**
      * method that get the size of the list of devices.
+     *
      * @return the size of the list.
      */
 

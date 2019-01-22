@@ -472,7 +472,7 @@ public class RoomTest {
     public void testAddDevices() {
         //Arrange
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         String name1 = "Bedroom";
@@ -494,7 +494,7 @@ public class RoomTest {
     public void testAddDevicesFalse() {
         //Arrange
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         double luminousFlux1 = 10.0;
@@ -514,7 +514,7 @@ public class RoomTest {
         // Arrange
 
         //initiate Room
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room1", 2, dim);
 
         String expectedResult =

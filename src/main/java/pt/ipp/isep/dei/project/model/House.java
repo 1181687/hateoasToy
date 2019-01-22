@@ -132,7 +132,7 @@ public class House {
      * @param date given day
      * @return returns the maximum temperature in a specific day
      */
-    public double getMaximumTemperatureOfARoomInASpecificDay(String name, SensorType type, LocalDate date) {
+    public double getMaximumTemperatureOfRoomInSpecificDay(String name, SensorType type, LocalDate date) {
         return this.mRoomList.getMaximumTemperatureInRoomInGivenDay(name, type, date);
     }
 

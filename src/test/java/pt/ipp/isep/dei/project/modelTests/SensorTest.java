@@ -1671,7 +1671,7 @@ class SensorTest {
     }
 
     @Test
-    public void testsGetBiggestMeasurement(){
+    public void testsGetBiggestMeasurement() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -1701,11 +1701,11 @@ class SensorTest {
         double result = sensor1.getBiggestMeasurement(data1.toLocalDate());
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testsGetBiggestMeasurementNoValues(){
+    public void testsGetBiggestMeasurementNoValues() {
         //Arrange
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
@@ -1719,6 +1719,6 @@ class SensorTest {
         double result = sensor1.getBiggestMeasurement(data.toLocalDate());
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 }
