@@ -59,11 +59,11 @@ public class ElectricWaterHeater implements DeviceSpecs {
      * @return Energy consumption of the device in a given day.
      */
     public double getEnergyConsumptionInADay() {
-
-        double specificHeatOfWater = 1.163;
+        double specificHeatOfWater = 1.163 / 1000;
         double differenceInTemperature = mHotWaterTemperature - mColdWaterTemperature;
-        return Math.floor(specificHeatOfWater * mVolumeOfWaterToHeat * differenceInTemperature
-                * mPerformanceRatio * 1000) / 1000;
+        double formula = specificHeatOfWater * mVolumeOfWaterToHeat * differenceInTemperature
+                * mPerformanceRatio;
+        return Utils.round(formula, 2);
     }
 
     /**

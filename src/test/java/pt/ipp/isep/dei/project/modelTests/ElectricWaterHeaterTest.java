@@ -19,7 +19,7 @@ class ElectricWaterHeaterTest {
         electricWaterHeater.setColdWaterTemperature(30);
         electricWaterHeater.setVolumeOfWaterToHeat(100);
 
-        double expectedResult = 2093.4;
+        double expectedResult = 2.09;
 
         // Act
         double result = electricWaterHeater.getEnergyConsumptionInADay();
@@ -41,7 +41,7 @@ class ElectricWaterHeaterTest {
         electricWaterHeater.setColdWaterTemperature(100);
         electricWaterHeater.setVolumeOfWaterToHeat(30);
 
-        double expectedResult = 1570.05;
+        double expectedResult = 1.57;
 
         // Act
         double result = electricWaterHeater.getEnergyConsumptionInADay();
@@ -49,6 +49,7 @@ class ElectricWaterHeaterTest {
         // Assert
         assertEquals(expectedResult, result, 0.000001);
     }
+
     @Test
     public void setmHotWaterTemperatureTrue() {
         // Arrange

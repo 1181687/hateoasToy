@@ -467,4 +467,65 @@ public class RoomTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void testAddDevices() {
+        //Arrange
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        String name1 = "Bedroom";
+        Room room1 = new Room(name1, 2, dim);
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        //Act
+        boolean result = room1.addDevice(dev1);
+
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testAddDevicesFalse() {
+        //Arrange
+        String name = "Kitchen";
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        //Act
+        boolean result = room.addDevice(dev1);
+
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testGetNameToString() {
+        // Arrange
+
+        //initiate Room
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room1", 2, dim);
+
+        String expectedResult =
+                "Room: Room1\n";
+
+
+        // Act
+        String result = room.getNameToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
+
+    }
 }

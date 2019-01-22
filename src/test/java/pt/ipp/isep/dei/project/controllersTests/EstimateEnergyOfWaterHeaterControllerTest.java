@@ -157,7 +157,7 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         double volumeOfWaterToHeat = 70;
         ctrl.setVolumeOfWaterToHeat(1, volumeOfWaterToHeat);
 
-        double expectedResult = 3989.089;
+        double expectedResult = 3.99;
 
         // Act
         double result = ctrl.getEnergyConsumptionOfAWaterHeater(1);
@@ -218,7 +218,7 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         double volumeOfWaterToHeat1 = 70;
         ctrl.setVolumeOfWaterToHeat(1, volumeOfWaterToHeat1);
 
-        double expectedResult = 9117.919;
+        double expectedResult = 9.12;
 
         // Act
         double result = ctrl.getTotalEnergyConsumptionOfAllDevicesOfAType();

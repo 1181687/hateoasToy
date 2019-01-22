@@ -158,4 +158,12 @@ public class Device implements Measurable {
     public int getNumberOfSpecsAttributes(){
         return mSpec.getNumberOfAttributes();
     }
+
+    @Override
+    public String getNameToString() {
+        StringBuilder nameLocation = new StringBuilder();
+        nameLocation.append("Device: " + mName);
+        nameLocation.append(", located in room: " + mLocation.getmName() + "\n");
+        return nameLocation.toString();
+    }
 }

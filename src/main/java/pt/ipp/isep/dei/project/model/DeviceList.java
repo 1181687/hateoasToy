@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -256,19 +258,27 @@ public class DeviceList {
         return mDeviceList.isEmpty();
     }
 
-    public String getDeviceTypeListToString() {
-        StringBuilder content = new StringBuilder();
-        int numberInTheList = 1;
-        for (DeviceTypes deviceTypeName : DeviceTypes.values()) {
-            String deviceType = deviceTypeName.getDeviceTypeName();
-            content.append(numberInTheList + "- ");
-            content.append(deviceType);
-            content.append("\n");
-            numberInTheList++;
+    /**
+     * method that get de device type list content
+     *
+     * @return the content of the list by string
+     */
+        public String getDeviceTypeListToString() {
+            StringBuilder content = new StringBuilder();
+            int numberInTheList = 1;
+            for (DeviceTypes deviceTypeName : DeviceTypes.values()) {
+                String deviceType = deviceTypeName.getDeviceTypeName();
+                content.append(numberInTheList + "- ");
+                content.append(deviceType);
+                content.append("\n");
+                numberInTheList++;
+            }
+            return content.toString();
         }
-        return content.toString();
-    }
 
+    /**
+     * Method that remove a device from the list of devices
+     */
     public boolean removeDevice(Device device) {
         return this.getDeviceList().remove(device);
     }
@@ -333,6 +343,6 @@ public class DeviceList {
         for (Device device : mDeviceList) {
             totalEnergyConsumption += device.getEnergyConsumptionInADay();
         }
-        return totalEnergyConsumption;
+        return Utils.round(totalEnergyConsumption, 2);
     }
 }

@@ -13,11 +13,11 @@ public class GetNominalPowerOfGrid {
 
     public void run() {
         String exit = "0- Exit";
-        if (mController.checkIfGridListIsEmpty()) {
+        if (mController.houseGridListIsEmpty()) {
             System.out.println("There are no house grids in the house. Please, add one");
         } else {
             String label1 = "Please select a House Grid to see its total nominal power: \n" + mController.listHouseGrids() + exit;
-            int gridListLength = mController.getHouseGridListLength();
+            int gridListLength = mController.getHouseGridListSize();
             int position = InputValidator.getIntRange(label1, 0, gridListLength);
             if (position == 0) {
                 return;

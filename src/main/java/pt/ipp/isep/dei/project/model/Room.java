@@ -234,8 +234,7 @@ public class Room implements Measurable {
     }
 
     /**
-     * get method
-     *
+     * get method of the device list.
      * @return device list
      */
     public DeviceList getDeviceList() {
@@ -258,16 +257,26 @@ public class Room implements Measurable {
         return true;
     }
 
+    /**
+     * method that remove a device from the list of devices
+     *
+     * @param device
+     */
     public boolean removeDevice(Device device) {
         return this.mDeviceList.removeDevice(device);
     }
+
+    /**
+     * method that get the size of the list of devices.
+     * @return the size of the list.
+     */
 
     public int getDevicesListLength() {
         return mDeviceList.getSize();
     }
 
     /**
-     *
+     *method that get all devices of a type.
      * @param type
      * @return
      */
@@ -283,5 +292,12 @@ public class Room implements Measurable {
      */
     public boolean isNameExistant(String name) {
         return this.mDeviceList.isNameExistant(name);
+    }
+
+    @Override
+    public String getNameToString() {
+        StringBuilder name = new StringBuilder();
+        name.append("Room: " + mName + "\n");
+        return name.toString();
     }
 }

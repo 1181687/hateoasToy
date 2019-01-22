@@ -15,8 +15,7 @@ public class SensorList {
     }
 
     /**
-     * Get method.
-     *
+     * Get method of the sensor list.
      * @return mSensorList.
      */
     public List<Sensor> getSensorList() {
@@ -25,7 +24,6 @@ public class SensorList {
 
     /**
      * Set method.
-     *
      * @param sensorList List of sensors to be used.
      */
     public void setSensorList(List<Sensor> sensorList) {

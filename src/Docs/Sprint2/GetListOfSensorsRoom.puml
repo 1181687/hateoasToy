@@ -20,61 +20,43 @@ autonumber
 actor User
 User -> UI: ListOfSensorsInARoom
 activate UI
-
 UI -> Controller: getRoomListContent()
 activate Controller
-
 Controller -> House: getRoomListContent()
 activate House
-
 House -> RoomList: getRoomListContent()
 activate RoomList
-
 UI <-- RoomList: RoomListContent
 deactivate RoomList
 deactivate House
 deactivate Controller
-
 User <-- UI: RoomListContent
 
 
-User -> UI: Int position: Room
-UI -> Controller: getRoomName(Room)
-
+User -> UI: Int position
+UI -> Controller: r = getRoomName(position)
 activate Controller
-Controller -> House: getRoomName(Room)
-
+Controller -> House: r = getRoomName(position)
 activate House
-House -> RoomList: getRoomName(Room)
-
+House -> RoomList: r = getRoomName(position)
 activate RoomList
-RoomList -> Room: getName()
-
-activate Room
-RoomList <-- Room: RoomName
-
-deactivate Room
-UI <-- RoomList: RoomName
+RoomList -> "r: Room": r = getName(position)
+activate "r: Room"
+deactivate "r: Room"
 deactivate RoomList
 deactivate House
 deactivate Controller
 
-
-UI -> Controller: getSensorListContent(Room)
+UI -> Controller: r = getSensorListContent()
 activate Controller
-
-Controller -> House: getSensorListContent(Room)
+Controller -> House: r = getSensorListContent()
 activate House
-
-House -> RoomList: getSensorListContent(Room)
+House -> RoomList: r = getSensorListContent()
 activate RoomList
-
-RoomList -> Room: getSensorListContent(Room)
-activate Room
-
-Room -> SensorList: getSensorListContent(Room)
+RoomList -> "r: Room": r = getSensorListContent()
+activate "r: Room"
+"r: Room" -> SensorList: r = getSensorListContent()
 activate SensorList
-
 SensorList -> SensorList: LengthSensorList
 SensorList -> SensorList: SensorList
 SensorList -> Sensor: getName()
@@ -82,15 +64,11 @@ activate Sensor
 
 SensorList <-- Sensor: SensorName
 deactivate Sensor
-
-UI <-- SensorList: SensorListContent
 deactivate SensorList
-deactivate Room
+deactivate "r: Room"
 deactivate RoomList
 deactivate House
 deactivate Controller
-
-User <-- UI: SensorListContent
 deactivate UI
 
 @enduml

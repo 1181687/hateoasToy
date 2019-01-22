@@ -18,8 +18,7 @@ public class Fridge implements DeviceSpecs {
     }
 
     /**
-     * get method
-     *
+     * get method of the type name.
      * @return type of device
      */
     @Override
@@ -34,7 +33,7 @@ public class Fridge implements DeviceSpecs {
         return mAnnualEnergyConsumption / 365;
     }
 
-    /** get method
+    /** get method of the nominal power
      * @return nominal power
      */
     @Override
@@ -44,7 +43,7 @@ public class Fridge implements DeviceSpecs {
 
 
     /**
-     * set method
+     * set method of the freezer capacity
      *
      * @param freezerCapacity capacity of freezer
      * @return capacity of freezer
@@ -58,7 +57,7 @@ public class Fridge implements DeviceSpecs {
     }
 
     /**
-     * set method
+     * set method ro refrigerator capacity
      * @param refrigeratorCapacity capacity of refrigerator
      */
     public boolean setRefrigeratorCapacity(double refrigeratorCapacity) {
@@ -70,7 +69,7 @@ public class Fridge implements DeviceSpecs {
     }
 
     /**
-     * set method
+     * set method of the annual energy consumption
      * @param annualEnergyConsumption annual energy comsumption
      */
     public boolean setAnnualEnergyConsumption(double annualEnergyConsumption) {
@@ -82,7 +81,7 @@ public class Fridge implements DeviceSpecs {
     }
 
     /**
-     * set method
+     * set method of the nominal power.
      * @param nominalPower nominal power
      */
     public boolean setNominalPower(double nominalPower) {
@@ -95,8 +94,7 @@ public class Fridge implements DeviceSpecs {
 
     /**
      * method that displays a string of the choosen attribute (name of the attribute and its value)
-     *
-     * @return
+     * @return fridge attributes.
      */
     @Override
     public String getAttributesToString() {
@@ -132,8 +130,7 @@ public class Fridge implements DeviceSpecs {
     }
 
     /**
-     * get method
-     *
+     * get method of the number of attributes
      * @return number of Fridge attributes
      */
     @Override

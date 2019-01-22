@@ -1670,4 +1670,55 @@ class SensorTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
+    @Test
+    public void testsGetBiggestMeasurement(){
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("T123", data, sensorType, locS1);
+
+        //Registo 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Measurement measurement1 = new Measurement(15, data1);
+
+        //Registo 2
+        Measurement measurement2 = new Measurement(5, data1);
+
+        //Registo 3
+        Measurement measurement3 = new Measurement(5, data1);
+
+        //Registo 4
+        Measurement measurement4 = new Measurement(10, data1);
+
+        sensor1.addMeasurementToList(measurement1);
+        sensor1.addMeasurementToList(measurement2);
+        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(measurement4);
+        double expectedResult = 15;
+
+        //Act
+        double result = sensor1.getBiggestMeasurement(data1.toLocalDate());
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void testsGetBiggestMeasurementNoValues(){
+        //Arrange
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("T123", data, sensorType, locS1);
+
+        double expectedResult = Double.NaN;
+
+        //Act
+        double result = sensor1.getBiggestMeasurement(data.toLocalDate());
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
 }
