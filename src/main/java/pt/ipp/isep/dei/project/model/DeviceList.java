@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -256,6 +258,11 @@ public class DeviceList {
         return mDeviceList.isEmpty();
     }
 
+    /**
+     * method that get de device type list content
+     *
+     * @return the content of the list by string
+     */
     public String getDeviceTypeListContent() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
@@ -269,6 +276,9 @@ public class DeviceList {
         return content.toString();
     }
 
+    /**
+     * Method that remove a device from the list of devices
+     */
     public boolean removeDevice(Device device) {
         return this.getmDeviceList().remove(device);
     }
@@ -333,6 +343,6 @@ public class DeviceList {
         for (Device device : mDeviceList) {
             totalEnergyConsumption += device.getEnergyConsumptionInADay();
         }
-        return totalEnergyConsumption;
+        return Utils.round(totalEnergyConsumption, 2);
     }
 }

@@ -15,7 +15,6 @@ public class Program {
 
     /**
      * method that creates the same hashcode to programs with the same attribute name.
-     *
      * @return the hashcode created
      */
     @Override

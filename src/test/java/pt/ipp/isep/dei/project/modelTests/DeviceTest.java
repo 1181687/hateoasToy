@@ -103,7 +103,7 @@ public class DeviceTest {
         int volumeOfWaterToHeatPosition = 6;
         device.setAttributesDevType(volumeOfWaterToHeatPosition, 100);
 
-        double expectedResult = 2093.4;
+        double expectedResult = 2.09;
 
         // Act
         double result = device.getEnergyConsumptionInADay();

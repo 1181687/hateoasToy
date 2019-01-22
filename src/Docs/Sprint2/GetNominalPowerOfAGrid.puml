@@ -28,7 +28,7 @@ activate HouseGridList
 UI <-- HouseGridList: boolean
 deactivate HouseGridList
 deactivate Controller
-UI -> Controller: listHouseGrids()
+UI -> Controller: getHouseGridsToString()
 activate Controller
 Controller -> House:getHouseGridListToString()
 
