@@ -33,13 +33,13 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
 
         // Sensor0 - Register 1
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 11, 1, 15, 20, 00);
@@ -95,13 +95,13 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
 
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 11, 2, 15, 20, 00);
@@ -150,13 +150,13 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         roomList.addRoom(room1);
         roomList.addRoom(room2);
@@ -189,13 +189,13 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         SensorType sensorType0 = new SensorType("temperature");
         Location locS0 = new Location(-1, 30, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        AG.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        AG.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("temperature");
         Location locS1 = new Location(32.1576, 7.6199, 100);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        AG.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        AG.getSensorListInTheGeographicArea().addSensor(s1);
 
         //Instantiate MeasurementS
         // Sensor0
@@ -240,13 +240,13 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         roomList.addRoom(room1);
         roomList.addRoom(room2);
@@ -279,13 +279,13 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         SensorType sensorType0 = new SensorType("temperature");
         Location locS0 = new Location(-1, 30, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        AG.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        AG.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("temperature");
         Location locS1 = new Location(32.1576, 7.6199, 100);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        AG.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        AG.getSensorListInTheGeographicArea().addSensor(s1);
 
         // Controller
         GetTotalAndAverageRainfallAndCurrentTempHouseAreaController ctrl = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
@@ -307,13 +307,13 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         roomList.addRoom(room1);
         roomList.addRoom(room2);

@@ -14,7 +14,7 @@ public class LampTest {
         double nominalPower = 100.0;
         Lamp lamp = new Lamp(luminousFlux, nominalPower);
 
-        lamp.setmTime(10.0);
+        lamp.setTime(10.0);
 
         double expectedResult = 1000.0;
 
@@ -37,7 +37,7 @@ public class LampTest {
         double expectedResult = 100.0;
 
         //Act
-        double result = lamp.getmNominalPower();
+        double result = lamp.getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -54,7 +54,7 @@ public class LampTest {
         Lamp lamp = new Lamp(luminousFlux, nominalPower);
 
         //act
-        boolean result = lamp.setmNominalPower(100.0);
+        boolean result = lamp.setNominalPower(100.0);
 
         assertFalse(result);
     }
@@ -68,7 +68,7 @@ public class LampTest {
         Lamp lamp = new Lamp(luminousFlux, nominalPower);
 
         //act
-        boolean result = lamp.setmNominalPower(20.0);
+        boolean result = lamp.setNominalPower(20.0);
 
         assertTrue(result);
     }
@@ -84,10 +84,10 @@ public class LampTest {
         double nominalPower = 100.0;
         Lamp lamp = new Lamp(luminousFlux, nominalPower);
 
-        lamp.setmTime(50.0);
+        lamp.setTime(50.0);
 
         //act
-        boolean result = lamp.setmTime(50.0);
+        boolean result = lamp.setTime(50.0);
 
         assertFalse(result);
     }
@@ -101,10 +101,10 @@ public class LampTest {
         double nominalPower = 100.0;
         Lamp lamp = new Lamp(luminousFlux, nominalPower);
 
-        lamp.setmTime(50.0);
+        lamp.setTime(50.0);
 
         //act
-        boolean result = lamp.setmTime(10.0);
+        boolean result = lamp.setTime(10.0);
 
         assertTrue(result);
     }
@@ -118,7 +118,7 @@ public class LampTest {
         Lamp lamp = new Lamp(luminousFlux, nominalPower);
 
         //act
-        boolean result = lamp.setmLuminousFlux(20.0);
+        boolean result = lamp.setLuminousFlux(20.0);
 
         assertTrue(result);
     }

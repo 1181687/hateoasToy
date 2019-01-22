@@ -23,21 +23,21 @@ class AddDeviceToRoomControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
 
-        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Length: 2.0, Width: 2.0\n" +
-                "2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Length: 1.5, Width: 1.3\n";
+        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
+                "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
         //act
         String result = controller.getRoomListContent();
         //assert
@@ -80,8 +80,8 @@ class AddDeviceToRoomControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room = new Room(name1, houseFloor1, dimension1);
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
         house.addRoom(room);
@@ -111,13 +111,13 @@ class AddDeviceToRoomControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
         house.addRoom(room1);
@@ -125,7 +125,7 @@ class AddDeviceToRoomControllerTest {
 
         int expectResult = 2;
         //act
-        int result = controller.roomListLength();
+        int result = controller.roomListSize();
         //assert
         assertEquals(expectResult, result);
     }
@@ -146,13 +146,13 @@ class AddDeviceToRoomControllerTest {
 
         int expectResult = 0;
         //act
-        int result = controller.roomListLength();
+        int result = controller.roomListSize();
         //assert
         assertEquals(expectResult, result);
     }
 
     @Test
-    void getDeviceTypeListContent() {
+    void getDeviceTypeListToString() {
         //Arrange
         RoomList rList = new RoomList();
         HouseGridList gridlist = new HouseGridList();
@@ -165,7 +165,7 @@ class AddDeviceToRoomControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
+        Dimension dimensions1 = new Dimension(2, 2, 2);
         Room room1 = new Room(name1, houseFloor1, dimensions1);
         house.addRoom(room1);
 
@@ -180,7 +180,7 @@ class AddDeviceToRoomControllerTest {
                 "4- Washing Machine\n" +
                 "5- Electric Water Heater\n";
         //Act
-        String result = controller.getDeviceTypeListContent();
+        String result = controller.getDeviceTypeListToString();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -201,7 +201,7 @@ class AddDeviceToRoomControllerTest {
 
         String name = "Fridge - Kitchen";
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room Gabis", 2, dim);
         double nominalPower = 200;
         double annualEnergyConsumption = 1000;
@@ -240,7 +240,7 @@ class AddDeviceToRoomControllerTest {
 
         String name = "Fridge - Kitchen";
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room Gabis", 2, dim);
         double nominalPower = 200;
         double annualEnergyConsumption = 1000;
@@ -257,8 +257,8 @@ class AddDeviceToRoomControllerTest {
 
         Throwable exception = assertThrows(RuntimeException.class, () -> controller.createNewFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity));
 
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
+    assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+}
 
     @Test
     public void testNewLamp() {
@@ -272,7 +272,7 @@ class AddDeviceToRoomControllerTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         double luminousFlux = 100;
@@ -303,7 +303,7 @@ class AddDeviceToRoomControllerTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         double luminousFlux = 100;
@@ -337,7 +337,7 @@ class AddDeviceToRoomControllerTest {
         // newWashingMachine Instantiation
         String name = "Washing Machine Bosh";
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         double capacity = 100;
@@ -372,7 +372,7 @@ class AddDeviceToRoomControllerTest {
         // newWashingMachine Instantiation
         String name = "Washing Machine Bosh";
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         double capacity = 100;
@@ -408,7 +408,7 @@ class AddDeviceToRoomControllerTest {
         double nominalPower0 = 100;
         double performanceRatio = 100;
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
@@ -445,7 +445,7 @@ class AddDeviceToRoomControllerTest {
         double nominalPower0 = 100;
         double performanceRatio = 100;
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
@@ -470,7 +470,7 @@ class AddDeviceToRoomControllerTest {
         // Arrange
 
         //initiate Room
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
@@ -532,7 +532,7 @@ class AddDeviceToRoomControllerTest {
         double performanceRatio = 100;
         DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         String name = "Electric";
         Device d2 = new Device(name, room, electricWaterHeater1);

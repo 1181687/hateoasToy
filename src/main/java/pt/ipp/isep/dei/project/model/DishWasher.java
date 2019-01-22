@@ -22,7 +22,7 @@ public class DishWasher implements DeviceSpecs {
      * @return type of device
      */
     @Override
-    public String getmTypeName() {
+    public String getTypeName() {
         return mTypeName;
     }
 
@@ -40,34 +40,35 @@ public class DishWasher implements DeviceSpecs {
      * @return nominal power
      */
     @Override
-    public double getmNominalPower() {
+    public double getNominalPower() {
         return mNominalPower;
     }
 
     /**
      * set method
      *
-     * @param mCapacity
+     * @param capacity
      * @return
      */
-    public boolean setmCapacity(int mCapacity) {
-        if (Utils.isSameDouble(this.mCapacity, mCapacity)) {
+    public boolean setCapacity(int capacity) {
+        if (Utils.isSameDouble(this.mCapacity, capacity)) {
             return false;
         }
-        this.mCapacity = mCapacity;
+        this.mCapacity = capacity;
         return true;
     }
 
     /**
      * set method to Nominal Power
-     * @param mNominalPower
+     *
+     * @param nominalPower
      * @return
      */
-    public boolean setmNominalPower(double mNominalPower) {
-        if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
+    public boolean setNominalPower(double nominalPower) {
+        if (Utils.isSameDouble(this.mNominalPower, nominalPower)) {
             return false;
         }
-        this.mNominalPower = mNominalPower;
+        this.mNominalPower = nominalPower;
         return true;
     }
 
@@ -94,9 +95,9 @@ public class DishWasher implements DeviceSpecs {
         switch (attribute) {
             case 1:
                 int intValue = (int) value;
-                return setmCapacity(intValue);
+                return setCapacity(intValue);
             case 2:
-                return setmNominalPower(value);
+                return setNominalPower(value);
         }
         return false;
     }

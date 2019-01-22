@@ -40,7 +40,7 @@ public class AddDeviceToRoomController {
 
 
     public void getDeviceList() {
-        mDeviceList = this.mRoom.getmDeviceList();
+        mDeviceList = this.mRoom.getDeviceList();
     }
     /**
      * Method that show the room selected.
@@ -56,7 +56,7 @@ public class AddDeviceToRoomController {
      *
      * @return Size of the list.
      */
-    public int roomListLength() {
+    public int roomListSize() {
         return mHouse.getRoomListSize();
     }
 
@@ -65,8 +65,8 @@ public class AddDeviceToRoomController {
      * Method that asks for the content (that is the name of the device type) of list of devices from the class DeviceList.
      * @return the name of the device types in the device types list.
      */
-    public String getDeviceTypeListContent() {
-        return mDeviceList.getDeviceTypeListContent();
+    public String getDeviceTypeListToString() {
+        return mDeviceList.getDeviceTypeListToString();
     }
 
 
@@ -148,7 +148,7 @@ public class AddDeviceToRoomController {
      * @return list of devices of a roomMethod that displays the content
      */
     public String getDeviceListContentOfARoom(int selectedRoom) {
-        return mHouse.getDeviceListContentOfRoomByPosition(selectedRoom);
+        return mHouse.getDeviceListContentRoom(selectedRoom);
     }
 
     public Program createNewProgram(String programName, double duration, double energyConsumption) {

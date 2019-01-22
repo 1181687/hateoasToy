@@ -11,10 +11,10 @@ class DetachRoomFromHouseGridControllerTest {
     @Test
     void testsGetListContentMethod() {
         //Arrange
-        Dimensions r0Dimensions = new Dimensions(2, 3, 4);
-        Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        Dimension r0Dimension = new Dimension(2, 3, 4);
+        Dimension r1Dimension = new Dimension(2, 3, 3);
+        Room r0 = new Room("Bedroom", 3, r0Dimension);
+        Room r1 = new Room("Living Room", 2, r1Dimension);
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoom(r0);
         listOfRooms.addRoom(r1);
@@ -32,10 +32,10 @@ class DetachRoomFromHouseGridControllerTest {
     @Test
     void testsGetListContentMethodMoreThanOneGrid() {
         //Arrange
-        Dimensions r0Dimensions = new Dimensions(2, 3, 4);
-        Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        Dimension r0Dimension = new Dimension(2, 3, 4);
+        Dimension r1Dimension = new Dimension(2, 3, 3);
+        Room r0 = new Room("Bedroom", 3, r0Dimension);
+        Room r1 = new Room("Living Room", 2, r1Dimension);
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoom(r0);
         listOfRooms.addRoom(r1);
@@ -55,10 +55,10 @@ class DetachRoomFromHouseGridControllerTest {
     @Test
     void getHouseGridFromTheList() {
         //Arrange
-        Dimensions r0Dimensions = new Dimensions(2, 3, 4);
-        Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        Dimension r0Dimension = new Dimension(2, 3, 4);
+        Dimension r1Dimension = new Dimension(2, 3, 3);
+        Room r0 = new Room("Bedroom", 3, r0Dimension);
+        Room r1 = new Room("Living Room", 2, r1Dimension);
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoom(r0);
         listOfRooms.addRoom(r1);
@@ -78,10 +78,10 @@ class DetachRoomFromHouseGridControllerTest {
     @Test
     void getListOfRooms() {
         //Arrange
-        Dimensions r0Dimensions = new Dimensions(2, 3, 4);
-        Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        Dimension r0Dimension = new Dimension(2, 3, 4);
+        Dimension r1Dimension = new Dimension(2, 3, 3);
+        Room r0 = new Room("Bedroom", 3, r0Dimension);
+        Room r1 = new Room("Living Room", 2, r1Dimension);
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoom(r0);
         listOfRooms.addRoom(r1);
@@ -91,8 +91,8 @@ class DetachRoomFromHouseGridControllerTest {
         houseGridList.getmHouseGridsList().add(newGrid0);
         houseGridList.getmHouseGridsList().add(newGrid1);
         DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
-        String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimensions - Height: 2.0, Length: 3.0, Width: 4.0\n" +
-                "2- Name: Living Room, House Floor: 2, Dimensions - Height: 2.0, Length: 3.0, Width: 3.0\n";
+        String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimension - Height: 2.0, Length: 3.0, Width: 4.0\n" +
+                "2- Name: Living Room, House Floor: 2, Dimension - Height: 2.0, Length: 3.0, Width: 3.0\n";
         //Act
         String result = ctrl.getListOfRooms();
         //Assert
@@ -102,10 +102,10 @@ class DetachRoomFromHouseGridControllerTest {
     @Test
     void getRoomFromTheListOfRoomByAPosition() {
         //Arrange
-        Dimensions r0Dimensions = new Dimensions(2, 3, 4);
-        Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        Dimension r0Dimension = new Dimension(2, 3, 4);
+        Dimension r1Dimension = new Dimension(2, 3, 3);
+        Room r0 = new Room("Bedroom", 3, r0Dimension);
+        Room r1 = new Room("Living Room", 2, r1Dimension);
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoom(r0);
         listOfRooms.addRoom(r1);
@@ -125,10 +125,10 @@ class DetachRoomFromHouseGridControllerTest {
     @Test
     void detachRoomFromGridList() {
         //Arrange
-        Dimensions r0Dimensions = new Dimensions(2, 3, 4);
-        Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        Dimension r0Dimension = new Dimension(2, 3, 4);
+        Dimension r1Dimension = new Dimension(2, 3, 3);
+        Room r0 = new Room("Bedroom", 3, r0Dimension);
+        Room r1 = new Room("Living Room", 2, r1Dimension);
         RoomList listOfRooms = new RoomList();
         RoomList listOfRooms1 = new RoomList();
         listOfRooms.addRoom(r0);
@@ -140,7 +140,7 @@ class DetachRoomFromHouseGridControllerTest {
         houseGridList.getmHouseGridsList().add(newGrid1);
         DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
         ctrl.detachRoomFromGridList(newGrid0, r1);
-        String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimensions - Height: 2.0, Length: 3.0, Width: 4.0\n";
+        String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimension - Height: 2.0, Length: 3.0, Width: 4.0\n";
 
         String result = ctrl.getListOfRoomsInACertainHouseGrid(0);
         //Assert
@@ -150,11 +150,11 @@ class DetachRoomFromHouseGridControllerTest {
     @Test
     void detachRoomFromGridListRoomNotInTheListRemainsTheSame() {
         //Arrange
-        Dimensions r0Dimensions = new Dimensions(2, 3, 4);
-        Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
-        Room r2 = new Room("Bathroom", 2, r1Dimensions);
+        Dimension r0Dimension = new Dimension(2, 3, 4);
+        Dimension r1Dimension = new Dimension(2, 3, 3);
+        Room r0 = new Room("Bedroom", 3, r0Dimension);
+        Room r1 = new Room("Living Room", 2, r1Dimension);
+        Room r2 = new Room("Bathroom", 2, r1Dimension);
         RoomList listOfRooms = new RoomList();
         RoomList listOfRooms1 = new RoomList();
         listOfRooms.addRoom(r0);
@@ -167,8 +167,8 @@ class DetachRoomFromHouseGridControllerTest {
         houseGridList.getmHouseGridsList().add(newGrid1);
         DetachRoomFromHouseGridController ctrl = new DetachRoomFromHouseGridController(houseGridList, listOfRooms);
         ctrl.detachRoomFromGridList(newGrid0, r2);
-        String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimensions - Height: 2.0, Length: 3.0, Width: 4.0\n" +
-                "2- Name: Living Room, House Floor: 2, Dimensions - Height: 2.0, Length: 3.0, Width: 3.0\n";
+        String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimension - Height: 2.0, Length: 3.0, Width: 4.0\n" +
+                "2- Name: Living Room, House Floor: 2, Dimension - Height: 2.0, Length: 3.0, Width: 3.0\n";
 
         //Act
         String result = ctrl.getListOfRoomsInACertainHouseGrid(0);
@@ -179,11 +179,11 @@ class DetachRoomFromHouseGridControllerTest {
     @Test
     void detachRoomFromGridListRoomNotInTheListRemainsTheSameBooleanMethod() {
         //Arrange
-        Dimensions r0Dimensions = new Dimensions(2, 3, 4);
-        Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
-        Room r2 = new Room("Bathroom", 2, r1Dimensions);
+        Dimension r0Dimension = new Dimension(2, 3, 4);
+        Dimension r1Dimension = new Dimension(2, 3, 3);
+        Room r0 = new Room("Bedroom", 3, r0Dimension);
+        Room r1 = new Room("Living Room", 2, r1Dimension);
+        Room r2 = new Room("Bathroom", 2, r1Dimension);
         RoomList listOfRooms = new RoomList();
         RoomList listOfRooms1 = new RoomList();
         listOfRooms.addRoom(r0);
@@ -205,10 +205,10 @@ class DetachRoomFromHouseGridControllerTest {
     @Test
     void detachRoomFromGridListBooleanMethod() {
         //Arrange
-        Dimensions r0Dimensions = new Dimensions(2, 3, 4);
-        Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
+        Dimension r0Dimension = new Dimension(2, 3, 4);
+        Dimension r1Dimension = new Dimension(2, 3, 3);
+        Room r0 = new Room("Bedroom", 3, r0Dimension);
+        Room r1 = new Room("Living Room", 2, r1Dimension);
         RoomList listOfRooms = new RoomList();
         RoomList listOfRooms1 = new RoomList();
         listOfRooms.addRoom(r0);
@@ -229,11 +229,11 @@ class DetachRoomFromHouseGridControllerTest {
     @Test
     void getNumberOfGridLists() {
         //Arrange
-        Dimensions r0Dimensions = new Dimensions(2, 3, 4);
-        Dimensions r1Dimensions = new Dimensions(2, 3, 3);
-        Room r0 = new Room("Bedroom", 3, r0Dimensions);
-        Room r1 = new Room("Living Room", 2, r1Dimensions);
-        Room r2 = new Room("Bathroom", 2, r1Dimensions);
+        Dimension r0Dimension = new Dimension(2, 3, 4);
+        Dimension r1Dimension = new Dimension(2, 3, 3);
+        Room r0 = new Room("Bedroom", 3, r0Dimension);
+        Room r1 = new Room("Living Room", 2, r1Dimension);
+        Room r2 = new Room("Bathroom", 2, r1Dimension);
         RoomList listOfRooms = new RoomList();
         RoomList listOfRooms1 = new RoomList();
         listOfRooms.addRoom(r0);

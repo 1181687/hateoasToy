@@ -19,30 +19,30 @@ public class Sensor {
     /**
      * Constructor method
      *
-     * @param mSensorName   name of the sensor (string)
-     * @param mStartingDate starting date of the sensor
-     * @param mSensorType   Type of Sensor
-     * @param mLocation     Locatiom of the Sensor
+     * @param sensorName   name of the sensor (string)
+     * @param startingDate starting date of the sensor
+     * @param sensorType   Type of Sensor
+     * @param location     Locatiom of the Sensor
      */
-    public Sensor(String mSensorName, LocalDateTime mStartingDate, SensorType mSensorType, Location mLocation) {
-        this.mSensorName = mSensorName;
-        this.mStartingDate = mStartingDate;
-        this.mSensorType = mSensorType;
-        this.mLocation = mLocation;
+    public Sensor(String sensorName, LocalDateTime startingDate, SensorType sensorType, Location location) {
+        this.mSensorName = sensorName;
+        this.mStartingDate = startingDate;
+        this.mSensorType = sensorType;
+        this.mLocation = location;
     }
 
     /**
      * Constructor method
      *
-     * @param mSensorName name of the sensor (string)
-     * @param mSensorType Type of Sensor
-     * @param mLocation   Locatiom of the Sensor
+     * @param sensorName name of the sensor (string)
+     * @param sensorType Type of Sensor
+     * @param location   Locatiom of the Sensor
      */
-    public Sensor(String mSensorName, SensorType mSensorType, Location mLocation) {
-        this.mSensorName = mSensorName;
+    public Sensor(String sensorName, SensorType sensorType, Location location) {
+        this.mSensorName = sensorName;
         this.mStartingDate = LocalDateTime.now();
-        this.mSensorType = mSensorType;
-        this.mLocation = mLocation;
+        this.mSensorType = sensorType;
+        this.mLocation = location;
     }
 
     /**
@@ -50,7 +50,7 @@ public class Sensor {
      *
      * @return Sensor Name
      */
-    public String getmSensorName() {
+    public String getSensorName() {
         return mSensorName;
     }
 
@@ -59,7 +59,7 @@ public class Sensor {
      *
      * @return Starting date of a sensor
      */
-    public LocalDateTime getmStartingDate() {
+    public LocalDateTime getStartingDate() {
         return mStartingDate;
     }
 
@@ -68,7 +68,7 @@ public class Sensor {
      *
      * @return Sensor Type
      */
-    public SensorType getmSensorType() {
+    public SensorType getSensorType() {
         return mSensorType;
     }
 
@@ -77,7 +77,7 @@ public class Sensor {
      *
      * @return Sensor Location
      */
-    public Location getmLocation() {
+    public Location getLocation() {
         return mLocation;
     }
 
@@ -130,8 +130,8 @@ public class Sensor {
         List<Double> measurementsBetweenDates = new ArrayList<>();
 
         for (Measurement measurement : mMeasurements) {
-            if ((measurement.getmDateTime().toLocalDate().isEqual(startDate) || measurement.getmDateTime().toLocalDate().isAfter(startDate)) && (measurement.getmDateTime().toLocalDate().isEqual(endDate) || measurement.getmDateTime().toLocalDate().isBefore(endDate))) {
-                measurementsBetweenDates.add(measurement.getmValue());
+            if ((measurement.getDateTime().toLocalDate().isEqual(startDate) || measurement.getDateTime().toLocalDate().isAfter(startDate)) && (measurement.getDateTime().toLocalDate().isEqual(endDate) || measurement.getDateTime().toLocalDate().isBefore(endDate))) {
+                measurementsBetweenDates.add(measurement.getValue());
             }
         }
         return measurementsBetweenDates;
@@ -262,7 +262,7 @@ public class Sensor {
      *
      * @return empty list of measurements
      */
-    public boolean measurementListIsEmpty() {
+    public boolean isMeasurementListEmpty() {
         return mMeasurements.isEmpty();
     }
 
@@ -273,7 +273,7 @@ public class Sensor {
      */
     public Measurement getLastMeasurement() {
         for (int i = (mMeasurements.size() - 1); i >= 0; i--) {
-            if (!(Double.isNaN(mMeasurements.get(i).getmValue()))) {
+            if (!(Double.isNaN(mMeasurements.get(i).getValue()))) {
                 return mMeasurements.get(i);
             }
         }
@@ -287,8 +287,8 @@ public class Sensor {
      * @return a type of sensor is equal to the sensor type being compared
      */
     public boolean sensorTypeEqualsSensorType(SensorType tipo) {
-        String tipoDoSensorPedido = tipo.getmType();
-        return (this.getmSensorType().getmType().equals(tipoDoSensorPedido));
+        String tipoDoSensorPedido = tipo.getType();
+        return (this.getSensorType().getType().equals(tipoDoSensorPedido));
     }
 
     /**
@@ -300,9 +300,9 @@ public class Sensor {
     public List<Measurement> getDailyMeasurement(LocalDate date) {
         List<Measurement> registosDoDia = new ArrayList<>();
         for (Measurement registo : mMeasurements) {
-            LocalDate secondDate = registo.getmDateTime().toLocalDate();
+            LocalDate secondDate = registo.getDateTime().toLocalDate();
 
-            if (checkIfDaysAreEqual(date, secondDate) && (!Double.isNaN(registo.getmValue()))) {
+            if (checkIfDaysAreEqual(date, secondDate) && (!Double.isNaN(registo.getValue()))) {
                 registosDoDia.add(registo);
             }
         }
@@ -329,10 +329,10 @@ public class Sensor {
      */
     public double getLowestMeasurementOfDay(LocalDate data) {
         if (!getDailyMeasurement(data).isEmpty()) {
-            double valorMinimoDoDia = getDailyMeasurement(data).get(0).getmValue();
+            double valorMinimoDoDia = getDailyMeasurement(data).get(0).getValue();
             for (Measurement registo : getDailyMeasurement(data)) {
-                if (valorMinimoDoDia > registo.getmValue()) {
-                    valorMinimoDoDia = registo.getmValue();
+                if (valorMinimoDoDia > registo.getValue()) {
+                    valorMinimoDoDia = registo.getValue();
                 }
             }
             return valorMinimoDoDia;
@@ -403,10 +403,10 @@ public class Sensor {
      */
     public double getMaximumValueOfDay(LocalDate date) {
         if (!getDailyMeasurement(date).isEmpty()) {
-            double maximumValueOfDay = getDailyMeasurement(date).get(0).getmValue();
+            double maximumValueOfDay = getDailyMeasurement(date).get(0).getValue();
             for (Measurement measurement : getDailyMeasurement(date)) {
-                if (maximumValueOfDay < measurement.getmValue()) {
-                    maximumValueOfDay = measurement.getmValue();
+                if (maximumValueOfDay < measurement.getValue()) {
+                    maximumValueOfDay = measurement.getValue();
                 }
             }
             return maximumValueOfDay;
@@ -478,7 +478,7 @@ public class Sensor {
         double sum = 0;
         if (!(getDailyMeasurement(day).isEmpty())) {
             for (Measurement measurement : getDailyMeasurement(day)) {
-                sum += measurement.getmValue();
+                sum += measurement.getValue();
             }
         }
         return sum;

@@ -8,9 +8,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class SensorListTest {
 
@@ -23,7 +21,7 @@ class SensorListTest {
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
         //Act
-        boolean result = newList.addSensorToTheListOfSensors(s0);
+        boolean result = newList.addSensor(s0);
         //Assert
         assertTrue(result);
     }
@@ -38,11 +36,11 @@ class SensorListTest {
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
-        newList.addSensorToTheListOfSensors(s0);
+        newList.addSensor(s0);
         List<Sensor> expectedResult = new ArrayList<>();
         expectedResult.add(s0);
         //Act
-        List<Sensor> result = newList.getmSensorList();
+        List<Sensor> result = newList.getSensorList();
         //Assert
         assertEquals(result, expectedResult);
     }
@@ -60,7 +58,7 @@ class SensorListTest {
         Sensor expectedResult = s0;
 
         // Act
-        Sensor result = newList.createNewSensor(sensorName, sensorType, location);
+        Sensor result = newList.newSensor(sensorName, sensorType, location);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -120,9 +118,9 @@ class SensorListTest {
         s2.addMeasurementToList(measurement22);
 
         SensorList listSens = new SensorList();
-        listSens.addSensorToTheListOfSensors(s0);
-        listSens.addSensorToTheListOfSensors(s1);
-        listSens.addSensorToTheListOfSensors(s2);
+        listSens.addSensor(s0);
+        listSens.addSensor(s1);
+        listSens.addSensor(s2);
 
         List<Measurement> expectedResult = new ArrayList<>();
         expectedResult.add(measurement02);
@@ -191,9 +189,9 @@ class SensorListTest {
 
         SensorType tipoResultado = new SensorType("Temperatura");
         SensorList listSens = new SensorList();
-        listSens.addSensorToTheListOfSensors(s0);
-        listSens.addSensorToTheListOfSensors(s1);
-        listSens.addSensorToTheListOfSensors(s2);
+        listSens.addSensor(s0);
+        listSens.addSensor(s1);
+        listSens.addSensor(s2);
 
         List<Measurement> expectedResult = new ArrayList<>();
         expectedResult.add(measurement01);
@@ -253,9 +251,9 @@ class SensorListTest {
         s2.addMeasurementToList(measurement22);
 
         SensorList listSens = new SensorList();
-        listSens.addSensorToTheListOfSensors(s0);
-        listSens.addSensorToTheListOfSensors(s1);
-        listSens.addSensorToTheListOfSensors(s2);
+        listSens.addSensor(s0);
+        listSens.addSensor(s1);
+        listSens.addSensor(s2);
 
         List<Measurement> expectedResult = new ArrayList<>();
 
@@ -321,9 +319,9 @@ class SensorListTest {
 
         SensorType tipoResultado = new SensorType("Temperatura");
         SensorList listSens = new SensorList();
-        listSens.addSensorToTheListOfSensors(s0);
-        listSens.addSensorToTheListOfSensors(s1);
-        listSens.addSensorToTheListOfSensors(s2);
+        listSens.addSensor(s0);
+        listSens.addSensor(s1);
+        listSens.addSensor(s2);
 
         Measurement expectedResult = measurement02;
 
@@ -390,9 +388,9 @@ class SensorListTest {
 
         SensorType sensorType = new SensorType("Temperatura");
         SensorList listSens = new SensorList();
-        listSens.addSensorToTheListOfSensors(s0);
-        listSens.addSensorToTheListOfSensors(s1);
-        listSens.addSensorToTheListOfSensors(s2);
+        listSens.addSensor(s0);
+        listSens.addSensor(s1);
+        listSens.addSensor(s2);
 
         Measurement expectedResult = measurement22;
 
@@ -460,9 +458,9 @@ class SensorListTest {
 
         SensorType tipoResultado = new SensorType("Pluviosidade");
         SensorList listSens = new SensorList();
-        listSens.addSensorToTheListOfSensors(s0);
-        listSens.addSensorToTheListOfSensors(s1);
-        listSens.addSensorToTheListOfSensors(s2);
+        listSens.addSensor(s0);
+        listSens.addSensor(s1);
+        listSens.addSensor(s2);
 
         //Act
         Measurement result = listSens.getLatestMeasurementBySensorType(tipoResultado);
@@ -521,13 +519,13 @@ class SensorListTest {
         s1.addMeasurementToList(measurement4);
 
         SensorList listOfSensors = new SensorList();
-        listOfSensors.addSensorToTheListOfSensors(s0);
-        listOfSensors.addSensorToTheListOfSensors(s1);
+        listOfSensors.addSensor(s0);
+        listOfSensors.addSensor(s1);
 
         double expectedResult = 30.0;
 
         //Act
-        double result = listOfSensors.getMaximumMeasureOfATypeOfSensorInAGivenDay(sensorType0, dateTimeDayMeasure2.toLocalDate());
+        double result = listOfSensors.getMaximumMeasureOfTypeOfSensorInGivenDay(sensorType0, dateTimeDayMeasure2.toLocalDate());
 
 
         //Assert
@@ -569,13 +567,13 @@ class SensorListTest {
         s1.addMeasurementToList(measurement4);
 
         SensorList listOfSensors = new SensorList();
-        listOfSensors.addSensorToTheListOfSensors(s0);
-        listOfSensors.addSensorToTheListOfSensors(s1);
+        listOfSensors.addSensor(s0);
+        listOfSensors.addSensor(s1);
 
         double expectedResult = 25.0;
 
         //Act
-        double result = listOfSensors.getMaximumMeasureOfATypeOfSensorInAGivenDay(sensorType0, dateTimeDayMeasure2.toLocalDate());
+        double result = listOfSensors.getMaximumMeasureOfTypeOfSensorInGivenDay(sensorType0, dateTimeDayMeasure2.toLocalDate());
 
 
         //Assert
@@ -593,7 +591,7 @@ class SensorListTest {
         double expectedResult = Double.NaN;
 
         //Act
-        double result = listOfSensors.getMaximumMeasureOfATypeOfSensorInAGivenDay(sensorType0, dateTimeDayMeasure.toLocalDate());
+        double result = listOfSensors.getMaximumMeasureOfTypeOfSensorInGivenDay(sensorType0, dateTimeDayMeasure.toLocalDate());
 
 
         //Assert
@@ -616,7 +614,7 @@ class SensorListTest {
         double expectedResult = Double.NaN;
 
         //Act
-        double result = listOfSensors.getMaximumMeasureOfATypeOfSensorInAGivenDay(sensorType0, dateTimeDayMeasure.toLocalDate());
+        double result = listOfSensors.getMaximumMeasureOfTypeOfSensorInGivenDay(sensorType0, dateTimeDayMeasure.toLocalDate());
 
 
         //Assert
@@ -659,13 +657,13 @@ class SensorListTest {
         s1.addMeasurementToList(measurement4);
 
         SensorList listOfSensors = new SensorList();
-        listOfSensors.addSensorToTheListOfSensors(s0);
-        listOfSensors.addSensorToTheListOfSensors(s1);
+        listOfSensors.addSensor(s0);
+        listOfSensors.addSensor(s1);
 
         double expectedResult = 25.0;
 
         //Act
-        double result = listOfSensors.getMaximumMeasureOfATypeOfSensorInAGivenDay(sensorType0, dateTimeDayMeasure2.toLocalDate());
+        double result = listOfSensors.getMaximumMeasureOfTypeOfSensorInGivenDay(sensorType0, dateTimeDayMeasure2.toLocalDate());
 
 
         //Assert
@@ -682,13 +680,13 @@ class SensorListTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        list.addSensorToTheListOfSensors(s0);
+        list.addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        list.addSensorToTheListOfSensors(s1);
+        list.addSensor(s1);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
@@ -705,7 +703,7 @@ class SensorListTest {
         double expectedResult = 23.5;
 
         //Act
-        double result = list.getDailyAverageOfTheListOfSensors(searchDate);
+        double result = list.getDailyAverage(searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -721,13 +719,13 @@ class SensorListTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        list.addSensorToTheListOfSensors(s0);
+        list.addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        list.addSensorToTheListOfSensors(s1);
+        list.addSensor(s1);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
@@ -744,7 +742,7 @@ class SensorListTest {
         double expectedResult = Double.NaN;
 
         //Act
-        double result = list.getDailyAverageOfTheListOfSensors(searchDate);
+        double result = list.getDailyAverage(searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -753,7 +751,7 @@ class SensorListTest {
     @Test
     public void getSensorsListContentTest () {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         SensorList sensorList = new SensorList();
 
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
@@ -766,15 +764,15 @@ class SensorListTest {
         Location locS1 = new Location(123, 300, 50);
         Sensor s1 = new Sensor("A456", dataFuncionamento1, sensorType1, locS1);
 
-        sensorList.addSensorToTheListOfSensors(s0);
-        sensorList.addSensorToTheListOfSensors(s1);
+        sensorList.addSensor(s0);
+        sensorList.addSensor(s1);
 
         String expectedResult =
                 "1 - Name of the sensor: A123\n" +
                         "2 - Name of the sensor: A456\n";
 
         // Act
-        String result = sensorList.getSensorsListContent();
+        String result = sensorList.getSensorListToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -786,7 +784,7 @@ class SensorListTest {
         SensorList sensorList = new SensorList();
 
         // Act
-        boolean result = sensorList.checkIfSensorListIsEmpty();
+        boolean result = sensorList.isEmpty();
 
         // Assert
         assertTrue(result);
@@ -802,10 +800,10 @@ class SensorListTest {
 
         SensorList sensorList = new SensorList();
 
-        sensorList.addSensorToTheListOfSensors(s0);
+        sensorList.addSensor(s0);
 
         // Act
-        boolean result = sensorList.checkIfSensorListIsEmpty();
+        boolean result = sensorList.isEmpty();
 
         // Assert
         assertFalse(result);

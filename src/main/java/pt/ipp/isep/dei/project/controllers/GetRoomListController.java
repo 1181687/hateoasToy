@@ -14,6 +14,6 @@ public class GetRoomListController {
     }
 
     public boolean checkIfListIsEmpty(){
-        return mList.checkIfRoomListIsEmpty();
+        return mList.isEmpty();
     }
 }

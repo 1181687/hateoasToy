@@ -57,7 +57,7 @@ public class GetListOfSensorsAndDevicesRoom {
 
         int positionRoom = chosenOption - 1;
         String choosenRoom = controller.getRoomNameByPosition(positionRoom);
-        String listOfDevices = controller.getDeviceListContentOfRoomByPosition(positionRoom);
+        String listOfDevices = controller.getDeviceListContentRoom(positionRoom);
 
         if (controller.checkIfDeviceListIsEmpty(positionRoom)) {
             System.out.println("\nThe list is empty.\n");

@@ -32,7 +32,7 @@ public class AddSensorToRoomController {
      * @param position of the room in the list of rooms.
      */
     public void getRoomByIndex (int position) {
-        mSelectedRoom = this.mRoomList.getRoomFromAPosition(position);
+        mSelectedRoom = this.mRoomList.getRoomFromPosition(position);
     }
 
     /**
@@ -40,7 +40,7 @@ public class AddSensorToRoomController {
      * @return the sensor type list.
      */
     public String displayListOfSensorsType () {
-        return this.mListSensorsType.getSensorTypeListContent();
+        return this.mListSensorsType.getSensorTypeListToString();
     }
 
     /**
@@ -64,8 +64,8 @@ public class AddSensorToRoomController {
      * @return a new sensor added in the list of sensors in the room.
      */
     public boolean createAndAddSensorToTheList (String name) {
-        mNewSensor = mSelectedRoom.getSensorList().createNewSensor(name, mSensorType, mLocationOfTheHouse);
-        return mSelectedRoom.addSensorToTheListOfSensorsInTheRoom(mNewSensor);
+        mNewSensor = mSelectedRoom.getSensorList().newSensor(name, mSensorType, mLocationOfTheHouse);
+        return mSelectedRoom.addSensorToListOfSensorsInRoom(mNewSensor);
     }
 
     /**
@@ -73,7 +73,7 @@ public class AddSensorToRoomController {
      * @return true or false.
      */
     public boolean checkIfRoomListIsEmpty () {
-        return mRoomList.checkIfRoomListIsEmpty();
+        return mRoomList.isEmpty();
     }
 
     /**
@@ -81,6 +81,6 @@ public class AddSensorToRoomController {
      * @return true or false.
      */
     public boolean checkIfTheListOfSensorTypeIsEmpty () {
-        return mListSensorsType.checkIfListOfTypeSensorsIsEmpty();
+        return mListSensorsType.IsEmpty();
     }
 }

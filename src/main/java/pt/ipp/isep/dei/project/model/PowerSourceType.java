@@ -6,10 +6,10 @@ public class PowerSourceType {
     /**
      * constructor that receives a power source type (String)
      *
-     * @param mPowerSourceType type of Power Source
+     * @param powerSourceType type of Power Source
      */
-    public PowerSourceType(String mPowerSourceType) {
-        this.mPowerSourceType = mPowerSourceType;
+    public PowerSourceType(String powerSourceType) {
+        this.mPowerSourceType = powerSourceType;
     }
 
     /**

@@ -36,6 +36,6 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
     }
 
     public String getmTypeTemperature() {
-        return mTypeTemperature.getmType();
+        return mTypeTemperature.getType();
     }
 }

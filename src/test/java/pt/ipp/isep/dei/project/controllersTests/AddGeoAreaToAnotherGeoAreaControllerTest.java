@@ -177,7 +177,7 @@ class AddGeoAreaToAnotherGeoAreaControllerTest {
         GeographicalArea expectedResult = ag2;
 
         //Act
-        GeographicalArea result = listaDeAGs.getmGeoAreaList().get(0);
+        GeographicalArea result = listaDeAGs.getGeoAreaList().get(0);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -210,7 +210,7 @@ class AddGeoAreaToAnotherGeoAreaControllerTest {
         GeographicalArea expectedResult = ag2;
 
         //Act
-        GeographicalArea result = listaDeAGs.getmGeoAreaList().get(0);
+        GeographicalArea result = listaDeAGs.getGeoAreaList().get(0);
 
         //Assert
         assertEquals(expectedResult, result);

@@ -20,6 +20,7 @@ public enum DeviceTypes {
 
     /**
      * get the device type name.
+     *
      * @return the device type name.
      */
     public String getDeviceTypeName() {

@@ -13,7 +13,7 @@ public class GetDevicesInHouseGridControllerTest {
     public void testGetDeviceListContentNameTypeLocationByHG() {
         //Room ONE
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
         DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
@@ -32,7 +32,7 @@ public class GetDevicesInHouseGridControllerTest {
 
         //Room TWO
         String name2 = "KitchenBasement";
-        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
         DeviceSpecs specWaterHeater = new ElectricWaterHeater(100, 100, 100, 0.9);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
@@ -51,8 +51,8 @@ public class GetDevicesInHouseGridControllerTest {
         HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
         HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
         HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGridToTheList(houseGrid);
-        houseGridList1.addHouseGridToTheList(houseGridEmpty);
+        houseGridList1.addHouseGrid(houseGrid);
+        houseGridList1.addHouseGrid(houseGridEmpty);
 
         //house
         Location location = new Location(2, 3, 4);
@@ -79,8 +79,8 @@ public class GetDevicesInHouseGridControllerTest {
         HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
         HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
         HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGridToTheList(houseGrid);
-        houseGridList1.addHouseGridToTheList(houseGridEmpty);
+        houseGridList1.addHouseGrid(houseGrid);
+        houseGridList1.addHouseGrid(houseGridEmpty);
 
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
@@ -130,8 +130,8 @@ public class GetDevicesInHouseGridControllerTest {
         HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
         HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
         HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGridToTheList(houseGrid);
-        houseGridList1.addHouseGridToTheList(houseGridEmpty);
+        houseGridList1.addHouseGrid(houseGrid);
+        houseGridList1.addHouseGrid(houseGridEmpty);
 
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
@@ -156,8 +156,8 @@ public class GetDevicesInHouseGridControllerTest {
         HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
         HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
         HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGridToTheList(houseGrid);
-        houseGridList1.addHouseGridToTheList(houseGridEmpty);
+        houseGridList1.addHouseGrid(houseGrid);
+        houseGridList1.addHouseGrid(houseGridEmpty);
 
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
@@ -179,13 +179,13 @@ public class GetDevicesInHouseGridControllerTest {
     @Test
     public void testCheckIfThereAreNoDevicesHGbyPositionFalse() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
         //Room TWO
         String name2 = "KitchenBasement";
-        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
         ProgramList dwProgramList = new ProgramList();
 
@@ -213,8 +213,8 @@ public class GetDevicesInHouseGridControllerTest {
         HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
         HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
         HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGridToTheList(houseGrid);
-        houseGridList1.addHouseGridToTheList(houseGridEmpty);
+        houseGridList1.addHouseGrid(houseGrid);
+        houseGridList1.addHouseGrid(houseGridEmpty);
 
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
@@ -235,13 +235,13 @@ public class GetDevicesInHouseGridControllerTest {
     @Test
     public void testCheckIfThereAreNoDevicesHGbyPositionTrue() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
         //Room TWO
         String name2 = "KitchenBasement";
-        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
 
         ProgramList dwProgramList = new ProgramList();
@@ -268,8 +268,8 @@ public class GetDevicesInHouseGridControllerTest {
         HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
         HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
         HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGridToTheList(houseGrid);
-        houseGridList1.addHouseGridToTheList(houseGridEmpty);
+        houseGridList1.addHouseGrid(houseGrid);
+        houseGridList1.addHouseGrid(houseGridEmpty);
 
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
@@ -300,9 +300,9 @@ public class GetDevicesInHouseGridControllerTest {
 
         // Instantiate List of House Grids
         HouseGridList gridList = new HouseGridList();
-        gridList.addHouseGridToTheList(grid0);
-        gridList.addHouseGridToTheList(grid1);
-        gridList.addHouseGridToTheList(grid2);
+        gridList.addHouseGrid(grid0);
+        gridList.addHouseGrid(grid1);
+        gridList.addHouseGrid(grid2);
 
         RoomList roomList = new RoomList();
         Location location = new Location(2, 3, 4);
