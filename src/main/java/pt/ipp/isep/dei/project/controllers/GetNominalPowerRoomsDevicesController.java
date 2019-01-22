@@ -5,7 +5,7 @@ import pt.ipp.isep.dei.project.model.*;
 public class GetNominalPowerRoomsDevicesController {
     private House mHouse;
     private HouseGrid mSelectedHouseGrid;
-    private MeasurableObjectsList mMeasurableList;
+    private MeasurableList mMeasurableList;
 
     public GetNominalPowerRoomsDevicesController(House house) {
         this.mHouse=house;
@@ -112,7 +112,7 @@ public class GetNominalPowerRoomsDevicesController {
      * @param measurable matches an object: room or device
      */
     public void addAMeasurableObject(Measurable measurable){
-        mMeasurableList.addMeasurableObjToMeasurableList(measurable);
+        mMeasurableList.addMeasurable(measurable);
     }
 
     /**
@@ -138,6 +138,10 @@ public class GetNominalPowerRoomsDevicesController {
      */
     public boolean checkIfMeasurableObjIsInList(Measurable measurable){
         return mMeasurableList.checkIfMeasurableObjIsInList(measurable);
+    }
+
+    public String getListToString() {
+        return mMeasurableList.getListToString();
     }
 
 }

@@ -258,6 +258,11 @@ public class DeviceList {
         return mDeviceList.isEmpty();
     }
 
+    /**
+     * method that get de device type list content
+     *
+     * @return the content of the list by string
+     */
     public String getDeviceTypeListContent() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
@@ -271,6 +276,9 @@ public class DeviceList {
         return content.toString();
     }
 
+    /**
+     * Method that remove a device from the list of devices
+     */
     public boolean removeDevice(Device device) {
         return this.getmDeviceList().remove(device);
     }

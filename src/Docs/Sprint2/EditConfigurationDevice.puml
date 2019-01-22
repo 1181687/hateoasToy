@@ -32,17 +32,16 @@ deactivate House
 deactivate Controller
 User <-- UI: RoomListContent
 
-User -> UI: Int position: Room
-UI -> Controller: getRoom(Room)
+User -> UI: Int position
+UI -> Controller: r = getRoom(position)
 activate Controller
-Controller -> House: getRoom(Room)
+Controller -> House: r = getRoom(position)
 activate House
-House -> RoomList: getRoom(Room)
+House -> RoomList: r = getRoom(position)
 activate RoomList
-RoomList -> Room: getRoom(Room)
-activate Room
-UI <-- Room: Room
-deactivate Room
+RoomList -> "r: Room": r = getRoom(position)
+activate "r: Room"
+deactivate "r: Room"
 deactivate RoomList
 deactivate House
 deactivate Controller
@@ -50,65 +49,64 @@ deactivate Controller
 User -> UI: GetDevicesInTheRoom
 UI -> Controller: getDevicesInTheRoom()
 activate Controller
-Controller -> Room: getDevicesInTheRoom()
-activate Room
-Room -> DeviceList: getDevicesInTheRoom()
+Controller -> "r: Room": getDevicesInTheRoom()
+activate "r: Room"
+"r: Room" -> DeviceList: getDevicesInTheRoom()
 activate DeviceList
 UI <-- DeviceList: DevicesInTheRoom
 deactivate DeviceList
-deactivate Room
+deactivate "r: Room"
 deactivate Controller
 User <-- UI: DevicesInTheRoom
 
-User -> UI: Int position: Device
-UI -> Controller: getDevice(Device)
+User -> UI: Int position
+UI -> Controller: d = getDevice(position)
 activate Controller
-Controller -> Room: getDevice(Device)
-activate Room
-Room -> DeviceList: getDevice(Device)
+Controller -> "r: Room": d = getDevice(position)
+activate "r: Room"
+"r: Room" -> DeviceList: d = getDevice(position)
 activate DeviceList
-UI <-- DeviceList: Device
 deactivate DeviceList
-deactivate Room
+deactivate "r: Room"
 deactivate Controller
 
 User -> UI: GetDeviceAttributes
 UI -> Controller: getDeviceAttributesToString()
 activate Controller
-Controller -> Device: getDeviceAttributesToString()
-activate Device
-UI <-- Device: DeviceAttributesToString
-deactivate Device
+Controller -> "d: Device": getDeviceAttributesToString()
+activate "d: Device"
+UI <-- "d: Device": DeviceAttributesToString
+deactivate "d: Device"
 deactivate Controller
 User <-- UI: DeviceAttributesToString
 
 User -> UI: SetDeviceName
 UI -> Controller: setDeviceName()
 activate Controller
-Controller -> Device: setDeviceName()
-activate Device
-UI <-- Device: DeviceName
-deactivate Device
+Controller -> "d: Device": setDeviceName()
+activate "d: Device"
+UI <-- "d: Device": DeviceName
+deactivate "d: Device"
 deactivate Controller
 User <-- UI: DeviceName
 
 User -> UI: GetEditableAttributesContent
 UI -> Controller: getEditableAttributesContent()
 activate Controller
-Controller -> Device: getEditableAttributesContent()
-activate Device
-UI <-- Device: EditableAttributesContent
-deactivate Device
+Controller -> "d: Device": getEditableAttributesContent()
+activate "d: Device"
+UI <-- "d: Device": EditableAttributesContent
+deactivate "d: Device"
 deactivate Controller
 User <-- UI: EditableAttributesContent
 
 User -> UI: SetDeviceSpecs
 UI -> Controller: setDeviceSpecs()
 activate Controller
-Controller -> Device: setAttributesDevType()
-activate Device
-UI <-- Device: DeviceSpecs
-deactivate Device
+Controller -> "d: Device": setAttributesDevType()
+activate "d: Device"
+UI <-- "d: Device": DeviceSpecs
+deactivate "d: Device"
 deactivate Controller
 User <-- UI: DeviceSpecs
 
@@ -125,29 +123,26 @@ deactivate House
 deactivate Controller
 User <-- UI: RoomList
 
-User -> UI: GetNewRoom(Room)
-UI -> Controller: getNewRoom(Room)
+User -> UI: r = GetNewRoom()
+UI -> Controller: r = getNewRoom()
 activate Controller
-Controller -> House: getRoomOfTheRoomList(Room)
+Controller -> House: r = getRoomOfTheRoomList()
 activate House
-House -> RoomList: getRoom(Room)
+House -> RoomList: r = getRoom()
 activate RoomList
-UI <-- RoomList: NewRoom
 deactivate RoomList
 deactivate House
 deactivate Controller
-User <-- UI: NewRoom
 
-User -> UI: SetLocation(Room)
-UI -> Controller: setLocation(Room)
+
+User -> UI: r = SetLocation()
+UI -> Controller: r = setLocation()
 activate Controller
-Controller -> Device: setLocation(Room)
-activate Device
-UI <-- Device: Location
-deactivate Device
+Controller -> "d: Device": r = setLocation()
+activate "d: Device"
+deactivate "d: Device"
 deactivate House
 deactivate Controller
-User <-- UI: Location
 
 @enduml
 

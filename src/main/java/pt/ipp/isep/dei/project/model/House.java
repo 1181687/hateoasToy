@@ -380,7 +380,7 @@ public class House {
         return listWithAllDevicesOfAType.getTotalEnergyConsumption();
     }
 
-    public MeasurableObjectsList getNewMeasurableObjList() {
-        return new MeasurableObjectsList();
+    public MeasurableList getNewMeasurableObjList() {
+        return new MeasurableList();
     }
 }
