@@ -552,14 +552,52 @@ class AddDeviceToRoomControllerTest {
     }
 
     @Test
-    void addProgramToList() {
+    void addProgramToListFalse() {
+        //Arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+        Program program = null;
+        boolean expectedResult = false;
+        AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
 
 
+        //Act
+        boolean result = controller.addProgramToList(program);
+        //Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    void getmProgramList() {
+    void addProgramToListTrue() {
+        //Arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
 
+        ProgramList programList = new ProgramList();
 
+        Program program1 = new Program("P1", 15, 5);
+        Program program2 = new Program("P2", 15, 5);
+        programList.addProgram(program1);
+        boolean expectedResult = true;
+        AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
+
+        //Act
+        boolean result = controller.addProgramToList(program2);
+        //Assert
+        assertEquals(expectedResult, result);
     }
+
 }

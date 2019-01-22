@@ -159,10 +159,6 @@ public class AddDeviceToRoomController {
         return mProgramList.addProgram(program);
     }
 
-    public ProgramList getmProgramList() {
-        return mProgramList;
-    }
-
     public Device getDevice(int position) {
         return this.mDeviceList.getDeviceByPosition(position);
     }
