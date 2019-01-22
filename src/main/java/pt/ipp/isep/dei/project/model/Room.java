@@ -295,6 +295,11 @@ public class Room implements Measurable {
         return this.mDeviceList.isNameExistant(name);
     }
 
+    /**
+     * method that returns the name of room
+     *
+     * @return String
+     */
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();

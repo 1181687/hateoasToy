@@ -142,6 +142,11 @@ public class GetNominalPowerRoomsDevicesController {
         return mMeasurableList.checkIfMeasurableObjIsInList(measurable);
     }
 
+    /**
+     * method that returns the method getListToString of model class MeasurableList
+     *
+     * @return list (string)
+     */
     public String getListToString() {
         return mMeasurableList.getListToString();
     }

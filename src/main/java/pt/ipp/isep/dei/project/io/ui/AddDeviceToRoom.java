@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.ProgramList;
 import pt.ipp.isep.dei.project.model.Room;
 
 
@@ -96,7 +95,7 @@ public class AddDeviceToRoom {
                         double dwProgramDuration = 0;
                         double dwProgramEnergyConsumption = 0;
 
-                        getListOfPrograms(dwNumberOfPrograms);
+                        creationOfPrograms(dwNumberOfPrograms);
 
                         mCtrl.createNewDishWasher(dishWasherDeviceName, selectedRoom, dishWasherNominalPower,
                                 dishWasherCapacity);
@@ -121,7 +120,7 @@ public class AddDeviceToRoom {
                         double programDuration = 0;
                         double programEnergyConsumption = 0;
 
-                        getListOfPrograms(numberOfPrograms);
+                        creationOfPrograms(numberOfPrograms);
 
                         mCtrl.createNewWashingMachine(washingMachineDeviceName, selectedRoom, washingMachineNominalPower,
                                 washingMachineCapacity);
@@ -164,7 +163,7 @@ public class AddDeviceToRoom {
 
     }
 
-    public ProgramList getListOfPrograms(int numberOfPrograms) {
+    public void creationOfPrograms(int numberOfPrograms) {
         String programName;
         double programDuration = 0;
         double programEnergyConsumption = 0;
@@ -178,7 +177,6 @@ public class AddDeviceToRoom {
             programEnergyConsumption = InputValidator.getDoublePos(label47);
             mCtrl.addProgramToList(mCtrl.createNewProgram(programName, programDuration, programEnergyConsumption));
         }
-        return mCtrl.getmProgramList();
     }
 
 }
