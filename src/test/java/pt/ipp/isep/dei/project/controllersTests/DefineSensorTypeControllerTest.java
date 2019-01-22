@@ -15,7 +15,7 @@ class DefineSensorTypeControllerTest {
         String novoTipo = "Humidade";
         DefineSensorTypeController controller = new DefineSensorTypeController(lista);
         //Act
-        boolean resultado = controller.criarEAdicionarTipoDeSensor(novoTipo);
+        boolean resultado = controller.createAndAddSensorType(novoTipo);
         //Assert
         assertTrue(resultado);
     }
@@ -26,9 +26,9 @@ class DefineSensorTypeControllerTest {
         String novoTipo = "Humidade";
         String outroTipo = "Humidade";
         DefineSensorTypeController controller = new DefineSensorTypeController(lista);
-        controller.criarEAdicionarTipoDeSensor(novoTipo);
+        controller.createAndAddSensorType(novoTipo);
         //Act
-        boolean resultado = controller.criarEAdicionarTipoDeSensor(outroTipo);
+        boolean resultado = controller.createAndAddSensorType(outroTipo);
         //Assert
         assertFalse(resultado);
     }
