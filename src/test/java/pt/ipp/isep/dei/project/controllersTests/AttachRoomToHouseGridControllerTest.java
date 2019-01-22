@@ -16,7 +16,7 @@ class AttachRoomToHouseGridControllerTest {
         AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
 
         // Act
-        boolean result = Ctrl.checkIfHouseGridListIsEmpty();
+        boolean result = Ctrl.isHouseGridListEmpty();
 
         // Assert
         assertTrue(result);
@@ -33,7 +33,7 @@ class AttachRoomToHouseGridControllerTest {
         AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
 
         // Act
-        boolean result = Ctrl.checkIfHouseGridListIsEmpty();
+        boolean result = Ctrl.isHouseGridListEmpty();
 
         // Assert
         assertFalse(result);
@@ -53,7 +53,7 @@ class AttachRoomToHouseGridControllerTest {
         String expectedResult = "1 - Name: Grid\n2 - Name: Grid\n";
 
         // Act
-        String result = Ctrl.listAllTheHouseGridsInTheList();
+        String result = Ctrl.getHouseGridListToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -98,7 +98,7 @@ class AttachRoomToHouseGridControllerTest {
         String expectedResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
                 "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
         // Act
-        String result = Ctrl.listAllTheRoomsInTheList();
+        String result = Ctrl.getRoomListContent();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -143,8 +143,8 @@ class AttachRoomToHouseGridControllerTest {
         Room room = new Room(roomName, houseFloor1, dimension1);
         roomList.addRoom(room);
         AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
-        Ctrl.setmGridToBeUsed(grid);
-        Ctrl.setmRoomToBeAttached(room);
+        Ctrl.setGridToBeUsed(grid);
+        Ctrl.setRoomToBeAttached(room);
         Ctrl.attachRoomInTheHouseGrid();
 
         // Act
@@ -168,8 +168,8 @@ class AttachRoomToHouseGridControllerTest {
         Room room = new Room(roomName, houseFloor1, dimension1);
         roomList.addRoom(room);
         AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
-        Ctrl.setmGridToBeUsed(grid);
-        Ctrl.setmRoomToBeAttached(room);
+        Ctrl.setGridToBeUsed(grid);
+        Ctrl.setRoomToBeAttached(room);
 
         // Act
         boolean result = Ctrl.checkIfTheChosenRoomIsAlreadyInTheChosenGrid();
@@ -198,7 +198,7 @@ class AttachRoomToHouseGridControllerTest {
         int expectedResult = 1;
 
         // Act
-        int result = ctrl.houseGridListLength();
+        int result = ctrl.getHouseGridListSize();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -224,7 +224,7 @@ class AttachRoomToHouseGridControllerTest {
         AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
 
         // Act
-        boolean result = ctrl.checkIfRoomListIsEmpty();
+        boolean result = ctrl.isRoomListEmpty();
 
         //Assert
         assertFalse(result);
@@ -243,7 +243,7 @@ class AttachRoomToHouseGridControllerTest {
         AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
 
         // Act
-        boolean result = ctrl.checkIfRoomListIsEmpty();
+        boolean result = ctrl.isRoomListEmpty();
 
         //Assert
         assertTrue(result);
@@ -271,7 +271,7 @@ class AttachRoomToHouseGridControllerTest {
         int expectedResult = 1;
 
         // Act
-        int result = ctrl.roomListLength();
+        int result = ctrl.getRoomListSize();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -306,7 +306,7 @@ class AttachRoomToHouseGridControllerTest {
 
         // Instantiate Controller
         AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
-        ctrl.setmRoomToBeAttached(room);
+        ctrl.setRoomToBeAttached(room);
 
         HouseGrid expectedResult = grid2;
 
@@ -345,7 +345,7 @@ class AttachRoomToHouseGridControllerTest {
 
         // Instantiate Controller
         AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
-        ctrl.setmRoomToBeAttached(room);
+        ctrl.setRoomToBeAttached(room);
 
         HouseGrid expectedResult = null;
 
@@ -384,8 +384,8 @@ class AttachRoomToHouseGridControllerTest {
 
         // Instantiate Controller
         AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
-        ctrl.setmGridToBeUsed(grid0);
-        ctrl.setmRoomToBeAttached(room0);
+        ctrl.setGridToBeUsed(grid0);
+        ctrl.setRoomToBeAttached(room0);
         ctrl.detachRoomFromTheHouseGrid(grid0);
 
         // Act

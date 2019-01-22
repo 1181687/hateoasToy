@@ -116,7 +116,7 @@ public class GetDevicesInHouseGridControllerTest {
         GetDevicesInHouseGridController ctrl = new GetDevicesInHouseGridController(house);
 
         // Act
-        boolean result = ctrl.checkIfHouseGridListIsEmpty();
+        boolean result = ctrl.isHouseGridListEmpty();
 
         // Assert
         assertTrue(result);
@@ -142,7 +142,7 @@ public class GetDevicesInHouseGridControllerTest {
         GetDevicesInHouseGridController ctrl = new GetDevicesInHouseGridController(house);
 
         // Act
-        boolean result = ctrl.checkIfHouseGridListIsEmpty();
+        boolean result = ctrl.isHouseGridListEmpty();
 
         // Assert
         assertFalse(result);
@@ -170,7 +170,7 @@ public class GetDevicesInHouseGridControllerTest {
         int expectedResult = 2;
 
         // Act
-        int result = ctrl.getHouseGridListLength();
+        int result = ctrl.getHouseGridListSize();
 
         // Assert
         assertEquals(expectedResult, result);

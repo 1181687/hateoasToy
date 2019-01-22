@@ -94,7 +94,7 @@ class DetachRoomFromHouseGridControllerTest {
         String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimension - Height: 2.0, Length: 3.0, Width: 4.0\n" +
                 "2- Name: Living Room, House Floor: 2, Dimension - Height: 2.0, Length: 3.0, Width: 3.0\n";
         //Act
-        String result = ctrl.getListOfRooms();
+        String result = ctrl.getRoomListContent();
         //Assert
         assertEquals(expectedResult, result);
     }

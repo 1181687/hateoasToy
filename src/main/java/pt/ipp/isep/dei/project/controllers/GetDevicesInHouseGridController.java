@@ -36,7 +36,7 @@ public class GetDevicesInHouseGridController {
      * Method that checks if the house grid's list is empty.
      * @return True or false.
      */
-    public boolean checkIfHouseGridListIsEmpty() {
+    public boolean isHouseGridListEmpty() {
         return mHouse.isHouseGridListEmpty();
     }
 
@@ -44,7 +44,7 @@ public class GetDevicesInHouseGridController {
      * method that gets the size of House Grid List
      * @return integer
      */
-    public int getHouseGridListLength() {
+    public int getHouseGridListSize() {
         return this.mHouse.getHouseGridListSize();
     }
 

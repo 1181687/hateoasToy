@@ -34,7 +34,7 @@ public class GetNominalPowerOfAGridControllerTest {
     @Test
     public void checkIfGridListIsEmptyWithEmptyHouseGridListShouldReturnTrue(){
         //Act
-        boolean result = controller.checkIfGridListIsEmpty();
+        boolean result = controller.isGridListEmpty();
         //Assert
         assertTrue(result);
     }
@@ -45,7 +45,7 @@ public class GetNominalPowerOfAGridControllerTest {
         HouseGrid grid1 = new HouseGrid("Grid 1");
         houseGridList.addHouseGrid(grid1);
         //Act
-        boolean result = controller.checkIfGridListIsEmpty();
+        boolean result = controller.isGridListEmpty();
         //Assert
         assertFalse(result);
     }
@@ -72,7 +72,7 @@ public class GetNominalPowerOfAGridControllerTest {
 
         int expectedResult = 2;
         //Act
-        int result = controller.getHouseGridListLength();
+        int result = controller.getHouseGridListSize();
         //Assert
         assertEquals(expectedResult,result);
     }
@@ -85,7 +85,7 @@ public class GetNominalPowerOfAGridControllerTest {
 
         int expectedResult = 1;
         //Act
-        int result = controller.getHouseGridListLength();
+        int result = controller.getHouseGridListSize();
         //Assert
         assertEquals(expectedResult,result);
     }
@@ -95,7 +95,7 @@ public class GetNominalPowerOfAGridControllerTest {
         //Arrange
         int expectedResult = 0;
         //Act
-        int result = controller.getHouseGridListLength();
+        int result = controller.getHouseGridListSize();
         //Assert
         assertEquals(expectedResult,result);
     }

@@ -199,7 +199,7 @@ class GetNominalPowerOfARoomControllerTest {
         int expectedResult = 2;
 
         //Act
-        int result = ctrl.getRoomListLength();
+        int result = ctrl.getRoomListSize();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -231,7 +231,7 @@ class GetNominalPowerOfARoomControllerTest {
         house.addRoom(room2);
 
         //Act
-        boolean result = ctrl.checkIfDeviceListIsEmpty(1);
+        boolean result = ctrl.isDeviceListEmpty(1);
 
         //Assert
         assertTrue(result);
@@ -275,7 +275,7 @@ class GetNominalPowerOfARoomControllerTest {
         room2.getDeviceList().getDeviceList().add(d2);
 
         //Act
-        boolean result = ctrl.checkIfDeviceListIsEmpty(1);
+        boolean result = ctrl.isDeviceListEmpty(1);
 
         //Assert
         assertFalse(result);

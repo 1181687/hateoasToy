@@ -65,7 +65,7 @@ public class AddRoomControllerTest {
 
         boolean expectedResult = true;
 
-        boolean result = ctrl.checkIfNameAlreadyExists(nameToCheck);
+        boolean result = ctrl.isNameExistant(nameToCheck);
 
         assertEquals(expectedResult, result);
     }
@@ -89,7 +89,7 @@ public class AddRoomControllerTest {
 
         boolean expectedResult = false;
 
-        boolean result = ctrl.checkIfNameAlreadyExists(nameToCheck);
+        boolean result = ctrl.isNameExistant(nameToCheck);
 
         assertEquals(expectedResult, result);
     }

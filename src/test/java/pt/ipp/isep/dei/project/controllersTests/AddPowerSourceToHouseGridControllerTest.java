@@ -24,7 +24,7 @@ class AddPowerSourceToHouseGridControllerTest {
         AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
 
         // Act
-        boolean result = addPowerSourceToHouseGridController.checkIfHouseGridListIsEmpty();
+        boolean result = addPowerSourceToHouseGridController.isHouseGridListEmpty();
 
         // Assert
         assertTrue(result);
@@ -46,7 +46,7 @@ class AddPowerSourceToHouseGridControllerTest {
         AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
 
         // Act
-        boolean result = addPowerSourceToHouseGridController.checkIfHouseGridListIsEmpty();
+        boolean result = addPowerSourceToHouseGridController.isHouseGridListEmpty();
 
         // Assert
         assertFalse(result);
@@ -92,7 +92,7 @@ class AddPowerSourceToHouseGridControllerTest {
 
         int expectedResult=1;
         //Act
-        int result = addPowerSourceToHouseGridController.houseGridListLength();
+        int result = addPowerSourceToHouseGridController.getHouseGridListSize();
 
         //Assert
         assertEquals(expectedResult,result);
@@ -228,7 +228,7 @@ class AddPowerSourceToHouseGridControllerTest {
         String expectedResult = "1 - Power Source Type: public electric grid\n";
 
         //Act
-        String result = controller.getPowerSourceTypeListContent();
+        String result = controller.getPowerSourceTypeListToString();
         //Assert
         assertEquals(expectedResult, result);
     }

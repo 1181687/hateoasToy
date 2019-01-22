@@ -58,7 +58,7 @@ class GetRoomListControllerTest {
 
         GetRoomListController ctrl = new GetRoomListController(rList);
         //act
-        boolean result = ctrl.checkIfListIsEmpty();
+        boolean result = ctrl.isEmpty();
         //assert
         assertTrue(result);
     }
@@ -78,7 +78,7 @@ class GetRoomListControllerTest {
         GetRoomListController ctrl = new GetRoomListController(rList);
 
         //act
-        boolean result = ctrl.checkIfListIsEmpty();
+        boolean result = ctrl.isEmpty();
         //assert
         assertFalse(result);
     }

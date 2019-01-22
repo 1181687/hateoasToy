@@ -242,7 +242,7 @@ class AddGeoAreaToAnotherGeoAreaControllerTest {
         int expectedResult = 2;
 
         //Act
-        int result = ctrl.getSizeList();
+        int result = ctrl.getListSize();
 
         //Assert
         assertEquals(expectedResult, result);

@@ -20,7 +20,7 @@ public class AddPowerSourceToHouseGridController {
      *
      * @return boolean
      */
-    public boolean checkIfHouseGridListIsEmpty() {
+    public boolean isHouseGridListEmpty() {
         return mHouseGridList.isHouseGridListEmpty();
     }
 
@@ -39,7 +39,7 @@ public class AddPowerSourceToHouseGridController {
      * @return int
      */
 
-    public int houseGridListLength(){
+    public int getHouseGridListSize(){
         return mHouseGridList.getmHouseGridsList().size();
     }
 
@@ -67,7 +67,7 @@ public class AddPowerSourceToHouseGridController {
      * Returns a list of Power Source Types.
      * @return String
      */
-    public String getPowerSourceTypeListContent() {
+    public String getPowerSourceTypeListToString() {
         return mPowerSourceTypeList.getPowerSourceTypeListToString();
     }
 

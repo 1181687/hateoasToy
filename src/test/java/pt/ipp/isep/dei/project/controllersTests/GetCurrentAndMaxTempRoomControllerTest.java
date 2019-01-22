@@ -99,7 +99,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
 
         int expectResult = 2;
         //act
-        int result = ctrl.getLengthOfRoomList();
+        int result = ctrl.getRoomListSize();
         //assert
         assertEquals(expectResult, result);
     }
@@ -348,7 +348,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         double expectedResult = -10.0;
 
         //Act
-        double result = ctrl.getMaximumTemperatureOfARoomInAGivenDay(name, sensorType0, dateTimeDayMeasure3.toLocalDate());
+        double result = ctrl.getMaximumTemperatureOfRoomInGivenDay(name, sensorType0, dateTimeDayMeasure3.toLocalDate());
 
 
         //Assert
@@ -379,7 +379,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         SensorType expectedResult = sensorType;
 
         //Act
-        SensorType result = ctrl.getmType();
+        SensorType result = ctrl.getType();
 
         //Assert
         assertEquals(expectedResult, result);

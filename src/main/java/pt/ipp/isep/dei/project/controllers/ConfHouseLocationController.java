@@ -16,7 +16,7 @@ public class ConfHouseLocationController {
      *
      * @return mHouse
      */
-    public House getmHouse() {
+    public House getHouse() {
         return mHouse;
     }
 
@@ -34,7 +34,7 @@ public class ConfHouseLocationController {
     /**
      * Method that sets the Address to the House
      */
-    public void setAddressToTheHouse() {
+    public void setAddress() {
         mHouse.setAddress(mAddress);
     }
 }

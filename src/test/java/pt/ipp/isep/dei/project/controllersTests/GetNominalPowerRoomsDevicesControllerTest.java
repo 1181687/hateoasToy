@@ -23,7 +23,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
         // Act
-        boolean result = ctrl.checkIfGridListIsEmpty();
+        boolean result = ctrl.isGridListEmpty();
 
         // Assert
         assertTrue(result);
@@ -51,7 +51,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
         // Act
-        boolean result = ctrl.checkIfGridListIsEmpty();
+        boolean result = ctrl.isGridListEmpty();
 
         // Assert
         assertFalse(result);
@@ -653,7 +653,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         ctrl.getHouseGridByPosition(0);
 
-        ctrl.addAMeasurableObject(dev1);
+        ctrl.addMeasurable(dev1);
 
         double expectedResult = 1;
 
@@ -704,9 +704,9 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         ctrl.getHouseGridByPosition(0);
 
-        ctrl.addAMeasurableObject(dev1);
+        ctrl.addMeasurable(dev1);
 
-        boolean result = ctrl.checkIfMeasurableObjIsInList(dev1);
+        boolean result = ctrl.isMeasurableInList(dev1);
 
         //Assert
 
@@ -760,9 +760,9 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         ctrl.getHouseGridByPosition(0);
 
-        ctrl.addAMeasurableObject(dev1);
+        ctrl.addMeasurable(dev1);
 
-        boolean result = ctrl.checkIfMeasurableObjIsInList(dev2);
+        boolean result = ctrl.isMeasurableInList(dev2);
 
         //Assert
 
@@ -817,8 +817,8 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         ctrl.getHouseGridByPosition(0);
 
-        ctrl.addAMeasurableObject(dev1);
-        ctrl.addAMeasurableObject(room2);
+        ctrl.addMeasurable(dev1);
+        ctrl.addMeasurable(room2);
 
 
         String expectedResult = "Room: Room2\nDevice: FridgeAriston, located in room: Room1\n";

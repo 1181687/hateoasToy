@@ -136,7 +136,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         double expectedResult = 24.375;
 
         //Act
-        double result = ctrl.getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(startDate1.toLocalDate(), endDate1.toLocalDate());
+        double result = ctrl.getAverageDailyRainfall(startDate1.toLocalDate(), endDate1.toLocalDate());
 
         //Assert
         assertEquals(expectedResult, result);
@@ -226,7 +226,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         double expectedResult = 25;
 
         //Act
-        double result = ctrl.getMostRecentAvailableMeasurementInTheHouseArea();
+        double result = ctrl.getMostRecentAvailableMeasurement();
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -293,7 +293,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         double expectedResult = Double.NaN;
 
         //Act
-        double result = ctrl.getMostRecentAvailableMeasurementInTheHouseArea();
+        double result = ctrl.getMostRecentAvailableMeasurement();
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -347,7 +347,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         double expectedResult = Double.NaN;
 
         //Act
-        double result = ctrl.getMostRecentAvailableMeasurementInTheHouseArea();
+        double result = ctrl.getMostRecentAvailableMeasurement();
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -382,7 +382,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         String expectedResult = "temperature";
 
         //Act
-        String result = ctrl.getmTypeTemperature();
+        String result = ctrl.getTypeTemperature();
 
         //Assert
         assertEquals(expectedResult, result);

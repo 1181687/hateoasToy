@@ -46,7 +46,7 @@ class AddSensorToRoomControllerTest {
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
                 "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
         //act
-        String result = addSensorToRoomController.displayRoomsInTheHouse();
+        String result = addSensorToRoomController.getRoomListContent();
         //assert
         assertEquals(expectResult, result);
     }
@@ -155,7 +155,7 @@ class AddSensorToRoomControllerTest {
         AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
         // Act
-        boolean result = addSensorToRoomController.checkIfRoomListIsEmpty();
+        boolean result = addSensorToRoomController.isRoomListEmpty();
         // Assert
         assertTrue(result);
     }
@@ -188,7 +188,7 @@ class AddSensorToRoomControllerTest {
         AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
         // Act
-        boolean result = addSensorToRoomController.checkIfRoomListIsEmpty();
+        boolean result = addSensorToRoomController.isRoomListEmpty();
         // Assert
         assertFalse(result);
     }
@@ -221,7 +221,7 @@ class AddSensorToRoomControllerTest {
         AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
         // Act
-        boolean result = addSensorToRoomController.checkIfTheListOfSensorTypeIsEmpty();
+        boolean result = addSensorToRoomController.isSensorTypeListEmpty();
         // Assert
         assertTrue(result);
     }
@@ -258,7 +258,7 @@ class AddSensorToRoomControllerTest {
         AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
         // Act
-        boolean result = addSensorToRoomController.checkIfTheListOfSensorTypeIsEmpty();
+        boolean result = addSensorToRoomController.isSensorTypeListEmpty();
         // Assert
         assertFalse(result);
     }

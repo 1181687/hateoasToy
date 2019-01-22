@@ -17,33 +17,33 @@ public class AttachRoomToHouseGrid {
     }
 
     public void run() {
-        if (mCtrl.checkIfHouseGridListIsEmpty()) {
+        if (mCtrl.isHouseGridListEmpty()) {
             System.out.println("There are no house grids available. Please create one.\n");
         } else {
             String exit = "\r0 - Exit";
-            String label1 = "Please choose the house grid where the room will be attached: \n" + mCtrl.listAllTheHouseGridsInTheList() + exit;
-            int indexOfTheChosenGrid = InputValidator.getIntRange(label1, 0, mCtrl.houseGridListLength()) - 1;
+            String label1 = "Please choose the house grid where the room will be attached: \n" + mCtrl.getHouseGridListToString() + exit;
+            int indexOfTheChosenGrid = InputValidator.getIntRange(label1, 0, mCtrl.getHouseGridListSize()) - 1;
             if (indexOfTheChosenGrid == -1) {
                 return;
             }
-            mCtrl.setmGridToBeUsed(mCtrl.getHouseGridFromTheList(indexOfTheChosenGrid));
-            if (mCtrl.checkIfRoomListIsEmpty()) {
+            mCtrl.setGridToBeUsed(mCtrl.getHouseGridFromTheList(indexOfTheChosenGrid));
+            if (mCtrl.isRoomListEmpty()) {
                 System.out.println("There are no rooms available. Please create one\n");
             } else {
-                String label2 = "Please choose a room to be attached to the chosen house grid: \n" + mCtrl.listAllTheRoomsInTheList() + exit;
-                int indexOfTheChosenRoom = InputValidator.getIntRange(label2, 0, mCtrl.roomListLength()) - 1;
+                String label2 = "Please choose a room to be attached to the chosen house grid: \n" + mCtrl.getRoomListContent() + exit;
+                int indexOfTheChosenRoom = InputValidator.getIntRange(label2, 0, mCtrl.getRoomListSize()) - 1;
                 if (indexOfTheChosenRoom == -1) {
                     return;
                 }
-                mCtrl.setmRoomToBeAttached(mCtrl.getRoomFromTheList(indexOfTheChosenRoom));
+                mCtrl.setRoomToBeAttached(mCtrl.getRoomFromTheList(indexOfTheChosenRoom));
                 while (mCtrl.checkIfTheChosenRoomIsAlreadyInTheChosenGrid() || mCtrl.getTheGridWhereTheRoomIsConnected() != null) {
                     if (mCtrl.checkIfTheChosenRoomIsAlreadyInTheChosenGrid()) {
-                        String label3 = "The specified room is already in the house grid. Please, choose another one to add to the selected grid: \n" + mCtrl.listAllTheRoomsInTheList() + exit;
-                        int indexOfTheChosenRoom2 = InputValidator.getIntRange(label3, 0, mCtrl.roomListLength()) - 1;
+                        String label3 = "The specified room is already in the house grid. Please, choose another one to add to the selected grid: \n" + mCtrl.getRoomListContent() + exit;
+                        int indexOfTheChosenRoom2 = InputValidator.getIntRange(label3, 0, mCtrl.getRoomListSize()) - 1;
                         if (indexOfTheChosenRoom2 == -1) {
                             return;
                         }
-                        mCtrl.setmRoomToBeAttached(mCtrl.getRoomFromTheList(indexOfTheChosenRoom2));
+                        mCtrl.setRoomToBeAttached(mCtrl.getRoomFromTheList(indexOfTheChosenRoom2));
                     } else {
                         if (mCtrl.getTheGridWhereTheRoomIsConnected() != null) {
                             String label4 = "The specified room is already in another grid. Do you want to disconnect it and connect it the the chosen grid? (y/n)";

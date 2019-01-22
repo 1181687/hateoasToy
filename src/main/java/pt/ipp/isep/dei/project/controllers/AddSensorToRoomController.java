@@ -23,7 +23,7 @@ public class AddSensorToRoomController {
      * This method display the rooms of the house
      * @return the RoomList.
      */
-    public String displayRoomsInTheHouse () {
+    public String getRoomListContent() {
         return this.mRoomList.getRoomListContent();
     }
 
@@ -72,7 +72,7 @@ public class AddSensorToRoomController {
      * Method that checks if a room isn't already in the list of rooms.
      * @return true or false.
      */
-    public boolean checkIfRoomListIsEmpty () {
+    public boolean isRoomListEmpty() {
         return mRoomList.isEmpty();
     }
 
@@ -80,7 +80,7 @@ public class AddSensorToRoomController {
      * This method check if the list of Sensors Type is empty.
      * @return true or false.
      */
-    public boolean checkIfTheListOfSensorTypeIsEmpty () {
+    public boolean isSensorTypeListEmpty() {
         return mListSensorsType.IsEmpty();
     }
 }

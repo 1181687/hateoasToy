@@ -26,7 +26,7 @@ public class GetDevicesInHouseGrid {
      * if there aren't devices in that House Grid, it shows that message.
      */
     public void run() {
-        if (mctrl.checkIfHouseGridListIsEmpty()) {
+        if (mctrl.isHouseGridListEmpty()) {
             System.out.println("There aren't House Grids in the House.\n");
             return;
         }
@@ -36,7 +36,7 @@ public class GetDevicesInHouseGrid {
         content.append("0 - Exit");
         String listContentRoom = content.toString();
 
-        int maxPosition = mctrl.getHouseGridListLength();
+        int maxPosition = mctrl.getHouseGridListSize();
         String label1 = "\nChoose the House Grid you want to get the list of devices\n" + listContentRoom;
         int selection = InputValidator.getIntRange(label1, 0, maxPosition);
         int positionHG = (selection - 1);

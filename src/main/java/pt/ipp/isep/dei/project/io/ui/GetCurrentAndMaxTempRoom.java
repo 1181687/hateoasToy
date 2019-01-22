@@ -41,7 +41,7 @@ public class GetCurrentAndMaxTempRoom {
         System.out.println(mctrl.getRoomListContent());
 
         String label0 = "Choose the room you want to get the current temperature";
-        int option = InputValidator.getIntRange(label0, 1, mctrl.getLengthOfRoomList());
+        int option = InputValidator.getIntRange(label0, 1, mctrl.getRoomListSize());
         String roomName = mctrl.getRoomNameByPos(option - 1);
         Measurement temp = mctrl.getLatestMeasurementByRoomName(roomName);
 
@@ -80,13 +80,13 @@ public class GetCurrentAndMaxTempRoom {
         }
 
         String label0 = "Choose the room you want to get the maximum temperature";
-        int option = InputValidator.getIntRange(label0, 1, mctrl.getLengthOfRoomList());
+        int option = InputValidator.getIntRange(label0, 1, mctrl.getRoomListSize());
         String roomName = mctrl.getRoomNameByPos(option - 1);
 
         String label1 = "Please insert the date when you want to get the maximum temperature (yyyy-MM-dd):";
         LocalDate dateLD = InputValidator.getStringDate(label1);
 
-        double temp = mctrl.getMaximumTemperatureOfARoomInAGivenDay(roomName, mctrl.getmType(), dateLD);
+        double temp = mctrl.getMaximumTemperatureOfRoomInGivenDay(roomName, mctrl.getType(), dateLD);
         if (Double.isNaN(temp)) {
             System.out.println("There are no temperature values available");
             return;

@@ -28,7 +28,7 @@ public class AddRoom {
         String label1 = "What is the name of the room you want to add to the house?";
         String name = InputValidator.getString(label1);
 
-        while (mctrl.checkIfNameAlreadyExists(name)) {
+        while (mctrl.isNameExistant(name)) {
             System.out.println("Name already exists. Please write a new one.");
             name = InputValidator.getString(label1);
         }

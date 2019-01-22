@@ -49,20 +49,20 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseArea {
         }
 
 
-        if (!(Double.isNaN(mCtrl.getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(firstDate, secondDate)))) {
-            System.out.println("The average daily rainfall for the chosen period is: " + mCtrl.getAverageDailyRainfallInTheHouseAreaInTheSelectedPeriod(firstDate, secondDate) + "l/m2");
+        if (!(Double.isNaN(mCtrl.getAverageDailyRainfall(firstDate, secondDate)))) {
+            System.out.println("The average daily rainfall for the chosen period is: " + mCtrl.getAverageDailyRainfall(firstDate, secondDate) + "l/m2");
         } else {
             System.out.println("There's no registers for this period.");
         }
     }
 
     public void run3() {
-        if (Double.isNaN(mCtrl.getMostRecentAvailableMeasurementInTheHouseArea())) {
-            System.out.println("There are no " + mCtrl.getmTypeTemperature() + " sensors with valid measurements in the house area.");
+        if (Double.isNaN(mCtrl.getMostRecentAvailableMeasurement())) {
+            System.out.println("There are no " + mCtrl.getTypeTemperature() + " sensors with valid measurements in the house area.");
             return;
         } else {
             System.out.println("The most recent measurement available in the house area for "
-                    + mCtrl.getmTypeTemperature() + " is " + mCtrl.getMostRecentAvailableMeasurementInTheHouseArea() + ".");
+                    + mCtrl.getTypeTemperature() + " is " + mCtrl.getMostRecentAvailableMeasurement() + ".");
         }
     }
 }

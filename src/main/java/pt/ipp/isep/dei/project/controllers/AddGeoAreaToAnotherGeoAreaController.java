@@ -30,7 +30,7 @@ public class AddGeoAreaToAnotherGeoAreaController {
         mLista.removeGeoArea(area);
     }
 
-    public int getSizeList(){
+    public int getListSize(){
         return mLista.getSize();
     }
 }

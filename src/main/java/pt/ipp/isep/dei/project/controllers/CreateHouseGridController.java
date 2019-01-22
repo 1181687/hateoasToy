@@ -18,7 +18,7 @@ public class CreateHouseGridController {
      *
      * @return mHouseGridList.
      */
-    public HouseGridList getmHouseGridList() {
+    public HouseGridList getHouseGridList() {
         return mHouseGridList;
     }
 

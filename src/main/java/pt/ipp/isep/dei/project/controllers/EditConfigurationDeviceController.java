@@ -14,10 +14,10 @@ public class EditConfigurationDeviceController {
     /**
      * constructor of the controller that receive a house.
      *
-     * @param mHouse
+     * @param house
      */
-    public EditConfigurationDeviceController(House mHouse) {
-        this.mHouse = mHouse;
+    public EditConfigurationDeviceController(House house) {
+        this.mHouse = house;
     }
 
     /**

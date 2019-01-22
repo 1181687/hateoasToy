@@ -74,7 +74,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
 
         int position = 0;
         // Act
-        boolean result = controller.checkIfListIsEmpty(position);
+        boolean result = controller.isSensorListEmpty(position);
 
         // Assert
         assertTrue(result);
@@ -107,7 +107,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
 
         int position = 0;
         // Act
-        boolean result = controller.checkIfListIsEmpty(position);
+        boolean result = controller.isSensorListEmpty(position);
 
         // Assert
         assertFalse(result);
@@ -153,7 +153,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
                 "1 - Name of the device: Fridge1\n" +
                         "2 - Name of the device: Lamp1\n";
         // Act
-        String result = controller.getDeviceListContentRoom(position);
+        String result = controller.getDeviceListContent(position);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -181,7 +181,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
 
         int position = 0;
         // Act
-        boolean result = controller.checkIfDeviceListIsEmpty(position);
+        boolean result = controller.isDeviceListEmpty(position);
 
         // Assert
         assertTrue(result);
@@ -215,7 +215,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
 
         int position = 0;
         // Act
-        boolean result = controller.checkIfDeviceListIsEmpty(position);
+        boolean result = controller.isDeviceListEmpty(position);
 
         // Assert
         assertFalse(result);
