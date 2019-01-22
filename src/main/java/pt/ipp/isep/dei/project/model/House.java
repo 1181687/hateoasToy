@@ -34,7 +34,7 @@ public class House {
      *
      * @return mAddress
      */
-    public Address getmAddress() {
+    public Address getAddress() {
         return mAddress;
     }
 
@@ -43,7 +43,7 @@ public class House {
      *
      * @param mAddress
      */
-    public void setmAddress(Address mAddress) {
+    public void setAddress(Address mAddress) {
         this.mAddress = mAddress;
     }
 
@@ -56,7 +56,7 @@ public class House {
      * @param mAltitude  attribute of Location. Double
      * @return method for the creation of a new Address
      */
-    public Address newAddresses(String mZipCode, double mLatitude, double mLongitude, double mAltitude) {
+    public Address newAddress(String mZipCode, double mLatitude, double mLongitude, double mAltitude) {
         Location location = new Location(mLatitude, mLongitude, mAltitude);
         return new Address(mZipCode, location);
     }
@@ -65,7 +65,7 @@ public class House {
      * method that get inserted geo area
      * @return inserted geo area.
      */
-    public GeographicalArea getmInsertedGeoArea() {
+    public GeographicalArea getInsertedGeoArea() {
         return mInsertedGeoArea;
     }
 
@@ -132,7 +132,7 @@ public class House {
      * @param date given day
      * @return returns the maximum temperature in a specific day
      */
-    public double getMaximumTemperatureOfARoomInASpecificDay(String name, SensorType type, LocalDate date) {
+    public double getMaximumTemperatureOfARoomInADay(String name, SensorType type, LocalDate date) {
         return this.mRoomList.getMaximumTemperatureInARoomInAGivenDay(name, type, date);
     }
 
@@ -380,7 +380,7 @@ public class House {
         return listWithAllDevicesOfAType.getTotalEnergyConsumption();
     }
 
-    public MeasurableObjectsList getNewMeasurableObjList() {
-        return new MeasurableObjectsList();
+    public MeasurableList getNewMeasurableObjList() {
+        return new MeasurableList();
     }
 }

@@ -6,8 +6,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class UtilsTest {
 
@@ -45,5 +44,20 @@ class UtilsTest {
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         constructor.newInstance();
+    }
+
+    @Test
+    void roundTest() {
+        // Arrange
+        double valueToBeRounded = 3.7654;
+        int decimalPlaces = 2;
+
+        double expectedResult = 3.77;
+
+        // Act
+        double result = Utils.round(valueToBeRounded, decimalPlaces);
+
+        // assert
+        assertEquals(expectedResult, result);
     }
 }

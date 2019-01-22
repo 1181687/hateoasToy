@@ -281,13 +281,13 @@ public class HouseTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -345,13 +345,13 @@ public class HouseTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         LocalDate startDate = LocalDate.of(2018, 12, 1);
         LocalDate endDate = LocalDate.of(2018, 12, 6);
@@ -621,13 +621,13 @@ public class HouseTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         // Sensor0 - Register 1
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 1, 15, 20, 00);
@@ -971,7 +971,7 @@ public class HouseTest {
         double expectedResult = -10.0;
 
         //Act
-        double result = house.getMaximumTemperatureOfARoomInASpecificDay(name, sensorType0, dayNeeded);
+        double result = house.getMaximumTemperatureOfARoomInADay(name, sensorType0, dayNeeded);
 
 
         //Assert
@@ -1440,7 +1440,7 @@ public class HouseTest {
         house.setAttribute("Electric Water Heater", 0, coldWaterTempPosition, 30);
         house.setAttribute("Electric Water Heater", 0, volumeOfWaterToHeatPosition, 100);
 
-        double expectedResult = 2093.4;
+        double expectedResult = 2.09;
 
         // Act
         double result = house.getEnergyConsumptionOfADevice("Electric Water Heater", 0);
