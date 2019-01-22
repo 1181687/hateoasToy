@@ -159,6 +159,11 @@ public class Device implements Measurable {
         return mSpec.getNumberOfAttributes();
     }
 
+    /**
+     * method that returns the name of device and its location
+     *
+     * @return String
+     */
     @Override
     public String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();

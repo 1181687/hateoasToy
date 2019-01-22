@@ -177,6 +177,11 @@ public class HouseGrid implements Measurable {
         return getRoomByPosition(pos1).getmDeviceList().getDeviceByPosition(pos2);
     }
 
+    /**
+     * method that returns the name of house grid
+     *
+     * @return String
+     */
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();
