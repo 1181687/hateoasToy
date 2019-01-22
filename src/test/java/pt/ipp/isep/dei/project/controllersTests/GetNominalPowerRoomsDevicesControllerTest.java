@@ -768,4 +768,65 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         assertFalse(result);
     }
+
+    @Test
+    void testGetListToString() {
+        // Arrange
+        MeasurableList mList = new MeasurableList();
+
+        //house
+        HouseGridList list = new HouseGridList();
+        RoomList roomList = new RoomList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, list, address, geo);
+
+        //housegrid
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
+
+        list.getmHouseGridsList().add(houseGrid);
+
+        //initiate Room
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room1 = new Room("Room1", 2, dim);
+        Room room2 = new Room("Room2", 2, dim);
+
+        ProgramList programList = new ProgramList();
+        Program program = new Program("prog1", 3, 4.5);
+        programList.addProgram(program);
+
+        Fridge specFridge = new Fridge(25, 50, 5000, 500);
+        WashingMachine specWashing = new WashingMachine(400, 250.0, programList);
+        DishWasher specDishWasher = new DishWasher(400, 250.0, programList);
+        Device dev1 = new Device("FridgeAriston", room1, specFridge);
+        Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
+        Device dev3 = new Device("DishWasher", room1, specDishWasher);
+
+        mList.addMeasurable(dev1);
+        mList.addMeasurable(room2);
+
+        room1.addDevice(dev1);
+        room1.addDevice(dev2);
+        room2.addDevice(dev3);
+
+        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
+
+        ctrl.getHouseGridByPosition(0);
+
+        ctrl.addAMeasurableObject(dev1);
+        ctrl.addAMeasurableObject(room2);
+
+
+        String expectedResult = "Room: Room2\nDevice: FridgeAriston, located in room: Room1\n";
+
+        // act
+        String result = ctrl.getListToString();
+
+        // assert
+        assertEquals(expectedResult, result);
+    }
 }

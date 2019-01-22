@@ -284,4 +284,11 @@ public class Room implements Measurable {
     public boolean checkIfNameAlreadyExists(String name) {
         return this.mDeviceList.checkIfNameAlreadyExists(name);
     }
+
+    @Override
+    public String getNameToString() {
+        StringBuilder name = new StringBuilder();
+        name.append("Room: " + mName + "\n");
+        return name.toString();
+    }
 }
