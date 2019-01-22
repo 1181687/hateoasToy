@@ -508,4 +508,24 @@ public class RoomTest {
         //Assert
         assertFalse(result);
     }
+
+    @Test
+    public void testGetNameToString() {
+        // Arrange
+
+        //initiate Room
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room1", 2, dim);
+
+        String expectedResult =
+                "Room: Room1\n";
+
+
+        // Act
+        String result = room.getNameToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
+
+    }
 }

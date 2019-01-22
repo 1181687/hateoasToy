@@ -193,7 +193,7 @@ public class DeviceListTest {
         deviceList.setAttribute(0, coldWaterTempPosition, 30);
         deviceList.setAttribute(0, volumeOfWaterToHeatPosition, 100);
 
-        double expectedResult = 2093.4;
+        double expectedResult = 2.09;
 
         // Act
         double result = deviceList.getEnergyConsumptionOfADevice(0);
@@ -556,7 +556,7 @@ public class DeviceListTest {
         deviceList.setAttribute(1, coldWaterTempPosition, 30);
         deviceList.setAttribute(1, volumeOfWaterToHeatPosition, 100);
 
-        double expectedResult = 3954.2;
+        double expectedResult = 3.95;
 
         //Act
         double result = deviceList.getTotalEnergyConsumption();

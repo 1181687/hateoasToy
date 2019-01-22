@@ -95,10 +95,12 @@ public class GeographicalArea {
 
     /**
      * set the inserted area where the geo area is.
-     * @param mInsertedIn
+     * @param mainGeoArea Geographical area where THIS Geo Area will be inserted in.
      */
-    public void setInsertedIn(GeographicalArea mInsertedIn) {
-        this.mInsertedIn = mInsertedIn;
+    public void setInsertedIn(GeographicalArea mainGeoArea) {
+        if (!this.equals(mainGeoArea.mInsertedIn)) {
+            this.mInsertedIn = mainGeoArea;
+        }
     }
 
     /**

@@ -75,7 +75,6 @@ public class PowerSource {
 
     /**
      * get method
-     *
      * @return power source name
      */
     public String getName() {

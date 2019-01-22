@@ -103,7 +103,7 @@ public class DeviceTest {
         int volumeOfWaterToHeatPosition = 6;
         device.setAttributesDevType(volumeOfWaterToHeatPosition, 100);
 
-        double expectedResult = 2093.4;
+        double expectedResult = 2.09;
 
         // Act
         double result = device.getEnergyConsumptionInADay();
@@ -437,6 +437,26 @@ public class DeviceTest {
 
         // assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetNameToString() {
+        //Arrange
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room1", 2, dim);
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 20.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        String expectedResult = "Device: Lamp1, located in room: Room1\n";
+
+        //Act
+        String result = dev1.getNameToString();
+
+        //Assert
+        assertEquals(result, expectedResult);
     }
 
 }

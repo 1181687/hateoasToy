@@ -522,4 +522,19 @@ public class HouseGridTest {
         //Assert
         assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
     }
+
+    @Test
+    public void testGetNameToString() {
+
+        // Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
+
+        String expectResult = "HouseGrid: hgname1\n";
+        //act
+        String result = houseGrid.getNameToString();
+        //assert
+        assertEquals(expectResult, result);
+    }
+
 }
