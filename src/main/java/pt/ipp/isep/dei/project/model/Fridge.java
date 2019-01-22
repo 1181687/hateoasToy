@@ -58,7 +58,7 @@ public class Fridge implements DeviceSpecs {
     }
 
     /**
-     * set method
+     * set method ro refrigerator capacity
      * @param mRefrigeratorCapacity capacity of refrigerator
      */
     public boolean setmRefrigeratorCapacity(double mRefrigeratorCapacity) {
