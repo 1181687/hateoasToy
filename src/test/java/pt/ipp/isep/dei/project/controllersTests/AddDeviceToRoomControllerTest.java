@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
 import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class AddDeviceToRoomControllerTest {
 
@@ -149,7 +150,7 @@ class AddDeviceToRoomControllerTest {
         //assert
         assertEquals(expectResult, result);
     }
-/*
+
     @Test
     void getDeviceTypeListContent() {
         //Arrange
@@ -166,10 +167,13 @@ class AddDeviceToRoomControllerTest {
         int houseFloor1 = 0;
         Dimensions dimensions1 = new Dimensions(2, 2, 2);
         Room room1 = new Room(name1, houseFloor1, dimensions1);
+        house.addRoom(room1);
+
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
+        controller.getRoom(0);
+        controller.getDeviceList();
 
-        house.addRoom(room1);
         String expectedResult = "1- Fridge\n" +
                 "2- Lamp\n" +
                 "3- Dish Washer\n" +
@@ -195,7 +199,7 @@ class AddDeviceToRoomControllerTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
-        String name = "Fridge from Kitchen";
+        String name = "Fridge - Kitchen";
 
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room Gabis", 2, dim);
@@ -203,18 +207,15 @@ class AddDeviceToRoomControllerTest {
         double annualEnergyConsumption = 1000;
         double freezerCapacity = 20;
         double refrigeratorCapacity = 50;
-        DeviceSpecs fridgeSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
-        Device d2 = new Device(name, room, fridgeSpecs);
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
         house.addRoom(room);
 
-        Device expectedResult = d2;
 
         controller.getRoom(0);
         controller.getDeviceList();
-        controller.createNewFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
+        Device d2 = controller.createNewFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
+        Device expectedResult = d2;
 
         // act
 
@@ -225,49 +226,43 @@ class AddDeviceToRoomControllerTest {
     }
 
     @Test
-    public void testNewFridgeNegative(){
+    public void testNewFridgeNegative() {
 
-    RoomList rList = new RoomList();
-    HouseGridList gridlist = new HouseGridList();
-    Location local = new Location(10, 10, 10);
-    Address adr = new Address("5000", local);
-    AreaShape areaShape = new AreaShape(20, 20, local);
-    GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-    GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
-    House house = new House(rList, gridlist, adr, insertedGeoArea);
-    String name = "Fridge Balay";
+        // arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
 
-    Dimensions dim = new Dimensions(3, 3.5, 3.5);
-    Room room = new Room("Room", 2, dim);
-    double nominalPower = 200;
-    double annualEnergyConsumption = 1000;
-    double freezerCapacity = 20;
-    double refrigeratorCapacity = 50;
-    DeviceSpecs fridgeSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        String name = "Fridge - Kitchen";
 
-    Device d2 = new Device("Fridge Balay", room, fridgeSpecs);
-
-
-        room.addDevice(d2);
-        house.addRoom(room);
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room Gabis", 2, dim);
+        double nominalPower = 200;
+        double annualEnergyConsumption = 1000;
+        double freezerCapacity = 20;
+        double refrigeratorCapacity = 50;
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
+        house.addRoom(room);
+
 
         controller.getRoom(0);
         controller.getDeviceList();
+        controller.createNewFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
 
-        Throwable exception = assertThrows(RuntimeException.class, () ->
-            controller.createNewFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity)
-    );
+        Throwable exception = assertThrows(RuntimeException.class, () -> controller.createNewFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity));
 
-    assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-}
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
 
     @Test
     public void testNewLamp() {
-        String name = "Lamp one";
-
-        // arrange
+        //Arrange
         RoomList rList = new RoomList();
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
@@ -281,28 +276,24 @@ class AddDeviceToRoomControllerTest {
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         double luminousFlux = 100;
-        DeviceSpecs lamp = new Lamp(luminousFlux, nominalPower);
-        ProgramList programList = new ProgramList();
-
-        Device d2 = new Device("Device2", room, lamp);
-        DeviceList devList = new DeviceList();
-        devList.addDevice(d2);
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
-        room.addDevice(d2);
         house.addRoom(room);
-        Device expectedResult = new Device(name, room, lamp);
 
-        Device result = controller.createNewLamp(name, room, luminousFlux, nominalPower);
+        controller.getRoom(0);
+        controller.getDeviceList();
+        Device device = controller.createNewLamp("Lamp1", room, nominalPower, luminousFlux);
+        Device expectedResult = device;
 
+        //Act
+        Device result = controller.getDevice(0);
+        //Assert
         assertEquals(expectedResult, result);
     }
 
-    /* @Test
+    @Test
     public void testNewLampNegative() {
-        String name = "Lamp one";
-
-        // arrange
+        //Arrange
         RoomList rList = new RoomList();
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
@@ -315,19 +306,17 @@ class AddDeviceToRoomControllerTest {
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
-        int capacity = 100;
-        DeviceSpecs lamp = new Lamp(capacity, nominalPower);
-
-        Device d2 = new Device("LAMP ONE", room, lamp);
-        DeviceList devList = new DeviceList();
-        devList.addDevice(d2);
+        double luminousFlux = 100;
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
-        room.addDevice(d2);
         house.addRoom(room);
 
+        controller.getRoom(0);
+        controller.getDeviceList();
+        controller.createNewLamp("Lamp1", room, nominalPower, luminousFlux);
+
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                controller.createNewLamp(name, room, nominalPower, capacity)
+                controller.createNewLamp("Lamp1", room, nominalPower, luminousFlux)
         );
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -352,21 +341,19 @@ class AddDeviceToRoomControllerTest {
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         double capacity = 100;
-        ProgramList programList = new ProgramList();
-        DeviceSpecs washingMachine = new WashingMachine(capacity, nominalPower, programList);
-
-        Device d2 = new Device("Device2", room, washingMachine);
-        DeviceList devList = new DeviceList();
-        devList.addDevice(d2);
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
-        room.addDevice(d2);
         house.addRoom(room);
 
-        Device expectedResult = new Device(name, room, washingMachine);
+        controller.getRoom(0);
+        controller.getDeviceList();
+        Device device = controller.createNewWashingMachine(name, room, nominalPower, capacity);
 
-        Device result = controller.createNewWashingMachine(name, room, nominalPower, capacity);
+        Device expectedResult = device;
+        //Act
+        Device result = controller.getDevice(0);
 
+        //Assert
         assertEquals(expectedResult, result);
     }
 
@@ -381,6 +368,7 @@ class AddDeviceToRoomControllerTest {
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
+
         // newWashingMachine Instantiation
         String name = "Washing Machine Bosh";
 
@@ -388,20 +376,59 @@ class AddDeviceToRoomControllerTest {
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         double capacity = 100;
-        ProgramList programList = new ProgramList();
-        DeviceSpecs washingMachine = new WashingMachine(capacity, nominalPower, programList);
-
-        Device d2 = new Device("Washing Machine Bosh", room, washingMachine);
-        DeviceList devList = new DeviceList();
-        devList.addDevice(d2);
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
-        room.addDevice(d2);
         house.addRoom(room);
+
+        controller.getRoom(0);
+        controller.getDeviceList();
+        controller.createNewWashingMachine(name, room, nominalPower, capacity);
+
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                controller.createNewWashingMachine(name, room, nominalPower, capacity)
+        );
+
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
     public void newElectricWaterHeater() {
+        // arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp0 = 50;
+        double maximumVolume0 = 150;
+        double nominalPower0 = 100;
+        double performanceRatio = 100;
+
+        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
+        house.addRoom(room);
+
+
+        controller.getRoom(0);
+        controller.getDeviceList();
+        Device device = controller.createNewElectricWaterHeater("EWH1", room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
+
+        Device expectedResult = device;
+        //Act
+        Device result = controller.getDevice(0);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void newElectricWaterHeaterNegative() throws RuntimeException {
 
         // arrange
         RoomList rList = new RoomList();
@@ -417,71 +444,29 @@ class AddDeviceToRoomControllerTest {
         double maximumVolume0 = 150;
         double nominalPower0 = 100;
         double performanceRatio = 100;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-        Device d2 = new Device("Electric2", room, electricWaterHeater1);
-
-        DeviceList devList = new DeviceList();
-        devList.addDevice(d2);
-        Device expectedResult = new Device("Electric", room, electricWaterHeater1);
-        String name = "Electric";
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
-        room.addDevice(d2);
         house.addRoom(room);
 
-        Device result = controller.createNewElectricWaterHeater(name, room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void newElectricWaterHeaterNegative() throws RuntimeException {
-
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-        // ElectricWaterHeater Instantiation
-        double hotWaterTemp0 = 50;
-        double maximumVolume0 = 150;
-        double nominalPower0 = 100;
-        double performanceRatio = 100;
-
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
-
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-        Device d2 = new Device("Electric2", room, electricWaterHeater1);
-
-        DeviceList devList = new DeviceList();
-        devList.addDevice(d2);
-        String name = "ELECTRIC2";
-
-        AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
-        room.addDevice(d2);
-        house.addRoom(room);
-
-        room.addDevice(d2);
-
+        controller.getRoom(0);
+        controller.getDeviceList();
+        controller.createNewElectricWaterHeater("EWH1", room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
 
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                controller.createNewElectricWaterHeater(name, room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio)
+                controller.createNewElectricWaterHeater("EWH1", room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio)
         );
 
-       assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
 
     @Test
-    public void getDeviceListContentOfARoomTest() {
+    public void testGetDeviceListContentOfARoomTest() {
         // Arrange
 
         //initiate Room
@@ -530,7 +515,7 @@ class AddDeviceToRoomControllerTest {
     }
 
     @Test
-    void createNewProgram() {
+    void testCreateNewProgram() {
         // arrange
         RoomList rList = new RoomList();
         HouseGridList gridlist = new HouseGridList();
@@ -549,23 +534,19 @@ class AddDeviceToRoomControllerTest {
 
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-        Device d2 = new Device("Electric2", room, electricWaterHeater1);
-
-        DeviceList devList = new DeviceList();
-        devList.addDevice(d2);
-        Device expectedResult = new Device("Electric", room, electricWaterHeater1);
         String name = "Electric";
+        Device d2 = new Device(name, room, electricWaterHeater1);
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
         room.addDevice(d2);
         house.addRoom(room);
 
-         String programName = "program1";
-         double duration = 10.2;
-         double energyConsuption = 15.0;
-         Program program = new Program(programName, duration, energyConsuption);
-         // act
-         Program result = controller.createNewProgram(programName, duration, hotWaterTemp0);
+        String programName = "program1";
+        double duration = 10.2;
+        double energyConsuption = 15.0;
+        Program expectedResult = new Program(programName, duration, energyConsuption);
+        // act
+        Program result = controller.createNewProgram(programName, duration, hotWaterTemp0);
         // assert
         assertEquals(expectedResult, result);
     }
@@ -580,5 +561,5 @@ class AddDeviceToRoomControllerTest {
     void getmProgramList() {
 
 
-    }*/
+    }
 }
