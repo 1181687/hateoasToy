@@ -50,14 +50,14 @@ public class HouseGridListTest {
         String roomName1 = "Bedroom";
         int houseFloor = 0;
         int houseFloor1 = 0;
-        Dimensions dimensions = new Dimensions(2, 2, 2);
-        Dimensions dimensions1 = new Dimensions(2, 4, 4);
-        Room room = new Room(roomName, houseFloor, dimensions);
-        Room room1 = new Room(roomName1, houseFloor1, dimensions1);
+        Dimension dimension = new Dimension(2, 2, 2);
+        Dimension dimension1 = new Dimension(2, 4, 4);
+        Room room = new Room(roomName, houseFloor, dimension);
+        Room room1 = new Room(roomName1, houseFloor1, dimension1);
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
         HouseGridList gridList = new HouseGridList();
-        gridList.addHouseGridToTheList(grid);
+        gridList.addHouseGrid(grid);
         gridList.attachRoomInASpecificHouseGridInTheList(grid, room);
         gridList.attachRoomInASpecificHouseGridInTheList(grid, room1);
         int gridPosition = gridList.getmHouseGridsList().indexOf(grid);
@@ -75,12 +75,12 @@ public class HouseGridListTest {
         // Arrange
         String roomName = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room = new Room(roomName, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room = new Room(roomName, houseFloor1, dimension1);
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
         HouseGridList gridList = new HouseGridList();
-        gridList.addHouseGridToTheList(grid);
+        gridList.addHouseGrid(grid);
         gridList.attachRoomInASpecificHouseGridInTheList(grid, room);
         int gridPosition = gridList.getmHouseGridsList().indexOf(grid);
 
@@ -97,7 +97,7 @@ public class HouseGridListTest {
         HouseGridList gridList = new HouseGridList();
 
         // Act
-        boolean result = gridList.checkIfHouseGridListIsEmpty();
+        boolean result = gridList.isHouseGridListEmpty();
 
         // Assert
         assertTrue(result);
@@ -109,10 +109,10 @@ public class HouseGridListTest {
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
         HouseGridList gridList = new HouseGridList();
-        gridList.addHouseGridToTheList(grid);
+        gridList.addHouseGrid(grid);
 
         // Act
-        boolean result = gridList.checkIfHouseGridListIsEmpty();
+        boolean result = gridList.isHouseGridListEmpty();
 
         // Assert
         assertFalse(result);
@@ -123,15 +123,15 @@ public class HouseGridListTest {
         // Arrange
         String roomName = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room = new Room(roomName, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room = new Room(roomName, houseFloor1, dimension1);
         HouseGridList gridList = new HouseGridList();
         String gridName = "Grid";
-        HouseGrid grid = gridList.createAHouseGrid(gridName);
-        gridList.addHouseGridToTheList(grid);
+        HouseGrid grid = gridList.newHouseGrid(gridName);
+        gridList.addHouseGrid(grid);
 
         // Act
-        boolean result = gridList.checkIfARoomIsAlreadyInAHouseGrid(grid, room);
+        boolean result = gridList.checkIfRoomIsAlreadyInHouseGrid(grid, room);
 
         // Assert
         assertFalse(result);
@@ -143,8 +143,8 @@ public class HouseGridListTest {
         // Instantiate Room
         String roomName = "Kitchen";
         int houseFloor = 0;
-        Dimensions dimensions = new Dimensions(4, 10, 12);
-        Room room = new Room(roomName, houseFloor, dimensions);
+        Dimension dimension = new Dimension(4, 10, 12);
+        Room room = new Room(roomName, houseFloor, dimension);
 
         // Instantiate House Grids
         String gridName0 = "Grid";
@@ -157,9 +157,9 @@ public class HouseGridListTest {
 
         // Instantiate List of House Grids
         HouseGridList gridList = new HouseGridList();
-        gridList.addHouseGridToTheList(grid0);
-        gridList.addHouseGridToTheList(grid1);
-        gridList.addHouseGridToTheList(grid2);
+        gridList.addHouseGrid(grid0);
+        gridList.addHouseGrid(grid1);
+        gridList.addHouseGrid(grid2);
 
         HouseGrid expectedResult = grid2;
 
@@ -176,8 +176,8 @@ public class HouseGridListTest {
         // Instantiate Room
         String roomName = "Kitchen";
         int houseFloor = 0;
-        Dimensions dimensions = new Dimensions(4, 10, 12);
-        Room room = new Room(roomName, houseFloor, dimensions);
+        Dimension dimension = new Dimension(4, 10, 12);
+        Room room = new Room(roomName, houseFloor, dimension);
 
         // Instantiate House Grids
         String gridName0 = "Grid";
@@ -189,9 +189,9 @@ public class HouseGridListTest {
 
         // Instantiate List of House Grids
         HouseGridList gridList = new HouseGridList();
-        gridList.addHouseGridToTheList(grid0);
-        gridList.addHouseGridToTheList(grid1);
-        gridList.addHouseGridToTheList(grid2);
+        gridList.addHouseGrid(grid0);
+        gridList.addHouseGrid(grid1);
+        gridList.addHouseGrid(grid2);
 
         HouseGrid expectedResult = null;
 
@@ -206,7 +206,7 @@ public class HouseGridListTest {
     public void TestGetAllDevicesListByPosition() {
         //Room ONE
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
         ProgramList programList = new ProgramList();
@@ -223,7 +223,7 @@ public class HouseGridListTest {
 
         //Room TWO
         String name2 = "KitchenBasement";
-        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim);
         DeviceSpecs specWaterHeater = new ElectricWaterHeater(100, 100, 100, 0.9);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
@@ -242,8 +242,8 @@ public class HouseGridListTest {
         HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
         HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
         HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGridToTheList(houseGrid);
-        houseGridList1.addHouseGridToTheList(houseGridEmpty);
+        houseGridList1.addHouseGrid(houseGrid);
+        houseGridList1.addHouseGrid(houseGridEmpty);
 
         DeviceList expectedResult = new DeviceList();
         expectedResult.addDevice(dev1);
@@ -262,7 +262,7 @@ public class HouseGridListTest {
     public void TestGetAllDevicesListByPositionEmpty() {
         //Room ONE
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
         ProgramList programList = new ProgramList();
@@ -279,7 +279,7 @@ public class HouseGridListTest {
 
         //Room TWO
         String name2 = "KitchenBasement";
-        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim);
         DeviceSpecs specWaterHeater = new ElectricWaterHeater(100, 100, 100, 0.9);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
@@ -298,8 +298,8 @@ public class HouseGridListTest {
         HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
         HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
         HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGridToTheList(houseGrid);
-        houseGridList1.addHouseGridToTheList(houseGridEmpty);
+        houseGridList1.addHouseGrid(houseGrid);
+        houseGridList1.addHouseGrid(houseGridEmpty);
 
         DeviceList expectedResult = new DeviceList();
 
@@ -321,9 +321,9 @@ public class HouseGridListTest {
 
         // Instantiate List of House Grids
         HouseGridList gridList = new HouseGridList();
-        gridList.addHouseGridToTheList(grid0);
-        gridList.addHouseGridToTheList(grid1);
-        gridList.addHouseGridToTheList(grid2);
+        gridList.addHouseGrid(grid0);
+        gridList.addHouseGrid(grid1);
+        gridList.addHouseGrid(grid2);
 
         int position = 0;
         String expectedResult = "Grid0";

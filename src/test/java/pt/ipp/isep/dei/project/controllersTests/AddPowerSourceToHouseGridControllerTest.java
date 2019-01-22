@@ -2,7 +2,10 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.HouseGrid;
+import pt.ipp.isep.dei.project.model.HouseGridList;
+import pt.ipp.isep.dei.project.model.PowerSourceType;
+import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +24,7 @@ class AddPowerSourceToHouseGridControllerTest {
         AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
 
         // Act
-        boolean result = addPowerSourceToHouseGridController.houseGridListIsEmpty();
+        boolean result = addPowerSourceToHouseGridController.checkIfHouseGridListIsEmpty();
 
         // Assert
         assertTrue(result);
@@ -43,7 +46,7 @@ class AddPowerSourceToHouseGridControllerTest {
         AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
 
         // Act
-        boolean result = addPowerSourceToHouseGridController.houseGridListIsEmpty();
+        boolean result = addPowerSourceToHouseGridController.checkIfHouseGridListIsEmpty();
 
         // Assert
         assertFalse(result);
@@ -225,7 +228,7 @@ class AddPowerSourceToHouseGridControllerTest {
         String expectedResult = "1 - Power Source Type: public electric grid\n";
 
         //Act
-        String result = controller.getPowerSourceTypeListToString();
+        String result = controller.getPowerSourceTypeListContent();
         //Assert
         assertEquals(expectedResult, result);
     }

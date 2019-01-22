@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.model;
 
 import java.util.Objects;
 
-public class Dimensions {
+public class Dimension {
     private double mHeight;
     private double mLength;
     private double mWidth;
@@ -16,7 +16,7 @@ public class Dimensions {
      * @param length given length
      * @param width  given width
      */
-    public Dimensions(double height, double length, double width) {
+    public Dimension(double height, double length, double width) {
         validateHeight(height);
         validateLength(length);
         validateWidth(width);
@@ -65,48 +65,50 @@ public class Dimensions {
      * method that get the height of a dimension
      * @return a height
      */
-    public double getmHeight() {
+    public double getHeight() {
         return mHeight;
+    }
+
+    /**
+     * set the heigth of the dimension
+     *
+     * @param height
+     */
+    public void setHeight(double height) {
+        this.mHeight = height;
     }
 
     /**
      * method that get the length of a dimension
      * @return a length
      */
-    public double getmLength() {
+    public double getLength() {
         return mLength;
+    }
+
+    /**
+     * set the length of the dimension
+     *
+     * @param length
+     */
+    public void setLength(double length) {
+        this.mLength = length;
     }
 
     /**
      * method that get the length of a dimension
      * @return a width
      */
-    public double getmWidth() {
+    public double getWidth() {
         return mWidth;
     }
 
     /**
-     * set the heigth of the dimension
-     * @param mHeight
-     */
-    public void setmHeight(double mHeight) {
-        this.mHeight = mHeight;
-    }
-
-    /**
-     * set the length of the dimension
-     * @param mLength
-     */
-    public void setmLength(double mLength) {
-        this.mLength = mLength;
-    }
-
-    /**
      * set the width of the dimension
-     * @param mWidth
+     * @param width
      */
-    public void setmWidth(double mWidth) {
-        this.mWidth = mWidth;
+    public void setWidth(double width) {
+        this.mWidth = width;
     }
 
     /**
@@ -121,7 +123,7 @@ public class Dimensions {
 
 
     /**
-     * Equals method to determine if two Dimensions are equal.
+     * Equals method to determine if two Dimension are equal.
      *
      * @param obj receives an object
      * @return boolean
@@ -131,18 +133,18 @@ public class Dimensions {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Dimensions)) {
+        if (!(obj instanceof Dimension)) {
             return false;
         }
-        Dimensions dim = (Dimensions) obj;
-        Double comparablemHeight = mHeight;
-        Double comparablemLength = mLength;
-        Double comparablemWidth = mWidth;
+        Dimension dim = (Dimension) obj;
+        Double comparableHeight = mHeight;
+        Double comparableLength = mLength;
+        Double comparableWidth = mWidth;
         Double comparableDimensionsHeight = dim.mHeight;
         Double comparableDimensionsLength = dim.mLength;
         Double comparableDimensionsWidth = dim.mWidth;
-        return comparableDimensionsHeight.equals(comparablemHeight)
-                && comparableDimensionsLength.equals(comparablemLength)
-                && comparableDimensionsWidth.equals(comparablemWidth);
+        return comparableDimensionsHeight.equals(comparableHeight)
+                && comparableDimensionsLength.equals(comparableLength)
+                && comparableDimensionsWidth.equals(comparableWidth);
     }
 }

@@ -13,7 +13,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     @Test
     public void getSensorsListContentOfARoomTest () {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
@@ -35,8 +35,8 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Location locS1 = new Location(123, 300, 50);
         Sensor s1 = new Sensor("A456", dataFuncionamento1, sensorType1, locS1);
 
-        room.addSensorToTheListOfSensorsInTheRoom(s0);
-        room.addSensorToTheListOfSensorsInTheRoom(s1);
+        room.addSensorToListOfSensorsInRoom(s0);
+        room.addSensorToListOfSensorsInRoom(s1);
 
         house.addRoom(room);
 
@@ -56,7 +56,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     @Test
     public void checkIfSensorListIsEmptyTestTrue () {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
@@ -83,7 +83,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     @Test
     public void checkIfSensorListIsEmptyTestFalse () {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
@@ -100,7 +100,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
-        room.addSensorToTheListOfSensorsInTheRoom(s0);
+        room.addSensorToListOfSensorsInRoom(s0);
         house.addRoom(room);
 
         GetListOfSensorsAndDevicesRoomController controller = new GetListOfSensorsAndDevicesRoomController(house);
@@ -116,7 +116,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     @Test
     public void getDeviceListContentTest() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
@@ -153,7 +153,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
                 "1 - Name of the device: Fridge1\n" +
                         "2 - Name of the device: Lamp1\n";
         // Act
-        String result = controller.getDeviceListContentOfRoomByPosition(position);
+        String result = controller.getDeviceListContentRoom(position);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -162,7 +162,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     @Test
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
@@ -190,7 +190,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     @Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
@@ -235,13 +235,13 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
@@ -279,7 +279,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     public void getRoomListTest () {
         // Arrange
         RoomList rList = new RoomList();
-        Dimensions dim = new Dimensions(4, 4, 4);
+        Dimension dim = new Dimension(4, 4, 4);
         Room room = new Room("F5", 1, dim);
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
@@ -326,9 +326,9 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     public void testGetNameOfRoomInListOfRooms() {
         //Arrange
         RoomList rList = new RoomList();
-        Dimensions dim0 = new Dimensions(4, 4, 4);
+        Dimension dim0 = new Dimension(4, 4, 4);
         Room room0 = new Room("RoomOne", 1, dim0);
-        Dimensions dim1 = new Dimensions(4, 4, 4);
+        Dimension dim1 = new Dimension(4, 4, 4);
         Room room1 = new Room("RoomTwo", 1, dim1);
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
@@ -385,20 +385,20 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
 
         GetListOfSensorsAndDevicesRoomController controller = new GetListOfSensorsAndDevicesRoomController(house);
-        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Length: 2.0, Width: 2.0\n" +
-                "2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Length: 1.5, Width: 1.3\n";
+        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
+                "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
 
         //act
         String result = controller.getRoomListContent();

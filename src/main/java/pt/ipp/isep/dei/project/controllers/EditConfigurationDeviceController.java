@@ -59,7 +59,7 @@ public class EditConfigurationDeviceController {
      * @param position
      */
     public void getDeviceByPosition (int position) {
-        this.mDevice = this.mRoom.getmDeviceList().getDeviceByPosition(position);
+        this.mDevice = this.mRoom.getDeviceList().getDeviceByPosition(position);
     }
 
     /**
@@ -102,7 +102,7 @@ public class EditConfigurationDeviceController {
      * @return the set location of the new room.
      */
     public boolean setLocation () {
-        return this.mDevice.setmLocation(newRoom);
+        return this.mDevice.setLocation(newRoom);
     }
 
     /**
@@ -110,7 +110,7 @@ public class EditConfigurationDeviceController {
      * @return a boolean.
      */
     public boolean checkIfRoomListIsEmpty () {
-        return this.mHouse.getRoomList().checkIfRoomListIsEmpty();
+        return this.mHouse.getRoomList().isEmpty();
     }
 
     /**
@@ -126,7 +126,7 @@ public class EditConfigurationDeviceController {
      * @return the length of all devices of the list.
      */
     public int getDeviceListLength () {
-        return this.mHouse.getRoomList().getAllDevicesList().getLength();
+        return this.mHouse.getRoomList().getAllDevicesList().getSize();
     }
 
     /**
@@ -134,7 +134,7 @@ public class EditConfigurationDeviceController {
      * @return a boolean.
      */
     public boolean checkIfDeviceListIsEmpty () {
-        return this.mRoom.checkIfDeviceListIsEmpty();
+        return this.mRoom.isDeviceListEmpty();
     }
 
     /**

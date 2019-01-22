@@ -16,7 +16,7 @@ public class AddPowerSourceToHouseGrid {
     }
 
     public void run(){
-        if(mController.houseGridListIsEmpty()){
+        if (mController.checkIfHouseGridListIsEmpty()) {
             System.out.println("There are no house grids in your house. Please insert a new house grid."+"\n");
         }
         else {
@@ -28,8 +28,8 @@ public class AddPowerSourceToHouseGrid {
             String label2 ="Please insert the name of the new power source";
             String powerSourceName = InputValidator.getString(label2);
 
-            String label3 = "Please select the power source type: \n" + mController.getPowerSourceTypeListToString();
-            int positionOfPowerSource = InputValidator.getIntRange(label3,1,mController.getPowerSourceTypeListSize()) -1;
+            String label3 = "Please select the power source type: \n" + mController.getPowerSourceTypeListContent();
+            int positionOfPowerSource = InputValidator.getIntRange(label3, 1, mController.getPowerSourceTypeListSize()) - 1;
             mController.getPowerSourceTypeByPosition(positionOfPowerSource);
 
             boolean isPowerSourceAdded = mController.createAndAddPowerSourceToHouseGrid(powerSourceName);

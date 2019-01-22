@@ -17,13 +17,13 @@ public class GetCurrentAndMaxTempRoomControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         rList.addRoom(room1);
         rList.addRoom(room2);
@@ -38,8 +38,8 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         SensorType sensorType = new SensorType("Temperature");
         GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType);
 
-        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Length: 2.0, Width: 2.0\n" +
-                "2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Length: 1.5, Width: 1.3\n";
+        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
+                "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
 
         //act
         String result = ctrl.getRoomListContent();
@@ -76,13 +76,13 @@ public class GetCurrentAndMaxTempRoomControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         rList.addRoom(room1);
         rList.addRoom(room2);
@@ -107,8 +107,8 @@ public class GetCurrentAndMaxTempRoomControllerTest {
     @Test
     public void testGetLatestTemperatureRoom() {
         //arrange
-        Dimensions dimensions = new Dimensions(300, 600, 600);
-        Room room1 = new Room("room1", 1, dimensions);
+        Dimension dimension = new Dimension(300, 600, 600);
+        Room room1 = new Room("room1", 1, dimension);
 
         //Instanciar Sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
@@ -159,9 +159,9 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         s2.addMeasurementToList(measurement21);
         s2.addMeasurementToList(measurement22);
 
-        room1.addSensorToTheListOfSensorsInTheRoom(s0);
-        room1.addSensorToTheListOfSensorsInTheRoom(s1);
-        room1.addSensorToTheListOfSensorsInTheRoom(s2);
+        room1.addSensorToListOfSensorsInRoom(s0);
+        room1.addSensorToListOfSensorsInRoom(s1);
+        room1.addSensorToListOfSensorsInRoom(s2);
 
         RoomList roomList = new RoomList();
         roomList.addRoom(room1);
@@ -186,8 +186,8 @@ public class GetCurrentAndMaxTempRoomControllerTest {
     @Test
     public void testGetLatestTemperatureRoomNull() {
         //arrange
-        Dimensions dimensions = new Dimensions(300, 600, 600);
-        Room room1 = new Room("room1", 1, dimensions);
+        Dimension dimension = new Dimension(300, 600, 600);
+        Room room1 = new Room("room1", 1, dimension);
 
         //Sensor
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
@@ -208,7 +208,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
 
         Measurement expectedResult = null;
 
-        room1.addSensorToTheListOfSensorsInTheRoom(s2);
+        room1.addSensorToListOfSensorsInRoom(s2);
 
         SensorType sensorType0 = new SensorType("Temperature");
         RoomList roomList = new RoomList();
@@ -234,8 +234,8 @@ public class GetCurrentAndMaxTempRoomControllerTest {
 
         //Arrange
         RoomList rList = new RoomList();
-        Dimensions dim0 = new Dimensions(3, 3.5, 3.5);
-        Dimensions dim1 = new Dimensions(3, 3.5, 3.5);
+        Dimension dim0 = new Dimension(3, 3.5, 3.5);
+        Dimension dim1 = new Dimension(3, 3.5, 3.5);
         Room room0 = new Room("RoomOne", 2, dim0);
         Room room1 = new Room("RoomTwo", 2, dim1);
 
@@ -302,8 +302,8 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         double height = 10.0;
         double length = 5.0;
         double width = 5.0;
-        Dimensions dimensions = new Dimensions(height, length, width);
-        Room room1 = new Room(name, houseFloor, dimensions);
+        Dimension dimension = new Dimension(height, length, width);
+        Room room1 = new Room(name, houseFloor, dimension);
 
         house.addRoom(room1);
 
@@ -337,8 +337,8 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         s1.addMeasurementToList(measurement3);
         s1.addMeasurementToList(measurement4);
 
-        room1.getSensorList().addSensorToTheListOfSensors(s0);
-        room1.getSensorList().addSensorToTheListOfSensors(s1);
+        room1.getSensorList().addSensor(s0);
+        room1.getSensorList().addSensor(s1);
 
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoom(room1);

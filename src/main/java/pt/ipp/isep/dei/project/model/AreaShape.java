@@ -23,16 +23,16 @@ public class AreaShape {
      * @return a location with their geographical coordinates
      */
     public boolean checkIfLocationIsInsertedInAnArea(Location location){
-        double upperLeftCornerLatitude = mLocationAreaShape.getmLatitude() + (mWidth /2);
-        double upperLeftCornerLongitude = mLocationAreaShape.getmLongitude() - (mLength /2);
+        double upperLeftCornerLatitude = mLocationAreaShape.getLatitude() + (mWidth / 2);
+        double upperLeftCornerLongitude = mLocationAreaShape.getLongitude() - (mLength / 2);
 
-        double bottomRightCornerLatitude = mLocationAreaShape.getmLatitude() - (mWidth /2);
-        double bottomRightCornerLongitude = mLocationAreaShape.getmLongitude() + (mLength /2);
+        double bottomRightCornerLatitude = mLocationAreaShape.getLatitude() - (mWidth / 2);
+        double bottomRightCornerLongitude = mLocationAreaShape.getLongitude() + (mLength / 2);
 
-        return (location.getmLatitude() >= bottomRightCornerLatitude
-                && location.getmLatitude() <= upperLeftCornerLatitude
-                && location.getmLongitude() <= bottomRightCornerLongitude
-                && location.getmLongitude() >= upperLeftCornerLongitude);
+        return (location.getLatitude() >= bottomRightCornerLatitude
+                && location.getLatitude() <= upperLeftCornerLatitude
+                && location.getLongitude() <= bottomRightCornerLongitude
+                && location.getLongitude() >= upperLeftCornerLongitude);
     }
 
     /**

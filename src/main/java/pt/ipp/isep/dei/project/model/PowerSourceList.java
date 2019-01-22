@@ -39,7 +39,7 @@ public class PowerSourceList {
         return false;
     }
 
-    public String getPowerSourcesListContent(){
+    public String getPowerSourcesListToString() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
         for (int i = 0; i < mPowerSourceList.size(); i++) {

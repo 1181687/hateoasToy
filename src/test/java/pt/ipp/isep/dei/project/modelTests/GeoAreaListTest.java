@@ -90,7 +90,7 @@ public class GeoAreaListTest {
         List<GeographicalArea> expectedResult = new ArrayList<>();
         expectedResult.add(geographicalArea);
 
-        List<GeographicalArea> resultado = lista.getmGeoAreaList();
+        List<GeographicalArea> resultado = lista.getGeoAreaList();
 
         assertEquals(expectedResult, resultado);
     }
@@ -150,7 +150,7 @@ public class GeoAreaListTest {
         String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109, Inserido Em: Cidade Porto\n";
 
         //Act
-        String result = listaDeAGs.listContent(true);
+        String result = listaDeAGs.getGeoAreaListToString(true);
 
         //Assert
         assertEquals(expectResult, result);
@@ -180,7 +180,7 @@ public class GeoAreaListTest {
         String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
         //Act
-        String result = listaDeAGs.listContent(true);
+        String result = listaDeAGs.getGeoAreaListToString(true);
 
         //Assert
         assertEquals(expectResult, result);
@@ -211,7 +211,7 @@ public class GeoAreaListTest {
         String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
         //Act
-        String result = listaDeAGs.listContent(false);
+        String result = listaDeAGs.getGeoAreaListToString(false);
 
         //Assert
         assertEquals(expectResult, result);
@@ -241,7 +241,7 @@ public class GeoAreaListTest {
         String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
         //Act
-        String result = listaDeAGs.listContent(false);
+        String result = listaDeAGs.getGeoAreaListToString(false);
 
         //Assert
         assertEquals(expectResult, result);
@@ -526,7 +526,7 @@ public class GeoAreaListTest {
         GeographicalArea expectedResult = ag2;
 
         //Act
-        GeographicalArea result = listaDeAGs.getmGeoAreaList().get(0);
+        GeographicalArea result = listaDeAGs.getGeoAreaList().get(0);
 
         //Assert
         assertEquals(expectedResult, result);

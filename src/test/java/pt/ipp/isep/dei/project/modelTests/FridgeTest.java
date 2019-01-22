@@ -20,7 +20,7 @@ public class FridgeTest {
         String expectedResult = "Fridge";
 
         //Act
-        String result = fridge.getmTypeName();
+        String result = fridge.getTypeName();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -58,7 +58,7 @@ public class FridgeTest {
         double expectedResult = 100.0;
 
         //Act
-        double result = fridge.getmNominalPower();
+        double result = fridge.getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -77,7 +77,7 @@ public class FridgeTest {
 
 
         //act
-        boolean result = fridge.setmFreezerCapacity(100.0);
+        boolean result = fridge.setFreezerCapacity(100.0);
 
         assertTrue(result);
     }
@@ -94,7 +94,7 @@ public class FridgeTest {
 
 
         //act
-        boolean result = fridge.setmFreezerCapacity(20.0);
+        boolean result = fridge.setFreezerCapacity(20.0);
 
         assertFalse(result);
     }
@@ -110,7 +110,7 @@ public class FridgeTest {
         Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
         //act
-        boolean result = fridge.setmRefrigeratorCapacity(20.0);
+        boolean result = fridge.setRefrigeratorCapacity(20.0);
 
         assertTrue(result);
     }
@@ -127,7 +127,7 @@ public class FridgeTest {
 
 
         //act
-        boolean result = fridge.setmRefrigeratorCapacity(100.0);
+        boolean result = fridge.setRefrigeratorCapacity(100.0);
 
         assertFalse(result);
     }
@@ -143,7 +143,7 @@ public class FridgeTest {
         Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
         //act
-        boolean result = fridge.setmNominalPower(100.0);
+        boolean result = fridge.setNominalPower(100.0);
 
         assertFalse(result);
     }
@@ -159,7 +159,7 @@ public class FridgeTest {
         Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
         //act
-        boolean result = fridge.setmNominalPower(20.0);
+        boolean result = fridge.setNominalPower(20.0);
 
         assertTrue(result);
     }
@@ -176,7 +176,7 @@ public class FridgeTest {
 
 
         //act
-        boolean result = fridge.setmAnnualEnergyConsumption(10000.0);
+        boolean result = fridge.setAnnualEnergyConsumption(10000.0);
 
         assertFalse(result);
     }
@@ -192,7 +192,7 @@ public class FridgeTest {
         Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
         //act
-        boolean result = fridge.setmAnnualEnergyConsumption(2000.0);
+        boolean result = fridge.setAnnualEnergyConsumption(2000.0);
 
         assertTrue(result);
     }

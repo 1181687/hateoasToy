@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimensions;
+import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.SensorType;
 
 import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class DimensionsTest {
+public class DimensionTest {
 
     @Test
     void testhashCode() {
@@ -16,7 +16,7 @@ public class DimensionsTest {
         double height = 5.98;
         double length = 10.35;
         double width = 10.48;
-        Dimensions dim = new Dimensions(height, length, width);
+        Dimension dim = new Dimension(height, length, width);
 
         int expectedResult = Objects.hash(height, length, width);
 
@@ -64,7 +64,7 @@ public class DimensionsTest {
     @Test
     void testEqualsTrueSameObj() {
         //Arrange
-        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
         //Act
         boolean result = dim.equals(dim);
         //Assert
@@ -74,8 +74,8 @@ public class DimensionsTest {
     @Test
     void testEqualsTrueAllDimensions() {
         //Arrange
-        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
-        Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
+        Dimension dim2 = new Dimension(3.5, 3.5, 3.5);
         //Act
         boolean result = dim.equals(dim2);
         //Assert
@@ -85,8 +85,8 @@ public class DimensionsTest {
     @Test
     void testEqualsFalseHeight() {
         //Arrange
-        Dimensions dim = new Dimensions(2, 3.5, 3.5);
-        Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
+        Dimension dim = new Dimension(2, 3.5, 3.5);
+        Dimension dim2 = new Dimension(3.5, 3.5, 3.5);
         //Act
         boolean result = dim.equals(dim2);
         //Assert
@@ -96,8 +96,8 @@ public class DimensionsTest {
     @Test
     void testEqualsFalseLength() {
         //Arrange
-        Dimensions dim = new Dimensions(3.5, 2, 3.5);
-        Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
+        Dimension dim = new Dimension(3.5, 2, 3.5);
+        Dimension dim2 = new Dimension(3.5, 3.5, 3.5);
         //Act
         boolean result = dim.equals(dim2);
         //Assert
@@ -107,8 +107,8 @@ public class DimensionsTest {
     @Test
     void testEqualsFalseWidth() {
         //Arrange
-        Dimensions dim = new Dimensions(3.5, 3.5, 2);
-        Dimensions dim2 = new Dimensions(3.5, 3.5, 3.5);
+        Dimension dim = new Dimension(3.5, 3.5, 2);
+        Dimension dim2 = new Dimension(3.5, 3.5, 3.5);
         //Act
         boolean result = dim.equals(dim2);
         //Assert
@@ -118,7 +118,7 @@ public class DimensionsTest {
     @Test
     void testEqualsFalseDifTypes() {
         //Arrange
-        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
         SensorType tipo = new SensorType("humidade");
 
         //Act
@@ -133,13 +133,13 @@ public class DimensionsTest {
         Double height = 2.8;
         Double length = 1.5;
         Double width = 1.5;
-        Dimensions dimensions = new Dimensions(height, length, width);
+        Dimension dimension = new Dimension(height, length, width);
 
-        dimensions.setmHeight(3.0);
+        dimension.setHeight(3.0);
         Double expectResult = 3.0;
 
         //act
-        Double result = dimensions.getmHeight();
+        Double result = dimension.getHeight();
 
         //assert
         assertEquals(expectResult, result, 0.0001);
@@ -152,13 +152,13 @@ public class DimensionsTest {
         Double height = 2.8;
         Double length = 1.5;
         Double width = 1.5;
-        Dimensions dimensions = new Dimensions(height, length, width);
+        Dimension dimension = new Dimension(height, length, width);
 
-        dimensions.setmHeight(2.8);
+        dimension.setHeight(2.8);
         Double expectResult = 2.8;
 
         //act
-        Double result = dimensions.getmHeight();
+        Double result = dimension.getHeight();
 
         //assert
         assertEquals(expectResult, result, 0.0001);
@@ -170,13 +170,13 @@ public class DimensionsTest {
         Double height = 2.8;
         Double length = 1.5;
         Double width = 1.5;
-        Dimensions dimensions = new Dimensions(height, length, width);
+        Dimension dimension = new Dimension(height, length, width);
 
-        dimensions.setmLength(2.6);
+        dimension.setLength(2.6);
         Double expectResult = 2.6;
 
         //act
-        Double result = dimensions.getmLength();
+        Double result = dimension.getLength();
 
         //assert
         assertEquals(expectResult, result, 0.0001);
@@ -188,13 +188,13 @@ public class DimensionsTest {
         Double height = 2.8;
         Double length = 1.5;
         Double width = 1.5;
-        Dimensions dimensions = new Dimensions(height, length, width);
+        Dimension dimension = new Dimension(height, length, width);
 
-        dimensions.setmLength(1.5);
+        dimension.setLength(1.5);
         Double expectResult = 1.5;
 
         //act
-        Double result = dimensions.getmLength();
+        Double result = dimension.getLength();
 
         //assert
         assertEquals(expectResult, result, 0.0001);
@@ -206,13 +206,13 @@ public class DimensionsTest {
         Double height = 2.8;
         Double length = 1.5;
         Double width = 2.5;
-        Dimensions dimensions = new Dimensions(height, length, width);
+        Dimension dimension = new Dimension(height, length, width);
 
-        dimensions.setmWidth(2.3);
+        dimension.setWidth(2.3);
         Double expectResult = 2.3;
 
         //act
-        Double result = dimensions.getmWidth();
+        Double result = dimension.getWidth();
 
         //assert
         assertEquals(expectResult, result, 0.0001);
@@ -224,13 +224,13 @@ public class DimensionsTest {
         Double height = 2.8;
         Double length = 1.5;
         Double width = 2.5;
-        Dimensions dimensions = new Dimensions(height, length, width);
+        Dimension dimension = new Dimension(height, length, width);
 
-        dimensions.setmWidth(2.5);
+        dimension.setWidth(2.5);
         Double expectResult = 2.5;
 
         //act
-        Double result = dimensions.getmWidth();
+        Double result = dimension.getWidth();
 
         //assert
         assertEquals(expectResult, result, 0.0001);
@@ -243,7 +243,7 @@ public class DimensionsTest {
         double width = 20;
         double height = -20;
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new Dimensions(height, length, width)
+                new Dimension(height, length, width)
         );
         assertEquals("Please enter a valid height. Height should be greater than zero", exception.getMessage());
     }
@@ -255,7 +255,7 @@ public class DimensionsTest {
         double width = 20;
         double height = 0;
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new Dimensions(height, length, width)
+                new Dimension(height, length, width)
         );
         assertEquals("Please enter a valid height. Height should be greater than zero", exception.getMessage());
     }
@@ -266,7 +266,7 @@ public class DimensionsTest {
         double width = 20;
         double height = Double.NaN;
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new Dimensions(height, length, width)
+                new Dimension(height, length, width)
         );
         assertEquals("Please enter a valid height. Height should be greater than zero", exception.getMessage());
     }
@@ -278,7 +278,7 @@ public class DimensionsTest {
         double width = 20;
         double height = 20;
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new Dimensions(height, length, width)
+                new Dimension(height, length, width)
         );
         assertEquals("Please enter a valid length. Length should be greater than zero", exception.getMessage());
     }
@@ -290,7 +290,7 @@ public class DimensionsTest {
         double width = 20;
         double height = 20;
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new Dimensions(height, length, width)
+                new Dimension(height, length, width)
         );
         assertEquals("Please enter a valid length. Length should be greater than zero", exception.getMessage());
     }
@@ -301,7 +301,7 @@ public class DimensionsTest {
         double width = 20;
         double length = Double.NaN;
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new Dimensions(height, length, width)
+                new Dimension(height, length, width)
         );
         assertEquals("Please enter a valid length. Length should be greater than zero", exception.getMessage());
     }
@@ -313,7 +313,7 @@ public class DimensionsTest {
         double width = -20;
         double height = 20;
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new Dimensions(height, length, width)
+                new Dimension(height, length, width)
         );
         assertEquals("Please enter a valid width. Width should be greater than zero", exception.getMessage());
     }
@@ -325,7 +325,7 @@ public class DimensionsTest {
         double width = 0;
         double height = 20;
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new Dimensions(height, length, width)
+                new Dimension(height, length, width)
         );
         assertEquals("Please enter a valid width. Width should be greater than zero", exception.getMessage());
     }
@@ -337,7 +337,7 @@ public class DimensionsTest {
         double length = 20;
         double width = Double.NaN;
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new Dimensions(height, length, width)
+                new Dimension(height, length, width)
         );
         assertEquals("Please enter a valid width. Width should be greater than zero", exception.getMessage());
     }

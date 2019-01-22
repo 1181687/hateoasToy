@@ -11,12 +11,12 @@ public class ElectricWaterHeater implements DeviceSpecs {
     private double mMaximumVolume;
     private double mNominalPower;
 
-    public ElectricWaterHeater(double mHotWaterTemperature, double mMaximumVolume, double mPerformanceRatio, double mNominalPower) {
+    public ElectricWaterHeater(double hotWaterTemperature, double maximumVolume, double performanceRatio, double nominalPower) {
         this.mTypeName = "Electric Water Heater";
-        this.mHotWaterTemperature = mHotWaterTemperature;
-        this.mMaximumVolume = mMaximumVolume;
-        this.mPerformanceRatio = mPerformanceRatio;
-        this.mNominalPower = mNominalPower;
+        this.mHotWaterTemperature = hotWaterTemperature;
+        this.mMaximumVolume = maximumVolume;
+        this.mPerformanceRatio = performanceRatio;
+        this.mNominalPower = nominalPower;
     }
 
     /**
@@ -25,7 +25,7 @@ public class ElectricWaterHeater implements DeviceSpecs {
      * @return type of device
      */
     @Override
-    public String getmTypeName() {
+    public String getTypeName() {
         return mTypeName;
     }
 
@@ -33,7 +33,7 @@ public class ElectricWaterHeater implements DeviceSpecs {
     /** Method that sets the volume of water to be heated.
      * @param mVolumeOfWaterToHeat Volume of water to be heated.
      */
-    public boolean setmVolumeOfWaterToHeat(double mVolumeOfWaterToHeat) {
+    public boolean setVolumeOfWaterToHeat(double mVolumeOfWaterToHeat) {
         if (mVolumeOfWaterToHeat > 0) {
             this.mVolumeOfWaterToHeat = mVolumeOfWaterToHeat;
             return true;
@@ -42,11 +42,11 @@ public class ElectricWaterHeater implements DeviceSpecs {
     }
 
     /** Method that sets the cold-water temperature.
-     * @param mColdWaterTemperature Cold-water temperature to be used.
+     * @param coldWaterTemperature Cold-water temperature to be used.
      */
-    public boolean setmColdWaterTemperature(double mColdWaterTemperature) {
-        if (mColdWaterTemperature < this.mHotWaterTemperature) {
-            this.mColdWaterTemperature = mColdWaterTemperature;
+    public boolean setColdWaterTemperature(double coldWaterTemperature) {
+        if (coldWaterTemperature < this.mHotWaterTemperature) {
+            this.mColdWaterTemperature = coldWaterTemperature;
             return true;
         }
         return false;
@@ -72,60 +72,60 @@ public class ElectricWaterHeater implements DeviceSpecs {
      * @return Nominal power.
      */
     @Override
-    public double getmNominalPower() {
+    public double getNominalPower() {
         return mNominalPower;
     }
 
     /**
      * methods that determine if the value of the hotWaterTemperature is the same that the method receive.
-     * @param mHotWaterTemperature
+     * @param hotWaterTemperature
      * @return false if is the same value. Return true if not, and save the new value.
      */
-    public boolean setmHotWaterTemperature(double mHotWaterTemperature) {
-        if (Utils.isSameDouble(this.mHotWaterTemperature, mHotWaterTemperature)) {
+    public boolean setHotWaterTemperature(double hotWaterTemperature) {
+        if (Utils.isSameDouble(this.mHotWaterTemperature, hotWaterTemperature)) {
             return false;
         }
-        this.mHotWaterTemperature = mHotWaterTemperature;
+        this.mHotWaterTemperature = hotWaterTemperature;
         return true;
     }
 
     /**
      * methods that determine if the value of the maximumVolume is the same that the method receive.
      *
-     * @param mMaximumVolume
+     * @param maximumVolume
      * @return false if is the same value. Return true if not, and save the new value.
      */
-    public boolean setmMaximumVolume(double mMaximumVolume) {
-        if (Utils.isSameDouble(this.mMaximumVolume, mMaximumVolume)) {
+    public boolean setMaximumVolume(double maximumVolume) {
+        if (Utils.isSameDouble(this.mMaximumVolume, maximumVolume)) {
             return false;
         }
-        this.mMaximumVolume = mMaximumVolume;
+        this.mMaximumVolume = maximumVolume;
         return true;
     }
 
     /**
      * method that determine if the value of the performanceRatio is the same that the method receive.
-     * @param mPerformanceRatio
+     * @param performanceRatio
      * @return false if is the same value. Return true if not, and save the new value.
      */
-    public boolean setmPerformanceRatio(double mPerformanceRatio) {
-        if (Utils.isSameDouble(this.mPerformanceRatio, mPerformanceRatio)) {
+    public boolean setPerformanceRatio(double performanceRatio) {
+        if (Utils.isSameDouble(this.mPerformanceRatio, performanceRatio)) {
             return false;
         }
-        this.mPerformanceRatio = mPerformanceRatio;
+        this.mPerformanceRatio = performanceRatio;
         return true;
     }
 
     /**
      * method that determine if the value of the nominalPower is the same that the method receive.
-     * @param mNominalPower
+     * @param nominalPower
      * @return false if is the same value. Return true if not, and save the new value.
      */
-    public boolean setmNominalPower(double mNominalPower) {
-        if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
+    public boolean setNominalPower(double nominalPower) {
+        if (Utils.isSameDouble(this.mNominalPower, nominalPower)) {
             return false;
         }
-        this.mNominalPower = mNominalPower;
+        this.mNominalPower = nominalPower;
         return true;
     }
 
@@ -154,17 +154,17 @@ public class ElectricWaterHeater implements DeviceSpecs {
     public boolean setAttribute(int attribute, double value) {
         switch (attribute) {
             case 1:
-                return setmHotWaterTemperature(value);
+                return setHotWaterTemperature(value);
             case 2:
-                return setmMaximumVolume(value);
+                return setMaximumVolume(value);
             case 3:
-                return setmPerformanceRatio(value);
+                return setPerformanceRatio(value);
             case 4:
-                return setmNominalPower(value);
+                return setNominalPower(value);
             case 5:
-                return setmColdWaterTemperature(value);
+                return setColdWaterTemperature(value);
             case 6:
-                return setmVolumeOfWaterToHeat(value);
+                return setVolumeOfWaterToHeat(value);
         }
         return false;
     }

@@ -14,7 +14,7 @@ public class HouseTest {
     public void getRoomListTest() {
         // Arrange
         RoomList rList = new RoomList();
-        Dimensions dim = new Dimensions(4, 4, 4);
+        Dimension dim = new Dimension(4, 4, 4);
         Room room = new Room("F5", 1, dim);
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
@@ -69,20 +69,20 @@ public class HouseTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
 
 
-        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Length: 2.0, Width: 2.0\n" +
-                "2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Length: 1.5, Width: 1.3\n";
+        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
+                "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
         //act
         String result = house.getRoomListContent();
         //assert
@@ -113,9 +113,9 @@ public class HouseTest {
     public void testGetNameOfRoomInListOfRooms() {
         //Arrange
         RoomList rList = new RoomList();
-        Dimensions dim0 = new Dimensions(4, 4, 4);
+        Dimension dim0 = new Dimension(4, 4, 4);
         Room room0 = new Room("RoomOne", 1, dim0);
-        Dimensions dim1 = new Dimensions(4, 4, 4);
+        Dimension dim1 = new Dimension(4, 4, 4);
         Room room1 = new Room("RoomTwo", 1, dim1);
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
@@ -169,13 +169,13 @@ public class HouseTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
@@ -209,7 +209,7 @@ public class HouseTest {
     @Test
     public void testAddRoomToHouse() {
         RoomList rList = new RoomList();
-        Dimensions dim = new Dimensions(4, 4, 4);
+        Dimension dim = new Dimension(4, 4, 4);
         Room room = new Room("F5", 1, dim);
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
@@ -281,13 +281,13 @@ public class HouseTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
 
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -345,13 +345,13 @@ public class HouseTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
 
         LocalDate startDate = LocalDate.of(2018, 12, 1);
         LocalDate endDate = LocalDate.of(2018, 12, 6);
@@ -375,13 +375,13 @@ public class HouseTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         roomList.addRoom(room1);
         roomList.addRoom(room2);
@@ -422,13 +422,13 @@ public class HouseTest {
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(-1, 30, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        AG.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        AG.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(32.1576, 7.6199, 100);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        AG.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        AG.getSensorListInTheGeographicArea().addSensor(s1);
 
 
         //Instantiate Measurement
@@ -472,13 +472,13 @@ public class HouseTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         roomList.addRoom(room1);
         roomList.addRoom(room2);
@@ -519,13 +519,13 @@ public class HouseTest {
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(-1, 30, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        AG.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        AG.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(32.1576, 7.6199, 100);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        AG.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        AG.getSensorListInTheGeographicArea().addSensor(s1);
 
         double expectedResult = Double.NaN;
 
@@ -547,13 +547,13 @@ public class HouseTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         roomList.addRoom(room1);
         roomList.addRoom(room2);
@@ -621,13 +621,13 @@ public class HouseTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
 
         // Sensor0 - Register 1
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 1, 15, 20, 00);
@@ -713,11 +713,11 @@ public class HouseTest {
 
         SensorType sensorType = new SensorType("Temperatura");
         RoomList rList = new RoomList();
-        Dimensions dim = new Dimensions(4, 4, 4);
+        Dimension dim = new Dimension(4, 4, 4);
         Room room = new Room("F5", 1, dim);
-        room.addSensorToTheListOfSensorsInTheRoom(s0);
-        room.addSensorToTheListOfSensorsInTheRoom(s1);
-        room.addSensorToTheListOfSensorsInTheRoom(s2);
+        room.addSensorToListOfSensorsInRoom(s0);
+        room.addSensorToListOfSensorsInRoom(s1);
+        room.addSensorToListOfSensorsInRoom(s2);
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
@@ -789,11 +789,11 @@ public class HouseTest {
         SensorType tipoResultado = new SensorType("Pluviosidade");
 
         RoomList rList = new RoomList();
-        Dimensions dim = new Dimensions(4, 4, 4);
+        Dimension dim = new Dimension(4, 4, 4);
         Room room = new Room("F5", 1, dim);
-        room.addSensorToTheListOfSensorsInTheRoom(s0);
-        room.addSensorToTheListOfSensorsInTheRoom(s1);
-        room.addSensorToTheListOfSensorsInTheRoom(s2);
+        room.addSensorToListOfSensorsInRoom(s0);
+        room.addSensorToListOfSensorsInRoom(s1);
+        room.addSensorToListOfSensorsInRoom(s2);
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
@@ -863,11 +863,11 @@ public class HouseTest {
         SensorType tipoResultado = new SensorType("Pluviosidade");
 
         RoomList rList = new RoomList();
-        Dimensions dim = new Dimensions(4, 4, 4);
+        Dimension dim = new Dimension(4, 4, 4);
         Room room = new Room("F5", 1, dim);
-        room.addSensorToTheListOfSensorsInTheRoom(s0);
-        room.addSensorToTheListOfSensorsInTheRoom(s1);
-        room.addSensorToTheListOfSensorsInTheRoom(s2);
+        room.addSensorToListOfSensorsInRoom(s0);
+        room.addSensorToListOfSensorsInRoom(s1);
+        room.addSensorToListOfSensorsInRoom(s2);
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
@@ -927,8 +927,8 @@ public class HouseTest {
         double height = 10.0;
         double length = 5.0;
         double width = 5.0;
-        Dimensions dimensions = new Dimensions(height, length, width);
-        Room room1 = new Room(name, houseFloor, dimensions);
+        Dimension dimension = new Dimension(height, length, width);
+        Room room1 = new Room(name, houseFloor, dimension);
 
         house.addRoom(room1);
 
@@ -960,8 +960,8 @@ public class HouseTest {
         s1.addMeasurementToList(measurement3);
         s1.addMeasurementToList(measurement4);
 
-        room1.getSensorList().addSensorToTheListOfSensors(s0);
-        room1.getSensorList().addSensorToTheListOfSensors(s1);
+        room1.getSensorList().addSensor(s0);
+        room1.getSensorList().addSensor(s1);
 
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoom(room1);
@@ -971,7 +971,7 @@ public class HouseTest {
         double expectedResult = -10.0;
 
         //Act
-        double result = house.getMaximumTemperatureOfARoomInADay(name, sensorType0, dayNeeded);
+        double result = house.getMaximumTemperatureOfRoomInSpecificDay(name, sensorType0, dayNeeded);
 
 
         //Assert
@@ -984,7 +984,7 @@ public class HouseTest {
         String nameToCheck = "Room one";
         String name = "ROOM ONE";
         RoomList list = new RoomList();
-        Dimensions dim = new Dimensions(5, 6, 7);
+        Dimension dim = new Dimension(5, 6, 7);
         Room room1 = new Room(name, 1, dim);
         list.addRoom(room1);
         HouseGridList listHG = new HouseGridList();
@@ -997,7 +997,7 @@ public class HouseTest {
 
         boolean expectedResult = true;
 
-        boolean result = house.checkIfNameAlreadyExists(nameToCheck);
+        boolean result = house.isNameExistant(nameToCheck);
 
         assertEquals(expectedResult, result);
 
@@ -1008,7 +1008,7 @@ public class HouseTest {
         String nameToCheck = "Room one";
         String name = "ROOM Two";
         RoomList list = new RoomList();
-        Dimensions dim = new Dimensions(5, 6, 7);
+        Dimension dim = new Dimension(5, 6, 7);
         Room room1 = new Room(name, 1, dim);
         list.addRoom(room1);
         HouseGridList listHG = new HouseGridList();
@@ -1021,7 +1021,7 @@ public class HouseTest {
 
         boolean expectedResult = false;
 
-        boolean result = house.checkIfNameAlreadyExists(nameToCheck);
+        boolean result = house.isNameExistant(nameToCheck);
 
         assertEquals(expectedResult, result);
     }
@@ -1029,7 +1029,7 @@ public class HouseTest {
     @Test
     public void getSensorsListContentOfARoomTest() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
@@ -1051,8 +1051,8 @@ public class HouseTest {
         Location locS1 = new Location(123, 300, 50);
         Sensor s1 = new Sensor("A456", dataFuncionamento1, sensorType1, locS1);
 
-        room.addSensorToTheListOfSensorsInTheRoom(s0);
-        room.addSensorToTheListOfSensorsInTheRoom(s1);
+        room.addSensorToListOfSensorsInRoom(s0);
+        room.addSensorToListOfSensorsInRoom(s1);
 
         house.addRoom(room);
 
@@ -1070,7 +1070,7 @@ public class HouseTest {
     @Test
     public void checkIfSensorListIsEmptyTestTrue() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
@@ -1086,7 +1086,7 @@ public class HouseTest {
 
         int position = 0;
         // Act
-        boolean result = house.checkIfSensorListIsEmpty(position);
+        boolean result = house.isSensorListEmpty(position);
 
         // Assert
         assertTrue(result);
@@ -1095,7 +1095,7 @@ public class HouseTest {
     @Test
     public void checkIfSensorListIsEmptyTestFalse() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
@@ -1112,12 +1112,12 @@ public class HouseTest {
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
-        room.addSensorToTheListOfSensorsInTheRoom(s0);
+        room.addSensorToListOfSensorsInRoom(s0);
         house.addRoom(room);
 
         int position = 0;
         // Act
-        boolean result = house.checkIfSensorListIsEmpty(position);
+        boolean result = house.isSensorListEmpty(position);
 
         // Assert
         assertFalse(result);
@@ -1129,7 +1129,7 @@ public class HouseTest {
         // Arrange
 
         //initiate Room
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
@@ -1169,7 +1169,7 @@ public class HouseTest {
 
 
         // Act
-        String result = house.getDeviceListContentOfRoomByPosition(position);
+        String result = house.getDeviceListContentRoom(position);
 
 
         // Assert
@@ -1179,7 +1179,7 @@ public class HouseTest {
     @Test
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
@@ -1195,7 +1195,7 @@ public class HouseTest {
 
         int position = 0;
         // Act
-        boolean result = house.checkIfDeviceListIsEmpty(position);
+        boolean result = house.isDeviceListEmpty(position);
 
         // Assert
         assertTrue(result);
@@ -1205,7 +1205,7 @@ public class HouseTest {
     @Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
@@ -1227,7 +1227,7 @@ public class HouseTest {
 
         int position = 0;
         // Act
-        boolean result = house.checkIfDeviceListIsEmpty(position);
+        boolean result = house.isDeviceListEmpty(position);
 
         // Assert
         assertFalse(result);
@@ -1238,7 +1238,7 @@ public class HouseTest {
     public void TestGetAllDevicesListByGridPosition() {
         //Room ONE
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
         ProgramList programList = new ProgramList();
@@ -1273,8 +1273,8 @@ public class HouseTest {
         HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
         HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
         HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGridToTheList(houseGrid);
-        houseGridList1.addHouseGridToTheList(houseGridEmpty);
+        houseGridList1.addHouseGrid(houseGrid);
+        houseGridList1.addHouseGrid(houseGridEmpty);
 
         //house
         Location location = new Location(2, 3, 4);
@@ -1301,7 +1301,7 @@ public class HouseTest {
     public void testGetDeviceListContentNameTypeLocationByHG() {
         //Room ONE
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
         ProgramList programList = new ProgramList();
@@ -1318,7 +1318,7 @@ public class HouseTest {
 
         //Room TWO
         String name2 = "KitchenBasement";
-        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim);
         ElectricWaterHeater specWaterHeater = new ElectricWaterHeater(100, 100, 100, 100);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
@@ -1337,8 +1337,8 @@ public class HouseTest {
         HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
         HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
         HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGridToTheList(houseGrid);
-        houseGridList1.addHouseGridToTheList(houseGridEmpty);
+        houseGridList1.addHouseGrid(houseGrid);
+        houseGridList1.addHouseGrid(houseGridEmpty);
 
         //house
         Location location = new Location(2, 3, 4);
@@ -1360,7 +1360,7 @@ public class HouseTest {
     public void testGetRoomListLength() {
         String name = "Kitchen";
         String name2 = "Bedroom";
-        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
         Room room2 = new Room(name2, 1, dim);
 
@@ -1370,7 +1370,7 @@ public class HouseTest {
 
         HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
         HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGridToTheList(houseGrid);
+        houseGridList1.addHouseGrid(houseGrid);
 
         //house
         Location location = new Location(2, 3, 4);
@@ -1387,7 +1387,7 @@ public class HouseTest {
 
         //Act
 
-        double result = house.houseRoomListLength();
+        double result = house.houseRoomListSize();
 
         //Assert
 
@@ -1402,7 +1402,7 @@ public class HouseTest {
         double height = 3;
         double length = 3.5;
         double width = 3.5;
-        Dimensions dim = new Dimensions(height, length, width);
+        Dimension dim = new Dimension(height, length, width);
 
         // Room Instantiation
         Room room = new Room("Room", 2, dim);
@@ -1430,7 +1430,7 @@ public class HouseTest {
 
         // HouseGridList Instantiation
         HouseGridList houseGridList = new HouseGridList();
-        houseGridList.addHouseGridToTheList(houseGrid);
+        houseGridList.addHouseGrid(houseGrid);
 
         // House Instantiation
         House house = new House(roomList, houseGridList, null, null);
@@ -1462,9 +1462,9 @@ public class HouseTest {
 
         // Instantiate List of House Grids
         HouseGridList gridList = new HouseGridList();
-        gridList.addHouseGridToTheList(grid0);
-        gridList.addHouseGridToTheList(grid1);
-        gridList.addHouseGridToTheList(grid2);
+        gridList.addHouseGrid(grid0);
+        gridList.addHouseGrid(grid1);
+        gridList.addHouseGrid(grid2);
 
         RoomList roomList = new RoomList();
         Location location = new Location(2, 3, 4);
@@ -1520,7 +1520,7 @@ public class HouseTest {
         House house = new House(roomList, gridList, address, geo);
 
         // Act
-        boolean result = house.checkIfHouseGridListIsEmpty();
+        boolean result = house.isHouseGridListEmpty();
 
         // Assert
         assertTrue(result);
@@ -1540,9 +1540,9 @@ public class HouseTest {
 
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
-        gridList.addHouseGridToTheList(grid);
+        gridList.addHouseGrid(grid);
         // Act
-        boolean result = house.checkIfHouseGridListIsEmpty();
+        boolean result = house.isHouseGridListEmpty();
 
         // Assert
         assertFalse(result);
@@ -1598,7 +1598,7 @@ public class HouseTest {
         int expectedResult = 2;
 
         // Act
-        int result = house.getHouseGridListLength();
+        int result = house.getHouseGridListSize();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -1625,7 +1625,7 @@ public class HouseTest {
         int expectedResult = 0;
 
         // Act
-        int result = house.getHouseGridListLength();
+        int result = house.getHouseGridListSize();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -1664,7 +1664,7 @@ public class HouseTest {
         // Arrange
         //Room TWO
         String name2 = "KitchenBasement";
-        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
 
         ProgramList pglist = new ProgramList();
@@ -1688,7 +1688,7 @@ public class HouseTest {
         HouseGrid grid = new HouseGrid("g1");
         grid.attachRoom(room2);
         grid.attachRoom(room2);
-        gridList.addHouseGridToTheList(grid);
+        gridList.addHouseGrid(grid);
         RoomList roomList = new RoomList();
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
@@ -1709,7 +1709,7 @@ public class HouseTest {
         // Arrange
         HouseGridList gridList = new HouseGridList();
         HouseGrid grid = new HouseGrid("g1");
-        gridList.addHouseGridToTheList(grid);
+        gridList.addHouseGrid(grid);
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
         GeoAreaType GAType = new GeoAreaType("City");
@@ -1731,7 +1731,7 @@ public class HouseTest {
 
         //Room ONE
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
         ProgramList pgList = new ProgramList();
@@ -1748,7 +1748,7 @@ public class HouseTest {
 
         //Room TWO
         String name2 = "KitchenBasement";
-        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
         ElectricWaterHeater specWaterHeater = new ElectricWaterHeater(100, 100, 100, 0.9);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
@@ -1783,7 +1783,7 @@ public class HouseTest {
     public void testGetDeviceName() {
         //Room ONE
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
         ProgramList pgList = new ProgramList();
@@ -1800,7 +1800,7 @@ public class HouseTest {
 
         //Room TWO
         String name2 = "KitchenBasement";
-        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
         ElectricWaterHeater specWaterHeater = new ElectricWaterHeater(100, 100, 100, 0.9);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);

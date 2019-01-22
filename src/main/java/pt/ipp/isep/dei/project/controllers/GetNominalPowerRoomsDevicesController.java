@@ -15,10 +15,11 @@ public class GetNominalPowerRoomsDevicesController {
 
     /**
      * method that returns the method checkIfHouseGridListIsEmpty of the model class House
+     *
      * @return true if house grid list is empty or false if it is not empty
      */
     public boolean checkIfGridListIsEmpty(){
-        return this.mHouse.checkIfHouseGridListIsEmpty();
+        return this.mHouse.isHouseGridListEmpty();
     }
 
     /**
@@ -34,7 +35,7 @@ public class GetNominalPowerRoomsDevicesController {
      * @return an integer that matches the house grid list size
      */
     public int getHouseGridListSize(){
-        return this.mHouse.getHouseGridListLength();
+        return this.mHouse.getHouseGridListSize();
     }
 
     /**
@@ -77,7 +78,7 @@ public class GetNominalPowerRoomsDevicesController {
      * @return true if room list is empty or false if it is not empty
      */
     public boolean roomListOfHouseGridIsEmpty() {
-        return mSelectedHouseGrid.checkIfRoomListIsEmpty();
+        return mSelectedHouseGrid.isRoomListEmpty();
     }
 
     /**
@@ -86,7 +87,7 @@ public class GetNominalPowerRoomsDevicesController {
      * @return true if device list of chosen room (position) is empty or false if it is not empty
      */
     public boolean deviceListIsEmpty(int position){
-        return mSelectedHouseGrid.checkIfDeviceListIsEmpty(position);
+        return mSelectedHouseGrid.isDeviceListOfRoomEmpty(position);
     }
 
     /**
@@ -111,7 +112,7 @@ public class GetNominalPowerRoomsDevicesController {
      * method that adds a measurable object (room or device)
      * @param measurable matches an object: room or device
      */
-    public void addAMeasurableObject(Measurable measurable){
+    public void addAMeasurableObject(Measurable measurable) {
         mMeasurableList.addMeasurable(measurable);
     }
 
@@ -133,6 +134,7 @@ public class GetNominalPowerRoomsDevicesController {
 
     /**
      * method that returns the method checkIfMeasurableObjIsInList of model class measurable list
+     *
      * @param measurable matches an object: room or device
      * @return true if measurable list is empty and false if it is not
      */

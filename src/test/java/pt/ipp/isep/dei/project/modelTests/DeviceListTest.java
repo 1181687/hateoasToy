@@ -15,7 +15,7 @@ public class DeviceListTest {
     @Test
     public void testAddDeviceTrue() {
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3.5, 3.5, 3.5);
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
         DeviceList devList = new DeviceList();
 
@@ -25,7 +25,7 @@ public class DeviceListTest {
         List<Device> expectedResult = new ArrayList<>(Arrays.asList(dev1));
 
         devList.addDevice(dev1);
-        List<Device> result = devList.getmDeviceList();
+        List<Device> result = devList.getDeviceList();
 
         assertEquals(expectedResult, result);
     }
@@ -37,7 +37,7 @@ public class DeviceListTest {
         List<Device> expectedResult = new ArrayList<>();
 
         devList.addDevice(dev1);
-        List<Device> result = devList.getmDeviceList();
+        List<Device> result = devList.getDeviceList();
 
         assertEquals(expectedResult, result);
     }
@@ -45,7 +45,7 @@ public class DeviceListTest {
     @Test
     public void testHashCode() {
         DeviceList deviceList = new DeviceList();
-        int expectedResult = Objects.hash(deviceList.getmDeviceList());
+        int expectedResult = Objects.hash(deviceList.getDeviceList());
 
         // Act
         int result = deviceList.hashCode();
@@ -96,7 +96,7 @@ public class DeviceListTest {
     public void getDeviceListContentTest() {
         // Arrange
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
         DeviceList deviceList = new DeviceList();
 
@@ -119,7 +119,7 @@ public class DeviceListTest {
                         "2 - Name of the device: Lamp2\n";
 
         // Act
-        String result = deviceList.getDeviceListContent();
+        String result = deviceList.getDeviceListToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -131,7 +131,7 @@ public class DeviceListTest {
         DeviceList deviceList = new DeviceList();
 
         // Act
-        boolean result = deviceList.checkIfDeviceListIsEmpty();
+        boolean result = deviceList.isDeviceListEmpty();
 
         // Assert
         assertTrue(result);
@@ -142,7 +142,7 @@ public class DeviceListTest {
         // Arrange
 
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         double luminousFlux1 = 10.0;
@@ -155,7 +155,7 @@ public class DeviceListTest {
         deviceList.addDevice(dev1);
 
         // Act
-        boolean result = deviceList.checkIfDeviceListIsEmpty();
+        boolean result = deviceList.isDeviceListEmpty();
 
         // Assert
         assertFalse(result);
@@ -168,7 +168,7 @@ public class DeviceListTest {
         double height = 3;
         double length = 3.5;
         double width = 3.5;
-        Dimensions dim = new Dimensions(height, length, width);
+        Dimension dim = new Dimension(height, length, width);
 
         // Room Instantiation
         Room room = new Room("Room", 2, dim);
@@ -211,7 +211,7 @@ public class DeviceListTest {
         double performanceRatio = 100;
         DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         Device d2 = new Device("Electric2", room, electricWaterHeater1);
 
@@ -235,7 +235,7 @@ public class DeviceListTest {
 
         DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         Device d2 = new Device("Electric2", room, electricWaterHeater1);
 
@@ -256,7 +256,7 @@ public class DeviceListTest {
         // newWashingMachine Instantiation
         String name = "Washing Machine Bosh";
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         double capacity = 100;
@@ -279,7 +279,7 @@ public class DeviceListTest {
         // newWashingMachine Instantiation
         String name = "Washing Machine Bosh";
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         double capacity = 100;
@@ -302,7 +302,7 @@ public class DeviceListTest {
     public void testNewDishWasher() {
         String name = "Dish Washer Ariston";
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         int capacity = 100;
@@ -325,7 +325,7 @@ public class DeviceListTest {
     public void testNewDishWasherNegative() {
         String name = "Dish Washer Ariston";
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         int capacity = 100;
@@ -348,7 +348,7 @@ public class DeviceListTest {
     public void testNewLamp() {
         String name = "Lamp one";
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         double luminousFlux = 100;
@@ -371,7 +371,7 @@ public class DeviceListTest {
     public void testNewLampNegative() {
         String name = "Lamp one";
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         int capacity = 100;
@@ -392,7 +392,7 @@ public class DeviceListTest {
     public void testNewFrigde() {
         String name = "Fridge Balay";
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         double annualEnergyConsumption = 1000;
@@ -415,7 +415,7 @@ public class DeviceListTest {
     public void testNewFridgeNegative() {
         String name = "Fridge Balay";
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         double nominalPower = 200;
         double annualEnergyConsumption = 1000;
@@ -438,7 +438,7 @@ public class DeviceListTest {
     public void testAddDeviceToDeviceList() {
         //Arrange
 
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         String name = "Fridge Balay";
         double nominalPower = 200;
@@ -471,7 +471,7 @@ public class DeviceListTest {
                 "4- Washing Machine\n" +
                 "5- Electric Water Heater\n";
         //Act
-        String result = deviceList.getDeviceTypeListContent();
+        String result = deviceList.getDeviceTypeListToString();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -481,7 +481,7 @@ public class DeviceListTest {
     public void testGetDeviceName() {
         //Arrange
         //device d1
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
         String name = "Fridge Balay";
         double nominalPower = 200;
@@ -493,7 +493,7 @@ public class DeviceListTest {
         Device fridge = new Device(name, room, fridgeSpecs);
 
         //device d2
-        Dimensions dim2 = new Dimensions(3, 3.5, 3.5);
+        Dimension dim2 = new Dimension(3, 3.5, 3.5);
         Room room2 = new Room("Room", 2, dim);
         String lampName = "Kitchen Lamp";
         double lampNominalPower = 200;
@@ -523,7 +523,7 @@ public class DeviceListTest {
         double height = 3;
         double length = 3.5;
         double width = 3.5;
-        Dimensions dim = new Dimensions(height, length, width);
+        Dimension dim = new Dimension(height, length, width);
 
         // Room Instantiation
         Room room = new Room("Room", 2, dim);
@@ -568,7 +568,7 @@ public class DeviceListTest {
     public void testGetContentNameLocationOrderedByType() {
         // Arrange
         String roomKitchen = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room kitchen = new Room(roomKitchen, 2, dim);
 
         double luminousFlux1 = 10.0;
@@ -627,7 +627,7 @@ public class DeviceListTest {
         double height = 3;
         double length = 3.5;
         double width = 3.5;
-        Dimensions dim = new Dimensions(height, length, width);
+        Dimension dim = new Dimension(height, length, width);
 
         // Room Instantiation
         Room room = new Room("Room", 2, dim);
@@ -662,7 +662,7 @@ public class DeviceListTest {
         DeviceList expectedResult = compareList;
 
         //Act
-        DeviceList result = room.getmDeviceList();
+        DeviceList result = room.getDeviceList();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -675,7 +675,7 @@ public class DeviceListTest {
         double height = 3;
         double length = 3.5;
         double width = 3.5;
-        Dimensions dim = new Dimensions(height, length, width);
+        Dimension dim = new Dimension(height, length, width);
 
         // Room Instantiation
         Room room = new Room("Room", 2, dim);

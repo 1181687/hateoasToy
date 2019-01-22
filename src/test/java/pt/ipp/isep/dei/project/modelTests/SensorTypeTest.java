@@ -17,7 +17,7 @@ class SensorTypeTest {
         SensorType tipo0 = new SensorType("Temperatura");
         String expectedResult = "Temperatura";
         //Act
-        String result = tipo0.getmType();
+        String result = tipo0.getType();
         //Assert
         assertEquals(result,expectedResult);
     }

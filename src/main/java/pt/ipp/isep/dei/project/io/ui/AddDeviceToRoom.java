@@ -21,9 +21,9 @@ public class AddDeviceToRoom {
         while (flag) {
             //SELECT A ROOM
             String exit = "\r0 - Exit";
-            if (mCtrl.roomListLength() != 0) {
+            if (mCtrl.roomListSize() != 0) {
                 String label2 = "Please choose a room to attach a new device: \n" + mCtrl.getRoomListContent() + exit;
-                indexSelectedRoom = InputValidator.getIntRange(label2, 0, mCtrl.roomListLength()) - 1;
+                indexSelectedRoom = InputValidator.getIntRange(label2, 0, mCtrl.roomListSize()) - 1;
                 if (indexSelectedRoom == -1) {
                     return;
                 }
@@ -36,7 +36,7 @@ public class AddDeviceToRoom {
             Room selectedRoom = mCtrl.getSelectedRoom();
 
             //SELECT A DEVICE TYPE
-            String label0 = "Please select the Device Type: \n" + mCtrl.getDeviceTypeListContent() + exit;
+            String label0 = "Please select the Device Type: \n" + mCtrl.getDeviceTypeListToString() + exit;
             int selectedType = InputValidator.getIntRange(label0, 0, 5);
             if (selectedType == 0) {
                 continue;

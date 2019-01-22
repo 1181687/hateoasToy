@@ -135,7 +135,7 @@ public class Main {
         sensor.addMeasurementToList(temp14);
         sensor.addMeasurementToList(temp15);
         // Add sensor to the Inserted area
-        insertedGeoArea.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(sensor);
+        insertedGeoArea.getSensorListInTheGeographicArea().addSensor(sensor);
 
         // Sensor 2
         SensorType sensorTypeHumidity = new SensorType("humidity");
@@ -170,7 +170,7 @@ public class Main {
         sensor3.addMeasurementToList(temp36);
         sensor3.addMeasurementToList(temp37);
         sensor3.addMeasurementToList(temp38);
-        insertedGeoArea.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(sensor3);
+        insertedGeoArea.getSensorListInTheGeographicArea().addSensor(sensor3);
 
         // Sensor 4
         SensorType sensorTypeTemp = new SensorType("temperature");
@@ -192,7 +192,7 @@ public class Main {
         sensor4.addMeasurementToList(temp52);
         sensor4.addMeasurementToList(temp53);
         sensor4.addMeasurementToList(temp54);
-        insertedGeoArea.getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(sensor4);
+        insertedGeoArea.getSensorListInTheGeographicArea().addSensor(sensor4);
 
 
         // ROOMS
@@ -202,16 +202,16 @@ public class Main {
         double height = 3.5;
         double length = 11;
         double width = 7;
-        Dimensions dimensions = new Dimensions(height, length, width);
-        Room room1 = new Room(name, houseFloor, dimensions);
+        Dimension dimension = new Dimension(height, length, width);
+        Room room1 = new Room(name, houseFloor, dimension);
         houseEdificioB.addRoom(room1);
 
         // Room 2
         String name2 = "B109";
-        Room room2 = new Room(name2, houseFloor, dimensions);
+        Room room2 = new Room(name2, houseFloor, dimension);
         houseEdificioB.addRoom(room2);
-        room2.addSensorToTheListOfSensorsInTheRoom(sensor);
-        room2.addSensorToTheListOfSensorsInTheRoom(sensor2);
+        room2.addSensorToListOfSensorsInRoom(sensor);
+        room2.addSensorToListOfSensorsInRoom(sensor2);
 
         // Room 3
         String name3 = "B106";
@@ -219,8 +219,8 @@ public class Main {
         double height3 = 3.5;
         double length3 = 13;
         double width3 = 7;
-        Dimensions dimensions3 = new Dimensions(height3, length3, width3);
-        Room room3 = new Room(name3, houseFloor3, dimensions3);
+        Dimension dimension3 = new Dimension(height3, length3, width3);
+        Room room3 = new Room(name3, houseFloor3, dimension3);
         houseEdificioB.addRoom(room3);
 
 
@@ -306,7 +306,7 @@ public class Main {
         String houseGridName = "main grid";
         double maximumContractedPower = 200;
         HouseGrid houseGrid = new HouseGrid(houseGridName, maximumContractedPower, roomList);
-        gridList.addHouseGridToTheList(houseGrid);
+        gridList.addHouseGrid(houseGrid);
 
         // POWER SOURCES
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");

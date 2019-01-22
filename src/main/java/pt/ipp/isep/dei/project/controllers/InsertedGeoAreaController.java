@@ -11,7 +11,7 @@ public class InsertedGeoAreaController {
     }
 
     public String getConteudoLista (boolean usarCriterio){
-        return mLista.listContent(usarCriterio);
+        return mLista.getGeoAreaListToString(usarCriterio);
     }
 
     public GeographicalArea getAGNaListaApresentada(int opcaoSelecionada) {
