@@ -98,9 +98,7 @@ public class GeographicalArea {
      * @param mainGeoArea Geographical area where THIS Geo Area will be inserted in.
      */
     public void setInsertedIn(GeographicalArea mainGeoArea) {
-        if (!this.equals(mainGeoArea.mInsertedIn)) {
             this.mInsertedIn = mainGeoArea;
-        }
     }
 
     /**
