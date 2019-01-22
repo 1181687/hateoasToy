@@ -706,7 +706,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         ctrl.addAMeasurableObject(dev1);
 
-        boolean result = ctrl.measurableListIsEmpty(dev1);
+        boolean result = ctrl.checkIfMeasurableObjIsInList(dev1);
 
         //Assert
 
@@ -762,7 +762,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         ctrl.addAMeasurableObject(dev1);
 
-        boolean result = ctrl.measurableListIsEmpty(dev2);
+        boolean result = ctrl.checkIfMeasurableObjIsInList(dev2);
 
         //Assert
 

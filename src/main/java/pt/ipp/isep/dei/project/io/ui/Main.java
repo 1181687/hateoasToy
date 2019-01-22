@@ -37,7 +37,7 @@ public class Main {
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation);
         House houseEdificioB = new House(roomList, gridList, address, insertedGeoArea);
-        houseEdificioB.getmInsertedGeoArea().setInsertedIn(insertedGeoArea);
+        houseEdificioB.getInsertedGeoArea().setInsertedIn(insertedGeoArea);
 
 
         // MEASUREMENTS

@@ -19,7 +19,7 @@ public class DefineSensorType {
         System.out.println("Introduce a new sensor type.");
         Scanner ler = new Scanner(System.in);
         String nome = ler.nextLine();
-        if(this.mController.criarEAdicionarTipoDeSensor(nome)){
+        if(this.mController.createAndAddSensorType(nome)){
             System.out.println("Success!");
         }
         else{

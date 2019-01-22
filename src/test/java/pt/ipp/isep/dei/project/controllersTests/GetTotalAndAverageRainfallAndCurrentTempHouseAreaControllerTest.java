@@ -33,13 +33,13 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         // Sensor0 - Register 1
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 11, 1, 15, 20, 00);
@@ -95,13 +95,13 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
+        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        house.getmInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
+        house.getInsertedGeoArea().getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(s1);
 
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 11, 2, 15, 20, 00);

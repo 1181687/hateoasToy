@@ -72,6 +72,6 @@ public class GetCurrentAndMaxTempRoomController {
      * @return the maximum temperature of that room in the choosen day
      */
     public double getMaximumTemperatureOfARoomInAGivenDay(String name, SensorType type, LocalDate date) {
-        return this.mHouse.getMaximumTemperatureOfARoomInASpecificDay(name, type, date);
+        return this.mHouse.getMaximumTemperatureOfARoomInADay(name, type, date);
     }
 }
