@@ -1440,7 +1440,7 @@ public class HouseTest {
         house.setAttribute("Electric Water Heater", 0, coldWaterTempPosition, 30);
         house.setAttribute("Electric Water Heater", 0, volumeOfWaterToHeatPosition, 100);
 
-        double expectedResult = 2093.4;
+        double expectedResult = 2.09;
 
         // Act
         double result = house.getEnergyConsumptionOfADevice("Electric Water Heater", 0);
