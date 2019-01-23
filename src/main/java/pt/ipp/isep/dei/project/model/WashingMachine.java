@@ -78,8 +78,7 @@ public class WashingMachine implements DeviceSpecs {
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Capacity: " + mCapacity + "\n");
         attributes.append("2 - Nominal Power: " + mNominalPower + "\n");
-        String dishWasherAttributes = attributes.toString();
-        return dishWasherAttributes;
+        return attributes.toString();
     }
 
     /**
@@ -96,9 +95,8 @@ public class WashingMachine implements DeviceSpecs {
             case 2:
                 return setNominalPower(value);
             default:
-                System.out.println("Invalid option. Please choose a number between 1 and 2.");
+                return false;
         }
-        return false;
     }
 
     /**
