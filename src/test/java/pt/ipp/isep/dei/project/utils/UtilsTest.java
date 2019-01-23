@@ -68,10 +68,9 @@ class UtilsTest {
         int decimalPlaces = -1;
 
         // Act
-        try {
-            Utils.round(valueToBeRounded, decimalPlaces);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        }
+        Throwable exception = assertThrows(IllegalArgumentException.class, () ->
+                Utils.round(valueToBeRounded, decimalPlaces)
+        );
+        assertEquals("Please insert a positive value.", exception.getMessage());
     }
 }

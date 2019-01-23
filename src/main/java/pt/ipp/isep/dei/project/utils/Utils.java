@@ -27,7 +27,7 @@ public final class Utils {
      */
     public static double round(double value, int decimalPlaces) {
         if (decimalPlaces < 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Please insert a positive value.");
         }
         long factor = (long) Math.pow(10, decimalPlaces);
         double newValue = value * factor;
