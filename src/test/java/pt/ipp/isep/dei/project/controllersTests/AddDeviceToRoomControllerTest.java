@@ -181,7 +181,7 @@ class AddDeviceToRoomControllerTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-
+*/
 
     @Test
     public void testNewFrigde() {
@@ -199,31 +199,30 @@ class AddDeviceToRoomControllerTest {
 
         Dimensions dim = new Dimensions(3, 3.5, 3.5);
         Room room = new Room("Room Gabis", 2, dim);
+
         double nominalPower = 200;
         double annualEnergyConsumption = 1000;
         double freezerCapacity = 20;
         double refrigeratorCapacity = 50;
         DeviceSpecs fridgeSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
-        Device d2 = new Device(name, room, fridgeSpecs);
-
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
         house.addRoom(room);
 
-        Device expectedResult = d2;
+        Device expectedResult = new Device(name, room, fridgeSpecs);
 
         controller.getRoom(0);
         controller.getDeviceList();
-        controller.createNewFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
 
         // act
+        Device result = controller.createNewFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
 
-        Device result = controller.getDevice(0);
+//        Device result = controller.getDevice(0);
 
         // assert
         assertEquals(expectedResult, result);
     }
-
+/*
     @Test
     public void testNewFridgeNegative(){
 
