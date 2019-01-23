@@ -57,11 +57,11 @@ ENUM DeviceType{
 
 }
 
-Sensor -- SensorType
-Sensor -- Measurement
-Sensor -- Location
+Sensor "1" -- "1" SensorType
+Sensor "1" -- "*" Measurement
+Sensor "1" -- "1" Location
 
-Room -- Dimension
+Room  -- Dimension
 Room -- Sensor
 Room -- Device
 
@@ -72,8 +72,8 @@ House -- HouseGrid
 House -- Address
 House -- GeographicalArea
 
-GeographicalArea -- GeoAreaType
-GeographicalArea -- GeographicalArea
+GeographicalArea "1" -- "1" GeoAreaType
+GeographicalArea "1" -- "1" GeographicalArea
 GeographicalArea -- Location
 GeographicalArea -- AreaShape
 GeographicalArea -- Sensor
