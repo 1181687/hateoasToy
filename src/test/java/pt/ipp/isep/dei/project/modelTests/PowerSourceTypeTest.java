@@ -3,18 +3,21 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.PowerSource;
 import pt.ipp.isep.dei.project.model.PowerSourceType;
+
+import java.util.Objects;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PowerSourceTypeTest {
 
     @Test
-    public void testingHashCode() {
+    public void testHashCode() {
         //Arrange
         String powerSourceTypeName1 = "public electric grid";
 
         PowerSourceType powerSourceType1 = new PowerSourceType(powerSourceTypeName1);
 
-        int expectedResult = 1;
+        int expectedResult = Objects.hash(powerSourceTypeName1);
         // Act
         int result = powerSourceType1.hashCode();
         // Assert
