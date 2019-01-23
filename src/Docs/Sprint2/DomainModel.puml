@@ -1,0 +1,35 @@
+@startuml
+skinparam linetype ortho
+
+class SensorType{
+String type
+}
+class Sensor{
+
+}
+class Measurement
+class Location
+class GeoAreaType
+class GeographicalArea
+class AreaShape
+class Address
+class House
+class Room
+class Dimensions
+class HouseGrid
+class PowerSource
+class PowerSourceType
+class Device
+class DeviceType
+
+interface Measurable
+
+
+
+class ArrayList {
+Object[] elementData
+size()
+}
+
+
+@enduml
