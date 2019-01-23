@@ -72,9 +72,9 @@ public class HouseGrid implements Measurable {
      * @return
      */
     public boolean detachRoom(Room roomToDetach) {
-        for (Room room : this.mRoomList.getmRoomList()) {
+        for (Room room : this.mRoomList.getRoomList()) {
             if (room.equals(roomToDetach)) {
-                this.mRoomList.getmRoomList().remove(room);
+                this.mRoomList.getRoomList().remove(room);
                 return true;
             }
         }
@@ -86,7 +86,7 @@ public class HouseGrid implements Measurable {
      * @param room Speficied room to attach.
      */
     public void attachRoom(Room room) {
-        mRoomList.getmRoomList().add(room);
+        mRoomList.getRoomList().add(room);
     }
 
     /**
@@ -115,17 +115,17 @@ public class HouseGrid implements Measurable {
      * @return True or false.
      */
     public boolean checkIfRoomIsInHouseGrid(Room room) {
-        return mRoomList.getmRoomList().contains(room);
+        return mRoomList.getRoomList().contains(room);
     }
 
     public String getPowerSourceListContent() {
-        return mPowerSourceList.getPowerSourcesListContent();
+        return mPowerSourceList.getPowerSourcesListToString();
     }
 
     @Override
     public double getNominalPower() {
         double totalNominalPower = 0;
-        for (Room room : mRoomList.getmRoomList()) {
+        for (Room room : mRoomList.getRoomList()) {
             totalNominalPower += room.getNominalPower();
         }
         return totalNominalPower;
@@ -144,39 +144,44 @@ public class HouseGrid implements Measurable {
      *
      * @return true if there aren't devices. False if there are devices
      */
-    public boolean checkIfThereAreNoDevices() {
-        return this.getRoomList().checkIfThereAreNoDevices();
+    public boolean isDeviceListOfAllRoomsEmpty() {
+        return this.getRoomList().isDeviceListOfAllRoomsEmpty();
     }
 
 
     public int getRoomListSize() {
-        return mRoomList.listSize();
+        return mRoomList.getLength();
     }
 
     public Room getRoomByPosition(int position) {
-        return mRoomList.getRoomFromAPosition(position);
+        return mRoomList.getRoomFromPosition(position);
     }
 
     public String getDeviceListContent(int position) {
-        return mRoomList.getRoomFromAPosition(position).getDeviceListContent();
+        return mRoomList.getRoomFromPosition(position).getDeviceListContent();
     }
 
     public int getDeviceListSizeByRoomPosition(int position) {
-        return mRoomList.getRoomFromAPosition(position).getSizeOfDevicesList();
+        return mRoomList.getRoomFromPosition(position).getDevicesListLength();
     }
 
-    public boolean checkIfRoomListIsEmpty() {
-        return mRoomList.checkIfRoomListIsEmpty();
+    public boolean isRoomListEmpty() {
+        return mRoomList.isEmpty();
     }
 
-    public boolean checkIfDeviceListIsEmpty(int position) {
-        return mRoomList.getRoomFromAPosition(position).checkIfDeviceListIsEmpty();
+    public boolean isDeviceListOfRoomEmpty(int position) {
+        return mRoomList.getRoomFromPosition(position).isDeviceListEmpty();
     }
 
     public Device getDeviceFromPositionInList(int pos1, int pos2) {
-        return getRoomByPosition(pos1).getmDeviceList().getDeviceByPosition(pos2);
+        return getRoomByPosition(pos1).getDeviceList().getDeviceByPosition(pos2);
     }
 
+    /**
+     * method that returns the name of house grid
+     *
+     * @return String
+     */
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();

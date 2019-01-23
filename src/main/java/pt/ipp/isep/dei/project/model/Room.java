@@ -8,25 +8,25 @@ import static java.util.Objects.isNull;
 public class Room implements Measurable {
     private String mName;
     private int mHouseFloor;
-    private Dimensions mDimensions;
+    private Dimension mDimension;
     private SensorList mSensorList;
     private DeviceList mDeviceList;
 
     /**
-     * constructor that receives name, houseFloor, dimensions
+     * constructor that receives name, houseFloor, dimension
      * throw an exception if any of the parameters is invalid.
-     * Invalid parameters if Dimensions is null or name is null or empty
+     * Invalid parameters if Dimension is null or name is null or empty
      *
      * @param name
      * @param houseFloor
-     * @param dimensions
+     * @param dimension
      */
-    public Room(String name, int houseFloor, Dimensions dimensions) {
+    public Room(String name, int houseFloor, Dimension dimension) {
         validateName(name);
-        validateDimensions(dimensions);
+        validateDimensions(dimension);
         this.mName = name.trim();
         this.mHouseFloor = houseFloor;
-        this.mDimensions = dimensions;
+        this.mDimension = dimension;
         this.mSensorList = new SensorList();
         this.mDeviceList = new DeviceList();
     }
@@ -44,14 +44,14 @@ public class Room implements Measurable {
     }
 
     /**
-     * method that receives an object Dimensions and validates it. It can not be null
-     * throw an exception if Dimensions is null
+     * method that receives an object Dimension and validates it. It can not be null
+     * throw an exception if Dimension is null
      *
-     * @param dimensions given object dimensions
+     * @param dimension given object dimension
      */
-    private static void validateDimensions(Dimensions dimensions) {
-        if (isNull(dimensions)) {
-            throw new RuntimeException("Dimensions should not be null");
+    private static void validateDimensions(Dimension dimension) {
+        if (isNull(dimension)) {
+            throw new RuntimeException("Dimension should not be null");
         }
     }
 
@@ -60,17 +60,17 @@ public class Room implements Measurable {
      *
      * @return mName
      */
-    public String getmName() {
+    public String getName() {
         return mName;
     }
 
     /**
      * Method that defines the name of the room
      *
-     * @param mName name of a room (string)
+     * @param name name of a room (string)
      */
-    public void setmName(String mName) {
-        this.mName = mName;
+    public void setName(String name) {
+        this.mName = name;
     }
 
     /**
@@ -78,26 +78,26 @@ public class Room implements Measurable {
      *
      * @return mHouseFloor
      */
-    public int getmHouseFloor() {
+    public int getHouseFloor() {
         return mHouseFloor;
     }
 
     /**
      * Method that defines the House Floor number of the room
      *
-     * @param mHouseFloor house floor of the room (int number)
+     * @param houseFloor house floor of the room (int number)
      */
-    public void setmHouseFloor(int mHouseFloor) {
-        this.mHouseFloor = mHouseFloor;
+    public void setHouseFloor(int houseFloor) {
+        this.mHouseFloor = houseFloor;
     }
 
     /**
      * Get Method
      *
-     * @return mDimensions
+     * @return mDimension
      */
-    public Dimensions getmDimensions() {
-        return mDimensions;
+    public Dimension getDimension() {
+        return mDimension;
     }
 
     /**
@@ -105,13 +105,13 @@ public class Room implements Measurable {
      *
      * @return Rooms
      */
-    public String getRoomContent() {
+    public String getRoomToString() {
         StringBuilder content = new StringBuilder();
-        content.append("Name: " + getmName());
-        content.append(", House Floor: " + getmHouseFloor());
-        content.append(", Dimensions - Height: " + getmDimensions().getmHeight());
-        content.append(", Length: " + getmDimensions().getmLength());
-        content.append(", Width: " + getmDimensions().getmWidth());
+        content.append("Name: " + getName());
+        content.append(", House Floor: " + getHouseFloor());
+        content.append(", Dimension - Height: " + getDimension().getHeight());
+        content.append(", Length: " + getDimension().getLength());
+        content.append(", Width: " + getDimension().getWidth());
         return content.toString();
     }
 
@@ -151,8 +151,8 @@ public class Room implements Measurable {
      * @param newSensor add to the list of sensors
      * @return a new sensor to the list of sensors
      */
-    public boolean addSensorToTheListOfSensorsInTheRoom(Sensor newSensor) {
-        return this.mSensorList.addSensorToTheListOfSensors(newSensor);
+    public boolean addSensorToListOfSensorsInRoom(Sensor newSensor) {
+        return this.mSensorList.addSensor(newSensor);
     }
 
     /**
@@ -169,8 +169,8 @@ public class Room implements Measurable {
      * @param date any given day
      * @return maximum temperature
      */
-    public double getMaximumMeasurementInAGivenDay(SensorType type, LocalDate date) {
-        return mSensorList.getMaximumMeasureOfATypeOfSensorInAGivenDay(type, date);
+    public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
+        return mSensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(type, date);
     }
 
     /**
@@ -192,8 +192,8 @@ public class Room implements Measurable {
     @Override
     public double getNominalPower() {
         double totalNominalPower = 0;
-        if (mDeviceList.getLength() != 0) {
-            for (Device device : mDeviceList.getmDeviceList()) {
+        if (mDeviceList.getSize() != 0) {
+            for (Device device : mDeviceList.getDeviceList()) {
                 totalNominalPower += device.getNominalPower();
             }
         }
@@ -206,14 +206,14 @@ public class Room implements Measurable {
      * @return sensor list content
      */
     public String getSensorListContent() {
-        return this.mSensorList.getSensorsListContent();
+        return this.mSensorList.getSensorListToString();
     }
 
     /**
      * method that check if the sensor list of the room is empty
      */
-    public boolean checkIfSensorListIsEmpty() {
-        return this.mSensorList.checkIfSensorListIsEmpty();
+    public boolean isSensorListEmpty() {
+        return this.mSensorList.isEmpty();
     }
 
 
@@ -223,21 +223,21 @@ public class Room implements Measurable {
      * @return content of device list
      */
     public String getDeviceListContent() {
-        return this.mDeviceList.getDeviceListContent();
+        return this.mDeviceList.getDeviceListToString();
     }
 
     /**
      * method that checks if Device List of the room is empty
      */
-    public boolean checkIfDeviceListIsEmpty() {
-        return this.mDeviceList.checkIfDeviceListIsEmpty();
+    public boolean isDeviceListEmpty() {
+        return this.mDeviceList.isDeviceListEmpty();
     }
 
     /**
      * get method of the device list.
      * @return device list
      */
-    public DeviceList getmDeviceList() {
+    public DeviceList getDeviceList() {
         return mDeviceList;
     }
 
@@ -248,11 +248,11 @@ public class Room implements Measurable {
      * @return true if it adds, false if it doesn't add
      */
     public boolean addDevice(Device device) {
-        if (this.equals(device.getLocation()) && this.mDeviceList.getmDeviceList().contains(device)) {
+        if (this.equals(device.getLocation()) && this.mDeviceList.getDeviceList().contains(device)) {
             return false;
         }
         device.getLocation().removeDevice(device);
-        device.setmLocation(this);
+        device.setLocation(this);
         this.mDeviceList.addDevice(device);
         return true;
     }
@@ -268,10 +268,12 @@ public class Room implements Measurable {
 
     /**
      * method that get the size of the list of devices.
+     *
      * @return the size of the list.
      */
-    public int getSizeOfDevicesList() {
-        return mDeviceList.getLength();
+
+    public int getDevicesListLength() {
+        return mDeviceList.getSize();
     }
 
     /**
@@ -279,7 +281,7 @@ public class Room implements Measurable {
      * @param type
      * @return
      */
-    public DeviceList getAllDevicesOfAType(String type) {
+    public DeviceList getAllDevicesOfType(String type) {
         return mDeviceList.getAllDevicesOfAType(type);
     }
 
@@ -289,10 +291,15 @@ public class Room implements Measurable {
      * @param name name of device
      * @return boolean true if exists, false if it doesn't
      */
-    public boolean checkIfNameAlreadyExists(String name) {
-        return this.mDeviceList.checkIfNameAlreadyExists(name);
+    public boolean isNameExistant(String name) {
+        return this.mDeviceList.isNameExistant(name);
     }
 
+    /**
+     * method that returns the name of room
+     *
+     * @return String
+     */
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();

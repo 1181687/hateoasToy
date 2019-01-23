@@ -37,7 +37,7 @@ public class GetListOfSensorsAndDevicesRoomController {
     }
 
     /**
-     * method that return the method getSensorsListContent of the class House
+     * method that return the method getSensorListToString of the class House
      * @param position
      * @return the sensor list content of a room by a position
      */
@@ -46,11 +46,11 @@ public class GetListOfSensorsAndDevicesRoomController {
     }
 
     /**
-     * method that return the method checkIfListIsEmpty of the class House
+     * method that return the method isSensorListEmpty of the class House
      * @param position
      */
-    public boolean checkIfListIsEmpty (int position) {
-        return this.mHouse.checkIfSensorListIsEmpty(position);
+    public boolean isSensorListEmpty(int position) {
+        return this.mHouse.isSensorListEmpty(position);
     }
 
     /**
@@ -59,16 +59,16 @@ public class GetListOfSensorsAndDevicesRoomController {
      * @param position
      * @return the device list content of a room by position
      */
-    public String getDeviceListContentOfRoomByPosition(int position) {
-        return this.mHouse.getDeviceListContentOfRoomByPosition(position);
+    public String getDeviceListContent(int position) {
+        return this.mHouse.getDeviceListContentRoom(position);
     }
 
     /**
      * method that returns the method deviceListIsEmpty of the Class House
      * @param position
      */
-    public boolean checkIfDeviceListIsEmpty(int position) {
-        return this.mHouse.checkIfDeviceListIsEmpty(position);
+    public boolean isDeviceListEmpty(int position) {
+        return this.mHouse.isDeviceListEmpty(position);
     }
 
     /**

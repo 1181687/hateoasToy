@@ -19,7 +19,7 @@ class CreateHouseGridControllerTest {
         ctrl.addHouseGridToTheListOfHouseGrids(grid);
 
         // Act
-        boolean result = ctrl.getmHouseGridList().getmHouseGridsList().contains(grid);
+        boolean result = ctrl.getHouseGridList().getmHouseGridsList().contains(grid);
 
         // Assert
         assertTrue(result);

@@ -18,7 +18,7 @@ public class GeoAreaList {
      * method that get a geographical areas list.
      * @return a list of geographical areas
      */
-    public List<GeographicalArea> getmGeoAreaList() {
+    public List<GeographicalArea> getGeoAreaList() {
         return mGeoAreaList;
     }
 
@@ -131,13 +131,13 @@ public class GeoAreaList {
      * @param useCriteria
      * @return the content of the list.
      */
-    public String listContent(boolean useCriteria) {
+    public String getGeoAreaListToString(boolean useCriteria) {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= mGeoAreaList.size(); i++) {
             content.append(i + " - Nome: " + mGeoAreaList.get(i - 1).getNameOfGeoArea());
             content.append(", Tipo: " + mGeoAreaList.get(i - 1).getGeoAreaType().getStringOfTypeOfGeoArea());
-            content.append(", Latitude: " + mGeoAreaList.get(i - 1).getLocation().getmLatitude());
-            content.append(", Longitude: " + mGeoAreaList.get(i - 1).getLocation().getmLongitude());
+            content.append(", Latitude: " + mGeoAreaList.get(i - 1).getLocation().getLatitude());
+            content.append(", Longitude: " + mGeoAreaList.get(i - 1).getLocation().getLongitude());
             if (useCriteria && !checkIfGeoAreaDoesntHaveAnInsertedArea(mGeoAreaList.get(i - 1))) {
                 content.append(", Inserido Em: " + mGeoAreaList.get(i - 1).getInsertedIn().getGeoAreaType().getStringOfTypeOfGeoArea());
                 content.append(" " + mGeoAreaList.get(i - 1).getInsertedIn().getNameOfGeoArea());
@@ -169,7 +169,7 @@ public class GeoAreaList {
      * method that gets the size of the list
      * @return integer
      */
-    public int getSizeOfTheList(){
+    public int getSize() {
         return this.mGeoAreaList.size();
     }
 }

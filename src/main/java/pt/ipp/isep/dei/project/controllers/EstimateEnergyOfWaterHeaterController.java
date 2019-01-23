@@ -9,10 +9,10 @@ public class EstimateEnergyOfWaterHeaterController {
     /**
      * Constructor.
      *
-     * @param mHouse House to be used.
+     * @param house House to be used.
      */
-    public EstimateEnergyOfWaterHeaterController(House mHouse) {
-        this.mHouse = mHouse;
+    public EstimateEnergyOfWaterHeaterController(House house) {
+        this.mHouse = house;
         this.mType = "Electric Water Heater";
     }
 

@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetRoomListController;
-import pt.ipp.isep.dei.project.model.Dimensions;
+import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.RoomList;
 
@@ -17,21 +17,21 @@ class GetRoomListControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         rList.addRoom(room1);
         rList.addRoom(room2);
 
         GetRoomListController ctrl = new GetRoomListController(rList);
 
-        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Length: 2.0, Width: 2.0\n" +
-                "2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Length: 1.5, Width: 1.3\n";
+        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
+                "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
         //act
         String result = ctrl.getRoomListContent();
         //assert
@@ -58,7 +58,7 @@ class GetRoomListControllerTest {
 
         GetRoomListController ctrl = new GetRoomListController(rList);
         //act
-        boolean result = ctrl.checkIfListIsEmpty();
+        boolean result = ctrl.isEmpty();
         //assert
         assertTrue(result);
     }
@@ -70,15 +70,15 @@ class GetRoomListControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         rList.addRoom(room1);
 
         GetRoomListController ctrl = new GetRoomListController(rList);
 
         //act
-        boolean result = ctrl.checkIfListIsEmpty();
+        boolean result = ctrl.isEmpty();
         //assert
         assertFalse(result);
     }

@@ -23,7 +23,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
         // Act
-        boolean result = ctrl.checkIfGridListIsEmpty();
+        boolean result = ctrl.isGridListEmpty();
 
         // Assert
         assertTrue(result);
@@ -46,12 +46,12 @@ class GetNominalPowerRoomsDevicesControllerTest {
         //grid
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
-        gridList.addHouseGridToTheList(grid);
+        gridList.addHouseGrid(grid);
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
         // Act
-        boolean result = ctrl.checkIfGridListIsEmpty();
+        boolean result = ctrl.isGridListEmpty();
 
         // Assert
         assertFalse(result);
@@ -166,13 +166,13 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         houseGrid.attachRoom(room1);
         houseGrid.attachRoom(room2);
@@ -208,7 +208,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         list.getmHouseGridsList().add(houseGrid);
 
         //initiate Room
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
         houseGrid.attachRoom(room);
@@ -267,7 +267,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         list.getmHouseGridsList().add(houseGrid);
 
         //initiate Room
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
         houseGrid.attachRoom(room);
@@ -347,7 +347,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         list.getmHouseGridsList().add(houseGrid);
 
         //initiate Room
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
         houseGrid.attachRoom(room);
@@ -356,8 +356,8 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         rList.addRoom(room1);
 
@@ -392,7 +392,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         //initiate Room
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         houseGrid.attachRoom(room);
@@ -430,7 +430,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         //initiate Room
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         houseGrid.attachRoom(room);
@@ -476,7 +476,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         //initiate Room
 
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         houseGrid.attachRoom(room);
@@ -522,17 +522,17 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         list.getmHouseGridsList().add(houseGrid);
 
-        Dimensions dimensionsRoom1 = new Dimensions(5.2, 3.7, 8.5);
-        Room room1 = new Room("Kid's room", 1, dimensionsRoom1);
-        Dimensions dimensionsRoom2 = new Dimensions(5.2, 3.7, 8.5);
-        Room room2 = new Room("Bathroom", 1, dimensionsRoom2);
+        Dimension dimensionRoom1 = new Dimension(5.2, 3.7, 8.5);
+        Room room1 = new Room("Kid's room", 1, dimensionRoom1);
+        Dimension dimensionRoom2 = new Dimension(5.2, 3.7, 8.5);
+        Room room2 = new Room("Bathroom", 1, dimensionRoom2);
 
 
         houseGrid.getRoomList().addRoom(room1);
         houseGrid.getRoomList().addRoom(room2);
 
-        String expectedResult = "1- Name: Kid's room, House Floor: 1, Dimensions - Height: 5.2, Length: 3.7, Width: 8.5\n" +
-                "2- Name: Bathroom, House Floor: 1, Dimensions - Height: 5.2, Length: 3.7, Width: 8.5\n";
+        String expectedResult = "1- Name: Kid's room, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n" +
+                "2- Name: Bathroom, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n";
 
         GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
@@ -565,13 +565,13 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         houseGrid.attachRoom(room1);
         houseGrid.attachRoom(room2);
@@ -636,7 +636,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         //initiate Room
 
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         houseGrid.attachRoom(room);
@@ -653,7 +653,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         ctrl.getHouseGridByPosition(0);
 
-        ctrl.addAMeasurableObject(dev1);
+        ctrl.addMeasurable(dev1);
 
         double expectedResult = 1;
 
@@ -687,7 +687,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         //initiate Room
 
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         houseGrid.attachRoom(room);
@@ -704,9 +704,9 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         ctrl.getHouseGridByPosition(0);
 
-        ctrl.addAMeasurableObject(dev1);
+        ctrl.addMeasurable(dev1);
 
-        boolean result = ctrl.checkIfMeasurableObjIsInList(dev1);
+        boolean result = ctrl.isMeasurableInList(dev1);
 
         //Assert
 
@@ -735,7 +735,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         //initiate Room
 
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         houseGrid.attachRoom(room);
@@ -760,9 +760,9 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         ctrl.getHouseGridByPosition(0);
 
-        ctrl.addAMeasurableObject(dev1);
+        ctrl.addMeasurable(dev1);
 
-        boolean result = ctrl.checkIfMeasurableObjIsInList(dev2);
+        boolean result = ctrl.isMeasurableInList(dev2);
 
         //Assert
 
@@ -791,7 +791,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         list.getmHouseGridsList().add(houseGrid);
 
         //initiate Room
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room1 = new Room("Room1", 2, dim);
         Room room2 = new Room("Room2", 2, dim);
 
@@ -817,8 +817,8 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         ctrl.getHouseGridByPosition(0);
 
-        ctrl.addAMeasurableObject(dev1);
-        ctrl.addAMeasurableObject(room2);
+        ctrl.addMeasurable(dev1);
+        ctrl.addMeasurable(room2);
 
 
         String expectedResult = "Room: Room2\nDevice: FridgeAriston, located in room: Room1\n";

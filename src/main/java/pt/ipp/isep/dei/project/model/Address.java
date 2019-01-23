@@ -7,11 +7,11 @@ public class Address {
     /**
      * constructor of Address that receives a zipCode and a location
      * @param mZipCode
-     * @param mLocation
+     * @param location
      */
-    public Address(String mZipCode, Location mLocation) {
+    public Address(String mZipCode, Location location) {
         this.mZipCode = mZipCode;
-        this.mLocation = mLocation;
+        this.mLocation = location;
     }
 
     /**

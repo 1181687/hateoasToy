@@ -82,7 +82,7 @@ public class HouseGridList {
      * Method that checks if the house grid's list is empty.
      * @return True or false.
      */
-    public boolean checkIfHouseGridListIsEmpty() {
+    public boolean isHouseGridListEmpty() {
         return mHouseGridsList.isEmpty();
     }
 
@@ -92,7 +92,7 @@ public class HouseGridList {
      * @param name Name of the grid.
      * @return New object of the class HouseGrid.
      */
-    public HouseGrid createAHouseGrid(String name) {
+    public HouseGrid newHouseGrid(String name) {
         return new HouseGrid(name);
     }
 
@@ -101,7 +101,7 @@ public class HouseGridList {
      *
      * @param grid Specified grid.
      */
-    public void addHouseGridToTheList(HouseGrid grid) {
+    public void addHouseGrid(HouseGrid grid) {
         mHouseGridsList.add(grid);
     }
 
@@ -112,7 +112,7 @@ public class HouseGridList {
      * @param room       Specified room.
      * @return True or false.
      */
-    public boolean checkIfARoomIsAlreadyInAHouseGrid(HouseGrid chosenGrid, Room room) {
+    public boolean checkIfRoomIsAlreadyInHouseGrid(HouseGrid chosenGrid, Room room) {
         int index = mHouseGridsList.indexOf(chosenGrid);
         return mHouseGridsList.get(index).checkIfRoomIsInHouseGrid(room);
     }

@@ -13,12 +13,13 @@ public class GetNominalPowerOfAGridController {
 
     /**
      * Method that checks if there are no HouseGrids in the House.
+     *
      * @return true in case there are no HouseGrids or false if there is at least one HouseGrid in the House.
      */
-
-    public boolean houseGridListIsEmpty(){
-        return this.mHouse.checkIfHouseGridListIsEmpty();
+    public boolean isGridListEmpty() {
+        return this.mHouse.isHouseGridListEmpty();
     }
+
 
     /**
      * Returns a list of HouseGrids that are in the House's HouseGridList.
@@ -31,11 +32,12 @@ public class GetNominalPowerOfAGridController {
 
     /**
      * Returns the number of HouseGrids contained in the House's HouseGridList.
+     *
      * @return integer
      */
 
-    public int getHouseGridListSize(){
-        return mHouse.getHouseGridListLength();
+    public int getHouseGridListSize() {
+        return mHouse.getHouseGridListSize();
     }
 
     /**

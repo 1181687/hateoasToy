@@ -39,7 +39,7 @@ public class AddRoomController {
         return this.mHouse.addRoom(mRoom);
     }
 
-    public boolean checkIfNameAlreadyExists(String name) {
-        return this.mHouse.checkIfNameAlreadyExists(name);
+    public boolean isNameExistant(String name) {
+        return this.mHouse.isNameExistant(name);
     }
 }

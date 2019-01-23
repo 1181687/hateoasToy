@@ -13,7 +13,7 @@ public class GetRoomListController {
         return mList.getRoomListContent();
     }
 
-    public boolean checkIfListIsEmpty(){
-        return mList.checkIfRoomListIsEmpty();
+    public boolean isEmpty(){
+        return mList.isEmpty();
     }
 }

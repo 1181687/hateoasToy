@@ -29,7 +29,7 @@ public class GetListOfSensorsAndDevicesRoom {
         String roomChoosed = controller.getRoomNameByPosition(choosenOption - 1);
         String listOfSensors = controller.getSensorsListContent(choosenOption - 1);
 
-        if (controller.checkIfListIsEmpty(choosenOption - 1)) {
+        if (controller.isSensorListEmpty(choosenOption - 1)) {
             System.out.println("The list is empty. Please, add a sensor.");
 
         } else {
@@ -57,9 +57,9 @@ public class GetListOfSensorsAndDevicesRoom {
 
         int positionRoom = chosenOption - 1;
         String choosenRoom = controller.getRoomNameByPosition(positionRoom);
-        String listOfDevices = controller.getDeviceListContentOfRoomByPosition(positionRoom);
+        String listOfDevices = controller.getDeviceListContent(positionRoom);
 
-        if (controller.checkIfDeviceListIsEmpty(positionRoom)) {
+        if (controller.isDeviceListEmpty(positionRoom)) {
             System.out.println("\nThe list is empty.\n");
             return;
         }

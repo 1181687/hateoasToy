@@ -11,7 +11,7 @@ public class AddGeoAreaToAnotherGeoAreaController {
     }
 
     public String getConteudoLista (boolean usarCriterio){
-        return mLista.listContent(usarCriterio);
+        return mLista.getGeoAreaListToString(usarCriterio);
     }
 
     public GeographicalArea getAGNaListaApresentada(int opcaoSelecionada) {
@@ -30,8 +30,8 @@ public class AddGeoAreaToAnotherGeoAreaController {
         mLista.removeGeoArea(area);
     }
 
-    public int getSizeList(){
-        return mLista.getSizeOfTheList();
+    public int getListSize(){
+        return mLista.getSize();
     }
 }
 

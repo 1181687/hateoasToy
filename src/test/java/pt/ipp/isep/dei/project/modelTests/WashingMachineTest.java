@@ -19,7 +19,7 @@ class WashingMachineTest {
         String expectedResult = "Washing Machine";
 
         //Act
-        String result = washingMachine.getmTypeName();
+        String result = washingMachine.getTypeName();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -36,7 +36,7 @@ class WashingMachineTest {
         double expectedResult = 30;
 
         //Act
-        double result = washingMachine.getmNominalPower();
+        double result = washingMachine.getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -53,7 +53,7 @@ class WashingMachineTest {
         boolean expectedResult = false;
 
         //Act
-        boolean result = washingMachine.setmCapacity(capacity);
+        boolean result = washingMachine.setCapacity(capacity);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -71,7 +71,7 @@ class WashingMachineTest {
         boolean expectedResult = true;
 
         //Act
-        boolean result = washingMachine.setmCapacity(capacity2);
+        boolean result = washingMachine.setCapacity(capacity2);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -88,7 +88,7 @@ class WashingMachineTest {
         boolean expectedResult = false;
 
         //Act
-        boolean result = washingMachine.setmNominalPower(nominalPower);
+        boolean result = washingMachine.setNominalPower(nominalPower);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -106,7 +106,7 @@ class WashingMachineTest {
         boolean expectedResult = true;
 
         //Act
-        boolean result = washingMachine.setmNominalPower(nominalPower2);
+        boolean result = washingMachine.setNominalPower(nominalPower2);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -156,7 +156,7 @@ class WashingMachineTest {
         WashingMachine washingMachine = new WashingMachine(capacity, nominalPower, programList);
         int attribute = 3;
         double value = 20.6;
-        washingMachine.setmCapacity(capacity);
+        washingMachine.setCapacity(capacity);
 
         boolean expectedResult = false;
 

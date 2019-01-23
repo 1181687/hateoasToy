@@ -12,7 +12,7 @@ public class GetNominalPowerRoomsDevices {
     }
 
     public void run() {
-        if (mController.checkIfGridListIsEmpty()) {
+        if (mController.isGridListEmpty()) {
             System.out.println("There are no house grids in the house. Please, add one.\n");
             return;
         }
@@ -42,7 +42,7 @@ public class GetNominalPowerRoomsDevices {
                     System.out.println("There are no devices in this room. Please, choose another room or add devices to the chosen room.\n");
                     continue;
                 }
-                if (mController.checkIfMeasurableObjIsInList(mController.getRoomOfHouseGridByPosition(positionRoom))) {
+                if (mController.isMeasurableInList(mController.getRoomOfHouseGridByPosition(positionRoom))) {
                     System.out.println("That room was already chosen.");
                 } else {
                     String label3 = "Please select a device to check its nominal power: \n"
@@ -53,12 +53,12 @@ public class GetNominalPowerRoomsDevices {
                         continue;
                     }
                     if (positionDevice == mController.getDeviceListSize(positionRoom) + 1) {
-                        mController.addAMeasurableObject(mController.getRoomOfHouseGridByPosition(positionRoom));
+                        mController.addMeasurable(mController.getRoomOfHouseGridByPosition(positionRoom));
                     } else {
-                        if (mController.checkIfMeasurableObjIsInList(mController.getDeviceListByPosition(positionRoom, positionDevice - 1))) {
+                        if (mController.isMeasurableInList(mController.getDeviceListByPosition(positionRoom, positionDevice - 1))) {
                             System.out.println("That device was already chosen.");
                         }
-                        mController.addAMeasurableObject(mController.getDeviceListByPosition(positionRoom, (positionDevice - 1)));
+                        mController.addMeasurable(mController.getDeviceListByPosition(positionRoom, (positionDevice - 1)));
                         String label4 = "Would you like to add any other device of this room to the nominal power calculations? \nIf yes," +
                                 "please type the number of that device; if not, please type 0.";
                         boolean flag3 = true;
@@ -70,10 +70,10 @@ public class GetNominalPowerRoomsDevices {
                             if (addOtherDeviceOrNot == mController.getDeviceListSize(positionRoom) + 1) {
                                 label4 = "You have already selected at least a device from this room. It is not possible to add the total nominal power of this room to calculations.\nPlease type the number of another device.";
                             } else {
-                                if (mController.checkIfMeasurableObjIsInList(mController.getDeviceListByPosition(positionRoom, addOtherDeviceOrNot - 1))) {
+                                if (mController.isMeasurableInList(mController.getDeviceListByPosition(positionRoom, addOtherDeviceOrNot - 1))) {
                                     label4 = "That device was already chosen.\nWould you like to add any other device of this room to the nominal power calculations? If yes please type the number of that device; if not, please type 0.";
                                 } else {
-                                    mController.addAMeasurableObject(mController.getDeviceListByPosition(positionRoom, addOtherDeviceOrNot - 1));
+                                    mController.addMeasurable(mController.getDeviceListByPosition(positionRoom, addOtherDeviceOrNot - 1));
                                     label4 = "Would you like to add any other device of this room to the nominal power calculations? \nIf yes," +
                                             "please type the number of that device; if not, please type 0.";
                                     continue;

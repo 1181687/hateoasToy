@@ -14,11 +14,12 @@ public class GetNominalPowerRoomsDevicesController {
     }
 
     /**
-     * method that returns the method checkIfHouseGridListIsEmpty of the model class House
+     * method that returns the method isHouseGridListEmpty of the model class House
+     *
      * @return true if house grid list is empty or false if it is not empty
      */
-    public boolean checkIfGridListIsEmpty(){
-        return this.mHouse.checkIfHouseGridListIsEmpty();
+    public boolean isGridListEmpty(){
+        return this.mHouse.isHouseGridListEmpty();
     }
 
     /**
@@ -30,11 +31,11 @@ public class GetNominalPowerRoomsDevicesController {
     }
 
     /**
-     * method that returns the method getHouseGridListLength of the model class House
+     * method that returns the method getHouseGridListSize of the model class House
      * @return an integer that matches the house grid list size
      */
     public int getHouseGridListSize(){
-        return this.mHouse.getHouseGridListLength();
+        return this.mHouse.getHouseGridListSize();
     }
 
     /**
@@ -73,20 +74,20 @@ public class GetNominalPowerRoomsDevicesController {
     }
 
     /**
-     * method that returns the method checkIfRoomListIsEmpty of the model class House Grid
+     * method that returns the method isRoomListEmpty of the model class House Grid
      * @return true if room list is empty or false if it is not empty
      */
     public boolean roomListOfHouseGridIsEmpty() {
-        return mSelectedHouseGrid.checkIfRoomListIsEmpty();
+        return mSelectedHouseGrid.isRoomListEmpty();
     }
 
     /**
-     * method that returns the method checkIfDeviceListIsEmpty of the model class House Grid
+     * method that returns the method isDeviceListEmpty of the model class House Grid
      * @param position integer that matches the position of room in room list of house grid
      * @return true if device list of chosen room (position) is empty or false if it is not empty
      */
     public boolean deviceListIsEmpty(int position){
-        return mSelectedHouseGrid.checkIfDeviceListIsEmpty(position);
+        return mSelectedHouseGrid.isDeviceListOfRoomEmpty(position);
     }
 
     /**
@@ -111,7 +112,7 @@ public class GetNominalPowerRoomsDevicesController {
      * method that adds a measurable object (room or device)
      * @param measurable matches an object: room or device
      */
-    public void addAMeasurableObject(Measurable measurable){
+    public void addMeasurable(Measurable measurable) {
         mMeasurableList.addMeasurable(measurable);
     }
 
@@ -132,14 +133,20 @@ public class GetNominalPowerRoomsDevicesController {
     }
 
     /**
-     * method that returns the method checkIfMeasurableObjIsInList of model class measurable list
+     * method that returns the method isMeasurableInList of model class measurable list
+     *
      * @param measurable matches an object: room or device
      * @return true if measurable list is empty and false if it is not
      */
-    public boolean checkIfMeasurableObjIsInList(Measurable measurable){
+    public boolean isMeasurableInList(Measurable measurable){
         return mMeasurableList.checkIfMeasurableObjIsInList(measurable);
     }
 
+    /**
+     * method that returns the method getListToString of model class MeasurableList
+     *
+     * @return list (string)
+     */
     public String getListToString() {
         return mMeasurableList.getListToString();
     }

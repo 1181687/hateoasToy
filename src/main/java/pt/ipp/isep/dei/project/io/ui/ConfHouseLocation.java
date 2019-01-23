@@ -29,7 +29,7 @@ public class ConfHouseLocation {
         double altitude = InputValidator.getInt(label3);
 
         ctrl.defineNewAddress(zipCode, latitude, longitude, altitude);
-        ctrl.setAddressToTheHouse();
+        ctrl.setAddress();
         System.out.println("Success!");
     }
 }

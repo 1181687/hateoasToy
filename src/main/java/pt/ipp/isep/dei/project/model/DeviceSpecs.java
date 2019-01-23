@@ -2,11 +2,11 @@ package pt.ipp.isep.dei.project.model;
 
 public interface DeviceSpecs {
 
-    String getmTypeName ();
+    String getTypeName();
 
     double getEnergyConsumptionInADay();
 
-    double getmNominalPower();
+    double getNominalPower();
 
     String getAttributesToString();
 

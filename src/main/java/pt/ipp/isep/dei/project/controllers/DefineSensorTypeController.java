@@ -13,10 +13,11 @@ public class DefineSensorTypeController {
 
     /**
      * Creates a new Sensor type and adds it to the list of available Sensor types.
+     *
      * @param sensorType
      * @return true or false
      */
-    public boolean createAndAddSensorType(String sensorType){
+    public boolean createAndAddSensorType(String sensorType) {
         SensorType newSensorType = this.sensorTypeList.newSensorType(sensorType);
         return this.sensorTypeList.addSensorType(newSensorType);
     }

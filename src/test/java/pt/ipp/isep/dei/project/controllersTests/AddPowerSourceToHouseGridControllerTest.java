@@ -2,7 +2,10 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.HouseGrid;
+import pt.ipp.isep.dei.project.model.HouseGridList;
+import pt.ipp.isep.dei.project.model.PowerSourceType;
+import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,7 +24,7 @@ class AddPowerSourceToHouseGridControllerTest {
         AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
 
         // Act
-        boolean result = addPowerSourceToHouseGridController.houseGridListIsEmpty();
+        boolean result = addPowerSourceToHouseGridController.isHouseGridListEmpty();
 
         // Assert
         assertTrue(result);
@@ -43,7 +46,7 @@ class AddPowerSourceToHouseGridControllerTest {
         AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
 
         // Act
-        boolean result = addPowerSourceToHouseGridController.houseGridListIsEmpty();
+        boolean result = addPowerSourceToHouseGridController.isHouseGridListEmpty();
 
         // Assert
         assertFalse(result);
@@ -89,7 +92,7 @@ class AddPowerSourceToHouseGridControllerTest {
 
         int expectedResult=1;
         //Act
-        int result = addPowerSourceToHouseGridController.houseGridListLength();
+        int result = addPowerSourceToHouseGridController.getHouseGridListSize();
 
         //Assert
         assertEquals(expectedResult,result);
