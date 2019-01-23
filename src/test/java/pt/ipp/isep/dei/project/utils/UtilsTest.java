@@ -57,7 +57,21 @@ class UtilsTest {
         // Act
         double result = Utils.round(valueToBeRounded, decimalPlaces);
 
-        // assert
+        // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void roundTestIllegalArgumentException() {
+        // Arrange
+        double valueToBeRounded = 3.7654;
+        int decimalPlaces = -1;
+
+        // Act
+        try {
+            Utils.round(valueToBeRounded, decimalPlaces);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        }
     }
 }
