@@ -50,9 +50,9 @@ class UtilsTest {
     void roundTest() {
         // Arrange
         double valueToBeRounded = 3.7654;
-        int decimalPlaces = 2;
+        int decimalPlaces = 0;
 
-        double expectedResult = 3.77;
+        double expectedResult = 4.0;
 
         // Act
         double result = Utils.round(valueToBeRounded, decimalPlaces);
