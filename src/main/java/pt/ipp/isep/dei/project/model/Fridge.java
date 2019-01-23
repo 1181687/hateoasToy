@@ -19,6 +19,7 @@ public class Fridge implements DeviceSpecs {
 
     /**
      * get method of the type name.
+     *
      * @return type of device
      */
     @Override
@@ -26,14 +27,18 @@ public class Fridge implements DeviceSpecs {
         return mTypeName;
     }
 
-    /** get method
+    /**
+     * get method
+     *
      * @return energy consumption in a day
      */
     public double getEnergyConsumptionInADay() {
         return mAnnualEnergyConsumption / 365;
     }
 
-    /** get method of the nominal power
+    /**
+     * get method of the nominal power
+     *
      * @return nominal power
      */
     @Override
@@ -58,6 +63,7 @@ public class Fridge implements DeviceSpecs {
 
     /**
      * set method ro refrigerator capacity
+     *
      * @param refrigeratorCapacity capacity of refrigerator
      */
     public boolean setRefrigeratorCapacity(double refrigeratorCapacity) {
@@ -70,6 +76,7 @@ public class Fridge implements DeviceSpecs {
 
     /**
      * set method of the annual energy consumption
+     *
      * @param annualEnergyConsumption annual energy comsumption
      */
     public boolean setAnnualEnergyConsumption(double annualEnergyConsumption) {
@@ -82,6 +89,7 @@ public class Fridge implements DeviceSpecs {
 
     /**
      * set method of the nominal power.
+     *
      * @param nominalPower nominal power
      */
     public boolean setNominalPower(double nominalPower) {
@@ -94,6 +102,7 @@ public class Fridge implements DeviceSpecs {
 
     /**
      * method that displays a string of the choosen attribute (name of the attribute and its value)
+     *
      * @return fridge attributes.
      */
     @Override
@@ -103,12 +112,12 @@ public class Fridge implements DeviceSpecs {
         attributes.append("2 - Refrigerator Capacity: " + mRefrigeratorCapacity + "\n");
         attributes.append("3 - Annual Energy Consumption: " + mAnnualEnergyConsumption + "\n");
         attributes.append("4 - Nominal Power: " + mNominalPower + "\n");
-        String fridgeAttributes = attributes.toString();
-        return fridgeAttributes;
+        return attributes.toString();
     }
 
     /**
      * set method
+     *
      * @param attribute position of the attribute
      * @param value
      * @return
@@ -125,12 +134,14 @@ public class Fridge implements DeviceSpecs {
                 return setAnnualEnergyConsumption(value);
             case 4:
                 return setNominalPower(value);
+            default:
+                return false;
         }
-        return false;
     }
 
     /**
      * get method of the number of attributes
+     *
      * @return number of Fridge attributes
      */
     @Override
