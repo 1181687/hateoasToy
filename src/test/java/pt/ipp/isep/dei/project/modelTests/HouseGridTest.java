@@ -248,7 +248,6 @@ public class HouseGridTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         houseGrid.attachRoom(room);
 
@@ -488,6 +487,38 @@ public class HouseGridTest {
         Throwable exception = assertThrows(RuntimeException.class, () ->
                 new HouseGrid(name)
         );
+        //Assert
+        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+    }
+
+    @Test
+    public void testConstructorWithEmptyNameShouldThrowException(){
+        //Arrange
+        String name = "";
+        double maximumContractedPower = 24.1;
+        RoomList roomList = new RoomList();
+
+        //Act
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new HouseGrid(name,maximumContractedPower,roomList)
+        );
+
+        //Assert
+        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+    }
+
+    @Test
+    public void testConstructorWithNullNameShouldThrowException(){
+        //Arrange
+        String name = null;
+        double maximumContractedPower = 24.1;
+        RoomList roomList = new RoomList();
+
+        //Act
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new HouseGrid(name,maximumContractedPower,roomList)
+        );
+
         //Assert
         assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
     }
