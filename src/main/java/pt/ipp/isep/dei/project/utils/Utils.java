@@ -26,10 +26,12 @@ public final class Utils {
      * @return Double with the rounded value.
      */
     public static double round(double value, int decimalPlaces) {
-        if (decimalPlaces < 0) throw new IllegalArgumentException();
+        if (decimalPlaces < 0) {
+            throw new IllegalArgumentException();
+        }
         long factor = (long) Math.pow(10, decimalPlaces);
-        value = value * factor;
-        long tmp = Math.round(value);
+        double newValue = value * factor;
+        long tmp = Math.round(newValue);
         return (double) tmp / factor;
     }
 }

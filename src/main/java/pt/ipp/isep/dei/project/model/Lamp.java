@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.model;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 public class Lamp implements DeviceSpecs {
-    private String mTypeName ;
+    private String mTypeName;
     private double mLuminousFlux;
     private double mTime;
     private double mNominalPower;
@@ -27,6 +27,7 @@ public class Lamp implements DeviceSpecs {
 
     /**
      * get Method
+     *
      * @return nominal power
      */
     @Override
@@ -36,6 +37,7 @@ public class Lamp implements DeviceSpecs {
 
     /**
      * get method
+     *
      * @return energy consumption in a Day
      */
     @Override
@@ -45,6 +47,7 @@ public class Lamp implements DeviceSpecs {
 
     /**
      * set method
+     *
      * @param luminousFlux
      * @return
      */
@@ -58,6 +61,7 @@ public class Lamp implements DeviceSpecs {
 
     /**
      * set method
+     *
      * @param time
      * @return
      */
@@ -71,6 +75,7 @@ public class Lamp implements DeviceSpecs {
 
     /**
      * set method
+     *
      * @param nominalPower
      * @return
      */
@@ -84,6 +89,7 @@ public class Lamp implements DeviceSpecs {
 
     /**
      * method that displays a string of the choosen attribute (name of the attribute and its value)
+     *
      * @return
      */
     @Override
@@ -91,13 +97,13 @@ public class Lamp implements DeviceSpecs {
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Luminous Flux: " + mLuminousFlux + "\n");
         attributes.append("2 - Nominal Power: " + mNominalPower + "\n");
-        String lampAttributes = attributes.toString();
-        return lampAttributes;
+        return attributes.toString();
     }
 
 
     /**
      * set method
+     *
      * @param attribute position of the attribute
      * @param value
      * @return
@@ -109,12 +115,14 @@ public class Lamp implements DeviceSpecs {
                 return setLuminousFlux(value);
             case 2:
                 return setNominalPower(value);
+            default:
+                return false;
         }
-        return false;
     }
 
     /**
      * get method
+     *
      * @return number of Fridge attributes
      */
     @Override
