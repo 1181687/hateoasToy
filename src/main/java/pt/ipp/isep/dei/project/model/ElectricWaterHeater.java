@@ -30,7 +30,9 @@ public class ElectricWaterHeater implements DeviceSpecs {
     }
 
 
-    /** Method that sets the volume of water to be heated.
+    /**
+     * Method that sets the volume of water to be heated.
+     *
      * @param mVolumeOfWaterToHeat Volume of water to be heated.
      */
     public boolean setVolumeOfWaterToHeat(double mVolumeOfWaterToHeat) {
@@ -41,7 +43,9 @@ public class ElectricWaterHeater implements DeviceSpecs {
         return false;
     }
 
-    /** Method that sets the cold-water temperature.
+    /**
+     * Method that sets the cold-water temperature.
+     *
      * @param coldWaterTemperature Cold-water temperature to be used.
      */
     public boolean setColdWaterTemperature(double coldWaterTemperature) {
@@ -78,6 +82,7 @@ public class ElectricWaterHeater implements DeviceSpecs {
 
     /**
      * methods that determine if the value of the hotWaterTemperature is the same that the method receive.
+     *
      * @param hotWaterTemperature
      * @return false if is the same value. Return true if not, and save the new value.
      */
@@ -105,6 +110,7 @@ public class ElectricWaterHeater implements DeviceSpecs {
 
     /**
      * method that determine if the value of the performanceRatio is the same that the method receive.
+     *
      * @param performanceRatio
      * @return false if is the same value. Return true if not, and save the new value.
      */
@@ -118,6 +124,7 @@ public class ElectricWaterHeater implements DeviceSpecs {
 
     /**
      * method that determine if the value of the nominalPower is the same that the method receive.
+     *
      * @param nominalPower
      * @return false if is the same value. Return true if not, and save the new value.
      */
@@ -131,6 +138,7 @@ public class ElectricWaterHeater implements DeviceSpecs {
 
     /**
      * method that get the attributes by strings.
+     *
      * @return an attribute of the electricWater.
      */
     @Override
@@ -140,12 +148,12 @@ public class ElectricWaterHeater implements DeviceSpecs {
         attributes.append("2 - Maximum Volume: " + mMaximumVolume + "\n");
         attributes.append("3 - Performance Ratio: " + mPerformanceRatio + "\n");
         attributes.append("4 - Nominal Power: " + mNominalPower + "\n");
-        String electricWaterHeaterAttributes = attributes.toString();
-        return electricWaterHeaterAttributes;
+        return attributes.toString();
     }
 
     /**
      * method that set a value of an attribute by a position.
+     *
      * @param attribute
      * @param value
      * @return the attributes with new value if true. If not, return false.
@@ -165,12 +173,14 @@ public class ElectricWaterHeater implements DeviceSpecs {
                 return setColdWaterTemperature(value);
             case 6:
                 return setVolumeOfWaterToHeat(value);
+            default:
+                return false;
         }
-        return false;
     }
 
     /**
      * method that get the number of the attributes of the device.
+     *
      * @return the number of attributes.
      */
     @Override
