@@ -55,11 +55,11 @@ String type
 }
 class Device{
 String name
-
 }
 ENUM DeviceType{
-
 }
+
+left to right direction
 
 Sensor "1" -- "1" SensorType
 Sensor "1" -- "*" Measurement
