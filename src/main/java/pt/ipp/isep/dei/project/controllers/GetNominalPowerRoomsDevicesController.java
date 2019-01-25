@@ -56,7 +56,7 @@ public class GetNominalPowerRoomsDevicesController {
     }
 
     /**
-     * method that returns the method getDeviceListContent of the model class House Grid
+     * method that returns the method getDeviceListToString of the model class House Grid
      * @param position integer that matches the position of room in room list of house grid
      * @return device list content of the chosen room (position)
      */

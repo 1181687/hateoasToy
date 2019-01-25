@@ -23,7 +23,6 @@ public final class Utils {
         Double d2 = value2;
         return d1.equals(d2);
     }
-
     /**
      * Method that rounds a double to specified number of decimal places.
      *
