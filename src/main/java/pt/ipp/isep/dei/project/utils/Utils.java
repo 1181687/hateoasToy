@@ -69,9 +69,6 @@ public final class Utils {
     }
 
     public static boolean isGridMeteringPeriodValid() {
-        if (!(1440 % getGridMeteringPeriod() == 0)) {
-            return false;
-        }
-        return true;
+        return 1440 % getGridMeteringPeriod() == 0;
     }
 }

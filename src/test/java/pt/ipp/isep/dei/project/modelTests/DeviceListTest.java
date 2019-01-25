@@ -760,7 +760,7 @@ public class DeviceListTest {
         room.addDevice(dev1);
         room.getDeviceList().deleteDevice(dev1);
 
-        String expectedResult = room.getDeviceListContent();
+        String expectedResult = room.getDeviceListToString();
         // act
         String result = "";
         //assert
