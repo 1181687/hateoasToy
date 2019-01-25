@@ -525,7 +525,6 @@ public class HouseGridTest {
 
     @Test
     public void testGetNameToString() {
-
         // Arrange
         String houseGridName = "hgname1";
         HouseGrid houseGrid = new HouseGrid(houseGridName);

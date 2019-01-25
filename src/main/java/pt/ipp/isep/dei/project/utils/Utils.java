@@ -1,5 +1,11 @@
 package pt.ipp.isep.dei.project.utils;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 public final class Utils {
 
     private Utils() {
@@ -33,5 +39,27 @@ public final class Utils {
         double newValue = value * factor;
         long tmp = Math.round(newValue);
         return (double) tmp / factor;
+    }
+
+    public static boolean isMeteringPeriodValid(){
+        Properties prop = new Properties();
+        InputStream in = null;
+        try {
+            in = new FileInputStream("MeteringGridConfiguration.properties");
+        } catch (FileNotFoundException ex) {
+            System.out.println("There is no file with that filename.");
+        }
+        try {
+            prop.load(in);
+            in.close();
+        } catch (IOException ex) {
+            System.out.println("No info was found.");
+        }
+        int meteringPeriod = Integer.parseInt(prop.getProperty("MeteringPeriod"));
+
+        if (!(1440 % meteringPeriod == 0)) {
+            return false;
+        }
+        return true;
     }
 }

@@ -241,7 +241,7 @@ public class HouseGrid implements Measurable {
         int meteringPeriod = Integer.parseInt(prop.getProperty("MeteringPeriod"));
 
         if (!(1440 % meteringPeriod == 0)) {
-            System.out.println("That is not a valid metering period.");
+            throw new RuntimeException("That is not a valid metering period.");
         }
         return meteringPeriod;
     }
