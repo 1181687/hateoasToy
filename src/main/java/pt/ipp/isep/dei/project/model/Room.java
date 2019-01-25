@@ -317,6 +317,12 @@ public class Room implements Measurable {
      */
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        return 0;
+        double totalEnergyConsumption = 0;
+        if (!mDeviceList.isDeviceListEmpty()) {
+            for (Device device : mDeviceList.getDeviceList()) {
+                totalEnergyConsumption += device.getEnergyConsumptionInAnInterval(startDate, endDate);
+            }
+        }
+        return totalEnergyConsumption;
     }
 }

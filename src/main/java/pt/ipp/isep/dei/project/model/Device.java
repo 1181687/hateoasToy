@@ -15,12 +15,12 @@ public class Device implements Measurable {
     public Device(String name, Room location, DeviceSpecs spec) {
         this.mName = name;
         this.mLocation = location;
-        this.mLocation.addDevice(this);
         this.mSpec = spec;
+        this.mLocation.addDevice(this);
     }
 
     /**
-     * method that get the nominal power of th devices.
+     * method that get the nominal power of the devices.
      *
      * @return the nominal power of the device.
      */
