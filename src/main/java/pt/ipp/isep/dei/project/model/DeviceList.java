@@ -345,4 +345,15 @@ public class DeviceList {
         }
         return Utils.round(totalEnergyConsumption, 2);
     }
+
+    public boolean deleteDevice(Device device) {
+        for (Device searchDevice : this.mDeviceList) {
+            if (device.equals(searchDevice)) {
+                this.mDeviceList.remove(searchDevice);
+                return true;
+            }
+        }
+        return false;
+    }
+
 }

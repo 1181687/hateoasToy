@@ -307,4 +307,8 @@ public class RoomList {
         }
         return listWithDevicesOfAType;
     }
+
+    public boolean deleteDevice(Device device, int choosenRoom) {
+        return mRoomList.get(choosenRoom).deleteDevice(device);
+    }
 }

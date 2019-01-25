@@ -236,6 +236,7 @@ public class Room implements Measurable {
 
     /**
      * get method of the device list.
+     *
      * @return device list
      */
     public DeviceList getDeviceList() {
@@ -278,7 +279,8 @@ public class Room implements Measurable {
     }
 
     /**
-     *method that get all devices of a type.
+     * method that get all devices of a type.
+     *
      * @param type
      * @return
      */
@@ -318,5 +320,9 @@ public class Room implements Measurable {
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         return 0;
+    }
+
+    public boolean deleteDevice(Device device) {
+        return this.mDeviceList.deleteDevice(device);
     }
 }

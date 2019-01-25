@@ -705,5 +705,66 @@ public class DeviceListTest {
         //Assert
         assertTrue(result);
     }
+
+    @Test
+    public void testRemoveDeviceTrue() {
+        // arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        Fridge specFridge = new Fridge(100, 100, 100, 100);
+        Device dev1 = new Device("FridgeAriston", room, specFridge);
+
+        DeviceList deviceList = new DeviceList();
+        room.getDeviceList().addDevice(dev1);
+        deviceList.addDevice(dev1);
+
+        // act
+        boolean result = deviceList.deleteDevice(dev1);
+        //assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testRemoveDeviceFalse() {
+        // arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        Fridge specFridge = new Fridge(100, 100, 100, 100);
+        Device dev1 = new Device("FridgeAriston", room, specFridge);
+
+        DeviceList deviceList = new DeviceList();
+        room.getDeviceList().addDevice(dev1);
+        deviceList.addDevice(dev1);
+
+        // act
+        boolean result = deviceList.deleteDevice(dev1);
+        //assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testRemoveDeviceList() {
+        // arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        Fridge specFridge = new Fridge(100, 100, 100, 100);
+        Device dev1 = new Device("FridgeAriston", room, specFridge);
+
+        room.addDevice(dev1);
+        room.getDeviceList().deleteDevice(dev1);
+
+        String expectedResult = room.getDeviceListContent();
+        // act
+        String result = "";
+        //assert
+        assertEquals(expectedResult, result);
+    }
+
 }
 

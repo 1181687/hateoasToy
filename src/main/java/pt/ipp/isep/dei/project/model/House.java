@@ -383,4 +383,8 @@ public class House {
     public MeasurableList getNewMeasurableObjList() {
         return new MeasurableList();
     }
+
+    public boolean deleteDevice(Device device, int choosenRoom) {
+        return this.mRoomList.deleteDevice(device, choosenRoom);
+    }
 }
