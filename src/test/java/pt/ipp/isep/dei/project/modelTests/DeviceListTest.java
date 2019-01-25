@@ -356,7 +356,7 @@ public class DeviceListTest {
         ProgramList programList = new ProgramList();
 
         //Device d2 = new Device("Device2", room, lamp);
-        DeviceList devList = room.getmDeviceList();
+        DeviceList devList = room.getDeviceList();
         Room room2 = new Room("Room2", 2, dim);
 
         //  devList.addDevice(d2);
