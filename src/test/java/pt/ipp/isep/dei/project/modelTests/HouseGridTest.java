@@ -11,10 +11,10 @@ public class HouseGridTest {
     void TestDisplayRoomsAttachedToHouseGrid () {
 
         // Arrange
-        Dimensions dimensionsRoom1 = new Dimensions(5.2, 3.7, 8.5);
-        Room room1 = new Room("Kid's room", 1, dimensionsRoom1);
-        Dimensions dimensionsRoom2 = new Dimensions(5.2, 3.7, 8.5);
-        Room room2 = new Room("Bathroom", 1, dimensionsRoom2);
+        Dimension dimensionRoom1 = new Dimension(5.2, 3.7, 8.5);
+        Room room1 = new Room("Kid's room", 1, dimensionRoom1);
+        Dimension dimensionRoom2 = new Dimension(5.2, 3.7, 8.5);
+        Room room2 = new Room("Bathroom", 1, dimensionRoom2);
 
         String houseGridName = "hgname1";
         HouseGrid houseGrid1 = new HouseGrid(houseGridName);
@@ -23,8 +23,8 @@ public class HouseGridTest {
         houseGrid1.getRoomList().addRoom(room2);
 
         String expectedResult =
-                "1- Name: Kid's room, House Floor: 1, Dimensions - Height: 5.2, Length: 3.7, Width: 8.5\n" +
-                        "2- Name: Bathroom, House Floor: 1, Dimensions - Height: 5.2, Length: 3.7, Width: 8.5\n";
+                "1- Name: Kid's room, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n" +
+                        "2- Name: Bathroom, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n";
         // Act
         String result = houseGrid1.getRoomListContent();
 
@@ -37,14 +37,14 @@ public class HouseGridTest {
         // Arrange
         String roomName = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room = new Room(roomName, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room = new Room(roomName, houseFloor1, dimension1);
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
         grid.attachRoom(room);
 
         // Act
-        boolean result = grid.getRoomList().getmRoomList().contains(room);
+        boolean result = grid.getRoomList().getRoomList().contains(room);
 
         // Assert
         assertTrue(result);
@@ -74,7 +74,7 @@ public class HouseGridTest {
     public void testGetAllDevicesList() {
         //Room ONE
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
         DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
@@ -90,7 +90,7 @@ public class HouseGridTest {
 
         //Room TWO
         String name2 = "KitchenBasement";
-        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim);
         DeviceSpecs specWaterHeater = new ElectricWaterHeater(100, 100, 100, 100);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
@@ -125,7 +125,7 @@ public class HouseGridTest {
 
         //Room ONE
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3.5, 10.5, 20.5);
+        Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
         DeviceSpecs specFridge = new Fridge(500,25,125,25);
@@ -141,7 +141,7 @@ public class HouseGridTest {
 
         //Room TWO
         String name2 = "KitchenBasement";
-        Dimensions dim2 = new Dimensions(3.5, 30.5, 20.5);
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
         DeviceSpecs specWaterHeater = new ElectricWaterHeater(50, 50, 0.9, 35);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
@@ -173,13 +173,13 @@ public class HouseGridTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         houseGrid.attachRoom(room1);
         houseGrid.attachRoom(room2);
@@ -200,7 +200,7 @@ public class HouseGridTest {
         HouseGrid houseGrid = new HouseGrid(houseGridName);
 
         //initiate Room
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
         houseGrid.attachRoom(room);
@@ -246,9 +246,8 @@ public class HouseGridTest {
         //initiate Room
 
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         houseGrid.attachRoom(room);
 
@@ -280,7 +279,7 @@ public class HouseGridTest {
         HouseGrid houseGrid = new HouseGrid(houseGridName);
 
         //act
-        boolean result = houseGrid.checkIfRoomListIsEmpty();
+        boolean result = houseGrid.isRoomListEmpty();
         //assert
         assertTrue(result);
     }
@@ -292,12 +291,12 @@ public class HouseGridTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         rList.addRoom(room1);
         //act
-        boolean result = rList.checkIfRoomListIsEmpty();
+        boolean result = rList.isEmpty();
         //assert
         assertFalse(result);
     }
@@ -311,13 +310,13 @@ public class HouseGridTest {
         //initiate Room
 
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         houseGrid.attachRoom(room);
 
         // Act
-        boolean result = room.checkIfDeviceListIsEmpty();
+        boolean result = room.isDeviceListEmpty();
 
         // Assert
         assertTrue(result);
@@ -333,7 +332,7 @@ public class HouseGridTest {
         //initiate Room
 
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         houseGrid.attachRoom(room);
@@ -347,7 +346,7 @@ public class HouseGridTest {
         room.addDevice(dev1);
 
         // Act
-        boolean result = room.checkIfDeviceListIsEmpty();
+        boolean result = room.isDeviceListEmpty();
 
         // Assert
         assertFalse(result);
@@ -362,7 +361,7 @@ public class HouseGridTest {
         //initiate Room
 
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         houseGrid.attachRoom(room);
@@ -392,13 +391,13 @@ public class HouseGridTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         houseGrid.attachRoom(room1);
         houseGrid.attachRoom(room2);
@@ -431,7 +430,7 @@ public class HouseGridTest {
         HouseGrid houseGrid = new HouseGrid(houseGridName);
         //Act
 
-        boolean result = houseGrid.checkIfThereAreNoDevices();
+        boolean result = houseGrid.isDeviceListOfAllRoomsEmpty();
 
         //Assert
         assertTrue(result);
@@ -446,7 +445,7 @@ public class HouseGridTest {
         //initiate Room
 
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         houseGrid.attachRoom(room);
@@ -460,7 +459,7 @@ public class HouseGridTest {
         room.addDevice(dev1);
         //Act
 
-        boolean result = houseGrid.checkIfThereAreNoDevices();
+        boolean result = houseGrid.isDeviceListOfAllRoomsEmpty();
 
         //Assert
         assertFalse(result);
@@ -491,4 +490,51 @@ public class HouseGridTest {
         //Assert
         assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
     }
+
+    @Test
+    public void testConstructorWithEmptyNameShouldThrowException(){
+        //Arrange
+        String name = "";
+        double maximumContractedPower = 24.1;
+        RoomList roomList = new RoomList();
+
+        //Act
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new HouseGrid(name,maximumContractedPower,roomList)
+        );
+
+        //Assert
+        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+    }
+
+    @Test
+    public void testConstructorWithNullNameShouldThrowException(){
+        //Arrange
+        String name = null;
+        double maximumContractedPower = 24.1;
+        RoomList roomList = new RoomList();
+
+        //Act
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                new HouseGrid(name,maximumContractedPower,roomList)
+        );
+
+        //Assert
+        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+    }
+
+    @Test
+    public void testGetNameToString() {
+
+        // Arrange
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
+
+        String expectResult = "HouseGrid: hgname1\n";
+        //act
+        String result = houseGrid.getNameToString();
+        //assert
+        assertEquals(expectResult, result);
+    }
+
 }

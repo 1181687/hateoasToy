@@ -22,7 +22,7 @@ public class WashingMachine implements DeviceSpecs {
      * @return type of device
      */
     @Override
-    public String getmTypeName() {
+    public String getTypeName() {
         return mTypeName;
     }
 
@@ -32,7 +32,7 @@ public class WashingMachine implements DeviceSpecs {
      * @return nominal power
      */
     @Override
-    public double getmNominalPower() {
+    public double getNominalPower() {
         return mNominalPower;
     }
 
@@ -47,25 +47,25 @@ public class WashingMachine implements DeviceSpecs {
 
     /**
      * set method
-     * @param mCapacity
+     * @param capacity
      */
-    public boolean setmCapacity(double mCapacity) {
-        if (Utils.isSameDouble(this.mCapacity, mCapacity)) {
+    public boolean setCapacity(double capacity) {
+        if (Utils.isSameDouble(this.mCapacity, capacity)) {
             return false;
         }
-        this.mCapacity = mCapacity;
+        this.mCapacity = capacity;
         return true;
     }
 
     /**
      * set method
-     * @param mNominalPower
+     * @param nominalPower
      */
-    public boolean setmNominalPower(double mNominalPower) {
-        if (Utils.isSameDouble(this.mNominalPower, mNominalPower)) {
+    public boolean setNominalPower(double nominalPower) {
+        if (Utils.isSameDouble(this.mNominalPower, nominalPower)) {
             return false;
         }
-        this.mNominalPower = mNominalPower;
+        this.mNominalPower = nominalPower;
         return true;
     }
 
@@ -78,8 +78,7 @@ public class WashingMachine implements DeviceSpecs {
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Capacity: " + mCapacity + "\n");
         attributes.append("2 - Nominal Power: " + mNominalPower + "\n");
-        String dishWasherAttributes = attributes.toString();
-        return dishWasherAttributes;
+        return attributes.toString();
     }
 
     /**
@@ -92,13 +91,12 @@ public class WashingMachine implements DeviceSpecs {
     public boolean setAttribute(int attribute, double value) {
         switch (attribute) {
             case 1:
-                return setmCapacity(value);
+                return setCapacity(value);
             case 2:
-                return setmNominalPower(value);
+                return setNominalPower(value);
             default:
-                System.out.println("Invalid option. Please choose a number between 1 and 2.");
+                return false;
         }
-        return false;
     }
 
     /**

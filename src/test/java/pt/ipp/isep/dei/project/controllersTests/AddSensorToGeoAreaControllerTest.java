@@ -291,7 +291,7 @@ class AddSensorToGeoAreaControllerTest {
         listSensorsType.addSensorType(sensorType);
 
         GeoAreaList geographicalAreaList = new GeoAreaList();
-        geographicalAreaList.getmGeoAreaList().add(ag1);
+        geographicalAreaList.getGeoAreaList().add(ag1);
 
 
         AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(listSensorsType, geographicalAreaList);
@@ -326,7 +326,7 @@ class AddSensorToGeoAreaControllerTest {
         listSensorsType.addSensorType(sensorType);
 
         GeoAreaList geographicalAreaList = new GeoAreaList();
-        geographicalAreaList.getmGeoAreaList().add(ag1);
+        geographicalAreaList.getGeoAreaList().add(ag1);
 
 
         AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(listSensorsType, geographicalAreaList);

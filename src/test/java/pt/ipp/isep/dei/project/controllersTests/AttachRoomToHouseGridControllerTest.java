@@ -16,7 +16,7 @@ class AttachRoomToHouseGridControllerTest {
         AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
 
         // Act
-        boolean result = Ctrl.checkIfHouseGridListIsEmpty();
+        boolean result = Ctrl.isHouseGridListEmpty();
 
         // Assert
         assertTrue(result);
@@ -28,12 +28,12 @@ class AttachRoomToHouseGridControllerTest {
         HouseGridList gridList = new HouseGridList();
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
-        gridList.addHouseGridToTheList(grid);
+        gridList.addHouseGrid(grid);
         RoomList roomList = new RoomList();
         AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
 
         // Act
-        boolean result = Ctrl.checkIfHouseGridListIsEmpty();
+        boolean result = Ctrl.isHouseGridListEmpty();
 
         // Assert
         assertFalse(result);
@@ -53,7 +53,7 @@ class AttachRoomToHouseGridControllerTest {
         String expectedResult = "1 - Name: Grid\n2 - Name: Grid\n";
 
         // Act
-        String result = Ctrl.listAllTheHouseGridsInTheList();
+        String result = Ctrl.getHouseGridListToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -86,19 +86,19 @@ class AttachRoomToHouseGridControllerTest {
         RoomList roomList = new RoomList();
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
         roomList.addRoom(room1);
         roomList.addRoom(room2);
         AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
-        String expectedResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Length: 2.0, Width: 2.0\n" +
-                "2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Length: 1.5, Width: 1.3\n";
+        String expectedResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
+                "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
         // Act
-        String result = Ctrl.listAllTheRoomsInTheList();
+        String result = Ctrl.getRoomListContent();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -111,12 +111,12 @@ class AttachRoomToHouseGridControllerTest {
         RoomList roomList = new RoomList();
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
         roomList.addRoom(room1);
         roomList.addRoom(room2);
         AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(listOfGrids, roomList);
@@ -134,17 +134,17 @@ class AttachRoomToHouseGridControllerTest {
         // Arrange
         HouseGridList gridList = new HouseGridList();
         String gridName = "Grid";
-        HouseGrid grid = gridList.createAHouseGrid(gridName);
-        gridList.addHouseGridToTheList(grid);
+        HouseGrid grid = gridList.newHouseGrid(gridName);
+        gridList.addHouseGrid(grid);
         RoomList roomList = new RoomList();
         String roomName = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room = new Room(roomName, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room = new Room(roomName, houseFloor1, dimension1);
         roomList.addRoom(room);
         AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
-        Ctrl.setmGridToBeUsed(grid);
-        Ctrl.setmRoomToBeAttached(room);
+        Ctrl.setGridToBeUsed(grid);
+        Ctrl.setRoomToBeAttached(room);
         Ctrl.attachRoomInTheHouseGrid();
 
         // Act
@@ -159,17 +159,17 @@ class AttachRoomToHouseGridControllerTest {
         // Arrange
         HouseGridList gridList = new HouseGridList();
         String gridName = "Grid";
-        HouseGrid grid = gridList.createAHouseGrid(gridName);
-        gridList.addHouseGridToTheList(grid);
+        HouseGrid grid = gridList.newHouseGrid(gridName);
+        gridList.addHouseGrid(grid);
         RoomList roomList = new RoomList();
         String roomName = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2, 2, 2);
-        Room room = new Room(roomName, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room = new Room(roomName, houseFloor1, dimension1);
         roomList.addRoom(room);
         AttachRoomToHouseGridController Ctrl = new AttachRoomToHouseGridController(gridList, roomList);
-        Ctrl.setmGridToBeUsed(grid);
-        Ctrl.setmRoomToBeAttached(room);
+        Ctrl.setGridToBeUsed(grid);
+        Ctrl.setRoomToBeAttached(room);
 
         // Act
         boolean result = Ctrl.checkIfTheChosenRoomIsAlreadyInTheChosenGrid();
@@ -187,7 +187,7 @@ class AttachRoomToHouseGridControllerTest {
 
         // Instantiate List of House Grids
         HouseGridList gridList = new HouseGridList();
-        gridList.addHouseGridToTheList(grid);
+        gridList.addHouseGrid(grid);
 
         // Instantiate List of Rooms
         RoomList roomList = new RoomList();
@@ -198,7 +198,7 @@ class AttachRoomToHouseGridControllerTest {
         int expectedResult = 1;
 
         // Act
-        int result = ctrl.houseGridListLength();
+        int result = ctrl.getHouseGridListSize();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -210,8 +210,8 @@ class AttachRoomToHouseGridControllerTest {
         // Instantiate Room
         String roomName = "Kitchen";
         int houseFloor = 0;
-        Dimensions dimensions = new Dimensions(4, 10, 12);
-        Room room = new Room(roomName, houseFloor, dimensions);
+        Dimension dimension = new Dimension(4, 10, 12);
+        Room room = new Room(roomName, houseFloor, dimension);
 
         // Instantiate List of Rooms
         RoomList roomList = new RoomList();
@@ -224,7 +224,7 @@ class AttachRoomToHouseGridControllerTest {
         AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
 
         // Act
-        boolean result = ctrl.checkIfRoomListIsEmpty();
+        boolean result = ctrl.isRoomListEmpty();
 
         //Assert
         assertFalse(result);
@@ -243,7 +243,7 @@ class AttachRoomToHouseGridControllerTest {
         AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
 
         // Act
-        boolean result = ctrl.checkIfRoomListIsEmpty();
+        boolean result = ctrl.isRoomListEmpty();
 
         //Assert
         assertTrue(result);
@@ -255,8 +255,8 @@ class AttachRoomToHouseGridControllerTest {
         // Instantiate Room
         String roomName = "Kitchen";
         int houseFloor = 0;
-        Dimensions dimensions = new Dimensions(4, 10, 12);
-        Room room = new Room(roomName, houseFloor, dimensions);
+        Dimension dimension = new Dimension(4, 10, 12);
+        Room room = new Room(roomName, houseFloor, dimension);
 
         // Instantiate List of Rooms
         RoomList roomList = new RoomList();
@@ -271,7 +271,7 @@ class AttachRoomToHouseGridControllerTest {
         int expectedResult = 1;
 
         // Act
-        int result = ctrl.roomListLength();
+        int result = ctrl.getRoomListSize();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -283,8 +283,8 @@ class AttachRoomToHouseGridControllerTest {
         // Instantiate Room
         String roomName = "Kitchen";
         int houseFloor = 0;
-        Dimensions dimensions = new Dimensions(4, 10, 12);
-        Room room = new Room(roomName, houseFloor, dimensions);
+        Dimension dimension = new Dimension(4, 10, 12);
+        Room room = new Room(roomName, houseFloor, dimension);
 
         // Instantiate House Grids
         String gridName0 = "Grid";
@@ -297,16 +297,16 @@ class AttachRoomToHouseGridControllerTest {
 
         // Instantiate List of House Grids
         HouseGridList gridList = new HouseGridList();
-        gridList.addHouseGridToTheList(grid0);
-        gridList.addHouseGridToTheList(grid1);
-        gridList.addHouseGridToTheList(grid2);
+        gridList.addHouseGrid(grid0);
+        gridList.addHouseGrid(grid1);
+        gridList.addHouseGrid(grid2);
 
         // Instantiate List of Rooms
         RoomList roomList = new RoomList();
 
         // Instantiate Controller
         AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
-        ctrl.setmRoomToBeAttached(room);
+        ctrl.setRoomToBeAttached(room);
 
         HouseGrid expectedResult = grid2;
 
@@ -323,8 +323,8 @@ class AttachRoomToHouseGridControllerTest {
         // Instantiate Room
         String roomName = "Kitchen";
         int houseFloor = 0;
-        Dimensions dimensions = new Dimensions(4, 10, 12);
-        Room room = new Room(roomName, houseFloor, dimensions);
+        Dimension dimension = new Dimension(4, 10, 12);
+        Room room = new Room(roomName, houseFloor, dimension);
 
         // Instantiate House Grids
         String gridName0 = "Grid";
@@ -336,16 +336,16 @@ class AttachRoomToHouseGridControllerTest {
 
         // Instantiate List of House Grids
         HouseGridList gridList = new HouseGridList();
-        gridList.addHouseGridToTheList(grid0);
-        gridList.addHouseGridToTheList(grid1);
-        gridList.addHouseGridToTheList(grid2);
+        gridList.addHouseGrid(grid0);
+        gridList.addHouseGrid(grid1);
+        gridList.addHouseGrid(grid2);
 
         // Instantiate List of Rooms
         RoomList roomList = new RoomList();
 
         // Instantiate Controller
         AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
-        ctrl.setmRoomToBeAttached(room);
+        ctrl.setRoomToBeAttached(room);
 
         HouseGrid expectedResult = null;
 
@@ -362,12 +362,12 @@ class AttachRoomToHouseGridControllerTest {
         // Instantiate Rooms
         String roomName0 = "Kitchen";
         int houseFloor0 = 0;
-        Dimensions dimensions0 = new Dimensions(4, 10, 12);
-        Room room0 = new Room(roomName0, houseFloor0, dimensions0);
+        Dimension dimension0 = new Dimension(4, 10, 12);
+        Room room0 = new Room(roomName0, houseFloor0, dimension0);
         String roomName1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(4, 10, 12);
-        Room room1 = new Room(roomName1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(4, 10, 12);
+        Room room1 = new Room(roomName1, houseFloor1, dimension1);
 
         // Instantiate List of Rooms
         RoomList roomList = new RoomList();
@@ -380,12 +380,12 @@ class AttachRoomToHouseGridControllerTest {
 
         // Instantiate List of House Grids
         HouseGridList gridList = new HouseGridList();
-        gridList.addHouseGridToTheList(grid0);
+        gridList.addHouseGrid(grid0);
 
         // Instantiate Controller
         AttachRoomToHouseGridController ctrl = new AttachRoomToHouseGridController(gridList, roomList);
-        ctrl.setmGridToBeUsed(grid0);
-        ctrl.setmRoomToBeAttached(room0);
+        ctrl.setGridToBeUsed(grid0);
+        ctrl.setRoomToBeAttached(room0);
         ctrl.detachRoomFromTheHouseGrid(grid0);
 
         // Act

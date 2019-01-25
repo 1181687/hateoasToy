@@ -12,7 +12,7 @@ public class DeviceTest {
     @Test
     void getDeviceNameTest() {
         //Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
         double luminousFlux = 10.0;
@@ -31,7 +31,7 @@ public class DeviceTest {
     @Test
     public void testGetNominalPower() {
         //Arrange
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
         double luminousFlux = 10.0;
@@ -52,11 +52,11 @@ public class DeviceTest {
 
         //Arrange
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room1 = new Room(name, 2, dim);
 
         String name2 = "Bedroom";
-        Dimensions dim2 = new Dimensions(3, 3.5, 3.5);
+        Dimension dim2 = new Dimension(3, 3.5, 3.5);
         Room room2 = new Room(name2, 2, dim2);
 
         double luminousFlux1 = 10.0;
@@ -83,7 +83,7 @@ public class DeviceTest {
         double height = 3;
         double length = 3.5;
         double width = 3.5;
-        Dimensions dim = new Dimensions(height, length, width);
+        Dimension dim = new Dimension(height, length, width);
 
         // Room Instantiation
         Room room = new Room("Room", 2, dim);
@@ -103,7 +103,7 @@ public class DeviceTest {
         int volumeOfWaterToHeatPosition = 6;
         device.setAttributesDevType(volumeOfWaterToHeatPosition, 100);
 
-        double expectedResult = 2093.4;
+        double expectedResult = 2.09;
 
         // Act
         double result = device.getEnergyConsumptionInADay();
@@ -118,7 +118,7 @@ public class DeviceTest {
         String name = "LAMP ONE";
         double nominalPower = 200;
         int capacity = 100;
-        Dimensions dim = new Dimensions(3.5, 6.5, 7.5);
+        Dimension dim = new Dimension(3.5, 6.5, 7.5);
         Room room1 = new Room("Room1", 2, dim);
         DeviceSpecs lamp = new Lamp(capacity, nominalPower);
         Device lamp1 = new Device(name, room1, lamp);
@@ -137,7 +137,7 @@ public class DeviceTest {
         String name = "LAMP ONE";
         double nominalPower = 200;
         int capacity = 100;
-        Dimensions dim = new Dimensions(3.5, 6.5, 7.5);
+        Dimension dim = new Dimension(3.5, 6.5, 7.5);
         Room room1 = new Room("Room1", 2, dim);
         DeviceSpecs lamp = new Lamp(capacity, nominalPower);
         Device lamp1 = new Device(name, room1, lamp);
@@ -154,7 +154,7 @@ public class DeviceTest {
         String name = "LAMP ONE";
         double nominalPower = 200;
         int capacity = 100;
-        Dimensions dim = new Dimensions(3.5, 6.5, 7.5);
+        Dimension dim = new Dimension(3.5, 6.5, 7.5);
         Room room1 = new Room("Room1", 2, dim);
         DeviceSpecs lamp = new Lamp(capacity, nominalPower);
         Device lamp1 = new Device(name, room1, lamp);
@@ -171,7 +171,7 @@ public class DeviceTest {
         String name = "LAMP ONE";
         double nominalPower = 200;
         int capacity = 100;
-        Dimensions dim = new Dimensions(3.5, 6.5, 7.5);
+        Dimension dim = new Dimension(3.5, 6.5, 7.5);
         Room room1 = new Room("Room1", 2, dim);
         DeviceSpecs lamp = new Lamp(capacity, nominalPower);
         Device lamp1 = new Device(name, room1, lamp);
@@ -188,7 +188,7 @@ public class DeviceTest {
         // Arrange
 
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         double luminousFlux1 = 10.0;
@@ -209,7 +209,7 @@ public class DeviceTest {
         // Arrange
 
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         double luminousFlux1 = 10.0;
@@ -231,7 +231,7 @@ public class DeviceTest {
         // Arrange
 
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         double luminousFlux1 = 10.0;
@@ -253,7 +253,7 @@ public class DeviceTest {
         // Arrange
 
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         double luminousFlux1 = 10.0;
@@ -276,7 +276,7 @@ public class DeviceTest {
     public void getType() {
         // Arrange
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         double luminousFlux1 = 10.0;
@@ -300,7 +300,7 @@ public class DeviceTest {
         double height = 3;
         double length = 3.5;
         double width = 3.5;
-        Dimensions dim = new Dimensions(height, length, width);
+        Dimension dim = new Dimension(height, length, width);
 
         // Room Instantiation
         Room room = new Room("Room", 2, dim);
@@ -316,7 +316,7 @@ public class DeviceTest {
         deviceList.addDevice(device);
 
         // act
-        boolean result = device.setmLocation(room);
+        boolean result = device.setLocation(room);
 
         // assert
         assertFalse(result);
@@ -329,7 +329,7 @@ public class DeviceTest {
         double height = 3;
         double length = 3.5;
         double width = 3.5;
-        Dimensions dim = new Dimensions(height, length, width);
+        Dimension dim = new Dimension(height, length, width);
 
         // Room Instantiation
         Room room = new Room("Room", 2, dim);
@@ -347,7 +347,7 @@ public class DeviceTest {
         deviceList.addDevice(device);
 
         // act
-        boolean result = device.setmLocation(room1);
+        boolean result = device.setLocation(room1);
 
         // assert
         assertTrue(result);
@@ -360,7 +360,7 @@ public class DeviceTest {
         double height = 3;
         double length = 3.5;
         double width = 3.5;
-        Dimensions dim = new Dimensions(height, length, width);
+        Dimension dim = new Dimension(height, length, width);
 
         // Room Instantiation
         Room room = new Room("Room", 2, dim);
@@ -386,7 +386,7 @@ public class DeviceTest {
     @Test
     void testGetDeviceAttributesToString() {
         //initiate Room
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
         //initiate Devices
@@ -417,7 +417,7 @@ public class DeviceTest {
         double height = 3;
         double length = 3.5;
         double width = 3.5;
-        Dimensions dim = new Dimensions(height, length, width);
+        Dimension dim = new Dimension(height, length, width);
 
         // Room Instantiation
         Room room = new Room("Room", 2, dim);
@@ -437,6 +437,26 @@ public class DeviceTest {
 
         // assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetNameToString() {
+        //Arrange
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room1", 2, dim);
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 20.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        String expectedResult = "Device: Lamp1, located in room: Room1\n";
+
+        //Act
+        String result = dev1.getNameToString();
+
+        //Assert
+        assertEquals(result, expectedResult);
     }
 
 }

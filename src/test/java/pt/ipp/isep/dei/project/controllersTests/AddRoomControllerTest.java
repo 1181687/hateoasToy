@@ -11,7 +11,7 @@ public class AddRoomControllerTest {
     @Test
     public void testAddRoomToHouseFalse() {
         RoomList rList = new RoomList();
-        Dimensions dim = new Dimensions(4, 4, 4);
+        Dimension dim = new Dimension(4, 4, 4);
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
@@ -28,7 +28,7 @@ public class AddRoomControllerTest {
     @Test
     public void testAddRoomToHouse() {
         RoomList rList = new RoomList();
-        Dimensions dim = new Dimensions(4, 4, 4);
+        Dimension dim = new Dimension(4, 4, 4);
         Room room = new Room("F5", 1, dim);
         HouseGridList gridlist = new HouseGridList();
         Location local = new Location(10, 10, 10);
@@ -51,7 +51,7 @@ public class AddRoomControllerTest {
         String nameToCheck = "Room one";
         String name = "ROOM ONE";
         RoomList list = new RoomList();
-        Dimensions dim = new Dimensions(5, 6, 7);
+        Dimension dim = new Dimension(5, 6, 7);
         Room room1 = new Room(name, 1, dim);
         list.addRoom(room1);
         HouseGridList listHG = new HouseGridList();
@@ -65,7 +65,7 @@ public class AddRoomControllerTest {
 
         boolean expectedResult = true;
 
-        boolean result = ctrl.checkIfNameAlreadyExists(nameToCheck);
+        boolean result = ctrl.isNameExistant(nameToCheck);
 
         assertEquals(expectedResult, result);
     }
@@ -75,7 +75,7 @@ public class AddRoomControllerTest {
         String nameToCheck = "Room one";
         String name = "ROOM two";
         RoomList list = new RoomList();
-        Dimensions dim = new Dimensions(5, 6, 7);
+        Dimension dim = new Dimension(5, 6, 7);
         Room room1 = new Room(name, 1, dim);
         list.addRoom(room1);
         HouseGridList listHG = new HouseGridList();
@@ -89,7 +89,7 @@ public class AddRoomControllerTest {
 
         boolean expectedResult = false;
 
-        boolean result = ctrl.checkIfNameAlreadyExists(nameToCheck);
+        boolean result = ctrl.isNameExistant(nameToCheck);
 
         assertEquals(expectedResult, result);
     }

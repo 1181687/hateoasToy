@@ -22,13 +22,13 @@ public class AddSensorToRoom {
 
         Scanner read = new Scanner(System.in);
 
-        if (mAddSensorToRoomController.checkIfRoomListIsEmpty()) {
+        if (mAddSensorToRoomController.isRoomListEmpty()) {
             System.out.println("There are no rooms in the house. Please create a room");
-        } else if (mAddSensorToRoomController.checkIfTheListOfSensorTypeIsEmpty()) {
+        } else if (mAddSensorToRoomController.isSensorTypeListEmpty()) {
             System.out.println("There are no sensor types created. Please create one.");
         } else {
             System.out.println("To which room do you want to add a sensor?");
-            System.out.println(mAddSensorToRoomController.displayRoomsInTheHouse());
+            System.out.println(mAddSensorToRoomController.getRoomListContent());
             int positionOfTheRoom = read.nextInt() - 1;
             read.nextLine();
             mAddSensorToRoomController.getRoomByIndex(positionOfTheRoom);

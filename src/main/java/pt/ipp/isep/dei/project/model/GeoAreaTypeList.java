@@ -8,10 +8,10 @@ public class GeoAreaTypeList {
 
     /**
      * constructor that receives a list of geographical areas type.
-     * @param mGeoAreaTypeList
+     * @param geoAreaTypeList
      */
-    public GeoAreaTypeList(List<GeoAreaType> mGeoAreaTypeList) {
-        this.mGeoAreaTypeList = mGeoAreaTypeList;
+    public GeoAreaTypeList(List<GeoAreaType> geoAreaTypeList) {
+        this.mGeoAreaTypeList = geoAreaTypeList;
     }
 
     /**
@@ -24,7 +24,7 @@ public class GeoAreaTypeList {
      * method that get a geo area type list.
      * @return a geographical areas types list
      */
-    public List<GeoAreaType> getmGeoAreaTypeList() {
+    public List<GeoAreaType> getGeoAreaTypeList() {
         return mGeoAreaTypeList;
     }
 

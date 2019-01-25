@@ -23,7 +23,7 @@ public class AddSensorToRoomController {
      * This method display the rooms of the house
      * @return the RoomList.
      */
-    public String displayRoomsInTheHouse () {
+    public String getRoomListContent() {
         return this.mRoomList.getRoomListContent();
     }
 
@@ -32,7 +32,7 @@ public class AddSensorToRoomController {
      * @param position of the room in the list of rooms.
      */
     public void getRoomByIndex (int position) {
-        mSelectedRoom = this.mRoomList.getRoomFromAPosition(position);
+        mSelectedRoom = this.mRoomList.getRoomFromPosition(position);
     }
 
     /**
@@ -40,7 +40,7 @@ public class AddSensorToRoomController {
      * @return the sensor type list.
      */
     public String displayListOfSensorsType () {
-        return this.mListSensorsType.getSensorTypeListContent();
+        return this.mListSensorsType.getSensorTypeListToString();
     }
 
     /**
@@ -64,23 +64,23 @@ public class AddSensorToRoomController {
      * @return a new sensor added in the list of sensors in the room.
      */
     public boolean createAndAddSensorToTheList (String name) {
-        mNewSensor = mSelectedRoom.getSensorList().createNewSensor(name, mSensorType, mLocationOfTheHouse);
-        return mSelectedRoom.addSensorToTheListOfSensorsInTheRoom(mNewSensor);
+        mNewSensor = mSelectedRoom.getSensorList().newSensor(name, mSensorType, mLocationOfTheHouse);
+        return mSelectedRoom.addSensorToListOfSensorsInRoom(mNewSensor);
     }
 
     /**
      * Method that checks if a room isn't already in the list of rooms.
      * @return true or false.
      */
-    public boolean checkIfRoomListIsEmpty () {
-        return mRoomList.checkIfRoomListIsEmpty();
+    public boolean isRoomListEmpty() {
+        return mRoomList.isEmpty();
     }
 
     /**
      * This method check if the list of Sensors Type is empty.
      * @return true or false.
      */
-    public boolean checkIfTheListOfSensorTypeIsEmpty () {
-        return mListSensorsType.checkIfListOfTypeSensorsIsEmpty();
+    public boolean isSensorTypeListEmpty() {
+        return mListSensorsType.IsEmpty();
     }
 }

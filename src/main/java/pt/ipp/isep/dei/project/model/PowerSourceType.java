@@ -1,15 +1,17 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.util.Objects;
+
 public class PowerSourceType {
     private String mPowerSourceType;
 
     /**
      * constructor that receives a power source type (String)
      *
-     * @param mPowerSourceType type of Power Source
+     * @param powerSourceType type of Power Source
      */
-    public PowerSourceType(String mPowerSourceType) {
-        this.mPowerSourceType = mPowerSourceType;
+    public PowerSourceType(String powerSourceType) {
+        this.mPowerSourceType = powerSourceType;
     }
 
     /**
@@ -26,7 +28,7 @@ public class PowerSourceType {
      */
     @Override
     public int hashCode() {
-        return 1;
+        return Objects.hash(this.mPowerSourceType);
     }
 
     /**
@@ -45,7 +47,7 @@ public class PowerSourceType {
         }
 
         PowerSourceType type = (PowerSourceType) obj;
-        return this.mPowerSourceType.equals(type.mPowerSourceType);
+        return this.mPowerSourceType.equalsIgnoreCase(type.mPowerSourceType);
 
     }
 }

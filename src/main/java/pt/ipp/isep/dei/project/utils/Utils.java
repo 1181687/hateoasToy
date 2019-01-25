@@ -18,4 +18,20 @@ public final class Utils {
         return d1.equals(d2);
     }
 
+    /**
+     * Method that rounds a double to specified number of decimal places.
+     *
+     * @param value         Value to be rounded.
+     * @param decimalPlaces Number of decimal places.
+     * @return Double with the rounded value.
+     */
+    public static double round(double value, int decimalPlaces) {
+        if (decimalPlaces < 0) {
+            throw new IllegalArgumentException("Please insert a positive value.");
+        }
+        long factor = (long) Math.pow(10, decimalPlaces);
+        double newValue = value * factor;
+        long tmp = Math.round(newValue);
+        return (double) tmp / factor;
+    }
 }

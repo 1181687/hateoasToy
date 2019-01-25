@@ -11,22 +11,48 @@ public class GetNominalPowerOfAGridController {
         this.mHouse=house;
     }
 
-    public boolean checkIfGridListIsEmpty(){
-        return this.mHouse.checkIfHouseGridListIsEmpty();
+    /**
+     * Method that checks if there are no HouseGrids in the House.
+     *
+     * @return true in case there are no HouseGrids or false if there is at least one HouseGrid in the House.
+     */
+    public boolean isGridListEmpty() {
+        return this.mHouse.isHouseGridListEmpty();
     }
+
+
+    /**
+     * Returns a list of HouseGrids that are in the House's HouseGridList.
+     * @return String
+     */
 
     public String listHouseGrids(){
         return this.mHouse.getHouseGridListContent();
     }
 
-    public int getHouseGridListLength(){
-        return mHouse.getHouseGridListLength();
+    /**
+     * Returns the number of HouseGrids contained in the House's HouseGridList.
+     *
+     * @return integer
+     */
+
+    public int getHouseGridListSize() {
+        return mHouse.getHouseGridListSize();
     }
+
+    /**
+     * Gets a HouseGrid from the HouseGridList, by position, and saves it in the Controller.
+     * @param position
+     */
 
     public void getHouseGridByPosition(int position){
         mSelectedHouseGrid = this.mHouse.getHouseGridByPosition(position);
     }
 
+    /**
+     * Calculates the nominal power of the selected HouseGrid.
+     * @return double
+     */
     public double getHouseGridTotalNominalPower(){
         return mSelectedHouseGrid.getNominalPower();
     }

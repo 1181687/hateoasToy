@@ -25,17 +25,17 @@ class GetNominalPowerOfARoomControllerTest {
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
         GetNominalPowerOfARoomController ctrl = new GetNominalPowerOfARoomController(house);
 
-        Dimensions dim1 = new Dimensions(4, 4, 4);
+        Dimension dim1 = new Dimension(4, 4, 4);
         Room room1 = new Room("r1", 1, dim1);
 
-        Dimensions dim2 = new Dimensions(4, 4, 4);
+        Dimension dim2 = new Dimension(4, 4, 4);
         Room room2 = new Room("r2", 1, dim2);
 
         house.addRoom(room1);
         house.addRoom(room2);
 
-        String expectedResult = "1- Name: r1, House Floor: 1, Dimensions - Height: 4.0, Length: 4.0, Width: 4.0\n" +
-                "2- Name: r2, House Floor: 1, Dimensions - Height: 4.0, Length: 4.0, Width: 4.0\n";
+        String expectedResult = "1- Name: r1, House Floor: 1, Dimension - Height: 4.0, Length: 4.0, Width: 4.0\n" +
+                "2- Name: r2, House Floor: 1, Dimension - Height: 4.0, Length: 4.0, Width: 4.0\n";
 
         //Act
 
@@ -87,10 +87,10 @@ class GetNominalPowerOfARoomControllerTest {
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
         GetNominalPowerOfARoomController ctrl = new GetNominalPowerOfARoomController(house);
 
-        Dimensions dim1 = new Dimensions(4, 4, 4);
+        Dimension dim1 = new Dimension(4, 4, 4);
         Room room1 = new Room("F5", 1, dim1);
 
-        Dimensions dim2 = new Dimensions(4, 4, 4);
+        Dimension dim2 = new Dimension(4, 4, 4);
         Room room2 = new Room("F5", 1, dim2);
 
         house.addRoom(room1);
@@ -137,10 +137,10 @@ class GetNominalPowerOfARoomControllerTest {
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
         GetNominalPowerOfARoomController ctrl = new GetNominalPowerOfARoomController(house);
 
-        Dimensions dim1 = new Dimensions(4, 4, 4);
+        Dimension dim1 = new Dimension(4, 4, 4);
         Room room1 = new Room("F5", 1, dim1);
 
-        Dimensions dim2 = new Dimensions(4, 4, 4);
+        Dimension dim2 = new Dimension(4, 4, 4);
         Room room2 = new Room("F5", 1, dim2);
 
         house.addRoom(room1);
@@ -187,10 +187,10 @@ class GetNominalPowerOfARoomControllerTest {
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
         GetNominalPowerOfARoomController ctrl = new GetNominalPowerOfARoomController(house);
 
-        Dimensions dim1 = new Dimensions(4, 4, 4);
+        Dimension dim1 = new Dimension(4, 4, 4);
         Room room1 = new Room("Kitchen", 1, dim1);
 
-        Dimensions dim2 = new Dimensions(4, 4, 4);
+        Dimension dim2 = new Dimension(4, 4, 4);
         Room room2 = new Room("Bedroom", 1, dim2);
 
         house.addRoom(room1);
@@ -199,7 +199,7 @@ class GetNominalPowerOfARoomControllerTest {
         int expectedResult = 2;
 
         //Act
-        int result = ctrl.getRoomListLength();
+        int result = ctrl.getRoomListSize();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -221,17 +221,17 @@ class GetNominalPowerOfARoomControllerTest {
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
         GetNominalPowerOfARoomController ctrl = new GetNominalPowerOfARoomController(house);
 
-        Dimensions dim1 = new Dimensions(4, 4, 4);
+        Dimension dim1 = new Dimension(4, 4, 4);
         Room room1 = new Room("Kitchen", 1, dim1);
 
-        Dimensions dim2 = new Dimensions(4, 4, 4);
+        Dimension dim2 = new Dimension(4, 4, 4);
         Room room2 = new Room("Bedroom", 1, dim2);
 
         house.addRoom(room1);
         house.addRoom(room2);
 
         //Act
-        boolean result = ctrl.checkIfDeviceListIsEmpty(1);
+        boolean result = ctrl.isDeviceListEmpty(1);
 
         //Assert
         assertTrue(result);
@@ -253,10 +253,10 @@ class GetNominalPowerOfARoomControllerTest {
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
         GetNominalPowerOfARoomController ctrl = new GetNominalPowerOfARoomController(house);
 
-        Dimensions dim1 = new Dimensions(4, 4, 4);
+        Dimension dim1 = new Dimension(4, 4, 4);
         Room room1 = new Room("Kitchen", 1, dim1);
 
-        Dimensions dim2 = new Dimensions(4, 4, 4);
+        Dimension dim2 = new Dimension(4, 4, 4);
         Room room2 = new Room("Bedroom", 1, dim2);
 
         house.addRoom(room1);
@@ -270,12 +270,12 @@ class GetNominalPowerOfARoomControllerTest {
 
         Device d2 = new Device("Dish Washer", room1, dishWasher1);
 
-        room2.getmDeviceList().getmDeviceList().add(d1);
+        room2.getDeviceList().getDeviceList().add(d1);
 
-        room2.getmDeviceList().getmDeviceList().add(d2);
+        room2.getDeviceList().getDeviceList().add(d2);
 
         //Act
-        boolean result = ctrl.checkIfDeviceListIsEmpty(1);
+        boolean result = ctrl.isDeviceListEmpty(1);
 
         //Assert
         assertFalse(result);

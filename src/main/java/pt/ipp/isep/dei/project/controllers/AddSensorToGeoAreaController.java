@@ -24,11 +24,11 @@ public class AddSensorToGeoAreaController {
     }
 
     public void getAreaGeograficaNaListaPorPosicao(int posicao) {
-        mGeographicalArea = mListaAreaGeografica.getmGeoAreaList().get(posicao);
+        mGeographicalArea = mListaAreaGeografica.getGeoAreaList().get(posicao);
     }
 
     public int numeroElementosDaListaAreaGeografica () {
-        return mListaAreaGeografica.getmGeoAreaList().size();
+        return mListaAreaGeografica.getGeoAreaList().size();
     }
 
     public int numeroElementosDaListaTipoDeSensor () {
@@ -36,12 +36,12 @@ public class AddSensorToGeoAreaController {
     }
 
     public String getNomeTipoSensorPorIndice (int posicao) {
-        return mSensorTypeList.getSensorTypeByPosition(posicao).getmType();
+        return mSensorTypeList.getSensorTypeByPosition(posicao).getType();
     }
 
     public boolean adicionarSensorAAreaGeografica(Sensor sensor) {
-        if ((!(this.mListaAreaGeografica.getGeographicalArea(this.mGeographicalArea).getmSensorListInTheGeographicArea().getmSensorList().contains(sensor)))) {
-            mListaAreaGeografica.getGeographicalArea(this.mGeographicalArea).getmSensorListInTheGeographicArea().addSensorToTheListOfSensors(sensor);
+        if ((!(this.mListaAreaGeografica.getGeographicalArea(this.mGeographicalArea).getSensorListInTheGeographicArea().getSensorList().contains(sensor)))) {
+            mListaAreaGeografica.getGeographicalArea(this.mGeographicalArea).getSensorListInTheGeographicArea().addSensor(sensor);
             return true;
         }
         return false;

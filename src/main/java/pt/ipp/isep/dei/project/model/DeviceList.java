@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,7 +21,7 @@ public class DeviceList {
      *
      * @return List<Device>
      */
-    public List<Device> getmDeviceList() {
+    public List<Device> getDeviceList() {
         return mDeviceList;
     }
 
@@ -28,8 +30,8 @@ public class DeviceList {
      *
      * @return integer
      */
-    public int getLength() {
-        return getmDeviceList().size();
+    public int getSize() {
+        return getDeviceList().size();
     }
 
     /**
@@ -65,7 +67,7 @@ public class DeviceList {
      * @param name name of device
      * @return boolean true if exists, false if it doesn't
      */
-    public boolean checkIfNameAlreadyExists(String name) {
+    public boolean isNameExistant(String name) {
 
         for (int i = 0; i < mDeviceList.size(); i++) {
             if (mDeviceList.get(i).getName().equalsIgnoreCase(name)) {
@@ -96,7 +98,7 @@ public class DeviceList {
                 content.append("- Device Name: ");
                 content.append(dev.getName());
                 content.append(", Location: ");
-                content.append(dev.getLocation().getmName());
+                content.append(dev.getLocation().getName());
                 content.append(".\n");
             }
             content.append("\n");
@@ -146,7 +148,7 @@ public class DeviceList {
      */
     public Device newElectricWaterHeater(String name, Room selectedRoom, double hotWaterTemperature, double maximumVolume, double nominalPower, double performanceRatio) {
 
-        if (checkIfNameAlreadyExists(name)) {
+        if (isNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
         ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, nominalPower, performanceRatio);
@@ -167,7 +169,7 @@ public class DeviceList {
      */
     public Device newWashingMachine(String name, Room selectedRoom, double nominalPower, double capacity,
                                     ProgramList programList) {
-        if (checkIfNameAlreadyExists(name)) {
+        if (isNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
         WashingMachine washingMachine = new WashingMachine(capacity, nominalPower, programList);
@@ -186,7 +188,7 @@ public class DeviceList {
      * @return a new device
      */
     public Device newDishWasher(String name, Room selectedRoom, double nominalPower, int capacity, ProgramList programList) {
-        if (checkIfNameAlreadyExists(name)) {
+        if (isNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
         DishWasher dishwasher = new DishWasher(capacity, nominalPower, programList);
@@ -205,7 +207,7 @@ public class DeviceList {
      */
 
     public Device newLamp(String name, Room selectedRoom, double nominalPower, double luminousFlux) {
-        if (checkIfNameAlreadyExists(name)) {
+        if (isNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
         DeviceSpecs lamp = new Lamp(luminousFlux, nominalPower);
@@ -224,7 +226,7 @@ public class DeviceList {
      * @return a new device
      */
     public Device newFridge(String name, Room selectedRoom, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
-        if (checkIfNameAlreadyExists(name)) {
+        if (isNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
         Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
@@ -237,12 +239,12 @@ public class DeviceList {
      *
      * @return content of the device list
      */
-    public String getDeviceListContent() {
+    public String getDeviceListToString() {
         StringBuilder content = new StringBuilder();
-        int deviceListLength = getLength();
+        int deviceListLength = getSize();
         int numberInTheList = 1;
         for (int i = 1; i <= deviceListLength; i++) {
-            content.append(numberInTheList + " - Name of the device: " + getmDeviceList().get(i - 1).getName());
+            content.append(numberInTheList + " - Name of the device: " + getDeviceList().get(i - 1).getName());
             content.append("\n");
             numberInTheList++;
         }
@@ -252,11 +254,16 @@ public class DeviceList {
     /**
      * method that check if the device list is empty
      */
-    public boolean checkIfDeviceListIsEmpty() {
+    public boolean isDeviceListEmpty() {
         return mDeviceList.isEmpty();
     }
 
-    public String getDeviceTypeListContent() {
+    /**
+     * method that get de device type list content
+     *
+     * @return the content of the list by string
+     */
+    public String getDeviceTypeListToString() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
         for (DeviceTypes deviceTypeName : DeviceTypes.values()) {
@@ -269,8 +276,11 @@ public class DeviceList {
         return content.toString();
     }
 
+    /**
+     * Method that remove a device from the list of devices
+     */
     public boolean removeDevice(Device device) {
-        return this.getmDeviceList().remove(device);
+        return this.getDeviceList().remove(device);
     }
 
     /**
@@ -333,6 +343,6 @@ public class DeviceList {
         for (Device device : mDeviceList) {
             totalEnergyConsumption += device.getEnergyConsumptionInADay();
         }
-        return totalEnergyConsumption;
+        return Utils.round(totalEnergyConsumption, 2);
     }
 }

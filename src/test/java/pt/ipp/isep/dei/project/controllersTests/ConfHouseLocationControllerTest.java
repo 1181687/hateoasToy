@@ -35,10 +35,10 @@ public class ConfHouseLocationControllerTest {
         Address newAddress = new Address(zipCodeNewAddress, localNewAddress);
 
         ctrl.defineNewAddress(zipCodeNewAddress, latitudeNewAddress, longitudeNewAddress, altitudeNewAddress);
-        ctrl.setAddressToTheHouse();
+        ctrl.setAddress();
 
         //Act
-        boolean result = ctrl.getmHouse().getmAddress().equals(newAddress);
+        boolean result = ctrl.getHouse().getAddress().equals(newAddress);
 
         //Assert
         assertTrue(result);

@@ -66,7 +66,7 @@ public class PowerSourceTypeListTest {
                         "2 - Power Source Type: Wind Generator\n";
 
         //Act
-        String result = list.getPowerSourceTypeListContent();
+        String result = list.getPowerSourceTypeListToString();
         //Assert
         assertEquals(expectedResult, result);
     }

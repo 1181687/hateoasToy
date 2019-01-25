@@ -153,8 +153,8 @@ class SensorTypeListTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         roomList.addRoom(room1);
 
@@ -168,7 +168,7 @@ class SensorTypeListTest {
         String expectedResult = "1 - Sensor Type: Temperatura\n";
 
         // Act
-        String result = listSensorsType.getSensorTypeListContent();
+        String result = listSensorsType.getSensorTypeListToString();
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -181,8 +181,8 @@ class SensorTypeListTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         roomList.addRoom(room1);
 
@@ -190,7 +190,7 @@ class SensorTypeListTest {
         SensorTypeList listSensorsType = new SensorTypeList();
 
         // Act
-        boolean result = listSensorsType.checkIfListOfTypeSensorsIsEmpty();
+        boolean result = listSensorsType.IsEmpty();
         // Assert
         assertTrue(result);
     }

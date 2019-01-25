@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.ProgramList;
 import pt.ipp.isep.dei.project.model.Room;
 
 
@@ -21,9 +20,9 @@ public class AddDeviceToRoom {
         while (flag) {
             //SELECT A ROOM
             String exit = "\r0 - Exit";
-            if (mCtrl.roomListLength() != 0) {
+            if (mCtrl.roomListSize() != 0) {
                 String label2 = "Please choose a room to attach a new device: \n" + mCtrl.getRoomListContent() + exit;
-                indexSelectedRoom = InputValidator.getIntRange(label2, 0, mCtrl.roomListLength()) - 1;
+                indexSelectedRoom = InputValidator.getIntRange(label2, 0, mCtrl.roomListSize()) - 1;
                 if (indexSelectedRoom == -1) {
                     return;
                 }
@@ -36,7 +35,7 @@ public class AddDeviceToRoom {
             Room selectedRoom = mCtrl.getSelectedRoom();
 
             //SELECT A DEVICE TYPE
-            String label0 = "Please select the Device Type: \n" + mCtrl.getDeviceTypeListContent() + exit;
+            String label0 = "Please select the Device Type: \n" + mCtrl.getDeviceTypeListToString() + exit;
             int selectedType = InputValidator.getIntRange(label0, 0, 5);
             if (selectedType == 0) {
                 continue;
@@ -96,7 +95,7 @@ public class AddDeviceToRoom {
                         double dwProgramDuration = 0;
                         double dwProgramEnergyConsumption = 0;
 
-                        getListOfPrograms(dwNumberOfPrograms);
+                        creationOfPrograms(dwNumberOfPrograms);
 
                         mCtrl.createNewDishWasher(dishWasherDeviceName, selectedRoom, dishWasherNominalPower,
                                 dishWasherCapacity);
@@ -121,7 +120,7 @@ public class AddDeviceToRoom {
                         double programDuration = 0;
                         double programEnergyConsumption = 0;
 
-                        getListOfPrograms(numberOfPrograms);
+                        creationOfPrograms(numberOfPrograms);
 
                         mCtrl.createNewWashingMachine(washingMachineDeviceName, selectedRoom, washingMachineNominalPower,
                                 washingMachineCapacity);
@@ -164,7 +163,7 @@ public class AddDeviceToRoom {
 
     }
 
-    public ProgramList getListOfPrograms(int numberOfPrograms) {
+    public void creationOfPrograms(int numberOfPrograms) {
         String programName;
         double programDuration = 0;
         double programEnergyConsumption = 0;
@@ -178,7 +177,6 @@ public class AddDeviceToRoom {
             programEnergyConsumption = InputValidator.getDoublePos(label47);
             mCtrl.addProgramToList(mCtrl.createNewProgram(programName, programDuration, programEnergyConsumption));
         }
-        return mCtrl.getmProgramList();
     }
 
 }

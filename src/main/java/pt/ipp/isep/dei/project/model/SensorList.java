@@ -15,21 +15,19 @@ public class SensorList {
     }
 
     /**
-     * Get method.
-     *
+     * Get method of the sensor list.
      * @return mSensorList.
      */
-    public List<Sensor> getmSensorList() {
+    public List<Sensor> getSensorList() {
         return mSensorList;
     }
 
     /**
      * Set method.
-     *
-     * @param mSensorList List of sensors to be used.
+     * @param sensorList List of sensors to be used.
      */
-    public void setmSensorList(List<Sensor> mSensorList) {
-        this.mSensorList = mSensorList;
+    public void setSensorList(List<Sensor> sensorList) {
+        this.mSensorList = sensorList;
     }
 
     /**
@@ -38,7 +36,7 @@ public class SensorList {
      * @param sensor Chosen sensor.
      * @return True or false.
      */
-    public boolean addSensorToTheListOfSensors(Sensor sensor) {
+    public boolean addSensor(Sensor sensor) {
         if (!(mSensorList.contains(sensor))) {
             mSensorList.add(sensor);
             return true;
@@ -54,7 +52,7 @@ public class SensorList {
      * @param location   Location of the sensor.
      * @return Sensor.
      */
-    public Sensor createNewSensor(String name, SensorType sensorType, Location location) {
+    public Sensor newSensor(String name, SensorType sensorType, Location location) {
         return new Sensor(name, sensorType, location);
     }
 
@@ -67,10 +65,10 @@ public class SensorList {
     public List<Measurement> getListOfLatestMeasurementsBySensorType(SensorType type) {
         List<Measurement> listOfLatestMeasurements = new ArrayList<>();
         for (Sensor sensor : mSensorList) {
-            if (sensor.measurementListIsEmpty()) {
+            if (sensor.isMeasurementListEmpty()) {
                 break;
             }
-            if (sensor.sensorTypeEqualsSensorType(type) && (!(Double.isNaN(sensor.getLastMeasurement().getmValue())))) {
+            if (sensor.sensorTypeEqualsSensorType(type) && (!(Double.isNaN(sensor.getLastMeasurement().getValue())))) {
                 listOfLatestMeasurements.add(sensor.getLastMeasurement());
             }
         }
@@ -90,7 +88,7 @@ public class SensorList {
         }
         Measurement latestMeasurement = listOfLatestMeasurements.get(0);
         for (Measurement measurement : listOfLatestMeasurements) {
-            if (measurement.getmDateTime().isAfter(latestMeasurement.getmDateTime())) {
+            if (measurement.getDateTime().isAfter(latestMeasurement.getDateTime())) {
                 latestMeasurement = measurement;
             }
         }
@@ -102,11 +100,11 @@ public class SensorList {
      * @param date any given day
      * @return maximum value of the temperature sensor in a given day.
      */
-    public double getMaximumMeasureOfATypeOfSensorInAGivenDay(SensorType type, LocalDate date) {
+    public double getMaximumMeasureOfTypeOfSensorInGivenDay(SensorType type, LocalDate date) {
         if (!mSensorList.isEmpty()) {
             double maxValue = mSensorList.get(0).getMaximumValueOfDay(date);
             for (Sensor sensor : mSensorList) {
-                if (sensor.getmSensorType().equals(type) && (!(sensor.getDailyMeasurement(date).isEmpty()))) {
+                if (sensor.getSensorType().equals(type) && (!(sensor.getDailyMeasurement(date).isEmpty()))) {
                     if (sensor.getMaximumValueOfDay(date) > maxValue) {
                         maxValue = sensor.getMaximumValueOfDay(date);
 
@@ -125,7 +123,7 @@ public class SensorList {
      * @param date
      * @return
      */
-    public double getDailyAverageOfTheListOfSensors(LocalDate date) {
+    public double getDailyAverage(LocalDate date) {
         double dailyAverage = Double.NaN;
         for (Sensor sensor : mSensorList) {
             if (!(sensor.getDailyMeasurement(date).isEmpty())) {
@@ -141,18 +139,18 @@ public class SensorList {
      * @param location Location used.
      * @return A list with the nearest sensor (or more, if there are more than one with the same distance).
      */
-    public SensorList getNearestSensorsToALocation(Location location) {
+    public SensorList getNearestSensorsToLocation(Location location) {
         SensorList nearestSensors = new SensorList();
         double shortestDistance = Double.NaN;
         for (Sensor sensor : mSensorList) {
             if (Double.isNaN(shortestDistance) || shortestDistance > sensor.distanceBetweenSensorAndLocation(location)) {
                 shortestDistance = sensor.distanceBetweenSensorAndLocation(location);
-                nearestSensors.getmSensorList().clear();
-                nearestSensors.addSensorToTheListOfSensors(sensor);
+                nearestSensors.getSensorList().clear();
+                nearestSensors.addSensor(sensor);
             } else {
                 Double comparableShortestDistance = shortestDistance;
-                if (comparableShortestDistance.equals(sensor.distanceBetweenSensorAndLocation(location)) && !sensor.equals(nearestSensors.getmSensorList().get(0))) {
-                    nearestSensors.addSensorToTheListOfSensors(sensor);
+                if (comparableShortestDistance.equals(sensor.distanceBetweenSensorAndLocation(location)) && !sensor.equals(nearestSensors.getSensorList().get(0))) {
+                    nearestSensors.addSensor(sensor);
                 }
             }
         }
@@ -163,7 +161,7 @@ public class SensorList {
      * method that get the length of the sensors list.
      */
     public int getLength () {
-        return getmSensorList().size();
+        return getSensorList().size();
     }
 
     /**
@@ -171,12 +169,12 @@ public class SensorList {
      *
      * @return content of sensor list
      */
-    public String getSensorsListContent() {
+    public String getSensorListToString() {
         StringBuilder content = new StringBuilder();
         int sensorListLength = getLength();
         int numberInTheList = 1;
         for (int i = 1; i <= sensorListLength; i++) {
-            content.append(numberInTheList + " - Name of the sensor: " + getmSensorList().get(i-1).getmSensorName());
+            content.append(numberInTheList + " - Name of the sensor: " + getSensorList().get(i - 1).getSensorName());
             content.append("\n");
             numberInTheList++;
         }
@@ -186,7 +184,7 @@ public class SensorList {
     /**
      * method that check if sensor list is empty
      */
-    public boolean checkIfSensorListIsEmpty() {
+    public boolean isEmpty() {
         return mSensorList.isEmpty();
     }
 

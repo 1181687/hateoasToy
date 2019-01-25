@@ -15,7 +15,7 @@ public class GetRoomList {
     }
 
     public void run() {
-        if (ctrl.checkIfListIsEmpty()) {
+        if (ctrl.isEmpty()) {
             System.out.println("The list is empty. Please add a room.");
             return;
         }

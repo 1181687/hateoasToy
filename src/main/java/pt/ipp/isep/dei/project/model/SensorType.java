@@ -6,10 +6,10 @@ public class SensorType {
     /**
      * Constructor of SensorType
      *
-     * @param mTipoSensor Type of sensor
+     * @param tipoSensor Type of sensor
      */
-    public SensorType(String mTipoSensor) {
-        this.mTipo = mTipoSensor;
+    public SensorType(String tipoSensor) {
+        this.mTipo = tipoSensor;
     }
 
     /**
@@ -17,7 +17,7 @@ public class SensorType {
      *
      * @return type of sensor
      */
-    public String getmType() {
+    public String getType() {
         return mTipo;
     }
 
@@ -35,7 +35,6 @@ public class SensorType {
      * @param obj receives an object
      * @return boolean
      */
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {

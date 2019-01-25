@@ -24,8 +24,8 @@ public class GetNominalPowerOfARoomController {
      * Method that returns the length of the roomList.
      * @return integer
      */
-    public int getRoomListLength() {
-        return mHouse.houseRoomListLength();
+    public int getRoomListSize() {
+        return mHouse.houseRoomListSize();
     }
 
     /**
@@ -33,8 +33,8 @@ public class GetNominalPowerOfARoomController {
      * @param option Chosen room from the list as an integer.
      * @return
      */
-    public boolean checkIfDeviceListIsEmpty(int option) {
-        return mHouse.checkIfDeviceListIsEmpty(option);
+    public boolean isDeviceListEmpty(int option) {
+        return mHouse.isDeviceListEmpty(option);
     }
 
     /**

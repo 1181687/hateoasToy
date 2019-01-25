@@ -55,7 +55,7 @@ public class PowerSource {
 
     /**
      * Equals method to determine if two PowerSources are equal.
-     * They are equals if all atributes are equal.
+     * They are equals if all attributes are equal.
      * @param obj receives an object
      * @return boolean
      */
@@ -70,12 +70,11 @@ public class PowerSource {
 
         PowerSource type = (PowerSource) obj;
 
-        return this.mPowerSourceName.equals(type.mPowerSourceName) && this.mPowerSourceType.equals(type.mPowerSourceType);
+        return this.mPowerSourceName.equalsIgnoreCase(type.mPowerSourceName) && this.mPowerSourceType.equals(type.mPowerSourceType);
     }
 
     /**
      * get method
-     *
      * @return power source name
      */
     public String getName() {

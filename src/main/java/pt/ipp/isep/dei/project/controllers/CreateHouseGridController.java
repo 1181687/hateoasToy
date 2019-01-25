@@ -18,7 +18,7 @@ public class CreateHouseGridController {
      *
      * @return mHouseGridList.
      */
-    public HouseGridList getmHouseGridList() {
+    public HouseGridList getHouseGridList() {
         return mHouseGridList;
     }
 
@@ -29,7 +29,7 @@ public class CreateHouseGridController {
      * @return New object of the class HouseGrid.
      */
     public HouseGrid createANewHouseGrid (String nameOfHG){
-        return mHouseGridList.createAHouseGrid(nameOfHG);
+        return mHouseGridList.newHouseGrid(nameOfHG);
     }
 
     /**
@@ -38,6 +38,6 @@ public class CreateHouseGridController {
      * @param grid Specified grid.
      */
     public void addHouseGridToTheListOfHouseGrids(HouseGrid grid) {
-        mHouseGridList.addHouseGridToTheList(grid);
+        mHouseGridList.addHouseGrid(grid);
     }
 }

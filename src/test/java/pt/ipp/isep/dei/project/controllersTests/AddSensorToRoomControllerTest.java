@@ -16,13 +16,13 @@ class AddSensorToRoomControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
-        Dimensions dimensions2 = new Dimensions(2,1.5,1.3);
-        Room room2 = new Room(name2, houseFloor2, dimensions2);
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
         roomList.addRoom(room1);
         roomList.addRoom(room2);
@@ -43,10 +43,10 @@ class AddSensorToRoomControllerTest {
 
         AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
-        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimensions - Height: 2.0, Length: 2.0, Width: 2.0\n" +
-                "2- Name: Living Room, House Floor: 1, Dimensions - Height: 2.0, Length: 1.5, Width: 1.3\n";
+        String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
+                "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
         //act
-        String result = addSensorToRoomController.displayRoomsInTheHouse();
+        String result = addSensorToRoomController.getRoomListContent();
         //assert
         assertEquals(expectResult, result);
     }
@@ -59,8 +59,8 @@ class AddSensorToRoomControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         roomList.addRoom(room1);
 
@@ -102,8 +102,8 @@ class AddSensorToRoomControllerTest {
         // Room
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         // Room list
         RoomList roomList = new RoomList();
@@ -155,7 +155,7 @@ class AddSensorToRoomControllerTest {
         AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
         // Act
-        boolean result = addSensorToRoomController.checkIfRoomListIsEmpty();
+        boolean result = addSensorToRoomController.isRoomListEmpty();
         // Assert
         assertTrue(result);
     }
@@ -168,8 +168,8 @@ class AddSensorToRoomControllerTest {
         // Room
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         roomList.addRoom(room1);
 
@@ -188,7 +188,7 @@ class AddSensorToRoomControllerTest {
         AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
         // Act
-        boolean result = addSensorToRoomController.checkIfRoomListIsEmpty();
+        boolean result = addSensorToRoomController.isRoomListEmpty();
         // Assert
         assertFalse(result);
     }
@@ -201,8 +201,8 @@ class AddSensorToRoomControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         roomList.addRoom(room1);
 
@@ -221,7 +221,7 @@ class AddSensorToRoomControllerTest {
         AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
         // Act
-        boolean result = addSensorToRoomController.checkIfTheListOfSensorTypeIsEmpty();
+        boolean result = addSensorToRoomController.isSensorTypeListEmpty();
         // Assert
         assertTrue(result);
     }
@@ -234,8 +234,8 @@ class AddSensorToRoomControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
-        Dimensions dimensions1 = new Dimensions(2,2,2);
-        Room room1 = new Room(name1, houseFloor1, dimensions1);
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
         roomList.addRoom(room1);
 
@@ -258,7 +258,7 @@ class AddSensorToRoomControllerTest {
         AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
 
         // Act
-        boolean result = addSensorToRoomController.checkIfTheListOfSensorTypeIsEmpty();
+        boolean result = addSensorToRoomController.isSensorTypeListEmpty();
         // Assert
         assertFalse(result);
     }

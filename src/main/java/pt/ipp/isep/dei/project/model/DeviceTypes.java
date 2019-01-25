@@ -9,10 +9,20 @@ public enum DeviceTypes {
 
     private String mDeviceTypeName;
 
+    /**
+     * construtor of the eNum class.
+     *
+     * @param deviceTypeName
+     */
     DeviceTypes(String deviceTypeName) {
         this.mDeviceTypeName = deviceTypeName;
     }
 
+    /**
+     * get the device type name.
+     *
+     * @return the device type name.
+     */
     public String getDeviceTypeName() {
         return mDeviceTypeName;
     }

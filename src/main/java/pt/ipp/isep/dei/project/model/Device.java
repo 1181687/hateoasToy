@@ -22,7 +22,7 @@ public class Device implements Measurable {
      */
     @Override
     public double getNominalPower() {
-        return mSpec.getmNominalPower();
+        return mSpec.getNominalPower();
     }
 
     /**
@@ -48,7 +48,7 @@ public class Device implements Measurable {
      * @return String
      */
     public String getType() {
-        return mSpec.getmTypeName();
+        return mSpec.getTypeName();
     }
 
     /**
@@ -69,7 +69,7 @@ public class Device implements Measurable {
      * @return true if sets false if don't
      */
     public boolean setName(String name) {
-        if (this.mLocation.checkIfNameAlreadyExists(name) || this.mName == name) {
+        if (this.mLocation.isNameExistant(name) || this.mName == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
         this.mName = name;
@@ -82,11 +82,11 @@ public class Device implements Measurable {
      * @param location
      * @return false if the location is equals to another device. True if not.
      */
-    public boolean setmLocation(Room location) {
+    public boolean setLocation(Room location) {
         if (this.mLocation.equals(location)) {
             return false;
         }
-        this.mLocation.getmDeviceList().removeDevice(this);
+        this.mLocation.getDeviceList().removeDevice(this);
         this.mLocation = location;
         this.mLocation.addDevice(this);
         return true;
@@ -109,7 +109,7 @@ public class Device implements Measurable {
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Name: " + mName + "\n");
         attributes.append("2 - Device Specifications\n");
-        attributes.append("3 - Location: " + mLocation.getmName() + "\n");
+        attributes.append("3 - Location: " + mLocation.getName() + "\n");
         return attributes.toString();
     }
 
@@ -157,5 +157,18 @@ public class Device implements Measurable {
      */
     public int getNumberOfSpecsAttributes(){
         return mSpec.getNumberOfAttributes();
+    }
+
+    /**
+     * method that returns the name of device and its location
+     *
+     * @return String
+     */
+    @Override
+    public String getNameToString() {
+        StringBuilder nameLocation = new StringBuilder();
+        nameLocation.append("Device: " + mName);
+        nameLocation.append(", located in room: " + mLocation.getName() + "\n");
+        return nameLocation.toString();
     }
 }

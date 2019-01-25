@@ -13,10 +13,10 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         // Arrange
         // Room Instantiation
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
         String name1 = "Laundry";
-        Dimensions dim1 = new Dimensions(3, 3.5, 5.5);
+        Dimension dim1 = new Dimension(3, 3.5, 5.5);
         Room room1 = new Room(name1, 1, dim1);
 
         // RoomList Instantiation
@@ -64,10 +64,10 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         // Arrange
         // Room Instantiation
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
         String name1 = "Laundry";
-        Dimensions dim1 = new Dimensions(3, 3.5, 5.5);
+        Dimension dim1 = new Dimension(3, 3.5, 5.5);
         Room room1 = new Room(name1, 1, dim1);
 
         // RoomList Instantiation
@@ -115,10 +115,10 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         // Arrange
         // Room Instantiation
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
         String name1 = "Laundry";
-        Dimensions dim1 = new Dimensions(3, 3.5, 5.5);
+        Dimension dim1 = new Dimension(3, 3.5, 5.5);
         Room room1 = new Room(name1, 1, dim1);
 
         // RoomList Instantiation
@@ -157,7 +157,7 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         double volumeOfWaterToHeat = 70;
         ctrl.setVolumeOfWaterToHeat(1, volumeOfWaterToHeat);
 
-        double expectedResult = 3989.089;
+        double expectedResult = 3.99;
 
         // Act
         double result = ctrl.getEnergyConsumptionOfAWaterHeater(1);
@@ -171,10 +171,10 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         // Arrange
         // Room Instantiation
         String name = "Kitchen";
-        Dimensions dim = new Dimensions(3, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
         String name1 = "Laundry";
-        Dimensions dim1 = new Dimensions(3, 3.5, 5.5);
+        Dimension dim1 = new Dimension(3, 3.5, 5.5);
         Room room1 = new Room(name1, 1, dim1);
 
         // RoomList Instantiation
@@ -218,7 +218,7 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         double volumeOfWaterToHeat1 = 70;
         ctrl.setVolumeOfWaterToHeat(1, volumeOfWaterToHeat1);
 
-        double expectedResult = 9117.919;
+        double expectedResult = 9.12;
 
         // Act
         double result = ctrl.getTotalEnergyConsumptionOfAllDevicesOfAType();
