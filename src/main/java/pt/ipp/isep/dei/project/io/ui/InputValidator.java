@@ -232,6 +232,38 @@ public class InputValidator {
     }
 
     /**
+     * TODO
+     * @param label
+     * @return
+     */
+
+    public static LocalDate getStringDateTime(String label) {
+        Scanner in = new Scanner(System.in);
+        String str="";
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        format.setLenient(false);
+
+        boolean flag;
+        do {
+            System.out.println(label);
+            try {
+                flag =false;
+                str = in.nextLine();
+                str = str.trim();
+                format.parse(str);
+            } catch (ParseException e) {
+                System.out.println("Date " + str + " is not valid. Please insert a valid date according to (" +
+                        ((SimpleDateFormat) format).toPattern() + ") pattern.");
+                flag = true;
+            }
+        } while (flag);
+
+        LocalDate validDate = LocalDate.parse(str);
+
+        return validDate;
+    }
+
+    /**
      * Method that keeps displaying the string label until the input is a double.
      *
      * @param label string that is showed to the user, indicating what type of input he need to introduce
