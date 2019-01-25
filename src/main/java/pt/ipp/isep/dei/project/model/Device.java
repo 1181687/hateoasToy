@@ -10,7 +10,7 @@ public class Device implements Measurable {
     private String mName;
     private Room mLocation;
     private DeviceSpecs mSpec;
-    private List<Measurement> measurementList = new ArrayList<>();
+    private List<Measurement> mMeasurementList = new ArrayList<>();
 
     public Device(String name, Room location, DeviceSpecs spec) {
         this.mName = name;
@@ -179,12 +179,27 @@ public class Device implements Measurable {
     /**
      * TODO
      *
+     * @param measurement
+     */
+    public void addMeasurementToTheList(Measurement measurement) {
+        mMeasurementList.add(measurement);
+    }
+
+    /**
+     * TODO
+     *
      * @param startDate
      * @param endDate
      * @return
      */
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        return 0;
+        double totalEnergyConsumption = 0;
+        for (Measurement measurement : mMeasurementList) {
+            if (startDate.isBefore(measurement.getDateTime()) && endDate.isAfter(measurement.getDateTime())) {
+                totalEnergyConsumption += measurement.getValue();
+            }
+        }
+        return totalEnergyConsumption;
     }
 }
