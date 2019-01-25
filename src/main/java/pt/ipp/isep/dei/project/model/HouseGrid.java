@@ -12,6 +12,7 @@ public class HouseGrid implements Measurable {
 
     /**
      * constructor of a house grid that receives a name, a room list, a list of power sources and a maximum contracted power.
+     *
      * @param houseGridName
      */
 
@@ -85,6 +86,7 @@ public class HouseGrid implements Measurable {
 
     /**
      * Method that attaches a room in the house grid's room list.
+     *
      * @param room Speficied room to attach.
      */
     public void attachRoom(Room room) {
@@ -93,6 +95,7 @@ public class HouseGrid implements Measurable {
 
     /**
      * Method that add a new power source to the list of power sources.
+     *
      * @param newPowerSource
      * @return
      */
@@ -135,6 +138,7 @@ public class HouseGrid implements Measurable {
 
     /**
      * method that gets a List of all Devices in all Rooms of a Housegrid
+     *
      * @return List <Device>
      */
     public DeviceList getAllDevicesList() {
@@ -200,6 +204,15 @@ public class HouseGrid implements Measurable {
      */
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        return 0;
+
+        double totalEnergyComsumption = 0;
+        if (this.mRoomList.isEmpty()) {
+            throw new RuntimeException("There are no rooms connected to this house grid.");
+        } else {
+            for (Room room : this.mRoomList.getRoomList()) {
+                totalEnergyComsumption += room.getEnergyConsumptionInAnInterval(startDate, endDate);
+            }
+            return totalEnergyComsumption;
+        }
     }
 }
