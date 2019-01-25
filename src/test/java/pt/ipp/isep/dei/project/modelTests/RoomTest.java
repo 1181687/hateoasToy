@@ -313,7 +313,7 @@ public class RoomTest {
 
 
         // Act
-        String result = room.getDeviceListContent();
+        String result = room.getDeviceListToString();
 
         // Assert
         assertEquals(expectedResult, result);

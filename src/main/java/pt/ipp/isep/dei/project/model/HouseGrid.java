@@ -160,7 +160,7 @@ public class HouseGrid implements Measurable {
     }
 
     public String getDeviceListContent(int position) {
-        return mRoomList.getRoomFromPosition(position).getDeviceListContent();
+        return mRoomList.getRoomFromPosition(position).getDeviceListToString();
     }
 
     public int getDeviceListSizeByRoomPosition(int position) {

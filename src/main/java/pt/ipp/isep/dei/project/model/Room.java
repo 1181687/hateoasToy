@@ -223,7 +223,7 @@ public class Room implements Measurable {
      *
      * @return content of device list
      */
-    public String getDeviceListContent() {
+    public String getDeviceListToString() {
         return this.mDeviceList.getDeviceListToString();
     }
 

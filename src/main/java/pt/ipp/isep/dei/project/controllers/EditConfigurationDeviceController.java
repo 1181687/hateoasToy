@@ -51,7 +51,7 @@ public class EditConfigurationDeviceController {
      * @return the content of the device list.
      */
     public String getDevicesInTheRoom () {
-        return this.mRoom.getDeviceListContent();
+        return this.mRoom.getDeviceListToString();
     }
 
     /**
