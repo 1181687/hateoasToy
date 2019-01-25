@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.model;
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,17 +10,17 @@ public class Device implements Measurable {
     private String mName;
     private Room mLocation;
     private DeviceSpecs mSpec;
-    private List<Measurement> measurementList;
+    private List<Measurement> mMeasurementList = new ArrayList<>();
 
     public Device(String name, Room location, DeviceSpecs spec) {
         this.mName = name;
         this.mLocation = location;
-        this.mLocation.addDevice(this);
         this.mSpec = spec;
+        this.mLocation.addDevice(this);
     }
 
     /**
-     * method that get the nominal power of th devices.
+     * method that get the nominal power of the devices.
      *
      * @return the nominal power of the device.
      */
@@ -178,12 +179,48 @@ public class Device implements Measurable {
     /**
      * TODO
      *
+     * @param measurement
+     */
+    public void addMeasurementToTheList(Measurement measurement) {
+        mMeasurementList.add(measurement);
+    }
+
+    /**
+     * TODO
+     *
+     * @param measurementList
+     * @return
+     */
+    public double getSumOfTheMeasurements(List<Measurement> measurementList) {
+        double sum = 0;
+        for (Measurement measurement : measurementList) {
+            sum += measurement.getValue();
+        }
+        return sum;
+    }
+
+    /**
+     * TODO
+     *
      * @param startDate
      * @param endDate
      * @return
      */
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        return 0;
+        double totalEnergyConsumption = 0;
+        int numberOfValidMeasurements = 0;
+        List<Measurement> measurementList = new ArrayList<>();
+        for (Measurement measurement : mMeasurementList) {
+            if (!startDate.isAfter(measurement.getDateTime()) && !endDate.isBefore(measurement.getDateTime())) {
+                measurementList.add(measurement);
+                numberOfValidMeasurements++;
+            }
+        }
+        if (numberOfValidMeasurements > 1) {
+            measurementList.remove(0);
+            totalEnergyConsumption = getSumOfTheMeasurements(measurementList);
+        }
+        return totalEnergyConsumption;
     }
 }

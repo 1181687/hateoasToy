@@ -220,7 +220,7 @@ public class RoomList {
      * @return list of devices of a room
      */
     public String getDeviceListContentByPosition(int position) {
-        return mRoomList.get(position).getDeviceListContent();
+        return mRoomList.get(position).getDeviceListToString();
     }
 
     /**
@@ -306,6 +306,21 @@ public class RoomList {
             listWithDevicesOfAType.getDeviceList().addAll(room.getAllDevicesOfType(type).getDeviceList());
         }
         return listWithDevicesOfAType;
+    }
+
+    /**
+     * TODO
+     *
+     * @return
+     */
+    public String getAllDeviceListsToString() {
+        StringBuilder content = new StringBuilder();
+        int numberInTheList = 1;
+        for (Room room : mRoomList) {
+            content.append(numberInTheList + room.getDeviceListToString().substring(1));
+            numberInTheList++;
+        }
+        return content.toString();
     }
 
     public boolean deleteDevice(Device device, int choosenRoom) {

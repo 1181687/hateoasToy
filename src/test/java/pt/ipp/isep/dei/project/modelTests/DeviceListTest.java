@@ -355,12 +355,13 @@ public class DeviceListTest {
         DeviceSpecs lamp = new Lamp(luminousFlux, nominalPower);
         ProgramList programList = new ProgramList();
 
-        Device d2 = new Device("Device2", room, lamp);
-        DeviceList devList = new DeviceList();
-        devList.addDevice(d2);
+        //Device d2 = new Device("Device2", room, lamp);
+        DeviceList devList = room.getDeviceList();
+        Room room2 = new Room("Room2", 2, dim);
 
+        //  devList.addDevice(d2);
 
-        Device expectedResult = new Device(name, room, lamp);
+        Device expectedResult = new Device(name, room2, lamp);
 
         Device result = devList.newLamp(name, room, luminousFlux, nominalPower);
 
@@ -516,7 +517,7 @@ public class DeviceListTest {
     }
 
     @Test
-    public void testGetTotalEnergyConsumption (){
+    public void testGetTotalEnergyConsumption() {
         //Arrange
         // Arrange
         // Dimension Instantiation
