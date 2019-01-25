@@ -2,16 +2,24 @@ package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDateTime;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import static java.util.Objects.isNull;
 
 public class HouseGrid implements Measurable {
     private String mName;
     private double mMaximumContractedPower;
+    private int mMeteringPeriod;
     private PowerSourceList mPowerSourceList;
     private RoomList mRoomList;
 
     /**
      * constructor of a house grid that receives a name, a room list, a list of power sources and a maximum contracted power.
+     *
      * @param houseGridName
      */
 
@@ -22,6 +30,7 @@ public class HouseGrid implements Measurable {
         this.mRoomList = new RoomList();
         this.mPowerSourceList = new PowerSourceList();
         this.mMaximumContractedPower = 0;
+        this.mMeteringPeriod = setMeteringPeriod();
     }
 
     /**
@@ -85,6 +94,7 @@ public class HouseGrid implements Measurable {
 
     /**
      * Method that attaches a room in the house grid's room list.
+     *
      * @param room Speficied room to attach.
      */
     public void attachRoom(Room room) {
@@ -93,6 +103,7 @@ public class HouseGrid implements Measurable {
 
     /**
      * Method that add a new power source to the list of power sources.
+     *
      * @param newPowerSource
      * @return
      */
@@ -135,6 +146,7 @@ public class HouseGrid implements Measurable {
 
     /**
      * method that gets a List of all Devices in all Rooms of a Housegrid
+     *
      * @return List <Device>
      */
     public DeviceList getAllDevicesList() {
@@ -202,4 +214,27 @@ public class HouseGrid implements Measurable {
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         return 0;
     }
+
+    public int setMeteringPeriod() {
+        Properties prop = new Properties();
+        InputStream in = null;
+        try {
+            in = new FileInputStream("MeteringGridConfiguration.properties");
+        } catch (FileNotFoundException ex) {
+            System.out.println("There is no file with that filename.");
+        }
+        try {
+            prop.load(in);
+            in.close();
+        } catch (IOException ex) {
+            System.out.println("No info was found.");
+        }
+        int meteringPeriod = Integer.parseInt(prop.getProperty("MeteringPeriod"));
+
+        if (!(1440 % meteringPeriod == 0)) {
+            System.out.println("That is not a valid metering period.");
+        }
+        return meteringPeriod;
+    }
+
 }

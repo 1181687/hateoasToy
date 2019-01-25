@@ -537,4 +537,16 @@ public class HouseGridTest {
         assertEquals(expectResult, result);
     }
 
+    @Test
+    public void testSetMeteringConfig(){
+        String houseGridName = "hgname1";
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
+
+        int expectedResult = 10;
+
+        int result = houseGrid.setMeteringPeriod();
+
+        assertEquals(expectedResult,result);
+    }
+
 }
