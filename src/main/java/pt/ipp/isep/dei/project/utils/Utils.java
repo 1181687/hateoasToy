@@ -42,7 +42,7 @@ public final class Utils {
         return (double) tmp / factor;
     }
 
-    public static boolean isMeteringPeriodValid() {
+    public static int getGridMeteringPeriod() {
         Properties prop = new Properties();
         InputStream in = null;
         try {
@@ -63,6 +63,13 @@ public final class Utils {
         int meteringPeriod = Integer.parseInt(prop.getProperty("MeteringPeriod"));
 
         if (!(1440 % meteringPeriod == 0)) {
+            return -1;
+        }
+        return meteringPeriod;
+    }
+
+    public static boolean isGridMeteringPeriodValid() {
+        if (!(1440 % getGridMeteringPeriod() == 0)) {
             return false;
         }
         return true;

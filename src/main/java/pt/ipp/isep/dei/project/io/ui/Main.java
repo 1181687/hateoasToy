@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        if (!(Utils.isMeteringPeriodValid())) {
+        if (!(Utils.isGridMeteringPeriodValid())) {
             System.out.println("The grid metering period is not valid. Please configure the grid metering perioud for a valid value.");
             return;
         }
