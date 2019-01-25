@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.model;
 
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -9,7 +10,7 @@ public class Device implements Measurable {
     private String mName;
     private Room mLocation;
     private DeviceSpecs mSpec;
-    private List<Measurement> measurementList;
+    private List<Measurement> measurementList = new ArrayList<>();
 
     public Device(String name, Room location, DeviceSpecs spec) {
         this.mName = name;
