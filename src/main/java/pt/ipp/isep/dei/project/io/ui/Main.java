@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -8,6 +9,11 @@ import java.time.LocalDateTime;
 public class Main {
 
     public static void main(String[] args) {
+
+        if (!(Utils.isMeteringPeriodValid())) {
+            System.out.println("The grid metering period is not valid. Please configure the grid metering perioud for a valid value.");
+            return;
+        }
         GeoAreaTypeList geoAreaTypeList = new GeoAreaTypeList();
         GeoAreaList geoAreaList = new GeoAreaList();
         RoomList roomList = new RoomList();

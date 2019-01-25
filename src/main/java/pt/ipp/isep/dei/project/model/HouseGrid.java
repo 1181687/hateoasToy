@@ -2,11 +2,18 @@ package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDateTime;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import static java.util.Objects.isNull;
 
 public class HouseGrid implements Measurable {
     private String mName;
     private double mMaximumContractedPower;
+    private int mMeteringPeriod;
     private PowerSourceList mPowerSourceList;
     private RoomList mRoomList;
 
@@ -23,6 +30,7 @@ public class HouseGrid implements Measurable {
         this.mRoomList = new RoomList();
         this.mPowerSourceList = new PowerSourceList();
         this.mMaximumContractedPower = 0;
+        this.mMeteringPeriod = setMeteringPeriod();
     }
 
     /**
@@ -215,4 +223,31 @@ public class HouseGrid implements Measurable {
             return totalEnergyComsumption;
         }
     }
+
+    public int setMeteringPeriod() {
+        Properties prop = new Properties();
+        InputStream in = null;
+        try {
+            in = new FileInputStream("MeteringGridConfiguration.properties");
+        } catch (FileNotFoundException ex) {
+            System.out.println("There is no file with that filename.");
+        }
+        try {
+            if (in != null) {
+                prop.load(in);
+                in.close();
+            } else {
+                System.out.println("There is no file with that filename.");
+            }
+        } catch (IOException ex) {
+            System.out.println("No info was found.");
+        }
+        int meteringPeriod = Integer.parseInt(prop.getProperty("MeteringPeriod"));
+
+        if (!(1440 % meteringPeriod == 0)) {
+            throw new RuntimeException("That is not a valid metering period.");
+        }
+        return meteringPeriod;
+    }
+
 }
