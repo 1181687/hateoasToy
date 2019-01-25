@@ -1,12 +1,15 @@
 package pt.ipp.isep.dei.project.model;
 
 
+import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 public class Device implements Measurable {
     private String mName;
     private Room mLocation;
     private DeviceSpecs mSpec;
+    private List<Measurement> measurementList;
 
     public Device(String name, Room location, DeviceSpecs spec) {
         this.mName = name;
@@ -170,5 +173,17 @@ public class Device implements Measurable {
         nameLocation.append("Device: " + mName);
         nameLocation.append(", located in room: " + mLocation.getName() + "\n");
         return nameLocation.toString();
+    }
+
+    /**
+     * TODO
+     *
+     * @param startDate
+     * @param endDate
+     * @return
+     */
+    @Override
+    public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
+        return 0;
     }
 }
