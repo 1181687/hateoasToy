@@ -36,7 +36,7 @@ public class Sensor {
      *
      * @param sensorName name of the sensor (string)
      * @param sensorType Type of Sensor
-     * @param location   Locatiom of the Sensor
+     * @param location   Location of the Sensor
      */
     public Sensor(String sensorName, SensorType sensorType, Location location) {
         this.mSensorName = sensorName;

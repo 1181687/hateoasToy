@@ -17,6 +17,7 @@ skinparam sequence {
 }
 
 actor User
+activate User
 User -> UI: GetNominalPowerOfAGrid
 activate UI
 UI -> Controller: checkIfGridListIsEmpty()
@@ -38,7 +39,7 @@ UI <-- HouseGridList: HouseGridList
 deactivate House
 deactivate HouseGridList
 deactivate Controller
-UI <-- User: List Of House Grid
+UI --> User: Shows List Of House Grids
 User -> UI: Select house grid :int p
 UI -> Controller: getHouseGridByPosition(p)
 activate Controller
@@ -52,5 +53,5 @@ Controller -> HouseGrid:getNominalPower()
 activate HouseGrid
 UI <-- HouseGrid: double nominalPower
 deactivate HouseGrid
-
+deactivate User
 @enduml

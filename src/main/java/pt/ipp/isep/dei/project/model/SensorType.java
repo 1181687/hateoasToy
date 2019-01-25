@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
 public class SensorType {
-    private String mTipo;
+    private String mType;
 
     /**
      * Constructor of SensorType
@@ -9,7 +9,7 @@ public class SensorType {
      * @param tipoSensor Type of sensor
      */
     public SensorType(String tipoSensor) {
-        this.mTipo = tipoSensor;
+        this.mType = tipoSensor;
     }
 
     /**
@@ -18,7 +18,7 @@ public class SensorType {
      * @return type of sensor
      */
     public String getType() {
-        return mTipo;
+        return mType;
     }
 
     /**
@@ -44,7 +44,7 @@ public class SensorType {
             return false;
         }
         SensorType ts = (SensorType) obj;
-        return this.mTipo.equals(ts.mTipo);
+        return this.mType.equals(ts.mType);
 
     }
 }
