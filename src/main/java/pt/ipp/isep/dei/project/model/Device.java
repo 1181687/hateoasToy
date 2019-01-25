@@ -20,7 +20,7 @@ public class Device implements Measurable {
     }
 
     /**
-     * method that get the nominal power of th devices.
+     * method that get the nominal power of the devices.
      *
      * @return the nominal power of the device.
      */
