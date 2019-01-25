@@ -350,6 +350,7 @@ public class DeviceList {
         for (Device searchDevice : this.mDeviceList) {
             if (device.equals(searchDevice)) {
                 this.mDeviceList.remove(searchDevice);
+                device.setLocation(null);
                 return true;
             }
         }
