@@ -491,10 +491,10 @@ public class DeviceTest {
         device.addMeasurementToTheList(measurement1);
         device.addMeasurementToTheList(measurement2);
 
-        double expectedResult = 12;
+        double expectedResult = 7;
 
-        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 7, 00, 00);
-        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 17, 00, 00);
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
         double result = device.getEnergyConsumptionInAnInterval(startDate, endDate);

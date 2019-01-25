@@ -188,6 +188,20 @@ public class Device implements Measurable {
     /**
      * TODO
      *
+     * @param measurementList
+     * @return
+     */
+    public double getSumOfTheMeasurements(List<Measurement> measurementList) {
+        double sum = 0;
+        for (Measurement measurement : measurementList) {
+            sum += measurement.getValue();
+        }
+        return sum;
+    }
+
+    /**
+     * TODO
+     *
      * @param startDate
      * @param endDate
      * @return
@@ -195,10 +209,17 @@ public class Device implements Measurable {
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
+        int numberOfValidMeasurements = 0;
+        List<Measurement> measurementList = new ArrayList<>();
         for (Measurement measurement : mMeasurementList) {
-            if (startDate.isBefore(measurement.getDateTime()) && endDate.isAfter(measurement.getDateTime())) {
-                totalEnergyConsumption += measurement.getValue();
+            if (!startDate.isAfter(measurement.getDateTime()) && !endDate.isBefore(measurement.getDateTime())) {
+                measurementList.add(measurement);
+                numberOfValidMeasurements++;
             }
+        }
+        if (numberOfValidMeasurements > 1) {
+            measurementList.remove(0);
+            totalEnergyConsumption = getSumOfTheMeasurements(measurementList);
         }
         return totalEnergyConsumption;
     }
