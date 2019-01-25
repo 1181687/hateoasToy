@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.time.LocalDateTime;
+
 import static java.util.Objects.isNull;
 
 public class HouseGrid implements Measurable {
@@ -189,4 +191,15 @@ public class HouseGrid implements Measurable {
         return name.toString();
     }
 
+    /**
+     * TODO
+     *
+     * @param startDate
+     * @param endDate
+     * @return
+     */
+    @Override
+    public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
+        return 0;
+    }
 }

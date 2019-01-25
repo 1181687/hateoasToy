@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;
@@ -305,5 +306,17 @@ public class Room implements Measurable {
         StringBuilder name = new StringBuilder();
         name.append("Room: " + mName + "\n");
         return name.toString();
+    }
+
+    /**
+     * TODO
+     *
+     * @param startDate
+     * @param endDate
+     * @return
+     */
+    @Override
+    public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
+        return 0;
     }
 }
