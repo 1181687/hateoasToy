@@ -233,11 +233,10 @@ public class HouseGrid implements Measurable {
             System.out.println("There is no file with that filename.");
         }
         try {
-            if (!in.equals(null)) {
+            if (in != null) {
                 prop.load(in);
                 in.close();
-            }
-            else{
+            } else {
                 System.out.println("There is no file with that filename.");
             }
         } catch (IOException ex) {

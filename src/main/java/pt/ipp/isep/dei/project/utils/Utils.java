@@ -14,6 +14,7 @@ public final class Utils {
 
     /**
      * method that compares two double values.
+     *
      * @param value1
      * @param value2
      * @return the comparison between two values.
@@ -23,6 +24,7 @@ public final class Utils {
         Double d2 = value2;
         return d1.equals(d2);
     }
+
     /**
      * Method that rounds a double to specified number of decimal places.
      *
@@ -40,7 +42,7 @@ public final class Utils {
         return (double) tmp / factor;
     }
 
-    public static boolean isMeteringPeriodValid(){
+    public static boolean isMeteringPeriodValid() {
         Properties prop = new Properties();
         InputStream in = null;
         try {
@@ -49,8 +51,12 @@ public final class Utils {
             System.out.println("There is no file with that filename.");
         }
         try {
-            prop.load(in);
-            in.close();
+            if (in != null) {
+                prop.load(in);
+                in.close();
+            } else {
+                System.out.println("There is no file with that filename.");
+            }
         } catch (IOException ex) {
             System.out.println("No info was found.");
         }
