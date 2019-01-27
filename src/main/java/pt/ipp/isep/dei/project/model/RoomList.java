@@ -324,7 +324,7 @@ public class RoomList {
     }
 
     public int getDevicesListLength(int position) {
-        return this.mRoomList.get(position).getDeviceList().getSize();
+        return this.mRoomList.get(position).getDevicesListLength();
     }
 
     public boolean deleteDevice(String device, int choosenRoom) {

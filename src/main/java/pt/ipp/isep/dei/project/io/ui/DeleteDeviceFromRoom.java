@@ -14,50 +14,55 @@ public class DeleteDeviceFromRoom {
     public void run() {
 
         // LIST OF ROOMS
-        boolean flag = true;
-        do {
-            String exit = "0 - Exit";
-            String label1 = "Please select the room where you want to remove the device: \n" +
-                    mController.getRoomListContent() + exit;
+        StringBuilder content = new StringBuilder();
 
-            int roomListSize = mController.roomListSize();
-            int positionRoom = InputValidator.getIntRange(label1, 0, roomListSize) - 1;
-            if (positionRoom == 0) {
-                return;
-            }
-            mController.getRoomNameByPosition(positionRoom - 1);
+        if (this.mController.checkIfRoomListIsEmpty()) {
+            System.out.println("There are no rooms in the house. Please create a room.");
 
-
-            // LIST OF DEVICES
-            boolean flag2 = true;
-            do {
-                String exit1 = "0 - Back to previous menu";
-                if (mController.isDeviceListEmpty(positionRoom)) {
-                    System.out.println("There are no devices in this room. Please, choose another room or add devices to the chosen room.\n");
-                    continue;
+        } else {
+            boolean flag = true;
+            while (flag) {
+                String exit = "0 - Return to the previous menu";
+                String label1 = "\n> Please select the room with the device you want to delete:\n" + mController.getRoomListContent() + exit;
+                int roomListSize = mController.roomListSize();
+                int position = InputValidator.getIntRange(label1, 0, roomListSize) - 1;
+                if (position == -1) {
+                    return;
                 }
+                mController.getRoomByPosition(position);
 
-                String label2 = "Please select the device you want to delete: \n"
-                        + mController.getDeviceListContent(positionRoom) + exit1;
-                int positionDevice = InputValidator.getIntRange(label2, 0, mController.getDeviceListLength() + 1);
-                if (positionDevice == 0) {
-                    break;
-                }
+                if (this.mController.checkIfDeviceListIsEmpty()) {
+                    System.out.println("\n There are no devices in this room. \n");
 
-                String label3 = "Are you sure do you want to delete this device? (Y/N)";
-                String answer = InputValidator.confirmValidation(label3);
-                if ("y".equals(answer) || "Y".equals(answer)) {
-
-                    String deletedDevice = mController.getDeviceNameByPosition(positionDevice);
-                    if (positionDevice == mController.getDeviceListSize(positionDevice) + 1) {
-                        mController.deleteDevice(deletedDevice, positionDevice);
-                        System.out.println("\n The device has been deleted. \n");
-                    }
                 } else {
-                    break;
+                    boolean flag1 = true;
+                    while (flag1) {
+                        String label2 = "\n> Please select the device you want to delete. \n" + mController.getDevicesInTheRoom() + exit;
+
+                        int deviceListLength = mController.getDeviceListLength();
+                        int position1 = InputValidator.getIntRange(label2, 0, deviceListLength) - 1;
+                        if (position1 == -1) {
+                            return;
+                        }
+                        mController.getDeviceByPosition(position1);
+                        flag1 = false;
+
+                        String label3 = "Are you sure do you want to delete this device? (Y/N)";
+                        String answer = InputValidator.confirmValidation(label3);
+                        if ("y".equals(answer) || "Y".equals(answer)) {
+
+                            String deletedDevice = mController.getDeviceNameByPosition(position1);
+                            mController.deleteDevice(deletedDevice, position1);
+                            System.out.println("\n The device has been deleted. \n");
+
+                        } else {
+                            continue;
+                        }
+                        flag1 = false;
+                    }
                 }
-            } while (flag2);
+            }
+            System.out.println(content.toString());
         }
-        while (flag);
     }
 }

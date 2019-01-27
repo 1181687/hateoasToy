@@ -707,7 +707,7 @@ public class DeviceListTest {
         assertTrue(result);
     }
 
-    /*@Test
+    /* @Test
     public void testRemoveDeviceTrue() {
         // arrange
         String name = "Kitchen";
@@ -765,8 +765,7 @@ public class DeviceListTest {
         String result = "";
         //assert
         assertEquals(expectedResult, result);
-    }
-    */
+    } */
 
 }
 
