@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.RoomList;
 
@@ -79,8 +78,24 @@ public class DeleteDeviceFromRoomController {
         return this.mHouse.getRoomListSize();
     }
 
-    public boolean deleteDevice(Device device, int choosenRoom) {
+    public int getDeviceListSize(int position) {
+        return mHouse.getDevicesListLength(position);
+    }
+
+    public boolean deleteDevice(String device, int choosenRoom) {
         return this.mHouse.deleteDevice(device, choosenRoom);
+    }
+
+    public String getDeviceListContentOfARoom(int selectedRoom) {
+        return mHouse.getDeviceListContentRoom(selectedRoom);
+    }
+
+    public String getDeviceNameByPosition(int position) {
+        return this.mHouse.getDeviceNameByPosition(position);
+    }
+
+    public int getDeviceListLength() {
+        return this.mHouse.getRoomList().getAllDevicesList().getSize();
     }
 
 

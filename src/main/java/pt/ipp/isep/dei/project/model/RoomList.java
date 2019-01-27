@@ -323,7 +323,15 @@ public class RoomList {
         return content.toString();
     }
 
-    public boolean deleteDevice(Device device, int choosenRoom) {
-        return mRoomList.get(choosenRoom).deleteDevice(device);
+    public int getDevicesListLength(int position) {
+        return this.mRoomList.get(position).getDeviceList().getSize();
+    }
+
+    public boolean deleteDevice(String device, int choosenRoom) {
+        return mRoomList.get(choosenRoom).deleteDevice(device, choosenRoom);
+    }
+
+    public String getDeviceNameByPosition(int position) {
+        return this.mRoomList.get(position).getDeviceNameByPosition(position);
     }
 }

@@ -85,9 +85,11 @@ public class Menu {
         content.append("\n");
         content.append("10-Add a new device to a room");
         content.append("\n");
+        content.append("11-Delete a device from a room");
+        content.append("\n");
         content.append(RETURN_MENU);
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 10);
+        return InputValidator.getIntRange(label, 0, 11);
     }
 
     public static int regularUserMenu() {

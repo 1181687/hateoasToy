@@ -328,7 +328,11 @@ public class Room implements Measurable {
         return totalEnergyConsumption;
     }
 
-    public boolean deleteDevice(Device device) {
-        return this.mDeviceList.deleteDevice(device);
+    public boolean deleteDevice(String device, int position) {
+        return this.mDeviceList.deleteDevice(device, position);
+    }
+
+    public String getDeviceNameByPosition(int position) {
+        return this.mDeviceList.getDeviceNameByPosition(position);
     }
 }
