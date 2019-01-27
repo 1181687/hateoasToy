@@ -224,3 +224,12 @@ public class Device implements Measurable {
         return totalEnergyConsumption;
     }
 }
+/**
+ * public int setDeviceMeteringPeriod() {
+ * if (Utils.isDeviceMeteringPeriodValidDay() && Utils.isDeviceMeteringPeriodValidGrid()) {
+ * return Utils.getDeviceMeteringPeriod();
+ * } else {
+ * throw new RuntimeException("The period in not valid.");
+ * }
+ * }
+ */

@@ -71,4 +71,45 @@ public final class Utils {
     public static boolean isGridMeteringPeriodValid() {
         return 1440 % getGridMeteringPeriod() == 0;
     }
+
 }
+
+/**
+ * public static int getDeviceMeteringPeriod() {
+ * Properties prop = new Properties();
+ * InputStream in = null;
+ * try {
+ * in = new FileInputStream("MeteringDeviceConfiguration.properties");
+ * } catch (FileNotFoundException ex) {
+ * System.out.println("There is no file with that filename.");
+ * }
+ * try {
+ * if (in != null) {
+ * prop.load(in);
+ * in.close();
+ * } else {
+ * System.out.println("There is no file with that filename.");
+ * }
+ * } catch (IOException ex) {
+ * System.out.println("No info was found.");
+ * }
+ * int meteringPeriodDevice = Integer.parseInt(prop.getProperty("MeteringPeriodDevice"));
+ * int meteringPeriodGrid = Integer.parseInt(prop.getProperty("MeteringPeriod"));
+ * <p>
+ * if ((!(1440 % meteringPeriodDevice == 0)) && (!(meteringPeriodDevice % meteringPeriodGrid == 0))){
+ * return -1;
+ * }
+ * <p>
+ * <p>
+ * return meteringPeriodDevice;
+ * }
+ * <p>
+ * public static boolean isDeviceMeteringPeriodValidDay() {
+ * return 1440 % getDeviceMeteringPeriod()== 0;
+ * }
+ * <p>
+ * public static boolean isDeviceMeteringPeriodValidGrid() {
+ * return getGridMeteringPeriod() % getDeviceMeteringPeriod()== 0;
+ * }
+ * }
+ */
