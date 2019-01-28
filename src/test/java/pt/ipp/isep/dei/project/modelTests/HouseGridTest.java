@@ -3,6 +3,8 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
+import java.time.LocalDateTime;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HouseGridTest {
@@ -546,6 +548,43 @@ public class HouseGridTest {
         int result = houseGrid.setMeteringPeriod();
 
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getEnergyConsumptionInAnInterval(){
+
+        Dimension dimension = new Dimension(25,25,25);
+        Room room1 = new Room("Quarto",2,dimension);
+
+        DeviceSpecs deviceSpecs = new Lamp(25,20);
+        ((Lamp) deviceSpecs).setTime(10);
+        Device lamp = new Device("Lamp",room1,deviceSpecs);
+
+
+        String gridName = "Grid 1";
+        HouseGrid grid1 = new HouseGrid(gridName);
+        grid1.attachRoom(room1);
+
+        LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
+        LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
+
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Measurement measurement0 = new Measurement(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Measurement measurement1 = new Measurement(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Measurement measurement2 = new Measurement(7, time2);
+
+        lamp.addMeasurementToTheList(measurement0);
+        lamp.addMeasurementToTheList(measurement1);
+        lamp.addMeasurementToTheList(measurement2);
+
+        double expectedResult = 12;
+        //Act
+        double result = grid1.getEnergyConsumptionInAnInterval(startTime,endTime);
+
+        //Assert
+        assertEquals(expectedResult,result,0.001);
     }
 
 }

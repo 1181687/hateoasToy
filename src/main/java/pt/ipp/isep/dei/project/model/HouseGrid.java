@@ -209,14 +209,14 @@ public class HouseGrid implements Measurable {
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
 
-        double totalEnergyComsumption = 0;
+        double totalEnergyConsumption = 0;
         if (this.mRoomList.isEmpty()) {
             throw new RuntimeException("There are no rooms connected to this house grid.");
         } else {
             for (Room room : this.mRoomList.getRoomList()) {
-                totalEnergyComsumption += room.getEnergyConsumptionInAnInterval(startDate, endDate);
+                totalEnergyConsumption += room.getEnergyConsumptionInAnInterval(startDate, endDate);
             }
-            return totalEnergyComsumption;
+            return totalEnergyConsumption;
         }
     }
 
