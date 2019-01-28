@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.model;
 
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,12 +13,14 @@ public class Device implements Measurable {
     private Room mLocation;
     private DeviceSpecs mSpec;
     private List<Measurement> mMeasurementList = new ArrayList<>();
+    private int mMeteringPeriod;
 
     public Device(String name, Room location, DeviceSpecs spec) {
         this.mName = name;
         this.mLocation = location;
         this.mSpec = spec;
         this.mLocation.addDevice(this);
+        this.mMeteringPeriod = setDeviceMeteringPeriod();
     }
 
     /**
@@ -49,6 +53,7 @@ public class Device implements Measurable {
 
     /**
      * method that gets the Type
+     *
      * @return String
      */
     public String getType() {
@@ -98,6 +103,7 @@ public class Device implements Measurable {
 
     /**
      * Method that returns the attributes of the device specs.
+     *
      * @return String with the attributes.
      */
     public String getDevSpecsAttributesToString() {
@@ -106,6 +112,7 @@ public class Device implements Measurable {
 
     /**
      * method that get all attributes of a device by strings.
+     *
      * @return the device attributes.
      */
     public String getAttributesToString() {
@@ -119,6 +126,7 @@ public class Device implements Measurable {
 
     /**
      * method that set the attributes of a device type.
+     *
      * @param attribute
      * @param value
      * @return the position of an attribute and the value of it.
@@ -157,9 +165,10 @@ public class Device implements Measurable {
 
     /**
      * method that get the number of specifications of a device.
+     *
      * @return the number of attributes.
      */
-    public int getNumberOfSpecsAttributes(){
+    public int getNumberOfSpecsAttributes() {
         return mSpec.getNumberOfAttributes();
     }
 
@@ -223,13 +232,12 @@ public class Device implements Measurable {
         }
         return totalEnergyConsumption;
     }
+
+    public int setDeviceMeteringPeriod() {
+        if (Utils.isDeviceMeteringPeriodValid()) {
+            return Utils.getDeviceMeteringPeriod();
+        } else {
+            return -1;
+        }
+    }
 }
-/**
- * public int setDeviceMeteringPeriod() {
- * if (Utils.isDeviceMeteringPeriodValidDay() && Utils.isDeviceMeteringPeriodValidGrid()) {
- * return Utils.getDeviceMeteringPeriod();
- * } else {
- * throw new RuntimeException("The period in not valid.");
- * }
- * }
- */

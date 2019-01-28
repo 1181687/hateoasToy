@@ -73,4 +73,5 @@ class UtilsTest {
         );
         assertEquals("Please insert a positive value.", exception.getMessage());
     }
+
 }
