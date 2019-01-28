@@ -222,6 +222,7 @@ public class HouseGrid implements Measurable {
 
     /**
      * Method that sets the metering period using the methods in the Utils Class.
+     *
      * @return
      */
     public int setMeteringPeriod() {
