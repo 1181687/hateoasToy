@@ -204,10 +204,12 @@ public class Menu {
         content.append("\n");
         content.append("2-Estimate the total energy used in heating water in a day.");
         content.append("\n");
+        content.append("3-Get the energy consumption of a room in a given period.");
+        content.append("\n");
         content.append(RETURN_MENU);
         content.append("\n");
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 2);
+        return InputValidator.getIntRange(label, 0, 3);
     }
 
     public static int roomOwnerMenu() {
