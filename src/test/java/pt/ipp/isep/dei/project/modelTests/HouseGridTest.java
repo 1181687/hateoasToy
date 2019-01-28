@@ -551,14 +551,14 @@ public class HouseGridTest {
     }
 
     @Test
-    public void getEnergyConsumptionInAnInterval(){
+    public void getEnergyConsumptionInAnInterval() {
 
-        Dimension dimension = new Dimension(25,25,25);
-        Room room1 = new Room("Quarto",2,dimension);
+        Dimension dimension = new Dimension(25, 25, 25);
+        Room room1 = new Room("Quarto", 2, dimension);
 
-        DeviceSpecs deviceSpecs = new Lamp(25,20);
+        DeviceSpecs deviceSpecs = new Lamp(25, 20);
         ((Lamp) deviceSpecs).setTime(10);
-        Device lamp = new Device("Lamp",room1,deviceSpecs);
+        Device lamp = new Device("Lamp", room1, deviceSpecs);
 
 
         String gridName = "Grid 1";
@@ -581,10 +581,10 @@ public class HouseGridTest {
 
         double expectedResult = 12;
         //Act
-        double result = grid1.getEnergyConsumptionInAnInterval(startTime,endTime);
+        double result = grid1.getEnergyConsumptionInAnInterval(startTime, endTime);
 
         //Assert
-        assertEquals(expectedResult,result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
 }

@@ -420,4 +420,9 @@ public class House {
     public Device getDeviceByPosition(int position) {
         return getAllDevices().getDeviceByPosition(position);
     }
+
+    public String getDeviceNameOfATypeByPosition(String type, int devicePosition) {
+        DeviceList listOfAllDevicesOffAType = getAllDevicesOfAType(type);
+        return listOfAllDevicesOffAType.getDeviceName(devicePosition);
+    }
 }

@@ -14,24 +14,24 @@ public class GetEnergyConsumptionOfAGridController {
         this.mHouse = house;
     }
 
-    public boolean isHouseGridListEmpty(){
+    public boolean isHouseGridListEmpty() {
         return mHouse.isHouseGridListEmpty();
     }
 
-    public int getHouseGridListSize(){
+    public int getHouseGridListSize() {
         return mHouse.getHouseGridListSize();
     }
 
-    public String getHouseGridListToString(){
+    public String getHouseGridListToString() {
         return this.mHouse.getHouseGridListContent();
     }
 
-    public void getHouseGridByPosition(int position){
+    public void getHouseGridByPosition(int position) {
         this.mHouseGrid = mHouse.getHouseGridByPosition(position);
     }
 
-    public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate){
-        return this.mHouseGrid.getEnergyConsumptionInAnInterval(startDate,endDate);
+    public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
+        return this.mHouseGrid.getEnergyConsumptionInAnInterval(startDate, endDate);
     }
 
 

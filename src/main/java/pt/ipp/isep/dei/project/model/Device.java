@@ -241,8 +241,6 @@ public class Device implements Measurable {
         this.mDeactivationDate = LocalDateTime.now();
     }
 
-}
-
     public int setDeviceMeteringPeriod() {
         if (Utils.isDeviceMeteringPeriodValid()) {
             return Utils.getDeviceMeteringPeriod();

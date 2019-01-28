@@ -259,7 +259,7 @@ public class InputValidator {
             }
         } while (flag);
 
-        return LocalDateTime.parse(str,format);
+        return LocalDateTime.parse(str, format);
     }
 
     /**
