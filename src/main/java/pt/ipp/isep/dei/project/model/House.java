@@ -384,4 +384,40 @@ public class House {
         return new MeasurableList();
     }
 
+    /**
+     * Method that checks if the Room List is Empty
+     *
+     * @return true if it is empty
+     */
+    public boolean roomListIsEmpty() {
+        return mRoomList.isEmpty();
+    }
+
+    /**
+     * Method that returns the content of all the devices in the house.
+     *
+     * @return String with the list of devices content.
+     */
+    public String getAllDevicesToString() {
+        return mRoomList.getAllDevicesToString();
+    }
+
+    /**
+     * Method that returns all the devices in the house.
+     *
+     * @return DeviceList with all the devices in the house.
+     */
+    public DeviceList getAllDevices() {
+        return mRoomList.getAllDevicesList();
+    }
+
+    /**
+     * Method that returns a device by its position in the list of all devices in the house.
+     *
+     * @param position Position of the device in the list of all devices.
+     * @return Device chosen.
+     */
+    public Device getDeviceByPosition(int position) {
+        return getAllDevices().getDeviceByPosition(position);
+    }
 }
