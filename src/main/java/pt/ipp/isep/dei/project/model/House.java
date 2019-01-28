@@ -383,4 +383,16 @@ public class House {
     public MeasurableList getNewMeasurableObjList() {
         return new MeasurableList();
     }
+
+    public int getDevicesListLength(int position) {
+        return this.mRoomList.getDevicesListLength(position);
+    }
+
+    public boolean deleteDevice(String device, int choosenRoom) {
+        return this.mRoomList.deleteDevice(device, choosenRoom);
+    }
+
+    public String getDeviceNameByPosition(int position) {
+        return this.mRoomList.getDeviceNameByPosition(position);
+    }
 }

@@ -117,6 +117,10 @@ public class Admin {
                     AddDeviceToRoom ui210 = new AddDeviceToRoom(house);
                     ui210.run();
                     break;
+                case 11:
+                    DeleteDeviceFromRoom ui220 = new DeleteDeviceFromRoom(house);
+                    ui220.run();
+                    break;
             }
             option = Menu.adminHouseMenu();
         }
