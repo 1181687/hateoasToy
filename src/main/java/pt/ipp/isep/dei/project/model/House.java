@@ -397,6 +397,15 @@ public class House {
     }
 
     /**
+     * Method that checks if the Room List is Empty
+     *
+     * @return true if it is empty
+     */
+    public boolean roomListIsEmpty() {
+        return mRoomList.isEmpty();
+    }
+
+    /**
      * Method that returns the content of all the devices in the house.
      *
      * @return String with the list of devices content.

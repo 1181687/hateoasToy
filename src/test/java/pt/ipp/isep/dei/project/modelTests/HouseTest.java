@@ -1832,7 +1832,52 @@ public class HouseTest {
         String result = house.getDeviceNameOfATypeByPosition("Fridge", 1);
 
         assertEquals(expectedResult, result);
+    }
 
+    @Test
+    public void checkIfRoomListIsEmptyTrue() {
+        //arrange
+        RoomList rList = new RoomList();
+
+
+        HouseGridList gridList = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(rList, gridList, address, geo);
+
+        //act
+        boolean result = rList.isEmpty();
+        //assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkIfRoomListIsEmptyFalse() {
+        //arrange
+        RoomList rList = new RoomList();
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
+
+        rList.addRoom(room1);
+
+        HouseGridList gridList = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeoAreaType GAType = new GeoAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(rList, gridList, address, geo);
+
+        //act
+        boolean result = rList.isEmpty();
+        //assert
+        assertFalse(result);
     }
 
     @Test

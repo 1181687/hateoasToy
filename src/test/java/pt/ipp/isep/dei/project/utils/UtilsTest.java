@@ -75,19 +75,19 @@ class UtilsTest {
     }
 
     @Test
-    void testGetMeteringPeriod(){
+    void testGetMeteringPeriod() {
         //Arrange
-        int expectedResult= 10;
+        int expectedResult = 10;
 
         //Act
         int result = Utils.getGridMeteringPeriod();
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    void testMeteringPeriodValid(){
+    void testMeteringPeriodValid() {
         //Act
         boolean result = Utils.isGridMeteringPeriodValid();
 

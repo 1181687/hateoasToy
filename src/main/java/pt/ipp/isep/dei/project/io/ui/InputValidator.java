@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Scanner;
 
 public class InputValidator {
@@ -238,7 +239,7 @@ public class InputValidator {
      * @return
      */
 
-    public static LocalDate getStringDateTime(String label) {
+    public static LocalDateTime getStringDateTime(String label) {
         Scanner in = new Scanner(System.in);
         String str = "";
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
@@ -259,7 +260,7 @@ public class InputValidator {
             }
         } while (flag);
 
-        LocalDate validDate = LocalDate.parse(str);
+        LocalDateTime validDate = LocalDateTime.parse(str);
 
         return validDate;
     }
