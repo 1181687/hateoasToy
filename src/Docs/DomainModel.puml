@@ -88,7 +88,4 @@ Device "1" -- "1" DeviceType
 HouseGrid "1" -- "1..*" PowerSource
 HouseGrid "1" -- "0..*" Room
 
-
-
-
 @enduml

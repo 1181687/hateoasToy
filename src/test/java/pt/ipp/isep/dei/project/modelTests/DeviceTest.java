@@ -588,4 +588,23 @@ public class DeviceTest {
         // Assert
         assertEquals(expectedResult, result, 0.000001);
     }
+
+    @Test
+    public void testSetMeteringConfigValid() {
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room1", 2, dim);
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 20.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device device = new Device("Lamp1", room, deviceSpecs1);
+
+        int expectedResult = 20;
+
+        int result = device.setDeviceMeteringPeriod();
+
+        assertEquals(expectedResult, result);
+    }
+
 }
