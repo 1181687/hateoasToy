@@ -74,7 +74,8 @@ public class DeleteDeviceFromRoomController {
         return this.mRoom.getDeviceListToString();
     }
 
-    public void getDeviceByPosition(int position) {
-        this.mDevice = this.mRoom.getDeviceList().getDeviceByPosition(position);
+    public boolean deativateDevice(String device) {
+        return this.mRoom.deativateDevice(device);
     }
+
 }

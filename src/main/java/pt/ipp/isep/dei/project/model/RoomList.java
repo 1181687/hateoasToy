@@ -322,16 +322,4 @@ public class RoomList {
         }
         return content.toString();
     }
-
-    public int getDevicesListLength(int position) {
-        return this.mRoomList.get(position).getDevicesListLength();
-    }
-
-    public boolean deleteDevice(String device, int choosenRoom) {
-        return mRoomList.get(choosenRoom).deleteDevice(device);
-    }
-
-    public String getDeviceNameByPosition(int position) {
-        return this.mRoomList.get(position).getDeviceNameByPosition(position);
-    }
 }

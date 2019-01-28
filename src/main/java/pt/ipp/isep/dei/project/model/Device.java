@@ -11,12 +11,15 @@ public class Device implements Measurable {
     private Room mLocation;
     private DeviceSpecs mSpec;
     private List<Measurement> mMeasurementList = new ArrayList<>();
+    private boolean mIsActive;
+    private LocalDateTime mDeactivationDate;
 
     public Device(String name, Room location, DeviceSpecs spec) {
         this.mName = name;
         this.mLocation = location;
         this.mSpec = spec;
         this.mLocation.addDevice(this);
+        this.mIsActive = true;
     }
 
     /**
@@ -223,4 +226,10 @@ public class Device implements Measurable {
         }
         return totalEnergyConsumption;
     }
+
+    public void setmIsActive() {
+        this.mIsActive = false;
+        this.mDeactivationDate = LocalDateTime.now();
+    }
+
 }
