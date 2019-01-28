@@ -94,4 +94,26 @@ class UtilsTest {
         //Assert
         assertTrue(result);
     }
+
+    @Test
+    void testGetMeteringPeriodDevice() {
+        //Arrange
+        int expectedResult = 20;
+
+        //Act
+        int result = Utils.getDeviceMeteringPeriod();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testMeteringPeriodDeviceValid() {
+
+        //Act
+        boolean result = Utils.isDeviceMeteringPeriodValid();
+
+        //Assert
+        assertTrue(result);
+    }
 }
