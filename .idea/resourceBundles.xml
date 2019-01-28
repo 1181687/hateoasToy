@@ -3,6 +3,7 @@
   <component name="ResourceBundleManager">
     <file url="file://$PROJECT_DIR$/resources_config.properties" />
     <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/MeteringDeviceConfiguration.properties" />
       <file value="file://$PROJECT_DIR$/MeteringGridConfiguration.properties" />
       <file value="file://$PROJECT_DIR$/resources_config.properties" />
       <base-name>resources</base-name>

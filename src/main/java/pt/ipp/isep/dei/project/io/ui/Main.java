@@ -9,11 +9,16 @@ import java.time.LocalDateTime;
 public class Main {
 
     public static void main(String[] args) {
-
         if (!(Utils.isGridMeteringPeriodValid())) {
-            System.out.println("The grid metering period is not valid. Please configure the grid metering perioud for a valid value.");
+            System.out.println("The grid metering period is not valid. Please configure the grid metering period for a valid value.");
             return;
         }
+
+        if (!(Utils.isDeviceMeteringPeriodValid())) {
+            System.out.println("The device metering period is not valid. Please configure the device metering period for a valid value.");
+            return;
+        }
+
         GeoAreaTypeList geoAreaTypeList = new GeoAreaTypeList();
         GeoAreaList geoAreaList = new GeoAreaList();
         RoomList roomList = new RoomList();
