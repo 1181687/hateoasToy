@@ -31,6 +31,7 @@ public class DeleteDeviceFromRoom {
                 }
                 mController.getRoomByPosition(position);
 
+                // LIST OF DEVICES
                 if (this.mController.checkIfDeviceListIsEmpty()) {
                     System.out.println("\n There are no devices in this room. \n");
 
@@ -44,17 +45,17 @@ public class DeleteDeviceFromRoom {
                         if (position1 == -1) {
                             return;
                         }
-                        mController.getDeviceByPosition(position1);
                         flag1 = false;
 
+                        // CONFIRM
                         String label3 = "Are you sure do you want to delete this device? (Y/N)";
                         String answer = InputValidator.confirmValidation(label3);
                         if ("y".equals(answer) || "Y".equals(answer)) {
 
                             String deletedDevice = mController.getDeviceNameByPosition(position1);
-                            mController.deleteDevice(deletedDevice, position1);
-                            System.out.println("\n The device has been deleted. \n");
-
+                            if (mController.deleteDevice(deletedDevice)) {
+                                System.out.println("\n The device has been deleted. \n");
+                            }
                         } else {
                             continue;
                         }

@@ -346,11 +346,10 @@ public class DeviceList {
         return Utils.round(totalEnergyConsumption, 2);
     }
 
-    public boolean deleteDevice(String device, int position) {
+    public boolean deleteDevice(String device) {
         for (Device searchDevice : this.mDeviceList) {
-            if (device.equals(searchDevice)) {
+            if (device.equals(searchDevice.getName())) {
                 this.mDeviceList.remove(searchDevice);
-                this.mDeviceList.get(position).setLocation(null);
                 return true;
             }
         }

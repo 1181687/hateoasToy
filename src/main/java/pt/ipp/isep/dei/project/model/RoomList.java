@@ -328,7 +328,7 @@ public class RoomList {
     }
 
     public boolean deleteDevice(String device, int choosenRoom) {
-        return mRoomList.get(choosenRoom).deleteDevice(device, choosenRoom);
+        return mRoomList.get(choosenRoom).deleteDevice(device);
     }
 
     public String getDeviceNameByPosition(int position) {
