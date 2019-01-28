@@ -338,7 +338,7 @@ public class House {
      * @param devicePosition Device position in the list of devices.
      * @return String with the device name.
      */
-    public String getDeviceName(String type, int devicePosition) {
+    public String getDeviceNameOfATypeByPosition(String type, int devicePosition) {
         DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);
         return listWithAllDevicesOfAType.getDeviceName(devicePosition);
     }
@@ -394,5 +394,33 @@ public class House {
 
     public String getDeviceNameByPosition(int position) {
         return this.mRoomList.getDeviceNameByPosition(position);
+    }
+
+    /**
+     * Method that returns the content of all the devices in the house.
+     *
+     * @return String with the list of devices content.
+     */
+    public String getAllDevicesToString() {
+        return mRoomList.getAllDevicesToString();
+    }
+
+    /**
+     * Method that returns all the devices in the house.
+     *
+     * @return DeviceList with all the devices in the house.
+     */
+    public DeviceList getAllDevices() {
+        return mRoomList.getAllDevicesList();
+    }
+
+    /**
+     * Method that returns a device by its position in the list of all devices in the house.
+     *
+     * @param position Position of the device in the list of all devices.
+     * @return Device chosen.
+     */
+    public Device getDeviceByPosition(int position) {
+        return getAllDevices().getDeviceByPosition(position);
     }
 }

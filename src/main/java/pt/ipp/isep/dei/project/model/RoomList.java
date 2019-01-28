@@ -309,11 +309,11 @@ public class RoomList {
     }
 
     /**
-     * TODO
+     * Method that returns the content of all the devices present in all the rooms in the list.
      *
-     * @return
+     * @return String with the list of devices content.
      */
-    public String getAllDeviceListsToString() {
+    public String getAllDevicesToString() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
         for (Room room : mRoomList) {
