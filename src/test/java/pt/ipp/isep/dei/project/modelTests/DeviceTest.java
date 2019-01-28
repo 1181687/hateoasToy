@@ -461,7 +461,7 @@ public class DeviceTest {
     }
 
     @Test
-    public void getTotalEnergyConsumptionInAnIntervalTest() {
+    public void getTotalEnergyConsumptionInAnIntervalTestWithOneSolution() {
         // Arrange
         // Dimension Instantiation
         double height = 3;
@@ -501,7 +501,92 @@ public class DeviceTest {
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
+    }
 
+    @Test
+    public void getTotalEnergyConsumptionInAnIntervalTestWithTwoSolutions() {
+        // Arrange
+        // Dimension Instantiation
+        double height = 3;
+        double length = 5;
+        double width = 6;
+        Dimension dim = new Dimension(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Kitchen", 1, dim);
+
+        // Fridge Instantiation
+        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+
+        // Device Instantiation
+        Device device = new Device("Fridgerator", room, fridge);
+
+        // Measurement Instantiation
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Measurement measurement0 = new Measurement(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Measurement measurement1 = new Measurement(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Measurement measurement2 = new Measurement(7, time2);
+
+        // List<Measurement Configuration
+        device.addMeasurementToTheList(measurement0);
+        device.addMeasurementToTheList(measurement1);
+        device.addMeasurementToTheList(measurement2);
+
+        double expectedResult = 12;
+
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+
+        // Act
+        double result = device.getEnergyConsumptionInAnInterval(startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    public void getTotalEnergyConsumptionInAnIntervalTestWithNoSolutions() {
+        // Arrange
+        // Dimension Instantiation
+        double height = 3;
+        double length = 5;
+        double width = 6;
+        Dimension dim = new Dimension(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Kitchen", 1, dim);
+
+        // Fridge Instantiation
+        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+
+        // Device Instantiation
+        Device device = new Device("Fridgerator", room, fridge);
+
+        // Measurement Instantiation
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Measurement measurement0 = new Measurement(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Measurement measurement1 = new Measurement(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Measurement measurement2 = new Measurement(7, time2);
+
+        // List<Measurement Configuration
+        device.addMeasurementToTheList(measurement0);
+        device.addMeasurementToTheList(measurement1);
+        device.addMeasurementToTheList(measurement2);
+
+        double expectedResult = 0;
+
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 9, 00, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 15, 00, 00);
+
+        // Act
+        double result = device.getEnergyConsumptionInAnInterval(startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
     }
 
     @Test

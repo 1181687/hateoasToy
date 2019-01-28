@@ -74,4 +74,24 @@ class UtilsTest {
         assertEquals("Please insert a positive value.", exception.getMessage());
     }
 
+    @Test
+    void testGetMeteringPeriod() {
+        //Arrange
+        int expectedResult = 10;
+
+        //Act
+        int result = Utils.getGridMeteringPeriod();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testMeteringPeriodValid() {
+        //Act
+        boolean result = Utils.isGridMeteringPeriodValid();
+
+        //Assert
+        assertTrue(result);
+    }
 }

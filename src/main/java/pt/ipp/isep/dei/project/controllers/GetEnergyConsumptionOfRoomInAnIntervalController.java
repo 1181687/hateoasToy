@@ -18,14 +18,26 @@ public class GetEnergyConsumptionOfRoomInAnIntervalController {
     }
 
     public String getRoomListToString() {
-        return SelectedRoom.getRoomToString();
+        return mHouse.getRoomListContent();
     }
 
     public Room getRoomByPosition(int position) {
         return mHouse.getRoomOfTheRoomList(position);
     }
 
-    public boolean deviceListIsEmpty() {
-        return SelectedRoom.isDeviceListEmpty();
+    public boolean isDeviceListEmpty(int position) {
+        return mHouse.isDeviceListEmpty(position);
+    }
+
+    public boolean roomListIsEmpty() {
+        return mHouse.roomListIsEmpty();
+    }
+
+    public int getRoomListSize() {
+        return mHouse.getRoomListSize();
+    }
+
+    public String getRoomNameByPosition(int position) {
+        return mHouse.getRoomNameByPosition(position);
     }
 }

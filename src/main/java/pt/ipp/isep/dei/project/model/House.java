@@ -395,4 +395,13 @@ public class House {
     public String getDeviceNameByPosition(int position) {
         return this.mRoomList.getDeviceNameByPosition(position);
     }
+
+    /**
+     * Method that checks if the Room List is Empty
+     *
+     * @return true if it is empty
+     */
+    public boolean roomListIsEmpty() {
+        return mRoomList.isEmpty();
+    }
 }
