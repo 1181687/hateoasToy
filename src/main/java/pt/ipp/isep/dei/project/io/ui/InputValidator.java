@@ -254,8 +254,7 @@ public class InputValidator {
                 str = str.trim();
                 format.parse(str);
             } catch (Exception e) {
-                System.out.println("Date " + str + " is not valid. Please insert a valid date according to (" +
-                        (format.toString() + ") pattern."));
+                System.out.println("Date " + str + " is not valid. Please insert a valid date according to (yyyy-MM-dd HH:mm) pattern.");
                 flag = true;
             }
         } while (flag);
