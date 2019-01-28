@@ -4,10 +4,6 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.util.Properties;
-
 import static java.util.Objects.isNull;
 
 public class HouseGrid implements Measurable {
@@ -25,14 +21,12 @@ public class HouseGrid implements Measurable {
 
     public HouseGrid(String houseGridName) {
         validateName(houseGridName);
-
         this.mName = houseGridName;
         this.mRoomList = new RoomList();
         this.mPowerSourceList = new PowerSourceList();
         this.mMaximumContractedPower = 0;
-        if (Utils.isGridMeteringPeriodValid()) {
-            this.mMeteringPeriod = setMeteringPeriod();
-        }
+        this.mMeteringPeriod = setMeteringPeriod();
+
     }
 
     /**
@@ -226,12 +220,14 @@ public class HouseGrid implements Measurable {
         }
     }
 
-
+    /**
+     * Method that sets the metering period using the methods in the Utils Class.
+     * @return
+     */
     public int setMeteringPeriod() {
-        if(Utils.isGridMeteringPeriodValid()){
+        if (Utils.isGridMeteringPeriodValid()) {
             return Utils.getGridMeteringPeriod();
-        }
-        else{
+        } else {
             throw new RuntimeException("The period in not valid.");
         }
     }
