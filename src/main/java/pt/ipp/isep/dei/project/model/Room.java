@@ -236,6 +236,7 @@ public class Room implements Measurable {
 
     /**
      * get method of the device list.
+     *
      * @return device list
      */
     public DeviceList getDeviceList() {
@@ -278,7 +279,8 @@ public class Room implements Measurable {
     }
 
     /**
-     *method that get all devices of a type.
+     * method that get all devices of a type.
+     *
      * @param type
      * @return
      */
@@ -324,5 +326,13 @@ public class Room implements Measurable {
             }
         }
         return totalEnergyConsumption;
+    }
+
+    public boolean deleteDevice(String device, int position) {
+        return this.mDeviceList.deleteDevice(device, position);
+    }
+
+    public String getDeviceNameByPosition(int position) {
+        return this.mDeviceList.getDeviceNameByPosition(position);
     }
 }

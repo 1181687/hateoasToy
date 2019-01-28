@@ -233,13 +233,14 @@ public class InputValidator {
 
     /**
      * TODO
+     *
      * @param label
      * @return
      */
 
     public static LocalDate getStringDateTime(String label) {
         Scanner in = new Scanner(System.in);
-        String str="";
+        String str = "";
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         format.setLenient(false);
 
@@ -247,7 +248,7 @@ public class InputValidator {
         do {
             System.out.println(label);
             try {
-                flag =false;
+                flag = false;
                 str = in.nextLine();
                 str = str.trim();
                 format.parse(str);

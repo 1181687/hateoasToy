@@ -126,7 +126,7 @@ public class EditConfigurationDeviceController {
      * @return the length of all devices of the list.
      */
     public int getDeviceListLength () {
-        return this.mHouse.getRoomList().getAllDevicesList().getSize();
+        return this.mRoom.getDevicesListLength();
     }
 
     /**

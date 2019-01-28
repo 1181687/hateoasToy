@@ -3,9 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -281,7 +279,6 @@ public class RoomTest {
         assertEquals(expectedResult, result);
     }
 
-
     @Test
     public void getDeviceListContentTest() {
         // Arrange
@@ -322,40 +319,6 @@ public class RoomTest {
 
     }
 
-    @Test
-    public void checkIfDeviceListIsEmptyTestTrue() {
-        // Arrange
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
-        // Act
-        boolean result = room.isDeviceListEmpty();
-
-        // Assert
-        assertTrue(result);
-    }
-
-
-    @Test
-    public void checkIfDeviceListIsEmptyTestFalse() {
-        // Arrange
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
-        double luminousFlux = 10.0;
-        double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
-
-        room.addDevice(dev1);
-
-        // Act
-        boolean result = room.isDeviceListEmpty();
-
-        // Assert
-        assertFalse(result);
-    }
-
    /* @Test
     public void testGetNominalPower() {
         // Arrange
@@ -381,6 +344,39 @@ public class RoomTest {
         // Assert
         assertEquals(expectedResult, result);
     }*/
+
+    @Test
+    public void checkIfDeviceListIsEmptyTestTrue() {
+        // Arrange
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        // Act
+        boolean result = room.isDeviceListEmpty();
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkIfDeviceListIsEmptyTestFalse() {
+        // Arrange
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        double luminousFlux = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        room.addDevice(dev1);
+
+        // Act
+        boolean result = room.isDeviceListEmpty();
+
+        // Assert
+        assertFalse(result);
+    }
 
     @Test
     public void getDeviceListSize() {
