@@ -46,6 +46,10 @@ public class PowerUser {
                     GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(mhouse);
                     ui230.run();
                     break;
+                case 4:
+                    DeativateDeviceFromRoom ui222 = new DeativateDeviceFromRoom(mhouse);
+                    ui222.run();
+                    break;
             }
             option = Menu.powerUserHouseMenu();
         }

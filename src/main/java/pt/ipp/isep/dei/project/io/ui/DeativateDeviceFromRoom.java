@@ -1,14 +1,15 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.DeleteDeviceFromRoomController;
+import pt.ipp.isep.dei.project.controllers.DeativateDeviceFromRoomController;
 import pt.ipp.isep.dei.project.model.House;
 
-public class DeleteDeviceFromRoom {
+public class DeativateDeviceFromRoom {
 
-    private DeleteDeviceFromRoomController mController;
+    private DeativateDeviceFromRoomController mController;
 
-    public DeleteDeviceFromRoom(House house) {
-        this.mController = new DeleteDeviceFromRoomController(house);
+    public DeativateDeviceFromRoom(House house) {
+
+        this.mController = new DeativateDeviceFromRoomController(house);
     }
 
     public void run() {
@@ -47,14 +48,14 @@ public class DeleteDeviceFromRoom {
                         }
                         flag1 = false;
 
-                        // CONFIRM
-                        String label3 = "Are you sure do you want to delete this device? (Y/N)";
-                        String answer = InputValidator.confirmValidation(label3);
-                        if ("y".equals(answer) || "Y".equals(answer)) {
+                        // CONFIRM                        // CONFIRM TO DEATIVATE
+                        String label5 = "Are you sure do you want to deativate this device? (Y/N)";
+                        String answer2 = InputValidator.confirmValidation(label5);
+                        if ("y".equals(answer2) || "Y".equals(answer2)) {
 
-                            String deletedDevice = mController.getDeviceNameByPosition(position1);
-                            if (mController.deleteDevice(deletedDevice)) {
-                                System.out.println("\n The device has been deleted. \n");
+                            String deativateDevice = mController.getDeviceNameByPosition(position1);
+                            if (mController.deativateDevice(deativateDevice)) {
+                                System.out.println("\n The device has been deativated. \n");
                             }
                         } else {
                             continue;
