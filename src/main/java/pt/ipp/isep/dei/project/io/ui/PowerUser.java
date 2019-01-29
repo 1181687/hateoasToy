@@ -74,6 +74,10 @@ public class PowerUser {
                     GetEnergyConsumptionOfRoomInAnInterval ui721 = new GetEnergyConsumptionOfRoomInAnInterval(mhouse);
                     ui721.run();
                     break;
+                case 4:
+                    GetEnergyConsumptionOfAGrid ui722 = new GetEnergyConsumptionOfAGrid(mhouse);
+                    ui722.run();
+                    break;
             }
             option = Menu.powerUserEnergyConsumtionMenu();
         }
