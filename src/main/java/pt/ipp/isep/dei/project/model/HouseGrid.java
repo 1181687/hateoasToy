@@ -226,10 +226,11 @@ public class HouseGrid implements Measurable {
      * @return
      */
     public int setMeteringPeriod() {
-        if (Utils.isGridMeteringPeriodValid()) {
-            return Utils.getGridMeteringPeriod();
+        int meteringPeriod = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
+        if (1440%meteringPeriod==0) {
+            return meteringPeriod;
         } else {
-            throw new RuntimeException("The period in not valid.");
+            return -1;
         }
     }
 
