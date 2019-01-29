@@ -206,6 +206,8 @@ public class Menu {
         content.append("\n");
         content.append("3-Get the energy consumption of a room in a given period.");
         content.append("\n");
+        content.append("4-Get the energy consumption of a house grid in a given period.");
+        content.append("\n");
         content.append(RETURN_MENU);
         content.append("\n");
         String label = content.toString();
