@@ -551,13 +551,12 @@ public class HouseGridTest {
     }
 
     @Test
-    public void getEnergyConsumptionInAnInterval() {
-
+    public void testGetEnergyConsumptionInAnIntervalWithThreeValidMeasurements() {
+        //Arrange
         Dimension dimension = new Dimension(25, 25, 25);
         Room room1 = new Room("Quarto", 2, dimension);
 
         DeviceSpecs deviceSpecs = new Lamp(25, 20);
-        ((Lamp) deviceSpecs).setTime(10);
         Device lamp = new Device("Lamp", room1, deviceSpecs);
 
 
@@ -580,6 +579,142 @@ public class HouseGridTest {
         lamp.addMeasurementToTheList(measurement2);
 
         double expectedResult = 12;
+        //Act
+        double result = grid1.getEnergyConsumptionInAnInterval(startTime, endTime);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void testGetEnergyConsumptionInAnIntervalWithOneValidMeasurement() {
+        //Arrange
+        Dimension dimension = new Dimension(25, 25, 25);
+        Room room1 = new Room("Quarto", 2, dimension);
+
+        DeviceSpecs deviceSpecs = new Lamp(25, 20);
+        Device lamp = new Device("Lamp", room1, deviceSpecs);
+
+
+        String gridName = "Grid 1";
+        HouseGrid grid1 = new HouseGrid(gridName);
+        grid1.attachRoom(room1);
+
+        LocalDateTime startTime = LocalDateTime.of(2019, 01, 24, 15, 20, 00);
+        LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
+
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Measurement measurement0 = new Measurement(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Measurement measurement1 = new Measurement(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Measurement measurement2 = new Measurement(7, time2);
+
+        lamp.addMeasurementToTheList(measurement0);
+        lamp.addMeasurementToTheList(measurement1);
+        lamp.addMeasurementToTheList(measurement2);
+
+        double expectedResult = 0;
+        //Act
+        double result = grid1.getEnergyConsumptionInAnInterval(startTime, endTime);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void testGetEnergyConsumptionInAnIntervalWithNoValidMeasurements() {
+
+        //Arrange
+        Dimension dimension = new Dimension(25, 25, 25);
+        Room room1 = new Room("Quarto", 2, dimension);
+
+        DeviceSpecs deviceSpecs = new Lamp(25, 20);
+        Device lamp = new Device("Lamp", room1, deviceSpecs);
+
+
+        String gridName = "Grid 1";
+        HouseGrid grid1 = new HouseGrid(gridName);
+        grid1.attachRoom(room1);
+
+        LocalDateTime startTime = LocalDateTime.of(2019, 01, 25, 15, 20, 00);
+        LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
+
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Measurement measurement0 = new Measurement(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Measurement measurement1 = new Measurement(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Measurement measurement2 = new Measurement(7, time2);
+
+        lamp.addMeasurementToTheList(measurement0);
+        lamp.addMeasurementToTheList(measurement1);
+        lamp.addMeasurementToTheList(measurement2);
+
+        double expectedResult = 0;
+        //Act
+        double result = grid1.getEnergyConsumptionInAnInterval(startTime, endTime);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void testGetEnergyConsumptionInAnIntervalWithTwoRooms() {
+        //Arrange
+        Dimension dimension = new Dimension(25, 25, 25);
+        Room room1 = new Room("Room", 2, dimension);
+        Room room2 = new Room("Kitchen", 1, dimension);
+
+        DeviceSpecs deviceSpecs = new Lamp(25, 20);
+        Device lamp = new Device("Lamp", room1, deviceSpecs);
+
+        DeviceSpecs specsFridge = new Fridge(12,15,25,12);
+        Device fridge = new Device("Fridge",room2,specsFridge);
+
+        DeviceSpecs specsElectricWaterHeater = new ElectricWaterHeater(45,20,12,12);
+        Device electricWaterHeater = new Device("EWH200",room2,specsElectricWaterHeater);
+
+        String gridName = "Grid 1";
+        HouseGrid grid1 = new HouseGrid(gridName);
+        grid1.attachRoom(room1);
+        grid1.attachRoom(room2);
+
+        LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
+        LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
+
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Measurement measurement0 = new Measurement(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Measurement measurement1 = new Measurement(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Measurement measurement2 = new Measurement(7, time2);
+
+        lamp.addMeasurementToTheList(measurement0);
+        lamp.addMeasurementToTheList(measurement1);
+        lamp.addMeasurementToTheList(measurement2);
+
+        LocalDateTime time3 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Measurement measurement3 = new Measurement(3, time3);
+        LocalDateTime time4 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Measurement measurement4 = new Measurement(5, time4);
+        LocalDateTime time5 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Measurement measurement5 = new Measurement(7, time5);
+
+        fridge.addMeasurementToTheList(measurement3);
+        fridge.addMeasurementToTheList(measurement4);
+        fridge.addMeasurementToTheList(measurement5);
+
+        LocalDateTime time6 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Measurement measurement6 = new Measurement(3, time6);
+        LocalDateTime time7 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Measurement measurement7 = new Measurement(5, time7);
+
+        electricWaterHeater.addMeasurementToTheList(measurement6);
+        electricWaterHeater.addMeasurementToTheList(measurement7);
+
+        double expectedResult = 29;
+
         //Act
         double result = grid1.getEnergyConsumptionInAnInterval(startTime, endTime);
 
