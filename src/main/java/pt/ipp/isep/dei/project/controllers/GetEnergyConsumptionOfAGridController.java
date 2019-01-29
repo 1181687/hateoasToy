@@ -34,5 +34,9 @@ public class GetEnergyConsumptionOfAGridController {
         return this.mHouseGrid.getEnergyConsumptionInAnInterval(startDate, endDate);
     }
 
+    public String getHouseGridName(){
+        return this.mHouseGrid.getName();
+    }
+
 
 }
