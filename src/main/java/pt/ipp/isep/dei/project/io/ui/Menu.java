@@ -211,7 +211,7 @@ public class Menu {
         content.append(RETURN_MENU);
         content.append("\n");
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 3);
+        return InputValidator.getIntRange(label, 0, 4);
     }
 
     public static int roomOwnerMenu() {
