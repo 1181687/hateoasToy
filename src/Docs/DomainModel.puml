@@ -59,33 +59,32 @@ String name
 ENUM DeviceType{
 }
 
-left to right direction
+Sensor "1" - "1" SensorType
+Sensor "1" - "*" Measurement
+Sensor "1" - "1" Location
 
-Sensor "1" -- "1" SensorType
-Sensor "1" -- "*" Measurement
-Sensor "1" -- "1" Location
+Room "1" --- "1" Dimension
+Room "1" --- "0..*" Sensor
+Room "1" --- "0..*" Device
 
-Room "1" -- "1" Dimension
-Room "1" -- "0..*" Sensor
-Room "1" -- "0..*" Device
-
-PowerSource "1" -- "1" PowerSourceType
+PowerSource "1" - "1" PowerSourceType
 
 House "1" -- "0..*" Room
 House "1" -- "1..*" HouseGrid
-House "1" -- "1" Address
-House "1" -- "1" GeographicalArea
+House "1" ---- "1" Address
+House "1" ---- "1" GeographicalArea
 
-GeographicalArea "1" -- "1" GeoAreaType
-GeographicalArea "1" -- "1" GeographicalArea
-GeographicalArea "1" -- "1" Location
-GeographicalArea "1" -- "1" AreaShape
-GeographicalArea "1" -- "0..*" Sensor
+GeographicalArea "1" - "1" GeoAreaType
+GeographicalArea "1" - "1" GeographicalArea
+GeographicalArea "1" - "1" Location
+GeographicalArea "1" - "1" AreaShape
+GeographicalArea "1" - "0..*" Sensor
 
-Device "1" -- "1" Room
+Device "1" - "1" Room
 Device "1" -- "1" DeviceType
 
-HouseGrid "1" -- "1..*" PowerSource
-HouseGrid "1" -- "0..*" Room
+HouseGrid "1" - "1..*" PowerSource
+HouseGrid "1" - "0..*" Room
+
 
 @enduml
