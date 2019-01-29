@@ -1,11 +1,10 @@
-package pt.ipp.isep.dei.project.controllers;
+package pt.ipp.isep.dei.project.controllersTests;
 
 import org.testng.annotations.Test;
+import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionOfRoomInAnIntervalController;
 import pt.ipp.isep.dei.project.model.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
@@ -18,8 +17,8 @@ public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType GeographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", GeographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name1 = "Kitchen";
@@ -55,7 +54,7 @@ public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
-        GeoAreaType GAType = new GeoAreaType("City");
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
         House house = new House(rList, gridList, address, geo);
@@ -83,7 +82,7 @@ public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
-        GeoAreaType GAType = new GeoAreaType("City");
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
         House house = new House(rList, gridList, address, geo);
@@ -104,8 +103,8 @@ public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType GeographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", GeographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name1 = "Kitchen";
@@ -138,8 +137,8 @@ public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType GeographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", GeographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
@@ -159,8 +158,8 @@ public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType GeographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", GeographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -187,8 +186,8 @@ public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType GeographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", GeographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -224,8 +223,8 @@ public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType GeographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", GeographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         rList.addRoom(room0);
@@ -249,8 +248,8 @@ public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType GeographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", GeographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
         String expectedResult = null;
         int roomPos = 0;

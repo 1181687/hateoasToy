@@ -88,16 +88,23 @@ class UtilsTest {
 
 
     @Test
+    void testMeteringPeriodWrongKey() {
+        //Arrange
+        String expectedResult = "coisas";
+
+        //Act
+        String result = Utils.readConfigFile("Cenas");
+//Assert
+
+    }
+
     void testGetMeteringPeriodDevice() {
         //Arrange
         int expectedResult = 20;
 
-        //Act
         int result = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
-
-        //Assert
+//Assert
         assertEquals(expectedResult, result);
+
     }
-
-
 }
