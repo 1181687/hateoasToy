@@ -86,14 +86,6 @@ class UtilsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    void testMeteringPeriodValid() {
-        //Act
-        boolean result = (1440%Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"))==0);
-
-        //Assert
-        assertTrue(result);
-    }
 
     @Test
     void testGetMeteringPeriodDevice() {
@@ -101,19 +93,11 @@ class UtilsTest {
         int expectedResult = 20;
 
         //Act
-        int result = Utils.getDeviceMeteringPeriod();
+        int result = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
 
         //Assert
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    void testMeteringPeriodDeviceValid() {
 
-        //Act
-        boolean result = Utils.isDeviceMeteringPeriodValid();
-
-        //Assert
-        assertTrue(result);
-    }
 }
