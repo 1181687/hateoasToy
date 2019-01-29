@@ -1898,9 +1898,9 @@ public class HouseTest {
                 0.9, 100);
 
         // Device Instantiation
-        Device device0 = new Device("Fridgerator V14", room0, fridge);
+        Device device0 = new Device("Fridgeratah V14", room0, fridge);
         room0.addDevice(device0);
-        Device device1 = new Device("Bosh Tronic 3000", room1, electricWaterHeater);
+        Device device1 = new Device("Bosch Tronic 3000", room1, electricWaterHeater);
         room1.addDevice(device1);
 
         // RoomList Instantiation
@@ -1912,7 +1912,7 @@ public class HouseTest {
         House house = new House(roomList, null, null, null);
 
         String expectedResult =
-                "1 - Name of the device: Fridgerator V14\n" + "2 - Name of the device: Bosh Tronic 3000\n";
+                "1 - Name of the device: Fridgeratah V14\n" + "2 - Name of the device: Bosch Tronic 3000\n";
 
         // Act
         String result = house.getAllDevicesToString();
@@ -1939,9 +1939,9 @@ public class HouseTest {
                 0.9, 100);
 
         // Device Instantiation
-        Device device0 = new Device("Fridgerator V14", room0, fridge);
+        Device device0 = new Device("Fridgeratah V14", room0, fridge);
         room0.addDevice(device0);
-        Device device1 = new Device("Bosh Tronic 3000", room1, electricWaterHeater);
+        Device device1 = new Device("Bosch Tronic 3000", room1, electricWaterHeater);
         room1.addDevice(device1);
 
         // RoomList Instantiation
@@ -1981,9 +1981,9 @@ public class HouseTest {
                 0.9, 100);
 
         // Device Instantiation
-        Device device0 = new Device("Fridgerator V14", room0, fridge);
+        Device device0 = new Device("Fridgeratah V14", room0, fridge);
         room0.addDevice(device0);
-        Device device1 = new Device("Bosh Tronic 3000", room1, electricWaterHeater);
+        Device device1 = new Device("Bosch Tronic 3000", room1, electricWaterHeater);
         room1.addDevice(device1);
 
         // RoomList Instantiation
