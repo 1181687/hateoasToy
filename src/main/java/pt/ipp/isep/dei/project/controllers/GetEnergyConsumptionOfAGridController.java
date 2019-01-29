@@ -27,7 +27,7 @@ public class GetEnergyConsumptionOfAGridController {
     }
 
     public void getHouseGridByPosition(int position) {
-        this.mHouseGrid = mHouse.getHouseGridByPosition(position);
+        this.mHouseGrid = mHouse.getHouseGridByPosition(position-1);
     }
 
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
