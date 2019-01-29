@@ -6,7 +6,7 @@ import java.util.List;
 
 public class GeographicalArea {
     private String mGeoAreaName;
-    private GeoAreaType mGeoAreaType;
+    private GeographicalAreaType mGeographicalAreaType;
     private GeographicalArea mInsertedIn;
     private Location mLocation;
     private AreaShape mAreaShape;
@@ -15,13 +15,13 @@ public class GeographicalArea {
     /**
      * constructor of geographical area that receives a name, type, insertedIn, location, areaShape and a sensor list.
      * @param geoAreaName
-     * @param geoAreaType
+     * @param geographicalAreaType
      * @param location
      * @param areaShape
      */
-    public GeographicalArea(String geoAreaName, GeoAreaType geoAreaType, Location location, AreaShape areaShape) {
+    public GeographicalArea(String geoAreaName, GeographicalAreaType geographicalAreaType, Location location, AreaShape areaShape) {
         this.mGeoAreaName = geoAreaName;
-        this.mGeoAreaType = geoAreaType;
+        this.mGeographicalAreaType = geographicalAreaType;
         this.mLocation = location;
         this.mAreaShape = areaShape;
     }
@@ -57,7 +57,7 @@ public class GeographicalArea {
             return false;
         }
         GeographicalArea ag = (GeographicalArea) obj;
-        return this.mGeoAreaName.equals(ag.mGeoAreaName) && this.mGeoAreaType.equals(ag.mGeoAreaType) && this.mLocation.equals(ag.mLocation) && this.mAreaShape.equals(ag.mAreaShape);
+        return this.mGeoAreaName.equals(ag.mGeoAreaName) && this.mGeographicalAreaType.equals(ag.mGeographicalAreaType) && this.mLocation.equals(ag.mLocation) && this.mAreaShape.equals(ag.mAreaShape);
 
     }
 
@@ -73,8 +73,8 @@ public class GeographicalArea {
      * get a geographical area type.
      * @return a type of geographical area.
      */
-    public GeoAreaType getGeoAreaType() {
-        return mGeoAreaType;
+    public GeographicalAreaType getGeoAreaType() {
+        return mGeographicalAreaType;
     }
 
     /**
@@ -204,7 +204,7 @@ public class GeographicalArea {
      * @return sensor list.
      */
     public SensorList getTheSensorListOfAGivenType(SensorType type) {
-        GeographicalArea areaToBeUsed = new GeographicalArea(mGeoAreaName, mGeoAreaType, mLocation, mAreaShape);
+        GeographicalArea areaToBeUsed = new GeographicalArea(mGeoAreaName, mGeographicalAreaType, mLocation, mAreaShape);
         areaToBeUsed.setInsertedIn(mInsertedIn);
         areaToBeUsed.getSensorListInTheGeographicArea().setSensorList(mSensorList.getSensorList());
 

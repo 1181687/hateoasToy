@@ -1,13 +1,13 @@
 package pt.ipp.isep.dei.project.model;
 
-public class GeoAreaType {
+public class GeographicalAreaType {
     private String mGeoAreaType;
 
     /**
      * constructor that receives a type of geographical area.
      * @param geoAreaType
      */
-    public GeoAreaType(String geoAreaType) {
+    public GeographicalAreaType(String geoAreaType) {
         this.mGeoAreaType = geoAreaType;
     }
 
@@ -20,7 +20,7 @@ public class GeoAreaType {
     }
 
     /**
-     * Equals method to determine if two GeoAreaType are equal.
+     * Equals method to determine if two GeographicalAreaType are equal.
      * They are equals if the atributtes (mGeoAreaType) are equal.
      * @param obj
      * @return boolean
@@ -30,10 +30,10 @@ public class GeoAreaType {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof GeoAreaType)) {
+        if (!(obj instanceof GeographicalAreaType)) {
             return false;
         }
-        GeoAreaType tag = (GeoAreaType) obj;
+        GeographicalAreaType tag = (GeographicalAreaType) obj;
         return this.mGeoAreaType.equals(tag.mGeoAreaType);
     }
 

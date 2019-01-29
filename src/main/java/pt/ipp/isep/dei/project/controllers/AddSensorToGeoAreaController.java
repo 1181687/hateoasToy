@@ -4,14 +4,14 @@ import pt.ipp.isep.dei.project.model.*;
 
 public class AddSensorToGeoAreaController {
     private SensorTypeList mSensorTypeList;
-    private GeoAreaList mListaAreaGeografica;
+    private GeographicalAreaList mListaAreaGeografica;
     private GeographicalArea mGeographicalArea;
     private Location mLocation;
     private SensorType mSensorType;
 
-    public AddSensorToGeoAreaController(SensorTypeList sensorTypeList, GeoAreaList geoAreaList) {
+    public AddSensorToGeoAreaController(SensorTypeList sensorTypeList, GeographicalAreaList geographicalAreaList) {
         this.mSensorTypeList = sensorTypeList;
-        this.mListaAreaGeografica = geoAreaList;
+        this.mListaAreaGeografica = geographicalAreaList;
     }
 
 

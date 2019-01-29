@@ -1,22 +1,22 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.GeoAreaType;
-import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
+import pt.ipp.isep.dei.project.model.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.GeographicalAreaTypeList;
 
 
 public class AddGeoAreaTypeController {
-    private GeoAreaTypeList mListaTAG;
+    private GeographicalAreaTypeList mListaTAG;
 
-    public AddGeoAreaTypeController(GeoAreaTypeList listaTAG) {
+    public AddGeoAreaTypeController(GeographicalAreaTypeList listaTAG) {
         this.mListaTAG = listaTAG;
     }
 
     public boolean adicionaNovoTipoAreaGeografica(String tipoTAG){
-        GeoAreaType novoTAG = mListaTAG.newTypeOfGeoArea(tipoTAG);
+        GeographicalAreaType novoTAG = mListaTAG.newTypeOfGeoArea(tipoTAG);
         return mListaTAG.addTypeOfGeoAreaToTheList(novoTAG);
     }
 
-    public GeoAreaTypeList getListaTAG() {
+    public GeographicalAreaTypeList getListaTAG() {
         return mListaTAG;
     }
 }

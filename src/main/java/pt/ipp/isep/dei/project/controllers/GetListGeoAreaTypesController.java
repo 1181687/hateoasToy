@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
+import pt.ipp.isep.dei.project.model.GeographicalAreaTypeList;
 
 import java.util.List;
 
 public class GetListGeoAreaTypesController {
 
-    private GeoAreaTypeList mListaTAG;
+    private GeographicalAreaTypeList mListaTAG;
 
 
-    public GetListGeoAreaTypesController(GeoAreaTypeList listaTAG) {
+    public GetListGeoAreaTypesController(GeographicalAreaTypeList listaTAG) {
         this.mListaTAG = listaTAG;
     }
 

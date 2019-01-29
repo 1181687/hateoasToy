@@ -476,7 +476,7 @@ public class DeviceTest {
         DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
 
         // Device Instantiation
-        Device device = new Device("Fridgerator", room, fridge);
+        Device device = new Device("Fridgeratah V14", room, fridge);
 
         // Measurement Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -519,7 +519,7 @@ public class DeviceTest {
         DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
 
         // Device Instantiation
-        Device device = new Device("Fridgerator", room, fridge);
+        Device device = new Device("Fridgeratah V14", room, fridge);
 
         // Measurement Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -562,7 +562,7 @@ public class DeviceTest {
         DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
 
         // Device Instantiation
-        Device device = new Device("Fridgerator", room, fridge);
+        Device device = new Device("Fridgeratah V14", room, fridge);
 
         // Measurement Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -606,5 +606,6 @@ public class DeviceTest {
 
         assertEquals(expectedResult, result);
     }
+
 
 }

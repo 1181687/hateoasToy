@@ -79,7 +79,7 @@ public class SensorTypeList {
      * Boolean method that checks if the Sensor Type List is empty
      * @return empty Sensor Type List
      */
-    public boolean IsEmpty() {
+    public boolean isEmpty() {
         return this.mSensorTypeList.isEmpty();
     }
 

@@ -77,7 +77,6 @@ public class RoomList {
         int numberInTheList = 1;
         for (int i = 0; i < mRoomList.size(); i++) {
             String displayOfTheRoom = mRoomList.get(i).getRoomToString();
-            //   content.append("\n");
             content.append(numberInTheList);
             content.append("- ");
             content.append(displayOfTheRoom);
