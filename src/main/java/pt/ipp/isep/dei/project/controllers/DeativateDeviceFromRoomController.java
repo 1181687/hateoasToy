@@ -64,9 +64,16 @@ public class DeativateDeviceFromRoomController {
     public boolean deativateDevice(String device) {
         return this.mRoom.deativateDevice(device);
     }
-
     public String getActiveDeviceListToString() {
         return this.mRoom.getActiveDeviceListToString();
+    }
+
+    public boolean getIsActive() {
+        return this.mDevice.getIsActive();
+    }
+
+    public Device getDevice(int position) {
+        return this.mRoom.getDeviceList().getDeviceByPosition(position);
     }
 
 }
