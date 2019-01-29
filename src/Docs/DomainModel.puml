@@ -55,6 +55,7 @@ String type
 }
 class Device{
 String name
+boolean isActive
 }
 ENUM DeviceType{
 }
@@ -81,7 +82,7 @@ GeographicalArea "1" - "1" AreaShape
 GeographicalArea "1" - "0..*" Sensor
 
 Device "1" - "1" Room
-Device "1" -- "1" DeviceType
+Device "1..*" -- "1" DeviceType
 
 HouseGrid "1" - "1..*" PowerSource
 HouseGrid "1" - "0..*" Room

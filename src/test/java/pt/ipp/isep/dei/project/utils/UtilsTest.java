@@ -87,11 +87,11 @@ class UtilsTest {
     }
 
     @Test
-    void testMeteringPeriodValid() {
+    void testMeteringPeriodWrongKey(){
+        //Arrange
+        String expectedResult = "coisas";
         //Act
-        boolean result = (1440%Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"))==0);
-
+        String result = Utils.readConfigFile("Cenas");
         //Assert
-        assertTrue(result);
     }
 }
