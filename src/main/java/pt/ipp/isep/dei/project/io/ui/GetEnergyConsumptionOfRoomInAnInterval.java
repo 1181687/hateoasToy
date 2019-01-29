@@ -22,7 +22,7 @@ public class GetEnergyConsumptionOfRoomInAnInterval {
         mController.getRoomByPosition(chosenRoom);
         while (mController.isDeviceListEmpty()) {
             System.out.println("There are no devices in this room, so it is not possible to " +
-                    "calculate its energy consumption. Please choose another room.");
+                    "calculate its energy consumption. Please choose another room.\n");
             chosenRoom = InputValidator.getIntRange(label1, 0, mController.getRoomListSize()) - 1;
             mController.getRoomByPosition(chosenRoom);
         }
@@ -31,6 +31,6 @@ public class GetEnergyConsumptionOfRoomInAnInterval {
         String label3 = "Please insert the final date/hour of the period you want to consider for the calculations in the following format: yyyy-MM-dd HH:mm. ";
         LocalDateTime finalDate = InputValidator.getStringDateTime(label3);
         System.out.println("The energy consumption of room " + mController.getRoomNameByPosition(chosenRoom)
-                + " is " + mController.getEnergyConsumptionOfRoomInInterval(initialDate, finalDate) + " kWh.");
+                + " is " + mController.getEnergyConsumptionOfRoomInInterval(initialDate, finalDate) + " kWh.\n");
     }
 }

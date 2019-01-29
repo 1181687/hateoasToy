@@ -276,6 +276,20 @@ public class DeviceList {
         return content.toString();
     }
 
+    public String getActiveDeviceListToString() {
+        StringBuilder content = new StringBuilder();
+        int deviceListLength = getSize();
+        int numberInTheList = 1;
+        for (int i = 1; i <= deviceListLength; i++) {
+            if (mDeviceList.get(i - 1).getIsActive()) {
+                content.append(numberInTheList + " - Name of the device: " + getDeviceList().get(i - 1).getName());
+                content.append("\n");
+                numberInTheList++;
+            }
+        }
+        return content.toString();
+    }
+
     /**
      * Method that remove a device from the list of devices
      */
@@ -367,7 +381,7 @@ public class DeviceList {
     public boolean deactivationDevice(String device) {
         for (Device searchDevice : this.mDeviceList) {
             if (device.equals(searchDevice.getName())) {
-                searchDevice.setmIsActive();
+                searchDevice.setDeativateDevice();
                 return true;
             }
         }

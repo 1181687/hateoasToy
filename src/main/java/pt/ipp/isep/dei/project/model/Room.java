@@ -339,4 +339,8 @@ public class Room implements Measurable {
     public boolean deativateDevice(String device) {
         return this.mDeviceList.deactivationDevice(device);
     }
+
+    public String getActiveDeviceListToString() {
+        return this.mDeviceList.getActiveDeviceListToString();
+    }
 }

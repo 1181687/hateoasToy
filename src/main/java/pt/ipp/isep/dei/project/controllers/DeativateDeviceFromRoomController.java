@@ -4,18 +4,13 @@ import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
 
-public class DeleteDeviceFromRoomController {
+public class DeativateDeviceFromRoomController {
 
     private House mHouse;
     private Room mRoom;
     private Device mDevice;
 
-    /**
-     * construtor of controller
-     *
-     * @param mHouse
-     */
-    public DeleteDeviceFromRoomController(House mHouse) {
+    public DeativateDeviceFromRoomController(House mHouse) {
         this.mHouse = mHouse;
     }
 
@@ -46,10 +41,6 @@ public class DeleteDeviceFromRoomController {
         return this.mHouse.getRoomListSize();
     }
 
-    public boolean deleteDevice(String device) {
-        return this.mRoom.deleteDevice(device);
-    }
-
     public String getDeviceNameByPosition(int position) {
         return this.mRoom.getDeviceNameByPosition(position);
     }
@@ -72,6 +63,14 @@ public class DeleteDeviceFromRoomController {
 
     public String getDevicesInTheRoom() {
         return this.mRoom.getDeviceListToString();
+    }
+
+    public boolean deativateDevice(String device) {
+        return this.mRoom.deativateDevice(device);
+    }
+
+    public String getActiveDeviceListToString() {
+        return this.mRoom.getActiveDeviceListToString();
     }
 
 }
