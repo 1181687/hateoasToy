@@ -81,6 +81,6 @@ public class AddSensorToRoomController {
      * @return true or false.
      */
     public boolean isSensorTypeListEmpty() {
-        return mListSensorsType.IsEmpty();
+        return mListSensorsType.isEmpty();
     }
 }

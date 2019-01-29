@@ -190,10 +190,12 @@ public class Menu {
         content.append("\n");
         content.append("3-Check nominal power of a room");
         content.append("\n");
+        content.append("4-Deativate a device from a room");
+        content.append("\n");
         content.append(RETURN_MENU);
         content.append("\n");
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 3);
+        return InputValidator.getIntRange(label, 0, 4);
     }
 
     public static int powerUserEnergyConsumtionMenu() {

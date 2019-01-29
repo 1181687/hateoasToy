@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaTypeController;
-import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
+import pt.ipp.isep.dei.project.model.GeographicalAreaTypeList;
 
 import java.util.Scanner;
 
@@ -11,7 +11,7 @@ able to create a classification of geographical areas. */
 public class AddGeoAreaType {
     private AddGeoAreaTypeController ctrl;
 
-    public AddGeoAreaType(GeoAreaTypeList lista) {
+    public AddGeoAreaType(GeographicalAreaTypeList lista) {
         this.ctrl = new AddGeoAreaTypeController(lista);
     }
 
