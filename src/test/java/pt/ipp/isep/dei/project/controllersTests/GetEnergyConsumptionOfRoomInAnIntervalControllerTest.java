@@ -1,7 +1,10 @@
-package pt.ipp.isep.dei.project.controllers;
+package pt.ipp.isep.dei.project.controllersTests;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionOfRoomInAnIntervalController;
 import pt.ipp.isep.dei.project.model.*;
+
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -252,8 +255,8 @@ public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
         GeoAreaType geoAreaType = new GeoAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
+
         String expectedResult = null;
-        int roomPos = 0;
 
         GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
 
@@ -263,4 +266,165 @@ public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void getTotalEnergyConsumptionInAnIntervalTestWithOneFullPeriod() {
+        // Arrange
+
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Kitchen", 1, dim);
+
+        rList.addRoom(room);
+
+        // Fridge Instantiation
+        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+
+        // Device Instantiation
+        Device device = new Device("Fridgerator", room, fridge);
+
+        // Measurement Instantiation
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Measurement measurement0 = new Measurement(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Measurement measurement1 = new Measurement(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Measurement measurement2 = new Measurement(7, time2);
+
+        // List<Measurement Configuration
+        device.addMeasurementToTheList(measurement0);
+        device.addMeasurementToTheList(measurement1);
+        device.addMeasurementToTheList(measurement2);
+
+        double expectedResult = 7;
+
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+
+        GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
+        ctrl.getRoomByPosition(0);
+        // Act
+        double result = ctrl.getEnergyConsumptionOfRoomInInterval(startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    public void getTotalEnergyConsumptionInAnIntervalTestWithTwoFullPeriods() {
+        // Arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+        // Dimension Instantiation
+        double height = 3;
+        double length = 5;
+        double width = 6;
+        Dimension dim = new Dimension(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Kitchen", 1, dim);
+
+        rList.addRoom(room);
+        // Fridge Instantiation
+        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+
+        // Device Instantiation
+        Device device = new Device("Fridgerator", room, fridge);
+
+        // Measurement Instantiation
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Measurement measurement0 = new Measurement(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Measurement measurement1 = new Measurement(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Measurement measurement2 = new Measurement(7, time2);
+
+        // List<Measurement Configuration
+        device.addMeasurementToTheList(measurement0);
+        device.addMeasurementToTheList(measurement1);
+        device.addMeasurementToTheList(measurement2);
+
+        double expectedResult = 12;
+
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+
+        GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
+        ctrl.getRoomByPosition(0);
+        // Act
+        double result = ctrl.getEnergyConsumptionOfRoomInInterval(startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    public void getTotalEnergyConsumptionInAnIntervalTestWithoutFullPeriods() {
+        // Arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+        // Dimension Instantiation
+        double height = 3;
+        double length = 5;
+        double width = 6;
+        Dimension dim = new Dimension(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Kitchen", 1, dim);
+
+        rList.addRoom(room);
+        // Fridge Instantiation
+        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+
+        // Device Instantiation
+        Device device = new Device("Fridgerator", room, fridge);
+
+        // Measurement Instantiation
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Measurement measurement0 = new Measurement(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Measurement measurement1 = new Measurement(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Measurement measurement2 = new Measurement(7, time2);
+
+        // List<Measurement Configuration
+        device.addMeasurementToTheList(measurement0);
+        device.addMeasurementToTheList(measurement1);
+        device.addMeasurementToTheList(measurement2);
+
+        double expectedResult = 0;
+
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 9, 00, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+
+        GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
+        ctrl.getRoomByPosition(0);
+        // Act
+        double result = ctrl.getEnergyConsumptionOfRoomInInterval(startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
+    }
 }

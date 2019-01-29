@@ -1849,7 +1849,7 @@ public class HouseTest {
         House house = new House(rList, gridList, address, geo);
 
         //act
-        boolean result = rList.isEmpty();
+        boolean result = house.roomListIsEmpty();
         //assert
         assertTrue(result);
     }
@@ -1875,7 +1875,7 @@ public class HouseTest {
         House house = new House(rList, gridList, address, geo);
 
         //act
-        boolean result = rList.isEmpty();
+        boolean result = house.roomListIsEmpty();
         //assert
         assertFalse(result);
     }
