@@ -61,10 +61,6 @@ public class DeativateDeviceFromRoomController {
         return this.mRoom.isDeviceListEmpty();
     }
 
-    public String getDevicesInTheRoom() {
-        return this.mRoom.getDeviceListToString();
-    }
-
     public boolean deativateDevice(String device) {
         return this.mRoom.deativateDevice(device);
     }

@@ -282,7 +282,11 @@ public class DeviceList {
         int numberInTheList = 1;
         for (int i = 1; i <= deviceListLength; i++) {
             if (mDeviceList.get(i - 1).getIsActive()) {
-                content.append(numberInTheList + " - Name of the device: " + getDeviceList().get(i - 1).getName());
+                content.append(numberInTheList + " - Name of the device: " + getDeviceList().get(i - 1).getName() + " - ACTIVE");
+                content.append("\n");
+                numberInTheList++;
+            } else {
+                content.append(numberInTheList + " - Name of the device: " + getDeviceList().get(i - 1).getName() + " - DEACTIVE");
                 content.append("\n");
                 numberInTheList++;
             }
