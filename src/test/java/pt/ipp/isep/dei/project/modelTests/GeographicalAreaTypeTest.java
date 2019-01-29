@@ -1,17 +1,17 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.GeoAreaType;
+import pt.ipp.isep.dei.project.model.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.SensorType;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class GeoAreaTypeTest {
+class GeographicalAreaTypeTest {
 
     @Test
     void testehashCode() {
         //Arrange
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         int expectedResult = 1;
         // Act
         int result = tipo.hashCode();
@@ -22,8 +22,8 @@ class GeoAreaTypeTest {
     @Test
     void testaEqualsTrue() {
         //Arrange
-        GeoAreaType tipo0 = new GeoAreaType("Cidade");
-        GeoAreaType tipo1 = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo0 = new GeographicalAreaType("Cidade");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         //Act
         boolean result = tipo0.equals(tipo1);
         //Assert
@@ -33,8 +33,8 @@ class GeoAreaTypeTest {
     @Test
     void testaEqualsFalseTiposDiferentes() {
         //Arrange
-        GeoAreaType tipo0 = new GeoAreaType("Cidade");
-        GeoAreaType tipo1 = new GeoAreaType("Rua");
+        GeographicalAreaType tipo0 = new GeographicalAreaType("Cidade");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Rua");
         //Act
         boolean result = tipo0.equals(tipo1);
         //Assert
@@ -45,7 +45,7 @@ class GeoAreaTypeTest {
     void testaEqualsFalse() {
         //Arrange
         String TipoAreaGeo = "Cidade";
-        GeoAreaType tipo0 = new GeoAreaType(TipoAreaGeo);
+        GeographicalAreaType tipo0 = new GeographicalAreaType(TipoAreaGeo);
         SensorType tipo1 = new SensorType("Temperatura");
         //Act
         boolean result = tipo0.equals(tipo1);
@@ -57,7 +57,7 @@ class GeoAreaTypeTest {
     void testarGetmTipoAreaGeo() {
         //Arrange
         String TipoAreaGeo = "Rua";
-        GeoAreaType tipo1 = new GeoAreaType(TipoAreaGeo);
+        GeographicalAreaType tipo1 = new GeographicalAreaType(TipoAreaGeo);
         String expectedResult= "Rua";
         //Act
         String result = tipo1.getStringOfTypeOfGeoArea();
@@ -69,10 +69,10 @@ class GeoAreaTypeTest {
     void testarUmTipoAreaGeoEIgualAOutraTrue() {
         //Arrange
         String TipoAreaGeo1 = "Rua";
-        GeoAreaType tipo1 = new GeoAreaType(TipoAreaGeo1);
+        GeographicalAreaType tipo1 = new GeographicalAreaType(TipoAreaGeo1);
 
         String TipoAreaGeo2 = "Rua";
-        GeoAreaType tipo2 = new GeoAreaType(TipoAreaGeo2);
+        GeographicalAreaType tipo2 = new GeographicalAreaType(TipoAreaGeo2);
         boolean expectedResult= true;
 
         //Act
@@ -85,10 +85,10 @@ class GeoAreaTypeTest {
     void testarUmTipoAreaGeoEIgualAOutraFalse() {
         //Arrange
         String TipoAreaGeo1 = "Rua";
-        GeoAreaType tipo1 = new GeoAreaType(TipoAreaGeo1);
+        GeographicalAreaType tipo1 = new GeographicalAreaType(TipoAreaGeo1);
 
         String TipoAreaGeo2 = "Cidade";
-        GeoAreaType tipo2 = new GeoAreaType(TipoAreaGeo2);
+        GeographicalAreaType tipo2 = new GeographicalAreaType(TipoAreaGeo2);
         boolean expectedResult= false;
 
         //Act

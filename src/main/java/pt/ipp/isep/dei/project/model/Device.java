@@ -236,9 +236,13 @@ public class Device implements Measurable {
         return totalEnergyConsumption;
     }
 
-    public void setmIsActive() {
+    public void setDeativateDevice() {
         this.mIsActive = false;
         this.mDeactivationDate = LocalDateTime.now();
+    }
+
+    public boolean getIsActive() {
+        return mIsActive;
     }
 
     public int setDeviceMeteringPeriod() {

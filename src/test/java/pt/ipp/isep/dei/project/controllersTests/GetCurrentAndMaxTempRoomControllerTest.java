@@ -30,9 +30,9 @@ public class GetCurrentAndMaxTempRoomControllerTest {
 
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
-        GeoAreaType geoAreaType = new GeoAreaType("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("City");
         AreaShape rectangleArea = new AreaShape(20, 20, location);
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
         SensorType sensorType = new SensorType("Temperature");
@@ -56,9 +56,9 @@ public class GetCurrentAndMaxTempRoomControllerTest {
 
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
-        GeoAreaType geoAreaType = new GeoAreaType("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("City");
         AreaShape rectangleArea = new AreaShape(20, 20, location);
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
         SensorType sensorType = new SensorType("Temperature");
@@ -89,9 +89,9 @@ public class GetCurrentAndMaxTempRoomControllerTest {
 
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
-        GeoAreaType geoAreaType = new GeoAreaType("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("City");
         AreaShape rectangleArea = new AreaShape(20, 20, location);
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
         SensorType sensorType = new SensorType("Temperature");
@@ -167,9 +167,9 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         roomList.addRoom(room1);
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
-        GeoAreaType geoAreaType = new GeoAreaType("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("City");
         AreaShape rectangleArea = new AreaShape(20, 20, location);
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(roomList, gridList, address, insertedGeoArea);
         GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType0);
@@ -215,9 +215,9 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         roomList.addRoom(room1);
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
-        GeoAreaType geoAreaType = new GeoAreaType("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("City");
         AreaShape rectangleArea = new AreaShape(20, 20, location);
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(roomList, gridList, address, insertedGeoArea);
         GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType0);
@@ -244,9 +244,9 @@ public class GetCurrentAndMaxTempRoomControllerTest {
 
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
-        GeoAreaType geoAreaType = new GeoAreaType("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("City");
         AreaShape rectangleArea = new AreaShape(20, 20, location);
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
         SensorType sensorType0 = new SensorType("Temperature");
@@ -266,9 +266,9 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         RoomList rList = new RoomList();
         HouseGridList gridList = new HouseGridList();
         Location location = new Location(0.0, 0.0, 0.0);
-        GeoAreaType geoAreaType = new GeoAreaType("City");
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("City");
         AreaShape rectangleArea = new AreaShape(20, 20, location);
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, location, rectangleArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, location, rectangleArea);
         Address address = new Address("0000", location);
         House house = new House(rList, gridList, address, insertedGeoArea);
         SensorType sensorType0 = new SensorType("Temperature");
@@ -293,8 +293,8 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
         AreaShape rectangleArea = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, rectangleArea);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         String name = "Master Bedroom";
@@ -370,8 +370,8 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
         AreaShape rectangleArea = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, rectangleArea);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
         SensorType sensorType = new SensorType("Temperature");
 

@@ -20,7 +20,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         HouseGridList listHG = new HouseGridList();
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
-        GeoAreaType GAType = new GeoAreaType("City");
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
         House house = new House (roomList, listHG, address, geo);
@@ -63,7 +63,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         HouseGridList listHG = new HouseGridList();
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
-        GeoAreaType GAType = new GeoAreaType("City");
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
         House house = new House (roomList, listHG, address, geo);
@@ -90,7 +90,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         HouseGridList listHG = new HouseGridList();
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
-        GeoAreaType GAType = new GeoAreaType("City");
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
         House house = new House (roomList, listHG, address, geo);
@@ -123,7 +123,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         HouseGridList listHG = new HouseGridList();
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
-        GeoAreaType GAType = new GeoAreaType("City");
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
         House house = new House(roomList, listHG, address, geo);
@@ -169,7 +169,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         HouseGridList listHG = new HouseGridList();
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
-        GeoAreaType GAType = new GeoAreaType("City");
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
         House house = new House(roomList, listHG, address, geo);
@@ -197,7 +197,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         HouseGridList listHG = new HouseGridList();
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
-        GeoAreaType GAType = new GeoAreaType("City");
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
         House house = new House(roomList, listHG, address, geo);
@@ -229,8 +229,8 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name1 = "Kitchen";
@@ -263,8 +263,8 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         GetListOfSensorsAndDevicesRoomController controller = new GetListOfSensorsAndDevicesRoomController(house);
@@ -285,8 +285,8 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         house.addRoom(room);
@@ -309,8 +309,8 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         GetListOfSensorsAndDevicesRoomController controller = new GetListOfSensorsAndDevicesRoomController(house);
@@ -334,8 +334,8 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         rList.addRoom(room0);
@@ -358,8 +358,8 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         GetListOfSensorsAndDevicesRoomController controller = new GetListOfSensorsAndDevicesRoomController(house);
@@ -379,8 +379,8 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name1 = "Kitchen";
@@ -414,8 +414,8 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         GetListOfSensorsAndDevicesRoomController controller = new GetListOfSensorsAndDevicesRoomController(house);

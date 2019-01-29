@@ -190,7 +190,7 @@ class SensorTypeListTest {
         SensorTypeList listSensorsType = new SensorTypeList();
 
         // Act
-        boolean result = listSensorsType.IsEmpty();
+        boolean result = listSensorsType.isEmpty();
         // Assert
         assertTrue(result);
     }

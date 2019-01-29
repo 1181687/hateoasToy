@@ -62,5 +62,4 @@ public final class Utils {
         }
         return prop.getProperty(option);
     }
-
 }
