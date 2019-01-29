@@ -24,7 +24,7 @@ public class DeativateDeviceFromRoom {
             boolean flag = true;
             while (flag) {
                 String exit = "0 - Return to the previous menu";
-                String label1 = "\n> Please select the room with the device you want to delete:\n" + mController.getRoomListContent() + exit;
+                String label1 = "\n> Please select the room with the device you want to deativate:\n" + mController.getRoomListContent() + exit;
                 int roomListSize = mController.roomListSize();
                 int position = InputValidator.getIntRange(label1, 0, roomListSize) - 1;
                 if (position == -1) {
@@ -39,7 +39,8 @@ public class DeativateDeviceFromRoom {
                 } else {
                     boolean flag1 = true;
                     while (flag1) {
-                        String label2 = "\n> Please select the device you want to delete. \n" + mController.getDevicesInTheRoom() + exit;
+                        String label2 = "\n> This is the list of activated devices. Please select the device you want to deativate: \n"
+                                + mController.getActiveDeviceListToString() + exit;
 
                         int deviceListLength = mController.getDeviceListLength();
                         int position1 = InputValidator.getIntRange(label2, 0, deviceListLength) - 1;
@@ -48,7 +49,7 @@ public class DeativateDeviceFromRoom {
                         }
                         flag1 = false;
 
-                        // CONFIRM                        // CONFIRM TO DEATIVATE
+                        // CONFIRM TO DEATIVATE
                         String label5 = "Are you sure do you want to deativate this device? (Y/N)";
                         String answer2 = InputValidator.confirmValidation(label5);
                         if ("y".equals(answer2) || "Y".equals(answer2)) {

@@ -69,4 +69,8 @@ public class DeativateDeviceFromRoomController {
         return this.mRoom.deativateDevice(device);
     }
 
+    public String getActiveDeviceListToString() {
+        return this.mRoom.getActiveDeviceListToString();
+    }
+
 }
