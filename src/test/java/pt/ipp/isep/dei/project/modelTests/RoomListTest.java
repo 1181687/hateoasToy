@@ -884,7 +884,7 @@ public class RoomListTest {
     }
 
     @Test
-    public void getAllDeviceListsToStringTest() {
+    public void getAllDevicesToStringTest() {
         // Arrange
         // Dimension Instantiation
         Dimension dim = new Dimension(3, 5, 6);
@@ -912,12 +912,10 @@ public class RoomListTest {
         roomList.addRoom(room1);
 
         String expectedResult =
-                "1 - Name of the device: Fridgerator V14\n" +
-                        "2 - Name of the device: Bosh Tronic 3000\n";
-
+                "1 - Name of the device: Fridgerator V14\n" + "2 - Name of the device: Bosh Tronic 3000\n";
 
         // Act
-        String result = roomList.getAllDeviceListsToString();
+        String result = roomList.getAllDevicesToString();
 
         // Assert
         assertEquals(expectedResult, result);

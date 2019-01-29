@@ -384,18 +384,6 @@ public class House {
         return new MeasurableList();
     }
 
-    public int getDevicesListLength(int position) {
-        return this.mRoomList.getDevicesListLength(position);
-    }
-
-    public boolean deleteDevice(String device, int choosenRoom) {
-        return this.mRoomList.deleteDevice(device, choosenRoom);
-    }
-
-    public String getDeviceNameByPosition(int position) {
-        return this.mRoomList.getDeviceNameByPosition(position);
-    }
-
     /**
      * Method that checks if the Room List is Empty
      *
@@ -403,5 +391,38 @@ public class House {
      */
     public boolean roomListIsEmpty() {
         return mRoomList.isEmpty();
+    }
+
+    /**
+     * Method that returns the content of all the devices in the house.
+     *
+     * @return String with the list of devices content.
+     */
+    public String getAllDevicesToString() {
+        return mRoomList.getAllDevicesToString();
+    }
+
+    /**
+     * Method that returns all the devices in the house.
+     *
+     * @return DeviceList with all the devices in the house.
+     */
+    public DeviceList getAllDevices() {
+        return mRoomList.getAllDevicesList();
+    }
+
+    /**
+     * Method that returns a device by its position in the list of all devices in the house.
+     *
+     * @param position Position of the device in the list of all devices.
+     * @return Device chosen.
+     */
+    public Device getDeviceByPosition(int position) {
+        return getAllDevices().getDeviceByPosition(position);
+    }
+
+    public String getDeviceNameOfATypeByPosition(String type, int devicePosition) {
+        DeviceList listOfAllDevicesOffAType = getAllDevicesOfAType(type);
+        return listOfAllDevicesOffAType.getDeviceName(devicePosition);
     }
 }

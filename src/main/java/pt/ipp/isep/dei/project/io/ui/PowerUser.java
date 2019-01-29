@@ -66,6 +66,10 @@ public class PowerUser {
                     EstimateEnergyOfWaterHeater ui752 = new EstimateEnergyOfWaterHeater(mhouse);
                     ui752.run();
                     break;
+                case 3:
+                    GetEnergyConsumptionOfRoomInAnInterval ui721 = new GetEnergyConsumptionOfRoomInAnInterval(mhouse);
+                    ui721.run();
+                    break;
             }
             option = Menu.powerUserEnergyConsumtionMenu();
         }

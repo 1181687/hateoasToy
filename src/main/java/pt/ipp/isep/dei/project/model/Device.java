@@ -14,6 +14,8 @@ public class Device implements Measurable {
     private DeviceSpecs mSpec;
     private List<Measurement> mMeasurementList = new ArrayList<>();
     private int mMeteringPeriod;
+    private boolean mIsActive;
+    private LocalDateTime mDeactivationDate;
 
     public Device(String name, Room location, DeviceSpecs spec) {
         this.mName = name;
@@ -21,6 +23,7 @@ public class Device implements Measurable {
         this.mSpec = spec;
         this.mLocation.addDevice(this);
         this.mMeteringPeriod = setDeviceMeteringPeriod();
+        this.mIsActive = true;
     }
 
     /**
@@ -186,19 +189,19 @@ public class Device implements Measurable {
     }
 
     /**
-     * TODO
+     * Method that adds a measurement to the device.
      *
-     * @param measurement
+     * @param measurement Measurement to be added.
      */
     public void addMeasurementToTheList(Measurement measurement) {
         mMeasurementList.add(measurement);
     }
 
     /**
-     * TODO
+     * Method that calculates the sum of the value in each measurement in a given measurement list.
      *
-     * @param measurementList
-     * @return
+     * @param measurementList List with measurements.
+     * @return Double with the required sum.
      */
     public double getSumOfTheMeasurements(List<Measurement> measurementList) {
         double sum = 0;
@@ -209,11 +212,11 @@ public class Device implements Measurable {
     }
 
     /**
-     * TODO
+     * Method that calculates the total energy consumption of a device in a given interval.
      *
-     * @param startDate
-     * @param endDate
-     * @return
+     * @param startDate Start date.
+     * @param endDate End date.
+     * @return Double with the required energy consumption.
      */
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
@@ -231,6 +234,11 @@ public class Device implements Measurable {
             totalEnergyConsumption = getSumOfTheMeasurements(measurementList);
         }
         return totalEnergyConsumption;
+    }
+
+    public void setmIsActive() {
+        this.mIsActive = false;
+        this.mDeactivationDate = LocalDateTime.now();
     }
 
     public int setDeviceMeteringPeriod() {

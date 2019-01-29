@@ -309,11 +309,11 @@ public class RoomList {
     }
 
     /**
-     * TODO
+     * Method that returns the content of all the devices present in all the rooms in the list.
      *
-     * @return
+     * @return String with the list of devices content.
      */
-    public String getAllDeviceListsToString() {
+    public String getAllDevicesToString() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
         for (Room room : mRoomList) {
@@ -321,17 +321,5 @@ public class RoomList {
             numberInTheList++;
         }
         return content.toString();
-    }
-
-    public int getDevicesListLength(int position) {
-        return this.mRoomList.get(position).getDevicesListLength();
-    }
-
-    public boolean deleteDevice(String device, int choosenRoom) {
-        return mRoomList.get(choosenRoom).deleteDevice(device, choosenRoom);
-    }
-
-    public String getDeviceNameByPosition(int position) {
-        return this.mRoomList.get(position).getDeviceNameByPosition(position);
     }
 }

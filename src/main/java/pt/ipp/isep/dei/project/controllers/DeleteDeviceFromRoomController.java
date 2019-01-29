@@ -46,16 +46,12 @@ public class DeleteDeviceFromRoomController {
         return this.mHouse.getRoomListSize();
     }
 
-    public int getDeviceListSize(int position) {
-        return mHouse.getDevicesListLength(position);
-    }
-
-    public boolean deleteDevice(String device, int choosenRoom) {
-        return this.mHouse.deleteDevice(device, choosenRoom);
+    public boolean deleteDevice(String device) {
+        return this.mRoom.deleteDevice(device);
     }
 
     public String getDeviceNameByPosition(int position) {
-        return this.mHouse.getDeviceNameByPosition(position);
+        return this.mRoom.getDeviceNameByPosition(position);
     }
 
     public int getDeviceListLength() {
@@ -78,7 +74,8 @@ public class DeleteDeviceFromRoomController {
         return this.mRoom.getDeviceListToString();
     }
 
-    public void getDeviceByPosition(int position) {
-        this.mDevice = this.mRoom.getDeviceList().getDeviceByPosition(position);
+    public boolean deativateDevice(String device) {
+        return this.mRoom.deativateDevice(device);
     }
+
 }
