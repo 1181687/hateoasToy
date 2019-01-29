@@ -1,26 +1,26 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.GeoAreaList;
-import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 import pt.ipp.isep.dei.project.model.GeographicalArea;
+import pt.ipp.isep.dei.project.model.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.GeographicalAreaTypeList;
 
 import java.util.List;
 
 public class AddGeoAreaController {
-    private GeoAreaList mGeoAreaList;
-    private GeoAreaTypeList mListaTAG;
+    private GeographicalAreaList mGeographicalAreaList;
+    private GeographicalAreaTypeList mListaTAG;
 
-    public AddGeoAreaController(GeoAreaList geoAreaList, GeoAreaTypeList listaTAG) {
-        this.mGeoAreaList = geoAreaList;
+    public AddGeoAreaController(GeographicalAreaList geographicalAreaList, GeographicalAreaTypeList listaTAG) {
+        this.mGeographicalAreaList = geographicalAreaList;
         this.mListaTAG = listaTAG;
     }
 
     public boolean adicionarNovaAG(GeographicalArea novaAG) {
-        return mGeoAreaList.addGeoArea(novaAG);
+        return mGeographicalAreaList.addGeoArea(novaAG);
     }
 
-    public GeoAreaList getListaAG() {
-        return mGeoAreaList;
+    public GeographicalAreaList getListaAG() {
+        return mGeographicalAreaList;
     }
 
     public List<String> getListaTAG() {
@@ -28,7 +28,7 @@ public class AddGeoAreaController {
     }
 
     public GeographicalArea criarNovaAG(String nomeAG, String nomeTipoAG, double altitude, double longitude, double latitude, double largura, double comprimento) {
-        return mGeoAreaList.newGeographicalArea(nomeAG, nomeTipoAG, altitude, longitude, latitude, largura, comprimento);
+        return mGeographicalAreaList.newGeographicalArea(nomeAG, nomeTipoAG, altitude, longitude, latitude, largura, comprimento);
 
     }
 }
