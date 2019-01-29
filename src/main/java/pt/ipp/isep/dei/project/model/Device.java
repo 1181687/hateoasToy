@@ -242,8 +242,9 @@ public class Device implements Measurable {
     }
 
     public int setDeviceMeteringPeriod() {
-        if (Utils.isDeviceMeteringPeriodValid()) {
-            return Utils.getDeviceMeteringPeriod();
+        int meteringPeriod = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        if (1440%meteringPeriod==0 && (meteringPeriod % Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"))==0)) {
+            return meteringPeriod;
         } else {
             return -1;
         }

@@ -80,7 +80,7 @@ class UtilsTest {
         int expectedResult = 10;
 
         //Act
-        int result = Utils.getGridMeteringPeriod();
+        int result = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
 
         //Assert
         assertEquals(expectedResult, result);
@@ -89,7 +89,7 @@ class UtilsTest {
     @Test
     void testMeteringPeriodValid() {
         //Act
-        boolean result = Utils.isGridMeteringPeriodValid();
+        boolean result = (1440%Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"))==0);
 
         //Assert
         assertTrue(result);
