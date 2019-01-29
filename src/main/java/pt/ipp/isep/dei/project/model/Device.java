@@ -14,6 +14,8 @@ public class Device implements Measurable {
     private DeviceSpecs mSpec;
     private List<Measurement> mMeasurementList = new ArrayList<>();
     private int mMeteringPeriod;
+    private boolean mIsActive;
+    private LocalDateTime mDeactivationDate;
 
     public Device(String name, Room location, DeviceSpecs spec) {
         this.mName = name;
@@ -21,6 +23,7 @@ public class Device implements Measurable {
         this.mSpec = spec;
         this.mLocation.addDevice(this);
         this.mMeteringPeriod = setDeviceMeteringPeriod();
+        this.mIsActive = true;
     }
 
     /**
@@ -233,9 +236,19 @@ public class Device implements Measurable {
         return totalEnergyConsumption;
     }
 
+    public void setDeativateDevice() {
+        this.mIsActive = false;
+        this.mDeactivationDate = LocalDateTime.now();
+    }
+
+    public boolean getIsActive() {
+        return mIsActive;
+    }
+
     public int setDeviceMeteringPeriod() {
-        if (Utils.isDeviceMeteringPeriodValid()) {
-            return Utils.getDeviceMeteringPeriod();
+        int meteringPeriod = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        if (1440%meteringPeriod==0 && (meteringPeriod % Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"))==0)) {
+            return meteringPeriod;
         } else {
             return -1;
         }

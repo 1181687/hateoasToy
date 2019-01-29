@@ -80,18 +80,31 @@ class UtilsTest {
         int expectedResult = 10;
 
         //Act
-        int result = Utils.getGridMeteringPeriod();
+        int result = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
 
         //Assert
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    void testMeteringPeriodValid() {
-        //Act
-        boolean result = Utils.isGridMeteringPeriodValid();
 
-        //Assert
-        assertTrue(result);
+    @Test
+    void testMeteringPeriodWrongKey() {
+        //Arrange
+        String expectedResult = "coisas";
+
+        //Act
+        String result = Utils.readConfigFile("Cenas");
+//Assert
+
+    }
+
+    void testGetMeteringPeriodDevice() {
+        //Arrange
+        int expectedResult = 20;
+
+        int result = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+//Assert
+        assertEquals(expectedResult, result);
+
     }
 }

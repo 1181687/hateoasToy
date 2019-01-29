@@ -77,7 +77,6 @@ public class RoomList {
         int numberInTheList = 1;
         for (int i = 0; i < mRoomList.size(); i++) {
             String displayOfTheRoom = mRoomList.get(i).getRoomToString();
-            //   content.append("\n");
             content.append(numberInTheList);
             content.append("- ");
             content.append(displayOfTheRoom);
@@ -321,17 +320,5 @@ public class RoomList {
             numberInTheList++;
         }
         return content.toString();
-    }
-
-    public int getDevicesListLength(int position) {
-        return this.mRoomList.get(position).getDevicesListLength();
-    }
-
-    public boolean deleteDevice(String device, int choosenRoom) {
-        return mRoomList.get(choosenRoom).deleteDevice(device, choosenRoom);
-    }
-
-    public String getDeviceNameByPosition(int position) {
-        return this.mRoomList.get(position).getDeviceNameByPosition(position);
     }
 }

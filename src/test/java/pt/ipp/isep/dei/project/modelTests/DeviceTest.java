@@ -607,4 +607,5 @@ public class DeviceTest {
         assertEquals(expectedResult, result);
     }
 
+
 }

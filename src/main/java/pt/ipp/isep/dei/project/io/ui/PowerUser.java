@@ -46,6 +46,10 @@ public class PowerUser {
                     GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(mhouse);
                     ui230.run();
                     break;
+                case 4:
+                    DeativateDeviceFromRoom ui222 = new DeativateDeviceFromRoom(mhouse);
+                    ui222.run();
+                    break;
             }
             option = Menu.powerUserHouseMenu();
         }
@@ -65,6 +69,14 @@ public class PowerUser {
                 case 2:
                     EstimateEnergyOfWaterHeater ui752 = new EstimateEnergyOfWaterHeater(mhouse);
                     ui752.run();
+                    break;
+                case 3:
+                    GetEnergyConsumptionOfRoomInAnInterval ui721 = new GetEnergyConsumptionOfRoomInAnInterval(mhouse);
+                    ui721.run();
+                    break;
+                case 4:
+                    GetEnergyConsumptionOfAGrid ui722 = new GetEnergyConsumptionOfAGrid(mhouse);
+                    ui722.run();
                     break;
             }
             option = Menu.powerUserEnergyConsumtionMenu();

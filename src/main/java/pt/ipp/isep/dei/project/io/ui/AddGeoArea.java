@@ -1,9 +1,9 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaController;
-import pt.ipp.isep.dei.project.model.GeoAreaList;
-import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
 import pt.ipp.isep.dei.project.model.GeographicalArea;
+import pt.ipp.isep.dei.project.model.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.GeographicalAreaTypeList;
 
 import java.util.Scanner;
 /** US003 As an Administrator, I want to add a new geographical area. */
@@ -12,7 +12,7 @@ public class AddGeoArea {
 
     private AddGeoAreaController ctrl3;
 
-    public AddGeoArea(GeoAreaList lista, GeoAreaTypeList listaTAG) {
+    public AddGeoArea(GeographicalAreaList lista, GeographicalAreaTypeList listaTAG) {
         this.ctrl3 = new AddGeoAreaController(lista, listaTAG);
     }
 

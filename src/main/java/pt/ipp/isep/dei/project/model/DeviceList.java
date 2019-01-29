@@ -9,8 +9,8 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class DeviceList {
-    private List<Device> mDeviceList;
     private static final String SAME_NAME = "Name already exists. Please write a new one.";
+    private List<Device> mDeviceList;
 
     public DeviceList() {
         this.mDeviceList = new ArrayList<>();
@@ -160,11 +160,11 @@ public class DeviceList {
     /**
      * Method that create a new Device WASHING MACHINE
      *
-     * @param name name of the device
+     * @param name         name of the device
      * @param selectedRoom Room where the device will be installed
      * @param nominalPower nominal power of the device
-     * @param capacity capacity in kilograms of the Electric Water Heater
-     * @param programList list of programs
+     * @param capacity     capacity in kilograms of the Electric Water Heater
+     * @param programList  list of programs
      * @return a new device
      */
     public Device newWashingMachine(String name, Room selectedRoom, double nominalPower, double capacity,
@@ -199,7 +199,7 @@ public class DeviceList {
     /**
      * Method that create a new Device LAMP
      *
-     * @param name name of the device
+     * @param name         name of the device
      * @param selectedRoom Room where the device will be installed
      * @param nominalPower nominal power of the device
      * @param luminousFlux luminous flux of the lamp
@@ -217,12 +217,12 @@ public class DeviceList {
     /**
      * Method that create a new Device FRIDGE
      *
-     * @param name name of the device
-     * @param selectedRoom Room where the device will be installed
+     * @param name                    name of the device
+     * @param selectedRoom            Room where the device will be installed
      * @param annualEnergyConsumption annual ennergy consumption of the fridge
-     * @param nominalPower nominal power of the device
-     * @param freezerCapacity freezer Capacity
-     * @param refrigeratorCapacity refrigerator Capacity
+     * @param nominalPower            nominal power of the device
+     * @param freezerCapacity         freezer Capacity
+     * @param refrigeratorCapacity    refrigerator Capacity
      * @return a new device
      */
     public Device newFridge(String name, Room selectedRoom, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
@@ -276,6 +276,20 @@ public class DeviceList {
         return content.toString();
     }
 
+    public String getActiveDeviceListToString() {
+        StringBuilder content = new StringBuilder();
+        int deviceListLength = getSize();
+        int numberInTheList = 1;
+        for (int i = 1; i <= deviceListLength; i++) {
+            if (mDeviceList.get(i - 1).getIsActive()) {
+                content.append(numberInTheList + " - Name of the device: " + getDeviceList().get(i - 1).getName());
+                content.append("\n");
+                numberInTheList++;
+            }
+        }
+        return content.toString();
+    }
+
     /**
      * Method that remove a device from the list of devices
      */
@@ -301,6 +315,7 @@ public class DeviceList {
 
     /**
      * Method that gets the name of a device.
+     *
      * @param devicePosition Device position in the list of devices.
      * @return String with the device name.
      */
@@ -312,9 +327,9 @@ public class DeviceList {
     /**
      * Method that sets the value of an attribute of a device.
      *
-     * @param devicePosition Device position in the list of devices.
+     * @param devicePosition    Device position in the list of devices.
      * @param attributePosition Position of the attribute to be set.
-     * @param value Value to be used.
+     * @param value             Value to be used.
      * @return True or false.
      */
     public boolean setAttribute(int devicePosition, int attributePosition, double value) {
@@ -346,11 +361,10 @@ public class DeviceList {
         return Utils.round(totalEnergyConsumption, 2);
     }
 
-    public boolean deleteDevice(String device, int position) {
+    public boolean deleteDevice(String device) {
         for (Device searchDevice : this.mDeviceList) {
-            if (device.equals(searchDevice)) {
+            if (device.equals(searchDevice.getName())) {
                 this.mDeviceList.remove(searchDevice);
-                this.mDeviceList.get(position).setLocation(null);
                 return true;
             }
         }
@@ -364,4 +378,13 @@ public class DeviceList {
         return this.mDeviceList.get(position).getName();
     }
 
+    public boolean deactivationDevice(String device) {
+        for (Device searchDevice : this.mDeviceList) {
+            if (device.equals(searchDevice.getName())) {
+                searchDevice.setDeativateDevice();
+                return true;
+            }
+        }
+        return false;
+    }
 }

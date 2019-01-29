@@ -7,26 +7,18 @@ import java.time.LocalDateTime;
 
 public class GetEnergyConsumptionOfRoomInAnIntervalController {
     private House mHouse;
-    private Room SelectedRoom;
+    private Room mSelectedRoom;
 
     public GetEnergyConsumptionOfRoomInAnIntervalController(House house) {
         this.mHouse = house;
-    }
-
-    public double getEnergyConsumptionOfRoomInInterval(LocalDateTime initialDate, LocalDateTime finalDate) {
-        return SelectedRoom.getEnergyConsumptionInAnInterval(initialDate, finalDate);
     }
 
     public String getRoomListToString() {
         return mHouse.getRoomListContent();
     }
 
-    public Room getRoomByPosition(int position) {
-        return mHouse.getRoomOfTheRoomList(position);
-    }
-
-    public boolean isDeviceListEmpty(int position) {
-        return mHouse.isDeviceListEmpty(position);
+    public void getRoomByPosition(int position) {
+        mSelectedRoom = this.mHouse.getRoomOfTheRoomList(position);
     }
 
     public boolean roomListIsEmpty() {
@@ -37,7 +29,15 @@ public class GetEnergyConsumptionOfRoomInAnIntervalController {
         return mHouse.getRoomListSize();
     }
 
+    public boolean isDeviceListEmpty() {
+        return mSelectedRoom.isDeviceListEmpty();
+    }
+
     public String getRoomNameByPosition(int position) {
         return mHouse.getRoomNameByPosition(position);
+    }
+
+    public double getEnergyConsumptionOfRoomInInterval(LocalDateTime initialDate, LocalDateTime finalDate) {
+        return mSelectedRoom.getEnergyConsumptionInAnInterval(initialDate, finalDate);
     }
 }

@@ -4,15 +4,15 @@ import pt.ipp.isep.dei.project.model.*;
 
 public class RegularUser {
 
-    GeoAreaTypeList mGeoAreaTypeList;
-    GeoAreaList mGeoAreaList;
+    GeographicalAreaTypeList mGeographicalAreaTypeList;
+    GeographicalAreaList mGeographicalAreaList;
     SensorTypeList mSensorTypeList;
     House house;
     SensorType mSensorTypeTemperature;
 
-    public RegularUser(GeoAreaTypeList mGeoAreaTypeList, GeoAreaList mGeoAreaList, SensorTypeList mSensorTypeList, House house, SensorType mSensorTypeTemperature) {
-        this.mGeoAreaTypeList = mGeoAreaTypeList;
-        this.mGeoAreaList = mGeoAreaList;
+    public RegularUser(GeographicalAreaTypeList mGeographicalAreaTypeList, GeographicalAreaList mGeographicalAreaList, SensorTypeList mSensorTypeList, House house, SensorType mSensorTypeTemperature) {
+        this.mGeographicalAreaTypeList = mGeographicalAreaTypeList;
+        this.mGeographicalAreaList = mGeographicalAreaList;
         this.mSensorTypeList = mSensorTypeList;
         this.house = house;
         this.mSensorTypeTemperature = mSensorTypeTemperature;

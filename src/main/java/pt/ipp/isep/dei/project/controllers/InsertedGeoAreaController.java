@@ -1,13 +1,13 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.GeoAreaList;
 import pt.ipp.isep.dei.project.model.GeographicalArea;
+import pt.ipp.isep.dei.project.model.GeographicalAreaList;
 
 public class InsertedGeoAreaController {
-    private GeoAreaList mLista;
+    private GeographicalAreaList mLista;
 
-    public InsertedGeoAreaController(GeoAreaList geoAreaList) {
-        this.mLista = geoAreaList;
+    public InsertedGeoAreaController(GeographicalAreaList geographicalAreaList) {
+        this.mLista = geographicalAreaList;
     }
 
     public String getConteudoLista (boolean usarCriterio){
