@@ -172,7 +172,7 @@ public class HouseGrid implements Measurable {
     }
 
     public int getDeviceListSizeByRoomPosition(int position) {
-        return mRoomList.getRoomFromPosition(position).getDevicesListLength();
+        return mRoomList.getRoomFromPosition(position).getDevicesListSize();
     }
 
     public boolean isRoomListEmpty() {
@@ -200,11 +200,11 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * TODO
+     * Method that calculates the total energy consumption of a house grid in a given interval.
      *
-     * @param startDate
-     * @param endDate
-     * @return
+     * @param startDate the initial date/hour of the period to be considered
+     * @param endDate the final date/hour of the period to be considered
+     * @return Double
      */
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {

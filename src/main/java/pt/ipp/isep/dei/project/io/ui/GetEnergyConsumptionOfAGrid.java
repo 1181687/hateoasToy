@@ -26,7 +26,7 @@ public class GetEnergyConsumptionOfAGrid {
             if (position == 0) {
                 return;
             }
-            mController.getHouseGridByPosition(position);
+            mController.getHouseGridByPosition(position-1);
 
             String label2 = "Please insert the initial date/hour of the period you want to consider in the following format: yyyy-MM-dd HH:mm. ";
             LocalDateTime startDate = InputValidator.getStringDateTime(label2);

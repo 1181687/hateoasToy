@@ -2,9 +2,10 @@
 skinparam linetype ortho
 
 skinparam class {
-	BackgroundColor PaleTurquoise
+	BackgroundColor LightGrey
 	ArrowColor Black
 	BorderColor Black
+	FontStyle Bold
 }
 
 hide circle
@@ -17,7 +18,7 @@ class Sensor{
 String name
 LocalDateTime startingDate
 }
-class Measurement{
+class Readings{
 double value
 LocalDateTime dateTime
 }
@@ -65,7 +66,7 @@ ENUM DeviceType{
 }
 
 Sensor "1" -"1" SensorType
-Sensor "1" - "*" Measurement
+Sensor "1" - "*" Readings
 Sensor "1" - "1" Location
 
 Room "1" --- "1" Dimension

@@ -55,6 +55,49 @@ class GetEnergyConsumptionDeviceControllerTest {
     }
 
     @Test
+    public void getNumberOfDevicesTest() {
+        // Arrange
+        // Dimension Instantiation
+        Dimension dim = new Dimension(3, 5, 6);
+
+        // Room Instantiation
+        Room room0 = new Room("Kitchen", 1, dim);
+        Room room1 = new Room("Laundry", 2, dim);
+
+        // Fridge Instantiation
+        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+
+        // ElectricWaterHeater Instantiation
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(50, 150,
+                0.9, 100);
+
+        // Device Instantiation
+        Device device0 = new Device("Fridgeratah V14", room0, fridge);
+        room0.addDevice(device0);
+        Device device1 = new Device("Bosch Tronic 3000", room1, electricWaterHeater);
+        room1.addDevice(device1);
+
+        // RoomList Instantiation
+        RoomList roomList = new RoomList();
+        roomList.addRoom(room0);
+        roomList.addRoom(room1);
+
+        // House Instantiation
+        House house = new House(roomList, null, null, null);
+
+        // Controller Instantiation
+        GetEnergyConsumptionDeviceController controller = new GetEnergyConsumptionDeviceController(house);
+
+        int expectedResult = 2;
+
+        // Act
+        int result = controller.getNumberOfDevices();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithOneSolution() {
         // Arrange
         // Dimension Instantiation
@@ -72,18 +115,18 @@ class GetEnergyConsumptionDeviceControllerTest {
         // Device Instantiation
         Device device = new Device("Fridgerator", room, fridge);
 
-        // Measurement Instantiation
+        // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement0 = new Measurement(3, time0);
+        Readings readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement1 = new Measurement(5, time1);
+        Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement2 = new Measurement(7, time2);
+        Readings readings2 = new Readings(7, time2);
 
-        // List<Measurement Configuration
-        device.addMeasurementToTheList(measurement0);
-        device.addMeasurementToTheList(measurement1);
-        device.addMeasurementToTheList(measurement2);
+        // List<Readings Configuration
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
 
         // RoomList Instantiation
         RoomList roomList = new RoomList();
@@ -127,18 +170,18 @@ class GetEnergyConsumptionDeviceControllerTest {
         // Device Instantiation
         Device device = new Device("Fridgeratah V14", room, fridge);
 
-        // Measurement Instantiation
+        // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement0 = new Measurement(3, time0);
+        Readings readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement1 = new Measurement(5, time1);
+        Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement2 = new Measurement(7, time2);
+        Readings readings2 = new Readings(7, time2);
 
-        // List<Measurement Configuration
-        device.addMeasurementToTheList(measurement0);
-        device.addMeasurementToTheList(measurement1);
-        device.addMeasurementToTheList(measurement2);
+        // List<Readings Configuration
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
 
         // RoomList Instantiation
         RoomList roomList = new RoomList();
@@ -182,18 +225,18 @@ class GetEnergyConsumptionDeviceControllerTest {
         // Device Instantiation
         Device device = new Device("Fridgerator V14", room, fridge);
 
-        // Measurement Instantiation
+        // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement0 = new Measurement(3, time0);
+        Readings readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement1 = new Measurement(5, time1);
+        Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement2 = new Measurement(7, time2);
+        Readings readings2 = new Readings(7, time2);
 
-        // List<Measurement Configuration
-        device.addMeasurementToTheList(measurement0);
-        device.addMeasurementToTheList(measurement1);
-        device.addMeasurementToTheList(measurement2);
+        // List<Readings Configuration
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
 
         // RoomList Instantiation
         RoomList roomList = new RoomList();

@@ -17,7 +17,7 @@ public class DeativateDeviceFromRoom {
         // LIST OF ROOMS
         StringBuilder content = new StringBuilder();
 
-        if (this.mController.checkIfRoomListIsEmpty()) {
+        if (this.mController.roomListIsEmpty()) {
             System.out.println("There are no rooms in the house. Please create a room.");
 
         } else {
@@ -33,7 +33,7 @@ public class DeativateDeviceFromRoom {
                 mController.getRoomByPosition(position);
 
                 // LIST OF DEVICES
-                if (this.mController.checkIfDeviceListIsEmpty()) {
+                if (this.mController.deviceListIsEmpty()) {
                     System.out.println("\n There are no devices in this room. \n");
 
                 } else {
@@ -42,7 +42,7 @@ public class DeativateDeviceFromRoom {
                         String label2 = "\n> This is the list of activated devices. Please select the device you want to deativate: \n"
                                 + mController.getActiveDeviceListToString() + exit;
 
-                        int deviceListLength = mController.getDeviceListLength();
+                        int deviceListLength = mController.getDeviceListSize();
                         int position1 = InputValidator.getIntRange(label2, 0, deviceListLength) - 1;
                         if (position1 == -1) {
                             return;
@@ -58,7 +58,7 @@ public class DeativateDeviceFromRoom {
                             if ("y".equals(answer2) || "Y".equals(answer2)) {
 
                                 String deativateDevice = mController.getDeviceNameByPosition(position1);
-                                if (mController.deativateDevice(deativateDevice)) {
+                                if (mController.deactivateDevice(deativateDevice)) {
                                     System.out.println("\n The device has been deativated. \n");
                                 }
                             } else {
