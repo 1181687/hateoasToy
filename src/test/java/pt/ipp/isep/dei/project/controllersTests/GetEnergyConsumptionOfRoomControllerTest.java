@@ -197,7 +197,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
 
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         house.addRoom(room);
@@ -283,8 +283,8 @@ public class GetEnergyConsumptionOfRoomControllerTest {
 
         rList.addRoom(room);
 
-        // Fridge Instantiation
-        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+        // FridgeSpecs Instantiation
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
         Device device = new Device("Fridgerator", room, fridge);
@@ -338,8 +338,8 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         Room room = new Room("Kitchen", 1, dim);
 
         rList.addRoom(room);
-        // Fridge Instantiation
-        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+        // FridgeSpecs Instantiation
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
         Device device = new Device("Fridgerator", room, fridge);
@@ -393,8 +393,8 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         Room room = new Room("Kitchen", 1, dim);
 
         rList.addRoom(room);
-        // Fridge Instantiation
-        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+        // FridgeSpecs Instantiation
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
         Device device = new Device("Fridgerator", room, fridge);

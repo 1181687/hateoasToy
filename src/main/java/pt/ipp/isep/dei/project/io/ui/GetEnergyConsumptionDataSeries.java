@@ -70,13 +70,13 @@ public class GetEnergyConsumptionDataSeries {
         }
         switch (chosenOption) {
             case 1:
-                System.out.println("The data series of the selected House Grid are:\n" + getDataSeriesGrid());
+                System.out.println("The data series of the selected House Grid is:\n" + getDataSeriesGrid());
                 break;
             case 2:
-                System.out.println("The data series of the selected Room are:\n" + getDataSeriesRoom());
+                System.out.println("The data series of the selected Room is:\n" + getDataSeriesRoom());
                 break;
             case 3:
-                System.out.println("The data series of the selected Device are:\n" + getDataSeriesDevice());
+                System.out.println("The data series of the selected Device is:\n" + getDataSeriesDevice());
                 break;
         }
     }
