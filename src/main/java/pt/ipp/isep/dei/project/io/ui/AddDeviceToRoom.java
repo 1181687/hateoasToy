@@ -59,7 +59,7 @@ public class AddDeviceToRoom {
                         String label15 = "What is the annual energy consumption (kWh)?";
                         double annualEnergyConsumption = InputValidator.getDoublePos(label15);
 
-                        mCtrl.createNewFridge(fridgeDeviceName, selectedRoom, annualEnergyConsumption, fridgeNominalPower, freezerCapacity, refrigeratorCapacity);
+                        mCtrl.createNewFridge(fridgeDeviceName, annualEnergyConsumption, fridgeNominalPower, freezerCapacity, refrigeratorCapacity);
                         System.out.println("The Fridge was successfully created and added to the selected room.");
                         option = 0;
 
@@ -74,7 +74,7 @@ public class AddDeviceToRoom {
                         String label23 = "What is the luminous flux (lm)?";
                         double luminousFlux = InputValidator.getDoublePos(label23);
 
-                        mCtrl.createNewLamp(lampDeviceName, selectedRoom, lampNominalPower, luminousFlux);
+                        mCtrl.createNewLamp(lampDeviceName, lampNominalPower, luminousFlux);
                         System.out.println("The Lamp was successfully created and added to the selected room.");
                         option = 0;
 
@@ -97,7 +97,7 @@ public class AddDeviceToRoom {
 
                         creationOfPrograms(dwNumberOfPrograms);
 
-                        mCtrl.createNewDishWasher(dishWasherDeviceName, selectedRoom, dishWasherNominalPower,
+                        mCtrl.createNewDishWasher(dishWasherDeviceName, dishWasherNominalPower,
                                 dishWasherCapacity);
                         System.out.println("The Dish Washer was successfully created and added to the selected room.");
                         option = 0;
@@ -122,7 +122,7 @@ public class AddDeviceToRoom {
 
                         creationOfPrograms(numberOfPrograms);
 
-                        mCtrl.createNewWashingMachine(washingMachineDeviceName, selectedRoom, washingMachineNominalPower,
+                        mCtrl.createNewWashingMachine(washingMachineDeviceName, washingMachineNominalPower,
                                 washingMachineCapacity);
                         System.out.println("The Washing Machine was successfully created and added to the selected room.");
                         option = 0;
@@ -142,7 +142,7 @@ public class AddDeviceToRoom {
                         String label55 = "What is the performance ratio (tipically 0.9)?";
                         double performanceRatio = InputValidator.getDoublePos(label55);
 
-                        mCtrl.createNewElectricWaterHeater(electricWaterHeaterDeviceName, selectedRoom, maxHotTemperature, volumeOfWater, electricWaterHeaterNominalPower, performanceRatio);
+                        mCtrl.createNewElectricWaterHeater(electricWaterHeaterDeviceName, maxHotTemperature, volumeOfWater, electricWaterHeaterNominalPower, performanceRatio);
                         System.out.println("The Electric Water Heater was successfully created and added to the selected room.");
                         option = 0;
                         break;

@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -222,10 +224,18 @@ public class Room implements Measurable {
     /**
      * method that displays the device list content
      *
-     * @return content of device list
+     * @return content of the device list
      */
     public String getDeviceListToString() {
-        return this.mDeviceList.getDeviceListToString();
+        StringBuilder content = new StringBuilder();
+        int deviceListLength = mDeviceList.getSize();
+        int numberInTheList = 1;
+        for (int i = 1; i <= deviceListLength; i++) {
+            content.append(numberInTheList + " - Name of the device: " + getDeviceList().getDeviceByPosition(i - 1).getName());
+            content.append("\n");
+            numberInTheList++;
+        }
+        return content.toString();
     }
 
     /**
@@ -352,8 +362,17 @@ public class Room implements Measurable {
      * @return the content of the list by string
      */
     public String getDeviceTypeListToString() {
-        return this.mDeviceList.getDeviceTypeListToString();
+        StringBuilder content = new StringBuilder();
+        int numberOfDeviceTypes = numberOfDeviceTypes();
+        for (int i = 1; i <= numberOfDeviceTypes; i++) {
+            String deviceType = Utils.readConfigFile("devicetype." + i + ".name");
+            content.append(i + "- ");
+            content.append(deviceType);
+            content.append("\n");
+        }
+        return content.toString();
     }
+
 
 
     /**
@@ -362,7 +381,7 @@ public class Room implements Measurable {
      * @return the number os existing Devices
      */
     public int numberOfDeviceTypes() {
-        return this.mDeviceList.numberOfDeviceTypes();
+        return Integer.parseInt(Utils.readConfigFile("devicetype.count"));
     }
 
 
@@ -420,6 +439,45 @@ public class Room implements Measurable {
         }
         DishWasher dishwasher = new DishWasher(capacity, nominalPower, programList);
         return new Device(name, this, dishwasher);
+    }
+
+    /**
+     * Method that create a new Device LAMP
+     *
+     * @param name         name of the device
+     * @param nominalPower nominal power of the device
+     * @param luminousFlux luminous flux of the lamp
+     * @return a new device
+     */
+
+    public Device newLamp(String name, double nominalPower, double luminousFlux) {
+        if (isDeviceNameExistant(name)) {
+            throw new RuntimeException(SAME_NAME);
+        }
+        DeviceSpecs lamp = new Lamp(luminousFlux, nominalPower);
+        return new Device(name, this, lamp);
+    }
+
+    /**
+     * Method that create a new Device FRIDGE
+     *
+     * @param name                    name of the device
+     * @param annualEnergyConsumption annual ennergy consumption of the fridge
+     * @param nominalPower            nominal power of the device
+     * @param freezerCapacity         freezer Capacity
+     * @param refrigeratorCapacity    refrigerator Capacity
+     * @return a new device
+     */
+    public Device newFridge(String name, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
+        if (isDeviceNameExistant(name)) {
+            throw new RuntimeException(SAME_NAME);
+        }
+        Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        return new Device(name, this, fridge);
+    }
+
+    public Device getDeviceByPosition(int position) {
+        return mDeviceList.getDeviceByPosition(position);
     }
 
 

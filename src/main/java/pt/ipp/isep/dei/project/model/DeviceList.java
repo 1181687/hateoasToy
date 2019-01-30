@@ -135,64 +135,6 @@ public class DeviceList {
         return this.mDeviceList.equals(listOne.mDeviceList);
     }
 
-
-
-
-    /**
-     * Method that create a new Device LAMP
-     *
-     * @param name         name of the device
-     * @param selectedRoom Room where the device will be installed
-     * @param nominalPower nominal power of the device
-     * @param luminousFlux luminous flux of the lamp
-     * @return a new device
-     */
-
-    public Device newLamp(String name, Room selectedRoom, double nominalPower, double luminousFlux) {
-        if (isNameExistant(name)) {
-            throw new RuntimeException(SAME_NAME);
-        }
-        DeviceSpecs lamp = new Lamp(luminousFlux, nominalPower);
-        return new Device(name, selectedRoom, lamp);
-    }
-
-    /**
-     * Method that create a new Device FRIDGE
-     *
-     * @param name                    name of the device
-     * @param selectedRoom            Room where the device will be installed
-     * @param annualEnergyConsumption annual ennergy consumption of the fridge
-     * @param nominalPower            nominal power of the device
-     * @param freezerCapacity         freezer Capacity
-     * @param refrigeratorCapacity    refrigerator Capacity
-     * @return a new device
-     */
-    public Device newFridge(String name, Room selectedRoom, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
-        if (isNameExistant(name)) {
-            throw new RuntimeException(SAME_NAME);
-        }
-        Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        return new Device(name, selectedRoom, fridge);
-    }
-
-
-    /**
-     * method that displays the device list content
-     *
-     * @return content of the device list
-     */
-    public String getDeviceListToString() {
-        StringBuilder content = new StringBuilder();
-        int deviceListLength = getSize();
-        int numberInTheList = 1;
-        for (int i = 1; i <= deviceListLength; i++) {
-            content.append(numberInTheList + " - Name of the device: " + getDeviceList().get(i - 1).getName());
-            content.append("\n");
-            numberInTheList++;
-        }
-        return content.toString();
-    }
-
     /**
      * method that check if the device list is empty
      */
@@ -201,30 +143,7 @@ public class DeviceList {
     }
 
 
-    /**
-     * method that get the number os existing Devices on the configuration file.
-     *
-     * @return the number os existing Devices
-     */
-    public int numberOfDeviceTypes() {
-        return Integer.parseInt(Utils.readConfigFile("devicetype.count"));
-    }
-    /**
-     * method that get de device type list content
-     *
-     * @return the content of the list by string
-     */
-    public String getDeviceTypeListToString() {
-        StringBuilder content = new StringBuilder();
-        int numberOfDeviceTypes = numberOfDeviceTypes();
-        for (int i = 1; i <= numberOfDeviceTypes; i++) {
-            String deviceType = Utils.readConfigFile("devicetype." + i + ".name");
-            content.append(i + "- ");
-            content.append(deviceType);
-            content.append("\n");
-        }
-        return content.toString();
-    }
+
 
     /**
      * method that get de active device list to string.
@@ -272,16 +191,6 @@ public class DeviceList {
         return listOfDevicesWithTheType;
     }
 
-    /**
-     * Method that gets the name of a device.
-     *
-     * @param devicePosition Device position in the list of devices.
-     * @return String with the device name.
-     */
-    public String getDeviceName(int devicePosition) {
-        Device device = mDeviceList.get(devicePosition);
-        return device.getName();
-    }
 
     /**
      * Method that sets the value of an attribute of a device.
@@ -363,4 +272,6 @@ public class DeviceList {
         }
         return false;
     }
+
+
 }

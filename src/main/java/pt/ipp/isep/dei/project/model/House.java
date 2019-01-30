@@ -340,7 +340,7 @@ public class House {
      */
     public String getDeviceName(String type, int devicePosition) {
         DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);
-        return listWithAllDevicesOfAType.getDeviceName(devicePosition);
+        return listWithAllDevicesOfAType.getDeviceNameByPosition(devicePosition);
     }
 
     /**
@@ -423,7 +423,7 @@ public class House {
 
     public String getDeviceNameOfATypeByPosition(String type, int devicePosition) {
         DeviceList listOfAllDevicesOffAType = getAllDevicesOfAType(type);
-        return listOfAllDevicesOffAType.getDeviceName(devicePosition);
+        return listOfAllDevicesOffAType.getDeviceNameByPosition(devicePosition);
     }
 
     /**

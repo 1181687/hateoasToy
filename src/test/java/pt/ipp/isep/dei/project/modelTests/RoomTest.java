@@ -650,4 +650,265 @@ public class RoomTest {
         // Assert
         assertEquals(expectedResult, result, 0.000001);
     }
+
+    @Test
+    public void testGetDeviceTypeListContent() {
+        // Arrange
+        // Dimension Instantiation
+        double height = 3;
+        double length = 5;
+        double width = 6;
+        Dimension dim = new Dimension(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Kitchen", 1, dim);
+
+
+        String expectedResult = "1- Fridge\n" +
+                "2- Lamp\n" +
+                "3- Dish Washer\n" +
+                "4- Washing Machine\n" +
+                "5- Electric Water Heater\n";
+        //Act
+        String result = room.getDeviceTypeListToString();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    ///testar a partir daqui
+
+    @Test
+    public void newElectricWaterHeater() {
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp0 = 50;
+        double maximumVolume0 = 150;
+        double nominalPower0 = 100;
+        double performanceRatio = 100;
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        Device d2 = new Device("Electric2", room, electricWaterHeater1);
+
+        DeviceList devList = new DeviceList();
+        devList.addDevice(d2);
+        Device expectedResult = new Device("Electric", room, electricWaterHeater1);
+        String name = "Electric";
+
+        Device result = devList.newElectricWaterHeater(name, room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void newElectricWaterHeaterNegative() {
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp0 = 50;
+        double maximumVolume0 = 150;
+        double nominalPower0 = 100;
+        double performanceRatio = 100;
+
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        Device d2 = new Device("Electric2", room, electricWaterHeater1);
+
+        DeviceList devList = new DeviceList();
+        devList.addDevice(d2);
+        String name = "ELECTRIC2";
+
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                devList.newElectricWaterHeater(name, room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio)
+        );
+
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+
+    }
+
+    @Test
+    public void testNewWashingMachine() {
+        // newWashingMachine Instantiation
+        String name = "Washing Machine Bosh";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        double capacity = 100;
+        ProgramList programList = new ProgramList();
+        DeviceSpecs washingMachine = new WashingMachine(capacity, nominalPower, programList);
+
+        Device d2 = new Device("Device2", room, washingMachine);
+        DeviceList devList = new DeviceList();
+        devList.addDevice(d2);
+
+        Device expectedResult = new Device(name, room, washingMachine);
+
+        Device result = devList.newWashingMachine(name, room, nominalPower, capacity, programList);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testNewWashingMachineNegative() {
+        // newWashingMachine Instantiation
+        String name = "Washing Machine Bosh";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        double capacity = 100;
+        ProgramList programList = new ProgramList();
+        DeviceSpecs washingMachine = new WashingMachine(capacity, nominalPower, programList);
+
+        Device d2 = new Device("Washing Machine Bosh", room, washingMachine);
+        DeviceList devList = new DeviceList();
+        devList.addDevice(d2);
+
+
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                devList.newWashingMachine(name, room, nominalPower, capacity, programList)
+        );
+
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void testNewDishWasher() {
+        String name = "Dish Washer Ariston";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        int capacity = 100;
+        ProgramList programList = new ProgramList();
+
+        DeviceSpecs dishWasher = new DishWasher(capacity, nominalPower, programList);
+
+        Device d2 = new Device("Device2", room, dishWasher);
+        DeviceList devList = new DeviceList();
+        devList.addDevice(d2);
+
+        Device expectedResult = new Device(name, room, dishWasher);
+
+        Device result = devList.newDishWasher(name, room, nominalPower, capacity, programList);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testNewDishWasherNegative() {
+        String name = "Dish Washer Ariston";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        int capacity = 100;
+        ProgramList programList = new ProgramList();
+
+        DeviceSpecs dishWasher = new DishWasher(capacity, nominalPower, programList);
+
+        Device d2 = new Device("Dish Washer Ariston", room, dishWasher);
+        DeviceList devList = new DeviceList();
+        devList.addDevice(d2);
+
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                devList.newDishWasher(name, room, nominalPower, capacity, programList)
+        );
+
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void testNewLamp() {
+        String name = "Lamp one";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        double luminousFlux = 100;
+        DeviceSpecs lamp = new Lamp(luminousFlux, nominalPower);
+        ProgramList programList = new ProgramList();
+
+        //Device d2 = new Device("Device2", room, lamp);
+        DeviceList devList = room.getDeviceList();
+        Room room2 = new Room("Room2", 2, dim);
+
+        //  devList.addDevice(d2);
+
+        Device expectedResult = new Device(name, room2, lamp);
+
+        Device result = devList.newLamp(name, room, luminousFlux, nominalPower);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testNewLampNegative() {
+        String name = "Lamp one";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        int capacity = 100;
+        DeviceSpecs lamp = new Lamp(capacity, nominalPower);
+
+        Device d2 = new Device("LAMP ONE", room, lamp);
+        DeviceList devList = new DeviceList();
+        devList.addDevice(d2);
+
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                devList.newLamp(name, room, nominalPower, capacity)
+        );
+
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void testNewFrigde() {
+        String name = "Fridge Balay";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        double annualEnergyConsumption = 1000;
+        double freezerCapacity = 20;
+        double refrigeratorCapacity = 50;
+        DeviceSpecs fridgeSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        Device d2 = new Device("Device2", room, fridgeSpecs);
+        DeviceList devList = new DeviceList();
+        devList.addDevice(d2);
+
+        Device expectedResult = new Device(name, room, fridgeSpecs);
+
+        Device result = devList.newFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testNewFridgeNegative() {
+        String name = "Fridge Balay";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        double annualEnergyConsumption = 1000;
+        double freezerCapacity = 20;
+        double refrigeratorCapacity = 50;
+        DeviceSpecs fridgeSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        Device d2 = new Device("Fridge Balay", room, fridgeSpecs);
+        DeviceList devList = new DeviceList();
+        devList.addDevice(d2);
+
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                devList.newFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity)
+        );
+
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
 }

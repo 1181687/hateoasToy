@@ -38,17 +38,20 @@ public class AddDeviceToRoomController {
         mRoom = mHouse.getRoomOfTheRoomList(position);
     }
 
-
-    public void getDeviceList() {
-        mDeviceList = this.mRoom.getDeviceList();
-    }
     /**
      * Method that show the room selected.
+     *
      * @return selected room
      */
     public Room getSelectedRoom() {
         return mRoom;
     }
+
+
+    public void getDeviceList() {
+        mDeviceList = this.mRoom.getDeviceList();
+    }
+
 
 
     /**
@@ -83,28 +86,26 @@ public class AddDeviceToRoomController {
      * Method that create a new Fridge in a selected Room.
      *
      * @param name                    of the Fridge
-     * @param selectedRoom            room where will be created the device
      * @param annualEnergyConsumption the annual Energy Consumption of the Fridge (a specification of the Fridge)
      * @param nominalPower            the nominal power of the Fridge (a specification of the Fridge)
      * @param freezerCapacity         the freezer capacity of the Fridge (a specification of the Fridge)
      * @param refrigeratorCapacity    the refrigerator capacity of the Fridge (a specification of the Fridge)
      * @return the Device that has been created
      */
-    public Device createNewFridge(String name, Room selectedRoom, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
-        return mDevice = mDeviceList.newFridge(name, selectedRoom, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
+    public Device createNewFridge(String name, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
+        return mDevice = mRoom.newFridge(name, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
     }
 
     /**
      * Method that create a new Lamp in a selected Room.
      *
      * @param name         of the Lamp
-     * @param selectedRoom room where will be created the device
      * @param nominalPower the nominal power of the Lamp (a specification of the Lamp)
      * @param luminousFlux the luminous flux of the Lamp (a specification of the Lamp)
      * @return the Device that has been created
      */
-    public Device createNewLamp(String name, Room selectedRoom, double nominalPower, double luminousFlux) {
-        return mDevice = mDeviceList.newLamp(name, selectedRoom, nominalPower, luminousFlux);
+    public Device createNewLamp(String name, double nominalPower, double luminousFlux) {
+        return mDevice = mRoom.newLamp(name, nominalPower, luminousFlux);
     }
 
 
@@ -161,11 +162,18 @@ public class AddDeviceToRoomController {
         return mProgramList.newProgram(programName, duration, energyConsumption);
     }
 
+    /**
+     * Method that add a Device Program to the list of Programs
+     *
+     * @param program
+     * @return a list of programs
+     */
     public boolean addProgramToList(Program program) {
         return mProgramList.addProgram(program);
     }
 
+
     public Device getDevice(int position) {
-        return this.mDeviceList.getDeviceByPosition(position);
+        return mRoom.getDeviceByPosition(position);
     }
 }
