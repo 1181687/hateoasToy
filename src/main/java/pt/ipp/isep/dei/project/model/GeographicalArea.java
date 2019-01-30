@@ -234,11 +234,11 @@ public class GeographicalArea {
         double latestMeasurementValue = Double.NaN;
         if (!sensorListWithTheRequiredType.getSensorList().isEmpty()) {
             SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
-            Measurement latestMeasurement = null;
+            Readings latestReadings = null;
             if (nearestSensors.getSensorList().size() > 1) {
                 for (Sensor sensor : nearestSensors.getSensorList()) {
-                    if (latestMeasurement == null || sensor.getLastMeasurement().getDateTime().isAfter(latestMeasurement.getDateTime())) {
-                        latestMeasurement = sensor.getLastMeasurement();
+                    if (latestReadings == null || sensor.getLastMeasurement().getDateTime().isAfter(latestReadings.getDateTime())) {
+                        latestReadings = sensor.getLastMeasurement();
                         latestMeasurementValue = sensor.getLastMeasurement().getValue();
                     }
                 }
@@ -291,7 +291,7 @@ public class GeographicalArea {
     }
 
     /**
-     * Method that returns the Total Daily Measurement of a Sensor Type in The Geographic Area. This method considers
+     * Method that returns the Total Daily Readings of a Sensor Type in The Geographic Area. This method considers
      * the maximum value of the Sensor on that Area. In case there's no sensors in that Area, it returns Double NaN.
      *
      * @param sensorType

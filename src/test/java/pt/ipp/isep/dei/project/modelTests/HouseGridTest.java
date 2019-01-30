@@ -551,7 +551,7 @@ public class HouseGridTest {
     }
 
     @Test
-    public void testGetEnergyConsumptionInAnIntervalWithThreeValidMeasurements() {
+    public void testGetEnergyConsumptionInAnIntervalWithThreeValidReadingss() {
         //Arrange
         Dimension dimension = new Dimension(25, 25, 25);
         Room room1 = new Room("Quarto", 2, dimension);
@@ -568,15 +568,15 @@ public class HouseGridTest {
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement0 = new Measurement(3, time0);
+        Readings readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement1 = new Measurement(5, time1);
+        Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement2 = new Measurement(7, time2);
+        Readings readings2 = new Readings(7, time2);
 
-        lamp.addMeasurementToTheList(measurement0);
-        lamp.addMeasurementToTheList(measurement1);
-        lamp.addMeasurementToTheList(measurement2);
+        lamp.addReadingsToTheList(readings0);
+        lamp.addReadingsToTheList(readings1);
+        lamp.addReadingsToTheList(readings2);
 
         double expectedResult = 12;
         //Act
@@ -587,7 +587,7 @@ public class HouseGridTest {
     }
 
     @Test
-    public void testGetEnergyConsumptionInAnIntervalWithOneValidMeasurement() {
+    public void testGetEnergyConsumptionInAnIntervalWithOneValidReadings() {
         //Arrange
         Dimension dimension = new Dimension(25, 25, 25);
         Room room1 = new Room("Quarto", 2, dimension);
@@ -604,15 +604,15 @@ public class HouseGridTest {
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement0 = new Measurement(3, time0);
+        Readings readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement1 = new Measurement(5, time1);
+        Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement2 = new Measurement(7, time2);
+        Readings readings2 = new Readings(7, time2);
 
-        lamp.addMeasurementToTheList(measurement0);
-        lamp.addMeasurementToTheList(measurement1);
-        lamp.addMeasurementToTheList(measurement2);
+        lamp.addReadingsToTheList(readings0);
+        lamp.addReadingsToTheList(readings1);
+        lamp.addReadingsToTheList(readings2);
 
         double expectedResult = 0;
         //Act
@@ -623,7 +623,7 @@ public class HouseGridTest {
     }
 
     @Test
-    public void testGetEnergyConsumptionInAnIntervalWithNoValidMeasurements() {
+    public void testGetEnergyConsumptionInAnIntervalWithNoValidReadingss() {
 
         //Arrange
         Dimension dimension = new Dimension(25, 25, 25);
@@ -641,15 +641,15 @@ public class HouseGridTest {
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement0 = new Measurement(3, time0);
+        Readings readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement1 = new Measurement(5, time1);
+        Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement2 = new Measurement(7, time2);
+        Readings readings2 = new Readings(7, time2);
 
-        lamp.addMeasurementToTheList(measurement0);
-        lamp.addMeasurementToTheList(measurement1);
-        lamp.addMeasurementToTheList(measurement2);
+        lamp.addReadingsToTheList(readings0);
+        lamp.addReadingsToTheList(readings1);
+        lamp.addReadingsToTheList(readings2);
 
         double expectedResult = 0;
 
@@ -685,34 +685,34 @@ public class HouseGridTest {
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement0 = new Measurement(3, time0);
+        Readings readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement1 = new Measurement(5, time1);
+        Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement2 = new Measurement(7, time2);
+        Readings readings2 = new Readings(7, time2);
 
-        lamp.addMeasurementToTheList(measurement0);
-        lamp.addMeasurementToTheList(measurement1);
-        lamp.addMeasurementToTheList(measurement2);
+        lamp.addReadingsToTheList(readings0);
+        lamp.addReadingsToTheList(readings1);
+        lamp.addReadingsToTheList(readings2);
 
         LocalDateTime time3 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement3 = new Measurement(3, time3);
+        Readings readings3 = new Readings(3, time3);
         LocalDateTime time4 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement4 = new Measurement(5, time4);
+        Readings readings4 = new Readings(5, time4);
         LocalDateTime time5 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement5 = new Measurement(7, time5);
+        Readings readings5 = new Readings(7, time5);
 
-        fridge.addMeasurementToTheList(measurement3);
-        fridge.addMeasurementToTheList(measurement4);
-        fridge.addMeasurementToTheList(measurement5);
+        fridge.addReadingsToTheList(readings3);
+        fridge.addReadingsToTheList(readings4);
+        fridge.addReadingsToTheList(readings5);
 
         LocalDateTime time6 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement6 = new Measurement(3, time6);
+        Readings readings6 = new Readings(3, time6);
         LocalDateTime time7 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement7 = new Measurement(5, time7);
+        Readings readings7 = new Readings(5, time7);
 
-        electricWaterHeater.addMeasurementToTheList(measurement6);
-        electricWaterHeater.addMeasurementToTheList(measurement7);
+        electricWaterHeater.addReadingsToTheList(readings6);
+        electricWaterHeater.addReadingsToTheList(readings7);
 
         double expectedResult = 29;
 

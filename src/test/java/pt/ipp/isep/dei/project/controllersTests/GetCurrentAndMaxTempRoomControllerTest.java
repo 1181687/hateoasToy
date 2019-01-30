@@ -125,39 +125,39 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
-        //Measurement
+        //Readings
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
-        Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
+        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(25, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(measurement01);
-        s0.addMeasurementToList(measurement02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 11, 4, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        Measurement measurement22 = new Measurement(26, dataHoraDaMedicao22);
+        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
+        Readings readings22 = new Readings(26, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(measurement21);
-        s2.addMeasurementToList(measurement22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
         room1.addSensorToListOfSensorsInRoom(s0);
         room1.addSensorToListOfSensorsInRoom(s1);
@@ -174,10 +174,10 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         House house = new House(roomList, gridList, address, insertedGeoArea);
         GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType0);
 
-        Measurement expectedResult = measurement02;
+        Readings expectedResult = readings02;
 
         //Act
-        Measurement result = ctrl.getLatestMeasurementByRoomName("room1");
+        Readings result = ctrl.getLatestMeasurementByRoomName("room1");
 
         //Assert
         assertEquals(expectedResult, result);
@@ -195,18 +195,18 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
-        //Measurement
+        //Readings
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        Measurement measurement22 = new Measurement(26, dataHoraDaMedicao22);
+        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
+        Readings readings22 = new Readings(26, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(measurement21);
-        s2.addMeasurementToList(measurement22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
-        Measurement expectedResult = null;
+        Readings expectedResult = null;
 
         room1.addSensorToListOfSensorsInRoom(s2);
 
@@ -223,7 +223,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         GetCurrentAndMaxTempRoomController ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType0);
 
         //Act
-        Measurement result = ctrl.getLatestMeasurementByRoomName("room1");
+        Readings result = ctrl.getLatestMeasurementByRoomName("room1");
 
         //Assert
         assertEquals(expectedResult, result);
@@ -321,21 +321,21 @@ public class GetCurrentAndMaxTempRoomControllerTest {
 
         LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 11, 2, 20, 24, 00);
 
-        Measurement measurement1 = new Measurement(-20.0, dateTimeDayMeasure1);
-        Measurement measurement2 = new Measurement(-25.0, dateTimeDayMeasure2);
+        Readings readings1 = new Readings(-20.0, dateTimeDayMeasure1);
+        Readings readings2 = new Readings(-25.0, dateTimeDayMeasure2);
 
-        s0.addMeasurementToList(measurement1);
-        s0.addMeasurementToList(measurement2);
+        s0.addReadingsToList(readings1);
+        s0.addReadingsToList(readings2);
 
         LocalDateTime dateTimeDayMeasure3 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 11, 2, 17, 24, 00);
 
-        Measurement measurement3 = new Measurement(-10.0, dateTimeDayMeasure3);
-        Measurement measurement4 = new Measurement(-15.0, dateTimeDayMeasure4);
+        Readings readings3 = new Readings(-10.0, dateTimeDayMeasure3);
+        Readings readings4 = new Readings(-15.0, dateTimeDayMeasure4);
 
-        s1.addMeasurementToList(measurement3);
-        s1.addMeasurementToList(measurement4);
+        s1.addReadingsToList(readings3);
+        s1.addReadingsToList(readings4);
 
         room1.getSensorList().addSensor(s0);
         room1.getSensorList().addSensor(s1);

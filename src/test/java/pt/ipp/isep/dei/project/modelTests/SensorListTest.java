@@ -83,52 +83,52 @@ class SensorListTest {
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
-        //Instanciar Measurement
+        //Instanciar Readings
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement01 = new Measurement(20, dataHoraDaMedicao01);
-        Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
+        Readings readings01 = new Readings(20, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(25, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(measurement01);
-        s0.addMeasurementToList(measurement02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(20, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(20, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
+        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
+        Readings readings22 = new Readings(25, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(measurement21);
-        s2.addMeasurementToList(measurement22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
         SensorList listSens = new SensorList();
         listSens.addSensor(s0);
         listSens.addSensor(s1);
         listSens.addSensor(s2);
 
-        List<Measurement> expectedResult = new ArrayList<>();
-        expectedResult.add(measurement02);
+        List<Readings> expectedResult = new ArrayList<>();
+        expectedResult.add(readings02);
 
         SensorType tipoResultado = new SensorType("Temperatura");
 
         //Act
-        List<Measurement> result = listSens.getListOfLatestMeasurementsBySensorType(tipoResultado);
+        List<Readings> result = listSens.getListOfLatestMeasurementsBySensorType(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -153,39 +153,39 @@ class SensorListTest {
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
-        //Instanciar Measurement
+        //Instanciar Readings
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement01 = new Measurement(20, dataHoraDaMedicao01);
-        Measurement measurement02 = new Measurement(Double.NaN, dataHoraDaMedicao02);
+        Readings readings01 = new Readings(20, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(Double.NaN, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(measurement01);
-        s0.addMeasurementToList(measurement02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(20, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(20, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
+        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
+        Readings readings22 = new Readings(25, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(measurement21);
-        s2.addMeasurementToList(measurement22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
         SensorType tipoResultado = new SensorType("Temperatura");
         SensorList listSens = new SensorList();
@@ -193,11 +193,11 @@ class SensorListTest {
         listSens.addSensor(s1);
         listSens.addSensor(s2);
 
-        List<Measurement> expectedResult = new ArrayList<>();
-        expectedResult.add(measurement01);
+        List<Readings> expectedResult = new ArrayList<>();
+        expectedResult.add(readings01);
 
         //Act
-        List<Measurement> result = listSens.getListOfLatestMeasurementsBySensorType(tipoResultado);
+        List<Readings> result = listSens.getListOfLatestMeasurementsBySensorType(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -222,7 +222,7 @@ class SensorListTest {
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
-        //Instanciar Measurement
+        //Instanciar Readings
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
@@ -233,34 +233,34 @@ class SensorListTest {
 
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(20, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(20, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
+        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
+        Readings readings22 = new Readings(25, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(measurement21);
-        s2.addMeasurementToList(measurement22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
         SensorList listSens = new SensorList();
         listSens.addSensor(s0);
         listSens.addSensor(s1);
         listSens.addSensor(s2);
 
-        List<Measurement> expectedResult = new ArrayList<>();
+        List<Readings> expectedResult = new ArrayList<>();
 
         SensorType tipoResultado = new SensorType("Temperatura");
 
         //Act
-        List<Measurement> result = listSens.getListOfLatestMeasurementsBySensorType(tipoResultado);
+        List<Readings> result = listSens.getListOfLatestMeasurementsBySensorType(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -284,38 +284,38 @@ class SensorListTest {
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
-        //Measurement
+        //Readings
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
-        Measurement measurement02 = new Measurement(26, dataHoraDaMedicao02);
+        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(26, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(measurement01);
-        s0.addMeasurementToList(measurement02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 11, 4, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
+        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
+        Readings readings22 = new Readings(25, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(measurement21);
-        s2.addMeasurementToList(measurement22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
         SensorType tipoResultado = new SensorType("Temperatura");
         SensorList listSens = new SensorList();
@@ -323,10 +323,10 @@ class SensorListTest {
         listSens.addSensor(s1);
         listSens.addSensor(s2);
 
-        Measurement expectedResult = measurement02;
+        Readings expectedResult = readings02;
 
         //Act
-        Measurement result = listSens.getLatestMeasurementBySensorType(tipoResultado);
+        Readings result = listSens.getLatestMeasurementBySensorType(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -351,17 +351,17 @@ class SensorListTest {
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
-        //Measurement
+        //Readings
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
-        Measurement measurement02 = new Measurement(24, dataHoraDaMedicao02);
+        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(24, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(measurement01);
-        s0.addMeasurementToList(measurement02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
 
         //Sensor1
@@ -369,22 +369,22 @@ class SensorListTest {
 
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 11, 24, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(30, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(30, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 11, 4, 17, 24, 00);
 
-        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        Measurement measurement22 = new Measurement(27, dataHoraDaMedicao22);
+        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
+        Readings readings22 = new Readings(27, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(measurement21);
-        s2.addMeasurementToList(measurement22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
         SensorType sensorType = new SensorType("Temperatura");
         SensorList listSens = new SensorList();
@@ -392,10 +392,10 @@ class SensorListTest {
         listSens.addSensor(s1);
         listSens.addSensor(s2);
 
-        Measurement expectedResult = measurement22;
+        Readings expectedResult = readings22;
 
         //Act
-        Measurement result = listSens.getLatestMeasurementBySensorType(sensorType);
+        Readings result = listSens.getLatestMeasurementBySensorType(sensorType);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -420,41 +420,41 @@ class SensorListTest {
         Location locS2 = new Location(123, 345, 55);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
-        //Instanciar Measurement
+        //Instanciar Readings
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
-        Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
+        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(25, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(measurement01);
-        s0.addMeasurementToList(measurement02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 11, 4, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
+        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
+        Readings readings22 = new Readings(25, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(measurement21);
-        s2.addMeasurementToList(measurement22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
-        Measurement expectedResult = null;
+        Readings expectedResult = null;
 
         SensorType tipoResultado = new SensorType("Pluviosidade");
         SensorList listSens = new SensorList();
@@ -463,7 +463,7 @@ class SensorListTest {
         listSens.addSensor(s2);
 
         //Act
-        Measurement result = listSens.getLatestMeasurementBySensorType(tipoResultado);
+        Readings result = listSens.getLatestMeasurementBySensorType(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -475,9 +475,9 @@ class SensorListTest {
         SensorType tipoResultado = new SensorType("Temperatura");
         SensorList listSens = new SensorList();
 
-        Measurement expectedResult = null;
+        Readings expectedResult = null;
         //Act
-        Measurement result = listSens.getLatestMeasurementBySensorType(tipoResultado);
+        Readings result = listSens.getLatestMeasurementBySensorType(tipoResultado);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -497,11 +497,11 @@ class SensorListTest {
 
         LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 11, 2, 20, 24, 00);
 
-        Measurement measurement1 = new Measurement(20.0, dateTimeDayMeasure1);
-        Measurement measurement2 = new Measurement(25.0, dateTimeDayMeasure2);
+        Readings readings1 = new Readings(20.0, dateTimeDayMeasure1);
+        Readings readings2 = new Readings(25.0, dateTimeDayMeasure2);
 
-        s0.addMeasurementToList(measurement1);
-        s0.addMeasurementToList(measurement2);
+        s0.addReadingsToList(readings1);
+        s0.addReadingsToList(readings2);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
@@ -512,11 +512,11 @@ class SensorListTest {
 
         LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 11, 2, 17, 24, 00);
 
-        Measurement measurement3 = new Measurement(20.0, dateTimeDayMeasure3);
-        Measurement measurement4 = new Measurement(30.0, dateTimeDayMeasure4);
+        Readings readings3 = new Readings(20.0, dateTimeDayMeasure3);
+        Readings readings4 = new Readings(30.0, dateTimeDayMeasure4);
 
-        s1.addMeasurementToList(measurement3);
-        s1.addMeasurementToList(measurement4);
+        s1.addReadingsToList(readings3);
+        s1.addReadingsToList(readings4);
 
         SensorList listOfSensors = new SensorList();
         listOfSensors.addSensor(s0);
@@ -545,11 +545,11 @@ class SensorListTest {
 
         LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 11, 2, 20, 24, 00);
 
-        Measurement measurement1 = new Measurement(20.0, dateTimeDayMeasure1);
-        Measurement measurement2 = new Measurement(25.0, dateTimeDayMeasure2);
+        Readings readings1 = new Readings(20.0, dateTimeDayMeasure1);
+        Readings readings2 = new Readings(25.0, dateTimeDayMeasure2);
 
-        s0.addMeasurementToList(measurement1);
-        s0.addMeasurementToList(measurement2);
+        s0.addReadingsToList(readings1);
+        s0.addReadingsToList(readings2);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
@@ -560,11 +560,11 @@ class SensorListTest {
 
         LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
-        Measurement measurement3 = new Measurement(20.0, dateTimeDayMeasure3);
-        Measurement measurement4 = new Measurement(30.0, dateTimeDayMeasure4);
+        Readings readings3 = new Readings(20.0, dateTimeDayMeasure3);
+        Readings readings4 = new Readings(30.0, dateTimeDayMeasure4);
 
-        s1.addMeasurementToList(measurement3);
-        s1.addMeasurementToList(measurement4);
+        s1.addReadingsToList(readings3);
+        s1.addReadingsToList(readings4);
 
         SensorList listOfSensors = new SensorList();
         listOfSensors.addSensor(s0);
@@ -635,11 +635,11 @@ class SensorListTest {
 
         LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 11, 2, 20, 24, 00);
 
-        Measurement measurement1 = new Measurement(20.0, dateTimeDayMeasure1);
-        Measurement measurement2 = new Measurement(25.0, dateTimeDayMeasure2);
+        Readings readings1 = new Readings(20.0, dateTimeDayMeasure1);
+        Readings readings2 = new Readings(25.0, dateTimeDayMeasure2);
 
-        s0.addMeasurementToList(measurement1);
-        s0.addMeasurementToList(measurement2);
+        s0.addReadingsToList(readings1);
+        s0.addReadingsToList(readings2);
 
         LocalDateTime date1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Humidity");
@@ -650,11 +650,11 @@ class SensorListTest {
 
         LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 11, 2, 17, 24, 00);
 
-        Measurement measurement3 = new Measurement(20.0, dateTimeDayMeasure3);
-        Measurement measurement4 = new Measurement(30.0, dateTimeDayMeasure4);
+        Readings readings3 = new Readings(20.0, dateTimeDayMeasure3);
+        Readings readings4 = new Readings(30.0, dateTimeDayMeasure4);
 
-        s1.addMeasurementToList(measurement3);
-        s1.addMeasurementToList(measurement4);
+        s1.addReadingsToList(readings3);
+        s1.addReadingsToList(readings4);
 
         SensorList listOfSensors = new SensorList();
         listOfSensors.addSensor(s0);
@@ -692,11 +692,11 @@ class SensorListTest {
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 4, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
@@ -731,11 +731,11 @@ class SensorListTest {
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 4, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         LocalDate searchDate = LocalDate.of(2018, 12, 5);
 
