@@ -252,7 +252,7 @@ public class Device implements Measurable {
 
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
-        HashMap<LocalDateTime, Double> hmap = new HashMap<>();
+        Map<LocalDateTime, Double> hmap = new TreeMap<>();
         List<Readings> validReadingsList = getReadingsListInInterval(startDate, endDate);
         for (Readings Readings : validReadingsList) {
             hmap.put(Readings.getDateTime(), Readings.getValue());

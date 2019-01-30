@@ -47,7 +47,7 @@ public class GetNominalPowerRoomsDevicesController {
     }
 
     /**
-     * method that returns the method getRoomByPosition of the model class House Grid
+     * method that returns the method getRoomPosition of the model class House Grid
      * @param position integer that matches the position of room in room list of house grid
      * @return Room that matches the chosen position
      */

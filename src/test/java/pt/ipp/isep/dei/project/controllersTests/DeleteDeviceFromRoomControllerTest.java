@@ -1,11 +1,12 @@
-package pt.ipp.isep.dei.project.controllers;
+package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.DeleteDeviceFromRoomController;
 import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DeactivateDeviceFromRoomControllerTest {
+class DeleteDeviceFromRoomControllerTest {
 
     @Test
     public void testGetDisplayRoomListTest() {
@@ -32,7 +33,7 @@ class DeactivateDeviceFromRoomControllerTest {
         house.addRoom(room1);
         house.addRoom(room2);
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+        DeleteDeviceFromRoomController controller = new DeleteDeviceFromRoomController(house);
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
                 "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
         int position = 0;
@@ -56,7 +57,7 @@ class DeactivateDeviceFromRoomControllerTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+        DeleteDeviceFromRoomController controller = new DeleteDeviceFromRoomController(house);
         String expectResult = "";
 
         //act
@@ -81,7 +82,7 @@ class DeactivateDeviceFromRoomControllerTest {
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+        DeleteDeviceFromRoomController controller = new DeleteDeviceFromRoomController(house);
         house.addRoom(room);
 
         int position = 0;
@@ -113,7 +114,7 @@ class DeactivateDeviceFromRoomControllerTest {
         DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
         Device dev1 = new Device("FridgeAriston", room, specFridge);
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+        DeleteDeviceFromRoomController controller = new DeleteDeviceFromRoomController(house);
         house.addRoom(room);
         room.addDevice(dev1);
 
@@ -152,7 +153,7 @@ class DeactivateDeviceFromRoomControllerTest {
         house.addRoom(room1);
         house.addRoom(room2);
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+        DeleteDeviceFromRoomController controller = new DeleteDeviceFromRoomController(house);
 
         int expectResult = 2;
         //act
@@ -173,7 +174,7 @@ class DeactivateDeviceFromRoomControllerTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+        DeleteDeviceFromRoomController controller = new DeleteDeviceFromRoomController(house);
         int expectResult = 0;
         //act
         int result = controller.roomListSize();
@@ -182,7 +183,7 @@ class DeactivateDeviceFromRoomControllerTest {
     }
 
     @Test
-    public void deactivateDeviceTrue() {
+    public void deleteDeviceTrue() {
         // Arrange
         RoomList rList = new RoomList();
         HouseGridList gridlist = new HouseGridList();
@@ -204,21 +205,21 @@ class DeactivateDeviceFromRoomControllerTest {
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         int position = 0;
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+        DeleteDeviceFromRoomController controller = new DeleteDeviceFromRoomController(house);
         house.addRoom(room);
         room.addDevice(dev1);
         deviceList.addDevice(dev1);
         controller.getRoomByPosition(position);
 
         // act
-        boolean result = controller.deactivateDevice("Lamp1");
+        boolean result = controller.deleteDevice("Lamp1");
 
         // assert
         assertTrue(result);
     }
 
     @Test
-    public void deactivateDeviceFalse() {
+    public void deleteDeviceFalse() {
         // Arrange
         RoomList rList = new RoomList();
         HouseGridList gridlist = new HouseGridList();
@@ -234,11 +235,11 @@ class DeactivateDeviceFromRoomControllerTest {
         Room room = new Room(name, 2, dim);
 
         int position = 0;
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+        DeleteDeviceFromRoomController controller = new DeleteDeviceFromRoomController(house);
         house.addRoom(room);
         controller.getRoomByPosition(position);
         // act
-        boolean result = controller.deactivateDevice("Lamp1");
+        boolean result = controller.deleteDevice("Lamp1");
 
         // assert
         assertFalse(result);
@@ -262,7 +263,7 @@ class DeactivateDeviceFromRoomControllerTest {
 
         int position = 0;
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+        DeleteDeviceFromRoomController controller = new DeleteDeviceFromRoomController(house);
         house.addRoom(room);
         controller.getRoomByPosition(position);
         String expectedResult = "There are no devices in the device list.";
@@ -298,7 +299,7 @@ class DeactivateDeviceFromRoomControllerTest {
 
         int position = 0;
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+        DeleteDeviceFromRoomController controller = new DeleteDeviceFromRoomController(house);
         String expectedResult = "Lamp1";
         deviceList.addDevice(dev1);
         house.addRoom(room);
@@ -341,7 +342,7 @@ class DeactivateDeviceFromRoomControllerTest {
         Device dev2 = new Device("Lamp2", room, deviceSpecs2);
 
         int position = 0;
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+        DeleteDeviceFromRoomController controller = new DeleteDeviceFromRoomController(house);
         house.addRoom(room);
         room.addDevice(dev1);
         room.addDevice(dev2);
@@ -369,7 +370,7 @@ class DeactivateDeviceFromRoomControllerTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+        DeleteDeviceFromRoomController controller = new DeleteDeviceFromRoomController(house);
         //act
         boolean result = controller.roomListIsEmpty();
         //assert
@@ -395,7 +396,7 @@ class DeactivateDeviceFromRoomControllerTest {
         Room room1 = new Room(name1, houseFloor1, dimension1);
 
         rList.addRoom(room1);
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+        DeleteDeviceFromRoomController controller = new DeleteDeviceFromRoomController(house);
         //act
         boolean result = controller.roomListIsEmpty();
         //assert
@@ -425,22 +426,29 @@ class DeactivateDeviceFromRoomControllerTest {
         DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
         Device dev = new Device("Fridge1", room, deviceSpecs);
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
-        Device expectedResult = dev;
+
+        double luminousFlux = 10.0;
+        double nominalPower1 = 0.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        DeleteDeviceFromRoomController controller = new DeleteDeviceFromRoomController(house);
+        String expectedResult =
+                "1 - Name of the device: Fridge1\n" +
+                        "2 - Name of the device: Lamp1\n";
 
         int position = 0;
         rList.addRoom(room);
         room.addDevice(dev);
+        room.addDevice(dev1);
         rList.addRoom(room);
         rList.addRoom(room);
         house.addRoom(room);
         controller.getRoomByPosition(position);
         // Act
-        Device result = controller.getDevice(position);
+        String result = controller.getDevicesInTheRoom();
 
         // Assert
         assertEquals(expectedResult, result);
     }
-
-
 }

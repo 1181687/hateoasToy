@@ -2,7 +2,9 @@ package pt.ipp.isep.dei.project.model;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class House {
@@ -122,8 +124,8 @@ public class House {
      * @param type
      * @return the last measurement with a location and a type of sensor.
      */
-    public double getLastMeasurement(SensorType type) {
-        return mInsertedGeoArea.getTheLastMeasurement(mAddress.getLocation(), type);
+    public double getLastMeasurementByType(SensorType type) {
+        return mInsertedGeoArea.getLastMeasurementByLocationType(mAddress.getLocation(), type);
     }
 
     /**
@@ -480,5 +482,17 @@ public class House {
      */
     public int numberOfDeviceTypes(int position) {
         return this.mRoomList.getRoomFromPosition(position).numberOfDeviceTypes();
+    }
+
+    public String getDataSeriesToString(Map<LocalDateTime, Double> map) {
+        StringBuilder readingsMap = new StringBuilder();
+        for (Map.Entry<LocalDateTime, Double> entry : map.entrySet())
+            readingsMap.append("Date/hour: " + entry.getKey() +
+                    ", Energy Consumption: " + entry.getValue() + " kWh\n");
+        return readingsMap.toString();
+    }
+
+    public int getDeviceSize() {
+        return getAllDevices().getSize();
     }
 }

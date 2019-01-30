@@ -4,10 +4,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-
+import java.util.*;
 import static java.util.Objects.isNull;
 
 public class Room implements Measurable {
@@ -326,6 +323,7 @@ public class Room implements Measurable {
 
     /**
      * method that get the enery consumption of the room in an interval
+     *
      * @param startDate
      * @param endDate
      * @return the total energy consumption
@@ -353,6 +351,7 @@ public class Room implements Measurable {
 
     /**
      * method that get the device name by position.
+     *
      * @param position
      * @return a string with the name of the device.
      */
@@ -372,6 +371,7 @@ public class Room implements Measurable {
 
     /**
      * method that get a list of active devices to string
+     *
      * @return a string with the status of the device: "activated" or "deactivated".
      */
     public String getActiveDeviceListToString() {
@@ -394,7 +394,6 @@ public class Room implements Measurable {
         }
         return content.toString();
     }
-
 
 
     /**
@@ -502,10 +501,18 @@ public class Room implements Measurable {
         return mDeviceList.getDeviceByPosition(position);
     }
 
-
-
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
-        return null;
+        Map<LocalDateTime, Double> map = new TreeMap<>();
+        for (Device device : mDeviceList.getDeviceList()) {
+            Map<LocalDateTime, Double> map2 = device.getDataSeries(startDate, endDate);
+            //map.putAll(device.getDataSeries(startDate, endDate));
+            for (Map.Entry<LocalDateTime, Double> entry : map2.entrySet()) {
+                LocalDateTime key = entry.getKey();
+                Double oldValue = map.get(key);
+                map.put(key, oldValue == null ? entry.getValue() : entry.getValue() + oldValue);
+            }
+        }
+        return map;
     }
 }

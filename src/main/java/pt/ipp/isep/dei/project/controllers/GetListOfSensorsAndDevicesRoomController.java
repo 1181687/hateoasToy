@@ -64,7 +64,7 @@ public class GetListOfSensorsAndDevicesRoomController {
     }
 
     /**
-     * method that returns the method deviceListIsEmpty of the Class House
+     * method that returns the method deviceListEmpty of the Class House
      * @param position
      */
     public boolean isDeviceListEmpty(int position) {

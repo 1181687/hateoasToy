@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDateTime;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.Objects.isNull;
 
@@ -218,12 +218,18 @@ public class HouseGrid implements Measurable {
 
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
-    /*    HashMap<LocalDateTime, Double> readingsMap = new HashMap<>();
+        TreeMap<LocalDateTime, Double> map = new TreeMap<>();
+
         for (Room room : this.mRoomList.getRoomList()) {
-            readingsMap.putAll(room.getDataSeries(startDate,endDate));
+            Map<LocalDateTime, Double> map2 = room.getDataSeries(startDate,endDate);
+
+            for (Map.Entry<LocalDateTime, Double> entry : map2.entrySet()) {
+
+                LocalDateTime key = entry.getKey();
+                Double oldValue = map.get(key);
+                map.put(key, oldValue == null ? entry.getValue() : entry.getValue() + oldValue);
+            }
         }
-        HashMap<LocalDateTime, Double> sortedReadingsMap = new HashMap<>();
-        Collections.sort(sortedReadingsMap, Comparator.comparing(sortedReadingsMap::keySet));*/
-        return null;
+        return map;
     }
 }
