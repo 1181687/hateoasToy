@@ -199,12 +199,12 @@ public class Device implements Measurable {
     }
 
     /**
-     * Method that calculates the sum of the value in each measurement in a given measurement list.
+     * Method that calculates the sum of the value in each Readings in a given Readings list.
      *
-     * @param readingsList List with measurements.
+     * @param readingsList List with Readingss.
      * @return Double with the required sum.
      */
-    public double getSumOfTheMeasurements(List<Readings> readingsList) {
+    public double getSumOfTheReadingss(List<Readings> readingsList) {
         double sum = 0;
         for (Readings readings : readingsList) {
             sum += readings.getValue();
@@ -212,14 +212,14 @@ public class Device implements Measurable {
         return sum;
     }
 
-    public List<Measurement> getMeasurementListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        List<Measurement> measurementList = new ArrayList<>();
-        for (Measurement measurement : mMeasurementList) {
-            if (!startDate.isAfter(measurement.getDateTime()) && !endDate.isBefore(measurement.getDateTime())) {
-                measurementList.add(measurement);
+    public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
+        List<Readings> ReadingsList = new ArrayList<>();
+        for (Readings Readings : mReadingsList) {
+            if (!startDate.isAfter(Readings.getDateTime()) && !endDate.isBefore(Readings.getDateTime())) {
+                ReadingsList.add(Readings);
             }
         }
-        return measurementList;
+        return ReadingsList;
     }
 
     /**
@@ -232,10 +232,10 @@ public class Device implements Measurable {
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        List<Measurement> measurementList = getMeasurementListInInterval(startDate, endDate);
-        if (measurementList.size() > 1) {
-            measurementList.remove(0);
-            totalEnergyConsumption = getSumOfTheMeasurements(measurementList);
+        List<Readings> ReadingsList = getReadingsListInInterval(startDate, endDate);
+        if (ReadingsList.size() > 1) {
+            ReadingsList.remove(0);
+            totalEnergyConsumption = getSumOfTheReadingss(ReadingsList);
         }
         return totalEnergyConsumption;
     }
@@ -273,9 +273,9 @@ public class Device implements Measurable {
     @Override
     public HashMap<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         HashMap<LocalDateTime, Double> hmap = new HashMap<>();
-        List<Measurement> validMeasurementList = getMeasurementListInInterval(startDate, endDate);
-        for (Measurement measurement : validMeasurementList) {
-            hmap.put(measurement.getDateTime(), measurement.getValue());
+        List<Readings> validReadingsList = getReadingsListInInterval(startDate, endDate);
+        for (Readings Readings : validReadingsList) {
+            hmap.put(Readings.getDateTime(), Readings.getValue());
         }
         return hmap;
     }
