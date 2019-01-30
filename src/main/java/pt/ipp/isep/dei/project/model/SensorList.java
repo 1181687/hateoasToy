@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class SensorList {
     private List<Sensor> mSensorList;
@@ -149,7 +150,8 @@ public class SensorList {
                 nearestSensors.addSensor(sensor);
             } else {
                 Double comparableShortestDistance = shortestDistance;
-                if (comparableShortestDistance.equals(sensor.distanceBetweenSensorAndLocation(location)) && !sensor.equals(nearestSensors.getSensorList().get(0))) {
+                if (comparableShortestDistance.equals(sensor.distanceBetweenSensorAndLocation(location))
+                        && !sensor.equals(nearestSensors.getSensorList().get(0))) {
                     nearestSensors.addSensor(sensor);
                 }
             }
@@ -189,5 +191,33 @@ public class SensorList {
         return mSensorList.isEmpty();
     }
 
+
+    /**
+     * method that creates the same hashCode to the same SensorList
+     *
+     * @return the hashcode created
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(mSensorList);
+    }
+
+    /**
+     * Equals method to determine if two DeviceList are equal.
+     *
+     * @param obj receives an object
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof SensorList)) {
+            return false;
+        }
+        SensorList listOne = (SensorList) obj;
+        return this.mSensorList.equals(listOne.mSensorList);
+    }
 
 }

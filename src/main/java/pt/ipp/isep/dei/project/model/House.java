@@ -109,8 +109,8 @@ public class House {
      * @param type
      * @return the last measurement with a location and a type of sensor.
      */
-    public double getLastMeasurement(SensorType type) {
-        return mInsertedGeoArea.getTheLastMeasurement(mAddress.getLocation(), type);
+    public double getLastMeasurementByType(SensorType type) {
+        return mInsertedGeoArea.getLastMeasurementByLocationType(mAddress.getLocation(), type);
     }
 
     /**

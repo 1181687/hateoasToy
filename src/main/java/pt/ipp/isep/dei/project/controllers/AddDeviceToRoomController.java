@@ -40,7 +40,6 @@ public class AddDeviceToRoomController {
 
     /**
      * Method that show the room selected.
-     *
      * @return selected room
      */
     public Room getSelectedRoom() {
@@ -51,8 +50,6 @@ public class AddDeviceToRoomController {
     public void getDeviceList() {
         mDeviceList = this.mRoom.getDeviceList();
     }
-
-
 
     /**
      * Method that asks for the size of the list of rooms.
