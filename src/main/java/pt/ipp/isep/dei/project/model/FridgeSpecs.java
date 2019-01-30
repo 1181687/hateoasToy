@@ -10,7 +10,7 @@ public class FridgeSpecs implements DeviceSpecs {
     private double mNominalPower;
 
     public FridgeSpecs(double freezerCapacity, double refrigeratorCapacity, double annualEnergyConsumption, double nominalPower) {
-        this.mTypeName = "FridgeSpecs";
+        this.mTypeName = "Fridge";
         this.mFreezerCapacity = freezerCapacity;
         this.mRefrigeratorCapacity = refrigeratorCapacity;
         this.mAnnualEnergyConsumption = annualEnergyConsumption;

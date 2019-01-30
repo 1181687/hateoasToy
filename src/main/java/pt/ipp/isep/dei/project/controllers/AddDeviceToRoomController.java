@@ -65,7 +65,7 @@ public class AddDeviceToRoomController {
      * @param position
      * @return
      */
-    public int numberOfDeviceTypes(int position) {
+    public int getnumberOfDeviceTypes(int position) {
         return mHouse.numberOfDeviceTypes(position);
     }
 

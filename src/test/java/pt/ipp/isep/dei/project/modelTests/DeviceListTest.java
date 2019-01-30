@@ -259,7 +259,7 @@ public class DeviceListTest {
         double freezerCapacity = 20;
         double refrigeratorCapacity = 50;
         DeviceSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        Device dev3 = new Device("FridgeSpecs Balay", kitchen, fridgeSpecs);
+        Device dev3 = new Device("Fridge Balay", kitchen, fridgeSpecs);
 
         Room basement = new Room("Basement", -1, dim);
         double luminousFlux3 = 30.0;
@@ -267,7 +267,7 @@ public class DeviceListTest {
         DeviceSpecs deviceSpecs4 = new LampSpecs(luminousFlux3, nominalPower3);
         Device dev4 = new Device("Lamp4", basement, deviceSpecs4);
         DeviceSpecs fridgeSpecs5 = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        Device dev5 = new Device("FridgeSpecs Teka", basement, fridgeSpecs5);
+        Device dev5 = new Device("Fridge Teka", basement, fridgeSpecs5);
 
         DeviceList allDeviceList = new DeviceList();
         allDeviceList.addDevice(dev1);
@@ -277,14 +277,14 @@ public class DeviceListTest {
         allDeviceList.addDevice(dev5);
 
         String expectedResult =
-                "LampSpecs\n" +
+                "Lamp\n" +
                         "- Device Name: Lamp1, Location: Kitchen.\n" +
                         "- Device Name: Lamp2, Location: Kitchen.\n" +
                         "- Device Name: Lamp4, Location: Basement.\n" +
                         "\n" +
-                        "FridgeSpecs\n" +
-                        "- Device Name: FridgeSpecs Balay, Location: Kitchen.\n" +
-                        "- Device Name: FridgeSpecs Teka, Location: Basement.\n" +
+                        "Fridge\n" +
+                        "- Device Name: Fridge Balay, Location: Kitchen.\n" +
+                        "- Device Name: Fridge Teka, Location: Basement.\n" +
                         "\n";
 
         // Act
@@ -537,7 +537,7 @@ public class DeviceListTest {
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev1);
@@ -648,7 +648,7 @@ public class DeviceListTest {
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev1);

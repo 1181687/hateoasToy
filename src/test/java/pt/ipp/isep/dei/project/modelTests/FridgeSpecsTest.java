@@ -17,7 +17,7 @@ public class FridgeSpecsTest {
         double nominalPower = 100.0;
         FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
-        String expectedResult = "FridgeSpecs";
+        String expectedResult = "Fridge";
 
         //Act
         String result = fridgeSpecs.getTypeName();

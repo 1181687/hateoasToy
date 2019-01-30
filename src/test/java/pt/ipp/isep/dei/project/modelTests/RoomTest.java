@@ -664,8 +664,8 @@ public class RoomTest {
         Room room = new Room("Kitchen", 1, dim);
 
 
-        String expectedResult = "1- FridgeSpecs\n" +
-                "2- LampSpecs\n" +
+        String expectedResult = "1- Fridge\n" +
+                "2- Lamp\n" +
                 "3- Dish Washer\n" +
                 "4- Washing Machine\n" +
                 "5- Electric Water Heater\n";

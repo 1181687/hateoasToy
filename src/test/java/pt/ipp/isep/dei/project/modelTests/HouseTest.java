@@ -1312,7 +1312,7 @@ public class HouseTest {
         DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(100, 100, programList);
         Device dev1 = new Device("FridgeAriston", room1, specFridgeSpecs);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasherSpecs);
+        Device dev3 = new Device("DishWasher", room1, specDishWasherSpecs);
 
         room1.addDevice(dev1);
         room1.addDevice(dev2);
@@ -1325,7 +1325,7 @@ public class HouseTest {
         ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 100);
         Device dev4 = new Device("FridgeSiemens", room2, specFridgeSpecs);
         Device dev5 = new Device("DishWasherTeka", room2, specDishWasherSpecs);
-        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
+        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
 
         room2.addDevice(dev4);
         room2.addDevice(dev5);
@@ -1351,7 +1351,12 @@ public class HouseTest {
         House house = new House(roomList, houseGridList1, address, geo);
 
 
-        String expectedResult = "Dish Washer\n- Device Name: DishWasherSpecs, Location: Kitchen.\n- Device Name: DishWasherTeka, Location: KitchenBasement.\n\nElectric Water Heater\n- Device Name: ElectricWaterHeaterSpecs, Location: KitchenBasement.\n\nWashing Machine\n- Device Name: WashingMachineBosh, Location: Kitchen.\n\nFridgeSpecs\n- Device Name: FridgeAriston, Location: Kitchen.\n- Device Name: FridgeSiemens, Location: KitchenBasement.\n\n";
+        String expectedResult = "Dish Washer\n- Device Name: DishWasher, Location: Kitchen.\n" +
+                "- Device Name: DishWasherTeka, Location: KitchenBasement.\n\nElectric Water Heater\n" +
+                "- Device Name: ElectricWaterHeater, Location: KitchenBasement.\n\nWashing Machine\n" +
+                "- Device Name: WashingMachineBosh, Location: Kitchen.\n\nFridge\n" +
+                "- Device Name: FridgeAriston, Location: Kitchen.\n" +
+                "- Device Name: FridgeSiemens, Location: KitchenBasement.\n\n";
 
         String result = house.getDeviceListContentNameTypeLocationByHG(0);
         assertEquals(expectedResult, result);
@@ -1742,7 +1747,7 @@ public class HouseTest {
         DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(100, 100, pgList);
         Device dev1 = new Device("FridgeAriston", room1, specFridgeSpecs);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasherSpecs);
+        Device dev3 = new Device("DishWasher", room1, specDishWasherSpecs);
 
         room1.addDevice(dev1);
         room1.addDevice(dev2);
@@ -1755,7 +1760,7 @@ public class HouseTest {
         ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
         Device dev4 = new Device("FridgeSiemens", room2, specFridgeSpecs);
         Device dev5 = new Device("DishWasherTeka", room2, specDishWasherSpecs);
-        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
+        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
 
         room2.addDevice(dev4);
         room2.addDevice(dev5);
@@ -1775,7 +1780,7 @@ public class HouseTest {
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
         House house = new House(roomList, gridList, address, geo);
 
-        int result = house.getNumberOfDevicesOfAType("FridgeSpecs");
+        int result = house.getNumberOfDevicesOfAType("Fridge");
 
         assertEquals(expectedResult, result);
 
@@ -1794,7 +1799,7 @@ public class HouseTest {
         DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(100, 100, pgList);
         Device dev1 = new Device("FridgeAriston", room1, specFridgeSpecs);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasherSpecs);
+        Device dev3 = new Device("DishWasher", room1, specDishWasherSpecs);
 
         room1.addDevice(dev1);
         room1.addDevice(dev2);
@@ -1807,7 +1812,7 @@ public class HouseTest {
         ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
         Device dev4 = new Device("FridgeSiemens", room2, specFridgeSpecs);
         Device dev5 = new Device("DishWasherTeka", room2, specDishWasherSpecs);
-        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
+        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
 
         room2.addDevice(dev4);
         room2.addDevice(dev5);
@@ -1829,7 +1834,7 @@ public class HouseTest {
 
         String expectedResult = "FridgeSiemens";
 
-        String result = house.getDeviceNameOfATypeByPosition("FridgeSpecs", 1);
+        String result = house.getDeviceNameOfATypeByPosition("Fridge", 1);
 
         assertEquals(expectedResult, result);
     }

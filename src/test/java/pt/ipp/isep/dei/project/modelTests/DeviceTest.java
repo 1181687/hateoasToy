@@ -561,23 +561,6 @@ public class DeviceTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @Test
-    public void testSetMeteringConfigValid() {
-
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room1", 2, dim);
-
-        double luminousFlux1 = 10.0;
-        double nominalPower1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
-        Device device = new Device("Lamp1", room, deviceSpecs1);
-
-        int expectedResult = 20;
-
-        int result = device.setDeviceMeteringPeriod();
-
-        assertEquals(expectedResult, result);
-    }
 
     @Test
     public void getIsActiveTrue() {
@@ -649,7 +632,7 @@ public class DeviceTest {
         Room room = new Room("Kitchen", 1, dim);
 
         // Fridge Instantiation
-        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
         Device device = new Device("Fridgeratah V14", room, fridge);

@@ -9,7 +9,7 @@ public class LampSpecs implements DeviceSpecs {
     private double mNominalPower;
 
     public LampSpecs(double luminousFlux, double nominalPower) {
-        this.mTypeName = "LampSpecs";
+        this.mTypeName = "Lamp";
         this.mLuminousFlux = luminousFlux;
         this.mNominalPower = nominalPower;
     }

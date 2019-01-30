@@ -19,7 +19,6 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * get method tht get the name of the device type.
-     *
      * @return type of device
      */
     @Override
@@ -29,7 +28,6 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * get method
-     *
      * @return energy consumption
      */
     public double getEnergyConsumptionInADay() {
@@ -39,7 +37,6 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * get method
-     *
      * @return nominal power
      */
     @Override
@@ -49,7 +46,6 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * set method
-     *
      * @param capacity
      * @return
      */
@@ -63,7 +59,6 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * set method to Nominal Power
-     *
      * @param nominalPower
      * @return
      */
@@ -77,7 +72,6 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * method that get the attributes by strings.
-     *
      * @return an attribute of the Dish Washer.
      */
     public String getAttributesToString() {
@@ -89,7 +83,6 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * method that set a value of an attribute by a position.
-     *
      * @param attribute
      * @param value
      * @return the attributes with new value if true. If not, return false.
@@ -109,7 +102,6 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * method that get the number of the attributes of the device.
-     *
      * @return the number of attributes.
      */
     @Override

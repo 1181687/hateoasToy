@@ -174,8 +174,8 @@ class AddDeviceToRoomControllerTest {
         controller.getRoom(0);
         controller.getDeviceList();
 
-        String expectedResult = "1- FridgeSpecs\n" +
-                "2- LampSpecs\n" +
+        String expectedResult = "1- Fridge\n" +
+                "2- Lamp\n" +
                 "3- Dish Washer\n" +
                 "4- Washing Machine\n" +
                 "5- Electric Water Heater\n";
@@ -199,7 +199,7 @@ class AddDeviceToRoomControllerTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
-        String name = "FridgeSpecs - Kitchen";
+        String name = "Fridge - Kitchen";
 
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room Gabis", 2, dim);
