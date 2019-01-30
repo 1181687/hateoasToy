@@ -625,7 +625,7 @@ public class DeviceTest {
         Device device = new Device("Fridgeratah V14", room, fridge);
 
         room.addDevice(device);
-        device.setDeativateDevice();
+        device.setDeactivateDevice();
 
         // act
         boolean result = device.getIsActive();

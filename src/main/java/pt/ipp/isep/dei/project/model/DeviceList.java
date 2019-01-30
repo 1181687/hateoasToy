@@ -276,13 +276,18 @@ public class DeviceList {
         return content.toString();
     }
 
+    /**
+     * method that get de active device list to string.
+     *
+     * @return the name and the status of the device. "Activated" if true, "Deactivated" if false.
+     */
     public String getActiveDeviceListToString() {
         StringBuilder content = new StringBuilder();
         int deviceListLength = getSize();
         int numberInTheList = 1;
         for (int i = 1; i <= deviceListLength; i++) {
             if (mDeviceList.get(i - 1).getIsActive()) {
-                content.append(numberInTheList + " - Name of the device: " + getDeviceList().get(i - 1).getName() + " - ACTIVE");
+                content.append(numberInTheList + " - Name of the device: " + getDeviceList().get(i - 1).getName() + " - ACTIVATED");
                 content.append("\n");
                 numberInTheList++;
             } else {
@@ -365,6 +370,12 @@ public class DeviceList {
         return Utils.round(totalEnergyConsumption, 2);
     }
 
+    /**
+     * method that delete a device from the list of devices.
+     *
+     * @param device
+     * @return true if the device was removed. False if not.
+     */
     public boolean deleteDevice(String device) {
         for (Device searchDevice : this.mDeviceList) {
             if (device.equals(searchDevice.getName())) {
@@ -375,9 +386,14 @@ public class DeviceList {
         return false;
     }
 
+    /**
+     * method that get the name of the device by position.
+     * @param position
+     * @return null if the list is empty. True if
+     */
     public String getDeviceNameByPosition(int position) {
         if (this.mDeviceList.isEmpty()) {
-            return null;
+            return "There are no devices in the device list.";
         }
         return this.mDeviceList.get(position).getName();
     }
@@ -385,7 +401,7 @@ public class DeviceList {
     public boolean deactivationDevice(String device) {
         for (Device searchDevice : this.mDeviceList) {
             if (device.equals(searchDevice.getName())) {
-                searchDevice.setDeativateDevice();
+                searchDevice.setDeactivateDevice();
                 return true;
             }
         }

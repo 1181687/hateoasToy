@@ -237,9 +237,9 @@ public class Device implements Measurable {
     }
 
     /**
-     * method that set the deativate device, turning it to false and giving a date
+     * method that set the deactivate device, turning it to false and giving a date
      */
-    public void setDeativateDevice() {
+    public void setDeactivateDevice() {
         this.mIsActive = false;
         this.mDeactivationDate = LocalDateTime.now();
     }
