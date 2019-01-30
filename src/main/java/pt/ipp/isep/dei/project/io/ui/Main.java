@@ -11,12 +11,12 @@ public class Main {
     public static void main(String[] args) {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
-        if (1440 % meteringPeriodGrid!=0) {
+        if (1440 % meteringPeriodGrid != 0) {
             System.out.println("The grid metering period is not valid. Please configure the grid metering period for a valid value.");
             return;
         }
 
-        if (1440 % meteringPeriodDevice!=0 || meteringPeriodDevice % meteringPeriodGrid !=0) {
+        if (1440 % meteringPeriodDevice != 0 || meteringPeriodDevice % meteringPeriodGrid != 0) {
             System.out.println("The device metering period is not valid. Please configure the device metering period for a valid value.");
             return;
         }

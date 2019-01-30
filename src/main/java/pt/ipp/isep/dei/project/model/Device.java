@@ -236,15 +236,27 @@ public class Device implements Measurable {
         return totalEnergyConsumption;
     }
 
-    public void setDeativateDevice() {
+    /**
+     * method that set the deactivate device, turning it to false and giving a date
+     */
+    public void setDeactivateDevice() {
         this.mIsActive = false;
         this.mDeactivationDate = LocalDateTime.now();
     }
 
+    /**
+     * method that get an active device.
+     *
+     * @return an active device.
+     */
     public boolean getIsActive() {
         return mIsActive;
     }
 
+    /**
+     * method that set the metering period of a device
+     * @return if true, return the metering period. If not, return -1.
+     */
     public int setDeviceMeteringPeriod() {
         int meteringPeriod = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
         if (1440%meteringPeriod==0 && (meteringPeriod % Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"))==0)) {

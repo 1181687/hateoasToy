@@ -83,7 +83,6 @@ public class DeviceListTest {
         //Arrange
 
         DeviceList deviceList1 = new DeviceList();
-        DeviceList deviceList2 = new DeviceList();
         HouseGridList list = new HouseGridList();
 
         //Act
@@ -707,65 +706,247 @@ public class DeviceListTest {
         assertTrue(result);
     }
 
-    /* @Test
-    public void testRemoveDeviceTrue() {
-        // arrange
+    @Test
+    public void getActiveDeviceListToString_Active() {
+
+        // Arrange
         String name = "Kitchen";
-        Dimension dim = new Dimension(3.5, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-
-        Fridge specFridge = new Fridge(100, 100, 100, 100);
-        Device dev1 = new Device("FridgeAriston", room, specFridge);
-
         DeviceList deviceList = new DeviceList();
-        room.getDeviceList().addDevice(dev1);
-        deviceList.addDevice(dev1);
 
-        // act
-        boolean result = deviceList.deleteDevice(dev1);
-        //assert
-        assertTrue(result);
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        double luminousFlux2 = 15.0;
+        double nominalPower2 = 2.0;
+
+        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
+
+        deviceList.addDevice(dev1);
+        deviceList.addDevice(dev2);
+
+        String expectedResult =
+                "1 - Name of the device: Lamp1 - ACTIVATED\n" +
+                        "2 - Name of the device: Lamp2 - ACTIVATED\n";
+        // Act
+        String result = deviceList.getActiveDeviceListToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testRemoveDeviceFalse() {
-        // arrange
+    public void getActiveDeviceListToString_OneDeviceDeactivated() {
+
+        // Arrange
         String name = "Kitchen";
-        Dimension dim = new Dimension(3.5, 3.5, 3.5);
+        Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-
-        Fridge specFridge = new Fridge(100, 100, 100, 100);
-        Device dev1 = new Device("FridgeAriston", room, specFridge);
-
         DeviceList deviceList = new DeviceList();
-        room.getDeviceList().addDevice(dev1);
-        deviceList.addDevice(dev1);
 
-        // act
-        boolean result = deviceList.deleteDevice(dev1);
-        //assert
-        assertTrue(result);
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        double luminousFlux2 = 15.0;
+        double nominalPower2 = 2.0;
+
+        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
+
+        deviceList.addDevice(dev1);
+        deviceList.addDevice(dev2);
+        dev1.setDeactivateDevice();
+
+        String expectedResult =
+                "1 - Name of the device: Lamp1 - DEACTIVATED\n" +
+                        "2 - Name of the device: Lamp2 - ACTIVATED\n";
+        // Act
+        String result = deviceList.getActiveDeviceListToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testRemoveDeviceList() {
-        // arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+    public void getActiveDeviceListToString_Deactivated() {
 
-        Fridge specFridge = new Fridge(100, 100, 100, 100);
-        Device dev1 = new Device("FridgeAriston", room, specFridge);
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        double luminousFlux2 = 15.0;
+        double nominalPower2 = 2.0;
+
+        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
+
+        deviceList.addDevice(dev1);
+        deviceList.addDevice(dev2);
+        dev1.setDeactivateDevice();
+        dev2.setDeactivateDevice();
+
+        String expectedResult =
+                "1 - Name of the device: Lamp1 - DEACTIVATED\n" +
+                        "2 - Name of the device: Lamp2 - DEACTIVATED\n";
+        // Act
+        String result = deviceList.getActiveDeviceListToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void deleteDeviceTrue() {
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev1);
-        room.getDeviceList().deleteDevice(dev1);
+        deviceList.addDevice(dev1);
 
-        String expectedResult = room.getDeviceListToString();
         // act
-        String result = "";
-        //assert
+        boolean result = deviceList.deleteDevice("Lamp1");
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void deleteDeviceFalse() {
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        room.addDevice(dev1);
+
+        // act
+        boolean result = deviceList.deleteDevice("Lamp1");
+
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void getDeviceNameByPositionIsEmpty() {
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+
+        int position = 0;
+
+        String expectedResult = "There are no devices in the device list.";
+
+        // act
+        String result = deviceList.getDeviceNameByPosition(position);
+
+        // assert
         assertEquals(expectedResult, result);
-    } */
+    }
+
+    @Test
+    public void getDeviceNameByPosition() {
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        int position = 0;
+
+        String expectedResult = "Lamp1";
+        deviceList.addDevice(dev1);
+
+        // act
+        String result = deviceList.getDeviceNameByPosition(position);
+
+        // assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void deactivationDeviceTrue() {
+
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        room.addDevice(dev1);
+        deviceList.addDevice(dev1);
+
+        // act
+        boolean result = deviceList.deactivationDevice("Lamp1");
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void deactivationDeviceFalse() {
+
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        room.addDevice(dev1);
+
+        // act
+        boolean result = deviceList.deactivationDevice("Lamp1");
+
+        // assert
+        assertFalse(result);
+    }
 
 }
 

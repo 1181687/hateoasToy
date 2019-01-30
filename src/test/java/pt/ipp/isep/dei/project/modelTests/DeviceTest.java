@@ -354,36 +354,6 @@ public class DeviceTest {
         assertTrue(result);
     }
 
-    /* @Test
-    void testGetSpecsAttributesToString() {
-        // Arrange
-        // Dimension Instantiation
-        double height = 3;
-        double length = 3.5;
-        double width = 3.5;
-        Dimension dim = new Dimension(height, length, width);
-
-        // Room Instantiation
-        Room room = new Room("Room", 2, dim);
-
-        // Device Instantiation
-        double luminousFlux = 10.0;
-        double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
-        Device device = new Device("Electric Water Heater", room, deviceSpecs1);
-
-        room.addDevice(device);
-
-        String expectedResult = "1 - Luminous Flux: 10.0\n" +
-                "2 - Nominal Power: 1.0\n";
-
-        // act
-        String result = device.getSpecsAttributesToString();
-
-        // assert
-        assertEquals(expectedResult, result);
-    } */
-
     @Test
     void testGetDeviceAttributesToString() {
         //initiate Room
@@ -608,7 +578,7 @@ public class DeviceTest {
     }
 
     @Test
-    public void getIsActive() {
+    public void getIsActiveTrue() {
 
         // Arrange
         // Dimension Instantiation
@@ -635,5 +605,33 @@ public class DeviceTest {
         assertTrue(result);
     }
 
+    @Test
+    public void getIsActiveFalse() {
+
+        // Arrange
+        // Dimension Instantiation
+        double height = 3;
+        double length = 5;
+        double width = 6;
+        Dimension dim = new Dimension(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Kitchen", 1, dim);
+
+        // Fridge Instantiation
+        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+
+        // Device Instantiation
+        Device device = new Device("Fridgeratah V14", room, fridge);
+
+        room.addDevice(device);
+        device.setDeactivateDevice();
+
+        // act
+        boolean result = device.getIsActive();
+
+        // assert
+        assertFalse(result);
+    }
 
 }
