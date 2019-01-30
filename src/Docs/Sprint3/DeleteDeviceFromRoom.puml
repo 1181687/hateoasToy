@@ -1,0 +1,100 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+actor User
+User -> ":UI": DeleteDeviceFromRoom
+activate ":UI"
+":UI" -> ":Controller": getRoomListContent()
+activate ":Controller"
+":Controller" -> ":House": getRoomListContent()
+activate ":House"
+":House" -> ":RoomList"
+activate ":RoomList"
+":House" <-- ":RoomList": RoomListContent
+deactivate ":RoomList"
+":Controller" <-- ":House": RoomListContent
+deactivate ":House"
+":UI" <-- ":Controller": RoomListContent
+User <-- ":UI": RoomListContent
+
+User -> ":UI": Int position: Room
+":UI" -> ":Controller": getRoomName(Room)
+":Controller" -> ":House": getRoomName(Room)
+activate ":House"
+":House" -> ":RoomList": getRoomName(Room)
+activate ":RoomList"
+":RoomList" -> ":Room": getName()
+activate ":Room"
+":Controller" <-- ":Room": RoomName
+deactivate ":Room"
+deactivate ":RoomList"
+deactivate ":House"
+":UI" <-- ":Controller": RoomName
+
+
+
+":UI" -> ":Controller": getDeviceListContent(Room)
+":Controller" -> ":House": getDeviceListContent(Room)
+activate ":House"
+":House" -> ":RoomList": getDeviceListContent(Room)
+activate ":RoomList"
+":RoomList" -> ":Room": getDeviceListContent (Room)
+activate ":Room"
+":Room" -> ":DeviceList": getDeviceListContent(Room)
+activate ":DeviceList"
+":DeviceList" -> ":DeviceList": LengthDeviceList
+":DeviceList" -> ":DeviceList": DeviceList
+":DeviceList" -> ":Device": getName()
+activate ":Device"
+":DeviceList" <-- ":Device": DeviceName
+deactivate ":Device"
+":UI" <-- ":DeviceList": DeviceListContent
+deactivate ":DeviceList"
+deactivate ":Room"
+deactivate ":RoomList"
+deactivate ":House"
+User <-- ":UI": DeviceListContent
+
+User -> ":UI": Int position
+":UI" -> ":Controller": getDevice(position)
+":Controller" -> ":Room": getDevice(position)
+activate ":Room"
+":Room" -> DeviceList: getDevice(position)
+activate DeviceList
+":Controller" <-- DeviceList : string
+deactivate DeviceList
+deactivate ":Room"
+
+":UI" <-- ":Controller": string
+User <-- ":UI": string
+User --> User: ConfirmDeleteDevice
+":UI" --> ":Controller": deleteDevice()
+":Controller" --> ":Room": deleteDevice()
+activate ":Room"
+":Room" --> ":DeviceList": deleteDevice()
+activate ":DeviceList"
+":Controller" <-- ":DeviceList": string
+deactivate ":DeviceList"
+deactivate ":Room"
+":UI" <-- ":Controller": string
+deactivate ":Controller"
+User <-- ":UI": string
+deactivate ":UI"
+
+@enduml
