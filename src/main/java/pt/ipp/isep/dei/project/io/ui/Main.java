@@ -21,8 +21,8 @@ public class Main {
             return;
         }
 
-        GeoAreaTypeList geoAreaTypeList = new GeoAreaTypeList();
-        GeoAreaList geoAreaList = new GeoAreaList();
+        GeographicalAreaTypeList geographicalAreaTypeList = new GeographicalAreaTypeList();
+        GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
         RoomList roomList = new RoomList();
         DeviceList deviceList = new DeviceList();
         HouseGridList gridList = new HouseGridList();
@@ -32,17 +32,17 @@ public class Main {
         // Main Area
         Location locationMainArea = new Location(41.164077, -8.620802, 118);
         AreaShape areaShapeMainArea = new AreaShape(10.09, 3.30, locationMainArea);
-        GeoAreaType geoAreaTypeMainArea = new GeoAreaType("City");
-        GeographicalArea mainArea = new GeographicalArea("Porto", geoAreaTypeMainArea, locationMainArea, areaShapeMainArea);
-        geoAreaList.addGeoArea(mainArea);
+        GeographicalAreaType geographicalAreaTypeMainArea = new GeographicalAreaType("City");
+        GeographicalArea mainArea = new GeographicalArea("Porto", geographicalAreaTypeMainArea, locationMainArea, areaShapeMainArea);
+        geographicalAreaList.addGeoArea(mainArea);
 
         // Inserted Geo Area (Campus do ISEP)
         Location location = new Location(41.178553, -8.608035, 111);
         SensorTypeList sensorTypeList = new SensorTypeList();
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
-        GeoAreaType geoAreaType = new GeoAreaType("Urban area");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geoAreaType, location, areaShape);
-        geoAreaList.addGeoArea(insertedGeoArea);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+        geographicalAreaList.addGeoArea(insertedGeoArea);
         insertedGeoArea.setInsertedIn(mainArea);
 
 
@@ -329,8 +329,8 @@ public class Main {
         powerSourceTypeList.addPowerSourceType(powerSourceType2);
 
         //UI levels
-        Admin admin = new Admin(geoAreaTypeList, geoAreaList, deviceList, sensorTypeList, houseEdificioB, powerSourceTypeList, roomList, gridList);
-        RegularUser regularUser = new RegularUser(geoAreaTypeList, geoAreaList, sensorTypeList, houseEdificioB, sensorTypeTemperature);
+        Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaList, deviceList, sensorTypeList, houseEdificioB, powerSourceTypeList, roomList, gridList);
+        RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaList, sensorTypeList, houseEdificioB, sensorTypeTemperature);
         PowerUser powerUser = new PowerUser(houseEdificioB);
         RoomOwner roomOwner = new RoomOwner(houseEdificioB);
 

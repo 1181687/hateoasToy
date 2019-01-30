@@ -86,13 +86,25 @@ class UtilsTest {
         assertEquals(expectedResult, result);
     }
 
+
     @Test
-    void testMeteringPeriodWrongKey(){
+    void testMeteringPeriodWrongKey() {
         //Arrange
         String expectedResult = "Wrong Key";
         //Act
         String result = Utils.readConfigFile("Cenas");
         //Assert
         assertEquals(expectedResult,result);
+
+    }
+
+    void testGetMeteringPeriodDevice() {
+        //Arrange
+        int expectedResult = 20;
+
+        int result = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        //Assert
+        assertEquals(expectedResult, result);
+
     }
 }

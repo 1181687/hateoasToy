@@ -3,14 +3,14 @@ package pt.ipp.isep.dei.project.model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GeoAreaList {
+public class GeographicalAreaList {
 
     private List<GeographicalArea> mGeoAreaList;
 
     /**
      * constructor that receives a new list of Geographical Areas.
      */
-    public GeoAreaList() {
+    public GeographicalAreaList() {
         this.mGeoAreaList = new ArrayList<>();
     }
 
@@ -24,12 +24,12 @@ public class GeoAreaList {
 
     /**
      * method that add a geographical area to the list of geographical areas.
-     * @param GeoArea
+     * @param geoArea
      * @return
      */
-    public boolean addGeoArea(GeographicalArea GeoArea) {
-        if (!(mGeoAreaList.contains(GeoArea))) {
-            mGeoAreaList.add(GeoArea);
+    public boolean addGeoArea(GeographicalArea geoArea) {
+        if (!(mGeoAreaList.contains(geoArea))) {
+            mGeoAreaList.add(geoArea);
             return true;
         }
         return false;
@@ -159,10 +159,10 @@ public class GeoAreaList {
      * @return a new geographical area.
      */
     public GeographicalArea newGeographicalArea(String geoAreaName, String geoAreaTypeName, double latitude, double longitude, double altitude, double height, double length) {
-        GeoAreaType geoAreaType = new GeoAreaType(geoAreaTypeName);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeName);
         Location location = new Location(latitude, longitude, altitude);
         AreaShape rectangleArea = new AreaShape(height, length, location);
-        return new GeographicalArea(geoAreaName, geoAreaType, location, rectangleArea);
+        return new GeographicalArea(geoAreaName, geographicalAreaType, location, rectangleArea);
     }
 
     /**

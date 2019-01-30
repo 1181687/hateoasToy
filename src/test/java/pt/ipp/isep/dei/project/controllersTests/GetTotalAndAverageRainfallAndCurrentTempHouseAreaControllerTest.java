@@ -24,8 +24,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
         AreaShape rectangleArea = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, rectangleArea);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         //Instantiate Sensor
@@ -86,8 +86,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
         AreaShape rectangleArea = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, rectangleArea);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         //Instanciar Sensor
@@ -176,7 +176,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         // Instantiate AreaInserida
         String nomeAG = "Região Norte";
-        GeoAreaType tipo = new GeoAreaType("Região");
+        GeographicalAreaType tipo = new GeographicalAreaType("Região");
         Location localAG = new Location(32.1576, 7.6199, 100);
         AreaShape area = new AreaShape(10, 10, localAG);
         GeographicalArea AG = new GeographicalArea(nomeAG, tipo, localAG, area);
@@ -266,7 +266,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         // Instantiate AreaInserida
         String nomeAG = "Região Norte";
-        GeoAreaType tipo = new GeoAreaType("Região");
+        GeographicalAreaType tipo = new GeographicalAreaType("Região");
         Location localAG = new Location(32.1576, 7.6199, 100);
         AreaShape area = new AreaShape(10, 10, localAG);
         GeographicalArea AG = new GeographicalArea(nomeAG, tipo, localAG, area);
@@ -333,7 +333,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         // Instantiate AreaInserida
         String nomeAG = "Região Norte";
-        GeoAreaType tipo = new GeoAreaType("Região");
+        GeographicalAreaType tipo = new GeographicalAreaType("Região");
         Location localAG = new Location(32.1576, 7.6199, 100);
         AreaShape area = new AreaShape(10, 10, localAG);
         GeographicalArea AG = new GeographicalArea(nomeAG, tipo, localAG, area);
@@ -368,7 +368,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         // Instantiate Inserted Area
         String nomeAG = "Região Norte";
-        GeoAreaType tipo = new GeoAreaType("Região");
+        GeographicalAreaType tipo = new GeographicalAreaType("Região");
         Location localAG = new Location(32.1576, 7.6199, 100);
         AreaShape area = new AreaShape(10, 10, localAG);
         GeographicalArea AG = new GeographicalArea(nomeAG, tipo, localAG, area);

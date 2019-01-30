@@ -2,17 +2,17 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaTypeController;
-import pt.ipp.isep.dei.project.model.GeoAreaType;
-import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
+import pt.ipp.isep.dei.project.model.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.GeographicalAreaTypeList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class AddGeoAreaTypeControllerTest {
+public class AddGeographicalAreaTypeControllerTest {
 
     @Test
     public void testarCriacaoDeNovoTipoDeAG() {
         //Arrange
-        GeoAreaTypeList lista = new GeoAreaTypeList();
+        GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
         String novoTipo = "Cidade";
         AddGeoAreaTypeController ctrl = new AddGeoAreaTypeController(lista);
         //Act
@@ -24,8 +24,8 @@ public class AddGeoAreaTypeControllerTest {
     @Test
     public void testarCriacaoDeNovoTipoDeAGFalhar() {
         //Arrange
-        GeoAreaTypeList lista = new GeoAreaTypeList();
-        GeoAreaType tipoDaLista = new GeoAreaType("Cidade");
+        GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
+        GeographicalAreaType tipoDaLista = new GeographicalAreaType("Cidade");
         lista.addTypeOfGeoAreaToTheList(tipoDaLista);
         String novoTipo = "Cidade";
         AddGeoAreaTypeController ctrl = new AddGeoAreaTypeController(lista);
@@ -38,13 +38,13 @@ public class AddGeoAreaTypeControllerTest {
     @Test
     public void testarGetListaTAG() {
         //Arrange
-        GeoAreaTypeList lista = new GeoAreaTypeList();
+        GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
         AddGeoAreaTypeController ctrl = new AddGeoAreaTypeController(lista);
-        GeoAreaType tipoDaLista = new GeoAreaType("Cidade");
+        GeographicalAreaType tipoDaLista = new GeographicalAreaType("Cidade");
         lista.addTypeOfGeoAreaToTheList(tipoDaLista);
-        GeoAreaTypeList expectedResult = lista;
+        GeographicalAreaTypeList expectedResult = lista;
         //Act
-        GeoAreaTypeList result = ctrl.getListaTAG();
+        GeographicalAreaTypeList result = ctrl.getListaTAG();
 
         //Assert
 

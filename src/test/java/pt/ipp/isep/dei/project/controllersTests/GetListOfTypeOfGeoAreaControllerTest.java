@@ -16,21 +16,21 @@ public class GetListOfTypeOfGeoAreaControllerTest {
     public void testarGetListaAGPorTipo() {
         //Arrange
 
-        //Instanciar a classe GeoAreaTypeList
-        GeoAreaTypeList geoAreaTypeList = new GeoAreaTypeList();
+        //Instanciar a classe GeographicalAreaTypeList
+        GeographicalAreaTypeList geographicalAreaTypeList = new GeographicalAreaTypeList();
 
         //Tipos de Areas Geográficas
         String nomeDoTipo1 = "Cidade";
-        GeoAreaType tipo1 = new GeoAreaType(nomeDoTipo1);
+        GeographicalAreaType tipo1 = new GeographicalAreaType(nomeDoTipo1);
         String nomeDoTipo2 = "Freguesia";
-        GeoAreaType tipo2 = new GeoAreaType(nomeDoTipo2);
+        GeographicalAreaType tipo2 = new GeographicalAreaType(nomeDoTipo2);
 
         //Adicionar os Tipos de Areas Geográficas na lista
-        geoAreaTypeList.addTypeOfGeoAreaToTheList(tipo1);
-        geoAreaTypeList.addTypeOfGeoAreaToTheList(tipo2);
+        geographicalAreaTypeList.addTypeOfGeoAreaToTheList(tipo1);
+        geographicalAreaTypeList.addTypeOfGeoAreaToTheList(tipo2);
 
-        //Instanciar a classe GeoAreaList
-        GeoAreaList lista = new GeoAreaList();
+        //Instanciar a classe GeographicalAreaList
+        GeographicalAreaList lista = new GeographicalAreaList();
 
         String tipoPedido = "Cidade";
 
@@ -47,7 +47,7 @@ public class GetListOfTypeOfGeoAreaControllerTest {
         lista.addGeoArea(ag1);
         lista.addGeoArea(ag2);
 
-        GetListOfTypeOfGeoAreaController ctrl = new GetListOfTypeOfGeoAreaController(lista, geoAreaTypeList);
+        GetListOfTypeOfGeoAreaController ctrl = new GetListOfTypeOfGeoAreaController(lista, geographicalAreaTypeList);
         ArrayList<String> expectedResult = new ArrayList<>(Arrays.asList("Porto"));
 
         //Act
@@ -61,19 +61,19 @@ public class GetListOfTypeOfGeoAreaControllerTest {
     @Test
     public void testarGetListaDosTiposDeAG() {
         //Arrange
-        //Instanciar a classe GeoAreaTypeList
-        GeoAreaTypeList lista = new GeoAreaTypeList();
+        //Instanciar a classe GeographicalAreaTypeList
+        GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
 
         //Tipo de Area Geográfica
         String nomeDoTipo1 = "Cidade";
-        GeoAreaType tipo1 = new GeoAreaType(nomeDoTipo1);
+        GeographicalAreaType tipo1 = new GeographicalAreaType(nomeDoTipo1);
 
         //Adicionar o Tipo de Area Geográfica na lista
         lista.addTypeOfGeoAreaToTheList(tipo1);
 
-        //Instanciar a classe GeoAreaList
-        GeoAreaList geoAreaList = new GeoAreaList();
-        GetListOfTypeOfGeoAreaController ctrl = new GetListOfTypeOfGeoAreaController(geoAreaList, lista);
+        //Instanciar a classe GeographicalAreaList
+        GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
+        GetListOfTypeOfGeoAreaController ctrl = new GetListOfTypeOfGeoAreaController(geographicalAreaList, lista);
 
 
         //Expected Result

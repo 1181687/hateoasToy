@@ -2,26 +2,26 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetListGeoAreaTypesController;
-import pt.ipp.isep.dei.project.model.GeoAreaType;
-import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
+import pt.ipp.isep.dei.project.model.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.GeographicalAreaTypeList;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GetListGeoAreaTypesControllerTest {
+public class GetListGeographicalAreaTypesControllerTest {
 
     @Test
     public void testarGetListaTiposDeAG() {
         //Arrange
         //Instanciar a classe GetListGeoAreaTypesController
-        GeoAreaTypeList lista = new GeoAreaTypeList();
+        GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
         GetListGeoAreaTypesController ctrl2 = new GetListGeoAreaTypesController(lista);
 
         //Tipo de Area Geográfica
         String nomeDoTipo1 = "Cidade";
-        GeoAreaType tipo1 = new GeoAreaType(nomeDoTipo1);
+        GeographicalAreaType tipo1 = new GeographicalAreaType(nomeDoTipo1);
 
         //Adicionar o Tipo de Area Geográfica na lista
         lista.addTypeOfGeoAreaToTheList(tipo1);
@@ -41,14 +41,14 @@ public class GetListGeoAreaTypesControllerTest {
     public void testarGetListaDosTiposDeAGAdicionandoMaisDoQueUmTipo() {
         //Arrange
         //Instanciar a classe GetListGeoAreaTypesController
-        GeoAreaTypeList lista = new GeoAreaTypeList();
+        GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
         GetListGeoAreaTypesController ctrl2 = new GetListGeoAreaTypesController(lista);
 
         //Tipos de Areas Geográficas
         String nomeDoTipo1 = "Cidade";
-        GeoAreaType tipo1 = new GeoAreaType(nomeDoTipo1);
+        GeographicalAreaType tipo1 = new GeographicalAreaType(nomeDoTipo1);
         String nomeDoTipo2 = "Freguesia";
-        GeoAreaType tipo2 = new GeoAreaType(nomeDoTipo2);
+        GeographicalAreaType tipo2 = new GeographicalAreaType(nomeDoTipo2);
 
         //Adicionar os Tipos de Areas Geográficas na lista
         lista.addTypeOfGeoAreaToTheList(tipo1);
@@ -70,7 +70,7 @@ public class GetListGeoAreaTypesControllerTest {
     public void testarGetListaDosTiposDeAGASemAdicionarNenhumTipo() {
         //Arrange
         //Instanciar a classe GetListGeoAreaTypesController
-        GeoAreaTypeList lista = new GeoAreaTypeList();
+        GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
         GetListGeoAreaTypesController ctrl2 = new GetListGeoAreaTypesController(lista);
 
         //Expected Result

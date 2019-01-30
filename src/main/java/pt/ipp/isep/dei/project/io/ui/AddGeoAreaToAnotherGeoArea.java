@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaToAnotherGeoAreaController;
-import pt.ipp.isep.dei.project.model.GeoAreaList;
+import pt.ipp.isep.dei.project.model.GeographicalAreaList;
 
 /**
  * US007 As an Administrator, I want to add an existing geographical area to another one
@@ -11,7 +11,7 @@ import pt.ipp.isep.dei.project.model.GeoAreaList;
 public class AddGeoAreaToAnotherGeoArea {
     private AddGeoAreaToAnotherGeoAreaController ctrl;
 
-    public AddGeoAreaToAnotherGeoArea(GeoAreaList lista) {
+    public AddGeoAreaToAnotherGeoArea(GeographicalAreaList lista) {
         this.ctrl = new AddGeoAreaToAnotherGeoAreaController(lista);
     }
 

@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.InsertedGeoAreaController;
-import pt.ipp.isep.dei.project.model.GeoAreaList;
 import pt.ipp.isep.dei.project.model.GeographicalArea;
+import pt.ipp.isep.dei.project.model.GeographicalAreaList;
 
 import java.util.Scanner;
 
@@ -12,7 +12,7 @@ or indirectly, in another one. */
 public class InsertedGeoArea {
     private InsertedGeoAreaController ctrl;
 
-    public InsertedGeoArea(GeoAreaList lista) {
+    public InsertedGeoArea(GeographicalAreaList lista) {
         this.ctrl = new InsertedGeoAreaController(lista);
     }
 

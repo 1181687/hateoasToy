@@ -15,11 +15,8 @@ double value
 LocalDateTime dateTime
 }
 class Location{
-double latitude
-double longitude
-double altitude
 }
-class GeoAreaType{
+class GeographicalAreaType{
 String type
 }
 class GeographicalArea{
@@ -60,7 +57,7 @@ boolean isActive
 ENUM DeviceType{
 }
 
-Sensor "1" - "1" SensorType
+Sensor "1" -"1" SensorType
 Sensor "1" - "*" Measurement
 Sensor "1" - "1" Location
 
@@ -75,7 +72,7 @@ House "1" -- "1..*" HouseGrid
 House "1" ---- "1" Address
 House "1" ---- "1" GeographicalArea
 
-GeographicalArea "1" - "1" GeoAreaType
+GeographicalArea "1" - "1" GeographicalAreaType
 GeographicalArea "1" - "1" GeographicalArea
 GeographicalArea "1" - "1" Location
 GeographicalArea "1" - "1" AreaShape
