@@ -1341,7 +1341,7 @@ class GeographicalAreaTest {
         assertEquals(expectedResult, result);
 
     }
-
+/*
     @Test
     public void testingTotalDailyMeasurement() {
         //ARRANGE
@@ -1460,4 +1460,5 @@ class GeographicalAreaTest {
         //ASSERT
         assertEquals(expectedResult, result);
     }
+    */
 }
