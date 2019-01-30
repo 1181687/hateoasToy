@@ -1,19 +1,13 @@
 package pt.ipp.isep.dei.project.model;
 
-import pt.ipp.isep.dei.project.utils.Utils;
-
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static java.util.Objects.isNull;
 
 public class HouseGrid implements Measurable {
     private String mName;
     private double mMaximumContractedPower;
-    private int mMeteringPeriod;
     private PowerSourceList mPowerSourceList;
     private RoomList mRoomList;
 
@@ -29,7 +23,6 @@ public class HouseGrid implements Measurable {
         this.mRoomList = new RoomList();
         this.mPowerSourceList = new PowerSourceList();
         this.mMaximumContractedPower = 0;
-        this.mMeteringPeriod = setGridMeteringPeriod();
     }
 
     /**
@@ -223,28 +216,20 @@ public class HouseGrid implements Measurable {
         }
     }
 
-    /**
-     * Method that sets the metering period using the methods in the Utils Class.
-     *
-     * @return
-     */
-    public int setGridMeteringPeriod() {
-        int meteringPeriod = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
-        if (1440%meteringPeriod==0) {
-            return meteringPeriod;
-        } else {
-            return -1;
-        }
-    }
-
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
-    /*    HashMap<LocalDateTime, Double> readingsMap = new HashMap<>();
+        TreeMap<LocalDateTime, Double> map = new TreeMap<>();
+
         for (Room room : this.mRoomList.getRoomList()) {
-            readingsMap.putAll(room.getDataSeries(startDate,endDate));
+            Map<LocalDateTime, Double> map2 = room.getDataSeries(startDate,endDate);
+
+            for (Map.Entry<LocalDateTime, Double> entry : map2.entrySet()) {
+
+                LocalDateTime key = entry.getKey();
+                Double oldValue = map.get(key);
+                map.put(key, oldValue == null ? entry.getValue() : entry.getValue() + oldValue);
+            }
         }
-        HashMap<LocalDateTime, Double> sortedReadingsMap = new HashMap<>();
-        Collections.sort(sortedReadingsMap, Comparator.comparing(sortedReadingsMap::keySet));*/
-        return null;
+        return map;
     }
 }

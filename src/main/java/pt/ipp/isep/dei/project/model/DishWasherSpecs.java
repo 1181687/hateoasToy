@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
-public class DishWasher implements DeviceSpecs {
+public class DishWasherSpecs implements DeviceSpecs {
     private String mTypeName;
     private int mCapacity;
     private double mDuration;
@@ -10,7 +10,7 @@ public class DishWasher implements DeviceSpecs {
     private double mNominalPower;
     private ProgramList mProgramList;
 
-    public DishWasher(int capacity, double nominalPower, ProgramList programList) {
+    public DishWasherSpecs(int capacity, double nominalPower, ProgramList programList) {
         this.mTypeName = "Dish Washer";
         this.mCapacity = capacity;
         this.mNominalPower = nominalPower;
@@ -19,7 +19,6 @@ public class DishWasher implements DeviceSpecs {
 
     /**
      * get method tht get the name of the device type.
-     *
      * @return type of device
      */
     @Override
@@ -29,7 +28,6 @@ public class DishWasher implements DeviceSpecs {
 
     /**
      * get method
-     *
      * @return energy consumption
      */
     public double getEnergyConsumptionInADay() {
@@ -39,7 +37,6 @@ public class DishWasher implements DeviceSpecs {
 
     /**
      * get method
-     *
      * @return nominal power
      */
     @Override
@@ -49,7 +46,6 @@ public class DishWasher implements DeviceSpecs {
 
     /**
      * set method
-     *
      * @param capacity
      * @return
      */
@@ -63,7 +59,6 @@ public class DishWasher implements DeviceSpecs {
 
     /**
      * set method to Nominal Power
-     *
      * @param nominalPower
      * @return
      */
@@ -77,7 +72,6 @@ public class DishWasher implements DeviceSpecs {
 
     /**
      * method that get the attributes by strings.
-     *
      * @return an attribute of the Dish Washer.
      */
     public String getAttributesToString() {
@@ -89,7 +83,6 @@ public class DishWasher implements DeviceSpecs {
 
     /**
      * method that set a value of an attribute by a position.
-     *
      * @param attribute
      * @param value
      * @return the attributes with new value if true. If not, return false.
@@ -109,7 +102,6 @@ public class DishWasher implements DeviceSpecs {
 
     /**
      * method that get the number of the attributes of the device.
-     *
      * @return the number of attributes.
      */
     @Override

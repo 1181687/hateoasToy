@@ -17,40 +17,35 @@ skinparam sequence {
 	ActorFontName Aapex
 }
 
-autonumber
 actor PowerUser
-PowerUser -> ":UI": GetEnergyConsumptionOfDevice
+PowerUser -> ":UI": 1- GetEnergyConsumptionOfDevice
 activate ":UI"
-":UI" -> ":Controller": GetAllDevicesToString()
+":UI" -> ":Controller": 1.1- GetAllDevicesToString()
 activate ":Controller"
-":Controller" -> ":House": GetAllDevicesToString()
+":Controller" -> ":House": 1.2- GetAllDevicesToString()
 activate ":House"
-":Controller" <-- ":House": String
+":Controller" <-- ":House": 1.3- String
 deactivate ":House"
-":UI" <-- ":Controller": String
-deactivate ":Controller"
-PowerUser <-- ":UI": String
+":UI" <-- ":Controller": 1.4- String
+PowerUser <-- ":UI": 1.5- String
 
-PowerUser -> ":UI": Int Device Position
-":UI" -> ":Controller": SetDevice(position)
-activate ":Controller"
-":Controller" -> ":House": GetDeviceByPosition (position)
+PowerUser -> ":UI": 2- Int Device Position
+":UI" -> ":Controller": 2.1- SetDevice(position)
+":Controller" -> ":House": 2.2- GetDeviceByPosition (position)
 activate ":House"
-":Controller" <-- ":House": Device
+":Controller" <-- ":House": 2.3- Device
 deactivate ":House"
-deactivate ":Controller"
 
-PowerUser -> ":UI": Insert Start Date (LocalDateTime)
-PowerUser -> ":UI": Insert End Date (LocalDateTime)
-":UI" -> ":Controller": GetEnergyConsumption(startDate, endDate)
-activate ":Controller"
-":Controller" -> ":Device": GetEnergyConsumption(startDate, endDate)
+
+PowerUser -> ":UI": 3- Insert Start Date (LocalDateTime)
+PowerUser -> ":UI": 4- Insert End Date (LocalDateTime)
+":UI" -> ":Controller": 4.1- GetEnergyConsumption(startDate, endDate)
+":Controller" -> ":Device": 4.2- GetEnergyConsumption(startDate, endDate)
 activate ":Device"
-":Controller" <-- ":Device": double
+":Controller" <-- ":Device": 4.3- double
 deactivate ":Device"
-":UI" <-- ":Controller": double
-deactivate ":Controller"
-PowerUser <-- ":UI": double
+":UI" <-- ":Controller": 4.4- double
+PowerUser <-- ":UI": 4.5- double
 deactivate ":UI"
 
 @enduml

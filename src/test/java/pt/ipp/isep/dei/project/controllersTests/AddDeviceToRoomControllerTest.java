@@ -238,7 +238,7 @@ class AddDeviceToRoomControllerTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
-        String name = "Fridge - Kitchen";
+        String name = "FridgeSpecs - Kitchen";
 
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room Gabis", 2, dim);
@@ -402,7 +402,7 @@ class AddDeviceToRoomControllerTest {
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
-        // ElectricWaterHeater Instantiation
+        // ElectricWaterHeaterSpecs Instantiation
         double hotWaterTemp0 = 50;
         double maximumVolume0 = 150;
         double nominalPower0 = 100;
@@ -439,7 +439,7 @@ class AddDeviceToRoomControllerTest {
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
-        // ElectricWaterHeater Instantiation
+        // ElectricWaterHeaterSpecs Instantiation
         double hotWaterTemp0 = 50;
         double maximumVolume0 = 150;
         double nominalPower0 = 100;
@@ -489,12 +489,12 @@ class AddDeviceToRoomControllerTest {
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 5000;
         double nominalPower = 100.5;
-        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
         Device dev = new Device("Fridge1", room, deviceSpecs);
 
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         int position = 0;
@@ -525,12 +525,12 @@ class AddDeviceToRoomControllerTest {
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
-        // ElectricWaterHeater Instantiation
+        // ElectricWaterHeaterSpecs Instantiation
         double hotWaterTemp0 = 50;
         double maximumVolume0 = 150;
         double nominalPower0 = 100;
         double performanceRatio = 100;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
