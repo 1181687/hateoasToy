@@ -476,4 +476,8 @@ public class House {
                     ", Energy Consumption: " + entry.getValue() + " kWh\n");
         return readingsMap.toString();
     }
+
+    public int getDeviceSize() {
+        return mDeviceTypeList.length();
+    }
 }
