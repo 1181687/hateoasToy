@@ -35,8 +35,8 @@ public class AddDeviceToRoom {
             Room selectedRoom = mCtrl.getSelectedRoom();
 
             //SELECT A DEVICE TYPE
-            String label0 = "Please select the Device Type: \n" + mCtrl.getDeviceTypeListToString() + exit;
-            int selectedType = InputValidator.getIntRange(label0, 0, 5);
+            String label0 = "Please select the Device Type: \n" + mCtrl.getDeviceTypeListToString(indexSelectedRoom) + exit;
+            int selectedType = InputValidator.getIntRange(label0, 0, mCtrl.numberOfDeviceTypes());
             if (selectedType == 0) {
                 continue;
             }

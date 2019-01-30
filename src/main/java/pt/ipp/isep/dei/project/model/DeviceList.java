@@ -258,6 +258,15 @@ public class DeviceList {
         return mDeviceList.isEmpty();
     }
 
+
+    /**
+     * method that get the number os existing Devices on the configuration file.
+     *
+     * @return the number os existing Devices
+     */
+    public int numberOfDeviceTypes() {
+        return Integer.parseInt(Utils.readConfigFile("devicetype.count"));
+    }
     /**
      * method that get de device type list content
      *
@@ -265,13 +274,12 @@ public class DeviceList {
      */
     public String getDeviceTypeListToString() {
         StringBuilder content = new StringBuilder();
-        int numberInTheList = 1;
-        for (DeviceTypes deviceTypeName : DeviceTypes.values()) {
-            String deviceType = deviceTypeName.getDeviceTypeName();
-            content.append(numberInTheList + "- ");
+        int numberOfDeviceTypes = numberOfDeviceTypes();
+        for (int i = 1; i <= numberOfDeviceTypes; i++) {
+            String deviceType = Utils.readConfigFile("devicetype." + i + ".name");
+            content.append(i + "- ");
             content.append(deviceType);
             content.append("\n");
-            numberInTheList++;
         }
         return content.toString();
     }

@@ -343,4 +343,8 @@ public class Room implements Measurable {
     public String getActiveDeviceListToString() {
         return this.mDeviceList.getActiveDeviceListToString();
     }
+
+    public String getDeviceTypeListToString() {
+        return this.mDeviceList.getDeviceTypeListToString();
+    }
 }

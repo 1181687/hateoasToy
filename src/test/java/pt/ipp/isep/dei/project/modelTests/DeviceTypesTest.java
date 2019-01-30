@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.DeviceTypes;
+import pt.ipp.isep.dei.project.model.DeviceType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,7 +12,7 @@ public class DeviceTypesTest {
         String expectedResult = "Dish Washer";
 
         //Act
-        String result = DeviceTypes.DISH_WASHER.getDeviceTypeName();
+        String result = DeviceType.DISH_WASHER.getDeviceTypeName();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -24,7 +24,7 @@ public class DeviceTypesTest {
         String expectedResult = "Fridge";
 
         //Act
-        String result = DeviceTypes.FRIDGE.getDeviceTypeName();
+        String result = DeviceType.FRIDGE.getDeviceTypeName();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -36,7 +36,7 @@ public class DeviceTypesTest {
         String expectedResult = "Lamp";
 
         //Act
-        String result = DeviceTypes.LAMP.getDeviceTypeName();
+        String result = DeviceType.LAMP.getDeviceTypeName();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -48,7 +48,7 @@ public class DeviceTypesTest {
         String expectedResult = "Washing Machine";
 
         //Act
-        String result = DeviceTypes.WASHING_MACHINE.getDeviceTypeName();
+        String result = DeviceType.WASHING_MACHINE.getDeviceTypeName();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -60,7 +60,7 @@ public class DeviceTypesTest {
         String expectedResult = "Washing Machine";
 
         //Act
-        String result = DeviceTypes.WASHING_MACHINE.getDeviceTypeName();
+        String result = DeviceType.WASHING_MACHINE.getDeviceTypeName();
 
         //Assert
         assertEquals(expectedResult, result);

@@ -425,4 +425,8 @@ public class House {
         DeviceList listOfAllDevicesOffAType = getAllDevicesOfAType(type);
         return listOfAllDevicesOffAType.getDeviceName(devicePosition);
     }
+
+    public String getDeviceTypeListToString(int position) {
+        return this.mRoomList.getRoomFromPosition(position).getDeviceTypeListToString();
+    }
 }

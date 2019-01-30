@@ -157,6 +157,7 @@ public class SensorList {
         return nearestSensors;
     }
 
+
     /**
      * method that get the length of the sensors list.
      */
