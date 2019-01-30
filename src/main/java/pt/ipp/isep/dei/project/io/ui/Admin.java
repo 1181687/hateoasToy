@@ -11,7 +11,7 @@ public class Admin {
     private PowerSourceTypeList powerSourceTypeList;
     private RoomList roomList;
     private HouseGridList gridList;
-    private DeviceTypes deviceTypes;
+    private DeviceType deviceType;
 
     public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, DeviceList deviceList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseGridList gridList) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
