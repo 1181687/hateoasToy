@@ -214,10 +214,12 @@ public class Menu {
         content.append("\n");
         content.append("5-Get the energy consumption of a device in a given period.");
         content.append("\n");
+        content.append("6-Get data series of the energy consumption of a device/room/grid in a given period.");
+        content.append("\n");
         content.append(RETURN_MENU);
         content.append("\n");
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 5);
+        return InputValidator.getIntRange(label, 0, 6);
     }
 
     public static int roomOwnerMenu() {
