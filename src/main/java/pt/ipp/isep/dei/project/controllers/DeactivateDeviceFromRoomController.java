@@ -4,13 +4,13 @@ import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
 
-public class DeativateDeviceFromRoomController {
+public class DeactivateDeviceFromRoomController {
 
     private House mHouse;
     private Room mRoom;
     private Device mDevice;
 
-    public DeativateDeviceFromRoomController(House mHouse) {
+    public DeactivateDeviceFromRoomController(House mHouse) {
         this.mHouse = mHouse;
     }
 
@@ -21,15 +21,6 @@ public class DeativateDeviceFromRoomController {
      */
     public String getRoomListContent() {
         return this.mHouse.getRoomListContent();
-    }
-
-    /**
-     * method that returns the method deviceListIsEmpty of the Class House
-     *
-     * @param position
-     */
-    public boolean isDeviceListEmpty(int position) {
-        return this.mHouse.isDeviceListEmpty(position);
     }
 
     /**
@@ -47,7 +38,7 @@ public class DeativateDeviceFromRoomController {
      * @param position
      * @return the position
      */
-    public String getDeviceNameByPosition(int position) {
+    public String deviceNameByPosition(int position) {
         return this.mRoom.getDeviceNameByPosition(position);
     }
 
@@ -56,7 +47,7 @@ public class DeativateDeviceFromRoomController {
      *
      * @return the size of the device list.
      */
-    public int getDeviceListSize() {
+    public int deviceListSize() {
         return this.mRoom.getDevicesListSize();
     }
 
@@ -65,7 +56,7 @@ public class DeativateDeviceFromRoomController {
      *
      * @return a boolean.
      */
-    public boolean roomListIsEmpty() {
+    public boolean roomListEmpty() {
         return this.mHouse.getRoomList().isEmpty();
     }
 
@@ -73,7 +64,7 @@ public class DeativateDeviceFromRoomController {
      * method that get a room by position from the list.
      * @param option
      */
-    public void getRoomByPosition(int option) {
+    public void getRoomPosition(int option) {
         this.mRoom = this.mHouse.getRoomOfTheRoomList(option);
     }
 
@@ -82,7 +73,7 @@ public class DeativateDeviceFromRoomController {
      *
      * @return a boolean.
      */
-    public boolean deviceListIsEmpty() {
+    public boolean deviceListEmpty() {
         return this.mRoom.isDeviceListEmpty();
     }
 

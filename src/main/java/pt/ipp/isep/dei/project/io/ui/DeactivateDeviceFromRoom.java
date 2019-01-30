@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.DeativateDeviceFromRoomController;
+import pt.ipp.isep.dei.project.controllers.DeactivateDeviceFromRoomController;
 import pt.ipp.isep.dei.project.model.House;
 
-public class DeativateDeviceFromRoom {
+public class DeactivateDeviceFromRoom {
 
-    private DeativateDeviceFromRoomController mController;
+    private DeactivateDeviceFromRoomController mController;
 
-    public DeativateDeviceFromRoom(House house) {
+    public DeactivateDeviceFromRoom(House house) {
 
-        this.mController = new DeativateDeviceFromRoomController(house);
+        this.mController = new DeactivateDeviceFromRoomController(house);
     }
 
     public void run() {
@@ -17,7 +17,7 @@ public class DeativateDeviceFromRoom {
         // LIST OF ROOMS
         StringBuilder content = new StringBuilder();
 
-        if (this.mController.roomListIsEmpty()) {
+        if (this.mController.roomListEmpty()) {
             System.out.println("There are no rooms in the house. Please create a room.");
 
         } else {
@@ -30,10 +30,10 @@ public class DeativateDeviceFromRoom {
                 if (position == -1) {
                     return;
                 }
-                mController.getRoomByPosition(position);
+                mController.getRoomPosition(position);
 
                 // LIST OF DEVICES
-                if (this.mController.deviceListIsEmpty()) {
+                if (this.mController.deviceListEmpty()) {
                     System.out.println("\n There are no devices in this room. \n");
 
                 } else {
@@ -42,7 +42,7 @@ public class DeativateDeviceFromRoom {
                         String label2 = "\n> This is the list of activated devices. Please select the device you want to deativate: \n"
                                 + mController.getActiveDeviceListToString() + exit;
 
-                        int deviceListLength = mController.getDeviceListSize();
+                        int deviceListLength = mController.deviceListSize();
                         int position1 = InputValidator.getIntRange(label2, 0, deviceListLength) - 1;
                         if (position1 == -1) {
                             return;
@@ -57,7 +57,7 @@ public class DeativateDeviceFromRoom {
                             String answer2 = InputValidator.confirmValidation(label5);
                             if ("y".equals(answer2) || "Y".equals(answer2)) {
 
-                                String deativateDevice = mController.getDeviceNameByPosition(position1);
+                                String deativateDevice = mController.deviceNameByPosition(position1);
                                 if (mController.deactivateDevice(deativateDevice)) {
                                     System.out.println("\n The device has been deativated. \n");
                                 }
