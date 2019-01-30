@@ -87,7 +87,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     }
 
     @Test
-    public void gettHouseGridName(){
+    public void getHouseGridName(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
         houseGridList.addHouseGrid(grid1);

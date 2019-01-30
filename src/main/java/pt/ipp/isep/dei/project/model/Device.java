@@ -4,10 +4,7 @@ package pt.ipp.isep.dei.project.model;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Device implements Measurable {
     private String mName;
@@ -271,7 +268,7 @@ public class Device implements Measurable {
     }
 
     @Override
-    public HashMap<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
+    public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         HashMap<LocalDateTime, Double> hmap = new HashMap<>();
         List<Readings> validReadingsList = getReadingsListInInterval(startDate, endDate);
         for (Readings Readings : validReadingsList) {

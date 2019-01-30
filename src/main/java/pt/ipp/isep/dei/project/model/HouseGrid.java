@@ -3,7 +3,10 @@ package pt.ipp.isep.dei.project.model;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Map;
 
 import static java.util.Objects.isNull;
 
@@ -235,7 +238,13 @@ public class HouseGrid implements Measurable {
     }
 
     @Override
-    public HashMap<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
+    public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
+    /*    HashMap<LocalDateTime, Double> readingsMap = new HashMap<>();
+        for (Room room : this.mRoomList.getRoomList()) {
+            readingsMap.putAll(room.getDataSeries(startDate,endDate));
+        }
+        HashMap<LocalDateTime, Double> sortedReadingsMap = new HashMap<>();
+        Collections.sort(sortedReadingsMap, Comparator.comparing(sortedReadingsMap::keySet));*/
         return null;
     }
 }

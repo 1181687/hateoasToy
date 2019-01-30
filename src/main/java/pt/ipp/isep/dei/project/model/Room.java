@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.model;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;
@@ -366,7 +367,7 @@ public class Room implements Measurable {
     }
 
     @Override
-    public HashMap<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
+    public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         return null;
     }
 }
