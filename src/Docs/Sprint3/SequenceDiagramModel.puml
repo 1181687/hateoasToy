@@ -17,7 +17,6 @@ skinparam sequence {
 	ActorFontName Aapex
 }
 
-autonumber
 actor PowerUser
 PowerUser -> ":UI":
 activate ":UI"
