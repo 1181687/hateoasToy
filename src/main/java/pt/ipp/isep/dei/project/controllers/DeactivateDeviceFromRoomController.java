@@ -8,7 +8,6 @@ public class DeactivateDeviceFromRoomController {
 
     private House mHouse;
     private Room mRoom;
-    private Device mDevice;
 
     public DeactivateDeviceFromRoomController(House mHouse) {
         this.mHouse = mHouse;

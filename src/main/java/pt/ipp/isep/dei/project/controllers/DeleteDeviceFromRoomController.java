@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
 
@@ -8,7 +7,6 @@ public class DeleteDeviceFromRoomController {
 
     private House mHouse;
     private Room mRoom;
-    private Device mDevice;
 
     /**
      * construtor of controller
