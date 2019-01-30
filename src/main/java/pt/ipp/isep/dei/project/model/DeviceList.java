@@ -286,7 +286,7 @@ public class DeviceList {
                 content.append("\n");
                 numberInTheList++;
             } else {
-                content.append(numberInTheList + " - Name of the device: " + getDeviceList().get(i - 1).getName() + " - DEACTIVE");
+                content.append(numberInTheList + " - Name of the device: " + getDeviceList().get(i - 1).getName() + " - DEACTIVATED");
                 content.append("\n");
                 numberInTheList++;
             }
