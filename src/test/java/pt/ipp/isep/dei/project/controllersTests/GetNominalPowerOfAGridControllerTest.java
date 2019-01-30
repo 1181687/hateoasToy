@@ -101,7 +101,7 @@ public class GetNominalPowerOfAGridControllerTest {
     }
 
     @Test
-    public void getHouseGridTotalNominalPowerCalculatesTotalNominalPowerOfHGWithTwoDevicesShouldReturn15(){
+    public void getHouseGridTotalNominalPower_CalculatesTotalNominalPowerOfHGWithTwoDevices_ShouldReturn15(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
         houseGridList.addHouseGrid(grid1);

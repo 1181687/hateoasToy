@@ -2,8 +2,12 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionOfAGridController;
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerOfAGridController;
+import pt.ipp.isep.dei.project.io.ui.GetEnergyConsumptionOfAGrid;
 import pt.ipp.isep.dei.project.model.*;
+
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -11,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GetEnergyConsumptionOfAGridControllerTest {
 
-    private GetNominalPowerOfAGridController controller;
+    private GetEnergyConsumptionOfAGridController controller;
     private HouseGridList houseGridList;
 
     @BeforeEach
@@ -29,13 +33,13 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         Address address = new Address("4200-072", houseLocation);
         House houseEdificioB = new House(roomList, houseGridList, address, insertedGeoArea);
 
-        this.controller = new GetNominalPowerOfAGridController(houseEdificioB);
+        this.controller = new GetEnergyConsumptionOfAGridController(houseEdificioB);
     }
 
     @Test
     public void checkIfGridListIsEmptyWithEmptyHouseGridListShouldReturnTrue(){
         //Act
-        boolean result = controller.isGridListEmpty();
+        boolean result = controller.isHouseGridListEmpty();
         //Assert
         assertTrue(result);
     }
@@ -46,7 +50,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         HouseGrid grid1 = new HouseGrid("Grid 1");
         houseGridList.addHouseGrid(grid1);
         //Act
-        boolean result = controller.isGridListEmpty();
+        boolean result = controller.isHouseGridListEmpty();
         //Assert
         assertFalse(result);
     }
@@ -72,5 +76,57 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         int result = controller.getHouseGridListSize();
         //Assert
         assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void listHouseGridsTestWithOneHouseGridShouldShowListWithOneGrid(){
+        //Arrange
+        HouseGrid grid1 = new HouseGrid("Grid 1");
+        houseGridList.addHouseGrid(grid1);
+        String expectedResult = "1 - Name: Grid 1\n";
+        //Act
+        String result = controller.getHouseGridListToString();
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void getEnergyConsumptionInAInterval(){
+        //Arrange
+        Dimension dimension = new Dimension(25, 25, 25);
+        Room room1 = new Room("Room", 2, dimension);
+
+        DeviceSpecs deviceSpecs = new Lamp(25, 20);
+        Device lamp = new Device("Lamp", room1, deviceSpecs);
+
+
+        String gridName = "Grid 1";
+        HouseGrid grid1 = new HouseGrid(gridName);
+        grid1.attachRoom(room1);
+        houseGridList.addHouseGrid(grid1);
+
+        LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
+        LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
+
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Measurement measurement0 = new Measurement(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Measurement measurement1 = new Measurement(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Measurement measurement2 = new Measurement(7, time2);
+
+        lamp.addMeasurementToTheList(measurement0);
+        lamp.addMeasurementToTheList(measurement1);
+        lamp.addMeasurementToTheList(measurement2);
+
+        int position = 0;
+        controller.getHouseGridByPosition(position);
+
+        double expectedResult = 12;
+        //Act
+        double result = controller.getEnergyConsumptionInAnInterval(startTime, endTime);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
     }
 }
