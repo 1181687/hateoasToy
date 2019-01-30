@@ -1964,6 +1964,46 @@ public class HouseTest {
     }
 
     @Test
+    public void getNumberOfDevicesTest() {
+        // Arrange
+        // Dimension Instantiation
+        Dimension dim = new Dimension(3, 5, 6);
+
+        // Room Instantiation
+        Room room0 = new Room("Kitchen", 1, dim);
+        Room room1 = new Room("Laundry", 2, dim);
+
+        // Fridge Instantiation
+        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+
+        // ElectricWaterHeater Instantiation
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(50, 150,
+                0.9, 100);
+
+        // Device Instantiation
+        Device device0 = new Device("Fridgeratah V14", room0, fridge);
+        room0.addDevice(device0);
+        Device device1 = new Device("Bosch Tronic 3000", room1, electricWaterHeater);
+        room1.addDevice(device1);
+
+        // RoomList Instantiation
+        RoomList roomList = new RoomList();
+        roomList.addRoom(room0);
+        roomList.addRoom(room1);
+
+        // House Instantiation
+        House house = new House(roomList, null, null, null);
+
+        int expectedResult = 2;
+
+        // Act
+        int result = house.getNumberOfDevices();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void getDeviceByPositionTest() {
         // Arrange
         // Dimension Instantiation

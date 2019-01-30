@@ -61,6 +61,16 @@ public class Main {
         LocalDateTime date3 = LocalDate.of(2019, 1, 1).atStartOfDay();
         LocalDateTime date4 = LocalDate.of(2019, 1, 2).atStartOfDay();
         LocalDateTime date5 = LocalDate.of(2019, 1, 2).atStartOfDay();
+        LocalDateTime date6 = LocalDateTime.of(2019, 1, 29, 00, 00, 00);
+        LocalDateTime date7 = LocalDateTime.of(2019, 1, 29, 8, 00, 00);
+        LocalDateTime date8 = LocalDateTime.of(2019, 1, 29, 16, 00, 00);
+        LocalDateTime date9 = LocalDateTime.of(2019, 1, 30, 00, 00, 00);
+        LocalDateTime date10 = LocalDateTime.of(2019, 1, 30, 8, 00, 00);
+        LocalDateTime date11 = LocalDateTime.of(2019, 1, 30, 16, 00, 00);
+        LocalDateTime date12 = LocalDateTime.of(2019, 1, 31, 00, 00, 00);
+        LocalDateTime date13 = LocalDateTime.of(2019, 1, 31, 8, 00, 00);
+        LocalDateTime date14 = LocalDateTime.of(2019, 1, 31, 16, 00, 00);
+        LocalDateTime date15 = LocalDateTime.of(2019, 2, 1, 00, 00, 00);
 
         // Sensor 1
         Measurement temp = new Measurement(14.0, date1);
@@ -124,6 +134,30 @@ public class Main {
         Measurement temp52 = new Measurement(3.2, date4);
         Measurement temp53 = new Measurement(14.1, date4);
         Measurement temp54 = new Measurement(8.3, date4);
+
+        // Device 1
+        Measurement deviceEC = new Measurement(1.0, date6);
+        Measurement deviceEC1 = new Measurement(2.9, date7);
+        Measurement deviceEC2 = new Measurement(3.5, date8);
+        Measurement deviceEC3 = new Measurement(1.2, date9);
+        Measurement deviceEC4 = new Measurement(2.2, date10);
+        Measurement deviceEC5 = new Measurement(3.3, date11);
+        Measurement deviceEC6 = new Measurement(1.1, date12);
+        Measurement deviceEC7 = new Measurement(2.2, date13);
+        Measurement deviceEC8 = new Measurement(3.5, date14);
+        Measurement deviceEC9 = new Measurement(1.3, date15);
+
+        // Device 2
+        Measurement device2EC = new Measurement(1.0, date6);
+        Measurement device2EC1 = new Measurement(3.9, date7);
+        Measurement device2EC2 = new Measurement(3.5, date8);
+        Measurement device2EC3 = new Measurement(1.2, date9);
+        Measurement device2EC4 = new Measurement(3.2, date10);
+        Measurement device2EC5 = new Measurement(3.3, date11);
+        Measurement device2EC6 = new Measurement(1.1, date12);
+        Measurement device2EC7 = new Measurement(3.2, date13);
+        Measurement device2EC8 = new Measurement(3.5, date14);
+        Measurement device2EC9 = new Measurement(1.3, date15);
 
 
         // SENSORS
@@ -281,12 +315,32 @@ public class Main {
         Device device = new Device("EHW B109", room2, electricWaterHeater);
         room2.addDevice(device);
         deviceList.addDevice(device);
+        device.addMeasurementToTheList(deviceEC);
+        device.addMeasurementToTheList(deviceEC1);
+        device.addMeasurementToTheList(deviceEC2);
+        device.addMeasurementToTheList(deviceEC3);
+        device.addMeasurementToTheList(deviceEC4);
+        device.addMeasurementToTheList(deviceEC5);
+        device.addMeasurementToTheList(deviceEC6);
+        device.addMeasurementToTheList(deviceEC7);
+        device.addMeasurementToTheList(deviceEC8);
+        device.addMeasurementToTheList(deviceEC9);
 
         // Dishwasher
         DeviceSpecs dishWasher = new DishWasher(50, 1.5, dishwasherPrograms);
         Device device2 = new Device("Dishwasher B109", room2, dishWasher);
         room2.addDevice(device2);
         deviceList.addDevice(device2);
+        device.addMeasurementToTheList(device2EC);
+        device.addMeasurementToTheList(device2EC1);
+        device.addMeasurementToTheList(device2EC2);
+        device.addMeasurementToTheList(device2EC3);
+        device.addMeasurementToTheList(device2EC4);
+        device.addMeasurementToTheList(device2EC5);
+        device.addMeasurementToTheList(device2EC6);
+        device.addMeasurementToTheList(device2EC7);
+        device.addMeasurementToTheList(device2EC8);
+        device.addMeasurementToTheList(device2EC9);
 
         // Washing Machine
         DeviceSpecs washingMachine = new WashingMachine(10, 2.5, washingMachinePrograms);

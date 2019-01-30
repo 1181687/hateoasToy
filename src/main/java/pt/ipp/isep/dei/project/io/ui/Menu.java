@@ -87,9 +87,11 @@ public class Menu {
         content.append("\n");
         content.append("11-Delete a device from a room");
         content.append("\n");
+        content.append("12-Get the energy consumption of a device in a given period.");
+        content.append("\n");
         content.append(RETURN_MENU);
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 11);
+        return InputValidator.getIntRange(label, 0, 12);
     }
 
     public static int regularUserMenu() {
@@ -190,7 +192,7 @@ public class Menu {
         content.append("\n");
         content.append("3-Check nominal power of a room");
         content.append("\n");
-        content.append("4-Deativate a device from a room");
+        content.append("4-Deactivate a device from a room");
         content.append("\n");
         content.append(RETURN_MENU);
         content.append("\n");
@@ -210,10 +212,12 @@ public class Menu {
         content.append("\n");
         content.append("4-Get the energy consumption of a house grid in a given period.");
         content.append("\n");
+        content.append("5-Get the energy consumption of a device in a given period.");
+        content.append("\n");
         content.append(RETURN_MENU);
         content.append("\n");
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 4);
+        return InputValidator.getIntRange(label, 0, 5);
     }
 
     public static int roomOwnerMenu() {
