@@ -210,12 +210,12 @@ public class HouseGridListTest {
         Room room1 = new Room(name, 2, dim);
 
         ProgramList programList = new ProgramList();
-        DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
-        DeviceSpecs specWashing = new WashingMachine(100, 100, programList);
-        DeviceSpecs specDishWasher = new DishWasher(100, 100, programList);
+        DeviceSpecs specFridge = new FridgeSpecs(100, 100, 100, 100);
+        DeviceSpecs specWashing = new WashingMachineSpecs(100, 100, programList);
+        DeviceSpecs specDishWasher = new DishWasherSpecs(100, 100, programList);
         Device dev1 = new Device("FridgeAriston", room1, specFridge);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasher", room1, specDishWasher);
+        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasher);
 
         room1.addDevice(dev1);
         room1.addDevice(dev2);
@@ -225,10 +225,10 @@ public class HouseGridListTest {
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim);
-        DeviceSpecs specWaterHeater = new ElectricWaterHeater(100, 100, 100, 0.9);
+        DeviceSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
         Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
-        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
+        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
 
         room2.addDevice(dev4);
         room2.addDevice(dev5);
@@ -266,12 +266,12 @@ public class HouseGridListTest {
         Room room1 = new Room(name, 2, dim);
 
         ProgramList programList = new ProgramList();
-        DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
-        DeviceSpecs specWashing = new WashingMachine(100, 100, programList);
-        DeviceSpecs specDishWasher = new DishWasher(100, 100, programList);
+        DeviceSpecs specFridge = new FridgeSpecs(100, 100, 100, 100);
+        DeviceSpecs specWashing = new WashingMachineSpecs(100, 100, programList);
+        DeviceSpecs specDishWasher = new DishWasherSpecs(100, 100, programList);
         Device dev1 = new Device("FridgeAriston", room1, specFridge);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasher", room1, specDishWasher);
+        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasher);
 
         room1.addDevice(dev1);
         room1.addDevice(dev2);
@@ -281,10 +281,10 @@ public class HouseGridListTest {
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim);
-        DeviceSpecs specWaterHeater = new ElectricWaterHeater(100, 100, 100, 0.9);
+        DeviceSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
         Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
-        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
+        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
 
         room2.addDevice(dev4);
         room2.addDevice(dev5);

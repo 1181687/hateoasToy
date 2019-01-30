@@ -4,6 +4,9 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.Objects;
+
 import java.util.*;
 import static java.util.Objects.isNull;
 
@@ -421,7 +424,7 @@ public class Room implements Measurable {
         if (isDeviceNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, nominalPower, performanceRatio);
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(hotWaterTemperature, maximumVolume, nominalPower, performanceRatio);
 
         return new Device(name, this, electricWaterHeater);
     }
@@ -440,8 +443,8 @@ public class Room implements Measurable {
         if (isDeviceNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
-        WashingMachine washingMachine = new WashingMachine(capacity, nominalPower, programList);
-        return new Device(name, this, washingMachine);
+        WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
+        return new Device(name, this, washingMachineSpecs);
     }
 
 
@@ -458,7 +461,7 @@ public class Room implements Measurable {
         if (isDeviceNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
-        DishWasher dishwasher = new DishWasher(capacity, nominalPower, programList);
+        DishWasherSpecs dishwasher = new DishWasherSpecs(capacity, nominalPower, programList);
         return new Device(name, this, dishwasher);
     }
 
@@ -475,7 +478,7 @@ public class Room implements Measurable {
         if (isDeviceNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
-        DeviceSpecs lamp = new Lamp(luminousFlux, nominalPower);
+        DeviceSpecs lamp = new LampSpecs(luminousFlux, nominalPower);
         return new Device(name, this, lamp);
     }
 
@@ -493,8 +496,8 @@ public class Room implements Measurable {
         if (isDeviceNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
-        Fridge fridge = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        return new Device(name, this, fridge);
+        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        return new Device(name, this, fridgeSpecs);
     }
 
     public Device getDeviceByPosition(int position) {

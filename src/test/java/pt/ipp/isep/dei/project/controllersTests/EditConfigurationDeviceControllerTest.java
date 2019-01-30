@@ -137,12 +137,12 @@ public class EditConfigurationDeviceControllerTest {
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
-        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
         Device dev = new Device("Fridge1", room, deviceSpecs);
 
         double luminousFlux = 10.0;
         double nominalPower1 = 0.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev);
@@ -184,7 +184,7 @@ public class EditConfigurationDeviceControllerTest {
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
-        Fridge deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        FridgeSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
         Device dev = new Device("Fridge1", room, deviceSpecs);
 
         int position = 0;
@@ -224,7 +224,7 @@ public class EditConfigurationDeviceControllerTest {
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
         Device dev2 = new Device("Lamp2", room, deviceSpecs1);
         room.addDevice(dev1);
@@ -261,7 +261,7 @@ public class EditConfigurationDeviceControllerTest {
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
         room.addDevice(dev1);
 
@@ -304,7 +304,7 @@ public class EditConfigurationDeviceControllerTest {
         // Device Instantiation
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device device = new Device("Lamp1", room, deviceSpecs1);
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
@@ -350,7 +350,7 @@ public class EditConfigurationDeviceControllerTest {
         // Device Instantiation
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device device = new Device("Electric Water Heater", room, deviceSpecs1);
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
@@ -487,7 +487,7 @@ public class EditConfigurationDeviceControllerTest {
         Room room = new Room(name, 2, dim);
         DeviceList devList = new DeviceList();
 
-        DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
+        DeviceSpecs specFridge = new FridgeSpecs(100, 100, 100, 100);
         Device dev1 = new Device("FridgeAriston", room, specFridge);
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
@@ -580,7 +580,7 @@ public class EditConfigurationDeviceControllerTest {
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-        DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
+        DeviceSpecs specFridge = new FridgeSpecs(100, 100, 100, 100);
         Device dev1 = new Device("FridgeAriston", room, specFridge);
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
@@ -622,7 +622,7 @@ public class EditConfigurationDeviceControllerTest {
         // Device Instantiation
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device device = new Device("Electric Water Heater", room, deviceSpecs1);
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
@@ -664,12 +664,12 @@ public class EditConfigurationDeviceControllerTest {
         // Room Instantiation
         Room room = new Room("Room", 2, dim);
 
-        // ElectricWaterHeater Instantiation
+        // ElectricWaterHeaterSpecs Instantiation
         double hotWaterTemp = 50;
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
 
         int coldWaterTempPosition = 5;
         // Device Instantiation
@@ -719,9 +719,9 @@ public class EditConfigurationDeviceControllerTest {
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
         // Device Instantiation
-        Device device = new Device("Electric Water Heater", room, electricWaterHeater);
+        Device device = new Device("Electric Water Heater", room, electricWaterHeaterSpecs);
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
         int position = 0;

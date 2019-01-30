@@ -108,7 +108,7 @@ public class GetNominalPowerOfAGridControllerTest {
 
         Dimension dimension = new Dimension(2, 5, 10);
         Room room1 = new Room("Quarto", 1, dimension);
-        DeviceSpecs specs = new Fridge(25, 50, 5000, 7.5);
+        DeviceSpecs specs = new FridgeSpecs(25, 50, 5000, 7.5);
         Device fridge1 = new Device("FridgeA", room1, specs);
         Device fridge2 = new Device("FridgeB", room1, specs);
 
