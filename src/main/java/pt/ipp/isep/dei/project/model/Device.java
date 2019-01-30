@@ -268,6 +268,13 @@ public class Device implements Measurable {
         }
     }
 
+    /**
+     * Method that returns the Data series of the power consumption of the device in a given interval.
+     *
+     * @param startDate
+     * @param endDate
+     * @return
+     */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> hmap = new TreeMap<>();
