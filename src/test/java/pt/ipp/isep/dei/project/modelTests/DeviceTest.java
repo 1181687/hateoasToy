@@ -354,36 +354,6 @@ public class DeviceTest {
         assertTrue(result);
     }
 
-    /* @Test
-    void testGetSpecsAttributesToString() {
-        // Arrange
-        // Dimension Instantiation
-        double height = 3;
-        double length = 3.5;
-        double width = 3.5;
-        Dimension dim = new Dimension(height, length, width);
-
-        // Room Instantiation
-        Room room = new Room("Room", 2, dim);
-
-        // Device Instantiation
-        double luminousFlux = 10.0;
-        double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
-        Device device = new Device("Electric Water Heater", room, deviceSpecs1);
-
-        room.addDevice(device);
-
-        String expectedResult = "1 - Luminous Flux: 10.0\n" +
-                "2 - Nominal Power: 1.0\n";
-
-        // act
-        String result = device.getSpecsAttributesToString();
-
-        // assert
-        assertEquals(expectedResult, result);
-    } */
-
     @Test
     void testGetDeviceAttributesToString() {
         //initiate Room
@@ -478,18 +448,18 @@ public class DeviceTest {
         // Device Instantiation
         Device device = new Device("Fridgeratah V14", room, fridge);
 
-        // Measurement Instantiation
+        // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement0 = new Measurement(3, time0);
+        Readings readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement1 = new Measurement(5, time1);
+        Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement2 = new Measurement(7, time2);
+        Readings readings2 = new Readings(7, time2);
 
-        // List<Measurement Configuration
-        device.addMeasurementToTheList(measurement0);
-        device.addMeasurementToTheList(measurement1);
-        device.addMeasurementToTheList(measurement2);
+        // List<Readings Configuration
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
 
         double expectedResult = 7;
 
@@ -521,18 +491,18 @@ public class DeviceTest {
         // Device Instantiation
         Device device = new Device("Fridgeratah V14", room, fridge);
 
-        // Measurement Instantiation
+        // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement0 = new Measurement(3, time0);
+        Readings readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement1 = new Measurement(5, time1);
+        Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement2 = new Measurement(7, time2);
+        Readings readings2 = new Readings(7, time2);
 
-        // List<Measurement Configuration
-        device.addMeasurementToTheList(measurement0);
-        device.addMeasurementToTheList(measurement1);
-        device.addMeasurementToTheList(measurement2);
+        // List<Readings Configuration
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
 
         double expectedResult = 12;
 
@@ -564,18 +534,18 @@ public class DeviceTest {
         // Device Instantiation
         Device device = new Device("Fridgeratah V14", room, fridge);
 
-        // Measurement Instantiation
+        // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement0 = new Measurement(3, time0);
+        Readings readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement1 = new Measurement(5, time1);
+        Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement2 = new Measurement(7, time2);
+        Readings readings2 = new Readings(7, time2);
 
-        // List<Measurement Configuration
-        device.addMeasurementToTheList(measurement0);
-        device.addMeasurementToTheList(measurement1);
-        device.addMeasurementToTheList(measurement2);
+        // List<Readings Configuration
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
 
         double expectedResult = 0;
 
@@ -607,5 +577,61 @@ public class DeviceTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void getIsActiveTrue() {
+
+        // Arrange
+        // Dimension Instantiation
+        double height = 3;
+        double length = 5;
+        double width = 6;
+        Dimension dim = new Dimension(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Kitchen", 1, dim);
+
+        // Fridge Instantiation
+        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+
+        // Device Instantiation
+        Device device = new Device("Fridgeratah V14", room, fridge);
+
+        room.addDevice(device);
+
+        // act
+        boolean result = device.getIsActive();
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void getIsActiveFalse() {
+
+        // Arrange
+        // Dimension Instantiation
+        double height = 3;
+        double length = 5;
+        double width = 6;
+        Dimension dim = new Dimension(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Kitchen", 1, dim);
+
+        // Fridge Instantiation
+        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+
+        // Device Instantiation
+        Device device = new Device("Fridgeratah V14", room, fridge);
+
+        room.addDevice(device);
+        device.setDeactivateDevice();
+
+        // act
+        boolean result = device.getIsActive();
+
+        // assert
+        assertFalse(result);
+    }
 
 }

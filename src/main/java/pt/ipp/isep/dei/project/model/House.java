@@ -143,16 +143,16 @@ public class House {
      * @param type
      * @return latest measurement.
      */
-    public Measurement getLatestMeasurementBySensorType(String name, SensorType type) {
+    public Readings getLatestMeasurementBySensorType(String name, SensorType type) {
         Room room = mRoomList.getRoomByName(name);
         if (Objects.isNull(room)) {
             return null;
         }
-        Measurement measurement = room.getLatestMeasurementBySensorType(type);
-        if (Objects.isNull(measurement)) {
+        Readings readings = room.getLatestMeasurementBySensorType(type);
+        if (Objects.isNull(readings)) {
             return null;
         }
-        return measurement;
+        return readings;
     }
 
     /**

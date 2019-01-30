@@ -8,6 +8,7 @@ public class GeographicalAreaTypeList {
 
     /**
      * constructor that receives a list of geographical areas type.
+     *
      * @param geographicalAreaTypeList
      */
     public GeographicalAreaTypeList(List<GeographicalAreaType> geographicalAreaTypeList) {
@@ -22,6 +23,7 @@ public class GeographicalAreaTypeList {
 
     /**
      * method that get a geo area type list.
+     *
      * @return a geographical areas types list
      */
     public List<GeographicalAreaType> getGeoAreaTypeList() {
@@ -30,6 +32,7 @@ public class GeographicalAreaTypeList {
 
     /**
      * method that add a type of geographical area.
+     *
      * @param geographicalAreaType
      * @return true if a geographicalAreaType is added. If not, return false.
      */
@@ -43,6 +46,7 @@ public class GeographicalAreaTypeList {
 
     /**
      * method that create a new type of geo area.
+     *
      * @param newType
      * @return a new type of geo area.
      */
@@ -52,6 +56,7 @@ public class GeographicalAreaTypeList {
 
     /**
      * method that get the list of geo area types
+     *
      * @return a list of geo area types.
      */
     public List<String> getListOfGeoAreaTypes() {

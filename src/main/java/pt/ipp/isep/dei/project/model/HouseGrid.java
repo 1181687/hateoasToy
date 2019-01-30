@@ -25,7 +25,7 @@ public class HouseGrid implements Measurable {
         this.mRoomList = new RoomList();
         this.mPowerSourceList = new PowerSourceList();
         this.mMaximumContractedPower = 0;
-        this.mMeteringPeriod = setMeteringPeriod();
+        this.mMeteringPeriod = setGridMeteringPeriod();
 
     }
 
@@ -200,11 +200,11 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * TODO
+     * Method that calculates the total energy consumption of a house grid in a given interval.
      *
-     * @param startDate
-     * @param endDate
-     * @return
+     * @param startDate the initial date/hour of the period to be considered
+     * @param endDate the final date/hour of the period to be considered
+     * @return Double
      */
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
@@ -225,7 +225,7 @@ public class HouseGrid implements Measurable {
      *
      * @return
      */
-    public int setMeteringPeriod() {
+    public int setGridMeteringPeriod() {
         int meteringPeriod = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
         if (1440%meteringPeriod==0) {
             return meteringPeriod;

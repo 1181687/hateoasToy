@@ -11,12 +11,12 @@ public class Main {
     public static void main(String[] args) {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
-        if (1440 % meteringPeriodGrid!=0) {
+        if (1440 % meteringPeriodGrid != 0) {
             System.out.println("The grid metering period is not valid. Please configure the grid metering period for a valid value.");
             return;
         }
 
-        if (1440 % meteringPeriodDevice!=0 || meteringPeriodDevice % meteringPeriodGrid !=0) {
+        if (1440 % meteringPeriodDevice != 0 || meteringPeriodDevice % meteringPeriodGrid != 0) {
             System.out.println("The device metering period is not valid. Please configure the device metering period for a valid value.");
             return;
         }
@@ -73,67 +73,67 @@ public class Main {
         LocalDateTime date15 = LocalDateTime.of(2019, 2, 1, 00, 00, 00);
 
         // Sensor 1
-        Measurement temp = new Measurement(14.0, date1);
-        Measurement temp1 = new Measurement(13.7, date1);
-        Measurement temp2 = new Measurement(16.5, date1);
-        Measurement temp3 = new Measurement(15.1, date1);
-        Measurement temp4 = new Measurement(13.8, date2);
-        Measurement temp5 = new Measurement(13.3, date2);
-        Measurement temp6 = new Measurement(15.5, date2);
-        Measurement temp7 = new Measurement(14.2, date2);
-        Measurement temp8 = new Measurement(12.5, date3);
-        Measurement temp9 = new Measurement(12.4, date3);
-        Measurement temp10 = new Measurement(13.8, date3);
-        Measurement temp11 = new Measurement(12.9, date3);
-        Measurement temp12 = new Measurement(11.5, date4);
-        Measurement temp13 = new Measurement(11.2, date4);
-        Measurement temp14 = new Measurement(13.5, date4);
-        Measurement temp15 = new Measurement(12.8, date4);
+        Readings temp = new Readings(14.0, date1);
+        Readings temp1 = new Readings(13.7, date1);
+        Readings temp2 = new Readings(16.5, date1);
+        Readings temp3 = new Readings(15.1, date1);
+        Readings temp4 = new Readings(13.8, date2);
+        Readings temp5 = new Readings(13.3, date2);
+        Readings temp6 = new Readings(15.5, date2);
+        Readings temp7 = new Readings(14.2, date2);
+        Readings temp8 = new Readings(12.5, date3);
+        Readings temp9 = new Readings(12.4, date3);
+        Readings temp10 = new Readings(13.8, date3);
+        Readings temp11 = new Readings(12.9, date3);
+        Readings temp12 = new Readings(11.5, date4);
+        Readings temp13 = new Readings(11.2, date4);
+        Readings temp14 = new Readings(13.5, date4);
+        Readings temp15 = new Readings(12.8, date4);
 
         // Sensor 2
-        Measurement temp16 = new Measurement(84.0, date1);
-        Measurement temp17 = new Measurement(85.7, date1);
-        Measurement temp18 = new Measurement(76.5, date1);
-        Measurement temp19 = new Measurement(78.1, date1);
-        Measurement temp20 = new Measurement(83.8, date2);
-        Measurement temp21 = new Measurement(83.9, date2);
-        Measurement temp22 = new Measurement(75.5, date2);
-        Measurement temp23 = new Measurement(77.2, date2);
-        Measurement temp24 = new Measurement(82.5, date3);
-        Measurement temp25 = new Measurement(82.4, date3);
-        Measurement temp26 = new Measurement(73.8, date3);
-        Measurement temp27 = new Measurement(72.9, date3);
-        Measurement temp28 = new Measurement(80.5, date4);
-        Measurement temp29 = new Measurement(79.2, date4);
-        Measurement temp30 = new Measurement(71.5, date4);
-        Measurement temp31 = new Measurement(72.8, date4);
+        Readings temp16 = new Readings(84.0, date1);
+        Readings temp17 = new Readings(85.7, date1);
+        Readings temp18 = new Readings(76.5, date1);
+        Readings temp19 = new Readings(78.1, date1);
+        Readings temp20 = new Readings(83.8, date2);
+        Readings temp21 = new Readings(83.9, date2);
+        Readings temp22 = new Readings(75.5, date2);
+        Readings temp23 = new Readings(77.2, date2);
+        Readings temp24 = new Readings(82.5, date3);
+        Readings temp25 = new Readings(82.4, date3);
+        Readings temp26 = new Readings(73.8, date3);
+        Readings temp27 = new Readings(72.9, date3);
+        Readings temp28 = new Readings(80.5, date4);
+        Readings temp29 = new Readings(79.2, date4);
+        Readings temp30 = new Readings(71.5, date4);
+        Readings temp31 = new Readings(72.8, date4);
 
         // Sensor 3
-        Measurement temp32 = new Measurement(0.5, date);
-        Measurement temp33 = new Measurement(1.2, date1);
-        Measurement temp34 = new Measurement(1.5, date2);
-        Measurement temp35 = new Measurement(0.3, date3);
-        Measurement temp36 = new Measurement(0.0, date4);
-        Measurement temp37 = new Measurement(0.0, date4);
-        Measurement temp38 = new Measurement(0.0, date5);
+        Readings temp32 = new Readings(0.5, date);
+        Readings temp33 = new Readings(1.2, date1);
+        Readings temp34 = new Readings(1.5, date2);
+        Readings temp35 = new Readings(0.3, date3);
+        Readings temp36 = new Readings(0.0, date4);
+        Readings temp37 = new Readings(0.0, date4);
+        Readings temp38 = new Readings(0.0, date5);
 
         // Sensor 4
-        Measurement temp39 = new Measurement(8.0, date1);
-        Measurement temp40 = new Measurement(6.9, date1);
-        Measurement temp41 = new Measurement(16.5, date1);
-        Measurement temp42 = new Measurement(11.2, date1);
-        Measurement temp43 = new Measurement(7.2, date2);
-        Measurement temp44 = new Measurement(5.3, date2);
-        Measurement temp45 = new Measurement(15.1, date2);
-        Measurement temp46 = new Measurement(9.2, date2);
-        Measurement temp47 = new Measurement(6.5, date3);
-        Measurement temp48 = new Measurement(4.3, date3);
-        Measurement temp49 = new Measurement(14.8, date3);
-        Measurement temp50 = new Measurement(8.9, date3);
-        Measurement temp51 = new Measurement(6.1, date4);
-        Measurement temp52 = new Measurement(3.2, date4);
-        Measurement temp53 = new Measurement(14.1, date4);
-        Measurement temp54 = new Measurement(8.3, date4);
+        Readings temp39 = new Readings(8.0, date1);
+        Readings temp40 = new Readings(6.9, date1);
+        Readings temp41 = new Readings(16.5, date1);
+        Readings temp42 = new Readings(11.2, date1);
+        Readings temp43 = new Readings(7.2, date2);
+        Readings temp44 = new Readings(5.3, date2);
+        Readings temp45 = new Readings(15.1, date2);
+        Readings temp46 = new Readings(9.2, date2);
+        Readings temp47 = new Readings(6.5, date3);
+        Readings temp48 = new Readings(4.3, date3);
+        Readings temp49 = new Readings(14.8, date3);
+        Readings temp50 = new Readings(8.9, date3);
+        Readings temp51 = new Readings(6.1, date4);
+        Readings temp52 = new Readings(3.2, date4);
+        Readings temp53 = new Readings(14.1, date4);
+        Readings temp54 = new Readings(8.3, date4);
 
         // Device 1
         Measurement deviceEC = new Measurement(1.0, date6);

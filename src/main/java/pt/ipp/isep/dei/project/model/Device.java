@@ -12,7 +12,7 @@ public class Device implements Measurable {
     private String mName;
     private Room mLocation;
     private DeviceSpecs mSpec;
-    private List<Measurement> mMeasurementList = new ArrayList<>();
+    private List<Readings> mReadingsList = new ArrayList<>();
     private int mMeteringPeriod;
     private boolean mIsActive;
     private LocalDateTime mDeactivationDate;
@@ -189,24 +189,24 @@ public class Device implements Measurable {
     }
 
     /**
-     * Method that adds a measurement to the device.
+     * Method that adds a readings to the device.
      *
-     * @param measurement Measurement to be added.
+     * @param readings Readings to be added.
      */
-    public void addMeasurementToTheList(Measurement measurement) {
-        mMeasurementList.add(measurement);
+    public void addReadingsToTheList(Readings readings) {
+        mReadingsList.add(readings);
     }
 
     /**
      * Method that calculates the sum of the value in each measurement in a given measurement list.
      *
-     * @param measurementList List with measurements.
+     * @param readingsList List with measurements.
      * @return Double with the required sum.
      */
-    public double getSumOfTheMeasurements(List<Measurement> measurementList) {
+    public double getSumOfTheMeasurements(List<Readings> readingsList) {
         double sum = 0;
-        for (Measurement measurement : measurementList) {
-            sum += measurement.getValue();
+        for (Readings readings : readingsList) {
+            sum += readings.getValue();
         }
         return sum;
     }
@@ -222,29 +222,41 @@ public class Device implements Measurable {
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
         int numberOfValidMeasurements = 0;
-        List<Measurement> measurementList = new ArrayList<>();
-        for (Measurement measurement : mMeasurementList) {
-            if (!startDate.isAfter(measurement.getDateTime()) && !endDate.isBefore(measurement.getDateTime())) {
-                measurementList.add(measurement);
+        List<Readings> readingsList = new ArrayList<>();
+        for (Readings readings : mReadingsList) {
+            if (!startDate.isAfter(readings.getDateTime()) && !endDate.isBefore(readings.getDateTime())) {
+                readingsList.add(readings);
                 numberOfValidMeasurements++;
             }
         }
         if (numberOfValidMeasurements > 1) {
-            measurementList.remove(0);
-            totalEnergyConsumption = getSumOfTheMeasurements(measurementList);
+            readingsList.remove(0);
+            totalEnergyConsumption = getSumOfTheMeasurements(readingsList);
         }
         return totalEnergyConsumption;
     }
 
-    public void setDeativateDevice() {
+    /**
+     * method that set the deactivate device, turning it to false and giving a date
+     */
+    public void setDeactivateDevice() {
         this.mIsActive = false;
         this.mDeactivationDate = LocalDateTime.now();
     }
 
+    /**
+     * method that get an active device.
+     *
+     * @return an active device.
+     */
     public boolean getIsActive() {
         return mIsActive;
     }
 
+    /**
+     * method that set the metering period of a device
+     * @return if true, return the metering period. If not, return -1.
+     */
     public int setDeviceMeteringPeriod() {
         int meteringPeriod = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
         if (1440%meteringPeriod==0 && (meteringPeriod % Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"))==0)) {
@@ -253,4 +265,5 @@ public class Device implements Measurable {
             return -1;
         }
     }
+
 }
