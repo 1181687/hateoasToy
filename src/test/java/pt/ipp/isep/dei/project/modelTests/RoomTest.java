@@ -403,7 +403,7 @@ public class RoomTest {
 
         int expectResult = 2;
         //act
-        int result = room.getDevicesListLength();
+        int result = room.getDevicesListSize();
         //assert
         assertEquals(expectResult, result);
     }
@@ -521,6 +521,603 @@ public class RoomTest {
 
         // Act
         String result = room.getNameToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getTotalEnergyConsumptionInAnIntervalTestWithOneFullPeriod() {
+        // Arrange
+
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Kitchen", 1, dim);
+
+        // Fridge Instantiation
+        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+
+        // Device Instantiation
+        Device device = new Device("Fridgerator", room, fridge);
+
+        // Readings Instantiation
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings0 = new Readings(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings1 = new Readings(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings2 = new Readings(7, time2);
+
+        // List<Readings Configuration
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
+
+        double expectedResult = 7;
+
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+
+        // Act
+        double result = room.getEnergyConsumptionInAnInterval(startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    public void getTotalEnergyConsumptionInAnIntervalTestWithTwoFullPeriods() {
+        // Arrange
+        // Dimension Instantiation
+        double height = 3;
+        double length = 5;
+        double width = 6;
+        Dimension dim = new Dimension(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Kitchen", 1, dim);
+
+        // Fridge Instantiation
+        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+
+        // Device Instantiation
+        Device device = new Device("Fridgerator", room, fridge);
+
+        // Readings Instantiation
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings0 = new Readings(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings1 = new Readings(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings2 = new Readings(7, time2);
+
+        // List<Readings Configuration
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
+
+        double expectedResult = 12;
+
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+
+        // Act
+        double result = room.getEnergyConsumptionInAnInterval(startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    public void getTotalEnergyConsumptionInAnIntervalTestWithoutFullPeriods() {
+        // Arrange
+        // Dimension Instantiation
+        double height = 3;
+        double length = 5;
+        double width = 6;
+        Dimension dim = new Dimension(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Kitchen", 1, dim);
+
+        // Fridge Instantiation
+        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+
+        // Device Instantiation
+        Device device = new Device("Fridgerator", room, fridge);
+
+        // Readings Instantiation
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings0 = new Readings(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings1 = new Readings(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings2 = new Readings(7, time2);
+
+        // List<Readings Configuration
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
+
+        double expectedResult = 0;
+
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 9, 00, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+
+        // Act
+        double result = room.getEnergyConsumptionInAnInterval(startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    public void testGetDeviceTypeListContent() {
+        // Arrange
+        // Dimension Instantiation
+        double height = 3;
+        double length = 5;
+        double width = 6;
+        Dimension dim = new Dimension(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Kitchen", 1, dim);
+
+
+        String expectedResult = "1- Fridge\n" +
+                "2- Lamp\n" +
+                "3- Dish Washer\n" +
+                "4- Washing Machine\n" +
+                "5- Electric Water Heater\n";
+        //Act
+        String result = room.getDeviceTypeListToString();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    ///testar a partir daqui********************************************************************************************
+
+  /*  @Test
+    public void newElectricWaterHeater() {
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp0 = 50;
+        double maximumVolume0 = 150;
+        double nominalPower0 = 100;
+        double performanceRatio = 100;
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        Device expectedResult = new Device("Electric", room, electricWaterHeater1);
+        String name = "Electric";
+
+        Device result = room.newElectricWaterHeater(name, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void newElectricWaterHeaterNegative() {
+        // ElectricWaterHeater Instantiation
+        double hotWaterTemp0 = 50;
+        double maximumVolume0 = 150;
+        double nominalPower0 = 100;
+        double performanceRatio = 100;
+
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        Device d2 = new Device("Electric2", room, electricWaterHeater1);
+
+        DeviceList devList = new DeviceList();
+        devList.addDevice(d2);
+        String name = "ELECTRIC2";
+
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                room.newElectricWaterHeater(name, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio)
+        );
+
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+
+    }
+
+    @Test
+    public void testNewWashingMachine() {
+        // newWashingMachine Instantiation
+        String name = "Washing Machine Bosh";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        double capacity = 100;
+        ProgramList programList = new ProgramList();
+        DeviceSpecs washingMachine = new WashingMachine(capacity, nominalPower, programList);
+
+        Device d2 = new Device("Device2", room, washingMachine);
+        room.addDevice(d2);
+
+        Device expectedResult = new Device(name, room, washingMachine);
+
+        Device result = room.newWashingMachine(name, nominalPower, capacity, programList);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testNewWashingMachineNegative() {
+        // newWashingMachine Instantiation
+        String name = "Washing Machine Bosh";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        double capacity = 100;
+        ProgramList programList = new ProgramList();
+        DeviceSpecs washingMachine = new WashingMachine(capacity, nominalPower, programList);
+
+        Device d2 = new Device("Washing Machine Bosh", room, washingMachine);
+        room.addDevice(d2);
+
+
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                room.newWashingMachine(name, nominalPower, capacity, programList)
+        );
+
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void testNewDishWasher() {
+        String name = "Dish Washer Ariston";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        int capacity = 100;
+        ProgramList programList = new ProgramList();
+
+        DeviceSpecs dishWasher = new DishWasher(capacity, nominalPower, programList);
+
+        Device d2 = new Device("Device2", room, dishWasher);
+        room.addDevice(d2);
+
+        Device expectedResult = new Device(name, room, dishWasher);
+
+        Device result = room.newDishWasher(name, nominalPower, capacity, programList);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testNewDishWasherNegative() {
+        String name = "Dish Washer Ariston";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        int capacity = 100;
+        ProgramList programList = new ProgramList();
+
+        DeviceSpecs dishWasher = new DishWasher(capacity, nominalPower, programList);
+
+        Device d2 = new Device("Dish Washer Ariston", room, dishWasher);
+        room.addDevice(d2);
+
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                room.newDishWasher(name, nominalPower, capacity, programList)
+        );
+
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void testNewLamp() {
+        String name = "Lamp one";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        double luminousFlux = 100;
+        DeviceSpecs lamp = new Lamp(luminousFlux, nominalPower);
+        ProgramList programList = new ProgramList();
+
+        Device d2 = new Device("Device2", room, lamp);
+        Room room2 = new Room("Room2", 2, dim);
+
+        room.addDevice(d2);
+
+        Device expectedResult = new Device(name, room2, lamp);
+
+        Device result = room.newLamp(name, luminousFlux, nominalPower);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testNewLampNegative() {
+        String name = "Lamp one";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        int capacity = 100;
+        DeviceSpecs lamp = new Lamp(capacity, nominalPower);
+
+        Device d2 = new Device("LAMP ONE", room, lamp);
+        room.addDevice(d2);
+
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                room.newLamp(name, nominalPower, capacity)
+        );
+
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void testNewFrigde() {
+        String name = "Fridge Balay";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        double annualEnergyConsumption = 1000;
+        double freezerCapacity = 20;
+        double refrigeratorCapacity = 50;
+        DeviceSpecs fridgeSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        Device d2 = new Device("Device2", room, fridgeSpecs);
+        room.addDevice(d2);
+
+        Device expectedResult = new Device(name, room, fridgeSpecs);
+
+        Device result = room.newFridge(name, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testNewFridgeNegative() {
+        String name = "Fridge Balay";
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        double nominalPower = 200;
+        double annualEnergyConsumption = 1000;
+        double freezerCapacity = 20;
+        double refrigeratorCapacity = 50;
+        DeviceSpecs fridgeSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        Device d2 = new Device("Fridge Balay", room, fridgeSpecs);
+        room.addDevice(d2);
+
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                room.newFridge(name, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity)
+        );
+
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+*/
+
+    @Test
+    public void deleteDeviceTrue() {
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        room.addDevice(dev1);
+        deviceList.addDevice(dev1);
+
+        // act
+        boolean result = room.deleteDevice("Lamp1");
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void deleteDeviceFalse() {
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        // act
+        boolean result = room.deleteDevice("Lamp1");
+
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void getDeviceNameByPositionIsEmpty() {
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        int position = 0;
+
+        String expectedResult = "There are no devices in the device list.";
+
+        // act
+        String result = room.getDeviceNameByPosition(position);
+
+        // assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getDeviceNameByPosition() {
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        int position = 0;
+
+        String expectedResult = "Lamp1";
+        deviceList.addDevice(dev1);
+
+        // act
+        String result = room.getDeviceNameByPosition(position);
+
+        // assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void deactivationDeviceTrue() {
+
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        room.addDevice(dev1);
+        deviceList.addDevice(dev1);
+
+        // act
+        boolean result = room.deactivateDevice("Lamp1");
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void deactivationDeviceFalse() {
+
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        // act
+        boolean result = room.deactivateDevice("Lamp1");
+
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void getActiveDeviceListToString_Active() {
+
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        double luminousFlux2 = 15.0;
+        double nominalPower2 = 2.0;
+
+        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
+
+        deviceList.addDevice(dev1);
+        deviceList.addDevice(dev2);
+
+        String expectedResult =
+                "1 - Name of the device: Lamp1 - ACTIVATED\n" +
+                        "2 - Name of the device: Lamp2 - ACTIVATED\n";
+        // Act
+        String result = room.getActiveDeviceListToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getActiveDeviceListToString_OneDeviceDeactivated() {
+
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        double luminousFlux2 = 15.0;
+        double nominalPower2 = 2.0;
+
+        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
+
+        deviceList.addDevice(dev1);
+        deviceList.addDevice(dev2);
+        dev1.setDeactivateDevice();
+
+        String expectedResult =
+                "1 - Name of the device: Lamp1 - DEACTIVATED\n" +
+                        "2 - Name of the device: Lamp2 - ACTIVATED\n";
+        // Act
+        String result = room.getActiveDeviceListToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getActiveDeviceListToString_Deactivated() {
+
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        double luminousFlux2 = 15.0;
+        double nominalPower2 = 2.0;
+
+        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
+
+        deviceList.addDevice(dev1);
+        deviceList.addDevice(dev2);
+        dev1.setDeactivateDevice();
+        dev2.setDeactivateDevice();
+
+        String expectedResult =
+                "1 - Name of the device: Lamp1 - DEACTIVATED\n" +
+                        "2 - Name of the device: Lamp2 - DEACTIVATED\n";
+        // Act
+        String result = room.getActiveDeviceListToString();
 
         // Assert
         assertEquals(expectedResult, result);

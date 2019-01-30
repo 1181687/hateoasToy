@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetListOfTypeOfGeoAreaController;
-import pt.ipp.isep.dei.project.model.GeoAreaList;
-import pt.ipp.isep.dei.project.model.GeoAreaTypeList;
+import pt.ipp.isep.dei.project.model.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.GeographicalAreaTypeList;
 
 import java.util.List;
 import java.util.Scanner;
@@ -13,7 +13,7 @@ public class GetListOfTypeOfGeoArea {
     private GetListOfTypeOfGeoAreaController mCtrl;
 
 
-    public GetListOfTypeOfGeoArea(GeoAreaList lista, GeoAreaTypeList listaTAG) {
+    public GetListOfTypeOfGeoArea(GeographicalAreaList lista, GeographicalAreaTypeList listaTAG) {
         this.mCtrl = new GetListOfTypeOfGeoAreaController(lista, listaTAG);
     }
 

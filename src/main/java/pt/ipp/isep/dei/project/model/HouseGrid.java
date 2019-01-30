@@ -3,6 +3,10 @@ package pt.ipp.isep.dei.project.model;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 import static java.util.Objects.isNull;
 
@@ -21,14 +25,11 @@ public class HouseGrid implements Measurable {
 
     public HouseGrid(String houseGridName) {
         validateName(houseGridName);
-
         this.mName = houseGridName;
         this.mRoomList = new RoomList();
         this.mPowerSourceList = new PowerSourceList();
         this.mMaximumContractedPower = 0;
-        if (Utils.isGridMeteringPeriodValid()) {
-            this.mMeteringPeriod = setMeteringPeriod();
-        }
+        this.mMeteringPeriod = setGridMeteringPeriod();
     }
 
     /**
@@ -174,7 +175,7 @@ public class HouseGrid implements Measurable {
     }
 
     public int getDeviceListSizeByRoomPosition(int position) {
-        return mRoomList.getRoomFromPosition(position).getDevicesListLength();
+        return mRoomList.getRoomFromPosition(position).getDevicesListSize();
     }
 
     public boolean isRoomListEmpty() {
@@ -202,33 +203,48 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * TODO
+     * Method that calculates the total energy consumption of a house grid in a given interval.
      *
-     * @param startDate
-     * @param endDate
-     * @return
+     * @param startDate the initial date/hour of the period to be considered
+     * @param endDate the final date/hour of the period to be considered
+     * @return Double
      */
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
 
-        double totalEnergyComsumption = 0;
+        double totalEnergyConsumption = 0;
         if (this.mRoomList.isEmpty()) {
             throw new RuntimeException("There are no rooms connected to this house grid.");
         } else {
             for (Room room : this.mRoomList.getRoomList()) {
-                totalEnergyComsumption += room.getEnergyConsumptionInAnInterval(startDate, endDate);
+                totalEnergyConsumption += room.getEnergyConsumptionInAnInterval(startDate, endDate);
             }
-            return totalEnergyComsumption;
+            return totalEnergyConsumption;
         }
     }
 
-
-    public int setMeteringPeriod() {
-        if (Utils.isGridMeteringPeriodValid()) {
-            return Utils.getGridMeteringPeriod();
+    /**
+     * Method that sets the metering period using the methods in the Utils Class.
+     *
+     * @return
+     */
+    public int setGridMeteringPeriod() {
+        int meteringPeriod = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
+        if (1440%meteringPeriod==0) {
+            return meteringPeriod;
         } else {
-            throw new RuntimeException("The period in not valid.");
+            return -1;
         }
     }
 
+    @Override
+    public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
+    /*    HashMap<LocalDateTime, Double> readingsMap = new HashMap<>();
+        for (Room room : this.mRoomList.getRoomList()) {
+            readingsMap.putAll(room.getDataSeries(startDate,endDate));
+        }
+        HashMap<LocalDateTime, Double> sortedReadingsMap = new HashMap<>();
+        Collections.sort(sortedReadingsMap, Comparator.comparing(sortedReadingsMap::keySet));*/
+        return null;
+    }
 }

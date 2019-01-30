@@ -451,21 +451,21 @@ public class RoomListTest {
 
         LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 11, 2, 20, 24, 00);
 
-        Measurement measurement1 = new Measurement(20.0, dateTimeDayMeasure1);
-        Measurement measurement2 = new Measurement(25.0, dateTimeDayMeasure2);
+        Readings readings1 = new Readings(20.0, dateTimeDayMeasure1);
+        Readings readings2 = new Readings(25.0, dateTimeDayMeasure2);
 
-        s0.addMeasurementToList(measurement1);
-        s0.addMeasurementToList(measurement2);
+        s0.addReadingsToList(readings1);
+        s0.addReadingsToList(readings2);
 
         LocalDateTime dateTimeDayMeasure3 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 11, 2, 17, 24, 00);
 
-        Measurement measurement3 = new Measurement(20.0, dateTimeDayMeasure3);
-        Measurement measurement4 = new Measurement(30.0, dateTimeDayMeasure4);
+        Readings readings3 = new Readings(20.0, dateTimeDayMeasure3);
+        Readings readings4 = new Readings(30.0, dateTimeDayMeasure4);
 
-        s1.addMeasurementToList(measurement3);
-        s1.addMeasurementToList(measurement4);
+        s1.addReadingsToList(readings3);
+        s1.addReadingsToList(readings4);
 
         room1.getSensorList().addSensor(s0);
         room1.getSensorList().addSensor(s1);
@@ -510,21 +510,21 @@ public class RoomListTest {
 
         LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 11, 2, 20, 24, 00);
 
-        Measurement measurement1 = new Measurement(-20.0, dateTimeDayMeasure1);
-        Measurement measurement2 = new Measurement(-25.0, dateTimeDayMeasure2);
+        Readings readings1 = new Readings(-20.0, dateTimeDayMeasure1);
+        Readings readings2 = new Readings(-25.0, dateTimeDayMeasure2);
 
-        s0.addMeasurementToList(measurement1);
-        s0.addMeasurementToList(measurement2);
+        s0.addReadingsToList(readings1);
+        s0.addReadingsToList(readings2);
 
         LocalDateTime dateTimeDayMeasure3 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 11, 2, 17, 24, 00);
 
-        Measurement measurement3 = new Measurement(-10.0, dateTimeDayMeasure3);
-        Measurement measurement4 = new Measurement(-15.0, dateTimeDayMeasure4);
+        Readings readings3 = new Readings(-10.0, dateTimeDayMeasure3);
+        Readings readings4 = new Readings(-15.0, dateTimeDayMeasure4);
 
-        s1.addMeasurementToList(measurement3);
-        s1.addMeasurementToList(measurement4);
+        s1.addReadingsToList(readings3);
+        s1.addReadingsToList(readings4);
 
         room1.getSensorList().addSensor(s0);
         room1.getSensorList().addSensor(s1);
@@ -694,7 +694,7 @@ public class RoomListTest {
         HouseGridList listHG = new HouseGridList();
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
-        GeoAreaType GAType = new GeoAreaType("City");
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
         House house = new House(roomList, listHG, address, geo);
@@ -744,7 +744,7 @@ public class RoomListTest {
         HouseGridList listHG = new HouseGridList();
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
-        GeoAreaType GAType = new GeoAreaType("City");
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
         House house = new House(roomList, listHG, address, geo);
@@ -884,7 +884,7 @@ public class RoomListTest {
     }
 
     @Test
-    public void getAllDeviceListsToStringTest() {
+    public void getAllDevicesToStringTest() {
         // Arrange
         // Dimension Instantiation
         Dimension dim = new Dimension(3, 5, 6);
@@ -912,12 +912,10 @@ public class RoomListTest {
         roomList.addRoom(room1);
 
         String expectedResult =
-                "1 - Name of the device: Fridgerator V14\n" +
-                        "2 - Name of the device: Bosh Tronic 3000\n";
-
+                "1 - Name of the device: Fridgerator V14\n" + "2 - Name of the device: Bosh Tronic 3000\n";
 
         // Act
-        String result = roomList.getAllDeviceListsToString();
+        String result = roomList.getAllDevicesToString();
 
         // Assert
         assertEquals(expectedResult, result);

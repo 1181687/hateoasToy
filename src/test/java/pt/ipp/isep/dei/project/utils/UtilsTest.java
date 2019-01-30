@@ -73,4 +73,39 @@ class UtilsTest {
         );
         assertEquals("Please insert a positive value.", exception.getMessage());
     }
+
+    @Test
+    void testGetMeteringPeriod() {
+        //Arrange
+        int expectedResult = 10;
+
+        //Act
+        int result = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    @Test
+    void testMeteringPeriodWrongKey() {
+        //Arrange
+        String expectedResult = "Wrong Key";
+        //Act
+        String result = Utils.readConfigFile("Cenas");
+        //Assert
+        assertEquals(expectedResult,result);
+
+    }
+
+    @Test
+    void testGetMeteringPeriodDevice() {
+        //Arrange
+        int expectedResult = 20;
+
+        int result = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
 }

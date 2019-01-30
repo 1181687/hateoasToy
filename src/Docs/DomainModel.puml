@@ -1,5 +1,13 @@
 @startuml
 skinparam linetype ortho
+
+skinparam class {
+	BackgroundColor LightGrey
+	ArrowColor Black
+	BorderColor Black
+	FontStyle Bold
+}
+
 hide circle
 hide empty methods
 hide empty attributes
@@ -10,16 +18,13 @@ class Sensor{
 String name
 LocalDateTime startingDate
 }
-class Measurement{
+class Readings{
 double value
 LocalDateTime dateTime
 }
 class Location{
-double latitude
-double longitude
-double altitude
 }
-class GeoAreaType{
+class GeographicalAreaType{
 String type
 }
 class GeographicalArea{
@@ -55,40 +60,37 @@ String type
 }
 class Device{
 String name
+boolean isActive
 }
 ENUM DeviceType{
 }
 
-left to right direction
-
-Sensor "1" -- "1" SensorType
-Sensor "1" -- "*" Measurement
-Sensor "1" -- "1" Location
-
-Room "1" -- "1" Dimension
-Room "1" -- "0..*" Sensor
-Room "1" -- "0..*" Device
-
-PowerSource "1" -- "1" PowerSourceType
+Sensor "1" -"1" SensorType
+Sensor "1" - "*" Readings
+Sensor "1" - "1" Location
 
 House "1" -- "0..*" Room
 House "1" -- "1..*" HouseGrid
-House "1" -- "1" Address
-House "1" -- "1" GeographicalArea
+House "1" ---- "1" Address
+House "1" ---- "1" GeographicalArea
 
-GeographicalArea "1" -- "1" GeoAreaType
-GeographicalArea "1" -- "1" GeographicalArea
-GeographicalArea "1" -- "1" Location
-GeographicalArea "1" -- "1" AreaShape
-GeographicalArea "1" -- "0..*" Sensor
+Room "1" --- "1" Dimension
+Room "1" --- "0..*" Sensor
+Room "1" --- "0..*" Device
 
-Device "1" -- "1" Room
-Device "1" -- "1" DeviceType
+PowerSource "1" - "1" PowerSourceType
 
-HouseGrid "1" -- "1..*" PowerSource
-HouseGrid "1" -- "0..*" Room
+GeographicalArea "1" - "1" GeographicalAreaType
+GeographicalArea "1" - "1" GeographicalArea
+GeographicalArea "1" - "1" Location
+GeographicalArea "1" - "1" AreaShape
+GeographicalArea "1" - "0..*" Sensor
 
+Device "1" - "1" Room
+Device "1..*" -- "1" DeviceType
 
+HouseGrid "1" - "1..*" PowerSource
+HouseGrid "1" - "0..*" Room
 
 
 @enduml

@@ -143,16 +143,16 @@ public class House {
      * @param type
      * @return latest measurement.
      */
-    public Measurement getLatestMeasurementBySensorType(String name, SensorType type) {
+    public Readings getLatestMeasurementBySensorType(String name, SensorType type) {
         Room room = mRoomList.getRoomByName(name);
         if (Objects.isNull(room)) {
             return null;
         }
-        Measurement measurement = room.getLatestMeasurementBySensorType(type);
-        if (Objects.isNull(measurement)) {
+        Readings readings = room.getLatestMeasurementBySensorType(type);
+        if (Objects.isNull(readings)) {
             return null;
         }
-        return measurement;
+        return readings;
     }
 
     /**
@@ -340,7 +340,7 @@ public class House {
      */
     public String getDeviceName(String type, int devicePosition) {
         DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);
-        return listWithAllDevicesOfAType.getDeviceName(devicePosition);
+        return listWithAllDevicesOfAType.getDeviceNameByPosition(devicePosition);
     }
 
     /**
@@ -384,7 +384,72 @@ public class House {
         return new MeasurableList();
     }
 
-    public boolean deleteDevice(Device device, int choosenRoom) {
-        return this.mRoomList.deleteDevice(device, choosenRoom);
+    /**
+     * Method that checks if the Room List is Empty
+     *
+     * @return true if it is empty
+     */
+    public boolean roomListIsEmpty() {
+        return mRoomList.isEmpty();
+    }
+
+    /**
+     * Method that returns the content of all the devices in the house.
+     *
+     * @return String with the list of devices content.
+     */
+    public String getAllDevicesToString() {
+        return mRoomList.getAllDevicesToString();
+    }
+
+    /**
+     * Method that returns all the devices in the house.
+     *
+     * @return DeviceList with all the devices in the house.
+     */
+    public DeviceList getAllDevices() {
+        return mRoomList.getAllDevicesList();
+    }
+
+    /**
+     * Method that returns all the devices in the house.
+     *
+     * @return DeviceList with all the devices in the house.
+     */
+    public int getNumberOfDevices() {
+        return getAllDevices().getSize();
+    }
+
+    /**
+     * Method that returns a device by its position in the list of all devices in the house.
+     *
+     * @param position Position of the device in the list of all devices.
+     * @return Device chosen.
+     */
+    public Device getDeviceByPosition(int position) {
+        return getAllDevices().getDeviceByPosition(position);
+    }
+
+    public String getDeviceNameOfATypeByPosition(String type, int devicePosition) {
+        DeviceList listOfAllDevicesOffAType = getAllDevicesOfAType(type);
+        return listOfAllDevicesOffAType.getDeviceNameByPosition(devicePosition);
+    }
+
+    /**
+     * method that get de device type list content
+     *
+     * @return the content of the list by string
+     */
+    public String getDeviceTypeListToString(int position) {
+        return this.mRoomList.getRoomFromPosition(position).getDeviceTypeListToString();
+    }
+
+    /**
+     * method that get the number os existing Devices on the configuration file.
+     *
+     * @return the number os existing Devices
+     */
+    public int numberOfDeviceTypes(int position) {
+        return this.mRoomList.getRoomFromPosition(position).numberOfDeviceTypes();
     }
 }

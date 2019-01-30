@@ -3,19 +3,19 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.model.*;
 
 public class Admin {
-    private GeoAreaTypeList geoAreaTypeList;
-    private GeoAreaList geoAreaList;
+    private GeographicalAreaTypeList geographicalAreaTypeList;
+    private GeographicalAreaList geographicalAreaList;
     private SensorTypeList sensorTypeList;
     private DeviceList deviceList;
     private House house;
     private PowerSourceTypeList powerSourceTypeList;
     private RoomList roomList;
     private HouseGridList gridList;
-    private DeviceTypes deviceTypes;
+    private DeviceType deviceType;
 
-    public Admin(GeoAreaTypeList geoAreaTypeList, GeoAreaList geoAreaList, DeviceList deviceList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseGridList gridList) {
-        this.geoAreaTypeList = geoAreaTypeList;
-        this.geoAreaList = geoAreaList;
+    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, DeviceList deviceList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseGridList gridList) {
+        this.geographicalAreaTypeList = geographicalAreaTypeList;
+        this.geographicalAreaList = geographicalAreaList;
         this.sensorTypeList = sensorTypeList;
         this.deviceList = deviceList;
         this.house = house;
@@ -34,19 +34,19 @@ public class Admin {
 
             switch (option) {
                 case 1:
-                    AddGeoAreaType ui = new AddGeoAreaType(geoAreaTypeList);
+                    AddGeoAreaType ui = new AddGeoAreaType(geographicalAreaTypeList);
                     ui.run();
                     break;
                 case 2:
-                    GetListGeoAreaTypes ui2 = new GetListGeoAreaTypes(geoAreaTypeList);
+                    GetListGeoAreaTypes ui2 = new GetListGeoAreaTypes(geographicalAreaTypeList);
                     ui2.run();
                     break;
                 case 3:
-                    AddGeoArea ui3 = new AddGeoArea(geoAreaList, geoAreaTypeList);
+                    AddGeoArea ui3 = new AddGeoArea(geographicalAreaList, geographicalAreaTypeList);
                     ui3.run();
                     break;
                 case 4:
-                    GetListOfTypeOfGeoArea ui4 = new GetListOfTypeOfGeoArea(geoAreaList, geoAreaTypeList);
+                    GetListOfTypeOfGeoArea ui4 = new GetListOfTypeOfGeoArea(geographicalAreaList, geographicalAreaTypeList);
                     ui4.run();
                     break;
                 case 5:
@@ -54,15 +54,15 @@ public class Admin {
                     ui5.run();
                     break;
                 case 6:
-                    AddSensorToGeoArea ui6 = new AddSensorToGeoArea(geoAreaList, sensorTypeList);
+                    AddSensorToGeoArea ui6 = new AddSensorToGeoArea(geographicalAreaList, sensorTypeList);
                     ui6.run();
                     break;
                 case 7:
-                    AddGeoAreaToAnotherGeoArea ui7 = new AddGeoAreaToAnotherGeoArea(geoAreaList);
+                    AddGeoAreaToAnotherGeoArea ui7 = new AddGeoAreaToAnotherGeoArea(geographicalAreaList);
                     ui7.run();
                     break;
                 case 8:
-                    InsertedGeoArea ui8 = new InsertedGeoArea(geoAreaList);
+                    InsertedGeoArea ui8 = new InsertedGeoArea(geographicalAreaList);
                     ui8.run();
                     break;
             }
@@ -116,6 +116,14 @@ public class Admin {
                 case 10:
                     AddDeviceToRoom ui210 = new AddDeviceToRoom(house);
                     ui210.run();
+                    break;
+                case 11:
+                    DeleteDeviceFromRoom ui220 = new DeleteDeviceFromRoom(house);
+                    ui220.run();
+                    break;
+                case 12:
+                    GetEnergyConsumptionDevice ui720 = new GetEnergyConsumptionDevice(house);
+                    ui720.run();
                     break;
             }
             option = Menu.adminHouseMenu();

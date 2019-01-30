@@ -1,22 +1,27 @@
 package pt.ipp.isep.dei.project.model;
 
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Device implements Measurable {
     private String mName;
     private Room mLocation;
     private DeviceSpecs mSpec;
-    private List<Measurement> mMeasurementList = new ArrayList<>();
+    private List<Readings> mReadingsList = new ArrayList<>();
+    private int mMeteringPeriod;
+    private boolean mIsActive;
+    private LocalDateTime mDeactivationDate;
 
     public Device(String name, Room location, DeviceSpecs spec) {
         this.mName = name;
         this.mLocation = location;
         this.mSpec = spec;
         this.mLocation.addDevice(this);
+        this.mMeteringPeriod = setDeviceMeteringPeriod();
+        this.mIsActive = true;
     }
 
     /**
@@ -49,6 +54,7 @@ public class Device implements Measurable {
 
     /**
      * method that gets the Type
+     *
      * @return String
      */
     public String getType() {
@@ -73,7 +79,7 @@ public class Device implements Measurable {
      * @return true if sets false if don't
      */
     public boolean setName(String name) {
-        if (this.mLocation.isNameExistant(name) || this.mName == name) {
+        if (this.mLocation.isDeviceNameExistant(name) || this.mName == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
         this.mName = name;
@@ -98,6 +104,7 @@ public class Device implements Measurable {
 
     /**
      * Method that returns the attributes of the device specs.
+     *
      * @return String with the attributes.
      */
     public String getDevSpecsAttributesToString() {
@@ -106,6 +113,7 @@ public class Device implements Measurable {
 
     /**
      * method that get all attributes of a device by strings.
+     *
      * @return the device attributes.
      */
     public String getAttributesToString() {
@@ -119,6 +127,7 @@ public class Device implements Measurable {
 
     /**
      * method that set the attributes of a device type.
+     *
      * @param attribute
      * @param value
      * @return the position of an attribute and the value of it.
@@ -157,9 +166,10 @@ public class Device implements Measurable {
 
     /**
      * method that get the number of specifications of a device.
+     *
      * @return the number of attributes.
      */
-    public int getNumberOfSpecsAttributes(){
+    public int getNumberOfSpecsAttributes() {
         return mSpec.getNumberOfAttributes();
     }
 
@@ -177,50 +187,93 @@ public class Device implements Measurable {
     }
 
     /**
-     * TODO
+     * Method that adds a readings to the device.
      *
-     * @param measurement
+     * @param readings Readings to be added.
      */
-    public void addMeasurementToTheList(Measurement measurement) {
-        mMeasurementList.add(measurement);
+    public void addReadingsToTheList(Readings readings) {
+        mReadingsList.add(readings);
     }
 
     /**
-     * TODO
+     * Method that calculates the sum of the value in each Readings in a given Readings list.
      *
-     * @param measurementList
-     * @return
+     * @param readingsList List with Readingss.
+     * @return Double with the required sum.
      */
-    public double getSumOfTheMeasurements(List<Measurement> measurementList) {
+    public double getSumOfTheReadingss(List<Readings> readingsList) {
         double sum = 0;
-        for (Measurement measurement : measurementList) {
-            sum += measurement.getValue();
+        for (Readings readings : readingsList) {
+            sum += readings.getValue();
         }
         return sum;
     }
 
+    public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
+        List<Readings> ReadingsList = new ArrayList<>();
+        for (Readings Readings : mReadingsList) {
+            if (!startDate.isAfter(Readings.getDateTime()) && !endDate.isBefore(Readings.getDateTime())) {
+                ReadingsList.add(Readings);
+            }
+        }
+        return ReadingsList;
+    }
+
     /**
-     * TODO
+     * Method that calculates the total energy consumption of a device in a given interval.
      *
-     * @param startDate
-     * @param endDate
-     * @return
+     * @param startDate Start date.
+     * @param endDate   End date.
+     * @return Double with the required energy consumption.
      */
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        int numberOfValidMeasurements = 0;
-        List<Measurement> measurementList = new ArrayList<>();
-        for (Measurement measurement : mMeasurementList) {
-            if (!startDate.isAfter(measurement.getDateTime()) && !endDate.isBefore(measurement.getDateTime())) {
-                measurementList.add(measurement);
-                numberOfValidMeasurements++;
-            }
-        }
-        if (numberOfValidMeasurements > 1) {
-            measurementList.remove(0);
-            totalEnergyConsumption = getSumOfTheMeasurements(measurementList);
+        List<Readings> ReadingsList = getReadingsListInInterval(startDate, endDate);
+        if (ReadingsList.size() > 1) {
+            ReadingsList.remove(0);
+            totalEnergyConsumption = getSumOfTheReadingss(ReadingsList);
         }
         return totalEnergyConsumption;
+    }
+
+    /**
+     * method that set the deactivate device, turning it to false and giving a date
+     */
+    public void setDeactivateDevice() {
+        this.mIsActive = false;
+        this.mDeactivationDate = LocalDateTime.now();
+    }
+
+    /**
+     * method that get an active device.
+     *
+     * @return an active device.
+     */
+    public boolean getIsActive() {
+        return mIsActive;
+    }
+
+    /**
+     * method that set the metering period of a device
+     * @return if true, return the metering period. If not, return -1.
+     */
+    public int setDeviceMeteringPeriod() {
+        int meteringPeriod = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        if (1440 % meteringPeriod == 0 && (meteringPeriod % Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid")) == 0)) {
+            return meteringPeriod;
+        } else {
+            return -1;
+        }
+    }
+
+    @Override
+    public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
+        HashMap<LocalDateTime, Double> hmap = new HashMap<>();
+        List<Readings> validReadingsList = getReadingsListInInterval(startDate, endDate);
+        for (Readings Readings : validReadingsList) {
+            hmap.put(Readings.getDateTime(), Readings.getValue());
+        }
+        return hmap;
     }
 }

@@ -17,8 +17,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name1 = "Kitchen";
@@ -52,8 +52,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
@@ -74,8 +74,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name1 = "Kitchen";
@@ -105,8 +105,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name1 = "Kitchen";
@@ -138,8 +138,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
@@ -159,8 +159,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name1 = "Kitchen";
@@ -180,7 +180,7 @@ class AddDeviceToRoomControllerTest {
                 "4- Washing Machine\n" +
                 "5- Electric Water Heater\n";
         //Act
-        String result = controller.getDeviceTypeListToString();
+        String result = controller.getDeviceTypeListToString(0);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -195,8 +195,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name = "Fridge - Kitchen";
@@ -214,7 +214,7 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        Device d2 = controller.createNewFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
+        Device d2 = controller.createNewFridge(name, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
         Device expectedResult = d2;
 
         // act
@@ -234,8 +234,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name = "Fridge - Kitchen";
@@ -253,9 +253,9 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        controller.createNewFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
+        controller.createNewFridge(name, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
 
-        Throwable exception = assertThrows(RuntimeException.class, () -> controller.createNewFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity));
+        Throwable exception = assertThrows(RuntimeException.class, () -> controller.createNewFridge(name, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity));
 
     assertEquals("Name already exists. Please write a new one.", exception.getMessage());
 }
@@ -268,8 +268,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -282,7 +282,7 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        Device device = controller.createNewLamp("Lamp1", room, nominalPower, luminousFlux);
+        Device device = controller.createNewLamp("Lamp1", nominalPower, luminousFlux);
         Device expectedResult = device;
 
         //Act
@@ -299,8 +299,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -313,10 +313,10 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        controller.createNewLamp("Lamp1", room, nominalPower, luminousFlux);
+        controller.createNewLamp("Lamp1", nominalPower, luminousFlux);
 
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                controller.createNewLamp("Lamp1", room, nominalPower, luminousFlux)
+                controller.createNewLamp("Lamp1", nominalPower, luminousFlux)
         );
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -330,8 +330,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         // newWashingMachine Instantiation
@@ -347,7 +347,7 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        Device device = controller.createNewWashingMachine(name, room, nominalPower, capacity);
+        Device device = controller.createNewWashingMachine(name, nominalPower, capacity);
 
         Device expectedResult = device;
         //Act
@@ -365,8 +365,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         // newWashingMachine Instantiation
@@ -382,10 +382,10 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        controller.createNewWashingMachine(name, room, nominalPower, capacity);
+        controller.createNewWashingMachine(name, nominalPower, capacity);
 
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                controller.createNewWashingMachine(name, room, nominalPower, capacity)
+                controller.createNewWashingMachine(name, nominalPower, capacity)
         );
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -399,8 +399,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
         // ElectricWaterHeater Instantiation
         double hotWaterTemp0 = 50;
@@ -417,7 +417,7 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        Device device = controller.createNewElectricWaterHeater("EWH1", room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
+        Device device = controller.createNewElectricWaterHeater("EWH1", hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
         Device expectedResult = device;
         //Act
@@ -436,8 +436,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
         // ElectricWaterHeater Instantiation
         double hotWaterTemp0 = 50;
@@ -454,11 +454,11 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        controller.createNewElectricWaterHeater("EWH1", room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
+        controller.createNewElectricWaterHeater("EWH1", hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
 
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                controller.createNewElectricWaterHeater("EWH1", room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio)
+                controller.createNewElectricWaterHeater("EWH1", hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio)
         );
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -478,7 +478,7 @@ class AddDeviceToRoomControllerTest {
         HouseGridList listHG = new HouseGridList();
         Location location = new Location(2, 3, 4);
         Address address = new Address("4500", location);
-        GeoAreaType GAType = new GeoAreaType("City");
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
         AreaShape areaShape = new AreaShape(2, 2, location);
         GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
         House house = new House(roomList, listHG, address, geo);
@@ -522,8 +522,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
         // ElectricWaterHeater Instantiation
         double hotWaterTemp0 = 50;
@@ -559,8 +559,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         Program program = null;
@@ -582,8 +582,8 @@ class AddDeviceToRoomControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         ProgramList programList = new ProgramList();

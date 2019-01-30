@@ -4,6 +4,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class InputValidator {
@@ -238,11 +240,10 @@ public class InputValidator {
      * @return
      */
 
-    public static LocalDate getStringDateTime(String label) {
+    public static LocalDateTime getStringDateTime(String label) {
         Scanner in = new Scanner(System.in);
         String str = "";
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        format.setLenient(false);
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
 
         boolean flag;
         do {
@@ -252,16 +253,13 @@ public class InputValidator {
                 str = in.nextLine();
                 str = str.trim();
                 format.parse(str);
-            } catch (ParseException e) {
-                System.out.println("Date " + str + " is not valid. Please insert a valid date according to (" +
-                        ((SimpleDateFormat) format).toPattern() + ") pattern.");
+            } catch (Exception e) {
+                System.out.println("Date " + str + " is not valid. Please insert a valid date according to (yyyy-MM-dd HH:mm) pattern.");
                 flag = true;
             }
         } while (flag);
 
-        LocalDate validDate = LocalDate.parse(str);
-
-        return validDate;
+        return LocalDateTime.parse(str, format);
     }
 
     /**

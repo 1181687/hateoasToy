@@ -109,7 +109,7 @@ public class EditConfigurationDeviceController {
      * method that check if the list of rooms is empty.
      * @return a boolean.
      */
-    public boolean checkIfRoomListIsEmpty () {
+    public boolean roomListIsEmpty() {
         return this.mHouse.getRoomList().isEmpty();
     }
 
@@ -125,15 +125,15 @@ public class EditConfigurationDeviceController {
      * method that get the length of the device list.
      * @return the length of all devices of the list.
      */
-    public int getDeviceListLength () {
-        return this.mHouse.getRoomList().getAllDevicesList().getSize();
+    public int getDeviceListSize() {
+        return this.mRoom.getDevicesListSize();
     }
 
     /**
      * method that check if the list of devices is empty.
      * @return a boolean.
      */
-    public boolean checkIfDeviceListIsEmpty () {
+    public boolean deviceListIsEmpty() {
         return this.mRoom.isDeviceListEmpty();
     }
 

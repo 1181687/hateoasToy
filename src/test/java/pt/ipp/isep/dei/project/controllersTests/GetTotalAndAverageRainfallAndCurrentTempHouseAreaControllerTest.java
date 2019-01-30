@@ -24,8 +24,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
         AreaShape rectangleArea = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, rectangleArea);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         //Instantiate Sensor
@@ -43,23 +43,23 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         // Sensor0 - Register 1
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 11, 1, 15, 20, 00);
-        Measurement measurement01 = new Measurement(10, dataHoraDaMedicao01);
-        s0.addMeasurementToList(measurement01);
+        Readings readings01 = new Readings(10, dataHoraDaMedicao01);
+        s0.addReadingsToList(readings01);
 
         // Sensor0 - Register 2
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 11, 1, 17, 24, 00);
-        Measurement measurement02 = new Measurement(11, dataHoraDaMedicao02);
-        s0.addMeasurementToList(measurement02);
+        Readings readings02 = new Readings(11, dataHoraDaMedicao02);
+        s0.addReadingsToList(readings02);
 
         //Sensor1 - Register 1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 11, 1, 15, 20, 00);
-        Measurement measurement11 = new Measurement(11, dataHoraDaMedicao11);
-        s1.addMeasurementToList(measurement11);
+        Readings readings11 = new Readings(11, dataHoraDaMedicao11);
+        s1.addReadingsToList(readings11);
 
         //Sensor1 - Register 2
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 11, 1, 17, 24, 00);
-        Measurement measurement12 = new Measurement(15, dataHoraDaMedicao12);
-        s1.addMeasurementToList(measurement12);
+        Readings readings12 = new Readings(15, dataHoraDaMedicao12);
+        s1.addReadingsToList(readings12);
 
         LocalDateTime day = LocalDateTime.of(2018, 11, 1, 15, 20, 00);
 
@@ -86,8 +86,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         HouseGridList houseGridList = new HouseGridList();
         RoomList roomList = new RoomList();
         AreaShape rectangleArea = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, rectangleArea);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, rectangleArea);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         //Instanciar Sensor
@@ -108,24 +108,24 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 11, 3, 17, 24, 00);
 
-        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
-        Measurement measurement02 = new Measurement(30, dataHoraDaMedicao02);
+        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(30, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(measurement01);
-        s0.addMeasurementToList(measurement02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 11, 4, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 11, 5, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
-        Measurement measurement13 = new Measurement(20, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
+        Readings readings13 = new Readings(20, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
-        s1.addMeasurementToList(measurement13);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
+        s1.addReadingsToList(readings13);
 
         LocalDateTime startDate1 = LocalDateTime.of(2018, 11, 1, 15, 20, 00);
         LocalDateTime endDate1 = LocalDateTime.of(2018, 11, 6, 17, 24, 00);
@@ -176,7 +176,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         // Instantiate AreaInserida
         String nomeAG = "Região Norte";
-        GeoAreaType tipo = new GeoAreaType("Região");
+        GeographicalAreaType tipo = new GeographicalAreaType("Região");
         Location localAG = new Location(32.1576, 7.6199, 100);
         AreaShape area = new AreaShape(10, 10, localAG);
         GeographicalArea AG = new GeographicalArea(nomeAG, tipo, localAG, area);
@@ -203,22 +203,22 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 11, 4, 17, 24, 00);
 
-        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
-        Measurement measurement02 = new Measurement(30, dataHoraDaMedicao02);
+        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(30, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(measurement01);
-        s0.addMeasurementToList(measurement02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 11, 2, 15, 20, 00);
 
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 11, 3, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         // Controller
         GetTotalAndAverageRainfallAndCurrentTempHouseAreaController ctrl = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
@@ -266,7 +266,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         // Instantiate AreaInserida
         String nomeAG = "Região Norte";
-        GeoAreaType tipo = new GeoAreaType("Região");
+        GeographicalAreaType tipo = new GeographicalAreaType("Região");
         Location localAG = new Location(32.1576, 7.6199, 100);
         AreaShape area = new AreaShape(10, 10, localAG);
         GeographicalArea AG = new GeographicalArea(nomeAG, tipo, localAG, area);
@@ -333,7 +333,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         // Instantiate AreaInserida
         String nomeAG = "Região Norte";
-        GeoAreaType tipo = new GeoAreaType("Região");
+        GeographicalAreaType tipo = new GeographicalAreaType("Região");
         Location localAG = new Location(32.1576, 7.6199, 100);
         AreaShape area = new AreaShape(10, 10, localAG);
         GeographicalArea AG = new GeographicalArea(nomeAG, tipo, localAG, area);
@@ -368,7 +368,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         // Instantiate Inserted Area
         String nomeAG = "Região Norte";
-        GeoAreaType tipo = new GeoAreaType("Região");
+        GeographicalAreaType tipo = new GeographicalAreaType("Região");
         Location localAG = new Location(32.1576, 7.6199, 100);
         AreaShape area = new AreaShape(10, 10, localAG);
         GeographicalArea AG = new GeographicalArea(nomeAG, tipo, localAG, area);

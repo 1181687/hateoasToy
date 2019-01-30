@@ -21,8 +21,8 @@ public class ConfHouseLocationControllerTest {
         Location local = new Location(latitude, longitude, altitude);
         Address address = new Address(zipCode, local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(roomList, houseGridList, address, insertedGeoArea);
 
         ConfHouseLocationController ctrl = new ConfHouseLocationController(house);

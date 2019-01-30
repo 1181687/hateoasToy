@@ -16,8 +16,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name1 = "Kitchen";
@@ -53,8 +53,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
@@ -78,8 +78,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         rList.addRoom(room0);
@@ -102,8 +102,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
@@ -124,8 +124,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         //initiate Room
@@ -171,8 +171,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         //initiate Room
@@ -214,8 +214,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name = "Kitchen";
@@ -251,8 +251,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name = "Kitchen";
@@ -288,8 +288,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         // Dimension Instantiation
@@ -333,8 +333,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         // Dimension Instantiation
@@ -379,13 +379,13 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
         //act
-        boolean result = controller.checkIfRoomListIsEmpty();
+        boolean result = controller.roomListIsEmpty();
         //assert
         assertTrue(result);
     }
@@ -399,8 +399,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name1 = "Kitchen";
@@ -411,7 +411,7 @@ public class EditConfigurationDeviceControllerTest {
         rList.addRoom(room1);
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
         //act
-        boolean result = controller.checkIfRoomListIsEmpty();
+        boolean result = controller.roomListIsEmpty();
         //assert
         assertFalse(result);
     }
@@ -424,8 +424,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name1 = "Kitchen";
@@ -458,8 +458,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
@@ -478,8 +478,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name = "Kitchen";
@@ -500,7 +500,7 @@ public class EditConfigurationDeviceControllerTest {
         int expectedResult = 1;
 
         devList.addDevice(dev1);
-        int result = controller.getDeviceListLength();
+        int result = controller.getDeviceListSize();
 
         // assert
         assertEquals(expectedResult, result);
@@ -514,8 +514,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name = "Kitchen";
@@ -529,7 +529,7 @@ public class EditConfigurationDeviceControllerTest {
         // act
         int expectedResult = 0;
 
-        int result = controller.getDeviceListLength();
+        int result = controller.getDeviceListSize();
 
         // assert
         assertEquals(expectedResult, result);
@@ -543,8 +543,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name = "Kitchen";
@@ -558,7 +558,7 @@ public class EditConfigurationDeviceControllerTest {
         controller.getRoomByPosition(position);
 
         // Act
-        boolean result = controller.checkIfDeviceListIsEmpty();
+        boolean result = controller.deviceListIsEmpty();
 
         // Assert
         assertTrue(result);
@@ -572,8 +572,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name = "Kitchen";
@@ -591,7 +591,7 @@ public class EditConfigurationDeviceControllerTest {
         controller.getRoomByPosition(position);
 
         // Act
-        boolean result = controller.checkIfDeviceListIsEmpty();
+        boolean result = controller.deviceListIsEmpty();
 
         // Assert
         assertFalse(result);
@@ -606,8 +606,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         // Dimension Instantiation
@@ -651,8 +651,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         // Dimension Instantiation
@@ -701,8 +701,8 @@ public class EditConfigurationDeviceControllerTest {
         Location local = new Location(10, 10, 10);
         Address adr = new Address("5000", local);
         AreaShape areaShape = new AreaShape(20, 20, local);
-        GeoAreaType geoAreaType = new GeoAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
         House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         // Dimension Instantiation

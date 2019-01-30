@@ -42,33 +42,24 @@ public final class Utils {
         return (double) tmp / factor;
     }
 
-    public static int getGridMeteringPeriod() {
+    public static String readConfigFile(String option) {
         Properties prop = new Properties();
         InputStream in = null;
         try {
-            in = new FileInputStream("MeteringGridConfiguration.properties");
+            in = new FileInputStream("Configuration.properties");
         } catch (FileNotFoundException ex) {
-            System.out.println("There is no file with that filename.");
+            return ("There is no file with that filename.");
         }
         try {
-            if (in != null) {
-                prop.load(in);
-                in.close();
-            } else {
-                System.out.println("There is no file with that filename.");
-            }
+            prop.load(in);
+            in.close();
         } catch (IOException ex) {
-            System.out.println("No info was found.");
+            return ("No info was found.");
         }
-        int meteringPeriod = Integer.parseInt(prop.getProperty("MeteringPeriod"));
-
-        if (!(1440 % meteringPeriod == 0)) {
-            return -1;
+        String property = prop.getProperty(option);
+        if (property == null) {
+            return ("Wrong Key");
         }
-        return meteringPeriod;
-    }
-
-    public static boolean isGridMeteringPeriodValid() {
-        return 1440 % getGridMeteringPeriod() == 0;
+        return property;
     }
 }

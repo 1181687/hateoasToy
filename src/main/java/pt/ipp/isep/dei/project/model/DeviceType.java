@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
-public enum DeviceTypes {
+public enum DeviceType {
     FRIDGE("Fridge"),
     LAMP("Lamp"),
     DISH_WASHER("Dish Washer"),
@@ -14,7 +14,7 @@ public enum DeviceTypes {
      *
      * @param deviceTypeName
      */
-    DeviceTypes(String deviceTypeName) {
+    DeviceType(String deviceTypeName) {
         this.mDeviceTypeName = deviceTypeName;
     }
 

@@ -16,7 +16,7 @@ class GeographicalAreaTest {
     public void testarEqualsSame() {
         //arrange
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
@@ -30,7 +30,7 @@ class GeographicalAreaTest {
     public void testarEqualsTrue() {
         //arrange
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
@@ -45,8 +45,8 @@ class GeographicalAreaTest {
     public void testarEqualsFalse() {
         //arrange
         String nomeAG = "Porto";
-        GeoAreaType tipo1 = new GeoAreaType("Cidade");
-        GeoAreaType tipo2 = new GeoAreaType("Aldeia");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
+        GeographicalAreaType tipo2 = new GeographicalAreaType("Aldeia");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo1, local, area);
@@ -61,7 +61,7 @@ class GeographicalAreaTest {
     public void testarEqualsObjetosDiferentes() {
         //arrange
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -77,8 +77,8 @@ class GeographicalAreaTest {
         // arrange
         String nomeAG1 = "Porto";
         String nomeAG2 = "Funchal";
-        GeoAreaType tipo1 = new GeoAreaType("Cidade");
-        GeoAreaType tipo2 = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
+        GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, 10.6109, 50);
         Location local2 = new Location(32.6333, 16.9, 20);
         AreaShape area1 = new AreaShape(10, 10, local1);
@@ -98,7 +98,7 @@ class GeographicalAreaTest {
     public void testarHashCode() {
         //Arrange
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
@@ -115,7 +115,7 @@ class GeographicalAreaTest {
     public void testarSensorContidoEmAreaGeografica() {
         //Arrange
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
@@ -135,7 +135,7 @@ class GeographicalAreaTest {
     public void testarSensorNaoContidoEmAreaGeografica() {
         //Arrange
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
@@ -156,7 +156,7 @@ class GeographicalAreaTest {
         //Arrange
         // Instantiate GeoArea
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
@@ -179,7 +179,7 @@ class GeographicalAreaTest {
 
         // Instanciar AG
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
@@ -232,7 +232,7 @@ class GeographicalAreaTest {
 
         // Instanciar AG
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
@@ -283,7 +283,7 @@ class GeographicalAreaTest {
         //arrange
         //Instanciar AG
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
@@ -307,36 +307,36 @@ class GeographicalAreaTest {
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
         ag1.getSensorListInTheGeographicArea().addSensor(s2);
 
-        //Instanciar Measurement
+        //Instanciar Readings
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2015, 12, 2, 5, 22, 40);
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2015, 12, 3, 19, 36, 55);
 
-        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
-        Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
+        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(25, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(measurement01);
-        s0.addMeasurementToList(measurement02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 2, 2, 8, 59, 13);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 6, 4, 2, 05, 27);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 4, 30, 20, 17, 50);
 
-        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
+        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
+        Readings readings22 = new Readings(25, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(measurement21);
-        s2.addMeasurementToList(measurement22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
         ag1.getSensorListInTheGeographicArea().addSensor(s0);
         ag1.getSensorListInTheGeographicArea().addSensor(s1);
@@ -363,7 +363,7 @@ class GeographicalAreaTest {
         //arrange
         //Instanciar AG
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
@@ -387,36 +387,36 @@ class GeographicalAreaTest {
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
         ag1.getSensorListInTheGeographicArea().addSensor(s2);
 
-        //Instanciar Measurement
+        //Instanciar Readings
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2015, 12, 2, 0, 0, 0);
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2015, 12, 3, 0, 0, 0);
 
-        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
-        Measurement measurement02 = new Measurement(25, dataHoraDaMedicao02);
+        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(25, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(measurement01);
-        s0.addMeasurementToList(measurement02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2015, 2, 2, 0, 0, 0);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2015, 6, 4, 0, 0, 0);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2015, 4, 30, 0, 0, 0);
 
-        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
+        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
+        Readings readings22 = new Readings(25, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(measurement21);
-        s2.addMeasurementToList(measurement22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
         ag1.getSensorListInTheGeographicArea().addSensor(s0);
         ag1.getSensorListInTheGeographicArea().addSensor(s1);
@@ -442,7 +442,7 @@ class GeographicalAreaTest {
     public void getmNomeAreaGeoTest() {
         //arrange
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
@@ -457,15 +457,15 @@ class GeographicalAreaTest {
     public void testarGetmTipoAreaGeo() {
         //arrange
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
 
-        GeoAreaType expectedResult = tipo;
+        GeographicalAreaType expectedResult = tipo;
 
         //act
-        GeoAreaType result = ag1.getGeoAreaType();
+        GeographicalAreaType result = ag1.getGeoAreaType();
         assertEquals(expectedResult, result);
     }
 
@@ -473,7 +473,7 @@ class GeographicalAreaTest {
     public void testarAdicaoSensorAAreaGeografica() {
         //Arrange
         String nomeAG1 = "Porto";
-        GeoAreaType tipo1 = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
@@ -494,7 +494,7 @@ class GeographicalAreaTest {
     public void testarAdicaoDeDoisSensoresAAreaGeografica() {
         //Arrange
         String nomeAG1 = "Porto";
-        GeoAreaType tipo1 = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
@@ -517,7 +517,7 @@ class GeographicalAreaTest {
     public void testarAdicaoDeUmSensorApenasAAreaGeografica() {
         //Arrange
         String nomeAG1 = "Porto";
-        GeoAreaType tipo1 = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
@@ -540,13 +540,13 @@ class GeographicalAreaTest {
     public void testarGetmAreaInseridaEm() {
         //Arrange
         String nomeAG1 = "Porto";
-        GeoAreaType tipo1 = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Distrito");
+        GeographicalAreaType tipo = new GeographicalAreaType("Distrito");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
@@ -566,7 +566,7 @@ class GeographicalAreaTest {
     void testarNovaLocation() {
         //Arrange
         String nomeAG1 = "Porto";
-        GeoAreaType tipo1 = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
@@ -594,7 +594,7 @@ class GeographicalAreaTest {
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
         String nomeAG1 = "Porto";
-        GeoAreaType tipo1 = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
@@ -616,20 +616,20 @@ class GeographicalAreaTest {
         // Arrange
         // Instantiate GeoAreas
         String nomeAG2 = "Região Norte";
-        GeoAreaType tipo2 = new GeoAreaType("Região");
+        GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
         AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
-        GeoAreaType tipo1 = new GeoAreaType("Distrito");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
         AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -655,21 +655,21 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
-        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
-        Measurement measurement02 = new Measurement(30, dataHoraDaMedicao02);
+        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(30, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(measurement01);
-        s0.addMeasurementToList(measurement02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         SensorType typeRequired = new SensorType("Temperature");
 
@@ -685,20 +685,20 @@ class GeographicalAreaTest {
         // Arrange
         // Instantiate GeoAreas
         String nomeAG2 = "Região Norte";
-        GeoAreaType tipo2 = new GeoAreaType("Região");
+        GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
         AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
-        GeoAreaType tipo1 = new GeoAreaType("Distrito");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
         AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -718,20 +718,20 @@ class GeographicalAreaTest {
         // Arrange
         // Instantiate GeoAreas
         String nomeAG2 = "Região Norte";
-        GeoAreaType tipo2 = new GeoAreaType("Região");
+        GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
         AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
-        GeoAreaType tipo1 = new GeoAreaType("Distrito");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
         AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -756,21 +756,21 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
-        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
-        Measurement measurement02 = new Measurement(30, dataHoraDaMedicao02);
+        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(30, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(measurement01);
-        s0.addMeasurementToList(measurement02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
 
         Location location = new Location(0, 30, 50);
@@ -790,20 +790,20 @@ class GeographicalAreaTest {
         // Arrange
         // Instantiate GeoAreas
         String nomeAG2 = "Região Norte";
-        GeoAreaType tipo2 = new GeoAreaType("Região");
+        GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
         AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
-        GeoAreaType tipo1 = new GeoAreaType("Distrito");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
         AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -827,20 +827,20 @@ class GeographicalAreaTest {
         // Arrange
         // Instantiate GeoAreas
         String nomeAG2 = "Região Norte";
-        GeoAreaType tipo2 = new GeoAreaType("Região");
+        GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
         AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
-        GeoAreaType tipo1 = new GeoAreaType("Distrito");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
         AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -878,20 +878,20 @@ class GeographicalAreaTest {
         // Arrange
         // Instantiate GeoAreas
         String nomeAG2 = "Região Norte";
-        GeoAreaType tipo2 = new GeoAreaType("Região");
+        GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
         AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
-        GeoAreaType tipo1 = new GeoAreaType("Distrito");
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
         AreaShape area1 = new AreaShape(10, 10, local1);
         GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -916,21 +916,21 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 19, 24, 00);
 
-        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
-        Measurement measurement02 = new Measurement(30, dataHoraDaMedicao02);
+        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(30, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(measurement01);
-        s0.addMeasurementToList(measurement02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
 
         Location location = new Location(0, 30, 50);
@@ -950,7 +950,7 @@ class GeographicalAreaTest {
         //arrange
         //Instanciar AG
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -972,23 +972,23 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
-        Measurement measurement01 = new Measurement(23, dataHoraDaMedicao01);
-        Measurement measurement02 = new Measurement(30, dataHoraDaMedicao02);
+        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(30, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(measurement01);
-        s0.addMeasurementToList(measurement02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 5, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
-        Measurement measurement13 = new Measurement(20, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
+        Readings readings13 = new Readings(20, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
-        s1.addMeasurementToList(measurement13);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
+        s1.addReadingsToList(readings13);
 
         LocalDate startDate = LocalDate.of(2018, 12, 1);
         LocalDate endDate = LocalDate.of(2018, 12, 6);
@@ -1013,7 +1013,7 @@ class GeographicalAreaTest {
         //arrange
         //Instanciar AG
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -1050,7 +1050,7 @@ class GeographicalAreaTest {
         //arrange
         //Instanciar AG
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -1072,11 +1072,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 4, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
@@ -1094,7 +1094,7 @@ class GeographicalAreaTest {
         //arrange
         //Instanciar AG
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -1116,11 +1116,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 4, 17, 24, 00);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         LocalDate searchDate = LocalDate.of(2018, 12, 5);
 
@@ -1139,7 +1139,7 @@ class GeographicalAreaTest {
         //ARRANGE
         //Instanciar AG
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -1156,11 +1156,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 1, 8, 59, 13);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 1, 2, 05, 27);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -1173,11 +1173,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
 
-        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
+        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
+        Readings readings22 = new Readings(25, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(measurement21);
-        s2.addMeasurementToList(measurement22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
         //Instance of SensorType
         SensorType typeOfSensorTested = new SensorType("Rainfall");
@@ -1210,7 +1210,7 @@ class GeographicalAreaTest {
         //ARRANGE
         //Instanciar AG
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -1226,11 +1226,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 2, 8, 59, 13);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 2, 2, 05, 27);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -1243,11 +1243,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
 
-        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
+        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
+        Readings readings22 = new Readings(25, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(measurement21);
-        s2.addMeasurementToList(measurement22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
         //Instance of SensorType
         SensorType typeOfSensorTested = new SensorType("Rainfall");
@@ -1279,7 +1279,7 @@ class GeographicalAreaTest {
         //ARRANGE
         //Instanciar AG
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -1295,11 +1295,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 1, 8, 59, 13);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 1, 2, 05, 27);
 
-        Measurement measurement11 = new Measurement(22, dataHoraDaMedicao11);
-        Measurement measurement12 = new Measurement(25, dataHoraDaMedicao12);
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(measurement11);
-        s1.addMeasurementToList(measurement12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -1314,11 +1314,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
 
-        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        Measurement measurement22 = new Measurement(25, dataHoraDaMedicao22);
+        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
+        Readings readings22 = new Readings(25, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(measurement21);
-        s2.addMeasurementToList(measurement22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
         //Instance of SensorType
         SensorType typeOfSensorTested = new SensorType("Rainfall");
@@ -1348,7 +1348,7 @@ class GeographicalAreaTest {
         //ARRANGE
         //Instanciar AG
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(40, 40, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -1365,12 +1365,12 @@ class GeographicalAreaTest {
 
         //  add measurements to Sensor 1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 1, 8, 59, 13);
-        Measurement measurement11 = new Measurement(11, dataHoraDaMedicao11);
-        s1.addMeasurementToList(measurement11);
+        Readings readings11 = new Readings(11, dataHoraDaMedicao11);
+        s1.addReadingsToList(readings11);
 
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 1, 2, 05, 27);
-        Measurement measurement12 = new Measurement(11, dataHoraDaMedicao12);
-        s1.addMeasurementToList(measurement12);
+        Readings readings12 = new Readings(11, dataHoraDaMedicao12);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -1381,12 +1381,12 @@ class GeographicalAreaTest {
         ag.getSensorListInTheGeographicArea().addSensor(s2);
         //  add measurements to Sensor 2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
-        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        s2.addMeasurementToList(measurement21);
+        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
+        s2.addReadingsToList(readings21);
 
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
-        Measurement measurement22 = new Measurement(11, dataHoraDaMedicao22);
-        s2.addMeasurementToList(measurement22);
+        Readings readings22 = new Readings(11, dataHoraDaMedicao22);
+        s2.addReadingsToList(readings22);
 
         //Instance of SensorType
         SensorType typeOfSensorTested = new SensorType("Rainfall");
@@ -1412,7 +1412,7 @@ class GeographicalAreaTest {
         //ARRANGE
         //Instanciar AG
         String nomeAG = "Porto";
-        GeoAreaType tipo = new GeoAreaType("Cidade");
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(40, 40, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
@@ -1425,12 +1425,12 @@ class GeographicalAreaTest {
         Sensor s1 = new Sensor("A124", dataFuncionamento1, sensorType1, locS1);
         //  add measurements to Sensor 1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 1, 8, 59, 13);
-        Measurement measurement11 = new Measurement(11, dataHoraDaMedicao11);
-        s1.addMeasurementToList(measurement11);
+        Readings readings11 = new Readings(11, dataHoraDaMedicao11);
+        s1.addReadingsToList(readings11);
 
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
-        Measurement measurement12 = new Measurement(11, dataHoraDaMedicao12);
-        s1.addMeasurementToList(measurement12);
+        Readings readings12 = new Readings(11, dataHoraDaMedicao12);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -1439,12 +1439,12 @@ class GeographicalAreaTest {
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
         //  add measurements to Sensor 2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
-        Measurement measurement21 = new Measurement(20, dataHoraDaMedicao21);
-        s2.addMeasurementToList(measurement21);
+        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
+        s2.addReadingsToList(readings21);
 
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
-        Measurement measurement22 = new Measurement(11, dataHoraDaMedicao22);
-        s2.addMeasurementToList(measurement22);
+        Readings readings22 = new Readings(11, dataHoraDaMedicao22);
+        s2.addReadingsToList(readings22);
 
         //Instance of SensorType
         SensorType typeOfSensorTested = new SensorType("Rainfall");

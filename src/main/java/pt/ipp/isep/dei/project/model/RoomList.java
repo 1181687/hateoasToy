@@ -77,7 +77,6 @@ public class RoomList {
         int numberInTheList = 1;
         for (int i = 0; i < mRoomList.size(); i++) {
             String displayOfTheRoom = mRoomList.get(i).getRoomToString();
-            //   content.append("\n");
             content.append(numberInTheList);
             content.append("- ");
             content.append(displayOfTheRoom);
@@ -309,21 +308,20 @@ public class RoomList {
     }
 
     /**
-     * TODO
+     * Method that returns the content of all the devices present in all the rooms in the list.
      *
-     * @return
+     * @return String with the list of devices content.
      */
-    public String getAllDeviceListsToString() {
+    public String getAllDevicesToString() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
         for (Room room : mRoomList) {
-            content.append(numberInTheList + room.getDeviceListToString().substring(1));
-            numberInTheList++;
+            if (!room.getDeviceList().isDeviceListEmpty()) {
+                content.append(numberInTheList + room.getDeviceListToString().substring(1));
+                numberInTheList++;
+            }
         }
         return content.toString();
     }
 
-    public boolean deleteDevice(Device device, int choosenRoom) {
-        return mRoomList.get(choosenRoom).deleteDevice(device);
-    }
 }
