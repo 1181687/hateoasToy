@@ -69,16 +69,16 @@ Sensor "1" -"1" SensorType
 Sensor "1" - "*" Readings
 Sensor "1" - "1" Location
 
+House "1" -- "0..*" Room
+House "1" -- "1..*" HouseGrid
+House "1" ---- "1" Address
+House "1" ---- "1" GeographicalArea
+
 Room "1" --- "1" Dimension
 Room "1" --- "0..*" Sensor
 Room "1" --- "0..*" Device
 
 PowerSource "1" - "1" PowerSourceType
-
-House "1" -- "0..*" Room
-House "1" -- "1..*" HouseGrid
-House "1" ---- "1" Address
-House "1" ---- "1" GeographicalArea
 
 GeographicalArea "1" - "1" GeographicalAreaType
 GeographicalArea "1" - "1" GeographicalArea

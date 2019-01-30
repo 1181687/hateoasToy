@@ -4,9 +4,7 @@ package pt.ipp.isep.dei.project.model;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Device implements Measurable {
     private String mName;
@@ -81,7 +79,7 @@ public class Device implements Measurable {
      * @return true if sets false if don't
      */
     public boolean setName(String name) {
-        if (this.mLocation.isNameExistant(name) || this.mName == name) {
+        if (this.mLocation.isDeviceNameExistant(name) || this.mName == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
         this.mName = name;
@@ -198,12 +196,12 @@ public class Device implements Measurable {
     }
 
     /**
-     * Method that calculates the sum of the value in each measurement in a given measurement list.
+     * Method that calculates the sum of the value in each Readings in a given Readings list.
      *
-     * @param readingsList List with measurements.
+     * @param readingsList List with Readingss.
      * @return Double with the required sum.
      */
-    public double getSumOfTheMeasurements(List<Readings> readingsList) {
+    public double getSumOfTheReadingss(List<Readings> readingsList) {
         double sum = 0;
         for (Readings readings : readingsList) {
             sum += readings.getValue();
@@ -211,27 +209,30 @@ public class Device implements Measurable {
         return sum;
     }
 
+    public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
+        List<Readings> ReadingsList = new ArrayList<>();
+        for (Readings Readings : mReadingsList) {
+            if (!startDate.isAfter(Readings.getDateTime()) && !endDate.isBefore(Readings.getDateTime())) {
+                ReadingsList.add(Readings);
+            }
+        }
+        return ReadingsList;
+    }
+
     /**
      * Method that calculates the total energy consumption of a device in a given interval.
      *
      * @param startDate Start date.
-     * @param endDate End date.
+     * @param endDate   End date.
      * @return Double with the required energy consumption.
      */
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        int numberOfValidMeasurements = 0;
-        List<Readings> readingsList = new ArrayList<>();
-        for (Readings readings : mReadingsList) {
-            if (!startDate.isAfter(readings.getDateTime()) && !endDate.isBefore(readings.getDateTime())) {
-                readingsList.add(readings);
-                numberOfValidMeasurements++;
-            }
-        }
-        if (numberOfValidMeasurements > 1) {
-            readingsList.remove(0);
-            totalEnergyConsumption = getSumOfTheMeasurements(readingsList);
+        List<Readings> ReadingsList = getReadingsListInInterval(startDate, endDate);
+        if (ReadingsList.size() > 1) {
+            ReadingsList.remove(0);
+            totalEnergyConsumption = getSumOfTheReadingss(ReadingsList);
         }
         return totalEnergyConsumption;
     }
@@ -259,11 +260,20 @@ public class Device implements Measurable {
      */
     public int setDeviceMeteringPeriod() {
         int meteringPeriod = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
-        if (1440%meteringPeriod==0 && (meteringPeriod % Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"))==0)) {
+        if (1440 % meteringPeriod == 0 && (meteringPeriod % Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid")) == 0)) {
             return meteringPeriod;
         } else {
             return -1;
         }
     }
 
+    @Override
+    public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
+        HashMap<LocalDateTime, Double> hmap = new HashMap<>();
+        List<Readings> validReadingsList = getReadingsListInInterval(startDate, endDate);
+        for (Readings Readings : validReadingsList) {
+            hmap.put(Readings.getDateTime(), Readings.getValue());
+        }
+        return hmap;
+    }
 }
