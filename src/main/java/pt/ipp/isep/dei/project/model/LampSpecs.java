@@ -2,13 +2,13 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
-public class Lamp implements DeviceSpecs {
+public class LampSpecs implements DeviceSpecs {
     private String mTypeName;
     private double mLuminousFlux;
     private double mTime;
     private double mNominalPower;
 
-    public Lamp(double luminousFlux, double nominalPower) {
+    public LampSpecs(double luminousFlux, double nominalPower) {
         this.mTypeName = "Lamp";
         this.mLuminousFlux = luminousFlux;
         this.mNominalPower = nominalPower;
@@ -123,7 +123,7 @@ public class Lamp implements DeviceSpecs {
     /**
      * get method
      *
-     * @return number of Fridge attributes
+     * @return number of FridgeSpecs attributes
      */
     @Override
     public int getNumberOfAttributes() {

@@ -487,7 +487,7 @@ public class House {
     public String getDataSeriesToString(Map<LocalDateTime, Double> map) {
         StringBuilder readingsMap = new StringBuilder();
         for (Map.Entry<LocalDateTime, Double> entry : map.entrySet())
-            readingsMap.append("Date/hour: " + entry.getKey() +
+            readingsMap.append("Date/hour: " + entry.getKey().toLocalDate().toString() + " " +entry.getKey().toLocalTime().toString()+
                     ", Energy Consumption: " + entry.getValue() + " kWh\n");
         return readingsMap.toString();
     }

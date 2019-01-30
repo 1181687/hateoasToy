@@ -21,12 +21,12 @@ class MeasurableListTest {
         Program program = new Program("prog1", 3, 4.5);
         programList.addProgram(program);
 
-        Fridge specFridge = new Fridge(25, 50, 5000, 500);
-        WashingMachine specWashing = new WashingMachine(400, 250.0, programList);
-        DishWasher specDishWasher = new DishWasher(400, 250.0, programList);
-        Device dev1 = new Device("FridgeAriston", room1, specFridge);
+        FridgeSpecs specFridgeSpecs = new FridgeSpecs(25, 50, 5000, 500);
+        WashingMachineSpecs specWashing = new WashingMachineSpecs(400, 250.0, programList);
+        DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(400, 250.0, programList);
+        Device dev1 = new Device("FridgeAriston", room1, specFridgeSpecs);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasher", room1, specDishWasher);
+        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasherSpecs);
 
         mList.addMeasurable(dev1);
         mList.addMeasurable(room2);
@@ -56,12 +56,12 @@ class MeasurableListTest {
         Program program = new Program("prog1", 3, 4.5);
         programList.addProgram(program);
 
-        Fridge specFridge = new Fridge(25, 50, 5000, 500);
-        WashingMachine specWashing = new WashingMachine(400, 250.0, programList);
-        DishWasher specDishWasher = new DishWasher(400, 250.0, programList);
-        Device dev1 = new Device("FridgeAriston", room1, specFridge);
+        FridgeSpecs specFridgeSpecs = new FridgeSpecs(25, 50, 5000, 500);
+        WashingMachineSpecs specWashing = new WashingMachineSpecs(400, 250.0, programList);
+        DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(400, 250.0, programList);
+        Device dev1 = new Device("FridgeAriston", room1, specFridgeSpecs);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasher", room1, specDishWasher);
+        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasherSpecs);
 
         mList.addMeasurable(dev1);
         mList.addMeasurable(room2);
@@ -70,7 +70,7 @@ class MeasurableListTest {
         room1.addDevice(dev2);
         room2.addDevice(dev3);
 
-        Measurable measurable1 = new Device("FridgeAriston", room1, specFridge);
+        Measurable measurable1 = new Device("FridgeAriston", room1, specFridgeSpecs);
 
         // act
         boolean result = mList.checkIfMeasurableObjIsInList(measurable1);
@@ -91,12 +91,12 @@ class MeasurableListTest {
         Program program = new Program("prog1", 3, 4.5);
         programList.addProgram(program);
 
-        Fridge specFridge = new Fridge(25, 50, 5000, 500);
-        WashingMachine specWashing = new WashingMachine(400, 250.0, programList);
-        DishWasher specDishWasher = new DishWasher(400, 250.0, programList);
-        Device dev1 = new Device("FridgeAriston", room1, specFridge);
+        FridgeSpecs specFridgeSpecs = new FridgeSpecs(25, 50, 5000, 500);
+        WashingMachineSpecs specWashing = new WashingMachineSpecs(400, 250.0, programList);
+        DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(400, 250.0, programList);
+        Device dev1 = new Device("FridgeAriston", room1, specFridgeSpecs);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasher", room1, specDishWasher);
+        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasherSpecs);
 
         mList.addMeasurable(room2);
 
@@ -104,7 +104,7 @@ class MeasurableListTest {
         room1.addDevice(dev2);
         room2.addDevice(dev3);
 
-        Measurable measurable1 = new Device("FridgeAriston", room1, specFridge);
+        Measurable measurable1 = new Device("FridgeAriston", room1, specFridgeSpecs);
 
         // act
         boolean result = mList.checkIfMeasurableObjIsInList(measurable1);
@@ -125,12 +125,12 @@ class MeasurableListTest {
         Program program = new Program("prog1", 3, 4.5);
         programList.addProgram(program);
 
-        Fridge specFridge = new Fridge(25, 50, 5000, 500);
-        WashingMachine specWashing = new WashingMachine(400, 250.0, programList);
-        DishWasher specDishWasher = new DishWasher(400, 250.0, programList);
-        Device dev1 = new Device("FridgeAriston", room1, specFridge);
+        FridgeSpecs specFridgeSpecs = new FridgeSpecs(25, 50, 5000, 500);
+        WashingMachineSpecs specWashing = new WashingMachineSpecs(400, 250.0, programList);
+        DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(400, 250.0, programList);
+        Device dev1 = new Device("FridgeAriston", room1, specFridgeSpecs);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasher", room1, specDishWasher);
+        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasherSpecs);
 
         mList.addMeasurable(dev1);
         mList.addMeasurable(room2);

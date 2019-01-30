@@ -19,46 +19,55 @@ public class GetEnergyConsumptionDataSeriesController {
         this.mHouse = mHouse;
     }
 
-    public String getHouseGridListToString(){
+    public String getHouseGridListToString() {
         return mHouse.getHouseGridListContent();
     }
 
-    public String getRoomListToString(){
+    public String getRoomListToString() {
         return mHouse.getRoomListContent();
     }
 
-    public String getDeviceListToString(){
+    public String getDeviceListToString() {
         return mHouse.getAllDevicesToString();
     }
 
-    public boolean houseGridListIsEmpty(){
+    public boolean houseGridListIsEmpty() {
         return mHouse.isHouseGridListEmpty();
     }
 
-    public void getHouseGridByPosition(int position){
-        mSelectedHouseGrid=mHouse.getHouseGridByPosition(position);
+    public void getHouseGridByPosition(int position) {
+        mSelectedHouseGrid = mHouse.getHouseGridByPosition(position);
     }
 
-    public void getRoomByPosition(int position){
-        mSelectedRoom=mHouse.getRoomOfTheRoomList(position);
+    public void getRoomByPosition(int position) {
+        mSelectedRoom = mHouse.getRoomOfTheRoomList(position);
     }
 
-    public void getDeviceByPosition(int position){
+    public void getDeviceByPosition(int position) {
         mSelectedDevice = mHouse.getDeviceByPosition(position);
     }
 
-    public String getHouseGridDataSeriesToString(LocalDateTime startDate, LocalDateTime endDate){
-        Map<LocalDateTime,Double> map = mSelectedHouseGrid.getDataSeries(startDate,endDate);
+    public String getHouseGridDataSeriesToString(LocalDateTime startDate, LocalDateTime endDate) {
+        Map<LocalDateTime, Double> map = mSelectedHouseGrid.getDataSeries(startDate, endDate);
+        if (map.isEmpty()) {
+            return "No valid values found for that period.\n";
+        }
         return mHouse.getDataSeriesToString(map);
     }
 
-    public String getRoomDataSeriesToString(LocalDateTime startDate, LocalDateTime endDate){
-        Map<LocalDateTime,Double> map = mSelectedRoom.getDataSeries(startDate,endDate);
+    public String getRoomDataSeriesToString(LocalDateTime startDate, LocalDateTime endDate) {
+        Map<LocalDateTime, Double> map = mSelectedRoom.getDataSeries(startDate, endDate);
+        if (map.isEmpty()) {
+            return "No valid values found for that period.\n";
+        }
         return mHouse.getDataSeriesToString(map);
     }
 
-    public String getDeviceDataSeriesToString(LocalDateTime startDate, LocalDateTime endDate){
-        Map<LocalDateTime,Double> map = mSelectedDevice.getDataSeries(startDate,endDate);
+    public String getDeviceDataSeriesToString(LocalDateTime startDate, LocalDateTime endDate) {
+        Map<LocalDateTime, Double> map = mSelectedDevice.getDataSeries(startDate, endDate);
+        if (map.isEmpty()) {
+            return "No valid values found for that period.\n";
+        }
         return mHouse.getDataSeriesToString(map);
     }
 

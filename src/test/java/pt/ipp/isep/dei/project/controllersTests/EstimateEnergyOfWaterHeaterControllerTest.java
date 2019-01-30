@@ -29,13 +29,13 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         double maximumVolume = 100;
         double performanceRatio = 0.9;
         double nominalPower = 50;
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
         Device device = new Device("Bosch Tronic 3000", room, electricWaterHeater);
         double hotWaterTemp1 = 100;
         double maximumVolume1 = 100;
         double performanceRatio1 = 0.7;
         double nominalPower1 = 50;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
         Device device1 = new Device("Bosch Tronic Coiso", room1, electricWaterHeater1);
 
         // House Instantiation
@@ -80,13 +80,13 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         double maximumVolume = 100;
         double performanceRatio = 0.9;
         double nominalPower = 50;
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
         Device device = new Device("Bosch Tronic 3000", room, electricWaterHeater);
         double hotWaterTemp1 = 100;
         double maximumVolume1 = 100;
         double performanceRatio1 = 0.7;
         double nominalPower1 = 50;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
         Device device1 = new Device("Bosch Tronic Coiso", room1, electricWaterHeater1);
 
         // House Instantiation
@@ -131,13 +131,13 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         double maximumVolume = 100;
         double performanceRatio = 0.9;
         double nominalPower = 50;
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
         Device device = new Device("Bosch Tronic 3000", room, electricWaterHeater);
         double hotWaterTemp1 = 100;
         double maximumVolume1 = 100;
         double performanceRatio1 = 0.7;
         double nominalPower1 = 50;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
         Device device1 = new Device("Bosch Tronic Coiso", room1, electricWaterHeater1);
 
         // House Instantiation
@@ -187,13 +187,13 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         double maximumVolume = 100;
         double performanceRatio = 0.9;
         double nominalPower = 50;
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
         Device device = new Device("Bosch Tronic 3000", room, electricWaterHeater);
         double hotWaterTemp1 = 100;
         double maximumVolume1 = 100;
         double performanceRatio1 = 0.7;
         double nominalPower1 = 50;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeater(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
+        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
         Device device1 = new Device("Bosch Tronic Coiso", room1, electricWaterHeater1);
 
         // House Instantiation
