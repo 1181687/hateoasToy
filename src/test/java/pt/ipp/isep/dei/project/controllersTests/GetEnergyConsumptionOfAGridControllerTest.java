@@ -3,15 +3,11 @@ package pt.ipp.isep.dei.project.controllersTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionOfAGridController;
-import pt.ipp.isep.dei.project.controllers.GetNominalPowerOfAGridController;
-import pt.ipp.isep.dei.project.io.ui.GetEnergyConsumptionOfAGrid;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GetEnergyConsumptionOfAGridControllerTest {
 
@@ -109,15 +105,15 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement0 = new Measurement(3, time0);
+        Readings readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement1 = new Measurement(5, time1);
+        Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement2 = new Measurement(7, time2);
+        Readings readings2 = new Readings(7, time2);
 
-        lamp.addMeasurementToTheList(measurement0);
-        lamp.addMeasurementToTheList(measurement1);
-        lamp.addMeasurementToTheList(measurement2);
+        lamp.addReadingsToTheList(readings0);
+        lamp.addReadingsToTheList(readings1);
+        lamp.addReadingsToTheList(readings2);
 
         int position = 0;
         controller.getHouseGridByPosition(position);

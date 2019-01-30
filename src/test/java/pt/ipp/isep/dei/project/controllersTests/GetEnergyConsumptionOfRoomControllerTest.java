@@ -6,9 +6,7 @@ import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class GetEnergyConsumptionOfRoomControllerTest {
@@ -300,9 +298,9 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         Readings readings2 = new Readings(7, time2);
 
         // List<Readings Configuration
-        device.addMeasurementToTheList(readings0);
-        device.addMeasurementToTheList(readings1);
-        device.addMeasurementToTheList(readings2);
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
 
         double expectedResult = 7;
 
@@ -355,9 +353,9 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         Readings readings2 = new Readings(7, time2);
 
         // List<Readings Configuration
-        device.addMeasurementToTheList(readings0);
-        device.addMeasurementToTheList(readings1);
-        device.addMeasurementToTheList(readings2);
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
 
         double expectedResult = 12;
 
@@ -410,9 +408,9 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         Readings readings2 = new Readings(7, time2);
 
         // List<Readings Configuration
-        device.addMeasurementToTheList(readings0);
-        device.addMeasurementToTheList(readings1);
-        device.addMeasurementToTheList(readings2);
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
 
         double expectedResult = 0;
 
