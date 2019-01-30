@@ -1,8 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
 
-import pt.ipp.isep.dei.project.utils.Utils;
-
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -11,7 +9,6 @@ public class Device implements Measurable {
     private Room mLocation;
     private DeviceSpecs mSpec;
     private List<Readings> mReadingsList = new ArrayList<>();
-    private int mMeteringPeriod;
     private boolean mIsActive;
     private LocalDateTime mDeactivationDate;
 
@@ -20,7 +17,6 @@ public class Device implements Measurable {
         this.mLocation = location;
         this.mSpec = spec;
         this.mLocation.addDevice(this);
-        this.mMeteringPeriod = setDeviceMeteringPeriod();
         this.mIsActive = true;
     }
 
@@ -254,27 +250,6 @@ public class Device implements Measurable {
         return mIsActive;
     }
 
-    /**
-     * method that set the metering period of a device
-     *
-     * @return if true, return the metering period. If not, return -1.
-     */
-    public int setDeviceMeteringPeriod() {
-        int meteringPeriod = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
-        if (1440 % meteringPeriod == 0 && (meteringPeriod % Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid")) == 0)) {
-            return meteringPeriod;
-        } else {
-            return -1;
-        }
-    }
-
-    /**
-     * Method that returns the Data series of the power consumption of the device in a given interval.
-     *
-     * @param startDate
-     * @param endDate
-     * @return
-     */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> hmap = new TreeMap<>();

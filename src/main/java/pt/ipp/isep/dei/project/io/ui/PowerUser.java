@@ -82,6 +82,11 @@ public class PowerUser {
                     GetEnergyConsumptionDevice ui720 = new GetEnergyConsumptionDevice(mHouse);
                     ui720.run();
                     break;
+                case 6:
+                    GetEnergyConsumptionDataSeries ui730 = new GetEnergyConsumptionDataSeries(mHouse);
+                    ui730.run();
+                    break;
+
             }
             option = Menu.powerUserEnergyConsumtionMenu();
         }
