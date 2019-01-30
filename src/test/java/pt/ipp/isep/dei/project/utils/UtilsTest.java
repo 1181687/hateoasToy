@@ -90,11 +90,11 @@ class UtilsTest {
     @Test
     void testMeteringPeriodWrongKey() {
         //Arrange
-        String expectedResult = "coisas";
-
+        String expectedResult = "Wrong Key";
         //Act
         String result = Utils.readConfigFile("Cenas");
-//Assert
+        //Assert
+        assertEquals(expectedResult,result);
 
     }
 
@@ -103,7 +103,7 @@ class UtilsTest {
         int expectedResult = 20;
 
         int result = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
-//Assert
+        //Assert
         assertEquals(expectedResult, result);
 
     }
