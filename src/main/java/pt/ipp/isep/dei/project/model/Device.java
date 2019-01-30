@@ -193,7 +193,7 @@ public class Device implements Measurable {
      *
      * @param readings Readings to be added.
      */
-    public void addMeasurementToTheList(Readings readings) {
+    public void addReadingsToTheList(Readings readings) {
         mReadingsList.add(readings);
     }
 

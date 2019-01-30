@@ -549,9 +549,9 @@ public class RoomTest {
         Readings readings2 = new Readings(7, time2);
 
         // List<Readings Configuration
-        device.addMeasurementToTheList(readings0);
-        device.addMeasurementToTheList(readings1);
-        device.addMeasurementToTheList(readings2);
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
 
         double expectedResult = 7;
 
@@ -592,9 +592,9 @@ public class RoomTest {
         Readings readings2 = new Readings(7, time2);
 
         // List<Readings Configuration
-        device.addMeasurementToTheList(readings0);
-        device.addMeasurementToTheList(readings1);
-        device.addMeasurementToTheList(readings2);
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
 
         double expectedResult = 12;
 
@@ -635,9 +635,9 @@ public class RoomTest {
         Readings readings2 = new Readings(7, time2);
 
         // List<Readings Configuration
-        device.addMeasurementToTheList(readings0);
-        device.addMeasurementToTheList(readings1);
-        device.addMeasurementToTheList(readings2);
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
 
         double expectedResult = 0;
 
