@@ -18,83 +18,84 @@ skinparam sequence {
 }
 
 actor User
-User -> ":UI": DeleteDeviceFromRoom
+User -> ":UI": 1- DeleteDeviceFromRoom
 activate ":UI"
-":UI" -> ":Controller": getRoomListContent()
+":UI" -> ":Controller": 1.1- getRoomListContent()
 activate ":Controller"
-":Controller" -> ":House": getRoomListContent()
+":Controller" -> ":House": 1.2- getRoomListContent()
 activate ":House"
-":House" -> ":RoomList"
+":House" -> ":RoomList": 1.3- getRoomListContent()
 activate ":RoomList"
-":House" <-- ":RoomList": RoomListContent
+":House" <-- ":RoomList": 1.4- RoomListContent
 deactivate ":RoomList"
-":Controller" <-- ":House": RoomListContent
+":Controller" <-- ":House": 1.5- RoomListContent
 deactivate ":House"
-":UI" <-- ":Controller": RoomListContent
-User <-- ":UI": RoomListContent
+":UI" <-- ":Controller": 1.6- RoomListContent
+User <-- ":UI": 1.7- RoomListContent
 
-User -> ":UI": Int position: Room
-":UI" -> ":Controller": getRoomName(Room)
-":Controller" -> ":House": getRoomName(Room)
+User -> ":UI": 2- Int position: Room
+":UI" -> ":Controller": 2.1- getRoomName(Room)
+":Controller" -> ":House": 2.2- getRoomName(Room)
 activate ":House"
-":House" -> ":RoomList": getRoomName(Room)
+":House" -> ":RoomList": 2.3- getRoomName(Room)
 activate ":RoomList"
-":RoomList" -> ":Room": getName()
+":RoomList" -> ":Room": 2.4- getName()
 activate ":Room"
-":Controller" <-- ":Room": RoomName
+":Controller" <-- ":Room": 2.5- RoomName
 deactivate ":Room"
 deactivate ":RoomList"
 deactivate ":House"
-":UI" <-- ":Controller": RoomName
+":UI" <-- ":Controller": 2.6- RoomName
 
 
 
-":UI" -> ":Controller": getDeviceListContent(Room)
-":Controller" -> ":House": getDeviceListContent(Room)
+":UI" -> ":Controller": 3- getDeviceListContent(Room)
+":Controller" -> ":House": 3.1- getDeviceListContent(Room)
 activate ":House"
-":House" -> ":RoomList": getDeviceListContent(Room)
+":House" -> ":RoomList": 3.2- getDeviceListContent(Room)
 activate ":RoomList"
-":RoomList" -> ":Room": getDeviceListContent (Room)
+":RoomList" -> ":Room": 3.3- getDeviceListContent (Room)
 activate ":Room"
-":Room" -> ":DeviceList": getDeviceListContent(Room)
+":Room" -> ":DeviceList": 3.4- getDeviceListContent(Room)
 activate ":DeviceList"
-":DeviceList" -> ":DeviceList": LengthDeviceList
-":DeviceList" -> ":DeviceList": DeviceList
-":DeviceList" -> ":Device": getName()
+":DeviceList" -> ":DeviceList": 3.5- LengthDeviceList
+":DeviceList" -> ":DeviceList": 3.6- DeviceList
+":DeviceList" -> ":Device": 3.7- getName()
 activate ":Device"
-":DeviceList" <-- ":Device": DeviceName
+":DeviceList" <-- ":Device": 3.8- DeviceName
 deactivate ":Device"
-":UI" <-- ":DeviceList": DeviceListContent
+":UI" <-- ":DeviceList": 3.9- DeviceListContent
 deactivate ":DeviceList"
 deactivate ":Room"
 deactivate ":RoomList"
 deactivate ":House"
-User <-- ":UI": DeviceListContent
+User <-- ":UI": 3.10- DeviceListContent
 
-User -> ":UI": Int position
-":UI" -> ":Controller": getDevice(position)
-":Controller" -> ":Room": getDevice(position)
+User -> ":UI": 4- Int position
+":UI" -> ":Controller": 4.1- getDevice(position)
+":Controller" -> ":Room": 4.2- getDevice(position)
 activate ":Room"
-":Room" -> DeviceList: getDevice(position)
+":Room" -> DeviceList: 4.3- getDevice(position)
 activate DeviceList
-":Controller" <-- DeviceList : string
+":Controller" <-- DeviceList: 4.4- string
 deactivate DeviceList
 deactivate ":Room"
 
-":UI" <-- ":Controller": string
-User <-- ":UI": string
-User --> User: ConfirmDeactivationDevice
-":UI" --> ":Controller": deactivationDevice()
-":Controller" --> ":Room": deactivationDevice()
+":UI" <-- ":Controller": 4.5- string
+User <-- ":UI": 4.6- string
+
+User --> User: 5- ConfirmDeactivationDevice
+":UI" --> ":Controller": 5.1- deactivationDevice()
+":Controller" --> ":Room": 5.2- deactivationDevice()
 activate ":Room"
-":Room" --> ":DeviceList": deactivationDevice()
+":Room" --> ":DeviceList": 5.3- deactivationDevice()
 activate ":DeviceList"
-":Controller" <-- ":DeviceList": string
+":Controller" <-- ":DeviceList": 5.4- string
 deactivate ":DeviceList"
 deactivate ":Room"
-":UI" <-- ":Controller": string
+":UI" <-- ":Controller": 5.5- string
 deactivate ":Controller"
-User <-- ":UI": string
+User <-- ":UI": 5.6- string
 deactivate ":UI"
 
 @enduml
