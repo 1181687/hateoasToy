@@ -42,6 +42,7 @@ public class AddDeviceToRoomController {
     public void getDeviceList() {
         mDeviceList = this.mRoom.getDeviceList();
     }
+
     /**
      * Method that show the room selected.
      * @return selected room
