@@ -38,11 +38,6 @@ public class AddDeviceToRoomController {
         mRoom = mHouse.getRoomOfTheRoomList(position);
     }
 
-
-    public void getDeviceList() {
-        mDeviceList = this.mRoom.getDeviceList();
-    }
-
     /**
      * Method that show the room selected.
      * @return selected room
@@ -55,8 +50,6 @@ public class AddDeviceToRoomController {
     public void getDeviceList() {
         mDeviceList = this.mRoom.getDeviceList();
     }
-
-
 
     /**
      * Method that asks for the size of the list of rooms.

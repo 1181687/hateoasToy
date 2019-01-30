@@ -932,7 +932,6 @@ class GeographicalAreaTest {
         s1.addReadingsToList(readings11);
         s1.addReadingsToList(readings12);
 
-
         Location location = new Location(0, 30, 50);
 
         double expectedResult = 30.0;
@@ -1083,7 +1082,7 @@ class GeographicalAreaTest {
         double expectedResult = 23.5;
 
         //Act
-        double result = ag.getDailyAverageOfAListOfSensors(ag.getSensorListInTheGeographicArea().getSensorList(), searchDate);
+        double result = ag.getDailyAverageOfAListOfSensors(ag.getSensorListInTheGeographicArea(), searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1127,7 +1126,7 @@ class GeographicalAreaTest {
         double expectedResult = Double.NaN;
 
         //Act
-        double result = ag.getDailyAverageOfAListOfSensors(ag.getSensorListInTheGeographicArea().getSensorList(), searchDate);
+        double result = ag.getDailyAverageOfAListOfSensors(ag.getSensorListInTheGeographicArea(), searchDate);
 
         //Assert
         assertEquals(expectedResult, result);
