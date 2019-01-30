@@ -1,0 +1,56 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+autonumber
+actor PowerUser
+PowerUser -> ":UI": GetEnergyConsumptionOfDevice
+activate ":UI"
+":UI" -> ":Controller": GetAllDevicesToString()
+activate ":Controller"
+":Controller" -> ":House": GetAllDevicesToString()
+activate ":House"
+":Controller" <-- ":House": String
+deactivate ":House"
+":UI" <-- ":Controller": String
+deactivate ":Controller"
+PowerUser <-- ":UI": String
+
+PowerUser -> ":UI": Int Device Position
+":UI" -> ":Controller": SetDevice(position)
+activate ":Controller"
+":Controller" -> ":House": GetDeviceByPosition (position)
+activate ":House"
+":Controller" <-- ":House": Device
+deactivate ":House"
+deactivate ":Controller"
+
+PowerUser -> ":UI": Insert Start Date (LocalDateTime)
+PowerUser -> ":UI": Insert End Date (LocalDateTime)
+":UI" -> ":Controller": GetEnergyConsumption(startDate, endDate)
+activate ":Controller"
+":Controller" -> ":Device": GetEnergyConsumption(startDate, endDate)
+activate ":Device"
+":Controller" <-- ":Device": double
+deactivate ":Device"
+":UI" <-- ":Controller": double
+deactivate ":Controller"
+PowerUser <-- ":UI": double
+deactivate ":UI"
+
+@enduml
