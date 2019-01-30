@@ -2,7 +2,9 @@ package pt.ipp.isep.dei.project.model;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class House {
@@ -10,6 +12,9 @@ public class House {
     private HouseGridList mListHouseGrids;
     private Address mAddress;
     private GeographicalArea mInsertedGeoArea;
+    private String mDeviceTypeList;
+    private int mMeteringPeriodGrid;
+    private int mMeteringPeriodDevice;
 
     /**
      * constructor of house that receives a room list, a list of house grids, an address and an insertedGeoArea.
@@ -24,6 +29,17 @@ public class House {
         this.mAddress = address;
         this.mInsertedGeoArea = insertedGeoArea;
     }
+
+    public House(RoomList roomList, HouseGridList listHouseGrids, Address address, GeographicalArea insertedGeoArea, String deviceTypeList, int meteringPeriodGrid, int meteringPeriodDevice) {
+        this.mRoomList = roomList;
+        this.mListHouseGrids = listHouseGrids;
+        this.mAddress = address;
+        this.mInsertedGeoArea = insertedGeoArea;
+        this.mDeviceTypeList = deviceTypeList;
+        this.mMeteringPeriodGrid = meteringPeriodGrid;
+        this.mMeteringPeriodDevice = meteringPeriodDevice;
+    }
+
 
     public RoomList getRoomList() {
         return mRoomList;
@@ -451,5 +467,13 @@ public class House {
      */
     public int numberOfDeviceTypes(int position) {
         return this.mRoomList.getRoomFromPosition(position).numberOfDeviceTypes();
+    }
+
+    public String getDataSeriesToString(Map<LocalDateTime, Double> map) {
+        StringBuilder readingsMap = new StringBuilder();
+        for (Map.Entry<LocalDateTime, Double> entry : map.entrySet())
+            readingsMap.append("Date/hour: " + entry.getKey() +
+                    ", Energy Consumption: " + entry.getValue() + " kWh\n");
+        return readingsMap.toString();
     }
 }
