@@ -2,14 +2,14 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
-public class Fridge implements DeviceSpecs {
+public class FridgeSpecs implements DeviceSpecs {
     private String mTypeName;
     private double mFreezerCapacity;
     private double mRefrigeratorCapacity;
     private double mAnnualEnergyConsumption;
     private double mNominalPower;
 
-    public Fridge(double freezerCapacity, double refrigeratorCapacity, double annualEnergyConsumption, double nominalPower) {
+    public FridgeSpecs(double freezerCapacity, double refrigeratorCapacity, double annualEnergyConsumption, double nominalPower) {
         this.mTypeName = "Fridge";
         this.mFreezerCapacity = freezerCapacity;
         this.mRefrigeratorCapacity = refrigeratorCapacity;
@@ -142,7 +142,7 @@ public class Fridge implements DeviceSpecs {
     /**
      * get method of the number of attributes
      *
-     * @return number of Fridge attributes
+     * @return number of FridgeSpecs attributes
      */
     @Override
     public int getNumberOfAttributes() {

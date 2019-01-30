@@ -20,11 +20,11 @@ class GetEnergyConsumptionDeviceControllerTest {
         Room room0 = new Room("Kitchen", 1, dim);
         Room room1 = new Room("Laundry", 2, dim);
 
-        // Fridge Instantiation
-        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+        // FridgeSpecs Instantiation
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
-        // ElectricWaterHeater Instantiation
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(50, 150,
+        // ElectricWaterHeaterSpecs Instantiation
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(50, 150,
                 0.9, 100);
 
         // Device Instantiation
@@ -64,11 +64,11 @@ class GetEnergyConsumptionDeviceControllerTest {
         Room room0 = new Room("Kitchen", 1, dim);
         Room room1 = new Room("Laundry", 2, dim);
 
-        // Fridge Instantiation
-        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+        // FridgeSpecs Instantiation
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
-        // ElectricWaterHeater Instantiation
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(50, 150,
+        // ElectricWaterHeaterSpecs Instantiation
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(50, 150,
                 0.9, 100);
 
         // Device Instantiation
@@ -109,8 +109,8 @@ class GetEnergyConsumptionDeviceControllerTest {
         // Room Instantiation
         Room room = new Room("Kitchen", 1, dim);
 
-        // Fridge Instantiation
-        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+        // FridgeSpecs Instantiation
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
         Device device = new Device("Fridgerator", room, fridge);
@@ -164,8 +164,8 @@ class GetEnergyConsumptionDeviceControllerTest {
         // Room Instantiation
         Room room = new Room("Kitchen", 1, dim);
 
-        // Fridge Instantiation
-        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+        // FridgeSpecs Instantiation
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
         Device device = new Device("Fridgeratah V14", room, fridge);
@@ -219,8 +219,8 @@ class GetEnergyConsumptionDeviceControllerTest {
         // Room Instantiation
         Room room = new Room("Kitchen", 1, dim);
 
-        // Fridge Instantiation
-        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+        // FridgeSpecs Instantiation
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
         Device device = new Device("Fridgerator V14", room, fridge);

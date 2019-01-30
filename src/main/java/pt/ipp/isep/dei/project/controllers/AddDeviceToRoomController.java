@@ -65,7 +65,7 @@ public class AddDeviceToRoomController {
      * @param position
      * @return
      */
-    public int numberOfDeviceTypes(int position) {
+    public int getnumberOfDeviceTypes(int position) {
         return mHouse.numberOfDeviceTypes(position);
     }
 
@@ -80,13 +80,13 @@ public class AddDeviceToRoomController {
 
 
     /**
-     * Method that create a new Fridge in a selected Room.
+     * Method that create a new FridgeSpecs in a selected Room.
      *
-     * @param name                    of the Fridge
-     * @param annualEnergyConsumption the annual Energy Consumption of the Fridge (a specification of the Fridge)
-     * @param nominalPower            the nominal power of the Fridge (a specification of the Fridge)
-     * @param freezerCapacity         the freezer capacity of the Fridge (a specification of the Fridge)
-     * @param refrigeratorCapacity    the refrigerator capacity of the Fridge (a specification of the Fridge)
+     * @param name                    of the FridgeSpecs
+     * @param annualEnergyConsumption the annual Energy Consumption of the FridgeSpecs (a specification of the FridgeSpecs)
+     * @param nominalPower            the nominal power of the FridgeSpecs (a specification of the FridgeSpecs)
+     * @param freezerCapacity         the freezer capacity of the FridgeSpecs (a specification of the FridgeSpecs)
+     * @param refrigeratorCapacity    the refrigerator capacity of the FridgeSpecs (a specification of the FridgeSpecs)
      * @return the Device that has been created
      */
     public Device createNewFridge(String name, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
@@ -94,11 +94,11 @@ public class AddDeviceToRoomController {
     }
 
     /**
-     * Method that create a new Lamp in a selected Room.
+     * Method that create a new LampSpecs in a selected Room.
      *
-     * @param name         of the Lamp
-     * @param nominalPower the nominal power of the Lamp (a specification of the Lamp)
-     * @param luminousFlux the luminous flux of the Lamp (a specification of the Lamp)
+     * @param name         of the LampSpecs
+     * @param nominalPower the nominal power of the LampSpecs (a specification of the LampSpecs)
+     * @param luminousFlux the luminous flux of the LampSpecs (a specification of the LampSpecs)
      * @return the Device that has been created
      */
     public Device createNewLamp(String name, double nominalPower, double luminousFlux) {

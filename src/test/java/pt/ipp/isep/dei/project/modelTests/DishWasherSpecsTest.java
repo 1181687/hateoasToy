@@ -1,24 +1,24 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.DishWasher;
+import pt.ipp.isep.dei.project.model.DishWasherSpecs;
 import pt.ipp.isep.dei.project.model.ProgramList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class DishWasherTest {
+public class DishWasherSpecsTest {
     @Test
     public void testGetTypeName() {
         //Arrange
         int capacity = 20;
         double nominalPower = 30;
         ProgramList programList = new ProgramList();
-        DishWasher dishWasher = new DishWasher(capacity, nominalPower, programList);
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(capacity, nominalPower, programList);
 
         String expectedResult = "Dish Washer";
 
         //Act
-        String result = dishWasher.getTypeName();
+        String result = dishWasherSpecs.getTypeName();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -30,12 +30,12 @@ public class DishWasherTest {
         int capacity = 20;
         double nominalPower = 30;
         ProgramList programList = new ProgramList();
-        DishWasher dishWasher = new DishWasher(capacity, nominalPower, programList);
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(capacity, nominalPower, programList);
 
         double expectedResult = 30;
 
         //Act
-        double result = dishWasher.getNominalPower();
+        double result = dishWasherSpecs.getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -47,12 +47,12 @@ public class DishWasherTest {
         int capacity = 20;
         double nominalPower = 30;
         ProgramList programList = new ProgramList();
-        DishWasher dishWasher = new DishWasher(capacity, nominalPower, programList);
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(capacity, nominalPower, programList);
 
         boolean expectedResult = false;
 
         //Act
-        boolean result = dishWasher.setCapacity(capacity);
+        boolean result = dishWasherSpecs.setCapacity(capacity);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -65,12 +65,12 @@ public class DishWasherTest {
         int capacity2 = 30;
         double nominalPower = 30;
         ProgramList programList = new ProgramList();
-        DishWasher dishWasher = new DishWasher(capacity1, nominalPower, programList);
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(capacity1, nominalPower, programList);
 
         boolean expectedResult = true;
 
         //Act
-        boolean result = dishWasher.setCapacity(capacity2);
+        boolean result = dishWasherSpecs.setCapacity(capacity2);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -82,12 +82,12 @@ public class DishWasherTest {
         int capacity = 20;
         double nominalPower = 30;
         ProgramList programList = new ProgramList();
-        DishWasher dishWasher = new DishWasher(capacity, nominalPower, programList);
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(capacity, nominalPower, programList);
 
         boolean expectedResult = false;
 
         //Act
-        boolean result = dishWasher.setNominalPower(nominalPower);
+        boolean result = dishWasherSpecs.setNominalPower(nominalPower);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -100,12 +100,12 @@ public class DishWasherTest {
         double nominalPower = 30;
         double nominalPower2 = 23;
         ProgramList programList = new ProgramList();
-        DishWasher dishWasher = new DishWasher(capacity, nominalPower, programList);
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(capacity, nominalPower, programList);
 
         boolean expectedResult = true;
 
         //Act
-        boolean result = dishWasher.setNominalPower(nominalPower2);
+        boolean result = dishWasherSpecs.setNominalPower(nominalPower2);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -117,13 +117,13 @@ public class DishWasherTest {
         int capacity = 20;
         double nominalPower = 30;
         ProgramList programList = new ProgramList();
-        DishWasher dishWasher = new DishWasher(capacity, nominalPower, programList);
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(capacity, nominalPower, programList);
 
         String expectedResult = "1 - Capacity: 20\n" +
                 "2 - Nominal Power: 30.0\n";
 
         //Act
-        String result = dishWasher.getAttributesToString();
+        String result = dishWasherSpecs.getAttributesToString();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -134,13 +134,13 @@ public class DishWasherTest {
         int capacity = 31;
         double nominalPower = 30;
         ProgramList programList = new ProgramList();
-        DishWasher dishWasher = new DishWasher(capacity, nominalPower, programList);
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(capacity, nominalPower, programList);
         int attribute = 1;
         double value = 20.6;
 
         boolean expectedResult = true;
         //Act
-        boolean result = dishWasher.setAttribute(attribute, value);
+        boolean result = dishWasherSpecs.setAttribute(attribute, value);
         //Assert
         assertEquals(expectedResult, result);
 
@@ -152,15 +152,15 @@ public class DishWasherTest {
         int capacity = 31;
         double nominalPower = 30;
         ProgramList programList = new ProgramList();
-        DishWasher dishWasher = new DishWasher(capacity, nominalPower, programList);
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(capacity, nominalPower, programList);
         int attribute = 3;
         double value = 20.6;
-        dishWasher.setCapacity(capacity);
+        dishWasherSpecs.setCapacity(capacity);
 
         boolean expectedResult = false;
 
         //Act
-        boolean result = dishWasher.setAttribute(attribute, value);
+        boolean result = dishWasherSpecs.setAttribute(attribute, value);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -171,14 +171,14 @@ public class DishWasherTest {
         int capacity = 31;
         double nominalPower = 30;
         ProgramList programList = new ProgramList();
-        DishWasher dishWasher = new DishWasher(capacity, nominalPower, programList);
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(capacity, nominalPower, programList);
         int attribute = 2;
         double value = 20.6;
 
         boolean expectedResult = true;
 
         //Act
-        boolean result = dishWasher.setAttribute(attribute, value);
+        boolean result = dishWasherSpecs.setAttribute(attribute, value);
         //Assert
         assertEquals(expectedResult, result);
 
@@ -190,11 +190,11 @@ public class DishWasherTest {
         int capacity = 20;
         double nominalPower = 30;
         ProgramList programList = new ProgramList();
-        DishWasher dishWasher = new DishWasher(capacity, nominalPower, programList);
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(capacity, nominalPower, programList);
         int expectedResult = 2;
 
         //Act
-        int result = dishWasher.getNumberOfAttributes();
+        int result = dishWasherSpecs.getNumberOfAttributes();
         //Assert
         assertEquals(expectedResult, result);
     }

@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
-public class ElectricWaterHeater implements DeviceSpecs {
+public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     private String mTypeName;
     private double mVolumeOfWaterToHeat;
     private double mColdWaterTemperature;
@@ -11,7 +11,7 @@ public class ElectricWaterHeater implements DeviceSpecs {
     private double mMaximumVolume;
     private double mNominalPower;
 
-    public ElectricWaterHeater(double hotWaterTemperature, double maximumVolume, double performanceRatio, double nominalPower) {
+    public ElectricWaterHeaterSpecs(double hotWaterTemperature, double maximumVolume, double performanceRatio, double nominalPower) {
         this.mTypeName = "Electric Water Heater";
         this.mHotWaterTemperature = hotWaterTemperature;
         this.mMaximumVolume = maximumVolume;

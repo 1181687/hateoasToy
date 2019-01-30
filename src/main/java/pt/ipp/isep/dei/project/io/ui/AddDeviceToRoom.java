@@ -36,7 +36,7 @@ public class AddDeviceToRoom {
 
             //SELECT A DEVICE TYPE
             String label0 = "Please select the Device Type: \n" + mCtrl.getDeviceTypeListToString(indexSelectedRoom) + exit;
-            int selectedType = InputValidator.getIntRange(label0, 0, mCtrl.numberOfDeviceTypes(indexSelectedRoom));
+            int selectedType = InputValidator.getIntRange(label0, 0, mCtrl.getnumberOfDeviceTypes(indexSelectedRoom));
             if (selectedType == 0) {
                 continue;
             }
@@ -60,7 +60,7 @@ public class AddDeviceToRoom {
                         double annualEnergyConsumption = InputValidator.getDoublePos(label15);
 
                         mCtrl.createNewFridge(fridgeDeviceName, annualEnergyConsumption, fridgeNominalPower, freezerCapacity, refrigeratorCapacity);
-                        System.out.println("The Fridge was successfully created and added to the selected room.");
+                        System.out.println("The FridgeSpecs was successfully created and added to the selected room.");
                         option = 0;
 
                         break;
@@ -75,7 +75,7 @@ public class AddDeviceToRoom {
                         double luminousFlux = InputValidator.getDoublePos(label23);
 
                         mCtrl.createNewLamp(lampDeviceName, lampNominalPower, luminousFlux);
-                        System.out.println("The Lamp was successfully created and added to the selected room.");
+                        System.out.println("The LampSpecs was successfully created and added to the selected room.");
                         option = 0;
 
 

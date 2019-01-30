@@ -1,28 +1,28 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.ElectricWaterHeater;
+import pt.ipp.isep.dei.project.model.ElectricWaterHeaterSpecs;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ElectricWaterHeaterTest {
+class ElectricWaterHeaterSpecsTest {
     @Test
     public void getEnergyConsumptionInADayTest1() {
         // Arrange
-        // ElectricWaterHeater Instantiation
+        // ElectricWaterHeaterSpecs Instantiation
         double hotWaterTemp = 50;
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
 
-        electricWaterHeater.setColdWaterTemperature(30);
-        electricWaterHeater.setVolumeOfWaterToHeat(100);
+        electricWaterHeaterSpecs.setColdWaterTemperature(30);
+        electricWaterHeaterSpecs.setVolumeOfWaterToHeat(100);
 
         double expectedResult = 2.09;
 
         // Act
-        double result = electricWaterHeater.getEnergyConsumptionInADay();
+        double result = electricWaterHeaterSpecs.getEnergyConsumptionInADay();
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -31,20 +31,20 @@ class ElectricWaterHeaterTest {
     @Test
     public void getEnergyConsumptionInADayTest2() {
         // Arrange
-        // ElectricWaterHeater Instantiation
+        // ElectricWaterHeaterSpecs Instantiation
         double hotWaterTemp = 50;
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
 
-        electricWaterHeater.setColdWaterTemperature(100);
-        electricWaterHeater.setVolumeOfWaterToHeat(30);
+        electricWaterHeaterSpecs.setColdWaterTemperature(100);
+        electricWaterHeaterSpecs.setVolumeOfWaterToHeat(30);
 
         double expectedResult = 1.57;
 
         // Act
-        double result = electricWaterHeater.getEnergyConsumptionInADay();
+        double result = electricWaterHeaterSpecs.getEnergyConsumptionInADay();
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -53,15 +53,15 @@ class ElectricWaterHeaterTest {
     @Test
     public void setmHotWaterTemperatureTrue() {
         // Arrange
-        // ElectricWaterHeater Instantiation
+        // ElectricWaterHeaterSpecs Instantiation
         double hotWaterTemp = 50;
         double maximumVolume = 150;
         double nominalPower = 100;
         double performanceRatio = 0.9;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower, performanceRatio);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, nominalPower, performanceRatio);
 
         // Act
-        boolean result = electricWaterHeater.setHotWaterTemperature(2000.0);
+        boolean result = electricWaterHeaterSpecs.setHotWaterTemperature(2000.0);
 
         // assert
         assertTrue(result);
@@ -70,15 +70,15 @@ class ElectricWaterHeaterTest {
     @Test
     public void setmVolumeOfWaterToHeatEqualZero() {
         // Arrange
-        // ElectricWaterHeater Instantiation
+        // ElectricWaterHeaterSpecs Instantiation
         double hotWaterTemp = 50;
         double maximumVolume = 150;
         double nominalPower = 100;
         double performanceRatio = 0.9;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower, performanceRatio);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, nominalPower, performanceRatio);
 
         // Act
-        boolean result = electricWaterHeater.setVolumeOfWaterToHeat(0.0);
+        boolean result = electricWaterHeaterSpecs.setVolumeOfWaterToHeat(0.0);
 
         // assert
         assertFalse(result);
@@ -87,15 +87,15 @@ class ElectricWaterHeaterTest {
     @Test
     public void setmHotWaterTemperatureFalse() {
         // Arrange
-        // ElectricWaterHeater Instantiation
+        // ElectricWaterHeaterSpecs Instantiation
         double hotWaterTemp = 50;
         double maximumVolume = 150;
         double nominalPower = 100;
         double performanceRatio = 0.9;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower, performanceRatio);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, nominalPower, performanceRatio);
 
         // Act
-        boolean result = electricWaterHeater.setHotWaterTemperature(50);
+        boolean result = electricWaterHeaterSpecs.setHotWaterTemperature(50);
 
         // assert
         assertFalse(result);
@@ -108,10 +108,10 @@ class ElectricWaterHeaterTest {
         double maximumVolume = 150;
         double nominalPower = 100;
         double performanceRatio = 0.9;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower, performanceRatio);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, nominalPower, performanceRatio);
 
         // Act
-        boolean result = electricWaterHeater.setMaximumVolume(2000);
+        boolean result = electricWaterHeaterSpecs.setMaximumVolume(2000);
 
         // assert
         assertTrue(result);
@@ -124,10 +124,10 @@ class ElectricWaterHeaterTest {
         double maximumVolume = 150;
         double nominalPower = 100;
         double performanceRatio = 0.9;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower, performanceRatio);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, nominalPower, performanceRatio);
 
         // Act
-        boolean result = electricWaterHeater.setMaximumVolume(150);
+        boolean result = electricWaterHeaterSpecs.setMaximumVolume(150);
 
         // assert
         assertFalse(result);
@@ -140,10 +140,10 @@ class ElectricWaterHeaterTest {
         double maximumVolume = 150;
         double nominalPower = 100;
         double performanceRatio = 0.9;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, nominalPower, performanceRatio);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, nominalPower, performanceRatio);
 
         // Act
-        boolean result = electricWaterHeater.setPerformanceRatio(2);
+        boolean result = electricWaterHeaterSpecs.setPerformanceRatio(2);
 
         // assert
         assertTrue(result);
@@ -157,10 +157,10 @@ class ElectricWaterHeaterTest {
         double performanceRatio = 0.9;
         double nominalPower = 100;
 
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
 
         // Act
-        boolean result = electricWaterHeater.setPerformanceRatio(0.9);
+        boolean result = electricWaterHeaterSpecs.setPerformanceRatio(0.9);
 
         // assert
         assertFalse(result);
@@ -174,10 +174,10 @@ class ElectricWaterHeaterTest {
         double performanceRatio = 0.9;
         double nominalPower = 100;
 
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
 
         // Act
-        boolean result = electricWaterHeater.setNominalPower(200);
+        boolean result = electricWaterHeaterSpecs.setNominalPower(200);
 
         // assert
         assertTrue(result);
@@ -191,10 +191,10 @@ class ElectricWaterHeaterTest {
         double performanceRatio = 0.9;
         double nominalPower = 100;
 
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
 
         // Act
-        boolean result = electricWaterHeater.setNominalPower(100);
+        boolean result = electricWaterHeaterSpecs.setNominalPower(100);
 
         // assert
         assertFalse(result);
@@ -207,14 +207,14 @@ class ElectricWaterHeaterTest {
         double maximumVolume = 150.0;
         double performanceRatio = 0.9;
         double nominalPower = 100.0;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
 
         String expectedResult = "1 - Hot Water Temperature: 50.0\n" +
                 "2 - Maximum Volume: 150.0\n" +
                 "3 - Performance Ratio: 0.9\n" +
                 "4 - Nominal Power: 100.0\n";
         // Act
-        String result = electricWaterHeater.getAttributesToString();
+        String result = electricWaterHeaterSpecs.getAttributesToString();
         // assert
         assertEquals(expectedResult, result);
     }
@@ -226,10 +226,10 @@ class ElectricWaterHeaterTest {
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
 
         // Act
-        boolean result = electricWaterHeater.setAttribute(1, 51);
+        boolean result = electricWaterHeaterSpecs.setAttribute(1, 51);
 
         // assert
         assertTrue(result);
@@ -242,10 +242,10 @@ class ElectricWaterHeaterTest {
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
 
         // Act
-        boolean result = electricWaterHeater.setAttribute(1, 50.0);
+        boolean result = electricWaterHeaterSpecs.setAttribute(1, 50.0);
 
         // assert
         assertFalse(result);
@@ -258,10 +258,10 @@ class ElectricWaterHeaterTest {
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
 
         // Act
-        boolean result = electricWaterHeater.setAttribute(2, 151);
+        boolean result = electricWaterHeaterSpecs.setAttribute(2, 151);
 
         // assert
         assertTrue(result);
@@ -274,10 +274,10 @@ class ElectricWaterHeaterTest {
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
 
         // Act
-        boolean result = electricWaterHeater.setAttribute(2, 150.0);
+        boolean result = electricWaterHeaterSpecs.setAttribute(2, 150.0);
 
         // assert
         assertFalse(result);
@@ -290,10 +290,10 @@ class ElectricWaterHeaterTest {
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
 
         // Act
-        boolean result = electricWaterHeater.setAttribute(4, 101);
+        boolean result = electricWaterHeaterSpecs.setAttribute(4, 101);
 
         // assert
         assertTrue(result);
@@ -306,10 +306,10 @@ class ElectricWaterHeaterTest {
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
 
         // Act
-        boolean result = electricWaterHeater.setAttribute(4, 100.0);
+        boolean result = electricWaterHeaterSpecs.setAttribute(4, 100.0);
 
         // assert
         assertFalse(result);
@@ -322,10 +322,10 @@ class ElectricWaterHeaterTest {
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
 
         // Act
-        boolean result = electricWaterHeater.setAttribute(3, 1.0);
+        boolean result = electricWaterHeaterSpecs.setAttribute(3, 1.0);
 
         // assert
         assertTrue(result);
@@ -338,10 +338,10 @@ class ElectricWaterHeaterTest {
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
 
         // Act
-        boolean result = electricWaterHeater.setAttribute(3, 0.9);
+        boolean result = electricWaterHeaterSpecs.setAttribute(3, 0.9);
 
         // assert
         assertFalse(result);
@@ -354,10 +354,10 @@ class ElectricWaterHeaterTest {
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
 
         // Act
-        boolean result = electricWaterHeater.setAttribute(7, 30.0);
+        boolean result = electricWaterHeaterSpecs.setAttribute(7, 30.0);
 
         // assert
         assertFalse(result);
@@ -370,11 +370,11 @@ class ElectricWaterHeaterTest {
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemperature, maximumVolume, performanceRatio, nominalPower);
         int expectedResult = 4;
 
         // Act
-        int result = electricWaterHeater.getNumberOfAttributes();
+        int result = electricWaterHeaterSpecs.getNumberOfAttributes();
 
         // assert
         assertEquals(expectedResult, result);
@@ -383,17 +383,17 @@ class ElectricWaterHeaterTest {
     @Test
     public void getNominalPowerTest() {
         // Arrange
-        // ElectricWaterHeater Instantiation
+        // ElectricWaterHeaterSpecs Instantiation
         double hotWaterTemp = 50;
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
 
         double expectedResult = 100;
 
         // Act
-        double result = electricWaterHeater.getNominalPower();
+        double result = electricWaterHeaterSpecs.getNominalPower();
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);

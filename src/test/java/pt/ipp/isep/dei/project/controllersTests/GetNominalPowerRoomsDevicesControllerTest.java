@@ -219,13 +219,13 @@ class GetNominalPowerRoomsDevicesControllerTest {
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
-        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
         Device dev = new Device("Fridge1", room, deviceSpecs);
 
 
         double luminousFlux = 10.0;
         double nominalPower1 = 0.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev);
@@ -275,13 +275,13 @@ class GetNominalPowerRoomsDevicesControllerTest {
         //initiate Device
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         double luminousFlux2 = 15.0;
         double nominalPower2 = 2.0;
 
-        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
         Device dev2 = new Device("Lamp2", room, deviceSpecs2);
 
         room.addDevice(dev1);
@@ -438,7 +438,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         //initiate Device
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev1);
@@ -484,7 +484,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         //initiate Device
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev1);
@@ -644,7 +644,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         //initiate Device
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev1);
@@ -695,7 +695,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         //initiate Device
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev1);
@@ -743,13 +743,13 @@ class GetNominalPowerRoomsDevicesControllerTest {
         //initiate Device
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         //initiate Device2
         double luminousFlux2 = 10.0;
         double nominalPower2 = 1.0;
-        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
         Device dev2 = new Device("Lamp2", room, deviceSpecs1);
 
         room.addDevice(dev1);
@@ -799,12 +799,12 @@ class GetNominalPowerRoomsDevicesControllerTest {
         Program program = new Program("prog1", 3, 4.5);
         programList.addProgram(program);
 
-        Fridge specFridge = new Fridge(25, 50, 5000, 500);
-        WashingMachine specWashing = new WashingMachine(400, 250.0, programList);
-        DishWasher specDishWasher = new DishWasher(400, 250.0, programList);
-        Device dev1 = new Device("FridgeAriston", room1, specFridge);
+        FridgeSpecs specFridgeSpecs = new FridgeSpecs(25, 50, 5000, 500);
+        WashingMachineSpecs specWashing = new WashingMachineSpecs(400, 250.0, programList);
+        DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(400, 250.0, programList);
+        Device dev1 = new Device("FridgeAriston", room1, specFridgeSpecs);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasher", room1, specDishWasher);
+        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasherSpecs);
 
         mList.addMeasurable(dev1);
         mList.addMeasurable(room2);
