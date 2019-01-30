@@ -135,65 +135,7 @@ public class DeviceList {
         return this.mDeviceList.equals(listOne.mDeviceList);
     }
 
-    /**
-     * Method that create a new Device ELECTRIC WATER HEATER
-     *
-     * @param name                name of the device
-     * @param selectedRoom        Room where the device will be installed
-     * @param hotWaterTemperature maximum temperature configured by user
-     * @param maximumVolume       capacity in liters of the Electric Water Heater
-     * @param nominalPower        nominal power of the device
-     * @param performanceRatio    performance ratio introduced by user that typically is 0,9
-     * @return a new device
-     */
-    public Device newElectricWaterHeater(String name, Room selectedRoom, double hotWaterTemperature, double maximumVolume, double nominalPower, double performanceRatio) {
 
-        if (isNameExistant(name)) {
-            throw new RuntimeException(SAME_NAME);
-        }
-        ElectricWaterHeater electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, nominalPower, performanceRatio);
-
-        return new Device(name, selectedRoom, electricWaterHeater);
-    }
-
-
-    /**
-     * Method that create a new Device WASHING MACHINE
-     *
-     * @param name         name of the device
-     * @param selectedRoom Room where the device will be installed
-     * @param nominalPower nominal power of the device
-     * @param capacity     capacity in kilograms of the Electric Water Heater
-     * @param programList  list of programs
-     * @return a new device
-     */
-    public Device newWashingMachine(String name, Room selectedRoom, double nominalPower, double capacity,
-                                    ProgramList programList) {
-        if (isNameExistant(name)) {
-            throw new RuntimeException(SAME_NAME);
-        }
-        WashingMachine washingMachine = new WashingMachine(capacity, nominalPower, programList);
-        return new Device(name, selectedRoom, washingMachine);
-    }
-
-
-    /**
-     * Method that create a new Device DISH WASHER
-     *
-     * @param name         name of the device
-     * @param selectedRoom Room where the device will be installed
-     * @param nominalPower nominal power of the device
-     * @param capacity     capacity in dish sets of the Electric Water Heater
-     * @param programList  list of programs
-     * @return a new device
-     */
-    public Device newDishWasher(String name, Room selectedRoom, double nominalPower, int capacity, ProgramList programList) {
-        if (isNameExistant(name)) {
-            throw new RuntimeException(SAME_NAME);
-        }
-        DishWasher dishwasher = new DishWasher(capacity, nominalPower, programList);
-        return new Device(name, selectedRoom, dishwasher);
-    }
 
 
     /**

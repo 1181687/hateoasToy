@@ -7,6 +7,7 @@ import java.util.Objects;
 import static java.util.Objects.isNull;
 
 public class Room implements Measurable {
+    private static final String SAME_NAME = "Name already exists. Please write a new one.";
     private String mName;
     private int mHouseFloor;
     private Dimension mDimension;
@@ -294,9 +295,10 @@ public class Room implements Measurable {
      * @param name name of device
      * @return boolean true if exists, false if it doesn't
      */
-    public boolean isNameExistant(String name) {
+    public boolean isDeviceNameExistant(String name) {
         return this.mDeviceList.isNameExistant(name);
     }
+
 
     /**
      * method that returns the name of room
@@ -344,7 +346,81 @@ public class Room implements Measurable {
         return this.mDeviceList.getActiveDeviceListToString();
     }
 
+    /**
+     * method that get de device type list content
+     *
+     * @return the content of the list by string
+     */
     public String getDeviceTypeListToString() {
         return this.mDeviceList.getDeviceTypeListToString();
     }
+
+
+    /**
+     * method that get the number os existing Devices on the configuration file.
+     *
+     * @return the number os existing Devices
+     */
+    public int numberOfDeviceTypes() {
+        return this.mDeviceList.numberOfDeviceTypes();
+    }
+
+
+    /**
+     * Method that create a new Device ELECTRIC WATER HEATER
+     *
+     * @param name                name of the device
+     * @param hotWaterTemperature maximum temperature configured by user
+     * @param maximumVolume       capacity in liters of the Electric Water Heater
+     * @param nominalPower        nominal power of the device
+     * @param performanceRatio    performance ratio introduced by user that typically is 0,9
+     * @return a new device
+     */
+    public Device newElectricWaterHeater(String name, double hotWaterTemperature, double maximumVolume, double nominalPower, double performanceRatio) {
+
+        if (isDeviceNameExistant(name)) {
+            throw new RuntimeException(SAME_NAME);
+        }
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemperature, maximumVolume, nominalPower, performanceRatio);
+
+        return new Device(name, this, electricWaterHeater);
+    }
+
+    /**
+     * Method that create a new Device WASHING MACHINE
+     *
+     * @param name         name of the device
+     * @param nominalPower nominal power of the device
+     * @param capacity     capacity in kilograms of the Electric Water Heater
+     * @param programList  list of programs
+     * @return a new device
+     */
+    public Device newWashingMachine(String name, double nominalPower, double capacity,
+                                    ProgramList programList) {
+        if (isDeviceNameExistant(name)) {
+            throw new RuntimeException(SAME_NAME);
+        }
+        WashingMachine washingMachine = new WashingMachine(capacity, nominalPower, programList);
+        return new Device(name, this, washingMachine);
+    }
+
+
+    /**
+     * Method that create a new Device DISH WASHER
+     *
+     * @param name         name of the device
+     * @param nominalPower nominal power of the device
+     * @param capacity     capacity in dish sets of the Electric Water Heater
+     * @param programList  list of programs
+     * @return a new device
+     */
+    public Device newDishWasher(String name, double nominalPower, int capacity, ProgramList programList) {
+        if (isDeviceNameExistant(name)) {
+            throw new RuntimeException(SAME_NAME);
+        }
+        DishWasher dishwasher = new DishWasher(capacity, nominalPower, programList);
+        return new Device(name, this, dishwasher);
+    }
+
+
 }

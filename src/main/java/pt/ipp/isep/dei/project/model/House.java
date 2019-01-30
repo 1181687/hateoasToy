@@ -426,7 +426,21 @@ public class House {
         return listOfAllDevicesOffAType.getDeviceName(devicePosition);
     }
 
+    /**
+     * method that get de device type list content
+     *
+     * @return the content of the list by string
+     */
     public String getDeviceTypeListToString(int position) {
         return this.mRoomList.getRoomFromPosition(position).getDeviceTypeListToString();
+    }
+
+    /**
+     * method that get the number os existing Devices on the configuration file.
+     *
+     * @return the number os existing Devices
+     */
+    public int numberOfDeviceTypes(int position) {
+        return this.mRoomList.getRoomFromPosition(position).numberOfDeviceTypes();
     }
 }

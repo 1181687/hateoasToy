@@ -60,8 +60,13 @@ public class AddDeviceToRoomController {
         return mHouse.getRoomListSize();
     }
 
-    public int numberOfDeviceTypes() {
-        return mDeviceList.numberOfDeviceTypes();
+
+    /**
+     * @param position
+     * @return
+     */
+    public int numberOfDeviceTypes(int position) {
+        return mHouse.numberOfDeviceTypes(position);
     }
 
 
@@ -107,13 +112,12 @@ public class AddDeviceToRoomController {
      * Method that create a new Dish Washer in a selected Room.
      *
      * @param name         of the Dish Washer
-     * @param selectedRoom room where will be created the device
      * @param nominalPower the nominal power of the Dish Washer (a specification of the Dish Washer)
      * @param capacity     the capacity of the Dish Washer (a specification of the Dish Washer)
      * @return the Device that has been created
      */
-    public Device createNewDishWasher(String name, Room selectedRoom, double nominalPower, int capacity) {
-        return mDevice = mDeviceList.newDishWasher(name, selectedRoom, nominalPower, capacity, mProgramList);
+    public Device createNewDishWasher(String name, double nominalPower, int capacity) {
+        return mDevice = mRoom.newDishWasher(name, nominalPower, capacity, mProgramList);
     }
 
 
@@ -121,13 +125,12 @@ public class AddDeviceToRoomController {
      * Method that create a new Washing Machine in a selected Room.
      *
      * @param name         of the Washing Machine
-     * @param selectedRoom room where will be created the device
      * @param nominalPower the nominal power of the Washing Machine (a specification of the Washing Machine)
      * @param capacity     the capacity of the Washing Machine (a specification of the Washing Machine)
      * @return the Device that has been created
      */
-    public Device createNewWashingMachine(String name, Room selectedRoom, double nominalPower, double capacity) {
-        return mDevice = mDeviceList.newWashingMachine(name, selectedRoom, nominalPower, capacity, mProgramList);
+    public Device createNewWashingMachine(String name, double nominalPower, double capacity) {
+        return mDevice = mRoom.newWashingMachine(name, nominalPower, capacity, mProgramList);
     }
 
 
@@ -135,14 +138,13 @@ public class AddDeviceToRoomController {
      * Method that create a new Electric Water Heater in a selected Room.
      *
      * @param name                 of the Electric Water Heater
-     * @param selectedRoom         room where will be created the device
      * @param mHotWaterTemperature the temperature that is configured by the user (a specification of the Electric Water Heater and the user)
      * @param mMaximumVolume       the capacity in l of the Electric Water Heater (a specification of the Electric Water Heater)
      * @param mNominalPower        the nominal power of the Electric Water Heater (a specification of the Electric Water Heater)
      * @return the Device that has been created
      */
-    public Device createNewElectricWaterHeater(String name, Room selectedRoom, double mHotWaterTemperature, double mMaximumVolume, double mNominalPower, double mPerformanceRatio) {
-        return mDevice = mDeviceList.newElectricWaterHeater(name, selectedRoom, mHotWaterTemperature, mMaximumVolume, mNominalPower, mPerformanceRatio);
+    public Device createNewElectricWaterHeater(String name, double mHotWaterTemperature, double mMaximumVolume, double mNominalPower, double mPerformanceRatio) {
+        return mDevice = mRoom.newElectricWaterHeater(name, mHotWaterTemperature, mMaximumVolume, mNominalPower, mPerformanceRatio);
     }
 
     /**
