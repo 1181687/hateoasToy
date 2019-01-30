@@ -545,7 +545,7 @@ public class HouseGridTest {
 
         int expectedResult = 10;
 
-        int result = houseGrid.setMeteringPeriod();
+        int result = houseGrid.setGridMeteringPeriod();
 
         assertEquals(expectedResult, result);
     }
