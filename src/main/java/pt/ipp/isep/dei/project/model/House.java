@@ -10,6 +10,9 @@ public class House {
     private HouseGridList mListHouseGrids;
     private Address mAddress;
     private GeographicalArea mInsertedGeoArea;
+    private String mDeviceTypeList;
+    private int mMeteringPeriodGrid;
+    private int mMeteringPeriodDevice;
 
     /**
      * constructor of house that receives a room list, a list of house grids, an address and an insertedGeoArea.
@@ -24,6 +27,17 @@ public class House {
         this.mAddress = address;
         this.mInsertedGeoArea = insertedGeoArea;
     }
+
+    public House(RoomList roomList, HouseGridList listHouseGrids, Address address, GeographicalArea insertedGeoArea, String deviceTypeList, int meteringPeriodGrid, int meteringPeriodDevice) {
+        this.mRoomList = roomList;
+        this.mListHouseGrids = listHouseGrids;
+        this.mAddress = address;
+        this.mInsertedGeoArea = insertedGeoArea;
+        this.mDeviceTypeList = deviceTypeList;
+        this.mMeteringPeriodGrid = meteringPeriodGrid;
+        this.mMeteringPeriodDevice = meteringPeriodDevice;
+    }
+
 
     public RoomList getRoomList() {
         return mRoomList;
