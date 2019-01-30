@@ -21,7 +21,7 @@ public class DeviceTypesTest {
     @Test
     public void testGetDeviceTypeNameFridge() {
         //Arrange
-        String expectedResult = "Fridge";
+        String expectedResult = "FridgeSpecs";
 
         //Act
         String result = DeviceType.FRIDGE.getDeviceTypeName();
@@ -33,7 +33,7 @@ public class DeviceTypesTest {
     @Test
     public void testGetDeviceTypeNameLamp() {
         //Arrange
-        String expectedResult = "Lamp";
+        String expectedResult = "LampSpecs";
 
         //Act
         String result = DeviceType.LAMP.getDeviceTypeName();

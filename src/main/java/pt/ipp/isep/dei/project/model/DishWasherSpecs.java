@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
-public class DishWasher implements DeviceSpecs {
+public class DishWasherSpecs implements DeviceSpecs {
     private String mTypeName;
     private int mCapacity;
     private double mDuration;
@@ -10,7 +10,7 @@ public class DishWasher implements DeviceSpecs {
     private double mNominalPower;
     private ProgramList mProgramList;
 
-    public DishWasher(int capacity, double nominalPower, ProgramList programList) {
+    public DishWasherSpecs(int capacity, double nominalPower, ProgramList programList) {
         this.mTypeName = "Dish Washer";
         this.mCapacity = capacity;
         this.mNominalPower = nominalPower;

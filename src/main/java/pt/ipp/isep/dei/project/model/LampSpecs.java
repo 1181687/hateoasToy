@@ -2,23 +2,21 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
-public class WashingMachine implements DeviceSpecs {
+public class LampSpecs implements DeviceSpecs {
     private String mTypeName;
-    private double mCapacity;
-    private double mDuration;
-    private double mEnergyConsumption;
+    private double mLuminousFlux;
+    private double mTime;
     private double mNominalPower;
-    private ProgramList mProgramList;
 
-    public WashingMachine(double capacity, double nominalPower, ProgramList programList) {
-        this.mTypeName = "Washing Machine";
-        this.mCapacity = capacity;
+    public LampSpecs(double luminousFlux, double nominalPower) {
+        this.mTypeName = "LampSpecs";
+        this.mLuminousFlux = luminousFlux;
         this.mNominalPower = nominalPower;
-        this.mProgramList = programList;
     }
 
     /**
-     * get method tht get the name of the device type.
+     * get method
+     *
      * @return type of device
      */
     @Override
@@ -26,8 +24,9 @@ public class WashingMachine implements DeviceSpecs {
         return mTypeName;
     }
 
+
     /**
-     * get method
+     * get Method
      *
      * @return nominal power
      */
@@ -38,28 +37,47 @@ public class WashingMachine implements DeviceSpecs {
 
     /**
      * get method
-     * @return energy consumption
+     *
+     * @return energy consumption in a Day
      */
     @Override
     public double getEnergyConsumptionInADay() {
-        return mEnergyConsumption;
+        return mNominalPower * mTime;
     }
 
     /**
      * set method
-     * @param capacity
+     *
+     * @param luminousFlux
+     * @return
      */
-    public boolean setCapacity(double capacity) {
-        if (Utils.isSameDouble(this.mCapacity, capacity)) {
+    public boolean setLuminousFlux(double luminousFlux) {
+        if (Utils.isSameDouble(this.mLuminousFlux, luminousFlux)) {
             return false;
         }
-        this.mCapacity = capacity;
+        this.mLuminousFlux = luminousFlux;
         return true;
     }
 
     /**
      * set method
+     *
+     * @param time
+     * @return
+     */
+    public boolean setTime(double time) {
+        if (Utils.isSameDouble(this.mTime, time)) {
+            return false;
+        }
+        this.mTime = time;
+        return true;
+    }
+
+    /**
+     * set method
+     *
      * @param nominalPower
+     * @return
      */
     public boolean setNominalPower(double nominalPower) {
         if (Utils.isSameDouble(this.mNominalPower, nominalPower)) {
@@ -71,18 +89,21 @@ public class WashingMachine implements DeviceSpecs {
 
     /**
      * method that displays a string of the choosen attribute (name of the attribute and its value)
+     *
      * @return
      */
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Capacity: " + mCapacity + "\n");
+        attributes.append("1 - Luminous Flux: " + mLuminousFlux + "\n");
         attributes.append("2 - Nominal Power: " + mNominalPower + "\n");
         return attributes.toString();
     }
 
+
     /**
      * set method
+     *
      * @param attribute position of the attribute
      * @param value
      * @return
@@ -91,7 +112,7 @@ public class WashingMachine implements DeviceSpecs {
     public boolean setAttribute(int attribute, double value) {
         switch (attribute) {
             case 1:
-                return setCapacity(value);
+                return setLuminousFlux(value);
             case 2:
                 return setNominalPower(value);
             default:
@@ -101,7 +122,8 @@ public class WashingMachine implements DeviceSpecs {
 
     /**
      * get method
-     * @return number of Washing Machine attributes
+     *
+     * @return number of FridgeSpecs attributes
      */
     @Override
     public int getNumberOfAttributes() {

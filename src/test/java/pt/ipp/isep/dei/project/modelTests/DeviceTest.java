@@ -18,7 +18,7 @@ public class DeviceTest {
 
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
         String expectedResult = "Lamp1";
 
@@ -37,7 +37,7 @@ public class DeviceTest {
 
         double luminousFlux = 10.0;
         double nominalPower1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
         double expectedResult = 20.0;
 
@@ -62,7 +62,7 @@ public class DeviceTest {
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room1, deviceSpecs1);
 
         room1.addDevice(dev1);
@@ -89,12 +89,12 @@ public class DeviceTest {
         // Room Instantiation
         Room room = new Room("Room", 2, dim);
 
-        // ElectricWaterHeater Instantiation
+        // ElectricWaterHeaterSpecs Instantiation
         double hotWaterTemp = 50;
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
 
         // Device Instantiation
         Device device = new Device("Electric Water Heater", room, electricWaterHeater);
@@ -121,7 +121,7 @@ public class DeviceTest {
         int capacity = 100;
         Dimension dim = new Dimension(3.5, 6.5, 7.5);
         Room room1 = new Room("Room1", 2, dim);
-        DeviceSpecs lamp = new Lamp(capacity, nominalPower);
+        DeviceSpecs lamp = new LampSpecs(capacity, nominalPower);
         Device lamp1 = new Device(name, room1, lamp);
 
         int expectedResult = Objects.hash(name);
@@ -140,7 +140,7 @@ public class DeviceTest {
         int capacity = 100;
         Dimension dim = new Dimension(3.5, 6.5, 7.5);
         Room room1 = new Room("Room1", 2, dim);
-        DeviceSpecs lamp = new Lamp(capacity, nominalPower);
+        DeviceSpecs lamp = new LampSpecs(capacity, nominalPower);
         Device lamp1 = new Device(name, room1, lamp);
         Device lamp2 = new Device("lamp one", room1, lamp);
         //Act
@@ -157,7 +157,7 @@ public class DeviceTest {
         int capacity = 100;
         Dimension dim = new Dimension(3.5, 6.5, 7.5);
         Room room1 = new Room("Room1", 2, dim);
-        DeviceSpecs lamp = new Lamp(capacity, nominalPower);
+        DeviceSpecs lamp = new LampSpecs(capacity, nominalPower);
         Device lamp1 = new Device(name, room1, lamp);
         Device lamp2 = new Device("lamp two", room1, lamp);
         //Act
@@ -174,7 +174,7 @@ public class DeviceTest {
         int capacity = 100;
         Dimension dim = new Dimension(3.5, 6.5, 7.5);
         Room room1 = new Room("Room1", 2, dim);
-        DeviceSpecs lamp = new Lamp(capacity, nominalPower);
+        DeviceSpecs lamp = new LampSpecs(capacity, nominalPower);
         Device lamp1 = new Device(name, room1, lamp);
         Device lamp2 = new Device("lamp two", room1, lamp);
 
@@ -194,7 +194,7 @@ public class DeviceTest {
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         DeviceList deviceList = new DeviceList();
@@ -215,7 +215,7 @@ public class DeviceTest {
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
         Device dev2 = new Device("Lamp2", room, deviceSpecs1);
         room.addDevice(dev1);
@@ -237,7 +237,7 @@ public class DeviceTest {
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
         DeviceList deviceList = new DeviceList();
         deviceList.addDevice(dev1);
@@ -259,7 +259,7 @@ public class DeviceTest {
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
         DeviceList deviceList = new DeviceList();
         deviceList.addDevice(dev1);
@@ -282,10 +282,10 @@ public class DeviceTest {
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
-        String expectedResult = "Lamp";
+        String expectedResult = "LampSpecs";
         room.addDevice(dev1);
         // act
         String result = dev1.getType();
@@ -309,7 +309,7 @@ public class DeviceTest {
         // Device Instantiation
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device device = new Device("Electric Water Heater", room, deviceSpecs1);
         DeviceList deviceList = new DeviceList();
 
@@ -339,7 +339,7 @@ public class DeviceTest {
         // Device Instantiation
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device device = new Device("Electric Water Heater", room, deviceSpecs1);
         DeviceList deviceList = new DeviceList();
 
@@ -365,7 +365,7 @@ public class DeviceTest {
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
-        Fridge deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        FridgeSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
         Device dev = new Device("Fridge1", room, deviceSpecs);
 
         room.addDevice(dev);
@@ -396,7 +396,7 @@ public class DeviceTest {
         // Device Instantiation
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device device = new Device("Electric Water Heater", room, deviceSpecs1);
 
         room.addDevice(device);
@@ -418,7 +418,7 @@ public class DeviceTest {
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         String expectedResult = "Device: Lamp1, located in room: Room1\n";
@@ -442,8 +442,8 @@ public class DeviceTest {
         // Room Instantiation
         Room room = new Room("Kitchen", 1, dim);
 
-        // Fridge Instantiation
-        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+        // FridgeSpecs Instantiation
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
         Device device = new Device("Fridgeratah V14", room, fridge);
@@ -485,8 +485,8 @@ public class DeviceTest {
         // Room Instantiation
         Room room = new Room("Kitchen", 1, dim);
 
-        // Fridge Instantiation
-        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+        // FridgeSpecs Instantiation
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
         Device device = new Device("Fridgeratah V14", room, fridge);
@@ -528,8 +528,8 @@ public class DeviceTest {
         // Room Instantiation
         Room room = new Room("Kitchen", 1, dim);
 
-        // Fridge Instantiation
-        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+        // FridgeSpecs Instantiation
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
         Device device = new Device("Fridgeratah V14", room, fridge);
@@ -567,7 +567,7 @@ public class DeviceTest {
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 20.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device device = new Device("Lamp1", room, deviceSpecs1);
 
         int expectedResult = 20;
@@ -590,8 +590,8 @@ public class DeviceTest {
         // Room Instantiation
         Room room = new Room("Kitchen", 1, dim);
 
-        // Fridge Instantiation
-        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+        // FridgeSpecs Instantiation
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
         Device device = new Device("Fridgeratah V14", room, fridge);
@@ -618,8 +618,8 @@ public class DeviceTest {
         // Room Instantiation
         Room room = new Room("Kitchen", 1, dim);
 
-        // Fridge Instantiation
-        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+        // FridgeSpecs Instantiation
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
         Device device = new Device("Fridgeratah V14", room, fridge);

@@ -310,7 +310,7 @@ public class Main {
         // DEVICES
         // Room 2
         // Electric Water Heater
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(55, 100,
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(55, 100,
                 0.91, 1.5);
         Device device = new Device("EHW B109", room2, electricWaterHeater);
         room2.addDevice(device);
@@ -327,7 +327,7 @@ public class Main {
         device.addReadingsToTheList(deviceEC9);
 
         // Dishwasher
-        DeviceSpecs dishWasher = new DishWasher(50, 1.5, dishwasherPrograms);
+        DeviceSpecs dishWasher = new DishWasherSpecs(50, 1.5, dishwasherPrograms);
         Device device2 = new Device("Dishwasher B109", room2, dishWasher);
         room2.addDevice(device2);
         deviceList.addDevice(device2);
@@ -343,21 +343,21 @@ public class Main {
         device.addReadingsToTheList(device2EC9);
 
         // Washing Machine
-        DeviceSpecs washingMachine = new WashingMachine(10, 2.5, washingMachinePrograms);
+        DeviceSpecs washingMachine = new WashingMachineSpecs(10, 2.5, washingMachinePrograms);
         Device device3 = new Device("Washing Machine B109", room2, washingMachine);
         room2.addDevice(device3);
         deviceList.addDevice(device3);
 
         // Room 3
         // Electric Water Heater
-        DeviceSpecs electricWaterHeater2 = new ElectricWaterHeater(55, 150,
+        DeviceSpecs electricWaterHeater2 = new ElectricWaterHeaterSpecs(55, 150,
                 0.92, 2.2);
         Device device4 = new Device("EHW B106", room3, electricWaterHeater2);
         room3.addDevice(device4);
         deviceList.addDevice(device4);
 
         // Dishwasher
-        DeviceSpecs dishWasher2 = new DishWasher(50, 1.4, dishwasherPrograms2);
+        DeviceSpecs dishWasher2 = new DishWasherSpecs(50, 1.4, dishwasherPrograms2);
         Device device5 = new Device("Dishwasher B106", room3, dishWasher2);
         room3.addDevice(device5);
         deviceList.addDevice(device5);

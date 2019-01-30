@@ -79,12 +79,12 @@ public class HouseGridTest {
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
-        DeviceSpecs specFridge = new Fridge(100, 100, 100, 100);
-        DeviceSpecs specWashing = new WashingMachine(100, 100);
-        DeviceSpecs specDishWasher = new DishWasher(100, 100);
+        DeviceSpecs specFridge = new FridgeSpecs(100, 100, 100, 100);
+        DeviceSpecs specWashing = new WashingMachineSpecs(100, 100);
+        DeviceSpecs specDishWasher = new DishWasherSpecs(100, 100);
         Device dev1 = new Device("FridgeAriston", room1, specFridge);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasher", room1, specDishWasher);
+        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasher);
 
         room1.addDevice(dev1);
         room1.addDevice(dev2);
@@ -94,10 +94,10 @@ public class HouseGridTest {
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim);
-        DeviceSpecs specWaterHeater = new ElectricWaterHeater(100, 100, 100, 100);
+        DeviceSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 100);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
         Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
-        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
+        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
 
         room2.addDevice(dev4);
         room2.addDevice(dev5);
@@ -130,12 +130,12 @@ public class HouseGridTest {
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
-        DeviceSpecs specFridge = new Fridge(500,25,125,25);
-        DeviceSpecs specWashing = new WashingMachine(500,50);
-        DeviceSpecs specDishWasher = new DishWasher(500,25);
+        DeviceSpecs specFridge = new FridgeSpecs(500,25,125,25);
+        DeviceSpecs specWashing = new WashingMachineSpecs(500,50);
+        DeviceSpecs specDishWasher = new DishWasherSpecs(500,25);
         Device dev1 = new Device("FridgeAriston", room1, specFridge);
         Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasher", room1, specDishWasher);
+        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasher);
 
         room1.addDevice(dev1);
         room1.addDevice(dev2);
@@ -145,10 +145,10 @@ public class HouseGridTest {
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
-        DeviceSpecs specWaterHeater = new ElectricWaterHeater(50, 50, 0.9, 35);
+        DeviceSpecs specWaterHeater = new ElectricWaterHeaterSpecs(50, 50, 0.9, 35);
         Device dev4 = new Device("FridgeSiemens", room2, specFridge);
         Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
-        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
+        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
 
         room2.addDevice(dev4);
         room2.addDevice(dev5);
@@ -213,13 +213,13 @@ public class HouseGridTest {
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
-        DeviceSpecs deviceSpecs = new Fridge(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
         Device dev = new Device("Fridge1", room, deviceSpecs);
 
 
         double luminousFlux = 10.0;
         double nominalPower1 = 0.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev);
@@ -255,13 +255,13 @@ public class HouseGridTest {
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         double luminousFlux2 = 15.0;
         double nominalPower2 = 2.0;
 
-        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
         Device dev2 = new Device("Lamp2", room, deviceSpecs2);
 
         room.addDevice(dev1);
@@ -342,7 +342,7 @@ public class HouseGridTest {
         //initiate Device
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev1);
@@ -371,7 +371,7 @@ public class HouseGridTest {
         //initiate Device
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev1);
@@ -455,7 +455,7 @@ public class HouseGridTest {
         //initiate Device
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev1);
@@ -556,8 +556,8 @@ public class HouseGridTest {
         Dimension dimension = new Dimension(25, 25, 25);
         Room room1 = new Room("Quarto", 2, dimension);
 
-        DeviceSpecs deviceSpecs = new Lamp(25, 20);
-        Device lamp = new Device("Lamp", room1, deviceSpecs);
+        DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
+        Device lamp = new Device("LampSpecs", room1, deviceSpecs);
 
 
         String gridName = "Grid 1";
@@ -592,8 +592,8 @@ public class HouseGridTest {
         Dimension dimension = new Dimension(25, 25, 25);
         Room room1 = new Room("Quarto", 2, dimension);
 
-        DeviceSpecs deviceSpecs = new Lamp(25, 20);
-        Device lamp = new Device("Lamp", room1, deviceSpecs);
+        DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
+        Device lamp = new Device("LampSpecs", room1, deviceSpecs);
 
 
         String gridName = "Grid 1";
@@ -629,8 +629,8 @@ public class HouseGridTest {
         Dimension dimension = new Dimension(25, 25, 25);
         Room room1 = new Room("Quarto", 2, dimension);
 
-        DeviceSpecs deviceSpecs = new Lamp(25, 20);
-        Device lamp = new Device("Lamp", room1, deviceSpecs);
+        DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
+        Device lamp = new Device("LampSpecs", room1, deviceSpecs);
 
 
         String gridName = "Grid 1";
@@ -667,13 +667,13 @@ public class HouseGridTest {
         Room room1 = new Room("Room", 2, dimension);
         Room room2 = new Room("Kitchen", 1, dimension);
 
-        DeviceSpecs deviceSpecs = new Lamp(25, 20);
-        Device lamp = new Device("Lamp", room1, deviceSpecs);
+        DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
+        Device lamp = new Device("LampSpecs", room1, deviceSpecs);
 
-        DeviceSpecs specsFridge = new Fridge(12, 15, 25, 12);
-        Device fridge = new Device("Fridge", room2, specsFridge);
+        DeviceSpecs specsFridge = new FridgeSpecs(12, 15, 25, 12);
+        Device fridge = new Device("FridgeSpecs", room2, specsFridge);
 
-        DeviceSpecs specsElectricWaterHeater = new ElectricWaterHeater(45, 20, 12, 12);
+        DeviceSpecs specsElectricWaterHeater = new ElectricWaterHeaterSpecs(45, 20, 12, 12);
         Device electricWaterHeater = new Device("EWH200", room2, specsElectricWaterHeater);
 
         String gridName = "Grid 1";
