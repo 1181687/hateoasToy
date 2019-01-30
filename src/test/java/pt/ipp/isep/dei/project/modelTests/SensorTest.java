@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.Measurement;
+import pt.ipp.isep.dei.project.model.Readings;
 import pt.ipp.isep.dei.project.model.Sensor;
 import pt.ipp.isep.dei.project.model.SensorType;
 
@@ -176,13 +176,13 @@ class SensorTest {
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
-        Measurement measurement = new Measurement(20, dataFuncionamento);
-        s1.addMeasurementToList(measurement);
+        Readings readings = new Readings(20, dataFuncionamento);
+        s1.addMeasurementToList(readings);
 
-        Measurement expectedResult = measurement;
+        Readings expectedResult = readings;
 
         //Act
-        Measurement result = s1.getLastMeasurement();
+        Readings result = s1.getLastMeasurement();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -197,10 +197,10 @@ class SensorTest {
         Location locS1 = new Location(123, 345, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
 
-        Measurement expectedResult = null;
+        Readings expectedResult = null;
 
         //Act
-        Measurement result = s1.getLastMeasurement();
+        Readings result = s1.getLastMeasurement();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -231,8 +231,8 @@ class SensorTest {
 
         LocalDateTime dataHoraDaMedicao1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
-        Measurement measurement1 = new Measurement(20, dataHoraDaMedicao1);
-        s1.addMeasurementToList(measurement1);
+        Readings readings1 = new Readings(20, dataHoraDaMedicao1);
+        s1.addMeasurementToList(readings1);
 
         //Act
         boolean result = s1.isMeasurementListEmpty();
@@ -253,15 +253,15 @@ class SensorTest {
 
         LocalDateTime dataHoraDaMedicao2 = LocalDate.of(1991, 11, 3).atTime(17, 24, 00);
 
-        Measurement measurement1 = new Measurement(20, dataHoraDaMedicao1);
-        Measurement measurement2 = new Measurement(25, dataHoraDaMedicao2);
-        s1.addMeasurementToList(measurement1);
-        s1.addMeasurementToList(measurement2);
+        Readings readings1 = new Readings(20, dataHoraDaMedicao1);
+        Readings readings2 = new Readings(25, dataHoraDaMedicao2);
+        s1.addMeasurementToList(readings1);
+        s1.addMeasurementToList(readings2);
 
-        Measurement expectedResult = measurement2;
+        Readings expectedResult = readings2;
 
         //Act
-        Measurement result = s1.getLastMeasurement();
+        Readings result = s1.getLastMeasurement();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -279,9 +279,9 @@ class SensorTest {
         LocalDateTime data2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
         LocalDateTime data3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
 
-        Measurement registo1 = new Measurement(19, data1);
-        Measurement registo2 = new Measurement(20.1, data2);
-        Measurement registo3 = new Measurement(21.7, data3);
+        Readings registo1 = new Readings(19, data1);
+        Readings registo2 = new Readings(20.1, data2);
+        Readings registo3 = new Readings(21.7, data3);
 
         double expectedResult = 19;
         LocalDate diaDoMes = LocalDate.of(2017, 8, 5);
@@ -327,9 +327,9 @@ class SensorTest {
         LocalDateTime data2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
         LocalDateTime data3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
 
-        Measurement registo1 = new Measurement(20.5, data1);
-        Measurement registo2 = new Measurement(19, data2);
-        Measurement registo3 = new Measurement(21.7, data3);
+        Readings registo1 = new Readings(20.5, data1);
+        Readings registo2 = new Readings(19, data2);
+        Readings registo3 = new Readings(21.7, data3);
 
         double expectedResult = 19;
         LocalDate diaDoMes = LocalDate.of(2017, 8, 5);
@@ -356,9 +356,9 @@ class SensorTest {
         LocalDateTime data2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
         LocalDateTime data3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
 
-        Measurement registo1 = new Measurement(19, data1);
-        Measurement registo2 = new Measurement(22, data2);
-        Measurement registo3 = new Measurement(19, data3);
+        Readings registo1 = new Readings(19, data1);
+        Readings registo2 = new Readings(22, data2);
+        Readings registo3 = new Readings(19, data3);
 
         double expectedResult = 19;
         LocalDate diaDoMes = LocalDate.of(2017, 8, 5);
@@ -385,9 +385,9 @@ class SensorTest {
         LocalDateTime data2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
         LocalDateTime data3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
 
-        Measurement registo1 = new Measurement(19, data1);
-        Measurement registo2 = new Measurement(19, data2);
-        Measurement registo3 = new Measurement(19, data3);
+        Readings registo1 = new Readings(19, data1);
+        Readings registo2 = new Readings(19, data2);
+        Readings registo3 = new Readings(19, data3);
 
         double expectedResult = 19;
         LocalDate diaDoMes = LocalDate.of(2017, 8, 5);
@@ -414,9 +414,9 @@ class SensorTest {
         LocalDateTime data2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
         LocalDateTime data3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
 
-        Measurement registo1 = new Measurement(22, data1);
-        Measurement registo2 = new Measurement(22, data2);
-        Measurement registo3 = new Measurement(19, data3);
+        Readings registo1 = new Readings(22, data1);
+        Readings registo2 = new Readings(22, data2);
+        Readings registo3 = new Readings(19, data3);
 
         double expectedResult = 19;
         LocalDate diaDoMes = LocalDate.of(2017, 8, 5);
@@ -446,10 +446,10 @@ class SensorTest {
         LocalDateTime data3 = LocalDateTime.of(2018, 2, 11, 7, 30);
         LocalDateTime data4 = LocalDateTime.of(2018, 2, 12, 15, 20);
 
-        Measurement registo1 = new Measurement(28, data1);
-        Measurement registo2 = new Measurement(25, data2);
-        Measurement registo3 = new Measurement(26, data3);
-        Measurement registo4 = new Measurement(27, data4);
+        Readings registo1 = new Readings(28, data1);
+        Readings registo2 = new Readings(25, data2);
+        Readings registo3 = new Readings(26, data3);
+        Readings registo4 = new Readings(27, data4);
 
         double expectedResult = 27;
         LocalDate dataDoMes = LocalDate.of(2018, 2, 5);
@@ -497,10 +497,10 @@ class SensorTest {
         LocalDateTime data3 = LocalDateTime.of(2018, 2, 11, 7, 30);
         LocalDateTime data4 = LocalDateTime.of(2018, 2, 12, 6, 25);
 
-        Measurement registo1 = new Measurement(21, data1);
-        Measurement registo2 = new Measurement(25, data2);
-        Measurement registo3 = new Measurement(26, data3);
-        Measurement registo4 = new Measurement(27, data4);
+        Readings registo1 = new Readings(21, data1);
+        Readings registo2 = new Readings(25, data2);
+        Readings registo3 = new Readings(26, data3);
+        Readings registo4 = new Readings(27, data4);
 
         double expectedResult = 26;
         LocalDate diaDoMes = LocalDate.of(2018, 2, 15);
@@ -573,21 +573,21 @@ class SensorTest {
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataDomingo1, sensorType, locS1);
-        Measurement measurementDomingo1 = new Measurement(30, dataDomingo1);
-        Measurement measurementDomingo2 = new Measurement(35, dataDomingo2);
-        Measurement measurementSegunda = new Measurement(40, dataSegunda);
+        Readings readingsDomingo1 = new Readings(30, dataDomingo1);
+        Readings readingsDomingo2 = new Readings(35, dataDomingo2);
+        Readings readingsSegunda = new Readings(40, dataSegunda);
 
-        sensor1.addMeasurementToList(measurementDomingo1);
-        sensor1.addMeasurementToList(measurementDomingo2);
-        sensor1.addMeasurementToList(measurementSegunda);
+        sensor1.addMeasurementToList(readingsDomingo1);
+        sensor1.addMeasurementToList(readingsDomingo2);
+        sensor1.addMeasurementToList(readingsSegunda);
 
 
-        List<Measurement> expectedResult = new ArrayList<>();
-        expectedResult.add(measurementDomingo1);
-        expectedResult.add(measurementDomingo2);
+        List<Readings> expectedResult = new ArrayList<>();
+        expectedResult.add(readingsDomingo1);
+        expectedResult.add(readingsDomingo2);
 
         //act
-        List<Measurement> result = sensor1.getDailyMeasurement(dataDomingo.toLocalDate());
+        List<Readings> result = sensor1.getDailyMeasurement(dataDomingo.toLocalDate());
 
         //assert
         assertEquals(expectedResult, result);
@@ -606,20 +606,20 @@ class SensorTest {
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("A123", dataDomingo1, sensorType, locS1);
-        Measurement measurementDomingo1 = new Measurement(Double.NaN, dataDomingo1);
-        Measurement measurementDomingo2 = new Measurement(35.0, dataDomingo2);
-        Measurement measurementSegunda = new Measurement(40.0, dataSegunda);
+        Readings readingsDomingo1 = new Readings(Double.NaN, dataDomingo1);
+        Readings readingsDomingo2 = new Readings(35.0, dataDomingo2);
+        Readings readingsSegunda = new Readings(40.0, dataSegunda);
 
-        sensor1.addMeasurementToList(measurementDomingo1);
-        sensor1.addMeasurementToList(measurementDomingo2);
-        sensor1.addMeasurementToList(measurementSegunda);
+        sensor1.addMeasurementToList(readingsDomingo1);
+        sensor1.addMeasurementToList(readingsDomingo2);
+        sensor1.addMeasurementToList(readingsSegunda);
 
 
-        List<Measurement> expectedResult = new ArrayList<>();
-        expectedResult.add(measurementDomingo2);
+        List<Readings> expectedResult = new ArrayList<>();
+        expectedResult.add(readingsDomingo2);
 
         //act
-        List<Measurement> result = sensor1.getDailyMeasurement(dataDomingo.toLocalDate());
+        List<Readings> result = sensor1.getDailyMeasurement(dataDomingo.toLocalDate());
 
         //assert
         assertEquals(expectedResult, result);
@@ -690,20 +690,20 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
-        Measurement measurement1 = new Measurement(40, data1);
+        Readings readings1 = new Readings(40, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 10, 2, 23, 59, 59);
-        Measurement measurement2 = new Measurement(30, data2);
+        Readings readings2 = new Readings(30, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 10, 2, 17, 20, 00);
-        Measurement measurement3 = new Measurement(-2, data3);
+        Readings readings3 = new Readings(-2, data3);
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
 
         LocalDate searchDate = LocalDate.of(2018, 10, 2);
 
@@ -743,20 +743,20 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
-        Measurement measurement1 = new Measurement(Double.NaN, data1);
+        Readings readings1 = new Readings(Double.NaN, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 10, 2, 23, 59, 59);
-        Measurement measurement2 = new Measurement(30, data2);
+        Readings readings2 = new Readings(30, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 10, 2, 17, 20, 00);
-        Measurement measurement3 = new Measurement(-2, data3);
+        Readings readings3 = new Readings(-2, data3);
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
 
         double expectedResult = -2;
 
@@ -794,40 +794,40 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
-        Measurement measurement1 = new Measurement(0.0, data1);
+        Readings readings1 = new Readings(0.0, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 3, 23, 59, 59);
-        Measurement measurement2 = new Measurement(30.0, data2);
+        Readings readings2 = new Readings(30.0, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 11, 4, 17, 20, 00);
-        Measurement measurement3 = new Measurement(-2.0, data3);
+        Readings readings3 = new Readings(-2.0, data3);
 
         //Registo 4
         LocalDateTime data4 = LocalDateTime.of(2018, 11, 5, 17, 20, 00);
-        Measurement measurement4 = new Measurement(-4.0, data4);
+        Readings readings4 = new Readings(-4.0, data4);
 
         //Registo 5
         LocalDateTime data5 = LocalDateTime.of(2018, 11, 6, 17, 20, 00);
-        Measurement measurement5 = new Measurement(-2.0, data5);
+        Readings readings5 = new Readings(-2.0, data5);
 
         //Registo 6
         LocalDateTime data6 = LocalDateTime.of(2018, 11, 7, 17, 20, 00);
-        Measurement measurement6 = new Measurement(-5.0, data6);
+        Readings readings6 = new Readings(-5.0, data6);
 
         //Registo 7
         LocalDateTime data7 = LocalDateTime.of(2018, 11, 8, 17, 20, 00);
-        Measurement measurement7 = new Measurement(-2.0, data7);
+        Readings readings7 = new Readings(-2.0, data7);
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
-        sensor1.addMeasurementToList(measurement4);
-        sensor1.addMeasurementToList(measurement5);
-        sensor1.addMeasurementToList(measurement6);
-        sensor1.addMeasurementToList(measurement7);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
+        sensor1.addMeasurementToList(readings4);
+        sensor1.addMeasurementToList(readings5);
+        sensor1.addMeasurementToList(readings6);
+        sensor1.addMeasurementToList(readings7);
 
         List<Double> expectedResult = new ArrayList<>();
 
@@ -856,40 +856,40 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
-        Measurement measurement1 = new Measurement(Double.NaN, data1);
+        Readings readings1 = new Readings(Double.NaN, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 3, 23, 59, 59);
-        Measurement measurement2 = new Measurement(30, data2);
+        Readings readings2 = new Readings(30, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 11, 4, 17, 20, 00);
-        Measurement measurement3 = new Measurement(-2, data3);
+        Readings readings3 = new Readings(-2, data3);
 
         //Registo 4
         LocalDateTime data4 = LocalDateTime.of(2018, 11, 5, 17, 20, 00);
-        Measurement measurement4 = new Measurement(-4, data4);
+        Readings readings4 = new Readings(-4, data4);
 
         //Registo 5
         LocalDateTime data5 = LocalDateTime.of(2018, 11, 6, 17, 20, 00);
-        Measurement measurement5 = new Measurement(-2, data5);
+        Readings readings5 = new Readings(-2, data5);
 
         //Registo 6
         LocalDateTime data6 = LocalDateTime.of(2018, 11, 7, 17, 20, 00);
-        Measurement measurement6 = new Measurement(-5, data6);
+        Readings readings6 = new Readings(-5, data6);
 
         //Registo 7
         LocalDateTime data7 = LocalDateTime.of(2018, 11, 8, 17, 20, 00);
-        Measurement measurement7 = new Measurement(-2, data7);
+        Readings readings7 = new Readings(-2, data7);
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
-        sensor1.addMeasurementToList(measurement4);
-        sensor1.addMeasurementToList(measurement5);
-        sensor1.addMeasurementToList(measurement6);
-        sensor1.addMeasurementToList(measurement7);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
+        sensor1.addMeasurementToList(readings4);
+        sensor1.addMeasurementToList(readings5);
+        sensor1.addMeasurementToList(readings6);
+        sensor1.addMeasurementToList(readings7);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList(-2.0, -4.0, -2.0, -5.0, -2.0));
 
@@ -912,30 +912,30 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
-        Measurement measurement1 = new Measurement(0.0, data1);
+        Readings readings1 = new Readings(0.0, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 3, 23, 59, 59);
-        Measurement measurement2 = new Measurement(30, data2);
+        Readings readings2 = new Readings(30, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 11, 4, 17, 20, 00);
-        Measurement measurement3 = new Measurement(-2, data3);
+        Readings readings3 = new Readings(-2, data3);
 
         //Registo 4
         LocalDateTime data4 = LocalDateTime.of(2018, 11, 5, 17, 20, 00);
-        Measurement measurement4 = new Measurement(-4, data4);
+        Readings readings4 = new Readings(-4, data4);
 
         //Registo 5
         LocalDateTime data5 = LocalDateTime.of(2018, 11, 6, 17, 20, 00);
-        Measurement measurement5 = new Measurement(-2, data5);
+        Readings readings5 = new Readings(-2, data5);
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
-        sensor1.addMeasurementToList(measurement4);
-        sensor1.addMeasurementToList(measurement5);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
+        sensor1.addMeasurementToList(readings4);
+        sensor1.addMeasurementToList(readings5);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList(-2.0, -4.0, -2.0));
 
@@ -958,31 +958,31 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
-        Measurement measurement1 = new Measurement(0.0, data1);
+        Readings readings1 = new Readings(0.0, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 3, 23, 59, 59);
-        Measurement measurement2 = new Measurement(30, data2);
+        Readings readings2 = new Readings(30, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 11, 4, 17, 20, 00);
-        Measurement measurement3 = new Measurement(-2, data3);
+        Readings readings3 = new Readings(-2, data3);
 
         //Registo 4
         LocalDateTime data4 = LocalDateTime.of(2018, 11, 5, 17, 20, 00);
-        Measurement measurement4 = new Measurement(-4, data4);
+        Readings readings4 = new Readings(-4, data4);
 
         //Registo 5
         LocalDateTime data5 = LocalDateTime.of(2018, 10, 6, 17, 20, 00);
-        Measurement measurement5 = new Measurement(-2, data5);
+        Readings readings5 = new Readings(-2, data5);
 
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
-        sensor1.addMeasurementToList(measurement4);
-        sensor1.addMeasurementToList(measurement5);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
+        sensor1.addMeasurementToList(readings4);
+        sensor1.addMeasurementToList(readings5);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList(-2.0, -4.0));
 
@@ -1025,41 +1025,41 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
-        Measurement measurement1 = new Measurement(10.0, data1);
+        Readings readings1 = new Readings(10.0, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 3, 23, 59, 59);
-        Measurement measurement2 = new Measurement(9.5, data2);
+        Readings readings2 = new Readings(9.5, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 11, 4, 17, 20, 00);
-        Measurement measurement3 = new Measurement(7.5, data3);
+        Readings readings3 = new Readings(7.5, data3);
 
         //Registo 4
         LocalDateTime data4 = LocalDateTime.of(2018, 11, 5, 17, 20, 00);
-        Measurement measurement4 = new Measurement(9.7, data4);
+        Readings readings4 = new Readings(9.7, data4);
 
         //Registo 5
         LocalDateTime data5 = LocalDateTime.of(2018, 11, 6, 17, 20, 00);
-        Measurement measurement5 = new Measurement(10.1, data5);
+        Readings readings5 = new Readings(10.1, data5);
 
         //Registo 6
         LocalDateTime data6 = LocalDateTime.of(2018, 11, 7, 17, 20, 00);
-        Measurement measurement6 = new Measurement(11.2, data6);
+        Readings readings6 = new Readings(11.2, data6);
 
         //Registo 7
         LocalDateTime data7 = LocalDateTime.of(2018, 11, 8, 17, 20, 00);
-        Measurement measurement7 = new Measurement(8.9, data7);
+        Readings readings7 = new Readings(8.9, data7);
 
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
-        sensor1.addMeasurementToList(measurement4);
-        sensor1.addMeasurementToList(measurement5);
-        sensor1.addMeasurementToList(measurement6);
-        sensor1.addMeasurementToList(measurement7);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
+        sensor1.addMeasurementToList(readings4);
+        sensor1.addMeasurementToList(readings5);
+        sensor1.addMeasurementToList(readings6);
+        sensor1.addMeasurementToList(readings7);
 
 
         double expectedResult = 47.4 / 5;
@@ -1103,20 +1103,20 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
-        Measurement measurement1 = new Measurement(30, data1);
+        Readings readings1 = new Readings(30, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 10, 2, 23, 59, 59);
-        Measurement measurement2 = new Measurement(40, data2);
+        Readings readings2 = new Readings(40, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 10, 2, 17, 20, 00);
-        Measurement measurement3 = new Measurement(-2, data3);
+        Readings readings3 = new Readings(-2, data3);
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
 
         LocalDate searchDate = LocalDate.of(2018, 10, 2);
 
@@ -1156,20 +1156,20 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
-        Measurement measurement1 = new Measurement(Double.NaN, data1);
+        Readings readings1 = new Readings(Double.NaN, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 10, 2, 23, 59, 59);
-        Measurement measurement2 = new Measurement(-2, data2);
+        Readings readings2 = new Readings(-2, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 10, 2, 17, 20, 00);
-        Measurement measurement3 = new Measurement(30, data3);
+        Readings readings3 = new Readings(30, data3);
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
 
         double expectedResult = 30;
 
@@ -1192,40 +1192,40 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
-        Measurement measurement1 = new Measurement(20.0, data1);
+        Readings readings1 = new Readings(20.0, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 3, 23, 59, 59);
-        Measurement measurement2 = new Measurement(30.0, data2);
+        Readings readings2 = new Readings(30.0, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 11, 4, 17, 20, 00);
-        Measurement measurement3 = new Measurement(20.0, data3);
+        Readings readings3 = new Readings(20.0, data3);
 
         //Registo 4
         LocalDateTime data4 = LocalDateTime.of(2018, 11, 5, 17, 20, 00);
-        Measurement measurement4 = new Measurement(40.0, data4);
+        Readings readings4 = new Readings(40.0, data4);
 
         //Registo 5
         LocalDateTime data5 = LocalDateTime.of(2018, 11, 6, 17, 20, 00);
-        Measurement measurement5 = new Measurement(20.0, data5);
+        Readings readings5 = new Readings(20.0, data5);
 
         //Registo 6
         LocalDateTime data6 = LocalDateTime.of(2018, 11, 7, 17, 20, 00);
-        Measurement measurement6 = new Measurement(45.0, data6);
+        Readings readings6 = new Readings(45.0, data6);
 
         //Registo 7
         LocalDateTime data7 = LocalDateTime.of(2018, 11, 8, 17, 20, 00);
-        Measurement measurement7 = new Measurement(20.0, data7);
+        Readings readings7 = new Readings(20.0, data7);
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
-        sensor1.addMeasurementToList(measurement4);
-        sensor1.addMeasurementToList(measurement5);
-        sensor1.addMeasurementToList(measurement6);
-        sensor1.addMeasurementToList(measurement7);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
+        sensor1.addMeasurementToList(readings4);
+        sensor1.addMeasurementToList(readings5);
+        sensor1.addMeasurementToList(readings6);
+        sensor1.addMeasurementToList(readings7);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList(20.0, 40.0, 20.0, 45.0, 20.0));
 
@@ -1248,40 +1248,40 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 5, 01, 00, 01);
-        Measurement measurement1 = new Measurement(Double.NaN, data1);
+        Readings readings1 = new Readings(Double.NaN, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 6, 23, 59, 59);
-        Measurement measurement2 = new Measurement(30.0, data2);
+        Readings readings2 = new Readings(30.0, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 11, 7, 17, 20, 00);
-        Measurement measurement3 = new Measurement(20.0, data3);
+        Readings readings3 = new Readings(20.0, data3);
 
         //Registo 4
         LocalDateTime data4 = LocalDateTime.of(2018, 11, 8, 17, 20, 00);
-        Measurement measurement4 = new Measurement(40.0, data4);
+        Readings readings4 = new Readings(40.0, data4);
 
         //Registo 5
         LocalDateTime data5 = LocalDateTime.of(2018, 11, 9, 17, 20, 00);
-        Measurement measurement5 = new Measurement(20.0, data5);
+        Readings readings5 = new Readings(20.0, data5);
 
         //Registo 6
         LocalDateTime data6 = LocalDateTime.of(2018, 11, 10, 17, 20, 00);
-        Measurement measurement6 = new Measurement(45.0, data6);
+        Readings readings6 = new Readings(45.0, data6);
 
         //Registo 7
         LocalDateTime data7 = LocalDateTime.of(2018, 11, 11, 17, 20, 00);
-        Measurement measurement7 = new Measurement(20.0, data7);
+        Readings readings7 = new Readings(20.0, data7);
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
-        sensor1.addMeasurementToList(measurement4);
-        sensor1.addMeasurementToList(measurement5);
-        sensor1.addMeasurementToList(measurement6);
-        sensor1.addMeasurementToList(measurement7);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
+        sensor1.addMeasurementToList(readings4);
+        sensor1.addMeasurementToList(readings5);
+        sensor1.addMeasurementToList(readings6);
+        sensor1.addMeasurementToList(readings7);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList(30.0, 20.0, 40.0, 20.0, 45.0));
 
@@ -1304,30 +1304,30 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 6, 01, 00, 01);
-        Measurement measurement1 = new Measurement(30.0, data1);
+        Readings readings1 = new Readings(30.0, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 5, 23, 59, 59);
-        Measurement measurement2 = new Measurement(30.0, data2);
+        Readings readings2 = new Readings(30.0, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 11, 6, 17, 20, 00);
-        Measurement measurement3 = new Measurement(20.0, data3);
+        Readings readings3 = new Readings(20.0, data3);
 
         //Registo 4
         LocalDateTime data4 = LocalDateTime.of(2018, 11, 7, 17, 20, 00);
-        Measurement measurement4 = new Measurement(40.0, data4);
+        Readings readings4 = new Readings(40.0, data4);
 
         //Registo 5
         LocalDateTime data5 = LocalDateTime.of(2018, 11, 8, 17, 20, 00);
-        Measurement measurement5 = new Measurement(20.0, data5);
+        Readings readings5 = new Readings(20.0, data5);
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
-        sensor1.addMeasurementToList(measurement4);
-        sensor1.addMeasurementToList(measurement5);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
+        sensor1.addMeasurementToList(readings4);
+        sensor1.addMeasurementToList(readings5);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList(30.0, 30.0, 40.0, 20.0));
 
@@ -1350,30 +1350,30 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
-        Measurement measurement1 = new Measurement(45.0, data1);
+        Readings readings1 = new Readings(45.0, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 3, 23, 59, 59);
-        Measurement measurement2 = new Measurement(30.0, data2);
+        Readings readings2 = new Readings(30.0, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 11, 4, 17, 20, 00);
-        Measurement measurement3 = new Measurement(25.0, data3);
+        Readings readings3 = new Readings(25.0, data3);
 
         //Registo 4
         LocalDateTime data4 = LocalDateTime.of(2018, 11, 5, 17, 20, 00);
-        Measurement measurement4 = new Measurement(40.0, data4);
+        Readings readings4 = new Readings(40.0, data4);
 
         //Registo 5
         LocalDateTime data5 = LocalDateTime.of(2018, 10, 6, 17, 20, 00);
-        Measurement measurement5 = new Measurement(20.0, data5);
+        Readings readings5 = new Readings(20.0, data5);
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
-        sensor1.addMeasurementToList(measurement4);
-        sensor1.addMeasurementToList(measurement5);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
+        sensor1.addMeasurementToList(readings4);
+        sensor1.addMeasurementToList(readings5);
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList(25.0, 40.0));
 
@@ -1416,41 +1416,41 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
-        Measurement measurement1 = new Measurement(10.0, data1);
+        Readings readings1 = new Readings(10.0, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 3, 23, 59, 59);
-        Measurement measurement2 = new Measurement(9.5, data2);
+        Readings readings2 = new Readings(9.5, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 11, 4, 17, 20, 00);
-        Measurement measurement3 = new Measurement(7.5, data3);
+        Readings readings3 = new Readings(7.5, data3);
 
         //Registo 4
         LocalDateTime data4 = LocalDateTime.of(2018, 11, 5, 17, 20, 00);
-        Measurement measurement4 = new Measurement(9.7, data4);
+        Readings readings4 = new Readings(9.7, data4);
 
         //Registo 5
         LocalDateTime data5 = LocalDateTime.of(2018, 11, 6, 17, 20, 00);
-        Measurement measurement5 = new Measurement(10.1, data5);
+        Readings readings5 = new Readings(10.1, data5);
 
         //Registo 6
         LocalDateTime data6 = LocalDateTime.of(2018, 11, 7, 17, 20, 00);
-        Measurement measurement6 = new Measurement(11.2, data6);
+        Readings readings6 = new Readings(11.2, data6);
 
         //Registo 7
         LocalDateTime data7 = LocalDateTime.of(2018, 11, 8, 17, 20, 00);
-        Measurement measurement7 = new Measurement(8.9, data7);
+        Readings readings7 = new Readings(8.9, data7);
 
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
-        sensor1.addMeasurementToList(measurement4);
-        sensor1.addMeasurementToList(measurement5);
-        sensor1.addMeasurementToList(measurement6);
-        sensor1.addMeasurementToList(measurement7);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
+        sensor1.addMeasurementToList(readings4);
+        sensor1.addMeasurementToList(readings5);
+        sensor1.addMeasurementToList(readings6);
+        sensor1.addMeasurementToList(readings7);
 
 
         double expectedResult = 47.4 / 5;
@@ -1495,30 +1495,30 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
-        Measurement measurement1 = new Measurement(10.0, data1);
+        Readings readings1 = new Readings(10.0, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 3, 23, 59, 59);
-        Measurement measurement2 = new Measurement(9.5, data2);
+        Readings readings2 = new Readings(9.5, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 11, 4, 17, 20, 00);
-        Measurement measurement3 = new Measurement(7.5, data3);
+        Readings readings3 = new Readings(7.5, data3);
 
         //Registo 4
         LocalDateTime data4 = LocalDateTime.of(2018, 11, 5, 17, 20, 00);
-        Measurement measurement4 = new Measurement(9.7, data4);
+        Readings readings4 = new Readings(9.7, data4);
 
         //Registo 5
         LocalDateTime data5 = LocalDateTime.of(2018, 11, 6, 17, 20, 00);
-        Measurement measurement5 = new Measurement(10.1, data5);
+        Readings readings5 = new Readings(10.1, data5);
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
-        sensor1.addMeasurementToList(measurement4);
-        sensor1.addMeasurementToList(measurement5);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
+        sensor1.addMeasurementToList(readings4);
+        sensor1.addMeasurementToList(readings5);
 
         double expectedResult = 9.1;
 
@@ -1541,30 +1541,30 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
-        Measurement measurement1 = new Measurement(10.0, data1);
+        Readings readings1 = new Readings(10.0, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
-        Measurement measurement2 = new Measurement(9.5, data2);
+        Readings readings2 = new Readings(9.5, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 11, 2, 17, 15, 00);
-        Measurement measurement3 = new Measurement(7.5, data3);
+        Readings readings3 = new Readings(7.5, data3);
 
         //Registo 4
         LocalDateTime data4 = LocalDateTime.of(2018, 11, 2, 17, 20, 00);
-        Measurement measurement4 = new Measurement(9.7, data4);
+        Readings readings4 = new Readings(9.7, data4);
 
         //Registo 5
         LocalDateTime data5 = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
-        Measurement measurement5 = new Measurement(10.1, data5);
+        Readings readings5 = new Readings(10.1, data5);
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
-        sensor1.addMeasurementToList(measurement4);
-        sensor1.addMeasurementToList(measurement5);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
+        sensor1.addMeasurementToList(readings4);
+        sensor1.addMeasurementToList(readings5);
 
         double expectedResult = 9.36;
 
@@ -1588,30 +1588,30 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
-        Measurement measurement1 = new Measurement(10.0, data1);
+        Readings readings1 = new Readings(10.0, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
-        Measurement measurement2 = new Measurement(10, data2);
+        Readings readings2 = new Readings(10, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 11, 2, 17, 15, 00);
-        Measurement measurement3 = new Measurement(5, data3);
+        Readings readings3 = new Readings(5, data3);
 
         //Registo 4
         LocalDateTime data4 = LocalDateTime.of(2018, 11, 2, 17, 20, 00);
-        Measurement measurement4 = new Measurement(5, data4);
+        Readings readings4 = new Readings(5, data4);
 
         //Registo 5
         LocalDateTime data5 = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
-        Measurement measurement5 = new Measurement(10, data5);
+        Readings readings5 = new Readings(10, data5);
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
-        sensor1.addMeasurementToList(measurement4);
-        sensor1.addMeasurementToList(measurement5);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
+        sensor1.addMeasurementToList(readings4);
+        sensor1.addMeasurementToList(readings5);
 
         double expectedResult = 40;
 
@@ -1634,30 +1634,30 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 8, 00, 01);
-        Measurement measurement1 = new Measurement(10.0, data1);
+        Readings readings1 = new Readings(10.0, data1);
 
         //Registo 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
-        Measurement measurement2 = new Measurement(10, data2);
+        Readings readings2 = new Readings(10, data2);
 
         //Registo 3
         LocalDateTime data3 = LocalDateTime.of(2018, 11, 2, 17, 15, 00);
-        Measurement measurement3 = new Measurement(5, data3);
+        Readings readings3 = new Readings(5, data3);
 
         //Registo 4
         LocalDateTime data4 = LocalDateTime.of(2018, 11, 2, 17, 20, 00);
-        Measurement measurement4 = new Measurement(5, data4);
+        Readings readings4 = new Readings(5, data4);
 
         //Registo 5
         LocalDateTime data5 = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
-        Measurement measurement5 = new Measurement(10, data5);
+        Readings readings5 = new Readings(10, data5);
 
         //Adição das medições
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
-        sensor1.addMeasurementToList(measurement4);
-        sensor1.addMeasurementToList(measurement5);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
+        sensor1.addMeasurementToList(readings4);
+        sensor1.addMeasurementToList(readings5);
 
         double expectedResult = 30;
 
@@ -1680,21 +1680,21 @@ class SensorTest {
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
-        Measurement measurement1 = new Measurement(15, data1);
+        Readings readings1 = new Readings(15, data1);
 
         //Registo 2
-        Measurement measurement2 = new Measurement(5, data1);
+        Readings readings2 = new Readings(5, data1);
 
         //Registo 3
-        Measurement measurement3 = new Measurement(5, data1);
+        Readings readings3 = new Readings(5, data1);
 
         //Registo 4
-        Measurement measurement4 = new Measurement(10, data1);
+        Readings readings4 = new Readings(10, data1);
 
-        sensor1.addMeasurementToList(measurement1);
-        sensor1.addMeasurementToList(measurement2);
-        sensor1.addMeasurementToList(measurement3);
-        sensor1.addMeasurementToList(measurement4);
+        sensor1.addMeasurementToList(readings1);
+        sensor1.addMeasurementToList(readings2);
+        sensor1.addMeasurementToList(readings3);
+        sensor1.addMeasurementToList(readings4);
         double expectedResult = 15;
 
         //Act

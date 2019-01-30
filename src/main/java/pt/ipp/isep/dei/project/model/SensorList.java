@@ -62,37 +62,37 @@ public class SensorList {
      * @param type Sensor type needed.
      * @return List with the lastest measeruments for the required type.
      */
-    public List<Measurement> getListOfLatestMeasurementsBySensorType(SensorType type) {
-        List<Measurement> listOfLatestMeasurements = new ArrayList<>();
+    public List<Readings> getListOfLatestMeasurementsBySensorType(SensorType type) {
+        List<Readings> listOfLatestReadings = new ArrayList<>();
         for (Sensor sensor : mSensorList) {
             if (sensor.isMeasurementListEmpty()) {
                 break;
             }
             if (sensor.sensorTypeEqualsSensorType(type) && (!(Double.isNaN(sensor.getLastMeasurement().getValue())))) {
-                listOfLatestMeasurements.add(sensor.getLastMeasurement());
+                listOfLatestReadings.add(sensor.getLastMeasurement());
             }
         }
-        return listOfLatestMeasurements;
+        return listOfLatestReadings;
     }
 
     /**
-     * method that receives a Sensortype, and gets the latest Measurement available by that Sensortype
+     * method that receives a Sensortype, and gets the latest Readings available by that Sensortype
      *
      * @param type Sensortype
      * @return Measuremnt
      */
-    public Measurement getLatestMeasurementBySensorType(SensorType type) {
-        List<Measurement> listOfLatestMeasurements = getListOfLatestMeasurementsBySensorType(type);
+    public Readings getLatestMeasurementBySensorType(SensorType type) {
+        List<Readings> listOfLatestReadings = getListOfLatestMeasurementsBySensorType(type);
         if (getListOfLatestMeasurementsBySensorType(type).isEmpty()) {
             return null;
         }
-        Measurement latestMeasurement = listOfLatestMeasurements.get(0);
-        for (Measurement measurement : listOfLatestMeasurements) {
-            if (measurement.getDateTime().isAfter(latestMeasurement.getDateTime())) {
-                latestMeasurement = measurement;
+        Readings latestReadings = listOfLatestReadings.get(0);
+        for (Readings readings : listOfLatestReadings) {
+            if (readings.getDateTime().isAfter(latestReadings.getDateTime())) {
+                latestReadings = readings;
             }
         }
-        return latestMeasurement;
+        return latestReadings;
     }
 
     /**

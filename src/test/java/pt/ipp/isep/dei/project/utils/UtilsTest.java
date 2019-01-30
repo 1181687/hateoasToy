@@ -98,6 +98,7 @@ class UtilsTest {
 
     }
 
+    @Test
     void testGetMeteringPeriodDevice() {
         //Arrange
         int expectedResult = 20;

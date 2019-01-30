@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
+public class GetEnergyConsumptionOfRoomControllerTest {
 
     @Test
     public void testGetRoomListToString() {
@@ -291,18 +291,18 @@ public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
         // Device Instantiation
         Device device = new Device("Fridgerator", room, fridge);
 
-        // Measurement Instantiation
+        // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement0 = new Measurement(3, time0);
+        Readings readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement1 = new Measurement(5, time1);
+        Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement2 = new Measurement(7, time2);
+        Readings readings2 = new Readings(7, time2);
 
-        // List<Measurement Configuration
-        device.addMeasurementToTheList(measurement0);
-        device.addMeasurementToTheList(measurement1);
-        device.addMeasurementToTheList(measurement2);
+        // List<Readings Configuration
+        device.addMeasurementToTheList(readings0);
+        device.addMeasurementToTheList(readings1);
+        device.addMeasurementToTheList(readings2);
 
         double expectedResult = 7;
 
@@ -346,18 +346,18 @@ public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
         // Device Instantiation
         Device device = new Device("Fridgerator", room, fridge);
 
-        // Measurement Instantiation
+        // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement0 = new Measurement(3, time0);
+        Readings readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement1 = new Measurement(5, time1);
+        Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement2 = new Measurement(7, time2);
+        Readings readings2 = new Readings(7, time2);
 
-        // List<Measurement Configuration
-        device.addMeasurementToTheList(measurement0);
-        device.addMeasurementToTheList(measurement1);
-        device.addMeasurementToTheList(measurement2);
+        // List<Readings Configuration
+        device.addMeasurementToTheList(readings0);
+        device.addMeasurementToTheList(readings1);
+        device.addMeasurementToTheList(readings2);
 
         double expectedResult = 12;
 
@@ -401,18 +401,18 @@ public class GetEnergyConsumptionOfRoomInAnIntervalControllerTest {
         // Device Instantiation
         Device device = new Device("Fridgerator", room, fridge);
 
-        // Measurement Instantiation
+        // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement0 = new Measurement(3, time0);
+        Readings readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement1 = new Measurement(5, time1);
+        Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement2 = new Measurement(7, time2);
+        Readings readings2 = new Readings(7, time2);
 
-        // List<Measurement Configuration
-        device.addMeasurementToTheList(measurement0);
-        device.addMeasurementToTheList(measurement1);
-        device.addMeasurementToTheList(measurement2);
+        // List<Readings Configuration
+        device.addMeasurementToTheList(readings0);
+        device.addMeasurementToTheList(readings1);
+        device.addMeasurementToTheList(readings2);
 
         double expectedResult = 0;
 

@@ -451,21 +451,21 @@ public class RoomListTest {
 
         LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 11, 2, 20, 24, 00);
 
-        Measurement measurement1 = new Measurement(20.0, dateTimeDayMeasure1);
-        Measurement measurement2 = new Measurement(25.0, dateTimeDayMeasure2);
+        Readings readings1 = new Readings(20.0, dateTimeDayMeasure1);
+        Readings readings2 = new Readings(25.0, dateTimeDayMeasure2);
 
-        s0.addMeasurementToList(measurement1);
-        s0.addMeasurementToList(measurement2);
+        s0.addMeasurementToList(readings1);
+        s0.addMeasurementToList(readings2);
 
         LocalDateTime dateTimeDayMeasure3 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 11, 2, 17, 24, 00);
 
-        Measurement measurement3 = new Measurement(20.0, dateTimeDayMeasure3);
-        Measurement measurement4 = new Measurement(30.0, dateTimeDayMeasure4);
+        Readings readings3 = new Readings(20.0, dateTimeDayMeasure3);
+        Readings readings4 = new Readings(30.0, dateTimeDayMeasure4);
 
-        s1.addMeasurementToList(measurement3);
-        s1.addMeasurementToList(measurement4);
+        s1.addMeasurementToList(readings3);
+        s1.addMeasurementToList(readings4);
 
         room1.getSensorList().addSensor(s0);
         room1.getSensorList().addSensor(s1);
@@ -510,21 +510,21 @@ public class RoomListTest {
 
         LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 11, 2, 20, 24, 00);
 
-        Measurement measurement1 = new Measurement(-20.0, dateTimeDayMeasure1);
-        Measurement measurement2 = new Measurement(-25.0, dateTimeDayMeasure2);
+        Readings readings1 = new Readings(-20.0, dateTimeDayMeasure1);
+        Readings readings2 = new Readings(-25.0, dateTimeDayMeasure2);
 
-        s0.addMeasurementToList(measurement1);
-        s0.addMeasurementToList(measurement2);
+        s0.addMeasurementToList(readings1);
+        s0.addMeasurementToList(readings2);
 
         LocalDateTime dateTimeDayMeasure3 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 11, 2, 17, 24, 00);
 
-        Measurement measurement3 = new Measurement(-10.0, dateTimeDayMeasure3);
-        Measurement measurement4 = new Measurement(-15.0, dateTimeDayMeasure4);
+        Readings readings3 = new Readings(-10.0, dateTimeDayMeasure3);
+        Readings readings4 = new Readings(-15.0, dateTimeDayMeasure4);
 
-        s1.addMeasurementToList(measurement3);
-        s1.addMeasurementToList(measurement4);
+        s1.addMeasurementToList(readings3);
+        s1.addMeasurementToList(readings4);
 
         room1.getSensorList().addSensor(s0);
         room1.getSensorList().addSensor(s1);

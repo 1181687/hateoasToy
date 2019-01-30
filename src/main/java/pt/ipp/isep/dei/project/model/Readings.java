@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDateTime;
 
-public class Measurement {
+public class Readings {
     private double mValue;
     private LocalDateTime mDateTime;
 
@@ -12,7 +12,7 @@ public class Measurement {
      * @param value    value
      * @param dateTime date
      */
-    public Measurement(double value, LocalDateTime dateTime) {
+    public Readings(double value, LocalDateTime dateTime) {
         this.mValue = value;
         this.mDateTime = dateTime;
     }

@@ -71,7 +71,7 @@ public class PowerUser {
                     ui752.run();
                     break;
                 case 3:
-                    GetEnergyConsumptionOfRoomInAnInterval ui721 = new GetEnergyConsumptionOfRoomInAnInterval(mhouse);
+                    GetEnergyConsumptionOfRoom ui721 = new GetEnergyConsumptionOfRoom(mhouse);
                     ui721.run();
                     break;
                 case 4:

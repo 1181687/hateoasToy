@@ -183,7 +183,7 @@ public class Room implements Measurable {
      * @param type type of sensor
      * @return latest measurement by sensor type
      */
-    public Measurement getLatestMeasurementBySensorType(SensorType type) {
+    public Readings getLatestMeasurementBySensorType(SensorType type) {
         return mSensorList.getLatestMeasurementBySensorType(type);
     }
 
