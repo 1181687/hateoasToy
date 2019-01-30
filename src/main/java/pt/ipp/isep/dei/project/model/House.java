@@ -12,7 +12,7 @@ public class House {
     private HouseGridList mListHouseGrids;
     private Address mAddress;
     private GeographicalArea mInsertedGeoArea;
-    private String mDeviceTypeList;
+    private List<String> mDeviceTypeList;
     private int mMeteringPeriodGrid;
     private int mMeteringPeriodDevice;
 
@@ -30,16 +30,31 @@ public class House {
         this.mInsertedGeoArea = insertedGeoArea;
     }
 
-    public House(RoomList roomList, HouseGridList listHouseGrids, Address address, GeographicalArea insertedGeoArea, String deviceTypeList, int meteringPeriodGrid, int meteringPeriodDevice) {
-        this.mRoomList = roomList;
-        this.mListHouseGrids = listHouseGrids;
-        this.mAddress = address;
-        this.mInsertedGeoArea = insertedGeoArea;
+    public House(List<String> deviceTypeList, int meteringPeriodGrid, int meteringPeriodDevice) {
+        this.mRoomList = new RoomList();
+        this.mListHouseGrids = new HouseGridList();
         this.mDeviceTypeList = deviceTypeList;
         this.mMeteringPeriodGrid = meteringPeriodGrid;
         this.mMeteringPeriodDevice = meteringPeriodDevice;
     }
 
+    /**
+     * Set method for the inserted geo area.
+     *
+     * @param geoArea House area.
+     */
+    public void setInsertedGeoArea(GeographicalArea geoArea) {
+        mInsertedGeoArea = geoArea;
+    }
+
+    /**
+     * Method that adds a house grid to the list.
+     *
+     * @param houseGrid House grid used.
+     */
+    public void addGrid(HouseGrid houseGrid) {
+        mListHouseGrids.addHouseGrid(houseGrid);
+    }
 
     public RoomList getRoomList() {
         return mRoomList;
@@ -475,5 +490,9 @@ public class House {
             readingsMap.append("Date/hour: " + entry.getKey() +
                     ", Energy Consumption: " + entry.getValue() + " kWh\n");
         return readingsMap.toString();
+    }
+
+    public int getDeviceSize() {
+        return getAllDevices().getSize();
     }
 }

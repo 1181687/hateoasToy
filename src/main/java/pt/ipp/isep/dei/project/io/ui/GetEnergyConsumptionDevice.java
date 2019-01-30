@@ -22,9 +22,9 @@ public class GetEnergyConsumptionDevice {
         mController.setDevice(devicePosition);
         String label1 = "Please insert a start date (in the format YYYY-MM-DD).";
         LocalDateTime startDate = InputValidator.getStringDateTime(label1);
-        String label2 = "Please insert an end date (in the format YYYY-MM-DD).";
+        String label2 = "\nPlease insert an end date (in the format YYYY-MM-DD).";
         LocalDateTime endDate = InputValidator.getStringDateTime(label2);
-        System.out.println("The energy consumption in the specified period was "
-                + mController.getEnergyConsumptionInAnInterval(startDate, endDate) + ".");
+        System.out.println("\nThe energy consumption in the specified period was "
+                + mController.getEnergyConsumptionInAnInterval(startDate, endDate) + " kWh.\n");
     }
 }

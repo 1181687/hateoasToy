@@ -61,4 +61,16 @@ public class GetEnergyConsumptionDataSeriesController {
         Map<LocalDateTime,Double> map = mSelectedDevice.getDataSeries(startDate,endDate);
         return mHouse.getDataSeriesToString(map);
     }
+
+    public int getHouseGridListSize() {
+        return mHouse.getHouseGridListSize();
+    }
+
+    public int getRoomListSize() {
+        return mHouse.getRoomListSize();
+    }
+
+    public int getDeviceListSize() {
+        return mHouse.getDeviceSize();
+    }
 }
