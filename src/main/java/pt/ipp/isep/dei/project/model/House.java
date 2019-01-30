@@ -412,6 +412,15 @@ public class House {
     }
 
     /**
+     * Method that returns all the devices in the house.
+     *
+     * @return DeviceList with all the devices in the house.
+     */
+    public int getNumberOfDevices() {
+        return getAllDevices().getSize();
+    }
+
+    /**
      * Method that returns a device by its position in the list of all devices in the house.
      *
      * @param position Position of the device in the list of all devices.

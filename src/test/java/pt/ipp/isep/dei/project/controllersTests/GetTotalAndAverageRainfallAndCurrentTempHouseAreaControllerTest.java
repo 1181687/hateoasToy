@@ -44,22 +44,22 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         // Sensor0 - Register 1
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 11, 1, 15, 20, 00);
         Readings readings01 = new Readings(10, dataHoraDaMedicao01);
-        s0.addMeasurementToList(readings01);
+        s0.addReadingsToList(readings01);
 
         // Sensor0 - Register 2
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 11, 1, 17, 24, 00);
         Readings readings02 = new Readings(11, dataHoraDaMedicao02);
-        s0.addMeasurementToList(readings02);
+        s0.addReadingsToList(readings02);
 
         //Sensor1 - Register 1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 11, 1, 15, 20, 00);
         Readings readings11 = new Readings(11, dataHoraDaMedicao11);
-        s1.addMeasurementToList(readings11);
+        s1.addReadingsToList(readings11);
 
         //Sensor1 - Register 2
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 11, 1, 17, 24, 00);
         Readings readings12 = new Readings(15, dataHoraDaMedicao12);
-        s1.addMeasurementToList(readings12);
+        s1.addReadingsToList(readings12);
 
         LocalDateTime day = LocalDateTime.of(2018, 11, 1, 15, 20, 00);
 
@@ -111,8 +111,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         Readings readings01 = new Readings(23, dataHoraDaMedicao01);
         Readings readings02 = new Readings(30, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(readings01);
-        s0.addMeasurementToList(readings02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 11, 4, 15, 20, 00);
@@ -123,9 +123,9 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         Readings readings12 = new Readings(25, dataHoraDaMedicao12);
         Readings readings13 = new Readings(20, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(readings11);
-        s1.addMeasurementToList(readings12);
-        s1.addMeasurementToList(readings13);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
+        s1.addReadingsToList(readings13);
 
         LocalDateTime startDate1 = LocalDateTime.of(2018, 11, 1, 15, 20, 00);
         LocalDateTime endDate1 = LocalDateTime.of(2018, 11, 6, 17, 24, 00);
@@ -206,8 +206,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         Readings readings01 = new Readings(23, dataHoraDaMedicao01);
         Readings readings02 = new Readings(30, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(readings01);
-        s0.addMeasurementToList(readings02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 11, 2, 15, 20, 00);
@@ -217,8 +217,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         Readings readings11 = new Readings(22, dataHoraDaMedicao11);
         Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(readings11);
-        s1.addMeasurementToList(readings12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         // Controller
         GetTotalAndAverageRainfallAndCurrentTempHouseAreaController ctrl = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);

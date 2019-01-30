@@ -316,8 +316,10 @@ public class RoomList {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
         for (Room room : mRoomList) {
-            content.append(numberInTheList + room.getDeviceListToString().substring(1));
-            numberInTheList++;
+            if (!room.getDeviceList().isDeviceListEmpty()) {
+                content.append(numberInTheList + room.getDeviceListToString().substring(1));
+                numberInTheList++;
+            }
         }
         return content.toString();
     }

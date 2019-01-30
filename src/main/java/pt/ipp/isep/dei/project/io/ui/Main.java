@@ -53,7 +53,7 @@ public class Main {
         houseEdificioB.getInsertedGeoArea().setInsertedIn(insertedGeoArea);
 
 
-        // MEASUREMENTS
+        // ReadingsS
         // General Dates
         LocalDateTime date = LocalDate.of(2018, 12, 29).atStartOfDay();
         LocalDateTime date1 = LocalDate.of(2018, 12, 30).atStartOfDay();
@@ -61,6 +61,16 @@ public class Main {
         LocalDateTime date3 = LocalDate.of(2019, 1, 1).atStartOfDay();
         LocalDateTime date4 = LocalDate.of(2019, 1, 2).atStartOfDay();
         LocalDateTime date5 = LocalDate.of(2019, 1, 2).atStartOfDay();
+        LocalDateTime date6 = LocalDateTime.of(2019, 1, 29, 00, 00, 00);
+        LocalDateTime date7 = LocalDateTime.of(2019, 1, 29, 8, 00, 00);
+        LocalDateTime date8 = LocalDateTime.of(2019, 1, 29, 16, 00, 00);
+        LocalDateTime date9 = LocalDateTime.of(2019, 1, 30, 00, 00, 00);
+        LocalDateTime date10 = LocalDateTime.of(2019, 1, 30, 8, 00, 00);
+        LocalDateTime date11 = LocalDateTime.of(2019, 1, 30, 16, 00, 00);
+        LocalDateTime date12 = LocalDateTime.of(2019, 1, 31, 00, 00, 00);
+        LocalDateTime date13 = LocalDateTime.of(2019, 1, 31, 8, 00, 00);
+        LocalDateTime date14 = LocalDateTime.of(2019, 1, 31, 16, 00, 00);
+        LocalDateTime date15 = LocalDateTime.of(2019, 2, 1, 00, 00, 00);
 
         // Sensor 1
         Readings temp = new Readings(14.0, date1);
@@ -125,28 +135,52 @@ public class Main {
         Readings temp53 = new Readings(14.1, date4);
         Readings temp54 = new Readings(8.3, date4);
 
+        // Device 1
+        Readings deviceEC = new Readings(1.0, date6);
+        Readings deviceEC1 = new Readings(2.9, date7);
+        Readings deviceEC2 = new Readings(3.5, date8);
+        Readings deviceEC3 = new Readings(1.2, date9);
+        Readings deviceEC4 = new Readings(2.2, date10);
+        Readings deviceEC5 = new Readings(3.3, date11);
+        Readings deviceEC6 = new Readings(1.1, date12);
+        Readings deviceEC7 = new Readings(2.2, date13);
+        Readings deviceEC8 = new Readings(3.5, date14);
+        Readings deviceEC9 = new Readings(1.3, date15);
+
+        // Device 2
+        Readings device2EC = new Readings(1.0, date6);
+        Readings device2EC1 = new Readings(3.9, date7);
+        Readings device2EC2 = new Readings(3.5, date8);
+        Readings device2EC3 = new Readings(1.2, date9);
+        Readings device2EC4 = new Readings(3.2, date10);
+        Readings device2EC5 = new Readings(3.3, date11);
+        Readings device2EC6 = new Readings(1.1, date12);
+        Readings device2EC7 = new Readings(3.2, date13);
+        Readings device2EC8 = new Readings(3.5, date14);
+        Readings device2EC9 = new Readings(1.3, date15);
+
 
         // SENSORS
         // Sensor 1
         SensorType sensorTypeTemperature = new SensorType("temperature");
         LocalDateTime startingDate = LocalDate.of(2018, 10, 15).atStartOfDay();
         Sensor sensor = new Sensor("Temperature B109", startingDate, sensorTypeTemperature, houseLocation);
-        sensor.addMeasurementToList(temp);
-        sensor.addMeasurementToList(temp1);
-        sensor.addMeasurementToList(temp2);
-        sensor.addMeasurementToList(temp3);
-        sensor.addMeasurementToList(temp4);
-        sensor.addMeasurementToList(temp5);
-        sensor.addMeasurementToList(temp6);
-        sensor.addMeasurementToList(temp7);
-        sensor.addMeasurementToList(temp8);
-        sensor.addMeasurementToList(temp9);
-        sensor.addMeasurementToList(temp10);
-        sensor.addMeasurementToList(temp11);
-        sensor.addMeasurementToList(temp12);
-        sensor.addMeasurementToList(temp13);
-        sensor.addMeasurementToList(temp14);
-        sensor.addMeasurementToList(temp15);
+        sensor.addReadingsToList(temp);
+        sensor.addReadingsToList(temp1);
+        sensor.addReadingsToList(temp2);
+        sensor.addReadingsToList(temp3);
+        sensor.addReadingsToList(temp4);
+        sensor.addReadingsToList(temp5);
+        sensor.addReadingsToList(temp6);
+        sensor.addReadingsToList(temp7);
+        sensor.addReadingsToList(temp8);
+        sensor.addReadingsToList(temp9);
+        sensor.addReadingsToList(temp10);
+        sensor.addReadingsToList(temp11);
+        sensor.addReadingsToList(temp12);
+        sensor.addReadingsToList(temp13);
+        sensor.addReadingsToList(temp14);
+        sensor.addReadingsToList(temp15);
         // Add sensor to the Inserted area
         insertedGeoArea.getSensorListInTheGeographicArea().addSensor(sensor);
 
@@ -154,57 +188,57 @@ public class Main {
         SensorType sensorTypeHumidity = new SensorType("humidity");
         LocalDateTime startingDate2 = LocalDate.of(2018, 11, 22).atStartOfDay();
         Sensor sensor2 = new Sensor("Humidity B109", startingDate2, sensorTypeHumidity, houseLocation);
-        sensor2.addMeasurementToList(temp16);
-        sensor2.addMeasurementToList(temp17);
-        sensor2.addMeasurementToList(temp18);
-        sensor2.addMeasurementToList(temp19);
-        sensor2.addMeasurementToList(temp20);
-        sensor2.addMeasurementToList(temp21);
-        sensor2.addMeasurementToList(temp22);
-        sensor2.addMeasurementToList(temp23);
-        sensor2.addMeasurementToList(temp24);
-        sensor2.addMeasurementToList(temp25);
-        sensor2.addMeasurementToList(temp26);
-        sensor2.addMeasurementToList(temp27);
-        sensor2.addMeasurementToList(temp28);
-        sensor2.addMeasurementToList(temp29);
-        sensor2.addMeasurementToList(temp30);
-        sensor2.addMeasurementToList(temp31);
+        sensor2.addReadingsToList(temp16);
+        sensor2.addReadingsToList(temp17);
+        sensor2.addReadingsToList(temp18);
+        sensor2.addReadingsToList(temp19);
+        sensor2.addReadingsToList(temp20);
+        sensor2.addReadingsToList(temp21);
+        sensor2.addReadingsToList(temp22);
+        sensor2.addReadingsToList(temp23);
+        sensor2.addReadingsToList(temp24);
+        sensor2.addReadingsToList(temp25);
+        sensor2.addReadingsToList(temp26);
+        sensor2.addReadingsToList(temp27);
+        sensor2.addReadingsToList(temp28);
+        sensor2.addReadingsToList(temp29);
+        sensor2.addReadingsToList(temp30);
+        sensor2.addReadingsToList(temp31);
 
         // Sensor 3
         Location locationOfAreaSensors = new Location(41.179230, -8.606409, 125);
         SensorType sensorTypeRainfall = new SensorType("rainfall");
         LocalDateTime startingDate3 = LocalDate.of(2016, 11, 15).atStartOfDay();
         Sensor sensor3 = new Sensor("Meteo station ISEP - rainfall", startingDate3, sensorTypeRainfall, locationOfAreaSensors);
-        sensor3.addMeasurementToList(temp32);
-        sensor3.addMeasurementToList(temp33);
-        sensor3.addMeasurementToList(temp34);
-        sensor3.addMeasurementToList(temp35);
-        sensor3.addMeasurementToList(temp36);
-        sensor3.addMeasurementToList(temp37);
-        sensor3.addMeasurementToList(temp38);
+        sensor3.addReadingsToList(temp32);
+        sensor3.addReadingsToList(temp33);
+        sensor3.addReadingsToList(temp34);
+        sensor3.addReadingsToList(temp35);
+        sensor3.addReadingsToList(temp36);
+        sensor3.addReadingsToList(temp37);
+        sensor3.addReadingsToList(temp38);
         insertedGeoArea.getSensorListInTheGeographicArea().addSensor(sensor3);
 
         // Sensor 4
         SensorType sensorTypeTemp = new SensorType("temperature");
         LocalDateTime startingDate4 = LocalDate.of(2016, 11, 15).atStartOfDay();
         Sensor sensor4 = new Sensor("Meteo station ISEP - rainfall", startingDate4, sensorTypeTemp, locationOfAreaSensors);
-        sensor4.addMeasurementToList(temp39);
-        sensor4.addMeasurementToList(temp40);
-        sensor4.addMeasurementToList(temp41);
-        sensor4.addMeasurementToList(temp42);
-        sensor4.addMeasurementToList(temp43);
-        sensor4.addMeasurementToList(temp44);
-        sensor4.addMeasurementToList(temp45);
-        sensor4.addMeasurementToList(temp46);
-        sensor4.addMeasurementToList(temp47);
-        sensor4.addMeasurementToList(temp48);
-        sensor4.addMeasurementToList(temp49);
-        sensor4.addMeasurementToList(temp50);
-        sensor4.addMeasurementToList(temp51);
-        sensor4.addMeasurementToList(temp52);
-        sensor4.addMeasurementToList(temp53);
-        sensor4.addMeasurementToList(temp54);
+        sensor4.addReadingsToList(temp39);
+        sensor4.addReadingsToList(temp40);
+        sensor4.addReadingsToList(temp41);
+        sensor4.addReadingsToList(temp42);
+        sensor4.addReadingsToList(temp43);
+        sensor4.addReadingsToList(temp44);
+        sensor4.addReadingsToList(temp45);
+        sensor4.addReadingsToList(temp46);
+        sensor4.addReadingsToList(temp47);
+        sensor4.addReadingsToList(temp48);
+        sensor4.addReadingsToList(temp49);
+        sensor4.addReadingsToList(temp50);
+        sensor4.addReadingsToList(temp51);
+        sensor4.addReadingsToList(temp52);
+        sensor4.addReadingsToList(temp53);
+        sensor4.addReadingsToList(temp54);
         insertedGeoArea.getSensorListInTheGeographicArea().addSensor(sensor4);
 
 
@@ -281,12 +315,32 @@ public class Main {
         Device device = new Device("EHW B109", room2, electricWaterHeater);
         room2.addDevice(device);
         deviceList.addDevice(device);
+        device.addReadingsToTheList(deviceEC);
+        device.addReadingsToTheList(deviceEC1);
+        device.addReadingsToTheList(deviceEC2);
+        device.addReadingsToTheList(deviceEC3);
+        device.addReadingsToTheList(deviceEC4);
+        device.addReadingsToTheList(deviceEC5);
+        device.addReadingsToTheList(deviceEC6);
+        device.addReadingsToTheList(deviceEC7);
+        device.addReadingsToTheList(deviceEC8);
+        device.addReadingsToTheList(deviceEC9);
 
         // Dishwasher
         DeviceSpecs dishWasher = new DishWasher(50, 1.5, dishwasherPrograms);
         Device device2 = new Device("Dishwasher B109", room2, dishWasher);
         room2.addDevice(device2);
         deviceList.addDevice(device2);
+        device.addReadingsToTheList(device2EC);
+        device.addReadingsToTheList(device2EC1);
+        device.addReadingsToTheList(device2EC2);
+        device.addReadingsToTheList(device2EC3);
+        device.addReadingsToTheList(device2EC4);
+        device.addReadingsToTheList(device2EC5);
+        device.addReadingsToTheList(device2EC6);
+        device.addReadingsToTheList(device2EC7);
+        device.addReadingsToTheList(device2EC8);
+        device.addReadingsToTheList(device2EC9);
 
         // Washing Machine
         DeviceSpecs washingMachine = new WashingMachine(10, 2.5, washingMachinePrograms);

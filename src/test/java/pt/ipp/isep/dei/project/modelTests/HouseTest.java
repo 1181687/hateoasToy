@@ -298,8 +298,8 @@ public class HouseTest {
         Readings readings01 = new Readings(23, dataHoraDaMedicao01);
         Readings readings02 = new Readings(30, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(readings01);
-        s0.addMeasurementToList(readings02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
@@ -309,9 +309,9 @@ public class HouseTest {
         Readings readings12 = new Readings(25, dataHoraDaMedicao12);
         Readings readings13 = new Readings(20, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(readings11);
-        s1.addMeasurementToList(readings12);
-        s1.addMeasurementToList(readings13);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
+        s1.addReadingsToList(readings13);
 
         LocalDate startDate = LocalDate.of(2018, 12, 1);
         LocalDate endDate = LocalDate.of(2018, 12, 6);
@@ -441,8 +441,8 @@ public class HouseTest {
         Readings readings01 = new Readings(23, dataHoraDaMedicao01);
         Readings readings02 = new Readings(30, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(readings01);
-        s0.addMeasurementToList(readings02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -451,8 +451,8 @@ public class HouseTest {
         Readings readings11 = new Readings(22, dataHoraDaMedicao11);
         Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(readings11);
-        s1.addMeasurementToList(readings12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         double expectedResult = 25;
 
@@ -634,22 +634,22 @@ public class HouseTest {
         // Sensor0 - Register 1
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 1, 15, 20, 00);
         Readings readings01 = new Readings(10, dataHoraDaMedicao01);
-        s0.addMeasurementToList(readings01);
+        s0.addReadingsToList(readings01);
 
         // Sensor0 - Register 2
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 1, 17, 24, 00);
         Readings readings02 = new Readings(11, dataHoraDaMedicao02);
-        s0.addMeasurementToList(readings02);
+        s0.addReadingsToList(readings02);
 
         //Sensor1 - Register 1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 1, 15, 20, 00);
         Readings readings11 = new Readings(11, dataHoraDaMedicao11);
-        s1.addMeasurementToList(readings11);
+        s1.addReadingsToList(readings11);
 
         //Sensor1 - Register 2
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 1, 17, 24, 00);
         Readings readings12 = new Readings(15, dataHoraDaMedicao12);
-        s1.addMeasurementToList(readings12);
+        s1.addReadingsToList(readings12);
 
         LocalDate day = LocalDate.of(2018, 12, 1);
 
@@ -690,8 +690,8 @@ public class HouseTest {
         Readings readings01 = new Readings(23, dataHoraDaMedicao01);
         Readings readings02 = new Readings(24, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(readings01);
-        s0.addMeasurementToList(readings02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
@@ -700,8 +700,8 @@ public class HouseTest {
         Readings readings11 = new Readings(22, dataHoraDaMedicao11);
         Readings readings12 = new Readings(30, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(readings11);
-        s1.addMeasurementToList(readings12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
@@ -710,8 +710,8 @@ public class HouseTest {
         Readings readings21 = new Readings(20, dataHoraDaMedicao21);
         Readings readings22 = new Readings(27, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(readings21);
-        s2.addMeasurementToList(readings22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
         SensorType sensorType = new SensorType("Temperatura");
         RoomList rList = new RoomList();
@@ -765,8 +765,8 @@ public class HouseTest {
         Readings readings01 = new Readings(23, dataHoraDaMedicao01);
         Readings readings02 = new Readings(25, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(readings01);
-        s0.addMeasurementToList(readings02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
@@ -775,8 +775,8 @@ public class HouseTest {
         Readings readings11 = new Readings(22, dataHoraDaMedicao11);
         Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(readings11);
-        s1.addMeasurementToList(readings12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
@@ -785,8 +785,8 @@ public class HouseTest {
         Readings readings21 = new Readings(20, dataHoraDaMedicao21);
         Readings readings22 = new Readings(25, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(readings21);
-        s2.addMeasurementToList(readings22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
         SensorType tipoResultado = new SensorType("Pluviosidade");
 
@@ -839,8 +839,8 @@ public class HouseTest {
         Readings readings01 = new Readings(23, dataHoraDaMedicao01);
         Readings readings02 = new Readings(25, dataHoraDaMedicao02);
 
-        s0.addMeasurementToList(readings01);
-        s0.addMeasurementToList(readings02);
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
@@ -849,8 +849,8 @@ public class HouseTest {
         Readings readings11 = new Readings(22, dataHoraDaMedicao11);
         Readings readings12 = new Readings(25, dataHoraDaMedicao12);
 
-        s1.addMeasurementToList(readings11);
-        s1.addMeasurementToList(readings12);
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
 
         //Sensor2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
@@ -859,8 +859,8 @@ public class HouseTest {
         Readings readings21 = new Readings(20, dataHoraDaMedicao21);
         Readings readings22 = new Readings(25, dataHoraDaMedicao22);
 
-        s2.addMeasurementToList(readings21);
-        s2.addMeasurementToList(readings22);
+        s2.addReadingsToList(readings21);
+        s2.addReadingsToList(readings22);
 
         SensorType tipoResultado = new SensorType("Pluviosidade");
 
@@ -950,8 +950,8 @@ public class HouseTest {
         Readings readings1 = new Readings(-20.0, dateTimeDayMeasure1);
         Readings readings2 = new Readings(-25.0, dateTimeDayMeasure2);
 
-        s0.addMeasurementToList(readings1);
-        s0.addMeasurementToList(readings2);
+        s0.addReadingsToList(readings1);
+        s0.addReadingsToList(readings2);
 
         LocalDateTime dateTimeDayMeasure3 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 12, 2, 17, 24, 00);
@@ -959,8 +959,8 @@ public class HouseTest {
         Readings readings3 = new Readings(-10.0, dateTimeDayMeasure3);
         Readings readings4 = new Readings(-15.0, dateTimeDayMeasure4);
 
-        s1.addMeasurementToList(readings3);
-        s1.addMeasurementToList(readings4);
+        s1.addReadingsToList(readings3);
+        s1.addReadingsToList(readings4);
 
         room1.getSensorList().addSensor(s0);
         room1.getSensorList().addSensor(s1);
@@ -1958,6 +1958,46 @@ public class HouseTest {
 
         // Act
         List<Device> result = house.getAllDevices().getDeviceList();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getNumberOfDevicesTest() {
+        // Arrange
+        // Dimension Instantiation
+        Dimension dim = new Dimension(3, 5, 6);
+
+        // Room Instantiation
+        Room room0 = new Room("Kitchen", 1, dim);
+        Room room1 = new Room("Laundry", 2, dim);
+
+        // Fridge Instantiation
+        DeviceSpecs fridge = new Fridge(35, 20, 1000, 10);
+
+        // ElectricWaterHeater Instantiation
+        DeviceSpecs electricWaterHeater = new ElectricWaterHeater(50, 150,
+                0.9, 100);
+
+        // Device Instantiation
+        Device device0 = new Device("Fridgeratah V14", room0, fridge);
+        room0.addDevice(device0);
+        Device device1 = new Device("Bosch Tronic 3000", room1, electricWaterHeater);
+        room1.addDevice(device1);
+
+        // RoomList Instantiation
+        RoomList roomList = new RoomList();
+        roomList.addRoom(room0);
+        roomList.addRoom(room1);
+
+        // House Instantiation
+        House house = new House(roomList, null, null, null);
+
+        int expectedResult = 2;
+
+        // Act
+        int result = house.getNumberOfDevices();
 
         // Assert
         assertEquals(expectedResult, result);
