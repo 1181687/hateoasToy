@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 
@@ -211,25 +212,28 @@ public class Device implements Measurable {
         return sum;
     }
 
+    public List<Measurement> getMeasurementListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
+        List<Measurement> measurementList = new ArrayList<>();
+        for (Measurement measurement : mMeasurementList) {
+            if (!startDate.isAfter(measurement.getDateTime()) && !endDate.isBefore(measurement.getDateTime())) {
+                measurementList.add(measurement);
+            }
+        }
+        return measurementList;
+    }
+
     /**
      * Method that calculates the total energy consumption of a device in a given interval.
      *
      * @param startDate Start date.
-     * @param endDate End date.
+     * @param endDate   End date.
      * @return Double with the required energy consumption.
      */
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        int numberOfValidMeasurements = 0;
-        List<Measurement> measurementList = new ArrayList<>();
-        for (Measurement measurement : mMeasurementList) {
-            if (!startDate.isAfter(measurement.getDateTime()) && !endDate.isBefore(measurement.getDateTime())) {
-                measurementList.add(measurement);
-                numberOfValidMeasurements++;
-            }
-        }
-        if (numberOfValidMeasurements > 1) {
+        List<Measurement> measurementList = getMeasurementListInInterval(startDate, endDate);
+        if (measurementList.size() > 1) {
             measurementList.remove(0);
             totalEnergyConsumption = getSumOfTheMeasurements(measurementList);
         }
@@ -247,11 +251,20 @@ public class Device implements Measurable {
 
     public int setDeviceMeteringPeriod() {
         int meteringPeriod = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
-        if (1440%meteringPeriod==0 && (meteringPeriod % Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"))==0)) {
+        if (1440 % meteringPeriod == 0 && (meteringPeriod % Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid")) == 0)) {
             return meteringPeriod;
         } else {
             return -1;
         }
     }
 
+    @Override
+    public HashMap<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
+        HashMap<LocalDateTime, Double> hmap = new HashMap<>();
+        List<Measurement> validMeasurementList = getMeasurementListInInterval(startDate, endDate);
+        for (Measurement measurement : validMeasurementList) {
+            hmap.put(measurement.getDateTime(), measurement.getValue());
+        }
+        return hmap;
+    }
 }

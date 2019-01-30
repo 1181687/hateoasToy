@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.model;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
 
 import static java.util.Objects.isNull;
 
@@ -26,7 +27,6 @@ public class HouseGrid implements Measurable {
         this.mPowerSourceList = new PowerSourceList();
         this.mMaximumContractedPower = 0;
         this.mMeteringPeriod = setGridMeteringPeriod();
-
     }
 
     /**
@@ -234,4 +234,8 @@ public class HouseGrid implements Measurable {
         }
     }
 
+    @Override
+    public HashMap<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
+        return null;
+    }
 }
