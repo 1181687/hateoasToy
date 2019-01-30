@@ -16,7 +16,7 @@ public class DeleteDeviceFromRoom {
         // LIST OF ROOMS
         StringBuilder content = new StringBuilder();
 
-        if (this.mController.checkIfRoomListIsEmpty()) {
+        if (this.mController.roomListIsEmpty()) {
             System.out.println("There are no rooms in the house. Please create a room.");
 
         } else {
@@ -32,7 +32,7 @@ public class DeleteDeviceFromRoom {
                 mController.getRoomByPosition(position);
 
                 // LIST OF DEVICES
-                if (this.mController.checkIfDeviceListIsEmpty()) {
+                if (this.mController.deviceListIsEmpty()) {
                     System.out.println("\n There are no devices in this room. \n");
 
                 } else {
@@ -40,7 +40,7 @@ public class DeleteDeviceFromRoom {
                     while (flag1) {
                         String label2 = "\n> Please select the device you want to delete. \n" + mController.getDevicesInTheRoom() + exit;
 
-                        int deviceListLength = mController.getDeviceListLength();
+                        int deviceListLength = mController.getDeviceListSize();
                         int position1 = InputValidator.getIntRange(label2, 0, deviceListLength) - 1;
                         if (position1 == -1) {
                             return;
