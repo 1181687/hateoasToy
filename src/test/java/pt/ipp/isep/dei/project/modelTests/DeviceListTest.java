@@ -561,12 +561,12 @@ public class DeviceListTest {
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         double luminousFlux2 = 15.0;
         double nominalPower2 = 2.0;
-        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
         Device dev2 = new Device("Lamp2", room, deviceSpecs2);
 
         room.addDevice(dev1);
@@ -702,12 +702,12 @@ public class DeviceListTest {
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         double luminousFlux2 = 15.0;
         double nominalPower2 = 2.0;
-        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
+        DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
         Device dev2 = new Device("Lamp2", room, deviceSpecs2);
 
         room.addDevice(dev1);
