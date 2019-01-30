@@ -569,15 +569,15 @@ public class HouseGridTest {
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Measurement measurement0 = new Measurement(3, time0);
+        Readings readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Measurement measurement1 = new Measurement(5, time1);
+        Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Measurement measurement2 = new Measurement(7, time2);
+        Readings readings2 = new Readings(7, time2);
 
-        lamp.addMeasurementToTheList(measurement0);
-        lamp.addMeasurementToTheList(measurement1);
-        lamp.addMeasurementToTheList(measurement2);
+        lamp.addMeasurementToTheList(readings0);
+        lamp.addMeasurementToTheList(readings1);
+        lamp.addMeasurementToTheList(readings2);
 
         double expectedResult = 12;
         //Act

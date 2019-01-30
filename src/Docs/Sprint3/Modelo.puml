@@ -1,0 +1,76 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+autonumber
+actor User
+User -> UI: GetListOfDevicesInARoom
+activate UI
+UI -> Controller: getRoomListContent()
+activate Controller
+Controller -> House: getRoomListContent()
+activate House
+House -> RoomList: getRoomListContent()
+activate RoomList
+UI <-- RoomList: RoomListContent
+deactivate RoomList
+deactivate House
+deactivate Controller
+User <-- UI: RoomListContent
+
+
+User -> UI: Int position: Room
+UI -> Controller: getRoomName(Room)
+activate Controller
+Controller -> House: getRoomName(Room)
+activate House
+House -> RoomList: getRoomName(Room)
+activate RoomList
+RoomList -> Room: getName()
+activate Room
+RoomList <-- Room: RoomName
+deactivate Room
+UI <-- RoomList: RoomName
+deactivate RoomList
+deactivate House
+deactivate Controller
+UI -> Controller: getDeviceListContent(Room)
+activate Controller
+Controller -> House: getDeviceListContent(Room)
+activate House
+House -> RoomList: getDeviceListContent(Room)
+activate RoomList
+RoomList -> Room: getDeviceListContent (Room)
+activate Room
+Room -> DeviceList: getDeviceListContent(Room)
+activate DeviceList
+DeviceList -> DeviceList: LengthDeviceList
+DeviceList -> DeviceList: DeviceList
+DeviceList -> Device: getName()
+activate Device
+DeviceList <-- Device: DeviceName
+deactivate Device
+UI <-- DeviceList: DeviceListContent
+deactivate DeviceList
+deactivate Room
+deactivate RoomList
+deactivate House
+deactivate Controller
+User <-- UI: DeviceListContent
+deactivate UI
+@enduml
