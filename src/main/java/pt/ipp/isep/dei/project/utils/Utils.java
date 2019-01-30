@@ -46,7 +46,7 @@ public final class Utils {
         Properties prop = new Properties();
         InputStream in = null;
         try {
-            in = new FileInputStream("MeteringConfiguration.properties");
+            in = new FileInputStream("Configuration.properties");
         } catch (FileNotFoundException ex) {
             return ("There is no file with that filename.");
         }

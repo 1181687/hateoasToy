@@ -14,7 +14,7 @@ public class EditConfigurationDevice {
 
     public void run() {
         StringBuilder content = new StringBuilder();
-        if (this.controller.checkIfRoomListIsEmpty()) {
+        if (this.controller.roomListIsEmpty()) {
             System.out.println("There are no rooms in the house. Please create a room.");
 
         } else {
@@ -30,14 +30,14 @@ public class EditConfigurationDevice {
                 }
                 controller.getRoomByPosition(position);
 
-                if (this.controller.checkIfDeviceListIsEmpty()) {
+                if (this.controller.deviceListIsEmpty()) {
                     System.out.println("There are no devices in this room.");
 
                 } else {
                     boolean flag1 = true;
                     while (flag1) {
                         String label2 = "Please select the device you want to edit. \n" + controller.getDevicesInTheRoom() + exit;
-                        int deviceListLength = controller.getDeviceListLength();
+                        int deviceListLength = controller.getDeviceListSize();
                         int position1 = InputValidator.getIntRange(label2, 0, deviceListLength) - 1;
                         if (position1 == -1) {
                             flag1 = false;

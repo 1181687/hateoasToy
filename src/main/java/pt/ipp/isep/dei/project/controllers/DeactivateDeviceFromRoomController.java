@@ -4,13 +4,13 @@ import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
 
-public class DeativateDeviceFromRoomController {
+public class DeactivateDeviceFromRoomController {
 
     private House mHouse;
     private Room mRoom;
     private Device mDevice;
 
-    public DeativateDeviceFromRoomController(House mHouse) {
+    public DeactivateDeviceFromRoomController(House mHouse) {
         this.mHouse = mHouse;
     }
 

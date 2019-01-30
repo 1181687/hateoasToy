@@ -47,7 +47,7 @@ public class PowerUser {
                     ui230.run();
                     break;
                 case 4:
-                    DeativateDeviceFromRoom ui222 = new DeativateDeviceFromRoom(mHouse);
+                    DeactivateDeviceFromRoom ui222 = new DeactivateDeviceFromRoom(mHouse);
                     ui222.run();
                     break;
             }
