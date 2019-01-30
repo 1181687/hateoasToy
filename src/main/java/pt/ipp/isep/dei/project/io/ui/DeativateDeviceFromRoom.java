@@ -47,19 +47,24 @@ public class DeativateDeviceFromRoom {
                         if (position1 == -1) {
                             return;
                         }
-                        flag1 = false;
-
-                        // CONFIRM TO DEATIVATE
-                        String label5 = "Are you sure do you want to deativate this device? (Y/N)";
-                        String answer2 = InputValidator.confirmValidation(label5);
-                        if ("y".equals(answer2) || "Y".equals(answer2)) {
-
-                            String deativateDevice = mController.getDeviceNameByPosition(position1);
-                            if (mController.deativateDevice(deativateDevice)) {
-                                System.out.println("\n The device has been deativated. \n");
-                            }
+                        if (!mController.getDevice(position1).getIsActive()) {
+                            System.out.println("This device is already deactive. Please select an active device.");
                         } else {
-                            continue;
+
+
+                            // CONFIRM TO DEATIVATE
+                            String label5 = "Are you sure do you want to deativate this device? (Y/N)";
+                            String answer2 = InputValidator.confirmValidation(label5);
+                            if ("y".equals(answer2) || "Y".equals(answer2)) {
+
+                                String deativateDevice = mController.getDeviceNameByPosition(position1);
+                                if (mController.deativateDevice(deativateDevice)) {
+                                    System.out.println("\n The device has been deativated. \n");
+                                }
+                            } else {
+                                continue;
+                            }
+
                         }
                         flag1 = false;
                     }

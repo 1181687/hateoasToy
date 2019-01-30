@@ -253,4 +253,5 @@ public class Device implements Measurable {
             return -1;
         }
     }
+
 }

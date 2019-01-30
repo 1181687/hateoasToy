@@ -25,7 +25,7 @@ public class HouseGrid implements Measurable {
         this.mRoomList = new RoomList();
         this.mPowerSourceList = new PowerSourceList();
         this.mMaximumContractedPower = 0;
-        this.mMeteringPeriod = setMeteringPeriod();
+        this.mMeteringPeriod = setGridMeteringPeriod();
 
     }
 
@@ -225,7 +225,7 @@ public class HouseGrid implements Measurable {
      *
      * @return
      */
-    public int setMeteringPeriod() {
+    public int setGridMeteringPeriod() {
         int meteringPeriod = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
         if (1440%meteringPeriod==0) {
             return meteringPeriod;
