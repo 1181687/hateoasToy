@@ -253,7 +253,7 @@ public class Sensor {
      *
      * @param readings readings of a sensor
      */
-    public void addMeasurementToList(Readings readings) {
+    public void addReadingsToList(Readings readings) {
         mReadings.add(readings);
     }
 
