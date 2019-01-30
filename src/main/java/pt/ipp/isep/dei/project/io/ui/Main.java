@@ -23,9 +23,7 @@ public class Main {
 
         GeographicalAreaTypeList geographicalAreaTypeList = new GeographicalAreaTypeList();
         GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
-        RoomList roomList = new RoomList();
         DeviceList deviceList = new DeviceList();
-        HouseGridList gridList = new HouseGridList();
 
 
         // GEOGRAPHICAL AREAS
@@ -49,8 +47,9 @@ public class Main {
         // HOUSE
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation);
-        House houseEdificioB = new House(roomList, gridList, address, insertedGeoArea);
-        houseEdificioB.getInsertedGeoArea().setInsertedIn(insertedGeoArea);
+        House houseEdificioB = new House(null, meteringPeriodGrid, meteringPeriodDevice);
+        houseEdificioB.setAddress(address);
+        houseEdificioB.setInsertedGeoArea(insertedGeoArea);
 
 
         // ReadingsS
@@ -364,16 +363,16 @@ public class Main {
 
 
         // ROOM LIST
-        roomList.addRoom(room1);
-        roomList.addRoom(room2);
-        roomList.addRoom(room3);
+        houseEdificioB.addRoom(room1);
+        houseEdificioB.addRoom(room2);
+        houseEdificioB.addRoom(room3);
 
 
         // HOUSE GRID
         String houseGridName = "main grid";
         double maximumContractedPower = 200;
-        HouseGrid houseGrid = new HouseGrid(houseGridName, maximumContractedPower, roomList);
-        gridList.addHouseGrid(houseGrid);
+        HouseGrid houseGrid = new HouseGrid(houseGridName, maximumContractedPower, houseEdificioB.getRoomList());
+        houseEdificioB.addGrid(houseGrid);
 
         // POWER SOURCES
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
@@ -383,7 +382,7 @@ public class Main {
         powerSourceTypeList.addPowerSourceType(powerSourceType2);
 
         //UI levels
-        Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaList, deviceList, sensorTypeList, houseEdificioB, powerSourceTypeList, roomList, gridList);
+        Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaList, deviceList, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList(), houseEdificioB.getHouseGridList());
         RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaList, sensorTypeList, houseEdificioB, sensorTypeTemperature);
         PowerUser powerUser = new PowerUser(houseEdificioB);
         RoomOwner roomOwner = new RoomOwner(houseEdificioB);

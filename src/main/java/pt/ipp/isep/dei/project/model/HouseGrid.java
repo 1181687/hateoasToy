@@ -1,11 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
-import pt.ipp.isep.dei.project.utils.Utils;
-
 import java.time.LocalDateTime;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.Map;
 
 import static java.util.Objects.isNull;
@@ -13,7 +8,6 @@ import static java.util.Objects.isNull;
 public class HouseGrid implements Measurable {
     private String mName;
     private double mMaximumContractedPower;
-    private int mMeteringPeriod;
     private PowerSourceList mPowerSourceList;
     private RoomList mRoomList;
 
@@ -29,7 +23,6 @@ public class HouseGrid implements Measurable {
         this.mRoomList = new RoomList();
         this.mPowerSourceList = new PowerSourceList();
         this.mMaximumContractedPower = 0;
-        this.mMeteringPeriod = setGridMeteringPeriod();
     }
 
     /**
@@ -220,20 +213,6 @@ public class HouseGrid implements Measurable {
                 totalEnergyConsumption += room.getEnergyConsumptionInAnInterval(startDate, endDate);
             }
             return totalEnergyConsumption;
-        }
-    }
-
-    /**
-     * Method that sets the metering period using the methods in the Utils Class.
-     *
-     * @return
-     */
-    public int setGridMeteringPeriod() {
-        int meteringPeriod = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
-        if (1440%meteringPeriod==0) {
-            return meteringPeriod;
-        } else {
-            return -1;
         }
     }
 
