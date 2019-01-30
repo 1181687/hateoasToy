@@ -385,7 +385,7 @@ public class EditConfigurationDeviceControllerTest {
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
         //act
-        boolean result = controller.checkIfRoomListIsEmpty();
+        boolean result = controller.roomListIsEmpty();
         //assert
         assertTrue(result);
     }
@@ -411,7 +411,7 @@ public class EditConfigurationDeviceControllerTest {
         rList.addRoom(room1);
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
         //act
-        boolean result = controller.checkIfRoomListIsEmpty();
+        boolean result = controller.roomListIsEmpty();
         //assert
         assertFalse(result);
     }
@@ -500,7 +500,7 @@ public class EditConfigurationDeviceControllerTest {
         int expectedResult = 1;
 
         devList.addDevice(dev1);
-        int result = controller.getDeviceListLength();
+        int result = controller.getDeviceListSize();
 
         // assert
         assertEquals(expectedResult, result);
@@ -529,7 +529,7 @@ public class EditConfigurationDeviceControllerTest {
         // act
         int expectedResult = 0;
 
-        int result = controller.getDeviceListLength();
+        int result = controller.getDeviceListSize();
 
         // assert
         assertEquals(expectedResult, result);
@@ -558,7 +558,7 @@ public class EditConfigurationDeviceControllerTest {
         controller.getRoomByPosition(position);
 
         // Act
-        boolean result = controller.checkIfDeviceListIsEmpty();
+        boolean result = controller.deviceListIsEmpty();
 
         // Assert
         assertTrue(result);
@@ -591,7 +591,7 @@ public class EditConfigurationDeviceControllerTest {
         controller.getRoomByPosition(position);
 
         // Act
-        boolean result = controller.checkIfDeviceListIsEmpty();
+        boolean result = controller.deviceListIsEmpty();
 
         // Assert
         assertFalse(result);

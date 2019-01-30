@@ -29,15 +29,6 @@ public class DeleteDeviceFromRoomController {
     }
 
     /**
-     * method that returns the method deviceListIsEmpty of the Class House
-     *
-     * @param position
-     */
-    public boolean isDeviceListEmpty(int position) {
-        return this.mHouse.isDeviceListEmpty(position);
-    }
-
-    /**
      * method thar returns the method getRoomListSize from the class House
      *
      * @return
