@@ -478,6 +478,6 @@ public class House {
     }
 
     public int getDeviceSize() {
-        return mDeviceTypeList.length();
+        return getAllDevices().getSize();
     }
 }

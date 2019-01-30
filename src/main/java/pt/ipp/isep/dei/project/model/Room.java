@@ -5,9 +5,6 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 import static java.util.Objects.isNull;
 
 public class Room implements Measurable {
