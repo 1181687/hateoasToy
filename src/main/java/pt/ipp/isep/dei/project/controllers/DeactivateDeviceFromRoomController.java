@@ -8,7 +8,6 @@ public class DeactivateDeviceFromRoomController {
 
     private House mHouse;
     private Room mRoom;
-    private Device mDevice;
 
     public DeactivateDeviceFromRoomController(House mHouse) {
         this.mHouse = mHouse;
@@ -21,15 +20,6 @@ public class DeactivateDeviceFromRoomController {
      */
     public String getRoomListContent() {
         return this.mHouse.getRoomListContent();
-    }
-
-    /**
-     * method that returns the method deviceListIsEmpty of the Class House
-     *
-     * @param position
-     */
-    public boolean isDeviceListEmpty(int position) {
-        return this.mHouse.isDeviceListEmpty(position);
     }
 
     /**
@@ -47,7 +37,7 @@ public class DeactivateDeviceFromRoomController {
      * @param position
      * @return the position
      */
-    public String getDeviceNameByPosition(int position) {
+    public String deviceNameByPosition(int position) {
         return this.mRoom.getDeviceNameByPosition(position);
     }
 
@@ -56,7 +46,7 @@ public class DeactivateDeviceFromRoomController {
      *
      * @return the size of the device list.
      */
-    public int getDeviceListSize() {
+    public int deviceListSize() {
         return this.mRoom.getDevicesListSize();
     }
 
@@ -65,7 +55,7 @@ public class DeactivateDeviceFromRoomController {
      *
      * @return a boolean.
      */
-    public boolean roomListIsEmpty() {
+    public boolean roomListEmpty() {
         return this.mHouse.getRoomList().isEmpty();
     }
 
@@ -73,7 +63,7 @@ public class DeactivateDeviceFromRoomController {
      * method that get a room by position from the list.
      * @param option
      */
-    public void getRoomByPosition(int option) {
+    public void getRoomPosition(int option) {
         this.mRoom = this.mHouse.getRoomOfTheRoomList(option);
     }
 
@@ -82,7 +72,7 @@ public class DeactivateDeviceFromRoomController {
      *
      * @return a boolean.
      */
-    public boolean deviceListIsEmpty() {
+    public boolean deviceListEmpty() {
         return this.mRoom.isDeviceListEmpty();
     }
 

@@ -2,7 +2,9 @@ package pt.ipp.isep.dei.project.model;
 
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 public class House {
@@ -10,6 +12,9 @@ public class House {
     private HouseGridList mListHouseGrids;
     private Address mAddress;
     private GeographicalArea mInsertedGeoArea;
+    private List<String> mDeviceTypeList;
+    private int mMeteringPeriodGrid;
+    private int mMeteringPeriodDevice;
 
     /**
      * constructor of house that receives a room list, a list of house grids, an address and an insertedGeoArea.
@@ -23,6 +28,32 @@ public class House {
         this.mListHouseGrids = listHouseGrids;
         this.mAddress = address;
         this.mInsertedGeoArea = insertedGeoArea;
+    }
+
+    public House(List<String> deviceTypeList, int meteringPeriodGrid, int meteringPeriodDevice) {
+        this.mRoomList = new RoomList();
+        this.mListHouseGrids = new HouseGridList();
+        this.mDeviceTypeList = deviceTypeList;
+        this.mMeteringPeriodGrid = meteringPeriodGrid;
+        this.mMeteringPeriodDevice = meteringPeriodDevice;
+    }
+
+    /**
+     * Set method for the inserted geo area.
+     *
+     * @param geoArea House area.
+     */
+    public void setInsertedGeoArea(GeographicalArea geoArea) {
+        mInsertedGeoArea = geoArea;
+    }
+
+    /**
+     * Method that adds a house grid to the list.
+     *
+     * @param houseGrid House grid used.
+     */
+    public void addGrid(HouseGrid houseGrid) {
+        mListHouseGrids.addHouseGrid(houseGrid);
     }
 
     public RoomList getRoomList() {
@@ -93,8 +124,8 @@ public class House {
      * @param type
      * @return the last measurement with a location and a type of sensor.
      */
-    public double getLastMeasurement(SensorType type) {
-        return mInsertedGeoArea.getTheLastMeasurement(mAddress.getLocation(), type);
+    public double getLastMeasurementByType(SensorType type) {
+        return mInsertedGeoArea.getLastMeasurementByLocationType(mAddress.getLocation(), type);
     }
 
     /**
@@ -451,5 +482,17 @@ public class House {
      */
     public int numberOfDeviceTypes(int position) {
         return this.mRoomList.getRoomFromPosition(position).numberOfDeviceTypes();
+    }
+
+    public String getDataSeriesToString(Map<LocalDateTime, Double> map) {
+        StringBuilder readingsMap = new StringBuilder();
+        for (Map.Entry<LocalDateTime, Double> entry : map.entrySet())
+            readingsMap.append("Date/hour: " + entry.getKey() +
+                    ", Energy Consumption: " + entry.getValue() + " kWh\n");
+        return readingsMap.toString();
+    }
+
+    public int getDeviceSize() {
+        return getAllDevices().getSize();
     }
 }

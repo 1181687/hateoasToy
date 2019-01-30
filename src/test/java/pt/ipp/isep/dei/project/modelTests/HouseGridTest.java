@@ -539,18 +539,6 @@ public class HouseGridTest {
     }
 
     @Test
-    public void testSetMeteringConfig() {
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
-
-        int expectedResult = 10;
-
-        int result = houseGrid.setGridMeteringPeriod();
-
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
     public void testGetEnergyConsumptionInAnIntervalWithThreeValidReadingss() {
         //Arrange
         Dimension dimension = new Dimension(25, 25, 25);

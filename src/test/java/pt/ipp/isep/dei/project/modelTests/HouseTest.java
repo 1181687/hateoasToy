@@ -459,7 +459,7 @@ public class HouseTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = house.getLastMeasurement(type);
+        double result = house.getLastMeasurementByType(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -534,7 +534,7 @@ public class HouseTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = house.getLastMeasurement(type);
+        double result = house.getLastMeasurementByType(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -595,7 +595,7 @@ public class HouseTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = house.getLastMeasurement(type);
+        double result = house.getLastMeasurementByType(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);

@@ -62,7 +62,7 @@ SensorList -> SensorList: SensorList
 SensorList -> Sensor: getName()
 activate Sensor
 
-SensorList <-- Sensor: SensorName
+UI <-- Sensor: SensorName
 deactivate Sensor
 deactivate SensorList
 deactivate "r: Room"
