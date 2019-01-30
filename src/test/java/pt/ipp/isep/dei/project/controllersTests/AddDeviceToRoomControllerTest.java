@@ -214,7 +214,7 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        Device d2 = controller.createNewFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
+        Device d2 = controller.createNewFridge(name, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
         Device expectedResult = d2;
 
         // act
@@ -253,9 +253,9 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        controller.createNewFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
+        controller.createNewFridge(name, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
 
-        Throwable exception = assertThrows(RuntimeException.class, () -> controller.createNewFridge(name, room, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity));
+        Throwable exception = assertThrows(RuntimeException.class, () -> controller.createNewFridge(name, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity));
 
     assertEquals("Name already exists. Please write a new one.", exception.getMessage());
 }
@@ -282,7 +282,7 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        Device device = controller.createNewLamp("Lamp1", room, nominalPower, luminousFlux);
+        Device device = controller.createNewLamp("Lamp1", nominalPower, luminousFlux);
         Device expectedResult = device;
 
         //Act
@@ -313,10 +313,10 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        controller.createNewLamp("Lamp1", room, nominalPower, luminousFlux);
+        controller.createNewLamp("Lamp1", nominalPower, luminousFlux);
 
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                controller.createNewLamp("Lamp1", room, nominalPower, luminousFlux)
+                controller.createNewLamp("Lamp1", nominalPower, luminousFlux)
         );
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -347,7 +347,7 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        Device device = controller.createNewWashingMachine(name, room, nominalPower, capacity);
+        Device device = controller.createNewWashingMachine(name, nominalPower, capacity);
 
         Device expectedResult = device;
         //Act
@@ -382,10 +382,10 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        controller.createNewWashingMachine(name, room, nominalPower, capacity);
+        controller.createNewWashingMachine(name, nominalPower, capacity);
 
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                controller.createNewWashingMachine(name, room, nominalPower, capacity)
+                controller.createNewWashingMachine(name, nominalPower, capacity)
         );
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -417,7 +417,7 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        Device device = controller.createNewElectricWaterHeater("EWH1", room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
+        Device device = controller.createNewElectricWaterHeater("EWH1", hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
         Device expectedResult = device;
         //Act
@@ -454,11 +454,11 @@ class AddDeviceToRoomControllerTest {
 
         controller.getRoom(0);
         controller.getDeviceList();
-        controller.createNewElectricWaterHeater("EWH1", room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
+        controller.createNewElectricWaterHeater("EWH1", hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
 
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                controller.createNewElectricWaterHeater("EWH1", room, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio)
+                controller.createNewElectricWaterHeater("EWH1", hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio)
         );
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());

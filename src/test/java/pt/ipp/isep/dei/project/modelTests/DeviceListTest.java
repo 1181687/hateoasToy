@@ -91,50 +91,6 @@ public class DeviceListTest {
         assertFalse(result);
     }
 
-    @Test
-    public void getDeviceListContentTest() {
-        // Arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
-
-        double luminousFlux1 = 10.0;
-        double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new Lamp(luminousFlux1, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
-
-        double luminousFlux2 = 15.0;
-        double nominalPower2 = 2.0;
-
-        DeviceSpecs deviceSpecs2 = new Lamp(luminousFlux2, nominalPower2);
-        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
-
-        deviceList.addDevice(dev1);
-        deviceList.addDevice(dev2);
-
-        String expectedResult =
-                "1 - Name of the device: Lamp1\n" +
-                        "2 - Name of the device: Lamp2\n";
-
-        // Act
-        String result = deviceList.getDeviceListToString();
-
-        // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void checkIfDeviceListIsEmptyTestTrue() {
-        // Arrange
-        DeviceList deviceList = new DeviceList();
-
-        // Act
-        boolean result = deviceList.isDeviceListEmpty();
-
-        // Assert
-        assertTrue(result);
-    }
 
     @Test
     public void checkIfDeviceListIsEmptyTestFalse() {
