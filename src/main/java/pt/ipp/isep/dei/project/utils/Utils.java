@@ -48,21 +48,17 @@ public final class Utils {
         try {
             in = new FileInputStream("MeteringConfiguration.properties");
         } catch (FileNotFoundException ex) {
-            return("There is no file with that filename.");
+            return ("There is no file with that filename.");
         }
         try {
-            if (in != null) {
-                prop.load(in);
-                in.close();
-            } else {
-                return("There is no file with that filename.");
-            }
+            prop.load(in);
+            in.close();
         } catch (IOException ex) {
-            return("No info was found.");
+            return ("No info was found.");
         }
         String property = prop.getProperty(option);
         if (property == null) {
-            return("Wrong Key");
+            return ("Wrong Key");
         }
         return property;
     }
