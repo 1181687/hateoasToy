@@ -5,10 +5,10 @@ import pt.ipp.isep.dei.project.model.House;
 
 import java.time.LocalDateTime;
 
-public class GetEnergyConsumptionOfRoomInAnInterval {
+public class GetEnergyConsumptionOfRoom {
     private GetEnergyConsumptionOfRoomInAnIntervalController mController;
 
-    public GetEnergyConsumptionOfRoomInAnInterval(House house) {
+    public GetEnergyConsumptionOfRoom(House house) {
         this.mController = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
     }
 
