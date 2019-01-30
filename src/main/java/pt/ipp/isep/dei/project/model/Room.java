@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;
@@ -285,7 +286,7 @@ public class Room implements Measurable {
      * @return the size of the list.
      */
 
-    public int getDevicesListLength() {
+    public int getDevicesListSize() {
         return mDeviceList.getSize();
     }
 
@@ -323,11 +324,10 @@ public class Room implements Measurable {
     }
 
     /**
-     * TODO
-     *
+     * method that get the enery consumption of the room in an interval
      * @param startDate
      * @param endDate
-     * @return
+     * @return the total energy consumption
      */
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
@@ -340,18 +340,39 @@ public class Room implements Measurable {
         return totalEnergyConsumption;
     }
 
+    /**
+     * method that delete a device.
+     *
+     * @param device
+     * @return boolean
+     */
     public boolean deleteDevice(String device) {
         return this.mDeviceList.deleteDevice(device);
     }
 
+    /**
+     * method that get the device name by position.
+     * @param position
+     * @return a string with the name of the device.
+     */
     public String getDeviceNameByPosition(int position) {
         return this.mDeviceList.getDeviceNameByPosition(position);
     }
 
-    public boolean deativateDevice(String device) {
+    /**
+     * method that deactivate a device.
+     *
+     * @param device
+     * @return a boolean
+     */
+    public boolean deactivateDevice(String device) {
         return this.mDeviceList.deactivationDevice(device);
     }
 
+    /**
+     * method that get a list of active devices to string
+     * @return a string with the status of the device: "activated" or "deactivated".
+     */
     public String getActiveDeviceListToString() {
         return this.mDeviceList.getActiveDeviceListToString();
     }
@@ -481,4 +502,9 @@ public class Room implements Measurable {
     }
 
 
+
+    @Override
+    public HashMap<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
+        return null;
+    }
 }

@@ -35,43 +35,80 @@ public class DeativateDeviceFromRoomController {
     /**
      * method thar returns the method getRoomListSize from the class House
      *
-     * @return
+     * @return the size of the list of rooms.
      */
     public int roomListSize() {
         return this.mHouse.getRoomListSize();
     }
 
+    /**
+     * method that get the device name by position
+     *
+     * @param position
+     * @return the position
+     */
     public String getDeviceNameByPosition(int position) {
         return this.mRoom.getDeviceNameByPosition(position);
     }
 
-    public int getDeviceListLength() {
-        return this.mRoom.getDevicesListLength();
+    /**
+     * method that get the device list size.
+     *
+     * @return the size of the device list.
+     */
+    public int getDeviceListSize() {
+        return this.mRoom.getDevicesListSize();
     }
 
-    public boolean checkIfRoomListIsEmpty() {
+    /**
+     * method that check if the room list is empty.
+     *
+     * @return a boolean.
+     */
+    public boolean roomListIsEmpty() {
         return this.mHouse.getRoomList().isEmpty();
     }
 
+    /**
+     * method that get a room by position from the list.
+     * @param option
+     */
     public void getRoomByPosition(int option) {
         this.mRoom = this.mHouse.getRoomOfTheRoomList(option);
     }
 
-    public boolean checkIfDeviceListIsEmpty() {
+    /**
+     * method that check if the device list is empty.
+     *
+     * @return a boolean.
+     */
+    public boolean deviceListIsEmpty() {
         return this.mRoom.isDeviceListEmpty();
     }
 
-    public boolean deativateDevice(String device) {
-        return this.mRoom.deativateDevice(device);
+    /**
+     * method that deactivate a device
+     *
+     * @param device
+     * @return a boolean.
+     */
+    public boolean deactivateDevice(String device) {
+        return this.mRoom.deactivateDevice(device);
     }
+
+    /**
+     * method that get and active device from the list of devices to string.
+     * @return an ative device.
+     */
     public String getActiveDeviceListToString() {
         return this.mRoom.getActiveDeviceListToString();
     }
 
-    public boolean getIsActive() {
-        return this.mDevice.getIsActive();
-    }
-
+    /**
+     * method that get a device by a pposition.
+     * @param position
+     * @return a postiion.
+     */
     public Device getDevice(int position) {
         return this.mRoom.getDeviceList().getDeviceByPosition(position);
     }

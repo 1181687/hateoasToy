@@ -87,6 +87,19 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     }
 
     @Test
+    public void gettHouseGridName(){
+        //Arrange
+        HouseGrid grid1 = new HouseGrid("Grid 1");
+        houseGridList.addHouseGrid(grid1);
+        String expectedResult = "Grid 1";
+        controller.getHouseGridByPosition(0);
+        //Act
+        String result = controller.getHouseGridName();
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
     public void getEnergyConsumptionInAInterval(){
         //Arrange
         Dimension dimension = new Dimension(25, 25, 25);

@@ -121,6 +121,10 @@ public class Admin {
                     DeleteDeviceFromRoom ui220 = new DeleteDeviceFromRoom(house);
                     ui220.run();
                     break;
+                case 12:
+                    GetEnergyConsumptionDevice ui720 = new GetEnergyConsumptionDevice(house);
+                    ui720.run();
+                    break;
             }
             option = Menu.adminHouseMenu();
         }
