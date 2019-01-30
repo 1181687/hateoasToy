@@ -398,6 +398,12 @@ public class DeviceList {
         return this.mDeviceList.get(position).getName();
     }
 
+    /**
+     * method that deactivate the device.
+     *
+     * @param device
+     * @return true if the device was deactivated. False, if not.
+     */
     public boolean deactivationDevice(String device) {
         for (Device searchDevice : this.mDeviceList) {
             if (device.equals(searchDevice.getName())) {
