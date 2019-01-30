@@ -32,7 +32,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
     }
 
     public double getMostRecentAvailableMeasurement() {
-        return mHouse.getLastMeasurement(mTypeTemperature);
+        return mHouse.getLastMeasurementByType(mTypeTemperature);
     }
 
     public String getTypeTemperature() {

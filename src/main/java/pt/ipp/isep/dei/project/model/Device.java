@@ -256,6 +256,7 @@ public class Device implements Measurable {
 
     /**
      * method that set the metering period of a device
+     *
      * @return if true, return the metering period. If not, return -1.
      */
     public int setDeviceMeteringPeriod() {
@@ -269,7 +270,7 @@ public class Device implements Measurable {
 
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
-        HashMap<LocalDateTime, Double> hmap = new HashMap<>();
+        Map<LocalDateTime, Double> hmap = new TreeMap<>();
         List<Readings> validReadingsList = getReadingsListInInterval(startDate, endDate);
         for (Readings Readings : validReadingsList) {
             hmap.put(Readings.getDateTime(), Readings.getValue());
