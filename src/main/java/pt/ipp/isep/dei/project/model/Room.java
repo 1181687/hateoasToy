@@ -509,7 +509,6 @@ public class Room implements Measurable {
         Map<LocalDateTime, Double> map = new TreeMap<>();
         for (Device device : mDeviceList.getDeviceList()) {
             Map<LocalDateTime, Double> map2 = device.getDataSeries(startDate, endDate);
-            //map.putAll(device.getDataSeries(startDate, endDate));
             for (Map.Entry<LocalDateTime, Double> entry : map2.entrySet()) {
                 LocalDateTime key = entry.getKey();
                 Double oldValue = map.get(key);
