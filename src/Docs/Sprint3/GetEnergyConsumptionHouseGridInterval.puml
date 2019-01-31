@@ -24,16 +24,16 @@ activate ":UI"
 activate ":Controller"
 ":Controller" -> ":House": 1.1.1- getHouseGridListToString()
 activate ":House"
-":Controller" <-- ":House": 1.1.2- List of House Grids
+":Controller" <-- ":House": 1.1.2- houseGridList
 deactivate ":House"
-":UI" <-- ":Controller": 1.2- List of House Grids
-PowerUser <-- ":UI": 1.3- List of House Grids
+":UI" <-- ":Controller": 1.2- houseGridList
+PowerUser <-- ":UI": 1.3- houseGridList
 
 PowerUser -> ":UI": 2- Int House Grid Position
 ":UI" -> ":Controller": 2.1- getHouseGridByPosition(position)
 ":Controller" -> ":House": 2.2- getHouseGridByPosition (position)
 activate ":House"
-":Controller" <-- ":House": 2.3- House Grid
+":Controller" <-- ":House": 2.3- choosenHouseGrid
 deactivate ":House"
 
 PowerUser <- ":UI": 3- Ask for Start Date and End Date
@@ -45,8 +45,8 @@ PowerUser -> ":UI": 3.2- Insert End Date (LocalDateTime)
 activate ":HouseGrid"
 ":Controller" <-- ":HouseGrid": 3.2.1.2- Energy Consumption
 deactivate ":HouseGrid"
-":UI" <-- ":Controller": 3.2.2- Energy Consumption
-PowerUser <-- ":UI": 3.3- Energy Consumption
+":UI" <-- ":Controller": 3.2.2- energyConsumption
+PowerUser <-- ":UI": 3.3- energyConsumption
 deactivate ":UI"
 
 @enduml
