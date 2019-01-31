@@ -251,16 +251,26 @@ public class GeographicalArea {
             SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
             Readings latestReading = null;
             for (Sensor sensor : nearestSensors.getSensorList()) {
-                if (!Objects.isNull(sensor.getLastMeasurement())) {
-                    if (Objects.isNull(latestReading) ||
-                            sensor.getLastMeasurement().getDateTime().isAfter(latestReading.getDateTime())) {
-                        latestReading = sensor.getLastMeasurement();
-                        latestReadingValue = latestReading.getValue();
-                    }
+                if ((!Objects.isNull(sensor.getLastMeasurement())) && (Objects.isNull(latestReading) ||
+                        sensor.getLastMeasurement().getDateTime().isAfter(latestReading.getDateTime()))) {
+                    latestReading = sensor.getLastMeasurement();
+                    latestReadingValue = latestReading.getValue();
                 }
+
             }
         }
         return latestReadingValue;
+    }
+
+    public SensorList getSensorWithMostRecentReading(SensorList sensorList) {
+        LocalDate cenas = sensorList.getSensorList().get(0).getLastMeasurement().getDateTime().toLocalDate();
+        SensorList coiso = new SensorList();
+        for (Sensor sensor : sensorList.getSensorList()) {
+            if (sensor.getLastMeasurement().getDateTime().toLocalDate().isAfter(cenas)) {
+                coiso.addSensor(sensor);
+            }
+        }
+        return coiso;
     }
 
     /**
@@ -287,14 +297,19 @@ public class GeographicalArea {
      * @param endDate
      * @return
      */
-    public List<Double> getDailyAverageMeasurement(SensorType sensorType, LocalDate startDate, LocalDate endDate) {
+    public List<Double> getDailyAverageMeasurement(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
         List<Double> listOfDailyAverages = new ArrayList<>();
         SensorList sensorListWithRightTypeDuringPeriod = getSensorListByTypeInAPeriod(sensorType, startDate, endDate);
+        SensorList nearestSensorsToLocation = sensorListWithRightTypeDuringPeriod.getNearestSensorsToLocation(location);
+
+        if (nearestSensorsToLocation.getSensorList().size() > 1) {
+            nearestSensorsToLocation = getSensorWithMostRecentReading(nearestSensorsToLocation);
+        }
 
         for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate); dateIterator = dateIterator.plusDays(1)) {
-            double dailyAverage = getDailyAverageOfAListOfSensors(sensorListWithRightTypeDuringPeriod, dateIterator);
+            double dailyAverage = getDailyAverageOfAListOfSensors(nearestSensorsToLocation, dateIterator);
             if (!Double.isNaN(dailyAverage)) {
-                listOfDailyAverages.add(getDailyAverageOfAListOfSensors(sensorListWithRightTypeDuringPeriod, dateIterator));
+                listOfDailyAverages.add(getDailyAverageOfAListOfSensors(nearestSensorsToLocation, dateIterator));
             }
         }
         return listOfDailyAverages;
@@ -318,11 +333,11 @@ public class GeographicalArea {
             for (Sensor sensor : nearestSensors.getSensorList()) {
                 List<Readings> readingsList = sensor.getDailyMeasurement(day);
                 int lastReadingPosition = readingsList.size() - 1;
-                if (!(readingsList.isEmpty() && Objects.isNull(readingsList.get(lastReadingPosition))))
-                    if (Objects.isNull(latestReading) || readingsList.get(lastReadingPosition).getDateTime().isAfter(latestReading.getDateTime())) {
-                        latestReading = sensor.getLastMeasurement();
-                        totalDailyMeasurement = latestReading.getValue();
-                    }
+                if (!(readingsList.isEmpty() && Objects.isNull(readingsList.get(lastReadingPosition))) &&
+                        (Objects.isNull(latestReading) || readingsList.get(lastReadingPosition).getDateTime().isAfter(latestReading.getDateTime()))) {
+                    latestReading = sensor.getLastMeasurement();
+                    totalDailyMeasurement = latestReading.getValue();
+                }
             }
         }
         return totalDailyMeasurement;

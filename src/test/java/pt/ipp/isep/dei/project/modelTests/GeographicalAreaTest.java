@@ -958,13 +958,13 @@ class GeographicalAreaTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("Sensor0", dataFuncionamento0, sensorType0, locS0);
         ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
-        Location locS1 = new Location(42.149, -8.610, 97);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Location locS1 = new Location(42.1496, -8.6109, 97);
+        Sensor s1 = new Sensor("Sensor1", dataFuncionamento1, sensorType1, locS1);
         ag.getSensorListInTheGeographicArea().addSensor(s1);
 
         // Sensor0
@@ -993,15 +993,13 @@ class GeographicalAreaTest {
         LocalDate endDate = LocalDate.of(2018, 12, 6);
 
         ArrayList<Double> expectedResult = new ArrayList<Double>();
-        expectedResult.add(23.0);
-        expectedResult.add(30.0);
         expectedResult.add(22.0);
         expectedResult.add(22.5);
 
         SensorType searchType = new SensorType("Rainfall");
 
         //Act
-        List<Double> result = ag.getDailyAverageMeasurement(searchType, startDate, endDate);
+        List<Double> result = ag.getDailyAverageMeasurement(searchType, local, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1038,7 +1036,7 @@ class GeographicalAreaTest {
         SensorType searchType = new SensorType("Rainfall");
 
         //Act
-        List<Double> result = ag.getDailyAverageMeasurement(searchType, startDate, endDate);
+        List<Double> result = ag.getDailyAverageMeasurement(searchType, local, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1341,14 +1339,14 @@ class GeographicalAreaTest {
         assertEquals(expectedResult, result);
 
     }
-/*
+
     @Test
     public void testingTotalDailyMeasurement() {
         //ARRANGE
         //Instanciar AG
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
-        Location local = new Location(42.1496, -8.6109, 97);
+        Location local = new Location(42.15, -8.6, 97);
         AreaShape area = new AreaShape(40, 40, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
 
@@ -1356,7 +1354,7 @@ class GeographicalAreaTest {
         //Sensor1
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
-        Location locS1 = new Location(42.1496, -8.6109, 97);
+        Location locS1 = new Location(42.10, -8.6, 97);
         Sensor s1 = new Sensor("A124", dataFuncionamento1, sensorType1, locS1);
 
         //  add Sensor to the List of Sensors in the GeoArea
@@ -1367,14 +1365,14 @@ class GeographicalAreaTest {
         Readings readings11 = new Readings(11, dataHoraDaMedicao11);
         s1.addReadingsToList(readings11);
 
-        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 1, 2, 05, 27);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 1, 10, 05, 27);
         Readings readings12 = new Readings(11, dataHoraDaMedicao12);
         s1.addReadingsToList(readings12);
 
         //Sensor2
-        LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(2016, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Rainfall");
-        Location locS2 = new Location(42.1496, -8.6109, 97);
+        Location locS2 = new Location(42.20, -8.6, 97);
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
         //  add Sensor to the List of Sensors in the GeoArea
         ag.getSensorListInTheGeographicArea().addSensor(s2);
@@ -1394,17 +1392,18 @@ class GeographicalAreaTest {
         LocalDate day = LocalDate.of(2016, 1, 1);
 
         //expected result
-        double expectedResult = 31;
+        double expectedResult = 11;
 
 
         //ACT
-        double result = ag.getTotalDailyMeasurement(typeOfSensorTested, day);
+        double result = ag.getTotalDailyMeasurement(typeOfSensorTested, day, local);
 
         //ASSERT
 
         assertEquals(expectedResult, result);
 
     }
+
 
     @Test
     public void testingTotalDailyMeasurementWithAnEmptyList() {
@@ -1455,10 +1454,10 @@ class GeographicalAreaTest {
         double expectedResult = Double.NaN;
 
         //ACT
-        double result = ag.getTotalDailyMeasurement(typeOfSensorTested, day);
+        double result = ag.getTotalDailyMeasurement(typeOfSensorTested, day, local);
 
         //ASSERT
         assertEquals(expectedResult, result);
     }
-    */
+
 }

@@ -653,51 +653,29 @@ public class RoomTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @Test
-    public void testGetDeviceTypeListContent() {
-        // Arrange
-        // Dimension Instantiation
-        double height = 3;
-        double length = 5;
-        double width = 6;
-        Dimension dim = new Dimension(height, length, width);
-
-        // Room Instantiation
-        Room room = new Room("Kitchen", 1, dim);
-
-
-        String expectedResult = "1- Fridge\n" +
-                "2- Lamp\n" +
-                "3- DishWasher\n" +
-                "4- WashingMachine\n" +
-                "5- ElectricWaterHeater\n";
-        //Act
-        String result = room.getDeviceTypeListToString();
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
 
     ///testar a partir daqui********************************************************************************************
 
-  /*  @Test
+    @Test
     public void newElectricWaterHeater() {
         // ElectricWaterHeaterSpecs Instantiation
         double hotWaterTemp0 = 50;
         double maximumVolume0 = 150;
         double nominalPower0 = 100;
         double performanceRatio = 100;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-
-        Device expectedResult = new Device("Electric", room, electricWaterHeater1);
         String name = "Electric";
+        Device expectedResult = room.newElectricWaterHeater(name, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
-        Device result = room.newElectricWaterHeater(name, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
+
+        Device result = room.getDeviceByPosition(0);
+
+
 
         assertEquals(expectedResult, result);
+
     }
 
     @Test
@@ -736,16 +714,15 @@ public class RoomTest {
         double nominalPower = 200;
         double capacity = 100;
         ProgramList programList = new ProgramList();
-        DeviceSpecs washingMachine = new WashingMachineSpecs(capacity, nominalPower, programList);
 
-        Device d2 = new Device("Device2", room, washingMachine);
-        room.addDevice(d2);
 
-        Device expectedResult = new Device(name, room, washingMachine);
+        Device expectedResult = room.newWashingMachine(name, nominalPower, capacity, programList);
 
-        Device result = room.newWashingMachine(name, nominalPower, capacity, programList);
+        Device result = room.getDeviceByPosition(0);
+
 
         assertEquals(expectedResult, result);
+
     }
 
     @Test
@@ -781,16 +758,13 @@ public class RoomTest {
         int capacity = 100;
         ProgramList programList = new ProgramList();
 
-        DeviceSpecs dishWasher = new DishWasherSpecs(capacity, nominalPower, programList);
 
-        Device d2 = new Device("Device2", room, dishWasher);
-        room.addDevice(d2);
+        Device expectedResult = room.newDishWasher(name, nominalPower, capacity, programList);
 
-        Device expectedResult = new Device(name, room, dishWasher);
-
-        Device result = room.newDishWasher(name, nominalPower, capacity, programList);
+        Device result = room.getDeviceByPosition(0);
 
         assertEquals(expectedResult, result);
+
     }
 
     @Test
@@ -840,7 +814,7 @@ public class RoomTest {
 
     @Test
     public void testNewLampNegative() {
-        String name = "LampSpecs one";
+        String name = "LAMP ONE";
 
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
@@ -868,14 +842,10 @@ public class RoomTest {
         double annualEnergyConsumption = 1000;
         double freezerCapacity = 20;
         double refrigeratorCapacity = 50;
-        DeviceSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
-        Device d2 = new Device("Device2", room, fridgeSpecs);
-        room.addDevice(d2);
+        Device expectedResult = room.newFridge(name, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
 
-        Device expectedResult = new Device(name, room, fridgeSpecs);
-
-        Device result = room.newFridge(name, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
+        Device result = room.getDeviceByPosition(0);
 
         assertEquals(expectedResult, result);
     }
@@ -902,7 +872,6 @@ public class RoomTest {
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
-*/
 
     @Test
     public void deleteDeviceTrue() {
@@ -1163,15 +1132,15 @@ public class RoomTest {
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
 
         Map<LocalDateTime, Double> expectedResult = new TreeMap<>();
-        expectedResult.put(time0,6.0);
-        expectedResult.put(time1,10.0);
-        expectedResult.put(time2,14.0);
+        expectedResult.put(time0, 6.0);
+        expectedResult.put(time1, 10.0);
+        expectedResult.put(time2, 14.0);
 
         //Act
-        Map<LocalDateTime, Double> result = room.getDataSeries(startTime,endTime);
+        Map<LocalDateTime, Double> result = room.getDataSeries(startTime, endTime);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
 }

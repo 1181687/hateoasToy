@@ -46,11 +46,7 @@ public class House {
             try {
                 DeviceType dt = (DeviceType) Class.forName(path).newInstance();
                 mDeviceTypeList.add(dt);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
@@ -162,7 +158,7 @@ public class House {
      * @return the average daily measurement.
      */
     public double getAverageDailyMeasurement(SensorType measurementType, LocalDate startDate, LocalDate endDate) {
-        List<Double> listOfDailyAverages = mInsertedGeoArea.getDailyAverageMeasurement(measurementType, startDate, endDate);
+        List<Double> listOfDailyAverages = mInsertedGeoArea.getDailyAverageMeasurement(measurementType, mAddress.getLocation(), startDate, endDate);
         double sum = 0;
         if (listOfDailyAverages.isEmpty()) {
             return 0;

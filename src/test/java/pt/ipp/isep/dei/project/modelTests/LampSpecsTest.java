@@ -45,6 +45,27 @@ public class LampSpecsTest {
     }
 
     @Test
+    public void testEmptyConstructor() {
+        // Arrange
+        // LampSpecs Instantiation
+
+        double luminousFlux = 50.0;
+        double nominalPower = 100.0;
+        LampSpecs lampSpecs = new LampSpecs();
+
+        lampSpecs.setNominalPower(nominalPower);
+
+        double expectedResult = 100.0;
+
+        //Act
+        double result = lampSpecs.getNominalPower();
+
+        //Assert
+        assertEquals(expectedResult, result, 0.0001);
+
+    }
+
+    @Test
     public void setmNominalPowerFalse() {
 
         // Arrange
