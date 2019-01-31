@@ -17,6 +17,9 @@ public class FridgeSpecs implements DeviceSpecs {
         this.mNominalPower = nominalPower;
     }
 
+    public FridgeSpecs() {
+    }
+
     /**
      * get method of the type name.
      *

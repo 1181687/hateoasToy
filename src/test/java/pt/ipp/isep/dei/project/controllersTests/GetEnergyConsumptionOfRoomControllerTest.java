@@ -98,7 +98,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
     }
 
     @Test
-    public void getListSize() {
+    public void getRoomListSize() {
         //arrange
         RoomList rList = new RoomList();
         HouseGridList gridlist = new HouseGridList();
@@ -132,7 +132,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
     }
 
     @Test
-    public void getListSizeEmptyList() {
+    public void getRoomListSizeEmptyList() {
         //arrange
         RoomList rList = new RoomList();
         HouseGridList gridlist = new HouseGridList();
@@ -235,31 +235,9 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         String expectedResult = "RoomTwo";
 
         GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
-
+        ctrl.getRoomByPosition(1);
         //Act
-        String result = ctrl.getRoomNameByPosition(1);
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void testGetNameOfRoomInEmptyListOfRooms() {
-        //Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType GeographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", GeographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
-        String expectedResult = null;
-
-        GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
-
-        //Act
-        String result = ctrl.getRoomNameByPosition(0);
+        String result = ctrl.getRoomName();
         //Assert
         assertEquals(expectedResult, result);
     }

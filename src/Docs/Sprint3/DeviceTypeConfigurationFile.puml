@@ -1,0 +1,36 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+actor PowerUser
+PowerUser -> "Main": run
+activate "Main"
+"Main" -> ":House": getDeviceTypeListToString()
+activate ":House"
+":House" -> "Utils":readConfigFile ()
+activate "Utils"
+"Utils" -> "Utils" : readConfigFile ()
+":House"<-- "Utils" : Device Type List
+
+deactivate "Utils"
+deactivate ":House"
+deactivate "Main"
+
+
+
+@enduml
