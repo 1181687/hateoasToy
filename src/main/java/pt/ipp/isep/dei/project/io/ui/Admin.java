@@ -157,6 +157,10 @@ public class Admin {
                     GetDevicesInHouseGrid ui160 = new GetDevicesInHouseGrid(house);
                     ui160.run();
                     break;
+                case 6:
+                    GetEnergyConsumptionOfAGrid ui722 = new GetEnergyConsumptionOfAGrid(house);
+                    ui722.run();
+                    break;
             }
             option = Menu.houseGridMenu();
         }
