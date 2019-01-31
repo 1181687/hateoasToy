@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.testng.Assert.*;
 
 public class GetEnergyConsumptionDataSeriesControllerTest {
 
@@ -95,8 +94,14 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         // Device Instantiation
         Device device0 = new Device("Fridgeratah V14", room0, fridge);
         room0.addDevice(device0);
-        Device device1 = new Device("Bosch Tronic 3000", room1, electricWaterHeater);
-        room1.addDevice(device1);
+        Device device1 = new Device("Fridgeratah V15", room0, fridge);
+        room0.addDevice(device1);
+        Device device2 = new Device("Fridgeratah V16", room0, fridge);
+        room0.addDevice(device2);
+        Device device3 = new Device("Bosh Tronic 3000", room1, electricWaterHeater);
+        room1.addDevice(device3);
+        Device device4 = new Device("Bosh Tronic 4000", room1, electricWaterHeater);
+        room1.addDevice(device4);
 
         // RoomList Instantiation
         RoomList roomList = new RoomList();
@@ -107,7 +112,11 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         House house = new House(roomList, null, null, null);
 
         String expectedResult =
-                "1 - Name of the device: Fridgeratah V14\n" + "2 - Name of the device: Bosch Tronic 3000\n";
+                "1 - Device: Fridgeratah V14, located in room: Kitchen\n" +
+                        "2 - Device: Fridgeratah V15, located in room: Kitchen\n" +
+                        "3 - Device: Fridgeratah V16, located in room: Kitchen\n" +
+                        "4 - Device: Bosh Tronic 3000, located in room: Laundry\n" +
+                        "5 - Device: Bosh Tronic 4000, located in room: Laundry\n";
 
         GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
 
