@@ -36,7 +36,7 @@ activate ":House"
 ":Controller" <-- ":House": 2.3 - chosenRoom
 deactivate ":House"
 
-PowerUser <-- ":UI": 3 - Ask for Start Date and End Date
+PowerUser <- ":UI": 3 - Ask for Start Date and End Date
 PowerUser -> ":UI": 3.1 - Insert Start Date
 PowerUser -> ":UI": 3.2 - Insert End Date
 ":UI" -> ":Controller": 3.2.1 - getEnergyConsumption(startDate, endDate)

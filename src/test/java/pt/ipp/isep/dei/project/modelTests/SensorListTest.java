@@ -854,7 +854,7 @@ class SensorListTest {
         SensorList sensorList1 = new SensorList();
         HouseGridList list = new HouseGridList();
 
-        //Act
+        //Act   \
         boolean result = sensorList1.equals(list);
         //Assert
         assertFalse(result);
