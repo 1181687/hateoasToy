@@ -62,6 +62,7 @@ public class DeactivateDeviceFromRoom {
                                     System.out.println("\n The device has been deativated. \n");
                                 }
                             } else {
+                                System.out.println("The device was not deactivated.");
                                 continue;
                             }
 
