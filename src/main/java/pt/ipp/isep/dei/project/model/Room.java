@@ -6,8 +6,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Objects;
+import java.util.TreeMap;
 
-import java.util.*;
 import static java.util.Objects.isNull;
 
 public class Room implements Measurable {
@@ -244,7 +244,7 @@ public class Room implements Measurable {
      * method that checks if Device List of the room is empty
      */
     public boolean isDeviceListEmpty() {
-        return this.mDeviceList.isDeviceListEmpty();
+        return this.mDeviceList.isEmpty();
     }
 
     /**
@@ -334,7 +334,7 @@ public class Room implements Measurable {
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        if (!mDeviceList.isDeviceListEmpty()) {
+        if (!mDeviceList.isEmpty()) {
             for (Device device : mDeviceList.getDeviceList()) {
                 totalEnergyConsumption += device.getEnergyConsumptionInAnInterval(startDate, endDate);
             }
@@ -369,7 +369,7 @@ public class Room implements Measurable {
      * @return a boolean
      */
     public boolean deactivateDevice(String device) {
-        return this.mDeviceList.deactivationDevice(device);
+        return this.mDeviceList.deactivateDevice(device);
     }
 
     /**

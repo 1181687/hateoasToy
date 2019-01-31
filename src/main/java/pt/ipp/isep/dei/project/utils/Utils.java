@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Properties;
 
 public final class Utils {
@@ -73,5 +75,13 @@ public final class Utils {
             readingsList.add(deviceType);
         }
         return readingsList;
+    }
+
+    public static String getDataSeriesToString(Map<LocalDateTime, Double> map) {
+        StringBuilder readingsMap = new StringBuilder();
+        for (Map.Entry<LocalDateTime, Double> entry : map.entrySet())
+            readingsMap.append("Date/hour: " + entry.getKey().toLocalDate().toString() + " " +entry.getKey().toLocalTime().toString()+
+                    ", Energy Consumption: " + entry.getValue() + " kWh\n");
+        return readingsMap.toString();
     }
 }

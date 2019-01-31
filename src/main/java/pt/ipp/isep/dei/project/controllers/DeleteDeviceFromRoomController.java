@@ -93,7 +93,7 @@ public class DeleteDeviceFromRoomController {
      * method that get devices in the room.
      * @return a device list to string.
      */
-    public String getDevicesInTheRoom() {
+    public String getDeviceListToString() {
         return this.mRoom.getDeviceListToString();
     }
 

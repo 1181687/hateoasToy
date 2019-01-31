@@ -17,8 +17,8 @@ skinparam sequence {
 	ActorFontName Aapex
 }
 
-actor PowerUser
-PowerUser -> ":UI":
+actor RegularUser
+RegularUser -> ":UI":
 activate ":UI"
 ":UI" -> ":Controller":
 activate ":Controller"
@@ -28,9 +28,9 @@ activate ":House"
 deactivate ":House"
 ":UI" <-- ":Controller":
 deactivate ":Controller"
-PowerUser <-- ":UI":
+RegularUser <-- ":UI":
 
-PowerUser -> ":UI":
+RegularUser -> ":UI":
 ":UI" -> ":Controller":
 activate ":Controller"
 ":Controller" -> ":House":
