@@ -4,6 +4,10 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionDataSeriesController;
 import pt.ipp.isep.dei.project.model.*;
 
+import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.TreeMap;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GetEnergyConsumptionDataSeriesControllerTest {
@@ -308,5 +312,67 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         assertEquals(expectResult, result);
     }
 
+    @Test
+    void testGetDeviceDataSeriesToString() {
+        //Arrange
+        // Dimension Instantiation
+        double height = 3;
+        double length = 5;
+        double width = 6;
+        Dimension dim = new Dimension(height, length, width);
+
+        // Room Instantiation
+        Room room = new Room("Kitchen", 1, dim);
+
+        // Fridge Instantiation
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
+
+        // Device Instantiation
+        Device device = new Device("Fridgeratah V14", room, fridge);
+
+        room.addDevice(device);
+
+        // Readings Instantiation
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings0 = new Readings(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings1 = new Readings(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings2 = new Readings(7, time2);
+        LocalDateTime time3 = LocalDateTime.of(2019, 01, 25, 10, 00, 00);
+        Readings readings3 = new Readings(10, time3);
+        LocalDateTime time4 = LocalDateTime.of(2019, 01, 25, 12, 00, 00);
+        Readings readings4 = new Readings(5, time4);
+        LocalDateTime time5 = LocalDateTime.of(2019, 01, 25, 16, 00, 00);
+        Readings readings5 = new Readings(15, time5);
+
+        // List<Readings Configuration
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
+        device.addReadingsToTheList(readings3);
+        device.addReadingsToTheList(readings4);
+        device.addReadingsToTheList(readings5);
+
+        Map<LocalDateTime, Double> mapToTest = new TreeMap<>();
+
+        mapToTest.put(time0, 3.0);
+        mapToTest.put(time1, 5.0);
+        mapToTest.put(time2, 7.0);
+        mapToTest.put(time3, 10.0);
+        mapToTest.put(time4, 5.0);
+
+
+        Map<LocalDateTime, Double> expectedResult = mapToTest;
+
+        LocalDateTime timeToTest0 = LocalDateTime.of(2019, 01, 23, 10, 00);
+        LocalDateTime timeToTest1 = LocalDateTime.of(2019, 01, 25, 13, 00);
+
+        //Act
+        Map<LocalDateTime, Double> result = device.getDataSeries(timeToTest0, timeToTest1);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 
 }

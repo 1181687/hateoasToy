@@ -157,8 +157,6 @@ class UtilsTest {
     @Test
     void testGetDataSeriesEmptyMap() {
         //Arrange
-
-        // Readings Instantiation
         Map<LocalDateTime, Double> mapToTest = new TreeMap<>();
 
         String expectedResult = "";
