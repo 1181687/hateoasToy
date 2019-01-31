@@ -251,13 +251,12 @@ public class GeographicalArea {
             SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
             Readings latestReading = null;
             for (Sensor sensor : nearestSensors.getSensorList()) {
-                if (!Objects.isNull(sensor.getLastMeasurement())) {
-                    if (Objects.isNull(latestReading) ||
-                            sensor.getLastMeasurement().getDateTime().isAfter(latestReading.getDateTime())) {
-                        latestReading = sensor.getLastMeasurement();
-                        latestReadingValue = latestReading.getValue();
-                    }
+                if ((!Objects.isNull(sensor.getLastMeasurement())) && (Objects.isNull(latestReading) ||
+                        sensor.getLastMeasurement().getDateTime().isAfter(latestReading.getDateTime()))) {
+                    latestReading = sensor.getLastMeasurement();
+                    latestReadingValue = latestReading.getValue();
                 }
+
             }
         }
         return latestReadingValue;
@@ -318,11 +317,11 @@ public class GeographicalArea {
             for (Sensor sensor : nearestSensors.getSensorList()) {
                 List<Readings> readingsList = sensor.getDailyMeasurement(day);
                 int lastReadingPosition = readingsList.size() - 1;
-                if (!(readingsList.isEmpty() && Objects.isNull(readingsList.get(lastReadingPosition))))
-                    if (Objects.isNull(latestReading) || readingsList.get(lastReadingPosition).getDateTime().isAfter(latestReading.getDateTime())) {
-                        latestReading = sensor.getLastMeasurement();
-                        totalDailyMeasurement = latestReading.getValue();
-                    }
+                if (!(readingsList.isEmpty() && Objects.isNull(readingsList.get(lastReadingPosition))) &&
+                        (Objects.isNull(latestReading) || readingsList.get(lastReadingPosition).getDateTime().isAfter(latestReading.getDateTime()))) {
+                    latestReading = sensor.getLastMeasurement();
+                    totalDailyMeasurement = latestReading.getValue();
+                }
             }
         }
         return totalDailyMeasurement;
