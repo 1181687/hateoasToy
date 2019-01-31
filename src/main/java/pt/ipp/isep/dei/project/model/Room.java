@@ -390,7 +390,7 @@ public class Room implements Measurable {
         StringBuilder content = new StringBuilder();
         int numberOfDeviceTypes = numberOfDeviceTypes();
         for (int i = 1; i <= numberOfDeviceTypes; i++) {
-            String deviceType = Utils.readConfigFile("devicetype." + i + ".name");
+            String deviceType = Utils.readConfigFile("devicetype.name." + i);
             content.append(i + "- ");
             content.append(deviceType);
             content.append("\n");

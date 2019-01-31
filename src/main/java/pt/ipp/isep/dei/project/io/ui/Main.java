@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Main {
 
@@ -20,6 +21,7 @@ public class Main {
             System.out.println("The device metering period is not valid. Please configure the device metering period for a valid value.");
             return;
         }
+        List<String> deviceTypeList = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
 
         GeographicalAreaTypeList geographicalAreaTypeList = new GeographicalAreaTypeList();
         GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
@@ -47,7 +49,7 @@ public class Main {
         // HOUSE
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation);
-        House houseEdificioB = new House(null, meteringPeriodGrid, meteringPeriodDevice);
+        House houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         houseEdificioB.setAddress(address);
         houseEdificioB.setInsertedGeoArea(insertedGeoArea);
 

@@ -17,6 +17,9 @@ public class WashingMachineSpecs implements DeviceSpecs {
         this.mProgramList = programList;
     }
 
+    public WashingMachineSpecs() {
+    }
+
     /**
      * get method tht get the name of the device type.
      * @return type of device

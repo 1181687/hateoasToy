@@ -668,9 +668,9 @@ public class RoomTest {
 
         String expectedResult = "1- Fridge\n" +
                 "2- Lamp\n" +
-                "3- Dish Washer\n" +
-                "4- Washing Machine\n" +
-                "5- Electric Water Heater\n";
+                "3- DishWasher\n" +
+                "4- WashingMachine\n" +
+                "5- ElectricWaterHeater\n";
         //Act
         String result = room.getDeviceTypeListToString();
 
