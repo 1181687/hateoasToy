@@ -316,7 +316,7 @@ public class HouseTest {
         LocalDate startDate = LocalDate.of(2018, 12, 1);
         LocalDate endDate = LocalDate.of(2018, 12, 6);
 
-        double expectedResult = 24.375;
+        double expectedResult = 22.25;
 
         SensorType searchType = new SensorType("Rainfall");
         //Act

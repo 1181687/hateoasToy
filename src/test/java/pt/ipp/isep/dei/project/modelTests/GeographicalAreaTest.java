@@ -958,13 +958,13 @@ class GeographicalAreaTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("Sensor0", dataFuncionamento0, sensorType0, locS0);
         ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
-        Location locS1 = new Location(42.149, -8.610, 97);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Location locS1 = new Location(42.1496, -8.6109, 97);
+        Sensor s1 = new Sensor("Sensor1", dataFuncionamento1, sensorType1, locS1);
         ag.getSensorListInTheGeographicArea().addSensor(s1);
 
         // Sensor0
@@ -993,15 +993,13 @@ class GeographicalAreaTest {
         LocalDate endDate = LocalDate.of(2018, 12, 6);
 
         ArrayList<Double> expectedResult = new ArrayList<Double>();
-        expectedResult.add(23.0);
-        expectedResult.add(30.0);
         expectedResult.add(22.0);
         expectedResult.add(22.5);
 
         SensorType searchType = new SensorType("Rainfall");
 
         //Act
-        List<Double> result = ag.getDailyAverageMeasurement(searchType, startDate, endDate);
+        List<Double> result = ag.getDailyAverageMeasurement(searchType, local, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1038,7 +1036,7 @@ class GeographicalAreaTest {
         SensorType searchType = new SensorType("Rainfall");
 
         //Act
-        List<Double> result = ag.getDailyAverageMeasurement(searchType, startDate, endDate);
+        List<Double> result = ag.getDailyAverageMeasurement(searchType, local, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);

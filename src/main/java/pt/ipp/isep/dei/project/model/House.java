@@ -162,7 +162,7 @@ public class House {
      * @return the average daily measurement.
      */
     public double getAverageDailyMeasurement(SensorType measurementType, LocalDate startDate, LocalDate endDate) {
-        List<Double> listOfDailyAverages = mInsertedGeoArea.getDailyAverageMeasurement(measurementType, startDate, endDate);
+        List<Double> listOfDailyAverages = mInsertedGeoArea.getDailyAverageMeasurement(measurementType, mAddress.getLocation(), startDate, endDate);
         double sum = 0;
         if (listOfDailyAverages.isEmpty()) {
             return 0;

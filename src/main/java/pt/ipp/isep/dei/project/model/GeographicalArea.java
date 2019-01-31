@@ -262,6 +262,17 @@ public class GeographicalArea {
         return latestReadingValue;
     }
 
+    public SensorList getSensorWithMostRecentReading(SensorList sensorList) {
+        LocalDate cenas = sensorList.getSensorList().get(0).getLastMeasurement().getDateTime().toLocalDate();
+        SensorList coiso = new SensorList();
+        for (Sensor sensor : sensorList.getSensorList()) {
+            if (sensor.getLastMeasurement().getDateTime().toLocalDate().isAfter(cenas)) {
+                coiso.addSensor(sensor);
+            }
+        }
+        return coiso;
+    }
+
     /**
      * Method that returns de daily average of the measurements of a list of sensors
      *
@@ -286,14 +297,19 @@ public class GeographicalArea {
      * @param endDate
      * @return
      */
-    public List<Double> getDailyAverageMeasurement(SensorType sensorType, LocalDate startDate, LocalDate endDate) {
+    public List<Double> getDailyAverageMeasurement(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
         List<Double> listOfDailyAverages = new ArrayList<>();
         SensorList sensorListWithRightTypeDuringPeriod = getSensorListByTypeInAPeriod(sensorType, startDate, endDate);
+        SensorList nearestSensorsToLocation = sensorListWithRightTypeDuringPeriod.getNearestSensorsToLocation(location);
+
+        if (nearestSensorsToLocation.getSensorList().size() > 1) {
+            nearestSensorsToLocation = getSensorWithMostRecentReading(nearestSensorsToLocation);
+        }
 
         for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate); dateIterator = dateIterator.plusDays(1)) {
-            double dailyAverage = getDailyAverageOfAListOfSensors(sensorListWithRightTypeDuringPeriod, dateIterator);
+            double dailyAverage = getDailyAverageOfAListOfSensors(nearestSensorsToLocation, dateIterator);
             if (!Double.isNaN(dailyAverage)) {
-                listOfDailyAverages.add(getDailyAverageOfAListOfSensors(sensorListWithRightTypeDuringPeriod, dateIterator));
+                listOfDailyAverages.add(getDailyAverageOfAListOfSensors(nearestSensorsToLocation, dateIterator));
             }
         }
         return listOfDailyAverages;
