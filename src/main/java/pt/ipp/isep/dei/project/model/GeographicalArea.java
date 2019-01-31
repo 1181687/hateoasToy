@@ -262,29 +262,17 @@ public class GeographicalArea {
         return latestReadingValue;
     }
 
-    public SensorList getSensorWithMostRecentReading(SensorList sensorList) {
-        LocalDate cenas = sensorList.getSensorList().get(0).getLastMeasurement().getDateTime().toLocalDate();
-        SensorList coiso = new SensorList();
-        for (Sensor sensor : sensorList.getSensorList()) {
-            if (sensor.getLastMeasurement().getDateTime().toLocalDate().isAfter(cenas)) {
-                coiso.addSensor(sensor);
-            }
-        }
-        return coiso;
-    }
 
     /**
-     * Method that returns de daily average of the measurements of a list of sensors
+     * Method that returns de daily average of the measurements of a sensor.
      *
      * @param date
      * @return
      */
-    public double getDailyAverageOfAListOfSensors(SensorList sensorlist, LocalDate date) {
+    public double getDailyAverageOfASensor(Sensor sensor, LocalDate date) {
         double dailyAverage = Double.NaN;
-        for (Sensor sensor : sensorlist.getSensorList()) {
-            if (!(sensor.getDailyMeasurement(date).isEmpty())) {
-                dailyAverage = sensor.getDailyAverage(date);
-            }
+        if (!(sensor.getDailyMeasurement(date).isEmpty())) {
+            dailyAverage = sensor.getDailyAverage(date);
         }
         return dailyAverage;
     }
@@ -299,17 +287,16 @@ public class GeographicalArea {
      */
     public List<Double> getDailyAverageMeasurement(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
         List<Double> listOfDailyAverages = new ArrayList<>();
-        SensorList sensorListWithRightTypeDuringPeriod = getSensorListByTypeInAPeriod(sensorType, startDate, endDate);
-        SensorList nearestSensorsToLocation = sensorListWithRightTypeDuringPeriod.getNearestSensorsToLocation(location);
-
-        if (nearestSensorsToLocation.getSensorList().size() > 1) {
-            nearestSensorsToLocation = getSensorWithMostRecentReading(nearestSensorsToLocation);
+        SensorList nearestSensorsWithRightTypeDuringPeriod = getSensorListByTypeInAPeriod(sensorType, startDate, endDate).getNearestSensorsToLocation(location);
+        if (nearestSensorsWithRightTypeDuringPeriod.isEmpty()) {
+            return listOfDailyAverages;
         }
+        Sensor nearestSensor = nearestSensorsWithRightTypeDuringPeriod.getSensorWithMostRecentReading(nearestSensorsWithRightTypeDuringPeriod);
 
         for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate); dateIterator = dateIterator.plusDays(1)) {
-            double dailyAverage = getDailyAverageOfAListOfSensors(nearestSensorsToLocation, dateIterator);
+            double dailyAverage = getDailyAverageOfASensor(nearestSensor, dateIterator);
             if (!Double.isNaN(dailyAverage)) {
-                listOfDailyAverages.add(getDailyAverageOfAListOfSensors(nearestSensorsToLocation, dateIterator));
+                listOfDailyAverages.add(getDailyAverageOfASensor(nearestSensor, dateIterator));
             }
         }
         return listOfDailyAverages;

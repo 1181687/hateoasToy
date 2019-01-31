@@ -61,7 +61,7 @@ public class Main {
         LocalDateTime sensorDate2 = LocalDate.of(2018, 12, 31).atStartOfDay();
         LocalDateTime sensorDate3 = LocalDate.of(2019, 1, 1).atStartOfDay();
         LocalDateTime sensorDate4 = LocalDate.of(2019, 1, 2).atStartOfDay();
-        LocalDateTime sensorDate5 = LocalDate.of(2019, 1, 2).atStartOfDay();
+        LocalDateTime sensorDate5 = LocalDate.of(2019, 1, 3).atStartOfDay();
 
         // Sensor 1
         Readings temp = new Readings(14.0, sensorDate1);
