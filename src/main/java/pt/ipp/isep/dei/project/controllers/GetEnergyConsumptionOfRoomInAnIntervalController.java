@@ -33,8 +33,8 @@ public class GetEnergyConsumptionOfRoomInAnIntervalController {
         return mSelectedRoom.isDeviceListEmpty();
     }
 
-    public String getRoomNameByPosition(int position) {
-        return mHouse.getRoomNameByPosition(position);
+    public String getRoomName(){
+        return mSelectedRoom.getName();
     }
 
     public double getEnergyConsumptionOfRoomInInterval(LocalDateTime initialDate, LocalDateTime finalDate) {
