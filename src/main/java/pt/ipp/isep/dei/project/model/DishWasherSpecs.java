@@ -17,6 +17,9 @@ public class DishWasherSpecs implements DeviceSpecs {
         this.mProgramList = programList;
     }
 
+    public DishWasherSpecs() {
+    }
+
     /**
      * get method tht get the name of the device type.
      * @return type of device

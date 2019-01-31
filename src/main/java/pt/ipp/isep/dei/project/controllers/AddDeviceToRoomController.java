@@ -9,6 +9,7 @@ public class AddDeviceToRoomController {
     private DeviceList mDeviceList;
     private Room mRoom;
     private ProgramList mProgramList;
+    private DeviceType mDeviceType;
 
     /**
      * Constructor.
@@ -62,11 +63,10 @@ public class AddDeviceToRoomController {
 
 
     /**
-     * @param position
      * @return
      */
-    public int getnumberOfDeviceTypes(int position) {
-        return mHouse.numberOfDeviceTypes(position);
+    public int getnumberOfDeviceTypes() {
+        return mHouse.numberOfDeviceTypes();
     }
 
 
@@ -74,8 +74,16 @@ public class AddDeviceToRoomController {
      * Method that asks for the content (that is the name of the device type) of list of devices from the class DeviceList.
      * @return the name of the device types in the device types list.
      */
-    public String getDeviceTypeListToString(int position) {
-        return mHouse.getDeviceTypeListToString(position);
+    public String getDeviceTypeListToString() {
+        return mHouse.getDeviceTypeListToString();
+    }
+
+    public void setDeviceType(int position) {
+        mDeviceType = mHouse.getDeviceTypeFromList(position);
+    }
+
+    public void createDevice(String name, Room location) {
+        mDevice = mDeviceType.createDevice(name, location);
     }
 
 
