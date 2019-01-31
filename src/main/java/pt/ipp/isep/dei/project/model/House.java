@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.model;
 
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -37,6 +39,7 @@ public class House {
         this.mMeteringPeriodGrid = meteringPeriodGrid;
         this.mMeteringPeriodDevice = meteringPeriodDevice;
     }
+
 
     /**
      * Set method for the inserted geo area.
@@ -471,18 +474,28 @@ public class House {
      *
      * @return the content of the list by string
      */
-    public String getDeviceTypeListToString(int position) {
-        return this.mRoomList.getRoomFromPosition(position).getDeviceTypeListToString();
+    public String getDeviceTypeListToString() {
+        StringBuilder content = new StringBuilder();
+        int numberOfDeviceTypes = numberOfDeviceTypes();
+        for (int i = 1; i <= numberOfDeviceTypes; i++) {
+            String deviceType = Utils.readConfigFile("devicetype." + i + ".name");
+            content.append(i + "- ");
+            content.append(deviceType);
+            content.append("\n");
+        }
+        return content.toString();
     }
+
 
     /**
      * method that get the number os existing Devices on the configuration file.
      *
      * @return the number os existing Devices
      */
-    public int numberOfDeviceTypes(int position) {
-        return this.mRoomList.getRoomFromPosition(position).numberOfDeviceTypes();
+    public int numberOfDeviceTypes() {
+        return Integer.parseInt(Utils.readConfigFile("devicetype.count"));
     }
+
 
     public String getDataSeriesToString(Map<LocalDateTime, Double> map) {
         StringBuilder readingsMap = new StringBuilder();

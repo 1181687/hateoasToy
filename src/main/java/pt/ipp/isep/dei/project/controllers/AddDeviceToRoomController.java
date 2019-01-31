@@ -62,11 +62,10 @@ public class AddDeviceToRoomController {
 
 
     /**
-     * @param position
      * @return
      */
-    public int getnumberOfDeviceTypes(int position) {
-        return mHouse.numberOfDeviceTypes(position);
+    public int getnumberOfDeviceTypes() {
+        return mHouse.numberOfDeviceTypes();
     }
 
 
@@ -74,8 +73,8 @@ public class AddDeviceToRoomController {
      * Method that asks for the content (that is the name of the device type) of list of devices from the class DeviceList.
      * @return the name of the device types in the device types list.
      */
-    public String getDeviceTypeListToString(int position) {
-        return mHouse.getDeviceTypeListToString(position);
+    public String getDeviceTypeListToString() {
+        return mHouse.getDeviceTypeListToString();
     }
 
 

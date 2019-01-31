@@ -180,7 +180,7 @@ class AddDeviceToRoomControllerTest {
                 "4- Washing Machine\n" +
                 "5- Electric Water Heater\n";
         //Act
-        String result = controller.getDeviceTypeListToString(0);
+        String result = controller.getDeviceTypeListToString();
 
         //Assert
         assertEquals(expectedResult, result);

@@ -4,6 +4,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public final class Utils {
@@ -61,5 +63,15 @@ public final class Utils {
             return ("Wrong Key");
         }
         return property;
+    }
+
+    public static List<String> readConfigFileToList(String count, String property) {
+        List<String> readingsList = new ArrayList<>();
+        int numberOfProperties = Integer.parseInt(readConfigFile(count));
+        for (int i = 1; i <= numberOfProperties; i++) {
+            String deviceType = Utils.readConfigFile(property + "." + i);
+            readingsList.add(deviceType);
+        }
+        return readingsList;
     }
 }

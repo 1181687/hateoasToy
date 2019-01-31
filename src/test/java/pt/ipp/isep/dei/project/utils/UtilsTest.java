@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -107,5 +109,18 @@ class UtilsTest {
         //Assert
         assertEquals(expectedResult, result);
 
+    }
+
+    @Test
+    void testGetListOfDeviceTypes() {
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("Fridge");
+        expectedResult.add("Lamp");
+        expectedResult.add("Dish Washer");
+        expectedResult.add("Washing Machine");
+        expectedResult.add("Electric Water Heater");
+
+        List<String> result = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
+        assertEquals(expectedResult, result);
     }
 }
