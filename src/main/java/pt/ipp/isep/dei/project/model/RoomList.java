@@ -11,6 +11,7 @@ public class RoomList {
      * Constructor.
      */
     public RoomList() {
+        //intentionally empty
     }
 
     /**

@@ -15,6 +15,7 @@ public class GetEnergyConsumptionDataSeriesController {
     private HouseGrid mSelectedHouseGrid;
     private Room mSelectedRoom;
     private Device mSelectedDevice;
+    private static final String NO_VALID_VALUES = "No valid values found for that period.\n";
 
     public GetEnergyConsumptionDataSeriesController(House mHouse) {
         this.mHouse = mHouse;
@@ -51,7 +52,7 @@ public class GetEnergyConsumptionDataSeriesController {
     public String getHouseGridDataSeriesToString(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> map = mSelectedHouseGrid.getDataSeries(startDate, endDate);
         if (map.isEmpty()) {
-            return "No valid values found for that period.\n";
+            return NO_VALID_VALUES;
         }
         return Utils.getDataSeriesToString(map);
     }
@@ -59,7 +60,7 @@ public class GetEnergyConsumptionDataSeriesController {
     public String getRoomDataSeriesToString(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> map = mSelectedRoom.getDataSeries(startDate, endDate);
         if (map.isEmpty()) {
-            return "No valid values found for that period.\n";
+            return NO_VALID_VALUES;
         }
         return Utils.getDataSeriesToString(map);
     }
@@ -67,7 +68,7 @@ public class GetEnergyConsumptionDataSeriesController {
     public String getDeviceDataSeriesToString(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> map = mSelectedDevice.getDataSeries(startDate, endDate);
         if (map.isEmpty()) {
-            return "No valid values found for that period.\n";
+            return NO_VALID_VALUES;
         }
         return Utils.getDataSeriesToString(map);
     }
