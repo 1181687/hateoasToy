@@ -113,7 +113,7 @@ public class AddDeviceToRoom {
     public void creationOfFridge() {
         String label11 = "What is the name of the fridge?";
         String fridgeDeviceName = InputValidator.getString(label11);
-        String label12 = "What is the nominal power (kW)?";
+        String label12 = "What is the Fridge nominal power (kW)?";
         double fridgeNominalPower = InputValidator.getDoublePos(label12);
         String label13 = "What is the freezer capacity (l)?";
         double freezerCapacity = InputValidator.getDoublePos(label13);
@@ -129,7 +129,7 @@ public class AddDeviceToRoom {
     public void creationOfLamp() {
         String label21 = "What is the name of the lamp?";
         String lampDeviceName = InputValidator.getString(label21);
-        String label22 = "What is the nominal power (kW)?";
+        String label22 = "What is the Lamp nominal power (kW)?";
         double lampNominalPower = InputValidator.getDoublePos(label22);
         String label23 = "What is the luminous flux (lm)?";
         double luminousFlux = InputValidator.getDoublePos(label23);
@@ -141,7 +141,7 @@ public class AddDeviceToRoom {
     public void creationOfDishWasher() {
         String label31 = "What is the name of the dish washer?";
         String dishWasherDeviceName = InputValidator.getString(label31);
-        String label32 = "What is the nominal power (kW)?";
+        String label32 = "What is the Dish Washer nominal power (kW)?";
         double dishWasherNominalPower = InputValidator.getDoublePos(label32);
         String label33 = "What is the capacity (in dish sets)?";
         int dishWasherCapacity = InputValidator.getIntPos(label33);
@@ -156,7 +156,7 @@ public class AddDeviceToRoom {
     public void creationOfWashingMachine() {
         String label41 = "What is the name of the washing machine?";
         String washingMachineDeviceName = InputValidator.getString(label41);
-        String label42 = "What is the nominal power (kW)?";
+        String label42 = "What is the Washing Machine nominal power (kW)?";
         double washingMachineNominalPower = InputValidator.getDoublePos(label42);
         String label43 = "What is the capacity (kg)?";
         double washingMachineCapacity = InputValidator.getDoublePos(label43);
@@ -171,7 +171,7 @@ public class AddDeviceToRoom {
     public void creationOfElectricWaterHeater() {
         String label51 = "What is the name of the electric water heater?";
         String electricWaterHeaterDeviceName = InputValidator.getString(label51);
-        String label52 = "What is the nominal power (kW)?";
+        String label52 = "What is the Electric Water Heater nominal power (kW)?";
         double electricWaterHeaterNominalPower = InputValidator.getDoublePos(label52);
         String label53 = "What is the maximum temperature you want to configure on the electric water heater?";
         double maxHotTemperature = InputValidator.getDoublePos(label53);

@@ -34,7 +34,7 @@ public class DishWasherSpecs implements DeviceSpecs {
      * @return energy consumption
      */
     public double getEnergyConsumptionInADay() {
-        return mEnergyConsumptionProgram1;
+        return 0;
     }
 
 

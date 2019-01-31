@@ -1547,7 +1547,7 @@ public class HouseTest {
 
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
-        gridList.addHouseGrid(grid);
+        house.addGrid(grid);
         // Act
         boolean result = house.isHouseGridListEmpty();
 
@@ -2127,6 +2127,74 @@ public class HouseTest {
         //assert
         assertEquals(expectResult, result);
     }
+
+    @Test
+    public void testSetInsertedGeoArea() {
+        //arrange
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geoOne = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geoOne);
+        GeographicalArea geo = new GeographicalArea("Lisboa", GAType, location, areaShape);
+
+        house.setInsertedGeoArea(geo);
+
+        GeographicalArea expectedResult = geo;
+
+        GeographicalArea result = house.getInsertedGeoArea();
+
+        assertEquals(expectedResult, result);
+
+
+    }
+/*
+    @Test
+    public void testCreateDeviceTypes() {
+        //arrange
+        //initiate House
+        int meteringPeriodGrid = 15;
+        int meteringPeriodDevice = 15;
+
+        List<String> deviceTypeList = new ArrayList<>();
+        deviceTypeList.add("Fridge");
+        deviceTypeList.add("Lamp");
+        deviceTypeList.add("DishWasher");
+        deviceTypeList.add("WashingMachine");
+        deviceTypeList.add("ElectricWaterHeater");
+
+        House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        //house.createDeviceTypes(deviceTypeList);
+
+        DeviceType fridge = new FridgeType();
+        DeviceType lamp = new LampType();
+        DeviceType dishWasher = new DishWasherType();
+        DeviceType washingMachine = new WashingMachineType();
+        DeviceType electricWaterHeater = new ElectricWaterHeaterType();
+
+        List<DeviceType> expectedResult = new ArrayList<>();
+
+        expectedResult.add(fridge);
+        expectedResult.add(lamp);
+        expectedResult.add(dishWasher);
+        expectedResult.add(washingMachine);
+        expectedResult.add(electricWaterHeater);
+
+        //Act
+        List<DeviceType> result = house.getDeviceTypeList();
+
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }*/
 
 
 }

@@ -228,9 +228,7 @@ public class InputValidator {
             }
         } while (flag);
 
-        LocalDate validDate = LocalDate.parse(str);
-
-        return validDate;
+        return LocalDate.parse(str);
     }
 
     /**
