@@ -22,6 +22,7 @@ PowerUser -> ":UI": 1- GetEnergyConsumptionDataSeries
 activate ":UI"
 PowerUser <- ":UI": 2- Ask to choose HouseGrid/Room/Device
 PowerUser -> ":UI": 2.1- int option
+opt Room
 ":UI" -> ":Controller": 2.2- getRoomListToString()
 activate ":Controller"
 ":Controller" -> ":House": 2.3- getRoomListToString()
@@ -50,6 +51,7 @@ deactivate ":Room"
 ":Controller" -> ":Controller": 5- getDataSeriesToString(Map)
 ":Controller" --> ":UI": 5.1- String dataSeries
 PowerUser <-- ":UI": 5.2- String dataSeries
+end
 deactivate ":UI"
 
 @enduml
