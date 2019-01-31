@@ -315,14 +315,21 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     @Test
     void testGetDeviceDataSeriesToString() {
         //Arrange
-        // Dimension Instantiation
-        double height = 3;
-        double length = 5;
-        double width = 6;
-        Dimension dim = new Dimension(height, length, width);
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
 
-        // Room Instantiation
-        Room room = new Room("Kitchen", 1, dim);
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geo);
+
+        house.addRoom(room);
 
         // Fridge Instantiation
         DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
@@ -362,17 +369,289 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         mapToTest.put(time3, 10.0);
         mapToTest.put(time4, 5.0);
 
+        String expectedResult = "Date/hour: 2019-01-24 00:00, Energy Consumption: 3.0 kWh\n" +
+                "Date/hour: 2019-01-24 08:00, Energy Consumption: 5.0 kWh\n" +
+                "Date/hour: 2019-01-24 16:00, Energy Consumption: 7.0 kWh\n" +
+                "Date/hour: 2019-01-25 10:00, Energy Consumption: 10.0 kWh\n" +
+                "Date/hour: 2019-01-25 12:00, Energy Consumption: 5.0 kWh\n";
 
-        Map<LocalDateTime, Double> expectedResult = mapToTest;
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+        ctrl.getRoomByPosition(0);
+        ctrl.getDeviceByPosition(0);
 
         LocalDateTime timeToTest0 = LocalDateTime.of(2019, 01, 23, 10, 00);
         LocalDateTime timeToTest1 = LocalDateTime.of(2019, 01, 25, 13, 00);
 
         //Act
-        Map<LocalDateTime, Double> result = device.getDataSeries(timeToTest0, timeToTest1);
+        String result = ctrl.getDeviceDataSeriesToString(timeToTest0, timeToTest1);
 
         //Assert
         assertEquals(expectedResult, result);
     }
+    @Test
+    public void testGetRoomDataSeriesToStringWithValidValues(){
+        //Arrange
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
 
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geo);
+
+        house.addRoom(room);
+
+        DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
+        Device lamp = new Device("LampSpecs", room, deviceSpecs);
+
+        DeviceSpecs specsFridge = new FridgeSpecs(12, 15, 25, 12);
+        Device fridge = new Device("FridgeSpecs", room, specsFridge);
+
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings0 = new Readings(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings1 = new Readings(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings2 = new Readings(7, time2);
+
+        lamp.addReadingsToTheList(readings0);
+        lamp.addReadingsToTheList(readings1);
+        lamp.addReadingsToTheList(readings2);
+
+        LocalDateTime time3 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings3 = new Readings(3, time3);
+        LocalDateTime time4 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings4 = new Readings(5, time4);
+        LocalDateTime time5 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings5 = new Readings(7, time5);
+
+        fridge.addReadingsToTheList(readings3);
+        fridge.addReadingsToTheList(readings4);
+        fridge.addReadingsToTheList(readings5);
+
+        LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
+        LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
+
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+        int position = 0;
+        ctrl.getRoomByPosition(position);
+        String expectedResult = "Date/hour: 2019-01-24 00:00, Energy Consumption: 6.0 kWh\n" +
+                                "Date/hour: 2019-01-24 08:00, Energy Consumption: 10.0 kWh\n" +
+                                "Date/hour: 2019-01-24 16:00, Energy Consumption: 14.0 kWh\n";
+
+        //Act
+        String result = ctrl.getRoomDataSeriesToString(startTime,endTime);
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void testGetRoomDataSeriesToStringWithNoValidValues(){
+        //Arrange
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geo);
+
+        house.addRoom(room);
+
+        DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
+        Device lamp = new Device("LampSpecs", room, deviceSpecs);
+
+        DeviceSpecs specsFridge = new FridgeSpecs(12, 15, 25, 12);
+        Device fridge = new Device("FridgeSpecs", room, specsFridge);
+
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings0 = new Readings(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings1 = new Readings(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings2 = new Readings(7, time2);
+
+        lamp.addReadingsToTheList(readings0);
+        lamp.addReadingsToTheList(readings1);
+        lamp.addReadingsToTheList(readings2);
+
+        LocalDateTime time3 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings3 = new Readings(3, time3);
+        LocalDateTime time4 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings4 = new Readings(5, time4);
+        LocalDateTime time5 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings5 = new Readings(7, time5);
+
+        fridge.addReadingsToTheList(readings3);
+        fridge.addReadingsToTheList(readings4);
+        fridge.addReadingsToTheList(readings5);
+
+        LocalDateTime startTime = LocalDateTime.of(2018, 01, 23, 15, 20, 00);
+        LocalDateTime endTime = LocalDateTime.of(2018, 01, 25, 17, 40, 00);
+
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+        int position = 0;
+        ctrl.getRoomByPosition(position);
+        String expectedResult = "No valid values found for that period.\n";
+
+        //Act
+        String result = ctrl.getRoomDataSeriesToString(startTime,endTime);
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void testGetHouseGridDataSeriesToStringWithValidValues(){
+        //Arrange
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geo);
+
+        //initiate House Grid
+        HouseGrid houseGrid = new HouseGrid("Main Grid");
+
+        house.addRoom(room);
+        houseGrid.attachRoom(room);
+        listHG.addHouseGrid(houseGrid);
+
+        DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
+        Device lamp = new Device("LampSpecs", room, deviceSpecs);
+
+        DeviceSpecs specsFridge = new FridgeSpecs(12, 15, 25, 12);
+        Device fridge = new Device("FridgeSpecs", room, specsFridge);
+
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings0 = new Readings(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings1 = new Readings(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings2 = new Readings(7, time2);
+
+        lamp.addReadingsToTheList(readings0);
+        lamp.addReadingsToTheList(readings1);
+        lamp.addReadingsToTheList(readings2);
+
+        LocalDateTime time3 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings3 = new Readings(3, time3);
+        LocalDateTime time4 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings4 = new Readings(5, time4);
+        LocalDateTime time5 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings5 = new Readings(7, time5);
+
+        fridge.addReadingsToTheList(readings3);
+        fridge.addReadingsToTheList(readings4);
+        fridge.addReadingsToTheList(readings5);
+
+        LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
+        LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
+
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+        int position = 0;
+        ctrl.getHouseGridByPosition(position);
+        String expectedResult = "Date/hour: 2019-01-24 00:00, Energy Consumption: 6.0 kWh\n" +
+                                "Date/hour: 2019-01-24 08:00, Energy Consumption: 10.0 kWh\n" +
+                                "Date/hour: 2019-01-24 16:00, Energy Consumption: 14.0 kWh\n";
+
+        //Act
+        String result = ctrl.getHouseGridDataSeriesToString(startTime,endTime);
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void testGetHouseGridDataSeriesToStringWithNoValidValues(){
+        //Arrange
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geo);
+
+        //initiate House Grid
+        HouseGrid houseGrid = new HouseGrid("Main Grid");
+
+        house.addRoom(room);
+        houseGrid.attachRoom(room);
+        listHG.addHouseGrid(houseGrid);
+
+        DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
+        Device lamp = new Device("LampSpecs", room, deviceSpecs);
+
+        DeviceSpecs specsFridge = new FridgeSpecs(12, 15, 25, 12);
+        Device fridge = new Device("FridgeSpecs", room, specsFridge);
+
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings0 = new Readings(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings1 = new Readings(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings2 = new Readings(7, time2);
+
+        lamp.addReadingsToTheList(readings0);
+        lamp.addReadingsToTheList(readings1);
+        lamp.addReadingsToTheList(readings2);
+
+        LocalDateTime time3 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings3 = new Readings(3, time3);
+        LocalDateTime time4 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings4 = new Readings(5, time4);
+        LocalDateTime time5 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings5 = new Readings(7, time5);
+
+        fridge.addReadingsToTheList(readings3);
+        fridge.addReadingsToTheList(readings4);
+        fridge.addReadingsToTheList(readings5);
+
+        LocalDateTime startTime = LocalDateTime.of(2018, 01, 23, 15, 20, 00);
+        LocalDateTime endTime = LocalDateTime.of(2018, 01, 25, 17, 40, 00);
+
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+        int position = 0;
+        ctrl.getHouseGridByPosition(position);
+        String expectedResult = "No valid values found for that period.\n";
+
+        //Act
+        String result = ctrl.getHouseGridDataSeriesToString(startTime,endTime);
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
 }
