@@ -206,13 +206,13 @@ public class Device implements Measurable {
     }
 
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        List<Readings> ReadingsList = new ArrayList<>();
-        for (Readings Readings : mReadingsList) {
-            if (!startDate.isAfter(Readings.getDateTime()) && !endDate.isBefore(Readings.getDateTime())) {
-                ReadingsList.add(Readings);
+        List<Readings> readingsList = new ArrayList<>();
+        for (Readings readings : mReadingsList) {
+            if (!startDate.isAfter(readings.getDateTime()) && !endDate.isBefore(readings.getDateTime())) {
+                readingsList.add(readings);
             }
         }
-        return ReadingsList;
+        return readingsList;
     }
 
     /**
@@ -225,10 +225,10 @@ public class Device implements Measurable {
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        List<Readings> ReadingsList = getReadingsListInInterval(startDate, endDate);
-        if (ReadingsList.size() > 1) {
-            ReadingsList.remove(0);
-            totalEnergyConsumption = getSumOfTheReadingss(ReadingsList);
+        List<Readings> readingsList = getReadingsListInInterval(startDate, endDate);
+        if (readingsList.size() > 1) {
+            readingsList.remove(0);
+            totalEnergyConsumption = getSumOfTheReadingss(readingsList);
         }
         return totalEnergyConsumption;
     }
@@ -254,8 +254,8 @@ public class Device implements Measurable {
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> hmap = new TreeMap<>();
         List<Readings> validReadingsList = getReadingsListInInterval(startDate, endDate);
-        for (Readings Readings : validReadingsList) {
-            hmap.put(Readings.getDateTime(), Readings.getValue());
+        for (Readings readings : validReadingsList) {
+            hmap.put(readings.getDateTime(), readings.getValue());
         }
         return hmap;
     }

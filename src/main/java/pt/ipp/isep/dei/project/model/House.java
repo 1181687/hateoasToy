@@ -4,9 +4,7 @@ package pt.ipp.isep.dei.project.model;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 public class House {
@@ -156,8 +154,8 @@ public class House {
      * @param day
      * @return total daily measurement.
      */
-    public double getTotalDailyMeasurement(SensorType measurementType, LocalDate day, Location location) {
-        return mInsertedGeoArea.getTotalDailyMeasurement(measurementType, day, location);
+    public double getTotalDailyMeasurement(SensorType measurementType, LocalDate day) {
+        return mInsertedGeoArea.getTotalDailyMeasurement(measurementType, day, this.mAddress.getLocation());
     }
 
     /**

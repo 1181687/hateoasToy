@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -809,4 +810,53 @@ class SensorListTest {
         assertFalse(result);
     }
 
+
+    @Test
+    public void testHashCode() {
+        SensorList sensorList = new SensorList();
+        int expectedResult = Objects.hash(sensorList.getSensorList());
+
+        // Act
+        int result = sensorList.hashCode();
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testEqualsTrue() {
+        //Arrange
+
+        SensorList sensorList1 = new SensorList();
+        SensorList sensorList2 = new SensorList();
+
+        //Act
+        boolean result = sensorList1.equals(sensorList2);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void testEqualsTrueSameObj() {
+        //Arrange
+
+        SensorList sensorList1 = new SensorList();
+
+        //Act
+        boolean result = sensorList1.equals(sensorList1);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void testEqualsTrueFalse() {
+        //Arrange
+
+        SensorList sensorList1 = new SensorList();
+        HouseGridList list = new HouseGridList();
+
+        //Act   \
+        boolean result = sensorList1.equals(list);
+        //Assert
+        assertFalse(result);
+    }
 }

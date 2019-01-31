@@ -23,14 +23,12 @@ public class GetEnergyConsumptionDataSeries {
 
     private LocalDateTime getInitialDate() {
         String label3 = "Please insert the initial date/hour of the period you want to consider for the calculations in the following format: yyyy-MM-dd HH:mm. ";
-        LocalDateTime initialDate = InputValidator.getStringDateTime(label3);
-        return initialDate;
+        return InputValidator.getStringDateTime(label3);
     }
 
     private LocalDateTime getFinalDate() {
         String label4 = "Please insert the final date/hour of the period you want to consider for the calculations in the following format: yyyy-MM-dd HH:mm. ";
-        LocalDateTime finalDate = InputValidator.getStringDateTime(label4);
-        return finalDate;
+        return InputValidator.getStringDateTime(label4);
     }
 
     private String getDataSeriesGrid() {

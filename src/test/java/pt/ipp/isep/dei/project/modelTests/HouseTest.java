@@ -657,7 +657,7 @@ public class HouseTest {
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getTotalDailyMeasurement(searchType, day, house.getLocation());
+        double result = house.getTotalDailyMeasurement(searchType, day);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -2046,6 +2046,76 @@ public class HouseTest {
 
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getDeviceListSize() {
+        //arrange
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geo);
+
+        //initiate Devices
+
+        double freezerCapacity = 5.5;
+        double refrigeratorCapacity = 15.5;
+        double annualEnergyConsumption = 5000;
+        double nominalPower = 100.5;
+        DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        Device dev = new Device("Fridge1", room, deviceSpecs);
+
+
+        double luminousFlux = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        room.addDevice(dev);
+        room.addDevice(dev1);
+
+        house.addRoom(room);
+
+        int expectResult = 2;
+        //act
+        int result = house.getDeviceSize();
+        //assert
+        assertEquals(expectResult, result);
+    }
+
+    @Test
+    public void getDeviceListSizeEmptyList() {
+        //arrange
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geo);
+
+        house.addRoom(room);
+
+        int expectResult = 0;
+        //act
+        int result = house.getDeviceSize();
+        //assert
+        assertEquals(expectResult, result);
     }
 }
 

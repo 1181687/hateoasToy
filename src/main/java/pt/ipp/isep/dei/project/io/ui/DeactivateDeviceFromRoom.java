@@ -21,29 +21,29 @@ public class DeactivateDeviceFromRoom {
             System.out.println("There are no rooms in the house. Please create a room.");
 
         } else {
-            boolean flag = true;
-            while (flag) {
-                String exit = "0 - Return to the previous menu";
-                String label1 = "\n> Please select the room with the device you want to deativate:\n" + mController.getRoomListContent() + exit;
+            boolean flag10 = true;
+            while (flag10) {
+                String exitMenu = "0 - Return to the previous menu";
+                String label10 = "\n> Please select the room with the device you want to deactivate:\n" + mController.getRoomListContent() + exitMenu;
                 int roomListSize = mController.roomListSize();
-                int position = InputValidator.getIntRange(label1, 0, roomListSize) - 1;
-                if (position == -1) {
+                int positionRoom = InputValidator.getIntRange(label10, 0, roomListSize) - 1;
+                if (positionRoom == -1) {
                     return;
                 }
-                mController.getRoomPosition(position);
+                mController.getRoomPosition(positionRoom);
 
                 // LIST OF DEVICES
                 if (this.mController.deviceListEmpty()) {
                     System.out.println("\n There are no devices in this room. \n");
 
                 } else {
-                    boolean flag1 = true;
-                    while (flag1) {
-                        String label2 = "\n> This is the list of activated devices. Please select the device you want to deativate: \n"
-                                + mController.getActiveDeviceListToString() + exit;
+                    boolean flag20 = true;
+                    while (flag20) {
+                        String label20 = "\n> This is the list of activated devices. Please select the device you want to deativate: \n"
+                                + mController.getActiveDeviceListToString() + exitMenu;
 
                         int deviceListLength = mController.deviceListSize();
-                        int position1 = InputValidator.getIntRange(label2, 0, deviceListLength) - 1;
+                        int position1 = InputValidator.getIntRange(label20, 0, deviceListLength) - 1;
                         if (position1 == -1) {
                             return;
                         }
@@ -66,7 +66,7 @@ public class DeactivateDeviceFromRoom {
                             }
 
                         }
-                        flag1 = false;
+                        flag20 = false;
                     }
                 }
             }
