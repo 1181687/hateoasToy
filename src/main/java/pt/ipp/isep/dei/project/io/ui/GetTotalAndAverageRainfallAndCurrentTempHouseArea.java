@@ -50,7 +50,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseArea {
 
 
         if (!(Double.isNaN(mCtrl.getAverageDailyRainfall(firstDate, secondDate)))) {
-            System.out.println("The average daily rainfall for the chosen period is: " + mCtrl.getAverageDailyRainfall(firstDate, secondDate) + "l/m2");
+            System.out.println("The average daily rainfall for the chosen period is: " + mCtrl.getAverageDailyRainfall(firstDate, secondDate) + " l/m2");
         } else {
             System.out.println("There's no registers for this period.");
         }
