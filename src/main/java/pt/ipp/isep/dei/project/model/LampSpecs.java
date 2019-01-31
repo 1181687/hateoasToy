@@ -14,6 +14,9 @@ public class LampSpecs implements DeviceSpecs {
         this.mNominalPower = nominalPower;
     }
 
+    public LampSpecs() {
+    }
+
     /**
      * get method
      *

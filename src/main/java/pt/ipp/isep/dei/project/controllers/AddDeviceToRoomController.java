@@ -9,6 +9,7 @@ public class AddDeviceToRoomController {
     private DeviceList mDeviceList;
     private Room mRoom;
     private ProgramList mProgramList;
+    private DeviceType mDeviceType;
 
     /**
      * Constructor.
@@ -75,6 +76,14 @@ public class AddDeviceToRoomController {
      */
     public String getDeviceTypeListToString() {
         return mHouse.getDeviceTypeListToString();
+    }
+
+    public void setDeviceType(int position) {
+        mDeviceType = mHouse.getDeviceTypeFromList(position);
+    }
+
+    public void createDevice(String name, Room location) {
+        mDevice = mDeviceType.createDevice(name, location);
     }
 
 

@@ -4,6 +4,7 @@ package pt.ipp.isep.dei.project.model;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ public class House {
     private HouseGridList mListHouseGrids;
     private Address mAddress;
     private GeographicalArea mInsertedGeoArea;
-    private List<String> mDeviceTypeList;
+    private List<DeviceType> mDeviceTypeList;
     private int mMeteringPeriodGrid;
     private int mMeteringPeriodDevice;
 
@@ -33,11 +34,35 @@ public class House {
     public House(List<String> deviceTypeList, int meteringPeriodGrid, int meteringPeriodDevice) {
         this.mRoomList = new RoomList();
         this.mListHouseGrids = new HouseGridList();
-        this.mDeviceTypeList = deviceTypeList;
+        this.mDeviceTypeList = new ArrayList<>();
+        createDeviceTypes(deviceTypeList);
         this.mMeteringPeriodGrid = meteringPeriodGrid;
         this.mMeteringPeriodDevice = meteringPeriodDevice;
     }
 
+    public void createDeviceTypes(List<String> deviceTypeList) {
+        for (String className : deviceTypeList) {
+            String path = "pt.ipp.isep.dei.project.model." + className + "Type";
+            try {
+                DeviceType dt = (DeviceType) Class.forName(path).newInstance();
+                mDeviceTypeList.add(dt);
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (InstantiationException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public List<DeviceType> getDeviceTypeList() {
+        return mDeviceTypeList;
+    }
+
+    public DeviceType getDeviceTypeFromList(int position) {
+        return mDeviceTypeList.get(position);
+    }
 
     /**
      * Set method for the inserted geo area.
@@ -476,7 +501,7 @@ public class House {
         StringBuilder content = new StringBuilder();
         int numberOfDeviceTypes = numberOfDeviceTypes();
         for (int i = 1; i <= numberOfDeviceTypes; i++) {
-            String deviceType = Utils.readConfigFile("devicetype." + i + ".name");
+            String deviceType = Utils.readConfigFile("devicetype.name." + i);
             content.append(i + "- ");
             content.append(deviceType);
             content.append("\n");
@@ -493,8 +518,6 @@ public class House {
     public int numberOfDeviceTypes() {
         return Integer.parseInt(Utils.readConfigFile("devicetype.count"));
     }
-
-
 
     public int getDeviceSize() {
         return getAllDevices().getSize();

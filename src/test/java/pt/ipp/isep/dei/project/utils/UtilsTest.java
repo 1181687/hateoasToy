@@ -116,9 +116,9 @@ class UtilsTest {
         List<String> expectedResult = new ArrayList<>();
         expectedResult.add("Fridge");
         expectedResult.add("Lamp");
-        expectedResult.add("Dish Washer");
-        expectedResult.add("Washing Machine");
-        expectedResult.add("Electric Water Heater");
+        expectedResult.add("DishWasher");
+        expectedResult.add("WashingMachine");
+        expectedResult.add("ElectricWaterHeater");
 
         List<String> result = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
         assertEquals(expectedResult, result);

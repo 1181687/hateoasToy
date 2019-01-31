@@ -19,6 +19,9 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         this.mNominalPower = nominalPower;
     }
 
+    public ElectricWaterHeaterSpecs() {
+    }
+
     /**
      * get method
      *
