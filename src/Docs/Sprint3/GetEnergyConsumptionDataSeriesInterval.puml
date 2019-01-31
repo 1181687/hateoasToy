@@ -1,0 +1,55 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+actor PowerUser
+PowerUser -> ":UI": 1- GetEnergyConsumptionDataSeries
+activate ":UI"
+PowerUser <- ":UI": 2- Ask to choose HouseGrid/Room/Device
+PowerUser -> ":UI": 2.1- int option
+":UI" -> ":Controller": 2.2- getRoomListToString()
+activate ":Controller"
+":Controller" -> ":House": 2.3- getRoomListToString()
+activate ":House"
+":Controller" <-- ":House": 2.4- String RoomList
+deactivate ":House"
+":UI" <-- ":Controller": 2.5- String RoomList
+PowerUser <-- ":UI": 2.6- String RoomList
+
+PowerUser -> ":UI": 3- Int Room Position
+":UI" -> ":Controller": 2.1- getRoomByPosition(position)
+":Controller" -> ":House": 2.2- getRoomByPosition (position)
+activate ":House"
+":Controller" <-- ":House": 2.3- Room
+deactivate ":House"
+
+PowerUser <- ":UI": 3- Ask for Start Date and End Date
+
+PowerUser -> ":UI": 4- Insert Start Date (LocalDateTime)
+PowerUser -> ":UI": 5- Insert End Date (LocalDateTime)
+":UI" -> ":Controller": 5.1- getRoomDataSeriesToString(startDate, endDate)
+":Controller" -> ":Room": 5.2- getDataSeries(startDate, endDate)
+activate ":Room"
+":Controller" <-- ":Room": 5.3- Map
+deactivate ":Room"
+":Controller" -> ":Controller": getDataSeriesToString(Map)
+":Controller" --> ":UI": String dataSeries
+PowerUser <-- ":UI": String dataSeries
+deactivate ":UI"
+
+@enduml
