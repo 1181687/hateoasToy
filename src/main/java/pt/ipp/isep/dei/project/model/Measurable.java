@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDateTime;
-import java.util.HashMap;
 import java.util.Map;
 
 public interface Measurable {
