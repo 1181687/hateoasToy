@@ -23,8 +23,8 @@ public class DeactivateDeviceFromRoom {
         } else {
             boolean flag10 = true;
             while (flag10) {
-                String exit = "0 - Return to the previous menu";
-                String label10 = "\n> Please select the room with the device you want to deactivate:\n" + mController.getRoomListContent() + exit;
+                String exitMenu = "0 - Return to the previous menu";
+                String label10 = "\n> Please select the room with the device you want to deactivate:\n" + mController.getRoomListContent() + exitMenu;
                 int roomListSize = mController.roomListSize();
                 int positionRoom = InputValidator.getIntRange(label10, 0, roomListSize) - 1;
                 if (positionRoom == -1) {
@@ -40,7 +40,7 @@ public class DeactivateDeviceFromRoom {
                     boolean flag20 = true;
                     while (flag20) {
                         String label20 = "\n> This is the list of activated devices. Please select the device you want to deativate: \n"
-                                + mController.getActiveDeviceListToString() + exit;
+                                + mController.getActiveDeviceListToString() + exitMenu;
 
                         int deviceListLength = mController.deviceListSize();
                         int position1 = InputValidator.getIntRange(label20, 0, deviceListLength) - 1;
