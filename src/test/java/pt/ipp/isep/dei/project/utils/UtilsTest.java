@@ -77,7 +77,7 @@ class UtilsTest {
     @Test
     void testGetMeteringPeriod() {
         //Arrange
-        int expectedResult = 10;
+        int expectedResult = 15;
 
         //Act
         int result = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
@@ -101,7 +101,7 @@ class UtilsTest {
     @Test
     void testGetMeteringPeriodDevice() {
         //Arrange
-        int expectedResult = 20;
+        int expectedResult = 15;
 
         int result = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
         //Assert
