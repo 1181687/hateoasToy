@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.HouseGrid;
 import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -52,7 +53,7 @@ public class GetEnergyConsumptionDataSeriesController {
         if (map.isEmpty()) {
             return "No valid values found for that period.\n";
         }
-        return mHouse.getDataSeriesToString(map);
+        return Utils.getDataSeriesToString(map);
     }
 
     public String getRoomDataSeriesToString(LocalDateTime startDate, LocalDateTime endDate) {
@@ -60,7 +61,7 @@ public class GetEnergyConsumptionDataSeriesController {
         if (map.isEmpty()) {
             return "No valid values found for that period.\n";
         }
-        return mHouse.getDataSeriesToString(map);
+        return Utils.getDataSeriesToString(map);
     }
 
     public String getDeviceDataSeriesToString(LocalDateTime startDate, LocalDateTime endDate) {
@@ -68,7 +69,7 @@ public class GetEnergyConsumptionDataSeriesController {
         if (map.isEmpty()) {
             return "No valid values found for that period.\n";
         }
-        return mHouse.getDataSeriesToString(map);
+        return Utils.getDataSeriesToString(map);
     }
 
     public int getHouseGridListSize() {
