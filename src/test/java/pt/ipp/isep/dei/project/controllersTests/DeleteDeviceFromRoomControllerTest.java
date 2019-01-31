@@ -446,7 +446,7 @@ class DeleteDeviceFromRoomControllerTest {
         house.addRoom(room);
         controller.getRoomByPosition(position);
         // Act
-        String result = controller.getDevicesInTheRoom();
+        String result = controller.getDeviceListToString();
 
         // Assert
         assertEquals(expectedResult, result);

@@ -657,7 +657,7 @@ public class HouseTest {
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getTotalDailyMeasurement(searchType, day, house.getLocation());
+        double result = house.getTotalDailyMeasurement(searchType, day);
 
         //Assert
         assertEquals(expectedResult, result);

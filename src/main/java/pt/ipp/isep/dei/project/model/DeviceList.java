@@ -138,12 +138,9 @@ public class DeviceList {
     /**
      * method that check if the device list is empty
      */
-    public boolean isDeviceListEmpty() {
+    public boolean isEmpty() {
         return mDeviceList.isEmpty();
     }
-
-
-
 
     /**
      * method that get de active device list to string.
@@ -263,7 +260,7 @@ public class DeviceList {
      * @param device
      * @return true if the device was deactivated. False, if not.
      */
-    public boolean deactivationDevice(String device) {
+    public boolean deactivateDevice(String device) {
         for (Device searchDevice : this.mDeviceList) {
             if (device.equals(searchDevice.getName())) {
                 searchDevice.setDeactivateDevice();

@@ -18,35 +18,35 @@ skinparam sequence {
 }
 
 actor PowerUser
-PowerUser -> ":UI": 1- getEnergyConsumptionOfHouseGrid
+PowerUser -> ":UI": 1- GetEnergyConsumptionOfHouseGrid
 activate ":UI"
 ":UI" -> ":Controller": 1.1- getHouseGridListToString()
 activate ":Controller"
-":Controller" -> ":House": 1.2- getHouseGridListToString()
+":Controller" -> ":House": 1.1.1- getHouseGridListToString()
 activate ":House"
-":Controller" <-- ":House": 1.3- String
+":Controller" <-- ":House": 1.1.2- houseGridList
 deactivate ":House"
-":UI" <-- ":Controller": 1.4- String
-PowerUser <-- ":UI": 1.5- String
+":UI" <-- ":Controller": 1.2- houseGridList
+PowerUser <-- ":UI": 1.3- houseGridList
 
 PowerUser -> ":UI": 2- Int House Grid Position
 ":UI" -> ":Controller": 2.1- getHouseGridByPosition(position)
 ":Controller" -> ":House": 2.2- getHouseGridByPosition (position)
 activate ":House"
-":Controller" <-- ":House": 2.3- House Grid
+":Controller" <-- ":House": 2.3- choosenHouseGrid
 deactivate ":House"
 
 PowerUser <- ":UI": 3- Ask for Start Date and End Date
 
-PowerUser -> ":UI": 4- Insert Start Date (LocalDateTime)
-PowerUser -> ":UI": 5- Insert End Date (LocalDateTime)
-":UI" -> ":Controller": 5.1- GetEnergyConsumption(startDate, endDate)
-":Controller" -> ":HouseGrid": 5.2- GetEnergyConsumption(startDate, endDate)
+PowerUser -> ":UI": 3.1- Insert Start Date (LocalDateTime)
+PowerUser -> ":UI": 3.2- Insert End Date (LocalDateTime)
+":UI" -> ":Controller": 3.2.1- GetEnergyConsumption(startDate, endDate)
+":Controller" -> ":HouseGrid": 3.2.1.1- GetEnergyConsumption(startDate, endDate)
 activate ":HouseGrid"
-":Controller" <-- ":HouseGrid": 5.3- double
+":Controller" <-- ":HouseGrid": 3.2.1.2- Energy Consumption
 deactivate ":HouseGrid"
-":UI" <-- ":Controller": 5.4- double
-PowerUser <-- ":UI": 5.5- double
+":UI" <-- ":Controller": 3.2.2- energyConsumption
+PowerUser <-- ":UI": 3.3- energyConsumption
 deactivate ":UI"
 
 @enduml
