@@ -18,6 +18,7 @@ public class GetEnergyConsumptionDataSeries {
         firstMenu.append("1 - House Grid\n");
         firstMenu.append("2 - Room\n");
         firstMenu.append("3 - Device\n");
+        firstMenu.append("0 - Exit");
         return firstMenu.toString();
     }
 
@@ -32,24 +33,45 @@ public class GetEnergyConsumptionDataSeries {
     }
 
     private String getDataSeriesGrid() {
-        String label2 = "Please choose a house grid:\n" + mCtrl.getHouseGridListToString();
-        int chosenGrid = InputValidator.getIntRange(label2, 1, mCtrl.getHouseGridListSize()) - 1;
-        mCtrl.getHouseGridByPosition(chosenGrid);
-        LocalDateTime initialDate = getInitialDate();
-        LocalDateTime finalDate = getFinalDate();
-        return mCtrl.getHouseGridDataSeriesToString(initialDate, finalDate);
+        if (mCtrl.houseGridListIsEmpty()){
+            return ("Sorry! There are no house grids.");
+        }
+        else {
+            String label2 = "Please choose a house grid:\n" + mCtrl.getHouseGridListToString();
+            int chosenGrid = InputValidator.getIntRange(label2, 1, mCtrl.getHouseGridListSize()) - 1;
+            mCtrl.getHouseGridByPosition(chosenGrid);
+            while (mCtrl.roomListIsEmpty()) {
+                System.out.println("\"There are no devices in this house grid, so it is not possible to \" " +
+                        "+\ncalculate its energy consumption. Please choose another house grid.\\n\");");
+                continue;
+            }
+            LocalDateTime initialDate = getInitialDate();
+            LocalDateTime finalDate = getFinalDate();
+            return mCtrl.getHouseGridDataSeriesToString(initialDate, finalDate);
+        }
     }
 
     private String getDataSeriesRoom() {
+        if (mCtrl.roomListIsEmpty()){
+            return ("Sorry! There are no rooms.");
+        }
         String label2 = "Please choose a room:\n" + mCtrl.getRoomListToString();
-        int chosenRoom = InputValidator.getIntRange(label2, 1, mCtrl.getRoomListSize()) - 1;
+        int chosenRoom = InputValidator.getIntRange(label2, 1, mCtrl.getRoomListSize())-1;
         mCtrl.getRoomByPosition(chosenRoom);
+        while (mCtrl.deviceListIsEmpty()) {
+            System.out.println("There are no devices in this room, so it is not possible to calculate its energy consumption.\n");
+            chosenRoom = InputValidator.getIntRange(label2, 1, mCtrl.getRoomListSize())-1;
+            mCtrl.getRoomByPosition(chosenRoom);
+        }
         LocalDateTime initialDate = getInitialDate();
         LocalDateTime finalDate = getFinalDate();
         return mCtrl.getRoomDataSeriesToString(initialDate, finalDate);
     }
 
     private String getDataSeriesDevice() {
+        if (mCtrl.deviceListIsEmpty()){
+            return ("Sorry! There are no devices.");
+        }
         String label2 = "Please choose a device:\n" + mCtrl.getDeviceListToString();
         int chosenDevice = InputValidator.getIntRange(label2, 1, mCtrl.getDeviceListSize()) - 1;
         mCtrl.getDeviceByPosition(chosenDevice);
@@ -62,7 +84,7 @@ public class GetEnergyConsumptionDataSeries {
     public void run() {
         String label1 = "Would you like to get the data series of energy consumption of a House Grid, a Room or a Device? " +
                 "Please select the number that matches your choice:\n" + menu();
-        int chosenOption = InputValidator.getIntRange(label1, 1, 3);
+        int chosenOption = InputValidator.getIntRange(label1, 0, 3);
         if (chosenOption == 0) {
             return;
         }

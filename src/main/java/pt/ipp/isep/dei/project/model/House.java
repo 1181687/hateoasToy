@@ -486,4 +486,8 @@ public class House {
     public int getDeviceSize() {
         return getAllDevices().getSize();
     }
+
+    public boolean isDeviceListOfAllRoomsEmpty(){
+        return this.mRoomList.isDeviceListOfAllRoomsEmpty();
+    }
 }
