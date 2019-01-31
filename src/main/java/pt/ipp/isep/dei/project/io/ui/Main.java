@@ -517,7 +517,7 @@ public class Main {
         powerSourceTypeList.addPowerSourceType(powerSourceType2);
 
         //UI levels
-        Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaList, deviceList, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList(), houseEdificioB.getHouseGridList());
+        Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaList, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList(), houseEdificioB.getHouseGridList());
         RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaList, sensorTypeList, houseEdificioB, sensorTypeTemperature);
         PowerUser powerUser = new PowerUser(houseEdificioB);
         RoomOwner roomOwner = new RoomOwner(houseEdificioB);

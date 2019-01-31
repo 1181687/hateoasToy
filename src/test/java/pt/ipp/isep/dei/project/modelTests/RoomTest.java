@@ -654,7 +654,6 @@ public class RoomTest {
     }
 
 
-    ///testar a partir daqui********************************************************************************************
 
     @Test
     public void newElectricWaterHeater() {

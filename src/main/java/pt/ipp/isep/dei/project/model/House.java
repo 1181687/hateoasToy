@@ -56,9 +56,6 @@ public class House {
         return mDeviceTypeList;
     }
 
-    public DeviceType getDeviceTypeFromList(int position) {
-        return mDeviceTypeList.get(position);
-    }
 
     /**
      * Set method for the inserted geo area.
@@ -391,10 +388,6 @@ public class House {
      * @param devicePosition Device position in the list of devices.
      * @return String with the device name.
      */
-    public String getDeviceName(String type, int devicePosition) {
-        DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);
-        return listWithAllDevicesOfAType.getDeviceNameByPosition(devicePosition);
-    }
 
     /**
      * Method that sets the value of an attribute of a device of a certain type in the house.
