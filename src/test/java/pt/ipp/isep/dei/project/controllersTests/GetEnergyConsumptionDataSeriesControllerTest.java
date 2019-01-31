@@ -315,14 +315,21 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     @Test
     void testGetDeviceDataSeriesToString() {
         //Arrange
-        // Dimension Instantiation
-        double height = 3;
-        double length = 5;
-        double width = 6;
-        Dimension dim = new Dimension(height, length, width);
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
 
-        // Room Instantiation
-        Room room = new Room("Kitchen", 1, dim);
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geo);
+
+        house.addRoom(room);
 
         // Fridge Instantiation
         DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
@@ -362,14 +369,22 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         mapToTest.put(time3, 10.0);
         mapToTest.put(time4, 5.0);
 
+        String expectedResult = "Date/hour: 2019-01-24 00:00, Energy Consumption: 3.0 kWh\n" +
+                "Date/hour: 2019-01-24 08:00, Energy Consumption: 5.0 kWh\n" +
+                "Date/hour: 2019-01-24 16:00, Energy Consumption: 7.0 kWh\n" +
+                "Date/hour: 2019-01-25 10:00, Energy Consumption: 10.0 kWh\n" +
+                "Date/hour: 2019-01-25 12:00, Energy Consumption: 5.0 kWh\n";
 
-        Map<LocalDateTime, Double> expectedResult = mapToTest;
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+        ctrl.getRoomByPosition(0);
+        ctrl.getDeviceByPosition(0);
 
         LocalDateTime timeToTest0 = LocalDateTime.of(2019, 01, 23, 10, 00);
         LocalDateTime timeToTest1 = LocalDateTime.of(2019, 01, 25, 13, 00);
 
         //Act
-        Map<LocalDateTime, Double> result = device.getDataSeries(timeToTest0, timeToTest1);
+        String result = ctrl.getDeviceDataSeriesToString(timeToTest0, timeToTest1);
 
         //Assert
         assertEquals(expectedResult, result);
