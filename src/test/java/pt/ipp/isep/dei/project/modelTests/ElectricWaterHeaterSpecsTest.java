@@ -398,4 +398,21 @@ class ElectricWaterHeaterSpecsTest {
         // Assert
         assertEquals(expectedResult, result, 0.000001);
     }
+
+    @Test
+    public void testEmptyConstructor() {
+        // Arrange
+        double nominalPower = 100;
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs();
+
+        electricWaterHeaterSpecs.setNominalPower(nominalPower);
+
+        double expectedResult = 100;
+
+        // Act
+        double result = electricWaterHeaterSpecs.getNominalPower();
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
+    }
 }

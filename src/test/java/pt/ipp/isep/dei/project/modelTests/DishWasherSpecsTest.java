@@ -42,6 +42,26 @@ public class DishWasherSpecsTest {
     }
 
     @Test
+    public void testEmptyConstructor() {
+        //Arrange
+        int capacity = 20;
+        double nominalPower = 30;
+        ProgramList programList = new ProgramList();
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs();
+
+        dishWasherSpecs.setNominalPower(nominalPower);
+
+        double expectedResult = 30;
+
+        //Act
+        double result = dishWasherSpecs.getNominalPower();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    
+    @Test
     public void testSetCapacityFalse() {
         //Arrange
         int capacity = 20;
