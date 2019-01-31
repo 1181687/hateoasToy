@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -731,6 +733,74 @@ public class HouseGridTest {
         //Assert
         assertEquals(expectedResult, exception.getMessage());
 
+    }
+
+    @Test
+    public void testGetDataSeries() {
+
+        //Arrange
+        String gridName = "Grid 1";
+        HouseGrid grid1 = new HouseGrid(gridName);
+
+        Dimension dimension = new Dimension(25, 25, 25);
+        Room room1 = new Room("Room", 2, dimension);
+        Room room2 = new Room("Kitchen", 1, dimension);
+
+        grid1.attachRoom(room1);
+        grid1.attachRoom(room2);
+
+        DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
+        Device lamp = new Device("LampSpecs", room1, deviceSpecs);
+
+        DeviceSpecs specsFridge = new FridgeSpecs(12, 15, 25, 12);
+        Device fridge = new Device("FridgeSpecs", room2, specsFridge);
+
+        DeviceSpecs specsElectricWaterHeater = new ElectricWaterHeaterSpecs(45, 20, 12, 12);
+        Device electricWaterHeater = new Device("EWH200", room2, specsElectricWaterHeater);
+
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings0 = new Readings(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings1 = new Readings(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings2 = new Readings(7, time2);
+
+        lamp.addReadingsToTheList(readings0);
+        lamp.addReadingsToTheList(readings1);
+        lamp.addReadingsToTheList(readings2);
+
+        LocalDateTime time3 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings3 = new Readings(3, time3);
+        LocalDateTime time4 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings4 = new Readings(5, time4);
+        LocalDateTime time5 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings5 = new Readings(7, time5);
+
+        fridge.addReadingsToTheList(readings3);
+        fridge.addReadingsToTheList(readings4);
+        fridge.addReadingsToTheList(readings5);
+
+        LocalDateTime time6 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings6 = new Readings(3, time6);
+        LocalDateTime time7 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings7 = new Readings(5, time7);
+
+        electricWaterHeater.addReadingsToTheList(readings6);
+        electricWaterHeater.addReadingsToTheList(readings7);
+
+        LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
+        LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
+
+        Map<LocalDateTime, Double> expectedResult = new TreeMap<>();
+        expectedResult.put(time0,9.0);
+        expectedResult.put(time1,15.0);
+        expectedResult.put(time2,14.0);
+
+        //Act
+        Map<LocalDateTime, Double> result = grid1.getDataSeries(startTime,endTime);
+
+        //Assert
+        assertEquals(expectedResult,result);
     }
 
 }

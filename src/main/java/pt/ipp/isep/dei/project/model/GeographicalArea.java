@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class GeographicalArea {
     private String mGeoAreaName;
@@ -249,27 +250,17 @@ public class GeographicalArea {
         if (!sensorListWithTheRequiredType.getSensorList().isEmpty()) {
             SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
             Readings latestReading = null;
-            if (nearestSensors.getSensorList().size() > 1) {
-                for (Sensor sensor : nearestSensors.getSensorList()) {
-                    if (latestReading == null ||
+            for (Sensor sensor : nearestSensors.getSensorList()) {
+                if (!Objects.isNull(sensor.getLastMeasurement())) {
+                    if (Objects.isNull(latestReading) ||
                             sensor.getLastMeasurement().getDateTime().isAfter(latestReading.getDateTime())) {
                         latestReading = sensor.getLastMeasurement();
                         latestReadingValue = latestReading.getValue();
-                        if (latestReading == null || sensor.getLastMeasurement().getDateTime().isAfter(latestReading.getDateTime())) {
-                            latestReading = sensor.getLastMeasurement();
-                            latestReadingValue = latestReading.getValue();
-                        }
                     }
-                }
-            } else {
-                Sensor nearestSensor = nearestSensors.getSensorList().get(0);
-                if (nearestSensor.getLastMeasurement() != null) {
-                    latestReadingValue = nearestSensor.getLastMeasurement().getValue();
                 }
             }
         }
         return latestReadingValue;
-
     }
 
     /**
@@ -317,17 +308,22 @@ public class GeographicalArea {
      * @param day
      * @return
      */
-    public double getTotalDailyMeasurement(SensorType sensorType, LocalDate day) {
-        double totalDailyMeasurement = 0;
+
+    public double getTotalDailyMeasurement(SensorType sensorType, LocalDate day, Location location) {
+        double totalDailyMeasurement = Double.NaN;
         SensorList sensorListWithSameTypeDuringADay = getSensorListByTypeInADay(sensorType, day);
-        if (!sensorListWithSameTypeDuringADay.isEmpty()) {
-            for (Sensor sensor : sensorListWithSameTypeDuringADay.getSensorList()) {
-                if (totalDailyMeasurement < sensor.getTotalDailyMeasurements(day)) {
-                    totalDailyMeasurement = sensor.getTotalDailyMeasurements(day);
-                }
+        SensorList nearestSensors = sensorListWithSameTypeDuringADay.getNearestSensorsToLocation(location);
+        Readings latestReading = null;
+        if (!nearestSensors.isEmpty()) {
+            for (Sensor sensor : nearestSensors.getSensorList()) {
+                List<Readings> readingsList = sensor.getDailyMeasurement(day);
+                int lastReadingPosition = readingsList.size() - 1;
+                if (!(readingsList.isEmpty() && Objects.isNull(readingsList.get(lastReadingPosition))))
+                    if (Objects.isNull(latestReading) || readingsList.get(lastReadingPosition).getDateTime().isAfter(latestReading.getDateTime())) {
+                        latestReading = sensor.getLastMeasurement();
+                        totalDailyMeasurement = latestReading.getValue();
+                    }
             }
-        } else {
-            totalDailyMeasurement = Double.NaN;
         }
         return totalDailyMeasurement;
     }
