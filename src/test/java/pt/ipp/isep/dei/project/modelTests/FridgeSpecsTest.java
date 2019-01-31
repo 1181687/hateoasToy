@@ -26,6 +26,7 @@ public class FridgeSpecsTest {
         assertEquals(expectedResult, result);
     }
 
+
     @Test
     public void getEnergyConsumptionInADayTestWithValidValues() {
         // Arrange
@@ -54,6 +55,28 @@ public class FridgeSpecsTest {
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
         FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        double expectedResult = 100.0;
+
+        //Act
+        double result = fridgeSpecs.getNominalPower();
+
+        //Assert
+        assertEquals(expectedResult, result, 0.0001);
+
+    }
+
+    @Test
+    public void testEmptyConstructor() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        double freezerCapacity = 20.0;
+        double refrigeratorCapacity = 100.0;
+        double annualEnergyConsumption = 10000.0;
+        double nominalPower = 100.0;
+        FridgeSpecs fridgeSpecs = new FridgeSpecs();
+
+        fridgeSpecs.setNominalPower(nominalPower);
 
         double expectedResult = 100.0;
 

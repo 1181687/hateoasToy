@@ -316,11 +316,10 @@ public class RoomList {
     public String getAllDevicesToString() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
-        for (Room room : mRoomList) {
-            if (!room.getDeviceList().isEmpty()) {
-                content.append(numberInTheList + room.getDeviceListToString().substring(1));
-                numberInTheList++;
-            }
+        List<Device> deviceList = getAllDevicesList().getDeviceList();
+        for (Device device : deviceList) {
+            content.append(numberInTheList + " - " + device.getNameToString());
+            numberInTheList++;
         }
         return content.toString();
     }

@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.project.model;
 
-import pt.ipp.isep.dei.project.utils.Utils;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -381,32 +379,7 @@ public class Room implements Measurable {
         return this.mDeviceList.getActiveDeviceListToString();
     }
 
-    /**
-     * method that get de device type list content
-     *
-     * @return the content of the list by string
-     */
-    public String getDeviceTypeListToString() {
-        StringBuilder content = new StringBuilder();
-        int numberOfDeviceTypes = numberOfDeviceTypes();
-        for (int i = 1; i <= numberOfDeviceTypes; i++) {
-            String deviceType = Utils.readConfigFile("devicetype.name." + i);
-            content.append(i + "- ");
-            content.append(deviceType);
-            content.append("\n");
-        }
-        return content.toString();
-    }
 
-
-    /**
-     * method that get the number os existing Devices on the configuration file.
-     *
-     * @return the number os existing Devices
-     */
-    public int numberOfDeviceTypes() {
-        return Integer.parseInt(Utils.readConfigFile("devicetype.count"));
-    }
 
 
     /**
