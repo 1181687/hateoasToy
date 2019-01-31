@@ -45,7 +45,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
      */
     @Override
     public double getEnergyConsumptionInADay() {
-        return mEnergyConsumption;
+        return 0;
     }
 
     /**
