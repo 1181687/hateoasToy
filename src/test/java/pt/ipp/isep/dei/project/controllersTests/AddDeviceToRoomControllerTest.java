@@ -600,4 +600,25 @@ class AddDeviceToRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
+
+    @Test
+    public void testGetNumberOfDeviceTypes() {
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+        AddDeviceToRoomController ctrl = new AddDeviceToRoomController(house);
+
+        int expectedResult = 5;
+
+        int result = ctrl.getNumberOfDeviceTypes();
+
+        assertEquals(expectedResult, result);
+
+    }
+
 }

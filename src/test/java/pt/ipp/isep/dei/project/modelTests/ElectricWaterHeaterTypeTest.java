@@ -26,6 +26,5 @@ public class ElectricWaterHeaterTypeTest {
         Device result = electricWaterHeaterType.createDevice(name, room);
 
         assertEquals(expectedResult, result);
-
     }
 }

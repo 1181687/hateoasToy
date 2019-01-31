@@ -46,9 +46,7 @@ public class House {
             try {
                 DeviceType dt = (DeviceType) Class.forName(path).newInstance();
                 mDeviceTypeList.add(dt);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (InstantiationException | IllegalAccessException e) {
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
