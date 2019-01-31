@@ -84,4 +84,12 @@ public class GetEnergyConsumptionDataSeriesController {
     public int getDeviceListSize() {
         return mHouse.getDeviceSize();
     }
+
+    public boolean roomListIsEmpty() {
+        return mHouse.roomListIsEmpty();
+    }
+
+    public boolean deviceListIsEmpty() {
+        return mHouse.isDeviceListOfAllRoomsEmpty();
+    }
 }
