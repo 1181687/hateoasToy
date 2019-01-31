@@ -2153,9 +2153,85 @@ public class HouseTest {
         GeographicalArea result = house.getInsertedGeoArea();
 
         assertEquals(expectedResult, result);
-
-
     }
+
+    @Test
+    public void testCheckIfThereAreNoDevicesFalse() {
+        // Arrange
+
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geoOne = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geoOne);
+
+
+        //Room TWO
+        String name2 = "KitchenBasement";
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
+        Room room2 = new Room(name2, -1, dim2);
+
+        ProgramList pglist = new ProgramList();
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(100, 100, pglist);
+        ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
+        double freezerCapacity = 5.5;
+        double refrigeratorCapacity = 15.5;
+        double annualEnergyConsumption = 5000;
+        double nominalPower = 100.5;
+        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        Device dev4 = new Device("FridgeSiemens", room2, fridgeSpecs);
+        Device dev5 = new Device("DishWasherTeka", room2, dishWasherSpecs);
+        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
+
+        room2.addDevice(dev4);
+        room2.addDevice(dev5);
+        room2.addDevice(dev6);
+
+        roomList.addRoom(room);
+        roomList.addRoom(room2);
+
+        // Act
+        boolean result = house.isDeviceListOfAllRoomsEmpty();
+
+        // Assert
+        assertFalse(result);
+    }
+
+
+    @Test
+    public void testCheckIfThereAreNoDevicesOnRoomsTrue() {
+        // Arrange
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geoOne = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geoOne);
+
+
+        // Act
+        boolean result = house.isDeviceListOfAllRoomsEmpty();
+
+        // Assert
+        assertTrue(result);
+    }
+
 /*
     @Test
     public void testCreateDeviceTypes() {

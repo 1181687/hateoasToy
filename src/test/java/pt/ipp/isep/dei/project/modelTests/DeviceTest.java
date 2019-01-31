@@ -475,6 +475,7 @@ public class DeviceTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
+
     @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithTwoSolutions() {
         // Arrange
