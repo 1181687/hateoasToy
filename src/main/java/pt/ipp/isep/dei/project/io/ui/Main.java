@@ -276,9 +276,9 @@ public class Main {
 
         // Sensor 3
         Location locationOfAreaSensors = new Location(41.179230, -8.606409, 125);
-        SensorType sensorTypeRainfall = new SensorType("rainfall");
+        SensorType sensorTypeRainfall = new SensorType("Rainfall");
         LocalDateTime startingDate3 = LocalDate.of(2016, 11, 15).atStartOfDay();
-        Sensor sensor3 = new Sensor("Meteo station ISEP - rainfall", startingDate3, sensorTypeRainfall, locationOfAreaSensors);
+        Sensor sensor3 = new Sensor("Meteo station ISEP - Rainfall", startingDate3, sensorTypeRainfall, locationOfAreaSensors);
         sensor3.addReadingsToList(temp32);
         sensor3.addReadingsToList(temp33);
         sensor3.addReadingsToList(temp34);
