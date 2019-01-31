@@ -19,7 +19,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
      */
     public GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(House house) {
         this.mHouse = house;
-        this.mTypeRainfall = new SensorType("Rainfall");
+        this.mTypeRainfall = new SensorType("rainfall");
         this.mTypeTemperature = new SensorType("temperature");
     }
 
