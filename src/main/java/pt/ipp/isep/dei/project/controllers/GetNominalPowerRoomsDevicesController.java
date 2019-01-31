@@ -82,7 +82,7 @@ public class GetNominalPowerRoomsDevicesController {
     }
 
     /**
-     * method that returns the method isDeviceListEmpty of the model class House Grid
+     * method that returns the method isEmpty of the model class House Grid
      * @param position integer that matches the position of room in room list of house grid
      * @return true if device list of chosen room (position) is empty or false if it is not empty
      */

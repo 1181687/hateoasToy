@@ -38,7 +38,7 @@ public class DeleteDeviceFromRoom {
                 } else {
                     boolean flag1 = true;
                     while (flag1) {
-                        String label2 = "\n> Please select the device you want to delete. \n" + mController.getDevicesInTheRoom() + exit;
+                        String label2 = "\n> Please select the device you want to delete. \n" + mController.getDeviceListToString() + exit;
 
                         int deviceListLength = mController.getDeviceListSize();
                         int position1 = InputValidator.getIntRange(label2, 0, deviceListLength) - 1;
