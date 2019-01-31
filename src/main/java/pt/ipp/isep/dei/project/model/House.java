@@ -153,8 +153,8 @@ public class House {
      * @param day
      * @return total daily measurement.
      */
-    public double getTotalDailyMeasurement(SensorType measurementType, LocalDate day, Location location) {
-        return mInsertedGeoArea.getTotalDailyMeasurement(measurementType, day, location);
+    public double getTotalDailyMeasurement(SensorType measurementType, LocalDate day) {
+        return mInsertedGeoArea.getTotalDailyMeasurement(measurementType, day, this.mAddress.getLocation());
     }
 
     /**
