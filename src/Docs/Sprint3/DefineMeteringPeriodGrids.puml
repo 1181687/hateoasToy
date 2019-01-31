@@ -1,0 +1,44 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+actor Admin
+Admin -> Main : Run Main
+activate Main
+== Grid Metering Period Validation  ==
+Main -> Utils : readConfigFile(MeteringPeriodGrid)
+activate Utils
+Utils -> Utils : readConfigFile(MeteringPeriodGrid)
+Utils --> Main : meteringPeriod
+deactivate Utils
+Main -> Main : Validate meteringPeriod
+== Device Metering Period Validation  ==
+Main -> Utils : readConfigFile(MeteringPeriodDevice)
+activate Utils
+Utils -> Utils : readConfigFile(MeteringPeriodDevice)
+Utils --> Main : meteringPeriod
+deactivate Utils
+Main -> Main : Validate meteringPeriod
+
+Main -> ":House" : Create()
+activate ":House"
+== Normal Operation  ==
+
+
+
+@enduml
