@@ -110,7 +110,7 @@ public class DeviceListTest {
         deviceList.addDevice(dev1);
 
         // Act
-        boolean result = deviceList.isDeviceListEmpty();
+        boolean result = deviceList.isEmpty();
 
         // Assert
         assertFalse(result);
@@ -639,7 +639,7 @@ public class DeviceListTest {
         dev1.setDeactivateDevice();
 
         // act
-        boolean result = deviceList.deactivationDevice("Lamp1");
+        boolean result = deviceList.deactivateDevice("Lamp1");
 
         // assert
         assertTrue(result);
@@ -662,7 +662,7 @@ public class DeviceListTest {
         room.addDevice(dev1);
 
         // act
-        boolean result = deviceList.deactivationDevice("Lamp1");
+        boolean result = deviceList.deactivateDevice("Lamp1");
 
         // assert
         assertFalse(result);
@@ -685,7 +685,7 @@ public class DeviceListTest {
         room.addDevice(dev1);
 
         // act
-        boolean result = deviceList.deactivationDevice("Lamp2");
+        boolean result = deviceList.deactivateDevice("Lamp2");
 
         // assert
         assertFalse(result);
@@ -714,7 +714,7 @@ public class DeviceListTest {
         room.addDevice(dev2);
 
         // act
-        boolean result = deviceList.deactivationDevice("Lamp2");
+        boolean result = deviceList.deactivateDevice("Lamp2");
 
         // assert
         assertFalse(result);
