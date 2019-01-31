@@ -218,4 +218,20 @@ public class DishWasherSpecsTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void testgetEnergyConsumptionInADay() {
+        int capacity = 20;
+        double nominalPower = 30;
+        ProgramList programList = new ProgramList();
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(capacity, nominalPower, programList);
+        double expectedResult = 0;
+
+        //Act
+        double result = dishWasherSpecs.getEnergyConsumptionInADay();
+
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
 }
