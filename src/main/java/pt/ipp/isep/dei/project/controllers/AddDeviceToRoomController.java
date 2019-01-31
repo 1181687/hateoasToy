@@ -65,7 +65,7 @@ public class AddDeviceToRoomController {
     /**
      * @return
      */
-    public int getnumberOfDeviceTypes() {
+    public int getNumberOfDeviceTypes() {
         return mHouse.numberOfDeviceTypes();
     }
 
@@ -76,14 +76,6 @@ public class AddDeviceToRoomController {
      */
     public String getDeviceTypeListToString() {
         return mHouse.getDeviceTypeListToString();
-    }
-
-    public void setDeviceType(int position) {
-        mDeviceType = mHouse.getDeviceTypeFromList(position);
-    }
-
-    public void createDevice(String name, Room location) {
-        mDevice = mDeviceType.createDevice(name, location);
     }
 
 
@@ -98,7 +90,9 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewFridge(String name, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
-        return mDevice = mRoom.newFridge(name, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
+        mDevice = mRoom.newFridge(name, annualEnergyConsumption, nominalPower, freezerCapacity, refrigeratorCapacity);
+
+        return mDevice;
     }
 
     /**
@@ -110,7 +104,8 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewLamp(String name, double nominalPower, double luminousFlux) {
-        return mDevice = mRoom.newLamp(name, nominalPower, luminousFlux);
+        mDevice = mRoom.newLamp(name, nominalPower, luminousFlux);
+        return mDevice;
     }
 
 
@@ -123,7 +118,8 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewDishWasher(String name, double nominalPower, int capacity) {
-        return mDevice = mRoom.newDishWasher(name, nominalPower, capacity, mProgramList);
+        mDevice = mRoom.newDishWasher(name, nominalPower, capacity, mProgramList);
+        return mDevice;
     }
 
 
@@ -136,7 +132,8 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewWashingMachine(String name, double nominalPower, double capacity) {
-        return mDevice = mRoom.newWashingMachine(name, nominalPower, capacity, mProgramList);
+        mDevice = mRoom.newWashingMachine(name, nominalPower, capacity, mProgramList);
+        return mDevice;
     }
 
 
@@ -150,7 +147,8 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewElectricWaterHeater(String name, double mHotWaterTemperature, double mMaximumVolume, double mNominalPower, double mPerformanceRatio) {
-        return mDevice = mRoom.newElectricWaterHeater(name, mHotWaterTemperature, mMaximumVolume, mNominalPower, mPerformanceRatio);
+        mDevice = mRoom.newElectricWaterHeater(name, mHotWaterTemperature, mMaximumVolume, mNominalPower, mPerformanceRatio);
+        return mDevice;
     }
 
     /**
