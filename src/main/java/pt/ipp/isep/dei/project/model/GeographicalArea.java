@@ -62,7 +62,6 @@ public class GeographicalArea {
         }
         GeographicalArea ag = (GeographicalArea) obj;
         return this.mGeoAreaName.equals(ag.mGeoAreaName) && this.mGeographicalAreaType.equals(ag.mGeographicalAreaType) && this.mLocation.equals(ag.mLocation);
-
     }
 
     /**
