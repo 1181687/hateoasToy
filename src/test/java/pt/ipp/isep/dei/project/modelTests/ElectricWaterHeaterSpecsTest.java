@@ -29,6 +29,28 @@ class ElectricWaterHeaterSpecsTest {
     }
 
     @Test
+    public void getEnergyConsumptionInADayTestCoiso() {
+        // Arrange
+        // ElectricWaterHeaterSpecs Instantiation
+        double hotWaterTemp = 50;
+        double maximumVolume = 150;
+        double performanceRatio = 0.9;
+        double nominalPower = 100;
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+
+        electricWaterHeaterSpecs.setColdWaterTemperature(50);
+        electricWaterHeaterSpecs.setVolumeOfWaterToHeat(100);
+
+        double expectedResult = 5.23;
+
+        // Act
+        double result = electricWaterHeaterSpecs.getEnergyConsumptionInADay();
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
     public void getEnergyConsumptionInADayTest2() {
         // Arrange
         // ElectricWaterHeaterSpecs Instantiation
