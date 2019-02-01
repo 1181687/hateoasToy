@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GetEnergyConsumptionDataSeriesControllerTest {
 
@@ -731,4 +731,180 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void checkIfHouseGridListIsEmptyWithPositiveTest() {
+        // Arrange
+        HouseGridList gridList = new HouseGridList();
+        RoomList roomList = new RoomList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, gridList, address, geo);
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+
+        // Act
+        boolean result = ctrl.houseGridListIsEmpty();
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkIfHouseGridListIsEmptyWithNegativeTest() {
+        // Arrange
+        HouseGridList gridList = new HouseGridList();
+        RoomList roomList = new RoomList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, gridList, address, geo);
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+        String gridName = "Grid";
+        HouseGrid grid = new HouseGrid(gridName);
+        house.addGrid(grid);
+        // Act
+        boolean result = ctrl.houseGridListIsEmpty();
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void checkIfRoomListIsEmptyTrue() {
+        //arrange
+        RoomList rList = new RoomList();
+
+
+        HouseGridList gridList = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(rList, gridList, address, geo);
+
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+
+        //act
+        boolean result = ctrl.roomListIsEmpty();
+        //assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkIfRoomListIsEmptyFalse() {
+        //arrange
+        RoomList rList = new RoomList();
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
+
+        rList.addRoom(room1);
+
+        HouseGridList gridList = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(rList, gridList, address, geo);
+
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+
+        //act
+        boolean result = ctrl.roomListIsEmpty();
+        //assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testCheckIfThereAreNoDevicesFalse() {
+        // Arrange
+
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geoOne = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geoOne);
+
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+
+        //Room TWO
+        String name2 = "KitchenBasement";
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
+        Room room2 = new Room(name2, -1, dim2);
+
+        ProgramList pglist = new ProgramList();
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(100, 100, pglist);
+        ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
+        double freezerCapacity = 5.5;
+        double refrigeratorCapacity = 15.5;
+        double annualEnergyConsumption = 5000;
+        double nominalPower = 100.5;
+        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        Device dev4 = new Device("FridgeSiemens", room2, fridgeSpecs);
+        Device dev5 = new Device("DishWasherTeka", room2, dishWasherSpecs);
+        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
+
+        room2.addDevice(dev4);
+        room2.addDevice(dev5);
+        room2.addDevice(dev6);
+
+        roomList.addRoom(room);
+        roomList.addRoom(room2);
+
+        // Act
+        boolean result = ctrl.deviceListIsEmpty();
+
+        // Assert
+        assertFalse(result);
+    }
+
+
+    @Test
+    public void testCheckIfThereAreNoDevicesOnRoomsTrue() {
+        // Arrange
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geoOne = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geoOne);
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+        // Act
+        boolean result = ctrl.deviceListIsEmpty();
+
+        // Assert
+        assertTrue(result);
+    }
+
 }
