@@ -528,6 +528,55 @@ public class DeviceListTest {
     }
 
     @Test
+    public void deleteDeviceFalseList() {
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux1, nominalPower1);
+        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
+
+        room.addDevice(dev1);
+        room.addDevice(dev2);
+
+        // act
+        boolean result = deviceList.deleteDevice("Lamp3");
+
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void deactivationDeleteFalse_DeviceNotExistant() {
+
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+
+        // act
+        boolean result = deviceList.deleteDevice("Lamp2");
+
+        // assert
+        assertFalse(result);
+    }
+
+
+    @Test
     public void deactivationDeleteFalse_DeviceNotFoundByName() {
 
         // Arrange

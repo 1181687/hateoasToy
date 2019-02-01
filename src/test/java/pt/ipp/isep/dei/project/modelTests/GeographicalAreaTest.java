@@ -58,6 +58,22 @@ class GeographicalAreaTest {
     }
 
     @Test
+    public void testarEqualsFalseLocalizacao() {
+        //arrange
+        String nomeAG = "Porto";
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
+        Location local = new Location(41.1496, -8.6109, 97);
+        Location local2 = new Location(41.15, -8.62, 97);
+        AreaShape area = new AreaShape(10, 10, local);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo1, local, area);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo1, local2, area);
+        //act
+        boolean result = ag1.equals(ag2);
+        //assert
+        assertFalse(result);
+    }
+
+    @Test
     public void testarEqualsObjetosDiferentes() {
         //arrange
         String nomeAG = "Porto";

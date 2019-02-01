@@ -9,7 +9,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class DeviceList {
-    private static final String SAME_NAME = "Name already exists. Please write a new one.";
     private List<Device> mDeviceList;
 
     public DeviceList() {
