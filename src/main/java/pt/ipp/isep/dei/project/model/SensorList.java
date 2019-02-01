@@ -223,7 +223,7 @@ public class SensorList {
     }
 
     /**
-     * Method that receives a list of sensors and
+     * Method that receives a list of sensors and returns the sensor with the most recent reading.
      *
      * @param sensorList
      * @return
@@ -231,10 +231,8 @@ public class SensorList {
     public Sensor getSensorWithMostRecentReading(SensorList sensorList) {
         Sensor sensorWithMostRecentReading = sensorList.getSensorList().get(0);
         for (Sensor sensor : sensorList.getSensorList()) {
-            if (!(sensor.isMeasurementListEmpty())) {
-                if (sensor.getLastMeasurement().getDateTime().toLocalDate().isAfter(sensorWithMostRecentReading.getLastMeasurement().getDateTime().toLocalDate())) {
-                    sensorWithMostRecentReading = sensor;
-                }
+            if (!(sensor.isMeasurementListEmpty()) && sensor.getLastMeasurement().getDateTime().toLocalDate().isAfter(sensorWithMostRecentReading.getLastMeasurement().getDateTime().toLocalDate())) {
+                sensorWithMostRecentReading = sensor;
             }
         }
         return sensorWithMostRecentReading;
