@@ -2233,8 +2233,8 @@ public class HouseTest {
     }
 
 
-    /*@Test
-    public void testCreateDeviceTypes() {
+    @Test
+    public void testNewConstructor() {
         //arrange
         //initiate House
         int meteringPeriodGrid = 15;
@@ -2248,29 +2248,17 @@ public class HouseTest {
         deviceTypeList.add("ElectricWaterHeater");
 
         House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
-        house.createDeviceTypes(deviceTypeList);
 
-        DeviceType fridge = new FridgeType();
-        DeviceType lamp = new LampType();
-        DeviceType dishWasher = new DishWasherType();
-        DeviceType washingMachine = new WashingMachineType();
-        DeviceType electricWaterHeater = new ElectricWaterHeaterType();
+        int expectedResult = 15;
 
-        List<DeviceType> expectedResult = new ArrayList<>();
-
-        expectedResult.add(fridge);
-        expectedResult.add(lamp);
-        expectedResult.add(dishWasher);
-        expectedResult.add(washingMachine);
-        expectedResult.add(electricWaterHeater);
 
         //Act
-        List<DeviceType> result = house.getDeviceTypeList();
+        int result = house.getmMeteringPeriodGrid();
 
         //Assert
         assertEquals(expectedResult, result);
 
-    }*/
+    }
 
 
 }
