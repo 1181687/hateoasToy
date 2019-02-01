@@ -12,7 +12,6 @@ public class House {
     private HouseGridList mListHouseGrids;
     private Address mAddress;
     private GeographicalArea mInsertedGeoArea;
-    //private List<DeviceType> mDeviceTypeList;
     private List<String> mDeviceTypeList;
     private int mMeteringPeriodGrid;
     private int mMeteringPeriodDevice;
@@ -35,27 +34,9 @@ public class House {
         this.mRoomList = new RoomList();
         this.mListHouseGrids = new HouseGridList();
         this.mDeviceTypeList = deviceTypeList;
-        //this.mDeviceTypeList = new ArrayList<>();
-        //createDeviceTypes(deviceTypeList);
         this.mMeteringPeriodGrid = meteringPeriodGrid;
         this.mMeteringPeriodDevice = meteringPeriodDevice;
     }
-
-    /*public void createDeviceTypes(List<String> deviceTypeList) {
-        for (String className : deviceTypeList) {
-            String path = "pt.ipp.isep.dei.project.model." + className + "Type";
-            try {
-                DeviceType dt = (DeviceType) Class.forName(path).newInstance();
-                mDeviceTypeList.add(dt);
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public List<DeviceType> getDeviceTypeList() {
-        return mDeviceTypeList;
-    }*/
 
     public int getmMeteringPeriodGrid() {
         return mMeteringPeriodGrid;
