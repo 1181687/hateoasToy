@@ -18,40 +18,40 @@ skinparam sequence {
 }
 
 actor PowerUser
-PowerUser -> ":UI": 1- GetEnergyConsumptionOfHouseGrid
-activate ":UI"
-":UI" -> ":Controller": 1.1- getHouseGridListToString()
-activate ":Controller"
-":Controller" -> ":House": 1.1.1- getHouseGridListToString()
+PowerUser -> ":GetEnergyConsumption\nHouseGridUI": 1- GetEnergyConsumptionOfHouseGrid
+activate ":GetEnergyConsumption\nHouseGridUI"
+":GetEnergyConsumption\nHouseGridUI" -> ":GetEnergyConsumption\nHouseGridController": 1.1- getHouseGridListToString()
+activate ":GetEnergyConsumption\nHouseGridController"
+":GetEnergyConsumption\nHouseGridController" -> ":House": 1.1.1- getHouseGridListToString()
 activate ":House"
-":Controller" <-- ":House": 1.1.2- houseGridList
+":GetEnergyConsumption\nHouseGridController" <-- ":House": 1.1.2- houseGridList
 deactivate ":House"
-":UI" <-- ":Controller": 1.2- houseGridList
-deactivate ":Controller"
-PowerUser <-- ":UI": 1.3- houseGridList
+":GetEnergyConsumption\nHouseGridUI" <-- ":GetEnergyConsumption\nHouseGridController": 1.2- houseGridList
+deactivate ":GetEnergyConsumption\nHouseGridController"
+PowerUser <-- ":GetEnergyConsumption\nHouseGridUI": 1.3- houseGridList
 
-PowerUser -> ":UI": 2- Int House Grid Position
-":UI" -> ":Controller": 2.1- getHouseGridByPosition(position)
-activate ":Controller"
-":Controller" -> ":House": 2.2- getHouseGridByPosition (position)
+PowerUser -> ":GetEnergyConsumption\nHouseGridUI": 2- Int House Grid Position
+":GetEnergyConsumption\nHouseGridUI" -> ":GetEnergyConsumption\nHouseGridController": 2.1- getHouseGridByPosition(position)
+activate ":GetEnergyConsumption\nHouseGridController"
+":GetEnergyConsumption\nHouseGridController" -> ":House": 2.2- getHouseGridByPosition (position)
 activate ":House"
-":Controller" <-- ":House": 2.3- choosenHouseGrid
-deactivate ":Controller"
+":GetEnergyConsumption\nHouseGridController" <-- ":House": 2.3- choosenHouseGrid
+deactivate ":GetEnergyConsumption\nHouseGridController"
 deactivate ":House"
 
-PowerUser <- ":UI": 3- Ask for Start Date and End Date
+PowerUser <- ":GetEnergyConsumption\nHouseGridUI": 3- Ask for Start Date and End Date
 
-PowerUser -> ":UI": 3.1- Insert Start Date (LocalDateTime)
-PowerUser -> ":UI": 3.2- Insert End Date (LocalDateTime)
-":UI" -> ":Controller": 3.2.1- GetEnergyConsumption(startDate, endDate)
-activate ":Controller"
-":Controller" -> ":HouseGrid": 3.2.1.1- GetEnergyConsumption(startDate, endDate)
+PowerUser -> ":GetEnergyConsumption\nHouseGridUI": 3.1- Insert Start Date (LocalDateTime)
+PowerUser -> ":GetEnergyConsumption\nHouseGridUI": 3.2- Insert End Date (LocalDateTime)
+":GetEnergyConsumption\nHouseGridUI" -> ":GetEnergyConsumption\nHouseGridController": 3.2.1- GetEnergyConsumption(startDate, endDate)
+activate ":GetEnergyConsumption\nHouseGridController"
+":GetEnergyConsumption\nHouseGridController" -> ":HouseGrid": 3.2.1.1- GetEnergyConsumption(startDate, endDate)
 activate ":HouseGrid"
-":Controller" <-- ":HouseGrid": 3.2.1.2- Energy Consumption
+":GetEnergyConsumption\nHouseGridController" <-- ":HouseGrid": 3.2.1.2- Energy Consumption
 deactivate ":HouseGrid"
-":UI" <-- ":Controller": 3.2.2- energyConsumption
-deactivate ":Controller"
-PowerUser <-- ":UI": 3.3- energyConsumption
-deactivate ":UI"
+":GetEnergyConsumption\nHouseGridUI" <-- ":GetEnergyConsumption\nHouseGridController": 3.2.2- energyConsumption
+deactivate ":GetEnergyConsumption\nHouseGridController"
+PowerUser <-- ":GetEnergyConsumption\nHouseGridUI": 3.3- energyConsumption
+deactivate ":GetEnergyConsumption\nHouseGridUI"
 
 @enduml
