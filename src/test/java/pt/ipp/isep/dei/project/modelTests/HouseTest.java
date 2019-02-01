@@ -2232,8 +2232,8 @@ public class HouseTest {
         assertTrue(result);
     }
 
-/*
-    @Test
+
+    /*@Test
     public void testCreateDeviceTypes() {
         //arrange
         //initiate House
@@ -2248,7 +2248,7 @@ public class HouseTest {
         deviceTypeList.add("ElectricWaterHeater");
 
         House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
-        //house.createDeviceTypes(deviceTypeList);
+        house.createDeviceTypes(deviceTypeList);
 
         DeviceType fridge = new FridgeType();
         DeviceType lamp = new LampType();
