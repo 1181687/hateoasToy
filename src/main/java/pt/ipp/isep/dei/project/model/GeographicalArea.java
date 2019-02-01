@@ -61,8 +61,7 @@ public class GeographicalArea {
             return false;
         }
         GeographicalArea ag = (GeographicalArea) obj;
-        return this.mGeoAreaName.equals(ag.mGeoAreaName) && this.mGeographicalAreaType.equals(ag.mGeographicalAreaType) && this.mLocation.equals(ag.mLocation) && this.mAreaShape.equals(ag.mAreaShape);
-
+        return this.mGeoAreaName.equals(ag.mGeoAreaName) && this.mGeographicalAreaType.equals(ag.mGeographicalAreaType) && this.mLocation.equals(ag.mLocation);
     }
 
     /**
@@ -251,30 +250,28 @@ public class GeographicalArea {
             SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
             Readings latestReading = null;
             for (Sensor sensor : nearestSensors.getSensorList()) {
-                if (!Objects.isNull(sensor.getLastMeasurement())) {
-                    if (Objects.isNull(latestReading) ||
-                            sensor.getLastMeasurement().getDateTime().isAfter(latestReading.getDateTime())) {
-                        latestReading = sensor.getLastMeasurement();
-                        latestReadingValue = latestReading.getValue();
-                    }
+                if ((!Objects.isNull(sensor.getLastMeasurement())) && (Objects.isNull(latestReading) ||
+                        sensor.getLastMeasurement().getDateTime().isAfter(latestReading.getDateTime()))) {
+                    latestReading = sensor.getLastMeasurement();
+                    latestReadingValue = latestReading.getValue();
                 }
+
             }
         }
         return latestReadingValue;
     }
 
+
     /**
-     * Method that returns de daily average of the measurements of a list of sensors
+     * Method that returns de daily average of the measurements of a sensor.
      *
      * @param date
      * @return
      */
-    public double getDailyAverageOfAListOfSensors(SensorList sensorlist, LocalDate date) {
+    public double getDailyAverageOfASensor(Sensor sensor, LocalDate date) {
         double dailyAverage = Double.NaN;
-        for (Sensor sensor : sensorlist.getSensorList()) {
-            if (!(sensor.getDailyMeasurement(date).isEmpty())) {
-                dailyAverage = sensor.getDailyAverage(date);
-            }
+        if (!(sensor.getDailyMeasurement(date).isEmpty())) {
+            dailyAverage = sensor.getDailyAverage(date);
         }
         return dailyAverage;
     }
@@ -287,14 +284,18 @@ public class GeographicalArea {
      * @param endDate
      * @return
      */
-    public List<Double> getDailyAverageMeasurement(SensorType sensorType, LocalDate startDate, LocalDate endDate) {
+    public List<Double> getDailyAverageMeasurement(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
         List<Double> listOfDailyAverages = new ArrayList<>();
-        SensorList sensorListWithRightTypeDuringPeriod = getSensorListByTypeInAPeriod(sensorType, startDate, endDate);
+        SensorList nearestSensorsWithRightTypeDuringPeriod = getSensorListByTypeInAPeriod(sensorType, startDate, endDate).getNearestSensorsToLocation(location);
+        if (nearestSensorsWithRightTypeDuringPeriod.isEmpty()) {
+            return listOfDailyAverages;
+        }
+        Sensor nearestSensor = nearestSensorsWithRightTypeDuringPeriod.getSensorWithMostRecentReading(nearestSensorsWithRightTypeDuringPeriod);
 
         for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate); dateIterator = dateIterator.plusDays(1)) {
-            double dailyAverage = getDailyAverageOfAListOfSensors(sensorListWithRightTypeDuringPeriod, dateIterator);
+            double dailyAverage = getDailyAverageOfASensor(nearestSensor, dateIterator);
             if (!Double.isNaN(dailyAverage)) {
-                listOfDailyAverages.add(getDailyAverageOfAListOfSensors(sensorListWithRightTypeDuringPeriod, dateIterator));
+                listOfDailyAverages.add(getDailyAverageOfASensor(nearestSensor, dateIterator));
             }
         }
         return listOfDailyAverages;
@@ -318,11 +319,11 @@ public class GeographicalArea {
             for (Sensor sensor : nearestSensors.getSensorList()) {
                 List<Readings> readingsList = sensor.getDailyMeasurement(day);
                 int lastReadingPosition = readingsList.size() - 1;
-                if (!(readingsList.isEmpty() && Objects.isNull(readingsList.get(lastReadingPosition))))
-                    if (Objects.isNull(latestReading) || readingsList.get(lastReadingPosition).getDateTime().isAfter(latestReading.getDateTime())) {
-                        latestReading = sensor.getLastMeasurement();
-                        totalDailyMeasurement = latestReading.getValue();
-                    }
+                if (!(readingsList.isEmpty() && Objects.isNull(readingsList.get(lastReadingPosition))) &&
+                        (Objects.isNull(latestReading) || readingsList.get(lastReadingPosition).getDateTime().isAfter(latestReading.getDateTime()))) {
+                    latestReading = sensor.getLastMeasurement();
+                    totalDailyMeasurement = latestReading.getValue();
+                }
             }
         }
         return totalDailyMeasurement;

@@ -228,16 +228,14 @@ public class InputValidator {
             }
         } while (flag);
 
-        LocalDate validDate = LocalDate.parse(str);
-
-        return validDate;
+        return LocalDate.parse(str);
     }
 
     /**
-     * TODO
+     * Method that keeps displaying the string label, till the input of the date and hour is correct.
      *
      * @param label
-     * @return
+     * @return the valid date and hour converted from a String to LocalDateTime.
      */
 
     public static LocalDateTime getStringDateTime(String label) {

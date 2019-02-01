@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.project.controllers.CreateHouseGridController;
 import pt.ipp.isep.dei.project.model.HouseGrid;
 import pt.ipp.isep.dei.project.model.HouseGridList;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CreateHouseGridControllerTest {
@@ -23,5 +24,22 @@ class CreateHouseGridControllerTest {
 
         // Assert
         assertTrue(result);
+    }
+
+    @Test
+    public void testCreateANewHouseGrid() {
+        // Arrange
+        HouseGridList gridList = new HouseGridList();
+        CreateHouseGridController ctrl = new CreateHouseGridController(gridList);
+        String gridName = "Grid";
+        HouseGrid grid = ctrl.createANewHouseGrid(gridName);
+        ctrl.addHouseGridToTheListOfHouseGrids(grid);
+        HouseGrid expectedResult = grid;
+
+        // Act
+        HouseGrid result = ctrl.getHouseGridList().getHouseGridByPosition(0);
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 }

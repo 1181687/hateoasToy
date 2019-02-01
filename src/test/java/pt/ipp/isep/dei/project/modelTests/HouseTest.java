@@ -316,7 +316,7 @@ public class HouseTest {
         LocalDate startDate = LocalDate.of(2018, 12, 1);
         LocalDate endDate = LocalDate.of(2018, 12, 6);
 
-        double expectedResult = 24.375;
+        double expectedResult = 22.25;
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
@@ -1547,7 +1547,7 @@ public class HouseTest {
 
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
-        gridList.addHouseGrid(grid);
+        house.addGrid(grid);
         // Act
         boolean result = house.isHouseGridListEmpty();
 
@@ -1905,8 +1905,14 @@ public class HouseTest {
         // Device Instantiation
         Device device0 = new Device("Fridgeratah V14", room0, fridge);
         room0.addDevice(device0);
-        Device device1 = new Device("Bosch Tronic 3000", room1, electricWaterHeater);
-        room1.addDevice(device1);
+        Device device1 = new Device("Fridgeratah V15", room0, fridge);
+        room0.addDevice(device1);
+        Device device2 = new Device("Fridgeratah V16", room0, fridge);
+        room0.addDevice(device2);
+        Device device3 = new Device("Bosh Tronic 3000", room1, electricWaterHeater);
+        room1.addDevice(device3);
+        Device device4 = new Device("Bosh Tronic 4000", room1, electricWaterHeater);
+        room1.addDevice(device4);
 
         // RoomList Instantiation
         RoomList roomList = new RoomList();
@@ -1917,7 +1923,11 @@ public class HouseTest {
         House house = new House(roomList, null, null, null);
 
         String expectedResult =
-                "1 - Name of the device: Fridgeratah V14\n" + "2 - Name of the device: Bosch Tronic 3000\n";
+                "1 - Device: Fridgeratah V14, located in room: Kitchen\n" +
+                        "2 - Device: Fridgeratah V15, located in room: Kitchen\n" +
+                        "3 - Device: Fridgeratah V16, located in room: Kitchen\n" +
+                        "4 - Device: Bosh Tronic 3000, located in room: Laundry\n" +
+                        "5 - Device: Bosh Tronic 4000, located in room: Laundry\n";
 
         // Act
         String result = house.getAllDevicesToString();
@@ -2117,6 +2127,150 @@ public class HouseTest {
         //assert
         assertEquals(expectResult, result);
     }
+
+    @Test
+    public void testSetInsertedGeoArea() {
+        //arrange
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geoOne = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geoOne);
+        GeographicalArea geo = new GeographicalArea("Lisboa", GAType, location, areaShape);
+
+        house.setInsertedGeoArea(geo);
+
+        GeographicalArea expectedResult = geo;
+
+        GeographicalArea result = house.getInsertedGeoArea();
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testCheckIfThereAreNoDevicesFalse() {
+        // Arrange
+
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geoOne = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geoOne);
+
+
+        //Room TWO
+        String name2 = "KitchenBasement";
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
+        Room room2 = new Room(name2, -1, dim2);
+
+        ProgramList pglist = new ProgramList();
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(100, 100, pglist);
+        ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
+        double freezerCapacity = 5.5;
+        double refrigeratorCapacity = 15.5;
+        double annualEnergyConsumption = 5000;
+        double nominalPower = 100.5;
+        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        Device dev4 = new Device("FridgeSiemens", room2, fridgeSpecs);
+        Device dev5 = new Device("DishWasherTeka", room2, dishWasherSpecs);
+        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
+
+        room2.addDevice(dev4);
+        room2.addDevice(dev5);
+        room2.addDevice(dev6);
+
+        roomList.addRoom(room);
+        roomList.addRoom(room2);
+
+        // Act
+        boolean result = house.isDeviceListOfAllRoomsEmpty();
+
+        // Assert
+        assertFalse(result);
+    }
+
+
+    @Test
+    public void testCheckIfThereAreNoDevicesOnRoomsTrue() {
+        // Arrange
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geoOne = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geoOne);
+
+
+        // Act
+        boolean result = house.isDeviceListOfAllRoomsEmpty();
+
+        // Assert
+        assertTrue(result);
+    }
+
+
+    /*@Test
+    public void testCreateDeviceTypes() {
+        //arrange
+        //initiate House
+        int meteringPeriodGrid = 15;
+        int meteringPeriodDevice = 15;
+
+        List<String> deviceTypeList = new ArrayList<>();
+        deviceTypeList.add("Fridge");
+        deviceTypeList.add("Lamp");
+        deviceTypeList.add("DishWasher");
+        deviceTypeList.add("WashingMachine");
+        deviceTypeList.add("ElectricWaterHeater");
+
+        House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        house.createDeviceTypes(deviceTypeList);
+
+        DeviceType fridge = new FridgeType();
+        DeviceType lamp = new LampType();
+        DeviceType dishWasher = new DishWasherType();
+        DeviceType washingMachine = new WashingMachineType();
+        DeviceType electricWaterHeater = new ElectricWaterHeaterType();
+
+        List<DeviceType> expectedResult = new ArrayList<>();
+
+        expectedResult.add(fridge);
+        expectedResult.add(lamp);
+        expectedResult.add(dishWasher);
+        expectedResult.add(washingMachine);
+        expectedResult.add(electricWaterHeater);
+
+        //Act
+        List<DeviceType> result = house.getDeviceTypeList();
+
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }*/
 
 
 }

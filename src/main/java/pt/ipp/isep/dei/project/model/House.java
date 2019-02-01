@@ -46,11 +46,7 @@ public class House {
             try {
                 DeviceType dt = (DeviceType) Class.forName(path).newInstance();
                 mDeviceTypeList.add(dt);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
         }
@@ -60,9 +56,6 @@ public class House {
         return mDeviceTypeList;
     }
 
-    public DeviceType getDeviceTypeFromList(int position) {
-        return mDeviceTypeList.get(position);
-    }
 
     /**
      * Set method for the inserted geo area.
@@ -162,7 +155,7 @@ public class House {
      * @return the average daily measurement.
      */
     public double getAverageDailyMeasurement(SensorType measurementType, LocalDate startDate, LocalDate endDate) {
-        List<Double> listOfDailyAverages = mInsertedGeoArea.getDailyAverageMeasurement(measurementType, startDate, endDate);
+        List<Double> listOfDailyAverages = mInsertedGeoArea.getDailyAverageMeasurement(measurementType, mAddress.getLocation(), startDate, endDate);
         double sum = 0;
         if (listOfDailyAverages.isEmpty()) {
             return 0;
@@ -395,10 +388,6 @@ public class House {
      * @param devicePosition Device position in the list of devices.
      * @return String with the device name.
      */
-    public String getDeviceName(String type, int devicePosition) {
-        DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);
-        return listWithAllDevicesOfAType.getDeviceNameByPosition(devicePosition);
-    }
 
     /**
      * Method that sets the value of an attribute of a device of a certain type in the house.
@@ -521,5 +510,9 @@ public class House {
 
     public int getDeviceSize() {
         return getAllDevices().getSize();
+    }
+
+    public boolean isDeviceListOfAllRoomsEmpty(){
+        return this.mRoomList.isDeviceListOfAllRoomsEmpty();
     }
 }

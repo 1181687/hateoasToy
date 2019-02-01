@@ -43,6 +43,25 @@ class WashingMachineSpecsTest {
     }
 
     @Test
+    public void testEmptyConstructor() {
+        //Arrange
+        int capacity = 20;
+        double nominalPower = 30;
+        ProgramList programList = new ProgramList();
+        WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs();
+
+        washingMachineSpecs.setNominalPower(nominalPower);
+
+        double expectedResult = 30;
+
+        //Act
+        double result = washingMachineSpecs.getNominalPower();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void testSetCapacityFalse() {
         //Arrange
         int capacity = 20;
@@ -198,5 +217,20 @@ class WashingMachineSpecsTest {
         int result = washingMachineSpecs.getNumberOfAttributes();
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+
+    @Test
+    public void testGetEnergyConsumptionInADay() {
+        //Arrange
+        int capacity = 20;
+        double nominalPower = 30;
+        ProgramList programList = new ProgramList();
+        WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
+        double expectedResult = 0;
+        double result = washingMachineSpecs.getEnergyConsumptionInADay();
+
+        assertEquals(result, expectedResult);
+
     }
 }

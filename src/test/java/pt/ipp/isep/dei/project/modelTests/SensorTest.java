@@ -717,6 +717,78 @@ class SensorTest {
     }
 
     @Test
+    public void testGetLowestValueOfDay() {
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperatura");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
+
+        //Registo 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
+        Readings readings1 = new Readings(-2, data1);
+
+        //Registo 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 10, 2, 23, 59, 59);
+        Readings readings2 = new Readings(-3, data2);
+
+        //Registo 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 10, 2, 17, 20, 00);
+        Readings readings3 = new Readings(-4, data3);
+
+        //Adição das medições
+        sensor1.addReadingsToList(readings1);
+        sensor1.addReadingsToList(readings2);
+        sensor1.addReadingsToList(readings3);
+
+        LocalDate searchDate = LocalDate.of(2018, 10, 2);
+
+        double expectedResult = -4;
+
+        //Act
+        double result = sensor1.getLowestMeasurementOfDay(searchDate);
+        //assert
+        assertEquals(expectedResult, result, 0.001);
+
+    }
+
+    @Test
+    public void testGetLowestValueOfDayBoundaries() {
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperatura");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
+
+        //Registo 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
+        Readings readings1 = new Readings(0, data1);
+
+        //Registo 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 10, 2, 23, 59, 59);
+        Readings readings2 = new Readings(1, data2);
+
+        //Registo 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 10, 2, 17, 20, 00);
+        Readings readings3 = new Readings(2, data3);
+
+        //Adição das medições
+        sensor1.addReadingsToList(readings1);
+        sensor1.addReadingsToList(readings2);
+        sensor1.addReadingsToList(readings3);
+
+        LocalDate searchDate = LocalDate.of(2018, 10, 2);
+
+        double expectedResult = 0;
+
+        //Act
+        double result = sensor1.getLowestMeasurementOfDay(searchDate);
+        //assert
+        assertEquals(expectedResult, result, 0.001);
+
+    }
+
+    @Test
     public void testarGetValorMinimoDoDiaComListaVazia() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
@@ -1122,6 +1194,42 @@ class SensorTest {
 
 
         double expectedResult = 40;
+
+        //Act
+        double result = sensor1.getMaximumValueOfDay(searchDate);
+        //assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void testMaximumValueOfDay() {
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperatura");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", data, sensorType, locS1);
+
+        //Registo 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
+        Readings readings1 = new Readings(29, data1);
+
+        //Registo 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 10, 2, 23, 59, 59);
+        Readings readings2 = new Readings(30, data2);
+
+        //Registo 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 10, 2, 17, 20, 00);
+        Readings readings3 = new Readings(31, data3);
+
+        //Adição das medições
+        sensor1.addReadingsToList(readings1);
+        sensor1.addReadingsToList(readings2);
+        sensor1.addReadingsToList(readings3);
+
+        LocalDate searchDate = LocalDate.of(2018, 10, 2);
+
+
+        double expectedResult = 31;
 
         //Act
         double result = sensor1.getMaximumValueOfDay(searchDate);

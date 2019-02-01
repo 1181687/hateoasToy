@@ -464,6 +464,75 @@ class AddDeviceToRoomControllerTest {
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
+    @Test
+    public void newDishWasher() {
+        // arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
+        house.addRoom(room);
+
+
+        controller.getRoom(0);
+        controller.getDeviceList();
+        Device device = controller.createNewDishWasher("DW1", 12, 50);
+
+        Device expectedResult = device;
+        //Act
+        Device result = controller.getDevice(0);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void newDishWasherNegative() throws RuntimeException {
+
+        // arrange
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        AddDeviceToRoomController controller = new AddDeviceToRoomController(house);
+        house.addRoom(room);
+
+        double nominalPower0 = 15;
+        int capacity = 52;
+
+
+        controller.getRoom(0);
+        controller.getDeviceList();
+        controller.createNewDishWasher("EWH1", nominalPower0, capacity);
+
+
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                controller.createNewDishWasher("EWH1", nominalPower0, capacity)
+        );
+
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+
 
     @Test
     public void testGetDeviceListContentOfARoomTest() {
@@ -598,6 +667,27 @@ class AddDeviceToRoomControllerTest {
         boolean result = controller.addProgramToList(program2);
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+
+    @Test
+    public void testGetNumberOfDeviceTypes() {
+        RoomList rList = new RoomList();
+        HouseGridList gridlist = new HouseGridList();
+        Location local = new Location(10, 10, 10);
+        Address adr = new Address("5000", local);
+        AreaShape areaShape = new AreaShape(20, 20, local);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
+        House house = new House(rList, gridlist, adr, insertedGeoArea);
+        AddDeviceToRoomController ctrl = new AddDeviceToRoomController(house);
+
+        int expectedResult = 5;
+
+        int result = ctrl.getNumberOfDeviceTypes();
+
+        assertEquals(expectedResult, result);
+
     }
 
 }

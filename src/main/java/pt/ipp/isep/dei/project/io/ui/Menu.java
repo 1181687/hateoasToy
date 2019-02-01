@@ -151,9 +151,11 @@ public class Menu {
         content.append("\n");
         content.append("5-Get list of devices in a house grid");
         content.append("\n");
+        content.append("6-Get the energy consumption of a house grid in a given period.");
+        content.append("\n");
         content.append(RETURN_MENU);
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 5);
+        return InputValidator.getIntRange(label, 0, 6);
     }
 
     public static int regularUserPowerConsuptionManagement() {
@@ -177,7 +179,6 @@ public class Menu {
         content.append("2-Energy consumption management.");
         content.append("\n");
         content.append(RETURN_MENU);
-        content.append("\n");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 2);
     }
@@ -195,7 +196,6 @@ public class Menu {
         content.append("4-Deactivate a device from a room");
         content.append("\n");
         content.append(RETURN_MENU);
-        content.append("\n");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 4);
     }
@@ -217,7 +217,6 @@ public class Menu {
         content.append("6-Get data series of the energy consumption of a device/room/grid in a given period.");
         content.append("\n");
         content.append(RETURN_MENU);
-        content.append("\n");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 6);
     }
@@ -229,7 +228,6 @@ public class Menu {
         content.append("1-Check nominal power of a room.");
         content.append("\n");
         content.append(RETURN_MENU);
-        content.append("\n");
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 1);
     }

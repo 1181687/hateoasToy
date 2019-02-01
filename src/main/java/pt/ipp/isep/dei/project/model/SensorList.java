@@ -17,6 +17,7 @@ public class SensorList {
 
     /**
      * Get method of the sensor list.
+     *
      * @return mSensorList.
      */
     public List<Sensor> getSensorList() {
@@ -25,6 +26,7 @@ public class SensorList {
 
     /**
      * Set method.
+     *
      * @param sensorList List of sensors to be used.
      */
     public void setSensorList(List<Sensor> sensorList) {
@@ -163,7 +165,7 @@ public class SensorList {
     /**
      * method that get the length of the sensors list.
      */
-    public int getLength () {
+    public int getLength() {
         return getSensorList().size();
     }
 
@@ -220,4 +222,19 @@ public class SensorList {
         return this.mSensorList.equals(listOne.mSensorList);
     }
 
+    /**
+     * Method that receives a list of sensors and returns the sensor with the most recent reading.
+     *
+     * @param sensorList
+     * @return
+     */
+    public Sensor getSensorWithMostRecentReading(SensorList sensorList) {
+        Sensor sensorWithMostRecentReading = sensorList.getSensorList().get(0);
+        for (Sensor sensor : sensorList.getSensorList()) {
+            if (!(sensor.isMeasurementListEmpty()) && sensor.getLastMeasurement().getDateTime().toLocalDate().isAfter(sensorWithMostRecentReading.getLastMeasurement().getDateTime().toLocalDate())) {
+                sensorWithMostRecentReading = sensor;
+            }
+        }
+        return sensorWithMostRecentReading;
+    }
 }

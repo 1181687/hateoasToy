@@ -36,4 +36,22 @@ public class ProgramListTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void testAddProgramReturnFalse() {
+        //Arrange
+        ProgramList programList = new ProgramList();
+        String programName = "fast";
+        double duration = 15;
+        double energyConsumption = 1;
+        Program programA = new Program(programName, duration, energyConsumption);
+        Program programB = new Program(programName, duration, energyConsumption);
+        programList.addProgram(programA);
+        boolean expectedResult = false;
+
+        //Act
+        boolean result = programList.addProgram(programB);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 }

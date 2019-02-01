@@ -6,17 +6,15 @@ public class Admin {
     private GeographicalAreaTypeList geographicalAreaTypeList;
     private GeographicalAreaList geographicalAreaList;
     private SensorTypeList sensorTypeList;
-    private DeviceList deviceList;
     private House house;
     private PowerSourceTypeList powerSourceTypeList;
     private RoomList roomList;
     private HouseGridList gridList;
 
-    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, DeviceList deviceList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseGridList gridList) {
+    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseGridList gridList) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
         this.geographicalAreaList = geographicalAreaList;
         this.sensorTypeList = sensorTypeList;
-        this.deviceList = deviceList;
         this.house = house;
         this.powerSourceTypeList = powerSourceTypeList;
         this.roomList = roomList;
@@ -156,6 +154,10 @@ public class Admin {
                 case 5:
                     GetDevicesInHouseGrid ui160 = new GetDevicesInHouseGrid(house);
                     ui160.run();
+                    break;
+                case 6:
+                    GetEnergyConsumptionOfAGrid ui722 = new GetEnergyConsumptionOfAGrid(house);
+                    ui722.run();
                     break;
             }
             option = Menu.houseGridMenu();

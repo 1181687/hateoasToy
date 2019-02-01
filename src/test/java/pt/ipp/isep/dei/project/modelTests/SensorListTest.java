@@ -859,4 +859,53 @@ class SensorListTest {
         //Assert
         assertFalse(result);
     }
+
+    @Test
+    public void testGetSensorWithMostRecentReading() {
+        //arrange
+        SensorList sensorList = new SensorList();
+
+        //Instanciar Sensor
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Rainfall");
+        Location locS0 = new Location(42.1496, -8.6109, 97);
+        Sensor s0 = new Sensor("Sensor0", dataFuncionamento0, sensorType0, locS0);
+        sensorList.addSensor(s0);
+
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Rainfall");
+        Location locS1 = new Location(42.1496, -8.6109, 97);
+        Sensor s1 = new Sensor("Sensor1", dataFuncionamento1, sensorType1, locS1);
+        sensorList.addSensor(s1);
+
+        // Sensor0
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
+
+        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(30, dataHoraDaMedicao02);
+
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
+
+        //Sensor1
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 5, 17, 24, 00);
+
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
+        Readings readings13 = new Readings(20, dataHoraDaMedicao12);
+
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
+        s1.addReadingsToList(readings13);
+
+        Sensor expectedResult = s1;
+
+        Sensor result = sensorList.getSensorWithMostRecentReading(sensorList);
+
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
 }

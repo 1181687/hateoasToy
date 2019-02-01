@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionDataSeriesController;
 import pt.ipp.isep.dei.project.model.*;
@@ -8,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GetEnergyConsumptionDataSeriesControllerTest {
 
@@ -111,7 +112,8 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         House house = new House(roomList, null, null, null);
 
         String expectedResult =
-                "1 - Name of the device: Fridgeratah V14\n" + "2 - Name of the device: Bosch Tronic 3000\n";
+                "1 - Device: Fridgeratah V14, located in room: Kitchen\n" +
+                        "2 - Device: Bosch Tronic 3000, located in room: Laundry\n";
 
         GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
 
@@ -389,8 +391,83 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
     @Test
-    public void testGetRoomDataSeriesToStringWithValidValues(){
+    void testGetDeviceDataSeriesToStringNoValidNumbers() {
+        //Arrange
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geo);
+
+        house.addRoom(room);
+
+        // Fridge Instantiation
+        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
+
+        // Device Instantiation
+        Device device = new Device("Fridgeratah V14", room, fridge);
+
+        room.addDevice(device);
+
+        // Readings Instantiation
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings0 = new Readings(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings1 = new Readings(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings2 = new Readings(7, time2);
+        LocalDateTime time3 = LocalDateTime.of(2019, 01, 25, 10, 00, 00);
+        Readings readings3 = new Readings(10, time3);
+        LocalDateTime time4 = LocalDateTime.of(2019, 01, 25, 12, 00, 00);
+        Readings readings4 = new Readings(5, time4);
+        LocalDateTime time5 = LocalDateTime.of(2019, 01, 25, 16, 00, 00);
+        Readings readings5 = new Readings(15, time5);
+
+        // List<Readings Configuration
+        device.addReadingsToTheList(readings0);
+        device.addReadingsToTheList(readings1);
+        device.addReadingsToTheList(readings2);
+        device.addReadingsToTheList(readings3);
+        device.addReadingsToTheList(readings4);
+        device.addReadingsToTheList(readings5);
+
+        Map<LocalDateTime, Double> mapToTest = new TreeMap<>();
+
+        mapToTest.put(time0, 3.0);
+        mapToTest.put(time1, 5.0);
+        mapToTest.put(time2, 7.0);
+        mapToTest.put(time3, 10.0);
+        mapToTest.put(time4, 5.0);
+
+        String expectedResult = "No valid values found for that period.\n";
+
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+        ctrl.getRoomByPosition(0);
+        ctrl.getDeviceByPosition(0);
+
+        LocalDateTime timeToTest0 = LocalDateTime.of(2019, 01, 26, 10, 00);
+        LocalDateTime timeToTest1 = LocalDateTime.of(2019, 01, 30, 13, 00);
+
+        //Act
+        String result = ctrl.getDeviceDataSeriesToString(timeToTest0, timeToTest1);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetRoomDataSeriesToStringWithValidValues() {
         //Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -444,18 +521,18 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         int position = 0;
         ctrl.getRoomByPosition(position);
         String expectedResult = "Date/hour: 2019-01-24 00:00, Energy Consumption: 6.0 kWh\n" +
-                                "Date/hour: 2019-01-24 08:00, Energy Consumption: 10.0 kWh\n" +
-                                "Date/hour: 2019-01-24 16:00, Energy Consumption: 14.0 kWh\n";
+                "Date/hour: 2019-01-24 08:00, Energy Consumption: 10.0 kWh\n" +
+                "Date/hour: 2019-01-24 16:00, Energy Consumption: 14.0 kWh\n";
 
         //Act
-        String result = ctrl.getRoomDataSeriesToString(startTime,endTime);
+        String result = ctrl.getRoomDataSeriesToString(startTime, endTime);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testGetRoomDataSeriesToStringWithNoValidValues(){
+    public void testGetRoomDataSeriesToStringWithNoValidValues() {
         //Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -511,14 +588,14 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         String expectedResult = "No valid values found for that period.\n";
 
         //Act
-        String result = ctrl.getRoomDataSeriesToString(startTime,endTime);
+        String result = ctrl.getRoomDataSeriesToString(startTime, endTime);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testGetHouseGridDataSeriesToStringWithValidValues(){
+    public void testGetHouseGridDataSeriesToStringWithValidValues() {
         //Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -577,18 +654,18 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         int position = 0;
         ctrl.getHouseGridByPosition(position);
         String expectedResult = "Date/hour: 2019-01-24 00:00, Energy Consumption: 6.0 kWh\n" +
-                                "Date/hour: 2019-01-24 08:00, Energy Consumption: 10.0 kWh\n" +
-                                "Date/hour: 2019-01-24 16:00, Energy Consumption: 14.0 kWh\n";
+                "Date/hour: 2019-01-24 08:00, Energy Consumption: 10.0 kWh\n" +
+                "Date/hour: 2019-01-24 16:00, Energy Consumption: 14.0 kWh\n";
 
         //Act
-        String result = ctrl.getHouseGridDataSeriesToString(startTime,endTime);
+        String result = ctrl.getHouseGridDataSeriesToString(startTime, endTime);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testGetHouseGridDataSeriesToStringWithNoValidValues(){
+    public void testGetHouseGridDataSeriesToStringWithNoValidValues() {
         //Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -649,9 +726,185 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         String expectedResult = "No valid values found for that period.\n";
 
         //Act
-        String result = ctrl.getHouseGridDataSeriesToString(startTime,endTime);
+        String result = ctrl.getHouseGridDataSeriesToString(startTime, endTime);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void checkIfHouseGridListIsEmptyWithPositiveTest() {
+        // Arrange
+        HouseGridList gridList = new HouseGridList();
+        RoomList roomList = new RoomList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, gridList, address, geo);
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+
+        // Act
+        boolean result = ctrl.houseGridListIsEmpty();
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkIfHouseGridListIsEmptyWithNegativeTest() {
+        // Arrange
+        HouseGridList gridList = new HouseGridList();
+        RoomList roomList = new RoomList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, gridList, address, geo);
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+        String gridName = "Grid";
+        HouseGrid grid = new HouseGrid(gridName);
+        house.addGrid(grid);
+        // Act
+        boolean result = ctrl.houseGridListIsEmpty();
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void checkIfRoomListIsEmptyTrue() {
+        //arrange
+        RoomList rList = new RoomList();
+
+
+        HouseGridList gridList = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(rList, gridList, address, geo);
+
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+
+        //act
+        boolean result = ctrl.roomListIsEmpty();
+        //assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkIfRoomListIsEmptyFalse() {
+        //arrange
+        RoomList rList = new RoomList();
+
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
+
+        rList.addRoom(room1);
+
+        HouseGridList gridList = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(rList, gridList, address, geo);
+
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+
+        //act
+        boolean result = ctrl.roomListIsEmpty();
+        //assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testCheckIfThereAreNoDevicesFalse() {
+        // Arrange
+
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geoOne = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geoOne);
+
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+
+        //Room TWO
+        String name2 = "KitchenBasement";
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
+        Room room2 = new Room(name2, -1, dim2);
+
+        ProgramList pglist = new ProgramList();
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(100, 100, pglist);
+        ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
+        double freezerCapacity = 5.5;
+        double refrigeratorCapacity = 15.5;
+        double annualEnergyConsumption = 5000;
+        double nominalPower = 100.5;
+        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+
+        Device dev4 = new Device("FridgeSiemens", room2, fridgeSpecs);
+        Device dev5 = new Device("DishWasherTeka", room2, dishWasherSpecs);
+        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
+
+        room2.addDevice(dev4);
+        room2.addDevice(dev5);
+        room2.addDevice(dev6);
+
+        roomList.addRoom(room);
+        roomList.addRoom(room2);
+
+        // Act
+        boolean result = ctrl.deviceListIsEmpty();
+
+        // Assert
+        assertFalse(result);
+    }
+
+
+    @Test
+    public void testCheckIfThereAreNoDevicesOnRoomsTrue() {
+        // Arrange
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+        RoomList roomList = new RoomList();
+
+        //initiate House
+        HouseGridList listHG = new HouseGridList();
+        Location location = new Location(2, 3, 4);
+        Address address = new Address("4500", location);
+        GeographicalAreaType GAType = new GeographicalAreaType("City");
+        AreaShape areaShape = new AreaShape(2, 2, location);
+        GeographicalArea geoOne = new GeographicalArea("Porto", GAType, location, areaShape);
+        House house = new House(roomList, listHG, address, geoOne);
+        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+
+        // Act
+        boolean result = ctrl.deviceListIsEmpty();
+
+        // Assert
+        assertTrue(result);
+    }
+
 }
