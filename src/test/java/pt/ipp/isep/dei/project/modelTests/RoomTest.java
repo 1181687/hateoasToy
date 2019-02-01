@@ -653,7 +653,25 @@ public class RoomTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
+    @Test
+    public void getTotalEnergyConsumptionInAnIntervalTestWithOneFullPeriodDeviceListEmpty() {
+        // Arrange
 
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Kitchen", 1, dim);
+
+        double expectedResult = 0.0;
+
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+
+        // Act
+        double result = room.getEnergyConsumptionInAnInterval(startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
+    }
 
     @Test
     public void newElectricWaterHeater() {
@@ -668,10 +686,7 @@ public class RoomTest {
         String name = "Electric";
         Device expectedResult = room.newElectricWaterHeater(name, hotWaterTemp0, maximumVolume0, nominalPower0, performanceRatio);
 
-
         Device result = room.getDeviceByPosition(0);
-
-
 
         assertEquals(expectedResult, result);
 

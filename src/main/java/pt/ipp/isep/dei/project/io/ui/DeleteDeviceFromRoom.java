@@ -57,6 +57,7 @@ public class DeleteDeviceFromRoom {
                                 System.out.println("\n The device has been deleted. \n");
                             }
                         } else {
+                            System.out.println("The device was not deleted.");
                             continue;
                         }
                         flag1 = false;

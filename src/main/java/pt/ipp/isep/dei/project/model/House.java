@@ -4,7 +4,6 @@ package pt.ipp.isep.dei.project.model;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,7 +12,8 @@ public class House {
     private HouseGridList mListHouseGrids;
     private Address mAddress;
     private GeographicalArea mInsertedGeoArea;
-    private List<DeviceType> mDeviceTypeList;
+    //private List<DeviceType> mDeviceTypeList;
+    private List<String> mDeviceTypeList;
     private int mMeteringPeriodGrid;
     private int mMeteringPeriodDevice;
 
@@ -34,13 +34,14 @@ public class House {
     public House(List<String> deviceTypeList, int meteringPeriodGrid, int meteringPeriodDevice) {
         this.mRoomList = new RoomList();
         this.mListHouseGrids = new HouseGridList();
-        this.mDeviceTypeList = new ArrayList<>();
-        createDeviceTypes(deviceTypeList);
+        this.mDeviceTypeList = deviceTypeList;
+        //this.mDeviceTypeList = new ArrayList<>();
+        //createDeviceTypes(deviceTypeList);
         this.mMeteringPeriodGrid = meteringPeriodGrid;
         this.mMeteringPeriodDevice = meteringPeriodDevice;
     }
 
-    public void createDeviceTypes(List<String> deviceTypeList) {
+    /*public void createDeviceTypes(List<String> deviceTypeList) {
         for (String className : deviceTypeList) {
             String path = "pt.ipp.isep.dei.project.model." + className + "Type";
             try {
@@ -54,8 +55,11 @@ public class House {
 
     public List<DeviceType> getDeviceTypeList() {
         return mDeviceTypeList;
-    }
+    }*/
 
+    public int getmMeteringPeriodGrid() {
+        return mMeteringPeriodGrid;
+    }
 
     /**
      * Set method for the inserted geo area.
