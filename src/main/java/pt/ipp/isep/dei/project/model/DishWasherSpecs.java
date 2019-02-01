@@ -6,7 +6,6 @@ public class DishWasherSpecs implements DeviceSpecs {
     private String mTypeName;
     private int mCapacity;
     private double mDuration;
-    private double mEnergyConsumptionProgram1;
     private double mNominalPower;
     private ProgramList mProgramList;
 
