@@ -13,25 +13,6 @@ public class GetEnergyConsumptionDataSeries {
         this.mCtrl = new GetEnergyConsumptionDataSeriesController(house);
     }
 
-    private String menu() {
-        StringBuilder firstMenu = new StringBuilder();
-        firstMenu.append("1 - House Grid\n");
-        firstMenu.append("2 - Room\n");
-        firstMenu.append("3 - Device\n");
-        firstMenu.append("0 - Exit");
-        return firstMenu.toString();
-    }
-
-    private LocalDateTime getInitialDate() {
-        String label3 = "Please insert the initial date/hour of the period you want to consider for the calculations in the following format: yyyy-MM-dd HH:mm. ";
-        return InputValidator.getStringDateTime(label3);
-    }
-
-    private LocalDateTime getFinalDate() {
-        String label4 = "Please insert the final date/hour of the period you want to consider for the calculations in the following format: yyyy-MM-dd HH:mm. ";
-        return InputValidator.getStringDateTime(label4);
-    }
-
     private String getDataSeriesGrid() {
         if (mCtrl.houseGridListIsEmpty()){
             return ("Sorry! There are no house grids.");
@@ -45,8 +26,8 @@ public class GetEnergyConsumptionDataSeries {
                         "+\ncalculate its energy consumption. Please choose another house grid.\\n\");");
                 continue;
             }
-            LocalDateTime initialDate = getInitialDate();
-            LocalDateTime finalDate = getFinalDate();
+            LocalDateTime initialDate = Menu.getInitialDate();
+            LocalDateTime finalDate = Menu.getFinalDate();
             return mCtrl.getHouseGridDataSeriesToString(initialDate, finalDate);
         }
     }
@@ -63,8 +44,8 @@ public class GetEnergyConsumptionDataSeries {
             chosenRoom = InputValidator.getIntRange(label2, 1, mCtrl.getRoomListSize())-1;
             mCtrl.getRoomByPosition(chosenRoom);
         }
-        LocalDateTime initialDate = getInitialDate();
-        LocalDateTime finalDate = getFinalDate();
+        LocalDateTime initialDate = Menu.getInitialDate();
+        LocalDateTime finalDate = Menu.getFinalDate();
         return mCtrl.getRoomDataSeriesToString(initialDate, finalDate);
     }
 
@@ -75,15 +56,15 @@ public class GetEnergyConsumptionDataSeries {
         String label2 = "Please choose a device:\n" + mCtrl.getDeviceListToString();
         int chosenDevice = InputValidator.getIntRange(label2, 1, mCtrl.getDeviceListSize()) - 1;
         mCtrl.getDeviceByPosition(chosenDevice);
-        LocalDateTime initialDate = getInitialDate();
-        LocalDateTime finalDate = getFinalDate();
+        LocalDateTime initialDate = Menu.getInitialDate();
+        LocalDateTime finalDate = Menu.getFinalDate();
         return mCtrl.getDeviceDataSeriesToString(initialDate, finalDate);
     }
 
 
     public void run() {
         String label1 = "Would you like to get the data series of energy consumption of a House Grid, a Room or a Device? " +
-                "Please select the number that matches your choice:\n" + menu();
+                "Please select the number that matches your choice:\n" + Menu.menuDataSeries();
         int chosenOption = InputValidator.getIntRange(label1, 0, 3);
         if (chosenOption == 0) {
             return;

@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
+import java.time.LocalDateTime;
+
 public class Menu {
 
     private static final String CHOOSE_OPTIONS = "Choose one of the options:";
@@ -230,5 +232,24 @@ public class Menu {
         content.append(RETURN_MENU);
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 1);
+    }
+
+    public static String menuDataSeries() {
+        StringBuilder firstMenu = new StringBuilder();
+        firstMenu.append("1 - House Grid\n");
+        firstMenu.append("2 - Room\n");
+        firstMenu.append("3 - Device\n");
+        firstMenu.append("0 - Exit");
+        return firstMenu.toString();
+    }
+
+    public static LocalDateTime getInitialDate() {
+        String label3 = "Please insert the initial date/hour of the period you want to consider for the calculations in the following format: yyyy-MM-dd HH:mm. ";
+        return InputValidator.getStringDateTime(label3);
+    }
+
+    public static LocalDateTime getFinalDate() {
+        String label4 = "Please insert the final date/hour of the period you want to consider for the calculations in the following format: yyyy-MM-dd HH:mm. ";
+        return InputValidator.getStringDateTime(label4);
     }
 }
