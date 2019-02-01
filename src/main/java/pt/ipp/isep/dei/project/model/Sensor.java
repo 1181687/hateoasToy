@@ -181,7 +181,7 @@ public class Sensor {
      * @param date a date
      * @return
      */
-    public double getBiggestMeasurement(LocalDate date) {
+    public double getBiggestMeasurementOfMonth(LocalDate date) {
         LocalDate firstDayOfMonth = date.withDayOfMonth(1);
         LocalDate lastDayOfMonth = date.withDayOfMonth(date.lengthOfMonth());
 
@@ -195,28 +195,6 @@ public class Sensor {
         for (Double measurement : measurementsBetweenDates) {
             if (measurement > biggestMeasurement) {
                 biggestMeasurement = measurement;
-            }
-        }
-        return biggestMeasurement;
-    }
-
-    /**
-     * Method that goes through the list of measurements between two dates and gets the biggest measure
-     *
-     * @param date a date
-     * @return biggest measurement of a month
-     */
-    public double getBiggestMeasurementOfMonth(LocalDate date) {
-        LocalDate firstDayOfMonth = date.withDayOfMonth(1);
-        LocalDate lastDayOfMonth = date.withDayOfMonth(date.lengthOfMonth());
-
-        List<Double> measurementsBetweenDates = getMeasurementValueBetweenDates(firstDayOfMonth, lastDayOfMonth);
-
-        double biggestMeasurement = getBiggestMeasurement(date);
-
-        for (int i = 0; i < measurementsBetweenDates.size(); i++) {
-            if (biggestMeasurement < measurementsBetweenDates.get(i)) {
-                biggestMeasurement = measurementsBetweenDates.get(i);
             }
         }
         return biggestMeasurement;

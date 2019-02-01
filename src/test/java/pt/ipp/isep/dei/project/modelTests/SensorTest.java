@@ -431,8 +431,6 @@ class SensorTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-
-
     @Test
     void testaGetMaiorRegistoMes() {
         //Arrange
@@ -452,6 +450,39 @@ class SensorTest {
         Readings registo4 = new Readings(27, data4);
 
         double expectedResult = 27;
+        LocalDate dataDoMes = LocalDate.of(2018, 2, 5);
+
+        sensor1.addReadingsToList(registo1);
+        sensor1.addReadingsToList(registo2);
+        sensor1.addReadingsToList(registo3);
+        sensor1.addReadingsToList(registo4);
+
+        //Act
+        double result = sensor1.getBiggestMeasurementOfMonth(dataDoMes);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    void testaGetMaiorRegistoMes2() {
+        //Arrange
+        LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperatura");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
+
+        LocalDateTime data1 = LocalDateTime.of(2018, 4, 11, 5, 55);
+        LocalDateTime data2 = LocalDateTime.of(2018, 2, 1, 6, 25);
+        LocalDateTime data3 = LocalDateTime.of(2018, 2, 11, 7, 30);
+        LocalDateTime data4 = LocalDateTime.of(2018, 2, 12, 15, 20);
+
+        Readings registo1 = new Readings(26, data1);
+        Readings registo2 = new Readings(25, data2);
+        Readings registo3 = new Readings(28, data3);
+        Readings registo4 = new Readings(27, data4);
+
+        double expectedResult = 28;
         LocalDate dataDoMes = LocalDate.of(2018, 2, 5);
 
         sensor1.addReadingsToList(registo1);
@@ -1806,7 +1837,7 @@ class SensorTest {
         double expectedResult = 15;
 
         //Act
-        double result = sensor1.getBiggestMeasurement(data1.toLocalDate());
+        double result = sensor1.getBiggestMeasurementOfMonth(data1.toLocalDate());
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1824,7 +1855,7 @@ class SensorTest {
         double expectedResult = Double.NaN;
 
         //Act
-        double result = sensor1.getBiggestMeasurement(data.toLocalDate());
+        double result = sensor1.getBiggestMeasurementOfMonth(data.toLocalDate());
 
         //Assert
         assertEquals(expectedResult, result);
