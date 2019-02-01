@@ -20,27 +20,30 @@ skinparam sequence {
 actor User
 User -> ":UI": 1- DeleteDeviceFromRoom
 activate ":UI"
-activate ":Controller"
 ":UI" -> ":Controller": 1.1- getRoomListContent()
+activate ":Controller"
 ":Controller" -> ":House": 1.1.1- getRoomListContent()
 activate ":House"
 
 ":Controller" <-- ":House": 1.1.2- roomListContent
 deactivate ":House"
 ":UI" <-- ":Controller": 1.2- roomListContent
+deactivate ":Controller"
 User <-- ":UI": 1.3- roomListContent
 
 User -> ":UI": 2- Int position: Room
 ":UI" -> ":Controller": 2.1- getRoomName(position)
+activate ":Controller"
 ":Controller" -> ":House": 2.1.1- getRoomName(position)
 activate ":House"
 ":Controller" <-- ":House": 2.1.2- roomName
 deactivate ":House"
 ":UI" <-- ":Controller": 2.2- roomName
-
+deactivate ":Controller"
 
 
 ":UI" -> ":Controller": 2.3- getDeviceListContent(Room)
+activate ":Controller"
 ":Controller" -> ":House": 2.3.1- getDeviceListContent(Room)
 activate ":House"
 ":House" -> ":RoomList": 2.3.1.1- getDeviceListContent(Room)
@@ -54,10 +57,12 @@ deactivate ":RoomList"
 ":Controller" <-- ":House": 2.3.2- deviceListContent
 deactivate ":House"
 ":UI" <-- ":Controller": 2.4- deviceListContent
+deactivate ":Controller"
 User <-- ":UI": 2.5- deviceListContent
 
 User -> ":UI": 3- Int position
 ":UI" -> ":Controller": 3.1- getDevice(position)
+activate ":Controller"
 ":Controller" -> ":Room": 3.1.1- getDevice(position)
 activate ":Room"
 ":Room" -> ":DeviceList": 3.1.1.1- getDevice(position)
@@ -67,10 +72,11 @@ deactivate ":DeviceList"
 ":Controller" <-- ":Room": 3.1.2- device
 deactivate ":Room"
 ":UI" <-- ":Controller": 3.2- device
-
+deactivate ":Controller"
 
 User --> User: 4- ConfirmDeletionDevice
 ":UI" --> ":Controller": 4.1- deletionDevice()
+activate ":Controller"
 ":Controller" --> ":Room": 4.1.1- deletionDevice()
 activate ":Room"
 ":Room" --> ":DeviceList": 4.1.1.1- deletionDevice()
