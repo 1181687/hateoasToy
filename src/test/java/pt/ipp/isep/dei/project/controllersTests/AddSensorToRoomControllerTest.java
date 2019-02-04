@@ -1,12 +1,44 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddSensorToRoomController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AddSensorToRoomControllerTest {
+    private AddSensorToRoomController controller;
+    private GeographicalArea CampusDoIsep;
+    private House houseEdificioB;
+
+    @BeforeEach
+    public void StartUp() {
+
+        //Geographical Area
+
+        //Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        this.CampusDoIsep = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+
+        //House
+
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
+        this.houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Location houseLocation = new Location(41.177748, -8.607745, 112);
+
+        Address address = new Address("4200-072", houseLocation);
+        houseEdificioB.setAddress(address);
+        houseEdificioB.setInsertedGeoArea(CampusDoIsep);
+
+    }
 
     @Test
     void testDisplayRoomsInTheHouse() {
@@ -30,18 +62,8 @@ class AddSensorToRoomControllerTest {
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();
 
-        // House
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10,10,10);
-        Address adr = new Address("5000", local);
 
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(roomList, gridlist, adr, insertedGeoArea);
-
-
-        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
+        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, houseEdificioB);
 
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
                 "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
@@ -67,21 +89,12 @@ class AddSensorToRoomControllerTest {
         // Type of sensor
         SensorType sensorType = new SensorType("Temperatura");
 
-        // House
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10,10,10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(roomList, gridlist, adr, insertedGeoArea);
-
 
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();
         listSensorsType.addSensorType(sensorType);
 
-        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
+        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, houseEdificioB);
 
         String expectedResult = "1 - Sensor Type: Temperatura\n";
 
@@ -109,20 +122,11 @@ class AddSensorToRoomControllerTest {
         RoomList roomList = new RoomList();
         roomList.addRoom(room1);
 
-        // House
-        HouseGridList houseGridList = new HouseGridList();
-        Location location = new Location(10,10,10);
-        Address address = new Address("5000", location);
-        AreaShape areaShape = new AreaShape(20, 20, location);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, location, areaShape);
-        House house = new House(roomList, houseGridList, address, insertedGeoArea);
-
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();
         listSensorsType.addSensorType(sensorType);
 
-        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
+        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, houseEdificioB);
 
         addSensorToRoomController.getRoomByIndex(0);
         addSensorToRoomController.getSensorTypeByIndex(0);
@@ -140,19 +144,10 @@ class AddSensorToRoomControllerTest {
         // Arrange
         RoomList roomList = new RoomList();
 
-        // House
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10,10,10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(roomList, gridlist, adr, insertedGeoArea);
-
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();
 
-        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
+        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, houseEdificioB);
 
         // Act
         boolean result = addSensorToRoomController.isRoomListEmpty();
@@ -173,19 +168,11 @@ class AddSensorToRoomControllerTest {
 
         roomList.addRoom(room1);
 
-        // House
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10,10,10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(roomList, gridlist, adr, insertedGeoArea);
 
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();
 
-        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
+        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, houseEdificioB);
 
         // Act
         boolean result = addSensorToRoomController.isRoomListEmpty();
@@ -206,19 +193,10 @@ class AddSensorToRoomControllerTest {
 
         roomList.addRoom(room1);
 
-        // House
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10,10,10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(roomList, gridlist, adr, insertedGeoArea);
-
         // Sensors Type List
         SensorTypeList listSensorsType = new SensorTypeList();
 
-        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
+        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, houseEdificioB);
 
         // Act
         boolean result = addSensorToRoomController.isSensorTypeListEmpty();
@@ -239,15 +217,6 @@ class AddSensorToRoomControllerTest {
 
         roomList.addRoom(room1);
 
-        // House
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10,10,10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(roomList, gridlist, adr, insertedGeoArea);
-
         // Tipo de sensor
         SensorType sensorType = new SensorType("Temperatura");
 
@@ -255,7 +224,7 @@ class AddSensorToRoomControllerTest {
         SensorTypeList listSensorsType = new SensorTypeList();
         listSensorsType.addSensorType(sensorType);
 
-        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
+        AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, houseEdificioB);
 
         // Act
         boolean result = addSensorToRoomController.isSensorTypeListEmpty();
