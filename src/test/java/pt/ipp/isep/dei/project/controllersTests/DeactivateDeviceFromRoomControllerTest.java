@@ -1,25 +1,45 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.DeactivateDeviceFromRoomController;
+import pt.ipp.isep.dei.project.controllers.GetNominalPowerOfAGridController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeactivateDeviceFromRoomControllerTest {
 
-    @Test
-    public void testGetDisplayRoomListTest() {
-        //arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
+    private DeactivateDeviceFromRoomController controller;
+    private House house;
+
+    @BeforeEach
+    public void StartUp(){
+        //Geographical Area
         Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
+
         AreaShape areaShape = new AreaShape(20, 20, local);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
 
+        //House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
+
+        this.house = new House(deviceTypeList,meteringPeriodGrid,meteringPeriodDevice);
+        Address address = new Address("5000", local);
+        house.setAddress(address);
+        house.setInsertedGeoArea(insertedGeoArea);
+        this.controller = new DeactivateDeviceFromRoomController(house);
+    }
+
+    @Test
+    public void testGetDisplayRoomListTest() {
+        //arrange
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
@@ -30,17 +50,17 @@ class DeactivateDeviceFromRoomControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        house.addRoom(room1);
-        house.addRoom(room2);
+        this.house.addRoom(room1);
+        this.house.addRoom(room2);
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
                 "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
         int position = 0;
-        controller.getRoomPosition(position);
+        this.controller.getRoomPosition(position);
 
         //act
         String result = controller.getRoomListContent();
+
         //assert
         assertEquals(expectResult, result);
     }
@@ -48,14 +68,6 @@ class DeactivateDeviceFromRoomControllerTest {
     @Test
     public void testGetDisplayRoomListEmptyTest() {
         //arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
         String expectResult = "";
