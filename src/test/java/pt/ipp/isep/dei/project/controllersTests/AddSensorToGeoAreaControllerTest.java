@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddSensorToGeoAreaController;
 import pt.ipp.isep.dei.project.model.*;
@@ -7,15 +8,23 @@ import pt.ipp.isep.dei.project.model.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AddSensorToGeoAreaControllerTest {
+    private AddSensorToGeoAreaController controller;
+    private GeographicalArea CampusDoIsep;
+
+    @BeforeEach
+    public void StartUp() {
+
+        //Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        this.CampusDoIsep = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+
+    }
 
     @Test
     public void testarNomeAreaGeograficaPorIndicePrimeiro () {
 
-        String nomeAG1 = "Porto";
-        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
 
         String nomeAG2 = "Espinho";
         GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
@@ -32,13 +41,13 @@ class AddSensorToGeoAreaControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeographicalAreaList listaAreasGeograficas = new GeographicalAreaList();
 
-        listaAreasGeograficas.addGeoArea(ag1);
+        listaAreasGeograficas.addGeoArea(CampusDoIsep);
         listaAreasGeograficas.addGeoArea(ag2);
         listaAreasGeograficas.addGeoArea(ag3);
 
         int posicao = 0;
         AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(sensorTypeList, listaAreasGeograficas);
-        String expectedResult = "Porto";
+        String expectedResult = "Campus do ISEP";
         ctrl6.getAreaGeograficaNaListaPorPosicao(posicao);
 
         // Act
@@ -51,12 +60,6 @@ class AddSensorToGeoAreaControllerTest {
     @Test
     public void testarNomeAreaGeograficaPorIndiceUltimo () {
 
-        String nomeAG1 = "Porto";
-        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-
         String nomeAG2 = "Espinho";
         GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
@@ -72,7 +75,7 @@ class AddSensorToGeoAreaControllerTest {
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeographicalAreaList listaAreasGeograficas = new GeographicalAreaList();
 
-        listaAreasGeograficas.addGeoArea(ag1);
+        listaAreasGeograficas.addGeoArea(CampusDoIsep);
         listaAreasGeograficas.addGeoArea(ag2);
         listaAreasGeograficas.addGeoArea(ag3);
 
@@ -92,20 +95,14 @@ class AddSensorToGeoAreaControllerTest {
     public void testarNomeAreaGeograficaPorIndiceComApenasUmaArea () {
 
         // Arrange
-        String nomeAG1 = "Espinho";
-        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeographicalAreaList listaAreasGeograficas = new GeographicalAreaList();
 
-        listaAreasGeograficas.addGeoArea(ag1);
+        listaAreasGeograficas.addGeoArea(CampusDoIsep);
 
         int posicao = 0;
         AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(sensorTypeList, listaAreasGeograficas);
-        String expectedResult = "Espinho";
+        String expectedResult = "Campus do ISEP";
         ctrl6.getAreaGeograficaNaListaPorPosicao(posicao);
 
         // Act
@@ -119,22 +116,16 @@ class AddSensorToGeoAreaControllerTest {
     public void testarNumeroElementosDaListaAreaGeografica () {
 
         // Arrange
-        String nomeAG1 = "Espinho";
-        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-
         String nomeAG2 = "Ancora";
         GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
-        AreaShape area2 = new AreaShape(10, 10, local1);
+        AreaShape area2 = new AreaShape(10, 10, local2);
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
 
         SensorTypeList sensorTypeList = new SensorTypeList();
         GeographicalAreaList listaAreasGeograficas = new GeographicalAreaList();
 
-        listaAreasGeograficas.addGeoArea(ag1);
+        listaAreasGeograficas.addGeoArea(CampusDoIsep);
         listaAreasGeograficas.addGeoArea(ag2);
 
         AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(sensorTypeList, listaAreasGeograficas);
@@ -277,12 +268,6 @@ class AddSensorToGeoAreaControllerTest {
     @Test
     public void testarAdicaoSensorAAreaGeograficaNegativo () {
         //Arrange
-        String nomeAG1 = "Porto";
-        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-        
         SensorType sensorType = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
         Sensor s1 = new Sensor("s1", sensorType, local);
@@ -291,7 +276,7 @@ class AddSensorToGeoAreaControllerTest {
         listSensorsType.addSensorType(sensorType);
 
         GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
-        geographicalAreaList.getGeoAreaList().add(ag1);
+        geographicalAreaList.getGeoAreaList().add(CampusDoIsep);
 
 
         AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(listSensorsType, geographicalAreaList);
@@ -312,12 +297,6 @@ class AddSensorToGeoAreaControllerTest {
     @Test
     public void testarAdicaoSensorAAreaGeograficaPositivo () {
         //Arrange
-        String nomeAG1 = "Porto";
-        GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-
         SensorType sensorType = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
         Sensor s1 = new Sensor("s1", sensorType, local);
@@ -326,7 +305,7 @@ class AddSensorToGeoAreaControllerTest {
         listSensorsType.addSensorType(sensorType);
 
         GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
-        geographicalAreaList.getGeoAreaList().add(ag1);
+        geographicalAreaList.getGeoAreaList().add(CampusDoIsep);
 
 
         AddSensorToGeoAreaController ctrl6 = new AddSensorToGeoAreaController(listSensorsType, geographicalAreaList);
