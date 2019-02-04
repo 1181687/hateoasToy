@@ -16,13 +16,13 @@ public class DetachRoomFromHouseGrid {
     }
 
     public void run() {
-        if (ctrl.getNumberOfGridLists() == 0) {
+        if (ctrl.getGridListSize() == 0) {
             System.out.println("There are no house grids in your house. Please insert a new house grid.");
             System.out.println();
         } else {
             System.out.println(ctrl.getListOfHouseGridsAttachedToHouseGrid());
             String label1 = "Please choose the house grid where the room will be detached.";
-            int firstOption = InputValidator.getIntRange(label1, 0, ctrl.getNumberOfGridLists()) - 1;
+            int firstOption = InputValidator.getIntRange(label1, 0, ctrl.getGridListSize()) - 1;
 
             if (ctrl.getListOfRoomsInACertainHouseGrid(firstOption).isEmpty()) {
                 System.out.println("There are no rooms to detach." + "\n");

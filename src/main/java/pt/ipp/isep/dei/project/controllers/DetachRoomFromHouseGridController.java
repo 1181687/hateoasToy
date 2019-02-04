@@ -38,7 +38,7 @@ public class DetachRoomFromHouseGridController {
         return mListOfHouseGrids.detachRoomInASpecificHouseGridInTheList(houseGrid, roomSelected);
     }
 
-    public int getNumberOfGridLists() {
+    public int getGridListSize() {
         return mListOfHouseGrids.getmHouseGridsList().size();
     }
 
