@@ -1,25 +1,45 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.DeactivateDeviceFromRoomController;
+import pt.ipp.isep.dei.project.controllers.GetNominalPowerOfAGridController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class DeactivateDeviceFromRoomControllerTest {
 
-    @Test
-    public void testGetDisplayRoomListTest() {
-        //arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
+    private DeactivateDeviceFromRoomController controller;
+    private House house;
+
+    @BeforeEach
+    public void StartUp(){
+        //Geographical Area
         Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
+
         AreaShape areaShape = new AreaShape(20, 20, local);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
         GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
 
+        //House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
+
+        this.house = new House(deviceTypeList,meteringPeriodGrid,meteringPeriodDevice);
+        Address address = new Address("5000", local);
+        house.setAddress(address);
+        house.setInsertedGeoArea(insertedGeoArea);
+        this.controller = new DeactivateDeviceFromRoomController(house);
+    }
+
+    @Test
+    public void testGetDisplayRoomListTest() {
+        //arrange
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
@@ -30,17 +50,17 @@ class DeactivateDeviceFromRoomControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        house.addRoom(room1);
-        house.addRoom(room2);
+        this.house.addRoom(room1);
+        this.house.addRoom(room2);
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
                 "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
         int position = 0;
-        controller.getRoomPosition(position);
+        this.controller.getRoomPosition(position);
 
         //act
         String result = controller.getRoomListContent();
+
         //assert
         assertEquals(expectResult, result);
     }
@@ -48,20 +68,10 @@ class DeactivateDeviceFromRoomControllerTest {
     @Test
     public void testGetDisplayRoomListEmptyTest() {
         //arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
         String expectResult = "";
 
         //act
-        String result = controller.getRoomListContent();
+        String result = this.controller.getRoomListContent();
         //assert
         assertEquals(expectResult, result);
     }
@@ -69,24 +79,16 @@ class DeactivateDeviceFromRoomControllerTest {
     @Test
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
 
         String name = "Kitchen";
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
-        house.addRoom(room);
+        this.house.addRoom(room);
 
         int position = 0;
-        controller.getRoomPosition(position);
+        this.controller.getRoomPosition(position);
 
         // Act
         boolean result = controller.deviceListEmpty();
@@ -98,14 +100,6 @@ class DeactivateDeviceFromRoomControllerTest {
     @Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name = "Kitchen";
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
@@ -114,12 +108,11 @@ class DeactivateDeviceFromRoomControllerTest {
         DeviceSpecs specFridge = new FridgeSpecs(100, 100, 100, 100);
         Device dev1 = new Device("FridgeAriston", room, specFridge);
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
-        house.addRoom(room);
+        this.house.addRoom(room);
         room.addDevice(dev1);
 
         int position = 0;
-        controller.getRoomPosition(position);
+        this.controller.getRoomPosition(position);
 
         // Act
         boolean result = controller.deviceListEmpty();
@@ -131,14 +124,6 @@ class DeactivateDeviceFromRoomControllerTest {
     @Test
     public void getListSize() {
         //arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
@@ -150,14 +135,12 @@ class DeactivateDeviceFromRoomControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        house.addRoom(room1);
-        house.addRoom(room2);
-
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+        this.house.addRoom(room1);
+        this.house.addRoom(room2);
 
         int expectResult = 2;
         //act
-        int result = controller.roomListSize();
+        int result = this.controller.roomListSize();
         //assert
         assertEquals(expectResult, result);
     }
@@ -165,19 +148,10 @@ class DeactivateDeviceFromRoomControllerTest {
     @Test
     public void getListSizeEmptyList() {
         //arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
         int expectResult = 0;
         //act
-        int result = controller.roomListSize();
+        int result = this.controller.roomListSize();
         //assert
         assertEquals(expectResult, result);
     }
@@ -185,15 +159,6 @@ class DeactivateDeviceFromRoomControllerTest {
     @Test
     public void deactivateDeviceTrue() {
         // Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
@@ -205,14 +170,13 @@ class DeactivateDeviceFromRoomControllerTest {
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         int position = 0;
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
-        house.addRoom(room);
+        this.house.addRoom(room);
         room.addDevice(dev1);
         deviceList.addDevice(dev1);
-        controller.getRoomPosition(position);
+        this.controller.getRoomPosition(position);
 
         // act
-        boolean result = controller.deactivateDevice("Lamp1");
+        boolean result = this.controller.deactivateDevice("Lamp1");
 
         // assert
         assertTrue(result);
@@ -221,25 +185,16 @@ class DeactivateDeviceFromRoomControllerTest {
     @Test
     public void deactivateDeviceFalse() {
         // Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         int position = 0;
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
-        house.addRoom(room);
-        controller.getRoomPosition(position);
+        this.house.addRoom(room);
+        this.controller.getRoomPosition(position);
         // act
-        boolean result = controller.deactivateDevice("Lamp1");
+        boolean result = this.controller.deactivateDevice("Lamp1");
 
         // assert
         assertFalse(result);
@@ -248,28 +203,18 @@ class DeactivateDeviceFromRoomControllerTest {
     @Test
     public void getDeviceNameByPositionIsEmpty() {
         // Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         int position = 0;
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
-        house.addRoom(room);
-        controller.getRoomPosition(position);
+        this.house.addRoom(room);
+        this.controller.getRoomPosition(position);
         String expectedResult = "There are no devices in the device list.";
 
         // act
-        String result = controller.deviceNameByPosition(position);
+        String result = this.controller.deviceNameByPosition(position);
 
         // assert
         assertEquals(expectedResult, result);
@@ -278,14 +223,6 @@ class DeactivateDeviceFromRoomControllerTest {
     @Test
     public void getDeviceNameByPosition() {
         // Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -299,7 +236,6 @@ class DeactivateDeviceFromRoomControllerTest {
 
         int position = 0;
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
         String expectedResult = "Lamp1";
         deviceList.addDevice(dev1);
         house.addRoom(room);
@@ -316,15 +252,6 @@ class DeactivateDeviceFromRoomControllerTest {
     public void getDeviceListSize() {
 
         // Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
@@ -342,7 +269,7 @@ class DeactivateDeviceFromRoomControllerTest {
         Device dev2 = new Device("Lamp2", room, deviceSpecs2);
 
         int position = 0;
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+
         house.addRoom(room);
         room.addDevice(dev1);
         room.addDevice(dev2);
@@ -359,18 +286,6 @@ class DeactivateDeviceFromRoomControllerTest {
 
     @Test
     public void checkIfRoomListIsEmptyTrue() {
-        //arrange
-        // initiate House
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
         //act
         boolean result = controller.roomListEmpty();
         //assert
@@ -381,24 +296,15 @@ class DeactivateDeviceFromRoomControllerTest {
     public void checkIfRoomListIsEmptyFalse() {
         //arrange
         // initiate House
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
         Room room1 = new Room(name1, houseFloor1, dimension1);
+        house.addRoom(room1);
 
-        rList.addRoom(room1);
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
         //act
         boolean result = controller.roomListEmpty();
+
         //assert
         assertFalse(result);
     }
@@ -406,14 +312,7 @@ class DeactivateDeviceFromRoomControllerTest {
     @Test
     public void getDeviceListContentTest() {
         // Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
+
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
@@ -426,14 +325,13 @@ class DeactivateDeviceFromRoomControllerTest {
         DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
         Device dev = new Device("Fridge1", room, deviceSpecs);
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
         Device expectedResult = dev;
 
         int position = 0;
-        rList.addRoom(room);
+        house.addRoom(room);
         room.addDevice(dev);
-        rList.addRoom(room);
-        rList.addRoom(room);
+        house.addRoom(room);
+        house.addRoom(room);
         house.addRoom(room);
         controller.getRoomPosition(position);
         // Act
@@ -447,15 +345,6 @@ class DeactivateDeviceFromRoomControllerTest {
     public void getActiveDeviceListToString_Active() {
 
         // Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
@@ -479,7 +368,6 @@ class DeactivateDeviceFromRoomControllerTest {
         house.addRoom(room);
 
         int position = 0;
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
         String expectedResult =
                 "1 - Name of the device: Lamp1 - ACTIVATED\n" +
                         "2 - Name of the device: Lamp2 - ACTIVATED\n";
@@ -495,15 +383,6 @@ class DeactivateDeviceFromRoomControllerTest {
     public void getActiveDeviceListToString_OneDeviceDeactivated() {
 
         // Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
@@ -520,7 +399,6 @@ class DeactivateDeviceFromRoomControllerTest {
         DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
         Device dev2 = new Device("Lamp2", room, deviceSpecs2);
 
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
         deviceList.addDevice(dev1);
         deviceList.addDevice(dev2);
         dev1.setDeactivateDevice();
@@ -541,15 +419,6 @@ class DeactivateDeviceFromRoomControllerTest {
     public void getActiveDeviceListToString_Deactivated() {
 
         // Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
@@ -567,7 +436,7 @@ class DeactivateDeviceFromRoomControllerTest {
         Device dev2 = new Device("Lamp2", room, deviceSpecs2);
 
         int position = 0;
-        DeactivateDeviceFromRoomController controller = new DeactivateDeviceFromRoomController(house);
+
         deviceList.addDevice(dev1);
         deviceList.addDevice(dev2);
         dev1.setDeactivateDevice();

@@ -1,29 +1,58 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.EstimateEnergyOfWaterHeaterController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class EstimateEnergyOfWaterHeaterControllerTest {
+    private EstimateEnergyOfWaterHeaterController controller;
+    private House houseEdificioB;
+    private Room room;
+    private Room room1;
+
+    @BeforeEach
+    public void StartUp() {
+        // Room Instantiation
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        this.room = new Room(name, 2, dim);
+        String name1 = "Laundry";
+        Dimension dim1 = new Dimension(3, 3.5, 5.5);
+        this.room1 = new Room(name1, 1, dim1);
+
+        //Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+
+        //House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
+
+        this.houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+        Location houseLocation = new Location(41.177748, -8.607745, 112);
+        Address address = new Address("4200-072", houseLocation);
+        houseEdificioB.setAddress(address);
+        houseEdificioB.setInsertedGeoArea(insertedGeoArea);
+
+        houseEdificioB.addRoom(room);
+        houseEdificioB.addRoom(room1);
+
+        this.controller = new EstimateEnergyOfWaterHeaterController(houseEdificioB);
+    }
 
     @Test
     public void getNumberOfWaterHeatersTest() {
         // Arrange
-        // Room Instantiation
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-        String name1 = "Laundry";
-        Dimension dim1 = new Dimension(3, 3.5, 5.5);
-        Room room1 = new Room(name1, 1, dim1);
-
-        // RoomList Instantiation
-        RoomList roomList = new RoomList();
-        roomList.addRoom(room);
-        roomList.addRoom(room1);
-
         // ElectricWaterHeaters Instantiation
         double hotWaterTemp = 100;
         double maximumVolume = 100;
@@ -38,17 +67,8 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
         Device device1 = new Device("Bosch Tronic Coiso", room1, electricWaterHeater1);
 
-        // House Instantiation
-        HouseGridList gridList = new HouseGridList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, gridList, address, geo);
-
         // Controller Instantiation
-        EstimateEnergyOfWaterHeaterController ctrl = new EstimateEnergyOfWaterHeaterController(house);
+        EstimateEnergyOfWaterHeaterController ctrl = new EstimateEnergyOfWaterHeaterController(houseEdificioB);
 
         int expectedResult = 2;
 
@@ -62,19 +82,6 @@ class EstimateEnergyOfWaterHeaterControllerTest {
     @Test
     public void getNameOfWaterHeaterTest() {
         // Arrange
-        // Room Instantiation
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-        String name1 = "Laundry";
-        Dimension dim1 = new Dimension(3, 3.5, 5.5);
-        Room room1 = new Room(name1, 1, dim1);
-
-        // RoomList Instantiation
-        RoomList roomList = new RoomList();
-        roomList.addRoom(room);
-        roomList.addRoom(room1);
-
         // ElectricWaterHeaters Instantiation
         double hotWaterTemp = 100;
         double maximumVolume = 100;
@@ -89,22 +96,10 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
         Device device1 = new Device("Bosch Tronic Coiso", room1, electricWaterHeater1);
 
-        // House Instantiation
-        HouseGridList gridList = new HouseGridList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, gridList, address, geo);
-
-        // Controller Instantiation
-        EstimateEnergyOfWaterHeaterController ctrl = new EstimateEnergyOfWaterHeaterController(house);
-
         String expectedResult = "Bosch Tronic 3000";
 
         // Act
-        String result = ctrl.getNameOfWaterHeater(0);
+        String result = controller.getNameOfWaterHeater(0);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -113,19 +108,6 @@ class EstimateEnergyOfWaterHeaterControllerTest {
     @Test
     public void getEnergyConsumptionTest() {
         // Arrange
-        // Room Instantiation
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-        String name1 = "Laundry";
-        Dimension dim1 = new Dimension(3, 3.5, 5.5);
-        Room room1 = new Room(name1, 1, dim1);
-
-        // RoomList Instantiation
-        RoomList roomList = new RoomList();
-        roomList.addRoom(room);
-        roomList.addRoom(room1);
-
         // ElectricWaterHeaters Instantiation
         double hotWaterTemp = 100;
         double maximumVolume = 100;
@@ -140,27 +122,15 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
         Device device1 = new Device("Bosch Tronic Coiso", room1, electricWaterHeater1);
 
-        // House Instantiation
-        HouseGridList gridList = new HouseGridList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, gridList, address, geo);
-
-        // Controller Instantiation
-        EstimateEnergyOfWaterHeaterController ctrl = new EstimateEnergyOfWaterHeaterController(house);
-
         double coldWaterTemp = 30;
-        ctrl.setColdWaterTemp(1, coldWaterTemp);
+        controller.setColdWaterTemp(1, coldWaterTemp);
         double volumeOfWaterToHeat = 70;
-        ctrl.setVolumeOfWaterToHeat(1, volumeOfWaterToHeat);
+        controller.setVolumeOfWaterToHeat(1, volumeOfWaterToHeat);
 
         double expectedResult = 3.99;
 
         // Act
-        double result = ctrl.getEnergyConsumptionOfAWaterHeater(1);
+        double result = controller.getEnergyConsumptionOfAWaterHeater(1);
 
         // Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -169,19 +139,6 @@ class EstimateEnergyOfWaterHeaterControllerTest {
     @Test
     public void getTotalEnergyConsumptionTest() {
         // Arrange
-        // Room Instantiation
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-        String name1 = "Laundry";
-        Dimension dim1 = new Dimension(3, 3.5, 5.5);
-        Room room1 = new Room(name1, 1, dim1);
-
-        // RoomList Instantiation
-        RoomList roomList = new RoomList();
-        roomList.addRoom(room);
-        roomList.addRoom(room1);
-
         // ElectricWaterHeaters Instantiation
         double hotWaterTemp = 100;
         double maximumVolume = 100;
@@ -196,32 +153,20 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
         Device device1 = new Device("Bosch Tronic Coiso", room1, electricWaterHeater1);
 
-        // House Instantiation
-        HouseGridList gridList = new HouseGridList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, gridList, address, geo);
-
-        // Controller Instantiation
-        EstimateEnergyOfWaterHeaterController ctrl = new EstimateEnergyOfWaterHeaterController(house);
-
         double coldWaterTemp = 30;
-        ctrl.setColdWaterTemp(0, coldWaterTemp);
+        controller.setColdWaterTemp(0, coldWaterTemp);
         double volumeOfWaterToHeat = 70;
-        ctrl.setVolumeOfWaterToHeat(0, volumeOfWaterToHeat);
+        controller.setVolumeOfWaterToHeat(0, volumeOfWaterToHeat);
 
         double coldWaterTemp1 = 30;
-        ctrl.setColdWaterTemp(1, coldWaterTemp1);
+        controller.setColdWaterTemp(1, coldWaterTemp1);
         double volumeOfWaterToHeat1 = 70;
-        ctrl.setVolumeOfWaterToHeat(1, volumeOfWaterToHeat1);
+        controller.setVolumeOfWaterToHeat(1, volumeOfWaterToHeat1);
 
         double expectedResult = 9.12;
 
         // Act
-        double result = ctrl.getTotalEnergyConsumptionOfAllDevicesOfAType();
+        double result = controller.getTotalEnergyConsumptionOfAllDevicesOfAType();
 
         // Assert
         assertEquals(expectedResult, result, 0.0001);
