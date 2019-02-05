@@ -1,28 +1,48 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionOfRoomInAnIntervalController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class GetEnergyConsumptionOfRoomControllerTest {
 
+    private GetEnergyConsumptionOfRoomInAnIntervalController ctrl;
+    private House house;
+
+    @BeforeEach
+    public void StartUp() {
+        //Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+
+        //House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
+
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+        Location houseLocation = new Location(41.177748, -8.607745, 112);
+        Address address = new Address("4200-072", houseLocation);
+        this.house.setAddress(address);
+        this.house.setInsertedGeoArea(insertedGeoArea);
+
+        this.ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
+    }
+
     @Test
     public void testGetRoomListToString() {
         //arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType GeographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", GeographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
@@ -33,38 +53,23 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        house.addRoom(room1);
-        house.addRoom(room2);
+        this.house.addRoom(room1);
+        this.house.addRoom(room2);
 
-        GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
 
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
                 "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
 
         //act
-        String result = ctrl.getRoomListToString();
+        String result = this.ctrl.getRoomListToString();
         //assert
         assertEquals(expectResult, result);
     }
 
     @Test
     public void checkIfRoomListIsEmptyTrue() {
-        //arrange
-        RoomList rList = new RoomList();
-
-
-        HouseGridList gridList = new HouseGridList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(rList, gridList, address, geo);
-
-        GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
-
         //act
-        boolean result = ctrl.roomListIsEmpty();
+        boolean result = this.ctrl.roomListIsEmpty();
         //assert
         assertTrue(result);
     }
@@ -72,27 +77,15 @@ public class GetEnergyConsumptionOfRoomControllerTest {
     @Test
     public void checkIfRoomListIsEmptyFalse() {
         //arrange
-        RoomList rList = new RoomList();
-
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
         Room room1 = new Room(name1, houseFloor1, dimension1);
 
-        rList.addRoom(room1);
-
-        HouseGridList gridList = new HouseGridList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(rList, gridList, address, geo);
-
-        GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
+        this.house.addRoom(room1);
 
         //act
-        boolean result = ctrl.roomListIsEmpty();
+        boolean result = this.ctrl.roomListIsEmpty();
         //assert
         assertFalse(result);
     }
@@ -100,15 +93,6 @@ public class GetEnergyConsumptionOfRoomControllerTest {
     @Test
     public void getRoomListSize() {
         //arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType GeographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", GeographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
@@ -119,14 +103,12 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        house.addRoom(room1);
-        house.addRoom(room2);
-
-        GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
+        this.house.addRoom(room1);
+        this.house.addRoom(room2);
 
         int expectResult = 2;
         //act
-        int result = ctrl.getRoomListSize();
+        int result = this.ctrl.getRoomListSize();
         //assert
         assertEquals(expectResult, result);
     }
@@ -134,20 +116,9 @@ public class GetEnergyConsumptionOfRoomControllerTest {
     @Test
     public void getRoomListSizeEmptyList() {
         //arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType GeographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", GeographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
-        GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
-
         int expectResult = 0;
         //act
-        int result = ctrl.getRoomListSize();
+        int result = this.ctrl.getRoomListSize();
         //assert
         assertEquals(expectResult, result);
     }
@@ -155,26 +126,15 @@ public class GetEnergyConsumptionOfRoomControllerTest {
     @Test
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType GeographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", GeographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        house.addRoom(room);
+        this.house.addRoom(room);
 
-        GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
-
-        ctrl.getRoomByPosition(0);
+        this.ctrl.getRoomByPosition(0);
 
         // Act
-        boolean result = ctrl.isDeviceListEmpty();
+        boolean result = this.ctrl.isDeviceListEmpty();
 
         // Assert
         assertTrue(result);
@@ -183,15 +143,6 @@ public class GetEnergyConsumptionOfRoomControllerTest {
     @Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType GeographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", GeographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
@@ -202,8 +153,6 @@ public class GetEnergyConsumptionOfRoomControllerTest {
 
         house.addRoom(room);
         room.addDevice(dev1);
-
-        GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
 
         ctrl.getRoomByPosition(0);
         // Act
@@ -216,28 +165,19 @@ public class GetEnergyConsumptionOfRoomControllerTest {
     @Test
     public void testGetNameOfRoomInListOfRooms() {
         //Arrange
-        RoomList rList = new RoomList();
         Dimension dim0 = new Dimension(4, 4, 4);
         Room room0 = new Room("RoomOne", 1, dim0);
         Dimension dim1 = new Dimension(4, 4, 4);
         Room room1 = new Room("RoomTwo", 1, dim1);
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType GeographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", GeographicalAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
 
-        rList.addRoom(room0);
-        rList.addRoom(room1);
+        this.house.addRoom(room0);
+        this.house.addRoom(room1);
 
         String expectedResult = "RoomTwo";
 
-        GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
-        ctrl.getRoomByPosition(1);
+        this.ctrl.getRoomByPosition(1);
         //Act
-        String result = ctrl.getRoomName();
+        String result = this.ctrl.getRoomName();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -246,20 +186,11 @@ public class GetEnergyConsumptionOfRoomControllerTest {
     public void getTotalEnergyConsumptionInAnIntervalTestWithOneFullPeriod() {
         // Arrange
 
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geoAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
-
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Kitchen", 1, dim);
 
-        rList.addRoom(room);
+        this.house.addRoom(room);
 
         // FridgeSpecs Instantiation
         DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
@@ -285,7 +216,6 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
-        GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
         ctrl.getRoomByPosition(0);
         // Act
         double result = ctrl.getEnergyConsumptionOfRoomInInterval(startDate, endDate);
@@ -297,14 +227,6 @@ public class GetEnergyConsumptionOfRoomControllerTest {
     @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithTwoFullPeriods() {
         // Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geoAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         // Dimension Instantiation
         double height = 3;
@@ -315,7 +237,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         // Room Instantiation
         Room room = new Room("Kitchen", 1, dim);
 
-        rList.addRoom(room);
+        house.addRoom(room);
         // FridgeSpecs Instantiation
         DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
@@ -340,7 +262,6 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
-        GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
         ctrl.getRoomByPosition(0);
         // Act
         double result = ctrl.getEnergyConsumptionOfRoomInInterval(startDate, endDate);
@@ -352,14 +273,6 @@ public class GetEnergyConsumptionOfRoomControllerTest {
     @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithoutFullPeriods() {
         // Arrange
-        RoomList rList = new RoomList();
-        HouseGridList gridlist = new HouseGridList();
-        Location local = new Location(10, 10, 10);
-        Address adr = new Address("5000", local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geoAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geoAreaType, local, areaShape);
-        House house = new House(rList, gridlist, adr, insertedGeoArea);
 
         // Dimension Instantiation
         double height = 3;
@@ -370,7 +283,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         // Room Instantiation
         Room room = new Room("Kitchen", 1, dim);
 
-        rList.addRoom(room);
+        house.addRoom(room);
         // FridgeSpecs Instantiation
         DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
@@ -395,7 +308,6 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 9, 00, 00);
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
-        GetEnergyConsumptionOfRoomInAnIntervalController ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
         ctrl.getRoomByPosition(0);
         // Act
         double result = ctrl.getEnergyConsumptionOfRoomInInterval(startDate, endDate);
