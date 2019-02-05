@@ -19,8 +19,6 @@ class AddSensorToRoomControllerTest {
     public void StartUp() {
 
         //Geographical Area
-
-        //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
