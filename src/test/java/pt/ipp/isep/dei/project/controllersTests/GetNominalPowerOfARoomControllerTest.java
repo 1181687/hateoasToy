@@ -1,30 +1,46 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerOfARoomController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 class GetNominalPowerOfARoomControllerTest {
 
+    private GetNominalPowerOfARoomController ctrl;
+    private House house;
+
+    @BeforeEach
+    public void StartUp() {
+        //Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+
+        //House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
+
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+        Location houseLocation = new Location(41.177748, -8.607745, 112);
+        Address address = new Address("4200-072", houseLocation);
+        this.house.setAddress(address);
+        this.house.setInsertedGeoArea(insertedGeoArea);
+
+        this.ctrl = new GetNominalPowerOfARoomController(house);
+    }
+
     @Test
     void testGetListOfRooms() {
-        RoomList roomList = new RoomList();
-        HouseGridList houseGridList = new HouseGridList();
-        String zipCode = "4050";
-        double latitude = 40.5;
-        double longitude = 50.5;
-        double altitude = 100.0;
-        Location local = new Location(latitude, longitude, altitude);
-        Address address = new Address(zipCode, local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(roomList, houseGridList, address, insertedGeoArea);
-        GetNominalPowerOfARoomController ctrl = new GetNominalPowerOfARoomController(house);
-
         Dimension dim1 = new Dimension(4, 4, 4);
         Room room1 = new Room("r1", 1, dim1);
 
@@ -38,8 +54,7 @@ class GetNominalPowerOfARoomControllerTest {
                 "2- Name: r2, House Floor: 1, Dimension - Height: 4.0, Length: 4.0, Width: 4.0\n";
 
         //Act
-
-        String result = ctrl.getListOfRooms();
+        String result = this.ctrl.getListOfRooms();
 
         //Assert
         assertEquals(result, expectedResult);
@@ -48,24 +63,10 @@ class GetNominalPowerOfARoomControllerTest {
 
     @Test
     void testGetListOfRoomsEmpty() {
-        RoomList roomList = new RoomList();
-        HouseGridList houseGridList = new HouseGridList();
-        String zipCode = "4050";
-        double latitude = 40.5;
-        double longitude = 50.5;
-        double altitude = 100.0;
-        Location local = new Location(latitude, longitude, altitude);
-        Address address = new Address(zipCode, local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(roomList, houseGridList, address, insertedGeoArea);
-        GetNominalPowerOfARoomController ctrl = new GetNominalPowerOfARoomController(house);
-
         String expectedResult = "";
         //Act
 
-        String result = ctrl.getListOfRooms();
+        String result = this.ctrl.getListOfRooms();
 
         //Assert
         assertEquals(result, expectedResult);
@@ -73,19 +74,6 @@ class GetNominalPowerOfARoomControllerTest {
 
     @Test
     void getNominalPower() {
-        RoomList roomList = new RoomList();
-        HouseGridList houseGridList = new HouseGridList();
-        String zipCode = "4050";
-        double latitude = 40.5;
-        double longitude = 50.5;
-        double altitude = 100.0;
-        Location local = new Location(latitude, longitude, altitude);
-        Address address = new Address(zipCode, local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(roomList, houseGridList, address, insertedGeoArea);
-        GetNominalPowerOfARoomController ctrl = new GetNominalPowerOfARoomController(house);
 
         Dimension dim1 = new Dimension(4, 4, 4);
         Room room1 = new Room("F5", 1, dim1);
@@ -93,22 +81,19 @@ class GetNominalPowerOfARoomControllerTest {
         Dimension dim2 = new Dimension(4, 4, 4);
         Room room2 = new Room("F5", 1, dim2);
 
-        house.addRoom(room1);
-        house.addRoom(room2);
+        this.house.addRoom(room1);
+        this.house.addRoom(room2);
 
-        ctrl.getRoom(0);
+        this.ctrl.getRoom(0);
 
         FridgeSpecs fridgeSpecs1 = new FridgeSpecs(25, 50, 5000, 110);
         ProgramList programList = new ProgramList();
         DishWasherSpecs dishWasherSpecs1 = new DishWasherSpecs(400, 110, programList);
 
         Device d1 = new Device("Fridge1", room1, fridgeSpecs1);
-
         Device d2 = new Device("Dish Washer1", room1, dishWasherSpecs1);
 
-
         room1.addDevice(d1);
-
         room1.addDevice(d2);
 
         double expectedResult = 220;
@@ -117,25 +102,11 @@ class GetNominalPowerOfARoomControllerTest {
         double result = ctrl.getNominalPower();
 
         //Assert
-
         assertEquals(result, expectedResult);
     }
 
     @Test
     void getNominalPowerNoDevices() {
-        RoomList roomList = new RoomList();
-        HouseGridList houseGridList = new HouseGridList();
-        String zipCode = "4050";
-        double latitude = 40.5;
-        double longitude = 50.5;
-        double altitude = 100.0;
-        Location local = new Location(latitude, longitude, altitude);
-        Address address = new Address(zipCode, local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(roomList, houseGridList, address, insertedGeoArea);
-        GetNominalPowerOfARoomController ctrl = new GetNominalPowerOfARoomController(house);
 
         Dimension dim1 = new Dimension(4, 4, 4);
         Room room1 = new Room("F5", 1, dim1);
@@ -143,17 +114,16 @@ class GetNominalPowerOfARoomControllerTest {
         Dimension dim2 = new Dimension(4, 4, 4);
         Room room2 = new Room("F5", 1, dim2);
 
-        house.addRoom(room1);
-        house.addRoom(room2);
+        this.house.addRoom(room1);
+        this.house.addRoom(room2);
 
-        ctrl.getRoom(0);
+        this.ctrl.getRoom(0);
 
         FridgeSpecs fridgeSpecs1 = new FridgeSpecs(20, 20, 50, 400);
         ProgramList programList = new ProgramList();
         DishWasherSpecs dishWasherSpecs1 = new DishWasherSpecs(50, 250, programList);
 
         Device d1 = new Device("Fridge1", room1, fridgeSpecs1);
-
         Device d2 = new Device("Dish Washer1", room1, dishWasherSpecs1);
 
         room2.addDevice(d1);
@@ -165,7 +135,6 @@ class GetNominalPowerOfARoomControllerTest {
         double result = ctrl.getNominalPower();
 
         //Assert
-
         assertEquals(expectedResult, result);
     }
 
@@ -173,53 +142,26 @@ class GetNominalPowerOfARoomControllerTest {
     @Test
     void testGetRoomListLength() {
         //Arrange
-        RoomList roomList = new RoomList();
-        HouseGridList houseGridList = new HouseGridList();
-        String zipCode = "4050";
-        double latitude = 40.5;
-        double longitude = 50.5;
-        double altitude = 100.0;
-        Location local = new Location(latitude, longitude, altitude);
-        Address address = new Address(zipCode, local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(roomList, houseGridList, address, insertedGeoArea);
-        GetNominalPowerOfARoomController ctrl = new GetNominalPowerOfARoomController(house);
-
         Dimension dim1 = new Dimension(4, 4, 4);
         Room room1 = new Room("Kitchen", 1, dim1);
 
         Dimension dim2 = new Dimension(4, 4, 4);
         Room room2 = new Room("Bedroom", 1, dim2);
 
-        house.addRoom(room1);
-        house.addRoom(room2);
+        this.house.addRoom(room1);
+        this.house.addRoom(room2);
 
         int expectedResult = 2;
 
         //Act
-        int result = ctrl.getRoomListSize();
+        int result = this.ctrl.getRoomListSize();
 
         //Assert
         assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testifDeviceListIsEmpty() {
-        RoomList roomList = new RoomList();
-        HouseGridList houseGridList = new HouseGridList();
-        String zipCode = "4050";
-        double latitude = 40.5;
-        double longitude = 50.5;
-        double altitude = 100.0;
-        Location local = new Location(latitude, longitude, altitude);
-        Address address = new Address(zipCode, local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(roomList, houseGridList, address, insertedGeoArea);
-        GetNominalPowerOfARoomController ctrl = new GetNominalPowerOfARoomController(house);
+    public void testIfDeviceListIsEmpty() {
 
         Dimension dim1 = new Dimension(4, 4, 4);
         Room room1 = new Room("Kitchen", 1, dim1);
@@ -239,19 +181,6 @@ class GetNominalPowerOfARoomControllerTest {
 
     @Test
     public void testifDeviceListIsEmptyWithDevices() {
-        RoomList roomList = new RoomList();
-        HouseGridList houseGridList = new HouseGridList();
-        String zipCode = "4050";
-        double latitude = 40.5;
-        double longitude = 50.5;
-        double altitude = 100.0;
-        Location local = new Location(latitude, longitude, altitude);
-        Address address = new Address(zipCode, local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(roomList, houseGridList, address, insertedGeoArea);
-        GetNominalPowerOfARoomController ctrl = new GetNominalPowerOfARoomController(house);
 
         Dimension dim1 = new Dimension(4, 4, 4);
         Room room1 = new Room("Kitchen", 1, dim1);
@@ -259,8 +188,8 @@ class GetNominalPowerOfARoomControllerTest {
         Dimension dim2 = new Dimension(4, 4, 4);
         Room room2 = new Room("Bedroom", 1, dim2);
 
-        house.addRoom(room1);
-        house.addRoom(room2);
+        this.house.addRoom(room1);
+        this.house.addRoom(room2);
 
         FridgeSpecs fridgeSpecs1 = new FridgeSpecs(20, 20, 50, 400);
         ProgramList programList = new ProgramList();
@@ -275,7 +204,7 @@ class GetNominalPowerOfARoomControllerTest {
         room2.getDeviceList().getDeviceList().add(d2);
 
         //Act
-        boolean result = ctrl.isDeviceListEmpty(1);
+        boolean result = this.ctrl.isDeviceListEmpty(1);
 
         //Assert
         assertFalse(result);
