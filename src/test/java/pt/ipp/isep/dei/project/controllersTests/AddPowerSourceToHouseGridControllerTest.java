@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
 import pt.ipp.isep.dei.project.model.HouseGrid;
@@ -10,282 +11,177 @@ import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AddPowerSourceToHouseGridControllerTest {
+    private AddPowerSourceToHouseGridController controller;
+    private HouseGridList houseGridList;
+    private HouseGrid mainGrid;
+    private HouseGrid secondaryGrid;
+    private PowerSourceType publicElectricGrid;
+
+    @BeforeEach
+    public void StartUp() {
+        // List of House Grids
+        houseGridList = new HouseGridList();
+
+        // House Grids
+        mainGrid = new HouseGrid("Main grid");
+        secondaryGrid = new HouseGrid("Secondary grid");
+
+        // List of Power Source Types
+        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
+
+        // Power Source Type
+        publicElectricGrid = new PowerSourceType("Public electric grid");
+        powerSourceTypeList.addPowerSourceType(publicElectricGrid);
+
+        // Controller
+        controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
+    }
 
     @Test
-    public void testCheckIfHouseGridListIsEmptyPositive() {
-
-        // Arrange
-        HouseGridList houseGridList = new HouseGridList();
-
-        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
-        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceType(powerSourceType);
-
-        AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
-
+    public void isHouseGridListEmptyPositiveTest() {
         // Act
-        boolean result = addPowerSourceToHouseGridController.isHouseGridListEmpty();
+        boolean result = controller.isHouseGridListEmpty();
 
         // Assert
         assertTrue(result);
     }
 
     @Test
-    public void testCheckIfHouseGridListIsEmptyNegative() {
-
+    public void isHouseGridListEmptyNegativeTest() {
         // Arrange
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
-        HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmHouseGridsList().add(houseGrid1);
-
-        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
-        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceType(powerSourceType);
-
-        AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
+        houseGridList.addHouseGrid(mainGrid);
 
         // Act
-        boolean result = addPowerSourceToHouseGridController.isHouseGridListEmpty();
+        boolean result = controller.isHouseGridListEmpty();
 
         // Assert
         assertFalse(result);
     }
 
     @Test
-    public void testGetHouseGridListContentPositiveTest() {
-
+    public void getHouseGridListToStringTest() {
         // Arrange
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
-        HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmHouseGridsList().add(houseGrid1);
-
-        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
-        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceType(powerSourceType);
-
-
-        AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
-
-        String expectedResult = "1 - Name: hgname1\n";
+        houseGridList.addHouseGrid(mainGrid);
+        String expectedResult = "1 - Name: Main grid\n";
 
         // Act
-        String result = addPowerSourceToHouseGridController.getHouseGridListToString();
+        String result = controller.getHouseGridListToString();
+
         // Assert
         assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testHouseGridListLength(){
-        //Arrange
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
-        HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmHouseGridsList().add(houseGrid1);
+    public void getHouseGridListSizeTest() {
+        // Arrange
+        int expectedResult = 0;
 
-        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
-        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceType(powerSourceType);
+        // Act
+        int result = controller.getHouseGridListSize();
 
-        AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
-
-        int expectedResult=1;
-        //Act
-        int result = addPowerSourceToHouseGridController.getHouseGridListSize();
-
-        //Assert
+        // Assert
         assertEquals(expectedResult,result);
     }
 
     @Test
-    public void testPowerSourceTypeListLength(){
-        //Arrange
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
-        HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmHouseGridsList().add(houseGrid1);
+    public void getPowerSourceTypeListSizeTest() {
+        // Arrange
+        int expectedResult = 1;
 
-        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
-        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceType(powerSourceType);
+        // Act
+        int result = controller.getPowerSourceTypeListSize();
 
-        AddPowerSourceToHouseGridController addPowerSourceToHouseGridController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
-
-        int expectedResult=1;
-        //Act
-        int result = addPowerSourceToHouseGridController.getPowerSourceTypeListSize();
-
-        //Assert
+        // Assert
         assertEquals(expectedResult,result);
     }
 
     @Test
-    public void testAddPowerSourceToHouseGridPositiveTest() {
-        //Arrange
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
-        HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmHouseGridsList().add(houseGrid1);
+    public void createAndAddPowerSourceToHouseGridPositiveTest() {
+        // Arrange
+        houseGridList.addHouseGrid(mainGrid);
+        controller.getHouseGridFromListByPosition(0);
+        controller.getPowerSourceTypeByPosition(0);
 
-        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
-        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceType(powerSourceType);
+        // Act
+        boolean result = controller.createAndAddPowerSourceToHouseGrid("Electric power source");
 
-        String powerSourceName = "ps1";
-
-        int position = 0;
-        int positionOfPowerSource = 0;
-
-        AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
-        controller.getHouseGridFromListByPosition(position);
-        controller.getPowerSourceTypeByPosition(positionOfPowerSource);
-
-        //Act
-        boolean result = controller.createAndAddPowerSourceToHouseGrid(powerSourceName);
-
-        //Assert
+        // Assert
         assertTrue(result);
     }
 
     @Test
-    public void testAddPowerSourceToHouseGridWithMoreThanAHouseGridPositiveTest() {
-        //Arrange
-        String houseGridName1 = "house grid 1";
-        String houseGridName2 = "house grid 2";
-        HouseGrid houseGrid1 = new HouseGrid(houseGridName1);
-        HouseGrid houseGrid2 = new HouseGrid(houseGridName2);
+    public void createAndAddPowerSourceToHouseGridTestWithVariousGrid() {
+        // Arrange
+        houseGridList.addHouseGrid(mainGrid);
+        houseGridList.addHouseGrid(secondaryGrid);
+        controller.getHouseGridFromListByPosition(1);
+        controller.getPowerSourceTypeByPosition(0);
 
-        HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmHouseGridsList().add(houseGrid1);
-        houseGridList.getmHouseGridsList().add(houseGrid2);
+        // Act
+        boolean result = controller.createAndAddPowerSourceToHouseGrid("Electric power source");
 
-        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
-        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceType(powerSourceType);
-
-        String powerSourceName = "ps1";
-
-        int position = 1;
-        int positionOfPowerSource = 0;
-
-        AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
-        controller.getHouseGridFromListByPosition(position);
-        controller.getPowerSourceTypeByPosition(positionOfPowerSource);
-
-        //Act
-        boolean result = controller.createAndAddPowerSourceToHouseGrid(powerSourceName);
-
-        //Assert
+        // Assert
         assertTrue(result);
     }
 
     @Test
-    public void testAddPowerSourceToHouseGridAddingExistingPowerSourceNegativeTest() {
+    public void createAndAddPowerSourceToHouseGridNegativeTest() {
+        // Arrange
+        houseGridList.addHouseGrid(mainGrid);
+        controller.getHouseGridFromListByPosition(0);
+        controller.getPowerSourceTypeByPosition(0);
+        controller.createAndAddPowerSourceToHouseGrid("Electric power source");
 
-        //Arrange
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
-        HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmHouseGridsList().add(houseGrid1);
-
-        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
-        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceType(powerSourceType);
-
-        String powerSourceName1 = "ps1";
-        String powerSourceName2 = "ps1";
-
-        int position = 0;
-
-        AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
-        controller.getHouseGridFromListByPosition(position);
-        controller.getPowerSourceTypeByPosition(position);
-        controller.createAndAddPowerSourceToHouseGrid(powerSourceName1);
-
-        //Act
-        boolean result = controller.createAndAddPowerSourceToHouseGrid(powerSourceName2);
+        // Act
+        boolean result = controller.createAndAddPowerSourceToHouseGrid("Electric power source");
 
         //Assert
         assertFalse(result);
     }
 
     @Test
-    public void testingDisplayPowerSourceTypeListPositiveTest() {
+    public void getPowerSourceTypeListToStringTest() {
+        // Arrange
+        houseGridList.addHouseGrid(mainGrid);
 
-        //Arrange
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
-        HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmHouseGridsList().add(houseGrid1);
+        String expectedResult = "1 - Power Source Type: Public electric grid\n";
 
-        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
-        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceType(powerSourceType);
-
-        AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
-
-        String expectedResult = "1 - Power Source Type: public electric grid\n";
-
-        //Act
+        // Act
         String result = controller.getPowerSourceTypeListToString();
-        //Assert
+
+        // Assert
         assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testListPowerSourcesConnectedToHouseGrid(){
-        //Arrange
-        //Arrange
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
-        HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmHouseGridsList().add(houseGrid1);
+    public void listPowerSourcesConnectedToHouseGridTest() {
+        // Arrange
+        houseGridList.addHouseGrid(mainGrid);
+        controller.getHouseGridFromListByPosition(0);
+        controller.getPowerSourceTypeByPosition(0);
+        controller.createAndAddPowerSourceToHouseGrid("Non-electric power source");
 
-        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
-        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceType(powerSourceType);
+        String expectedResult = "1- Non-electric power source\n";
 
-        String powerSourceName1 = "ps1";
+        // Act
+        String result = controller.listPowerSourcesConnectedToHouseGrid();
 
-        int position = 0;
-
-        AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
-        controller.getHouseGridFromListByPosition(position);
-        controller.getPowerSourceTypeByPosition(position);
-        controller.createAndAddPowerSourceToHouseGrid(powerSourceName1);
-
-        String expectedResult= "1- ps1\n";
-        //Act
-        String result=controller.listPowerSourcesConnectedToHouseGrid();
-        //Assert
+        // Assert
         assertEquals(expectedResult,result);
     }
 
     @Test
-    public void testGetHouseGridName(){
-        //Arrange
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
-        HouseGridList houseGridList = new HouseGridList();
-        houseGridList.getmHouseGridsList().add(houseGrid1);
+    public void getHouseGridNameTest() {
+        // Arrange
+        houseGridList.addHouseGrid(mainGrid);
+        controller.getHouseGridFromListByPosition(0);
 
-        PowerSourceType powerSourceType = new PowerSourceType("public electric grid");
-        PowerSourceTypeList powerSourceTypeList = new PowerSourceTypeList();
-        powerSourceTypeList.addPowerSourceType(powerSourceType);
+        String expectedResult = "Main grid";
 
-        int position = 0;
-
-        AddPowerSourceToHouseGridController controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
-        controller.getHouseGridFromListByPosition(position);
-        controller.getPowerSourceTypeByPosition(position);
-
-        String expectedResult = "hgname1";
-
-        //Act
+        // Act
         String result = controller.getHouseGridName();
 
-        //Assert
+        // Assert
         assertEquals(expectedResult,result);
     }
 
