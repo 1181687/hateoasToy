@@ -247,7 +247,7 @@ class AttachRoomToHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    
+
     @Test
     public void getTheGridWhereTheRoomIsConnectedTest() {
         // Arrange

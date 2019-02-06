@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaController;
 import pt.ipp.isep.dei.project.model.*;
@@ -10,116 +11,89 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AddGeoAreaControllerTest {
+    private AddGeoAreaController controller;
+    private GeographicalAreaList geographicalAreaList;
+    private GeographicalArea cityOfPorto;
 
+    @BeforeEach
+    public void StartUp() {
+        // List of Geographical Area Types
+        GeographicalAreaTypeList geographicalAreaTypeList = new GeographicalAreaTypeList();
 
+        // Geographical Area Types
+        GeographicalAreaType city = new GeographicalAreaType("City");
+        geographicalAreaTypeList.addTypeOfGeoAreaToTheList(city);
 
-    @Test
-    public void testarAdicionarNovaAG() {
-        //Arrange
-        //instanciar us3controller
-        GeographicalAreaList lista = new GeographicalAreaList();
-        GeographicalAreaTypeList listaTAG = new GeographicalAreaTypeList();
-        AddGeoAreaController ctrl3 = new AddGeoAreaController(lista, listaTAG);
-        String nomeAG = "Porto";
-        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
-        Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10,local);
+        // List of Geographical Areas
+        geographicalAreaList = new GeographicalAreaList();
 
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-        //Act
-        boolean resultado = ctrl3.adicionarNovaAG(ag);
-        //Assert
-        assertTrue(resultado);
+        // Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        cityOfPorto = new GeographicalArea("City of Porto", city, location, areaShape);
+
+        // Controller
+        controller = new AddGeoAreaController(geographicalAreaList, geographicalAreaTypeList);
     }
 
     @Test
-    public void testarAdicionarNovaAGFalso() {
-        //Arrange
-        //instanciar us3controller
-        GeographicalAreaList lista = new GeographicalAreaList();
-        GeographicalAreaTypeList listaTAG = new GeographicalAreaTypeList();
-        AddGeoAreaController ctrl3 = new AddGeoAreaController(lista, listaTAG);
-        String nomeAG = "Porto";
-        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
-        Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10,local);
+    public void addNewGeoAreaPositiveTest() {
+        // Act
+        boolean result = controller.addNewGeoArea(cityOfPorto);
 
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-        ctrl3.adicionarNovaAG(ag);
-        //Act
-        boolean resultado = ctrl3.adicionarNovaAG(ag);
-        //Assert
-        assertFalse(resultado);
+        // Assert
+        assertTrue(result);
     }
 
     @Test
-    public void testarGetListaTAG() {
-        //Arrange
-        GeographicalAreaList lista = new GeographicalAreaList();
-        GeographicalAreaTypeList listaTAG = new GeographicalAreaTypeList();
-        AddGeoAreaController ctrl3 = new AddGeoAreaController(lista, listaTAG);
-        String nomeAG = "Porto";
-        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
-        Location local = new Location(41.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10,local);
-        GeographicalArea areaDaLista = new GeographicalArea(nomeAG, tipo, local, area);
-        lista.addGeoArea(areaDaLista);
-        GeographicalAreaList expectedResult = lista;
-        //Act
-        GeographicalAreaList result = ctrl3.getListaAG();
+    public void addNewGeoAreaNegativeTest() {
+        // Arrange
+        controller.addNewGeoArea(cityOfPorto);
 
-        //Assert
+        // Act
+        boolean result = controller.addNewGeoArea(cityOfPorto);
 
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void getGeographicalAreaListTest() {
+        // Arrange
+        controller.addNewGeoArea(cityOfPorto);
+
+        GeographicalAreaList expectedResult = geographicalAreaList;
+
+        // Act
+        GeographicalAreaList result = controller.getGeographicalAreaList();
+
+        // Assert
         assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testarGetListaDosTiposDeAG() {
-        //Arrange
-
-        GeographicalAreaList lista = new GeographicalAreaList();
-        GeographicalAreaTypeList listaTAG = new GeographicalAreaTypeList();
-        AddGeoAreaController ctrl3 = new AddGeoAreaController(lista, listaTAG);
-
-        //Tipo de Area Geográfica
-        String nomeDoTipo1 = "Cidade";
-        GeographicalAreaType tipo1 = new GeographicalAreaType(nomeDoTipo1);
-
-        //Adicionar o Tipo de Area Geográfica na lista
-        listaTAG.addTypeOfGeoAreaToTheList(tipo1);
-
-        //Expected Result
-        List<String> expectedResult = Arrays.asList("Cidade");
-
+    public void getTGAListTest() {
+        // Arrange
+        List<String> expectedResult = Arrays.asList("City");
 
         //Act
-        List<String> result = ctrl3.getListaTAG();
+        List<String> result = controller.getTGAList();
 
         //Assert
         assertEquals(expectedResult, result);
 
     }
 
-
     @Test
-    public void testarCriarNovaAG() {
+    public void createNewGeoAreaTest() {
         //Arrange
-        GeographicalAreaList lista = new GeographicalAreaList();
-        GeographicalAreaTypeList listaTAG = new GeographicalAreaTypeList();
-        AddGeoAreaController ctrl3 = new AddGeoAreaController(lista, listaTAG);
+        GeographicalArea expectedResult = cityOfPorto;
 
-        String nomeAG = "Porto";
-        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
-        Location local = new Location(40.5, 50.5, 100.0);
-        AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea expectedResult = new GeographicalArea(nomeAG, tipo, local, area);
-
-        GeographicalArea result = ctrl3.criarNovaAG("Porto", "Cidade", 40.5,
-                50.5, 100.0, 10, 10);
         //Act
+        GeographicalArea result = controller.createNewGeoArea("City of Porto", "City",
+                41.178553, -8.608035, 111, 0.261, 0.249);
 
         //Assert
         assertEquals(expectedResult,result);
     }
-
 }

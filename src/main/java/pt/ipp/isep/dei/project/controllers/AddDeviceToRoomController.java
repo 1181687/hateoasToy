@@ -30,7 +30,6 @@ public class AddDeviceToRoomController {
         return mHouse.getRoomListContent();
     }
 
-
     /** Method that asks for the room in a specific position in the list.
      * @param position Specifies the position of the room in the list.
      * @return The respective room.
@@ -61,7 +60,6 @@ public class AddDeviceToRoomController {
         return mHouse.getRoomListSize();
     }
 
-
     /**
      * @return
      */
@@ -77,7 +75,6 @@ public class AddDeviceToRoomController {
     public String getDeviceTypeListToString() {
         return mHouse.getDeviceTypeListToString();
     }
-
 
     /**
      * Method that create a new FridgeSpecs in a selected Room.
@@ -108,7 +105,6 @@ public class AddDeviceToRoomController {
         return mDevice;
     }
 
-
     /**
      * Method that create a new Dish Washer in a selected Room.
      *
@@ -122,7 +118,6 @@ public class AddDeviceToRoomController {
         return mDevice;
     }
 
-
     /**
      * Method that create a new Washing Machine in a selected Room.
      *
@@ -135,7 +130,6 @@ public class AddDeviceToRoomController {
         mDevice = mRoom.newWashingMachine(name, nominalPower, capacity, mProgramList);
         return mDevice;
     }
-
 
     /**
      * Method that create a new Electric Water Heater in a selected Room.
@@ -175,7 +169,12 @@ public class AddDeviceToRoomController {
         return mProgramList.addProgram(program);
     }
 
-
+    /**
+     * TODO
+     *
+     * @param position
+     * @return
+     */
     public Device getDevice(int position) {
         return mRoom.getDeviceByPosition(position);
     }

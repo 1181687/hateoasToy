@@ -19,7 +19,7 @@ public class AddGeoAreaType {
         System.out.println("Introduce the name of the new type of Geographical Area.");
         Scanner ler = new Scanner(System.in);
         String nome = ler.nextLine();
-        if (ctrl.adicionaNovoTipoAreaGeografica(nome)) {
+        if (ctrl.addTypeOfGeoAreaToTheList(nome)) {
             System.out.println("Success!");
         } else {
             System.out.println("Try another name!");

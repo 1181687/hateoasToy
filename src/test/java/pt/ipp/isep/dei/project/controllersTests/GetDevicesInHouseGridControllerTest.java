@@ -1,16 +1,44 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetDevicesInHouseGridController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GetDevicesInHouseGridControllerTest {
+    private GetDevicesInHouseGridController ctrl;
+    private HouseGridList houseGridList;
+    private House houseEdificioB;
+
+    @BeforeEach
+    public void StartUp() {
+        //Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+
+        //House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
+
+        houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+        Location houseLocation = new Location(41.177748, -8.607745, 112);
+        Address address = new Address("4200-072", houseLocation);
+        houseEdificioB.setAddress(address);
+        houseEdificioB.setInsertedGeoArea(insertedGeoArea);
+
+        this.ctrl = new GetDevicesInHouseGridController(houseEdificioB);
+        this.houseGridList = houseEdificioB.getHouseGridList();
 
 
-    @Test
-    public void testGetDeviceListContentNameTypeLocationByHG() {
         //Room ONE
         String name = "Kitchen";
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
@@ -54,45 +82,25 @@ public class GetDevicesInHouseGridControllerTest {
         houseGridList1.addHouseGrid(houseGrid);
         houseGridList1.addHouseGrid(houseGridEmpty);
 
-        //house
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, houseGridList1, address, geo);
-        GetDevicesInHouseGridController ctrl = new GetDevicesInHouseGridController(house);
+        houseGridList.addHouseGrid(houseGrid);
+        houseGridList.addHouseGrid(houseGridEmpty);
+    }
 
+
+    @Test
+    public void testGetDeviceListContentNameTypeLocationByHG() {
+        //Arrange
         String expectedResult = "Dish Washer\n- Device Name: DishWasher, Location: Kitchen.\n- Device Name: DishWasherTeka, Location: KitchenBasement.\n\nElectric Water Heater\n- Device Name: ElectricWaterHeater, Location: KitchenBasement.\n\nWashing Machine\n- Device Name: WashingMachineBosh, Location: Kitchen.\n\nFridge\n- Device Name: FridgeAriston, Location: Kitchen.\n- Device Name: FridgeSiemens, Location: KitchenBasement.\n\n";
-
-
+        //Act
         String result = ctrl.getDeviceListContentNameTypeLocationByHG(0);
-
+        //Assert
         assertEquals(expectedResult, result);
     }
 
     @Test
     public void displayOfTheContentOfTheHouseGrids() {
         // Arrange
-        RoomList roomListEmpty = new RoomList();
-        RoomList roomList = new RoomList();
-        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
-        HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
-        HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGrid(houseGrid);
-        houseGridList1.addHouseGrid(houseGridEmpty);
-
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, houseGridList1, address, geo);
-        GetDevicesInHouseGridController ctrl = new GetDevicesInHouseGridController(house);
-
-
         String expectedResult = "1 - Name: grid1\n2 - Name: grid2\n";
-
 
         // Act
         String result = ctrl.getHouseGridListToString();
@@ -104,19 +112,14 @@ public class GetDevicesInHouseGridControllerTest {
     @Test
     public void checkIfHouseGridListIsEmptyWithPositiveTest() {
         // Arrange
-        RoomList roomList = new RoomList();
-        HouseGridList houseGridList1 = new HouseGridList();
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
 
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, houseGridList1, address, geo);
-        GetDevicesInHouseGridController ctrl = new GetDevicesInHouseGridController(house);
+        House emptyHouse = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         // Act
-        boolean result = ctrl.isHouseGridListEmpty();
+        boolean result = emptyHouse.isHouseGridListEmpty();
 
         // Assert
         assertTrue(result);
@@ -124,23 +127,6 @@ public class GetDevicesInHouseGridControllerTest {
 
     @Test
     public void checkIfHouseGridListIsEmptyWithNegativeTest() {
-        // Arrange
-        RoomList roomListEmpty = new RoomList();
-        RoomList roomList = new RoomList();
-        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
-        HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
-        HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGrid(houseGrid);
-        houseGridList1.addHouseGrid(houseGridEmpty);
-
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, houseGridList1, address, geo);
-        GetDevicesInHouseGridController ctrl = new GetDevicesInHouseGridController(house);
-
         // Act
         boolean result = ctrl.isHouseGridListEmpty();
 
@@ -150,23 +136,7 @@ public class GetDevicesInHouseGridControllerTest {
 
     @Test
     public void testGetHouseGridListLength() {
-
-        RoomList roomListEmpty = new RoomList();
-        RoomList roomList = new RoomList();
-        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
-        HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
-        HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGrid(houseGrid);
-        houseGridList1.addHouseGrid(houseGridEmpty);
-
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, houseGridList1, address, geo);
-        GetDevicesInHouseGridController ctrl = new GetDevicesInHouseGridController(house);
-
+        // Arrange
         int expectedResult = 2;
 
         // Act
@@ -181,14 +151,12 @@ public class GetDevicesInHouseGridControllerTest {
         // Arrange
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-        RoomList roomList = new RoomList();
 
         //Room TWO
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
         ProgramList dwProgramList = new ProgramList();
-
 
         DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(100, 100, dwProgramList);
         ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
@@ -206,24 +174,8 @@ public class GetDevicesInHouseGridControllerTest {
         room2.addDevice(dev5);
         room2.addDevice(dev6);
 
-        roomList.addRoom(room);
-        roomList.addRoom(room2);
-
-        RoomList roomListEmpty = new RoomList();
-        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
-        HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
-        HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGrid(houseGrid);
-        houseGridList1.addHouseGrid(houseGridEmpty);
-
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, houseGridList1, address, geo);
-        GetDevicesInHouseGridController ctrl = new GetDevicesInHouseGridController(house);
-
+        houseEdificioB.addRoom(room);
+        houseEdificioB.addRoom(room2);
 
         // Act
         boolean result = ctrl.checkIfThereAreNoDevicesHGbyPosition(0);
@@ -237,7 +189,6 @@ public class GetDevicesInHouseGridControllerTest {
         // Arrange
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-        RoomList roomList = new RoomList();
 
         //Room TWO
         String name2 = "KitchenBasement";
@@ -261,24 +212,8 @@ public class GetDevicesInHouseGridControllerTest {
         room2.addDevice(dev5);
         room2.addDevice(dev6);
 
-        roomList.addRoom(room2);
-
-        RoomList roomListEmpty = new RoomList();
-        roomList.addRoom(room);
-        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
-        HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
-        HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGrid(houseGrid);
-        houseGridList1.addHouseGrid(houseGridEmpty);
-
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, houseGridList1, address, geo);
-        GetDevicesInHouseGridController ctrl = new GetDevicesInHouseGridController(house);
-
+        houseEdificioB.addRoom(room2);
+        houseEdificioB.addRoom(room);
 
         // Act
         boolean result = ctrl.checkIfThereAreNoDevicesHGbyPosition(1);
@@ -290,31 +225,8 @@ public class GetDevicesInHouseGridControllerTest {
     @Test
     public void getNameByHGPosition() {
         // Arrange
-        // Instantiate House Grids
-        String gridName0 = "Grid0";
-        HouseGrid grid0 = new HouseGrid(gridName0);
-        String gridName1 = "Grid1";
-        HouseGrid grid1 = new HouseGrid(gridName1);
-        String gridName2 = "Grid2";
-        HouseGrid grid2 = new HouseGrid(gridName2);
-
-        // Instantiate List of House Grids
-        HouseGridList gridList = new HouseGridList();
-        gridList.addHouseGrid(grid0);
-        gridList.addHouseGrid(grid1);
-        gridList.addHouseGrid(grid2);
-
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, gridList, address, geo);
-        GetDevicesInHouseGridController ctrl = new GetDevicesInHouseGridController(house);
-
         int position = 0;
-        String expectedResult = "Grid0";
+        String expectedResult = "grid1";
 
         // Act
         String result = ctrl.getHGNameByHGPosition(position);
@@ -326,22 +238,19 @@ public class GetDevicesInHouseGridControllerTest {
     @Test
     public void getNameByHGPositionEmpty() {
         // Arrange
-        HouseGridList gridList = new HouseGridList();
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
 
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, gridList, address, geo);
-        GetDevicesInHouseGridController ctrl = new GetDevicesInHouseGridController(house);
+        House emptyHouse = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+        GetDevicesInHouseGridController controller = new GetDevicesInHouseGridController(emptyHouse);
 
         int position = 0;
         String expectedResult = "There are no Grids in the house";
 
         // Act
-        String result = ctrl.getHGNameByHGPosition(position);
+        String result = controller.getHGNameByHGPosition(position);
 
         // Assert
         assertEquals(expectedResult, result);
