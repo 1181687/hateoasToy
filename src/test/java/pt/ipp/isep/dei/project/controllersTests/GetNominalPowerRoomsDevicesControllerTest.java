@@ -1,29 +1,73 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerRoomsDevicesController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class GetNominalPowerRoomsDevicesControllerTest {
+    private GetNominalPowerRoomsDevicesController controller;
+    private House houseEdificioB;
+    private HouseGrid grid;
+    private HouseGrid gridTwo;
+    private Room roomOne;
+    private Room roomTwo;
+    //private Device fridge;
+    //private Device lamp;
+
+
+    @BeforeEach
+    public void StartUp() {
+        //Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+
+        //House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
+
+        houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+        Location houseLocation = new Location(41.177748, -8.607745, 112);
+        Address address = new Address("4200-072", houseLocation);
+        houseEdificioB.setAddress(address);
+        houseEdificioB.setInsertedGeoArea(insertedGeoArea);
+
+        //Rooms
+        Dimension dimensionRoom1 = new Dimension(5.2, 3.7, 8.5);
+        roomOne = new Room("Kid's room", 1, dimensionRoom1);
+        Dimension dimensionRoom2 = new Dimension(5.2, 3.7, 8.5);
+        roomTwo = new Room("Bathroom", 1, dimensionRoom2);
+
+        houseEdificioB.addRoom(roomOne);
+        houseEdificioB.addRoom(roomTwo);
+
+        //grids
+        grid = new HouseGrid("Grid");
+        gridTwo = new HouseGrid("Grid2");
+
+
+        this.controller = new GetNominalPowerRoomsDevicesController(houseEdificioB);
+
+
+    }
+
 
     @Test
     public void checkIfHouseGridListIsEmptyWithPositiveTest() {
-        // Arrange
-        HouseGridList gridList = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, gridList, address, geo);
+        //Arrange
 
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
         // Act
-        boolean result = ctrl.isGridListEmpty();
+        boolean result = controller.isGridListEmpty();
 
         // Assert
         assertTrue(result);
@@ -32,26 +76,11 @@ class GetNominalPowerRoomsDevicesControllerTest {
     @Test
     public void checkIfHouseGridListIsEmptyWithNegativeTest() {
         // Arrange
+        houseEdificioB.addGrid(grid);
 
-        //house
-        HouseGridList gridList = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, gridList, address, geo);
-
-        //grid
-        String gridName = "Grid";
-        HouseGrid grid = new HouseGrid(gridName);
-        gridList.addHouseGrid(grid);
-
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
         // Act
-        boolean result = ctrl.isGridListEmpty();
+        boolean result = controller.isGridListEmpty();
 
         // Assert
         assertFalse(result);
@@ -59,29 +88,14 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
     @Test
     public void displayOfTheContentOfTheHouseGrids() {
-        // Arrange
-        //house
-        HouseGridList gridList = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, gridList, address, geo);
+        //New Grids
+        houseEdificioB.addGrid(grid);
+        houseEdificioB.addGrid(gridTwo);
 
-        //grid
-        String gridName = "Grid";
-        HouseGrid grid0 = new HouseGrid(gridName);
-        HouseGrid grid1 = new HouseGrid(gridName);
-        gridList.getmHouseGridsList().add(grid0);
-        gridList.getmHouseGridsList().add(grid1);
-        String expectedResult = "1 - Name: Grid\n2 - Name: Grid\n";
-
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
+        String expectedResult = "1 - Name: Grid\n2 - Name: Grid2\n";
 
         // Act
-        String result = ctrl.getHouseGridsListToString();
+        String result = controller.getHouseGridsListToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -89,29 +103,14 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
     @Test
     public void getHouseGridListLengthTest() {
-        // Arrange
-        //house
-        HouseGridList gridList = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, gridList, address, geo);
+        //New Grids
+        houseEdificioB.addGrid(grid);
+        houseEdificioB.addGrid(gridTwo);
 
-        //grid
-        String gridName = "Grid";
-        HouseGrid grid0 = new HouseGrid(gridName);
-        HouseGrid grid1 = new HouseGrid(gridName);
-        gridList.getmHouseGridsList().add(grid0);
-        gridList.getmHouseGridsList().add(grid1);
         int expectedResult = 2;
 
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
-
         // Act
-        int result = ctrl.getHouseGridListSize();
+        int result = controller.getHouseGridListSize();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -120,27 +119,10 @@ class GetNominalPowerRoomsDevicesControllerTest {
     @Test
     public void getHouseGridListLengthEmptyListTest() {
         // Arrange
-        //house
-        HouseGridList gridList = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, gridList, address, geo);
-
-        //grid
-        String gridName = "Grid";
-        HouseGrid grid0 = new HouseGrid(gridName);
-        HouseGrid grid1 = new HouseGrid(gridName);
-
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
-
         int expectedResult = 0;
 
         // Act
-        int result = ctrl.getHouseGridListSize();
+        int result = controller.getHouseGridListSize();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -148,102 +130,62 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
     @Test
     public void getRoomFromAPosition() {
-        //arrange
-        //house
-        HouseGridList list = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, list, address, geo);
+        //Arrange
+        //Adding Grids
+        houseEdificioB.addGrid(grid);
+        houseEdificioB.addGrid(gridTwo);
 
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
+        //Rooms
+        houseEdificioB.addRoom(roomOne);
+        houseEdificioB.addRoom(roomTwo);
 
-        list.getmHouseGridsList().add(houseGrid);
+        //Rooms of Grid
+        grid.attachRoom(roomOne);
+        grid.attachRoom(roomTwo);
 
-        String name1 = "Kitchen";
-        int houseFloor1 = 0;
-        Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        controller.getHouseGridByPosition(0);
 
-        String name2 = "Living Room";
-        int houseFloor2 = 1;
-        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
-
-        houseGrid.attachRoom(room1);
-        houseGrid.attachRoom(room2);
-
-        Room expectResult = room1;
-
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
-
-        ctrl.getHouseGridByPosition(0);
-
+        Room expectResult = roomOne;
         //act
-        Room result = ctrl.getRoomOfHouseGridByPosition(0);
+        Room result = controller.getRoomOfHouseGridByPosition(0);
         //assert
         assertEquals(expectResult, result);
     }
 
     @Test
     public void getDeviceListContentTest() {
-        // Arrange
-        //house
-        HouseGridList list = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, list, address, geo);
+        //Arrange
+        //Adding Grids
+        houseEdificioB.addGrid(grid);
 
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
+        grid.attachRoom(roomOne);
 
-        list.getmHouseGridsList().add(houseGrid);
-
-        //initiate Room
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
-        houseGrid.attachRoom(room);
-
-        //initiate Devices
-
+        //Device - Fridge
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
         DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        Device dev = new Device("Fridge1", room, deviceSpecs);
+        Device fridge = new Device("Fridge1", roomOne, deviceSpecs);
 
-
+        //Device - Lamp
         double luminousFlux = 10.0;
         double nominalPower1 = 0.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device lamp = new Device("Lamp1", roomOne, deviceSpecs1);
 
-        room.addDevice(dev);
-        room.addDevice(dev1);
 
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
-
-        ctrl.getHouseGridByPosition(0);
+        controller.getHouseGridByPosition(0);
 
         String expectedResult =
                 "1 - Name of the device: Fridge1\n" +
                         "2 - Name of the device: Lamp1\n";
 
 
-        // Act
-        String result = ctrl.getDeviceListToString(0);
+        //Act
+        String result = controller.getDeviceListToString(0);
 
-        // Assert
+        //Assert
         assertEquals(expectedResult, result);
     }
 
@@ -251,49 +193,28 @@ class GetNominalPowerRoomsDevicesControllerTest {
     public void getDeviceListSize() {
 
         // Arrange
-        //house
-        HouseGridList list = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, list, address, geo);
+        houseEdificioB.addGrid(grid);
 
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
-
-        list.getmHouseGridsList().add(houseGrid);
-
-        //initiate Room
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
-        houseGrid.attachRoom(room);
+        grid.attachRoom(roomOne);
 
         //initiate Device
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device dev1 = new Device("Lamp1", roomOne, deviceSpecs1);
 
         double luminousFlux2 = 15.0;
         double nominalPower2 = 2.0;
 
         DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
-        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
+        Device dev2 = new Device("Lamp2", roomOne, deviceSpecs2);
 
-        room.addDevice(dev1);
-        room.addDevice(dev2);
 
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
-
-        ctrl.getHouseGridByPosition(0);
+        controller.getHouseGridByPosition(0);
 
         int expectResult = 2;
         //act
-        int result = ctrl.getDeviceListSize(0);
+        int result = controller.getDeviceListSize(0);
         //assert
         assertEquals(expectResult, result);
     }
@@ -302,27 +223,12 @@ class GetNominalPowerRoomsDevicesControllerTest {
     public void checkIfRoomListIsEmptyTrue() {
         //arrange
         //house
-        HouseGridList list = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, list, address, geo);
+        houseEdificioB.addGrid(grid);
 
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
-
-        list.getmHouseGridsList().add(houseGrid);
-
-
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
-
-        ctrl.getHouseGridByPosition(0);
+        controller.getHouseGridByPosition(0);
 
         //act
-        boolean result = ctrl.roomListOfHouseGridIsEmpty();
+        boolean result = controller.roomListOfHouseGridIsEmpty();
 
         //assert
         assertTrue(result);
@@ -330,42 +236,13 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
     @Test
     public void checkIfRoomListIsEmptyFalse() {
-        //arrange
-        //house
-        HouseGridList list = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, list, address, geo);
+        houseEdificioB.addGrid(grid);
 
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
+        grid.attachRoom(roomOne);
 
-        list.getmHouseGridsList().add(houseGrid);
-
-        //initiate Room
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
-        houseGrid.attachRoom(room);
-
-        RoomList rList = new RoomList();
-
-        String name1 = "Kitchen";
-        int houseFloor1 = 0;
-        Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
-
-        rList.addRoom(room1);
-
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
-
-        ctrl.getHouseGridByPosition(0);
+        controller.getHouseGridByPosition(0);
         //act
-        boolean result = ctrl.roomListOfHouseGridIsEmpty();
+        boolean result = controller.roomListOfHouseGridIsEmpty();
 
         //assert
         assertFalse(result);
@@ -374,35 +251,13 @@ class GetNominalPowerRoomsDevicesControllerTest {
     @Test
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
-        //house
-        HouseGridList list = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, list, address, geo);
+        houseEdificioB.addGrid(grid);
+        grid.attachRoom(roomOne);
 
-        //housegrid
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
-
-        list.getmHouseGridsList().add(houseGrid);
-
-        //initiate Room
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        houseGrid.attachRoom(room);
-
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
-
-        ctrl.getHouseGridByPosition(0);
+        controller.getHouseGridByPosition(0);
 
         // Act
-        boolean result = ctrl.deviceListIsEmpty(0);
+        boolean result = controller.deviceListIsEmpty(0);
 
         // Assert
         assertTrue(result);
@@ -412,43 +267,21 @@ class GetNominalPowerRoomsDevicesControllerTest {
     @Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
-        //house
-        HouseGridList list = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, list, address, geo);
+        houseEdificioB.addGrid(grid);
+        grid.attachRoom(roomOne);
 
-        //housegrid
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
+        //Device - Fridge
+        double freezerCapacity = 5.5;
+        double refrigeratorCapacity = 15.5;
+        double annualEnergyConsumption = 3000.0;
+        double nominalPower = 100.5;
+        DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        Device fridge = new Device("Fridge1", roomOne, deviceSpecs);
 
-        list.getmHouseGridsList().add(houseGrid);
-
-        //initiate Room
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        houseGrid.attachRoom(room);
-
-        //initiate Device
-        double luminousFlux = 10.0;
-        double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
-
-        room.addDevice(dev1);
-
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
-
-        ctrl.getHouseGridByPosition(0);
+        controller.getHouseGridByPosition(0);
 
         // Act
-        boolean result = ctrl.deviceListIsEmpty(0);
+        boolean result = controller.deviceListIsEmpty(0);
 
         // Assert
         assertFalse(result);
@@ -457,46 +290,24 @@ class GetNominalPowerRoomsDevicesControllerTest {
     @Test
     public void getDeviceFromPositionInList() {
         // Arrange
-        //house
-        HouseGridList list = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, list, address, geo);
+        houseEdificioB.addGrid(grid);
+        grid.attachRoom(roomOne);
 
-        //housegrid
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
+        //Device - Fridge
+        double freezerCapacity = 5.5;
+        double refrigeratorCapacity = 15.5;
+        double annualEnergyConsumption = 3000.0;
+        double nominalPower = 100.5;
+        DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        Device fridge = new Device("Fridge1", roomOne, deviceSpecs);
 
-        list.getmHouseGridsList().add(houseGrid);
+        controller.getHouseGridByPosition(0);
 
-        //initiate Room
 
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        houseGrid.attachRoom(room);
-
-        //initiate Device
-        double luminousFlux = 10.0;
-        double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
-
-        room.addDevice(dev1);
-
-        Device expectedResult = dev1;
-
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
-
-        ctrl.getHouseGridByPosition(0);
+        Device expectedResult = fridge;
 
         // Act
-        Device result = ctrl.getDeviceListByPosition(0, 0);
+        Device result = controller.getDeviceListByPosition(0, 0);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -506,40 +317,19 @@ class GetNominalPowerRoomsDevicesControllerTest {
     void TestDisplayRoomsAttachedToHouseGrid() {
 
         // Arrange
-        //house
-        HouseGridList list = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, list, address, geo);
+        houseEdificioB.addGrid(grid);
+        grid.attachRoom(roomOne);
+        grid.attachRoom(roomTwo);
 
-        //housegrid
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
-
-        list.getmHouseGridsList().add(houseGrid);
-
-        Dimension dimensionRoom1 = new Dimension(5.2, 3.7, 8.5);
-        Room room1 = new Room("Kid's room", 1, dimensionRoom1);
-        Dimension dimensionRoom2 = new Dimension(5.2, 3.7, 8.5);
-        Room room2 = new Room("Bathroom", 1, dimensionRoom2);
-
-
-        houseGrid.getRoomList().addRoom(room1);
-        houseGrid.getRoomList().addRoom(room2);
 
         String expectedResult = "1- Name: Kid's room, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n" +
                 "2- Name: Bathroom, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n";
 
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
 
-        ctrl.getHouseGridByPosition(0);
+        controller.getHouseGridByPosition(0);
 
         // Act
-        String result = ctrl.getRoomListInHouseGridToString();
+        String result = controller.getRoomListInHouseGridToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -548,68 +338,27 @@ class GetNominalPowerRoomsDevicesControllerTest {
     @Test
     public void getListSize() {
         // Arrange
-        //house
-        HouseGridList list = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, list, address, geo);
+        houseEdificioB.addGrid(grid);
+        grid.attachRoom(roomOne);
+        grid.attachRoom(roomTwo);
 
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
-
-        list.getmHouseGridsList().add(houseGrid);
-
-        String name1 = "Kitchen";
-        int houseFloor1 = 0;
-        Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
-
-        String name2 = "Living Room";
-        int houseFloor2 = 1;
-        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
-
-        houseGrid.attachRoom(room1);
-        houseGrid.attachRoom(room2);
-
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
-
-        ctrl.getHouseGridByPosition(0);
+        controller.getHouseGridByPosition(0);
         int expectResult = 2;
         //act
-        int result = ctrl.getRoomListInHouseGridSize();
+        int result = controller.getRoomListInHouseGridSize();
         //assert
         assertEquals(expectResult, result);
     }
 
     @Test
     public void getListSizeEmptyList() {
-        //arrange
-        //house
-        HouseGridList list = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, list, address, geo);
-
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
-
-        list.getmHouseGridsList().add(houseGrid);
+        // Arrange
+        houseEdificioB.addGrid(grid);
         int expectResult = 0;
 
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
-
-        ctrl.getHouseGridByPosition(0);
+        controller.getHouseGridByPosition(0);
         //act
-        int result = ctrl.getRoomListInHouseGridSize();
+        int result = controller.getRoomListInHouseGridSize();
         //assert
         assertEquals(expectResult, result);
     }
@@ -617,49 +366,25 @@ class GetNominalPowerRoomsDevicesControllerTest {
     @Test
     void getNominalPowerOfSelectedMeasurableObjects() {
         // Arrange
-        //house
-        HouseGridList list = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, list, address, geo);
-
-        //housegrid
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
-
-        list.getmHouseGridsList().add(houseGrid);
-
-        //initiate Room
-
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        houseGrid.attachRoom(room);
+        houseEdificioB.addGrid(grid);
+        grid.attachRoom(roomOne);
 
         //initiate Device
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device lamp = new Device("Lamp1", roomOne, deviceSpecs1);
 
-        room.addDevice(dev1);
 
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
+        controller.getHouseGridByPosition(0);
 
-        ctrl.getHouseGridByPosition(0);
-
-        ctrl.addMeasurable(dev1);
+        controller.addMeasurable(lamp);
 
         double expectedResult = 1;
 
         //Act
 
-        double result = ctrl.getNominalPowerOfMeasurableObjects();
+        double result = controller.getNominalPowerOfMeasurableObjects();
 
         //Assert
         assertEquals(expectedResult, result, 0.00001);
@@ -668,45 +393,21 @@ class GetNominalPowerRoomsDevicesControllerTest {
     @Test
     void checkIfObjInList() {
         // Arrange
-        //house
-        HouseGridList list = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, list, address, geo);
-
-        //housegrid
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
-
-        list.getmHouseGridsList().add(houseGrid);
-
-        //initiate Room
-
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        houseGrid.attachRoom(room);
+        houseEdificioB.addGrid(grid);
+        grid.attachRoom(roomOne);
 
         //initiate Device
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device lamp = new Device("Lamp1", roomOne, deviceSpecs1);
 
-        room.addDevice(dev1);
 
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
+        controller.getHouseGridByPosition(0);
 
-        ctrl.getHouseGridByPosition(0);
+        controller.addMeasurable(lamp);
 
-        ctrl.addMeasurable(dev1);
-
-        boolean result = ctrl.isMeasurableInList(dev1);
+        boolean result = controller.isMeasurableInList(lamp);
 
         //Assert
 
@@ -716,53 +417,27 @@ class GetNominalPowerRoomsDevicesControllerTest {
     @Test
     void checkIfObjNotInList() {
         // Arrange
-        //house
-        HouseGridList list = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, list, address, geo);
-
-        //housegrid
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
-
-        list.getmHouseGridsList().add(houseGrid);
-
-        //initiate Room
-
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        houseGrid.attachRoom(room);
+        houseEdificioB.addGrid(grid);
+        grid.attachRoom(roomOne);
 
         //initiate Device
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device dev1 = new Device("Lamp1", roomOne, deviceSpecs1);
 
         //initiate Device2
         double luminousFlux2 = 10.0;
         double nominalPower2 = 1.0;
         DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
-        Device dev2 = new Device("Lamp2", room, deviceSpecs1);
+        Device dev2 = new Device("Lamp2", roomOne, deviceSpecs1);
 
-        room.addDevice(dev1);
 
-        room.addDevice(dev2);
+        controller.getHouseGridByPosition(0);
 
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
+        controller.addMeasurable(dev1);
 
-        ctrl.getHouseGridByPosition(0);
-
-        ctrl.addMeasurable(dev1);
-
-        boolean result = ctrl.isMeasurableInList(dev2);
+        boolean result = controller.isMeasurableInList(dev2);
 
         //Assert
 
@@ -772,29 +447,10 @@ class GetNominalPowerRoomsDevicesControllerTest {
     @Test
     void testGetListToString() {
         // Arrange
-        MeasurableList mList = new MeasurableList();
+        houseEdificioB.addGrid(grid);
+        grid.attachRoom(roomOne);
 
-        //house
-        HouseGridList list = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, list, address, geo);
-
-        //housegrid
-        String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
-
-        list.getmHouseGridsList().add(houseGrid);
-
-        //initiate Room
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room1 = new Room("Room1", 2, dim);
-        Room room2 = new Room("Room2", 2, dim);
-
+        //initiate Devices
         ProgramList programList = new ProgramList();
         Program program = new Program("prog1", 3, 4.5);
         programList.addProgram(program);
@@ -802,29 +458,24 @@ class GetNominalPowerRoomsDevicesControllerTest {
         FridgeSpecs specFridgeSpecs = new FridgeSpecs(25, 50, 5000, 500);
         WashingMachineSpecs specWashing = new WashingMachineSpecs(400, 250.0, programList);
         DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(400, 250.0, programList);
-        Device dev1 = new Device("FridgeAriston", room1, specFridgeSpecs);
-        Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasherSpecs);
+        Device dev1 = new Device("FridgeAriston", roomOne, specFridgeSpecs);
+        Device dev2 = new Device("WashingMachineBosh", roomOne, specWashing);
+        Device dev3 = new Device("DishWasherSpecs", roomOne, specDishWasherSpecs);
 
+        MeasurableList mList = new MeasurableList();
         mList.addMeasurable(dev1);
-        mList.addMeasurable(room2);
+        mList.addMeasurable(roomTwo);
 
-        room1.addDevice(dev1);
-        room1.addDevice(dev2);
-        room2.addDevice(dev3);
+        controller.getHouseGridByPosition(0);
 
-        GetNominalPowerRoomsDevicesController ctrl = new GetNominalPowerRoomsDevicesController(house);
+        controller.addMeasurable(dev1);
+        controller.addMeasurable(roomTwo);
 
-        ctrl.getHouseGridByPosition(0);
-
-        ctrl.addMeasurable(dev1);
-        ctrl.addMeasurable(room2);
-
-
-        String expectedResult = "Room: Room2\nDevice: FridgeAriston, located in room: Room1\n";
+        String expectedResult = "Device: FridgeAriston, located in room: Kid's room\n" +
+                "Room: Bathroom\n";
 
         // act
-        String result = ctrl.getListToString();
+        String result = controller.getListToString();
 
         // assert
         assertEquals(expectedResult, result);
