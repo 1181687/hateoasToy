@@ -38,8 +38,6 @@ public class AddGeoAreaControllerTest {
 
     @Test
     public void addNewGeoAreaPositiveTest() {
-        // Arrange
-
         // Act
         boolean result = controller.addNewGeoArea(cityOfPorto);
 

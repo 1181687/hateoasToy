@@ -17,18 +17,18 @@ public class AddGeoAreaToAnotherGeoArea {
 
     public void run() {
         String label1 = "Choose the number that corresponds to the geographical area you wish to include in another geographical area.";
-        System.out.println(ctrl.getConteudoLista(true));
+        System.out.println(ctrl.getListToString(true));
         int firstOption = InputValidator.getIntRange(label1, 1, ctrl.getListSize());
         int positionOfFirstOption = firstOption - 1;
-        if (ctrl.verSeAGTemAreaInseridaVazia(ctrl.getAGNaListaApresentada(positionOfFirstOption))) {
+        if (ctrl.checkIfGeoAreaDoesntHaveAnInsertedArea(ctrl.getGeoAreaInTheList(positionOfFirstOption))) {
             System.out.println("Choose the number of the geographical area in which the previous geographical area is included.");
-            ctrl.removerAGLista(ctrl.getAGNaListaApresentada(positionOfFirstOption));
-            System.out.println(ctrl.getConteudoLista(true));
+            ctrl.removeGeoArea(ctrl.getGeoAreaInTheList(positionOfFirstOption));
+            System.out.println(ctrl.getListToString(true));
             int secondOption = InputValidator.getIntRange(label1, 1, ctrl.getListSize());
             int positionOfSecondOption = secondOption - 1;
-            ctrl.getAGNaListaApresentada(positionOfSecondOption).setInsertedIn(ctrl.getAGNaListaApresentada(positionOfSecondOption));
+            ctrl.getGeoAreaInTheList(positionOfSecondOption).setInsertedIn(ctrl.getGeoAreaInTheList(positionOfSecondOption));
             System.out.println("Success!");
-            ctrl.adicionarAGListaPosicaoEspecifica(positionOfSecondOption, ctrl.getAGNaListaApresentada(positionOfSecondOption));
+            ctrl.addGeoAreaInASpecificPosition(positionOfSecondOption, ctrl.getGeoAreaInTheList(positionOfSecondOption));
         } else
             System.out.println("The geographical area you have chosen is already included in another area. Try another geographical area.");
     }

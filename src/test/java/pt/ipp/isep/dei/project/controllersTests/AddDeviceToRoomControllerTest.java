@@ -8,8 +8,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class AddDeviceToRoomControllerTest {
     private AddDeviceToRoomController controller;
@@ -360,15 +359,12 @@ class AddDeviceToRoomControllerTest {
     void addProgramToListTrue() {
         // Arrange
         Program program1 = controller.createNewProgram("Program1", 10.2, 50);
-        Program program2 = controller.createNewProgram("Program2", 11.2, 52);
-
-        boolean expectedResult = true;
 
         // Act
-        boolean result = controller.addProgramToList(program2);
+        boolean result = controller.addProgramToList(program1);
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertTrue(result);
     }
 
     @Test
