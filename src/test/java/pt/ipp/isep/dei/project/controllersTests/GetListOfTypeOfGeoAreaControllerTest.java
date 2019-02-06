@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetListOfTypeOfGeoAreaController;
 import pt.ipp.isep.dei.project.model.*;
@@ -12,80 +13,53 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GetListOfTypeOfGeoAreaControllerTest {
 
+    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaTypeList geographicalAreaTypeList;
+    private GeographicalArea ag;
+    private GeographicalAreaType type;
+    private GetListOfTypeOfGeoAreaController controller;
+
+    @BeforeEach
+    public void StartUp() {
+
+        //Geographical Area & Geographical Area Type
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        this.type = new GeographicalAreaType("Urban area");
+        this.ag = new GeographicalArea("Campus do ISEP", type, location, areaShape);
+
+        // Geo Area Type List & Geo Area List
+        this.geographicalAreaTypeList = new GeographicalAreaTypeList();
+        this.geographicalAreaList = new GeographicalAreaList();
+        this.controller = new GetListOfTypeOfGeoAreaController(geographicalAreaList, geographicalAreaTypeList);
+    }
+
     @Test
     public void testarGetListaAGPorTipo() {
         //Arrange
+        String nameType = "Urban area";
+        this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type);
+        this.geographicalAreaList.addGeoArea(ag);
 
-        //Instanciar a classe GeographicalAreaTypeList
-        GeographicalAreaTypeList geographicalAreaTypeList = new GeographicalAreaTypeList();
-
-        //Tipos de Areas Geográficas
-        String nomeDoTipo1 = "Cidade";
-        GeographicalAreaType tipo1 = new GeographicalAreaType(nomeDoTipo1);
-        String nomeDoTipo2 = "Freguesia";
-        GeographicalAreaType tipo2 = new GeographicalAreaType(nomeDoTipo2);
-
-        //Adicionar os Tipos de Areas Geográficas na lista
-        geographicalAreaTypeList.addTypeOfGeoAreaToTheList(tipo1);
-        geographicalAreaTypeList.addTypeOfGeoAreaToTheList(tipo2);
-
-        //Instanciar a classe GeographicalAreaList
-        GeographicalAreaList lista = new GeographicalAreaList();
-
-        String tipoPedido = "Cidade";
-
-        String nomeAG1 = "Porto";
-        Location local1 = new Location(41.1496, -8.6109, 97);
-        AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-
-        String nomeAG2 = "Massarelos";
-        Location local2 = new Location(41.1496, -8.6109, 97);
-        AreaShape area2 = new AreaShape(10, 10, local1);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
-
-        lista.addGeoArea(ag1);
-        lista.addGeoArea(ag2);
-
-        GetListOfTypeOfGeoAreaController ctrl = new GetListOfTypeOfGeoAreaController(lista, geographicalAreaTypeList);
-        ArrayList<String> expectedResult = new ArrayList<>(Arrays.asList("Porto"));
+        ArrayList<String> expectedResult = new ArrayList<>(Arrays.asList("Campus do ISEP"));
 
         //Act
-        List<String> resultado = ctrl.getListaAGPorTipo(tipoPedido);
+        List<String> result = controller.getListaAGPorTipo(nameType);
 
         //Assert
-        assertEquals(expectedResult, resultado);
+        assertEquals(expectedResult, result);
     }
-
 
     @Test
     public void testarGetListaDosTiposDeAG() {
         //Arrange
-        //Instanciar a classe GeographicalAreaTypeList
-        GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
-
-        //Tipo de Area Geográfica
-        String nomeDoTipo1 = "Cidade";
-        GeographicalAreaType tipo1 = new GeographicalAreaType(nomeDoTipo1);
-
-        //Adicionar o Tipo de Area Geográfica na lista
-        lista.addTypeOfGeoAreaToTheList(tipo1);
-
-        //Instanciar a classe GeographicalAreaList
-        GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
-        GetListOfTypeOfGeoAreaController ctrl = new GetListOfTypeOfGeoAreaController(geographicalAreaList, lista);
-
-
-        //Expected Result
-        List<String> expectedResult = Arrays.asList("Cidade");
-
+        geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type);
+        List<String> expectedResult = Arrays.asList("Urban area");
 
         //Act
-        List<String> result = ctrl.getListaDosTiposDeAG();
+        List<String> result = controller.getListaDosTiposDeAG();
 
         //Assert
         assertEquals(expectedResult, result);
-
     }
-
 }
