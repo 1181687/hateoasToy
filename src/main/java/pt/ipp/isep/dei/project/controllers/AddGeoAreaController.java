@@ -8,27 +8,27 @@ import java.util.List;
 
 public class AddGeoAreaController {
     private GeographicalAreaList mGeographicalAreaList;
-    private GeographicalAreaTypeList mListaTAG;
+    private GeographicalAreaTypeList mTGAList;
 
-    public AddGeoAreaController(GeographicalAreaList geographicalAreaList, GeographicalAreaTypeList listaTAG) {
+    public AddGeoAreaController(GeographicalAreaList geographicalAreaList, GeographicalAreaTypeList TGAList) {
         this.mGeographicalAreaList = geographicalAreaList;
-        this.mListaTAG = listaTAG;
+        this.mTGAList = TGAList;
     }
 
-    public boolean adicionarNovaAG(GeographicalArea novaAG) {
-        return mGeographicalAreaList.addGeoArea(novaAG);
+    public boolean addNewGeoArea(GeographicalArea newGA) {
+        return mGeographicalAreaList.addGeoArea(newGA);
     }
 
-    public GeographicalAreaList getListaAG() {
+    public GeographicalAreaList getGeographicalAreaList() {
         return mGeographicalAreaList;
     }
 
-    public List<String> getListaTAG() {
-        return mListaTAG.getListOfGeoAreaTypes();
+    public List<String> getTGAList() {
+        return mTGAList.getListOfGeoAreaTypes();
     }
 
-    public GeographicalArea criarNovaAG(String nomeAG, String nomeTipoAG, double altitude, double longitude, double latitude, double largura, double comprimento) {
-        return mGeographicalAreaList.newGeographicalArea(nomeAG, nomeTipoAG, altitude, longitude, latitude, largura, comprimento);
+    public GeographicalArea createNewGeoArea(String name, String typeName, double altitude, double longitude, double latitude, double width, double height) {
+        return mGeographicalAreaList.newGeographicalArea(name, typeName, altitude, longitude, latitude, width, height);
 
     }
 }
