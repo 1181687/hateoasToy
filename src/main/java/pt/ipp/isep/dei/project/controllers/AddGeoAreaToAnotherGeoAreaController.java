@@ -55,10 +55,19 @@ public class AddGeoAreaToAnotherGeoAreaController {
         mList.addGeoAreaInASpecificPosition(position, area);
     }
 
+    /**
+     * TODO
+     *
+     * @param area
+     */
     public void removeGeoArea(GeographicalArea area) {
         mList.removeGeoArea(area);
     }
 
+    /**
+     * TODO
+     * @return
+     */
     public int getListSize(){
         return mList.getSize();
     }

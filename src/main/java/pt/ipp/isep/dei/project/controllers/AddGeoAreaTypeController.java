@@ -5,19 +5,35 @@ import pt.ipp.isep.dei.project.model.GeographicalAreaTypeList;
 
 
 public class AddGeoAreaTypeController {
-    private GeographicalAreaTypeList mListaTAG;
+    private GeographicalAreaTypeList mList;
 
-    public AddGeoAreaTypeController(GeographicalAreaTypeList listaTAG) {
-        this.mListaTAG = listaTAG;
+    /**
+     * TODO
+     *
+     * @param list
+     */
+    public AddGeoAreaTypeController(GeographicalAreaTypeList list) {
+        this.mList = list;
     }
 
-    public boolean adicionaNovoTipoAreaGeografica(String tipoTAG){
-        GeographicalAreaType novoTAG = mListaTAG.newTypeOfGeoArea(tipoTAG);
-        return mListaTAG.addTypeOfGeoAreaToTheList(novoTAG);
+    /**
+     * TODO
+     *
+     * @param geoAreaType
+     * @return
+     */
+    public boolean addTypeOfGeoAreaToTheList(String geoAreaType) {
+        GeographicalAreaType newTypeOfGeoArea = mList.newTypeOfGeoArea(geoAreaType);
+        return mList.addTypeOfGeoAreaToTheList(newTypeOfGeoArea);
     }
 
-    public GeographicalAreaTypeList getListaTAG() {
-        return mListaTAG;
+    /**
+     * TODO
+     *
+     * @return
+     */
+    public GeographicalAreaTypeList getList() {
+        return mList;
     }
 }
 

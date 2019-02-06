@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaTypeController;
 import pt.ipp.isep.dei.project.model.GeographicalAreaType;
@@ -8,46 +9,49 @@ import pt.ipp.isep.dei.project.model.GeographicalAreaTypeList;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class AddGeographicalAreaTypeControllerTest {
+    private AddGeoAreaTypeController controller;
+    private GeographicalAreaTypeList geographicalAreaTypeList;
 
-    @Test
-    public void testarCriacaoDeNovoTipoDeAG() {
-        //Arrange
-        GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
-        String novoTipo = "Cidade";
-        AddGeoAreaTypeController ctrl = new AddGeoAreaTypeController(lista);
-        //Act
-        boolean resultado = ctrl.adicionaNovoTipoAreaGeografica(novoTipo);
-        //Assert
-        assertTrue(resultado);
+    @BeforeEach
+    public void StartUp() {
+        // List of Geographical Area Types
+        geographicalAreaTypeList = new GeographicalAreaTypeList();
+
+        // Geographical Area Types
+        GeographicalAreaType city = new GeographicalAreaType("City");
+        geographicalAreaTypeList.addTypeOfGeoAreaToTheList(city);
+
+        // Controller
+        controller = new AddGeoAreaTypeController(geographicalAreaTypeList);
     }
 
     @Test
-    public void testarCriacaoDeNovoTipoDeAGFalhar() {
-        //Arrange
-        GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
-        GeographicalAreaType tipoDaLista = new GeographicalAreaType("Cidade");
-        lista.addTypeOfGeoAreaToTheList(tipoDaLista);
-        String novoTipo = "Cidade";
-        AddGeoAreaTypeController ctrl = new AddGeoAreaTypeController(lista);
-        //Act
-        boolean resultado = ctrl.adicionaNovoTipoAreaGeografica(novoTipo);
-        //Assert
-        assertFalse(resultado);
+    public void addTypeOfGeoAreaToTheListPositiveTest() {
+        // Act
+        boolean result = controller.addTypeOfGeoAreaToTheList("Region");
+
+        // Assert
+        assertTrue(result);
     }
 
     @Test
-    public void testarGetListaTAG() {
+    public void addTypeOfGeoAreaToTheListNegativeTest() {
+        // Act
+        boolean result = controller.addTypeOfGeoAreaToTheList("City");
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void getListTest() {
         //Arrange
-        GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
-        AddGeoAreaTypeController ctrl = new AddGeoAreaTypeController(lista);
-        GeographicalAreaType tipoDaLista = new GeographicalAreaType("Cidade");
-        lista.addTypeOfGeoAreaToTheList(tipoDaLista);
-        GeographicalAreaTypeList expectedResult = lista;
-        //Act
-        GeographicalAreaTypeList result = ctrl.getListaTAG();
+        GeographicalAreaTypeList expectedResult = geographicalAreaTypeList;
 
-        //Assert
+        // Act
+        GeographicalAreaTypeList result = controller.getList();
 
+        // Assert
         assertEquals(expectedResult, result);
     }
 
