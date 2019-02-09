@@ -147,8 +147,8 @@ public class GeographicalAreaListTest {
         listaDeAGs.addGeoArea(ag1);
         listaDeAGs.addGeoArea(ag2);
 
-        String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109, Inserido Em: Cidade Porto\n";
-
+        String expectResult = "1 - Name: Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
+                "2 - Name: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109, Inserted in: Cidade Porto\n";
         //Act
         String result = listaDeAGs.getGeoAreaListToString(true);
 
@@ -177,7 +177,8 @@ public class GeographicalAreaListTest {
         listaDeAGs.addGeoArea(ag1);
         listaDeAGs.addGeoArea(ag2);
 
-        String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
+        String expectResult = "1 - Name: Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
+                "2 - Name: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
         //Act
         String result = listaDeAGs.getGeoAreaListToString(true);
@@ -208,7 +209,8 @@ public class GeographicalAreaListTest {
         listaDeAGs.addGeoArea(ag1);
         listaDeAGs.addGeoArea(ag2);
 
-        String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
+        String expectResult = "1 - Name: Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
+                "2 - Name: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
         //Act
         String result = listaDeAGs.getGeoAreaListToString(false);
@@ -238,7 +240,8 @@ public class GeographicalAreaListTest {
         listaDeAGs.addGeoArea(ag1);
         listaDeAGs.addGeoArea(ag2);
 
-        String expectResult = "1 - Nome: Porto, Tipo: Cidade, Latitude: 41.1496, Longitude: -8.6109\n2 - Nome: Rua do Bonfim, Tipo: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
+        String expectResult = "1 - Name: Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
+                "2 - Name: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
         //Act
         String result = listaDeAGs.getGeoAreaListToString(false);

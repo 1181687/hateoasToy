@@ -39,6 +39,12 @@ public class AddRoomController {
         return this.mHouse.addRoom(mRoom);
     }
 
+    /**
+     * TODO
+     *
+     * @param name
+     * @return
+     */
     public boolean isNameExistant(String name) {
         return this.mHouse.isNameExistant(name);
     }

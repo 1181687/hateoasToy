@@ -8,27 +8,57 @@ import java.util.List;
 
 public class AddGeoAreaController {
     private GeographicalAreaList mGeographicalAreaList;
-    private GeographicalAreaTypeList mListaTAG;
+    private GeographicalAreaTypeList mTGAList;
 
-    public AddGeoAreaController(GeographicalAreaList geographicalAreaList, GeographicalAreaTypeList listaTAG) {
+    /**
+     * TODO
+     *
+     * @param geographicalAreaList
+     * @param TGAList
+     */
+    public AddGeoAreaController(GeographicalAreaList geographicalAreaList, GeographicalAreaTypeList TGAList) {
         this.mGeographicalAreaList = geographicalAreaList;
-        this.mListaTAG = listaTAG;
+        this.mTGAList = TGAList;
     }
 
-    public boolean adicionarNovaAG(GeographicalArea novaAG) {
-        return mGeographicalAreaList.addGeoArea(novaAG);
+    /**
+     * TODO
+     * @param newGA
+     * @return
+     */
+    public boolean addNewGeoArea(GeographicalArea newGA) {
+        return mGeographicalAreaList.addGeoArea(newGA);
     }
 
-    public GeographicalAreaList getListaAG() {
+    /**
+     * TODO
+     * @return
+     */
+    public GeographicalAreaList getGeographicalAreaList() {
         return mGeographicalAreaList;
     }
 
-    public List<String> getListaTAG() {
-        return mListaTAG.getListOfGeoAreaTypes();
+    /**
+     * TODO
+     * @return
+     */
+    public List<String> getTGAList() {
+        return mTGAList.getListOfGeoAreaTypes();
     }
 
-    public GeographicalArea criarNovaAG(String nomeAG, String nomeTipoAG, double altitude, double longitude, double latitude, double largura, double comprimento) {
-        return mGeographicalAreaList.newGeographicalArea(nomeAG, nomeTipoAG, altitude, longitude, latitude, largura, comprimento);
+    /**
+     * TODO
+     * @param name
+     * @param typeName
+     * @param altitude
+     * @param longitude
+     * @param latitude
+     * @param width
+     * @param height
+     * @return
+     */
+    public GeographicalArea createNewGeoArea(String name, String typeName, double altitude, double longitude, double latitude, double width, double height) {
+        return mGeographicalAreaList.newGeographicalArea(name, typeName, altitude, longitude, latitude, width, height);
 
     }
 }

@@ -3,13 +3,17 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.*;
 
 public class AddPowerSourceToHouseGridController {
-
     private HouseGridList mHouseGridList;
     private PowerSourceTypeList mPowerSourceTypeList;
     private HouseGrid mSelectedHouseGrid;
     private PowerSourceType mSelectedPowerSourceType;
 
-
+    /**
+     * TODO
+     *
+     * @param houseGridList
+     * @param powerSourceTypeList
+     */
     public AddPowerSourceToHouseGridController(HouseGridList houseGridList, PowerSourceTypeList powerSourceTypeList) {
         this.mHouseGridList = houseGridList;
         this.mPowerSourceTypeList = powerSourceTypeList;
@@ -76,7 +80,6 @@ public class AddPowerSourceToHouseGridController {
      *
      * @return
      */
-
     public int getPowerSourceTypeListSize() {
         return mPowerSourceTypeList.getSize();
     }
@@ -86,7 +89,6 @@ public class AddPowerSourceToHouseGridController {
      *
      * @param position
      */
-
     public void getPowerSourceTypeByPosition(int position) {
         this.mSelectedPowerSourceType = this.mPowerSourceTypeList.getPowerSourceTypeFromASpecificPosition(position);
     }
@@ -95,7 +97,6 @@ public class AddPowerSourceToHouseGridController {
      * Returns the selected HouseGrid name.
      * @return String
      */
-
     public String getHouseGridName(){
         return mSelectedHouseGrid.getName();
     }
