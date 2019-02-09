@@ -37,41 +37,37 @@ public class DeactivateDeviceFromRoom {
                     System.out.println("\n There are no devices in this room. \n");
 
                 } else {
-                    boolean flag20 = true;
-                    while (flag20) {
-                        String label20 = "\n> This is the list of activated devices. Please select the device you want to deativate: \n"
-                                + mController.getActiveDeviceListToString() + exitMenu;
 
-                        int deviceListLength = mController.deviceListSize();
-                        int position1 = InputValidator.getIntRange(label20, 0, deviceListLength) - 1;
-                        if (position1 == -1) {
-                            return;
-                        }
-                        if (!mController.getDevice(position1).getIsActive()) {
-                            System.out.println("This device is already deactive. Please select an active device.");
-                        } else {
+                    String label20 = "\n> This is the list of activated devices. Please select the device you want to deativate: \n"
+                            + mController.getActiveDeviceListToString() + exitMenu;
+
+                    int deviceListLength = mController.deviceListSize();
+                    int position1 = InputValidator.getIntRange(label20, 0, deviceListLength) - 1;
+                    if (position1 == -1) {
+                        return;
+                    }
+                    if (!mController.getDevice(position1).getIsActive()) {
+                        System.out.println("This device is already deactive. Please select an active device.");
+                    } else {
 
 
-                            // CONFIRM TO DEATIVATE
-                            String label5 = "Are you sure do you want to deativate this device? (Y/N)";
-                            String answer2 = InputValidator.confirmValidation(label5);
-                            if ("y".equals(answer2) || "Y".equals(answer2)) {
+                        // CONFIRM TO DEATIVATE
+                        String label5 = "Are you sure do you want to deativate this device? (Y/N)";
+                        String answer2 = InputValidator.confirmValidation(label5);
+                        if ("y".equals(answer2) || "Y".equals(answer2)) {
 
-                                String deativateDevice = mController.deviceNameByPosition(position1);
-                                if (mController.deactivateDevice(deativateDevice)) {
-                                    System.out.println("\n The device has been deativated. \n");
-                                }
-                            } else {
-                                System.out.println("The device was not deactivated.");
-                                continue;
+                            String deativateDevice = mController.deviceNameByPosition(position1);
+                            if (mController.deactivateDevice(deativateDevice)) {
+                                System.out.println("\n The device has been deativated. \n");
                             }
-
+                        } else {
+                            System.out.println("The device was not deactivated.");
+                            continue;
                         }
-                        flag20 = false;
                     }
                 }
             }
-            System.out.println(content.toString());
         }
+        System.out.println(content.toString());
     }
 }
