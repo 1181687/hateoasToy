@@ -2,8 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.DeactivateDeviceFromRoomController;
-import pt.ipp.isep.dei.project.controllers.GetNominalPowerOfAGridController;
+import pt.ipp.isep.dei.project.controllers.DeleteAndDeactivateDeviceFromRoomController;
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -11,35 +10,38 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DeactivateDeviceFromRoomControllerTest {
+class DeleteAndDeactivateDeviceFromRoomControllerTest {
 
-    private DeactivateDeviceFromRoomController controller;
+    private DeleteAndDeactivateDeviceFromRoomController controller;
     private House house;
 
     @BeforeEach
-    public void StartUp(){
+    public void StartUp() {
         //Geographical Area
-        Location local = new Location(10, 10, 10);
-
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
 
         //House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
 
-        this.house = new House(deviceTypeList,meteringPeriodGrid,meteringPeriodDevice);
-        Address address = new Address("5000", local);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+        Location houseLocation = new Location(41.177748, -8.607745, 112);
+        Address address = new Address("4200-072", houseLocation);
         house.setAddress(address);
         house.setInsertedGeoArea(insertedGeoArea);
-        this.controller = new DeactivateDeviceFromRoomController(house);
+
+        this.controller = new DeleteAndDeactivateDeviceFromRoomController(house);
     }
 
     @Test
     public void testGetDisplayRoomListTest() {
         //arrange
+
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
@@ -50,17 +52,16 @@ class DeactivateDeviceFromRoomControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        this.house.addRoom(room1);
-        this.house.addRoom(room2);
+        house.addRoom(room1);
+        house.addRoom(room2);
 
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
                 "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
         int position = 0;
-        this.controller.getRoomPosition(position);
+        controller.getRoomPosition(position);
 
         //act
         String result = controller.getRoomListContent();
-
         //assert
         assertEquals(expectResult, result);
     }
@@ -71,7 +72,7 @@ class DeactivateDeviceFromRoomControllerTest {
         String expectResult = "";
 
         //act
-        String result = this.controller.getRoomListContent();
+        String result = controller.getRoomListContent();
         //assert
         assertEquals(expectResult, result);
     }
@@ -80,15 +81,14 @@ class DeactivateDeviceFromRoomControllerTest {
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
 
-
         String name = "Kitchen";
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-        this.house.addRoom(room);
+        house.addRoom(room);
 
         int position = 0;
-        this.controller.getRoomPosition(position);
+        controller.getRoomPosition(position);
 
         // Act
         boolean result = controller.deviceListEmpty();
@@ -100,7 +100,6 @@ class DeactivateDeviceFromRoomControllerTest {
     @Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
-
         String name = "Kitchen";
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
@@ -108,11 +107,11 @@ class DeactivateDeviceFromRoomControllerTest {
         DeviceSpecs specFridge = new FridgeSpecs(100, 100, 100, 100);
         Device dev1 = new Device("FridgeAriston", room, specFridge);
 
-        this.house.addRoom(room);
+        house.addRoom(room);
         room.addDevice(dev1);
 
         int position = 0;
-        this.controller.getRoomPosition(position);
+        controller.getRoomPosition(position);
 
         // Act
         boolean result = controller.deviceListEmpty();
@@ -124,7 +123,6 @@ class DeactivateDeviceFromRoomControllerTest {
     @Test
     public void getListSize() {
         //arrange
-
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
@@ -135,12 +133,12 @@ class DeactivateDeviceFromRoomControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        this.house.addRoom(room1);
-        this.house.addRoom(room2);
+        house.addRoom(room1);
+        house.addRoom(room2);
 
         int expectResult = 2;
         //act
-        int result = this.controller.roomListSize();
+        int result = controller.roomListSize();
         //assert
         assertEquals(expectResult, result);
     }
@@ -148,16 +146,15 @@ class DeactivateDeviceFromRoomControllerTest {
     @Test
     public void getListSizeEmptyList() {
         //arrange
-
         int expectResult = 0;
         //act
-        int result = this.controller.roomListSize();
+        int result = controller.roomListSize();
         //assert
         assertEquals(expectResult, result);
     }
 
     @Test
-    public void deactivateDeviceTrue() {
+    public void deleteDeviceTrue() {
         // Arrange
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -170,31 +167,30 @@ class DeactivateDeviceFromRoomControllerTest {
         Device dev1 = new Device("Lamp1", room, deviceSpecs1);
 
         int position = 0;
-        this.house.addRoom(room);
+        house.addRoom(room);
         room.addDevice(dev1);
         deviceList.addDevice(dev1);
-        this.controller.getRoomPosition(position);
+        controller.getRoomPosition(position);
 
         // act
-        boolean result = this.controller.deactivateDevice("Lamp1");
+        boolean result = controller.deleteDevice("Lamp1");
 
         // assert
         assertTrue(result);
     }
 
     @Test
-    public void deactivateDeviceFalse() {
+    public void deleteDeviceFalse() {
         // Arrange
-
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
         int position = 0;
-        this.house.addRoom(room);
-        this.controller.getRoomPosition(position);
+        house.addRoom(room);
+        controller.getRoomPosition(position);
         // act
-        boolean result = this.controller.deactivateDevice("Lamp1");
+        boolean result = controller.deleteDevice("Lamp1");
 
         // assert
         assertFalse(result);
@@ -209,12 +205,12 @@ class DeactivateDeviceFromRoomControllerTest {
 
         int position = 0;
 
-        this.house.addRoom(room);
-        this.controller.getRoomPosition(position);
+        house.addRoom(room);
+        controller.getRoomPosition(position);
         String expectedResult = "There are no devices in the device list.";
 
         // act
-        String result = this.controller.deviceNameByPosition(position);
+        String result = controller.deviceNameByPosition(position);
 
         // assert
         assertEquals(expectedResult, result);
@@ -269,7 +265,6 @@ class DeactivateDeviceFromRoomControllerTest {
         Device dev2 = new Device("Lamp2", room, deviceSpecs2);
 
         int position = 0;
-
         house.addRoom(room);
         room.addDevice(dev1);
         room.addDevice(dev2);
@@ -295,22 +290,105 @@ class DeactivateDeviceFromRoomControllerTest {
     @Test
     public void checkIfRoomListIsEmptyFalse() {
         //arrange
-        // initiate House
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
         Room room1 = new Room(name1, houseFloor1, dimension1);
-        house.addRoom(room1);
 
+        house.addRoom(room1);
         //act
         boolean result = controller.roomListEmpty();
-
         //assert
         assertFalse(result);
     }
 
     @Test
     public void getDeviceListContentTest() {
+        // Arrange
+
+        //initiate Room
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        //initiate Devices
+        double freezerCapacity = 5.5;
+        double refrigeratorCapacity = 15.5;
+        double annualEnergyConsumption = 3000.0;
+        double nominalPower = 100.5;
+        DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        Device dev = new Device("Fridge1", room, deviceSpecs);
+
+
+        double luminousFlux = 10.0;
+        double nominalPower1 = 0.0;
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        String expectedResult =
+                "1 - Name of the device: Fridge1\n" +
+                        "2 - Name of the device: Lamp1\n";
+
+        int position = 0;
+        house.addRoom(room);
+        room.addDevice(dev);
+        room.addDevice(dev1);
+        house.addRoom(room);
+        house.addRoom(room);
+        house.addRoom(room);
+        controller.getRoomPosition(position);
+        // Act
+        String result = controller.getDeviceListToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void deactivateDeviceTrue() {
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        DeviceList deviceList = new DeviceList();
+
+        double luminousFlux1 = 10.0;
+        double nominalPower1 = 1.0;
+        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
+        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+
+        int position = 0;
+        this.house.addRoom(room);
+        room.addDevice(dev1);
+        deviceList.addDevice(dev1);
+        this.controller.getRoomPosition(position);
+
+        // act
+        boolean result = this.controller.deactivateDevice("Lamp1");
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void deactivateDeviceFalse() {
+        // Arrange
+
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        int position = 0;
+        this.house.addRoom(room);
+        this.controller.getRoomPosition(position);
+        // act
+        boolean result = this.controller.deactivateDevice("Lamp1");
+
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void getDeviceListContentStringTest() {
         // Arrange
 
         //initiate Room

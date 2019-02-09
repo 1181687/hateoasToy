@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.DeactivateDeviceFromRoomController;
+import pt.ipp.isep.dei.project.controllers.DeleteAndDeactivateDeviceFromRoomController;
 import pt.ipp.isep.dei.project.model.House;
 
 public class DeactivateDeviceFromRoom {
 
-    private DeactivateDeviceFromRoomController mController;
+    private DeleteAndDeactivateDeviceFromRoomController mController;
 
     public DeactivateDeviceFromRoom(House house) {
 
-        this.mController = new DeactivateDeviceFromRoomController(house);
+        this.mController = new DeleteAndDeactivateDeviceFromRoomController(house);
     }
 
     public void run() {

@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.DeleteDeviceFromRoomController;
+import pt.ipp.isep.dei.project.controllers.DeleteAndDeactivateDeviceFromRoomController;
 import pt.ipp.isep.dei.project.model.House;
 
 public class DeleteDeviceFromRoom {
 
-    private DeleteDeviceFromRoomController mController;
+    private DeleteAndDeactivateDeviceFromRoomController mController;
 
     public DeleteDeviceFromRoom(House house) {
-        this.mController = new DeleteDeviceFromRoomController(house);
+        this.mController = new DeleteAndDeactivateDeviceFromRoomController(house);
     }
 
     public void run() {
@@ -16,7 +16,7 @@ public class DeleteDeviceFromRoom {
         // LIST OF ROOMS
         StringBuilder content = new StringBuilder();
 
-        if (this.mController.roomListIsEmpty()) {
+        if (this.mController.roomListEmpty()) {
             System.out.println("There are no rooms in the house. Please create a room.");
 
         } else {
@@ -29,17 +29,17 @@ public class DeleteDeviceFromRoom {
                 if (position == -1) {
                     return;
                 }
-                mController.getRoomByPosition(position);
+                mController.getRoomPosition(position);
 
                 // LIST OF DEVICES
-                if (this.mController.deviceListIsEmpty()) {
+                if (this.mController.deviceListEmpty()) {
                     System.out.println("\n There are no devices in this room. \n");
 
                 } else {
 
                     String label2 = "\n> Please select the device you want to delete. \n" + mController.getDeviceListToString() + exit;
 
-                    int deviceListLength = mController.getDeviceListSize();
+                    int deviceListLength = mController.deviceListSize();
                     int position1 = InputValidator.getIntRange(label2, 0, deviceListLength) - 1;
                     if (position1 == -1) {
                         return;
@@ -50,7 +50,7 @@ public class DeleteDeviceFromRoom {
                     String answer = InputValidator.confirmValidation(label3);
                     if ("y".equals(answer) || "Y".equals(answer)) {
 
-                        String deletedDevice = mController.getDeviceNameByPosition(position1);
+                        String deletedDevice = mController.deviceNameByPosition(position1);
                         if (mController.deleteDevice(deletedDevice)) {
                             System.out.println("\n The device has been deleted. \n");
                         }

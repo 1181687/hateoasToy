@@ -4,12 +4,17 @@ import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
 
-public class DeactivateDeviceFromRoomController {
+public class DeleteAndDeactivateDeviceFromRoomController {
 
     private House mHouse;
     private Room mRoom;
 
-    public DeactivateDeviceFromRoomController(House mHouse) {
+    /**
+     * construtor of controller
+     *
+     * @param mHouse
+     */
+    public DeleteAndDeactivateDeviceFromRoomController(House mHouse) {
         this.mHouse = mHouse;
     }
 
@@ -25,7 +30,7 @@ public class DeactivateDeviceFromRoomController {
     /**
      * method thar returns the method getRoomListSize from the class House
      *
-     * @return the size of the list of rooms.
+     * @return
      */
     public int roomListSize() {
         return this.mHouse.getRoomListSize();
@@ -33,7 +38,6 @@ public class DeactivateDeviceFromRoomController {
 
     /**
      * method that get the device name by position
-     *
      * @param position
      * @return the position
      */
@@ -42,7 +46,7 @@ public class DeactivateDeviceFromRoomController {
     }
 
     /**
-     * method that get the device list size.
+     * method that get the size of a device list.
      *
      * @return the size of the device list.
      */
@@ -53,14 +57,14 @@ public class DeactivateDeviceFromRoomController {
     /**
      * method that check if the room list is empty.
      *
-     * @return a boolean.
+     * @return boolean.
      */
     public boolean roomListEmpty() {
         return this.mHouse.getRoomList().isEmpty();
     }
 
     /**
-     * method that get a room by position from the list.
+     * method that get a room from the room list by a position.
      * @param option
      */
     public void getRoomPosition(int option) {
@@ -74,6 +78,25 @@ public class DeactivateDeviceFromRoomController {
      */
     public boolean deviceListEmpty() {
         return this.mRoom.isDeviceListEmpty();
+    }
+
+    /**
+     * method that get devices in the room.
+     *
+     * @return a device list to string.
+     */
+    public String getDeviceListToString() {
+        return this.mRoom.getDeviceListToString();
+    }
+
+    /**
+     * method that delete a device.
+     *
+     * @param device
+     * @return a boolean.
+     */
+    public boolean deleteDevice(String device) {
+        return this.mRoom.deleteDevice(device);
     }
 
     /**
