@@ -38,29 +38,36 @@ public class DeleteDeviceFromRoom {
                 } else {
 
                     String label2 = "\n> Please select the device you want to delete. \n" + mController.getDeviceListToString() + exit;
-
-                    int deviceListLength = mController.deviceListSize();
-                    int position1 = InputValidator.getIntRange(label2, 0, deviceListLength) - 1;
-                    if (position1 == -1) {
-                        return;
-                    }
-
-                    // CONFIRM
-                    String label3 = "Are you sure do you want to delete this device? (Y/N)";
-                    String answer = InputValidator.confirmValidation(label3);
-                    if ("y".equals(answer) || "Y".equals(answer)) {
-
-                        String deletedDevice = mController.deviceNameByPosition(position1);
-                        if (mController.deleteDevice(deletedDevice)) {
-                            System.out.println("\n The device has been deleted. \n");
+                    boolean flag20 = true;
+                    while (flag20) {
+                        int deviceListLength = mController.deviceListSize();
+                        int position1 = InputValidator.getIntRange(label2, 0, deviceListLength) - 1;
+                        if (position1 == -1) {
+                            return;
                         }
-                    } else {
-                        System.out.println("The device was not deleted.");
-                        continue;
+
+                        boolean flag30 = true;
+                        while (flag30) {
+                            // CONFIRM
+                            String label3 = "Are you sure do you want to delete this device? (Y/N)";
+                            String answer = InputValidator.confirmValidation(label3);
+                            if ("y".equals(answer) || "Y".equals(answer)) {
+
+                                String deletedDevice = mController.deviceNameByPosition(position1);
+                                if (mController.deleteDevice(deletedDevice)) {
+                                    System.out.println("\n The device has been deleted. \n");
+                                }
+                            } else {
+                                System.out.println("The device was not deleted.");
+                                break;
+                            }
+                            flag30 = false;
+                        }
+                        flag20 = false;
                     }
                 }
             }
+            System.out.println(content.toString());
         }
-        System.out.println(content.toString());
     }
 }
