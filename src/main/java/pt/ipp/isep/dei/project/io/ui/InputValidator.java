@@ -242,6 +242,8 @@ public class InputValidator {
         Scanner in = new Scanner(System.in);
         String str = "";
         DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        simpleDateFormat.setLenient(false);
 
         boolean flag;
         do {
@@ -250,7 +252,7 @@ public class InputValidator {
                 flag = false;
                 str = in.nextLine();
                 str = str.trim();
-                format.parse(str);
+                simpleDateFormat.parse(str);
             } catch (Exception e) {
                 System.out.println("Date " + str + " is not valid. Please insert a valid date according to (yyyy-MM-dd HH:mm) pattern.");
                 flag = true;
@@ -259,6 +261,7 @@ public class InputValidator {
 
         return LocalDateTime.parse(str, format);
     }
+
 
     /**
      * Method that keeps displaying the string label until the input is a double.
