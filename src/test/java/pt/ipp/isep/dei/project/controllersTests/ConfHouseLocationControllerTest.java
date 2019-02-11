@@ -1,32 +1,46 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.ConfHouseLocationController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class ConfHouseLocationControllerTest {
+    private ConfHouseLocationController ctrl;
+    private House house;
+
+    @BeforeEach
+    public void StartUp() {
+        //Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+
+        //House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+        Location houseLocation = new Location(41.177748, -8.607745, 112);
+        Address address = new Address("4200-072", houseLocation);
+        this.house.setAddress(address);
+        this.house.setInsertedGeoArea(insertedGeoArea);
+
+        ctrl = new ConfHouseLocationController(house);
+
+    }
 
     @Test
     public void testDefineNewAddress() {
-
         //Arrange
-        RoomList roomList = new RoomList();
-        HouseGridList houseGridList = new HouseGridList();
-        String zipCode = "4050";
-        double latitude = 40.5;
-        double longitude = 50.5;
-        double altitude = 100.0;
-        Location local = new Location(latitude, longitude, altitude);
-        Address address = new Address(zipCode, local);
-        AreaShape areaShape = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, areaShape);
-        House house = new House(roomList, houseGridList, address, insertedGeoArea);
-
-        ConfHouseLocationController ctrl = new ConfHouseLocationController(house);
-
         String zipCodeNewAddress = "4150";
         double latitudeNewAddress = 43.5;
         double longitudeNewAddress = 51.5;

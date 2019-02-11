@@ -581,15 +581,16 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     @Test
     public void checkIfHouseGridListIsEmptyWithPositiveTest() {
         // Arrange
-        HouseGridList gridList = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, gridList, address, geo);
-        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+        //House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+
+        house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+        Location houseLocation = new Location(41.177748, -8.607745, 112);
+        Address address = new Address("4200-072", houseLocation);
+        house.setAddress(address);
 
         // Act
         boolean result = ctrl.houseGridListIsEmpty();

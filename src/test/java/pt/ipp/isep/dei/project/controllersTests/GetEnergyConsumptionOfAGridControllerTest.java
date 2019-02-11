@@ -4,8 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionOfAGridController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,6 +15,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
 
     private GetEnergyConsumptionOfAGridController controller;
     private HouseGridList houseGridList;
+    private House house;
 
     @BeforeEach
     public void StartUp(){
@@ -23,13 +26,18 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geoAreaType, location, areaShape);
 
         //House
-        RoomList roomList = new RoomList();
-        this.houseGridList = new HouseGridList();
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation);
-        House houseEdificioB = new House(roomList, houseGridList, address, insertedGeoArea);
+        this.house.setAddress(address);
+        this.house.setInsertedGeoArea(insertedGeoArea);
 
-        this.controller = new GetEnergyConsumptionOfAGridController(houseEdificioB);
+        this.controller = new GetEnergyConsumptionOfAGridController(house);
     }
 
     @Test
