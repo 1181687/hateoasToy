@@ -1,33 +1,48 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetTotalAndAverageRainfallAndCurrentTempHouseAreaController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
+    private GetTotalAndAverageRainfallAndCurrentTempHouseAreaController controller;
+    private House house;
+
+    @BeforeEach
+    public void StartUp() {
+
+        //Geographical Area
+        Location location = new Location(42.1, -8.6, 100.0);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+
+        //House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+        Location houseLocation = new Location(42.1, -8.6, 100.0);
+        Address address = new Address("4200-072", houseLocation);
+        this.house.setAddress(address);
+        this.house.setInsertedGeoArea(insertedGeoArea);
+
+        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
+    }
 
     @Test
     public void testTotalDailyMeasurementInAHouseArea () {
         //Arrange
-        //Instantiate House
-        String zipCode = "4050";
-        double latitude = 42.1;
-        double longitude = -8.6;
-        double altitude = 100.0;
-        Location local = new Location(latitude, longitude, altitude);
-        Address address = new Address(zipCode, local);
-        HouseGridList houseGridList = new HouseGridList();
-        RoomList roomList = new RoomList();
-        AreaShape rectangleArea = new AreaShape(20, 20, local);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Porto", geographicalAreaType, local, rectangleArea);
-        House house = new House(roomList, houseGridList, address, insertedGeoArea);
-
         //Instantiate Sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
@@ -63,12 +78,10 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
         LocalDateTime day = LocalDateTime.of(2018, 11, 1, 15, 20, 00);
 
-        GetTotalAndAverageRainfallAndCurrentTempHouseAreaController ctrl = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
-
         double expectedResult = 15;
 
         //Act
-        double result = ctrl.getTotalRainfallInTheHouseAreaInTheSelectedDay(day.toLocalDate());
+        double result = this.controller.getTotalRainfallInTheHouseAreaInTheSelectedDay(day.toLocalDate());
 
         //Assert
         assertEquals(expectedResult, result);
