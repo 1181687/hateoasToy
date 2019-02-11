@@ -39,17 +39,17 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         house.setAddress(address);
         house.setInsertedGeoArea(insertedGeoArea);
 
-        //grid
-        String gridName = "Grid";
-        houseGrid = new HouseGrid(gridName);
-        house.addGrid(houseGrid);
-
         this.ctrl = new GetEnergyConsumptionDataSeriesController(house);
     }
 
     @Test
     public void testGetHouseGridListToString() {
         // Arrange
+        //grid
+        String gridName = "Grid";
+        houseGrid = new HouseGrid(gridName);
+        house.addGrid(houseGrid);
+
         String expectedResult = "1 - Name: Grid\n";
 
         // Act
@@ -124,6 +124,11 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     @Test
     public void getHouseGridListLengthTest() {
         // Arrange
+        //grid
+        String gridName = "Grid";
+        houseGrid = new HouseGrid(gridName);
+        house.addGrid(houseGrid);
+
         int expectedResult = 1;
 
         // Act
@@ -478,6 +483,11 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
+        //grid
+        String gridName = "Grid";
+        houseGrid = new HouseGrid(gridName);
+        house.addGrid(houseGrid);
+
         houseGrid.attachRoom(room);
 
         house.addRoom(room);
@@ -533,7 +543,13 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
+        //grid
+        String gridName = "Grid";
+        houseGrid = new HouseGrid(gridName);
+        house.addGrid(houseGrid);
+
         house.addRoom(room);
+
         houseGrid.attachRoom(room);
 
         DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
@@ -581,15 +597,16 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     @Test
     public void checkIfHouseGridListIsEmptyWithPositiveTest() {
         // Arrange
-        HouseGridList gridList = new HouseGridList();
-        RoomList roomList = new RoomList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, gridList, address, geo);
-        GetEnergyConsumptionDataSeriesController ctrl = new GetEnergyConsumptionDataSeriesController(house);
+        //House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+
+        house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+        Location houseLocation = new Location(41.177748, -8.607745, 112);
+        Address address = new Address("4200-072", houseLocation);
+        house.setAddress(address);
 
         // Act
         boolean result = ctrl.houseGridListIsEmpty();
@@ -601,6 +618,10 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     @Test
     public void checkIfHouseGridListIsEmptyWithNegativeTest() {
         // Arrange
+        //grid
+        String gridName = "Grid";
+        houseGrid = new HouseGrid(gridName);
+        house.addGrid(houseGrid);
         // Act
         boolean result = ctrl.houseGridListIsEmpty();
 

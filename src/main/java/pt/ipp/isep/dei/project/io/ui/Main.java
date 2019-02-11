@@ -10,8 +10,10 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
-        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        String configFile = "Configuration.properties";
+
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(configFile, "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile(configFile, "MeteringPeriodDevice"));
         if (1440 % meteringPeriodGrid != 0) {
             System.out.println("The grid metering period is not valid. Please configure the grid metering period for a valid value.");
             return;
@@ -21,7 +23,7 @@ public class Main {
             System.out.println("The device metering period is not valid. Please configure the device metering period for a valid value.");
             return;
         }
-        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+        List<String> deviceTypeList = Utils.readConfigFileToList(configFile, "devicetype.count", "devicetype.name");
 
         GeographicalAreaTypeList geographicalAreaTypeList = new GeographicalAreaTypeList();
         GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
