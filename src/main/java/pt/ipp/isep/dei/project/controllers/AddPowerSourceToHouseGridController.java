@@ -3,7 +3,8 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.*;
 
 public class AddPowerSourceToHouseGridController {
-    private HouseGridList mHouseGridList;
+
+    private House mHouse;
     private PowerSourceTypeList mPowerSourceTypeList;
     private HouseGrid mSelectedHouseGrid;
     private PowerSourceType mSelectedPowerSourceType;
@@ -14,8 +15,8 @@ public class AddPowerSourceToHouseGridController {
      * @param houseGridList
      * @param powerSourceTypeList
      */
-    public AddPowerSourceToHouseGridController(HouseGridList houseGridList, PowerSourceTypeList powerSourceTypeList) {
-        this.mHouseGridList = houseGridList;
+    public AddPowerSourceToHouseGridController(House house, PowerSourceTypeList powerSourceTypeList) {
+        this.mHouse = house;
         this.mPowerSourceTypeList = powerSourceTypeList;
     }
 
@@ -25,7 +26,7 @@ public class AddPowerSourceToHouseGridController {
      * @return boolean
      */
     public boolean isHouseGridListEmpty() {
-        return mHouseGridList.isHouseGridListEmpty();
+        return mHouse.isHouseGridListEmpty();
     }
 
 
@@ -35,7 +36,7 @@ public class AddPowerSourceToHouseGridController {
      * @return String
      */
     public String getHouseGridListToString() {
-        return mHouseGridList.getHouseGridListToString();
+        return mHouse.getHouseGridListToString();
     }
 
     /**
@@ -44,7 +45,7 @@ public class AddPowerSourceToHouseGridController {
      */
 
     public int getHouseGridListSize(){
-        return mHouseGridList.getmHouseGridsList().size();
+        return mHouse.getHouseGridListSize();
     }
 
     /**
@@ -53,7 +54,7 @@ public class AddPowerSourceToHouseGridController {
      */
 
     public void getHouseGridFromListByPosition(int position) {
-        this.mSelectedHouseGrid = this.mHouseGridList.getHouseGridByPosition(position);
+        this.mSelectedHouseGrid = this.mHouse.getHouseGridByPosition(position);
     }
 
     /**

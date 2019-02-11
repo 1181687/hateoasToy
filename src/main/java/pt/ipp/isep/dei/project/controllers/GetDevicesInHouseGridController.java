@@ -29,7 +29,7 @@ public class GetDevicesInHouseGridController {
      * @return String
      */
     public String getHouseGridListToString() {
-        return this.mHouse.getHouseGridList().getHouseGridListToString();
+        return this.mHouse.getHouseGridListToString();
     }
 
     /**

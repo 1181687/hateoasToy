@@ -1,16 +1,18 @@
 package pt.ipp.isep.dei.project.controllers;
 
 
+import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.HouseGrid;
-import pt.ipp.isep.dei.project.model.HouseGridList;
+
+import java.util.List;
 
 
 public class CreateHouseGridController {
 
-    private HouseGridList mHouseGridList;
+    private House mHouse;
 
-    public CreateHouseGridController(HouseGridList houseGridList) {
-        this.mHouseGridList = houseGridList;
+    public CreateHouseGridController(House house) {
+        this.mHouse = house;
     }
 
     /**
@@ -18,8 +20,8 @@ public class CreateHouseGridController {
      *
      * @return mHouseGridList.
      */
-    public HouseGridList getHouseGridList() {
-        return mHouseGridList;
+    public List<HouseGrid> getHouseGridList() {
+        return mHouse.getHouseGridList();
     }
 
     /**
@@ -29,7 +31,7 @@ public class CreateHouseGridController {
      * @return New object of the class HouseGrid.
      */
     public HouseGrid createANewHouseGrid (String nameOfHG){
-        return mHouseGridList.newHouseGrid(nameOfHG);
+        return mHouse.newHouseGrid(nameOfHG);
     }
 
     /**
@@ -38,6 +40,6 @@ public class CreateHouseGridController {
      * @param grid Specified grid.
      */
     public void addHouseGridToTheListOfHouseGrids(HouseGrid grid) {
-        mHouseGridList.addHouseGrid(grid);
+        mHouse.addHouseGrid(grid);
     }
 }

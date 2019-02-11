@@ -1,18 +1,17 @@
 package pt.ipp.isep.dei.project.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class HouseGridList {
     private List<HouseGrid> mHouseGridsList;
 
-    /**
+    /* *//**
      * constructor of the house grid list that receives a list of house grids.
-     */
+     *//*
     public HouseGridList() {
         mHouseGridsList = new ArrayList<>();
     }
-
+*/
     /**
      * Get method.
      *
@@ -46,91 +45,91 @@ public class HouseGridList {
         return content.toString();
     }
 
-    /**
-     * Method that displays the rooms in the house grid list
-     *
-     * @param position
-     * @return rooms in the house grid
-     */
-    public String getRoomsInTheHouseGrid(int position) {
-        return mHouseGridsList.get(position).getRoomListContent();
-    }
+//    /**
+//     * Method that displays the rooms in the house grid list
+//     *
+//     * @param position
+//     * @return rooms in the house grid
+//     */
+//    public String getRoomsInTheHouseGrid(int position) {
+//        return mHouseGridsList.get(position).getRoomListContent();
+//    }
+//
+//    /**
+//     * Method that calls the method in HouseGrid that detaches a selected room from the HouseGridList.
+//     *
+//     * @param houseGridSelected Specified house grid in the list.
+//     * @param roomSelected      Specified room.
+//     */
+//    public boolean detachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
+//        int index = mHouseGridsList.indexOf(houseGridSelected);
+//        return mHouseGridsList.get(index).detachRoom(roomSelected);
+//    }
 
-    /**
-     * Method that calls the method in HouseGrid that detaches a selected room from the HouseGridList.
-     *
-     * @param houseGridSelected Specified house grid in the list.
-     * @param roomSelected      Specified room.
-     */
-    public boolean detachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
-        int index = mHouseGridsList.indexOf(houseGridSelected);
-        return mHouseGridsList.get(index).detachRoom(roomSelected);
-    }
+//    /**
+//     * Method that asks the class HouseGrid to add a room to it's list.
+//     *
+//     * @param houseGridSelected Specified house grid in the list.
+//     * @param roomSelected      Specified room.
+//     */
+//    public void attachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
+//        int index = mHouseGridsList.indexOf(houseGridSelected);
+//        mHouseGridsList.get(index).attachRoom(roomSelected);
+//    }
 
-    /**
-     * Method that asks the class HouseGrid to add a room to it's list.
-     *
-     * @param houseGridSelected Specified house grid in the list.
-     * @param roomSelected      Specified room.
-     */
-    public void attachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
-        int index = mHouseGridsList.indexOf(houseGridSelected);
-        mHouseGridsList.get(index).attachRoom(roomSelected);
-    }
+//    /**
+//     * Method that checks if the house grid's list is empty.
+//     * @return True or false.
+//     */
+//    public boolean isHouseGridListEmpty() {
+//        return mHouseGridsList.isEmpty();
+//    }
+//
+//    /**
+//     * Method that creates a house grid.
+//     *
+//     * @param name Name of the grid.
+//     * @return New object of the class HouseGrid.
+//     */
+//    public HouseGrid newHouseGrid(String name) {
+//        return new HouseGrid(name);
+//    }
 
-    /**
-     * Method that checks if the house grid's list is empty.
-     * @return True or false.
-     */
-    public boolean isHouseGridListEmpty() {
-        return mHouseGridsList.isEmpty();
-    }
+//    /**
+//     * Method that adds a house grid to the list.
+//     *
+//     * @param grid Specified grid.
+//     */
+//    public void addHouseGrid(HouseGrid grid) {
+//        mHouseGridsList.add(grid);
+//    }
 
-    /**
-     * Method that creates a house grid.
-     *
-     * @param name Name of the grid.
-     * @return New object of the class HouseGrid.
-     */
-    public HouseGrid newHouseGrid(String name) {
-        return new HouseGrid(name);
-    }
+//    /**
+//     * Method that checks if a room isn't already in a specific grid in the list.
+//     *
+//     * @param chosenGrid Specified house grid in the list.
+//     * @param room       Specified room.
+//     * @return True or false.
+//     */
+//    public boolean checkIfRoomIsAlreadyInHouseGrid(HouseGrid chosenGrid, Room room) {
+//        int index = mHouseGridsList.indexOf(chosenGrid);
+//        return mHouseGridsList.get(index).checkIfRoomIsInHouseGrid(room);
+//    }
 
-    /**
-     * Method that adds a house grid to the list.
-     *
-     * @param grid Specified grid.
-     */
-    public void addHouseGrid(HouseGrid grid) {
-        mHouseGridsList.add(grid);
-    }
-
-    /**
-     * Method that checks if a room isn't already in a specific grid in the list.
-     *
-     * @param chosenGrid Specified house grid in the list.
-     * @param room       Specified room.
-     * @return True or false.
-     */
-    public boolean checkIfRoomIsAlreadyInHouseGrid(HouseGrid chosenGrid, Room room) {
-        int index = mHouseGridsList.indexOf(chosenGrid);
-        return mHouseGridsList.get(index).checkIfRoomIsInHouseGrid(room);
-    }
-
-    /**
-     * Method that asks for the grid where the room might already be connected.
-     *
-     * @param room Specified room.
-     * @return Grid where the room is is connected to.
-     */
-    public HouseGrid getTheGridWhereTheRoomIsConnected(Room room) {
-        for (HouseGrid houseGrid : mHouseGridsList) {
-            if (houseGrid.checkIfRoomIsInHouseGrid(room)) {
-                return houseGrid;
-            }
-        }
-        return null;
-    }
+//    /**
+//     * Method that asks for the grid where the room might already be connected.
+//     *
+//     * @param room Specified room.
+//     * @return Grid where the room is is connected to.
+//     */
+//    public HouseGrid getTheGridWhereTheRoomIsConnected(Room room) {
+//        for (HouseGrid houseGrid : mHouseGridsList) {
+//            if (houseGrid.checkIfRoomIsInHouseGrid(room)) {
+//                return houseGrid;
+//            }
+//        }
+//        return null;
+//    }
 
     /**
      * method that gets a List of all Devices in a house grid, by it position in a HouseGridList

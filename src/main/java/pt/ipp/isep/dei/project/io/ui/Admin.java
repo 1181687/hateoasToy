@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.*;
 
+import java.util.List;
+
 public class Admin {
     private GeographicalAreaTypeList geographicalAreaTypeList;
     private GeographicalAreaList geographicalAreaList;
@@ -9,16 +11,16 @@ public class Admin {
     private House house;
     private PowerSourceTypeList powerSourceTypeList;
     private RoomList roomList;
-    private HouseGridList gridList;
+    // private List<HouseGrid> gridList;
 
-    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseGridList gridList) {
+    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, List<HouseGrid> gridList) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
         this.geographicalAreaList = geographicalAreaList;
         this.sensorTypeList = sensorTypeList;
         this.house = house;
         this.powerSourceTypeList = powerSourceTypeList;
         this.roomList = roomList;
-        this.gridList = gridList;
+        //this.gridList = gridList;
     }
 
 
@@ -136,19 +138,19 @@ public class Admin {
 
             switch (option) {
                 case 1:
-                    CreateHouseGrid ui130 = new CreateHouseGrid(gridList);
+                    CreateHouseGrid ui130 = new CreateHouseGrid(house);
                     ui130.run();
                     break;
                 case 2:
-                    AddPowerSourceToHouseGrid ui135 = new AddPowerSourceToHouseGrid(gridList, powerSourceTypeList);
+                    AddPowerSourceToHouseGrid ui135 = new AddPowerSourceToHouseGrid(house, powerSourceTypeList);
                     ui135.run();
                     break;
                 case 3:
-                    AttachRoomToHouseGrid ui147 = new AttachRoomToHouseGrid(gridList, roomList);
+                    AttachRoomToHouseGrid ui147 = new AttachRoomToHouseGrid(house, roomList);
                     ui147.run();
                     break;
                 case 4:
-                    DetachRoomFromHouseGrid ui149 = new DetachRoomFromHouseGrid(gridList, roomList);
+                    DetachRoomFromHouseGrid ui149 = new DetachRoomFromHouseGrid(house, roomList);
                     ui149.run();
                     break;
                 case 5:

@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.DetachRoomFromHouseGridController;
-import pt.ipp.isep.dei.project.model.HouseGridList;
+import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.RoomList;
 
 /** US149 As an Administrator, I want to detach a room from a house grid, so that the room’s
@@ -11,8 +11,8 @@ characteristics are not changed. */
 public class DetachRoomFromHouseGrid {
     private DetachRoomFromHouseGridController ctrl;
 
-    public DetachRoomFromHouseGrid(HouseGridList gridList, RoomList roomList) {
-        this.ctrl = new DetachRoomFromHouseGridController(gridList, roomList);
+    public DetachRoomFromHouseGrid(House house, RoomList roomList) {
+        this.ctrl = new DetachRoomFromHouseGridController(house, roomList);
     }
 
     public void run() {

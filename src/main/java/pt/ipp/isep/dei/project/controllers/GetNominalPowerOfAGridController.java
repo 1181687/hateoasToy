@@ -27,7 +27,7 @@ public class GetNominalPowerOfAGridController {
      */
 
     public String listHouseGrids(){
-        return this.mHouse.getHouseGridListContent();
+        return this.mHouse.getHouseGridListToString();
     }
 
     /**

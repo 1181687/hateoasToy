@@ -22,7 +22,7 @@ public class GetEnergyConsumptionDataSeriesController {
     }
 
     public String getHouseGridListToString() {
-        return mHouse.getHouseGridListContent();
+        return mHouse.getHouseGridListToString();
     }
 
     public String getRoomListToString() {

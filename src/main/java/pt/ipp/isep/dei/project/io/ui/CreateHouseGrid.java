@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.CreateHouseGridController;
+import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.HouseGrid;
-import pt.ipp.isep.dei.project.model.HouseGridList;
 
 /** US130 As an Administrator, I want to create a house grid, so that I can define the rooms
 that are attached to it and the contracted maximum power for that grid. */
@@ -10,8 +10,8 @@ that are attached to it and the contracted maximum power for that grid. */
 public class CreateHouseGrid {
     private CreateHouseGridController mController;
 
-    public CreateHouseGrid(HouseGridList houseGridList) {
-        this.mController = new CreateHouseGridController(houseGridList);
+    public CreateHouseGrid(House house) {
+        this.mController = new CreateHouseGridController(house);
     }
 
     public void run(){
