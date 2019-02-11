@@ -12,7 +12,7 @@ public class AddPowerSourceToHouseGridController {
     /**
      * TODO
      *
-     * @param houseGridList
+     * @param house
      * @param powerSourceTypeList
      */
     public AddPowerSourceToHouseGridController(House house, PowerSourceTypeList powerSourceTypeList) {
@@ -21,7 +21,7 @@ public class AddPowerSourceToHouseGridController {
     }
 
     /**
-     * Method that checks if the HouseGridList is empty.
+     * Method that checks if the List of House Grids is empty.
      *
      * @return boolean
      */
@@ -31,7 +31,7 @@ public class AddPowerSourceToHouseGridController {
 
 
     /**
-     * Method that lists the House Grids in the HouseGridList.
+     * Method that lists the House Grids in the list of Housegrids.
      *
      * @return String
      */
@@ -49,7 +49,7 @@ public class AddPowerSourceToHouseGridController {
     }
 
     /**
-     * Method that gets a HouseGrid from the HouseGridList by position.
+     * Method that gets a HouseGrid from a list of Housegrids by position.
      * @param position
      */
 

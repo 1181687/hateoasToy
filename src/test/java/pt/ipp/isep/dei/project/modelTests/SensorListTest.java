@@ -852,7 +852,7 @@ class SensorListTest {
         //Arrange
 
         SensorList sensorList1 = new SensorList();
-        HouseGridList list = new HouseGridList();
+        RoomList list = new RoomList();
 
         //Act   \
         boolean result = sensorList1.equals(list);

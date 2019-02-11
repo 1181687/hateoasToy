@@ -14,7 +14,7 @@ public class AttachRoomToHouseGridController {
     /**
      * Constructor.
      *
-     * @param listOfHouseGrids HouseGridList attribute.
+     * @param  house House attribute.
      * @param listOfRooms      RoomList attribute.
      */
     public AttachRoomToHouseGridController(House house, RoomList listOfRooms) {
@@ -127,14 +127,14 @@ public class AttachRoomToHouseGridController {
     }
 
     /**
-     * Method that asks the class HouseGridList to detach the specified room in the specified house grid via class HouseGrid.
+     * Method that detach the specified room in the specified house grid via class HouseGrid.
      */
     public void detachRoomFromTheHouseGrid(HouseGrid grid) {
         mHouse.detachRoomInASpecificHouseGridInTheList(grid, mRoomToBeAttached);
     }
 
     /**
-     * Method that asks the class HouseGridList to attach the specified room in the specified house grid via class HouseGrid.
+     * Method that attach the specified room in the specified house grid via class HouseGrid.
      */
     public void attachRoomInTheHouseGrid() {
         mHouse.attachRoomInASpecificHouseGridInTheList(mGridToBeUsed, mRoomToBeAttached);

@@ -57,7 +57,7 @@ public class GetDevicesInHouseGridController {
     }
 
     /**
-     * method that gets the name of House Grid by it's position in the HouseGridList.
+     * method that gets the name of House Grid by it's position in the list of house grids.
      * @param position position of the House Grid
      * @return String name
      */

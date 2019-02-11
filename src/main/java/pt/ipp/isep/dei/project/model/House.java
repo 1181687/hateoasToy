@@ -300,7 +300,7 @@ public class House {
     }
 
     /**
-     * method that gets a List of all Devices in a house grid, by it position in a HouseGridList
+     * method that gets a List of all Devices in a house grid, by it position in a list of HouseGrid.
      *
      * @param position position of the grid in the houseGridList
      * @return List <Device>
@@ -438,7 +438,7 @@ public class House {
 
 
     /**
-     * Method that calls the method in HouseGrid that detaches a selected room from the HouseGridList.
+     * Method that calls the method in HouseGrid that detaches a selected room from the list of HouseGrids.
      *
      * @param houseGridSelected Specified house grid in the list.
      * @param roomSelected      Specified room.

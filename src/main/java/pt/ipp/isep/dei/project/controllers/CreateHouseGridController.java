@@ -25,7 +25,7 @@ public class CreateHouseGridController {
     }
 
     /**
-     * Method that asks the class HouseGridList to create a new house grid.
+     * Method that creates a new house grid.
      *
      * @param nameOfHG Name of the grid.
      * @return New object of the class HouseGrid.
@@ -35,7 +35,7 @@ public class CreateHouseGridController {
     }
 
     /**
-     * Method that aks the list of grids do add a new grid to it.
+     * Method that adds a new grid to the list of grids.
      *
      * @param grid Specified grid.
      */
