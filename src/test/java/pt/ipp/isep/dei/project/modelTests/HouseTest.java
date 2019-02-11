@@ -22,7 +22,7 @@ public class HouseTest {
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        AreaShape areaShape = new AreaShape(1.261, 1.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
         ag = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
 
@@ -33,42 +33,11 @@ public class HouseTest {
 
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
-        Location houseLocation = new Location(41.177748, -8.607745, 112);
+        Location houseLocation = new Location(41.178553, -8.608035, 111);
         Address address = new Address("4200-072", houseLocation);
         this.house.setAddress(address);
         this.house.setInsertedGeoArea(ag);
 
-    }
-
-    @Test
-    public void getRoomListTest() {
-        // Arrange
-        RoomList rList = new RoomList();
-        Dimension dim = new Dimension(4, 4, 4);
-        Room room = new Room("F5", 1, dim);
-
-        house.addRoom(room);
-        rList.addRoom(room);
-
-        RoomList expectedResult = rList;
-
-        // Act
-        RoomList result = house.getRoomList();
-
-        // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void getRoomListEmptyTest() {
-        //arrange
-        RoomList rList = new RoomList();
-        RoomList expectResult = rList;
-
-        //act
-        RoomList result = house.getRoomList();
-        //assert
-        assertEquals(expectResult, result);
     }
 
     @Test
@@ -110,7 +79,6 @@ public class HouseTest {
     @Test
     public void testGetNameOfRoomInListOfRooms() {
         //Arrange
-        RoomList rList = new RoomList();
         Dimension dim0 = new Dimension(4, 4, 4);
         Room room0 = new Room("RoomOne", 1, dim0);
         Dimension dim1 = new Dimension(4, 4, 4);
@@ -208,13 +176,13 @@ public class HouseTest {
         //Instanciar Sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
-        Location locS0 = new Location(42.1496, -8.6109, 97);
+        Location locS0 = new Location(41.178553, -8.608035, 111);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
         house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
-        Location locS1 = new Location(42.149, -8.610, 97);
+        Location locS1 = new Location(41.178553, -8.608035, 111);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
 
@@ -243,7 +211,7 @@ public class HouseTest {
         LocalDate startDate = LocalDate.of(2018, 12, 1);
         LocalDate endDate = LocalDate.of(2018, 12, 6);
 
-        double expectedResult = 22.25;
+        double expectedResult = 26.5;
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
@@ -301,13 +269,13 @@ public class HouseTest {
         //Instantiate Sensors
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
-        Location locS0 = new Location(33.1576, 7.6199, 100);
+        Location locS0 = new Location(41.178553, -8.608035, 111);
         Sensor s0 = new Sensor("A122", dataFuncionamento0, sensorType0, locS0);
         ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
-        Location locS1 = new Location(32.1576, 7.6199, 100);
+        Location locS1 = new Location(41.178553, -8.608035, 111);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         ag.getSensorListInTheGeographicArea().addSensor(s1);
 
@@ -333,7 +301,7 @@ public class HouseTest {
         s1.addReadingsToList(readings11);
         s1.addReadingsToList(readings12);
 
-        double expectedResult = 25;
+        double expectedResult = 30;
 
         SensorType type = new SensorType("Temperature");
 
@@ -420,13 +388,13 @@ public class HouseTest {
         //Instantiate Sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
-        Location locS0 = new Location(42.15, -8.61, 97);
+        Location locS0 = new Location(41.1, -8.6, 111);
         Sensor s0 = new Sensor("A122", dataFuncionamento0, sensorType0, locS0);
         house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
-        Location locS1 = new Location(42.15, -8.61, 97);
+        Location locS1 = new Location(41.1, -8.6, 111);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
 
@@ -956,15 +924,13 @@ public class HouseTest {
         room2.addDevice(dev6);
 
         //add to Lists
-        RoomList roomListEmpty = new RoomList();
-        RoomList roomList = new RoomList();
-        roomList.addRoom(room1);
-        roomList.addRoom(room2);
-        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
-        HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
-        HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGrid(houseGrid);
-        houseGridList1.addHouseGrid(houseGridEmpty);
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+        HouseGrid grid = new HouseGrid("g1");
+        grid.attachRoom(room1);
+        grid.attachRoom(room2);
+        house.addGrid(grid);
 
         DeviceList expectedResult = new DeviceList();
         expectedResult.addDevice(dev1);
@@ -981,6 +947,7 @@ public class HouseTest {
 
     @Test
     public void testGetDeviceListContentNameTypeLocationByHG() {
+        //Arrange
         //Room ONE
         String name = "Kitchen";
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
@@ -1000,7 +967,6 @@ public class HouseTest {
 
         //Room TWO
         String name2 = "KitchenBasement";
-        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim);
         ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 100);
         Device dev4 = new Device("FridgeSiemens", room2, specFridgeSpecs);
@@ -1010,6 +976,11 @@ public class HouseTest {
         room2.addDevice(dev4);
         room2.addDevice(dev5);
         room2.addDevice(dev6);
+
+        HouseGrid hg = new HouseGrid("Grid");
+        house.addGrid(hg);
+        hg.attachRoom(room1);
+        hg.attachRoom(room2);
 
         //add to Lists
         house.addRoom(room1);
@@ -1023,6 +994,7 @@ public class HouseTest {
                 "- Device Name: FridgeSiemens, Location: KitchenBasement.\n\n";
 
         String result = house.getDeviceListContentNameTypeLocationByHG(0);
+        //Assert
         assertEquals(expectedResult, result);
     }
 
@@ -1261,6 +1233,8 @@ public class HouseTest {
     @Test
     public void testCheckIfThereAreNoDevicesTrue() {
         // Arrange
+        HouseGrid grid = new HouseGrid("g1");
+        house.addGrid(grid);
         // Act
         boolean result = house.checkIfThereAreNoDevicesHGbyPosition(0);
 

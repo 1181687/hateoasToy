@@ -39,17 +39,17 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         house.setAddress(address);
         house.setInsertedGeoArea(insertedGeoArea);
 
-        //grid
-        String gridName = "Grid";
-        houseGrid = new HouseGrid(gridName);
-        house.addGrid(houseGrid);
-
         this.ctrl = new GetEnergyConsumptionDataSeriesController(house);
     }
 
     @Test
     public void testGetHouseGridListToString() {
         // Arrange
+        //grid
+        String gridName = "Grid";
+        houseGrid = new HouseGrid(gridName);
+        house.addGrid(houseGrid);
+
         String expectedResult = "1 - Name: Grid\n";
 
         // Act
@@ -124,6 +124,11 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     @Test
     public void getHouseGridListLengthTest() {
         // Arrange
+        //grid
+        String gridName = "Grid";
+        houseGrid = new HouseGrid(gridName);
+        house.addGrid(houseGrid);
+
         int expectedResult = 1;
 
         // Act
@@ -478,6 +483,11 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
+        //grid
+        String gridName = "Grid";
+        houseGrid = new HouseGrid(gridName);
+        house.addGrid(houseGrid);
+
         houseGrid.attachRoom(room);
 
         house.addRoom(room);
@@ -533,7 +543,13 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
+        //grid
+        String gridName = "Grid";
+        houseGrid = new HouseGrid(gridName);
+        house.addGrid(houseGrid);
+
         house.addRoom(room);
+
         houseGrid.attachRoom(room);
 
         DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
@@ -602,6 +618,10 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     @Test
     public void checkIfHouseGridListIsEmptyWithNegativeTest() {
         // Arrange
+        //grid
+        String gridName = "Grid";
+        houseGrid = new HouseGrid(gridName);
+        house.addGrid(houseGrid);
         // Act
         boolean result = ctrl.houseGridListIsEmpty();
 

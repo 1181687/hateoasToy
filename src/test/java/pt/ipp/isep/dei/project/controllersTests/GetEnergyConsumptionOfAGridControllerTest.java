@@ -14,7 +14,6 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GetEnergyConsumptionOfAGridControllerTest {
 
     private GetEnergyConsumptionOfAGridController controller;
-    private HouseGridList houseGridList;
     private House house;
 
     @BeforeEach
@@ -52,7 +51,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     public void checkIfGridListIsEmptyWhenHouseGridListIsNotEmptyShouldReturnFalse(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        houseGridList.addHouseGrid(grid1);
+        house.addGrid(grid1);
         //Act
         boolean result = controller.isHouseGridListEmpty();
         //Assert
@@ -63,7 +62,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     public void getHouseGridListLengthWhenHouseGridListHasOneGridShouldReturnOne(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        houseGridList.addHouseGrid(grid1);
+        house.addGrid(grid1);
 
         int expectedResult = 1;
         //Act
@@ -86,7 +85,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     public void listHouseGridsTestWithOneHouseGridShouldShowListWithOneGrid(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        houseGridList.addHouseGrid(grid1);
+        house.addGrid(grid1);
         String expectedResult = "1 - Name: Grid 1\n";
         //Act
         String result = controller.getHouseGridListToString();
@@ -98,7 +97,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     public void getHouseGridName(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        houseGridList.addHouseGrid(grid1);
+        house.addGrid(grid1);
         String expectedResult = "Grid 1";
         controller.getHouseGridByPosition(0);
         //Act
@@ -120,7 +119,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         String gridName = "Grid 1";
         HouseGrid grid1 = new HouseGrid(gridName);
         grid1.attachRoom(room1);
-        houseGridList.addHouseGrid(grid1);
+        house.addGrid(grid1);
 
         LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
