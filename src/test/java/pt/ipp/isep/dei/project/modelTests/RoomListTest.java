@@ -1,14 +1,41 @@
 package pt.ipp.isep.dei.project.modelTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class RoomListTest {
+
+    private House house;
+
+    @BeforeEach
+    public void StartUp() {
+        //Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+
+        //House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+        Location houseLocation = new Location(41.177748, -8.607745, 112);
+        Address address = new Address("4200-072", houseLocation);
+        house.setAddress(address);
+        house.setInsertedGeoArea(insertedGeoArea);
+
+    }
 
     @Test
     public void getDisplayRoomListTest() {
@@ -688,16 +715,6 @@ public class RoomListTest {
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-        RoomList roomList = new RoomList();
-
-        //initiate House
-        HouseGridList listHG = new HouseGridList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, listHG, address, geo);
 
         //initiate Devices
 
@@ -717,7 +734,7 @@ public class RoomListTest {
         room.addDevice(dev);
         room.addDevice(dev1);
 
-        roomList.addRoom(room);
+        house.addRoom(room);
 
 
         int position = 0;
@@ -728,7 +745,7 @@ public class RoomListTest {
 
 
         // Act
-        String result = roomList.getDeviceListContentByPosition(position);
+        String result = house.getRoomList().getDeviceListContentByPosition(position);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -739,22 +756,13 @@ public class RoomListTest {
         // Arrange
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-        RoomList roomList = new RoomList();
 
-        HouseGridList listHG = new HouseGridList();
-        Location location = new Location(2, 3, 4);
-        Address address = new Address("4500", location);
-        GeographicalAreaType GAType = new GeographicalAreaType("City");
-        AreaShape areaShape = new AreaShape(2, 2, location);
-        GeographicalArea geo = new GeographicalArea("Porto", GAType, location, areaShape);
-        House house = new House(roomList, listHG, address, geo);
-
-        roomList.addRoom(room);
+        house.addRoom(room);
 
         int position = 0;
 
         // Act
-        boolean result = roomList.isDeviceListEmpty(position);
+        boolean result = house.getRoomList().isDeviceListEmpty(position);
 
         // Assert
         assertTrue(result);

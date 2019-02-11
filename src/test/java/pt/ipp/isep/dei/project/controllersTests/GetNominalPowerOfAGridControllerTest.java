@@ -25,9 +25,9 @@ public class GetNominalPowerOfAGridControllerTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
 
         //House
-        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
-        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
-        List<String> deviceTypeList = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
         House houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 

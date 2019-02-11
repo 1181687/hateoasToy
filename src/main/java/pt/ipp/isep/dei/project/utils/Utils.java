@@ -46,11 +46,11 @@ public final class Utils {
         return (double) tmp / factor;
     }
 
-    public static String readConfigFile(String option) {
+    public static String readConfigFile(String file, String option) {
         Properties prop = new Properties();
         InputStream in = null;
         try {
-            in = new FileInputStream("Configuration.properties");
+            in = new FileInputStream(file);
         } catch (FileNotFoundException ex) {
             return ("There is no file with that filename.");
         }
@@ -66,11 +66,11 @@ public final class Utils {
         return property;
     }
 
-    public static List<String> readConfigFileToList(String count, String property) {
+    public static List<String> readConfigFileToList(String file, String count, String property) {
         List<String> readingsList = new ArrayList<>();
-        int numberOfProperties = Integer.parseInt(readConfigFile(count));
+        int numberOfProperties = Integer.parseInt(readConfigFile(file, count));
         for (int i = 1; i <= numberOfProperties; i++) {
-            String deviceType = Utils.readConfigFile(property + "." + i);
+            String deviceType = Utils.readConfigFile(file, property + "." + i);
             readingsList.add(deviceType);
         }
         return readingsList;
