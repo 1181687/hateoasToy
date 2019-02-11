@@ -509,6 +509,9 @@ public class Main {
         String houseGridName = "main grid";
         HouseGrid houseGrid = new HouseGrid(houseGridName);
         houseEdificioB.addGrid(houseGrid);
+        houseGrid.attachRoom(room1);
+        houseGrid.attachRoom(room2);
+        houseGrid.attachRoom(room3);
 
         // POWER SOURCES
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");
