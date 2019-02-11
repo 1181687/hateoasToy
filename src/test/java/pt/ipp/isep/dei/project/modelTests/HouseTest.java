@@ -1139,7 +1139,7 @@ public class HouseTest {
         String expectedResult = "1 - Name: Grid\n2 - Name: Grid\n";
 
         // Act
-        String result = house.getHouseGridListContent();
+        String result = house.getHouseGridListToString();
 
         // Assert
         assertEquals(expectedResult, result);

@@ -1,7 +1,10 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Dimension;
+import pt.ipp.isep.dei.project.model.HouseGrid;
+import pt.ipp.isep.dei.project.model.HouseGridList;
+import pt.ipp.isep.dei.project.model.Room;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -46,6 +49,9 @@ public class HouseGridListTest {
     @Test
     public void detachRoomInTheHouseGridTest() {
         // Arrange
+        //House instantiation
+
+        //Room instantiation
         String roomName = "Kitchen";
         String roomName1 = "Bedroom";
         int houseFloor = 0;
@@ -54,9 +60,11 @@ public class HouseGridListTest {
         Dimension dimension1 = new Dimension(2, 4, 4);
         Room room = new Room(roomName, houseFloor, dimension);
         Room room1 = new Room(roomName1, houseFloor1, dimension1);
+        //Grid
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
-        HouseGridList gridList = new HouseGridList();
+
+
         gridList.addHouseGrid(grid);
         gridList.attachRoomInASpecificHouseGridInTheList(grid, room);
         gridList.attachRoomInASpecificHouseGridInTheList(grid, room1);
@@ -202,7 +210,7 @@ public class HouseGridListTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+   /* @Test
     public void TestGetAllDevicesListByPosition() {
         //Room ONE
         String name = "Kitchen";
@@ -305,8 +313,8 @@ public class HouseGridListTest {
 
         assertEquals(expectedResult, result);
     }
-
-    @Test
+*/
+  /*  @Test
     public void getNameByHGPosition() {
         // Arrange
         // Instantiate House Grids
@@ -347,6 +355,6 @@ public class HouseGridListTest {
 
         // Assert
         assertEquals(expectedResult, result);
-    }
+    }*/
 
 }

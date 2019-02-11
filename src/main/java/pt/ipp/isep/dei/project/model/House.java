@@ -349,6 +349,11 @@ public class House {
         return new HouseGrid(name);
     }
 
+    /**
+     * Method that shows the content of the house grids in the list.
+     *
+     * @return String with the required information.
+     */
     public String getHouseGridListToString() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= mListHouseGrids.size(); i++) {

@@ -5,45 +5,45 @@ import java.util.List;
 public class HouseGridList {
     private List<HouseGrid> mHouseGridsList;
 
-    /* *//**
-     * constructor of the house grid list that receives a list of house grids.
-     *//*
-    public HouseGridList() {
-        mHouseGridsList = new ArrayList<>();
-    }
-*/
-    /**
-     * Get method.
-     *
-     * @return mHouseGridsList.
-     */
-    public List<HouseGrid> getmHouseGridsList() {
-        return mHouseGridsList;
-    }
+//    /* *//**
+//     * constructor of the house grid list that receives a list of house grids.
+//     *//*
+//    public HouseGridList() {
+//        mHouseGridsList = new ArrayList<>();
+//    }
+//*/
+//    /**
+//     * Get method.
+//     *
+//     * @return mHouseGridsList.
+//     */
+//    public List<HouseGrid> getmHouseGridsList() {
+//        return mHouseGridsList;
+//    }
 
-    /**
-     * Method that gets the house grid in a specific position in the list.
-     *
-     * @param position Specifies the position of the house grid in the list.
-     * @return The respective house grid.
-     */
-    public HouseGrid getHouseGridByPosition(int position) {
-        return mHouseGridsList.get(position);
-    }
+//    /**
+//     * Method that gets the house grid in a specific position in the list.
+//     *
+//     * @param position Specifies the position of the house grid in the list.
+//     * @return The respective house grid.
+//     */
+//    public HouseGrid getHouseGridByPosition(int position) {
+//        return mHouseGridsList.get(position);
+//    }
 
-    /**
-     * Method that shows the content of the house grids in the list.
-     *
-     * @return String with the required information.
-     */
-    public String getHouseGridListToString() {
-        StringBuilder content = new StringBuilder();
-        for (int i = 1; i <= mHouseGridsList.size(); i++) {
-            content.append(i + " - Name: " + mHouseGridsList.get(i - 1).getName());
-            content.append("\n");
-        }
-        return content.toString();
-    }
+//    /**
+//     * Method that shows the content of the house grids in the list.
+//     *
+//     * @return String with the required information.
+//     */
+//    public String getHouseGridListToString() {
+//        StringBuilder content = new StringBuilder();
+//        for (int i = 1; i <= mHouseGridsList.size(); i++) {
+//            content.append(i + " - Name: " + mHouseGridsList.get(i - 1).getName());
+//            content.append("\n");
+//        }
+//        return content.toString();
+//    }
 
 //    /**
 //     * Method that displays the rooms in the house grid list
@@ -131,26 +131,26 @@ public class HouseGridList {
 //        return null;
 //    }
 
-    /**
-     * method that gets a List of all Devices in a house grid, by it position in a HouseGridList
-     *
-     * @param position position of the grid in the houseGridList
-     * @return List <Device> in a grid
-     */
-    public DeviceList getAllDevicesListByPosition(int position) {
-        return getmHouseGridsList().get(position).getAllDevicesList();
-    }
+//    /**
+//     * method that gets a List of all Devices in a house grid, by it position in a HouseGridList
+//     *
+//     * @param position position of the grid in the houseGridList
+//     * @return List <Device> in a grid
+//     */
+//    public DeviceList getAllDevicesListByPosition(int position) {
+//        return getmHouseGridsList().get(position).getAllDevicesList();
+//    }
 
-    /**
-     * method that gets the name of House Grid by it's position in the HousegridList.
-     *
-     * @param position position of the House Grid
-     * @return String name
-     */
-    public String getNameByHGPosition(int position) {
-        if (mHouseGridsList.isEmpty()) {
-            return "There are no Grids in the house";
-        }
-        return mHouseGridsList.get(position).getName();
-    }
+//    /**
+//     * method that gets the name of House Grid by it's position in the HousegridList.
+//     *
+//     * @param position position of the House Grid
+//     * @return String name
+//     */
+//    public String getNameByHGPosition(int position) {
+//        if (mHouseGridsList.isEmpty()) {
+//            return "There are no Grids in the house";
+//        }
+//        return mHouseGridsList.get(position).getName();
+//    }
 }
