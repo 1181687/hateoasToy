@@ -34,9 +34,9 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         this.room = new Room(name, houseFloor, dimension);
 
         //House
-        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
-        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
-        List<String> deviceTypeList = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         this.roomList = house.getRoomList();

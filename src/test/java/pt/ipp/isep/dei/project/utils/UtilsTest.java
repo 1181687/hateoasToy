@@ -85,7 +85,7 @@ class UtilsTest {
         int expectedResult = 15;
 
         //Act
-        int result = Integer.parseInt(Utils.readConfigFile("MeteringPeriodGrid"));
+        int result = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
 
         //Assert
         assertEquals(expectedResult, result);
@@ -97,7 +97,18 @@ class UtilsTest {
         //Arrange
         String expectedResult = "Wrong Key";
         //Act
-        String result = Utils.readConfigFile("Cenas");
+        String result = Utils.readConfigFile("Configuration.properties", "Cenas");
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    void testMeteringPeriodWrongFile() {
+        //Arrange
+        String expectedResult = "There is no file with that filename.";
+        //Act
+        String result = Utils.readConfigFile("Coisas.propertiers", "Cenas");
         //Assert
         assertEquals(expectedResult, result);
 
@@ -108,7 +119,7 @@ class UtilsTest {
         //Arrange
         int expectedResult = 15;
 
-        int result = Integer.parseInt(Utils.readConfigFile("MeteringPeriodDevice"));
+        int result = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         //Assert
         assertEquals(expectedResult, result);
 
@@ -123,7 +134,7 @@ class UtilsTest {
         expectedResult.add("WashingMachine");
         expectedResult.add("ElectricWaterHeater");
 
-        List<String> result = Utils.readConfigFileToList("devicetype.count", "devicetype.name");
+        List<String> result = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
         assertEquals(expectedResult, result);
     }
 

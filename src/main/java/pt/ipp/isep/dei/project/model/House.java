@@ -494,7 +494,7 @@ public class House {
         StringBuilder content = new StringBuilder();
         int numberOfDeviceTypes = numberOfDeviceTypes();
         for (int i = 1; i <= numberOfDeviceTypes; i++) {
-            String deviceType = Utils.readConfigFile("devicetype.name." + i);
+            String deviceType = Utils.readConfigFile("Configuration.properties", "devicetype.name." + i);
             content.append(i + "- ");
             content.append(deviceType);
             content.append("\n");
@@ -509,7 +509,7 @@ public class House {
      * @return the number os existing Devices
      */
     public int numberOfDeviceTypes() {
-        return Integer.parseInt(Utils.readConfigFile("devicetype.count"));
+        return Integer.parseInt(Utils.readConfigFile("Configuration.properties", "devicetype.count"));
     }
 
     public int getDeviceSize() {
