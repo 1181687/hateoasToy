@@ -507,8 +507,7 @@ public class Main {
 
         // HOUSE GRID
         String houseGridName = "main grid";
-        double maximumContractedPower = 200;
-        HouseGrid houseGrid = new HouseGrid(houseGridName, maximumContractedPower, houseEdificioB.getRoomList());
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
         houseEdificioB.addGrid(houseGrid);
 
         // POWER SOURCES

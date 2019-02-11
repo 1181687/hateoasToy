@@ -10,17 +10,31 @@ import java.util.Objects;
 
 public class House {
     private RoomList mRoomList;
-    private HouseGridList mListHouseGrids;
+    private List<HouseGrid> mListHouseGrids;
     private Address mAddress;
     private GeographicalArea mInsertedGeoArea;
     private List<DeviceType> mDeviceTypeList;
     private int mMeteringPeriodGrid;
     private int mMeteringPeriodDevice;
 
+    /**
+     * constructor of house that receives a room list, a list of house grids, an address and an insertedGeoArea.
+     *
+     * @param roomList
+     * @param listHouseGrids
+     * @param address
+     * @param insertedGeoArea
+     */
+    public House(RoomList roomList, List<HouseGrid> listHouseGrids, Address address, GeographicalArea insertedGeoArea) {
+        this.mRoomList = roomList;
+        this.mListHouseGrids = listHouseGrids;
+        this.mAddress = address;
+        this.mInsertedGeoArea = insertedGeoArea;
+    }
 
     public House(List<String> deviceTypeList, int meteringPeriodGrid, int meteringPeriodDevice) {
         this.mRoomList = new RoomList();
-        this.mListHouseGrids = new HouseGridList();
+        this.mListHouseGrids = new ArrayList<>();
         this.mDeviceTypeList = new ArrayList<>();
         createDeviceTypes(deviceTypeList);
         this.mMeteringPeriodGrid = meteringPeriodGrid;
@@ -63,7 +77,7 @@ public class House {
      * @param houseGrid House grid used.
      */
     public void addGrid(HouseGrid houseGrid) {
-        mListHouseGrids.addHouseGrid(houseGrid);
+        mListHouseGrids.add(houseGrid);
     }
 
     public RoomList getRoomList() {
@@ -286,13 +300,22 @@ public class House {
     }
 
     /**
-     * method that gets a List of all Devices in a house grid, by it position in a HouseGridList
+     * method that gets a List of all Devices in a house grid, by it position in a list of HouseGrid.
      *
      * @param position position of the grid in the houseGridList
      * @return List <Device>
      */
     public DeviceList getAllDevicesListByGridPosition(int position) {
-        return this.mListHouseGrids.getmHouseGridsList().get(position).getAllDevicesList();
+        return this.mListHouseGrids.get(position).getAllDevicesList();
+    }
+
+    /**
+     * Method that adds a house grid to the list.
+     *
+     * @param grid Specified grid.
+     */
+    public void addHouseGrid(HouseGrid grid) {
+        mListHouseGrids.add(grid);
     }
 
     /**
@@ -303,7 +326,7 @@ public class House {
      * @return String with Devices Names and Location grouped by Type.
      */
     public String getDeviceListContentNameTypeLocationByHG(int positionHG) {
-        return this.mListHouseGrids.getHouseGridByPosition(positionHG).
+        return this.mListHouseGrids.get(positionHG).
                 getAllDevicesList().getContentNameLocationOrderedByType();
     }
 
@@ -313,15 +336,35 @@ public class House {
      * @return True or false.
      */
     public boolean isHouseGridListEmpty() {
-        return mListHouseGrids.isHouseGridListEmpty();
+        return mListHouseGrids.isEmpty();
     }
 
-    public String getHouseGridListContent() {
-        return mListHouseGrids.getHouseGridListToString();
+    /**
+     * Method that creates a house grid.
+     *
+     * @param name Name of the grid.
+     * @return New object of the class HouseGrid.
+     */
+    public HouseGrid newHouseGrid(String name) {
+        return new HouseGrid(name);
     }
 
-    public HouseGrid getHouseGridByPosition(int position){
-        return mListHouseGrids.getHouseGridByPosition(position);
+    /**
+     * Method that shows the content of the house grids in the list.
+     *
+     * @return String with the required information.
+     */
+    public String getHouseGridListToString() {
+        StringBuilder content = new StringBuilder();
+        for (int i = 1; i <= mListHouseGrids.size(); i++) {
+            content.append(i + " - Name: " + mListHouseGrids.get(i - 1).getName());
+            content.append("\n");
+        }
+        return content.toString();
+    }
+
+    public HouseGrid getHouseGridByPosition(int position) {
+        return mListHouseGrids.get(position);
     }
 
     /**
@@ -329,15 +372,15 @@ public class House {
      * @return integer
      */
     public int getHouseGridListSize() {
-        return this.mListHouseGrids.getmHouseGridsList().size();
+        return this.mListHouseGrids.size();
     }
 
-    public HouseGridList getHouseGridList() {
+    public List<HouseGrid> getHouseGridList() {
         return this.mListHouseGrids;
     }
 
     public boolean checkIfThereAreNoDevicesHGbyPosition(int position) {
-        return this.getHouseGridList().getHouseGridByPosition(position).isDeviceListOfAllRoomsEmpty();
+        return this.getHouseGridList().get(position).isDeviceListOfAllRoomsEmpty();
     }
 
     public int houseRoomListSize() {
@@ -350,8 +393,72 @@ public class House {
      * @return String name
      */
     public String getHGNameByHGPosition(int position) {
-        return this.mListHouseGrids.getNameByHGPosition(position);
+        if (mListHouseGrids.isEmpty()) {
+            return "There are no Grids in the house";
+        }
+        return mListHouseGrids.get(position).getName();
     }
+
+    /**
+     * Method that checks if a room isn't already in a specific grid in the list.
+     *
+     * @param chosenGrid Specified house grid in the list.
+     * @param room       Specified room.
+     * @return True or false.
+     */
+    public boolean checkIfRoomIsAlreadyInHouseGrid(HouseGrid chosenGrid, Room room) {
+        int index = mListHouseGrids.indexOf(chosenGrid);
+        return mListHouseGrids.get(index).checkIfRoomIsInHouseGrid(room);
+    }
+
+    /**
+     * Method that asks for the grid where the room might already be connected.
+     *
+     * @param room Specified room.
+     * @return Grid where the room is is connected to.
+     */
+    public HouseGrid getTheGridWhereTheRoomIsConnected(Room room) {
+        for (HouseGrid houseGrid : mListHouseGrids) {
+            if (houseGrid.checkIfRoomIsInHouseGrid(room)) {
+                return houseGrid;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Method that displays the rooms in the house grid list
+     *
+     * @param position
+     * @return rooms in the house grid
+     */
+    public String getRoomsInTheHouseGrid(int position) {
+        return mListHouseGrids.get(position).getRoomListContent();
+    }
+
+
+    /**
+     * Method that calls the method in HouseGrid that detaches a selected room from the list of HouseGrids.
+     *
+     * @param houseGridSelected Specified house grid in the list.
+     * @param roomSelected      Specified room.
+     */
+    public boolean detachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
+        int index = mListHouseGrids.indexOf(houseGridSelected);
+        return mListHouseGrids.get(index).detachRoom(roomSelected);
+    }
+
+    /**
+     * Method that asks the class HouseGrid to add a room to it's list.
+     *
+     * @param houseGridSelected Specified house grid in the list.
+     * @param roomSelected      Specified room.
+     */
+    public void attachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
+        int index = mListHouseGrids.indexOf(houseGridSelected);
+        mListHouseGrids.get(index).attachRoom(roomSelected);
+    }
+
 
     /**
      * Method that gets all the devices of a certain type in the house.

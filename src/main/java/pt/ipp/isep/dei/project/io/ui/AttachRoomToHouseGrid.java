@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AttachRoomToHouseGridController;
-import pt.ipp.isep.dei.project.model.HouseGridList;
+import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.RoomList;
 
 /**
@@ -12,8 +12,8 @@ import pt.ipp.isep.dei.project.model.RoomList;
 public class AttachRoomToHouseGrid {
     private AttachRoomToHouseGridController mCtrl;
 
-    public AttachRoomToHouseGrid(HouseGridList listOfHouseGrids, RoomList listOfRooms) {
-        mCtrl = new AttachRoomToHouseGridController(listOfHouseGrids, listOfRooms);
+    public AttachRoomToHouseGrid(House house, RoomList listOfRooms) {
+        mCtrl = new AttachRoomToHouseGridController(house, listOfRooms);
     }
 
     public void run() {

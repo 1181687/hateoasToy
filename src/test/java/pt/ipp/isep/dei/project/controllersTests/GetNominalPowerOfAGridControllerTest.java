@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GetNominalPowerOfAGridControllerTest {
 
     private GetNominalPowerOfAGridController controller;
-    private HouseGridList houseGridList;
+    private House house;
     @BeforeEach
     public void StartUp(){
         //Geographical Area
@@ -29,15 +29,17 @@ public class GetNominalPowerOfAGridControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        House houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation);
-        houseEdificioB.setAddress(address);
-        houseEdificioB.setInsertedGeoArea(insertedGeoArea);
+        house.setAddress(address);
+        house.setInsertedGeoArea(insertedGeoArea);
 
-        this.controller = new GetNominalPowerOfAGridController(houseEdificioB);
-        this.houseGridList = houseEdificioB.getHouseGridList();
+        this.controller = new GetNominalPowerOfAGridController(house);
+
+
     }
 
     @Test
@@ -52,7 +54,7 @@ public class GetNominalPowerOfAGridControllerTest {
     public void checkIfGridListIsEmptyWhenHouseGridListIsNotEmptyShouldReturnFalse(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        houseGridList.addHouseGrid(grid1);
+        house.addHouseGrid(grid1);
         //Act
         boolean result = controller.isGridListEmpty();
         //Assert
@@ -63,7 +65,7 @@ public class GetNominalPowerOfAGridControllerTest {
     public void listHouseGridsTestWithOneHouseGridShouldShowListWithOneGrid(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        houseGridList.addHouseGrid(grid1);
+        house.addHouseGrid(grid1);
         String expectedResult = "1 - Name: Grid 1\n";
         //Act
         String result = controller.listHouseGrids();
@@ -76,8 +78,8 @@ public class GetNominalPowerOfAGridControllerTest {
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
         HouseGrid grid2 = new HouseGrid("Grid 2");
-        houseGridList.addHouseGrid(grid1);
-        houseGridList.addHouseGrid(grid2);
+        house.addHouseGrid(grid1);
+        house.addHouseGrid(grid2);
 
         int expectedResult = 2;
         //Act
@@ -90,7 +92,7 @@ public class GetNominalPowerOfAGridControllerTest {
     public void getHouseGridListLengthWhenHouseGridListHasOneGridShouldReturnOne(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        houseGridList.addHouseGrid(grid1);
+        house.addHouseGrid(grid1);
 
         int expectedResult = 1;
         //Act
@@ -113,7 +115,7 @@ public class GetNominalPowerOfAGridControllerTest {
     public void getHouseGridTotalNominalPower_CalculatesTotalNominalPowerOfHGWithTwoDevices_ShouldReturn15(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        houseGridList.addHouseGrid(grid1);
+        house.addHouseGrid(grid1);
 
         Dimension dimension = new Dimension(2, 5, 10);
         Room room1 = new Room("Quarto", 1, dimension);

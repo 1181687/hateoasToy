@@ -22,16 +22,16 @@ public class GetNominalPowerOfAGridController {
 
 
     /**
-     * Returns a list of HouseGrids that are in the House's HouseGridList.
+     * Returns a list of HouseGrids that are in the House's list of HouseGrids.
      * @return String
      */
 
     public String listHouseGrids(){
-        return this.mHouse.getHouseGridListContent();
+        return this.mHouse.getHouseGridListToString();
     }
 
     /**
-     * Returns the number of HouseGrids contained in the House's HouseGridList.
+     * Returns the number of HouseGrids contained in the House's list of HouseGrids.
      *
      * @return integer
      */
@@ -41,7 +41,7 @@ public class GetNominalPowerOfAGridController {
     }
 
     /**
-     * Gets a HouseGrid from the HouseGridList, by position, and saves it in the Controller.
+     * Gets a HouseGrid from the list of house grids, by position, and saves it in the Controller.
      * @param position
      */
 

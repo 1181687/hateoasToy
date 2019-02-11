@@ -3,7 +3,8 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.*;
 
 public class AddPowerSourceToHouseGridController {
-    private HouseGridList mHouseGridList;
+
+    private House mHouse;
     private PowerSourceTypeList mPowerSourceTypeList;
     private HouseGrid mSelectedHouseGrid;
     private PowerSourceType mSelectedPowerSourceType;
@@ -11,31 +12,31 @@ public class AddPowerSourceToHouseGridController {
     /**
      * TODO
      *
-     * @param houseGridList
+     * @param house
      * @param powerSourceTypeList
      */
-    public AddPowerSourceToHouseGridController(HouseGridList houseGridList, PowerSourceTypeList powerSourceTypeList) {
-        this.mHouseGridList = houseGridList;
+    public AddPowerSourceToHouseGridController(House house, PowerSourceTypeList powerSourceTypeList) {
+        this.mHouse = house;
         this.mPowerSourceTypeList = powerSourceTypeList;
     }
 
     /**
-     * Method that checks if the HouseGridList is empty.
+     * Method that checks if the List of House Grids is empty.
      *
      * @return boolean
      */
     public boolean isHouseGridListEmpty() {
-        return mHouseGridList.isHouseGridListEmpty();
+        return mHouse.isHouseGridListEmpty();
     }
 
 
     /**
-     * Method that lists the House Grids in the HouseGridList.
+     * Method that lists the House Grids in the list of Housegrids.
      *
      * @return String
      */
     public String getHouseGridListToString() {
-        return mHouseGridList.getHouseGridListToString();
+        return mHouse.getHouseGridListToString();
     }
 
     /**
@@ -44,16 +45,16 @@ public class AddPowerSourceToHouseGridController {
      */
 
     public int getHouseGridListSize(){
-        return mHouseGridList.getmHouseGridsList().size();
+        return mHouse.getHouseGridListSize();
     }
 
     /**
-     * Method that gets a HouseGrid from the HouseGridList by position.
+     * Method that gets a HouseGrid from a list of Housegrids by position.
      * @param position
      */
 
     public void getHouseGridFromListByPosition(int position) {
-        this.mSelectedHouseGrid = this.mHouseGridList.getHouseGridByPosition(position);
+        this.mSelectedHouseGrid = this.mHouse.getHouseGridByPosition(position);
     }
 
     /**

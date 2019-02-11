@@ -27,7 +27,7 @@ public class GetNominalPowerRoomsDevicesController {
      * @return house grid list content
      */
     public String getHouseGridsListToString(){
-        return this.mHouse.getHouseGridListContent();
+        return this.mHouse.getHouseGridListToString();
     }
 
     /**

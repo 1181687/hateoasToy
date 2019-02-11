@@ -3,24 +3,25 @@ package pt.ipp.isep.dei.project.controllersTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
+import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.HouseGrid;
-import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.PowerSourceType;
 import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class AddPowerSourceToHouseGridControllerTest {
     private AddPowerSourceToHouseGridController controller;
-    private HouseGridList houseGridList;
     private HouseGrid mainGrid;
     private HouseGrid secondaryGrid;
     private PowerSourceType publicElectricGrid;
+    private House house;
 
     @BeforeEach
     public void StartUp() {
-        // List of House Grids
-        houseGridList = new HouseGridList();
 
         // House Grids
         mainGrid = new HouseGrid("Main grid");
@@ -33,8 +34,16 @@ class AddPowerSourceToHouseGridControllerTest {
         publicElectricGrid = new PowerSourceType("Public electric grid");
         powerSourceTypeList.addPowerSourceType(publicElectricGrid);
 
+        //House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+
         // Controller
-        controller = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
+        controller = new AddPowerSourceToHouseGridController(house, powerSourceTypeList);
     }
 
     @Test
@@ -49,7 +58,7 @@ class AddPowerSourceToHouseGridControllerTest {
     @Test
     public void isHouseGridListEmptyNegativeTest() {
         // Arrange
-        houseGridList.addHouseGrid(mainGrid);
+        house.addHouseGrid(mainGrid);
 
         // Act
         boolean result = controller.isHouseGridListEmpty();
@@ -61,7 +70,7 @@ class AddPowerSourceToHouseGridControllerTest {
     @Test
     public void getHouseGridListToStringTest() {
         // Arrange
-        houseGridList.addHouseGrid(mainGrid);
+        house.addHouseGrid(mainGrid);
         String expectedResult = "1 - Name: Main grid\n";
 
         // Act
@@ -98,7 +107,7 @@ class AddPowerSourceToHouseGridControllerTest {
     @Test
     public void createAndAddPowerSourceToHouseGridPositiveTest() {
         // Arrange
-        houseGridList.addHouseGrid(mainGrid);
+        house.addHouseGrid(mainGrid);
         controller.getHouseGridFromListByPosition(0);
         controller.getPowerSourceTypeByPosition(0);
 
@@ -112,8 +121,8 @@ class AddPowerSourceToHouseGridControllerTest {
     @Test
     public void createAndAddPowerSourceToHouseGridTestWithVariousGrid() {
         // Arrange
-        houseGridList.addHouseGrid(mainGrid);
-        houseGridList.addHouseGrid(secondaryGrid);
+        house.addHouseGrid(mainGrid);
+        house.addHouseGrid(secondaryGrid);
         controller.getHouseGridFromListByPosition(1);
         controller.getPowerSourceTypeByPosition(0);
 
@@ -127,7 +136,7 @@ class AddPowerSourceToHouseGridControllerTest {
     @Test
     public void createAndAddPowerSourceToHouseGridNegativeTest() {
         // Arrange
-        houseGridList.addHouseGrid(mainGrid);
+        house.addHouseGrid(mainGrid);
         controller.getHouseGridFromListByPosition(0);
         controller.getPowerSourceTypeByPosition(0);
         controller.createAndAddPowerSourceToHouseGrid("Electric power source");
@@ -142,7 +151,7 @@ class AddPowerSourceToHouseGridControllerTest {
     @Test
     public void getPowerSourceTypeListToStringTest() {
         // Arrange
-        houseGridList.addHouseGrid(mainGrid);
+        house.addHouseGrid(mainGrid);
 
         String expectedResult = "1 - Power Source Type: Public electric grid\n";
 
@@ -156,7 +165,7 @@ class AddPowerSourceToHouseGridControllerTest {
     @Test
     public void listPowerSourcesConnectedToHouseGridTest() {
         // Arrange
-        houseGridList.addHouseGrid(mainGrid);
+        house.addHouseGrid(mainGrid);
         controller.getHouseGridFromListByPosition(0);
         controller.getPowerSourceTypeByPosition(0);
         controller.createAndAddPowerSourceToHouseGrid("Non-electric power source");
@@ -173,7 +182,7 @@ class AddPowerSourceToHouseGridControllerTest {
     @Test
     public void getHouseGridNameTest() {
         // Arrange
-        houseGridList.addHouseGrid(mainGrid);
+        house.addHouseGrid(mainGrid);
         controller.getHouseGridFromListByPosition(0);
 
         String expectedResult = "Main grid";
