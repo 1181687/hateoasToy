@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.io.ui.InputValidator;
 import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
@@ -167,25 +166,5 @@ public class EditConfigurationDeviceController {
      */
     public int getNumberOfAttributesInDeviceSpecs() {
         return mDevice.getNumberOfSpecsAttributes();
-    }
-
-    public void case1() {
-        boolean flag = true;
-        String label4 = "What name do you want to assign to the device?";
-        String newName;
-        do {
-            newName = InputValidator.getString(label4);
-            try {
-                if (this.setDeviceName(newName)) {
-                    System.out.println("The name was changed with success! Now, this device call " + newName + "!");
-                }
-                flag = false;
-            } catch (Exception e) {
-                System.out.println("Name already exists. Please write a new one.");
-                flag = true;
-            }
-
-        }
-        while (flag);
     }
 }
