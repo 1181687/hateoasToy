@@ -332,7 +332,7 @@ class AttachRoomToHouseGridControllerTest {
 
         // Instantiate House Grids
         String gridName0 = "Grid0";
-        HouseGrid grid0 = new HouseGrid(gridName0, 20, roomList);
+        HouseGrid grid0 = new HouseGrid(gridName0);
 
         houseGridList.addHouseGrid(grid0);
 

@@ -235,13 +235,12 @@ public class HouseGridListTest {
         room2.addDevice(dev6);
 
         //add to Lists
-        RoomList roomListEmpty = new RoomList();
-        RoomList roomList = new RoomList();
-        roomList.addRoom(room1);
-        roomList.addRoom(room2);
-        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
-        HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
+
+        HouseGrid houseGrid = new HouseGrid("grid1");
+        HouseGrid houseGridEmpty = new HouseGrid("grid2");
         HouseGridList houseGridList1 = new HouseGridList();
+        houseGrid.attachRoom(room1);
+        houseGrid.attachRoom(room2);
         houseGridList1.addHouseGrid(houseGrid);
         houseGridList1.addHouseGrid(houseGridEmpty);
 
@@ -291,12 +290,11 @@ public class HouseGridListTest {
         room2.addDevice(dev6);
 
         //add to Lists
-        RoomList roomListEmpty = new RoomList();
-        RoomList roomList = new RoomList();
-        roomList.addRoom(room1);
-        roomList.addRoom(room2);
-        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
-        HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
+
+        HouseGrid houseGrid = new HouseGrid("grid1");
+        HouseGrid houseGridEmpty = new HouseGrid("grid2");
+        houseGrid.attachRoom(room1);
+        houseGrid.attachRoom(room2);
         HouseGridList houseGridList1 = new HouseGridList();
         houseGridList1.addHouseGrid(houseGrid);
         houseGridList1.addHouseGrid(houseGridEmpty);

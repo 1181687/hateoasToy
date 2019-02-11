@@ -499,12 +499,10 @@ public class HouseGridTest {
     public void testConstructorWithEmptyNameShouldThrowException() {
         //Arrange
         String name = "";
-        double maximumContractedPower = 24.1;
-        RoomList roomList = new RoomList();
 
         //Act
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new HouseGrid(name, maximumContractedPower, roomList)
+                new HouseGrid(name)
         );
 
         //Assert
@@ -515,12 +513,10 @@ public class HouseGridTest {
     public void testConstructorWithNullNameShouldThrowException() {
         //Arrange
         String name = null;
-        double maximumContractedPower = 24.1;
-        RoomList roomList = new RoomList();
 
         //Act
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new HouseGrid(name, maximumContractedPower, roomList)
+                new HouseGrid(name)
         );
 
         //Assert
