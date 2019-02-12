@@ -112,6 +112,14 @@ public class EditConfigurationDevice {
         }
     }
 
+    public void selectDevice() {
+        if (!this.controller.deviceListIsEmpty()) {
+            flag1();
+        } else {
+            System.out.println("There are no devices in this room.");
+        }
+    }
+
     public void run() {
         StringBuilder content = new StringBuilder();
         if (!this.controller.roomListIsEmpty()) {
@@ -125,14 +133,7 @@ public class EditConfigurationDevice {
                     return;
                 }
                 controller.getRoomByPosition(position);
-
-                if (!this.controller.deviceListIsEmpty()) {
-
-                    flag1();
-
-                } else {
-                    System.out.println("There are no devices in this room.");
-                }
+                selectDevice();
             }
         } else {
             System.out.println("There are no rooms in the house. Please create a room.");
