@@ -12,8 +12,9 @@ public class DeactivateDeviceFromRoom {
         this.mController = new DeleteAndDeactivateDeviceFromRoomController(house);
     }
 
-    String exitMenu = "0 - Return to the previous menu";
+
     public void selectDevice() {
+        String exitMenu = "0 - Return to the previous menu";
         String label20 = "\n> This is the list of activated devices. Please select the device you want to deativate: \n"
                 + mController.getActiveDeviceListToString() + exitMenu;
         boolean flag20 = true;
@@ -57,11 +58,12 @@ public class DeactivateDeviceFromRoom {
     public void run() {
 
         // LIST OF ROOMS
+        String exit = "0 - Return to the previous menu";
         StringBuilder content = new StringBuilder();
         if (!this.mController.roomListEmpty()) {
             boolean flag10 = true;
             while (flag10) {
-                String label10 = "\n> Please select the room with the device you want to deactivate:\n" + mController.getRoomListContent() + exitMenu;
+                String label10 = "\n> Please select the room with the device you want to deactivate:\n" + mController.getRoomListContent() + exit;
                 int roomListSize = mController.roomListSize();
                 int positionRoom = InputValidator.getIntRange(label10, 0, roomListSize) - 1;
                 if (positionRoom == -1) {

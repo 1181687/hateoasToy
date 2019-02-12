@@ -11,9 +11,10 @@ public class DeleteDeviceFromRoom {
         this.mController = new DeleteAndDeactivateDeviceFromRoomController(house);
     }
 
-    String exit = "0 - Return to the previous menu";
+
     public void selectDevice() {
-        String label2 = "\n> Please select the device you want to delete. \n" + mController.getDeviceListToString() + exit;
+        String exitMenu = "0 - Return to the previous menu";
+        String label2 = "\n> Please select the device you want to delete. \n" + mController.getDeviceListToString() + exitMenu;
         boolean flag20 = true;
         while (flag20) {
             int deviceListLength = mController.deviceListSize();
@@ -53,7 +54,7 @@ public class DeleteDeviceFromRoom {
     }
 
     public void run() {
-
+        String exit = "0 - Return to the previous menu";
         // LIST OF ROOMS
         StringBuilder content = new StringBuilder();
 
