@@ -199,9 +199,6 @@ public class Device1Test {
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
 
-        DeviceList deviceList = new DeviceList();
-        deviceList.addDevice(dev1);
-
         // Assert
         Throwable exception = assertThrows(RuntimeException.class, () -> dev1.setName("Lamp1"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -241,8 +238,7 @@ public class Device1Test {
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
-        DeviceList deviceList = new DeviceList();
-        deviceList.addDevice(dev1);
+        room.addDevice(dev1);
 
         // Act
         boolean result = dev1.setName("");
@@ -263,10 +259,9 @@ public class Device1Test {
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
         Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
-        DeviceList deviceList = new DeviceList();
-        deviceList.addDevice(dev1);
+        room.addDevice(dev1);
         Device1 dev2 = new Device1("Lamp3", room, deviceSpecs1);
-        deviceList.addDevice(dev2);
+        room.addDevice(dev2);
 
         // Act
         boolean result = dev1.setName("Lamp10");
@@ -313,10 +308,7 @@ public class Device1Test {
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device1 device = new Device1("Electric Water Heater", room, deviceSpecs1);
-        DeviceList deviceList = new DeviceList();
-
         room.addDevice(device);
-        deviceList.addDevice(device);
 
         // act
         boolean result = device.setLocation(room);
@@ -343,11 +335,7 @@ public class Device1Test {
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device1 device = new Device1("Electric Water Heater", room, deviceSpecs1);
-        DeviceList deviceList = new DeviceList();
-
         room.addDevice(device);
-
-        deviceList.addDevice(device);
 
         // act
         boolean result = device.setLocation(room1);

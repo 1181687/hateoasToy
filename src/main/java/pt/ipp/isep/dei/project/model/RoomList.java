@@ -224,7 +224,7 @@ public class RoomList {
     }
 
     /**
-     * Method that checks if the Device1 List of the room is empty
+     * Method that checks if the Device List of the room is empty
      * @param position chosen room
      */
     public boolean isDeviceListEmpty(int position) {
@@ -267,16 +267,16 @@ public class RoomList {
      * method that gets a list of devices in all rooms of roomlist
      * @return DeviceList
      */
-    public DeviceList getAllDevicesList() {
-        DeviceList roomDeviceList;
-        DeviceList allDeviceList = new DeviceList();
+    public List<Device1> getAllDevicesList() {
+        List<Device1> roomDeviceList;
+        List<Device1> allDeviceList = new ArrayList<>();
         Device1 dev;
 
         for (int i = 0; i < mRoomList.size(); i++) {
             roomDeviceList = mRoomList.get(i).getDeviceList();
-            for (int j = 0; j < roomDeviceList.getSize(); j++) {
-                dev = roomDeviceList.getDeviceByPosition(j);
-                allDeviceList.addDevice(dev);
+            for (int j = 0; j < roomDeviceList.size(); j++) {
+                dev = roomDeviceList.get(j);
+                allDeviceList.add(dev);
             }
         }
         return allDeviceList;
@@ -300,10 +300,10 @@ public class RoomList {
      * method that get all devices of a type.
      * @return list with a devices type.
      */
-    public DeviceList getAllDevicesOfAType(String type) {
-        DeviceList listWithDevicesOfAType = new DeviceList();
-        for (Room room : mRoomList) {
-            listWithDevicesOfAType.getDeviceList().addAll(room.getAllDevicesOfType(type).getDeviceList());
+    public List<Device1> getAllDevicesOfAType(String type) {
+        List<Device1> listWithDevicesOfAType = new ArrayList<>();
+        for (Room room : this.mRoomList) {
+            listWithDevicesOfAType.addAll(room.getAllDevicesOfAType(type));
         }
         return listWithDevicesOfAType;
     }
@@ -316,7 +316,7 @@ public class RoomList {
     public String getAllDevicesToString() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
-        List<Device1> deviceList = getAllDevicesList().getDeviceList();
+        List<Device1> deviceList = getAllDevicesList();
         for (Device1 device : deviceList) {
             content.append(numberInTheList + " - " + device.getNameToString());
             numberInTheList++;

@@ -159,7 +159,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
@@ -169,7 +168,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
         int position = 0;
         house.addRoom(room);
         room.addDevice(dev1);
-        deviceList.addDevice(dev1);
         controller.getRoomPosition(position);
 
         // act
@@ -223,7 +221,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
@@ -233,8 +230,8 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
         int position = 0;
 
         String expectedResult = "Lamp1";
-        deviceList.addDevice(dev1);
         house.addRoom(room);
+        room.addDevice(dev1);
         controller.getRoomPosition(position);
 
         // act
@@ -251,7 +248,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
@@ -268,8 +264,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
         house.addRoom(room);
         room.addDevice(dev1);
         room.addDevice(dev2);
-        deviceList.addDevice(dev1);
-        deviceList.addDevice(dev2);
         controller.getRoomPosition(position);
 
         int expectResult = 2;
@@ -349,7 +343,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
@@ -359,7 +352,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
         int position = 0;
         this.house.addRoom(room);
         room.addDevice(dev1);
-        deviceList.addDevice(dev1);
         this.controller.getRoomPosition(position);
 
         // act
@@ -426,7 +418,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
@@ -439,8 +430,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
         DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
         Device1 dev2 = new Device1("Lamp2", room, deviceSpecs2);
 
-        deviceList.addDevice(dev1);
-        deviceList.addDevice(dev2);
         room.addDevice(dev1);
         room.addDevice(dev2);
         house.addRoom(room);
@@ -464,7 +453,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
@@ -477,8 +465,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
         DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
         Device1 dev2 = new Device1("Lamp2", room, deviceSpecs2);
 
-        deviceList.addDevice(dev1);
-        deviceList.addDevice(dev2);
         dev1.setDeactivateDevice();
         house.addRoom(room);
         int position = 0;
@@ -500,7 +486,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
@@ -515,8 +500,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
 
         int position = 0;
 
-        deviceList.addDevice(dev1);
-        deviceList.addDevice(dev2);
         dev1.setDeactivateDevice();
         dev2.setDeactivateDevice();
         house.addRoom(room);

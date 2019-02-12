@@ -50,7 +50,7 @@ class AttachRoomToHouseGridControllerTest {
 
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
-        house.addHouseGrid(grid);
+        house.addGrid(grid);
 
         // Act
         boolean result = controller.isHouseGridListEmpty();
@@ -148,7 +148,7 @@ class AttachRoomToHouseGridControllerTest {
         // Arrange
         String gridName = "Grid";
         HouseGrid grid = house.newHouseGrid(gridName);
-        house.addHouseGrid(grid);
+        house.addGrid(grid);
         String roomName = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
@@ -172,7 +172,7 @@ class AttachRoomToHouseGridControllerTest {
 
         String gridName = "Grid";
         HouseGrid grid = house.newHouseGrid(gridName);
-        house.addHouseGrid(grid);
+        house.addGrid(grid);
 
         String roomName = "Kitchen";
         int houseFloor1 = 0;
@@ -197,7 +197,7 @@ class AttachRoomToHouseGridControllerTest {
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
 
-        house.addHouseGrid(grid);
+        house.addGrid(grid);
 
         int expectedResult = 1;
 
@@ -276,9 +276,9 @@ class AttachRoomToHouseGridControllerTest {
         grid2.attachRoom(room);
 
         // Instantiate List of House Grids
-        house.addHouseGrid(grid0);
-        house.addHouseGrid(grid1);
-        house.addHouseGrid(grid2);
+        house.addGrid(grid0);
+        house.addGrid(grid1);
+        house.addGrid(grid2);
 
         controller.setRoomToBeAttached(room);
 
@@ -308,9 +308,9 @@ class AttachRoomToHouseGridControllerTest {
         String gridName2 = "Grid";
         HouseGrid grid2 = new HouseGrid(gridName2);
 
-        house.addHouseGrid(grid0);
-        house.addHouseGrid(grid1);
-        house.addHouseGrid(grid2);
+        house.addGrid(grid0);
+        house.addGrid(grid1);
+        house.addGrid(grid2);
 
         controller.setRoomToBeAttached(room);
 
@@ -343,7 +343,7 @@ class AttachRoomToHouseGridControllerTest {
         String gridName0 = "Grid0";
         HouseGrid grid0 = new HouseGrid(gridName0);
 
-        house.addHouseGrid(grid0);
+        house.addGrid(grid0);
 
         // Instantiate Controller
         controller.setGridToBeUsed(grid0);

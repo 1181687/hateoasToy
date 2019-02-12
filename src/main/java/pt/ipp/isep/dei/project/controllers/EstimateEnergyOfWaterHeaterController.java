@@ -42,7 +42,7 @@ public class EstimateEnergyOfWaterHeaterController {
      * @param coldWaterTemperature Inputted value to be used.
      */
     public void setColdWaterTemp(int devicePosition, double coldWaterTemperature) {
-        mHouse.setAttribute(mType, devicePosition, 5, coldWaterTemperature);
+        mHouse.setDeviceAttribute(mType, devicePosition, 5, coldWaterTemperature);
     }
 
     /**
@@ -52,7 +52,7 @@ public class EstimateEnergyOfWaterHeaterController {
      * @param volumeOfWaterToHeat Inputted value to be used.
      */
     public void setVolumeOfWaterToHeat(int devicePosition, double volumeOfWaterToHeat) {
-        mHouse.setAttribute(mType, devicePosition, 6, volumeOfWaterToHeat);
+        mHouse.setDeviceAttribute(mType, devicePosition, 6, volumeOfWaterToHeat);
     }
 
     /**
@@ -61,7 +61,7 @@ public class EstimateEnergyOfWaterHeaterController {
      * @return
      */
     public double getEnergyConsumptionOfAWaterHeater(int devicePosition) {
-        return mHouse.getEnergyConsumptionOfADevice(mType, devicePosition);
+        return mHouse.getDailyEnergyConsumptionOfADevice(mType, devicePosition);
     }
 
     /**
@@ -70,6 +70,6 @@ public class EstimateEnergyOfWaterHeaterController {
      * @return Double with the combined energy consumption of all the water heaters in the house.
      */
     public double getTotalEnergyConsumptionOfAllDevicesOfAType() {
-        return mHouse.getTotalEnergyConsumptionInTheHouse(mType);
+        return mHouse.getTotalEnergyConsumptionOfDevicesOfCertainType(mType);
     }
 }

@@ -54,7 +54,7 @@ public class GetNominalPowerOfAGridControllerTest {
     public void checkIfGridListIsEmptyWhenHouseGridListIsNotEmptyShouldReturnFalse(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        house.addHouseGrid(grid1);
+        house.addGrid(grid1);
         //Act
         boolean result = controller.isGridListEmpty();
         //Assert
@@ -65,7 +65,7 @@ public class GetNominalPowerOfAGridControllerTest {
     public void listHouseGridsTestWithOneHouseGridShouldShowListWithOneGrid(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        house.addHouseGrid(grid1);
+        house.addGrid(grid1);
         String expectedResult = "1 - Name: Grid 1\n";
         //Act
         String result = controller.listHouseGrids();
@@ -78,8 +78,8 @@ public class GetNominalPowerOfAGridControllerTest {
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
         HouseGrid grid2 = new HouseGrid("Grid 2");
-        house.addHouseGrid(grid1);
-        house.addHouseGrid(grid2);
+        house.addGrid(grid1);
+        house.addGrid(grid2);
 
         int expectedResult = 2;
         //Act
@@ -92,7 +92,7 @@ public class GetNominalPowerOfAGridControllerTest {
     public void getHouseGridListLengthWhenHouseGridListHasOneGridShouldReturnOne(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        house.addHouseGrid(grid1);
+        house.addGrid(grid1);
 
         int expectedResult = 1;
         //Act
@@ -115,7 +115,7 @@ public class GetNominalPowerOfAGridControllerTest {
     public void getHouseGridTotalNominalPower_CalculatesTotalNominalPowerOfHGWithTwoDevices_ShouldReturn15(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        house.addHouseGrid(grid1);
+        house.addGrid(grid1);
 
         Dimension dimension = new Dimension(2, 5, 10);
         Room room1 = new Room("Quarto", 1, dimension);

@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -27,7 +28,7 @@ public class Main {
 
         GeographicalAreaTypeList geographicalAreaTypeList = new GeographicalAreaTypeList();
         GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
-        DeviceList deviceList = new DeviceList();
+        List<Device1> deviceList = new ArrayList<>();
 
 
         // GEOGRAPHICAL AREAS
@@ -395,7 +396,7 @@ public class Main {
                 0.91, 1.5);
         Device1 device = new Device1("EHW B107", room1, electricWaterHeater);
         room1.addDevice(device);
-        deviceList.addDevice(device);
+        deviceList.add(device);
         device.addReadingsToTheList(ewhEC);
         device.addReadingsToTheList(ewhEC1);
         device.addReadingsToTheList(ewhEC2);
@@ -420,7 +421,7 @@ public class Main {
         DeviceSpecs dishWasher = new DishWasherSpecs(50, 1.5, dishwasherPrograms);
         Device1 device1 = new Device1("Dishwasher B107", room1, dishWasher);
         room1.addDevice(device);
-        deviceList.addDevice(device1);
+        deviceList.add(device1);
         device1.addReadingsToTheList(dwEC);
         device1.addReadingsToTheList(dwEC1);
         device1.addReadingsToTheList(dwEC2);
@@ -436,7 +437,7 @@ public class Main {
         DeviceSpecs washingMachine = new WashingMachineSpecs(10, 3.5, washingMachinePrograms);
         Device1 device2 = new Device1("Washing Machine B107", room1, washingMachine);
         room1.addDevice(device2);
-        deviceList.addDevice(device2);
+        deviceList.add(device2);
         device2.addReadingsToTheList(wmEC);
         device2.addReadingsToTheList(wmEC1);
         device2.addReadingsToTheList(wmEC2);
@@ -447,7 +448,7 @@ public class Main {
                 0.91, 1.5);
         Device1 device3 = new Device1("EHW B109", room2, electricWaterHeater1);
         room2.addDevice(device3);
-        deviceList.addDevice(device3);
+        deviceList.add(device3);
         device3.addReadingsToTheList(ewh1EC);
         device3.addReadingsToTheList(ewh1EC1);
         device3.addReadingsToTheList(ewh1EC2);
@@ -472,13 +473,13 @@ public class Main {
         DeviceSpecs dishWasher1 = new DishWasherSpecs(50, 1.5, dishwasherPrograms);
         Device1 device4 = new Device1("Dishwasher B109", room2, dishWasher1);
         room2.addDevice(device4);
-        deviceList.addDevice(device4);
+        deviceList.add(device4);
 
         // Washing Machine B109
         DeviceSpecs washingMachine1 = new WashingMachineSpecs(10, 2.5, washingMachinePrograms1);
         Device1 device5 = new Device1("Washing Machine B109", room2, washingMachine1);
         room2.addDevice(device5);
-        deviceList.addDevice(device5);
+        deviceList.add(device5);
         device5.addReadingsToTheList(wm1EC);
         device5.addReadingsToTheList(wm1EC1);
         device5.addReadingsToTheList(wm1EC2);
@@ -490,13 +491,13 @@ public class Main {
                 0.92, 2.2);
         Device1 device6 = new Device1("EHW B106", room3, electricWaterHeater2);
         room3.addDevice(device6);
-        deviceList.addDevice(device6);
+        deviceList.add(device6);
 
         // Dishwasher B106
         DeviceSpecs dishWasher2 = new DishWasherSpecs(50, 1.4, dishwasherPrograms1);
         Device1 device7 = new Device1("Dishwasher B106", room3, dishWasher2);
         room3.addDevice(device7);
-        deviceList.addDevice(device7);
+        deviceList.add(device7);
 
 
         // ROOM LIST
