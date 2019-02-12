@@ -27,6 +27,7 @@ public class CreateHouseGrid {
                 HouseGrid houseGridCreated = mController.createANewHouseGrid(nameHG);
                 mController.addHouseGridToTheListOfHouseGrids(houseGridCreated);
                 System.out.println("Your House Grid was successfully created! \n");
+                flag=false;
             } catch (Exception e) {
                 System.out.println("Name already exists. Please write a new one.");
                 flag = true;
