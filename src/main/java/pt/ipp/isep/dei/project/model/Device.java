@@ -128,7 +128,7 @@ public class Device implements Measurable {
      * @param value
      * @return the position of an attribute and the value of it.
      */
-    public boolean setAttributesDevType(int attribute, double value) {
+    public boolean setSpecAttribute(int attribute, double value) {
         return this.mSpec.setAttribute(attribute, value);
     }
 

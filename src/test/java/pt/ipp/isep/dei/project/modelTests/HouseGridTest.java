@@ -381,7 +381,7 @@ public class HouseGridTest {
         Device expectedResult = dev1;
 
         // Act
-        Device result = houseGrid.getDeviceFromPositionInList(0, 0);
+        Device result = houseGrid.getDeviceByRoomAndDevicePosition(0, 0);
 
         // Assert
         assertEquals(expectedResult, result);

@@ -102,9 +102,9 @@ public class DeviceTest {
         Device device = new Device("Electric Water Heater", room, electricWaterHeater);
 
         int coldWaterTempPosition = 5;
-        device.setAttributesDevType(coldWaterTempPosition, 30);
+        device.setSpecAttribute(coldWaterTempPosition, 30);
         int volumeOfWaterToHeatPosition = 6;
-        device.setAttributesDevType(volumeOfWaterToHeatPosition, 100);
+        device.setSpecAttribute(volumeOfWaterToHeatPosition, 100);
 
         double expectedResult = 2.09;
 

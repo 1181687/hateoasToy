@@ -1444,8 +1444,8 @@ public class HouseTest {
 
         int coldWaterTempPosition = 5;
         int volumeOfWaterToHeatPosition = 6;
-        house.setAttribute("Electric Water Heater", 0, coldWaterTempPosition, 30);
-        house.setAttribute("Electric Water Heater", 0, volumeOfWaterToHeatPosition, 100);
+        house.setDeviceAttribute("Electric Water Heater", 0, coldWaterTempPosition, 30);
+        house.setDeviceAttribute("Electric Water Heater", 0, volumeOfWaterToHeatPosition, 100);
 
         double expectedResult = 2.09;
 

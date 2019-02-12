@@ -94,7 +94,7 @@ public class EditConfigurationDeviceController {
      * @return th set of the device type.
      */
     public boolean setDeviceSpecs (int attribute, double value) {
-        return this.mDevice.setAttributesDevType(attribute, value);
+        return this.mDevice.setSpecAttribute(attribute, value);
     }
 
     /**

@@ -91,13 +91,13 @@ public class GetNominalPowerRoomsDevicesController {
     }
 
     /**
-     * method that returns the method getDeviceFromPositionInList of the model class House Grid
+     * method that returns the method getDeviceByRoomAndDevicePosition of the model class House Grid
      * @param pos1 integer that matches the room in room list of house grid
      * @param pos2 integer that matches the device in device list of chosen room
      * @return device that matches the chosen position
      */
     public Device getDeviceListByPosition(int pos1, int pos2){
-        return mSelectedHouseGrid.getDeviceFromPositionInList(pos1, pos2);
+        return mSelectedHouseGrid.getDeviceByRoomAndDevicePosition(pos1, pos2);
     }
 
     /**

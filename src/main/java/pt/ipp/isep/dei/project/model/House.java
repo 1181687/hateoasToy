@@ -6,7 +6,9 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class House {
     private RoomList mRoomList;
@@ -300,24 +302,50 @@ public class House {
 
     /**
      * method that gets a List of all Devices in a house grid, by it position in a HouseGridList
-     *
      * @param position position of the grid in the houseGridList
      * @return List <Device>
      */
-    public DeviceList getAllDevicesListByGridPosition(int position) {
+    public List<Device> getAllDevicesListByGridPosition(int position) {
         return this.mListHouseGrids.getmHouseGridsList().get(position).getAllDevicesList();
+    }
+
+    /**
+     * method that get the String content Name and Location of all devices in the list,
+     * grouped by device type.
+     *
+     * @return String with Device Name and Location grouped by Type.
+     */
+    public String getContentNameLocationOrderedByType(List<Device> deviceList) {
+        StringBuilder content = new StringBuilder();
+        Map<String, List<Device>> byDeviceType = deviceList.stream()
+                .collect(Collectors.groupingBy(Device::getType));
+
+
+        for (Map.Entry<String, List<Device>> entry : byDeviceType.entrySet()) {
+            content.append(entry.getKey());
+            content.append("\n");
+            for (Device dev : entry.getValue()) {
+
+                content.append("- Device Name: ");
+                content.append(dev.getName());
+                content.append(", Location: ");
+                content.append(dev.getLocation().getName());
+                content.append(".\n");
+            }
+            content.append("\n");
+        }
+        return content.toString();
     }
 
     /**
      * method that get the String content Name and Location of all devices in the list, of a given HouseGrid,
      * and grouped by device type.
-     *
      * @param positionHG integer number relative to position of the HouseGrid
      * @return String with Devices Names and Location grouped by Type.
      */
     public String getDeviceListContentNameTypeLocationByHG(int positionHG) {
-        return this.mListHouseGrids.getHouseGridByPosition(positionHG).
-                getAllDevicesList().getContentNameLocationOrderedByType();
+        List<Device> deviceList = getAllDevicesListByGridPosition(positionHG);
+        return getContentNameLocationOrderedByType(deviceList);
     }
 
     /**
@@ -372,7 +400,7 @@ public class House {
      * @param type Required type.
      * @return DeviceList with all the devices of the required type.
      */
-    public DeviceList getAllDevicesOfAType(String type) {
+    public List<Device> getAllDevicesOfAType(String type) {
         return mRoomList.getAllDevicesOfAType(type);
     }
 
@@ -383,15 +411,8 @@ public class House {
      * @return Integer with the number of devices.
      */
     public int getNumberOfDevicesOfAType(String type) {
-        return getAllDevicesOfAType(type).getSize();
+        return getAllDevicesOfAType(type).size();
     }
-
-    /**
-     * Method that gets the name of a device of a certain type in the house.
-     * @param type Type of the device.
-     * @param devicePosition Device position in the list of devices.
-     * @return String with the device name.
-     */
 
     /**
      * Method that sets the value of an attribute of a device of a certain type in the house.
@@ -402,8 +423,8 @@ public class House {
      * @param value Value to be used.
      * @return True or false.
      */
-    public boolean setAttribute(String type, int devicePosition, int attributePosition, double value) {
-        DeviceList listWithAllDevicesOfAType = getAllDevicesOfAType(type);
+    public boolean setDeviceAttribute(String type, int devicePosition, int attributePosition, double value) {
+        List<Device> listWithAllDevicesOfAType = getAllDevicesOfAType(type);
         return listWithAllDevicesOfAType.setAttribute(devicePosition, attributePosition, value);
     }
 
@@ -457,7 +478,7 @@ public class House {
      *
      * @return DeviceList with all the devices in the house.
      */
-    public DeviceList getAllDevices() {
+    public List<Device> getAllDevices() {
         return mRoomList.getAllDevicesList();
     }
 
@@ -467,7 +488,7 @@ public class House {
      * @return DeviceList with all the devices in the house.
      */
     public int getNumberOfDevices() {
-        return getAllDevices().getSize();
+        return getAllDevices().size();
     }
 
     /**
@@ -513,7 +534,7 @@ public class House {
     }
 
     public int getDeviceSize() {
-        return getAllDevices().getSize();
+        return getAllDevices().size();
     }
 
     public boolean isDeviceListOfAllRoomsEmpty(){

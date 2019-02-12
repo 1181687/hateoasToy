@@ -267,16 +267,16 @@ public class RoomList {
      * method that gets a list of devices in all rooms of roomlist
      * @return DeviceList
      */
-    public DeviceList getAllDevicesList() {
-        DeviceList roomDeviceList;
-        DeviceList allDeviceList = new DeviceList();
+    public List<Device> getAllDevicesList() {
+        List<Device> roomDeviceList;
+        List<Device> allDeviceList = new ArrayList<>();
         Device dev;
 
         for (int i = 0; i < mRoomList.size(); i++) {
             roomDeviceList = mRoomList.get(i).getDeviceList();
-            for (int j = 0; j < roomDeviceList.getSize(); j++) {
-                dev = roomDeviceList.getDeviceByPosition(j);
-                allDeviceList.addDevice(dev);
+            for (int j = 0; j < roomDeviceList.size(); j++) {
+                dev = roomDeviceList.get(j);
+                allDeviceList.add(dev);
             }
         }
         return allDeviceList;
@@ -300,10 +300,10 @@ public class RoomList {
      * method that get all devices of a type.
      * @return list with a devices type.
      */
-    public DeviceList getAllDevicesOfAType(String type) {
-        DeviceList listWithDevicesOfAType = new DeviceList();
-        for (Room room : mRoomList) {
-            listWithDevicesOfAType.getDeviceList().addAll(room.getAllDevicesOfType(type).getDeviceList());
+    public List<Device> getAllDevicesOfAType(String type) {
+        List<Device> listWithDevicesOfAType = new ArrayList<>();
+        for (Room room : this.mRoomList) {
+            listWithDevicesOfAType.addAll(room.getAllDevicesOfAType(type));
         }
         return listWithDevicesOfAType;
     }
@@ -316,7 +316,7 @@ public class RoomList {
     public String getAllDevicesToString() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
-        List<Device> deviceList = getAllDevicesList().getDeviceList();
+        List<Device> deviceList = getAllDevicesList();
         for (Device device : deviceList) {
             content.append(numberInTheList + " - " + device.getNameToString());
             numberInTheList++;

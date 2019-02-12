@@ -1,7 +1,9 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static java.util.Objects.isNull;
 
@@ -141,7 +143,7 @@ public class HouseGrid implements Measurable {
      *
      * @return List <Device>
      */
-    public DeviceList getAllDevicesList() {
+    public List<Device> getAllDevicesList() {
         return mRoomList.getAllDevicesList();
     }
 
@@ -168,7 +170,7 @@ public class HouseGrid implements Measurable {
     }
 
     public int getDeviceListSizeByRoomPosition(int position) {
-        return mRoomList.getRoomFromPosition(position).getDevicesListSize();
+        return mRoomList.getRoomFromPosition(position).getSize();
     }
 
     public boolean isRoomListEmpty() {
@@ -179,8 +181,8 @@ public class HouseGrid implements Measurable {
         return mRoomList.getRoomFromPosition(position).isDeviceListEmpty();
     }
 
-    public Device getDeviceFromPositionInList(int pos1, int pos2) {
-        return getRoomByPosition(pos1).getDeviceList().getDeviceByPosition(pos2);
+    public Device getDeviceByRoomAndDevicePosition(int roomPosition, int devicePosition) {
+        return getRoomByPosition(roomPosition).getDeviceByPosition(devicePosition);
     }
 
     /**
