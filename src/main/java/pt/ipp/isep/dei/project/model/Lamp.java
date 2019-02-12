@@ -11,6 +11,41 @@ public class Lamp implements Device, Measurable {
     }
 
     @Override
+    public Room getLocation() {
+        return null;
+    }
+
+    @Override
+    public String getName() {
+        return null;
+    }
+
+    @Override
+    public boolean setName() {
+        return false;
+    }
+
+    @Override
+    public boolean setLocation() {
+        return false;
+    }
+
+    @Override
+    public String getAttributesToString() {
+        return null;
+    }
+
+    @Override
+    public boolean equals() {
+        return false;
+    }
+
+    @Override
+    public void setDeactivateDevice() {
+
+    }
+
+    @Override
     public String getNameToString() {
         return null;
     }
