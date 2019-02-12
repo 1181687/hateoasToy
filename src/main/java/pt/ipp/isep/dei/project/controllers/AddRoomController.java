@@ -40,10 +40,8 @@ public class AddRoomController {
     }
 
     /**
-     * TODO
-     *
+     * method that check if a name of a room already exists on the list of rooms.
      * @param name
-     * @return
      */
     public boolean isNameExistant(String name) {
         return this.mHouse.isNameExistant(name);

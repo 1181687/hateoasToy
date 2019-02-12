@@ -411,8 +411,7 @@ public class Room implements Measurable {
     }
 
     /**
-     * gets a Device by it's position
-     *
+     * method that get a Device by it's position
      * @param position integer position of Device
      * @return Device
      */

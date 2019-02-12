@@ -2,8 +2,6 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.*;
 
-import java.util.List;
-
 public class Admin {
     private GeographicalAreaTypeList geographicalAreaTypeList;
     private GeographicalAreaList geographicalAreaList;
@@ -12,7 +10,7 @@ public class Admin {
     private PowerSourceTypeList powerSourceTypeList;
     private RoomList roomList;
 
-    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, List<HouseGrid> gridList) {
+    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
         this.geographicalAreaList = geographicalAreaList;
         this.sensorTypeList = sensorTypeList;
