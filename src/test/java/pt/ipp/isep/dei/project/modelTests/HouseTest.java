@@ -983,12 +983,20 @@ public class HouseTest {
         house.addRoom(room1);
         house.addRoom(room2);
 
-        String expectedResult = "Dish Washer\n- Device1 Name: DishWasher, Location: Kitchen.\n" +
-                "- Device1 Name: DishWasherTeka, Location: KitchenBasement.\n\nElectric Water Heater\n" +
-                "- Device1 Name: ElectricWaterHeater, Location: KitchenBasement.\n\nWashing Machine\n" +
-                "- Device1 Name: WashingMachineBosh, Location: Kitchen.\n\nFridge\n" +
-                "- Device1 Name: FridgeAriston, Location: Kitchen.\n" +
-                "- Device1 Name: FridgeSiemens, Location: KitchenBasement.\n\n";
+        String expectedResult = "Dish Washer\n" +
+                "- Device Name: DishWasher, Location: Kitchen.\n" +
+                "- Device Name: DishWasherTeka, Location: KitchenBasement.\n" +
+                "\n" +
+                "Electric Water Heater\n" +
+                "- Device Name: ElectricWaterHeater, Location: KitchenBasement.\n" +
+                "\n" +
+                "Washing Machine\n" +
+                "- Device Name: WashingMachineBosh, Location: Kitchen.\n" +
+                "\n" +
+                "Fridge\n" +
+                "- Device Name: FridgeAriston, Location: Kitchen.\n" +
+                "- Device Name: FridgeSiemens, Location: KitchenBasement.\n" +
+                "\n";
 
         String result = house.getDeviceListContentNameTypeLocationByHG(0);
         //Assert
