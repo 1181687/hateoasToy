@@ -10,7 +10,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DeleteAndDeactivateDeviceFromRoomControllerTest {
+class DeleteAndDeactivateDevice1FromRoomControllerTest {
 
     private DeleteAndDeactivateDeviceFromRoomController controller;
     private House house;
@@ -105,7 +105,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         Room room = new Room(name, 2, dim);
 
         DeviceSpecs specFridge = new FridgeSpecs(100, 100, 100, 100);
-        Device dev1 = new Device("FridgeAriston", room, specFridge);
+        Device1 dev1 = new Device1("FridgeAriston", room, specFridge);
 
         house.addRoom(room);
         room.addDevice(dev1);
@@ -164,7 +164,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
 
         int position = 0;
         house.addRoom(room);
@@ -228,7 +228,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
 
         int position = 0;
 
@@ -256,13 +256,13 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
 
         double luminousFlux2 = 15.0;
         double nominalPower2 = 2.0;
 
         DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
-        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
+        Device1 dev2 = new Device1("Lamp2", room, deviceSpecs2);
 
         int position = 0;
         house.addRoom(room);
@@ -316,13 +316,13 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
         DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        Device dev = new Device("Fridge1", room, deviceSpecs);
+        Device1 dev = new Device1("Fridge1", room, deviceSpecs);
 
 
         double luminousFlux = 10.0;
         double nominalPower1 = 0.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
 
         String expectedResult =
                 "1 - Name of the device: Fridge1\n" +
@@ -354,7 +354,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
 
         int position = 0;
         this.house.addRoom(room);
@@ -401,9 +401,9 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
         DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        Device dev = new Device("Fridge1", room, deviceSpecs);
+        Device1 dev = new Device1("Fridge1", room, deviceSpecs);
 
-        Device expectedResult = dev;
+        Device1 expectedResult = dev;
 
         int position = 0;
         house.addRoom(room);
@@ -413,7 +413,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         house.addRoom(room);
         controller.getRoomPosition(position);
         // Act
-        Device result = controller.getDevice(position);
+        Device1 result = controller.getDevice(position);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -431,13 +431,13 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
 
         double luminousFlux2 = 15.0;
         double nominalPower2 = 2.0;
 
         DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
-        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
+        Device1 dev2 = new Device1("Lamp2", room, deviceSpecs2);
 
         deviceList.addDevice(dev1);
         deviceList.addDevice(dev2);
@@ -469,13 +469,13 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
 
         double luminousFlux2 = 15.0;
         double nominalPower2 = 2.0;
 
         DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
-        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
+        Device1 dev2 = new Device1("Lamp2", room, deviceSpecs2);
 
         deviceList.addDevice(dev1);
         deviceList.addDevice(dev2);
@@ -505,13 +505,13 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
 
         double luminousFlux2 = 15.0;
         double nominalPower2 = 2.0;
 
         DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
-        Device dev2 = new Device("Lamp2", room, deviceSpecs2);
+        Device1 dev2 = new Device1("Lamp2", room, deviceSpecs2);
 
         int position = 0;
 

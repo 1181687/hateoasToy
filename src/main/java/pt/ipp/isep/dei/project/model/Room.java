@@ -197,7 +197,7 @@ public class Room implements Measurable {
     public double getNominalPower() {
         double totalNominalPower = 0;
         if (this.getSize() != 0) {
-            for (Device device : this.mDeviceList) {
+            for (Device1 device : this.mDeviceList) {
                 totalNominalPower += device.getNominalPower();
             }
         }
@@ -251,7 +251,7 @@ public class Room implements Measurable {
      * @param device the device to be added
      * @return true if it adds, false if it doesn't add
      */
-    public boolean addDevice(Device device) {
+    public boolean addDevice(Device1 device) {
         if (Objects.isNull(device) || this.equals(device.getLocation()) && this.mDeviceList.contains(device)) {
             return false;
         }
@@ -284,7 +284,7 @@ public class Room implements Measurable {
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
         if (!this.mDeviceList.isEmpty()) {
-            for (Device device : this.mDeviceList) {
+            for (Device1 device : this.mDeviceList) {
                 totalEnergyConsumption += device.getEnergyConsumptionInAnInterval(startDate, endDate);
             }
         }
@@ -300,14 +300,14 @@ public class Room implements Measurable {
      * @param performanceRatio    performance ratio introduced by user that typically is 0,9
      * @return a new device
      */
-    public Device newElectricWaterHeater(String name, double hotWaterTemperature, double maximumVolume, double nominalPower, double performanceRatio) {
+    public Device1 newElectricWaterHeater(String name, double hotWaterTemperature, double maximumVolume, double nominalPower, double performanceRatio) {
 
         if (this.isDeviceNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
         DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(hotWaterTemperature, maximumVolume, nominalPower, performanceRatio);
 
-        return new Device(name, this, electricWaterHeater);
+        return new Device1(name, this, electricWaterHeater);
     }
 
     /**
@@ -318,13 +318,13 @@ public class Room implements Measurable {
      * @param programList  list of programs
      * @return a new device
      */
-    public Device newWashingMachine(String name, double nominalPower, double capacity,
+    public Device1 newWashingMachine(String name, double nominalPower, double capacity,
                                     ProgramList programList) {
         if (this.isDeviceNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
         WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
-        return new Device(name, this, washingMachineSpecs);
+        return new Device1(name, this, washingMachineSpecs);
     }
 
 
@@ -336,12 +336,12 @@ public class Room implements Measurable {
      * @param programList  list of programs
      * @return a new device
      */
-    public Device newDishWasher(String name, double nominalPower, int capacity, ProgramList programList) {
+    public Device1 newDishWasher(String name, double nominalPower, int capacity, ProgramList programList) {
         if (this.isDeviceNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
         DishWasherSpecs dishwasher = new DishWasherSpecs(capacity, nominalPower, programList);
-        return new Device(name, this, dishwasher);
+        return new Device1(name, this, dishwasher);
     }
 
     /**
@@ -352,12 +352,12 @@ public class Room implements Measurable {
      * @return a new device
      */
 
-    public Device newLamp(String name, double nominalPower, double luminousFlux) {
+    public Device1 newLamp(String name, double nominalPower, double luminousFlux) {
         if (this.isDeviceNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
         DeviceSpecs lamp = new LampSpecs(luminousFlux, nominalPower);
-        return new Device(name, this, lamp);
+        return new Device1(name, this, lamp);
     }
 
     /**
@@ -369,19 +369,19 @@ public class Room implements Measurable {
      * @param refrigeratorCapacity    refrigerator Capacity
      * @return a new device
      */
-    public Device newFridge(String name, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
+    public Device1 newFridge(String name, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
         if (this.isDeviceNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
         FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        return new Device(name, this, fridgeSpecs);
+        return new Device1(name, this, fridgeSpecs);
     }
 
 
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> map = new TreeMap<>();
-        for (Device device : this.mDeviceList) {
+        for (Device1 device : this.mDeviceList) {
             Map<LocalDateTime, Double> map2 = device.getDataSeries(startDate, endDate);
             for (Map.Entry<LocalDateTime, Double> entry : map2.entrySet()) {
                 LocalDateTime key = entry.getKey();

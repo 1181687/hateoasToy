@@ -19,9 +19,9 @@ public class LampTypeTest {
         double nominalPower = 100.0;
         LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
 
-        Device expectedResult = new Device(name, room, lampSpecs);
+        Device1 expectedResult = new Device1(name, room, lampSpecs);
 
-        Device result = lampType.createDevice(name, room);
+        Device1 result = lampType.createDevice(name, room);
 
         assertEquals(expectedResult, result);
 

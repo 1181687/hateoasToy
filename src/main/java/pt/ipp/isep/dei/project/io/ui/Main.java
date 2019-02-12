@@ -10,8 +10,10 @@ import java.util.List;
 public class Main {
 
     public static void main(String[] args) {
-        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
-        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        String configFile = "Configuration.properties";
+
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(configFile, "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile(configFile, "MeteringPeriodDevice"));
         if (1440 % meteringPeriodGrid != 0) {
             System.out.println("The grid metering period is not valid. Please configure the grid metering period for a valid value.");
             return;
@@ -21,7 +23,7 @@ public class Main {
             System.out.println("The device metering period is not valid. Please configure the device metering period for a valid value.");
             return;
         }
-        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+        List<String> deviceTypeList = Utils.readConfigFileToList(configFile, "devicetype.count", "devicetype.name");
 
         GeographicalAreaTypeList geographicalAreaTypeList = new GeographicalAreaTypeList();
         GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
@@ -391,7 +393,7 @@ public class Main {
         // Electric Water Heater B107
         DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(55, 100,
                 0.91, 1.5);
-        Device device = new Device("EHW B107", room1, electricWaterHeater);
+        Device1 device = new Device1("EHW B107", room1, electricWaterHeater);
         room1.addDevice(device);
         deviceList.addDevice(device);
         device.addReadingsToTheList(ewhEC);
@@ -416,7 +418,7 @@ public class Main {
 
         // Dishwasher B107
         DeviceSpecs dishWasher = new DishWasherSpecs(50, 1.5, dishwasherPrograms);
-        Device device1 = new Device("Dishwasher B107", room1, dishWasher);
+        Device1 device1 = new Device1("Dishwasher B107", room1, dishWasher);
         room1.addDevice(device);
         deviceList.addDevice(device1);
         device1.addReadingsToTheList(dwEC);
@@ -432,7 +434,7 @@ public class Main {
 
         // Washing Machine B107
         DeviceSpecs washingMachine = new WashingMachineSpecs(10, 3.5, washingMachinePrograms);
-        Device device2 = new Device("Washing Machine B107", room1, washingMachine);
+        Device1 device2 = new Device1("Washing Machine B107", room1, washingMachine);
         room1.addDevice(device2);
         deviceList.addDevice(device2);
         device2.addReadingsToTheList(wmEC);
@@ -443,7 +445,7 @@ public class Main {
         // Electric Water Heater B109
         DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(55, 100,
                 0.91, 1.5);
-        Device device3 = new Device("EHW B109", room2, electricWaterHeater1);
+        Device1 device3 = new Device1("EHW B109", room2, electricWaterHeater1);
         room2.addDevice(device3);
         deviceList.addDevice(device3);
         device3.addReadingsToTheList(ewh1EC);
@@ -468,13 +470,13 @@ public class Main {
 
         // Dishwasher B019
         DeviceSpecs dishWasher1 = new DishWasherSpecs(50, 1.5, dishwasherPrograms);
-        Device device4 = new Device("Dishwasher B109", room2, dishWasher1);
+        Device1 device4 = new Device1("Dishwasher B109", room2, dishWasher1);
         room2.addDevice(device4);
         deviceList.addDevice(device4);
 
         // Washing Machine B109
         DeviceSpecs washingMachine1 = new WashingMachineSpecs(10, 2.5, washingMachinePrograms1);
-        Device device5 = new Device("Washing Machine B109", room2, washingMachine1);
+        Device1 device5 = new Device1("Washing Machine B109", room2, washingMachine1);
         room2.addDevice(device5);
         deviceList.addDevice(device5);
         device5.addReadingsToTheList(wm1EC);
@@ -486,13 +488,13 @@ public class Main {
         // Electric Water Heater 106
         DeviceSpecs electricWaterHeater2 = new ElectricWaterHeaterSpecs(55, 150,
                 0.92, 2.2);
-        Device device6 = new Device("EHW B106", room3, electricWaterHeater2);
+        Device1 device6 = new Device1("EHW B106", room3, electricWaterHeater2);
         room3.addDevice(device6);
         deviceList.addDevice(device6);
 
         // Dishwasher B106
         DeviceSpecs dishWasher2 = new DishWasherSpecs(50, 1.4, dishwasherPrograms1);
-        Device device7 = new Device("Dishwasher B106", room3, dishWasher2);
+        Device1 device7 = new Device1("Dishwasher B106", room3, dishWasher2);
         room3.addDevice(device7);
         deviceList.addDevice(device7);
 
@@ -505,9 +507,11 @@ public class Main {
 
         // HOUSE GRID
         String houseGridName = "main grid";
-        double maximumContractedPower = 200;
-        HouseGrid houseGrid = new HouseGrid(houseGridName, maximumContractedPower, houseEdificioB.getRoomList());
+        HouseGrid houseGrid = new HouseGrid(houseGridName);
         houseEdificioB.addGrid(houseGrid);
+        houseGrid.attachRoom(room1);
+        houseGrid.attachRoom(room2);
+        houseGrid.attachRoom(room3);
 
         // POWER SOURCES
         PowerSourceType powerSourceType1 = new PowerSourceType("Battery");

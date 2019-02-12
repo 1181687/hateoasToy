@@ -4,15 +4,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionOfAGridController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GetEnergyConsumptionOfAGridControllerTest {
 
     private GetEnergyConsumptionOfAGridController controller;
-    private HouseGridList houseGridList;
+    private House house;
 
     @BeforeEach
     public void StartUp(){
@@ -23,13 +25,18 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geoAreaType, location, areaShape);
 
         //House
-        RoomList roomList = new RoomList();
-        this.houseGridList = new HouseGridList();
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation);
-        House houseEdificioB = new House(roomList, houseGridList, address, insertedGeoArea);
+        this.house.setAddress(address);
+        this.house.setInsertedGeoArea(insertedGeoArea);
 
-        this.controller = new GetEnergyConsumptionOfAGridController(houseEdificioB);
+        this.controller = new GetEnergyConsumptionOfAGridController(house);
     }
 
     @Test
@@ -44,7 +51,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     public void checkIfGridListIsEmptyWhenHouseGridListIsNotEmptyShouldReturnFalse(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        houseGridList.addHouseGrid(grid1);
+        house.addGrid(grid1);
         //Act
         boolean result = controller.isHouseGridListEmpty();
         //Assert
@@ -55,7 +62,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     public void getHouseGridListLengthWhenHouseGridListHasOneGridShouldReturnOne(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        houseGridList.addHouseGrid(grid1);
+        house.addGrid(grid1);
 
         int expectedResult = 1;
         //Act
@@ -78,7 +85,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     public void listHouseGridsTestWithOneHouseGridShouldShowListWithOneGrid(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        houseGridList.addHouseGrid(grid1);
+        house.addGrid(grid1);
         String expectedResult = "1 - Name: Grid 1\n";
         //Act
         String result = controller.getHouseGridListToString();
@@ -90,7 +97,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     public void getHouseGridName(){
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
-        houseGridList.addHouseGrid(grid1);
+        house.addGrid(grid1);
         String expectedResult = "Grid 1";
         controller.getHouseGridByPosition(0);
         //Act
@@ -106,13 +113,13 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         Room room1 = new Room("Room", 2, dimension);
 
         DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
-        Device lamp = new Device("LampSpecs", room1, deviceSpecs);
+        Device1 lamp = new Device1("LampSpecs", room1, deviceSpecs);
 
 
         String gridName = "Grid 1";
         HouseGrid grid1 = new HouseGrid(gridName);
         grid1.attachRoom(room1);
-        houseGridList.addHouseGrid(grid1);
+        house.addGrid(grid1);
 
         LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);

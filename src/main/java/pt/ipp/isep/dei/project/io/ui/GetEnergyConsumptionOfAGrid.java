@@ -28,16 +28,27 @@ public class GetEnergyConsumptionOfAGrid {
             }
             mController.getHouseGridByPosition(position-1);
 
-            String label2 = "Please insert the initial date/hour of the period you want to consider in the following format: yyyy-MM-dd HH:mm. ";
-            LocalDateTime startDate = InputValidator.getStringDateTime(label2);
-            String label3 = "Please insert the final date/hour of the period you want to consider in the following format: yyyy-MM-dd HH:mm. ";
-            LocalDateTime endDate = InputValidator.getStringDateTime(label3);
+            LocalDateTime startDate;
+            LocalDateTime endDate;
+
+            do {
+                String label2 = "Please insert the initial date/hour of the period you want to consider in the following format: yyyy-MM-dd HH:mm. ";
+                startDate = InputValidator.getStringDateTime(label2);
+
+                String label3 = "Please insert the final date/hour of the period you want to consider in the following format: yyyy-MM-dd HH:mm. ";
+                endDate = InputValidator.getStringDateTime(label3);
+                if(endDate.isBefore(startDate)){
+                    System.out.println("Error! The final date/hour can't be before the initial date/hour.\nPlease, insert new dates.");
+                }
+            }while (endDate.isBefore(startDate));
 
             double energyConsumption = mController.getEnergyConsumptionInAnInterval(startDate, endDate);
             String houseGridName = mController.getHouseGridName();
             System.out.println("The total energy consumption of the grid " + houseGridName + " is " + energyConsumption + " kWh.");
         }
     }
+
+
 
 }
 

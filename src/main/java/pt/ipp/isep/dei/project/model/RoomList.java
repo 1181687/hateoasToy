@@ -316,8 +316,8 @@ public class RoomList {
     public String getAllDevicesToString() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
-        List<Device> deviceList = getAllDevicesList();
-        for (Device device : deviceList) {
+        List<Device1> deviceList = getAllDevicesList();
+        for (Device1 device : deviceList) {
             content.append(numberInTheList + " - " + device.getNameToString());
             numberInTheList++;
         }

@@ -6,13 +6,13 @@ import pt.ipp.isep.dei.project.controllers.GetDevicesInHouseGridController;
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GetDevicesInHouseGridControllerTest {
     private GetDevicesInHouseGridController ctrl;
-    private HouseGridList houseGridList;
     private House houseEdificioB;
 
     @BeforeEach
@@ -36,7 +36,6 @@ public class GetDevicesInHouseGridControllerTest {
         houseEdificioB.setInsertedGeoArea(insertedGeoArea);
 
         this.ctrl = new GetDevicesInHouseGridController(houseEdificioB);
-        this.houseGridList = houseEdificioB.getHouseGridList();
 
 
         //Room ONE
@@ -50,9 +49,9 @@ public class GetDevicesInHouseGridControllerTest {
 
         DeviceSpecs specWashing = new WashingMachineSpecs(100, 100, wmProgramList);
         DeviceSpecs specDishWasher = new DishWasherSpecs(100, 100, dwProgramList);
-        Device dev1 = new Device("FridgeAriston", room1, specFridge);
-        Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasher", room1, specDishWasher);
+        Device1 dev1 = new Device1("FridgeAriston", room1, specFridge);
+        Device1 dev2 = new Device1("WashingMachineBosh", room1, specWashing);
+        Device1 dev3 = new Device1("DishWasher", room1, specDishWasher);
 
         room1.addDevice(dev1);
         room1.addDevice(dev2);
@@ -63,34 +62,34 @@ public class GetDevicesInHouseGridControllerTest {
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
         DeviceSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
-        Device dev4 = new Device("FridgeSiemens", room2, specFridge);
-        Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
-        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
+        Device1 dev4 = new Device1("FridgeSiemens", room2, specFridge);
+        Device1 dev5 = new Device1("DishWasherTeka", room2, specDishWasher);
+        Device1 dev6 = new Device1("ElectricWaterHeater", room2, specWaterHeater);
 
         room2.addDevice(dev4);
         room2.addDevice(dev5);
         room2.addDevice(dev6);
 
         //add to Lists
-        RoomList roomListEmpty = new RoomList();
-        RoomList roomList = new RoomList();
-        roomList.addRoom(room1);
-        roomList.addRoom(room2);
-        HouseGrid houseGrid = new HouseGrid("grid1", 1000, roomList);
-        HouseGrid houseGridEmpty = new HouseGrid("grid2", 500, roomListEmpty);
-        HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGrid(houseGrid);
-        houseGridList1.addHouseGrid(houseGridEmpty);
 
-        houseGridList.addHouseGrid(houseGrid);
-        houseGridList.addHouseGrid(houseGridEmpty);
+
+        HouseGrid houseGrid = new HouseGrid("grid1");
+        HouseGrid houseGridEmpty = new HouseGrid("grid2");
+        houseGrid.attachRoom(room1);
+        houseGrid.attachRoom(room2);
+        List<HouseGrid> houseGridList1 = new ArrayList<>();
+        houseGridList1.add(houseGrid);
+        houseGridList1.add(houseGridEmpty);
+
+        houseEdificioB.addHouseGrid(houseGrid);
+        houseEdificioB.addHouseGrid(houseGridEmpty);
     }
 
 
     @Test
     public void testGetDeviceListContentNameTypeLocationByHG() {
         //Arrange
-        String expectedResult = "Dish Washer\n- Device Name: DishWasher, Location: Kitchen.\n- Device Name: DishWasherTeka, Location: KitchenBasement.\n\nElectric Water Heater\n- Device Name: ElectricWaterHeater, Location: KitchenBasement.\n\nWashing Machine\n- Device Name: WashingMachineBosh, Location: Kitchen.\n\nFridge\n- Device Name: FridgeAriston, Location: Kitchen.\n- Device Name: FridgeSiemens, Location: KitchenBasement.\n\n";
+        String expectedResult = "Dish Washer\n- Device1 Name: DishWasher, Location: Kitchen.\n- Device1 Name: DishWasherTeka, Location: KitchenBasement.\n\nElectric Water Heater\n- Device1 Name: ElectricWaterHeater, Location: KitchenBasement.\n\nWashing Machine\n- Device1 Name: WashingMachineBosh, Location: Kitchen.\n\nFridge\n- Device1 Name: FridgeAriston, Location: Kitchen.\n- Device1 Name: FridgeSiemens, Location: KitchenBasement.\n\n";
         //Act
         String result = ctrl.getDeviceListContentNameTypeLocationByHG(0);
         //Assert
@@ -166,9 +165,9 @@ public class GetDevicesInHouseGridControllerTest {
         double nominalPower = 100.5;
         FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
-        Device dev4 = new Device("FridgeSiemens", room2, fridgeSpecs);
-        Device dev5 = new Device("DishWasherTeka", room2, dishWasherSpecs);
-        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
+        Device1 dev4 = new Device1("FridgeSiemens", room2, fridgeSpecs);
+        Device1 dev5 = new Device1("DishWasherTeka", room2, dishWasherSpecs);
+        Device1 dev6 = new Device1("ElectricWaterHeaterSpecs", room2, specWaterHeater);
 
         room2.addDevice(dev4);
         room2.addDevice(dev5);
@@ -204,9 +203,9 @@ public class GetDevicesInHouseGridControllerTest {
         double nominalPower = 100.5;
         FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
-        Device dev4 = new Device("FridgeSiemens", room2, fridgeSpecs);
-        Device dev5 = new Device("DishWasherTeka", room2, dishWasherSpecs);
-        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
+        Device1 dev4 = new Device1("FridgeSiemens", room2, fridgeSpecs);
+        Device1 dev5 = new Device1("DishWasherTeka", room2, dishWasherSpecs);
+        Device1 dev6 = new Device1("ElectricWaterHeaterSpecs", room2, specWaterHeater);
 
         room2.addDevice(dev4);
         room2.addDevice(dev5);

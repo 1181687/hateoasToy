@@ -1,4 +1,4 @@
 package pt.ipp.isep.dei.project.model;
 
-public interface Device {
+public class Lamp implements Device {
 }

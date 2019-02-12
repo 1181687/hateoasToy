@@ -1,25 +1,25 @@
 package pt.ipp.isep.dei.project.controllers;
 
+import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.HouseGrid;
-import pt.ipp.isep.dei.project.model.HouseGridList;
 import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.RoomList;
 
 public class DetachRoomFromHouseGridController {
-    private HouseGridList mListOfHouseGrids;
+    private House mHouse;
     private RoomList mListOfRooms;
 
-    public DetachRoomFromHouseGridController(HouseGridList listOfHouseGrids, RoomList listOfRooms) {
-        this.mListOfHouseGrids = listOfHouseGrids;
+    public DetachRoomFromHouseGridController(House house, RoomList listOfRooms) {
+        this.mHouse = house;
         this.mListOfRooms = listOfRooms;
     }
 
     public String getListOfHouseGridsAttachedToHouseGrid() {
-        return mListOfHouseGrids.getHouseGridListToString();
+        return mHouse.getHouseGridListToString();
     }
 
     public HouseGrid getHouseGridFromTheList(int position) {
-        return mListOfHouseGrids.getHouseGridByPosition(position);
+        return mHouse.getHouseGridByPosition(position);
     }
 
     public String getRoomListContent() {
@@ -27,7 +27,7 @@ public class DetachRoomFromHouseGridController {
     }
 
     public String getListOfRoomsInACertainHouseGrid(int position) {
-        return mListOfHouseGrids.getRoomsInTheHouseGrid(position);
+        return mHouse.getRoomsInTheHouseGrid(position);
     }
 
     public Room getRoomFromTheListOfRoomByAPosition(int position) {
@@ -35,11 +35,11 @@ public class DetachRoomFromHouseGridController {
     }
 
     public boolean detachRoomFromGridList(HouseGrid houseGrid, Room roomSelected) {
-        return mListOfHouseGrids.detachRoomInASpecificHouseGridInTheList(houseGrid, roomSelected);
+        return mHouse.detachRoomInASpecificHouseGridInTheList(houseGrid, roomSelected);
     }
 
     public int getGridListSize() {
-        return mListOfHouseGrids.getmHouseGridsList().size();
+        return mHouse.getHouseGridListSize();
     }
 
 }

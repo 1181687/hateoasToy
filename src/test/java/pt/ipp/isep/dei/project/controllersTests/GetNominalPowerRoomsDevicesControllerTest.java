@@ -17,8 +17,8 @@ class GetNominalPowerRoomsDevicesControllerTest {
     private HouseGrid gridTwo;
     private Room roomOne;
     private Room roomTwo;
-    //private Device fridge;
-    //private Device lamp;
+    //private Device1 fridge;
+    //private Device1 lamp;
 
 
     @BeforeEach
@@ -160,19 +160,19 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         grid.attachRoom(roomOne);
 
-        //Device - Fridge
+        //Device1 - Fridge
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
         DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        Device fridge = new Device("Fridge1", roomOne, deviceSpecs);
+        Device1 fridge = new Device1("Fridge1", roomOne, deviceSpecs);
 
-        //Device - Lamp
+        //Device1 - Lamp
         double luminousFlux = 10.0;
         double nominalPower1 = 0.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device lamp = new Device("Lamp1", roomOne, deviceSpecs1);
+        Device1 lamp = new Device1("Lamp1", roomOne, deviceSpecs1);
 
 
         controller.getHouseGridByPosition(0);
@@ -197,17 +197,17 @@ class GetNominalPowerRoomsDevicesControllerTest {
 
         grid.attachRoom(roomOne);
 
-        //initiate Device
+        //initiate Device1
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux1, nominalPower1);
-        Device dev1 = new Device("Lamp1", roomOne, deviceSpecs1);
+        Device1 dev1 = new Device1("Lamp1", roomOne, deviceSpecs1);
 
         double luminousFlux2 = 15.0;
         double nominalPower2 = 2.0;
 
         DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
-        Device dev2 = new Device("Lamp2", roomOne, deviceSpecs2);
+        Device1 dev2 = new Device1("Lamp2", roomOne, deviceSpecs2);
 
 
         controller.getHouseGridByPosition(0);
@@ -270,13 +270,13 @@ class GetNominalPowerRoomsDevicesControllerTest {
         houseEdificioB.addGrid(grid);
         grid.attachRoom(roomOne);
 
-        //Device - Fridge
+        //Device1 - Fridge
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
         DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        Device fridge = new Device("Fridge1", roomOne, deviceSpecs);
+        Device1 fridge = new Device1("Fridge1", roomOne, deviceSpecs);
 
         controller.getHouseGridByPosition(0);
 
@@ -293,21 +293,21 @@ class GetNominalPowerRoomsDevicesControllerTest {
         houseEdificioB.addGrid(grid);
         grid.attachRoom(roomOne);
 
-        //Device - Fridge
+        //Device1 - Fridge
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
         DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        Device fridge = new Device("Fridge1", roomOne, deviceSpecs);
+        Device1 fridge = new Device1("Fridge1", roomOne, deviceSpecs);
 
         controller.getHouseGridByPosition(0);
 
 
-        Device expectedResult = fridge;
+        Device1 expectedResult = fridge;
 
         // Act
-        Device result = controller.getDeviceListByPosition(0, 0);
+        Device1 result = controller.getDeviceListByPosition(0, 0);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -369,11 +369,11 @@ class GetNominalPowerRoomsDevicesControllerTest {
         houseEdificioB.addGrid(grid);
         grid.attachRoom(roomOne);
 
-        //initiate Device
+        //initiate Device1
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device lamp = new Device("Lamp1", roomOne, deviceSpecs1);
+        Device1 lamp = new Device1("Lamp1", roomOne, deviceSpecs1);
 
 
         controller.getHouseGridByPosition(0);
@@ -396,11 +396,11 @@ class GetNominalPowerRoomsDevicesControllerTest {
         houseEdificioB.addGrid(grid);
         grid.attachRoom(roomOne);
 
-        //initiate Device
+        //initiate Device1
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device lamp = new Device("Lamp1", roomOne, deviceSpecs1);
+        Device1 lamp = new Device1("Lamp1", roomOne, deviceSpecs1);
 
 
         controller.getHouseGridByPosition(0);
@@ -420,17 +420,17 @@ class GetNominalPowerRoomsDevicesControllerTest {
         houseEdificioB.addGrid(grid);
         grid.attachRoom(roomOne);
 
-        //initiate Device
+        //initiate Device1
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", roomOne, deviceSpecs1);
+        Device1 dev1 = new Device1("Lamp1", roomOne, deviceSpecs1);
 
         //initiate Device2
         double luminousFlux2 = 10.0;
         double nominalPower2 = 1.0;
         DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
-        Device dev2 = new Device("Lamp2", roomOne, deviceSpecs1);
+        Device1 dev2 = new Device1("Lamp2", roomOne, deviceSpecs1);
 
 
         controller.getHouseGridByPosition(0);
@@ -458,9 +458,9 @@ class GetNominalPowerRoomsDevicesControllerTest {
         FridgeSpecs specFridgeSpecs = new FridgeSpecs(25, 50, 5000, 500);
         WashingMachineSpecs specWashing = new WashingMachineSpecs(400, 250.0, programList);
         DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(400, 250.0, programList);
-        Device dev1 = new Device("FridgeAriston", roomOne, specFridgeSpecs);
-        Device dev2 = new Device("WashingMachineBosh", roomOne, specWashing);
-        Device dev3 = new Device("DishWasherSpecs", roomOne, specDishWasherSpecs);
+        Device1 dev1 = new Device1("FridgeAriston", roomOne, specFridgeSpecs);
+        Device1 dev2 = new Device1("WashingMachineBosh", roomOne, specWashing);
+        Device1 dev3 = new Device1("DishWasherSpecs", roomOne, specDishWasherSpecs);
 
         MeasurableList mList = new MeasurableList();
         mList.addMeasurable(dev1);
@@ -471,7 +471,7 @@ class GetNominalPowerRoomsDevicesControllerTest {
         controller.addMeasurable(dev1);
         controller.addMeasurable(roomTwo);
 
-        String expectedResult = "Device: FridgeAriston, located in room: Kid's room\n" +
+        String expectedResult = "Device1: FridgeAriston, located in room: Kid's room\n" +
                 "Room: Bathroom\n";
 
         // act

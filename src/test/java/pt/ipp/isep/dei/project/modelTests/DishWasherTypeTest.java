@@ -17,9 +17,9 @@ public class DishWasherTypeTest {
         ProgramList programList = new ProgramList();
         DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(capacity, nominalPower, programList);
 
-        Device expectedResult = new Device(name, room, dishWasherSpecs);
+        Device1 expectedResult = new Device1(name, room, dishWasherSpecs);
 
-        Device result = dishWasherType.createDevice(name, room);
+        Device1 result = dishWasherType.createDevice(name, room);
 
         assertEquals(expectedResult, result);
     }

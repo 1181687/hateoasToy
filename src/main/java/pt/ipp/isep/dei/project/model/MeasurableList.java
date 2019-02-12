@@ -13,7 +13,7 @@ public class MeasurableList {
     /**
      * method that adds a measurable object to list
      *
-     * @param measurable Object: Room or Device
+     * @param measurable Object: Room or Device1
      */
     public void addMeasurable(Measurable measurable) {
         this.mMeasurableList.add(measurable);

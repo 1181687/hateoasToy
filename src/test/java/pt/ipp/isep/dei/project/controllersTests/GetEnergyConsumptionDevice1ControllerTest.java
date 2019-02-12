@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class GetEnergyConsumptionDeviceControllerTest {
+class GetEnergyConsumptionDevice1ControllerTest {
     private GetEnergyConsumptionDeviceController ctrl;
     private House house;
     private Room room;
@@ -53,16 +53,16 @@ class GetEnergyConsumptionDeviceControllerTest {
         DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(50, 150,
                 0.9, 100);
 
-        // Device Instantiation
-        Device device0 = new Device("Fridgeratah V14", room0, fridge);
+        // Device1 Instantiation
+        Device1 device0 = new Device1("Fridgeratah V14", room0, fridge);
         room0.addDevice(device0);
-        Device device1 = new Device("Fridgeratah V15", room0, fridge);
+        Device1 device1 = new Device1("Fridgeratah V15", room0, fridge);
         room0.addDevice(device1);
-        Device device2 = new Device("Fridgeratah V16", room0, fridge);
+        Device1 device2 = new Device1("Fridgeratah V16", room0, fridge);
         room0.addDevice(device2);
-        Device device3 = new Device("Bosh Tronic 3000", room1, electricWaterHeater);
+        Device1 device3 = new Device1("Bosh Tronic 3000", room1, electricWaterHeater);
         room1.addDevice(device3);
-        Device device4 = new Device("Bosh Tronic 4000", room1, electricWaterHeater);
+        Device1 device4 = new Device1("Bosh Tronic 4000", room1, electricWaterHeater);
         room1.addDevice(device4);
 
         this.ctrl = new GetEnergyConsumptionDeviceController(house);
@@ -74,11 +74,11 @@ class GetEnergyConsumptionDeviceControllerTest {
         // Arrange
         // Controller Instantiation
         String expectedResult =
-                "1 - Device: Fridgeratah V14, located in room: Kitchen\n" +
-                        "2 - Device: Fridgeratah V15, located in room: Kitchen\n" +
-                        "3 - Device: Fridgeratah V16, located in room: Kitchen\n" +
-                        "4 - Device: Bosh Tronic 3000, located in room: Laundry\n" +
-                        "5 - Device: Bosh Tronic 4000, located in room: Laundry\n";
+                "1 - Device1: Fridgeratah V14, located in room: Kitchen\n" +
+                        "2 - Device1: Fridgeratah V15, located in room: Kitchen\n" +
+                        "3 - Device1: Fridgeratah V16, located in room: Kitchen\n" +
+                        "4 - Device1: Bosh Tronic 3000, located in room: Laundry\n" +
+                        "5 - Device1: Bosh Tronic 4000, located in room: Laundry\n";
 
         // Act
         String result = ctrl.getAllDevicesToString();
