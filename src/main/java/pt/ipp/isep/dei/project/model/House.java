@@ -368,9 +368,22 @@ public class House {
      * @return New object of the class HouseGrid.
      */
     public HouseGrid newHouseGrid(String name) {
-        return new HouseGrid(name);
+        if(!this.gridNameAlreadyExists(name)){
+            return new HouseGrid(name);
+        }
+       throw new RuntimeException("Name already exists. Please, write a new one.");
     }
 
+    public boolean gridNameAlreadyExists(String name) {
+        int listSize = this.mListHouseGrids.size();
+
+        for (int i = 0; i < listSize; i++) {
+            if (this.mListHouseGrids.get(i).getName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
     /**
      * Method that shows the content of the house grids in the list.
      *
