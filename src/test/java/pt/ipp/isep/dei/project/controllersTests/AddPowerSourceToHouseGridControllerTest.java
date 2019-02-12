@@ -142,11 +142,13 @@ class AddPowerSourceToHouseGridControllerTest {
         controller.createAndAddPowerSourceToHouseGrid("Electric power source");
 
         // Act
-        boolean result = controller.createAndAddPowerSourceToHouseGrid("Electric power source");
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                controller.createAndAddPowerSourceToHouseGrid("Electric power source")
+        );
 
-        //Assert
-        assertFalse(result);
+        assertEquals("Name already exists. Please, write a new one.", exception.getMessage());
     }
+
 
     @Test
     public void getPowerSourceTypeListToStringTest() {

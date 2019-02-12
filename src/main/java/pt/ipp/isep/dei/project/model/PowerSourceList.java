@@ -21,7 +21,21 @@ public class PowerSourceList {
      * @return new Power Source
      */
     public PowerSource createNewPowerSource(String powerSourceName, PowerSourceType type){
-        return new PowerSource(powerSourceName, type);
+        if(!this.powerSourceNameAlreadyExists(powerSourceName)){
+            return new PowerSource(powerSourceName, type);
+        }
+        throw new RuntimeException("Name already exists. Please, write a new one.");
+    }
+
+    public boolean powerSourceNameAlreadyExists(String name){
+        int listSize = this.mPowerSourceList.size();
+
+        for (int i = 0; i < listSize; i++) {
+            if (this.mPowerSourceList.get(i).getName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
