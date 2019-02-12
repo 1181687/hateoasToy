@@ -1160,11 +1160,11 @@ public class HouseTest {
         Room room = new Room(roomName, houseFloor, dimension);
 
         // Instantiate House Grids
-        String gridName0 = "Grid";
+        String gridName0 = "Grid1";
         HouseGrid grid0 = new HouseGrid(gridName0);
-        String gridName1 = "Grid";
+        String gridName1 = "Grid2";
         HouseGrid grid1 = new HouseGrid(gridName1);
-        String gridName2 = "Grid";
+        String gridName2 = "Grid3";
         HouseGrid grid2 = new HouseGrid(gridName2);
         grid2.attachRoom(room);
 
@@ -1217,12 +1217,13 @@ public class HouseTest {
     public void displayOfTheContentOfTheHouseGrids() {
         // Arrange
         //grid
-        String gridName = "Grid";
-        HouseGrid grid0 = new HouseGrid(gridName);
-        HouseGrid grid1 = new HouseGrid(gridName);
+        String gridName0 = "Grid";
+        String gridName1 = "Grid2";
+        HouseGrid grid0 = new HouseGrid(gridName0);
+        HouseGrid grid1 = new HouseGrid(gridName1);
         house.addGrid(grid0);
         house.addGrid(grid1);
-        String expectedResult = "1 - Name: Grid\n2 - Name: Grid\n";
+        String expectedResult = "1 - Name: Grid\n2 - Name: Grid2\n";
 
         // Act
         String result = house.getHouseGridListToString();
@@ -1236,8 +1237,9 @@ public class HouseTest {
         // Arrange
         //grid
         String gridName = "Grid";
+        String gridName1 = "Grid2";
         HouseGrid grid0 = new HouseGrid(gridName);
-        HouseGrid grid1 = new HouseGrid(gridName);
+        HouseGrid grid1 = new HouseGrid(gridName1);
         house.addGrid(grid0);
         house.addGrid(grid1);
         int expectedResult = 2;
