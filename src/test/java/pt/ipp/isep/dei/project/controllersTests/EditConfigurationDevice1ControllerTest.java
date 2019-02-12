@@ -378,7 +378,6 @@ public class EditConfigurationDevice1ControllerTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList devList = new DeviceList();
 
         DeviceSpecs specFridge = new FridgeSpecs(100, 100, 100, 100);
         Device1 dev1 = new Device1("FridgeAriston", room, specFridge);
@@ -392,7 +391,6 @@ public class EditConfigurationDevice1ControllerTest {
         // act
         int expectedResult = 1;
 
-        devList.addDevice(dev1);
         int result = controller.getDeviceListSize();
 
         // assert

@@ -4,10 +4,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -253,12 +250,12 @@ public class RoomTest {
         room.addDevice(dev2);
         room.addDevice(dev3);
 
-        DeviceList expectedResult = new DeviceList();
-        expectedResult.addDevice(dev1);
-        expectedResult.addDevice(dev2);
-        expectedResult.addDevice(dev3);
+        List<Device1> expectedResult = new ArrayList<>();
+        expectedResult.add(dev1);
+        expectedResult.add(dev2);
+        expectedResult.add(dev3);
 
-        DeviceList result = room.getDeviceList();
+        List<Device1> result = room.getDeviceList();
 
         assertEquals(expectedResult, result);
     }
@@ -272,11 +269,11 @@ public class RoomTest {
         FridgeSpecs specFridgeSpecs = new FridgeSpecs(100, 100, 100, 100);
         Device1 dev1 = new Device1("FridgeAriston", room, specFridgeSpecs);
 
-        DeviceList expectedResult = new DeviceList();
-        expectedResult.addDevice(dev1);
+        List<Device1> expectedResult = new ArrayList<>();
+        expectedResult.add(dev1);
 
         room.addDevice(dev1);
-        DeviceList result = room.getDeviceList();
+        List<Device1> result = room.getDeviceList();
 
         assertEquals(expectedResult, result);
     }
@@ -321,15 +318,15 @@ public class RoomTest {
 
     }
 
-   /* @Test
+    @Test
     public void testGetNominalPower() {
         // Arrange
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-
+        ProgramList programList = new ProgramList();
         FridgeSpecs specFridge = new FridgeSpecs(25, 50, 5000, 500);
-        WashingMachineSpecs specWashing = new WashingMachineSpecs(400, 250);
-        DishWasherSpecs specDishWasher = new DishWasherSpecs(400, 250);
+        WashingMachineSpecs specWashing = new WashingMachineSpecs(400, 250, programList);
+        DishWasherSpecs specDishWasher = new DishWasherSpecs(400, 250, programList);
         Device1 dev1 = new Device1("FridgeAriston", room, specFridge);
         Device1 dev2 = new Device1("WashingMachineBosh", room, specWashing);
         Device1 dev3 = new Device1("DishWasherSpecs", room, specDishWasher);
@@ -345,7 +342,7 @@ public class RoomTest {
 
         // Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 
     @Test
     public void checkIfDeviceListIsEmptyTestTrue() {
@@ -387,7 +384,6 @@ public class RoomTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
@@ -405,7 +401,7 @@ public class RoomTest {
 
         int expectResult = 2;
         //act
-        int result = room.getDevicesListSize();
+        int result = room.getDeviceList().size();
         //assert
         assertEquals(expectResult, result);
     }
@@ -462,7 +458,7 @@ public class RoomTest {
         Device1 expectedResult = dev1;
 
         //act
-        Device1 result = room2.getDeviceList().getDeviceByPosition(0);
+        Device1 result = room2.getDeviceList().get(0);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -706,8 +702,7 @@ public class RoomTest {
         Room room = new Room("Room", 2, dim);
         Device1 d2 = new Device1("Electric2", room, electricWaterHeater1);
 
-        DeviceList devList = new DeviceList();
-        devList.addDevice(d2);
+        room.addDevice(d2);
         String name = "ELECTRIC2";
 
         Throwable exception = assertThrows(RuntimeException.class, () ->
@@ -893,7 +888,6 @@ public class RoomTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
@@ -901,7 +895,6 @@ public class RoomTest {
         Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev1);
-        deviceList.addDevice(dev1);
 
         // act
         boolean result = room.deleteDevice("Lamp1");
@@ -948,7 +941,6 @@ public class RoomTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
@@ -957,8 +949,8 @@ public class RoomTest {
 
         int position = 0;
 
+        room.addDevice(dev1);
         String expectedResult = "Lamp1";
-        deviceList.addDevice(dev1);
 
         // act
         String result = room.getDeviceNameByPosition(position);
@@ -974,7 +966,6 @@ public class RoomTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
@@ -982,7 +973,6 @@ public class RoomTest {
         Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev1);
-        deviceList.addDevice(dev1);
 
         // act
         boolean result = room.deactivateDevice("Lamp1");
@@ -1013,7 +1003,6 @@ public class RoomTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
@@ -1026,8 +1015,8 @@ public class RoomTest {
         DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
         Device1 dev2 = new Device1("Lamp2", room, deviceSpecs2);
 
-        deviceList.addDevice(dev1);
-        deviceList.addDevice(dev2);
+        room.addDevice(dev1);
+        room.addDevice(dev2);
 
         String expectedResult =
                 "1 - Name of the device: Lamp1 - ACTIVATED\n" +
@@ -1046,7 +1035,6 @@ public class RoomTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
@@ -1059,8 +1047,8 @@ public class RoomTest {
         DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
         Device1 dev2 = new Device1("Lamp2", room, deviceSpecs2);
 
-        deviceList.addDevice(dev1);
-        deviceList.addDevice(dev2);
+        room.addDevice(dev1);
+        room.addDevice(dev2);
         dev1.setDeactivateDevice();
 
         String expectedResult =
@@ -1080,7 +1068,6 @@ public class RoomTest {
         String name = "Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
-        DeviceList deviceList = new DeviceList();
 
         double luminousFlux1 = 10.0;
         double nominalPower1 = 1.0;
@@ -1093,8 +1080,8 @@ public class RoomTest {
         DeviceSpecs deviceSpecs2 = new LampSpecs(luminousFlux2, nominalPower2);
         Device1 dev2 = new Device1("Lamp2", room, deviceSpecs2);
 
-        deviceList.addDevice(dev1);
-        deviceList.addDevice(dev2);
+        room.addDevice(dev1);
+        room.addDevice(dev2);
         dev1.setDeactivateDevice();
         dev2.setDeactivateDevice();
 

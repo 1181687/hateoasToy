@@ -1,10 +1,10 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.util.*;
 
 import static java.util.Objects.isNull;
 
@@ -14,7 +14,7 @@ public class Room implements Measurable {
     private int mHouseFloor;
     private Dimension mDimension;
     private SensorList mSensorList;
-    private DeviceList mDeviceList;
+    private List<Device1> mDeviceList;
 
     /**
      * constructor that receives name, houseFloor, dimension
@@ -32,7 +32,7 @@ public class Room implements Measurable {
         this.mHouseFloor = houseFloor;
         this.mDimension = dimension;
         this.mSensorList = new SensorList();
-        this.mDeviceList = new DeviceList();
+        this.mDeviceList = new ArrayList<>();
     }
 
     /**
@@ -196,8 +196,8 @@ public class Room implements Measurable {
     @Override
     public double getNominalPower() {
         double totalNominalPower = 0;
-        if (mDeviceList.getSize() != 0) {
-            for (Device1 device : mDeviceList.getDeviceList()) {
+        if (this.getSize() != 0) {
+            for (Device1 device : this.mDeviceList) {
                 totalNominalPower += device.getNominalPower();
             }
         }
@@ -228,10 +228,10 @@ public class Room implements Measurable {
      */
     public String getDeviceListToString() {
         StringBuilder content = new StringBuilder();
-        int deviceListLength = mDeviceList.getSize();
+        int deviceListLength = this.getSize();
         int numberInTheList = 1;
         for (int i = 1; i <= deviceListLength; i++) {
-            content.append(numberInTheList + " - Name of the device: " + getDeviceList().getDeviceByPosition(i - 1).getName());
+            content.append(numberInTheList + " - Name of the device: " + getDeviceByPosition(i - 1).getName());
             content.append("\n");
             numberInTheList++;
         }
@@ -239,76 +239,27 @@ public class Room implements Measurable {
     }
 
     /**
-     * method that checks if Device1 List of the room is empty
+     * method that checks if Device List of the room is empty
      */
     public boolean isDeviceListEmpty() {
         return this.mDeviceList.isEmpty();
     }
 
     /**
-     * get method of the device list.
-     *
-     * @return device list
-     */
-    public DeviceList getDeviceList() {
-        return mDeviceList;
-    }
-
-    /**
-     * Method that adds a device to the list of Devices of the room
+     * Method that adds a device to the list of Devices
      *
      * @param device the device to be added
      * @return true if it adds, false if it doesn't add
      */
     public boolean addDevice(Device1 device) {
-        if (this.equals(device.getLocation()) && this.mDeviceList.getDeviceList().contains(device)) {
+        if (Objects.isNull(device) || this.equals(device.getLocation()) && this.mDeviceList.contains(device)) {
             return false;
         }
         device.getLocation().removeDevice(device);
         device.setLocation(this);
-        this.mDeviceList.addDevice(device);
+        this.mDeviceList.add(device);
         return true;
     }
-
-    /**
-     * method that remove a device from the list of devices
-     *
-     * @param device
-     */
-    public boolean removeDevice(Device1 device) {
-        return this.mDeviceList.removeDevice(device);
-    }
-
-    /**
-     * method that get the size of the list of devices.
-     *
-     * @return the size of the list.
-     */
-
-    public int getDevicesListSize() {
-        return mDeviceList.getSize();
-    }
-
-    /**
-     * method that get all devices of a type.
-     *
-     * @param type
-     * @return
-     */
-    public DeviceList getAllDevicesOfType(String type) {
-        return mDeviceList.getAllDevicesOfAType(type);
-    }
-
-    /**
-     * method that check if a name of a Device1 already exists on the list of devices.
-     *
-     * @param name name of device
-     * @return boolean true if exists, false if it doesn't
-     */
-    public boolean isDeviceNameExistant(String name) {
-        return this.mDeviceList.isNameExistant(name);
-    }
-
 
     /**
      * method that returns the name of room
@@ -332,8 +283,8 @@ public class Room implements Measurable {
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        if (!mDeviceList.isEmpty()) {
-            for (Device1 device : mDeviceList.getDeviceList()) {
+        if (!this.mDeviceList.isEmpty()) {
+            for (Device1 device : this.mDeviceList) {
                 totalEnergyConsumption += device.getEnergyConsumptionInAnInterval(startDate, endDate);
             }
         }
@@ -341,50 +292,7 @@ public class Room implements Measurable {
     }
 
     /**
-     * method that delete a device.
-     *
-     * @param device
-     * @return boolean
-     */
-    public boolean deleteDevice(String device) {
-        return this.mDeviceList.deleteDevice(device);
-    }
-
-    /**
-     * method that get the device name by position.
-     *
-     * @param position
-     * @return a string with the name of the device.
-     */
-    public String getDeviceNameByPosition(int position) {
-        return this.mDeviceList.getDeviceNameByPosition(position);
-    }
-
-    /**
-     * method that deactivate a device.
-     *
-     * @param device
-     * @return a boolean
-     */
-    public boolean deactivateDevice(String device) {
-        return this.mDeviceList.deactivateDevice(device);
-    }
-
-    /**
-     * method that get a list of active devices to string
-     *
-     * @return a string with the status of the device: "activated" or "deactivated".
-     */
-    public String getActiveDeviceListToString() {
-        return this.mDeviceList.getActiveDeviceListToString();
-    }
-
-
-
-
-    /**
-     * Method that create a new Device1 ELECTRIC WATER HEATER
-     *
+     * Method that create a new Device ELECTRIC WATER HEATER
      * @param name                name of the device
      * @param hotWaterTemperature maximum temperature configured by user
      * @param maximumVolume       capacity in liters of the Electric Water Heater
@@ -394,7 +302,7 @@ public class Room implements Measurable {
      */
     public Device1 newElectricWaterHeater(String name, double hotWaterTemperature, double maximumVolume, double nominalPower, double performanceRatio) {
 
-        if (isDeviceNameExistant(name)) {
+        if (this.isDeviceNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
         DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(hotWaterTemperature, maximumVolume, nominalPower, performanceRatio);
@@ -403,8 +311,7 @@ public class Room implements Measurable {
     }
 
     /**
-     * Method that create a new Device1 WASHING MACHINE
-     *
+     * Method that create a new Device WASHING MACHINE
      * @param name         name of the device
      * @param nominalPower nominal power of the device
      * @param capacity     capacity in kilograms of the Electric Water Heater
@@ -412,8 +319,8 @@ public class Room implements Measurable {
      * @return a new device
      */
     public Device1 newWashingMachine(String name, double nominalPower, double capacity,
-                                     ProgramList programList) {
-        if (isDeviceNameExistant(name)) {
+                                    ProgramList programList) {
+        if (this.isDeviceNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
         WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
@@ -422,8 +329,7 @@ public class Room implements Measurable {
 
 
     /**
-     * Method that create a new Device1 DISH WASHER
-     *
+     * Method that create a new Device DISH WASHER
      * @param name         name of the device
      * @param nominalPower nominal power of the device
      * @param capacity     capacity in dish sets of the Electric Water Heater
@@ -431,7 +337,7 @@ public class Room implements Measurable {
      * @return a new device
      */
     public Device1 newDishWasher(String name, double nominalPower, int capacity, ProgramList programList) {
-        if (isDeviceNameExistant(name)) {
+        if (this.isDeviceNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
         DishWasherSpecs dishwasher = new DishWasherSpecs(capacity, nominalPower, programList);
@@ -439,8 +345,7 @@ public class Room implements Measurable {
     }
 
     /**
-     * Method that create a new Device1 LAMP
-     *
+     * Method that create a new Device LAMP
      * @param name         name of the device
      * @param nominalPower nominal power of the device
      * @param luminousFlux luminous flux of the lamp
@@ -448,7 +353,7 @@ public class Room implements Measurable {
      */
 
     public Device1 newLamp(String name, double nominalPower, double luminousFlux) {
-        if (isDeviceNameExistant(name)) {
+        if (this.isDeviceNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
         DeviceSpecs lamp = new LampSpecs(luminousFlux, nominalPower);
@@ -456,8 +361,7 @@ public class Room implements Measurable {
     }
 
     /**
-     * Method that create a new Device1 FRIDGE
-     *
+     * Method that create a new Device FRIDGE
      * @param name                    name of the device
      * @param annualEnergyConsumption annual ennergy consumption of the fridge
      * @param nominalPower            nominal power of the device
@@ -466,21 +370,18 @@ public class Room implements Measurable {
      * @return a new device
      */
     public Device1 newFridge(String name, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
-        if (isDeviceNameExistant(name)) {
+        if (this.isDeviceNameExistant(name)) {
             throw new RuntimeException(SAME_NAME);
         }
         FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
         return new Device1(name, this, fridgeSpecs);
     }
 
-    public Device1 getDeviceByPosition(int position) {
-        return mDeviceList.getDeviceByPosition(position);
-    }
 
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> map = new TreeMap<>();
-        for (Device1 device : mDeviceList.getDeviceList()) {
+        for (Device1 device : this.mDeviceList) {
             Map<LocalDateTime, Double> map2 = device.getDataSeries(startDate, endDate);
             for (Map.Entry<LocalDateTime, Double> entry : map2.entrySet()) {
                 LocalDateTime key = entry.getKey();
@@ -489,5 +390,184 @@ public class Room implements Measurable {
             }
         }
         return map;
+    }
+
+    /**
+     * get List of Devices
+     *
+     * @return List<Device>
+     */
+    public List<Device1> getDeviceList() {
+        return this.mDeviceList;
+    }
+
+    /**
+     * get size of list of devices
+     *
+     * @return integer
+     */
+    public int getSize() {
+        return this.mDeviceList.size();
+    }
+
+    /**
+     * gets a Device by it's position
+     *
+     * @param position integer position of Device
+     * @return Device
+     */
+    public Device1 getDeviceByPosition(int position) {
+        return this.mDeviceList.get(position);
+    }
+
+    /**
+     * method that check if a name of a Device already exists on the list of devices.
+     *
+     * @param name name of device
+     * @return boolean true if exists, false if it doesn't
+     */
+    public boolean isDeviceNameExistant(String name) {
+
+        for (int i = 0; i < this.mDeviceList.size(); i++) {
+            if (this.mDeviceList.get(i).getName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * method that check if the device list is empty
+     */
+    public boolean isEmpty() {
+        return this.mDeviceList.isEmpty();
+    }
+
+    /**
+     * method that gets the state of every device in the list of devices.
+     *
+     * @return String of the name and the status of the device ("Activated" or "Deactivated").
+     */
+    public String getActiveDeviceListToString() {
+        StringBuilder content = new StringBuilder();
+        int deviceListLength = getSize();
+        int numberInTheList = 1;
+        for (int i = 1; i <= deviceListLength; i++) {
+            if (mDeviceList.get(i - 1).getIsActive()) {
+                content.append(numberInTheList + " - Name of the device: " + getDeviceList().get(i - 1).getName() + " - ACTIVATED");
+                content.append("\n");
+                numberInTheList++;
+            } else {
+                content.append(numberInTheList + " - Name of the device: " + getDeviceList().get(i - 1).getName() + " - DEACTIVATED");
+                content.append("\n");
+                numberInTheList++;
+            }
+        }
+        return content.toString();
+    }
+
+    /**
+     * Method that remove a device from the list of devices
+     */
+    public boolean removeDevice(Device1 device) {
+        return this.mDeviceList.remove(device);
+    }
+
+    /**
+     * Method that gets all the devices of a certain type.
+     *
+     * @param type Required type.
+     * @return DeviceList with all the devices of the required type.
+     */
+    public List<Device1> getAllDevicesOfAType(String type) {
+        List<Device1> listOfDevicesWithTheType = new ArrayList<>();
+        for (Device1 device : this.mDeviceList) {
+            if (device.getType().equals(type)) {
+                listOfDevicesWithTheType.add(device);
+            }
+        }
+        return listOfDevicesWithTheType;
+    }
+
+    /**
+     * Method that sets the value of an attribute of a device.
+     *
+     * @param devicePosition    Device position in the list of devices.
+     * @param attributePosition Position of the attribute to be set.
+     * @param value             Value to be used.
+     * @return True or false.
+     */
+    public boolean setDeviceSpecAttribute(int devicePosition, int attributePosition, double value) {
+        Device1 device = this.mDeviceList.get(devicePosition);
+        return device.setAttributesDevType(attributePosition, value);
+    }
+
+    /**
+     * Method that returns the energy consumption of a device.
+     *
+     * @param devicePosition Device position in the list of devices.
+     * @return Double with the energy consumption.
+     */
+    public double getEnergyConsumptionOfADevice(int devicePosition) {
+        Device1 device = this.mDeviceList.get(devicePosition);
+        return device.getEnergyConsumptionInADay();
+    }
+
+    /**
+     * Method that returns the combined energy consumption of all the devices in a list.
+     *
+     * @return Double with the combined energy consumption.
+     */
+    public double getTotalEnergyConsumption() {
+        double totalEnergyConsumption = 0;
+        for (Device1 device : this.mDeviceList) {
+            totalEnergyConsumption += device.getEnergyConsumptionInADay();
+        }
+        return Utils.round(totalEnergyConsumption, 2);
+    }
+
+    /**
+     * method that delete a device from the list of devices.
+     *
+     * @param device
+     * @return true if the device was removed. False if not.
+     */
+    public boolean deleteDevice(String device) {
+        for (Device1 searchDevice : this.mDeviceList) {
+            if (device.equals(searchDevice.getName())) {
+                this.mDeviceList.remove(searchDevice);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * method that get the name of the device by position.
+     *
+     * @param position
+     * @return null if the list is empty.
+     */
+    public String getDeviceNameByPosition(int position) {
+        if (this.mDeviceList.isEmpty()) {
+            return "There are no devices in the device list.";
+        }
+        return this.mDeviceList.get(position).getName();
+    }
+
+    /**
+     * method that deactivate the device.
+     *
+     * @param device
+     * @return true if the device was deactivated. False, if not.
+     */
+    public boolean deactivateDevice(String device) {
+        for (Device1 searchDevice : this.mDeviceList) {
+            if (device.equals(searchDevice.getName())) {
+                searchDevice.setDeactivateDevice();
+                return true;
+            }
+        }
+        return false;
     }
 }

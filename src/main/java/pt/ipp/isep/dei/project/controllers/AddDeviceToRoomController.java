@@ -2,11 +2,13 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.*;
 
+import java.util.List;
+
 public class AddDeviceToRoomController {
 
     private House mHouse;
     private Device1 mDevice;
-    private DeviceList mDeviceList;
+    private List<Device1> mDeviceList;
     private Room mRoom;
     private ProgramList mProgramList;
     private DeviceType mDeviceType;

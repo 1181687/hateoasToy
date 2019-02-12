@@ -199,9 +199,9 @@ class GetNominalPowerOfARoomControllerTest {
 
         Device1 d2 = new Device1("Dish Washer", room1, dishWasherSpecs1);
 
-        room2.getDeviceList().getDeviceList().add(d1);
+        room2.getDeviceList().add(d1);
 
-        room2.getDeviceList().getDeviceList().add(d2);
+        room2.getDeviceList().add(d2);
 
         //Act
         boolean result = this.ctrl.isDeviceListEmpty(1);

@@ -92,7 +92,7 @@ public class Device1 implements Measurable {
         if (this.mLocation.equals(location)) {
             return false;
         }
-        this.mLocation.getDeviceList().removeDevice(this);
+        this.mLocation.getDeviceList().remove(this);
         this.mLocation = location;
         this.mLocation.addDevice(this);
         return true;

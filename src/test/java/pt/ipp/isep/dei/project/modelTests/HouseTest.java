@@ -929,15 +929,15 @@ public class HouseTest {
         grid.attachRoom(room2);
         house.addGrid(grid);
 
-        DeviceList expectedResult = new DeviceList();
-        expectedResult.addDevice(dev1);
-        expectedResult.addDevice(dev2);
-        expectedResult.addDevice(dev3);
-        expectedResult.addDevice(dev4);
-        expectedResult.addDevice(dev5);
-        expectedResult.addDevice(dev6);
+        List<Device1> expectedResult = new ArrayList<>();
+        expectedResult.add(dev1);
+        expectedResult.add(dev2);
+        expectedResult.add(dev3);
+        expectedResult.add(dev4);
+        expectedResult.add(dev5);
+        expectedResult.add(dev6);
 
-        DeviceList result = house.getAllDevicesListByGridPosition(0);
+        List<Device1> result = house.getAllDevicesListByGridPosition(0);
 
         assertEquals(expectedResult, result);
     }
@@ -983,12 +983,20 @@ public class HouseTest {
         house.addRoom(room1);
         house.addRoom(room2);
 
-        String expectedResult = "Dish Washer\n- Device1 Name: DishWasher, Location: Kitchen.\n" +
-                "- Device1 Name: DishWasherTeka, Location: KitchenBasement.\n\nElectric Water Heater\n" +
-                "- Device1 Name: ElectricWaterHeater, Location: KitchenBasement.\n\nWashing Machine\n" +
-                "- Device1 Name: WashingMachineBosh, Location: Kitchen.\n\nFridge\n" +
-                "- Device1 Name: FridgeAriston, Location: Kitchen.\n" +
-                "- Device1 Name: FridgeSiemens, Location: KitchenBasement.\n\n";
+        String expectedResult = "Dish Washer\n" +
+                "- Device Name: DishWasher, Location: Kitchen.\n" +
+                "- Device Name: DishWasherTeka, Location: KitchenBasement.\n" +
+                "\n" +
+                "Electric Water Heater\n" +
+                "- Device Name: ElectricWaterHeater, Location: KitchenBasement.\n" +
+                "\n" +
+                "Washing Machine\n" +
+                "- Device Name: WashingMachineBosh, Location: Kitchen.\n" +
+                "\n" +
+                "Fridge\n" +
+                "- Device Name: FridgeAriston, Location: Kitchen.\n" +
+                "- Device Name: FridgeSiemens, Location: KitchenBasement.\n" +
+                "\n";
 
         String result = house.getDeviceListContentNameTypeLocationByHG(0);
         //Assert
@@ -1047,13 +1055,13 @@ public class HouseTest {
 
         int coldWaterTempPosition = 5;
         int volumeOfWaterToHeatPosition = 6;
-        house.setAttribute("Electric Water Heater", 0, coldWaterTempPosition, 30);
-        house.setAttribute("Electric Water Heater", 0, volumeOfWaterToHeatPosition, 100);
+        house.setDeviceAttribute("Electric Water Heater", 0, coldWaterTempPosition, 30);
+        house.setDeviceAttribute("Electric Water Heater", 0, volumeOfWaterToHeatPosition, 100);
 
         double expectedResult = 2.09;
 
         // Act
-        double result = house.getEnergyConsumptionOfADevice("Electric Water Heater", 0);
+        double result = house.getDailyEnergyConsumptionOfADevice("Electric Water Heater", 0);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -1132,7 +1140,7 @@ public class HouseTest {
         Room room = new Room(roomName, houseFloor1, dimension1);
         String gridName = "Grid";
         HouseGrid grid = house.newHouseGrid(gridName);
-        house.addHouseGrid(grid);
+        house.addGrid(grid);
 
         // Act
         boolean result = house.checkIfRoomIsAlreadyInHouseGrid(grid, room);
@@ -1160,9 +1168,9 @@ public class HouseTest {
         HouseGrid grid2 = new HouseGrid(gridName2);
         grid2.attachRoom(room);
 
-        house.addHouseGrid(grid0);
-        house.addHouseGrid(grid1);
-        house.addHouseGrid(grid2);
+        house.addGrid(grid0);
+        house.addGrid(grid1);
+        house.addGrid(grid2);
 
         HouseGrid expectedResult = grid2;
 
@@ -1192,9 +1200,9 @@ public class HouseTest {
         HouseGrid grid2 = new HouseGrid(gridName2);
 
 
-        house.addHouseGrid(grid0);
-        house.addHouseGrid(grid1);
-        house.addHouseGrid(grid2);
+        house.addGrid(grid0);
+        house.addGrid(grid1);
+        house.addGrid(grid2);
 
         HouseGrid expectedResult = null;
 
@@ -1511,7 +1519,7 @@ public class HouseTest {
         expectedResult.add(device1);
 
         // Act
-        List<Device1> result = house.getAllDevices().getDeviceList();
+        List<Device1> result = house.getAllDevices();
 
         // Assert
         assertEquals(expectedResult, result);

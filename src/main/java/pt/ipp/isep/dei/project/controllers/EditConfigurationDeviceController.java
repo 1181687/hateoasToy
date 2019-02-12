@@ -63,7 +63,7 @@ public class EditConfigurationDeviceController {
      * @param position
      */
     public void getDeviceByPosition(int position) {
-        this.mDevice = this.mRoom.getDeviceList().getDeviceByPosition(position);
+        this.mDevice = this.mRoom.getDeviceList().get(position);
     }
 
     /**
@@ -134,11 +134,10 @@ public class EditConfigurationDeviceController {
 
     /**
      * method that get the length of the device list.
-     *
-     * @return the length of all devices of the list.
+     * @return length of the list of Devices.
      */
     public int getDeviceListSize() {
-        return this.mRoom.getDevicesListSize();
+        return this.mRoom.getDeviceList().size();
     }
 
     /**
