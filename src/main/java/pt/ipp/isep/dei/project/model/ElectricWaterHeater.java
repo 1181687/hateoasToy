@@ -1,4 +1,27 @@
 package pt.ipp.isep.dei.project.model;
 
-public class ElectricWaterHeater implements Device {
+import java.time.LocalDateTime;
+import java.util.Map;
+
+public class ElectricWaterHeater implements Device, Measurable {
+
+    @Override
+    public double getNominalPower() {
+        return 0;
+    }
+
+    @Override
+    public String getNameToString() {
+        return null;
+    }
+
+    @Override
+    public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
+        return 0;
+    }
+
+    @Override
+    public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
+        return null;
+    }
 }

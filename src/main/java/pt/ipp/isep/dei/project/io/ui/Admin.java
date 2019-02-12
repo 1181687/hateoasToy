@@ -11,7 +11,6 @@ public class Admin {
     private House house;
     private PowerSourceTypeList powerSourceTypeList;
     private RoomList roomList;
-    // private List<HouseGrid> gridList;
 
     public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, List<HouseGrid> gridList) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
@@ -20,7 +19,6 @@ public class Admin {
         this.house = house;
         this.powerSourceTypeList = powerSourceTypeList;
         this.roomList = roomList;
-        //this.gridList = gridList;
     }
 
 
