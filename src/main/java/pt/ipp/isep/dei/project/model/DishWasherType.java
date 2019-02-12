@@ -4,9 +4,10 @@ public class DishWasherType implements DeviceType {
     private String mName;
 
 
-    public Device1 createDevice(String name, Room location) {
-        DeviceSpecs devspec = new DishWasherSpecs();
-        return new Device1(name, location, devspec);
+    public Device createDevice(String name, Room location) {
+        DishWasherSpecs devspec = new DishWasherSpecs();
+        return new DishWasher(name, location, devspec);
+        //String mName, Room mLocation, FridgeSpecs mSpecs, FridgeType mType
     }
 
     @Override

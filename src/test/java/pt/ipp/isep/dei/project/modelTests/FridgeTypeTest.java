@@ -20,9 +20,9 @@ public class FridgeTypeTest {
         double nominalPower = 100.0;
         FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
-        Device1 expectedResult = new Device1(name, room, fridgeSpecs);
+        Device expectedResult = new Fridge(name, room, fridgeSpecs);
 
-        Device1 result = fridgeType.createDevice(name, room);
+        Device result = fridgeType.createDevice(name, room);
 
         assertEquals(expectedResult, result);
 

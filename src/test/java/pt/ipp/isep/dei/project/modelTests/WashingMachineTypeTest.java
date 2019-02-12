@@ -18,9 +18,9 @@ public class WashingMachineTypeTest {
         ProgramList programList = new ProgramList();
         WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
 
-        Device1 expectedResult = new Device1(name, room, washingMachineSpecs);
+        Device expectedResult = new WashingMachine(name, room, washingMachineSpecs);
 
-        Device1 result = washingMachineType.createDevice(name, room);
+        Device result = washingMachineType.createDevice(name, room);
 
         assertEquals(result, expectedResult);
     }

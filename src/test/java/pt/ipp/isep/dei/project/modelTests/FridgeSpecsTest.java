@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.FridgeSpecs;
+import pt.ipp.isep.dei.project.model.FridgeType;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -16,11 +17,12 @@ public class FridgeSpecsTest {
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
         FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        FridgeType fridgeType = new FridgeType();
 
         String expectedResult = "Fridge";
 
         //Act
-        String result = fridgeSpecs.getTypeName();
+        String result = fridgeType.getTypeName();
 
         //Assert
         assertEquals(expectedResult, result);

@@ -9,8 +9,8 @@ public class WashingMachineType implements DeviceType {
         return this.mName;
     }
 
-    public Device1 createDevice(String name, Room location) {
-        DeviceSpecs devspec = new WashingMachineSpecs();
-        return new Device1(name, location, devspec);
+    public Device createDevice(String name, Room location) {
+        WashingMachineSpecs devspec = new WashingMachineSpecs();
+        return new WashingMachine(name, location, devspec);
     }
 }

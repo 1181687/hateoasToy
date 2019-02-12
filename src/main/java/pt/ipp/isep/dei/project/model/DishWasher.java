@@ -13,7 +13,7 @@ public class DishWasher implements Device, Measurable {
     private boolean mIsActive;
     private LocalDateTime mDeactivationDate;
 
-    public DishWasher(String name, Room location, DishWasherSpecs spec, DishWasherType type) {
+    public DishWasher(String name, Room location, DishWasherSpecs spec) {
         this.mName = mName;
         this.mSpec = mSpec;
         this.mType = mType;
@@ -159,7 +159,7 @@ public class DishWasher implements Device, Measurable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Device1)) {
+        if (!(obj instanceof Device)) {
             return false;
         }
         Device listOne = (Device) obj;

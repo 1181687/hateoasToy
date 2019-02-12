@@ -12,7 +12,7 @@ public class ElectricWaterHeater implements Device, Measurable {
     private boolean mIsActive;
     private LocalDateTime mDeactivationDate;
 
-    public ElectricWaterHeater(String mName, Room mLocation, ElectricWaterHeaterSpecs mSpecs, ElectricWaterHeaterType mType) {
+    public ElectricWaterHeater(String mName, Room mLocation, ElectricWaterHeaterSpecs mSpecs) {
         this.mName = mName;
         this.mLocation.addDevice(this);
         this.mSpecs = mSpecs;
@@ -54,7 +54,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return String
      */
     public String getType() {
-        return this.mSpecs.getTypeName();
+        return this.mType.getTypeName();
     }
 
     /**
@@ -153,7 +153,7 @@ public class ElectricWaterHeater implements Device, Measurable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Device1)) {
+        if (!(obj instanceof Device)) {
             return false;
         }
         Device listOne = (Device) obj;

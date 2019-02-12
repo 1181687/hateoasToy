@@ -148,8 +148,8 @@ public class GetEnergyConsumptionOfRoomControllerTest {
 
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
+        LampSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
+        Device dev1 = new Lamp("Lamp1", room, deviceSpecs1);
 
         house.addRoom(room);
         room.addDevice(dev1);
@@ -193,10 +193,10 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         this.house.addRoom(room);
 
         // FridgeSpecs Instantiation
-        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
+        FridgeSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
-        // Device1 Instantiation
-        Device1 device = new Device1("Fridgerator", room, fridge);
+        // Device Instantiation
+        Device device = new Fridge("Fridgerator", room, fridge);
 
         // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -239,10 +239,10 @@ public class GetEnergyConsumptionOfRoomControllerTest {
 
         house.addRoom(room);
         // FridgeSpecs Instantiation
-        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
+        FridgeSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
-        // Device1 Instantiation
-        Device1 device = new Device1("Fridgerator", room, fridge);
+        // Device Instantiation
+        Device device = new Fridge("Fridgerator", room, fridge);
 
         // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -285,10 +285,10 @@ public class GetEnergyConsumptionOfRoomControllerTest {
 
         house.addRoom(room);
         // FridgeSpecs Instantiation
-        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
+        FridgeSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
-        // Device1 Instantiation
-        Device1 device = new Device1("Fridgerator", room, fridge);
+        // Device Instantiation
+        Device device = new Fridge("Fridgerator", room, fridge);
 
         // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);

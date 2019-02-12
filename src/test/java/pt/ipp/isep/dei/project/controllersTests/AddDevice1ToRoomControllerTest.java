@@ -1,14 +1,8 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
-import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.utils.Utils;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.Room;
 
 class AddDevice1ToRoomControllerTest {
     private AddDeviceToRoomController controller;
@@ -16,7 +10,7 @@ class AddDevice1ToRoomControllerTest {
     private Room kitchen;
     private Room livingRoom;
 
-    @BeforeEach
+  /*  @BeforeEach
     public void StartUp() {
         // Rooms
         Dimension dimension1 = new Dimension(2, 2, 2);
@@ -377,5 +371,5 @@ class AddDevice1ToRoomControllerTest {
 
         // Assert
         assertEquals(expectedResult, result);
-    }
+    }*/
 }

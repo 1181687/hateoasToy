@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.ProgramList;
 import pt.ipp.isep.dei.project.model.WashingMachineSpecs;
+import pt.ipp.isep.dei.project.model.WashingMachineType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,12 +15,12 @@ class WashingMachineSpecsTest {
         int capacity = 20;
         double nominalPower = 30;
         ProgramList programList = new ProgramList();
-        WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
+        WashingMachineType washingMachineType = new WashingMachineType();
 
         String expectedResult = "Washing Machine";
 
         //Act
-        String result = washingMachineSpecs.getTypeName();
+        String result = washingMachineType.getTypeName();
 
         //Assert
         assertEquals(expectedResult, result);

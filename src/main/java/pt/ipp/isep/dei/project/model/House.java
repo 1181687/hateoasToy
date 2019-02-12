@@ -19,20 +19,6 @@ public class House {
     private int mMeteringPeriodGrid;
     private int mMeteringPeriodDevice;
 
-    /**
-     * constructor of house that receives a room list, a list of house grids, an address and an insertedGeoArea.
-     * @param roomList
-     * @param listHouseGrids
-     * @param address
-     * @param insertedGeoArea
-     */
-    public House(RoomList roomList, List<HouseGrid> listHouseGrids, Address address, GeographicalArea insertedGeoArea) {
-        this.mRoomList = roomList;
-        this.mListHouseGrids = listHouseGrids;
-        this.mAddress = address;
-        this.mInsertedGeoArea = insertedGeoArea;
-    }
-
     public House(List<String> deviceTypeList, int meteringPeriodGrid, int meteringPeriodDevice) {
         this.mRoomList = new RoomList();
         this.mListHouseGrids = new ArrayList<>();

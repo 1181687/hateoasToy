@@ -390,7 +390,7 @@ public class Main {
         dishwasherPrograms1.addProgram(program15);
 
 
-        // DEVICES
+        /*// DEVICES
         // Electric Water Heater B107
         DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(55, 100,
                 0.91, 1.5);
@@ -497,7 +497,7 @@ public class Main {
         DeviceSpecs dishWasher2 = new DishWasherSpecs(50, 1.4, dishwasherPrograms1);
         Device device7 = new Device("Dishwasher B106", room3, dishWasher2);
         room3.addDevice(device7);
-        deviceList.add(device7);
+        deviceList.add(device7);*/
 
 
         // ROOM LIST

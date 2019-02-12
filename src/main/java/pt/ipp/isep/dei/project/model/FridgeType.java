@@ -8,8 +8,8 @@ public class FridgeType implements DeviceType {
         return this.mName;
     }
 
-    public Device1 createDevice(String name, Room location) {
-        DeviceSpecs devspec = new FridgeSpecs();
-        return new Device1(name, location, devspec);
+    public Device createDevice(String name, Room location) {
+        FridgeSpecs devspec = new FridgeSpecs();
+        return new Fridge(name, location, devspec);
     }
 }

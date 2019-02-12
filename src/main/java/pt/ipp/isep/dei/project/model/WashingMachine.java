@@ -13,7 +13,7 @@ public class WashingMachine implements Device, Measurable {
     private boolean mIsActive;
     private LocalDateTime mDeactivationDate;
 
-    public WashingMachine(String name, Room location, WashingMachineSpecs spec, WashingMachineType type) {
+    public WashingMachine(String name, Room location, WashingMachineSpecs spec) {
         this.mName = mName;
         this.mSpec = mSpec;
         this.mType = mType;
@@ -159,7 +159,7 @@ public class WashingMachine implements Device, Measurable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Device1)) {
+        if (!(obj instanceof Device)) {
             return false;
         }
         Device listOne = (Device) obj;

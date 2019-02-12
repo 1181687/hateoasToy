@@ -3,9 +3,9 @@ package pt.ipp.isep.dei.project.model;
 public class ElectricWaterHeaterType implements DeviceType {
     private String mName;
 
-    public Device1 createDevice(String name, Room location) {
-        DeviceSpecs devspec = new ElectricWaterHeaterSpecs();
-        return new Device1(name, location, devspec);
+    public Device createDevice(String name, Room location) {
+        ElectricWaterHeaterSpecs devspec = new ElectricWaterHeaterSpecs();
+        return new ElectricWaterHeater(name, location, devspec);
     }
 
     @Override

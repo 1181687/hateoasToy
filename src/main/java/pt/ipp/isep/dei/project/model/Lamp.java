@@ -12,11 +12,10 @@ public class Lamp implements Device, Measurable {
     private boolean mIsActive;
     private LocalDateTime mDeactivationDate;
 
-    public Lamp(String mName, Room mLocation, LampSpecs mSpecs, LampType mType) {
-        this.mName = mName;
+    public Lamp(String name, Room location, LampSpecs specs) {
+        this.mName = name;
         this.mLocation.addDevice(this);
-        this.mSpecs = mSpecs;
-        this.mType = mType;
+        this.mSpecs = specs;
         this.mIsActive = true;
     }
 
@@ -54,7 +53,7 @@ public class Lamp implements Device, Measurable {
      * @return String
      */
     public String getType() {
-        return this.mSpecs.getTypeName();
+        return this.mType.getTypeName();
     }
 
     /**
@@ -153,7 +152,7 @@ public class Lamp implements Device, Measurable {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof Device1)) {
+        if (!(obj instanceof Device)) {
             return false;
         }
         Device listOne = (Device) obj;
