@@ -32,6 +32,11 @@ public class AddPowerSourceToHouseGrid {
 
                 String label2 = "Please insert the name of the new power source";
                 powerSourceName = InputValidator.getString(label2);
+
+                String label3 = "Please select the power source type: \n" + mController.getPowerSourceTypeListToString();
+                int positionOfPowerSource = InputValidator.getIntRange(label3, 1, mController.getPowerSourceTypeListSize()) - 1;
+                mController.getPowerSourceTypeByPosition(positionOfPowerSource);
+
                 try {
                     isPowerSourceAdded = mController.createAndAddPowerSourceToHouseGrid(powerSourceName);
                 } catch (Exception e) {
@@ -40,10 +45,6 @@ public class AddPowerSourceToHouseGrid {
                 }
 
             } while (!isPowerSourceAdded);
-
-            String label3 = "Please select the power source type: \n" + mController.getPowerSourceTypeListToString();
-            int positionOfPowerSource = InputValidator.getIntRange(label3, 1, mController.getPowerSourceTypeListSize()) - 1;
-            mController.getPowerSourceTypeByPosition(positionOfPowerSource);
 
             if (isPowerSourceAdded) {
                 String houseGridName = mController.getHouseGridName();
