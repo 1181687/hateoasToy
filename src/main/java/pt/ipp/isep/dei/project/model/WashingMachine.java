@@ -15,7 +15,6 @@ public class WashingMachine implements Device, Measurable {
 
     public WashingMachine(String name, Room location, WashingMachineSpecs spec, WashingMachineType type) {
         this.mName = mName;
-        this.mLocation = mLocation;
         this.mSpec = mSpec;
         this.mType = mType;
         this.mLocation.addDevice(this);

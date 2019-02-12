@@ -17,16 +17,6 @@ public class LampSpecs implements DeviceSpecs {
     public LampSpecs() {
     }
 
-    /**
-     * get method
-     *
-     * @return type of device
-     */
-    @Override
-    public String getTypeName() {
-        return mTypeName;
-    }
-
 
     /**
      * get Method

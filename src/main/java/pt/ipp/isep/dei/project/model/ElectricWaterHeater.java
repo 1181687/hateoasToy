@@ -14,7 +14,7 @@ public class ElectricWaterHeater implements Device, Measurable {
 
     public ElectricWaterHeater(String mName, Room mLocation, ElectricWaterHeaterSpecs mSpecs, ElectricWaterHeaterType mType) {
         this.mName = mName;
-        this.mLocation = mLocation.addDevice(this);
+        this.mLocation.addDevice(this);
         this.mSpecs = mSpecs;
         this.mType = mType;
         this.mIsActive = true;
@@ -156,7 +156,7 @@ public class ElectricWaterHeater implements Device, Measurable {
         if (!(obj instanceof Device1)) {
             return false;
         }
-        Device1 listOne = (Device1) obj;
+        Device listOne = (Device) obj;
         return this.mName.equalsIgnoreCase(listOne.getName());
     }
 

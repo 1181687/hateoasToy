@@ -20,15 +20,6 @@ public class FridgeSpecs implements DeviceSpecs {
     public FridgeSpecs() {
     }
 
-    /**
-     * get method of the type name.
-     *
-     * @return type of device
-     */
-    @Override
-    public String getTypeName() {
-        return mTypeName;
-    }
 
     /**
      * get method

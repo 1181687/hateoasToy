@@ -15,7 +15,6 @@ public class DishWasher implements Device, Measurable {
 
     public DishWasher(String name, Room location, DishWasherSpecs spec, DishWasherType type) {
         this.mName = mName;
-        this.mLocation = mLocation;
         this.mSpec = mSpec;
         this.mType = mType;
         this.mLocation.addDevice(this);

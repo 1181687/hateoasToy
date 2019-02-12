@@ -14,7 +14,7 @@ public class Lamp implements Device, Measurable {
 
     public Lamp(String mName, Room mLocation, LampSpecs mSpecs, LampType mType) {
         this.mName = mName;
-        this.mLocation = mLocation.addDevice(this);
+        this.mLocation.addDevice(this);
         this.mSpecs = mSpecs;
         this.mType = mType;
         this.mIsActive = true;

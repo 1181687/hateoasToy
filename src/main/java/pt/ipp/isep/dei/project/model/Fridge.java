@@ -14,7 +14,7 @@ public class Fridge implements Device, Measurable {
 
     public Fridge(String mName, Room mLocation, FridgeSpecs mSpecs, FridgeType mType) {
         this.mName = mName;
-        this.mLocation = mLocation.addDevice(this);
+        this.mLocation.addDevice(this);
         this.mSpecs = mSpecs;
         this.mType = mType;
         this.mIsActive = true;
@@ -156,7 +156,7 @@ public class Fridge implements Device, Measurable {
         if (!(obj instanceof Device1)) {
             return false;
         }
-        Device1 listOne = (Device1) obj;
+        Device listOne = (Device) obj;
         return this.mName.equalsIgnoreCase(listOne.getName());
     }
 
