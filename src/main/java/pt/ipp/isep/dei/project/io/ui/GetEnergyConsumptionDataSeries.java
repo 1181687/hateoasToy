@@ -63,7 +63,7 @@ public class GetEnergyConsumptionDataSeries {
 
 
     public void run() {
-        String label1 = "Would you like to get the data series of energy consumption of a House Grid, a Room or a Device? " +
+        String label1 = "Would you like to get the data series of energy consumption of a House Grid, a Room or a Device1? " +
                 "Please select the number that matches your choice:\n" + Menu.menuDataSeries();
         int chosenOption = InputValidator.getIntRange(label1, 0, 3);
         if (chosenOption == 0) {
@@ -77,7 +77,7 @@ public class GetEnergyConsumptionDataSeries {
                 System.out.println("The data series of the selected Room is:\n" + getDataSeriesRoom());
                 break;
             case 3:
-                System.out.println("The data series of the selected Device is:\n" + getDataSeriesDevice());
+                System.out.println("The data series of the selected Device1 is:\n" + getDataSeriesDevice());
                 break;
         }
     }

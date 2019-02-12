@@ -101,18 +101,18 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(50, 150,
                 0.9, 100);
 
-        // Device Instantiation
-        Device device0 = new Device("Fridgeratah V14", room0, fridge);
+        // Device1 Instantiation
+        Device1 device0 = new Device1("Fridgeratah V14", room0, fridge);
         room0.addDevice(device0);
-        Device device1 = new Device("Bosch Tronic 3000", room1, electricWaterHeater);
+        Device1 device1 = new Device1("Bosch Tronic 3000", room1, electricWaterHeater);
         room1.addDevice(device1);
 
         house.addRoom(room0);
         house.addRoom(room1);
 
         String expectedResult =
-                "1 - Device: Fridgeratah V14, located in room: Kitchen\n" +
-                        "2 - Device: Bosch Tronic 3000, located in room: Laundry\n";
+                "1 - Device1: Fridgeratah V14, located in room: Kitchen\n" +
+                        "2 - Device1: Bosch Tronic 3000, located in room: Laundry\n";
 
         // Act
         String result = ctrl.getDeviceListToString();
@@ -208,12 +208,12 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         double annualEnergyConsumption = 5000;
         double nominalPower = 100.5;
         DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        Device dev = new Device("Fridge1", room1, deviceSpecs);
+        Device1 dev = new Device1("Fridge1", room1, deviceSpecs);
 
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room1, deviceSpecs1);
+        Device1 dev1 = new Device1("Lamp1", room1, deviceSpecs1);
 
         room1.addDevice(dev);
         room1.addDevice(dev1);
@@ -255,8 +255,8 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         // Fridge Instantiation
         DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
-        // Device Instantiation
-        Device device = new Device("Fridgeratah V14", room, fridge);
+        // Device1 Instantiation
+        Device1 device = new Device1("Fridgeratah V14", room, fridge);
 
         room.addDevice(device);
 
@@ -322,8 +322,8 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         // Fridge Instantiation
         DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
-        // Device Instantiation
-        Device device = new Device("Fridgeratah V14", room, fridge);
+        // Device1 Instantiation
+        Device1 device = new Device1("Fridgeratah V14", room, fridge);
 
         room.addDevice(device);
 
@@ -382,10 +382,10 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         house.addRoom(room);
 
         DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
-        Device lamp = new Device("LampSpecs", room, deviceSpecs);
+        Device1 lamp = new Device1("LampSpecs", room, deviceSpecs);
 
         DeviceSpecs specsFridge = new FridgeSpecs(12, 15, 25, 12);
-        Device fridge = new Device("FridgeSpecs", room, specsFridge);
+        Device1 fridge = new Device1("FridgeSpecs", room, specsFridge);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         Readings readings0 = new Readings(3, time0);
@@ -435,10 +435,10 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         house.addRoom(room);
 
         DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
-        Device lamp = new Device("LampSpecs", room, deviceSpecs);
+        Device1 lamp = new Device1("LampSpecs", room, deviceSpecs);
 
         DeviceSpecs specsFridge = new FridgeSpecs(12, 15, 25, 12);
-        Device fridge = new Device("FridgeSpecs", room, specsFridge);
+        Device1 fridge = new Device1("FridgeSpecs", room, specsFridge);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         Readings readings0 = new Readings(3, time0);
@@ -493,10 +493,10 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         house.addRoom(room);
 
         DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
-        Device lamp = new Device("LampSpecs", room, deviceSpecs);
+        Device1 lamp = new Device1("LampSpecs", room, deviceSpecs);
 
         DeviceSpecs specsFridge = new FridgeSpecs(12, 15, 25, 12);
-        Device fridge = new Device("FridgeSpecs", room, specsFridge);
+        Device1 fridge = new Device1("FridgeSpecs", room, specsFridge);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         Readings readings0 = new Readings(3, time0);
@@ -553,10 +553,10 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         houseGrid.attachRoom(room);
 
         DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
-        Device lamp = new Device("LampSpecs", room, deviceSpecs);
+        Device1 lamp = new Device1("LampSpecs", room, deviceSpecs);
 
         DeviceSpecs specsFridge = new FridgeSpecs(12, 15, 25, 12);
-        Device fridge = new Device("FridgeSpecs", room, specsFridge);
+        Device1 fridge = new Device1("FridgeSpecs", room, specsFridge);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         Readings readings0 = new Readings(3, time0);
@@ -676,9 +676,9 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         double nominalPower = 100.5;
         FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
-        Device dev4 = new Device("FridgeSiemens", room2, fridgeSpecs);
-        Device dev5 = new Device("DishWasherTeka", room2, dishWasherSpecs);
-        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
+        Device1 dev4 = new Device1("FridgeSiemens", room2, fridgeSpecs);
+        Device1 dev5 = new Device1("DishWasherTeka", room2, dishWasherSpecs);
+        Device1 dev6 = new Device1("ElectricWaterHeaterSpecs", room2, specWaterHeater);
 
         room2.addDevice(dev4);
         room2.addDevice(dev5);

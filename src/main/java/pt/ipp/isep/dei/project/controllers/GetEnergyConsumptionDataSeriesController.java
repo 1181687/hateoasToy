@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Device;
+import pt.ipp.isep.dei.project.model.Device1;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.HouseGrid;
 import pt.ipp.isep.dei.project.model.Room;
@@ -14,7 +14,7 @@ public class GetEnergyConsumptionDataSeriesController {
     private House mHouse;
     private HouseGrid mSelectedHouseGrid;
     private Room mSelectedRoom;
-    private Device mSelectedDevice;
+    private Device1 mSelectedDevice;
     private static final String NO_VALID_VALUES = "No valid values found for that period.\n";
 
     public GetEnergyConsumptionDataSeriesController(House mHouse) {

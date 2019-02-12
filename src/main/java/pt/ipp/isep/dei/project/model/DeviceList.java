@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class DeviceList {
-    private List<Device> mDeviceList;
+    private List<Device1> mDeviceList;
 
     public DeviceList() {
         this.mDeviceList = new ArrayList<>();
@@ -18,9 +18,9 @@ public class DeviceList {
     /**
      * get DeviceList
      *
-     * @return List<Device>
+     * @return List<Device1>
      */
-    public List<Device> getDeviceList() {
+    public List<Device1> getDeviceList() {
         return mDeviceList;
     }
 
@@ -34,12 +34,12 @@ public class DeviceList {
     }
 
     /**
-     * gets a Device by it's position
+     * gets a Device1 by it's position
      *
-     * @param position integer position of Device
-     * @return Device
+     * @param position integer position of Device1
+     * @return Device1
      */
-    public Device getDeviceByPosition(int position) {
+    public Device1 getDeviceByPosition(int position) {
         return mDeviceList.get(position);
     }
 
@@ -49,7 +49,7 @@ public class DeviceList {
      * @param device the device to be added
      * @return true if it adds, false if it doesn't add, because it already contains it or the device is null
      */
-    public boolean addDevice(Device device) {
+    public boolean addDevice(Device1 device) {
         if (Objects.isNull(device)) {
             return false;
         }
@@ -61,7 +61,7 @@ public class DeviceList {
     }
 
     /**
-     * method that check if a name of a Device already exists on the list of devices.
+     * method that check if a name of a Device1 already exists on the list of devices.
      *
      * @param name name of device
      * @return boolean true if exists, false if it doesn't
@@ -80,21 +80,21 @@ public class DeviceList {
      * method that get the String content Name and Location of all devices in the list,
      * grouped by device type.
      *
-     * @return String with Device Name and Location grouped by Type.
+     * @return String with Device1 Name and Location grouped by Type.
      */
     public String getContentNameLocationOrderedByType() {
 
         StringBuilder content = new StringBuilder();
-        Map<String, List<Device>> byDeviceType = mDeviceList.stream()
-                .collect(Collectors.groupingBy(Device::getType));
+        Map<String, List<Device1>> byDeviceType = mDeviceList.stream()
+                .collect(Collectors.groupingBy(Device1::getType));
 
 
-        for (Map.Entry<String, List<Device>> entry : byDeviceType.entrySet()) {
+        for (Map.Entry<String, List<Device1>> entry : byDeviceType.entrySet()) {
             content.append(entry.getKey());
             content.append("\n");
-            for (Device dev : entry.getValue()) {
+            for (Device1 dev : entry.getValue()) {
 
-                content.append("- Device Name: ");
+                content.append("- Device1 Name: ");
                 content.append(dev.getName());
                 content.append(", Location: ");
                 content.append(dev.getLocation().getName());
@@ -167,7 +167,7 @@ public class DeviceList {
     /**
      * Method that remove a device from the list of devices
      */
-    public boolean removeDevice(Device device) {
+    public boolean removeDevice(Device1 device) {
         return this.getDeviceList().remove(device);
     }
 
@@ -179,7 +179,7 @@ public class DeviceList {
      */
     public DeviceList getAllDevicesOfAType(String type) {
         DeviceList listOfDevicesWithTheType = new DeviceList();
-        for (Device device : mDeviceList) {
+        for (Device1 device : mDeviceList) {
             if (device.getType().equals(type)) {
                 listOfDevicesWithTheType.addDevice(device);
             }
@@ -191,24 +191,24 @@ public class DeviceList {
     /**
      * Method that sets the value of an attribute of a device.
      *
-     * @param devicePosition    Device position in the list of devices.
+     * @param devicePosition    Device1 position in the list of devices.
      * @param attributePosition Position of the attribute to be set.
      * @param value             Value to be used.
      * @return True or false.
      */
     public boolean setAttribute(int devicePosition, int attributePosition, double value) {
-        Device device = mDeviceList.get(devicePosition);
+        Device1 device = mDeviceList.get(devicePosition);
         return device.setAttributesDevType(attributePosition, value);
     }
 
     /**
      * Method that returns the energy consumption of a device.
      *
-     * @param devicePosition Device position in the list of devices.
+     * @param devicePosition Device1 position in the list of devices.
      * @return Double with the energy consumption.
      */
     public double getEnergyConsumptionOfADevice(int devicePosition) {
-        Device device = mDeviceList.get(devicePosition);
+        Device1 device = mDeviceList.get(devicePosition);
         return device.getEnergyConsumptionInADay();
     }
 
@@ -219,7 +219,7 @@ public class DeviceList {
      */
     public double getTotalEnergyConsumption() {
         double totalEnergyConsumption = 0;
-        for (Device device : mDeviceList) {
+        for (Device1 device : mDeviceList) {
             totalEnergyConsumption += device.getEnergyConsumptionInADay();
         }
         return Utils.round(totalEnergyConsumption, 2);
@@ -232,7 +232,7 @@ public class DeviceList {
      * @return true if the device was removed. False if not.
      */
     public boolean deleteDevice(String device) {
-        for (Device searchDevice : this.mDeviceList) {
+        for (Device1 searchDevice : this.mDeviceList) {
             if (device.equals(searchDevice.getName())) {
                 this.mDeviceList.remove(searchDevice);
                 return true;
@@ -260,7 +260,7 @@ public class DeviceList {
      * @return true if the device was deactivated. False, if not.
      */
     public boolean deactivateDevice(String device) {
-        for (Device searchDevice : this.mDeviceList) {
+        for (Device1 searchDevice : this.mDeviceList) {
             if (device.equals(searchDevice.getName())) {
                 searchDevice.setDeactivateDevice();
                 return true;

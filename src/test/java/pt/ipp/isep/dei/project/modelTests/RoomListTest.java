@@ -670,9 +670,9 @@ public class RoomListTest {
         FridgeSpecs specFridgeSpecs = new FridgeSpecs(100, 100, 100, 100);
         WashingMachineSpecs specWashing = new WashingMachineSpecs(100, 100, pgList);
         DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(100, 100, pgList);
-        Device dev1 = new Device("FridgeAriston", room1, specFridgeSpecs);
-        Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasherSpecs);
+        Device1 dev1 = new Device1("FridgeAriston", room1, specFridgeSpecs);
+        Device1 dev2 = new Device1("WashingMachineBosh", room1, specWashing);
+        Device1 dev3 = new Device1("DishWasherSpecs", room1, specDishWasherSpecs);
 
         room1.addDevice(dev1);
         room1.addDevice(dev2);
@@ -683,9 +683,9 @@ public class RoomListTest {
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
         ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
-        Device dev4 = new Device("FridgeSiemens", room2, specFridgeSpecs);
-        Device dev5 = new Device("DishWasherTeka", room2, specDishWasherSpecs);
-        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
+        Device1 dev4 = new Device1("FridgeSiemens", room2, specFridgeSpecs);
+        Device1 dev5 = new Device1("DishWasherTeka", room2, specDishWasherSpecs);
+        Device1 dev6 = new Device1("ElectricWaterHeaterSpecs", room2, specWaterHeater);
 
         room2.addDevice(dev4);
         room2.addDevice(dev5);
@@ -723,13 +723,13 @@ public class RoomListTest {
         double annualEnergyConsumption = 5000;
         double nominalPower = 100.5;
         DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        Device dev = new Device("Fridge1", room, deviceSpecs);
+        Device1 dev = new Device1("Fridge1", room, deviceSpecs);
 
 
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
 
         room.addDevice(dev);
         room.addDevice(dev1);
@@ -779,7 +779,7 @@ public class RoomListTest {
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
 
         roomList.addRoom(room);
         room.addDevice(dev1);
@@ -814,9 +814,9 @@ public class RoomListTest {
         double nominalPower = 100.5;
         FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
-        Device dev4 = new Device("FridgeSiemens", room2, fridgeSpecs);
-        Device dev5 = new Device("DishWasherTeka", room2, dishWasherSpecs);
-        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
+        Device1 dev4 = new Device1("FridgeSiemens", room2, fridgeSpecs);
+        Device1 dev5 = new Device1("DishWasherTeka", room2, dishWasherSpecs);
+        Device1 dev6 = new Device1("ElectricWaterHeaterSpecs", room2, specWaterHeater);
 
         room2.addDevice(dev4);
         room2.addDevice(dev5);
@@ -908,16 +908,16 @@ public class RoomListTest {
         DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(50, 150,
                 0.9, 100);
 
-        // Device Instantiation
-        Device device0 = new Device("Fridgeratah V14", room0, fridge);
+        // Device1 Instantiation
+        Device1 device0 = new Device1("Fridgeratah V14", room0, fridge);
         room0.addDevice(device0);
-        Device device1 = new Device("Fridgeratah V15", room0, fridge);
+        Device1 device1 = new Device1("Fridgeratah V15", room0, fridge);
         room0.addDevice(device1);
-        Device device2 = new Device("Fridgeratah V16", room0, fridge);
+        Device1 device2 = new Device1("Fridgeratah V16", room0, fridge);
         room0.addDevice(device2);
-        Device device3 = new Device("Bosh Tronic 3000", room1, electricWaterHeater);
+        Device1 device3 = new Device1("Bosh Tronic 3000", room1, electricWaterHeater);
         room1.addDevice(device3);
-        Device device4 = new Device("Bosh Tronic 4000", room1, electricWaterHeater);
+        Device1 device4 = new Device1("Bosh Tronic 4000", room1, electricWaterHeater);
         room1.addDevice(device4);
 
         // RoomList Instantiation
@@ -926,11 +926,11 @@ public class RoomListTest {
         roomList.addRoom(room1);
 
         String expectedResult =
-                "1 - Device: Fridgeratah V14, located in room: Kitchen\n" +
-                        "2 - Device: Fridgeratah V15, located in room: Kitchen\n" +
-                        "3 - Device: Fridgeratah V16, located in room: Kitchen\n" +
-                        "4 - Device: Bosh Tronic 3000, located in room: Laundry\n" +
-                        "5 - Device: Bosh Tronic 4000, located in room: Laundry\n";
+                "1 - Device1: Fridgeratah V14, located in room: Kitchen\n" +
+                        "2 - Device1: Fridgeratah V15, located in room: Kitchen\n" +
+                        "3 - Device1: Fridgeratah V16, located in room: Kitchen\n" +
+                        "4 - Device1: Bosh Tronic 3000, located in room: Laundry\n" +
+                        "5 - Device1: Bosh Tronic 4000, located in room: Laundry\n";
 
         // Act
         String result = roomList.getAllDevicesToString();

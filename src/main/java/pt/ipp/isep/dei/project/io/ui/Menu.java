@@ -238,7 +238,7 @@ public class Menu {
         StringBuilder firstMenu = new StringBuilder();
         firstMenu.append("1 - House Grid\n");
         firstMenu.append("2 - Room\n");
-        firstMenu.append("3 - Device\n");
+        firstMenu.append("3 - Device1\n");
         firstMenu.append("0 - Exit");
         return firstMenu.toString();
     }

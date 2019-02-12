@@ -28,7 +28,7 @@ public class EstimateEnergyOfWaterHeaterController {
     /**
      * Method that returns the name of the water heater.
      *
-     * @param devicePosition Device position in the list of water heaters in the house.
+     * @param devicePosition Device1 position in the list of water heaters in the house.
      * @return String with the name of the water heater.
      */
     public String getNameOfWaterHeater(int devicePosition) {
@@ -38,7 +38,7 @@ public class EstimateEnergyOfWaterHeaterController {
     /**
      * Method that sets the attribute cold-water temperature with an inputted value.
      *
-     * @param devicePosition Device position in the list of water heaters in the house.
+     * @param devicePosition Device1 position in the list of water heaters in the house.
      * @param coldWaterTemperature Inputted value to be used.
      */
     public void setColdWaterTemp(int devicePosition, double coldWaterTemperature) {
@@ -48,7 +48,7 @@ public class EstimateEnergyOfWaterHeaterController {
     /**
      * Method that sets the attribute volume of water to heat with an inputted value.
      *
-     * @param devicePosition Device position in the list of water heaters in the house.
+     * @param devicePosition Device1 position in the list of water heaters in the house.
      * @param volumeOfWaterToHeat Inputted value to be used.
      */
     public void setVolumeOfWaterToHeat(int devicePosition, double volumeOfWaterToHeat) {
@@ -57,7 +57,7 @@ public class EstimateEnergyOfWaterHeaterController {
 
     /**
      * Method that gets the energy consumption of a water heater.
-     * @param devicePosition Device position in the list of water heaters in the house.
+     * @param devicePosition Device1 position in the list of water heaters in the house.
      * @return
      */
     public double getEnergyConsumptionOfAWaterHeater(int devicePosition) {

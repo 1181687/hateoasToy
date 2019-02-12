@@ -224,7 +224,7 @@ public class RoomList {
     }
 
     /**
-     * Method that checks if the Device List of the room is empty
+     * Method that checks if the Device1 List of the room is empty
      * @param position chosen room
      */
     public boolean isDeviceListEmpty(int position) {
@@ -270,7 +270,7 @@ public class RoomList {
     public DeviceList getAllDevicesList() {
         DeviceList roomDeviceList;
         DeviceList allDeviceList = new DeviceList();
-        Device dev;
+        Device1 dev;
 
         for (int i = 0; i < mRoomList.size(); i++) {
             roomDeviceList = mRoomList.get(i).getDeviceList();
@@ -316,8 +316,8 @@ public class RoomList {
     public String getAllDevicesToString() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
-        List<Device> deviceList = getAllDevicesList().getDeviceList();
-        for (Device device : deviceList) {
+        List<Device1> deviceList = getAllDevicesList().getDeviceList();
+        for (Device1 device : deviceList) {
             content.append(numberInTheList + " - " + device.getNameToString());
             numberInTheList++;
         }

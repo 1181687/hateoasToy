@@ -113,7 +113,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         Room room1 = new Room("Room", 2, dimension);
 
         DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
-        Device lamp = new Device("LampSpecs", room1, deviceSpecs);
+        Device1 lamp = new Device1("LampSpecs", room1, deviceSpecs);
 
 
         String gridName = "Grid 1";

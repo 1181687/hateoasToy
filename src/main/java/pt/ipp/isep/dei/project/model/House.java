@@ -275,7 +275,7 @@ public class House {
 
 
     /**
-     * Method that checks if the Device List of the room is empty
+     * Method that checks if the Device1 List of the room is empty
      *
      * @param position chosen room
      */
@@ -303,7 +303,7 @@ public class House {
      * method that gets a List of all Devices in a house grid, by it position in a list of HouseGrid.
      *
      * @param position position of the grid in the houseGridList
-     * @return List <Device>
+     * @return List <Device1>
      */
     public DeviceList getAllDevicesListByGridPosition(int position) {
         return this.mListHouseGrids.get(position).getAllDevicesList();
@@ -483,7 +483,7 @@ public class House {
     /**
      * Method that gets the name of a device of a certain type in the house.
      * @param type Type of the device.
-     * @param devicePosition Device position in the list of devices.
+     * @param devicePosition Device1 position in the list of devices.
      * @return String with the device name.
      */
 
@@ -491,7 +491,7 @@ public class House {
      * Method that sets the value of an attribute of a device of a certain type in the house.
      *
      * @param type Type of the device.
-     * @param devicePosition Device position in the list of devices.
+     * @param devicePosition Device1 position in the list of devices.
      * @param attributePosition Position of the attribute to be set.
      * @param value Value to be used.
      * @return True or false.
@@ -505,7 +505,7 @@ public class House {
      * Method that returns the energy consumption of a device of a certain type in the house.
      *
      * @param type Type of the device.
-     * @param devicePosition Device position in the list of devices.
+     * @param devicePosition Device1 position in the list of devices.
      * @return Double with the energy consumption.
      */
     public double getEnergyConsumptionOfADevice(String type, int devicePosition) {
@@ -568,9 +568,9 @@ public class House {
      * Method that returns a device by its position in the list of all devices in the house.
      *
      * @param position Position of the device in the list of all devices.
-     * @return Device chosen.
+     * @return Device1 chosen.
      */
-    public Device getDeviceByPosition(int position) {
+    public Device1 getDeviceByPosition(int position) {
         return getAllDevices().getDeviceByPosition(position);
     }
 

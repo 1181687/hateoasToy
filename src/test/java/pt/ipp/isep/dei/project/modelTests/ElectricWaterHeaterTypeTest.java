@@ -21,9 +21,9 @@ public class ElectricWaterHeaterTypeTest {
         double nominalPower = 100;
         ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
 
-        Device expectedResult = new Device(name, room, electricWaterHeaterSpecs);
+        Device1 expectedResult = new Device1(name, room, electricWaterHeaterSpecs);
 
-        Device result = electricWaterHeaterType.createDevice(name, room);
+        Device1 result = electricWaterHeaterType.createDevice(name, room);
 
         assertEquals(expectedResult, result);
     }

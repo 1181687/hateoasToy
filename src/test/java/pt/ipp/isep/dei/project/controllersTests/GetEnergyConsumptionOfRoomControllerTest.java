@@ -149,7 +149,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
         DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        Device1 dev1 = new Device1("Lamp1", room, deviceSpecs1);
 
         house.addRoom(room);
         room.addDevice(dev1);
@@ -195,8 +195,8 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         // FridgeSpecs Instantiation
         DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
-        // Device Instantiation
-        Device device = new Device("Fridgerator", room, fridge);
+        // Device1 Instantiation
+        Device1 device = new Device1("Fridgerator", room, fridge);
 
         // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -241,8 +241,8 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         // FridgeSpecs Instantiation
         DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
-        // Device Instantiation
-        Device device = new Device("Fridgerator", room, fridge);
+        // Device1 Instantiation
+        Device1 device = new Device1("Fridgerator", room, fridge);
 
         // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -287,8 +287,8 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         // FridgeSpecs Instantiation
         DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
-        // Device Instantiation
-        Device device = new Device("Fridgerator", room, fridge);
+        // Device1 Instantiation
+        Device1 device = new Device1("Fridgerator", room, fridge);
 
         // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);

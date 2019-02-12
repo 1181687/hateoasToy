@@ -1,13 +1,13 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Device;
+import pt.ipp.isep.dei.project.model.Device1;
 import pt.ipp.isep.dei.project.model.House;
 
 import java.time.LocalDateTime;
 
 public class GetEnergyConsumptionDeviceController {
     private House mHouse;
-    private Device mDevice;
+    private Device1 mDevice;
 
     /**
      * Constructor.
@@ -40,7 +40,7 @@ public class GetEnergyConsumptionDeviceController {
      * Method that returns a device by its position in the list of all devices in the house.
      *
      * @param position Position of the device in the list of all devices.
-     * @return Device chosen.
+     * @return Device1 chosen.
      */
     public void setDevice(int position) {
         mDevice = mHouse.getDeviceByPosition(position);
