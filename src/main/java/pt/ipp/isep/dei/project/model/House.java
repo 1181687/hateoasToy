@@ -77,8 +77,12 @@ public class House {
      *
      * @param houseGrid House grid used.
      */
-    public void addGrid(HouseGrid houseGrid) {
-        mListHouseGrids.add(houseGrid);
+    public boolean addGrid(HouseGrid houseGrid) {
+        if(!(this.mListHouseGrids.contains(houseGrid))){
+            mListHouseGrids.add(houseGrid);
+            return true;
+        }
+        return false;
     }
 
     public RoomList getRoomList() {
