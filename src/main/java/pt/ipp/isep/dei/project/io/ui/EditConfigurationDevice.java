@@ -96,6 +96,22 @@ public class EditConfigurationDevice {
         }
     }
 
+    public void flag1() {
+        boolean flag1 = true;
+        while (flag1) {
+            String exit = "0 - Return to the previous menu";
+            String label2 = "Please select the device you want to edit:\n" + controller.getDevicesInTheRoom() + exit;
+            int deviceListSize = controller.getDeviceListSize();
+            int position1 = InputValidator.getIntRange(label2, 0, deviceListSize) - 1;
+            if (position1 == -1) {
+                return;
+            }
+            controller.getDeviceByPosition(position1);
+
+            this.cases();
+        }
+    }
+
     public void run() {
         StringBuilder content = new StringBuilder();
         if (!this.controller.roomListIsEmpty()) {
@@ -111,19 +127,9 @@ public class EditConfigurationDevice {
                 controller.getRoomByPosition(position);
 
                 if (!this.controller.deviceListIsEmpty()) {
-                    boolean flag1 = true;
-                    while (flag1) {
 
-                        String label2 = "Please select the device you want to edit:\n" + controller.getDevicesInTheRoom() + exit;
-                        int deviceListSize = controller.getDeviceListSize();
-                        int position1 = InputValidator.getIntRange(label2, 0, deviceListSize) - 1;
-                        if (position1 == -1) {
-                            return;
-                        }
-                        controller.getDeviceByPosition(position1);
+                    flag1();
 
-                        this.cases();
-                    }
                 } else {
                     System.out.println("There are no devices in this room.");
                 }
