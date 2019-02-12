@@ -12,6 +12,7 @@ public class EditConfigurationDevice {
         this.controller = new EditConfigurationDeviceController(house);
     }
 
+    String exit = "0 - Return to the previous menu";
     public void case1() {
         boolean flag = true;
         String label4 = "What name do you want to assign to the device?";
@@ -33,7 +34,6 @@ public class EditConfigurationDevice {
     }
 
     public void case2() {
-        String exit = "0 - Return to the previous menu";
         String label5 = "Choose the specification you want to change.\n" + controller.getDevSpecsAttributesToString() + exit;
         int attributePosition = InputValidator.getIntRange(label5, 0, controller.getNumberOfAttributesInDeviceSpecs());
         if (attributePosition == 0) {
@@ -52,7 +52,6 @@ public class EditConfigurationDevice {
     }
 
     public void case3() {
-        String exit = "0 - Return to the previous menu";
         StringBuilder content = new StringBuilder();
         String label7 = "To which room do you want to change the device?\n" + controller.getRoomListContent() + exit;
         int roomListLength1 = controller.roomListSize();
@@ -69,7 +68,6 @@ public class EditConfigurationDevice {
     }
 
     public void cases() {
-        String exit = "0 - Return to the previous menu";
         boolean flag2 = true;
         while (flag2) {
 
@@ -99,7 +97,6 @@ public class EditConfigurationDevice {
     public void flag1() {
         boolean flag1 = true;
         while (flag1) {
-            String exit = "0 - Return to the previous menu";
             String label2 = "Please select the device you want to edit:\n" + controller.getDevicesInTheRoom() + exit;
             int deviceListSize = controller.getDeviceListSize();
             int position1 = InputValidator.getIntRange(label2, 0, deviceListSize) - 1;
@@ -125,7 +122,6 @@ public class EditConfigurationDevice {
         if (!this.controller.roomListIsEmpty()) {
             boolean flag = true;
             while (flag) {
-                String exit = "0 - Return to the previous menu";
                 String label1 = "Please select the room with the device you want to edit:\n" + controller.getRoomListContent() + exit;
                 int roomListSize = controller.roomListSize();
                 int position = InputValidator.getIntRange(label1, 0, roomListSize) - 1;

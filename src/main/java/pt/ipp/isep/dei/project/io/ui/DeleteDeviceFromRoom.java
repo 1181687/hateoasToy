@@ -11,8 +11,8 @@ public class DeleteDeviceFromRoom {
         this.mController = new DeleteAndDeactivateDeviceFromRoomController(house);
     }
 
+    String exit = "0 - Return to the previous menu";
     public void selectDevice() {
-        String exit = "0 - Return to the previous menu";
         String label2 = "\n> Please select the device you want to delete. \n" + mController.getDeviceListToString() + exit;
         boolean flag20 = true;
         while (flag20) {
@@ -30,9 +30,9 @@ public class DeleteDeviceFromRoom {
                 if ("y".equals(answer) || "Y".equals(answer)) {
 
                     String deletedDevice = mController.deviceNameByPosition(position1);
-                    if (mController.deleteDevice(deletedDevice)) {
-                        System.out.println("\n The device has been deleted. \n");
-                    }
+                    mController.deleteDevice(deletedDevice);
+                    System.out.println("\n The device has been deleted. \n");
+
                 } else {
                     System.out.println("The device was not deleted.");
                     break;
@@ -63,7 +63,6 @@ public class DeleteDeviceFromRoom {
         } else {
             boolean flag = true;
             while (flag) {
-                String exit = "0 - Return to the previous menu";
                 String label1 = "\n> Please select the room with the device you want to delete:\n" + mController.getRoomListContent() + exit;
                 int roomListSize = mController.roomListSize();
                 int position = InputValidator.getIntRange(label1, 0, roomListSize) - 1;

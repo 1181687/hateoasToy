@@ -12,8 +12,8 @@ public class DeactivateDeviceFromRoom {
         this.mController = new DeleteAndDeactivateDeviceFromRoomController(house);
     }
 
+    String exitMenu = "0 - Return to the previous menu";
     public void selectDevice() {
-        String exitMenu = "0 - Return to the previous menu";
         String label20 = "\n> This is the list of activated devices. Please select the device you want to deativate: \n"
                 + mController.getActiveDeviceListToString() + exitMenu;
         boolean flag20 = true;
@@ -30,9 +30,9 @@ public class DeactivateDeviceFromRoom {
                 if ("y".equals(answer2) || "Y".equals(answer2)) {
 
                     String deativateDevice = mController.deviceNameByPosition(position1);
-                    if (mController.deactivateDevice(deativateDevice)) {
-                        System.out.println("\n The device has been deativated. \n");
-                    }
+                    mController.deactivateDevice(deativateDevice);
+                    System.out.println("\n The device has been deativated. \n");
+
                 } else {
                     System.out.println("The device was not deactivated.");
                     continue;
@@ -61,7 +61,6 @@ public class DeactivateDeviceFromRoom {
         if (!this.mController.roomListEmpty()) {
             boolean flag10 = true;
             while (flag10) {
-                String exitMenu = "0 - Return to the previous menu";
                 String label10 = "\n> Please select the room with the device you want to deactivate:\n" + mController.getRoomListContent() + exitMenu;
                 int roomListSize = mController.roomListSize();
                 int positionRoom = InputValidator.getIntRange(label10, 0, roomListSize) - 1;
