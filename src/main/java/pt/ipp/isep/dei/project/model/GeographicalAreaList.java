@@ -25,7 +25,7 @@ public class GeographicalAreaList {
     /**
      * method that add a geographical area to the list of geographical areas.
      * @param geoArea
-     * @return
+     * @return boolean
      */
     public boolean addGeoArea(GeographicalArea geoArea) {
         if (!(mGeoAreaList.contains(geoArea))) {

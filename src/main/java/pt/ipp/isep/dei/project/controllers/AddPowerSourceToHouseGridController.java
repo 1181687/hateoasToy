@@ -10,8 +10,7 @@ public class AddPowerSourceToHouseGridController {
     private PowerSourceType mSelectedPowerSourceType;
 
     /**
-     * TODO
-     *
+     * this is the construtor of the controller, with the house and the PowerSourceTypeList
      * @param house
      * @param powerSourceTypeList
      */

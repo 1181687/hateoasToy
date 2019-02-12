@@ -8,8 +8,7 @@ public class AddGeoAreaTypeController {
     private GeographicalAreaTypeList mList;
 
     /**
-     * TODO
-     *
+     * this is the construtor of the addGeoAreaTypeController
      * @param list
      */
     public AddGeoAreaTypeController(GeographicalAreaTypeList list) {
@@ -17,10 +16,9 @@ public class AddGeoAreaTypeController {
     }
 
     /**
-     * TODO
-     *
+     * method that add a type of geographical area.
      * @param geoAreaType
-     * @return
+     * @return true if a geographicalAreaType is added. If not, return false.
      */
     public boolean addTypeOfGeoAreaToTheList(String geoAreaType) {
         GeographicalAreaType newTypeOfGeoArea = mList.newTypeOfGeoArea(geoAreaType);
@@ -28,9 +26,7 @@ public class AddGeoAreaTypeController {
     }
 
     /**
-     * TODO
-     *
-     * @return
+     * method that get the list of geo area types.
      */
     public GeographicalAreaTypeList getList() {
         return mList;
