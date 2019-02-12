@@ -51,7 +51,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @return the size of the device list.
      */
     public int deviceListSize() {
-        return this.mRoom.getDevicesListSize();
+        return this.mRoom.getDeviceList().size();
     }
 
     /**
@@ -123,7 +123,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @return a postiion.
      */
     public Device1 getDevice(int position) {
-        return this.mRoom.getDeviceList().getDeviceByPosition(position);
+        return this.mRoom.getDeviceList().get(position);
     }
 
 }

@@ -129,7 +129,7 @@ public class HouseGrid implements Measurable {
      *
      * @return List <Device>
      */
-    public List<Device> getAllDevicesList() {
+    public List<Device1> getAllDevicesList() {
         return mRoomList.getAllDevicesList();
     }
 

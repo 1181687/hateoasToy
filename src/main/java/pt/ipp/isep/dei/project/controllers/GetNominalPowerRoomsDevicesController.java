@@ -97,7 +97,7 @@ public class GetNominalPowerRoomsDevicesController {
      * @return device that matches the chosen position
      */
     public Device1 getDeviceListByPosition(int pos1, int pos2){
-        return mSelectedHouseGrid.getDeviceFromPositionInList(pos1, pos2);
+        return mSelectedHouseGrid.getDeviceByRoomAndDevicePosition(pos1, pos2);
     }
 
     /**

@@ -14,7 +14,7 @@ public class Room implements Measurable {
     private int mHouseFloor;
     private Dimension mDimension;
     private SensorList mSensorList;
-    private List<Device> mDeviceList;
+    private List<Device1> mDeviceList;
 
     /**
      * constructor that receives name, houseFloor, dimension
@@ -397,7 +397,7 @@ public class Room implements Measurable {
      *
      * @return List<Device>
      */
-    public List<Device> getDeviceList() {
+    public List<Device1> getDeviceList() {
         return this.mDeviceList;
     }
 
@@ -416,7 +416,7 @@ public class Room implements Measurable {
      * @param position integer position of Device
      * @return Device
      */
-    public Device getDeviceByPosition(int position) {
+    public Device1 getDeviceByPosition(int position) {
         return this.mDeviceList.get(position);
     }
 
@@ -469,7 +469,7 @@ public class Room implements Measurable {
     /**
      * Method that remove a device from the list of devices
      */
-    public boolean removeDevice(Device device) {
+    public boolean removeDevice(Device1 device) {
         return this.mDeviceList.remove(device);
     }
 
@@ -479,9 +479,9 @@ public class Room implements Measurable {
      * @param type Required type.
      * @return DeviceList with all the devices of the required type.
      */
-    public List<Device> getAllDevicesOfAType(String type) {
-        List<Device> listOfDevicesWithTheType = new ArrayList<>();
-        for (Device device : this.mDeviceList) {
+    public List<Device1> getAllDevicesOfAType(String type) {
+        List<Device1> listOfDevicesWithTheType = new ArrayList<>();
+        for (Device1 device : this.mDeviceList) {
             if (device.getType().equals(type)) {
                 listOfDevicesWithTheType.add(device);
             }
@@ -498,8 +498,8 @@ public class Room implements Measurable {
      * @return True or false.
      */
     public boolean setDeviceSpecAttribute(int devicePosition, int attributePosition, double value) {
-        Device device = this.mDeviceList.get(devicePosition);
-        return device.setSpecAttribute(attributePosition, value);
+        Device1 device = this.mDeviceList.get(devicePosition);
+        return device.setAttributesDevType(attributePosition, value);
     }
 
     /**
@@ -509,7 +509,7 @@ public class Room implements Measurable {
      * @return Double with the energy consumption.
      */
     public double getEnergyConsumptionOfADevice(int devicePosition) {
-        Device device = this.mDeviceList.get(devicePosition);
+        Device1 device = this.mDeviceList.get(devicePosition);
         return device.getEnergyConsumptionInADay();
     }
 
@@ -520,7 +520,7 @@ public class Room implements Measurable {
      */
     public double getTotalEnergyConsumption() {
         double totalEnergyConsumption = 0;
-        for (Device device : this.mDeviceList) {
+        for (Device1 device : this.mDeviceList) {
             totalEnergyConsumption += device.getEnergyConsumptionInADay();
         }
         return Utils.round(totalEnergyConsumption, 2);
@@ -533,7 +533,7 @@ public class Room implements Measurable {
      * @return true if the device was removed. False if not.
      */
     public boolean deleteDevice(String device) {
-        for (Device searchDevice : this.mDeviceList) {
+        for (Device1 searchDevice : this.mDeviceList) {
             if (device.equals(searchDevice.getName())) {
                 this.mDeviceList.remove(searchDevice);
                 return true;
@@ -562,7 +562,7 @@ public class Room implements Measurable {
      * @return true if the device was deactivated. False, if not.
      */
     public boolean deactivateDevice(String device) {
-        for (Device searchDevice : this.mDeviceList) {
+        for (Device1 searchDevice : this.mDeviceList) {
             if (device.equals(searchDevice.getName())) {
                 searchDevice.setDeactivateDevice();
                 return true;

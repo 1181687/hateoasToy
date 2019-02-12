@@ -61,7 +61,7 @@ public class EstimateEnergyOfWaterHeaterController {
      * @return
      */
     public double getEnergyConsumptionOfAWaterHeater(int devicePosition) {
-        return mHouse.getEnergyConsumptionOfADevice(mType, devicePosition);
+        return mHouse.getDailyEnergyConsumptionOfADevice(mType, devicePosition);
     }
 
     /**
@@ -70,6 +70,6 @@ public class EstimateEnergyOfWaterHeaterController {
      * @return Double with the combined energy consumption of all the water heaters in the house.
      */
     public double getTotalEnergyConsumptionOfAllDevicesOfAType() {
-        return mHouse.getTotalEnergyConsumptionInTheHouse(mType);
+        return mHouse.getTotalEnergyConsumptionOfDevicesOfCertainType(mType);
     }
 }

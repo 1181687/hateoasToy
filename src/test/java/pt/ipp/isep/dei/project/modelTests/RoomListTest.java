@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -691,19 +692,19 @@ public class RoomListTest {
         room2.addDevice(dev5);
         room2.addDevice(dev6);
 
-        DeviceList expectedResult = new DeviceList();
-        expectedResult.addDevice(dev1);
-        expectedResult.addDevice(dev2);
-        expectedResult.addDevice(dev3);
-        expectedResult.addDevice(dev4);
-        expectedResult.addDevice(dev5);
-        expectedResult.addDevice(dev6);
+        List<Device1> expectedResult = new ArrayList<>();
+        expectedResult.add(dev1);
+        expectedResult.add(dev2);
+        expectedResult.add(dev3);
+        expectedResult.add(dev4);
+        expectedResult.add(dev5);
+        expectedResult.add(dev6);
 
         RoomList roomList = new RoomList();
         roomList.addRoom(room1);
         roomList.addRoom(room2);
 
-        DeviceList result = roomList.getAllDevicesList();
+        List<Device1> result = roomList.getAllDevicesList();
 
         assertEquals(expectedResult, result);
     }

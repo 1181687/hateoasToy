@@ -81,8 +81,8 @@ public class GetDevicesInHouseGridControllerTest {
         houseGridList1.add(houseGrid);
         houseGridList1.add(houseGridEmpty);
 
-        houseEdificioB.addHouseGrid(houseGrid);
-        houseEdificioB.addHouseGrid(houseGridEmpty);
+        houseEdificioB.addGrid(houseGrid);
+        houseEdificioB.addGrid(houseGridEmpty);
     }
 
 

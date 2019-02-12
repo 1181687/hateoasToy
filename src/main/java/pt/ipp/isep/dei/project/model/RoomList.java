@@ -267,10 +267,10 @@ public class RoomList {
      * method that gets a list of devices in all rooms of roomlist
      * @return DeviceList
      */
-    public List<Device> getAllDevicesList() {
-        List<Device> roomDeviceList;
-        List<Device> allDeviceList = new ArrayList<>();
-        Device dev;
+    public List<Device1> getAllDevicesList() {
+        List<Device1> roomDeviceList;
+        List<Device1> allDeviceList = new ArrayList<>();
+        Device1 dev;
 
         for (int i = 0; i < mRoomList.size(); i++) {
             roomDeviceList = mRoomList.get(i).getDeviceList();
@@ -300,8 +300,8 @@ public class RoomList {
      * method that get all devices of a type.
      * @return list with a devices type.
      */
-    public List<Device> getAllDevicesOfAType(String type) {
-        List<Device> listWithDevicesOfAType = new ArrayList<>();
+    public List<Device1> getAllDevicesOfAType(String type) {
+        List<Device1> listWithDevicesOfAType = new ArrayList<>();
         for (Room room : this.mRoomList) {
             listWithDevicesOfAType.addAll(room.getAllDevicesOfAType(type));
         }

@@ -40,6 +40,6 @@ public class CreateHouseGridController {
      * @param grid Specified grid.
      */
     public void addHouseGridToTheListOfHouseGrids(HouseGrid grid) {
-        mHouse.addHouseGrid(grid);
+        mHouse.addGrid(grid);
     }
 }
