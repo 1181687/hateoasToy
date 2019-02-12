@@ -56,10 +56,9 @@ class DetachRoomFromHouseGridControllerTest {
         mainGrid.attachRoom(r0);
         mainGrid.attachRoom(r1);
 
-        HouseGridList gridList = house.getHouseGridList();
         RoomList roomList = house.getRoomList();
 
-        this.ctrl = new DetachRoomFromHouseGridController(gridList, roomList);
+        this.ctrl = new DetachRoomFromHouseGridController(house, roomList);
     }
 
     @Test

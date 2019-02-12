@@ -55,9 +55,23 @@ public class EditConfigurationDevice {
                             }
                             switch (option) {
                                 case 1:
-                                    controller.case1();
-                                    break;
+                                    String label4 = "What name do you want to assign to the device?";
+                                    String newName;
+                                    do {
+                                        newName = InputValidator.getString(label4);
+                                        try {
+                                            if (controller.setDeviceName(newName)) {
+                                                System.out.println("The name was changed with success! Now, this device call " + newName + "!");
+                                            }
+                                            flag = false;
+                                        } catch (Exception e) {
+                                            System.out.println("Name already exists. Please write a new one.");
+                                            flag = true;
+                                        }
 
+                                    }
+                                    while (flag);
+                                    break;
                                 case 2:
                                     String label5 = "Choose the specification you want to change.\n" + controller.getDevSpecsAttributesToString() + exit;
                                     int attributePosition = InputValidator.getIntRange(label5, 0, controller.getNumberOfAttributesInDeviceSpecs());

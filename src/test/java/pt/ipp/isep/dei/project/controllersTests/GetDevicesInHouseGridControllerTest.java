@@ -6,13 +6,13 @@ import pt.ipp.isep.dei.project.controllers.GetDevicesInHouseGridController;
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GetDevicesInHouseGridControllerTest {
     private GetDevicesInHouseGridController ctrl;
-    private HouseGridList houseGridList;
     private House houseEdificioB;
 
     @BeforeEach
@@ -36,7 +36,6 @@ public class GetDevicesInHouseGridControllerTest {
         houseEdificioB.setInsertedGeoArea(insertedGeoArea);
 
         this.ctrl = new GetDevicesInHouseGridController(houseEdificioB);
-        this.houseGridList = houseEdificioB.getHouseGridList();
 
 
         //Room ONE
@@ -78,12 +77,12 @@ public class GetDevicesInHouseGridControllerTest {
         HouseGrid houseGridEmpty = new HouseGrid("grid2");
         houseGrid.attachRoom(room1);
         houseGrid.attachRoom(room2);
-        HouseGridList houseGridList1 = new HouseGridList();
-        houseGridList1.addHouseGrid(houseGrid);
-        houseGridList1.addHouseGrid(houseGridEmpty);
+        List<HouseGrid> houseGridList1 = new ArrayList<>();
+        houseGridList1.add(houseGrid);
+        houseGridList1.add(houseGridEmpty);
 
-        houseGridList.addHouseGrid(houseGrid);
-        houseGridList.addHouseGrid(houseGridEmpty);
+        houseEdificioB.addHouseGrid(houseGrid);
+        houseEdificioB.addHouseGrid(houseGridEmpty);
     }
 
 

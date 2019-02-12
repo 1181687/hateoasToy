@@ -23,7 +23,7 @@ public class GetEnergyConsumptionOfAGridController {
     }
 
     public String getHouseGridListToString() {
-        return this.mHouse.getHouseGridListContent();
+        return this.mHouse.getHouseGridListToString();
     }
 
     public void getHouseGridByPosition(int position) {

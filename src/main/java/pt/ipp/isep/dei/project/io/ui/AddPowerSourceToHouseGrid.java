@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
-import pt.ipp.isep.dei.project.model.HouseGridList;
+import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
 
 /** US135 As an Administrator, I want to add a power source to a house grid, so that the
@@ -11,8 +11,8 @@ public class AddPowerSourceToHouseGrid {
 
     private AddPowerSourceToHouseGridController mController;
 
-    public AddPowerSourceToHouseGrid(HouseGridList houseGridList, PowerSourceTypeList powerSourceTypeList) {
-        this.mController = new AddPowerSourceToHouseGridController(houseGridList, powerSourceTypeList);
+    public AddPowerSourceToHouseGrid(House house, PowerSourceTypeList powerSourceTypeList) {
+        this.mController = new AddPowerSourceToHouseGridController(house, powerSourceTypeList);
     }
 
     public void run(){

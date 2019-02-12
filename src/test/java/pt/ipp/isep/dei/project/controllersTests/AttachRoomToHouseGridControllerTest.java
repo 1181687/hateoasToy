@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AttachRoomToHouseGridController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -11,15 +14,21 @@ class AttachRoomToHouseGridControllerTest {
 
     private AttachRoomToHouseGridController controller;
 
-    private HouseGridList houseGridList;
+    private House house;
     private RoomList roomList;
 
     @BeforeEach
     public void StartUp() {
-        this.houseGridList = new HouseGridList();
         this.roomList = new RoomList();
 
-        this.controller = new AttachRoomToHouseGridController(houseGridList, roomList);
+        //House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+
+        this.controller = new AttachRoomToHouseGridController(house, roomList);
     }
 
 
@@ -41,7 +50,7 @@ class AttachRoomToHouseGridControllerTest {
 
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
-        houseGridList.addHouseGrid(grid);
+        house.addHouseGrid(grid);
 
         // Act
         boolean result = controller.isHouseGridListEmpty();
@@ -57,8 +66,8 @@ class AttachRoomToHouseGridControllerTest {
         String gridName = "Grid";
         HouseGrid grid0 = new HouseGrid(gridName);
         HouseGrid grid1 = new HouseGrid(gridName);
-        houseGridList.getmHouseGridsList().add(grid0);
-        houseGridList.getmHouseGridsList().add(grid1);
+        house.addGrid(grid0);
+        house.addGrid(grid1);
 
         String expectedResult = "1 - Name: Grid\n2 - Name: Grid\n";
 
@@ -75,8 +84,8 @@ class AttachRoomToHouseGridControllerTest {
         String gridName = "Grid";
         HouseGrid grid0 = new HouseGrid(gridName);
         HouseGrid grid1 = new HouseGrid(gridName);
-        houseGridList.getmHouseGridsList().add(grid0);
-        houseGridList.getmHouseGridsList().add(grid1);
+        house.addGrid(grid0);
+        house.addGrid(grid1);
 
         HouseGrid expectedResult = grid0;
 
@@ -138,8 +147,8 @@ class AttachRoomToHouseGridControllerTest {
     void checkIfTheChosenRoomIsAlreadyInTheChosenGridPositiveTest() {
         // Arrange
         String gridName = "Grid";
-        HouseGrid grid = houseGridList.newHouseGrid(gridName);
-        houseGridList.addHouseGrid(grid);
+        HouseGrid grid = house.newHouseGrid(gridName);
+        house.addHouseGrid(grid);
         String roomName = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
@@ -162,8 +171,8 @@ class AttachRoomToHouseGridControllerTest {
         // Arrange
 
         String gridName = "Grid";
-        HouseGrid grid = houseGridList.newHouseGrid(gridName);
-        houseGridList.addHouseGrid(grid);
+        HouseGrid grid = house.newHouseGrid(gridName);
+        house.addHouseGrid(grid);
 
         String roomName = "Kitchen";
         int houseFloor1 = 0;
@@ -188,7 +197,7 @@ class AttachRoomToHouseGridControllerTest {
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
 
-        houseGridList.addHouseGrid(grid);
+        house.addHouseGrid(grid);
 
         int expectedResult = 1;
 
@@ -267,9 +276,9 @@ class AttachRoomToHouseGridControllerTest {
         grid2.attachRoom(room);
 
         // Instantiate List of House Grids
-        houseGridList.addHouseGrid(grid0);
-        houseGridList.addHouseGrid(grid1);
-        houseGridList.addHouseGrid(grid2);
+        house.addHouseGrid(grid0);
+        house.addHouseGrid(grid1);
+        house.addHouseGrid(grid2);
 
         controller.setRoomToBeAttached(room);
 
@@ -299,9 +308,9 @@ class AttachRoomToHouseGridControllerTest {
         String gridName2 = "Grid";
         HouseGrid grid2 = new HouseGrid(gridName2);
 
-        houseGridList.addHouseGrid(grid0);
-        houseGridList.addHouseGrid(grid1);
-        houseGridList.addHouseGrid(grid2);
+        house.addHouseGrid(grid0);
+        house.addHouseGrid(grid1);
+        house.addHouseGrid(grid2);
 
         controller.setRoomToBeAttached(room);
 
@@ -334,7 +343,7 @@ class AttachRoomToHouseGridControllerTest {
         String gridName0 = "Grid0";
         HouseGrid grid0 = new HouseGrid(gridName0);
 
-        houseGridList.addHouseGrid(grid0);
+        house.addHouseGrid(grid0);
 
         // Instantiate Controller
         controller.setGridToBeUsed(grid0);

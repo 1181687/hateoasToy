@@ -83,7 +83,7 @@ public class DeviceListTest {
         //Arrange
 
         DeviceList deviceList1 = new DeviceList();
-        HouseGridList list = new HouseGridList();
+        RoomList list = new RoomList();
 
         //Act
         boolean result = deviceList1.equals(list);
