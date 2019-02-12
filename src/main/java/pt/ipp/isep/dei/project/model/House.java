@@ -43,8 +43,7 @@ public class House {
     }
 
     /**
-     * TODO - Test this method
-     *
+     * This method create device types using a path and a class name.
      * @param deviceTypeList
      */
     public void createDeviceTypes(List<String> deviceTypeList) {

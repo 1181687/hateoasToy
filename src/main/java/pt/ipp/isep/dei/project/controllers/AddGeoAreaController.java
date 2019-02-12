@@ -11,8 +11,7 @@ public class AddGeoAreaController {
     private GeographicalAreaTypeList mTGAList;
 
     /**
-     * TODO
-     *
+     * construtor of the controller with geoAreaList and types of GeoAreaList.
      * @param geographicalAreaList
      * @param TGAList
      */
@@ -22,32 +21,31 @@ public class AddGeoAreaController {
     }
 
     /**
-     * TODO
+     * method that add a geographical area to the list of geographical areas.
      * @param newGA
-     * @return
+     * @return boolean
      */
     public boolean addNewGeoArea(GeographicalArea newGA) {
         return mGeographicalAreaList.addGeoArea(newGA);
     }
 
     /**
-     * TODO
-     * @return
+     * method that get the geo area list.
      */
     public GeographicalAreaList getGeographicalAreaList() {
         return mGeographicalAreaList;
     }
 
     /**
-     * TODO
-     * @return
+     * method that get the list of geo area types
+     * @return a list of geo area types.
      */
     public List<String> getTGAList() {
         return mTGAList.getListOfGeoAreaTypes();
     }
 
     /**
-     * TODO
+     * method that add a new geographical area with a name, a type, a latitude, a longitue, a altitude, a height, a length.
      * @param name
      * @param typeName
      * @param altitude
@@ -55,7 +53,7 @@ public class AddGeoAreaController {
      * @param latitude
      * @param width
      * @param height
-     * @return
+     * @return a new geographical area.
      */
     public GeographicalArea createNewGeoArea(String name, String typeName, double altitude, double longitude, double latitude, double width, double height) {
         return mGeographicalAreaList.newGeographicalArea(name, typeName, altitude, longitude, latitude, width, height);

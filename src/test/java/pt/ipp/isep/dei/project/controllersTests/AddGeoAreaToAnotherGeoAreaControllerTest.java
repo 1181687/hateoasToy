@@ -69,7 +69,7 @@ class AddGeoAreaToAnotherGeoAreaControllerTest {
     @Test
     public void checkIfGeoAreaDoesntHaveAnInsertedAreaPositiveTest() {
         // Act
-        boolean result = controller.checkIfGeoAreaDoesntHaveAnInsertedArea(cityOfPorto);
+        boolean result = controller.isGeoAreaInsertedinAnotherArea(cityOfPorto);
 
         // Assert
         assertTrue(result);
@@ -78,7 +78,7 @@ class AddGeoAreaToAnotherGeoAreaControllerTest {
     @Test
     public void checkIfGeoAreaDoesntHaveAnInsertedAreaNegativeTest() {
         // Act
-        boolean result = controller.checkIfGeoAreaDoesntHaveAnInsertedArea(parishOfBonfim);
+        boolean result = controller.isGeoAreaInsertedinAnotherArea(parishOfBonfim);
 
         // Assert
         assertFalse(result);

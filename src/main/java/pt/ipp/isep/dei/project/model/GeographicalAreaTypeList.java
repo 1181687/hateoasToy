@@ -32,7 +32,6 @@ public class GeographicalAreaTypeList {
 
     /**
      * method that add a type of geographical area.
-     *
      * @param geographicalAreaType
      * @return true if a geographicalAreaType is added. If not, return false.
      */
@@ -56,7 +55,6 @@ public class GeographicalAreaTypeList {
 
     /**
      * method that get the list of geo area types
-     *
      * @return a list of geo area types.
      */
     public List<String> getListOfGeoAreaTypes() {

@@ -172,10 +172,9 @@ public class AddDeviceToRoomController {
     }
 
     /**
-     * TODO
-     *
+     * method that get a Device by it's position
      * @param position
-     * @return
+     * @return Device
      */
     public Device1 getDevice(int position) {
         return mRoom.getDeviceByPosition(position);
