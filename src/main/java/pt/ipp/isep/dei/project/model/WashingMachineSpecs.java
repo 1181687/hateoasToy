@@ -20,14 +20,6 @@ public class WashingMachineSpecs implements DeviceSpecs {
     public WashingMachineSpecs() {
     }
 
-    /**
-     * get method tht get the name of the device type.
-     * @return type of device
-     */
-    @Override
-    public String getTypeName() {
-        return mTypeName;
-    }
 
     /**
      * get method

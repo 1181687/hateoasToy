@@ -2,9 +2,10 @@ package pt.ipp.isep.dei.project.model;
 
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class Device1 implements Measurable {
+public class Device1 {
     private String mName;
     private Room mLocation;
     private DeviceSpecs mSpec;
@@ -16,64 +17,64 @@ public class Device1 implements Measurable {
         this.mName = name;
         this.mLocation = location;
         this.mSpec = spec;
-        this.mLocation.addDevice(this);
+        this.mLocation = null;
         this.mIsActive = true;
     }
 
-    /**
+    /* *//**
      * method that get the nominal power of the devices.
      *
      * @return the nominal power of the device.
-     */
+     *//*
     @Override
     public double getNominalPower() {
         return mSpec.getNominalPower();
     }
 
-    /**
+    *//**
      * method that get a location (room) of a device.
      *
      * @return the location.
-     */
+     *//*
     public Room getLocation() {
         return this.mLocation;
     }
 
-    /**
+    *//**
      * get method
      *
      * @return name of device
-     */
+     *//*
     public String getName() {
         return this.mName;
     }
 
-    /**
+    *//**
      * method that gets the Type
      *
      * @return String
-     */
+     *//*
     public String getType() {
-        return mSpec.getTypeName();
+        return mSpec..getTypeName();
     }
 
-    /**
+    *//**
      * Method that gets the energy consumption in a day.
      *
      * @return Energy consumption of the device in a given day.
-     */
+     *//*
     public double getEnergyConsumptionInADay() {
         return mSpec.getEnergyConsumptionInADay();
     }
 
 
-    /**
+    *//**
      * method that set the given name only if the name don't exists in DeviceList
      * and if it is different than the name that the Device1 has.
      *
      * @param name String given name
      * @return true if sets false if don't
-     */
+     *//*
     public boolean setName(String name) {
         if (this.mLocation.isDeviceNameExistant(name) || this.mName == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
@@ -82,12 +83,12 @@ public class Device1 implements Measurable {
         return true;
     }
 
-    /**
+    *//**
      * method that set the location (room) of a added device.
      *
      * @param location
      * @return false if the location is equals to another device. True if not.
-     */
+     *//*
     public boolean setLocation(Room location) {
         if (this.mLocation.equals(location)) {
             return false;
@@ -98,20 +99,20 @@ public class Device1 implements Measurable {
         return true;
     }
 
-    /**
+    *//**
      * Method that returns the attributes of the device specs.
      *
      * @return String with the attributes.
-     */
+     *//*
     public String getDevSpecsAttributesToString() {
         return mSpec.getAttributesToString();
     }
 
-    /**
+    *//**
      * method that get all attributes of a device by strings.
      *
      * @return the device attributes.
-     */
+     *//*
     public String getAttributesToString() {
 
         StringBuilder attributes = new StringBuilder();
@@ -121,33 +122,33 @@ public class Device1 implements Measurable {
         return attributes.toString();
     }
 
-    /**
+    *//**
      * method that set the attributes of a device type.
      *
      * @param attribute
      * @param value
      * @return the position of an attribute and the value of it.
-     */
+     *//*
     public boolean setAttributesDevType(int attribute, double value) {
         return this.mSpec.setAttribute(attribute, value);
     }
 
-    /**
+    *//**
      * method that creates the hashcode to two devices that are have the same name.
      *
      * @return the hashcode created
-     */
+     *//*
     @Override
     public int hashCode() {
         return Objects.hash(this.mName);
     }
 
-    /**
+    *//**
      * Equals method to determine if two Device1 are equal.     *
      *
      * @param obj receives an object
      * @return boolean true if are equal and false if are not.
-     */
+     *//*
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -160,20 +161,20 @@ public class Device1 implements Measurable {
         return this.mName.equalsIgnoreCase(listOne.mName);
     }
 
-    /**
+    *//**
      * method that get the number of specifications of a device.
      *
      * @return the number of attributes.
-     */
+     *//*
     public int getNumberOfSpecsAttributes() {
         return mSpec.getNumberOfAttributes();
     }
 
-    /**
+    *//**
      * method that returns the name of device and its location
      *
      * @return String
-     */
+     *//*
     @Override
     public String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
@@ -182,21 +183,21 @@ public class Device1 implements Measurable {
         return nameLocation.toString();
     }
 
-    /**
+    *//**
      * Method that adds a readings to the device.
      *
      * @param readings Readings to be added.
-     */
+     *//*
     public void addReadingsToTheList(Readings readings) {
         mReadingsList.add(readings);
     }
 
-    /**
+    *//**
      * Method that calculates the sum of the value in each Readings in a given Readings list.
      *
      * @param readingsList List with Readingss.
      * @return Double with the required sum.
-     */
+     *//*
     public double getSumOfTheReadingss(List<Readings> readingsList) {
         double sum = 0;
         for (Readings readings : readingsList) {
@@ -215,13 +216,13 @@ public class Device1 implements Measurable {
         return readingsList;
     }
 
-    /**
+    *//**
      * Method that calculates the total energy consumption of a device in a given interval.
      *
      * @param startDate Start date.
      * @param endDate   End date.
      * @return Double with the required energy consumption.
-     */
+     *//*
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
@@ -233,19 +234,19 @@ public class Device1 implements Measurable {
         return totalEnergyConsumption;
     }
 
-    /**
+    *//**
      * method that set the deactivate device, turning it to false and giving a date
-     */
+     *//*
     public void setDeactivateDevice() {
         this.mIsActive = false;
         this.mDeactivationDate = LocalDateTime.now();
     }
 
-    /**
+    *//**
      * method that get an active device.
      *
      * @return an active device.
-     */
+     *//*
     public boolean getIsActive() {
         return mIsActive;
     }
@@ -258,5 +259,5 @@ public class Device1 implements Measurable {
             hmap.put(readings.getDateTime(), readings.getValue());
         }
         return hmap;
-    }
+    }*/
 }

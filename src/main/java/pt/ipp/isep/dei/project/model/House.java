@@ -305,7 +305,7 @@ public class House {
      * @param position position of the grid in the houseGridList
      * @return List <Device>
      */
-    public List<Device1> getAllDevicesListByGridPosition(int position) {
+    public List<Device> getAllDevicesListByGridPosition(int position) {
         return this.mListHouseGrids.get(position).getAllDevicesList();
     }
 
@@ -315,16 +315,16 @@ public class House {
      *
      * @return String with Device Name and Location grouped by Type.
      */
-    public String getContentNameLocationOrderedByType(List<Device1> deviceList) {
+    public String getContentNameLocationOrderedByType(List<Device> deviceList) {
         StringBuilder content = new StringBuilder();
-        Map<String, List<Device1>> byDeviceType = deviceList.stream()
-                .collect(Collectors.groupingBy(Device1::getType));
+        Map<String, List<Device>> byDeviceType = deviceList.stream()
+                .collect(Collectors.groupingBy(Device::getType));
 
 
-        for (Map.Entry<String, List<Device1>> entry : byDeviceType.entrySet()) {
+        for (Map.Entry<String, List<Device>> entry : byDeviceType.entrySet()) {
             content.append(entry.getKey());
             content.append("\n");
-            for (Device1 dev : entry.getValue()) {
+            for (Device dev : entry.getValue()) {
 
                 content.append("- Device Name: ");
                 content.append(dev.getName());
@@ -344,7 +344,7 @@ public class House {
      * @return String with Devices Names and Location grouped by Type.
      */
     public String getDeviceListContentNameTypeLocationByHG(int positionHG) {
-        List<Device1> deviceList = getAllDevicesListByGridPosition(positionHG);
+        List<Device> deviceList = getAllDevicesListByGridPosition(positionHG);
         return getContentNameLocationOrderedByType(deviceList);
     }
 
@@ -484,7 +484,7 @@ public class House {
      * @param type Required type.
      * @return DeviceList with all the devices of the required type.
      */
-    public List<Device1> getAllDevicesOfAType(String type) {
+    public List<Device> getAllDevicesOfAType(String type) {
         return mRoomList.getAllDevicesOfAType(type);
     }
 
@@ -508,7 +508,7 @@ public class House {
      * @return True or false.
      */
     public boolean setDeviceAttribute(String type, int devicePosition, int attributePosition, double value) {
-        List<Device1> listWithAllDevicesOfAType = getAllDevicesOfAType(type);
+        List<Device> listWithAllDevicesOfAType = getAllDevicesOfAType(type);
         return listWithAllDevicesOfAType.get(devicePosition).setAttributesDevType(attributePosition, value);
     }
 
@@ -519,7 +519,7 @@ public class House {
      * @return Double with the energy consumption.
      */
     public double getDailyEnergyConsumptionOfADevice(String type, int devicePosition) {
-        List<Device1> listWithAllDevicesOfAType = getAllDevicesOfAType(type);
+        List<Device> listWithAllDevicesOfAType = getAllDevicesOfAType(type);
         return listWithAllDevicesOfAType.get(devicePosition).getEnergyConsumptionInADay();
     }
 
@@ -529,9 +529,9 @@ public class House {
      * @return Double with the combined energy consumption.
      */
     public double getTotalEnergyConsumptionOfDevicesOfCertainType(String type) {
-        List<Device1> listWithAllDevicesOfAType = getAllDevicesOfAType(type);
+        List<Device> listWithAllDevicesOfAType = getAllDevicesOfAType(type);
         double totalEnergyConsumption = 0;
-        for (Device1 device : listWithAllDevicesOfAType) {
+        for (Device device : listWithAllDevicesOfAType) {
             totalEnergyConsumption += device.getEnergyConsumptionInADay();
         }
         return Utils.round(totalEnergyConsumption, 2);
@@ -564,7 +564,7 @@ public class House {
      *
      * @return DeviceList with all the devices in the house.
      */
-    public List<Device1> getAllDevices() {
+    public List<Device> getAllDevices() {
         return mRoomList.getAllDevicesList();
     }
 
@@ -583,12 +583,12 @@ public class House {
      * @param position Position of the device in the list of all devices.
      * @return Device chosen.
      */
-    public Device1 getDeviceByPosition(int position) {
+    public Device getDeviceByPosition(int position) {
         return getAllDevices().get(position);
     }
 
     public String getDeviceNameOfATypeByPosition(String type, int devicePosition) {
-        List<Device1> listOfAllDevicesOffAType = getAllDevicesOfAType(type);
+        List<Device> listOfAllDevicesOffAType = getAllDevicesOfAType(type);
         return getDeviceNameFromDeviceList(listOfAllDevicesOffAType, devicePosition);
     }
 
@@ -598,7 +598,7 @@ public class House {
      * @param devicePosition
      * @return null if the list is empty.
      */
-    public String getDeviceNameFromDeviceList(List<Device1> devicelist, int devicePosition) {
+    public String getDeviceNameFromDeviceList(List<Device> devicelist, int devicePosition) {
         if (devicelist.isEmpty()) {
             return "There are no devices in the device list.";
         }
