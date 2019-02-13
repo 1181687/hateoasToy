@@ -7,18 +7,18 @@ public class DishWasher implements Device, Measurable {
 
     private String mName;
     private Room mLocation;
-    private DishWasherSpecs mSpec;
-    private DishWasherType mType;
-    private List<Readings> mReadingsList = new ArrayList<>();
+    private LampSpecs mSpec;
+    private List<Readings> mReadingsList;
     private boolean mIsActive;
     private LocalDateTime mDeactivationDate;
 
-    public DishWasher(String name, Room location, DishWasherSpecs spec) {
-        this.mName = mName;
-        this.mSpec = mSpec;
-        this.mType = mType;
+    public DishWasher(String name, Room location) {
+        this.mName = name;
+        this.mSpec = new LampSpecs();
+        this.mLocation = location;
         this.mLocation.addDevice(this);
         this.mIsActive = true;
+        this.mReadingsList = new ArrayList<>();
     }
 
     /**
@@ -58,7 +58,7 @@ public class DishWasher implements Device, Measurable {
      */
     @Override
     public String getType() {
-        return mType.getTypeName();
+        return mSpec.getTypeName();
     }
 
     /**
@@ -264,5 +264,10 @@ public class DishWasher implements Device, Measurable {
             hmap.put(readings.getDateTime(), readings.getValue());
         }
         return hmap;
+    }
+
+    @Override
+    public DeviceSpecs getSpecs() {
+        return this.mSpec;
     }
 }

@@ -2,25 +2,39 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ElectricWaterHeaterSpecs implements DeviceSpecs {
+    private static final String ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT = "Volume Of Water To Heat";
+    private static final String ATTRIBUTE_HOT_WATER_TEMP = "Hot-Water Temperature";
+    private static final String ATTRIBUTE_PERFORMANCE_RATIO = "Performance Ratio";
+    private static final String ATTRIBUTE_COLD_WATER_TEMP = "Cold-Water Temperature";
+    private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
+
     private String mTypeName;
     private double mVolumeOfWaterToHeat;
     private double mColdWaterTemperature;
     private double mHotWaterTemperature;
     private double mPerformanceRatio;
-    private double mMaximumVolume;
     private double mNominalPower;
 
-    public ElectricWaterHeaterSpecs(double hotWaterTemperature, double maximumVolume, double performanceRatio, double nominalPower) {
-        this.mTypeName = "Electric Water Heater";
-        this.mHotWaterTemperature = hotWaterTemperature;
-        this.mMaximumVolume = maximumVolume;
-        this.mPerformanceRatio = performanceRatio;
-        this.mNominalPower = nominalPower;
-    }
+//    public ElectricWaterHeaterSpecs(double hotWaterTemperature, double maximumVolume, double performanceRatio, double nominalPower) {
+//        this.mTypeName = "Electric Water Heater";
+//        this.mHotWaterTemperature = hotWaterTemperature;
+//        this.mMaximumVolume = maximumVolume;
+//        this.mPerformanceRatio = performanceRatio;
+//        this.mNominalPower = nominalPower;
+//    }
 
     public ElectricWaterHeaterSpecs() {
+        this.mTypeName = "Electric Water Heater";
     }
+
+    public String getTypeName() {
+        return mTypeName;
+    }
+
 
 
     /**
@@ -87,19 +101,6 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         return true;
     }
 
-    /**
-     * methods that determine if the value of the maximumVolume is the same that the method receive.
-     *
-     * @param maximumVolume
-     * @return false if is the same value. Return true if not, and save the new value.
-     */
-    public boolean setMaximumVolume(double maximumVolume) {
-        if (Utils.isSameDouble(this.mMaximumVolume, maximumVolume)) {
-            return false;
-        }
-        this.mMaximumVolume = maximumVolume;
-        return true;
-    }
 
     /**
      * method that determine if the value of the performanceRatio is the same that the method receive.
@@ -138,9 +139,8 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Hot Water Temperature: " + mHotWaterTemperature + "\n");
-        attributes.append("2 - Maximum Volume: " + mMaximumVolume + "\n");
-        attributes.append("3 - Performance Ratio: " + mPerformanceRatio + "\n");
-        attributes.append("4 - Nominal Power: " + mNominalPower + "\n");
+        attributes.append("2 - Performance Ratio: " + mPerformanceRatio + "\n");
+        attributes.append("3 - Nominal Power: " + mNominalPower + "\n");
         return attributes.toString();
     }
 
@@ -157,14 +157,12 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
             case 1:
                 return setHotWaterTemperature(value);
             case 2:
-                return setMaximumVolume(value);
-            case 3:
                 return setPerformanceRatio(value);
-            case 4:
+            case 3:
                 return setNominalPower(value);
-            case 5:
+            case 4:
                 return setColdWaterTemperature(value);
-            case 6:
+            case 5:
                 return setVolumeOfWaterToHeat(value);
             default:
                 return false;
@@ -179,5 +177,66 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     @Override
     public int getNumberOfAttributes() {
         return 4;
+    }
+
+    @Override
+    public List<String> getAttributeToString() {
+        List<String> result = new ArrayList<>();
+        result.add(ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT);
+        result.add(ATTRIBUTE_HOT_WATER_TEMP);
+        result.add(ATTRIBUTE_PERFORMANCE_RATIO);
+        result.add(ATTRIBUTE_COLD_WATER_TEMP);
+        result.add(ATTRIBUTE_NOMINAL_POWER);
+
+        return result;
+    }
+
+    @Override
+    public Object getAttributeValue(String attributeName) {
+        switch (attributeName) {
+            case ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT:
+                return mVolumeOfWaterToHeat;
+            case ATTRIBUTE_HOT_WATER_TEMP:
+                return mHotWaterTemperature;
+            case ATTRIBUTE_PERFORMANCE_RATIO:
+                return mPerformanceRatio;
+            case ATTRIBUTE_COLD_WATER_TEMP:
+                return mColdWaterTemperature;
+            case ATTRIBUTE_NOMINAL_POWER:
+                return mNominalPower;
+            default:
+                return 0;
+        }
+    }
+
+    public boolean setAttributeValue(String attributeName, Object attributeValue) {
+        switch (attributeName) {
+            case ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT:
+                if (attributeValue instanceof Double) {
+                    this.mVolumeOfWaterToHeat = (Double) attributeValue;
+                    return true;
+                }
+                return false;
+            case ATTRIBUTE_HOT_WATER_TEMP:
+                if (attributeValue instanceof Double) {
+                    this.mHotWaterTemperature = (Double) attributeValue;
+                    return true;
+                }
+                return false;
+            case ATTRIBUTE_PERFORMANCE_RATIO:
+                if (attributeValue instanceof Double) {
+                    this.mPerformanceRatio = (Double) attributeValue;
+                    return true;
+                }
+                return false;
+            case ATTRIBUTE_COLD_WATER_TEMP:
+                if (attributeValue instanceof Double) {
+                    this.mColdWaterTemperature = (Double) attributeValue;
+                    return true;
+                }
+                return false;
+            default:
+                return false;
+        }
     }
 }

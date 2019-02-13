@@ -19,9 +19,9 @@ public class ElectricWaterHeaterTypeTest {
         double maximumVolume = 150;
         double performanceRatio = 0.9;
         double nominalPower = 100;
-        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs();
 
-        Device expectedResult = new ElectricWaterHeater(name, room, electricWaterHeaterSpecs);
+        Device expectedResult = new ElectricWaterHeater(name, room);
 
         Device result = electricWaterHeaterType.createDevice(name, room);
 

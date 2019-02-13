@@ -1,9 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.ProgramList;
 import pt.ipp.isep.dei.project.model.WashingMachineSpecs;
-import pt.ipp.isep.dei.project.model.WashingMachineType;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -12,19 +10,17 @@ class WashingMachineSpecsTest {
     @Test
     public void testGetTypeName() {
         //Arrange
-        int capacity = 20;
-        double nominalPower = 30;
-        ProgramList programList = new ProgramList();
-        WashingMachineType washingMachineType = new WashingMachineType();
+        WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs();
 
         String expectedResult = "Washing Machine";
 
         //Act
-        String result = washingMachineType.getTypeName();
+        String result = washingMachineSpecs.getTypeName();
 
         //Assert
         assertEquals(expectedResult, result);
     }
+    /*
 
     @Test
     public void testGetNominalPower() {
@@ -234,4 +230,5 @@ class WashingMachineSpecsTest {
         assertEquals(result, expectedResult);
 
     }
+    */
 }

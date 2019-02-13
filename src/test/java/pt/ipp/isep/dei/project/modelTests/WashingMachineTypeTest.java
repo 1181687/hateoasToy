@@ -16,9 +16,9 @@ public class WashingMachineTypeTest {
         int capacity = 20;
         double nominalPower = 30;
         ProgramList programList = new ProgramList();
-        WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
+        //WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
 
-        Device expectedResult = new WashingMachine(name, room, washingMachineSpecs);
+        Device expectedResult = new WashingMachine(name, room);
 
         Device result = washingMachineType.createDevice(name, room);
 

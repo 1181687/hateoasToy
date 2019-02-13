@@ -2,7 +2,14 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LampSpecs implements DeviceSpecs {
+    private static final String ATTRIBUTE_LUMINOUS_FLUX = "Luminous Flux";
+    private static final String ATTRIBUTE_TIME = "Time";
+    private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
+
     private String mTypeName;
     private double mLuminousFlux;
     private double mTime;
@@ -15,8 +22,12 @@ public class LampSpecs implements DeviceSpecs {
     }
 
     public LampSpecs() {
+        this.mTypeName = "Lamp";
     }
 
+    public String getTypeName() {
+        return mTypeName;
+    }
 
     /**
      * get Method
@@ -121,5 +132,55 @@ public class LampSpecs implements DeviceSpecs {
     @Override
     public int getNumberOfAttributes() {
         return 2;
+    }
+
+    @Override
+    public List<String> getAttributeToString() {
+        List<String> result = new ArrayList<>();
+        result.add(ATTRIBUTE_LUMINOUS_FLUX);
+        result.add(ATTRIBUTE_TIME);
+        result.add(ATTRIBUTE_NOMINAL_POWER);
+
+        return result;
+    }
+
+    @Override
+    public Object getAttributeValue(String attributeName) {
+        switch (attributeName) {
+            case ATTRIBUTE_LUMINOUS_FLUX:
+                return mLuminousFlux;
+            case ATTRIBUTE_TIME:
+                return mTime;
+            case ATTRIBUTE_NOMINAL_POWER:
+                return mNominalPower;
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public boolean setAttributeValue(String attributeName, Object attributeValue) {
+        switch (attributeName) {
+            case ATTRIBUTE_LUMINOUS_FLUX:
+                if (attributeValue instanceof Double) {
+                    this.mLuminousFlux = (Double) attributeValue;
+                    return true;
+                }
+                return false;
+            case ATTRIBUTE_TIME:
+                if (attributeValue instanceof Double) {
+                    this.mTime = (Double) attributeValue;
+                    return true;
+                }
+                return false;
+            case ATTRIBUTE_NOMINAL_POWER:
+                if (attributeValue instanceof Double) {
+                    this.mNominalPower = (Double) attributeValue;
+                    return true;
+                }
+                return false;
+            default:
+                return false;
+        }
     }
 }

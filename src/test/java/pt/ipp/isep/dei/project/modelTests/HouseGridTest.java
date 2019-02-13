@@ -213,13 +213,13 @@ public class HouseGridTest {
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
         FridgeSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        Device dev = new Fridge("Fridge1", room, deviceSpecs);
+        Device dev = new Fridge("Fridge1", room);
 
 
         double luminousFlux = 10.0;
         double nominalPower1 = 0.0;
         LampSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Lamp("Lamp1", room, deviceSpecs1);
+        Device dev1 = new Lamp("Lamp1", room);
 
         room.addDevice(dev);
         room.addDevice(dev1);

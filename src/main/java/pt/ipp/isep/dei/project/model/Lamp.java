@@ -6,16 +6,16 @@ import java.util.*;
 public class Lamp implements Device, Measurable {
     private String mName;
     private Room mLocation;
-    private LampSpecs mSpecs;
-    private LampType mType;
+    private LampSpecs mSpec;
     private List<Readings> mReadings;
     private boolean mIsActive;
     private LocalDateTime mDeactivationDate;
 
-    public Lamp(String name, Room location, LampSpecs specs) {
+    public Lamp(String name, Room location) {
         this.mName = name;
+        this.mLocation = location;
         this.mLocation.addDevice(this);
-        this.mSpecs = specs;
+        this.mSpec = new LampSpecs();
         this.mIsActive = true;
     }
 
@@ -26,7 +26,7 @@ public class Lamp implements Device, Measurable {
      */
     @Override
     public double getNominalPower() {
-        return this.mSpecs.getNominalPower();
+        return this.mSpec.getNominalPower();
     }
 
     /**
@@ -53,7 +53,7 @@ public class Lamp implements Device, Measurable {
      * @return String
      */
     public String getType() {
-        return this.mType.getTypeName();
+        return this.mSpec.getTypeName();
     }
 
     /**
@@ -62,7 +62,7 @@ public class Lamp implements Device, Measurable {
      * @return Energy consumption of the device in a given day.
      */
     public double getEnergyConsumptionInADay() {
-        return this.mSpecs.getEnergyConsumptionInADay();
+        return this.mSpec.getEnergyConsumptionInADay();
     }
 
 
@@ -103,7 +103,7 @@ public class Lamp implements Device, Measurable {
      * @return String with the attributes.
      */
     public String getDevSpecsAttributesToString() {
-        return this.mSpecs.getAttributesToString();
+        return this.mSpec.getAttributesToString();
     }
 
     /**
@@ -128,7 +128,7 @@ public class Lamp implements Device, Measurable {
      * @return the position of an attribute and the value of it.
      */
     public boolean setAttributesDevType(int attribute, double value) {
-        return this.mSpecs.setAttribute(attribute, value);
+        return this.mSpec.setAttribute(attribute, value);
     }
 
     /**
@@ -165,7 +165,7 @@ public class Lamp implements Device, Measurable {
      * @return the number of attributes.
      */
     public int getNumberOfSpecsAttributes() {
-        return this.mSpecs.getNumberOfAttributes();
+        return this.mSpec.getNumberOfAttributes();
     }
 
     /**
@@ -257,5 +257,10 @@ public class Lamp implements Device, Measurable {
             hmap.put(readings.getDateTime(), readings.getValue());
         }
         return hmap;
+    }
+
+    @Override
+    public DeviceSpecs getSpecs() {
+        return this.mSpec;
     }
 }

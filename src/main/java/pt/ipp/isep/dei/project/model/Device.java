@@ -163,4 +163,6 @@ public interface Device extends Measurable {
 
     Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate);
 
+    DeviceSpecs getSpecs();
+
 }

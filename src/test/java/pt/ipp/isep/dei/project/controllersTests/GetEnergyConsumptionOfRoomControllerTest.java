@@ -149,7 +149,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         double luminousFlux = 10.0;
         double nominalPower1 = 1.0;
         LampSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Lamp("Lamp1", room, deviceSpecs1);
+        Device dev1 = new Lamp("Lamp1", room);
 
         house.addRoom(room);
         room.addDevice(dev1);
@@ -196,7 +196,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         FridgeSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
-        Device device = new Fridge("Fridgerator", room, fridge);
+        Device device = new Fridge("Fridgerator", room);
 
         // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -242,7 +242,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         FridgeSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
-        Device device = new Fridge("Fridgerator", room, fridge);
+        Device device = new Fridge("Fridgerator", room);
 
         // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -288,7 +288,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         FridgeSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
-        Device device = new Fridge("Fridgerator", room, fridge);
+        Device device = new Fridge("Fridgerator", room);
 
         // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);

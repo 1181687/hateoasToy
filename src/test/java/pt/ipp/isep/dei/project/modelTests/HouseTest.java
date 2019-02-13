@@ -1742,7 +1742,7 @@ public class HouseTest {
 
 
         //Act
-        int result = house.getmMeteringPeriodGrid();
+        int result = house.getMeteringPeriodGrid();
 
         //Assert
         assertEquals(expectedResult, result);

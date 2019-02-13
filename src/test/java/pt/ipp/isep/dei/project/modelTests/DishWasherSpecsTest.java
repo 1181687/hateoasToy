@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.DishWasherSpecs;
-import pt.ipp.isep.dei.project.model.DishWasherType;
 import pt.ipp.isep.dei.project.model.ProgramList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,16 +10,12 @@ public class DishWasherSpecsTest {
     @Test
     public void testGetTypeName() {
         //Arrange
-        int capacity = 20;
-        double nominalPower = 30;
-        ProgramList programList = new ProgramList();
-        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(capacity, nominalPower, programList);
-        DishWasherType dishWasherType = new DishWasherType();
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs();
 
         String expectedResult = "Dish Washer";
 
         //Act
-        String result = dishWasherType.getTypeName();
+        String result = dishWasherSpecs.getTypeName();
 
         //Assert
         assertEquals(expectedResult, result);

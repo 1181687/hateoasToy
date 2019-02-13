@@ -6,19 +6,20 @@ import java.util.*;
 public class Fridge implements Device, Measurable {
     private String mName;
     private Room mLocation;
-    private FridgeSpecs mSpecs;
-    private FridgeType mType;
+    private FridgeSpecs mSpec;
     private List<Readings> mReadings;
     private boolean mIsActive;
     private LocalDateTime mDeactivationDate;
 
-    public Fridge(String mName, Room mLocation, FridgeSpecs mSpecs) {
-        this.mName = mName;
+    public Fridge(String name, Room location) {
+        this.mName = name;
+        this.mLocation = location;
         this.mLocation.addDevice(this);
-        this.mSpecs = mSpecs;
-        this.mType = mType;
+        this.mSpec = new FridgeSpecs();
         this.mIsActive = true;
+        this.mReadings = new ArrayList<>();
     }
+
 
     /**
      * method that get the nominal power of the devices.
@@ -27,7 +28,7 @@ public class Fridge implements Device, Measurable {
      */
     @Override
     public double getNominalPower() {
-        return this.mSpecs.getNominalPower();
+        return this.mSpec.getNominalPower();
     }
 
     /**
@@ -54,7 +55,7 @@ public class Fridge implements Device, Measurable {
      * @return String
      */
     public String getType() {
-        return this.mType.getTypeName();
+        return this.mSpec.getTypeName();
     }
 
     /**
@@ -63,7 +64,7 @@ public class Fridge implements Device, Measurable {
      * @return Energy consumption of the device in a given day.
      */
     public double getEnergyConsumptionInADay() {
-        return this.mSpecs.getEnergyConsumptionInADay();
+        return this.mSpec.getEnergyConsumptionInADay();
     }
 
 
@@ -104,7 +105,7 @@ public class Fridge implements Device, Measurable {
      * @return String with the attributes.
      */
     public String getDevSpecsAttributesToString() {
-        return this.mSpecs.getAttributesToString();
+        return this.mSpec.getAttributesToString();
     }
 
     /**
@@ -129,7 +130,7 @@ public class Fridge implements Device, Measurable {
      * @return the position of an attribute and the value of it.
      */
     public boolean setAttributesDevType(int attribute, double value) {
-        return this.mSpecs.setAttribute(attribute, value);
+        return this.mSpec.setAttribute(attribute, value);
     }
 
     /**
@@ -166,7 +167,7 @@ public class Fridge implements Device, Measurable {
      * @return the number of attributes.
      */
     public int getNumberOfSpecsAttributes() {
-        return this.mSpecs.getNumberOfAttributes();
+        return this.mSpec.getNumberOfAttributes();
     }
 
     /**
@@ -258,5 +259,10 @@ public class Fridge implements Device, Measurable {
             hmap.put(readings.getDateTime(), readings.getValue());
         }
         return hmap;
+    }
+
+    @Override
+    public DeviceSpecs getSpecs() {
+        return this.mSpec;
     }
 }

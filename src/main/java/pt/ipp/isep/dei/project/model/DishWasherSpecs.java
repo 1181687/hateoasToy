@@ -2,7 +2,14 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class DishWasherSpecs implements DeviceSpecs {
+    private static final String ATTRIBUTE_CAPACITY = "Capacity";
+    private static final String ATTRIBUTE_DURATION = "Duration";
+    private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
+
     private String mTypeName;
     private int mCapacity;
     private double mDuration;
@@ -17,11 +24,16 @@ public class DishWasherSpecs implements DeviceSpecs {
     }
 
     public DishWasherSpecs() {
+        this.mTypeName = "Dish Washer";
     }
 
+    public String getTypeName() {
+        return mTypeName;
+    }
 
     /**
      * get method
+     *
      * @return energy consumption
      */
     public double getEnergyConsumptionInADay() {
@@ -31,6 +43,7 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * get method
+     *
      * @return nominal power
      */
     @Override
@@ -40,6 +53,7 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * set method
+     *
      * @param capacity
      * @return
      */
@@ -53,6 +67,7 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * set method to Nominal Power
+     *
      * @param nominalPower
      * @return
      */
@@ -66,6 +81,7 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * method that get the attributes by strings.
+     *
      * @return an attribute of the Dish Washer.
      */
     public String getAttributesToString() {
@@ -77,6 +93,7 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * method that set a value of an attribute by a position.
+     *
      * @param attribute
      * @param value
      * @return the attributes with new value if true. If not, return false.
@@ -96,11 +113,62 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * method that get the number of the attributes of the device.
+     *
      * @return the number of attributes.
      */
     @Override
     public int getNumberOfAttributes() {
         return 2;
+    }
+
+    @Override
+    public List<String> getAttributeToString() {
+        List<String> result = new ArrayList<>();
+        result.add(ATTRIBUTE_CAPACITY);
+        result.add(ATTRIBUTE_DURATION);
+        result.add(ATTRIBUTE_NOMINAL_POWER);
+
+        return result;
+    }
+
+    @Override
+    public Object getAttributeValue(String attributeName) {
+        switch (attributeName) {
+            case ATTRIBUTE_CAPACITY:
+                return mCapacity;
+            case ATTRIBUTE_DURATION:
+                return mDuration;
+            case ATTRIBUTE_NOMINAL_POWER:
+                return mNominalPower;
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public boolean setAttributeValue(String attributeName, Object attributeValue) {
+        switch (attributeName) {
+            case ATTRIBUTE_CAPACITY:
+                if (attributeValue instanceof Integer) {
+                    this.mCapacity = (Integer) attributeValue;
+                    return true;
+                }
+                return false;
+            case ATTRIBUTE_DURATION:
+                if (attributeValue instanceof Double) {
+                    this.mDuration = (Double) attributeValue;
+                    return true;
+                }
+                return false;
+            case ATTRIBUTE_NOMINAL_POWER:
+                if (attributeValue instanceof Double) {
+                    this.mNominalPower = (Double) attributeValue;
+                    return true;
+                }
+                return false;
+            default:
+                return false;
+        }
     }
 
 

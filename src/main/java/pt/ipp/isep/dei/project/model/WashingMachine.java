@@ -8,17 +8,17 @@ public class WashingMachine implements Device, Measurable {
     private String mName;
     private Room mLocation;
     private WashingMachineSpecs mSpec;
-    private WashingMachineType mType;
-    private List<Readings> mReadingsList = new ArrayList<>();
+    private List<Readings> mReadingsList;
     private boolean mIsActive;
     private LocalDateTime mDeactivationDate;
 
-    public WashingMachine(String name, Room location, WashingMachineSpecs spec) {
-        this.mName = mName;
-        this.mSpec = mSpec;
-        this.mType = mType;
+    public WashingMachine(String name, Room location) {
+        this.mName = name;
+        this.mLocation = location;
+        this.mSpec = new WashingMachineSpecs();
         this.mLocation.addDevice(this);
         this.mIsActive = true;
+        this.mReadingsList = new ArrayList<>();
     }
 
     /**
@@ -58,7 +58,7 @@ public class WashingMachine implements Device, Measurable {
      */
     @Override
     public String getType() {
-        return mType.getTypeName();
+        return mSpec.getTypeName();
     }
 
     /**
@@ -264,5 +264,10 @@ public class WashingMachine implements Device, Measurable {
             hmap.put(readings.getDateTime(), readings.getValue());
         }
         return hmap;
+    }
+
+    @Override
+    public DeviceSpecs getSpecs() {
+        return this.mSpec;
     }
 }

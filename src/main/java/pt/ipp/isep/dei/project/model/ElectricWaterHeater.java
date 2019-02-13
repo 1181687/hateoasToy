@@ -6,18 +6,18 @@ import java.util.*;
 public class ElectricWaterHeater implements Device, Measurable {
     private String mName;
     private Room mLocation;
-    private ElectricWaterHeaterSpecs mSpecs;
-    private ElectricWaterHeaterType mType;
+    private ElectricWaterHeaterSpecs mSpec;
     private List<Readings> mReadings;
     private boolean mIsActive;
     private LocalDateTime mDeactivationDate;
 
-    public ElectricWaterHeater(String mName, Room mLocation, ElectricWaterHeaterSpecs mSpecs) {
-        this.mName = mName;
+    public ElectricWaterHeater(String name, Room location) {
+        this.mName = name;
+        this.mLocation = location;
         this.mLocation.addDevice(this);
-        this.mSpecs = mSpecs;
-        this.mType = mType;
+        this.mSpec = new ElectricWaterHeaterSpecs();
         this.mIsActive = true;
+        this.mReadings = new ArrayList<>();
     }
 
     /**
@@ -27,7 +27,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      */
     @Override
     public double getNominalPower() {
-        return this.mSpecs.getNominalPower();
+        return this.mSpec.getNominalPower();
     }
 
     /**
@@ -54,7 +54,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return String
      */
     public String getType() {
-        return this.mType.getTypeName();
+        return this.mSpec.getTypeName();
     }
 
     /**
@@ -63,7 +63,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return Energy consumption of the device in a given day.
      */
     public double getEnergyConsumptionInADay() {
-        return this.mSpecs.getEnergyConsumptionInADay();
+        return this.mSpec.getEnergyConsumptionInADay();
     }
 
 
@@ -104,7 +104,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return String with the attributes.
      */
     public String getDevSpecsAttributesToString() {
-        return this.mSpecs.getAttributesToString();
+        return this.mSpec.getAttributesToString();
     }
 
     /**
@@ -129,7 +129,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return the position of an attribute and the value of it.
      */
     public boolean setAttributesDevType(int attribute, double value) {
-        return this.mSpecs.setAttribute(attribute, value);
+        return this.mSpec.setAttribute(attribute, value);
     }
 
     /**
@@ -166,7 +166,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return the number of attributes.
      */
     public int getNumberOfSpecsAttributes() {
-        return this.mSpecs.getNumberOfAttributes();
+        return this.mSpec.getNumberOfAttributes();
     }
 
     /**
@@ -258,5 +258,10 @@ public class ElectricWaterHeater implements Device, Measurable {
             hmap.put(readings.getDateTime(), readings.getValue());
         }
         return hmap;
+    }
+
+    @Override
+    public DeviceSpecs getSpecs() {
+        return this.mSpec;
     }
 }

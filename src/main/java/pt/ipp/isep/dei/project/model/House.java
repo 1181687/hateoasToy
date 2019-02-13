@@ -44,7 +44,7 @@ public class House {
         }
     }
 
-    public int getmMeteringPeriodGrid() {
+    public int getMeteringPeriodGrid() {
         return mMeteringPeriodGrid;
     }
 
