@@ -15,8 +15,8 @@ class EstimateEnergyOfWaterHeaterControllerTest {
     private House houseEdificioB;
     private Room room;
     private Room room1;
-    private Device cenas1;
-    private Device cenas2;
+    private Device device1;
+    private Device device2;
 
     @BeforeEach
     public void StartUp() {
@@ -50,23 +50,10 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         houseEdificioB.addRoom(room1);
 
         // ElectricWaterHeaters Instantiation
-        double hotWaterTemp = 100;
-        double maximumVolume = 100;
-        double performanceRatio = 0.9;
-        double nominalPower = 50;
         ElectricWaterHeaterType EWHType = new ElectricWaterHeaterType();
-        cenas1 = EWHType.createDevice("Bosch Tronic 3000", room);
-        //ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
-        //ElectricWaterHeater EWH1 = new ElectricWaterHeater("Bosch Tronic 3000", room, electricWaterHeaterSpecs);
+        device1 = EWHType.createDevice("Bosch Tronic 3000", room);
 
-        double hotWaterTemp1 = 100;
-        double maximumVolume1 = 100;
-        double performanceRatio1 = 0.7;
-        double nominalPower1 = 50;
-
-        cenas2 = EWHType.createDevice("Bosch Tronic Coiso", room1);
-        //ElectricWaterHeaterSpecs electricWaterHeaterSpecs1 = new ElectricWaterHeaterSpecs(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
-        //ElectricWaterHeater EWH2 = new ElectricWaterHeater("Bosch Tronic Coiso", room1, electricWaterHeaterSpecs1);
+        device2 = EWHType.createDevice("Bosch Tronic Coiso", room1);
 
         this.controller = new EstimateEnergyOfWaterHeaterController(houseEdificioB);
     }
@@ -96,15 +83,21 @@ class EstimateEnergyOfWaterHeaterControllerTest {
     @Test
     public void getEnergyConsumptionTest() {
         // Arrange
+        double nominalPower = 0.5;
+        double performanceRatio = 0.8;
+        double hotWaterTemperature = 70;
+        device1.getSpecs().setAttributeValue("Nominal Power", nominalPower);
+        device1.getSpecs().setAttributeValue("Performance Ratio", performanceRatio);
+        device1.getSpecs().setAttributeValue("Hot-Water Temperature", hotWaterTemperature);
         double coldWaterTemp = 30;
-        controller.setColdWaterTemp(1, coldWaterTemp);
+        device1.getSpecs().setAttributeValue("Cold-Water Temperature", coldWaterTemp);
         double volumeOfWaterToHeat = 70;
-        controller.setVolumeOfWaterToHeat(1, volumeOfWaterToHeat);
+        device1.getSpecs().setAttributeValue("Volume Of Water To Heat", volumeOfWaterToHeat);
 
-        double expectedResult = 3.99;
+        double expectedResult = 2.61;
 
         // Act
-        double result = controller.getEnergyConsumptionOfAWaterHeater(1);
+        double result = controller.getEnergyConsumptionOfAWaterHeater(0);
 
         // Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -113,17 +106,29 @@ class EstimateEnergyOfWaterHeaterControllerTest {
     @Test
     public void getTotalEnergyConsumptionTest() {
         // Arrange
+        double nominalPower = 0.5;
+        double performanceRatio = 0.8;
+        double hotWaterTemperature = 70;
+        device1.getSpecs().setAttributeValue("Nominal Power", nominalPower);
+        device1.getSpecs().setAttributeValue("Performance Ratio", performanceRatio);
+        device1.getSpecs().setAttributeValue("Hot-Water Temperature", hotWaterTemperature);
         double coldWaterTemp = 30;
-        controller.setColdWaterTemp(0, coldWaterTemp);
+        device1.getSpecs().setAttributeValue("Cold-Water Temperature", coldWaterTemp);
         double volumeOfWaterToHeat = 70;
-        controller.setVolumeOfWaterToHeat(0, volumeOfWaterToHeat);
+        device1.getSpecs().setAttributeValue("Volume Of Water To Heat", volumeOfWaterToHeat);
 
         double coldWaterTemp1 = 30;
-        controller.setColdWaterTemp(1, coldWaterTemp1);
+        double nominalPower1 = 1.1;
+        double performanceRatio1 = 0.9;
+        double hotWaterTemperature1 = 70;
+        device2.getSpecs().setAttributeValue("Nominal Power", nominalPower1);
+        device2.getSpecs().setAttributeValue("Performance Ratio", performanceRatio1);
+        device2.getSpecs().setAttributeValue("Hot-Water Temperature", hotWaterTemperature1);
+        device2.getSpecs().setAttributeValue("Cold-Water Temperature", coldWaterTemp1);
         double volumeOfWaterToHeat1 = 70;
-        controller.setVolumeOfWaterToHeat(1, volumeOfWaterToHeat1);
+        device2.getSpecs().setAttributeValue("Volume Of Water To Heat", volumeOfWaterToHeat1);
 
-        double expectedResult = 9.12;
+        double expectedResult = 5.54;
 
         // Act
         double result = controller.getTotalEnergyConsumptionOfAllDevicesOfAType();
