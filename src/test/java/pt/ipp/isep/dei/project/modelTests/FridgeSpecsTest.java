@@ -11,11 +11,7 @@ public class FridgeSpecsTest {
     public void testGetTypeName() {
         //Arrange
         // FridgeSpecs Instantiation
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        FridgeSpecs fridgeSpecs = new FridgeSpecs();
 
         String expectedResult = "Fridge";
 

@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Device1;
+import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
 
@@ -122,7 +122,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @param position
      * @return a postiion.
      */
-    public Device1 getDevice(int position) {
+    public Device getDevice(int position) {
         return this.mRoom.getDeviceList().get(position);
     }
 

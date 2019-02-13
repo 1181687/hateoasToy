@@ -11,7 +11,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class GetEnergyConsumptionDevice1ControllerTest {
+class GetEnergyConsumptionDeviceControllerTest {
     private GetEnergyConsumptionDeviceController ctrl;
     private House house;
     private Room room;
@@ -47,24 +47,23 @@ class GetEnergyConsumptionDevice1ControllerTest {
         house.addRoom(room1);
 
         // FridgeSpecs Instantiation
-        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
+        FridgeSpecs fridgeSpecs = new FridgeSpecs(35, 20, 1000, 10);
 
         // ElectricWaterHeaterSpecs Instantiation
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(50, 150,
-                0.9, 100);
-
-        // Device1 Instantiation
-        Device1 device0 = new Device1("Fridgeratah V14", room0, fridge);
+        //ElectricWaterHeaterSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(50, 150, 0.9, 100);
+/*
+        // Device Instantiation
+        Fridge device0 = new Fridge("Fridgeratah V14", room0, fridgeSpecs);
         room0.addDevice(device0);
-        Device1 device1 = new Device1("Fridgeratah V15", room0, fridge);
-        room0.addDevice(device1);
-        Device1 device2 = new Device1("Fridgeratah V16", room0, fridge);
+        Fridge Device = new Fridge("Fridgeratah V15", room0, fridgeSpecs);
+        room0.addDevice(Device);
+        Fridge device2 = new Fridge("Fridgeratah V16", room0, fridgeSpecs);
         room0.addDevice(device2);
-        Device1 device3 = new Device1("Bosh Tronic 3000", room1, electricWaterHeater);
+        ElectricWaterHeater device3 = new ElectricWaterHeater("Bosh Tronic 3000", room1, electricWaterHeater);
         room1.addDevice(device3);
-        Device1 device4 = new Device1("Bosh Tronic 4000", room1, electricWaterHeater);
+        ElectricWaterHeater device4 = new ElectricWaterHeater("Bosh Tronic 4000", room1, electricWaterHeater);
         room1.addDevice(device4);
-
+*/
         this.ctrl = new GetEnergyConsumptionDeviceController(house);
         room = house.getRoomOfTheRoomList(0);
     }
@@ -74,11 +73,11 @@ class GetEnergyConsumptionDevice1ControllerTest {
         // Arrange
         // Controller Instantiation
         String expectedResult =
-                "1 - Device1: Fridgeratah V14, located in room: Kitchen\n" +
-                        "2 - Device1: Fridgeratah V15, located in room: Kitchen\n" +
-                        "3 - Device1: Fridgeratah V16, located in room: Kitchen\n" +
-                        "4 - Device1: Bosh Tronic 3000, located in room: Laundry\n" +
-                        "5 - Device1: Bosh Tronic 4000, located in room: Laundry\n";
+                "1 - Device: Fridgeratah V14, located in room: Kitchen\n" +
+                        "2 - Device: Fridgeratah V15, located in room: Kitchen\n" +
+                        "3 - Device: Fridgeratah V16, located in room: Kitchen\n" +
+                        "4 - Device: Bosh Tronic 3000, located in room: Laundry\n" +
+                        "5 - Device: Bosh Tronic 4000, located in room: Laundry\n";
 
         // Act
         String result = ctrl.getAllDevicesToString();

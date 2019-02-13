@@ -1,13 +1,13 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Device1;
+import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.House;
 
 import java.time.LocalDateTime;
 
 public class GetEnergyConsumptionDeviceController {
     private House mHouse;
-    private Device1 mDevice;
+    private Device mDevice;
 
     /**
      * Constructor.

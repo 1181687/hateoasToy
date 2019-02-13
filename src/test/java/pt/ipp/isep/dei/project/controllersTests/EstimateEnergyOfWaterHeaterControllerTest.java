@@ -15,6 +15,8 @@ class EstimateEnergyOfWaterHeaterControllerTest {
     private House houseEdificioB;
     private Room room;
     private Room room1;
+    private Device cenas1;
+    private Device cenas2;
 
     @BeforeEach
     public void StartUp() {
@@ -47,34 +49,34 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         houseEdificioB.addRoom(room);
         houseEdificioB.addRoom(room1);
 
+        // ElectricWaterHeaters Instantiation
+        double hotWaterTemp = 100;
+        double maximumVolume = 100;
+        double performanceRatio = 0.9;
+        double nominalPower = 50;
+        ElectricWaterHeaterType EWHType = new ElectricWaterHeaterType();
+        cenas1 = EWHType.createDevice("Bosch Tronic 3000", room);
+        //ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
+        //ElectricWaterHeater EWH1 = new ElectricWaterHeater("Bosch Tronic 3000", room, electricWaterHeaterSpecs);
+
+        double hotWaterTemp1 = 100;
+        double maximumVolume1 = 100;
+        double performanceRatio1 = 0.7;
+        double nominalPower1 = 50;
+
+        cenas2 = EWHType.createDevice("Bosch Tronic Coiso", room1);
+        //ElectricWaterHeaterSpecs electricWaterHeaterSpecs1 = new ElectricWaterHeaterSpecs(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
+        //ElectricWaterHeater EWH2 = new ElectricWaterHeater("Bosch Tronic Coiso", room1, electricWaterHeaterSpecs1);
+
         this.controller = new EstimateEnergyOfWaterHeaterController(houseEdificioB);
     }
 
     @Test
     public void getNumberOfWaterHeatersTest() {
         // Arrange
-        // ElectricWaterHeaters Instantiation
-        double hotWaterTemp = 100;
-        double maximumVolume = 100;
-        double performanceRatio = 0.9;
-        double nominalPower = 50;
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
-        Device1 device = new Device1("Bosch Tronic 3000", room, electricWaterHeater);
-        double hotWaterTemp1 = 100;
-        double maximumVolume1 = 100;
-        double performanceRatio1 = 0.7;
-        double nominalPower1 = 50;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
-        Device1 device1 = new Device1("Bosch Tronic Coiso", room1, electricWaterHeater1);
-
-        // Controller Instantiation
-        EstimateEnergyOfWaterHeaterController ctrl = new EstimateEnergyOfWaterHeaterController(houseEdificioB);
-
         int expectedResult = 2;
-
         // Act
-        int result = ctrl.getNumberOfWaterHeaters();
-
+        int result = controller.getNumberOfWaterHeaters();
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -82,20 +84,6 @@ class EstimateEnergyOfWaterHeaterControllerTest {
     @Test
     public void getNameOfWaterHeaterTest() {
         // Arrange
-        // ElectricWaterHeaters Instantiation
-        double hotWaterTemp = 100;
-        double maximumVolume = 100;
-        double performanceRatio = 0.9;
-        double nominalPower = 50;
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
-        Device1 device = new Device1("Bosch Tronic 3000", room, electricWaterHeater);
-        double hotWaterTemp1 = 100;
-        double maximumVolume1 = 100;
-        double performanceRatio1 = 0.7;
-        double nominalPower1 = 50;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
-        Device1 device1 = new Device1("Bosch Tronic Coiso", room1, electricWaterHeater1);
-
         String expectedResult = "Bosch Tronic 3000";
 
         // Act
@@ -108,20 +96,6 @@ class EstimateEnergyOfWaterHeaterControllerTest {
     @Test
     public void getEnergyConsumptionTest() {
         // Arrange
-        // ElectricWaterHeaters Instantiation
-        double hotWaterTemp = 100;
-        double maximumVolume = 100;
-        double performanceRatio = 0.9;
-        double nominalPower = 50;
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
-        Device1 device = new Device1("Bosch Tronic 3000", room, electricWaterHeater);
-        double hotWaterTemp1 = 100;
-        double maximumVolume1 = 100;
-        double performanceRatio1 = 0.7;
-        double nominalPower1 = 50;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
-        Device1 device1 = new Device1("Bosch Tronic Coiso", room1, electricWaterHeater1);
-
         double coldWaterTemp = 30;
         controller.setColdWaterTemp(1, coldWaterTemp);
         double volumeOfWaterToHeat = 70;
@@ -139,20 +113,6 @@ class EstimateEnergyOfWaterHeaterControllerTest {
     @Test
     public void getTotalEnergyConsumptionTest() {
         // Arrange
-        // ElectricWaterHeaters Instantiation
-        double hotWaterTemp = 100;
-        double maximumVolume = 100;
-        double performanceRatio = 0.9;
-        double nominalPower = 50;
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(hotWaterTemp, maximumVolume, performanceRatio, nominalPower);
-        Device1 device = new Device1("Bosch Tronic 3000", room, electricWaterHeater);
-        double hotWaterTemp1 = 100;
-        double maximumVolume1 = 100;
-        double performanceRatio1 = 0.7;
-        double nominalPower1 = 50;
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(hotWaterTemp1, maximumVolume1, performanceRatio1, nominalPower1);
-        Device1 device1 = new Device1("Bosch Tronic Coiso", room1, electricWaterHeater1);
-
         double coldWaterTemp = 30;
         controller.setColdWaterTemp(0, coldWaterTemp);
         double volumeOfWaterToHeat = 70;

@@ -20,7 +20,7 @@ public class AddGeoAreaToAnotherGeoArea {
         System.out.println(ctrl.getListToString(true));
         int firstOption = InputValidator.getIntRange(label1, 1, ctrl.getListSize());
         int positionOfFirstOption = firstOption - 1;
-        if (ctrl.checkIfGeoAreaDoesntHaveAnInsertedArea(ctrl.getGeoAreaInTheList(positionOfFirstOption))) {
+        if (ctrl.isGeoAreaInsertedinAnotherArea(ctrl.getGeoAreaInTheList(positionOfFirstOption))) {
             System.out.println("Choose the number of the geographical area in which the previous geographical area is included.");
             ctrl.removeGeoArea(ctrl.getGeoAreaInTheList(positionOfFirstOption));
             System.out.println(ctrl.getListToString(true));

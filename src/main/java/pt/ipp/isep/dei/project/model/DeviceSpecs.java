@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.model;
 
-public interface DeviceSpecs {
+import java.util.List;
 
-    String getTypeName();
+public interface DeviceSpecs {
 
     double getEnergyConsumptionInADay();
 
@@ -13,4 +13,10 @@ public interface DeviceSpecs {
     boolean setAttribute (int attribute, double value);
 
     int getNumberOfAttributes();
+
+    List<String> getAttributeToString();
+
+    Object getAttributeValue(String attributeName);
+
+    boolean setAttributeValue(String attributeName, Object attributeValue);
 }
