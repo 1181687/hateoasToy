@@ -10,10 +10,7 @@ public class DishWasherSpecsTest {
     @Test
     public void testGetTypeName() {
         //Arrange
-        int capacity = 20;
-        double nominalPower = 30;
-        ProgramList programList = new ProgramList();
-        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(capacity, nominalPower, programList);
+        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs();
 
         String expectedResult = "Dish Washer";
 

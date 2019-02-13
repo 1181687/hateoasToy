@@ -1,7 +1,10 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Device;
+import pt.ipp.isep.dei.project.model.Dimension;
+import pt.ipp.isep.dei.project.model.FridgeType;
+import pt.ipp.isep.dei.project.model.Room;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -14,15 +17,11 @@ public class FridgeTypeTest {
         String name = "Fridge Ariston 2000";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        fridgeType.createDevice(name, room);
 
-        Device1 expectedResult = new Device1(name, room, fridgeSpecs);
+        Device expectedResult = fridgeType.createDevice(name, room);
 
-        Device1 result = fridgeType.createDevice(name, room);
+        Device result = room.getDeviceByPosition(0);
 
         assertEquals(expectedResult, result);
 
