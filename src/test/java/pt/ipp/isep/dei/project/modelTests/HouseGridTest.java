@@ -378,8 +378,6 @@ public class HouseGridTest {
         LampType lampType = new LampType();
         Device dev1 = lampType.createDevice("Lamp1", room);
 
-        room.addDevice(dev1);
-
         Device expectedResult = dev1;
 
         // Act
@@ -461,7 +459,6 @@ public class HouseGridTest {
         LampType lampType = new LampType();
         Device dev1 = lampType.createDevice("Lamp1", room);
 
-        room.addDevice(dev1);
         //Act
 
         boolean result = houseGrid.isDeviceListOfAllRoomsEmpty();
