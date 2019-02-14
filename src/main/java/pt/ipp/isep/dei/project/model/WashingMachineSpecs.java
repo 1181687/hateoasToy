@@ -149,7 +149,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
         switch (attributeName) {
             case ATTRIBUTE_CAPACITY:
                 if (attributeValue instanceof Number) {
-                    setCapacity(((Number) attributeValue).doubleValue());
+                    return setCapacity(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_DURATION:
@@ -166,7 +166,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:
                 if (attributeValue instanceof Number) {
-                    setNominalPower(((Number) attributeValue).doubleValue());
+                    return setNominalPower(((Number) attributeValue).doubleValue());
                 }
                 return false;
             default:
