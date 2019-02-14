@@ -17,14 +17,6 @@ public class FridgeSpecs implements DeviceSpecs {
     private double mAnnualEnergyConsumption;
     private double mNominalPower;
 
-    public FridgeSpecs(double freezerCapacity, double refrigeratorCapacity, double annualEnergyConsumption, double nominalPower) {
-        this.mTypeName = "Fridge";
-        this.mFreezerCapacity = freezerCapacity;
-        this.mRefrigeratorCapacity = refrigeratorCapacity;
-        this.mAnnualEnergyConsumption = annualEnergyConsumption;
-        this.mNominalPower = nominalPower;
-    }
-
     public FridgeSpecs() {
         this.mTypeName = "Fridge";
     }
@@ -190,23 +182,23 @@ public class FridgeSpecs implements DeviceSpecs {
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
             case ATTRIBUTE_FREEZER_CAPACITY:
-                if (attributeValue instanceof Double) {
-                    setFreezerCapacity(attributeValue);
+                if (attributeValue instanceof Number) {
+                    setFreezerCapacity(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_REFRIGERATOR_CAPACITY:
-                if (attributeValue instanceof Double) {
-                    setRefrigeratorCapacity(attributeValue);
+                if (attributeValue instanceof Number) {
+                    setRefrigeratorCapacity(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION:
-                if (attributeValue instanceof Double) {
-                    setAnnualEnergyConsumption(attributeValue);
+                if (attributeValue instanceof Number) {
+                    setAnnualEnergyConsumption(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:
-                if (attributeValue instanceof Double) {
-                    setNominalPower(attributeValue);
+                if (attributeValue instanceof Number) {
+                    setNominalPower(((Number) attributeValue).doubleValue());
                 }
                 return false;
             default:
