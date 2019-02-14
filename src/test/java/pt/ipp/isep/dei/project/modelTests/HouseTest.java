@@ -1752,5 +1752,14 @@ public class HouseTest {
     }
 */
 
+    @Test
+    public void testGetDeviceTypes() {
+        //Arrange
+        DeviceType expectedResult = new FridgeType();
+        DeviceType result = house.getDeviceType("Fridge");
+
+        assertEquals(expectedResult, result);
+    }
+
 }
 

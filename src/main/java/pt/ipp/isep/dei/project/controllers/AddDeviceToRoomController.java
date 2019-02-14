@@ -5,7 +5,6 @@ import pt.ipp.isep.dei.project.model.*;
 import java.util.List;
 
 public class AddDeviceToRoomController {
-
     private House mHouse;
     private Device mDevice;
     private List<Device> mDeviceList;

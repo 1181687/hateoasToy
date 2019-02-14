@@ -47,7 +47,7 @@ public class House {
 
     public DeviceType getDeviceType(String type) {
         for (DeviceType deviceType : this.mDeviceTypeList) {
-            if (deviceType.toString().equals(type)) {
+            if (deviceType.getTypeName().equals(type)) {
                 return deviceType;
             }
         }
