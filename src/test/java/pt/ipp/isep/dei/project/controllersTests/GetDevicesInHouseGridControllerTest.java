@@ -149,7 +149,7 @@ public class GetDevicesInHouseGridControllerTest {
     @Test
     public void testGetDeviceListContentNameTypeLocationByHG() {
         //Arrange
-        String expectedResult = "Dish Washer\n" +
+        String expectedResult = "Dishwasher\n" +
                 "- Device Name: Washing Machine Bosh, Location: Kitchen.\n" +
                 "- Device Name: Washing Machine 625, Location: KitchenBasement.\n" +
                 "\n" +

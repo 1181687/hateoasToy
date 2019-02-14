@@ -12,7 +12,7 @@ public class DishWasherSpecsTest {
         //Arrange
         DishWasherSpecs dishWasherSpecs = new DishWasherSpecs();
 
-        String expectedResult = "Dish Washer";
+        String expectedResult = "Dishwasher";
 
         //Act
         String result = dishWasherSpecs.getTypeName();
