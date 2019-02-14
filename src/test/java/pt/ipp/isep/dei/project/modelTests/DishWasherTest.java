@@ -4,9 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.DishWasher;
+import pt.ipp.isep.dei.project.model.Readings;
 import pt.ipp.isep.dei.project.model.Room;
 
+import java.time.LocalDateTime;
+import java.util.Map;
 import java.util.Objects;
+import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,7 +18,7 @@ class DishWasherTest {
     private Room kitchen;
     private Room laundry;
     private DishWasher dishwasher;
-
+    private Map<LocalDateTime, Double> map;
 
     @BeforeEach
     public void StartUp() {
@@ -29,8 +33,24 @@ class DishWasherTest {
         dishwasher.setAttributesDevType("Capacity", 10);
         dishwasher.setAttributesDevType("Duration", 0);
         dishwasher.setAttributesDevType("Nominal Power", 1200);
-    }
 
+        // Readings
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Readings readings0 = new Readings(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Readings readings1 = new Readings(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Readings readings2 = new Readings(7, time2);
+        dishwasher.addReadingsToTheList(readings0);
+        dishwasher.addReadingsToTheList(readings1);
+        dishwasher.addReadingsToTheList(readings2);
+
+        // Maps
+        map = new TreeMap<>();
+        map.put(time0, 3.0);
+        map.put(time1, 5.0);
+        map.put(time2, 7.0);
+    }
 
     @Test
     void getNominalPowerTest() {
@@ -132,7 +152,7 @@ class DishWasherTest {
     }
 
     @Test
-    void testSetLocationTrueTest() {
+    void setLocationTrueTest() {
         // Act
         boolean result = dishwasher.setLocation(laundry);
 
@@ -141,20 +161,33 @@ class DishWasherTest {
     }
 
     @Test
-    void getDevSpecsAttributesToString() {
+    void getDevSpecsAttributesToStringTest() {
+        // Arrange
+        String expectedResult = "1 - Capacity: 10\n" +
+                "2 - Nominal Power: 1200.0\n";
+        // Act
+        String result = dishwasher.getDevSpecsAttributesToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    void getAttributesToString() {
-    }
+    void getAttributesToStringTest() {
+        // Arrange
+        String expectedResult = "1 - Name: Bosch 500 Series\n" +
+                "2 - Device Specifications \n" +
+                "3 - Location: Kitchen\n";
+        // Act
+        String result = dishwasher.getAttributesToString();
 
-    @Test
-    void setAttributesDevType() {
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
     void hashCodeTest() {
-        //Arrange
+        // Arrange
         int expectedResult = Objects.hash(dishwasher.getName());
 
         // Act
@@ -165,46 +198,119 @@ class DishWasherTest {
     }
 
     @Test
-    void equals() {
+    void equalsDifferentObjectTest() {
+        // Arrange
+        Object object = new Object();
+
+        // Act
+        boolean result = dishwasher.equals(object);
+
+        // Assert
+        assertFalse(result);
     }
 
     @Test
-    void getNumberOfSpecsAttributes() {
+    void getNumberOfSpecsAttributesTest() {
+        // Arrange
+        int expectedResult = 2;
+
+        // Act
+        int result = dishwasher.getNumberOfSpecsAttributes();
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    void getNameToString() {
+    void getNameToStringTest() {
+        // Arrange
+        String expectedResult = "Device: Bosch 500 Series, located in room: Kitchen\n";
+
+        // Act
+        String result = dishwasher.getNameToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    void addReadingsToTheList() {
+    void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
+        // Arrange
+        double expectedResult = 0;
+
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 9, 00, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 15, 00, 00);
+
+        // Act
+        double result = dishwasher.getEnergyConsumptionInAnInterval(startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
     }
 
     @Test
-    void getSumOfTheReadings() {
+    void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
+        // Arrange
+        double expectedResult = 7;
+
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+
+        // Act
+        double result = dishwasher.getEnergyConsumptionInAnInterval(startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
     }
 
     @Test
-    void getReadingsListInInterval() {
+    void getTotalEnergyConsumptionInAnIntervalWithTwoSolutionsTest() {
+        // Arrange
+        double expectedResult = 12;
+
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 0, 00, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+
+        // Act
+        double result = dishwasher.getEnergyConsumptionInAnInterval(startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
     }
 
     @Test
-    void getEnergyConsumptionInAnInterval() {
+    void getIsActiveTrueTest() {
+        // Act
+        boolean result = dishwasher.getIsActive();
+
+        // Assert
+        assertTrue(result);
     }
 
     @Test
-    void setDeactivateDevice() {
+    void getIsActiveFalseTest() {
+        // Assert
+        dishwasher.setDeactivateDevice();
+
+        // Act
+        boolean result = dishwasher.getIsActive();
+
+        // Assert
+        assertFalse(result);
     }
 
     @Test
-    void getIsActive() {
-    }
+    void getDataSeriesTest() {
+        // Assert
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
-    @Test
-    void getDataSeries() {
-    }
+        Map<LocalDateTime, Double> expectedResult = map;
 
-    @Test
-    void getSpecs() {
+        // Act
+        Map<LocalDateTime, Double> result = dishwasher.getDataSeries(time0, time2);
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 }
