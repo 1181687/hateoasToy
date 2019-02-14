@@ -17,14 +17,14 @@ public class DishWasherSpecs implements DeviceSpecs {
     private ProgramList mProgramList;
 
     public DishWasherSpecs(int capacity, double nominalPower, ProgramList programList) {
-        this.mTypeName = "Dish Washer";
+        this.mTypeName = "Dishwasher";
         this.mCapacity = capacity;
         this.mNominalPower = nominalPower;
         this.mProgramList = programList;
     }
 
     public DishWasherSpecs() {
-        this.mTypeName = "Dish Washer";
+        this.mTypeName = "Dishwasher";
     }
 
     public String getTypeName() {
@@ -155,14 +155,14 @@ public class DishWasherSpecs implements DeviceSpecs {
                 }
                 return false;
             case ATTRIBUTE_DURATION:
-                if (attributeValue instanceof Double) {
-                    this.mDuration = (Double) attributeValue;
+                if (attributeValue instanceof Number) {
+                    this.mDuration = ((Number) attributeValue).doubleValue();
                     return true;
                 }
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:
-                if (attributeValue instanceof Double) {
-                    this.mNominalPower = (Double) attributeValue;
+                if (attributeValue instanceof Number) {
+                    this.mNominalPower = ((Number) attributeValue).doubleValue();
                     return true;
                 }
                 return false;
