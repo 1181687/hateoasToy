@@ -122,7 +122,7 @@ public class DishWasher implements Device, Measurable {
 
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Name: " + mName + "\n");
-        attributes.append("2 - Device1 Specifications\n");
+        attributes.append("2 - Device Specifications \n");
         attributes.append("3 - Location: " + mLocation.getName() + "\n");
         return attributes.toString();
     }
@@ -266,6 +266,11 @@ public class DishWasher implements Device, Measurable {
         return hmap;
     }
 
+    /**
+     * TODO
+     *
+     * @return
+     */
     @Override
     public DeviceSpecs getSpecs() {
         return this.mSpec;
