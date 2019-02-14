@@ -19,9 +19,6 @@ public class DishWasher implements Device, Measurable {
         this.mLocation.addDevice(this);
         this.mIsActive = true;
         this.mReadingsList = new ArrayList<>();
-        if (validateName(name)) {
-            this.mName = name;
-        }
     }
 
     /**
@@ -90,11 +87,11 @@ public class DishWasher implements Device, Measurable {
         return true;
     }
 
-    public boolean validateName(String name) {
+    public String validateName(String name) {
         if (this.mLocation.isDeviceNameExistant(name)) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
-        return true;
+        return name;
     }
 
     /**

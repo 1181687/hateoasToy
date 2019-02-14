@@ -119,7 +119,7 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewDishWasher(String name, double nominalPower, int capacity) {
-        mDevice = mHouse.getDeviceType("Dish Washer").createDevice(name, mRoom);
+        mDevice = mHouse.getDeviceType("DishWasher").createDevice(name, mRoom);
         mDevice.setAttributesDevType("Capacity", capacity);
         mDevice.setAttributesDevType("Nominal Power", nominalPower);
         return mDevice;

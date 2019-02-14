@@ -306,6 +306,7 @@ class AddDeviceToRoomControllerTest {
     @Test
     public void testGetDeviceListContentOfARoomTest() {
         // Arrange
+        house.addRoom(kitchen);
         house.getDeviceType("Fridge").createDevice("Fridgeratah V14", kitchen);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Freezer Capacity", 5.5);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 15.5);

@@ -13,14 +13,12 @@ public class WashingMachine implements Device, Measurable {
     private LocalDateTime mDeactivationDate;
 
     public WashingMachine(String name, Room location) {
+        this.mName = name;
         this.mLocation = location;
         this.mSpec = new WashingMachineSpecs();
         this.mLocation.addDevice(this);
         this.mIsActive = true;
         this.mReadingsList = new ArrayList<>();
-        if (validateName(name)) {
-            this.mName = name;
-        }
 
     }
 
@@ -250,11 +248,11 @@ public class WashingMachine implements Device, Measurable {
         this.mDeactivationDate = LocalDateTime.now();
     }
 
-    public boolean validateName(String name) {
+    public String validateName(String name) {
         if (this.mLocation.isDeviceNameExistant(name)) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
-        return true;
+        return name;
     }
 
     /**

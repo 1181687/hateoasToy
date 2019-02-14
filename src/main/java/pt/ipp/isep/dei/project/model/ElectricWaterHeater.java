@@ -12,14 +12,12 @@ public class ElectricWaterHeater implements Device, Measurable {
     private LocalDateTime mDeactivationDate;
 
     public ElectricWaterHeater(String name, Room location) {
+        this.mName = name;
         this.mLocation = location;
         this.mLocation.addDevice(this);
         this.mSpec = new ElectricWaterHeaterSpecs();
         this.mIsActive = true;
         this.mReadings = new ArrayList<>();
-        if (validateName(name)) {
-            this.mName = name;
-        }
 
     }
 
@@ -42,11 +40,11 @@ public class ElectricWaterHeater implements Device, Measurable {
         return this.mLocation;
     }
 
-    public boolean validateName(String name) {
+    public String validateName(String name) {
         if (this.mLocation.isDeviceNameExistant(name)) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
-        return true;
+        return name;
     }
 
     /**

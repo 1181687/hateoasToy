@@ -165,6 +165,6 @@ public interface Device extends Measurable {
 
     DeviceSpecs getSpecs();
 
-    boolean validateName(String name);
+    String validateName(String name);
 
 }
