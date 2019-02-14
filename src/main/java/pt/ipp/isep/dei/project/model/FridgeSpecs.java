@@ -59,11 +59,12 @@ public class FridgeSpecs implements DeviceSpecs {
      * @param freezerCapacity capacity of freezer
      * @return capacity of freezer
      */
-    public boolean setFreezerCapacity(double freezerCapacity) {
-        if (Utils.isSameDouble(this.mFreezerCapacity, freezerCapacity)) {
+    public boolean setFreezerCapacity(Object freezerCapacity) {
+        double freezCapacity = (Double) freezerCapacity;
+        if (Utils.isSameDouble(this.mFreezerCapacity, freezCapacity)) {
             return false;
         }
-        this.mFreezerCapacity = freezerCapacity;
+        this.mFreezerCapacity = freezCapacity;
         return true;
     }
 
@@ -72,20 +73,22 @@ public class FridgeSpecs implements DeviceSpecs {
      *
      * @param refrigeratorCapacity capacity of refrigerator
      */
-    public boolean setRefrigeratorCapacity(double refrigeratorCapacity) {
-        if (Utils.isSameDouble(this.mRefrigeratorCapacity, refrigeratorCapacity)) {
+    public boolean setRefrigeratorCapacity(Object refrigeratorCapacity) {
+        double refrigCapacity = (Double) refrigeratorCapacity;
+        if (Utils.isSameDouble(this.mRefrigeratorCapacity, refrigCapacity)) {
             return false;
         }
-        this.mRefrigeratorCapacity = refrigeratorCapacity;
+        this.mRefrigeratorCapacity = refrigCapacity;
         return true;
     }
 
     /**
      * set method of the annual energy consumption
      *
-     * @param annualEnergyConsumption annual energy comsumption
+     * @param annualEnConsumption annual energy comsumption
      */
-    public boolean setAnnualEnergyConsumption(double annualEnergyConsumption) {
+    public boolean setAnnualEnergyConsumption(Object annualEnConsumption) {
+        double annualEnergyConsumption = (Double) annualEnConsumption;
         if (Utils.isSameDouble(this.mAnnualEnergyConsumption, annualEnergyConsumption)) {
             return false;
         }
@@ -96,9 +99,10 @@ public class FridgeSpecs implements DeviceSpecs {
     /**
      * set method of the nominal power.
      *
-     * @param nominalPower nominal power
+     * @param fridgeNominalPower nominal power
      */
-    public boolean setNominalPower(double nominalPower) {
+    public boolean setNominalPower(Object fridgeNominalPower) {
+        double nominalPower = (Double) fridgeNominalPower;
         if (Utils.isSameDouble(this.mNominalPower, nominalPower)) {
             return false;
         }
@@ -187,26 +191,22 @@ public class FridgeSpecs implements DeviceSpecs {
         switch (attributeName) {
             case ATTRIBUTE_FREEZER_CAPACITY:
                 if (attributeValue instanceof Double) {
-                    this.mFreezerCapacity = (Double) attributeValue;
-                    return true;
+                    setFreezerCapacity(attributeValue);
                 }
                 return false;
             case ATTRIBUTE_REFRIGERATOR_CAPACITY:
                 if (attributeValue instanceof Double) {
-                    this.mRefrigeratorCapacity = (Double) attributeValue;
-                    return true;
+                    setRefrigeratorCapacity(attributeValue);
                 }
                 return false;
             case ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION:
                 if (attributeValue instanceof Double) {
-                    this.mAnnualEnergyConsumption = (Double) attributeValue;
-                    return true;
+                    setAnnualEnergyConsumption(attributeValue);
                 }
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:
                 if (attributeValue instanceof Double) {
-                    this.mNominalPower = (Double) attributeValue;
-                    return true;
+                    setNominalPower(attributeValue);
                 }
                 return false;
             default:

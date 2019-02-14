@@ -55,11 +55,12 @@ public class LampSpecs implements DeviceSpecs {
      * @param luminousFlux
      * @return
      */
-    public boolean setLuminousFlux(double luminousFlux) {
-        if (Utils.isSameDouble(this.mLuminousFlux, luminousFlux)) {
+    public boolean setLuminousFlux(Object luminousFlux) {
+        double lumFLux = (Double) luminousFlux;
+        if (Utils.isSameDouble(this.mLuminousFlux, lumFLux)) {
             return false;
         }
-        this.mLuminousFlux = luminousFlux;
+        this.mLuminousFlux = lumFLux;
         return true;
     }
 
@@ -69,11 +70,12 @@ public class LampSpecs implements DeviceSpecs {
      * @param time
      * @return
      */
-    public boolean setTime(double time) {
-        if (Utils.isSameDouble(this.mTime, time)) {
+    public boolean setTime(Object time) {
+        double lampTime = (Double) time;
+        if (Utils.isSameDouble(this.mTime, lampTime)) {
             return false;
         }
-        this.mTime = time;
+        this.mTime = lampTime;
         return true;
     }
 
@@ -83,11 +85,12 @@ public class LampSpecs implements DeviceSpecs {
      * @param nominalPower
      * @return
      */
-    public boolean setNominalPower(double nominalPower) {
-        if (Utils.isSameDouble(this.mNominalPower, nominalPower)) {
+    public boolean setNominalPower(Object nominalPower) {
+        double lampNomPower = (Double) nominalPower;
+        if (Utils.isSameDouble(this.mNominalPower, lampNomPower)) {
             return false;
         }
-        this.mNominalPower = nominalPower;
+        this.mNominalPower = lampNomPower;
         return true;
     }
 
@@ -163,20 +166,17 @@ public class LampSpecs implements DeviceSpecs {
         switch (attributeName) {
             case ATTRIBUTE_LUMINOUS_FLUX:
                 if (attributeValue instanceof Double) {
-                    this.mLuminousFlux = (Double) attributeValue;
-                    return true;
+                    setLuminousFlux(attributeValue);
                 }
                 return false;
             case ATTRIBUTE_TIME:
                 if (attributeValue instanceof Double) {
-                    this.mTime = (Double) attributeValue;
-                    return true;
+                    setTime(attributeValue);
                 }
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:
                 if (attributeValue instanceof Double) {
-                    this.mNominalPower = (Double) attributeValue;
-                    return true;
+                    setNominalPower(attributeValue);
                 }
                 return false;
             default:
