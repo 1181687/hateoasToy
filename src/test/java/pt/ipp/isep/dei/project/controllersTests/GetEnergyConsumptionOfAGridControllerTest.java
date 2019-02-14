@@ -16,7 +16,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     private House house;
 
     @BeforeEach
-    public void StartUp(){
+    public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
@@ -39,81 +39,93 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     }
 
     @Test
-    public void checkIfGridListIsEmptyWithEmptyHouseGridListShouldReturnTrue(){
+    public void checkIfGridListIsEmptyWithEmptyHouseGridListShouldReturnTrue() {
         //Act
         boolean result = controller.isHouseGridListEmpty();
+
         //Assert
         assertTrue(result);
     }
 
     @Test
-    public void checkIfGridListIsEmptyWhenHouseGridListIsNotEmptyShouldReturnFalse(){
+    public void checkIfGridListIsEmptyWhenHouseGridListIsNotEmptyShouldReturnFalse() {
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
         house.addGrid(grid1);
+
         //Act
         boolean result = controller.isHouseGridListEmpty();
+
         //Assert
         assertFalse(result);
     }
 
     @Test
-    public void getHouseGridListLengthWhenHouseGridListHasOneGridShouldReturnOne(){
+    public void getHouseGridListLengthWhenHouseGridListHasOneGridShouldReturnOne() {
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
         house.addGrid(grid1);
 
         int expectedResult = 1;
+
         //Act
         int result = controller.getHouseGridListSize();
+
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void getHouseGridListLengthWhenHouseGridHasNoGridsShouldReturnZero(){
+    public void getHouseGridListLengthWhenHouseGridHasNoGridsShouldReturnZero() {
         //Arrange
         int expectedResult = 0;
+
         //Act
         int result = controller.getHouseGridListSize();
+
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void listHouseGridsTestWithOneHouseGridShouldShowListWithOneGrid(){
+    public void listHouseGridsTestWithOneHouseGridShouldShowListWithOneGrid() {
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
         house.addGrid(grid1);
         String expectedResult = "1 - Name: Grid 1\n";
+
         //Act
         String result = controller.getHouseGridListToString();
+
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void getHouseGridName(){
+    public void getHouseGridName() {
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
         house.addGrid(grid1);
         String expectedResult = "Grid 1";
         controller.getHouseGridByPosition(0);
+
         //Act
         String result = controller.getHouseGridName();
-        //Assert
-        assertEquals(expectedResult,result);
-    }
 
-  /*  @Test
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+}
+/*
+  @Test
     public void getEnergyConsumptionInAInterval(){
         //Arrange
         Dimension dimension = new Dimension(25, 25, 25);
         Room room1 = new Room("Room", 2, dimension);
-
-        DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
-        Device lamp = new Device("LampSpecs", room1, deviceSpecs);
-
+        String name = "Lamp IKEA";
+        LampType lampType = new LampType();
+        Device lamp = lampType.createDevice(name,room1);
+        lamp.setAttributesDevType("Nominal Power",20);
 
         String gridName = "Grid 1";
         HouseGrid grid1 = new HouseGrid(gridName);
@@ -138,10 +150,12 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         controller.getHouseGridByPosition(position);
 
         double expectedResult = 12;
+
         //Act
         double result = controller.getEnergyConsumptionInAnInterval(startTime, endTime);
 
         //Assert
         assertEquals(expectedResult, result, 0.001);
-    }*/
+    }
 }
+*/

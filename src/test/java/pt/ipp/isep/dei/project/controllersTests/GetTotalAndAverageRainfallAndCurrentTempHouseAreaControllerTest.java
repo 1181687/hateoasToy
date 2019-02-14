@@ -224,6 +224,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         this.geoArea.getSensorListInTheGeographicArea().addSensor(s1);
 
         double expectedResult = Double.NaN;
+
         //Act
         double result = this.controller.getMostRecentAvailableMeasurement();
 
@@ -257,10 +258,12 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
 
     @Test
     public void testGetmTypeTemperature() {
-        // ARRANGE
+        // Arrange
         String expectedResult = "temperature";
+
         //Act
         String result = this.controller.getTypeTemperature();
+
         //Assert
         assertEquals(expectedResult, result);
     }

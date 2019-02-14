@@ -56,12 +56,12 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         this.house.addRoom(room1);
         this.house.addRoom(room2);
 
-
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
                 "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
 
         //act
         String result = this.ctrl.getRoomListToString();
+
         //assert
         assertEquals(expectResult, result);
     }
@@ -70,6 +70,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
     public void checkIfRoomListIsEmptyTrue() {
         //act
         boolean result = this.ctrl.roomListIsEmpty();
+
         //assert
         assertTrue(result);
     }
@@ -81,11 +82,11 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
         Room room1 = new Room(name1, houseFloor1, dimension1);
-
         this.house.addRoom(room1);
 
         //act
         boolean result = this.ctrl.roomListIsEmpty();
+
         //assert
         assertFalse(result);
     }
@@ -107,8 +108,10 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         this.house.addRoom(room2);
 
         int expectResult = 2;
+
         //act
         int result = this.ctrl.getRoomListSize();
+
         //assert
         assertEquals(expectResult, result);
     }
@@ -117,8 +120,10 @@ public class GetEnergyConsumptionOfRoomControllerTest {
     public void getRoomListSizeEmptyList() {
         //arrange
         int expectResult = 0;
+
         //act
         int result = this.ctrl.getRoomListSize();
+
         //assert
         assertEquals(expectResult, result);
     }

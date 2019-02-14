@@ -20,6 +20,7 @@ public class PowerSourceTypeTest {
         int expectedResult = Objects.hash(powerSourceTypeName1);
         // Act
         int result = powerSourceType1.hashCode();
+
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -31,8 +32,10 @@ public class PowerSourceTypeTest {
         String type2 = "Battery";
         PowerSourceType powerSourceType1 = new PowerSourceType(type1);
         PowerSourceType powerSourceType2 = new PowerSourceType(type2);
+
         //Act
         boolean result = powerSourceType1.equals(powerSourceType2);
+
         //Assert
         assertTrue(result);
     }
@@ -44,8 +47,10 @@ public class PowerSourceTypeTest {
         String type2 = "Wind Generator";
         PowerSourceType powerSourceType1 = new PowerSourceType(type1);
         PowerSourceType powerSourceType2 = new PowerSourceType(type2);
+
         //Act
         boolean result = powerSourceType1.equals(powerSourceType2);
+
         //Assert
         assertFalse(result);
     }
@@ -57,8 +62,10 @@ public class PowerSourceTypeTest {
         String powerSourceName = "Wind Generator";
         PowerSourceType powerSourceType = new PowerSourceType(type1);
         PowerSource powerSource = new PowerSource(powerSourceName,powerSourceType);
+
         //Act
         boolean result = powerSourceType.equals(powerSource);
+
         //Assert
         assertFalse(result);
     }

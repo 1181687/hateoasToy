@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GeographicalAreaListTest {
 
-
     @Test
     void testaAdicionarAreaGeoAListaPositivo() {
         //Arrange
@@ -77,7 +76,7 @@ public class GeographicalAreaListTest {
 
     @Test
     public void getmListaAG() {
-
+        //Arrange
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
@@ -90,8 +89,10 @@ public class GeographicalAreaListTest {
         List<GeographicalArea> expectedResult = new ArrayList<>();
         expectedResult.add(geographicalArea);
 
+        //Act
         List<GeographicalArea> resultado = lista.getGeoAreaList();
 
+        //Assert
         assertEquals(expectedResult, resultado);
     }
 
@@ -149,6 +150,7 @@ public class GeographicalAreaListTest {
 
         String expectResult = "1 - Name: Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
                 "2 - Name: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109, Inserted in: Cidade Porto\n";
+
         //Act
         String result = listaDeAGs.getGeoAreaListToString(true);
 
@@ -310,11 +312,9 @@ public class GeographicalAreaListTest {
         boolean expectedResult = true;
 
         //Act
-
         boolean result = geographicalAreaList.checkIfGeoAreaDoesntHaveAnInsertedArea(ag3);
 
         //Assert
-
         assertEquals(expectedResult, result);
 
     }
@@ -347,11 +347,9 @@ public class GeographicalAreaListTest {
         boolean expectedResult = false;
 
         //Act
-
         boolean result = geographicalAreaList.checkIfGeoAreaDoesntHaveAnInsertedArea(ag2);
 
         //Assert
-
         assertEquals(expectedResult, result);
     }
 
@@ -387,11 +385,9 @@ public class GeographicalAreaListTest {
         boolean expectedResult = false;
 
         //Act
-
         boolean result = geographicalAreaList.checkIfGeoAreaIsinsertedInAnother(2, 0);
 
         //Assert
-
         assertEquals(expectedResult, result);
     }
 
@@ -446,20 +442,16 @@ public class GeographicalAreaListTest {
         AreaShape area3 = new AreaShape(10, 10, local);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
 
-
         geographicalAreaList.addGeoArea(ag1);
         geographicalAreaList.addGeoArea(ag2);
         geographicalAreaList.addGeoArea(ag3);
 
-
         boolean expectedResult = false;
 
         //Act
-
         boolean result = geographicalAreaList.checkIfGeoAreaIsinsertedInAnother(1, 0);
 
         //Assert
-
         assertEquals(expectedResult, result);
     }
 
@@ -497,11 +489,9 @@ public class GeographicalAreaListTest {
         boolean expectedResult = true;
 
         //Act
-
         boolean result = geographicalAreaList.checkIfGeoAreaIsinsertedInAnother(0, 2);
 
         //Assert
-
         assertEquals(expectedResult, result);
     }
 
@@ -627,8 +617,8 @@ public class GeographicalAreaListTest {
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea resultado = new GeographicalArea(nomeAG, tipo, local, area);
 
-        GeographicalArea expectedResult = lista.newGeographicalArea("Porto", "Cidade", 40.5, 50.5, 100.0, 10, 10);
         //Act
+        GeographicalArea expectedResult = lista.newGeographicalArea("Porto", "Cidade", 40.5, 50.5, 100.0, 10, 10);
 
         //Assert
         assertEquals(resultado, expectedResult);
