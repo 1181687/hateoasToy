@@ -130,7 +130,7 @@ public class Fridge implements Device, Measurable {
      * @return the position of an attribute and the value of it.
      */
     public boolean setAttributesDevType(String attribute, Object value) {
-        return this.mSpec.setAttributeValue(attribute,value);
+        return this.mSpec.setAttributeValue(attribute, value);
     }
 
     /**

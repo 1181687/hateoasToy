@@ -156,10 +156,9 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         Room room = new Room("Room", 2, dim);
 
         LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room);
+        lampType.createDevice("Lamp1", room);
 
         house.addRoom(room);
-        room.addDevice(dev1);
 
         ctrl.getRoomByPosition(0);
         // Act

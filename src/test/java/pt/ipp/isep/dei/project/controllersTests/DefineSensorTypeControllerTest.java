@@ -7,7 +7,7 @@ import pt.ipp.isep.dei.project.model.SensorTypeList;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class qDefineSensorTypeControllerTest {
+class DefineSensorTypeControllerTest {
 
     @Test
     void criarEAdicionarTipoDeSensor() {

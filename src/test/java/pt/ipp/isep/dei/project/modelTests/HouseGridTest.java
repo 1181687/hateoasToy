@@ -100,10 +100,6 @@ public class HouseGridTest {
         dev3.setAttributesDevType("Capacity", 100);
         dev3.setAttributesDevType("Nominal Power", 100);
 
-        room1.addDevice(dev1);
-        room1.addDevice(dev2);
-        room1.addDevice(dev3);
-
         //Room TWO
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
@@ -120,11 +116,6 @@ public class HouseGridTest {
         dev6.setAttributesDevType("Performance Ratio", 100);
         dev6.setAttributesDevType("Hot-Water Temperature", 100);
 
-
-        room2.addDevice(dev4);
-        room2.addDevice(dev5);
-        room2.addDevice(dev6);
-
         List<Device> expectedResult = new ArrayList<>();
         expectedResult.add(dev1);
         expectedResult.add(dev2);
@@ -132,7 +123,6 @@ public class HouseGridTest {
         expectedResult.add(dev4);
         expectedResult.add(dev5);
         expectedResult.add(dev6);
-
 
         HouseGrid housegrid = new HouseGrid("grid1");
         housegrid.attachRoom(room1);
@@ -172,10 +162,6 @@ public class HouseGridTest {
         dev3.setAttributesDevType("Capacity", 100);
         dev3.setAttributesDevType("Nominal Power", 100);
 
-        room1.addDevice(dev1);
-        room1.addDevice(dev2);
-        room1.addDevice(dev3);
-
         //Room TWO
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
@@ -195,9 +181,6 @@ public class HouseGridTest {
         dev6.setAttributesDevType("Performance Ratio", 100);
         dev6.setAttributesDevType("Hot-Water Temperature", 100);
         dev6.setAttributesDevType("Nominal Power", 100);
-        room2.addDevice(dev4);
-        room2.addDevice(dev5);
-        room2.addDevice(dev6);
 
         HouseGrid grid1 = new HouseGrid("Grid 1");
         grid1.attachRoom(room1);
@@ -259,10 +242,6 @@ public class HouseGridTest {
         LampType lampType = new LampType();
         Device dev1 = lampType.createDevice("Lamp1", room);
 
-        room.addDevice(dev);
-        room.addDevice(dev1);
-
-
         String expectedResult =
                 "1 - Name of the device: Fridge1\n" +
                         "2 - Name of the device: Lamp1\n";
@@ -294,9 +273,6 @@ public class HouseGridTest {
         LampType lampType = new LampType();
         Device dev1 = lampType.createDevice("Lamp1", room);
         Device dev2 = lampType.createDevice("Lamp2", room);
-
-        room.addDevice(dev1);
-        room.addDevice(dev2);
 
         int expectResult = 2;
         //act
@@ -373,8 +349,6 @@ public class HouseGridTest {
         //initiate Device
         LampType lampType = new LampType();
         Device dev1 = lampType.createDevice("Lamp1", room);
-
-        room.addDevice(dev1);
 
         // Act
         boolean result = room.isDeviceListEmpty();

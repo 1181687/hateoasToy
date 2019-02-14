@@ -18,6 +18,7 @@ public class ElectricWaterHeater implements Device, Measurable {
         this.mSpec = new ElectricWaterHeaterSpecs();
         this.mIsActive = true;
         this.mReadings = new ArrayList<>();
+
     }
 
     /**
@@ -37,6 +38,13 @@ public class ElectricWaterHeater implements Device, Measurable {
      */
     public Room getLocation() {
         return this.mLocation;
+    }
+
+    public String validateName(String name) {
+        if (this.mLocation.isDeviceNameExistant(name)) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
+        return name;
     }
 
     /**
