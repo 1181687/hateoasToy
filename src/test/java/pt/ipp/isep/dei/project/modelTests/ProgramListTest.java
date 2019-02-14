@@ -16,7 +16,6 @@ public class ProgramListTest {
         double energyConsumption = 1;
         Program expectedResult = new Program(programName, duration, energyConsumption);
 
-
         //Act
         Program result = programList.newProgram(programName, duration, energyConsumption);
 
@@ -33,6 +32,7 @@ public class ProgramListTest {
 
         //Act
         boolean result = programList.addProgram(program);
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -51,6 +51,7 @@ public class ProgramListTest {
 
         //Act
         boolean result = programList.addProgram(programB);
+
         //Assert
         assertEquals(expectedResult, result);
     }

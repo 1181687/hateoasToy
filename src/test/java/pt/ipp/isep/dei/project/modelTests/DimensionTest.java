@@ -17,11 +17,11 @@ public class DimensionTest {
         double length = 10.35;
         double width = 10.48;
         Dimension dim = new Dimension(height, length, width);
-
         int expectedResult = Objects.hash(height, length, width);
 
         // Act
         int result = dim.hashCode();
+
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -57,6 +57,7 @@ public class DimensionTest {
         // Act
         int result = hash1;
         int expectedResult = hash2;
+
         // Assert
         assertNotEquals(expectedResult, result);
     }
@@ -65,8 +66,10 @@ public class DimensionTest {
     void testEqualsTrueSameObj() {
         //Arrange
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
+
         //Act
         boolean result = dim.equals(dim);
+
         //Assert
         assertTrue(result);
     }
@@ -76,8 +79,10 @@ public class DimensionTest {
         //Arrange
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Dimension dim2 = new Dimension(3.5, 3.5, 3.5);
+
         //Act
         boolean result = dim.equals(dim2);
+
         //Assert
         assertTrue(result);
     }
@@ -87,8 +92,10 @@ public class DimensionTest {
         //Arrange
         Dimension dim = new Dimension(2, 3.5, 3.5);
         Dimension dim2 = new Dimension(3.5, 3.5, 3.5);
+
         //Act
         boolean result = dim.equals(dim2);
+
         //Assert
         assertFalse(result);
     }
@@ -98,8 +105,10 @@ public class DimensionTest {
         //Arrange
         Dimension dim = new Dimension(3.5, 2, 3.5);
         Dimension dim2 = new Dimension(3.5, 3.5, 3.5);
+
         //Act
         boolean result = dim.equals(dim2);
+
         //Assert
         assertFalse(result);
     }
@@ -109,8 +118,10 @@ public class DimensionTest {
         //Arrange
         Dimension dim = new Dimension(3.5, 3.5, 2);
         Dimension dim2 = new Dimension(3.5, 3.5, 3.5);
+
         //Act
         boolean result = dim.equals(dim2);
+
         //Assert
         assertFalse(result);
     }
@@ -119,10 +130,11 @@ public class DimensionTest {
     void testEqualsFalseDifTypes() {
         //Arrange
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        SensorType tipo = new SensorType("humidade");
+        SensorType type = new SensorType("humidade");
 
         //Act
-        boolean result = dim.equals(tipo);
+        boolean result = dim.equals(type);
+
         //Assert
         assertFalse(result);
     }
@@ -245,6 +257,7 @@ public class DimensionTest {
         Throwable exception = assertThrows(RuntimeException.class, () ->
                 new Dimension(height, length, width)
         );
+
         assertEquals("Please enter a valid height. Height should be greater than zero", exception.getMessage());
     }
 
@@ -257,6 +270,7 @@ public class DimensionTest {
         Throwable exception = assertThrows(RuntimeException.class, () ->
                 new Dimension(height, length, width)
         );
+
         assertEquals("Please enter a valid height. Height should be greater than zero", exception.getMessage());
     }
 
@@ -268,6 +282,7 @@ public class DimensionTest {
         Throwable exception = assertThrows(RuntimeException.class, () ->
                 new Dimension(height, length, width)
         );
+
         assertEquals("Please enter a valid height. Height should be greater than zero", exception.getMessage());
     }
 
@@ -280,6 +295,7 @@ public class DimensionTest {
         Throwable exception = assertThrows(RuntimeException.class, () ->
                 new Dimension(height, length, width)
         );
+
         assertEquals("Please enter a valid length. Length should be greater than zero", exception.getMessage());
     }
 
@@ -292,6 +308,7 @@ public class DimensionTest {
         Throwable exception = assertThrows(RuntimeException.class, () ->
                 new Dimension(height, length, width)
         );
+
         assertEquals("Please enter a valid length. Length should be greater than zero", exception.getMessage());
     }
 
@@ -303,6 +320,7 @@ public class DimensionTest {
         Throwable exception = assertThrows(RuntimeException.class, () ->
                 new Dimension(height, length, width)
         );
+
         assertEquals("Please enter a valid length. Length should be greater than zero", exception.getMessage());
     }
 
@@ -315,6 +333,7 @@ public class DimensionTest {
         Throwable exception = assertThrows(RuntimeException.class, () ->
                 new Dimension(height, length, width)
         );
+
         assertEquals("Please enter a valid width. Width should be greater than zero", exception.getMessage());
     }
 
@@ -327,6 +346,7 @@ public class DimensionTest {
         Throwable exception = assertThrows(RuntimeException.class, () ->
                 new Dimension(height, length, width)
         );
+
         assertEquals("Please enter a valid width. Width should be greater than zero", exception.getMessage());
     }
 
@@ -339,6 +359,7 @@ public class DimensionTest {
         Throwable exception = assertThrows(RuntimeException.class, () ->
                 new Dimension(height, length, width)
         );
+
         assertEquals("Please enter a valid width. Width should be greater than zero", exception.getMessage());
     }
 }

@@ -90,8 +90,10 @@ public class PowerSourceTest {
 
         PowerSource powerSource1 = new PowerSource(powerSourceName1, powerSourceType1);
         int expectedResult = Objects.hash(powerSourceName1);
+
         // Act
         int result = powerSource1.hashCode();
+
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -106,6 +108,7 @@ public class PowerSourceTest {
         Throwable exception = assertThrows(NullPointerException.class, () ->
                 new PowerSource(name,powerSourceType)
         );
+
         //Assert
         assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
     }
@@ -120,6 +123,7 @@ public class PowerSourceTest {
         Throwable exception = assertThrows(NullPointerException.class, () ->
                 new PowerSource(name,powerSourceType)
         );
+
         //Assert
         assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
     }
@@ -134,6 +138,7 @@ public class PowerSourceTest {
         Throwable exception = assertThrows(NullPointerException.class, () ->
                 new PowerSource(name,powerSourceType)
         );
+
         //Assert
         assertEquals("Please select a valid power source type", exception.getMessage());
     }

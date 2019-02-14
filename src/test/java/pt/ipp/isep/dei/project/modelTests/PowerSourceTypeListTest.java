@@ -67,6 +67,7 @@ public class PowerSourceTypeListTest {
 
         //Act
         String result = list.getPowerSourceTypeListToString();
+
         //Assert
         assertEquals(expectedResult, result);
     }

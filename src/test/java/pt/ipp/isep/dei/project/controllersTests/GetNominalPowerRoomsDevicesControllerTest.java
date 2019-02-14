@@ -54,18 +54,13 @@ class GetNominalPowerRoomsDevicesControllerTest {
         grid = new HouseGrid("Grid");
         gridTwo = new HouseGrid("Grid2");
 
-
         this.controller = new GetNominalPowerRoomsDevicesController(houseEdificioB);
-
 
     }
 
 
     @Test
     public void checkIfHouseGridListIsEmptyWithPositiveTest() {
-        //Arrange
-
-
         // Act
         boolean result = controller.isGridListEmpty();
 
@@ -77,7 +72,6 @@ class GetNominalPowerRoomsDevicesControllerTest {
     public void checkIfHouseGridListIsEmptyWithNegativeTest() {
         // Arrange
         houseEdificioB.addGrid(grid);
-
 
         // Act
         boolean result = controller.isGridListEmpty();
@@ -146,8 +140,10 @@ class GetNominalPowerRoomsDevicesControllerTest {
         controller.getHouseGridByPosition(0);
 
         Room expectResult = roomOne;
+
         //act
         Room result = controller.getRoomOfHouseGridByPosition(0);
+
         //assert
         assertEquals(expectResult, result);
     }
