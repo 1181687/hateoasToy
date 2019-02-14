@@ -75,7 +75,7 @@ class WashingMachineSpecsTest {
         int capacity = 20;
 
         boolean expectedResult = false;
-
+        this.washingMachine.setAttributesDevType(CAPACITY, capacity);
         //Act
         boolean result = this.washingMachine.setAttributesDevType(CAPACITY, capacity);
 
@@ -129,20 +129,21 @@ class WashingMachineSpecsTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-  /*
+
     @Test
     public void testGetAttributesToString() {
         //Arrange
         double capacity = 20;
         double nominalPower = 30;
-        ProgramList programList = new ProgramList();
-        WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
+
+        this.washingMachine.setAttributesDevType(CAPACITY, capacity);
+        this.washingMachine.setAttributesDevType(NOMINAL_POWER, nominalPower);
 
         String expectedResult = "1 - Capacity: 20.0\n" +
                 "2 - Nominal Power: 30.0\n";
 
         //Act
-        String result = washingMachineSpecs.getAttributesToString();
+        String result = this.washingMachine.getSpecs().getAttributesToString();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -152,25 +153,24 @@ class WashingMachineSpecsTest {
         //Arrange
         int capacity = 31;
         double nominalPower = 30;
-        ProgramList programList = new ProgramList();
-        WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
+        this.washingMachine.setAttributesDevType(CAPACITY,capacity);
+        this.washingMachine.setAttributesDevType(NOMINAL_POWER,nominalPower);
         int attribute = 1;
         double value = 20.6;
 
         boolean expectedResult = true;
         //Act
-        boolean result = washingMachineSpecs.setAttribute(attribute, value);
+        boolean result = this.washingMachine.getSpecs().setAttribute(attribute, value);
         //Assert
         assertEquals(expectedResult, result);
 
     }
-
+/*
     @Test
-    public void testSetAttributeNonexistentFalse() {
+    public void testSetAttributeNonExistentFalse() {
         //Arrange
         int capacity = 31;
         double nominalPower = 30;
-        ProgramList programList = new ProgramList();
         WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
         int attribute = 3;
         double value = 20.6;
