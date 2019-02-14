@@ -49,13 +49,6 @@ public class Fridge implements Device, Measurable {
         return this.mName;
     }
 
-    public String validateName(String name) {
-        if (this.mLocation.isDeviceNameExistant(name)) {
-            throw new RuntimeException("Name already exists. Please write a new one.");
-        }
-        return name;
-    }
-
     /**
      * method that gets the Type
      *

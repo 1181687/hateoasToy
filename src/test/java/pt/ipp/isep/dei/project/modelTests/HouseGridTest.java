@@ -221,10 +221,6 @@ public class HouseGridTest {
         LampSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
         Device dev1 = new Lamp("Lamp1", room);
 
-        room.addDevice(dev);
-        room.addDevice(dev1);
-
-
         String expectedResult =
                 "1 - Name of the device: Fridge1\n" +
                         "2 - Name of the device: Lamp1\n";

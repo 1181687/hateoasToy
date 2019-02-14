@@ -87,12 +87,6 @@ public class DishWasher implements Device, Measurable {
         return true;
     }
 
-    public String validateName(String name) {
-        if (this.mLocation.isDeviceNameExistant(name)) {
-            throw new RuntimeException("Name already exists. Please write a new one.");
-        }
-        return name;
-    }
 
     /**
      * method that set the location (room) of a added device.

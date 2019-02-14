@@ -93,9 +93,6 @@ public class GetDevicesInHouseGridControllerTest {
         washingMachine1.setAttributesDevType(ATTRIBUTE_ENERGY_CONSUMPTION, energyConsumption);
         washingMachine1.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPowerWash);
 
-        room1.addDevice(fridge1);
-        room1.addDevice(fridge2);
-        room1.addDevice(washingMachine1);
 
         //Room TWO
         String name2 = "KitchenBasement";
@@ -126,9 +123,6 @@ public class GetDevicesInHouseGridControllerTest {
         washingMachine2.setAttributesDevType(ATTRIBUTE_ENERGY_CONSUMPTION, energyConsumption);
         washingMachine2.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPowerWash);
 
-        room2.addDevice(fridge3);
-        room2.addDevice(fridge4);
-        room2.addDevice(washingMachine2);
 
         //add to Lists
 
