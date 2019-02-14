@@ -10,9 +10,9 @@ public class LampSpecsTest {
     public void getEnergyConsumptionInADayTestWithValidValues() {
         // Arrange
         // LampSpecs Instantiation
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
+        LampSpecs lampSpecs = new LampSpecs();
+        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
+        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
         lampSpecs.setTime(10.0);
 
@@ -29,10 +29,9 @@ public class LampSpecsTest {
     public void getNominalPower() {
         // Arrange
         // LampSpecs Instantiation
-
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
+        LampSpecs lampSpecs = new LampSpecs();
+        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
+        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
         double expectedResult = 100.0;
 
@@ -48,12 +47,8 @@ public class LampSpecsTest {
     public void testEmptyConstructor() {
         // Arrange
         // LampSpecs Instantiation
-
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
         LampSpecs lampSpecs = new LampSpecs();
-
-        lampSpecs.setNominalPower(nominalPower);
+        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
         double expectedResult = 100.0;
 
@@ -65,14 +60,15 @@ public class LampSpecsTest {
 
     }
 
-    @Test
+    /*@Test
     public void setmNominalPowerFalse() {
-
         // Arrange
         // LampSpecs Instantiation
         double luminousFlux = 50.0;
         double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
+        LampSpecs lampSpecs = new LampSpecs();
+        lampSpecs.setAttributeValue("Luminous Flux",50.0);
+        lampSpecs.setAttributeValue("Nominal Power",100.0);
 
         //act
         boolean result = lampSpecs.setNominalPower(100.0);
@@ -143,14 +139,13 @@ public class LampSpecsTest {
 
         assertTrue(result);
     }
-
+*/
     @Test
     public void getAttributesToString() {
-
         // Arrange
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
+        LampSpecs lampSpecs = new LampSpecs();
+        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
+        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
         String expectedResult =
                 "1 - Luminous Flux: 50.0\n" +
@@ -166,9 +161,9 @@ public class LampSpecsTest {
     @Test
     public void setAttributeTrueLuminousFlux() {
         // Arrange
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
+        LampSpecs lampSpecs = new LampSpecs();
+        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
+        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
 
         // Act
@@ -181,9 +176,9 @@ public class LampSpecsTest {
     @Test
     public void setAttributeFalseLuminousFlux() {
         // Arrange
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
+        LampSpecs lampSpecs = new LampSpecs();
+        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
+        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
 
         // Act
@@ -196,9 +191,9 @@ public class LampSpecsTest {
     @Test
     public void setAttributeTrueNominalPower() {
         // Arrange
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
+        LampSpecs lampSpecs = new LampSpecs();
+        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
+        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
 
         // Act
@@ -211,9 +206,9 @@ public class LampSpecsTest {
     @Test
     public void setAttributeFalseNominalPower() {
         // Arrange
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
+        LampSpecs lampSpecs = new LampSpecs();
+        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
+        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
 
         // Act
@@ -226,9 +221,9 @@ public class LampSpecsTest {
     @Test
     public void setAttributeFalse() {
         // Arrange
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
+        LampSpecs lampSpecs = new LampSpecs();
+        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
+        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
 
         // Act
@@ -241,9 +236,9 @@ public class LampSpecsTest {
     @Test
     public void getNumberOfAttributes() {
         // Arrange
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
+        LampSpecs lampSpecs = new LampSpecs();
+        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
+        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
 
         int expectedResult = 2;
