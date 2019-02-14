@@ -40,11 +40,12 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     /**
      * Method that sets the volume of water to be heated.
      *
-     * @param mVolumeOfWaterToHeat Volume of water to be heated.
+     * @param volumeOfWaterToHeat Volume of water to be heated.
      */
-    public boolean setVolumeOfWaterToHeat(double mVolumeOfWaterToHeat) {
-        if (mVolumeOfWaterToHeat > 0) {
-            this.mVolumeOfWaterToHeat = mVolumeOfWaterToHeat;
+    public boolean setVolumeOfWaterToHeat(Object volumeOfWaterToHeat) {
+        double volumeWater = (Double) volumeOfWaterToHeat;
+        if (volumeWater > 0) {
+            this.mVolumeOfWaterToHeat = volumeWater;
             return true;
         }
         return false;
@@ -55,9 +56,10 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      *
      * @param coldWaterTemperature Cold-water temperature to be used.
      */
-    public boolean setColdWaterTemperature(double coldWaterTemperature) {
-        if (coldWaterTemperature < this.mHotWaterTemperature) {
-            this.mColdWaterTemperature = coldWaterTemperature;
+    public boolean setColdWaterTemperature(Object coldWaterTemperature) {
+        double cwt = (Double) coldWaterTemperature;
+        if (cwt < this.mHotWaterTemperature) {
+            this.mColdWaterTemperature = cwt;
             return true;
         }
         return false;
@@ -93,11 +95,12 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      * @param hotWaterTemperature
      * @return false if is the same value. Return true if not, and save the new value.
      */
-    public boolean setHotWaterTemperature(double hotWaterTemperature) {
-        if (Utils.isSameDouble(this.mHotWaterTemperature, hotWaterTemperature)) {
+    public boolean setHotWaterTemperature(Object hotWaterTemperature) {
+        double hwt = (Double) hotWaterTemperature;
+        if (Utils.isSameDouble(this.mHotWaterTemperature, hwt)) {
             return false;
         }
-        this.mHotWaterTemperature = hotWaterTemperature;
+        this.mHotWaterTemperature = hwt;
         return true;
     }
 
@@ -108,11 +111,12 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      * @param performanceRatio
      * @return false if is the same value. Return true if not, and save the new value.
      */
-    public boolean setPerformanceRatio(double performanceRatio) {
-        if (Utils.isSameDouble(this.mPerformanceRatio, performanceRatio)) {
+    public boolean setPerformanceRatio(Object performanceRatio) {
+        double perfRatio = (Double) performanceRatio;
+        if (Utils.isSameDouble(this.mPerformanceRatio, perfRatio)) {
             return false;
         }
-        this.mPerformanceRatio = performanceRatio;
+        this.mPerformanceRatio = perfRatio;
         return true;
     }
 
@@ -122,11 +126,12 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      * @param nominalPower
      * @return false if is the same value. Return true if not, and save the new value.
      */
-    public boolean setNominalPower(double nominalPower) {
-        if (Utils.isSameDouble(this.mNominalPower, nominalPower)) {
+    public boolean setNominalPower(Object nominalPower) {
+        double nomPower = (Double) nominalPower;
+        if (Utils.isSameDouble(this.mNominalPower, nomPower)) {
             return false;
         }
-        this.mNominalPower = nominalPower;
+        this.mNominalPower = nomPower;
         return true;
     }
 
@@ -213,26 +218,27 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         switch (attributeName) {
             case ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT:
                 if (attributeValue instanceof Double) {
-                    this.mVolumeOfWaterToHeat = (Double) attributeValue;
-                    return true;
+                    setVolumeOfWaterToHeat(attributeValue);
                 }
                 return false;
             case ATTRIBUTE_HOT_WATER_TEMP:
                 if (attributeValue instanceof Double) {
-                    this.mHotWaterTemperature = (Double) attributeValue;
-                    return true;
+                    setHotWaterTemperature(attributeValue);
                 }
                 return false;
             case ATTRIBUTE_PERFORMANCE_RATIO:
                 if (attributeValue instanceof Double) {
-                    this.mPerformanceRatio = (Double) attributeValue;
-                    return true;
+                    setPerformanceRatio(attributeValue);
                 }
                 return false;
             case ATTRIBUTE_COLD_WATER_TEMP:
                 if (attributeValue instanceof Double) {
-                    this.mColdWaterTemperature = (Double) attributeValue;
-                    return true;
+                    setColdWaterTemperature(attributeValue);
+                }
+                return false;
+            case ATTRIBUTE_NOMINAL_POWER:
+                if (attributeValue instanceof Double){
+                    setNominalPower(attributeValue);
                 }
                 return false;
             default:
