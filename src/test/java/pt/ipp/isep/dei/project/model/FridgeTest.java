@@ -10,10 +10,10 @@ import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ElectricWaterHeaterTest {
+class FridgeTest {
     private Room kitchen;
     private Room laundry;
-    private ElectricWaterHeater electricWaterHeater;
+    private Fridge fridge;
     private Map<LocalDateTime, Double> map;
 
     @BeforeEach
@@ -24,11 +24,12 @@ class ElectricWaterHeaterTest {
         laundry = new Room("Laundry", 1, dim);
 
         // Devices
-        ElectricWaterHeater dummyWaterHeater = new ElectricWaterHeater("Bosch Tronic 2000", kitchen);
-        electricWaterHeater = new ElectricWaterHeater("Bosch Tronic 3000", kitchen);
-        electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 55);
-        electricWaterHeater.setAttributesDevType("Performance Ratio", 0.9);
-        electricWaterHeater.setAttributesDevType("Nominal Power", 700);
+        ElectricWaterHeater dummyFridge = new ElectricWaterHeater("Miele PerfectCool Series 1000", kitchen);
+        fridge = new Fridge("Miele PerfectCool Series 3500", kitchen);
+        fridge.setAttributesDevType("Freezer Capacity", 40);
+        fridge.setAttributesDevType("Refrigerator Capacity", 20);
+        fridge.setAttributesDevType("Annual Energy Consumption", 36500);
+        fridge.setAttributesDevType("Nominal Power", 900);
 
         // Readings
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -37,9 +38,9 @@ class ElectricWaterHeaterTest {
         Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
         Readings readings2 = new Readings(7, time2);
-        electricWaterHeater.addReadingsToTheList(readings0);
-        electricWaterHeater.addReadingsToTheList(readings1);
-        electricWaterHeater.addReadingsToTheList(readings2);
+        fridge.addReadingsToTheList(readings0);
+        fridge.addReadingsToTheList(readings1);
+        fridge.addReadingsToTheList(readings2);
 
         // Maps
         map = new TreeMap<>();
@@ -51,10 +52,10 @@ class ElectricWaterHeaterTest {
     @Test
     void getNominalPowerTest() {
         //Arrange
-        double expectedResult = 700.0;
+        double expectedResult = 900.0;
 
         //Act
-        double result = electricWaterHeater.getNominalPower();
+        double result = fridge.getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -66,7 +67,7 @@ class ElectricWaterHeaterTest {
         Room expectedResult = kitchen;
 
         // Act
-        Room result = electricWaterHeater.getLocation();
+        Room result = fridge.getLocation();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -75,10 +76,10 @@ class ElectricWaterHeaterTest {
     @Test
     void getNameTest() {
         // Arrange
-        String expectedResult = "Bosch Tronic 3000";
+        String expectedResult = "Miele PerfectCool Series 3500";
 
         // Act
-        String result = electricWaterHeater.getName();
+        String result = fridge.getName();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -87,10 +88,10 @@ class ElectricWaterHeaterTest {
     @Test
     void getTypeTest() {
         // Arrange
-        String expectedResult = "Electric Water Heater";
+        String expectedResult = "Fridge";
 
         // act
-        String result = electricWaterHeater.getType();
+        String result = fridge.getType();
 
         // assert
         assertEquals(expectedResult, result);
@@ -99,10 +100,10 @@ class ElectricWaterHeaterTest {
     @Test
     public void getEnergyConsumptionInADayTest() {
         // Arrange
-        double expectedResult = 0;
+        double expectedResult = 100;
 
         // Act
-        double result = electricWaterHeater.getEnergyConsumptionInADay();
+        double result = fridge.getEnergyConsumptionInADay();
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -110,20 +111,20 @@ class ElectricWaterHeaterTest {
 
     @Test
     public void setNameWithSameNameTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> electricWaterHeater.setName("Bosch Tronic 3000"));
+        Throwable exception = assertThrows(RuntimeException.class, () -> fridge.setName("Miele PerfectCool Series 3500"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
     public void setNameAlreadyInListTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> electricWaterHeater.setName("Bosch Tronic 2000"));
+        Throwable exception = assertThrows(RuntimeException.class, () -> fridge.setName("Miele PerfectCool Series 1000"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
     public void setNameFalseTest() {
         // Act
-        boolean result = electricWaterHeater.setName("");
+        boolean result = fridge.setName("");
 
         // Assert
         assertTrue(result);
@@ -132,7 +133,7 @@ class ElectricWaterHeaterTest {
     @Test
     public void setNameTrueTest() {
         // Act
-        boolean result = electricWaterHeater.setName("Bosch Tronic 4000");
+        boolean result = fridge.setName("Miele PerfectCool Series 4000");
 
         // Assert
         assertTrue(result);
@@ -141,7 +142,7 @@ class ElectricWaterHeaterTest {
     @Test
     void setLocationFalseTest() {
         // Act
-        boolean result = electricWaterHeater.setLocation(kitchen);
+        boolean result = fridge.setLocation(kitchen);
 
         // Assert
         assertFalse(result);
@@ -150,7 +151,7 @@ class ElectricWaterHeaterTest {
     @Test
     void setLocationTrueTest() {
         // Act
-        boolean result = electricWaterHeater.setLocation(laundry);
+        boolean result = fridge.setLocation(laundry);
 
         // Assert
         assertTrue(result);
@@ -159,11 +160,12 @@ class ElectricWaterHeaterTest {
     @Test
     void getDevSpecsAttributesToStringTest() {
         // Arrange
-        String expectedResult = "1 - Hot Water Temperature: 55.0\n" +
-                "2 - Performance Ratio: 0.9\n" +
-                "3 - Nominal Power: 700.0\n";
+        String expectedResult = "1 - Freezer Capacity: 40.0\n" +
+                "2 - Refrigerator Capacity: 20.0\n" +
+                "3 - Annual Energy Consumption: 36500.0\n" +
+                "4 - Nominal Power: 900.0\n";
         // Act
-        String result = electricWaterHeater.getDevSpecsAttributesToString();
+        String result = fridge.getDevSpecsAttributesToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -172,11 +174,11 @@ class ElectricWaterHeaterTest {
     @Test
     void getAttributesToStringTest() {
         // Arrange
-        String expectedResult = "1 - Name: Bosch Tronic 3000\n" +
+        String expectedResult = "1 - Name: Miele PerfectCool Series 3500\n" +
                 "2 - Device1 Specifications\n" +
                 "3 - Location: Kitchen\n";
         // Act
-        String result = electricWaterHeater.getAttributesToString();
+        String result = fridge.getAttributesToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -185,10 +187,10 @@ class ElectricWaterHeaterTest {
     @Test
     void hashCodeTest() {
         // Arrange
-        int expectedResult = Objects.hash(electricWaterHeater.getName());
+        int expectedResult = Objects.hash(fridge.getName());
 
         // Act
-        int result = electricWaterHeater.hashCode();
+        int result = fridge.hashCode();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -200,7 +202,7 @@ class ElectricWaterHeaterTest {
         Object object = new Object();
 
         // Act
-        boolean result = electricWaterHeater.equals(object);
+        boolean result = fridge.equals(object);
 
         // Assert
         assertFalse(result);
@@ -212,7 +214,7 @@ class ElectricWaterHeaterTest {
         int expectedResult = 4;
 
         // Act
-        int result = electricWaterHeater.getNumberOfSpecsAttributes();
+        int result = fridge.getNumberOfSpecsAttributes();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -221,10 +223,10 @@ class ElectricWaterHeaterTest {
     @Test
     void getNameToStringTest() {
         // Arrange
-        String expectedResult = "Device: Bosch Tronic 3000, located in room: Kitchen\n";
+        String expectedResult = "Device: Miele PerfectCool Series 3500, located in room: Kitchen\n";
 
         // Act
-        String result = electricWaterHeater.getNameToString();
+        String result = fridge.getNameToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -239,7 +241,7 @@ class ElectricWaterHeaterTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 15, 00, 00);
 
         // Act
-        double result = electricWaterHeater.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = fridge.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -254,7 +256,7 @@ class ElectricWaterHeaterTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
-        double result = electricWaterHeater.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = fridge.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -269,7 +271,7 @@ class ElectricWaterHeaterTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
-        double result = electricWaterHeater.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = fridge.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -278,7 +280,7 @@ class ElectricWaterHeaterTest {
     @Test
     void getIsActiveTrueTest() {
         // Act
-        boolean result = electricWaterHeater.getIsActive();
+        boolean result = fridge.getIsActive();
 
         // Assert
         assertTrue(result);
@@ -287,10 +289,10 @@ class ElectricWaterHeaterTest {
     @Test
     void getIsActiveFalseTest() {
         // Assert
-        electricWaterHeater.setDeactivateDevice();
+        fridge.setDeactivateDevice();
 
         // Act
-        boolean result = electricWaterHeater.getIsActive();
+        boolean result = fridge.getIsActive();
 
         // Assert
         assertFalse(result);
@@ -305,9 +307,10 @@ class ElectricWaterHeaterTest {
         Map<LocalDateTime, Double> expectedResult = map;
 
         // Act
-        Map<LocalDateTime, Double> result = electricWaterHeater.getDataSeries(time0, time2);
+        Map<LocalDateTime, Double> result = fridge.getDataSeries(time0, time2);
 
         // Assert
         assertEquals(expectedResult, result);
     }
+
 }
