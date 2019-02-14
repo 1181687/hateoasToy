@@ -217,28 +217,28 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
             case ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT:
-                if (attributeValue instanceof Double) {
-                    setVolumeOfWaterToHeat(attributeValue);
+                if (attributeValue instanceof Number) {
+                    setVolumeOfWaterToHeat(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_HOT_WATER_TEMP:
-                if (attributeValue instanceof Double) {
-                    setHotWaterTemperature(attributeValue);
+                if (attributeValue instanceof Number) {
+                    setHotWaterTemperature(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_PERFORMANCE_RATIO:
-                if (attributeValue instanceof Double) {
-                    setPerformanceRatio(attributeValue);
+                if (attributeValue instanceof Number) {
+                    setPerformanceRatio(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_COLD_WATER_TEMP:
-                if (attributeValue instanceof Double) {
-                    setColdWaterTemperature(attributeValue);
+                if (attributeValue instanceof Number) {
+                    setColdWaterTemperature(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:
-                if (attributeValue instanceof Double){
-                    setNominalPower(attributeValue);
+                if (attributeValue instanceof Number){
+                    setNominalPower(((Number) attributeValue).doubleValue());
                 }
                 return false;
             default:

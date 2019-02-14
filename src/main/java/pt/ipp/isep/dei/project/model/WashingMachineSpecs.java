@@ -148,25 +148,25 @@ public class WashingMachineSpecs implements DeviceSpecs {
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
             case ATTRIBUTE_CAPACITY:
-                if (attributeValue instanceof Double) {
-                    setCapacity(attributeValue);
+                if (attributeValue instanceof Number) {
+                    setCapacity(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_DURATION:
-                if (attributeValue instanceof Double) {
-                    this.mDuration = (Double) attributeValue;
+                if (attributeValue instanceof Number) {
+                    this.mDuration = (Double) ((Number) attributeValue).doubleValue();
                     return true;
                 }
                 return false;
             case ATTRIBUTE_ENERGY_CONSUMPTION:
-                if (attributeValue instanceof Double) {
-                    this.mEnergyConsumption = (Double) attributeValue;
+                if (attributeValue instanceof Number) {
+                    this.mEnergyConsumption = (Double) ((Number) attributeValue).doubleValue();
                     return true;
                 }
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:
-                if (attributeValue instanceof Double) {
-                    setNominalPower(attributeValue);
+                if (attributeValue instanceof Number) {
+                    setNominalPower(((Number) attributeValue).doubleValue());
                 }
                 return false;
             default:

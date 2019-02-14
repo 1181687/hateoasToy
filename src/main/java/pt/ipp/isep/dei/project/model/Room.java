@@ -252,6 +252,9 @@ public class Room implements Measurable {
      * @return true if it adds, false if it doesn't add
      */
     public boolean addDevice(Device device) {
+        if (!(Objects.isNull(device)) && isDeviceNameExistant(device.getName())) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
         if (Objects.isNull(device) || this.equals(device.getLocation()) && this.mDeviceList.contains(device)) {
             return false;
         }
@@ -340,8 +343,10 @@ public class Room implements Measurable {
      * @return boolean true if exists, false if it doesn't
      */
     public boolean isDeviceNameExistant(String name) {
-
         for (int i = 0; i < this.mDeviceList.size(); i++) {
+            if (isNull(this.mDeviceList.get(i).getName())) {
+                break;
+            }
             if (this.mDeviceList.get(i).getName().equalsIgnoreCase(name)) {
                 return true;
             }

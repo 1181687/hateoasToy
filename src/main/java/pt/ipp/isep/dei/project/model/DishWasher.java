@@ -87,6 +87,7 @@ public class DishWasher implements Device, Measurable {
         return true;
     }
 
+
     /**
      * method that set the location (room) of a added device.
      *

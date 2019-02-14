@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.testng.Assert.assertTrue;
 
-class DeleteAndDeactivateDevice1FromRoomControllerTest {
+class DeleteAndDeactivateDeviceFromRoomControllerTest {
 
     private DeleteAndDeactivateDeviceFromRoomController controller;
     private House house;
@@ -120,7 +120,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
 
 
         house.addRoom(room);
-        room.addDevice(fridge);
 
         int position = 0;
         controller.getRoomPosition(position);
@@ -182,7 +181,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
 
         int position = 0;
         house.addRoom(room);
-        room.addDevice(fridge);
         controller.getRoomPosition(position);
 
         // act
@@ -248,7 +246,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
 
         String expectedResult = "FridgeAriston";
         house.addRoom(room);
-        room.addDevice(fridge);
         controller.getRoomPosition(position);
 
         // act
@@ -281,8 +278,7 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
 
         int position = 0;
         house.addRoom(room);
-        room.addDevice(fridge1);
-        room.addDevice(fridge2);
+
         controller.getRoomPosition(position);
 
         int expectResult = 2;
@@ -348,8 +344,7 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
 
         int position = 0;
         house.addRoom(room);
-        room.addDevice(fridge1);
-        room.addDevice(fridge2);
+
         house.addRoom(room);
         house.addRoom(room);
         house.addRoom(room);
@@ -382,7 +377,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
 
         int position = 0;
         this.house.addRoom(room);
-        room.addDevice(fridge1);
         this.controller.getRoomPosition(position);
 
         // act
@@ -435,7 +429,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
 
         int position = 0;
         house.addRoom(room);
-        room.addDevice(fridge1);
 
         controller.getRoomPosition(position);
         // Act
@@ -471,8 +464,6 @@ class DeleteAndDeactivateDevice1FromRoomControllerTest {
         fridge2.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
         fridge2.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
 
-        room.addDevice(fridge1);
-        room.addDevice(fridge2);
         house.addRoom(room);
 
         int position = 0;
