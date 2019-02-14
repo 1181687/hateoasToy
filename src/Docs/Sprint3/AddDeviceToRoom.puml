@@ -18,25 +18,6 @@ skinparam sequence {
 }
 
 actor RegularUser
-RegularUser -> Main: run()
-activate Main
-Main -> Utils: List <String> getListClassName()
-activate Utils
-Utils -> Utils: List <String> readConfigFileToList()
-Utils <-- Utils: listOfDeviceTypes
-Main <-- Utils: listOfDeviceTypes
-deactivate Utils
-
-Main -> ":House": create (listOfDeviceType,mPeriodGrid,mPeriodDevice)
-activate ":House"
-":House" <-- ":House": new List <DeviceType> ()
-loop n times
-":House" <-- ":House": createDeviceType()
-end
-Main <-- ":House": house
-deactivate ":House"
-deactivate Main
-
 RegularUser -> ":UI": addDeviceToRoom
 activate ":UI"
 ":UI" -> ":Controller": geDeviceTypeList()
