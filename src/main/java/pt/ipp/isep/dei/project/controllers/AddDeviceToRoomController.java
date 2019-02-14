@@ -10,7 +10,6 @@ public class AddDeviceToRoomController {
     private List<Device> mDeviceList;
     private Room mRoom;
     private ProgramList mProgramList;
-    private DeviceType mDeviceType;
 
     /**
      * Constructor.

@@ -13,12 +13,14 @@ public class DishWasher implements Device, Measurable {
     private LocalDateTime mDeactivationDate;
 
     public DishWasher(String name, Room location) {
-        this.mName = name;
-        this.mSpec = new LampSpecs();
         this.mLocation = location;
         this.mLocation.addDevice(this);
+        this.mSpec = new LampSpecs();
         this.mIsActive = true;
         this.mReadingsList = new ArrayList<>();
+        if (validateName(name)) {
+            this.mName = name;
+        }
     }
 
     /**
@@ -84,6 +86,13 @@ public class DishWasher implements Device, Measurable {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
         this.mName = name;
+        return true;
+    }
+
+    public boolean validateName(String name) {
+        if (this.mLocation.isDeviceNameExistant(name)) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
         return true;
     }
 

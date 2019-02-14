@@ -12,11 +12,13 @@ public class Lamp implements Device, Measurable {
     private LocalDateTime mDeactivationDate;
 
     public Lamp(String name, Room location) {
-        this.mName = name;
         this.mLocation = location;
         this.mLocation.addDevice(this);
         this.mSpec = new LampSpecs();
         this.mIsActive = true;
+        if (validateName(name)) {
+            this.mName = name;
+        }
     }
 
     /**
@@ -45,6 +47,13 @@ public class Lamp implements Device, Measurable {
      */
     public String getName() {
         return this.mName;
+    }
+
+    public boolean validateName(String name) {
+        if (this.mLocation.isDeviceNameExistant(name)) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
+        return true;
     }
 
     /**

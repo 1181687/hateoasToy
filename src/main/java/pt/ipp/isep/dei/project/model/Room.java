@@ -340,8 +340,10 @@ public class Room implements Measurable {
      * @return boolean true if exists, false if it doesn't
      */
     public boolean isDeviceNameExistant(String name) {
-
         for (int i = 0; i < this.mDeviceList.size(); i++) {
+            if (isNull(this.mDeviceList.get(i).getName())) {
+                break;
+            }
             if (this.mDeviceList.get(i).getName().equalsIgnoreCase(name)) {
                 return true;
             }

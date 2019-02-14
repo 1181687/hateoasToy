@@ -12,12 +12,14 @@ public class Fridge implements Device, Measurable {
     private LocalDateTime mDeactivationDate;
 
     public Fridge(String name, Room location) {
-        this.mName = name;
         this.mLocation = location;
         this.mLocation.addDevice(this);
         this.mSpec = new FridgeSpecs();
         this.mIsActive = true;
         this.mReadings = new ArrayList<>();
+        if (validateName(name)) {
+            this.mName = name;
+        }
     }
 
 
@@ -47,6 +49,13 @@ public class Fridge implements Device, Measurable {
      */
     public String getName() {
         return this.mName;
+    }
+
+    public boolean validateName(String name) {
+        if (this.mLocation.isDeviceNameExistant(name)) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
+        return true;
     }
 
     /**
@@ -130,7 +139,7 @@ public class Fridge implements Device, Measurable {
      * @return the position of an attribute and the value of it.
      */
     public boolean setAttributesDevType(String attribute, Object value) {
-        return this.mSpec.setAttributeValue(attribute,value);
+        return this.mSpec.setAttributeValue(attribute, value);
     }
 
     /**
