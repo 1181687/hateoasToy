@@ -15,12 +15,6 @@ public class LampSpecs implements DeviceSpecs {
     private double mTime;
     private double mNominalPower;
 
-    public LampSpecs(double luminousFlux, double nominalPower) {
-        this.mTypeName = "Lamp";
-        this.mLuminousFlux = luminousFlux;
-        this.mNominalPower = nominalPower;
-    }
-
     public LampSpecs() {
         this.mTypeName = "Lamp";
     }
