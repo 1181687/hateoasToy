@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 public class GetDevicesInHouseGridControllerTest {
     private GetDevicesInHouseGridController ctrl;
@@ -148,18 +150,15 @@ public class GetDevicesInHouseGridControllerTest {
     public void testGetDeviceListContentNameTypeLocationByHG() {
         //Arrange
         String expectedResult = "Dish Washer\n" +
-                "- Device Name: DishWasher, Location: Kitchen.\n" +
-                "- Device Name: DishWasherTeka, Location: KitchenBasement.\n" +
-                "\n" +
-                "Electric Water Heater\n" +
-                "- Device Name: ElectricWaterHeater, Location: KitchenBasement.\n" +
-                "\n" +
-                "Washing Machine\n" +
-                "- Device Name: WashingMachineBosh, Location: Kitchen.\n" +
+                "- Device Name: Washing Machine Bosh, Location: Kitchen.\n" +
+                "- Device Name: Washing Machine 625, Location: KitchenBasement.\n" +
                 "\n" +
                 "Fridge\n" +
-                "- Device Name: FridgeAriston, Location: Kitchen.\n" +
-                "- Device Name: FridgeSiemens, Location: KitchenBasement.\n\n";
+                "- Device Name: Fridge Ariston, Location: Kitchen.\n" +
+                "- Device Name: Fridge Bosch, Location: Kitchen.\n" +
+                "- Device Name: Fridge1100, Location: KitchenBasement.\n" +
+                "- Device Name: Fridge5000, Location: KitchenBasement.\n" +
+                "\n";
 
         //Act
         String result = ctrl.getDeviceListContentNameTypeLocationByHG(0);
@@ -167,8 +166,6 @@ public class GetDevicesInHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-}
-/*
     @Test
     public void displayOfTheContentOfTheHouseGrids() {
         // Arrange
@@ -220,34 +217,6 @@ public class GetDevicesInHouseGridControllerTest {
 
     @Test
     public void testCheckIfThereAreNoDevicesHGbyPositionFalse() {
-        // Arrange
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
-        //Room TWO
-        String name2 = "KitchenBasement";
-        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
-        Room room2 = new Room(name2, -1, dim2);
-        ProgramList dwProgramList = new ProgramList();
-
-        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(100, 100, dwProgramList);
-        ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
-        double freezerCapacity = 5.5;
-        double refrigeratorCapacity = 15.5;
-        double annualEnergyConsumption = 5000;
-        double nominalPower = 100.5;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
-        Device dev4 = new Device("FridgeSiemens", room2, fridgeSpecs);
-        Device dev5 = new Device("DishWasherTeka", room2, dishWasherSpecs);
-        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
-
-        room2.addDevice(dev4);
-        room2.addDevice(dev5);
-        room2.addDevice(dev6);
-
-        houseEdificioB.addRoom(room);
-        houseEdificioB.addRoom(room2);
 
         // Act
         boolean result = ctrl.checkIfThereAreNoDevicesHGbyPosition(0);
@@ -258,34 +227,6 @@ public class GetDevicesInHouseGridControllerTest {
 
     @Test
     public void testCheckIfThereAreNoDevicesHGbyPositionTrue() {
-        // Arrange
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
-        //Room TWO
-        String name2 = "KitchenBasement";
-        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
-        Room room2 = new Room(name2, -1, dim2);
-
-        ProgramList dwProgramList = new ProgramList();
-        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(100, 100, dwProgramList);
-        ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
-        double freezerCapacity = 5.5;
-        double refrigeratorCapacity = 15.5;
-        double annualEnergyConsumption = 5000;
-        double nominalPower = 100.5;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
-        Device dev4 = new Device("FridgeSiemens", room2, fridgeSpecs);
-        Device dev5 = new Device("DishWasherTeka", room2, dishWasherSpecs);
-        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
-
-        room2.addDevice(dev4);
-        room2.addDevice(dev5);
-        room2.addDevice(dev6);
-
-        houseEdificioB.addRoom(room2);
-        houseEdificioB.addRoom(room);
 
         // Act
         boolean result = ctrl.checkIfThereAreNoDevicesHGbyPosition(1);
@@ -328,4 +269,3 @@ public class GetDevicesInHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 }
-*/
