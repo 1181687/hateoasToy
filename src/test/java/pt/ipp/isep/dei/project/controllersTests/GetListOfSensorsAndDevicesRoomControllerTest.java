@@ -69,8 +69,10 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         String expectedResult =
                 "1 - Name of the sensor: A123\n" +
                         "2 - Name of the sensor: A456\n";
+
         // Act
         String result = this.controller.getSensorsListContent(position);
+
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -80,8 +82,10 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         // Arrange
         this.house.addRoom(room);
         int position = 0;
+
         // Act
         boolean result = controller.isSensorListEmpty(position);
+
         // Assert
         assertTrue(result);
     }
@@ -97,8 +101,10 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         room.addSensorToListOfSensorsInRoom(s0);
         house.addRoom(room);
         int position = 0;
+
         // Act
         boolean result = controller.isSensorListEmpty(position);
+
         // Assert
         assertFalse(result);
     }
@@ -159,7 +165,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         // Assert
         assertFalse(result);
     }
-
+*/
     @Test
     public void getListSize() {
         //arrange
@@ -171,8 +177,10 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         house.addRoom(room);
         house.addRoom(room2);
         int expectResult = 2;
+
         //act
         int result = controller.roomListSize();
+
         //assert
         assertEquals(expectResult, result);
     }
@@ -181,8 +189,10 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     public void getListSizeEmptyList() {
         //arrange
         int expectResult = 0;
+
         //act
         int result = controller.roomListSize();
+
         //assert
         assertEquals(expectResult, result);
     }
@@ -192,8 +202,10 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         // Arrange
         house.addRoom(room);
         RoomList expectedResult = this.roomList;
+
         // Act
         RoomList result = this.controller.getListOfRooms();
+
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -202,8 +214,10 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     public void getRoomListEmptyTest() {
         //arrange
         RoomList expectResult = this.roomList;
+
         //act
         RoomList result = this.controller.getListOfRooms();
+
         //assert
         assertEquals(expectResult, result);
     }
@@ -218,8 +232,10 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
 
         String expectedResult = "RoomTwo";
         int roomPos = 1;
+
         //Act
         String result = this.controller.getRoomNameByPosition(roomPos);
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -229,8 +245,10 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         //Arrange
         String expectedResult = null;
         int roomPos = 0;
+
         //Act
         String result = this.controller.getRoomNameByPosition(roomPos);
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -256,6 +274,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
 
         //act
         String result = this.controller.getRoomListContent();
+
         //assert
         assertEquals(expectResult, result);
     }
@@ -264,9 +283,11 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     public void getDisplayRoomListEmptyTest() {
         //arrange
         String expectResult = "";
+
         //act
         String result = this.controller.getRoomListContent();
+
         //assert
         assertEquals(expectResult, result);
-    }*/
+    }
 }

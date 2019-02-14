@@ -21,8 +21,11 @@ class GeographicalAreaTest {
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
         boolean expectedResult = true;
+
         //act
         boolean result = ag1.equals(ag1);
+
+        //assert
         assertEquals(expectedResult, result);
     }
 
@@ -35,8 +38,10 @@ class GeographicalAreaTest {
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
+
         //act
         boolean result = ag1.equals(ag2);
+
         //assert
         assertTrue(result);
     }
@@ -51,8 +56,10 @@ class GeographicalAreaTest {
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo1, local, area);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo2, local, area);
+
         //act
         boolean result = ag1.equals(ag2);
+
         //assert
         assertFalse(result);
     }
@@ -67,8 +74,10 @@ class GeographicalAreaTest {
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo1, local, area);
         GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo1, local2, area);
+
         //act
         boolean result = ag1.equals(ag2);
+
         //assert
         assertFalse(result);
     }
@@ -82,8 +91,10 @@ class GeographicalAreaTest {
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         boolean expectedResult = false;
+
         //act
         boolean result = ag.equals(area);
+
         //assert
         assertEquals(expectedResult, result);
     }
@@ -118,10 +129,11 @@ class GeographicalAreaTest {
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
-
         int expectedResult = 1;
+
         //Act
         int result = ag1.hashCode();
+
         //Assert
         assertEquals(expectedResult, result);
 
@@ -135,7 +147,6 @@ class GeographicalAreaTest {
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
-
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(45, -5, 50);
@@ -143,6 +154,7 @@ class GeographicalAreaTest {
 
         //Act
         boolean result = ag1.checkIfSensorInInsideOfGeoArea(s0);
+
         //Assert
         assertTrue(result);
     }
@@ -163,6 +175,7 @@ class GeographicalAreaTest {
 
         //Act
         boolean result = ag1.checkIfSensorInInsideOfGeoArea(s0);
+
         //Assert
         assertFalse(result);
     }
@@ -170,14 +183,11 @@ class GeographicalAreaTest {
     @Test
     public void testarSensorNoLimiteEmAreaGeografica() {
         //Arrange
-        // Instantiate GeoArea
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
-
-        // Instantiate Sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(46.1496, -13.6109, 65);
@@ -185,6 +195,7 @@ class GeographicalAreaTest {
 
         //Act
         boolean result = ag1.checkIfSensorInInsideOfGeoArea(s0);
+
         //Assert
         assertTrue(result);
     }
@@ -192,8 +203,6 @@ class GeographicalAreaTest {
     @Test
     public void listarSensoresContidosNaAGPorTipo() {
         //Arrange
-
-        // Instanciar AG
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
@@ -245,8 +254,6 @@ class GeographicalAreaTest {
     @Test
     public void listarSensoresContidosNaAGPorTipoQueNaoExiste() {
         //Arrange
-
-        // Instanciar AG
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
@@ -276,7 +283,6 @@ class GeographicalAreaTest {
         SensorType sensorType3 = new SensorType("Temperatura");
         Location locS3 = new Location(-4, -10, 65);
         Sensor s3 = new Sensor("A123", dataFuncionamento3, sensorType3, locS3);
-
 
         SensorList expectedResult = new SensorList();
 
@@ -450,6 +456,7 @@ class GeographicalAreaTest {
 
         System.out.println(result.getSensorListToString());
         System.out.println(expectedResult.getSensorListToString());
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -466,6 +473,8 @@ class GeographicalAreaTest {
 
         //act
         String result = ag1.getNameOfGeoArea();
+
+        //assert
         assertEquals(expectedResult, result);
     }
 
@@ -482,6 +491,8 @@ class GeographicalAreaTest {
 
         //act
         GeographicalAreaType result = ag1.getGeoAreaType();
+
+        //assert
         assertEquals(expectedResult, result);
     }
 
@@ -621,8 +632,10 @@ class GeographicalAreaTest {
         Sensor s2 = new Sensor(nomeSensor, sensorType2, locS2);
 
         Sensor expectedResult = s2;
+
         //Act
         Sensor result = ag1.newSensor(nomeSensor, sensorType2, locS2);
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -651,7 +664,6 @@ class GeographicalAreaTest {
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         ag.setInsertedIn(ag1);
 
-
         // Instantiate Sensors
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
@@ -664,7 +676,6 @@ class GeographicalAreaTest {
         Location locS1 = new Location(0, 30, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         ag2.getSensorListInTheGeographicArea().addSensor(s1);
-
 
         // Instantiate Measurements
         // Sensor0
@@ -788,7 +799,6 @@ class GeographicalAreaTest {
         s1.addReadingsToList(readings11);
         s1.addReadingsToList(readings12);
 
-
         Location location = new Location(0, 30, 50);
 
         double expectedResult = 25.0;
@@ -826,9 +836,7 @@ class GeographicalAreaTest {
         ag.setInsertedIn(ag1);
 
         Location location = new Location(0, 30, 50);
-
         double expectedResult = Double.NaN;
-
         SensorType type = new SensorType("Temperature");
 
         //Act
@@ -862,7 +870,6 @@ class GeographicalAreaTest {
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         ag.setInsertedIn(ag1);
 
-
         // Instantiate Sensors
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
@@ -875,10 +882,7 @@ class GeographicalAreaTest {
         Location locS1 = new Location(0, 30, 50);
         Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
         ag2.getSensorListInTheGeographicArea().addSensor(s1);
-
-
         Location location = new Location(0, 30, 50);
-
         double expectedResult = Double.NaN;
         SensorType type = new SensorType("Temperature");
 
@@ -912,7 +916,6 @@ class GeographicalAreaTest {
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
         ag.setInsertedIn(ag1);
-
 
         // Instantiate Sensors
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -949,7 +952,6 @@ class GeographicalAreaTest {
         s1.addReadingsToList(readings12);
 
         Location location = new Location(0, 30, 50);
-
         double expectedResult = 30.0;
         SensorType type = new SensorType("Temperature");
 
@@ -1099,7 +1101,6 @@ class GeographicalAreaTest {
         LocalDate endDate = LocalDate.of(2018, 12, 6);
 
         ArrayList<Double> expectedResult = new ArrayList<>();
-
         SensorType searchType = new SensorType("Rainfall");
 
         //Act
@@ -1141,9 +1142,7 @@ class GeographicalAreaTest {
 
         s1.addReadingsToList(readings11);
         s1.addReadingsToList(readings12);
-
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
-
         double expectedResult = 23.5;
 
         //Act
@@ -1187,7 +1186,6 @@ class GeographicalAreaTest {
         s1.addReadingsToList(readings12);
 
         LocalDate searchDate = LocalDate.of(2018, 12, 5);
-
         double expectedResult = Double.NaN;
 
         //Act
@@ -1247,22 +1245,16 @@ class GeographicalAreaTest {
         SensorType typeOfSensorTested = new SensorType("Rainfall");
 
         //Instance of SensorList
-
         ag.getSensorListInTheGeographicArea().addSensor(s1);
         ag.getSensorListInTheGeographicArea().addSensor(s2);
 
-        //Instance of a day
         LocalDate day = LocalDate.of(2016, 1, 1);
-
-        //Expected Result
         SensorList expectedResult = new SensorList();
         expectedResult.addSensor(s1);
         expectedResult.addSensor(s2);
 
-
         //ACT
         SensorList result = ag.getSensorListByTypeInADay(typeOfSensorTested, day);
-
 
         //ASSERT
         assertEquals(expectedResult, result);
@@ -1320,18 +1312,14 @@ class GeographicalAreaTest {
         ag.getSensorListInTheGeographicArea().addSensor(s1);
         ag.getSensorListInTheGeographicArea().addSensor(s2);
 
-
         //Instance of a day
         LocalDate day = LocalDate.of(2016, 1, 1);
 
-        //Expected Result
         SensorList expectedResult = new SensorList();
         expectedResult.addSensor(s2);
 
-
         //ACT
         SensorList result = ag.getSensorListByTypeInADay(typeOfSensorTested, day);
-
 
         //ASSERT
         assertEquals(expectedResult, result);
@@ -1394,13 +1382,11 @@ class GeographicalAreaTest {
         //Instance of a day
         LocalDate day = LocalDate.of(2016, 1, 1);
 
-        //Expected Result
         SensorList expectedResult = new SensorList();
         expectedResult.addSensor(s1);
 
         //ACT
         SensorList result = ag.getSensorListByTypeInADay(typeOfSensorTested, day);
-
 
         //ASSERT
         assertEquals(expectedResult, result);
@@ -1416,7 +1402,6 @@ class GeographicalAreaTest {
         Location local = new Location(42.15, -8.6, 97);
         AreaShape area = new AreaShape(40, 40, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-
 
         //Sensor1
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -1461,16 +1446,13 @@ class GeographicalAreaTest {
         //expected result
         double expectedResult = 11;
 
-
         //ACT
         double result = ag.getTotalDailyMeasurement(typeOfSensorTested, day, local);
 
         //ASSERT
-
         assertEquals(expectedResult, result);
 
     }
-
 
     @Test
     public void testingTotalDailyMeasurementWithAnEmptyList() {
@@ -1481,7 +1463,6 @@ class GeographicalAreaTest {
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(40, 40, local);
         GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-
 
         //Sensor1
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -1517,7 +1498,6 @@ class GeographicalAreaTest {
         //Instance of a day
         LocalDate day = LocalDate.of(2016, 1, 1);
 
-        //expected result
         double expectedResult = Double.NaN;
 
         //ACT

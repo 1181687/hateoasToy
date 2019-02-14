@@ -54,8 +54,10 @@ public class PowerSourceListTest {
         PowerSourceType type = new PowerSourceType("Battery");
         PowerSourceList powerSourceList = new PowerSourceList();
         PowerSource expectedResult = new PowerSource(name,type);
+
         //Act
         PowerSource result = powerSourceList.createNewPowerSource(name,type);
+
         //Assert
         assertEquals(expectedResult,result);
     }
@@ -74,8 +76,10 @@ public class PowerSourceListTest {
         powerSourceList.addPowerSource(powerSource2);
         String expectedResult="1- Power Source 1\n" +
                 "2- Power Source 2\n";
+
         //Act
         String result = powerSourceList.getPowerSourcesListToString();
+
         //Assert
         assertEquals(expectedResult,result);
     }

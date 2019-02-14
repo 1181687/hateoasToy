@@ -27,7 +27,7 @@ public class AddPowerSourceToHouseGrid {
             mController.getHouseGridFromListByPosition(positionOfHouseGrid);
 
             String powerSourceName;
-            boolean isPowerSourceAdded;
+            boolean isPowerSourceAdded = false;
             do {
 
                 String label2 = "Please insert the name of the new power source";
@@ -46,17 +46,15 @@ public class AddPowerSourceToHouseGrid {
 
             } while (!isPowerSourceAdded);
 
-            if (isPowerSourceAdded) {
-                String houseGridName = mController.getHouseGridName();
-                System.out.println("Success! The power source " + powerSourceName + " was added to the house grid " + houseGridName + ".");
-                String label4 = "Do you want to see the list of power sources added to this house grid? (y/n)";
-                String answer = InputValidator.confirmValidation(label4);
-                if ("y".equals(answer) || "Y".equals(answer)) {
-                    System.out.println(mController.listPowerSourcesConnectedToGrid());
-                }
-            } else {
-                System.out.println("The Power Source was not added to the House Grid");
+            String houseGridName = mController.getHouseGridName();
+            System.out.println("Success! The power source " + powerSourceName + " was added to the house grid " + houseGridName + ".");
+            String label4 = "Do you want to see the list of power sources added to this house grid? (y/n)";
+            String answer = InputValidator.confirmValidation(label4);
+            if ("y".equals(answer) || "Y".equals(answer)) {
+                System.out.println(mController.listPowerSourcesConnectedToGrid());
             }
         }
     }
 }
+
+

@@ -17,8 +17,6 @@ public class LocationTest {
         double alt2 = 13;
         Location local1 = new Location(lat1, lon1, alt1);
         Location local2 = new Location(lat2, lon2, alt2);
-
-        //Location local2 = new Location(lat2, -16.9, 0);
         double expectedResult = 1611770.043;
         double result = local1.distanceBetweenTwoLocations(local2);
         assertEquals(expectedResult,result,0.001);
@@ -49,8 +47,10 @@ public class LocationTest {
         Location local = new Location(latitude, longitude, altitude);
         local.setLatitude(90);
         double expectedResult = 90;
+
         //act
         double result = local.getLatitude();
+
         //assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -64,8 +64,10 @@ public class LocationTest {
         Location local = new Location(latitude, longitude, altitude);
         local.setLatitude(-90);
         double expectedResult = -90;
+
         //act
         double result = local.getLatitude();
+
         //assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -79,8 +81,10 @@ public class LocationTest {
         Location local = new Location(latitude, longitude, altitude);
         local.setLatitude(-91);
         double expectedResult = Double.NaN;
+
         //act
         double result = local.getLatitude();
+
         //assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -94,8 +98,10 @@ public class LocationTest {
         Location local = new Location(latitude, longitude, altitude);
         local.setLatitude(91);
         double expectedResult = Double.NaN;
+
         //act
         double result = local.getLatitude();
+
         //assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -109,8 +115,10 @@ public class LocationTest {
         Location local = new Location(latitude, longitude, altitude);
         local.setLongitude(180);
         double expectedResult = 180;
+
         //act
         double result = local.getLongitude();
+
         //assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -124,8 +132,10 @@ public class LocationTest {
         Location local = new Location(latitude, longitude, altitude);
         local.setLongitude(-180);
         double expectedResult = -180;
+
         //act
         double result = local.getLongitude();
+
         //assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -139,8 +149,10 @@ public class LocationTest {
         Location local = new Location(latitude, longitude, altitude);
         local.setLongitude(181);
         double expectedResult = Double.NaN;
+
         //act
         double result = local.getLongitude();
+
         //assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -154,8 +166,10 @@ public class LocationTest {
         Location local = new Location(latitude, longitude, altitude);
         local.setLongitude(-181);
         double expectedResult = Double.NaN;
+
         //act
         double result = local.getLongitude();
+
         //assert
         assertEquals(expectedResult,result,0.001);
     }
@@ -168,8 +182,10 @@ public class LocationTest {
         double altitude = 97;
         Location local1 = new Location(latitude, longitude, altitude);
         boolean expectedResult = true;
+
         //Act
         boolean result = local1.equals(local1);
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -183,8 +199,10 @@ public class LocationTest {
         Location local1 = new Location(latitude, longitude, altitude);
         Object objeto = new Object();
         boolean expectedResult = false;
+
         //Act
         boolean result = local1.equals(objeto);
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -203,8 +221,10 @@ public class LocationTest {
         Location local2 = new Location(latitude2, longitude2, altitude2);
 
         boolean expectedResult = true;
+
         //Act
         boolean result = local1.equals(local2);
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -223,8 +243,10 @@ public class LocationTest {
         Location local2 = new Location(latitude2, longitude2, altitude2);
 
         boolean expectedResult = false;
+
         //Act
         boolean result = local1.equals(local2);
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -234,8 +256,10 @@ public class LocationTest {
         // Arrange
         Location local = new Location(41.1496, -8.6109, 97);
         int expectedResult = 1;
+
         // Act
         int result = local.hashCode();
+
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -254,8 +278,10 @@ public class LocationTest {
         Location local2 = new Location(latitude2, longitude2, altitude2);
 
         boolean expectedResult = false;
+
         //Act
         boolean result = local1.equals(local2);
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -274,8 +300,10 @@ public class LocationTest {
         Location local2 = new Location(latitude2, longitude2, altitude2);
 
         boolean expectedResult = false;
+
         //Act
         boolean result = local1.equals(local2);
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -294,8 +322,10 @@ public class LocationTest {
         Location local2 = new Location(latitude2, longitude2, altitude2);
 
         boolean expectedResult = false;
+
         //Act
         boolean result = local1.equals(local2);
+
         //Assert
         assertEquals(expectedResult, result);
     }

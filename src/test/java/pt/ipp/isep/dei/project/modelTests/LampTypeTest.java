@@ -15,9 +15,6 @@ public class LampTypeTest {
         String name = "Lamp Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
 
         Device expectedResult = new Lamp(name, room);
 
@@ -26,4 +23,5 @@ public class LampTypeTest {
         assertEquals(expectedResult, result);
 
     }
+
 }

@@ -15,12 +15,6 @@ public class ElectricWaterHeaterTypeTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        double hotWaterTemp = 50;
-        double maximumVolume = 150;
-        double performanceRatio = 0.9;
-        double nominalPower = 100;
-        ElectricWaterHeaterSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs();
-
         Device expectedResult = new ElectricWaterHeater(name, room);
 
         Device result = electricWaterHeaterType.createDevice(name, room);
