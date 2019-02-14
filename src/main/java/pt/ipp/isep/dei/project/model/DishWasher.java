@@ -7,14 +7,14 @@ public class DishWasher implements Device, Measurable {
 
     private String mName;
     private Room mLocation;
-    private LampSpecs mSpec;
+    private DishWasherSpecs mSpec;
     private List<Readings> mReadingsList;
     private boolean mIsActive;
     private LocalDateTime mDeactivationDate;
 
     public DishWasher(String name, Room location) {
         this.mName = name;
-        this.mSpec = new LampSpecs();
+        this.mSpec = new DishWasherSpecs();
         this.mLocation = location;
         this.mLocation.addDevice(this);
         this.mIsActive = true;
@@ -183,7 +183,7 @@ public class DishWasher implements Device, Measurable {
     @Override
     public String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
-        nameLocation.append("Device1: " + mName);
+        nameLocation.append("Device: " + mName);
         nameLocation.append(", located in room: " + mLocation.getName() + "\n");
         return nameLocation.toString();
     }

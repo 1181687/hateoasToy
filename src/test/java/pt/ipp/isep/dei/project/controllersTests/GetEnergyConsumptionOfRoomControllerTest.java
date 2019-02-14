@@ -16,6 +16,10 @@ public class GetEnergyConsumptionOfRoomControllerTest {
 
     private GetEnergyConsumptionOfRoomInAnIntervalController ctrl;
     private House house;
+    private final String FREEZER_CAPACITY = "Freezer Capacity";
+    private final String REFRIGERATOR_CAPACITY = "Refrigerator Capacity";
+    private final String ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
+    private final String NOMINAL_POWER = "Annual Energy Consumption";
 
     @BeforeEach
     public void StartUp() {
@@ -151,10 +155,8 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        double luminousFlux = 10.0;
-        double nominalPower1 = 1.0;
-        LampSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Lamp("Lamp1", room);
+        LampType lampType = new LampType();
+        Device dev1 = lampType.createDevice("Lamp1", room);
 
         house.addRoom(room);
         room.addDevice(dev1);
@@ -197,11 +199,15 @@ public class GetEnergyConsumptionOfRoomControllerTest {
 
         this.house.addRoom(room);
 
-        // FridgeSpecs Instantiation
-        FridgeSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
-
         // Device Instantiation
-        Device device = new Fridge("Fridgerator", room);
+        FridgeType fridgeType = new FridgeType();
+        Device device = fridgeType.createDevice("Fridgerator", room);
+
+        //Set Specs
+        device.setAttributesDevType(FREEZER_CAPACITY,35);
+        device.setAttributesDevType(REFRIGERATOR_CAPACITY,20);
+        device.setAttributesDevType(ANNUAL_ENERGY_CONSUMPTION,1000);
+        device.setAttributesDevType(NOMINAL_POWER,1000);
 
         // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -243,11 +249,16 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         Room room = new Room("Kitchen", 1, dim);
 
         house.addRoom(room);
-        // FridgeSpecs Instantiation
-        FridgeSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
-        Device device = new Fridge("Fridgerator", room);
+        FridgeType fridgeType = new FridgeType();
+        Device device = fridgeType.createDevice("Fridgerator", room);
+
+        //Set Specs
+        device.setAttributesDevType(FREEZER_CAPACITY,35);
+        device.setAttributesDevType(REFRIGERATOR_CAPACITY,20);
+        device.setAttributesDevType(ANNUAL_ENERGY_CONSUMPTION,1000);
+        device.setAttributesDevType(NOMINAL_POWER,1000);
 
         // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -289,11 +300,16 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         Room room = new Room("Kitchen", 1, dim);
 
         house.addRoom(room);
-        // FridgeSpecs Instantiation
-        FridgeSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
 
         // Device Instantiation
-        Device device = new Fridge("Fridgerator", room);
+        FridgeType fridgeType = new FridgeType();
+        Device device = fridgeType.createDevice("Fridgerator", room);
+
+        //Set Specs
+        device.setAttributesDevType(FREEZER_CAPACITY,35);
+        device.setAttributesDevType(REFRIGERATOR_CAPACITY,20);
+        device.setAttributesDevType(ANNUAL_ENERGY_CONSUMPTION,1000);
+        device.setAttributesDevType(NOMINAL_POWER,1000);
 
         // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);

@@ -17,6 +17,7 @@ public class Lamp implements Device, Measurable {
         this.mLocation.addDevice(this);
         this.mSpec = new LampSpecs();
         this.mIsActive = true;
+        this.mReadings = new ArrayList<>();
     }
 
     /**
@@ -176,7 +177,7 @@ public class Lamp implements Device, Measurable {
     @Override
     public String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
-        nameLocation.append("Device1: " + mName);
+        nameLocation.append("Device: " + mName);
         nameLocation.append(", located in room: " + mLocation.getName() + "\n");
         return nameLocation.toString();
     }
