@@ -14,7 +14,6 @@ class GetRoomListControllerTest {
     public void getDisplayRoomListTest(){
         //arrange
         RoomList rList = new RoomList();
-
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
@@ -32,8 +31,10 @@ class GetRoomListControllerTest {
 
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
                 "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
+
         //act
         String result = ctrl.getRoomListContent();
+
         //assert
         assertEquals(expectResult, result);
     }
@@ -42,11 +43,11 @@ class GetRoomListControllerTest {
     public void getDisplayRoomListEmptyTest(){
         //arrange
         RoomList rList = new RoomList();
-
         String expectResult = "";
 
         //act
         String result = rList.getRoomListContent();
+
         //assert
         assertEquals(expectResult, result);
     }
@@ -55,10 +56,11 @@ class GetRoomListControllerTest {
     public void checkIfRoomListIsEmptyTrue(){
         //arrange
         RoomList rList = new RoomList();
-
         GetRoomListController ctrl = new GetRoomListController(rList);
+
         //act
         boolean result = ctrl.isEmpty();
+
         //assert
         assertTrue(result);
     }
@@ -67,7 +69,6 @@ class GetRoomListControllerTest {
     public void checkIfRoomListIsEmptyFalse(){
         //arrange
         RoomList rList = new RoomList();
-
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
@@ -79,6 +80,7 @@ class GetRoomListControllerTest {
 
         //act
         boolean result = ctrl.isEmpty();
+
         //assert
         assertFalse(result);
     }

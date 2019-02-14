@@ -17,6 +17,7 @@ public class Lamp implements Device, Measurable {
         this.mLocation.addDevice(this);
         this.mSpec = new LampSpecs();
         this.mIsActive = true;
+        this.mReadings = new ArrayList<>();
     }
 
     /**

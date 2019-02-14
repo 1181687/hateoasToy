@@ -13,11 +13,6 @@ public class WashingMachineTypeTest {
         String name = "WashingMachine Teka";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-        int capacity = 20;
-        double nominalPower = 30;
-        ProgramList programList = new ProgramList();
-        //WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
-
         Device expectedResult = new WashingMachine(name, room);
 
         Device result = washingMachineType.createDevice(name, room);
