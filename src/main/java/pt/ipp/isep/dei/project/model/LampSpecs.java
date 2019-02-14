@@ -165,18 +165,18 @@ public class LampSpecs implements DeviceSpecs {
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
             case ATTRIBUTE_LUMINOUS_FLUX:
-                if (attributeValue instanceof Double) {
-                    setLuminousFlux(attributeValue);
+                if (attributeValue instanceof Number) {
+                    setLuminousFlux(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_TIME:
-                if (attributeValue instanceof Double) {
-                    setTime(attributeValue);
+                if (attributeValue instanceof Number) {
+                    setTime(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:
-                if (attributeValue instanceof Double) {
-                    setNominalPower(attributeValue);
+                if (attributeValue instanceof Number) {
+                    setNominalPower(((Number) attributeValue).doubleValue());
                 }
                 return false;
             default:

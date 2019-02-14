@@ -23,7 +23,7 @@ public class FridgeSpecsTest {
     }
 
 
-    @Test
+   /* @Test
     public void getEnergyConsumptionInADayTestWithValidValues() {
         // Arrange
         // FridgeSpecs Instantiation
@@ -403,5 +403,5 @@ public class FridgeSpecsTest {
 
         // assert
         assertEquals(expectedResult, result);
-    }
+    }*/
 }
