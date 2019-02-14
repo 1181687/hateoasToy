@@ -1,16 +1,22 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
-import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
 
-class AddDevice1ToRoomControllerTest {
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class AddDeviceToRoomControllerTest {
     private AddDeviceToRoomController controller;
     private House house;
     private Room kitchen;
     private Room livingRoom;
 
-  /*  @BeforeEach
+    @BeforeEach
     public void StartUp() {
         // Rooms
         Dimension dimension1 = new Dimension(2, 2, 2);
@@ -129,12 +135,12 @@ class AddDevice1ToRoomControllerTest {
         house.addRoom(kitchen);
         controller.getRoom(0);
         controller.getDeviceList();
-        Device1 d2 = controller.createNewFridge("Fridge", 1000,
+        Device d2 = controller.createNewFridge("Fridge", 1000,
                 200, 20, 50);
-        Device1 expectedResult = d2;
+        Device expectedResult = d2;
 
         // Act
-        Device1 result = controller.getDevice(0);
+        Device result = controller.getDevice(0);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -164,12 +170,12 @@ class AddDevice1ToRoomControllerTest {
         house.addRoom(kitchen);
         controller.getRoom(0);
         controller.getDeviceList();
-        Device1 device = controller.createNewLamp("Lamp", 200, 100);
+        Device device = controller.createNewLamp("Lamp", 200, 100);
 
-        Device1 expectedResult = device;
+        Device expectedResult = device;
 
         // Act
-        Device1 result = controller.getDevice(0);
+        Device result = controller.getDevice(0);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -198,12 +204,12 @@ class AddDevice1ToRoomControllerTest {
         house.addRoom(kitchen);
         controller.getRoom(0);
         controller.getDeviceList();
-        Device1 device = controller.createNewWashingMachine("Washing Machine", 200, 100);
+        Device device = controller.createNewWashingMachine("Washing Machine", 200, 100);
 
-        Device1 expectedResult = device;
+        Device expectedResult = device;
 
         // Act
-        Device1 result = controller.getDevice(0);
+        Device result = controller.getDevice(0);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -232,13 +238,13 @@ class AddDevice1ToRoomControllerTest {
         house.addRoom(kitchen);
         controller.getRoom(0);
         controller.getDeviceList();
-        Device1 device = controller.createNewElectricWaterHeater("Electric Water Heater", 50,
+        Device device = controller.createNewElectricWaterHeater("Electric Water Heater", 50,
                 150, 100, 0.9);
 
-        Device1 expectedResult = device;
+        Device expectedResult = device;
 
         // Act
-        Device1 result = controller.getDevice(0);
+        Device result = controller.getDevice(0);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -269,12 +275,12 @@ class AddDevice1ToRoomControllerTest {
         house.addRoom(kitchen);
         controller.getRoom(0);
         controller.getDeviceList();
-        Device1 device = controller.createNewDishWasher("Dishwasher", 12, 50);
+        Device device = controller.createNewDishWasher("Dishwasher", 12, 50);
 
-        Device1 expectedResult = device;
+        Device expectedResult = device;
 
         //Act
-        Device1 result = controller.getDevice(0);
+        Device result = controller.getDevice(0);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -299,14 +305,15 @@ class AddDevice1ToRoomControllerTest {
     @Test
     public void testGetDeviceListContentOfARoomTest() {
         // Arrange
-        DeviceSpecs deviceSpecs = new FridgeSpecs(5.5, 15.5,
-                5000, 100.5);
-        Device1 fridge = new Device1("Fridgeratah V14", kitchen, deviceSpecs);
-        kitchen.addDevice(fridge);
-        DeviceSpecs deviceSpecs1 = new LampSpecs(10.0, 1.0);
-        Device1 lamp = new Device1("Lamp Bizkit 5000", kitchen, deviceSpecs1);
-        kitchen.addDevice(lamp);
-        house.addRoom(kitchen);
+        house.getDeviceType("Fridge").createDevice("Fridgeratah V14", kitchen);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Freezer Capacity", 5.5);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 15.5);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 5000);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.5);
+
+        house.getDeviceType("Lamp").createDevice("Lamp Bizkit 5000", kitchen);
+        kitchen.getDeviceByPosition(1).setAttributesDevType("Nominal Power", 1.0);
+        kitchen.getDeviceByPosition(1).setAttributesDevType("Luminous Flux", 10.0);
 
         String expectedResult = "1 - Name of the device: Fridgeratah V14\n" +
                 "2 - Name of the device: Lamp Bizkit 5000\n";
@@ -321,9 +328,14 @@ class AddDevice1ToRoomControllerTest {
     @Test
     void testCreateNewProgram() {
         // Arrange
-        DeviceSpecs eWHSpecs = new ElectricWaterHeaterSpecs(50, 150,
-                100, 0.9);
-        Device1 electricWaterHeater = new Device1("Electric Water Heater", kitchen, eWHSpecs);
+        house.getDeviceType("Electric Water Heater").createDevice("Electric Water Heater", kitchen);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("", 5.5);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 15.5);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 5000);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.5);
+
+        DeviceSpecs eWHSpecs = new ElectricWaterHeaterSpecs(50, 150, 100, 0.9);
+        Device electricWaterHeater = new Device("Electric Water Heater", kitchen, eWHSpecs);
         kitchen.addDevice(electricWaterHeater);
         house.addRoom(kitchen);
 
@@ -371,5 +383,5 @@ class AddDevice1ToRoomControllerTest {
 
         // Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 }
