@@ -81,7 +81,7 @@ public interface Device extends Measurable {
      * @param value
      * @return the position of an attribute and the value of it.
      */
-    boolean setAttributesDevType(int attribute, double value);
+    boolean setAttributesDevType(String attribute, Object value);
 
     /**
      * method that creates the hashcode to two devices that are have the same name.

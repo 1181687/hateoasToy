@@ -48,22 +48,22 @@ class GetEnergyConsumptionDeviceControllerTest {
 
         // FridgeSpecs Instantiation
         FridgeSpecs fridgeSpecs = new FridgeSpecs(35, 20, 1000, 10);
-
+        FridgeType fridgeType = new FridgeType();
         // ElectricWaterHeaterSpecs Instantiation
         //ElectricWaterHeaterSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(50, 150, 0.9, 100);
-/*
+
         // Device Instantiation
-        Fridge device0 = new Fridge("Fridgeratah V14", room0, fridgeSpecs);
-        room0.addDevice(device0);
-        Fridge Device = new Fridge("Fridgeratah V15", room0, fridgeSpecs);
-        room0.addDevice(Device);
-        Fridge device2 = new Fridge("Fridgeratah V16", room0, fridgeSpecs);
-        room0.addDevice(device2);
-        ElectricWaterHeater device3 = new ElectricWaterHeater("Bosh Tronic 3000", room1, electricWaterHeater);
-        room1.addDevice(device3);
-        ElectricWaterHeater device4 = new ElectricWaterHeater("Bosh Tronic 4000", room1, electricWaterHeater);
-        room1.addDevice(device4);
-*/
+        Device device0 = fridgeType.createDevice("Fridgeratah V14", room0);
+
+        Device device = fridgeType.createDevice("Fridgeratah V15", room0);
+
+        Fridge device2 = new Fridge("Fridgeratah V16", room0);
+
+        ElectricWaterHeater device3 = new ElectricWaterHeater("Bosh Tronic 3000", room1);
+
+        ElectricWaterHeater device4 = new ElectricWaterHeater("Bosh Tronic 4000", room1);
+
+
         this.ctrl = new GetEnergyConsumptionDeviceController(house);
         room = house.getRoomOfTheRoomList(0);
     }

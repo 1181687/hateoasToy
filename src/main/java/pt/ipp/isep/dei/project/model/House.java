@@ -509,7 +509,7 @@ public class House {
      * @param value Value to be used.
      * @return True or false.
      */
-    public boolean setDeviceAttribute(String type, int devicePosition, int attributePosition, double value) {
+    public boolean setDeviceAttribute(String type, int devicePosition, String attributePosition, Object value) {
         List<Device> listWithAllDevicesOfAType = getAllDevicesOfAType(type);
         return listWithAllDevicesOfAType.get(devicePosition).setAttributesDevType(attributePosition, value);
     }

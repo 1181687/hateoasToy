@@ -37,6 +37,7 @@ public class EditConfigurationDevice {
         String exitCase2 = "0 - Return to the previous menu";
         String label5 = "Choose the specification you want to change.\n" + controller.getDevSpecsAttributesToString() + exitCase2;
         int attributePosition = InputValidator.getIntRange(label5, 0, controller.getNumberOfAttributesInDeviceSpecs());
+
         if (attributePosition == 0) {
             return;
         }
@@ -46,9 +47,9 @@ public class EditConfigurationDevice {
             System.out.println("This value is not valid.");
             return;
         } else {
-            controller.setDeviceSpecs(attributePosition, value);
+            /*controller.setDeviceSpecs(attributePosition, value);
             System.out.println("The value was changed with success!\nNow, the value is " + value + "! \n");
-            return;
+            return;*/
         }
     }
 

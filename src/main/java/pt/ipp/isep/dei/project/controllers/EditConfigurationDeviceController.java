@@ -101,7 +101,7 @@ public class EditConfigurationDeviceController {
      * @param value
      * @return th set of the device type.
      */
-    public boolean setDeviceSpecs(int attribute, double value) {
+    public boolean setDeviceSpecs(String attribute, Object value) {
         return this.mDevice.setAttributesDevType(attribute, value);
     }
 

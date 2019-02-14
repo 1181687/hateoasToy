@@ -175,7 +175,7 @@ class AddPowerSourceToHouseGridControllerTest {
         String expectedResult = "1- Non-electric power source\n";
 
         // Act
-        String result = controller.listPowerSourcesConnectedToHouseGrid();
+        String result = controller.listPowerSourcesConnectedToGrid();
 
         // Assert
         assertEquals(expectedResult,result);

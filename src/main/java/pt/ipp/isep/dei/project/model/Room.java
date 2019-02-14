@@ -410,7 +410,7 @@ public class Room implements Measurable {
      * @param value             Value to be used.
      * @return True or false.
      */
-    public boolean setDeviceSpecAttribute(int devicePosition, int attributePosition, double value) {
+    public boolean setDeviceSpecAttribute(int devicePosition, String attributePosition, Object value) {
         Device device = this.mDeviceList.get(devicePosition);
         return device.setAttributesDevType(attributePosition, value);
     }

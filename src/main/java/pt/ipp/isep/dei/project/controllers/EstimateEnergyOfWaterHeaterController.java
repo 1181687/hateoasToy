@@ -42,7 +42,7 @@ public class EstimateEnergyOfWaterHeaterController {
      * @param coldWaterTemperature Inputted value to be used.
      */
     public void setColdWaterTemp(int devicePosition, double coldWaterTemperature) {
-        mHouse.setDeviceAttribute(mType, devicePosition, 5, coldWaterTemperature);
+       // mHouse.setDeviceAttribute(mType, devicePosition, 5, coldWaterTemperature);
     }
 
     /**
@@ -52,7 +52,7 @@ public class EstimateEnergyOfWaterHeaterController {
      * @param volumeOfWaterToHeat Inputted value to be used.
      */
     public void setVolumeOfWaterToHeat(int devicePosition, double volumeOfWaterToHeat) {
-        mHouse.setDeviceAttribute(mType, devicePosition, 6, volumeOfWaterToHeat);
+       // mHouse.setDeviceAttribute(mType, devicePosition, 6, volumeOfWaterToHeat);
     }
 
     /**
