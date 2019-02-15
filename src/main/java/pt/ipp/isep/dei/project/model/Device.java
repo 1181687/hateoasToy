@@ -165,5 +165,7 @@ public interface Device extends Measurable {
 
     DeviceSpecs getSpecs();
 
+    String getSpecsToString();
+
 
 }

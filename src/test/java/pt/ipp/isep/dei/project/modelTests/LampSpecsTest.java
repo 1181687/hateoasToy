@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.LampSpecs;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LampSpecsTest {
  /*   @Test
@@ -158,80 +158,6 @@ public class LampSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void setAttributeTrueLuminousFlux() {
-        // Arrange
-        LampSpecs lampSpecs = new LampSpecs();
-        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
-        lampSpecs.setAttributeValue("Nominal Power", 100.0);
-
-
-        // Act
-        boolean result = lampSpecs.setAttribute(1, 51);
-
-        // assert
-        assertTrue(result);
-    }
-
-    @Test
-    public void setAttributeFalseLuminousFlux() {
-        // Arrange
-        LampSpecs lampSpecs = new LampSpecs();
-        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
-        lampSpecs.setAttributeValue("Nominal Power", 100.0);
-
-
-        // Act
-        boolean result = lampSpecs.setAttribute(1, 50.0);
-
-        // assert
-        assertFalse(result);
-    }
-
-    @Test
-    public void setAttributeTrueNominalPower() {
-        // Arrange
-        LampSpecs lampSpecs = new LampSpecs();
-        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
-        lampSpecs.setAttributeValue("Nominal Power", 100.0);
-
-
-        // Act
-        boolean result = lampSpecs.setAttribute(2, 101);
-
-        // assert
-        assertTrue(result);
-    }
-
-    @Test
-    public void setAttributeFalseNominalPower() {
-        // Arrange
-        LampSpecs lampSpecs = new LampSpecs();
-        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
-        lampSpecs.setAttributeValue("Nominal Power", 100.0);
-
-
-        // Act
-        boolean result = lampSpecs.setAttribute(2, 100.0);
-
-        // assert
-        assertFalse(result);
-    }
-
-    @Test
-    public void setAttributeFalse() {
-        // Arrange
-        LampSpecs lampSpecs = new LampSpecs();
-        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
-        lampSpecs.setAttributeValue("Nominal Power", 100.0);
-
-
-        // Act
-        boolean result = lampSpecs.setAttribute(3, 100.0);
-
-        // assert
-        assertFalse(result);
-    }
 
     @Test
     public void getNumberOfAttributes() {

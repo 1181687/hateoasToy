@@ -1,7 +1,12 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.Dimension;
+import pt.ipp.isep.dei.project.model.Fridge;
+import pt.ipp.isep.dei.project.model.Readings;
+import pt.ipp.isep.dei.project.model.Room;
+
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -24,7 +29,7 @@ class FridgeTest {
         laundry = new Room("Laundry", 1, dim);
 
         // Devices
-        ElectricWaterHeater dummyFridge = new ElectricWaterHeater("Miele PerfectCool Series 1000", kitchen);
+        Fridge dummyFridge = new Fridge("Miele PerfectCool Series 1000", kitchen);
         fridge = new Fridge("Miele PerfectCool Series 3500", kitchen);
         fridge.setAttributesDevType("Freezer Capacity", 40);
         fridge.setAttributesDevType("Refrigerator Capacity", 20);

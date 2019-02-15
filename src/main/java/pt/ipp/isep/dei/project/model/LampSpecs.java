@@ -103,25 +103,6 @@ public class LampSpecs implements DeviceSpecs {
 
 
     /**
-     * set method
-     *
-     * @param attribute position of the attribute
-     * @param value
-     * @return
-     */
-    @Override
-    public boolean setAttribute(int attribute, double value) {
-        switch (attribute) {
-            case 1:
-                return setLuminousFlux(value);
-            case 2:
-                return setNominalPower(value);
-            default:
-                return false;
-        }
-    }
-
-    /**
      * get method
      *
      * @return number of FridgeSpecs attributes

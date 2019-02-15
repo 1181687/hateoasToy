@@ -91,24 +91,6 @@ public class WashingMachineSpecs implements DeviceSpecs {
     }
 
     /**
-     * set method
-     * @param attribute position of the attribute
-     * @param value
-     * @return
-     */
-    @Override
-    public boolean setAttribute(int attribute, double value) {
-        switch (attribute) {
-            case 1:
-                return setCapacity(value);
-            case 2:
-                return setNominalPower(value);
-            default:
-                return false;
-        }
-    }
-
-    /**
      * get method
      * @return number of Washing Machine attributes
      */

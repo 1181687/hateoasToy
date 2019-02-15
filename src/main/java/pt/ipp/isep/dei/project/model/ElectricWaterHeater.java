@@ -40,13 +40,6 @@ public class ElectricWaterHeater implements Device, Measurable {
         return this.mLocation;
     }
 
-    public String validateName(String name) {
-        if (this.mLocation.isDeviceNameExistant(name)) {
-            throw new RuntimeException("Name already exists. Please write a new one.");
-        }
-        return name;
-    }
-
     /**
      * get method
      *
@@ -271,5 +264,10 @@ public class ElectricWaterHeater implements Device, Measurable {
     @Override
     public DeviceSpecs getSpecs() {
         return this.mSpec;
+    }
+
+    @Override
+    public String getSpecsToString() {
+        return this.mSpec.getAttributesToString();
     }
 }
