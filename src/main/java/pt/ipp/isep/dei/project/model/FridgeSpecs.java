@@ -110,12 +110,13 @@ public class FridgeSpecs implements DeviceSpecs {
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
-        attributes.append("> " + ATTRIBUTE_FREEZER_CAPACITY + ": " + mFreezerCapacity + "\n");
-        attributes.append("> " + ATTRIBUTE_REFRIGERATOR_CAPACITY + ": " + mRefrigeratorCapacity + "\n");
-        attributes.append("> " + ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION + ": " + mAnnualEnergyConsumption + "\n");
-        attributes.append("> " + ATTRIBUTE_NOMINAL_POWER + ": " + mNominalPower + "\n");
+        attributes.append("1 - Freezer Capacity: " + mFreezerCapacity + "\n");
+        attributes.append("2 - Refrigerator Capacity: " + mRefrigeratorCapacity + "\n");
+        attributes.append("3 - Annual Energy Consumption: " + mAnnualEnergyConsumption + "\n");
+        attributes.append("4 - Nominal Power: " + mNominalPower + "\n");
         return attributes.toString();
     }
+
 
     /**
      * get method of the number of attributes
@@ -130,10 +131,10 @@ public class FridgeSpecs implements DeviceSpecs {
     @Override
     public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
-        result.add(ATTRIBUTE_FREEZER_CAPACITY);
-        result.add(ATTRIBUTE_REFRIGERATOR_CAPACITY);
-        result.add(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION);
-        result.add(ATTRIBUTE_NOMINAL_POWER);
+        result.add("1 - " + ATTRIBUTE_FREEZER_CAPACITY + " - " + mFreezerCapacity);
+        result.add("2 - " + ATTRIBUTE_REFRIGERATOR_CAPACITY + " - " + mRefrigeratorCapacity);
+        result.add("3 - " + ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION + " -  " + mAnnualEnergyConsumption);
+        result.add("4 - " + ATTRIBUTE_NOMINAL_POWER + " - " + mNominalPower);
 
         return result;
     }

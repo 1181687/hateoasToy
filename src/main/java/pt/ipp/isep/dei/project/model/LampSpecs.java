@@ -96,10 +96,11 @@ public class LampSpecs implements DeviceSpecs {
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
-        attributes.append("> " + ATTRIBUTE_LUMINOUS_FLUX + ": " + mLuminousFlux + "\n");
-        attributes.append("> " + ATTRIBUTE_NOMINAL_POWER + ": " + mNominalPower + "\n");
+        attributes.append("1 - Luminous Flux: " + mLuminousFlux + "\n");
+        attributes.append("2 - Nominal Power: " + mNominalPower + "\n");
         return attributes.toString();
     }
+
 
     /**
      * get method
@@ -114,9 +115,8 @@ public class LampSpecs implements DeviceSpecs {
     @Override
     public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
-        result.add(ATTRIBUTE_LUMINOUS_FLUX);
-        result.add(ATTRIBUTE_TIME);
-        result.add(ATTRIBUTE_NOMINAL_POWER);
+        result.add("1 - " + ATTRIBUTE_LUMINOUS_FLUX + " - " + mLuminousFlux);
+        result.add("2 - " + ATTRIBUTE_NOMINAL_POWER + " - " + mNominalPower);
 
         return result;
     }

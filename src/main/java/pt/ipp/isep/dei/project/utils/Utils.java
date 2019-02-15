@@ -83,4 +83,15 @@ public final class Utils {
                     ", Energy Consumption: " + entry.getValue() + " kWh\n");
         return readingsMap.toString();
     }
+
+    public static String getDevSpecsListToString(List<String> deviceSpecsAttributes, int position) {
+        StringBuilder specifications = new StringBuilder();
+        int numberOfAttributes = deviceSpecsAttributes.size();
+        for (int i = 1; i <= numberOfAttributes; i++) {
+            specifications.append(position + " - " + i);
+            specifications.append("\n");
+            position++;
+        }
+        return specifications.toString();
+    }
 }

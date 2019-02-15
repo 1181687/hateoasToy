@@ -135,9 +135,9 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
-        attributes.append("> " + ATTRIBUTE_HOT_WATER_TEMP + ": " + mHotWaterTemperature + "\n");
-        attributes.append("> " + ATTRIBUTE_PERFORMANCE_RATIO + ": " + mPerformanceRatio + "\n");
-        attributes.append("> " + ATTRIBUTE_NOMINAL_POWER + ": " + mNominalPower + "\n");
+        attributes.append("1 - Hot Water Temperature: " + mHotWaterTemperature + "\n");
+        attributes.append("2 - Performance Ratio: " + mPerformanceRatio + "\n");
+        attributes.append("3 - Nominal Power: " + mNominalPower + "\n");
         return attributes.toString();
     }
 
@@ -148,17 +148,15 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     @Override
     public int getNumberOfAttributes() {
-        return 4;
+        return 3;
     }
 
     @Override
     public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
-        result.add(ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT);
-        result.add(ATTRIBUTE_HOT_WATER_TEMP);
-        result.add(ATTRIBUTE_PERFORMANCE_RATIO);
-        result.add(ATTRIBUTE_COLD_WATER_TEMP);
-        result.add(ATTRIBUTE_NOMINAL_POWER);
+        result.add("1 - " + ATTRIBUTE_HOT_WATER_TEMP + " - " + mHotWaterTemperature);
+        result.add("2 - " + ATTRIBUTE_PERFORMANCE_RATIO + " - " + mPerformanceRatio);
+        result.add("3 - " + ATTRIBUTE_NOMINAL_POWER + " - " + mNominalPower);
 
         return result;
     }

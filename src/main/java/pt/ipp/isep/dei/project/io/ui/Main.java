@@ -5,7 +5,6 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Main {
@@ -28,7 +27,6 @@ public class Main {
 
         GeographicalAreaTypeList geographicalAreaTypeList = new GeographicalAreaTypeList();
         GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
-        List<Device> deviceList = new ArrayList<>();
 
 
         // GEOGRAPHICAL AREAS
@@ -498,7 +496,6 @@ public class Main {
         wmB109.addReadingsToTheList(wm1EC4);
 
         // Electric Water Heater 106
-        ElectricWaterHeaterType electricWaterHeaterTypeB106 = new ElectricWaterHeaterType();
         Device ewhB106 = electricWaterHeaterTypeB109.createDevice("EHW B106", room3);
         ewhB106.setAttributesDevType("Volume Of Water To Heat", 55);
         ewhB106.setAttributesDevType("Hot-Water Temperature", 150);
