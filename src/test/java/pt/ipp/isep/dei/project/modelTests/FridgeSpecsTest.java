@@ -1,42 +1,53 @@
 package pt.ipp.isep.dei.project.modelTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.FridgeSpecs;
+import pt.ipp.isep.dei.project.model.Dimension;
+import pt.ipp.isep.dei.project.model.FridgeType;
+import pt.ipp.isep.dei.project.model.Room;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class FridgeSpecsTest {
+    Room kitchen;
+
+    @BeforeEach
+    public void StartUp() {
+        Dimension dim = new Dimension(3, 5, 6);
+        kitchen = new Room("Kitchen", 1, dim);
+        FridgeType fridgeType = new FridgeType();
+        fridgeType.createDevice("Fridge Ariston", kitchen);
+    }
 
     @Test
     public void testGetTypeName() {
         //Arrange
-        // FridgeSpecs Instantiation
-        FridgeSpecs fridgeSpecs = new FridgeSpecs();
-
         String expectedResult = "Fridge";
 
         //Act
-        String result = fridgeSpecs.getTypeName();
+        String result = kitchen.getDeviceByPosition(0).getType();
 
         //Assert
         assertEquals(expectedResult, result);
     }
 
 
-   /* @Test
+    @Test
     public void getEnergyConsumptionInADayTestWithValidValues() {
         // Arrange
         // FridgeSpecs Instantiation
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Freezer Capacity", 20.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 10000.0);
+        
         double expectedResult = 27.3972;
 
         // Act
-        double result = fridgeSpecs.getEnergyConsumptionInADay();
+        double result = kitchen.getDeviceByPosition(0).getEnergyConsumptionInADay();
 
         // Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -46,60 +57,18 @@ public class FridgeSpecsTest {
     public void getNominalPower() {
         // Arrange
         // FridgeSpecs Instantiation
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
 
         double expectedResult = 100.0;
 
         //Act
-        double result = fridgeSpecs.getNominalPower();
+        double result = kitchen.getDeviceByPosition(0).getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
 
     }
-
-    @Test
-    public void testEmptyConstructor() {
-        // Arrange
-        // FridgeSpecs Instantiation
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs();
-
-        fridgeSpecs.setNominalPower(nominalPower);
-
-        double expectedResult = 100.0;
-
-        //Act
-        double result = fridgeSpecs.getNominalPower();
-
-        //Assert
-        assertEquals(expectedResult, result, 0.0001);
-
-    }
-
-    @Test
-    public void setmFreezerCapacityTrue() {
-        // Arrange
-        // FridgeSpecs Instantiation
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
-
-        //act
-        boolean result = fridgeSpecs.setFreezerCapacity(100.0);
-
-        assertTrue(result);
-    }
+    /*
 
     @Test
     public void setmFreezerCapacityFalse() {
@@ -109,11 +78,9 @@ public class FridgeSpecsTest {
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
 
         //act
-        boolean result = fridgeSpecs.setFreezerCapacity(20.0);
+        boolean result = kitchen.getDeviceByPosition(0).setFreezerCapacity(20.0);
 
         assertFalse(result);
     }
@@ -126,10 +93,9 @@ public class FridgeSpecsTest {
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
+        
         //act
-        boolean result = fridgeSpecs.setRefrigeratorCapacity(20.0);
+        boolean result = kitchen.getDeviceByPosition(0).setRefrigeratorCapacity(20.0);
 
         assertTrue(result);
     }
@@ -142,11 +108,9 @@ public class FridgeSpecsTest {
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
 
         //act
-        boolean result = fridgeSpecs.setRefrigeratorCapacity(100.0);
+        boolean result = kitchen.getDeviceByPosition(0).setRefrigeratorCapacity(100.0);
 
         assertFalse(result);
     }
@@ -159,10 +123,9 @@ public class FridgeSpecsTest {
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
+        
         //act
-        boolean result = fridgeSpecs.setNominalPower(100.0);
+        boolean result = kitchen.getDeviceByPosition(0).setNominalPower(100.0);
 
         assertFalse(result);
     }
@@ -175,10 +138,9 @@ public class FridgeSpecsTest {
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
+        
         //act
-        boolean result = fridgeSpecs.setNominalPower(20.0);
+        boolean result = kitchen.getDeviceByPosition(0).setNominalPower(20.0);
 
         assertTrue(result);
     }
@@ -191,11 +153,9 @@ public class FridgeSpecsTest {
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
-
+        
         //act
-        boolean result = fridgeSpecs.setAnnualEnergyConsumption(10000.0);
+        boolean result = kitchen.getDeviceByPosition(0).setAnnualEnergyConsumption(10000.0);
 
         assertFalse(result);
     }
@@ -208,13 +168,12 @@ public class FridgeSpecsTest {
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
+        
         //act
-        boolean result = fridgeSpecs.setAnnualEnergyConsumption(2000.0);
+        boolean result = kitchen.getDeviceByPosition(0).setAnnualEnergyConsumption(2000.0);
 
         assertTrue(result);
-    }
+    }*/
 
 
     @Test
@@ -222,12 +181,11 @@ public class FridgeSpecsTest {
 
         // Arrange
         // FridgeSpecs Instantiation
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Freezer Capacity", 20.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 10000.0);
+        
         String expectedResult =
                 "1 - Freezer Capacity: 20.0\n" +
                         "2 - Refrigerator Capacity: 100.0\n" +
@@ -235,23 +193,22 @@ public class FridgeSpecsTest {
                         "4 - Nominal Power: 100.0\n";
 
         // Act
-        String result = fridgeSpecs.getAttributesToString();
+        String result = kitchen.getDeviceByPosition(0).getDevSpecsAttributesToString();
 
         // Assert
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    /*@Test
     public void setAttributeTrueFreezer() {
         // Arrange
         double freezerCapacity = 20.0;
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
+        
         // Act
-        boolean result = fridgeSpecs.setAttribute(1, 21);
+        boolean result = kitchen.getDeviceByPosition(0).setAttribute(1, 21);
 
         // assert
         assertTrue(result);
@@ -264,10 +221,9 @@ public class FridgeSpecsTest {
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
+        
         // Act
-        boolean result = fridgeSpecs.setAttribute(1, 20.0);
+        boolean result = kitchen.getDeviceByPosition(0).setAttribute(1, 20.0);
 
         // assert
         assertFalse(result);
@@ -280,10 +236,9 @@ public class FridgeSpecsTest {
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
+        
         // Act
-        boolean result = fridgeSpecs.setAttribute(2, 101);
+        boolean result = kitchen.getDeviceByPosition(0).setAttribute(2, 101);
 
         // assert
         assertTrue(result);
@@ -296,10 +251,9 @@ public class FridgeSpecsTest {
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
+        
         // Act
-        boolean result = fridgeSpecs.setAttribute(2, 100.0);
+        boolean result = kitchen.getDeviceByPosition(0).setAttribute(2, 100.0);
 
         // assert
         assertFalse(result);
@@ -313,10 +267,9 @@ public class FridgeSpecsTest {
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
+        
         // Act
-        boolean result = fridgeSpecs.setAttribute(3, 10001);
+        boolean result = kitchen.getDeviceByPosition(0).setAttribute(3, 10001);
 
         // assert
         assertTrue(result);
@@ -329,10 +282,9 @@ public class FridgeSpecsTest {
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
         // Act
-        boolean result = fridgeSpecs.setAttribute(3, 10000.0);
+        boolean result = kitchen.getDeviceByPosition(0).setAttribute(3, 10000.0);
 
         // assert
         assertFalse(result);
@@ -346,10 +298,9 @@ public class FridgeSpecsTest {
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
         // Act
-        boolean result = fridgeSpecs.setAttribute(4, 101);
+        boolean result = kitchen.getDeviceByPosition(0).setAttribute(4, 101);
 
         // assert
         assertTrue(result);
@@ -362,10 +313,9 @@ public class FridgeSpecsTest {
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
         // Act
-        boolean result = fridgeSpecs.setAttribute(4, 100.0);
+        boolean result = kitchen.getDeviceByPosition(0).setAttribute(4, 100.0);
 
         // assert
         assertFalse(result);
@@ -378,30 +328,119 @@ public class FridgeSpecsTest {
         double refrigeratorCapacity = 100.0;
         double annualEnergyConsumption = 10000.0;
         double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
 
         // Act
-        boolean result = fridgeSpecs.setAttribute(5, 100.0);
+        boolean result = kitchen.getDeviceByPosition(0).setAttribute(5, 100.0);
 
         // assert
         assertFalse(result);
-    }
+    }*/
 
     @Test
     public void getNumberOfAttributes() {
         // Arrange
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
         int expectedResult = 4;
 
         // Act
-        int result = fridgeSpecs.getNumberOfAttributes();
+        int result = kitchen.getDeviceByPosition(0).getNumberOfSpecsAttributes();
 
         // assert
         assertEquals(expectedResult, result);
-    }*/
+    }
+
+    @Test
+    public void testgetSpecsInAListOfStrings() {
+        // Arrange
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("Freezer Capacity");
+        expectedResult.add("Refrigerator Capacity");
+        expectedResult.add("Annual Energy Consumption");
+        expectedResult.add("Nominal Power");
+
+        // Act
+        List<String> result = kitchen.getDeviceByPosition(0).getSpecs().getSpecsList();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueNominalPower() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Freezer Capacity", 20.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 10000.0);
+
+        Object expectedResult = 100.0;
+        // Act
+        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Nominal Power");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueFreezerCapacity() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Freezer Capacity", 20.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 10000.0);
+
+        Object expectedResult = 20.0;
+        // Act
+        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Freezer Capacity");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueRefrigeratorCapacity() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Freezer Capacity", 20.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 10000.0);
+
+        Object expectedResult = 100.0;
+        // Act
+        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Refrigerator Capacity");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueAnnualEnergyConsumption() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Freezer Capacity", 20.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 10000.0);
+
+        Object expectedResult = 10000.0;
+        // Act
+        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Annual Energy Consumption");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueNotAValidSpec() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Freezer Capacity", 20.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 10000.0);
+
+        Object expectedResult = -1;
+        // Act
+        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Not Valid");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 }

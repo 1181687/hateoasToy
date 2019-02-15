@@ -14,7 +14,7 @@ public interface DeviceSpecs {
 
     int getNumberOfAttributes();
 
-    List<String> getAttributeToString();
+    List<String> getSpecsList();
 
     Object getAttributeValue(String attributeName);
 

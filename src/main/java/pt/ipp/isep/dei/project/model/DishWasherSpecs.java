@@ -124,7 +124,7 @@ public class DishWasherSpecs implements DeviceSpecs {
     }
 
     @Override
-    public List<String> getAttributeToString() {
+    public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
         result.add(ATTRIBUTE_CAPACITY);
         result.add(ATTRIBUTE_DURATION);

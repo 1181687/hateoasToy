@@ -185,7 +185,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     }
 
     @Override
-    public List<String> getAttributeToString() {
+    public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
         result.add(ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT);
         result.add(ATTRIBUTE_HOT_WATER_TEMP);

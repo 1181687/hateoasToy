@@ -152,7 +152,7 @@ public class FridgeSpecs implements DeviceSpecs {
     }
 
     @Override
-    public List<String> getAttributeToString() {
+    public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
         result.add(ATTRIBUTE_FREEZER_CAPACITY);
         result.add(ATTRIBUTE_REFRIGERATOR_CAPACITY);
@@ -174,7 +174,7 @@ public class FridgeSpecs implements DeviceSpecs {
             case ATTRIBUTE_NOMINAL_POWER:
                 return mNominalPower;
             default:
-                return 0;
+                return -1;
         }
     }
 

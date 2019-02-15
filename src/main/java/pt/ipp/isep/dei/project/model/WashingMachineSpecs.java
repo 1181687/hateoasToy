@@ -118,7 +118,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
     }
 
     @Override
-    public List<String> getAttributeToString() {
+    public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
         result.add(ATTRIBUTE_CAPACITY);
         result.add(ATTRIBUTE_DURATION);
@@ -154,13 +154,13 @@ public class WashingMachineSpecs implements DeviceSpecs {
                 return false;
             case ATTRIBUTE_DURATION:
                 if (attributeValue instanceof Number) {
-                    this.mDuration = (Double) ((Number) attributeValue).doubleValue();
+                    this.mDuration = ((Number) attributeValue).doubleValue();
                     return true;
                 }
                 return false;
             case ATTRIBUTE_ENERGY_CONSUMPTION:
                 if (attributeValue instanceof Number) {
-                    this.mEnergyConsumption = (Double) ((Number) attributeValue).doubleValue();
+                    this.mEnergyConsumption = ((Number) attributeValue).doubleValue();
                     return true;
                 }
                 return false;
