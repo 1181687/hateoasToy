@@ -727,8 +727,8 @@ public class RoomTest {
 
 
         String expectedResult =
-                "1 - Name of the device: Lamp1 - ACTIVATED\n" +
-                        "2 - Name of the device: Lamp2 - ACTIVATED\n";
+                "1 - Device name: Lamp1 - ACTIVATED\n" +
+                        "2 - Device name: Lamp2 - ACTIVATED\n";
         // Act
         String result = room.getActiveDeviceListToString();
 
@@ -751,8 +751,8 @@ public class RoomTest {
         dev1.setDeactivateDevice();
 
         String expectedResult =
-                "1 - Name of the device: Lamp1 - DEACTIVATED\n" +
-                        "2 - Name of the device: Lamp2 - ACTIVATED\n";
+                "1 - Device name: Lamp1 - DEACTIVATED\n" +
+                        "2 - Device name: Lamp2 - ACTIVATED\n";
         // Act
         String result = room.getActiveDeviceListToString();
 
@@ -777,8 +777,8 @@ public class RoomTest {
         dev2.setDeactivateDevice();
 
         String expectedResult =
-                "1 - Name of the device: Lamp1 - DEACTIVATED\n" +
-                        "2 - Name of the device: Lamp2 - DEACTIVATED\n";
+                "1 - Device name: Lamp1 - DEACTIVATED\n" +
+                        "2 - Device name: Lamp2 - DEACTIVATED\n";
         // Act
         String result = room.getActiveDeviceListToString();
 
