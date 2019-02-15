@@ -10,11 +10,9 @@ public interface DeviceSpecs {
 
     String getAttributesToString();
 
-    boolean setAttribute (int attribute, double value);
-
     int getNumberOfAttributes();
 
-    List<String> getAttributeToString();
+    List<String> getSpecsList();
 
     Object getAttributeValue(String attributeName);
 

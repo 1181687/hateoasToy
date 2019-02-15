@@ -103,25 +103,6 @@ public class LampSpecs implements DeviceSpecs {
 
 
     /**
-     * set method
-     *
-     * @param attribute position of the attribute
-     * @param value
-     * @return
-     */
-    @Override
-    public boolean setAttribute(int attribute, double value) {
-        switch (attribute) {
-            case 1:
-                return setLuminousFlux(value);
-            case 2:
-                return setNominalPower(value);
-            default:
-                return false;
-        }
-    }
-
-    /**
      * get method
      *
      * @return number of FridgeSpecs attributes
@@ -132,7 +113,7 @@ public class LampSpecs implements DeviceSpecs {
     }
 
     @Override
-    public List<String> getAttributeToString() {
+    public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
         result.add(ATTRIBUTE_LUMINOUS_FLUX);
         result.add(ATTRIBUTE_TIME);

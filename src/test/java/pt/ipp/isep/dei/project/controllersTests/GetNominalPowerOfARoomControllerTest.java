@@ -8,7 +8,9 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class GetNominalPowerOfARoomControllerTest {
@@ -72,7 +74,7 @@ class GetNominalPowerOfARoomControllerTest {
         assertEquals(result, expectedResult);
     }
 
-   /* @Test
+    @Test
     void getNominalPower() {
 
         Dimension dim1 = new Dimension(4, 4, 4);
@@ -86,15 +88,15 @@ class GetNominalPowerOfARoomControllerTest {
 
         this.ctrl.getRoom(0);
 
-        FridgeSpecs fridgeSpecs1 = new FridgeSpecs(25, 50, 5000, 110);
-        ProgramList programList = new ProgramList();
-        DishWasherSpecs dishWasherSpecs1 = new DishWasherSpecs(400, 110, programList);
 
-        Device d1 = new Device("Fridge1", room1, fridgeSpecs1);
-        Device d2 = new Device("Dish Washer1", room1, dishWasherSpecs1);
+        FridgeType fridgeType = new FridgeType();
+        Device d1 = fridgeType.createDevice("Fridge1", room1);
+        d1.setAttributesDevType("Nominal Power", 110);
 
-        room1.addDevice(d1);
-        room1.addDevice(d2);
+        DishWasherType dishWasher = new DishWasherType();
+        Device d2 = dishWasher.createDevice("Dish Washer1", room1);
+        d2.setAttributesDevType("Nominal Power", 110);
+
 
         double expectedResult = 220;
 
@@ -119,15 +121,6 @@ class GetNominalPowerOfARoomControllerTest {
 
         this.ctrl.getRoom(0);
 
-        FridgeSpecs fridgeSpecs1 = new FridgeSpecs(20, 20, 50, 400);
-        ProgramList programList = new ProgramList();
-        DishWasherSpecs dishWasherSpecs1 = new DishWasherSpecs(50, 250, programList);
-
-        Device d1 = new Device("Fridge1", room1, fridgeSpecs1);
-        Device d2 = new Device("Dish Washer1", room1, dishWasherSpecs1);
-
-        room2.addDevice(d1);
-        room2.addDevice(d2);
 
         double expectedResult = 0;
 
@@ -191,13 +184,11 @@ class GetNominalPowerOfARoomControllerTest {
         this.house.addRoom(room1);
         this.house.addRoom(room2);
 
-        FridgeSpecs fridgeSpecs1 = new FridgeSpecs(20, 20, 50, 400);
-        ProgramList programList = new ProgramList();
-        DishWasherSpecs dishWasherSpecs1 = new DishWasherSpecs(20, 450, programList);
+        FridgeType fridgeType = new FridgeType();
+        Device d1 = fridgeType.createDevice("Fridge1", room1);
 
-        Device d1 = new Device("FridgeSpecs", room1, fridgeSpecs1);
-
-        Device d2 = new Device("Dish Washer", room1, dishWasherSpecs1);
+        DishWasherType dishWasher = new DishWasherType();
+        Device d2 = dishWasher.createDevice("Dish Washer1", room1);
 
         room2.getDeviceList().add(d1);
 
@@ -208,5 +199,5 @@ class GetNominalPowerOfARoomControllerTest {
 
         //Assert
         assertFalse(result);
-    }*/
+    }
 }

@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.DishWasher;
+import pt.ipp.isep.dei.project.model.Lamp;
 import pt.ipp.isep.dei.project.model.Readings;
 import pt.ipp.isep.dei.project.model.Room;
 
@@ -14,10 +14,10 @@ import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DishWasherTest {
+class LampTest {
     private Room kitchen;
     private Room laundry;
-    private DishWasher dishwasher;
+    private Lamp lamp;
     private Map<LocalDateTime, Double> map;
 
     @BeforeEach
@@ -28,11 +28,11 @@ class DishWasherTest {
         laundry = new Room("Laundry", 1, dim);
 
         // Devices
-        DishWasher dummyWasher = new DishWasher("Bosch 400 Series", kitchen);
-        dishwasher = new DishWasher("Bosch 500 Series", kitchen);
-        dishwasher.setAttributesDevType("Capacity", 10);
-        dishwasher.setAttributesDevType("Duration", 0);
-        dishwasher.setAttributesDevType("Nominal Power", 1200);
+        Lamp dummyLamp = new Lamp("TaoTronics Elune TT-DL01", kitchen);
+        lamp = new Lamp("TaoTronics Elune TT-DL02", kitchen);
+        lamp.setAttributesDevType("Luminous Flux", 2800);
+        lamp.setAttributesDevType("Time", 1);
+        lamp.setAttributesDevType("Nominal Power", 300);
 
         // Readings
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -41,9 +41,9 @@ class DishWasherTest {
         Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
         Readings readings2 = new Readings(7, time2);
-        dishwasher.addReadingsToTheList(readings0);
-        dishwasher.addReadingsToTheList(readings1);
-        dishwasher.addReadingsToTheList(readings2);
+        lamp.addReadingsToTheList(readings0);
+        lamp.addReadingsToTheList(readings1);
+        lamp.addReadingsToTheList(readings2);
 
         // Maps
         map = new TreeMap<>();
@@ -55,10 +55,10 @@ class DishWasherTest {
     @Test
     void getNominalPowerTest() {
         //Arrange
-        double expectedResult = 1200.0;
+        double expectedResult = 300.0;
 
         //Act
-        double result = dishwasher.getNominalPower();
+        double result = lamp.getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -70,7 +70,7 @@ class DishWasherTest {
         Room expectedResult = kitchen;
 
         // Act
-        Room result = dishwasher.getLocation();
+        Room result = lamp.getLocation();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -79,10 +79,10 @@ class DishWasherTest {
     @Test
     void getNameTest() {
         // Arrange
-        String expectedResult = "Bosch 500 Series";
+        String expectedResult = "TaoTronics Elune TT-DL02";
 
         // Act
-        String result = dishwasher.getName();
+        String result = lamp.getName();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -91,10 +91,10 @@ class DishWasherTest {
     @Test
     void getTypeTest() {
         // Arrange
-        String expectedResult = "Dishwasher";
+        String expectedResult = "Lamp";
 
         // act
-        String result = dishwasher.getType();
+        String result = lamp.getType();
 
         // assert
         assertEquals(expectedResult, result);
@@ -103,10 +103,10 @@ class DishWasherTest {
     @Test
     public void getEnergyConsumptionInADayTest() {
         // Arrange
-        double expectedResult = 0;
+        double expectedResult = 300.0;
 
         // Act
-        double result = dishwasher.getEnergyConsumptionInADay();
+        double result = lamp.getEnergyConsumptionInADay();
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -114,20 +114,20 @@ class DishWasherTest {
 
     @Test
     public void setNameWithSameNameTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> dishwasher.setName("Bosch 500 Series"));
+        Throwable exception = assertThrows(RuntimeException.class, () -> lamp.setName("TaoTronics Elune TT-DL02"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
     public void setNameAlreadyInListTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> dishwasher.setName("Bosch 400 Series"));
+        Throwable exception = assertThrows(RuntimeException.class, () -> lamp.setName("TaoTronics Elune TT-DL01"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
     public void setNameFalseTest() {
         // Act
-        boolean result = dishwasher.setName("");
+        boolean result = lamp.setName("");
 
         // Assert
         assertTrue(result);
@@ -136,7 +136,7 @@ class DishWasherTest {
     @Test
     public void setNameTrueTest() {
         // Act
-        boolean result = dishwasher.setName("Bosch 600 Series");
+        boolean result = lamp.setName("Miele PerfectCool Series 4000");
 
         // Assert
         assertTrue(result);
@@ -145,7 +145,7 @@ class DishWasherTest {
     @Test
     void setLocationFalseTest() {
         // Act
-        boolean result = dishwasher.setLocation(kitchen);
+        boolean result = lamp.setLocation(kitchen);
 
         // Assert
         assertFalse(result);
@@ -154,7 +154,7 @@ class DishWasherTest {
     @Test
     void setLocationTrueTest() {
         // Act
-        boolean result = dishwasher.setLocation(laundry);
+        boolean result = lamp.setLocation(laundry);
 
         // Assert
         assertTrue(result);
@@ -163,10 +163,10 @@ class DishWasherTest {
     @Test
     void getDevSpecsAttributesToStringTest() {
         // Arrange
-        String expectedResult = "1 - Capacity: 10\n" +
-                "2 - Nominal Power: 1200.0\n";
+        String expectedResult = "1 - Luminous Flux: 2800.0\n" +
+                "2 - Nominal Power: 300.0\n";
         // Act
-        String result = dishwasher.getDevSpecsAttributesToString();
+        String result = lamp.getDevSpecsAttributesToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -175,11 +175,11 @@ class DishWasherTest {
     @Test
     void getAttributesToStringTest() {
         // Arrange
-        String expectedResult = "1 - Name: Bosch 500 Series\n" +
-                "2 - Device Specifications \n" +
+        String expectedResult = "1 - Name: TaoTronics Elune TT-DL02\n" +
+                "2 - Device1 Specifications\n" +
                 "3 - Location: Kitchen\n";
         // Act
-        String result = dishwasher.getAttributesToString();
+        String result = lamp.getAttributesToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -188,10 +188,10 @@ class DishWasherTest {
     @Test
     void hashCodeTest() {
         // Arrange
-        int expectedResult = Objects.hash(dishwasher.getName());
+        int expectedResult = Objects.hash(lamp.getName());
 
         // Act
-        int result = dishwasher.hashCode();
+        int result = lamp.hashCode();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -203,7 +203,7 @@ class DishWasherTest {
         Object object = new Object();
 
         // Act
-        boolean result = dishwasher.equals(object);
+        boolean result = lamp.equals(object);
 
         // Assert
         assertFalse(result);
@@ -215,7 +215,7 @@ class DishWasherTest {
         int expectedResult = 2;
 
         // Act
-        int result = dishwasher.getNumberOfSpecsAttributes();
+        int result = lamp.getNumberOfSpecsAttributes();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -224,10 +224,10 @@ class DishWasherTest {
     @Test
     void getNameToStringTest() {
         // Arrange
-        String expectedResult = "Device: Bosch 500 Series, located in room: Kitchen\n";
+        String expectedResult = "Device: TaoTronics Elune TT-DL02, located in room: Kitchen\n";
 
         // Act
-        String result = dishwasher.getNameToString();
+        String result = lamp.getNameToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -242,7 +242,7 @@ class DishWasherTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 15, 00, 00);
 
         // Act
-        double result = dishwasher.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = lamp.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -257,7 +257,7 @@ class DishWasherTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
-        double result = dishwasher.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = lamp.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -272,7 +272,7 @@ class DishWasherTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
-        double result = dishwasher.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = lamp.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -281,7 +281,7 @@ class DishWasherTest {
     @Test
     void getIsActiveTrueTest() {
         // Act
-        boolean result = dishwasher.getIsActive();
+        boolean result = lamp.getIsActive();
 
         // Assert
         assertTrue(result);
@@ -290,10 +290,10 @@ class DishWasherTest {
     @Test
     void getIsActiveFalseTest() {
         // Assert
-        dishwasher.setDeactivateDevice();
+        lamp.setDeactivateDevice();
 
         // Act
-        boolean result = dishwasher.getIsActive();
+        boolean result = lamp.getIsActive();
 
         // Assert
         assertFalse(result);
@@ -308,7 +308,7 @@ class DishWasherTest {
         Map<LocalDateTime, Double> expectedResult = map;
 
         // Act
-        Map<LocalDateTime, Double> result = dishwasher.getDataSeries(time0, time2);
+        Map<LocalDateTime, Double> result = lamp.getDataSeries(time0, time2);
 
         // Assert
         assertEquals(expectedResult, result);

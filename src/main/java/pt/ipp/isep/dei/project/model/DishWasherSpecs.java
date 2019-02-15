@@ -93,25 +93,6 @@ public class DishWasherSpecs implements DeviceSpecs {
         return attributes.toString();
     }
 
-    /**
-     * method that set a value of an attribute by a position.
-     *
-     * @param attribute
-     * @param value
-     * @return the attributes with new value if true. If not, return false.
-     */
-    @Override
-    public boolean setAttribute(int attribute, double value) {
-        switch (attribute) {
-            case 1:
-                int intValue = (int) value;
-                return setCapacity(intValue);
-            case 2:
-                return setNominalPower(value);
-            default:
-                return false;
-        }
-    }
 
     /**
      * method that get the number of the attributes of the device.
@@ -124,7 +105,7 @@ public class DishWasherSpecs implements DeviceSpecs {
     }
 
     @Override
-    public List<String> getAttributeToString() {
+    public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
         result.add(ATTRIBUTE_CAPACITY);
         result.add(ATTRIBUTE_DURATION);

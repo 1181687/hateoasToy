@@ -34,7 +34,7 @@ public class EditConfigurationDevice {
     }
 
     public void changeSpecsOfDevice() {
-        String exitCase2 = "0 - Return to the previous menu";
+        String exitCase2 = "0 - Return to the previous menu  ";
         String label5 = "Choose the specification you want to change.\n" + controller.getDevSpecsAttributesToString() + exitCase2;
         int attributePosition = InputValidator.getIntRange(label5, 0, controller.getNumberOfAttributesInDeviceSpecs());
 
@@ -54,7 +54,7 @@ public class EditConfigurationDevice {
     }
 
     public void changeLocationOfDevice() {
-        String exitCase3 = "0 - Return to the previous menu";
+        String exitCase3 = "0 - Return to the previous menu ";
         StringBuilder content = new StringBuilder();
         String label7 = "To which room do you want to change the device?\n" + controller.getRoomListContent() + exitCase3;
         int roomListLength1 = controller.roomListSize();
@@ -71,7 +71,7 @@ public class EditConfigurationDevice {
     }
 
     public void cases() {
-        String exitCases = "0 - Return to the previous menu";
+        String exitCases = "0 - Back to the previous menu";
         boolean flag2 = true;
         while (flag2) {
 
@@ -99,7 +99,7 @@ public class EditConfigurationDevice {
     }
 
     public void flag1() {
-        String exitFlag = "0 - Return to the previous menu";
+        String exitFlag = "0 - Back to the previous menu ";
         boolean flag1 = true;
         while (flag1) {
             String label2 = "Please select the device you want to edit:\n" + controller.getDevicesInTheRoom() + exitFlag;
@@ -123,7 +123,7 @@ public class EditConfigurationDevice {
     }
 
     public void run() {
-        String exitMenu = "0 - Return to the previous menu";
+        String exitMenu = "0 - Back to the previous menu  ";
         StringBuilder content = new StringBuilder();
         if (!this.controller.roomListIsEmpty()) {
             boolean flag = true;

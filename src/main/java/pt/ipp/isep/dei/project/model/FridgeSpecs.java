@@ -117,29 +117,6 @@ public class FridgeSpecs implements DeviceSpecs {
         return attributes.toString();
     }
 
-    /**
-     * set method
-     *
-     * @param attribute position of the attribute
-     * @param value
-     * @return
-     */
-    @Override
-    public boolean setAttribute(int attribute, double value) {
-
-        switch (attribute) {
-            case 1:
-                return setFreezerCapacity(value);
-            case 2:
-                return setRefrigeratorCapacity(value);
-            case 3:
-                return setAnnualEnergyConsumption(value);
-            case 4:
-                return setNominalPower(value);
-            default:
-                return false;
-        }
-    }
 
     /**
      * get method of the number of attributes
@@ -152,7 +129,7 @@ public class FridgeSpecs implements DeviceSpecs {
     }
 
     @Override
-    public List<String> getAttributeToString() {
+    public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
         result.add(ATTRIBUTE_FREEZER_CAPACITY);
         result.add(ATTRIBUTE_REFRIGERATOR_CAPACITY);
@@ -174,7 +151,7 @@ public class FridgeSpecs implements DeviceSpecs {
             case ATTRIBUTE_NOMINAL_POWER:
                 return mNominalPower;
             default:
-                return 0;
+                return -1;
         }
     }
 

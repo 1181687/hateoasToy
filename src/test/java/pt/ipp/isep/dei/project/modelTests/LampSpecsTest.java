@@ -3,16 +3,16 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.LampSpecs;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LampSpecsTest {
  /*   @Test
     public void getEnergyConsumptionInADayTestWithValidValues() {
         // Arrange
         // LampSpecs Instantiation
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
+        LampSpecs lampSpecs = new LampSpecs();
+        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
+        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
         lampSpecs.setTime(10.0);
 
@@ -29,10 +29,9 @@ public class LampSpecsTest {
     public void getNominalPower() {
         // Arrange
         // LampSpecs Instantiation
-
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
+        LampSpecs lampSpecs = new LampSpecs();
+        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
+        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
         double expectedResult = 100.0;
 
@@ -48,12 +47,8 @@ public class LampSpecsTest {
     public void testEmptyConstructor() {
         // Arrange
         // LampSpecs Instantiation
-
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
         LampSpecs lampSpecs = new LampSpecs();
-
-        lampSpecs.setNominalPower(nominalPower);
+        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
         double expectedResult = 100.0;
 
@@ -65,14 +60,15 @@ public class LampSpecsTest {
 
     }
 
-    @Test
+    /*@Test
     public void setmNominalPowerFalse() {
-
         // Arrange
         // LampSpecs Instantiation
         double luminousFlux = 50.0;
         double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
+        LampSpecs lampSpecs = new LampSpecs();
+        lampSpecs.setAttributeValue("Luminous Flux",50.0);
+        lampSpecs.setAttributeValue("Nominal Power",100.0);
 
         //act
         boolean result = lampSpecs.setNominalPower(100.0);
@@ -143,14 +139,13 @@ public class LampSpecsTest {
 
         assertTrue(result);
     }
-
+*/
     @Test
     public void getAttributesToString() {
-
         // Arrange
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
+        LampSpecs lampSpecs = new LampSpecs();
+        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
+        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
         String expectedResult =
                 "1 - Luminous Flux: 50.0\n" +
@@ -163,87 +158,13 @@ public class LampSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void setAttributeTrueLuminousFlux() {
-        // Arrange
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
-
-
-        // Act
-        boolean result = lampSpecs.setAttribute(1, 51);
-
-        // assert
-        assertTrue(result);
-    }
-
-    @Test
-    public void setAttributeFalseLuminousFlux() {
-        // Arrange
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
-
-
-        // Act
-        boolean result = lampSpecs.setAttribute(1, 50.0);
-
-        // assert
-        assertFalse(result);
-    }
-
-    @Test
-    public void setAttributeTrueNominalPower() {
-        // Arrange
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
-
-
-        // Act
-        boolean result = lampSpecs.setAttribute(2, 101);
-
-        // assert
-        assertTrue(result);
-    }
-
-    @Test
-    public void setAttributeFalseNominalPower() {
-        // Arrange
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
-
-
-        // Act
-        boolean result = lampSpecs.setAttribute(2, 100.0);
-
-        // assert
-        assertFalse(result);
-    }
-
-    @Test
-    public void setAttributeFalse() {
-        // Arrange
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
-
-
-        // Act
-        boolean result = lampSpecs.setAttribute(3, 100.0);
-
-        // assert
-        assertFalse(result);
-    }
 
     @Test
     public void getNumberOfAttributes() {
         // Arrange
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
+        LampSpecs lampSpecs = new LampSpecs();
+        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
+        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
 
         int expectedResult = 2;
@@ -253,5 +174,5 @@ public class LampSpecsTest {
 
         // assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 }

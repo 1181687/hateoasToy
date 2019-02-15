@@ -13,11 +13,11 @@ public class AddGeoAreaController {
     /**
      * construtor of the controller with geoAreaList and types of GeoAreaList.
      * @param geographicalAreaList
-     * @param TGAList
+     * @param typesGeoAreaList
      */
-    public AddGeoAreaController(GeographicalAreaList geographicalAreaList, GeographicalAreaTypeList TGAList) {
+    public AddGeoAreaController(GeographicalAreaList geographicalAreaList, GeographicalAreaTypeList typesGeoAreaList) {
         this.mGeographicalAreaList = geographicalAreaList;
-        this.mTGAList = TGAList;
+        this.mTGAList = typesGeoAreaList;
     }
 
     /**
