@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -68,11 +69,11 @@ public class RoomListTest {
     public void getDisplayRoomListEmptyTest() {
         //arrange
         RoomList rList = new RoomList();
-
         String expectResult = "";
 
         //act
         String result = rList.getRoomListContent();
+
         //assert
         assertEquals(expectResult, result);
     }
@@ -91,15 +92,16 @@ public class RoomListTest {
     public void checkIfRoomListIsEmptyFalse() {
         //arrange
         RoomList rList = new RoomList();
-
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
         Room room1 = new Room(name1, houseFloor1, dimension1);
 
         rList.addRoom(room1);
+
         //act
         boolean result = rList.isEmpty();
+
         //assert
         assertFalse(result);
     }
@@ -123,8 +125,10 @@ public class RoomListTest {
         rList.addRoom(room2);
 
         int expectResult = 2;
+
         //act
         int result = rList.getLength();
+
         //assert
         assertEquals(expectResult, result);
     }
@@ -135,8 +139,10 @@ public class RoomListTest {
         RoomList rList = new RoomList();
 
         int expectResult = 0;
+
         //act
         int result = rList.getLength();
+
         //assert
         assertEquals(expectResult, result);
     }
@@ -193,6 +199,7 @@ public class RoomListTest {
 
         //act
         String result = rList.getChosenRoomToString(0);
+
         //assert
         assertEquals(expectedResult, result);
     }
@@ -223,6 +230,7 @@ public class RoomListTest {
 
         //act
         String result = rList.getChosenRoomToString(chosenRoomPositionInList);
+
         //assert
         assertEquals(expectedResult, result);
     }
@@ -253,6 +261,7 @@ public class RoomListTest {
 
         //act
         String result = rList.getChosenRoomToString(chosenRoomPositionInList);
+
         //assert
         assertEquals(expectedResult, result);
     }
@@ -284,6 +293,7 @@ public class RoomListTest {
 
         //act
         String result = rList.getChosenRoomToString(chosenRoomPositionInList);
+
         //assert
         assertEquals(expectedResult, result);
     }
@@ -315,6 +325,7 @@ public class RoomListTest {
 
         //act
         String result = rList.getChosenRoomToString(chosenRoomPositionInList);
+
         //assert
         assertEquals(expectedResult, result);
     }
@@ -347,6 +358,7 @@ public class RoomListTest {
 
         //act
         String result = rList.getChosenRoomToString(chosenRoomPositionInList);
+
         //assert
         assertEquals(expectedResult, result);
     }
@@ -357,8 +369,10 @@ public class RoomListTest {
         RoomList list = new RoomList();
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("RoomOne", 2, dim);
+
         //Act
         boolean result = list.addRoom(room);
+
         //assert
         assertTrue(result);
     }
@@ -370,8 +384,10 @@ public class RoomListTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("RoomOne", 2, dim);
         list.addRoom(room);
+
         //Act
         boolean result = list.addRoom(room);
+
         //assert
         assertFalse(result);
     }
@@ -380,8 +396,10 @@ public class RoomListTest {
     public void testAddRoomToRoomListFalseNull() {
         //Arrange
         RoomList rList = new RoomList();
+
         //Act
         boolean result = rList.addRoom(null);
+
         //Assert
         assertFalse(result);
     }
@@ -400,8 +418,10 @@ public class RoomListTest {
 
         Room expectedResult = room1;
         String roomName = "RoomTwo";
+
         //Act
         Room result = rList.getRoomByName(roomName);
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -410,11 +430,12 @@ public class RoomListTest {
     public void testGetRoomByNameListOfRoomsEmpty() {
         //Arrange
         RoomList rList = new RoomList();
-
         Room expectedResult = null;
         String roomName = "RoomOne";
+
         //Act
         Room result = rList.getRoomByName(roomName);
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -433,8 +454,10 @@ public class RoomListTest {
 
         String expectedResult = "RoomTwo";
         int roomPos = 1;
+
         //Act
         String result = rList.getRoomNameByPosition(roomPos);
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -445,8 +468,10 @@ public class RoomListTest {
         RoomList rList = new RoomList();
         String expectedResult = null;
         int roomPos = 0;
+
         //Act
         String result = rList.getRoomNameByPosition(roomPos);
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -454,8 +479,6 @@ public class RoomListTest {
     @Test
     public void getMaximumTemperatureInARoomInAGivenDay() {
         //Arrange
-
-
         String name = "Master Bedroom";
         int houseFloor = 2;
         double height = 10.0;
@@ -500,12 +523,10 @@ public class RoomListTest {
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoom(room1);
 
-
         double expectedResult = 30.0;
 
         //Act
         double result = listOfRooms.getMaximumTemperatureInRoomInGivenDay(name, sensorType0, dateTimeDayMeasure4.toLocalDate());
-
 
         //Assert
         assertEquals(expectedResult, result);
@@ -559,12 +580,10 @@ public class RoomListTest {
         RoomList listOfRooms = new RoomList();
         listOfRooms.addRoom(room1);
 
-
         double expectedResult = -10.0;
 
         //Act
         double result = listOfRooms.getMaximumTemperatureInRoomInGivenDay(name, sensorType1, dateTimeDayMeasure3.toLocalDate());
-
 
         //Assert
         assertEquals(expectedResult, result);
@@ -587,7 +606,7 @@ public class RoomListTest {
     }
 
     @Test
-    public void getSensorsListContentOfARoomTest () {
+    public void getSensorsListContentOfARoomTest() {
         // Arrange
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
@@ -611,7 +630,7 @@ public class RoomListTest {
         int position = 0;
         String expectedResult =
                 "1 - Name of the sensor: A123\n" +
-                "2 - Name of the sensor: A456\n";
+                        "2 - Name of the sensor: A456\n";
         // Act
         String result = list.getSensorListContentOfRoom(position);
 
@@ -620,7 +639,7 @@ public class RoomListTest {
     }
 
     @Test
-    public void checkIfSensorListIsEmptyTestTrue () {
+    public void checkIfSensorListIsEmptyTestTrue() {
         // Arrange
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
@@ -637,7 +656,7 @@ public class RoomListTest {
     }
 
     @Test
-    public void checkIfSensorListIsEmptyTestFalse () {
+    public void checkIfSensorListIsEmptyTestFalse() {
         // Arrange
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
@@ -652,6 +671,7 @@ public class RoomListTest {
         room.addSensorToListOfSensorsInRoom(s0);
 
         int position = 0;
+
         // Act
         boolean result = roomList.isSensorListEmpty(position);
 
@@ -659,45 +679,43 @@ public class RoomListTest {
         assertFalse(result);
     }
 
-   /* @Test
+    @Test
     public void testGetAllDevicesList() {
-        //Room ONE
+        //Arrange
         String name = "Kitchen";
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
-        ProgramList pgList = new ProgramList();
-        FridgeSpecs specFridgeSpecs = new FridgeSpecs(100, 100, 100, 100);
-        WashingMachineSpecs specWashing = new WashingMachineSpecs(100, 100, pgList);
-        DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(100, 100, pgList);
-        Device dev1 = new Device("FridgeAriston", room1, specFridgeSpecs);
-        Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasherSpecs);
+        String nameFridge = "FridgeAriston";
+        FridgeType fridgeType = new FridgeType();
+        Device fridge1 = fridgeType.createDevice(nameFridge, room1);
 
-        room1.addDevice(dev1);
-        room1.addDevice(dev2);
-        room1.addDevice(dev3);
+        String nameWashingMachine = "WashingMachineBosch";
+        WashingMachineType washingMachineType = new WashingMachineType();
+        Device washingMachine1 = washingMachineType.createDevice(nameWashingMachine, room1);
 
-        //Room TWO
+        String nameDishWasher = "DishWasherAriston";
+        DishWasherType dishWasherType = new DishWasherType();
+        Device dishwasher1 = dishWasherType.createDevice(nameDishWasher, room1);
+
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
-        ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
-        Device dev4 = new Device("FridgeSiemens", room2, specFridgeSpecs);
-        Device dev5 = new Device("DishWasherTeka", room2, specDishWasherSpecs);
-        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
 
-        room2.addDevice(dev4);
-        room2.addDevice(dev5);
-        room2.addDevice(dev6);
+        String nameFridge1 = "FridgeSiemens";
+        FridgeType fridgeType1 = new FridgeType();
+        Device fridge2 = fridgeType1.createDevice(nameFridge1, room2);
+
+        String nameDishWasher1 = "DishWasherTeka";
+        DishWasherType dishWasherType1 = new DishWasherType();
+        Device dishwasher2 = dishWasherType1.createDevice(nameDishWasher1, room2);
 
         List<Device> expectedResult = new ArrayList<>();
-        expectedResult.add(dev1);
-        expectedResult.add(dev2);
-        expectedResult.add(dev3);
-        expectedResult.add(dev4);
-        expectedResult.add(dev5);
-        expectedResult.add(dev6);
+        expectedResult.add(fridge1);
+        expectedResult.add(washingMachine1);
+        expectedResult.add(dishwasher1);
+        expectedResult.add(fridge2);
+        expectedResult.add(dishwasher2);
 
         RoomList roomList = new RoomList();
         roomList.addRoom(room1);
@@ -711,31 +729,18 @@ public class RoomListTest {
     @Test
     public void getDeviceListContentOfARoomTest() {
         // Arrange
-
-        //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        //initiate Devices
+        String nameFridge1 = "Fridge1";
+        FridgeType fridgeType1 = new FridgeType();
+        Device fridge = fridgeType1.createDevice(nameFridge1, room);
 
-        double freezerCapacity = 5.5;
-        double refrigeratorCapacity = 15.5;
-        double annualEnergyConsumption = 5000;
-        double nominalPower = 100.5;
-        DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        Device dev = new Device("Fridge1", room, deviceSpecs);
-
-
-        double luminousFlux = 10.0;
-        double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
-
-        room.addDevice(dev);
-        room.addDevice(dev1);
+        String nameLamp1 = "Lamp1";
+        LampType lampType = new LampType();
+        Device lamp = lampType.createDevice(nameLamp1, room);
 
         house.addRoom(room);
-
 
         int position = 0;
 
@@ -743,13 +748,13 @@ public class RoomListTest {
                 "1 - Name of the device: Fridge1\n" +
                         "2 - Name of the device: Lamp1\n";
 
-
         // Act
         String result = house.getRoomList().getDeviceListContentByPosition(position);
 
         // Assert
         assertEquals(expectedResult, result);
     }
+
 
     @Test
     public void checkIfDeviceListIsEmptyTestTrue() {
@@ -776,13 +781,11 @@ public class RoomListTest {
         Room room = new Room("Room", 2, dim);
         RoomList roomList = new RoomList();
 
-        double luminousFlux = 10.0;
-        double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        String nameFridge1 = "Fridge1";
+        FridgeType fridgeType1 = new FridgeType();
+        Device fridge = fridgeType1.createDevice(nameFridge1, room);
 
         roomList.addRoom(room);
-        room.addDevice(dev1);
 
         int position = 0;
 
@@ -793,36 +796,40 @@ public class RoomListTest {
         assertFalse(result);
     }
 
+
     @Test
     public void testCheckIfThereAreNoDevicesFalse() {
         // Arrange
+        String name1 = "Room";
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room1 = new Room(name1, 2, dim);
         RoomList roomList = new RoomList();
 
-        //Room TWO
+        String nameFridge = "FridgeAriston";
+        FridgeType fridgeType = new FridgeType();
+        Device fridge1 = fridgeType.createDevice(nameFridge, room1);
+
+        String nameWashingMachine = "WashingMachineBosch";
+        WashingMachineType washingMachineType = new WashingMachineType();
+        Device washingMachine1 = washingMachineType.createDevice(nameWashingMachine, room1);
+
+        String nameDishWasher = "DishWasherAriston";
+        DishWasherType dishWasherType = new DishWasherType();
+        Device dishwasher1 = dishWasherType.createDevice(nameDishWasher, room1);
+
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
 
-        ProgramList pglist = new ProgramList();
-        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(100, 100, pglist);
-        ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
-        double freezerCapacity = 5.5;
-        double refrigeratorCapacity = 15.5;
-        double annualEnergyConsumption = 5000;
-        double nominalPower = 100.5;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
+        String nameFridge1 = "FridgeSiemens";
+        FridgeType fridgeType1 = new FridgeType();
+        Device fridge2 = fridgeType1.createDevice(nameFridge1, room2);
 
-        Device dev4 = new Device("FridgeSiemens", room2, fridgeSpecs);
-        Device dev5 = new Device("DishWasherTeka", room2, dishWasherSpecs);
-        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
+        String nameDishWasher1 = "DishWasherTeka";
+        DishWasherType dishWasherType1 = new DishWasherType();
+        Device dishwasher2 = dishWasherType1.createDevice(nameDishWasher1, room2);
 
-        room2.addDevice(dev4);
-        room2.addDevice(dev5);
-        room2.addDevice(dev6);
-
-        roomList.addRoom(room);
+        roomList.addRoom(room1);
         roomList.addRoom(room2);
 
         // Act
@@ -859,8 +866,10 @@ public class RoomListTest {
 
         String expectedResult = "1 - Name: RoomOne\n" +
                 "2 - Name: RoomTwo\n";
+
         //Act
         String result = rList.getRoomListToString();
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -869,7 +878,6 @@ public class RoomListTest {
     public void getRoomFromAPosition() {
         //arrange
         RoomList rList = new RoomList();
-
         String name1 = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
@@ -887,6 +895,7 @@ public class RoomListTest {
 
         //act
         Room result = rList.getRoomFromPosition(0);
+
         //assert
         assertEquals(expectResult, result);
     }
@@ -894,33 +903,30 @@ public class RoomListTest {
     @Test
     public void getAllDevicesToStringTest() {
         // Arrange
-        // Dimension Instantiation
         Dimension dim = new Dimension(3, 5, 6);
-
-        // Room Instantiation
         Room room0 = new Room("Kitchen", 1, dim);
         Room room1 = new Room("Laundry", 2, dim);
 
-        // FridgeSpecs Instantiation
-        DeviceSpecs fridge = new FridgeSpecs(35, 20, 1000, 10);
+        String nameFridge = "Fridgeratah V14";
+        FridgeType fridgeType = new FridgeType();
+        Device fridge1 = fridgeType.createDevice(nameFridge, room0);
 
-        // ElectricWaterHeaterSpecs Instantiation
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(50, 150,
-                0.9, 100);
+        String nameFridge1 = "Fridgeratah V15";
+        FridgeType fridgeType1 = new FridgeType();
+        Device fridge2 = fridgeType1.createDevice(nameFridge1, room0);
 
-        // Device Instantiation
-        Device device0 = new Device("Fridgeratah V14", room0, fridge);
-        room0.addDevice(device0);
-        Device Device = new Device("Fridgeratah V15", room0, fridge);
-        room0.addDevice(Device);
-        Device device2 = new Device("Fridgeratah V16", room0, fridge);
-        room0.addDevice(device2);
-        Device device3 = new Device("Bosh Tronic 3000", room1, electricWaterHeater);
-        room1.addDevice(device3);
-        Device device4 = new Device("Bosh Tronic 4000", room1, electricWaterHeater);
-        room1.addDevice(device4);
+        String nameFridge2 = "Fridgeratah V16";
+        FridgeType fridgeType2 = new FridgeType();
+        Device fridge3 = fridgeType2.createDevice(nameFridge2, room0);
 
-        // RoomList Instantiation
+        String nameElectricWaterHeater = "Bosch Tronic 3000";
+        ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
+        Device electricWaterHeater = electricWaterHeaterType.createDevice(nameElectricWaterHeater, room1);
+
+        String nameElectricWaterHeater2 = "Bosch Tronic 4000";
+        ElectricWaterHeaterType electricWaterHeaterType2 = new ElectricWaterHeaterType();
+        Device electricWaterHeater2 = electricWaterHeaterType2.createDevice(nameElectricWaterHeater2, room1);
+
         RoomList roomList = new RoomList();
         roomList.addRoom(room0);
         roomList.addRoom(room1);
@@ -929,13 +935,15 @@ public class RoomListTest {
                 "1 - Device: Fridgeratah V14, located in room: Kitchen\n" +
                         "2 - Device: Fridgeratah V15, located in room: Kitchen\n" +
                         "3 - Device: Fridgeratah V16, located in room: Kitchen\n" +
-                        "4 - Device: Bosh Tronic 3000, located in room: Laundry\n" +
-                        "5 - Device: Bosh Tronic 4000, located in room: Laundry\n";
+                        "4 - Device: Bosch Tronic 3000, located in room: Laundry\n" +
+                        "5 - Device: Bosch Tronic 4000, located in room: Laundry\n";
 
         // Act
         String result = roomList.getAllDevicesToString();
 
         // Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 }
+
+
