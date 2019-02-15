@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.DishWasher;
+import pt.ipp.isep.dei.project.model.Fridge;
 import pt.ipp.isep.dei.project.model.Readings;
 import pt.ipp.isep.dei.project.model.Room;
 
@@ -14,10 +14,10 @@ import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DishWasherTest {
+class FridgeTest {
     private Room kitchen;
     private Room laundry;
-    private DishWasher dishwasher;
+    private Fridge fridge;
     private Map<LocalDateTime, Double> map;
 
     @BeforeEach
@@ -28,11 +28,12 @@ class DishWasherTest {
         laundry = new Room("Laundry", 1, dim);
 
         // Devices
-        DishWasher dummyWasher = new DishWasher("Bosch 400 Series", kitchen);
-        dishwasher = new DishWasher("Bosch 500 Series", kitchen);
-        dishwasher.setAttributesDevType("Capacity", 10);
-        dishwasher.setAttributesDevType("Duration", 0);
-        dishwasher.setAttributesDevType("Nominal Power", 1200);
+        Fridge dummyFridge = new Fridge("Miele PerfectCool Series 1000", kitchen);
+        fridge = new Fridge("Miele PerfectCool Series 3500", kitchen);
+        fridge.setAttributesDevType("Freezer Capacity", 40);
+        fridge.setAttributesDevType("Refrigerator Capacity", 20);
+        fridge.setAttributesDevType("Annual Energy Consumption", 36500);
+        fridge.setAttributesDevType("Nominal Power", 900);
 
         // Readings
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -41,9 +42,9 @@ class DishWasherTest {
         Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
         Readings readings2 = new Readings(7, time2);
-        dishwasher.addReadingsToTheList(readings0);
-        dishwasher.addReadingsToTheList(readings1);
-        dishwasher.addReadingsToTheList(readings2);
+        fridge.addReadingsToTheList(readings0);
+        fridge.addReadingsToTheList(readings1);
+        fridge.addReadingsToTheList(readings2);
 
         // Maps
         map = new TreeMap<>();
@@ -55,10 +56,10 @@ class DishWasherTest {
     @Test
     void getNominalPowerTest() {
         //Arrange
-        double expectedResult = 1200.0;
+        double expectedResult = 900.0;
 
         //Act
-        double result = dishwasher.getNominalPower();
+        double result = fridge.getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -70,7 +71,7 @@ class DishWasherTest {
         Room expectedResult = kitchen;
 
         // Act
-        Room result = dishwasher.getLocation();
+        Room result = fridge.getLocation();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -79,10 +80,10 @@ class DishWasherTest {
     @Test
     void getNameTest() {
         // Arrange
-        String expectedResult = "Bosch 500 Series";
+        String expectedResult = "Miele PerfectCool Series 3500";
 
         // Act
-        String result = dishwasher.getName();
+        String result = fridge.getName();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -91,10 +92,10 @@ class DishWasherTest {
     @Test
     void getTypeTest() {
         // Arrange
-        String expectedResult = "Dishwasher";
+        String expectedResult = "Fridge";
 
         // act
-        String result = dishwasher.getType();
+        String result = fridge.getType();
 
         // assert
         assertEquals(expectedResult, result);
@@ -103,10 +104,10 @@ class DishWasherTest {
     @Test
     public void getEnergyConsumptionInADayTest() {
         // Arrange
-        double expectedResult = 0;
+        double expectedResult = 100;
 
         // Act
-        double result = dishwasher.getEnergyConsumptionInADay();
+        double result = fridge.getEnergyConsumptionInADay();
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -114,20 +115,20 @@ class DishWasherTest {
 
     @Test
     public void setNameWithSameNameTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> dishwasher.setName("Bosch 500 Series"));
+        Throwable exception = assertThrows(RuntimeException.class, () -> fridge.setName("Miele PerfectCool Series 3500"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
     public void setNameAlreadyInListTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> dishwasher.setName("Bosch 400 Series"));
+        Throwable exception = assertThrows(RuntimeException.class, () -> fridge.setName("Miele PerfectCool Series 1000"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
     public void setNameFalseTest() {
         // Act
-        boolean result = dishwasher.setName("");
+        boolean result = fridge.setName("");
 
         // Assert
         assertTrue(result);
@@ -136,7 +137,7 @@ class DishWasherTest {
     @Test
     public void setNameTrueTest() {
         // Act
-        boolean result = dishwasher.setName("Bosch 600 Series");
+        boolean result = fridge.setName("Miele PerfectCool Series 4000");
 
         // Assert
         assertTrue(result);
@@ -145,7 +146,7 @@ class DishWasherTest {
     @Test
     void setLocationFalseTest() {
         // Act
-        boolean result = dishwasher.setLocation(kitchen);
+        boolean result = fridge.setLocation(kitchen);
 
         // Assert
         assertFalse(result);
@@ -154,7 +155,7 @@ class DishWasherTest {
     @Test
     void setLocationTrueTest() {
         // Act
-        boolean result = dishwasher.setLocation(laundry);
+        boolean result = fridge.setLocation(laundry);
 
         // Assert
         assertTrue(result);
@@ -163,10 +164,12 @@ class DishWasherTest {
     @Test
     void getDevSpecsAttributesToStringTest() {
         // Arrange
-        String expectedResult = "1 - Capacity: 10\n" +
-                "2 - Nominal Power: 1200.0\n";
+        String expectedResult = "1 - Freezer Capacity: 40.0\n" +
+                "2 - Refrigerator Capacity: 20.0\n" +
+                "3 - Annual Energy Consumption: 36500.0\n" +
+                "4 - Nominal Power: 900.0\n";
         // Act
-        String result = dishwasher.getDevSpecsAttributesToString();
+        String result = fridge.getDevSpecsAttributesToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -175,11 +178,11 @@ class DishWasherTest {
     @Test
     void getAttributesToStringTest() {
         // Arrange
-        String expectedResult = "1 - Name: Bosch 500 Series\n" +
-                "2 - Device Specifications \n" +
+        String expectedResult = "1 - Name: Miele PerfectCool Series 3500\n" +
+                "2 - Device Specifications\n" +
                 "3 - Location: Kitchen\n";
         // Act
-        String result = dishwasher.getAttributesToString();
+        String result = fridge.getAttributesToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -188,10 +191,10 @@ class DishWasherTest {
     @Test
     void hashCodeTest() {
         // Arrange
-        int expectedResult = Objects.hash(dishwasher.getName());
+        int expectedResult = Objects.hash(fridge.getName());
 
         // Act
-        int result = dishwasher.hashCode();
+        int result = fridge.hashCode();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -203,7 +206,7 @@ class DishWasherTest {
         Object object = new Object();
 
         // Act
-        boolean result = dishwasher.equals(object);
+        boolean result = fridge.equals(object);
 
         // Assert
         assertFalse(result);
@@ -212,10 +215,10 @@ class DishWasherTest {
     @Test
     void getNumberOfSpecsAttributesTest() {
         // Arrange
-        int expectedResult = 2;
+        int expectedResult = 4;
 
         // Act
-        int result = dishwasher.getNumberOfSpecsAttributes();
+        int result = fridge.getNumberOfSpecsAttributes();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -224,10 +227,10 @@ class DishWasherTest {
     @Test
     void getNameToStringTest() {
         // Arrange
-        String expectedResult = "Device: Bosch 500 Series, located in room: Kitchen\n";
+        String expectedResult = "Device: Miele PerfectCool Series 3500, located in room: Kitchen\n";
 
         // Act
-        String result = dishwasher.getNameToString();
+        String result = fridge.getNameToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -242,7 +245,7 @@ class DishWasherTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 15, 00, 00);
 
         // Act
-        double result = dishwasher.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = fridge.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -257,7 +260,7 @@ class DishWasherTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
-        double result = dishwasher.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = fridge.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -272,7 +275,7 @@ class DishWasherTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
-        double result = dishwasher.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = fridge.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -281,7 +284,7 @@ class DishWasherTest {
     @Test
     void getIsActiveTrueTest() {
         // Act
-        boolean result = dishwasher.getIsActive();
+        boolean result = fridge.getIsActive();
 
         // Assert
         assertTrue(result);
@@ -290,10 +293,10 @@ class DishWasherTest {
     @Test
     void getIsActiveFalseTest() {
         // Assert
-        dishwasher.setDeactivateDevice();
+        fridge.setDeactivateDevice();
 
         // Act
-        boolean result = dishwasher.getIsActive();
+        boolean result = fridge.getIsActive();
 
         // Assert
         assertFalse(result);
@@ -308,9 +311,10 @@ class DishWasherTest {
         Map<LocalDateTime, Double> expectedResult = map;
 
         // Act
-        Map<LocalDateTime, Double> result = dishwasher.getDataSeries(time0, time2);
+        Map<LocalDateTime, Double> result = fridge.getDataSeries(time0, time2);
 
         // Assert
         assertEquals(expectedResult, result);
     }
+
 }
