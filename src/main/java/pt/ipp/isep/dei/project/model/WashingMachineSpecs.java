@@ -56,23 +56,25 @@ public class WashingMachineSpecs implements DeviceSpecs {
      * set method
      * @param capacity
      */
-    public boolean setCapacity(double capacity) {
-        if (Utils.isSameDouble(this.mCapacity, capacity)) {
+    public boolean setCapacity(Object capacity) {
+        double wmcapacity = (Double) capacity;
+        if (Utils.isSameDouble(this.mCapacity, wmcapacity)) {
             return false;
         }
-        this.mCapacity = capacity;
+        this.mCapacity = wmcapacity;
         return true;
     }
 
     /**
      * set method
-     * @param nominalPower
+     * @param wmNominalPower
      */
-    public boolean setNominalPower(double nominalPower) {
-        if (Utils.isSameDouble(this.mNominalPower, nominalPower)) {
+    public boolean setNominalPower(Object wmNominalPower) {
+        double nomPower = (Double) wmNominalPower;
+        if (Utils.isSameDouble(this.mNominalPower, nomPower)) {
             return false;
         }
-        this.mNominalPower = nominalPower;
+        this.mNominalPower = nomPower;
         return true;
     }
 
@@ -146,27 +148,25 @@ public class WashingMachineSpecs implements DeviceSpecs {
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
             case ATTRIBUTE_CAPACITY:
-                if (attributeValue instanceof Double) {
-                    this.mCapacity = (Double) attributeValue;
-                    return true;
+                if (attributeValue instanceof Number) {
+                    return setCapacity(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_DURATION:
-                if (attributeValue instanceof Double) {
-                    this.mDuration = (Double) attributeValue;
+                if (attributeValue instanceof Number) {
+                    this.mDuration = (Double) ((Number) attributeValue).doubleValue();
                     return true;
                 }
                 return false;
             case ATTRIBUTE_ENERGY_CONSUMPTION:
-                if (attributeValue instanceof Double) {
-                    this.mEnergyConsumption = (Double) attributeValue;
+                if (attributeValue instanceof Number) {
+                    this.mEnergyConsumption = (Double) ((Number) attributeValue).doubleValue();
                     return true;
                 }
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:
-                if (attributeValue instanceof Double) {
-                    this.mNominalPower = (Double) attributeValue;
-                    return true;
+                if (attributeValue instanceof Number) {
+                    return setNominalPower(((Number) attributeValue).doubleValue());
                 }
                 return false;
             default:

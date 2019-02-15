@@ -17,6 +17,7 @@ public class Lamp implements Device, Measurable {
         this.mLocation.addDevice(this);
         this.mSpec = new LampSpecs();
         this.mIsActive = true;
+        this.mReadings = new ArrayList<>();
     }
 
     /**
@@ -45,6 +46,13 @@ public class Lamp implements Device, Measurable {
      */
     public String getName() {
         return this.mName;
+    }
+
+    public String validateName(String name) {
+        if (this.mLocation.isDeviceNameExistant(name)) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
+        return name;
     }
 
     /**
@@ -127,8 +135,8 @@ public class Lamp implements Device, Measurable {
      * @param value
      * @return the position of an attribute and the value of it.
      */
-    public boolean setAttributesDevType(int attribute, double value) {
-        return this.mSpec.setAttribute(attribute, value);
+    public boolean setAttributesDevType(String attribute, Object value) {
+        return this.mSpec.setAttributeValue(attribute,value);
     }
 
     /**
@@ -176,7 +184,7 @@ public class Lamp implements Device, Measurable {
     @Override
     public String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
-        nameLocation.append("Device1: " + mName);
+        nameLocation.append("Device: " + mName);
         nameLocation.append(", located in room: " + mLocation.getName() + "\n");
         return nameLocation.toString();
     }

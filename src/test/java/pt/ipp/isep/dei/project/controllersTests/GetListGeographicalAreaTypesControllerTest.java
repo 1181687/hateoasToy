@@ -18,7 +18,6 @@ public class GetListGeographicalAreaTypesControllerTest {
 
     @BeforeEach
     public void StartUp() {
-
         //Geographical Area Type List
         this.geographicalAreaTypeList = new GeographicalAreaTypeList();
 
@@ -29,14 +28,9 @@ public class GetListGeographicalAreaTypesControllerTest {
     @Test
     public void testarGetListaTiposDeAG() {
         //Arrange
-        //Tipo de Area Geográfica
-        String nomeDoTipo1 = "Cidade";
-        GeographicalAreaType tipo1 = new GeographicalAreaType(nomeDoTipo1);
-
-        //Adicionar o Tipo de Area Geográfica na lista
-        this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(tipo1);
-
-        //Expected Result
+        String nameOfType = "Cidade";
+        GeographicalAreaType type = new GeographicalAreaType(nameOfType);
+        this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type);
         List<String> expectedResult = Arrays.asList("Cidade");
 
         //Act
@@ -46,21 +40,17 @@ public class GetListGeographicalAreaTypesControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    //NOVO
     @Test
     public void testarGetListaDosTiposDeAGAdicionandoMaisDoQueUmTipo() {
         //Arrange
-        //Tipos de Areas Geográficas
-        String nomeDoTipo1 = "Cidade";
-        GeographicalAreaType tipo1 = new GeographicalAreaType(nomeDoTipo1);
-        String nomeDoTipo2 = "Freguesia";
-        GeographicalAreaType tipo2 = new GeographicalAreaType(nomeDoTipo2);
+        String nameOfType1 = "Cidade";
+        GeographicalAreaType type1 = new GeographicalAreaType(nameOfType1);
+        String nameOfType2 = "Freguesia";
+        GeographicalAreaType type2 = new GeographicalAreaType(nameOfType2);
 
-        //Adicionar os Tipos de Areas Geográficas na lista
-        this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(tipo1);
-        this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(tipo2);
+        this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type1);
+        this.geographicalAreaTypeList.addTypeOfGeoAreaToTheList(type2);
 
-        //Expected Result
         List<String> expectedResult = Arrays.asList("Cidade", "Freguesia");
 
         //Act
@@ -73,7 +63,6 @@ public class GetListGeographicalAreaTypesControllerTest {
     @Test
     public void testarGetListaDosTiposDeAGASemAdicionarNenhumTipo() {
         //Arrange
-        //Expected Result
         List<String> expectedResult = Arrays.asList();
 
         //Act

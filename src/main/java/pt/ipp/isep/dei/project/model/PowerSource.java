@@ -1,9 +1,11 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.util.Objects;
+
 import static java.util.Objects.isNull;
 
 public class PowerSource {
-    private String mPowerSourceName;
+    private String mName;
     private PowerSourceType mPowerSourceType;
 
     /**
@@ -18,7 +20,7 @@ public class PowerSource {
         validatePowerSourceType(powerSourceType);
 
         this.mPowerSourceType = powerSourceType;
-        this.mPowerSourceName = powerSourceName;
+        this.mName = powerSourceName;
     }
 
     /**
@@ -50,7 +52,7 @@ public class PowerSource {
 
     @Override
     public int hashCode() {
-        return 1;
+        return Objects.hash(this.mName);
     }
 
     /**
@@ -70,7 +72,7 @@ public class PowerSource {
 
         PowerSource type = (PowerSource) obj;
 
-        return this.mPowerSourceName.equalsIgnoreCase(type.mPowerSourceName) && this.mPowerSourceType.equals(type.mPowerSourceType);
+        return this.mName.equalsIgnoreCase(type.mName);
     }
 
     /**
@@ -78,6 +80,6 @@ public class PowerSource {
      * @return power source name
      */
     public String getName() {
-        return mPowerSourceName;
+        return mName;
     }
 }

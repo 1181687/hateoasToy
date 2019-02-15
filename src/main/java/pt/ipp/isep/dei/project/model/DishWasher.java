@@ -7,14 +7,14 @@ public class DishWasher implements Device, Measurable {
 
     private String mName;
     private Room mLocation;
-    private LampSpecs mSpec;
+    private DishWasherSpecs mSpec;
     private List<Readings> mReadingsList;
     private boolean mIsActive;
     private LocalDateTime mDeactivationDate;
 
     public DishWasher(String name, Room location) {
         this.mName = name;
-        this.mSpec = new LampSpecs();
+        this.mSpec = new DishWasherSpecs();
         this.mLocation = location;
         this.mLocation.addDevice(this);
         this.mIsActive = true;
@@ -87,6 +87,7 @@ public class DishWasher implements Device, Measurable {
         return true;
     }
 
+
     /**
      * method that set the location (room) of a added device.
      *
@@ -122,7 +123,7 @@ public class DishWasher implements Device, Measurable {
 
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Name: " + mName + "\n");
-        attributes.append("2 - Device1 Specifications\n");
+        attributes.append("2 - Device Specifications \n");
         attributes.append("3 - Location: " + mLocation.getName() + "\n");
         return attributes.toString();
     }
@@ -134,8 +135,8 @@ public class DishWasher implements Device, Measurable {
      * @param value
      * @return the position of an attribute and the value of it.
      */
-    public boolean setAttributesDevType(int attribute, double value) {
-        return this.mSpec.setAttribute(attribute, value);
+    public boolean setAttributesDevType(String attribute, Object value) {
+        return this.mSpec.setAttributeValue(attribute,value);
     }
 
     /**
@@ -183,7 +184,7 @@ public class DishWasher implements Device, Measurable {
     @Override
     public String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
-        nameLocation.append("Device1: " + mName);
+        nameLocation.append("Device: " + mName);
         nameLocation.append(", located in room: " + mLocation.getName() + "\n");
         return nameLocation.toString();
     }
@@ -266,6 +267,11 @@ public class DishWasher implements Device, Measurable {
         return hmap;
     }
 
+    /**
+     * TODO
+     *
+     * @return
+     */
     @Override
     public DeviceSpecs getSpecs() {
         return this.mSpec;

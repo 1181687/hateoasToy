@@ -1,7 +1,10 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Device;
+import pt.ipp.isep.dei.project.model.Dimension;
+import pt.ipp.isep.dei.project.model.LampType;
+import pt.ipp.isep.dei.project.model.Room;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,15 +18,13 @@ public class LampTypeTest {
         String name = "Lamp Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
 
-        Device expectedResult = new Lamp(name, room);
-
-        Device result = lampType.createDevice(name, room);
-
+        Device expectedResult = lampType.createDevice(name, room);
+        //Act
+        Device result = room.getDeviceByPosition(0);
+        //Assert
         assertEquals(expectedResult, result);
 
     }
+
 }

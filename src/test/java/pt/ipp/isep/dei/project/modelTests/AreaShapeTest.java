@@ -22,6 +22,7 @@ class AreaShapeTest {
 
         // Act
         int result = area.hashCode();
+
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -34,6 +35,8 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(area1);
+
+        //assert
         assertTrue(result);
     }
 
@@ -47,6 +50,7 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(area2);
+        //assert
         assertTrue(result);
     }
 
@@ -60,6 +64,8 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(area2);
+
+        //assert
         assertFalse(result);
     }
 
@@ -73,6 +79,8 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(area2);
+
+        //assert
         assertFalse(result);
     }
 
@@ -86,6 +94,8 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(area2);
+
+        //assert
         assertFalse(result);
     }
 
@@ -99,6 +109,8 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(area2);
+
+        //assert
         assertFalse(result);
     }
 
@@ -112,6 +124,8 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(area2);
+
+        //assert
         assertFalse(result);
     }
 
@@ -125,6 +139,8 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(area2);
+
+        //assert
         assertFalse(result);
     }
 
@@ -138,6 +154,8 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(area2);
+
+        //assert
         assertFalse(result);
     }
 
@@ -151,6 +169,8 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(area2);
+
+        //assert
         assertFalse(result);
     }
 
@@ -164,9 +184,10 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(area2);
+
+        //assert
         assertFalse(result);
     }
-
 
     @Test
     public void testarEqualsFalseLocationWidthAltitude() {
@@ -178,6 +199,8 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(area2);
+
+        //assert
         assertFalse(result);
     }
 
@@ -191,6 +214,8 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(area2);
+
+        //assert
         assertFalse(result);
     }
 
@@ -204,6 +229,8 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(area2);
+
+        //assert
         assertFalse(result);
     }
 
@@ -217,17 +244,16 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(area2);
+
+        //assert
         assertFalse(result);
     }
-
-
 
     @Test
     public void testEqualsFalseDiferentObject() {
         //arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(12, 8, local1);
-
         String name = "roomOne";
         int housefloor = 2;
         Dimension dim = new Dimension(4, 10.5, 7.5);
@@ -235,6 +261,8 @@ class AreaShapeTest {
 
         //act
         boolean result = area1.equals(room);
+
+        //assert
         assertFalse(result);
     }
 

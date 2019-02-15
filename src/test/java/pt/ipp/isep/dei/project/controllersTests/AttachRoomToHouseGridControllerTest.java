@@ -64,12 +64,13 @@ class AttachRoomToHouseGridControllerTest {
         // Arrange
 
         String gridName = "Grid";
+        String gridName2 = "Grid2";
         HouseGrid grid0 = new HouseGrid(gridName);
-        HouseGrid grid1 = new HouseGrid(gridName);
+        HouseGrid grid1 = new HouseGrid(gridName2);
         house.addGrid(grid0);
         house.addGrid(grid1);
 
-        String expectedResult = "1 - Name: Grid\n2 - Name: Grid\n";
+        String expectedResult = "1 - Name: Grid\n2 - Name: Grid2\n";
 
         // Act
         String result = controller.getHouseGridListToString();
@@ -269,9 +270,9 @@ class AttachRoomToHouseGridControllerTest {
         // Instantiate House Grids
         String gridName0 = "Grid";
         HouseGrid grid0 = new HouseGrid(gridName0);
-        String gridName1 = "Grid";
+        String gridName1 = "Grid1";
         HouseGrid grid1 = new HouseGrid(gridName1);
-        String gridName2 = "Grid";
+        String gridName2 = "Grid2";
         HouseGrid grid2 = new HouseGrid(gridName2);
         grid2.attachRoom(room);
 

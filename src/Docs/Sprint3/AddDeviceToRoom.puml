@@ -1,0 +1,50 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+actor RegularUser
+RegularUser -> ":UI": addDeviceToRoom
+activate ":UI"
+":UI" -> ":Controller": geDeviceTypeList()
+activate ":Controller"
+":Controller" -> "House": geDeviceTypeList()
+activate "House"
+":Controller" <-- "House": listOfDeviceTypes
+deactivate "House"
+":UI" <-- ":Controller": listOfDeviceTypes
+deactivate ":Controller"
+RegularUser <-- ":UI": listOfDeviceTypes
+RegularUser -> ":UI": getDeviceType
+":UI" -> ":Controller": getDeviceType (p)
+activate ":Controller"
+":Controller" -> "House": getDeviceType (p)
+activate "House"
+":Controller" <-- "House": deviceType
+deactivate "House"
+":UI" <-- ":Controller": deviceType
+deactivate ":Controller"
+":UI" -> ":Controller": createDevice
+activate ":Controller"
+":Controller" -> ":DeviceType": createDevice
+activate ":DeviceType"
+":Controller" <-- ":DeviceType": device
+deactivate ":DeviceType"
+":UI" <-- ":Controller": device
+deactivate ":Controller"
+
+@enduml

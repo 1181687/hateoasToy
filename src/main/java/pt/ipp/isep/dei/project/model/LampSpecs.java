@@ -15,12 +15,6 @@ public class LampSpecs implements DeviceSpecs {
     private double mTime;
     private double mNominalPower;
 
-    public LampSpecs(double luminousFlux, double nominalPower) {
-        this.mTypeName = "Lamp";
-        this.mLuminousFlux = luminousFlux;
-        this.mNominalPower = nominalPower;
-    }
-
     public LampSpecs() {
         this.mTypeName = "Lamp";
     }
@@ -55,11 +49,12 @@ public class LampSpecs implements DeviceSpecs {
      * @param luminousFlux
      * @return
      */
-    public boolean setLuminousFlux(double luminousFlux) {
-        if (Utils.isSameDouble(this.mLuminousFlux, luminousFlux)) {
+    public boolean setLuminousFlux(Object luminousFlux) {
+        double lumFLux = (Double) luminousFlux;
+        if (Utils.isSameDouble(this.mLuminousFlux, lumFLux)) {
             return false;
         }
-        this.mLuminousFlux = luminousFlux;
+        this.mLuminousFlux = lumFLux;
         return true;
     }
 
@@ -69,11 +64,12 @@ public class LampSpecs implements DeviceSpecs {
      * @param time
      * @return
      */
-    public boolean setTime(double time) {
-        if (Utils.isSameDouble(this.mTime, time)) {
+    public boolean setTime(Object time) {
+        double lampTime = (Double) time;
+        if (Utils.isSameDouble(this.mTime, lampTime)) {
             return false;
         }
-        this.mTime = time;
+        this.mTime = lampTime;
         return true;
     }
 
@@ -83,11 +79,12 @@ public class LampSpecs implements DeviceSpecs {
      * @param nominalPower
      * @return
      */
-    public boolean setNominalPower(double nominalPower) {
-        if (Utils.isSameDouble(this.mNominalPower, nominalPower)) {
+    public boolean setNominalPower(Object nominalPower) {
+        double lampNomPower = (Double) nominalPower;
+        if (Utils.isSameDouble(this.mNominalPower, lampNomPower)) {
             return false;
         }
-        this.mNominalPower = nominalPower;
+        this.mNominalPower = lampNomPower;
         return true;
     }
 
@@ -162,21 +159,18 @@ public class LampSpecs implements DeviceSpecs {
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
             case ATTRIBUTE_LUMINOUS_FLUX:
-                if (attributeValue instanceof Double) {
-                    this.mLuminousFlux = (Double) attributeValue;
-                    return true;
+                if (attributeValue instanceof Number) {
+                    return setLuminousFlux(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_TIME:
-                if (attributeValue instanceof Double) {
-                    this.mTime = (Double) attributeValue;
-                    return true;
+                if (attributeValue instanceof Number) {
+                    return setTime(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:
-                if (attributeValue instanceof Double) {
-                    this.mNominalPower = (Double) attributeValue;
-                    return true;
+                if (attributeValue instanceof Number) {
+                    return setNominalPower(((Number) attributeValue).doubleValue());
                 }
                 return false;
             default:

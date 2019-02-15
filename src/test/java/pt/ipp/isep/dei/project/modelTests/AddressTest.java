@@ -11,14 +11,12 @@ public class AddressTest {
     public void testIfTwoAddressAreNotEqual() {
 
         //Arrange
-
         String zipCode = "4050";
         double latitude = 40.5;
         double longitude = 50.5;
         double altitude = 100.0;
         Location local = new Location(latitude, longitude, altitude);
         Address address = new Address(zipCode, local);
-
 
         String zipCodeNewAddress = "4150";
         double latitudeNewAddress = 43.5;
@@ -34,12 +32,10 @@ public class AddressTest {
         assertFalse(result);
     }
 
-
     @Test
     public void testIfTwoAddressAreTheSame() {
 
         //Arrange
-
         String zipCode = "4050";
         double latitude = 40.5;
         double longitude = 50.5;
@@ -54,19 +50,16 @@ public class AddressTest {
         assertTrue(result);
     }
 
-
     @Test
     public void testIfTwoAddressAreEqual() {
 
         //Arrange
-
         String zipCode = "4050";
         double latitude = 40.5;
         double longitude = 50.5;
         double altitude = 100.0;
         Location local = new Location(latitude, longitude, altitude);
         Address address = new Address(zipCode, local);
-
 
         String zipCodeNewAddress = "4050";
         double latitudeNewAddress = 40.5;
@@ -87,7 +80,6 @@ public class AddressTest {
     public void testIfTwoAddressesWithTheSameAttributesAreEqual() {
 
         //Arrange
-
         String zipCode = "4050";
         double latitude = 40.5;
         double longitude = 50.5;
@@ -111,7 +103,6 @@ public class AddressTest {
     public void testIfTwoAddressesWithDifferentAttributesAreEqualFalse() {
 
         //arrange
-
         String zipCode1 = "4050";
         String zipCode2 = "4000";
         double latitude = 40.5;
@@ -155,7 +146,6 @@ public class AddressTest {
     public void testIfTwoAddressesWithTheSameZipCodeAreFalse() {
 
         //Arrange
-
         String zipCode = "4050";
         double latitude1 = 40.5;
         double latitude2 = 41.5;
@@ -209,6 +199,7 @@ public class AddressTest {
         Address address = new Address(zipCode, local);
 
         Location expectedResult = local;
+
         // Act
         Location result = address.getLocation();
 

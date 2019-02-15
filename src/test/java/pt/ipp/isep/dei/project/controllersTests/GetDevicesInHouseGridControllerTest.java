@@ -1,13 +1,33 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetDevicesInHouseGridController;
-import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 public class GetDevicesInHouseGridControllerTest {
     private GetDevicesInHouseGridController ctrl;
     private House houseEdificioB;
 
-  /*  @BeforeEach
+    private static final String ATTRIBUTE_FREEZER_CAPACITY = "Freezer Capacity";
+    private static final String ATTRIBUTE_REFRIGERATOR_CAPACITY = "Refrigerator Capacity";
+    private static final String ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
+    private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
+
+    private static final String ATTRIBUTE_CAPACITY = "Capacity";
+    private static final String ATTRIBUTE_DURATION = "Duration";
+    private static final String ATTRIBUTE_ENERGY_CONSUMPTION = "Energy Consumption";
+
+
+    @BeforeEach
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -35,32 +55,74 @@ public class GetDevicesInHouseGridControllerTest {
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
-        DeviceSpecs specFridge = new FridgeSpecs(100, 100, 100, 100);
-        ProgramList wmProgramList = new ProgramList();
-        ProgramList dwProgramList = new ProgramList();
+        // DeviceSpecs specFridge = new FridgeSpecs(100, 100, 100, 100);
+        // ProgramList wmProgramList = new ProgramList();
+        // ProgramList dwProgramList = new ProgramList();
 
-        DeviceSpecs specWashing = new WashingMachineSpecs(100, 100, wmProgramList);
-        DeviceSpecs specDishWasher = new DishWasherSpecs(100, 100, dwProgramList);
-        Device dev1 = new Device("FridgeAriston", room1, specFridge);
-        Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasher", room1, specDishWasher);
+        // DeviceSpecs specWashing = new WashingMachineSpecs(100, 100, wmProgramList);
+        //DeviceSpecs specDishWasher = new DishWasherSpecs(100, 100, dwProgramList);
+        //Device dev1 = new Device("FridgeAriston", room1, specFridge);
+        //Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
+        //Device dev3 = new Device("DishWasher", room1, specDishWasher);
 
-        room1.addDevice(dev1);
-        room1.addDevice(dev2);
-        room1.addDevice(dev3);
+        double freezerCapacity = 5.5;
+        double refrigeratorCapacity = 15.5;
+        double annualEnergyConsumption = 3000.0;
+        double nominalPower = 100.5;
+        FridgeType fridgeType = new FridgeType();
+        Device fridge1 = fridgeType.createDevice("Fridge Ariston", room1);
+        fridge1.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
+        fridge1.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
+        fridge1.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
+        fridge1.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
+
+        Device fridge2 = fridgeType.createDevice("Fridge Bosch", room1);
+        fridge2.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
+        fridge2.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
+        fridge2.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
+        fridge2.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
+
+        double energyConsumption = 1000;
+        int dishwasherCapacity = 100;
+        double duration = 5;
+        double nominalPowerWash = 100;
+        DishWasherType dishwasherType = new DishWasherType();
+        Device washingMachine1 = dishwasherType.createDevice("Washing Machine Bosh", room1);
+        washingMachine1.setAttributesDevType(ATTRIBUTE_CAPACITY, dishwasherCapacity);
+        washingMachine1.setAttributesDevType(ATTRIBUTE_DURATION, duration);
+        washingMachine1.setAttributesDevType(ATTRIBUTE_ENERGY_CONSUMPTION, energyConsumption);
+        washingMachine1.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPowerWash);
+
 
         //Room TWO
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
-        DeviceSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
-        Device dev4 = new Device("FridgeSiemens", room2, specFridge);
-        Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
-        Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
+        //DeviceSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
+        //Device dev4 = new Device("FridgeSiemens", room2, specFridge);
+        //Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
+        //Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
 
-        room2.addDevice(dev4);
-        room2.addDevice(dev5);
-        room2.addDevice(dev6);
+
+        // FridgeType fridgeType = new FridgeType();
+        Device fridge3 = fridgeType.createDevice("Fridge1100", room2);
+        fridge3.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
+        fridge3.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
+        fridge3.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
+        fridge3.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
+
+        Device fridge4 = fridgeType.createDevice("Fridge5000", room2);
+        fridge4.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
+        fridge4.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
+        fridge4.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
+        fridge4.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
+
+        Device washingMachine2 = dishwasherType.createDevice("Washing Machine 625", room2);
+        washingMachine2.setAttributesDevType(ATTRIBUTE_CAPACITY, dishwasherCapacity);
+        washingMachine2.setAttributesDevType(ATTRIBUTE_DURATION, duration);
+        washingMachine2.setAttributesDevType(ATTRIBUTE_ENERGY_CONSUMPTION, energyConsumption);
+        washingMachine2.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPowerWash);
+
 
         //add to Lists
 
@@ -81,19 +143,16 @@ public class GetDevicesInHouseGridControllerTest {
     @Test
     public void testGetDeviceListContentNameTypeLocationByHG() {
         //Arrange
-        String expectedResult = "Dish Washer\n" +
-                "- Device Name: DishWasher, Location: Kitchen.\n" +
-                "- Device Name: DishWasherTeka, Location: KitchenBasement.\n" +
-                "\n" +
-                "Electric Water Heater\n" +
-                "- Device Name: ElectricWaterHeater, Location: KitchenBasement.\n" +
-                "\n" +
-                "Washing Machine\n" +
-                "- Device Name: WashingMachineBosh, Location: Kitchen.\n" +
+        String expectedResult = "Dishwasher\n" +
+                "- Device Name: Washing Machine Bosh, Location: Kitchen.\n" +
+                "- Device Name: Washing Machine 625, Location: KitchenBasement.\n" +
                 "\n" +
                 "Fridge\n" +
-                "- Device Name: FridgeAriston, Location: Kitchen.\n" +
-                "- Device Name: FridgeSiemens, Location: KitchenBasement.\n\n";
+                "- Device Name: Fridge Ariston, Location: Kitchen.\n" +
+                "- Device Name: Fridge Bosch, Location: Kitchen.\n" +
+                "- Device Name: Fridge1100, Location: KitchenBasement.\n" +
+                "- Device Name: Fridge5000, Location: KitchenBasement.\n" +
+                "\n";
 
         //Act
         String result = ctrl.getDeviceListContentNameTypeLocationByHG(0);
@@ -152,34 +211,6 @@ public class GetDevicesInHouseGridControllerTest {
 
     @Test
     public void testCheckIfThereAreNoDevicesHGbyPositionFalse() {
-        // Arrange
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
-        //Room TWO
-        String name2 = "KitchenBasement";
-        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
-        Room room2 = new Room(name2, -1, dim2);
-        ProgramList dwProgramList = new ProgramList();
-
-        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(100, 100, dwProgramList);
-        ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
-        double freezerCapacity = 5.5;
-        double refrigeratorCapacity = 15.5;
-        double annualEnergyConsumption = 5000;
-        double nominalPower = 100.5;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
-        Device dev4 = new Device("FridgeSiemens", room2, fridgeSpecs);
-        Device dev5 = new Device("DishWasherTeka", room2, dishWasherSpecs);
-        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
-
-        room2.addDevice(dev4);
-        room2.addDevice(dev5);
-        room2.addDevice(dev6);
-
-        houseEdificioB.addRoom(room);
-        houseEdificioB.addRoom(room2);
 
         // Act
         boolean result = ctrl.checkIfThereAreNoDevicesHGbyPosition(0);
@@ -190,34 +221,6 @@ public class GetDevicesInHouseGridControllerTest {
 
     @Test
     public void testCheckIfThereAreNoDevicesHGbyPositionTrue() {
-        // Arrange
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
-        //Room TWO
-        String name2 = "KitchenBasement";
-        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
-        Room room2 = new Room(name2, -1, dim2);
-
-        ProgramList dwProgramList = new ProgramList();
-        DishWasherSpecs dishWasherSpecs = new DishWasherSpecs(100, 100, dwProgramList);
-        ElectricWaterHeaterSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
-        double freezerCapacity = 5.5;
-        double refrigeratorCapacity = 15.5;
-        double annualEnergyConsumption = 5000;
-        double nominalPower = 100.5;
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-
-        Device dev4 = new Device("FridgeSiemens", room2, fridgeSpecs);
-        Device dev5 = new Device("DishWasherTeka", room2, dishWasherSpecs);
-        Device dev6 = new Device("ElectricWaterHeaterSpecs", room2, specWaterHeater);
-
-        room2.addDevice(dev4);
-        room2.addDevice(dev5);
-        room2.addDevice(dev6);
-
-        houseEdificioB.addRoom(room2);
-        houseEdificioB.addRoom(room);
 
         // Act
         boolean result = ctrl.checkIfThereAreNoDevicesHGbyPosition(1);
@@ -258,6 +261,5 @@ public class GetDevicesInHouseGridControllerTest {
 
         // Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 }
-

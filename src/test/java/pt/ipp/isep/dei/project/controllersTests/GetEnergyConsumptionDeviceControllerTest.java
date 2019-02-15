@@ -46,24 +46,51 @@ class GetEnergyConsumptionDeviceControllerTest {
         house.addRoom(room0);
         house.addRoom(room1);
 
-        // FridgeSpecs Instantiation
-        FridgeSpecs fridgeSpecs = new FridgeSpecs(35, 20, 1000, 10);
-
+        FridgeType fridgeType = new FridgeType();
         // ElectricWaterHeaterSpecs Instantiation
-        //ElectricWaterHeaterSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(50, 150, 0.9, 100);
-/*
+
         // Device Instantiation
-        Fridge device0 = new Fridge("Fridgeratah V14", room0, fridgeSpecs);
-        room0.addDevice(device0);
-        Fridge Device = new Fridge("Fridgeratah V15", room0, fridgeSpecs);
-        room0.addDevice(Device);
-        Fridge device2 = new Fridge("Fridgeratah V16", room0, fridgeSpecs);
-        room0.addDevice(device2);
-        ElectricWaterHeater device3 = new ElectricWaterHeater("Bosh Tronic 3000", room1, electricWaterHeater);
-        room1.addDevice(device3);
-        ElectricWaterHeater device4 = new ElectricWaterHeater("Bosh Tronic 4000", room1, electricWaterHeater);
-        room1.addDevice(device4);
-*/
+        String freezerCapacity = "Freezer Capacity";
+        String refrigeratorCapacity = "Refrigerator Capacity";
+        String annualEnergyConsumption = "Annual Energy Consumption";
+        String nominalPower = "Annual Energy Consumption";
+
+        Device device0 = fridgeType.createDevice("Fridgeratah V14", room0);
+
+        device0.setAttributesDevType(freezerCapacity,35);
+        device0.setAttributesDevType(refrigeratorCapacity,20);
+        device0.setAttributesDevType(annualEnergyConsumption,1000);
+        device0.setAttributesDevType(nominalPower,10);
+
+        Device device1 = fridgeType.createDevice("Fridgeratah V15", room0);
+        device1.setAttributesDevType(freezerCapacity,35);
+        device1.setAttributesDevType(refrigeratorCapacity,20);
+        device1.setAttributesDevType(annualEnergyConsumption,1000);
+        device1.setAttributesDevType(nominalPower,10);
+
+        Device device2 = fridgeType.createDevice("Fridgeratah V16", room0);
+        device2.setAttributesDevType(freezerCapacity,35);
+        device2.setAttributesDevType(refrigeratorCapacity,20);
+        device2.setAttributesDevType(annualEnergyConsumption,1000);
+        device2.setAttributesDevType(nominalPower,10);
+
+        String HOT_WATER_TEMP = "Hot-Water Temperature";
+        String PERFORMANCE_RATIO = "Performance Ratio";
+        String COLD_WATER_TEMP = "Cold-Water Temperature";
+        String NOMINAL_POWER = "Nominal Power";
+
+        ElectricWaterHeaterType eWHType = new ElectricWaterHeaterType();
+        Device device3 = eWHType.createDevice("Bosh Tronic 3000", room1);
+        device3.setAttributesDevType(HOT_WATER_TEMP,50);
+        device3.setAttributesDevType(PERFORMANCE_RATIO,0.9);
+        device3.setAttributesDevType(NOMINAL_POWER,100);
+
+
+        Device device4 = new ElectricWaterHeater("Bosh Tronic 4000", room1);
+        device4.setAttributesDevType(HOT_WATER_TEMP,50);
+        device4.setAttributesDevType(PERFORMANCE_RATIO,0.9);
+        device4.setAttributesDevType(NOMINAL_POWER,100);
+
         this.ctrl = new GetEnergyConsumptionDeviceController(house);
         room = house.getRoomOfTheRoomList(0);
     }

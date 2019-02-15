@@ -17,14 +17,14 @@ public class DishWasherSpecs implements DeviceSpecs {
     private ProgramList mProgramList;
 
     public DishWasherSpecs(int capacity, double nominalPower, ProgramList programList) {
-        this.mTypeName = "Dish Washer";
+        this.mTypeName = "Dishwasher";
         this.mCapacity = capacity;
         this.mNominalPower = nominalPower;
         this.mProgramList = programList;
     }
 
     public DishWasherSpecs() {
-        this.mTypeName = "Dish Washer";
+        this.mTypeName = "Dishwasher";
     }
 
     public String getTypeName() {
@@ -57,11 +57,12 @@ public class DishWasherSpecs implements DeviceSpecs {
      * @param capacity
      * @return
      */
-    public boolean setCapacity(int capacity) {
-        if (Utils.isSameDouble(this.mCapacity, capacity)) {
+    public boolean setCapacity(Object capacity) {
+        int intCapacity = (Integer) capacity;
+        if (Utils.isSameDouble(this.mCapacity, intCapacity)) {
             return false;
         }
-        this.mCapacity = capacity;
+        this.mCapacity = intCapacity;
         return true;
     }
 
@@ -71,11 +72,12 @@ public class DishWasherSpecs implements DeviceSpecs {
      * @param nominalPower
      * @return
      */
-    public boolean setNominalPower(double nominalPower) {
-        if (Utils.isSameDouble(this.mNominalPower, nominalPower)) {
+    public boolean setNominalPower(Object nominalPower) {
+        double nomPower = (Double) nominalPower;
+        if (Utils.isSameDouble(this.mNominalPower, nomPower)) {
             return false;
         }
-        this.mNominalPower = nominalPower;
+        this.mNominalPower = nomPower;
         return true;
     }
 
@@ -150,20 +152,18 @@ public class DishWasherSpecs implements DeviceSpecs {
         switch (attributeName) {
             case ATTRIBUTE_CAPACITY:
                 if (attributeValue instanceof Integer) {
-                    this.mCapacity = (Integer) attributeValue;
-                    return true;
+                    return setCapacity(attributeValue);
                 }
                 return false;
             case ATTRIBUTE_DURATION:
-                if (attributeValue instanceof Double) {
-                    this.mDuration = (Double) attributeValue;
+                if (attributeValue instanceof Number) {
+                    this.mDuration = ((Number) attributeValue).doubleValue();
                     return true;
                 }
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:
-                if (attributeValue instanceof Double) {
-                    this.mNominalPower = (Double) attributeValue;
-                    return true;
+                if (attributeValue instanceof Number) {
+                    return setNominalPower(((Number) attributeValue).doubleValue());
                 }
                 return false;
             default:

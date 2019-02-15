@@ -19,6 +19,7 @@ public class WashingMachine implements Device, Measurable {
         this.mLocation.addDevice(this);
         this.mIsActive = true;
         this.mReadingsList = new ArrayList<>();
+
     }
 
     /**
@@ -134,8 +135,8 @@ public class WashingMachine implements Device, Measurable {
      * @param value
      * @return the position of an attribute and the value of it.
      */
-    public boolean setAttributesDevType(int attribute, double value) {
-        return this.mSpec.setAttribute(attribute, value);
+    public boolean setAttributesDevType(String attribute, Object value) {
+        return this.mSpec.setAttributeValue(attribute,value);
     }
 
     /**
@@ -183,7 +184,7 @@ public class WashingMachine implements Device, Measurable {
     @Override
     public String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
-        nameLocation.append("Device1: " + mName);
+        nameLocation.append("Device: " + mName);
         nameLocation.append(", located in room: " + mLocation.getName() + "\n");
         return nameLocation.toString();
     }
@@ -245,6 +246,13 @@ public class WashingMachine implements Device, Measurable {
     public void setDeactivateDevice() {
         this.mIsActive = false;
         this.mDeactivationDate = LocalDateTime.now();
+    }
+
+    public String validateName(String name) {
+        if (this.mLocation.isDeviceNameExistant(name)) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
+        return name;
     }
 
     /**

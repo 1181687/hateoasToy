@@ -105,7 +105,7 @@ public class AddPowerSourceToHouseGridController {
      * Returns a list of PowerSources that have been added to the HouseGrid's PowerSourceList.
      * @return
      */
-    public String listPowerSourcesConnectedToHouseGrid(){
+    public String listPowerSourcesConnectedToGrid(){
         return mSelectedHouseGrid.getPowerSourceListContent();
     }
 }

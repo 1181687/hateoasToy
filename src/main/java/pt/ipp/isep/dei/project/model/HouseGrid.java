@@ -3,13 +3,13 @@ package pt.ipp.isep.dei.project.model;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.TreeMap;
 
 import static java.util.Objects.isNull;
 
 public class HouseGrid implements Measurable {
     private String mName;
-    private double mMaximumContractedPower;
     private PowerSourceList mPowerSourceList;
     private RoomList mRoomList;
 
@@ -24,7 +24,6 @@ public class HouseGrid implements Measurable {
         this.mName = houseGridName;
         this.mRoomList = new RoomList();
         this.mPowerSourceList = new PowerSourceList();
-        this.mMaximumContractedPower = 0;
     }
 
 
@@ -32,6 +31,36 @@ public class HouseGrid implements Measurable {
         if (isNull(name) || name.trim().length() == 0) {
             throw new RuntimeException("Please enter a valid name. Name should not be empty");
         }
+    }
+
+    /**
+     * method that creates the same hashcode to grids with the same name.
+     *
+     * @return the hashcode created
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.mName);
+    }
+
+    /**
+     * Equals method to determine if two Rooms are equal.
+     * They are equals if name are equal.
+     * Names are case insensitive.
+     *
+     * @param obj receives an object
+     * @return boolean
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof HouseGrid)) {
+            return false;
+        }
+        HouseGrid houseGrid = (HouseGrid) obj;
+        return this.mName.equalsIgnoreCase(houseGrid.mName);
     }
 
     /**
@@ -187,7 +216,7 @@ public class HouseGrid implements Measurable {
      * Method that calculates the total energy consumption of a house grid in a given interval.
      *
      * @param startDate the initial date/hour of the period to be considered
-     * @param endDate the final date/hour of the period to be considered
+     * @param endDate   the final date/hour of the period to be considered
      * @return Double
      */
     @Override
@@ -209,7 +238,7 @@ public class HouseGrid implements Measurable {
         TreeMap<LocalDateTime, Double> map = new TreeMap<>();
 
         for (Room room : this.mRoomList.getRoomList()) {
-            Map<LocalDateTime, Double> map2 = room.getDataSeries(startDate,endDate);
+            Map<LocalDateTime, Double> map2 = room.getDataSeries(startDate, endDate);
 
             for (Map.Entry<LocalDateTime, Double> entry : map2.entrySet()) {
 

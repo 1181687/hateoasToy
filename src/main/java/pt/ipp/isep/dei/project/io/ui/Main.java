@@ -390,115 +390,138 @@ public class Main {
         dishwasherPrograms1.addProgram(program15);
 
 
-        /*// DEVICES
+        // DEVICES
         // Electric Water Heater B107
-        DeviceSpecs electricWaterHeater = new ElectricWaterHeaterSpecs(55, 100,
-                0.91, 1.5);
-        Device device = new Device("EHW B107", room1, electricWaterHeater);
-        room1.addDevice(device);
-        deviceList.add(device);
-        device.addReadingsToTheList(ewhEC);
-        device.addReadingsToTheList(ewhEC1);
-        device.addReadingsToTheList(ewhEC2);
-        device.addReadingsToTheList(ewhEC3);
-        device.addReadingsToTheList(ewhEC4);
-        device.addReadingsToTheList(ewhEC5);
-        device.addReadingsToTheList(ewhEC6);
-        device.addReadingsToTheList(ewhEC7);
-        device.addReadingsToTheList(ewhEC8);
-        device.addReadingsToTheList(ewhEC9);
-        device.addReadingsToTheList(ewhEC10);
-        device.addReadingsToTheList(ewhEC11);
-        device.addReadingsToTheList(ewhEC12);
-        device.addReadingsToTheList(ewhEC13);
-        device.addReadingsToTheList(ewhEC14);
-        device.addReadingsToTheList(ewhEC15);
-        device.addReadingsToTheList(ewhEC16);
-        device.addReadingsToTheList(ewhEC17);
-        device.addReadingsToTheList(ewhEC18);
+        ElectricWaterHeaterType electricWaterHeaterType= new ElectricWaterHeaterType();
+        Device ewhB107 = electricWaterHeaterType.createDevice("EHW B107", room1);
+        ewhB107.setAttributesDevType("Volume Of Water To Heat", 55);
+        ewhB107.setAttributesDevType("Hot-Water Temperature", 100);
+        ewhB107.setAttributesDevType("Nominal Power", 1.5);
+        ewhB107.setAttributesDevType("Performance Ratio", 0.91);
+
+        room1.addDevice(ewhB107);
+        ewhB107.addReadingsToTheList(ewhEC);
+        ewhB107.addReadingsToTheList(ewhEC1);
+        ewhB107.addReadingsToTheList(ewhEC2);
+        ewhB107.addReadingsToTheList(ewhEC3);
+        ewhB107.addReadingsToTheList(ewhEC4);
+        ewhB107.addReadingsToTheList(ewhEC5);
+        ewhB107.addReadingsToTheList(ewhEC6);
+        ewhB107.addReadingsToTheList(ewhEC7);
+        ewhB107.addReadingsToTheList(ewhEC8);
+        ewhB107.addReadingsToTheList(ewhEC9);
+        ewhB107.addReadingsToTheList(ewhEC10);
+        ewhB107.addReadingsToTheList(ewhEC11);
+        ewhB107.addReadingsToTheList(ewhEC12);
+        ewhB107.addReadingsToTheList(ewhEC13);
+        ewhB107.addReadingsToTheList(ewhEC14);
+        ewhB107.addReadingsToTheList(ewhEC15);
+        ewhB107.addReadingsToTheList(ewhEC16);
+        ewhB107.addReadingsToTheList(ewhEC17);
+        ewhB107.addReadingsToTheList(ewhEC18);
 
         // Dishwasher B107
-        DeviceSpecs dishWasher = new DishWasherSpecs(50, 1.5, dishwasherPrograms);
-        Device Device = new Device("Dishwasher B107", room1, dishWasher);
-        room1.addDevice(device);
-        deviceList.add(Device);
-        Device.addReadingsToTheList(dwEC);
-        Device.addReadingsToTheList(dwEC1);
-        Device.addReadingsToTheList(dwEC2);
-        Device.addReadingsToTheList(dwEC3);
-        Device.addReadingsToTheList(dwEC4);
-        Device.addReadingsToTheList(dwEC5);
-        Device.addReadingsToTheList(dwEC6);
-        Device.addReadingsToTheList(dwEC7);
-        Device.addReadingsToTheList(dwEC8);
-        Device.addReadingsToTheList(dwEC9);
+        DishWasherType dishWasherType =  new DishWasherType();
+        Device dwB107 = dishWasherType.createDevice("Dishwasher B107", room1);
+        dwB107.setAttributesDevType("Capacity", 50);
+        dwB107.setAttributesDevType("Nominal Power", 1.5);
+
+
+        room1.addDevice(dwB107);
+        dwB107.addReadingsToTheList(dwEC);
+        dwB107.addReadingsToTheList(dwEC1);
+        dwB107.addReadingsToTheList(dwEC2);
+        dwB107.addReadingsToTheList(dwEC3);
+        dwB107.addReadingsToTheList(dwEC4);
+        dwB107.addReadingsToTheList(dwEC5);
+        dwB107.addReadingsToTheList(dwEC6);
+        dwB107.addReadingsToTheList(dwEC7);
+        dwB107.addReadingsToTheList(dwEC8);
+        dwB107.addReadingsToTheList(dwEC9);
 
         // Washing Machine B107
-        DeviceSpecs washingMachine = new WashingMachineSpecs(10, 3.5, washingMachinePrograms);
-        Device device2 = new Device("Washing Machine B107", room1, washingMachine);
-        room1.addDevice(device2);
-        deviceList.add(device2);
-        device2.addReadingsToTheList(wmEC);
-        device2.addReadingsToTheList(wmEC1);
-        device2.addReadingsToTheList(wmEC2);
-        device2.addReadingsToTheList(wmEC3);
+        WashingMachineType washingMachineType = new WashingMachineType();
+        Device wmB107 = washingMachineType.createDevice("Washing Machine B107", room1);
+        wmB107.setAttributesDevType("Capacity", 10);
+        wmB107.setAttributesDevType("Nominal Power", 3.5);
+
+        room1.addDevice(wmB107);
+        wmB107.addReadingsToTheList(wmEC);
+        wmB107.addReadingsToTheList(wmEC1);
+        wmB107.addReadingsToTheList(wmEC2);
+        wmB107.addReadingsToTheList(wmEC3);
 
         // Electric Water Heater B109
-        DeviceSpecs electricWaterHeater1 = new ElectricWaterHeaterSpecs(55, 100,
-                0.91, 1.5);
-        Device device3 = new Device("EHW B109", room2, electricWaterHeater1);
-        room2.addDevice(device3);
-        deviceList.add(device3);
-        device3.addReadingsToTheList(ewh1EC);
-        device3.addReadingsToTheList(ewh1EC1);
-        device3.addReadingsToTheList(ewh1EC2);
-        device3.addReadingsToTheList(ewh1EC3);
-        device3.addReadingsToTheList(ewh1EC4);
-        device3.addReadingsToTheList(ewh1EC5);
-        device3.addReadingsToTheList(ewh1EC6);
-        device3.addReadingsToTheList(ewh1EC7);
-        device3.addReadingsToTheList(ewh1EC8);
-        device3.addReadingsToTheList(ewh1EC9);
-        device3.addReadingsToTheList(ewh1EC10);
-        device3.addReadingsToTheList(ewh1EC11);
-        device3.addReadingsToTheList(ewh1EC12);
-        device3.addReadingsToTheList(ewh1EC13);
-        device3.addReadingsToTheList(ewh1EC14);
-        device3.addReadingsToTheList(ewh1EC15);
-        device3.addReadingsToTheList(ewh1EC16);
-        device3.addReadingsToTheList(ewh1EC17);
-        device3.addReadingsToTheList(ewh1EC18);
+        ElectricWaterHeaterType electricWaterHeaterTypeB109 = new ElectricWaterHeaterType();
+        Device ewhB109 = electricWaterHeaterTypeB109.createDevice("EHW B109", room2);
+        ewhB109.setAttributesDevType("Volume Of Water To Heat", 55);
+        ewhB109.setAttributesDevType("Hot-Water Temperature", 100);
+        ewhB109.setAttributesDevType("Nominal Power", 1.5);
+        ewhB109.setAttributesDevType("Performance Ratio", 0.91);
+
+        room2.addDevice(ewhB109);
+        ewhB109.addReadingsToTheList(ewh1EC);
+        ewhB109.addReadingsToTheList(ewh1EC1);
+        ewhB109.addReadingsToTheList(ewh1EC2);
+        ewhB109.addReadingsToTheList(ewh1EC3);
+        ewhB109.addReadingsToTheList(ewh1EC4);
+        ewhB109.addReadingsToTheList(ewh1EC5);
+        ewhB109.addReadingsToTheList(ewh1EC6);
+        ewhB109.addReadingsToTheList(ewh1EC7);
+        ewhB109.addReadingsToTheList(ewh1EC8);
+        ewhB109.addReadingsToTheList(ewh1EC9);
+        ewhB109.addReadingsToTheList(ewh1EC10);
+        ewhB109.addReadingsToTheList(ewh1EC11);
+        ewhB109.addReadingsToTheList(ewh1EC12);
+        ewhB109.addReadingsToTheList(ewh1EC13);
+        ewhB109.addReadingsToTheList(ewh1EC14);
+        ewhB109.addReadingsToTheList(ewh1EC15);
+        ewhB109.addReadingsToTheList(ewh1EC16);
+        ewhB109.addReadingsToTheList(ewh1EC17);
+        ewhB109.addReadingsToTheList(ewh1EC18);
 
         // Dishwasher B019
-        DeviceSpecs dishWasher1 = new DishWasherSpecs(50, 1.5, dishwasherPrograms);
-        Device device4 = new Device("Dishwasher B109", room2, dishWasher1);
-        room2.addDevice(device4);
-        deviceList.add(device4);
+
+        DishWasherType dishWasherTypeB109 =  new DishWasherType();
+        Device dwB109 = dishWasherTypeB109.createDevice("Dishwasher B109", room2);
+        dwB109.setAttributesDevType("Capacity", 50);
+        dwB109.setAttributesDevType("Nominal Power", 1.5);
+
+        room2.addDevice(dwB109);
+
 
         // Washing Machine B109
-        DeviceSpecs washingMachine1 = new WashingMachineSpecs(10, 2.5, washingMachinePrograms1);
-        Device device5 = new Device("Washing Machine B109", room2, washingMachine1);
-        room2.addDevice(device5);
-        deviceList.add(device5);
-        device5.addReadingsToTheList(wm1EC);
-        device5.addReadingsToTheList(wm1EC1);
-        device5.addReadingsToTheList(wm1EC2);
-        device5.addReadingsToTheList(wm1EC3);
-        device5.addReadingsToTheList(wm1EC4);
+
+        WashingMachineType washingMachineTypeB109 = new WashingMachineType();
+        Device wmB109 = washingMachineType.createDevice("Washing Machine B109", room2);
+        wmB109.setAttributesDevType("Capacity", 10);
+        wmB109.setAttributesDevType("Nominal Power", 2.5);
+
+        room2.addDevice(wmB109);
+        wmB109.addReadingsToTheList(wm1EC);
+        wmB109.addReadingsToTheList(wm1EC1);
+        wmB109.addReadingsToTheList(wm1EC2);
+        wmB109.addReadingsToTheList(wm1EC3);
+        wmB109.addReadingsToTheList(wm1EC4);
 
         // Electric Water Heater 106
-        DeviceSpecs electricWaterHeater2 = new ElectricWaterHeaterSpecs(55, 150,
-                0.92, 2.2);
-        Device device6 = new Device("EHW B106", room3, electricWaterHeater2);
-        room3.addDevice(device6);
-        deviceList.add(device6);
+        ElectricWaterHeaterType electricWaterHeaterTypeB106 = new ElectricWaterHeaterType();
+        Device ewhB106 = electricWaterHeaterTypeB109.createDevice("EHW B106", room3);
+        ewhB106.setAttributesDevType("Volume Of Water To Heat", 55);
+        ewhB106.setAttributesDevType("Hot-Water Temperature", 150);
+        ewhB106.setAttributesDevType("Nominal Power", 2.2);
+        ewhB106.setAttributesDevType("Performance Ratio", 0.92);
+
+        room3.addDevice(ewhB106);
 
         // Dishwasher B106
-        DeviceSpecs dishWasher2 = new DishWasherSpecs(50, 1.4, dishwasherPrograms1);
-        Device device7 = new Device("Dishwasher B106", room3, dishWasher2);
-        room3.addDevice(device7);
-        deviceList.add(device7);*/
+        DishWasherType dishWasherTypeB106 =  new DishWasherType();
+        Device dwB106 = dishWasherTypeB106.createDevice("Dishwasher B106", room3);
+        dwB106.setAttributesDevType("Capacity", 50);
+        dwB106.setAttributesDevType("Nominal Power", 1.4);
 
+
+        room3.addDevice(dwB106);
 
         // ROOM LIST
         houseEdificioB.addRoom(room1);

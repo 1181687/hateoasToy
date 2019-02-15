@@ -30,6 +30,7 @@ public class House {
 
     /**
      * This method create device types using a path and a class name.
+     *
      * @param deviceTypeList
      */
     public void createDeviceTypes(List<String> deviceTypeList) {
@@ -44,17 +45,17 @@ public class House {
         }
     }
 
-    public int getMeteringPeriodGrid() {
-        return mMeteringPeriodGrid;
+    public DeviceType getDeviceType(String type) {
+        for (DeviceType deviceType : this.mDeviceTypeList) {
+            if (deviceType.getTypeName().equals(type)) {
+                return deviceType;
+            }
+        }
+        return null;
     }
 
-    /**
-     * Set method for the inserted geo area.
-     *
-     * @param geoArea House area.
-     */
-    public void setInsertedGeoArea(GeographicalArea geoArea) {
-        mInsertedGeoArea = geoArea;
+    public int getMeteringPeriodGrid() {
+        return mMeteringPeriodGrid;
     }
 
     /**
@@ -62,8 +63,12 @@ public class House {
      *
      * @param houseGrid House grid used.
      */
-    public void addGrid(HouseGrid houseGrid) {
-        mListHouseGrids.add(houseGrid);
+    public boolean addGrid(HouseGrid houseGrid) {
+        if (!(this.mListHouseGrids.contains(houseGrid))) {
+            mListHouseGrids.add(houseGrid);
+            return true;
+        }
+        return false;
     }
 
     public RoomList getRoomList() {
@@ -104,10 +109,20 @@ public class House {
 
     /**
      * method that get inserted geo area
+     *
      * @return inserted geo area.
      */
     public GeographicalArea getInsertedGeoArea() {
         return mInsertedGeoArea;
+    }
+
+    /**
+     * Set method for the inserted geo area.
+     *
+     * @param geoArea House area.
+     */
+    public void setInsertedGeoArea(GeographicalArea geoArea) {
+        mInsertedGeoArea = geoArea;
     }
 
     /**
@@ -131,6 +146,7 @@ public class House {
 
     /**
      * method that get the last measurement of house area.
+     *
      * @param type
      * @return the last measurement with a location and a type of sensor.
      */
@@ -140,6 +156,7 @@ public class House {
 
     /**
      * Method that get the average daily measurement of the house area.
+     *
      * @param measurementType
      * @param startDate
      * @param endDate
@@ -159,6 +176,7 @@ public class House {
 
     /**
      * method that get the total daily measurement of the house area.
+     *
      * @param measurementType
      * @param day
      * @return total daily measurement.
@@ -180,6 +198,7 @@ public class House {
 
     /**
      * Method that get the latest measurement by sensor type.
+     *
      * @param name
      * @param type
      * @return latest measurement.
@@ -205,6 +224,7 @@ public class House {
 
     /**
      * Method that get the size of the room list.
+     *
      * @return size of the list of rooms.
      */
     public int getRoomListSize() {
@@ -213,6 +233,7 @@ public class House {
 
     /**
      * method that get the name of the chosen room in a specific position from the list.
+     *
      * @param position
      * @return a position.
      */
@@ -222,6 +243,7 @@ public class House {
 
     /**
      * method that create a new room to the list, with height, length, width, name and housefloor.
+     *
      * @param height
      * @param length
      * @param width
@@ -235,6 +257,7 @@ public class House {
 
     /**
      * method that check if a name of a room already exists on the list of rooms.
+     *
      * @param name
      */
     public boolean isNameExistant(String name) {
@@ -243,6 +266,7 @@ public class House {
 
     /**
      * method that get a room of the list of rooms, from a specific position.
+     *
      * @param option
      */
     public Room getRoomOfTheRoomList(int option) {
@@ -271,6 +295,7 @@ public class House {
 
     /**
      * method that displays the sensor list content of a Room
+     *
      * @param position
      */
     public String getSensorListContentOfARoom(int position) {
@@ -279,6 +304,7 @@ public class House {
 
     /**
      * method that check if the sensor list of the room is empty
+     *
      * @param position
      */
     public boolean isSensorListEmpty(int position) {
@@ -287,6 +313,7 @@ public class House {
 
     /**
      * method that gets a List of all Devices in a house grid, by it position in a HouseGridList
+     *
      * @param position position of the grid in the houseGridList
      * @return List <Device>
      */
@@ -325,6 +352,7 @@ public class House {
     /**
      * method that get the String content Name and Location of all devices in the list, of a given HouseGrid,
      * and grouped by device type.
+     *
      * @param positionHG integer number relative to position of the HouseGrid
      * @return String with Devices Names and Location grouped by Type.
      */
@@ -349,7 +377,21 @@ public class House {
      * @return New object of the class HouseGrid.
      */
     public HouseGrid newHouseGrid(String name) {
-        return new HouseGrid(name);
+        if (!this.gridNameAlreadyExists(name)) {
+            return new HouseGrid(name);
+        }
+        throw new RuntimeException("Name already exists. Please, write a new one.");
+    }
+
+    public boolean gridNameAlreadyExists(String name) {
+        int listSize = this.mListHouseGrids.size();
+
+        for (int i = 0; i < listSize; i++) {
+            if (this.mListHouseGrids.get(i).getName().equalsIgnoreCase(name)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -372,6 +414,7 @@ public class House {
 
     /**
      * method that gets the size of House Grid List
+     *
      * @return integer
      */
     public int getHouseGridListSize() {
@@ -392,6 +435,7 @@ public class House {
 
     /**
      * method that gets the name of House Grid by it's position in the HousegridList.
+     *
      * @param position position of the House Grid
      * @return String name
      */
@@ -486,20 +530,21 @@ public class House {
     /**
      * Method that sets the value of an attribute of a device of a certain type in the house.
      *
-     * @param type Type of the device.
-     * @param devicePosition Device position in the list of devices.
+     * @param type              Type of the device.
+     * @param devicePosition    Device position in the list of devices.
      * @param attributePosition Position of the attribute to be set.
-     * @param value Value to be used.
+     * @param value             Value to be used.
      * @return True or false.
      */
-    public boolean setDeviceAttribute(String type, int devicePosition, int attributePosition, double value) {
+    public boolean setDeviceAttribute(String type, int devicePosition, String attributePosition, Object value) {
         List<Device> listWithAllDevicesOfAType = getAllDevicesOfAType(type);
         return listWithAllDevicesOfAType.get(devicePosition).setAttributesDevType(attributePosition, value);
     }
 
     /**
      * Method that returns the energy consumption of a device of a certain type in the house daily.
-     * @param type Type of the device.
+     *
+     * @param type           Type of the device.
      * @param devicePosition Device position in the list of devices.
      * @return Double with the energy consumption.
      */
@@ -510,6 +555,7 @@ public class House {
 
     /**
      * Method that returns the combined energy consumption of all the devices of a certain type in the house.
+     *
      * @param type Type of the devices.
      * @return Double with the combined energy consumption.
      */
@@ -621,7 +667,7 @@ public class House {
         return getAllDevices().size();
     }
 
-    public boolean isDeviceListOfAllRoomsEmpty(){
+    public boolean isDeviceListOfAllRoomsEmpty() {
         return this.mRoomList.isDeviceListOfAllRoomsEmpty();
     }
 }
