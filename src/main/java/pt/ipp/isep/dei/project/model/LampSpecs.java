@@ -115,8 +115,8 @@ public class LampSpecs implements DeviceSpecs {
     @Override
     public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
-        result.add("1 - " + ATTRIBUTE_LUMINOUS_FLUX + " - " + mLuminousFlux);
-        result.add("2 - " + ATTRIBUTE_NOMINAL_POWER + " - " + mNominalPower);
+        result.add("1 - " + ATTRIBUTE_LUMINOUS_FLUX + ": " + mLuminousFlux);
+        result.add("2 - " + ATTRIBUTE_NOMINAL_POWER + ": " + mNominalPower);
 
         return result;
     }

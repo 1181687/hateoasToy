@@ -484,7 +484,6 @@ public class Main {
 
         // Washing Machine B109
 
-        WashingMachineType washingMachineTypeB109 = new WashingMachineType();
         Device wmB109 = washingMachineType.createDevice("Washing Machine B109", room2);
         wmB109.setAttributesDevType("Capacity", 10);
         wmB109.setAttributesDevType("Nominal Power", 2.5);

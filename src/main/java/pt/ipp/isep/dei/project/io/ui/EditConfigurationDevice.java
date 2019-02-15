@@ -50,7 +50,7 @@ public class EditConfigurationDevice {
 
         String label6 = "What is the new value?";
         double value = InputValidator.getDouble(label6);
-        if (!Utils.isSameDouble(value, 0)) {
+        if (Utils.isSameDouble(value, 0)) {
             System.out.println("This value is not valid.");
             return;
         } else {
