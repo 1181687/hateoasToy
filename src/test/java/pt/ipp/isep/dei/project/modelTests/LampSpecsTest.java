@@ -248,5 +248,5 @@ public class LampSpecsTest {
 
         // assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 }

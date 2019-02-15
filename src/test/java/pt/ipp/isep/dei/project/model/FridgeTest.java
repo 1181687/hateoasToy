@@ -175,7 +175,7 @@ class FridgeTest {
     void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Miele PerfectCool Series 3500\n" +
-                "2 - Device1 Specifications\n" +
+                "2 - Device Specifications\n" +
                 "3 - Location: Kitchen\n";
         // Act
         String result = fridge.getAttributesToString();

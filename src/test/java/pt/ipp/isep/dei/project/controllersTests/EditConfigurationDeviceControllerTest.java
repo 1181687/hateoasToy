@@ -192,7 +192,7 @@ class EditConfigurationDeviceControllerTest {
         controller.getDeviceByPosition(position);
 
         String expectedResult = "1 - Name: Fridgeratah V14" + "\n" +
-                "2 - Device1 Specifications\n" +
+                "2 - Device Specifications\n" +
                 "3 - Location: Room\n";
         // act
         String result = controller.getDeviceAttributesToString();
