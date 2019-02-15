@@ -110,13 +110,12 @@ public class FridgeSpecs implements DeviceSpecs {
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Freezer Capacity: " + mFreezerCapacity + "\n");
-        attributes.append("2 - Refrigerator Capacity: " + mRefrigeratorCapacity + "\n");
-        attributes.append("3 - Annual Energy Consumption: " + mAnnualEnergyConsumption + "\n");
-        attributes.append("4 - Nominal Power: " + mNominalPower + "\n");
+        attributes.append("> " + ATTRIBUTE_FREEZER_CAPACITY + ": " + mFreezerCapacity + "\n");
+        attributes.append("> " + ATTRIBUTE_REFRIGERATOR_CAPACITY + ": " + mRefrigeratorCapacity + "\n");
+        attributes.append("> " + ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION + ": " + mAnnualEnergyConsumption + "\n");
+        attributes.append("> " + ATTRIBUTE_NOMINAL_POWER + ": " + mNominalPower + "\n");
         return attributes.toString();
     }
-
 
     /**
      * get method of the number of attributes

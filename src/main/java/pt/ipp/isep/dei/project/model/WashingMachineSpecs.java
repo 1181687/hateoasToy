@@ -85,8 +85,8 @@ public class WashingMachineSpecs implements DeviceSpecs {
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Capacity: " + mCapacity + "\n");
-        attributes.append("2 - Nominal Power: " + mNominalPower + "\n");
+        attributes.append("> " + ATTRIBUTE_CAPACITY + ": " + mCapacity + "\n");
+        attributes.append("> " + ATTRIBUTE_NOMINAL_POWER + ": " + mNominalPower + "\n");
         return attributes.toString();
     }
 

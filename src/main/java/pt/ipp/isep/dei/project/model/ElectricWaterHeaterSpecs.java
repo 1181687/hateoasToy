@@ -135,9 +135,9 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Hot Water Temperature: " + mHotWaterTemperature + "\n");
-        attributes.append("2 - Performance Ratio: " + mPerformanceRatio + "\n");
-        attributes.append("3 - Nominal Power: " + mNominalPower + "\n");
+        attributes.append("> " + ATTRIBUTE_HOT_WATER_TEMP + ": " + mHotWaterTemperature + "\n");
+        attributes.append("> " + ATTRIBUTE_PERFORMANCE_RATIO + ": " + mPerformanceRatio + "\n");
+        attributes.append("> " + ATTRIBUTE_NOMINAL_POWER + ": " + mNominalPower + "\n");
         return attributes.toString();
     }
 

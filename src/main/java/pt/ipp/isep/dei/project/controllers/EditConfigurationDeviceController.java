@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.Device;
+import pt.ipp.isep.dei.project.model.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
 
@@ -10,6 +11,7 @@ public class EditConfigurationDeviceController {
     private Device mDevice;
     private Room mRoom;
     private Room newRoom;
+    private DeviceSpecs mDeviceSpecs;
 
     /**
      * constructor of the controller that receive a house.
