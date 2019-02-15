@@ -3,10 +3,9 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.Fridge;
 import pt.ipp.isep.dei.project.model.Readings;
 import pt.ipp.isep.dei.project.model.Room;
-
+import pt.ipp.isep.dei.project.model.WashingMachine;
 
 import java.time.LocalDateTime;
 import java.util.Map;
@@ -15,10 +14,10 @@ import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class FridgeTest {
+class WashingMachineTest {
     private Room kitchen;
     private Room laundry;
-    private Fridge fridge;
+    private WashingMachine washingMachine;
     private Map<LocalDateTime, Double> map;
 
     @BeforeEach
@@ -29,12 +28,12 @@ class FridgeTest {
         laundry = new Room("Laundry", 1, dim);
 
         // Devices
-        Fridge dummyFridge = new Fridge("Miele PerfectCool Series 1000", kitchen);
-        fridge = new Fridge("Miele PerfectCool Series 3500", kitchen);
-        fridge.setAttributesDevType("Freezer Capacity", 40);
-        fridge.setAttributesDevType("Refrigerator Capacity", 20);
-        fridge.setAttributesDevType("Annual Energy Consumption", 36500);
-        fridge.setAttributesDevType("Nominal Power", 900);
+        WashingMachine dummyWashingMachine = new WashingMachine("Maytag 2.6", kitchen);
+        washingMachine = new WashingMachine("Maytag 3.6", kitchen);
+        washingMachine.setAttributesDevType("Capacity", 40);
+        washingMachine.setAttributesDevType("Duration", 1);
+        washingMachine.setAttributesDevType("Energy Consumption", 1);
+        washingMachine.setAttributesDevType("Nominal Power", 1000);
 
         // Readings
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -43,9 +42,9 @@ class FridgeTest {
         Readings readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
         Readings readings2 = new Readings(7, time2);
-        fridge.addReadingsToTheList(readings0);
-        fridge.addReadingsToTheList(readings1);
-        fridge.addReadingsToTheList(readings2);
+        washingMachine.addReadingsToTheList(readings0);
+        washingMachine.addReadingsToTheList(readings1);
+        washingMachine.addReadingsToTheList(readings2);
 
         // Maps
         map = new TreeMap<>();
@@ -57,10 +56,10 @@ class FridgeTest {
     @Test
     void getNominalPowerTest() {
         //Arrange
-        double expectedResult = 900.0;
+        double expectedResult = 1000.0;
 
         //Act
-        double result = fridge.getNominalPower();
+        double result = washingMachine.getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -72,7 +71,7 @@ class FridgeTest {
         Room expectedResult = kitchen;
 
         // Act
-        Room result = fridge.getLocation();
+        Room result = washingMachine.getLocation();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -81,10 +80,10 @@ class FridgeTest {
     @Test
     void getNameTest() {
         // Arrange
-        String expectedResult = "Miele PerfectCool Series 3500";
+        String expectedResult = "Maytag 3.6";
 
         // Act
-        String result = fridge.getName();
+        String result = washingMachine.getName();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -93,10 +92,10 @@ class FridgeTest {
     @Test
     void getTypeTest() {
         // Arrange
-        String expectedResult = "Fridge";
+        String expectedResult = "Washing Machine";
 
         // act
-        String result = fridge.getType();
+        String result = washingMachine.getType();
 
         // assert
         assertEquals(expectedResult, result);
@@ -105,10 +104,10 @@ class FridgeTest {
     @Test
     public void getEnergyConsumptionInADayTest() {
         // Arrange
-        double expectedResult = 100;
+        double expectedResult = 0.0;
 
         // Act
-        double result = fridge.getEnergyConsumptionInADay();
+        double result = washingMachine.getEnergyConsumptionInADay();
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -116,20 +115,20 @@ class FridgeTest {
 
     @Test
     public void setNameWithSameNameTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> fridge.setName("Miele PerfectCool Series 3500"));
+        Throwable exception = assertThrows(RuntimeException.class, () -> washingMachine.setName("Maytag 3.6"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
     public void setNameAlreadyInListTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> fridge.setName("Miele PerfectCool Series 1000"));
+        Throwable exception = assertThrows(RuntimeException.class, () -> washingMachine.setName("Maytag 2.6"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
     public void setNameFalseTest() {
         // Act
-        boolean result = fridge.setName("");
+        boolean result = washingMachine.setName("");
 
         // Assert
         assertTrue(result);
@@ -138,7 +137,7 @@ class FridgeTest {
     @Test
     public void setNameTrueTest() {
         // Act
-        boolean result = fridge.setName("Miele PerfectCool Series 4000");
+        boolean result = washingMachine.setName("Maytag 4.0");
 
         // Assert
         assertTrue(result);
@@ -147,7 +146,7 @@ class FridgeTest {
     @Test
     void setLocationFalseTest() {
         // Act
-        boolean result = fridge.setLocation(kitchen);
+        boolean result = washingMachine.setLocation(kitchen);
 
         // Assert
         assertFalse(result);
@@ -156,7 +155,7 @@ class FridgeTest {
     @Test
     void setLocationTrueTest() {
         // Act
-        boolean result = fridge.setLocation(laundry);
+        boolean result = washingMachine.setLocation(laundry);
 
         // Assert
         assertTrue(result);
@@ -165,12 +164,10 @@ class FridgeTest {
     @Test
     void getDevSpecsAttributesToStringTest() {
         // Arrange
-        String expectedResult = "1 - Freezer Capacity: 40.0\n" +
-                "2 - Refrigerator Capacity: 20.0\n" +
-                "3 - Annual Energy Consumption: 36500.0\n" +
-                "4 - Nominal Power: 900.0\n";
+        String expectedResult = "1 - Capacity: 40.0\n" +
+                "2 - Nominal Power: 1000.0\n";
         // Act
-        String result = fridge.getDevSpecsAttributesToString();
+        String result = washingMachine.getDevSpecsAttributesToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -179,11 +176,11 @@ class FridgeTest {
     @Test
     void getAttributesToStringTest() {
         // Arrange
-        String expectedResult = "1 - Name: Miele PerfectCool Series 3500\n" +
-                "2 - Device Specifications\n" +
+        String expectedResult = "1 - Name: Maytag 3.6\n" +
+                "2 - Device1 Specifications\n" +
                 "3 - Location: Kitchen\n";
         // Act
-        String result = fridge.getAttributesToString();
+        String result = washingMachine.getAttributesToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -192,10 +189,10 @@ class FridgeTest {
     @Test
     void hashCodeTest() {
         // Arrange
-        int expectedResult = Objects.hash(fridge.getName());
+        int expectedResult = Objects.hash(washingMachine.getName());
 
         // Act
-        int result = fridge.hashCode();
+        int result = washingMachine.hashCode();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -207,7 +204,7 @@ class FridgeTest {
         Object object = new Object();
 
         // Act
-        boolean result = fridge.equals(object);
+        boolean result = washingMachine.equals(object);
 
         // Assert
         assertFalse(result);
@@ -216,10 +213,10 @@ class FridgeTest {
     @Test
     void getNumberOfSpecsAttributesTest() {
         // Arrange
-        int expectedResult = 4;
+        int expectedResult = 2;
 
         // Act
-        int result = fridge.getNumberOfSpecsAttributes();
+        int result = washingMachine.getNumberOfSpecsAttributes();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -228,10 +225,10 @@ class FridgeTest {
     @Test
     void getNameToStringTest() {
         // Arrange
-        String expectedResult = "Device: Miele PerfectCool Series 3500, located in room: Kitchen\n";
+        String expectedResult = "Device: Maytag 3.6, located in room: Kitchen\n";
 
         // Act
-        String result = fridge.getNameToString();
+        String result = washingMachine.getNameToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -246,7 +243,7 @@ class FridgeTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 15, 00, 00);
 
         // Act
-        double result = fridge.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = washingMachine.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -261,7 +258,7 @@ class FridgeTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
-        double result = fridge.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = washingMachine.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -276,7 +273,7 @@ class FridgeTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
-        double result = fridge.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = washingMachine.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -285,7 +282,7 @@ class FridgeTest {
     @Test
     void getIsActiveTrueTest() {
         // Act
-        boolean result = fridge.getIsActive();
+        boolean result = washingMachine.getIsActive();
 
         // Assert
         assertTrue(result);
@@ -294,10 +291,10 @@ class FridgeTest {
     @Test
     void getIsActiveFalseTest() {
         // Assert
-        fridge.setDeactivateDevice();
+        washingMachine.setDeactivateDevice();
 
         // Act
-        boolean result = fridge.getIsActive();
+        boolean result = washingMachine.getIsActive();
 
         // Assert
         assertFalse(result);
@@ -312,7 +309,7 @@ class FridgeTest {
         Map<LocalDateTime, Double> expectedResult = map;
 
         // Act
-        Map<LocalDateTime, Double> result = fridge.getDataSeries(time0, time2);
+        Map<LocalDateTime, Double> result = washingMachine.getDataSeries(time0, time2);
 
         // Assert
         assertEquals(expectedResult, result);

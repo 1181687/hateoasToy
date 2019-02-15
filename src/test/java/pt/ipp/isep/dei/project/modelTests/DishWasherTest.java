@@ -28,7 +28,7 @@ class DishWasherTest {
         laundry = new Room("Laundry", 1, dim);
 
         // Devices
-        DishWasher dummywasher = new DishWasher("Bosch 400 Series", kitchen);
+        DishWasher dummyWasher = new DishWasher("Bosch 400 Series", kitchen);
         dishwasher = new DishWasher("Bosch 500 Series", kitchen);
         dishwasher.setAttributesDevType("Capacity", 10);
         dishwasher.setAttributesDevType("Duration", 0);
