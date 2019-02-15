@@ -18,13 +18,6 @@ public class WashingMachineSpecs implements DeviceSpecs {
     private double mNominalPower;
     private ProgramList mProgramList;
 
-//    public WashingMachineSpecs(double capacity, double nominalPower, ProgramList programList) {
-//        this.mTypeName = "Washing Machine";
-//        this.mCapacity = capacity;
-//        this.mNominalPower = nominalPower;
-//        this.mProgramList = programList;
-//    }
-
     public WashingMachineSpecs() {
         this.mTypeName = "Washing Machine";
     }

@@ -28,7 +28,6 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     }
 
 
-
     /**
      * Method that sets the volume of water to be heated.
      *
