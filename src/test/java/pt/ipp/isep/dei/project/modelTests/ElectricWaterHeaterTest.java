@@ -8,9 +8,7 @@ import pt.ipp.isep.dei.project.model.Readings;
 import pt.ipp.isep.dei.project.model.Room;
 
 import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -310,6 +308,35 @@ class ElectricWaterHeaterTest {
 
         // Act
         Map<LocalDateTime, Double> result = electricWaterHeater.getDataSeries(time0, time2);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getSpecsListTest() {
+        // Assert
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("Volume Of Water To Heat");
+        expectedResult.add("Hot-Water Temperature");
+        expectedResult.add("Performance Ratio");
+        expectedResult.add("Cold-Water Temperature");
+        expectedResult.add("Nominal Power");
+
+        // Act
+        List<String> result = electricWaterHeater.getSpecsList();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getAttributeValueTest() {
+        // Assert
+        double expectedResult = 700.0;
+
+        // Act
+        Object result = electricWaterHeater.getAttributeValue("Nominal Power");
 
         // Assert
         assertEquals(expectedResult, result);

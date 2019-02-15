@@ -143,7 +143,7 @@ class WashingMachineSpecsTest {
                 "2 - Nominal Power: 30.0\n";
 
         //Act
-        String result = this.washingMachine.getSpecs().getAttributesToString();
+        String result = this.washingMachine.getDevSpecsAttributesToString();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -155,12 +155,11 @@ class WashingMachineSpecsTest {
         double nominalPower = 30;
         this.washingMachine.setAttributesDevType(CAPACITY,capacity);
         this.washingMachine.setAttributesDevType(NOMINAL_POWER,nominalPower);
-        int attribute = 1;
         double value = 20.6;
 
         boolean expectedResult = true;
         //Act
-        boolean result = this.washingMachine.getSpecs().setAttribute(attribute, value);
+        boolean result = this.washingMachine.setAttributesDevType("Capacity", value);
         //Assert
         assertEquals(expectedResult, result);
 
@@ -178,7 +177,7 @@ class WashingMachineSpecsTest {
         boolean expectedResult = false;
 
         //Act
-        boolean result = this.washingMachine.getSpecs().setAttribute(attribute, value);
+        boolean result = this.washingMachine.setAttributesDevType("Non-existant attribute", value);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -188,14 +187,12 @@ class WashingMachineSpecsTest {
         //Arrange
         double nominalPower = 30;
         this.washingMachine.setAttributesDevType(NOMINAL_POWER,nominalPower);
-
-        int attribute = 2;
         double value = 20.6;
 
         boolean expectedResult = true;
 
         //Act
-        boolean result = this.washingMachine.getSpecs().setAttribute(attribute, value);
+        boolean result = this.washingMachine.setAttributesDevType("Nominal Power", value);
         //Assert
         assertEquals(expectedResult, result);
 

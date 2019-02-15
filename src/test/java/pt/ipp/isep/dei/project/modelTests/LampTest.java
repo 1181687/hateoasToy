@@ -8,9 +8,7 @@ import pt.ipp.isep.dei.project.model.Readings;
 import pt.ipp.isep.dei.project.model.Room;
 
 import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -309,6 +307,33 @@ class LampTest {
 
         // Act
         Map<LocalDateTime, Double> result = lamp.getDataSeries(time0, time2);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getSpecsListTest() {
+        // Assert
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("Luminous Flux");
+        expectedResult.add("Time");
+        expectedResult.add("Nominal Power");
+
+        // Act
+        List<String> result = lamp.getSpecsList();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getAttributeValueTest() {
+        // Assert
+        double expectedResult = 300.0;
+
+        // Act
+        Object result = lamp.getAttributeValue("Nominal Power");
 
         // Assert
         assertEquals(expectedResult, result);

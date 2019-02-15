@@ -8,9 +8,7 @@ import pt.ipp.isep.dei.project.model.Readings;
 import pt.ipp.isep.dei.project.model.Room;
 
 import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -309,6 +307,33 @@ class DishWasherTest {
 
         // Act
         Map<LocalDateTime, Double> result = dishwasher.getDataSeries(time0, time2);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getSpecsListTest() {
+        // Assert
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("Capacity");
+        expectedResult.add("Duration");
+        expectedResult.add("Nominal Power");
+
+        // Act
+        List<String> result = dishwasher.getSpecsList();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getAttributeValueTest() {
+        // Assert
+        int expectedResult = 10;
+
+        // Act
+        Object result = dishwasher.getAttributeValue("Capacity");
 
         // Assert
         assertEquals(expectedResult, result);

@@ -8,9 +8,7 @@ import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.WashingMachine;
 
 import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -315,4 +313,31 @@ class WashingMachineTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    void getSpecsListTest() {
+        // Assert
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("Capacity");
+        expectedResult.add("Duration");
+        expectedResult.add("Energy Consumption");
+        expectedResult.add("Nominal Power");
+
+        // Act
+        List<String> result = washingMachine.getSpecsList();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getAttributeValueTest() {
+        // Assert
+        double expectedResult = 1000.0;
+
+        // Act
+        Object result = washingMachine.getAttributeValue("Nominal Power");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 }

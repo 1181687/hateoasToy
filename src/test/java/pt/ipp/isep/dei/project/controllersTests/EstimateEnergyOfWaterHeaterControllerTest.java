@@ -86,13 +86,13 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         double nominalPower = 0.5;
         double performanceRatio = 0.8;
         double hotWaterTemperature = 70;
-        device1.getSpecs().setAttributeValue("Nominal Power", nominalPower);
-        device1.getSpecs().setAttributeValue("Performance Ratio", performanceRatio);
-        device1.getSpecs().setAttributeValue("Hot-Water Temperature", hotWaterTemperature);
+        device1.setAttributesDevType("Nominal Power", nominalPower);
+        device1.setAttributesDevType("Performance Ratio", performanceRatio);
+        device1.setAttributesDevType("Hot-Water Temperature", hotWaterTemperature);
         double coldWaterTemp = 30;
-        device1.getSpecs().setAttributeValue("Cold-Water Temperature", coldWaterTemp);
+        device1.setAttributesDevType("Cold-Water Temperature", coldWaterTemp);
         double volumeOfWaterToHeat = 70;
-        device1.getSpecs().setAttributeValue("Volume Of Water To Heat", volumeOfWaterToHeat);
+        device1.setAttributesDevType("Volume Of Water To Heat", volumeOfWaterToHeat);
 
         double expectedResult = 2.61;
 
@@ -109,24 +109,24 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         double nominalPower = 0.5;
         double performanceRatio = 0.8;
         double hotWaterTemperature = 70;
-        device1.getSpecs().setAttributeValue("Nominal Power", nominalPower);
-        device1.getSpecs().setAttributeValue("Performance Ratio", performanceRatio);
-        device1.getSpecs().setAttributeValue("Hot-Water Temperature", hotWaterTemperature);
+        device1.setAttributesDevType("Nominal Power", nominalPower);
+        device1.setAttributesDevType("Performance Ratio", performanceRatio);
+        device1.setAttributesDevType("Hot-Water Temperature", hotWaterTemperature);
         double coldWaterTemp = 30;
-        device1.getSpecs().setAttributeValue("Cold-Water Temperature", coldWaterTemp);
+        device1.setAttributesDevType("Cold-Water Temperature", coldWaterTemp);
         double volumeOfWaterToHeat = 70;
-        device1.getSpecs().setAttributeValue("Volume Of Water To Heat", volumeOfWaterToHeat);
+        device1.setAttributesDevType("Volume Of Water To Heat", volumeOfWaterToHeat);
 
         double coldWaterTemp1 = 30;
         double nominalPower1 = 1.1;
         double performanceRatio1 = 0.9;
         double hotWaterTemperature1 = 70;
-        device2.getSpecs().setAttributeValue("Nominal Power", nominalPower1);
-        device2.getSpecs().setAttributeValue("Performance Ratio", performanceRatio1);
-        device2.getSpecs().setAttributeValue("Hot-Water Temperature", hotWaterTemperature1);
-        device2.getSpecs().setAttributeValue("Cold-Water Temperature", coldWaterTemp1);
+        device2.setAttributesDevType("Nominal Power", nominalPower1);
+        device2.setAttributesDevType("Performance Ratio", performanceRatio1);
+        device2.setAttributesDevType("Hot-Water Temperature", hotWaterTemperature1);
+        device2.setAttributesDevType("Cold-Water Temperature", coldWaterTemp1);
         double volumeOfWaterToHeat1 = 70;
-        device2.getSpecs().setAttributeValue("Volume Of Water To Heat", volumeOfWaterToHeat1);
+        device2.setAttributesDevType("Volume Of Water To Heat", volumeOfWaterToHeat1);
 
         double expectedResult = 5.54;
 
