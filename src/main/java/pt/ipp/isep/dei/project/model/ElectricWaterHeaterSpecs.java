@@ -28,7 +28,6 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     }
 
 
-
     /**
      * Method that sets the volume of water to be heated.
      *
@@ -177,7 +176,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
             case ATTRIBUTE_NOMINAL_POWER:
                 return mNominalPower;
             default:
-                return 0;
+                return -1;
         }
     }
 
