@@ -117,29 +117,6 @@ public class FridgeSpecs implements DeviceSpecs {
         return attributes.toString();
     }
 
-    /**
-     * set method
-     *
-     * @param attribute position of the attribute
-     * @param value
-     * @return
-     */
-    @Override
-    public boolean setAttribute(int attribute, double value) {
-
-        switch (attribute) {
-            case 1:
-                return setFreezerCapacity(value);
-            case 2:
-                return setRefrigeratorCapacity(value);
-            case 3:
-                return setAnnualEnergyConsumption(value);
-            case 4:
-                return setNominalPower(value);
-            default:
-                return false;
-        }
-    }
 
     /**
      * get method of the number of attributes

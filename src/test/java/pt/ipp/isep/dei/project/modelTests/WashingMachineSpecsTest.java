@@ -149,59 +149,6 @@ class WashingMachineSpecsTest {
     }
 
     @Test
-    public void testSetAttributeCapacityTrue() {
-        //Arrange
-        int capacity = 31;
-        double nominalPower = 30;
-        this.washingMachine.setAttributesDevType(CAPACITY,capacity);
-        this.washingMachine.setAttributesDevType(NOMINAL_POWER,nominalPower);
-        int attribute = 1;
-        double value = 20.6;
-
-        boolean expectedResult = true;
-        //Act
-        boolean result = this.washingMachine.getSpecs().setAttribute(attribute, value);
-        //Assert
-        assertEquals(expectedResult, result);
-
-    }
-
-    @Test
-    public void testSetAttributeNonExistentFalse() {
-        //Arrange
-        int capacity = 31;
-
-        int attribute = 3;
-        double value = 20.6;
-        this.washingMachine.setAttributesDevType(CAPACITY,capacity);
-
-        boolean expectedResult = false;
-
-        //Act
-        boolean result = this.washingMachine.getSpecs().setAttribute(attribute, value);
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void testSetAttributeNominalPowerTrue() {
-        //Arrange
-        double nominalPower = 30;
-        this.washingMachine.setAttributesDevType(NOMINAL_POWER,nominalPower);
-
-        int attribute = 2;
-        double value = 20.6;
-
-        boolean expectedResult = true;
-
-        //Act
-        boolean result = this.washingMachine.getSpecs().setAttribute(attribute, value);
-        //Assert
-        assertEquals(expectedResult, result);
-
-    }
-
-    @Test
     public void testGetNumberOfAttributes() {
         //Arrange
         int capacity = 20;
