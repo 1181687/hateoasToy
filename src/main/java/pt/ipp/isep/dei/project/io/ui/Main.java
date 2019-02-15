@@ -399,7 +399,6 @@ public class Main {
         ewhB107.setAttributesDevType("Nominal Power", 1.5);
         ewhB107.setAttributesDevType("Performance Ratio", 0.91);
 
-        room1.addDevice(ewhB107);
         ewhB107.addReadingsToTheList(ewhEC);
         ewhB107.addReadingsToTheList(ewhEC1);
         ewhB107.addReadingsToTheList(ewhEC2);
@@ -427,7 +426,6 @@ public class Main {
         dwB107.setAttributesDevType("Nominal Power", 1.5);
 
 
-        room1.addDevice(dwB107);
         dwB107.addReadingsToTheList(dwEC);
         dwB107.addReadingsToTheList(dwEC1);
         dwB107.addReadingsToTheList(dwEC2);
@@ -445,7 +443,6 @@ public class Main {
         wmB107.setAttributesDevType("Capacity", 10);
         wmB107.setAttributesDevType("Nominal Power", 3.5);
 
-        room1.addDevice(wmB107);
         wmB107.addReadingsToTheList(wmEC);
         wmB107.addReadingsToTheList(wmEC1);
         wmB107.addReadingsToTheList(wmEC2);
@@ -459,7 +456,6 @@ public class Main {
         ewhB109.setAttributesDevType("Nominal Power", 1.5);
         ewhB109.setAttributesDevType("Performance Ratio", 0.91);
 
-        room2.addDevice(ewhB109);
         ewhB109.addReadingsToTheList(ewh1EC);
         ewhB109.addReadingsToTheList(ewh1EC1);
         ewhB109.addReadingsToTheList(ewh1EC2);
@@ -487,8 +483,6 @@ public class Main {
         dwB109.setAttributesDevType("Capacity", 50);
         dwB109.setAttributesDevType("Nominal Power", 1.5);
 
-        room2.addDevice(dwB109);
-
 
         // Washing Machine B109
 
@@ -497,7 +491,6 @@ public class Main {
         wmB109.setAttributesDevType("Capacity", 10);
         wmB109.setAttributesDevType("Nominal Power", 2.5);
 
-        room2.addDevice(wmB109);
         wmB109.addReadingsToTheList(wm1EC);
         wmB109.addReadingsToTheList(wm1EC1);
         wmB109.addReadingsToTheList(wm1EC2);
@@ -512,16 +505,12 @@ public class Main {
         ewhB106.setAttributesDevType("Nominal Power", 2.2);
         ewhB106.setAttributesDevType("Performance Ratio", 0.92);
 
-        room3.addDevice(ewhB106);
 
         // Dishwasher B106
         DishWasherType dishWasherTypeB106 =  new DishWasherType();
         Device dwB106 = dishWasherTypeB106.createDevice("Dishwasher B106", room3);
         dwB106.setAttributesDevType("Capacity", 50);
         dwB106.setAttributesDevType("Nominal Power", 1.4);
-
-
-        room3.addDevice(dwB106);
 
         // ROOM LIST
         houseEdificioB.addRoom(room1);
