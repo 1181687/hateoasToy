@@ -468,8 +468,8 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
 
         int position = 0;
         String expectedResult =
-                "1 - Name of the device: Fridge Ariston - ACTIVATED\n" +
-                        "2 - Name of the device: Fridge Bosch - ACTIVATED\n";
+                "1 - Device name: Fridge Ariston - ACTIVATED\n" +
+                        "2 - Device name: Fridge Bosch - ACTIVATED\n";
         controller.getRoomPosition(position);
         // Act
         String result = controller.getActiveDeviceListToString();
@@ -507,8 +507,8 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         int position = 0;
 
         String expectedResult =
-                "1 - Name of the device: Fridge Ariston - DEACTIVATED\n" +
-                        "2 - Name of the device: Fridge Bosch - ACTIVATED\n";
+                "1 - Device name: Fridge Ariston - DEACTIVATED\n" +
+                        "2 - Device name: Fridge Bosch - ACTIVATED\n";
         controller.getRoomPosition(position);
         // Act
         String result = controller.getActiveDeviceListToString();
@@ -548,8 +548,8 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         house.addRoom(room);
 
         String expectedResult =
-                "1 - Name of the device: Fridge Ariston - DEACTIVATED\n" +
-                        "2 - Name of the device: Fridge Bosch - DEACTIVATED\n";
+                "1 - Device name: Fridge Ariston - DEACTIVATED\n" +
+                        "2 - Device name: Fridge Bosch - DEACTIVATED\n";
         controller.getRoomPosition(position);
         // Act
         String result = controller.getActiveDeviceListToString();

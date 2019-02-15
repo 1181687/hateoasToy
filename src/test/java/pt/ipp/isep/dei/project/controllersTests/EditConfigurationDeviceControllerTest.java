@@ -315,8 +315,8 @@ class EditConfigurationDeviceControllerTest {
 
         String expectedResult = "1 - Freezer Capacity: 35.0\n" +
                 "2 - Refrigerator Capacity: 20.0\n" +
-                "3 - Annual Energy Consumption: 10.0\n" +
-                "4 - Nominal Power: 0.0\n";
+                "3 - Annual Energy Consumption: 1000.0\n" +
+                "4 - Nominal Power: 10.0\n";
         // act
         String result = controller.getDevSpecsAttributesToString();
 
