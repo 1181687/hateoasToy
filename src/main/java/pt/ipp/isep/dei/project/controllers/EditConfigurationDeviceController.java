@@ -171,7 +171,7 @@ public class EditConfigurationDeviceController {
     }
 
     public List<String> getSpecsList() {
-        return this.mDevice.getSpecs().getSpecsList();
+        return this.mDevice.getSpecsList();
     }
 
     public String getDevSpecsListToString(List<String> deviceSpecsAttributes, int position) {

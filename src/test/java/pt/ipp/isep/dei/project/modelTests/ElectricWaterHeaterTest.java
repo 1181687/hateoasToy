@@ -211,7 +211,7 @@ class ElectricWaterHeaterTest {
     @Test
     void getNumberOfSpecsAttributesTest() {
         // Arrange
-        int expectedResult = 4;
+        int expectedResult = 3;
 
         // Act
         int result = electricWaterHeater.getNumberOfSpecsAttributes();
@@ -317,11 +317,9 @@ class ElectricWaterHeaterTest {
     void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("Volume Of Water To Heat");
-        expectedResult.add("Hot-Water Temperature");
-        expectedResult.add("Performance Ratio");
-        expectedResult.add("Cold-Water Temperature");
-        expectedResult.add("Nominal Power");
+        expectedResult.add("1 - Hot-Water Temperature: 55.0");
+        expectedResult.add("2 - Performance Ratio: 0.9");
+        expectedResult.add("3 - Nominal Power: 700.0");
 
         // Act
         List<String> result = electricWaterHeater.getSpecsList();

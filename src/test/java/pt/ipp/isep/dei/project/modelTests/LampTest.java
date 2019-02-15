@@ -316,9 +316,8 @@ class LampTest {
     void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("Luminous Flux");
-        expectedResult.add("Time");
-        expectedResult.add("Nominal Power");
+        expectedResult.add("1 - Luminous Flux: 2800.0");
+        expectedResult.add("2 - Nominal Power: 300.0");
 
         // Act
         List<String> result = lamp.getSpecsList();

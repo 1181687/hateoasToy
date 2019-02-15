@@ -215,10 +215,10 @@ public class FridgeSpecsTest {
     public void testGetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("Freezer Capacity");
-        expectedResult.add("Refrigerator Capacity");
-        expectedResult.add("Annual Energy Consumption");
-        expectedResult.add("Nominal Power");
+        expectedResult.add("1 - Freezer Capacity: 0.0");
+        expectedResult.add("2 - Refrigerator Capacity: 0.0");
+        expectedResult.add("3 - Annual Energy Consumption: 0.0");
+        expectedResult.add("4 - Nominal Power: 0.0");
 
         // Act
         List<String> result = kitchen.getDeviceByPosition(0).getSpecsList();

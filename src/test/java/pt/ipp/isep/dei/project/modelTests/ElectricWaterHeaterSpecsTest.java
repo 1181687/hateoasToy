@@ -101,14 +101,12 @@ class ElectricWaterHeaterSpecsTest {
     public void testgetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("Volume Of Water To Heat");
-        expectedResult.add("Hot-Water Temperature");
-        expectedResult.add("Performance Ratio");
-        expectedResult.add("Cold-Water Temperature");
-        expectedResult.add("Nominal Power");
+        expectedResult.add("1 - Hot-Water Temperature: 0.0");
+        expectedResult.add("2 - Performance Ratio: 0.0");
+        expectedResult.add("3 - Nominal Power: 0.0");
 
         // Act
-        List<String> result = kitchen.getDeviceByPosition(0).getSpecs().getSpecsList();
+        List<String> result = kitchen.getDeviceByPosition(0).getSpecsList();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -122,7 +120,7 @@ class ElectricWaterHeaterSpecsTest {
 
         Object expectedResult = 100.0;
         // Act
-        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Nominal Power");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Nominal Power");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -135,7 +133,7 @@ class ElectricWaterHeaterSpecsTest {
 
         Object expectedResult = 100.0;
         // Act
-        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Volume Of Water To Heat");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Volume Of Water To Heat");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -148,7 +146,7 @@ class ElectricWaterHeaterSpecsTest {
 
         Object expectedResult = 0.9;
         // Act
-        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Performance Ratio");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Performance Ratio");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -162,7 +160,7 @@ class ElectricWaterHeaterSpecsTest {
 
         Object expectedResult = 50.0;
         // Act
-        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Hot-Water Temperature");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Hot-Water Temperature");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -176,7 +174,7 @@ class ElectricWaterHeaterSpecsTest {
 
         Object expectedResult = 30.0;
         // Act
-        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Cold-Water Temperature");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Cold-Water Temperature");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -190,7 +188,7 @@ class ElectricWaterHeaterSpecsTest {
 
         Object expectedResult = -1;
         // Act
-        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Not Valid");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Not Valid");
         // Assert
         assertEquals(expectedResult, result);
     }
