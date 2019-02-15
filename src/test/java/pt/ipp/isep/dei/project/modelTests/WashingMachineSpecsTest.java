@@ -165,21 +165,20 @@ class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
 
     }
-/*
+
     @Test
     public void testSetAttributeNonExistentFalse() {
         //Arrange
         int capacity = 31;
-        double nominalPower = 30;
-        WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
+
         int attribute = 3;
         double value = 20.6;
-        washingMachineSpecs.setCapacity(capacity);
+        this.washingMachine.setAttributesDevType(CAPACITY,capacity);
 
         boolean expectedResult = false;
 
         //Act
-        boolean result = washingMachineSpecs.setAttribute(attribute, value);
+        boolean result = this.washingMachine.getSpecs().setAttribute(attribute, value);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -187,17 +186,16 @@ class WashingMachineSpecsTest {
     @Test
     public void testSetAttributeNominalPowerTrue() {
         //Arrange
-        int capacity = 31;
         double nominalPower = 30;
-        ProgramList programList = new ProgramList();
-        WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
+        this.washingMachine.setAttributesDevType(NOMINAL_POWER,nominalPower);
+
         int attribute = 2;
         double value = 20.6;
 
         boolean expectedResult = true;
 
         //Act
-        boolean result = washingMachineSpecs.setAttribute(attribute, value);
+        boolean result = this.washingMachine.getSpecs().setAttribute(attribute, value);
         //Assert
         assertEquals(expectedResult, result);
 
@@ -208,12 +206,14 @@ class WashingMachineSpecsTest {
         //Arrange
         int capacity = 20;
         double nominalPower = 30;
-        ProgramList programList = new ProgramList();
-        WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
+
+        this.washingMachine.setAttributesDevType(CAPACITY,capacity);
+        this.washingMachine.setAttributesDevType(NOMINAL_POWER,nominalPower);
+
         int expectedResult = 2;
 
         //Act
-        int result = washingMachineSpecs.getNumberOfAttributes();
+        int result = this.washingMachine.getNumberOfSpecsAttributes();
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -224,12 +224,14 @@ class WashingMachineSpecsTest {
         //Arrange
         int capacity = 20;
         double nominalPower = 30;
-        ProgramList programList = new ProgramList();
-        WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs(capacity, nominalPower, programList);
-        double expectedResult = 0;
-        double result = washingMachineSpecs.getEnergyConsumptionInADay();
+        this.washingMachine.setAttributesDevType(CAPACITY,capacity);
+        this.washingMachine.setAttributesDevType(NOMINAL_POWER,nominalPower);
 
+        double expectedResult = 0;
+        //Act
+        double result = this.washingMachine.getEnergyConsumptionInADay();
+        //Assert
         assertEquals(result, expectedResult);
 
-    }*/
+    }
 }
