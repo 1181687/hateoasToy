@@ -3,8 +3,11 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -357,7 +360,7 @@ public class HouseGridTest {
         assertFalse(result);
     }
 
-   /* @Test
+    @Test
     public void getDeviceFromPositionInList() {
         // Arrange
         String houseGridName = "hgname1";
@@ -372,12 +375,8 @@ public class HouseGridTest {
         houseGrid.attachRoom(room);
 
         //initiate Device
-        double luminousFlux = 10.0;
-        double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
-
-        room.addDevice(dev1);
+        LampType lampType = new LampType();
+        Device dev1 = lampType.createDevice("Lamp1", room);
 
         Device expectedResult = dev1;
 
@@ -414,6 +413,7 @@ public class HouseGridTest {
         //assert
         assertEquals(expectResult, result);
     }
+
 
     @Test
     public void getListSizeEmptyList() {
@@ -456,12 +456,9 @@ public class HouseGridTest {
         houseGrid.attachRoom(room);
 
         //initiate Device
-        double luminousFlux = 10.0;
-        double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        LampType lampType = new LampType();
+        Device dev1 = lampType.createDevice("Lamp1", room);
 
-        room.addDevice(dev1);
         //Act
 
         boolean result = houseGrid.isDeviceListOfAllRoomsEmpty();
@@ -543,8 +540,8 @@ public class HouseGridTest {
         Dimension dimension = new Dimension(25, 25, 25);
         Room room1 = new Room("Quarto", 2, dimension);
 
-        DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
-        Device lamp = new Device("LampSpecs", room1, deviceSpecs);
+        LampType lampType = new LampType();
+        Device lamp = lampType.createDevice("LampSpecs", room1);
 
 
         String gridName = "Grid 1";
@@ -579,8 +576,8 @@ public class HouseGridTest {
         Dimension dimension = new Dimension(25, 25, 25);
         Room room1 = new Room("Quarto", 2, dimension);
 
-        DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
-        Device lamp = new Device("LampSpecs", room1, deviceSpecs);
+        LampType lampType = new LampType();
+        Device lamp = lampType.createDevice("LampSpecs", room1);
 
 
         String gridName = "Grid 1";
@@ -616,8 +613,8 @@ public class HouseGridTest {
         Dimension dimension = new Dimension(25, 25, 25);
         Room room1 = new Room("Quarto", 2, dimension);
 
-        DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
-        Device lamp = new Device("LampSpecs", room1, deviceSpecs);
+        LampType lampType = new LampType();
+        Device lamp = lampType.createDevice("LampSpecs", room1);
 
 
         String gridName = "Grid 1";
@@ -654,14 +651,14 @@ public class HouseGridTest {
         Room room1 = new Room("Room", 2, dimension);
         Room room2 = new Room("Kitchen", 1, dimension);
 
-        DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
-        Device lamp = new Device("LampSpecs", room1, deviceSpecs);
+        LampType lampType = new LampType();
+        Device lamp = lampType.createDevice("LampSpecs", room1);
 
-        DeviceSpecs specsFridge = new FridgeSpecs(12, 15, 25, 12);
-        Device fridge = new Device("FridgeSpecs", room2, specsFridge);
+        FridgeType fridgeType = new FridgeType();
+        Device fridge = fridgeType.createDevice("FridgeSpecs", room2);
 
-        DeviceSpecs specsElectricWaterHeater = new ElectricWaterHeaterSpecs(45, 20, 12, 12);
-        Device electricWaterHeater = new Device("EWH200", room2, specsElectricWaterHeater);
+        ElectricWaterHeaterType electricWaterHeaterType =  new ElectricWaterHeaterType();
+        Device electricWaterHeater = electricWaterHeaterType.createDevice("EWH200", room2);
 
         String gridName = "Grid 1";
         HouseGrid grid1 = new HouseGrid(gridName);
@@ -729,7 +726,6 @@ public class HouseGridTest {
 
         //Assert
         assertEquals(expectedResult, exception.getMessage());
-
     }
 
     @Test
@@ -746,14 +742,14 @@ public class HouseGridTest {
         grid1.attachRoom(room1);
         grid1.attachRoom(room2);
 
-        DeviceSpecs deviceSpecs = new LampSpecs(25, 20);
-        Device lamp = new Device("LampSpecs", room1, deviceSpecs);
+        LampType lampType = new LampType();
+        Device lamp = lampType.createDevice("LampSpecs", room1);
 
-        DeviceSpecs specsFridge = new FridgeSpecs(12, 15, 25, 12);
-        Device fridge = new Device("FridgeSpecs", room2, specsFridge);
+        FridgeType fridgeType = new FridgeType();
+        Device fridge = fridgeType.createDevice("FridgeSpecs", room2);
 
-        DeviceSpecs specsElectricWaterHeater = new ElectricWaterHeaterSpecs(45, 20, 12, 12);
-        Device electricWaterHeater = new Device("EWH200", room2, specsElectricWaterHeater);
+        ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
+        Device electricWaterHeater = electricWaterHeaterType.createDevice("EWH200", room2);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         Readings readings0 = new Readings(3, time0);
@@ -799,5 +795,4 @@ public class HouseGridTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-*/
 }

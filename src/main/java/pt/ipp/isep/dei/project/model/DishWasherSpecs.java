@@ -152,7 +152,7 @@ public class DishWasherSpecs implements DeviceSpecs {
         switch (attributeName) {
             case ATTRIBUTE_CAPACITY:
                 if (attributeValue instanceof Integer) {
-                    setCapacity(attributeValue);
+                    return setCapacity(attributeValue);
                 }
                 return false;
             case ATTRIBUTE_DURATION:
@@ -163,7 +163,7 @@ public class DishWasherSpecs implements DeviceSpecs {
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:
                 if (attributeValue instanceof Number) {
-                    setNominalPower(((Number) attributeValue).doubleValue());
+                    return setNominalPower(((Number) attributeValue).doubleValue());
                 }
                 return false;
             default:

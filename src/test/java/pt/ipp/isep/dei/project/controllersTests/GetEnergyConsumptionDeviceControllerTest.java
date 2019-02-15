@@ -76,7 +76,6 @@ class GetEnergyConsumptionDeviceControllerTest {
 
         String HOT_WATER_TEMP = "Hot-Water Temperature";
         String PERFORMANCE_RATIO = "Performance Ratio";
-        String COLD_WATER_TEMP = "Cold-Water Temperature";
         String NOMINAL_POWER = "Nominal Power";
 
         ElectricWaterHeaterType eWHType = new ElectricWaterHeaterType();

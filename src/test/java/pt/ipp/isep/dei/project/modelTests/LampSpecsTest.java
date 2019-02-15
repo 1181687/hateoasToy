@@ -6,7 +6,7 @@ import pt.ipp.isep.dei.project.model.LampSpecs;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class LampSpecsTest {
-    @Test
+ /*   @Test
     public void getEnergyConsumptionInADayTestWithValidValues() {
         // Arrange
         // LampSpecs Instantiation
@@ -248,5 +248,5 @@ public class LampSpecsTest {
 
         // assert
         assertEquals(expectedResult, result);
-    }
+    }*/
 }

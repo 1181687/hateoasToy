@@ -15,12 +15,6 @@ public class LampSpecs implements DeviceSpecs {
     private double mTime;
     private double mNominalPower;
 
-    public LampSpecs(double luminousFlux, double nominalPower) {
-        this.mTypeName = "Lamp";
-        this.mLuminousFlux = luminousFlux;
-        this.mNominalPower = nominalPower;
-    }
-
     public LampSpecs() {
         this.mTypeName = "Lamp";
     }
@@ -166,17 +160,17 @@ public class LampSpecs implements DeviceSpecs {
         switch (attributeName) {
             case ATTRIBUTE_LUMINOUS_FLUX:
                 if (attributeValue instanceof Number) {
-                    setLuminousFlux(((Number) attributeValue).doubleValue());
+                    return setLuminousFlux(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_TIME:
                 if (attributeValue instanceof Number) {
-                    setTime(((Number) attributeValue).doubleValue());
+                    return setTime(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:
                 if (attributeValue instanceof Number) {
-                    setNominalPower(((Number) attributeValue).doubleValue());
+                    return setNominalPower(((Number) attributeValue).doubleValue());
                 }
                 return false;
             default:
