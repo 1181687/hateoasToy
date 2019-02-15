@@ -16,13 +16,6 @@ public class DishWasherSpecs implements DeviceSpecs {
     private double mNominalPower;
     private ProgramList mProgramList;
 
-    public DishWasherSpecs(int capacity, double nominalPower, ProgramList programList) {
-        this.mTypeName = "Dishwasher";
-        this.mCapacity = capacity;
-        this.mNominalPower = nominalPower;
-        this.mProgramList = programList;
-    }
-
     public DishWasherSpecs() {
         this.mTypeName = "Dishwasher";
     }
@@ -32,7 +25,7 @@ public class DishWasherSpecs implements DeviceSpecs {
     }
 
     /**
-     * get method
+     * get method of the energy consumption of a DishWasher
      *
      * @return energy consumption
      */
@@ -42,7 +35,7 @@ public class DishWasherSpecs implements DeviceSpecs {
 
 
     /**
-     * get method
+     * get method of the nominal power of a DishWasher
      *
      * @return nominal power
      */
@@ -67,7 +60,7 @@ public class DishWasherSpecs implements DeviceSpecs {
     }
 
     /**
-     * set method to Nominal Power
+     * set method to Nominal Power of a DishWasher
      *
      * @param nominalPower
      * @return
@@ -93,25 +86,6 @@ public class DishWasherSpecs implements DeviceSpecs {
         return attributes.toString();
     }
 
-    /**
-     * method that set a value of an attribute by a position.
-     *
-     * @param attribute
-     * @param value
-     * @return the attributes with new value if true. If not, return false.
-     */
-    @Override
-    public boolean setAttribute(int attribute, double value) {
-        switch (attribute) {
-            case 1:
-                int intValue = (int) value;
-                return setCapacity(intValue);
-            case 2:
-                return setNominalPower(value);
-            default:
-                return false;
-        }
-    }
 
     /**
      * method that get the number of the attributes of the device.
@@ -143,7 +117,7 @@ public class DishWasherSpecs implements DeviceSpecs {
             case ATTRIBUTE_NOMINAL_POWER:
                 return mNominalPower;
             default:
-                return 0;
+                return -1;
         }
     }
 

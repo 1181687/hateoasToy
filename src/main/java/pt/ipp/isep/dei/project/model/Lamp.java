@@ -293,4 +293,8 @@ public class Lamp implements Device, Measurable {
         return mSpec.getAttributeValue(attributeName);
     }
 
+    @Override
+    public String getSpecsToString() {
+        return this.mSpec.getAttributesToString();
+    }
 }

@@ -294,4 +294,7 @@ public class Fridge implements Device, Measurable {
         return mSpec.getAttributeValue(attributeName);
     }
 
+    public String getSpecsToString() {
+        return this.mSpec.getAttributesToString();
+    }
 }

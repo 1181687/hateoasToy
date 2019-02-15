@@ -117,8 +117,6 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-}
-/*
   @Test
     public void getEnergyConsumptionInAInterval(){
         //Arrange
@@ -160,4 +158,3 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         assertEquals(expectedResult, result, 0.001);
     }
 }
-*/

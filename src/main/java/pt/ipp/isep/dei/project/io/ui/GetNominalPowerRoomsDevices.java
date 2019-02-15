@@ -55,7 +55,7 @@ public class GetNominalPowerRoomsDevices {
                     if (addOtherDeviceOrNot == 0) {
                         break;
                     }
-                    if (!(addOtherDeviceOrNot == mController.getDeviceListSize(positionRoom) + 1)) {
+                    if (addOtherDeviceOrNot != mController.getDeviceListSize(positionRoom) + 1) {
 
                         if (mController.isMeasurableInList(mController.getDeviceListByPosition(positionRoom, addOtherDeviceOrNot - 1))) {
                             label4 = "That device was already chosen.\nWould you like to add any other device of this room to the nominal power calculations? If yes please type the number of that device; if not, please type 0.";

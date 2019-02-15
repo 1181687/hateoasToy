@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class WashingMachineSpecsTest {
@@ -215,7 +218,6 @@ class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-
     @Test
     public void testGetEnergyConsumptionInADay() {
         //Arrange
@@ -230,5 +232,77 @@ class WashingMachineSpecsTest {
         //Assert
         assertEquals(result, expectedResult);
 
+    }
+    @Test
+    public void testGetSpecsInAListOfStrings() {
+        // Arrange
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("Capacity");
+        expectedResult.add("Duration");
+        expectedResult.add("Energy Consumption");
+        expectedResult.add("Nominal Power");
+
+        // Act
+        List<String> result = room.getDeviceByPosition(0).getSpecsList();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueNominalPower() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        room.getDeviceByPosition(0).setAttributesDevType("Capacity", 30);
+
+        Object expectedResult = 100.0;
+        // Act
+        Object result = room.getDeviceByPosition(0).getAttributeValue("Nominal Power");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueCapacity() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        room.getDeviceByPosition(0).setAttributesDevType("Capacity", 30);
+
+        Object expectedResult = 30.0;
+        // Act
+        Object result = room.getDeviceByPosition(0).getAttributeValue("Capacity");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueDuration() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        room.getDeviceByPosition(0).setAttributesDevType("Duration", 30);
+        room.getDeviceByPosition(0).setAttributesDevType("Capacity", 30);
+
+        Object expectedResult = 30.0;
+        // Act
+        Object result = room.getDeviceByPosition(0).getAttributeValue("Duration");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueNotAValidSpec() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        room.getDeviceByPosition(0).setAttributesDevType("Capacity", 20.0);
+
+        Object expectedResult = -1;
+        // Act
+        Object result = room.getDeviceByPosition(0).getAttributeValue("Not Valid");
+        // Assert
+        assertEquals(expectedResult, result);
     }
 }

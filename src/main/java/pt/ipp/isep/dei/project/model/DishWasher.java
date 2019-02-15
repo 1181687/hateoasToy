@@ -298,4 +298,9 @@ public class DishWasher implements Device, Measurable {
     public Object getAttributeValue(String attributeName) {
         return mSpec.getAttributeValue(attributeName);
     }
+
+    @Override
+    public String getSpecsToString() {
+        return this.mSpec.getAttributesToString();
+    }
 }

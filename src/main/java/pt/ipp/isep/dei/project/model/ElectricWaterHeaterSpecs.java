@@ -28,7 +28,6 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     }
 
 
-
     /**
      * Method that sets the volume of water to be heated.
      *
@@ -142,31 +141,6 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     }
 
     /**
-     * method that set a value of an attribute by a position.
-     *
-     * @param attribute
-     * @param value
-     * @return the attributes with new value if true. If not, return false.
-     */
-    @Override
-    public boolean setAttribute(int attribute, double value) {
-        switch (attribute) {
-            case 1:
-                return setHotWaterTemperature(value);
-            case 2:
-                return setPerformanceRatio(value);
-            case 3:
-                return setNominalPower(value);
-            case 4:
-                return setColdWaterTemperature(value);
-            case 5:
-                return setVolumeOfWaterToHeat(value);
-            default:
-                return false;
-        }
-    }
-
-    /**
      * method that get the number of the attributes of the device.
      *
      * @return the number of attributes.
@@ -202,7 +176,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
             case ATTRIBUTE_NOMINAL_POWER:
                 return mNominalPower;
             default:
-                return 0;
+                return -1;
         }
     }
 

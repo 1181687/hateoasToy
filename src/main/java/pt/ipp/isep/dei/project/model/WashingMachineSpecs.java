@@ -18,13 +18,6 @@ public class WashingMachineSpecs implements DeviceSpecs {
     private double mNominalPower;
     private ProgramList mProgramList;
 
-//    public WashingMachineSpecs(double capacity, double nominalPower, ProgramList programList) {
-//        this.mTypeName = "Washing Machine";
-//        this.mCapacity = capacity;
-//        this.mNominalPower = nominalPower;
-//        this.mProgramList = programList;
-//    }
-
     public WashingMachineSpecs() {
         this.mTypeName = "Washing Machine";
     }
@@ -91,24 +84,6 @@ public class WashingMachineSpecs implements DeviceSpecs {
     }
 
     /**
-     * set method
-     * @param attribute position of the attribute
-     * @param value
-     * @return
-     */
-    @Override
-    public boolean setAttribute(int attribute, double value) {
-        switch (attribute) {
-            case 1:
-                return setCapacity(value);
-            case 2:
-                return setNominalPower(value);
-            default:
-                return false;
-        }
-    }
-
-    /**
      * get method
      * @return number of Washing Machine attributes
      */
@@ -140,7 +115,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
             case ATTRIBUTE_NOMINAL_POWER:
                 return mNominalPower;
             default:
-                return 0;
+                return -1;
         }
     }
 
