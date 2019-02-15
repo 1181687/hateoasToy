@@ -11,7 +11,6 @@ public interface Device extends Measurable {
      *
      * @return the nominal power of the device.
      */
-
     double getNominalPower();
 
     /**
@@ -163,9 +162,9 @@ public interface Device extends Measurable {
 
     Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate);
 
-    DeviceSpecs getSpecs();
+    List<String> getSpecsList();
+
+    Object getAttributeValue(String attributeName);
 
     String getSpecsToString();
-
-
 }

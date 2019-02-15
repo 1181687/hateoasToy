@@ -1,12 +1,29 @@
 package pt.ipp.isep.dei.project.modelTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.LampSpecs;
+import pt.ipp.isep.dei.project.model.LampType;
+import pt.ipp.isep.dei.project.model.Room;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LampSpecsTest {
- /*   @Test
+    Room livingRoom;
+
+    @BeforeEach
+    public void StartUp() {
+        Dimension dim = new Dimension(3, 5, 6);
+        livingRoom = new Room("Living Room", 1, dim);
+        LampType lampType = new LampType();
+        lampType.createDevice("Lamp Philips", livingRoom);
+    }
+
+    @Test
     public void getEnergyConsumptionInADayTestWithValidValues() {
         // Arrange
         // LampSpecs Instantiation
@@ -60,86 +77,7 @@ public class LampSpecsTest {
 
     }
 
-    /*@Test
-    public void setmNominalPowerFalse() {
-        // Arrange
-        // LampSpecs Instantiation
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs();
-        lampSpecs.setAttributeValue("Luminous Flux",50.0);
-        lampSpecs.setAttributeValue("Nominal Power",100.0);
 
-        //act
-        boolean result = lampSpecs.setNominalPower(100.0);
-
-        assertFalse(result);
-    }
-
-    @Test
-    public void setmNominalPowerTrue() {
-        // Arrange
-
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
-
-        //act
-        boolean result = lampSpecs.setNominalPower(20.0);
-
-        assertTrue(result);
-    }
-
-
-    @Test
-    public void setmTimeFalse() {
-
-        // Arrange
-        // LampSpecs Instantiation
-
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
-
-        lampSpecs.setTime(50.0);
-
-        //act
-        boolean result = lampSpecs.setTime(50.0);
-
-        assertFalse(result);
-    }
-
-    @Test
-    public void setmTimeTrue() {
-        //Arrange
-        // LampSpecs Instantiation
-
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
-
-        lampSpecs.setTime(50.0);
-
-        //act
-        boolean result = lampSpecs.setTime(10.0);
-
-        assertTrue(result);
-    }
-
-    @Test
-    public void setmLuminousFluxTrue() {
-        // Arrange
-
-        double luminousFlux = 50.0;
-        double nominalPower = 100.0;
-        LampSpecs lampSpecs = new LampSpecs(luminousFlux, nominalPower);
-
-        //act
-        boolean result = lampSpecs.setLuminousFlux(20.0);
-
-        assertTrue(result);
-    }
-*/
     @Test
     public void getAttributesToString() {
         // Arrange
@@ -173,6 +111,63 @@ public class LampSpecsTest {
         int result = lampSpecs.getNumberOfAttributes();
 
         // assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetSpecsInAListOfStrings() {
+        // Arrange
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("Luminous Flux");
+        expectedResult.add("Time");
+        expectedResult.add("Nominal Power");
+
+        // Act
+        List<String> result = livingRoom.getDeviceByPosition(0).getSpecs().getSpecsList();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueNominalPower() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        livingRoom.getDeviceByPosition(0).setAttributesDevType("Luminous Flux", 50.0);
+        livingRoom.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 30);
+
+        Object expectedResult = 30.0;
+        // Act
+        Object result = livingRoom.getDeviceByPosition(0).getSpecs().getAttributeValue("Nominal Power");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueLuminousFlux() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        livingRoom.getDeviceByPosition(0).setAttributesDevType("Luminous Flux", 50);
+        livingRoom.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 30);
+
+        Object expectedResult = 50.0;
+        // Act
+        Object result = livingRoom.getDeviceByPosition(0).getSpecs().getAttributeValue("Luminous Flux");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueNotAValidSpec() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        livingRoom.getDeviceByPosition(0).setAttributesDevType("Luminous Flux", 50);
+        livingRoom.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 30);
+
+        Object expectedResult = -1;
+        // Act
+        Object result = livingRoom.getDeviceByPosition(0).getSpecs().getAttributeValue("Not Valid");
+        // Assert
         assertEquals(expectedResult, result);
     }
 }

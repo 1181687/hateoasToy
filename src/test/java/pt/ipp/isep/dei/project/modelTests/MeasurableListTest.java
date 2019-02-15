@@ -1,34 +1,48 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.*;
+import static org.junit.jupiter.api.Assertions.*;
+
 class MeasurableListTest {
 
+    private Device dev1;
+    private Device dev2;
+    private Device dev3;
+    private Room room1;
+    private Room room2;
+    private MeasurableList mList;
 
- /*   @Test
+    @BeforeEach
+    public void StartUp() {
+
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        this.room1 = new Room("Room1", 2, dim);
+        this.room2 = new Room("Room2", 2, dim);
+
+        FridgeType fridgeType = new FridgeType();
+        this.dev1 = fridgeType.createDevice("FridgeAriston", room1);
+        dev1.setAttributesDevType("Nominal Power",500);
+
+        WashingMachineType washingMachineType = new WashingMachineType();
+        this.dev2 = washingMachineType.createDevice("Washing Machine", room1);
+        dev2.setAttributesDevType("Nominal Power",250);
+
+        DishWasherType dishWasherType = new DishWasherType();
+        this.dev3 = dishWasherType.createDevice("Dishwasher", room2);
+        dev3.setAttributesDevType("Nominal Power",250);
+
+        this.mList = new MeasurableList();
+    }
+
+
+    @Test
     void getNominalPower() {
         // Arrange
-        MeasurableList mList = new MeasurableList();
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room1 = new Room("Room", 2, dim);
-        Room room2 = new Room("Room", 2, dim);
-
-        ProgramList programList = new ProgramList();
-        Program program = new Program("prog1", 3, 4.5);
-        programList.addProgram(program);
-
-        FridgeSpecs specFridgeSpecs = new FridgeSpecs(25, 50, 5000, 500);
-        WashingMachineSpecs specWashing = new WashingMachineSpecs(400, 250.0, programList);
-        DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(400, 250.0, programList);
-        Device dev1 = new Device("FridgeAriston", room1, specFridgeSpecs);
-        Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasherSpecs);
-
         mList.addMeasurable(dev1);
         mList.addMeasurable(room2);
-
-        room1.addDevice(dev1);
-        room1.addDevice(dev2);
-        room2.addDevice(dev3);
 
         double expectedResult = 750;
 
@@ -42,33 +56,11 @@ class MeasurableListTest {
     @Test
     void checkIfMeasurableObjIsInListTrue() {
         // Arrange
-        MeasurableList mList = new MeasurableList();
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room1 = new Room("Room", 2, dim);
-        Room room2 = new Room("Room", 2, dim);
-
-        ProgramList programList = new ProgramList();
-        Program program = new Program("prog1", 3, 4.5);
-        programList.addProgram(program);
-
-        FridgeSpecs specFridgeSpecs = new FridgeSpecs(25, 50, 5000, 500);
-        WashingMachineSpecs specWashing = new WashingMachineSpecs(400, 250.0, programList);
-        DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(400, 250.0, programList);
-        Device dev1 = new Device("FridgeAriston", room1, specFridgeSpecs);
-        Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasherSpecs);
-
         mList.addMeasurable(dev1);
         mList.addMeasurable(room2);
 
-        room1.addDevice(dev1);
-        room1.addDevice(dev2);
-        room2.addDevice(dev3);
-
-        Measurable measurable1 = new Device("FridgeAriston", room1, specFridgeSpecs);
-
         // act
-        boolean result = mList.checkIfMeasurableObjIsInList(measurable1);
+        boolean result = mList.checkIfMeasurableObjIsInList(dev1);
 
         // assert
         assertTrue(result);
@@ -77,32 +69,10 @@ class MeasurableListTest {
     @Test
     void checkIfMeasurableObjIsInListFalse() {
         // Arrange
-        MeasurableList mList = new MeasurableList();
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room1 = new Room("Room", 2, dim);
-        Room room2 = new Room("Room", 2, dim);
-
-        ProgramList programList = new ProgramList();
-        Program program = new Program("prog1", 3, 4.5);
-        programList.addProgram(program);
-
-        FridgeSpecs specFridgeSpecs = new FridgeSpecs(25, 50, 5000, 500);
-        WashingMachineSpecs specWashing = new WashingMachineSpecs(400, 250.0, programList);
-        DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(400, 250.0, programList);
-        Device dev1 = new Device("FridgeAriston", room1, specFridgeSpecs);
-        Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasherSpecs);
-
         mList.addMeasurable(room2);
 
-        room1.addDevice(dev1);
-        room1.addDevice(dev2);
-        room2.addDevice(dev3);
-
-        Measurable measurable1 = new Device("FridgeAriston", room1, specFridgeSpecs);
-
         // act
-        boolean result = mList.checkIfMeasurableObjIsInList(measurable1);
+        boolean result = mList.checkIfMeasurableObjIsInList(dev1);
 
         // assert
         assertFalse(result);
@@ -111,28 +81,8 @@ class MeasurableListTest {
     @Test
     void testGetListToString() {
         // Arrange
-        MeasurableList mList = new MeasurableList();
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room1 = new Room("Room1", 2, dim);
-        Room room2 = new Room("Room2", 2, dim);
-
-        ProgramList programList = new ProgramList();
-        Program program = new Program("prog1", 3, 4.5);
-        programList.addProgram(program);
-
-        FridgeSpecs specFridgeSpecs = new FridgeSpecs(25, 50, 5000, 500);
-        WashingMachineSpecs specWashing = new WashingMachineSpecs(400, 250.0, programList);
-        DishWasherSpecs specDishWasherSpecs = new DishWasherSpecs(400, 250.0, programList);
-        Device dev1 = new Device("FridgeAriston", room1, specFridgeSpecs);
-        Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        Device dev3 = new Device("DishWasherSpecs", room1, specDishWasherSpecs);
-
-        mList.addMeasurable(dev1);
         mList.addMeasurable(room2);
-
-        room1.addDevice(dev1);
-        room1.addDevice(dev2);
-        room2.addDevice(dev3);
+        mList.addMeasurable(dev1);
 
         String expectedResult = "Room: Room2\nDevice: FridgeAriston, located in room: Room1\n";
 
@@ -141,5 +91,5 @@ class MeasurableListTest {
 
         // assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 }

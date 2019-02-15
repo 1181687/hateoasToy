@@ -9,9 +9,7 @@ import pt.ipp.isep.dei.project.model.Room;
 
 
 import java.time.LocalDateTime;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -318,4 +316,31 @@ class FridgeTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    void getSpecsListTest() {
+        // Assert
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("Freezer Capacity");
+        expectedResult.add("Refrigerator Capacity");
+        expectedResult.add("Annual Energy Consumption");
+        expectedResult.add("Nominal Power");
+
+        // Act
+        List<String> result = fridge.getSpecsList();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getAttributeValueTest() {
+        // Assert
+        double expectedResult = 900.0;
+
+        // Act
+        Object result = fridge.getAttributeValue("Nominal Power");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 }

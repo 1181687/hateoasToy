@@ -48,13 +48,6 @@ public class Lamp implements Device, Measurable {
         return this.mName;
     }
 
-    public String validateName(String name) {
-        if (this.mLocation.isDeviceNameExistant(name)) {
-            throw new RuntimeException("Name already exists. Please write a new one.");
-        }
-        return name;
-    }
-
     /**
      * method that gets the Type
      *
@@ -212,6 +205,13 @@ public class Lamp implements Device, Measurable {
         return sum;
     }
 
+    /**
+     * TODO
+     *
+     * @param startDate
+     * @param endDate
+     * @return
+     */
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
         List<Readings> readingsList = new ArrayList<>();
         for (Readings readings : this.mReadings) {
@@ -257,6 +257,12 @@ public class Lamp implements Device, Measurable {
         return mIsActive;
     }
 
+    /**
+     * TODO
+     * @param startDate
+     * @param endDate
+     * @return
+     */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> hmap = new TreeMap<>();
@@ -267,9 +273,24 @@ public class Lamp implements Device, Measurable {
         return hmap;
     }
 
+    /**
+     * TODO
+     * @return
+     */
     @Override
-    public DeviceSpecs getSpecs() {
-        return this.mSpec;
+    public List<String> getSpecsList() {
+        return mSpec.getSpecsList();
+    }
+
+    /**
+     * TODO
+     *
+     * @param attributeName
+     * @return
+     */
+    @Override
+    public Object getAttributeValue(String attributeName) {
+        return mSpec.getAttributeValue(attributeName);
     }
 
     @Override
