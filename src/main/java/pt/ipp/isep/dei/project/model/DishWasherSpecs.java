@@ -25,7 +25,7 @@ public class DishWasherSpecs implements DeviceSpecs {
     }
 
     /**
-     * get method
+     * get method of the energy consumption of a DishWasher
      *
      * @return energy consumption
      */
@@ -35,7 +35,7 @@ public class DishWasherSpecs implements DeviceSpecs {
 
 
     /**
-     * get method
+     * get method of the nominal power of a DishWasher
      *
      * @return nominal power
      */
@@ -60,7 +60,7 @@ public class DishWasherSpecs implements DeviceSpecs {
     }
 
     /**
-     * set method to Nominal Power
+     * set method to Nominal Power of a DishWasher
      *
      * @param nominalPower
      * @return
@@ -117,7 +117,7 @@ public class DishWasherSpecs implements DeviceSpecs {
             case ATTRIBUTE_NOMINAL_POWER:
                 return mNominalPower;
             default:
-                return 0;
+                return -1;
         }
     }
 

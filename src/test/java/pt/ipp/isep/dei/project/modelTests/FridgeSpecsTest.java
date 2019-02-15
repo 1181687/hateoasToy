@@ -80,7 +80,7 @@ public class FridgeSpecsTest {
         double nominalPower = 100.0;
 
         //act
-        boolean result = kitchen.getDeviceByPosition(0).setFreezerCapacity(20.0);
+        boolean result = livingRoom.getDeviceByPosition(0).setFreezerCapacity(20.0);
 
         assertFalse(result);
     }
@@ -95,7 +95,7 @@ public class FridgeSpecsTest {
         double nominalPower = 100.0;
         
         //act
-        boolean result = kitchen.getDeviceByPosition(0).setRefrigeratorCapacity(20.0);
+        boolean result = livingRoom.getDeviceByPosition(0).setRefrigeratorCapacity(20.0);
 
         assertTrue(result);
     }
@@ -110,7 +110,7 @@ public class FridgeSpecsTest {
         double nominalPower = 100.0;
 
         //act
-        boolean result = kitchen.getDeviceByPosition(0).setRefrigeratorCapacity(100.0);
+        boolean result = livingRoom.getDeviceByPosition(0).setRefrigeratorCapacity(100.0);
 
         assertFalse(result);
     }
@@ -125,7 +125,7 @@ public class FridgeSpecsTest {
         double nominalPower = 100.0;
         
         //act
-        boolean result = kitchen.getDeviceByPosition(0).setNominalPower(100.0);
+        boolean result = livingRoom.getDeviceByPosition(0).setNominalPower(100.0);
 
         assertFalse(result);
     }
@@ -140,7 +140,7 @@ public class FridgeSpecsTest {
         double nominalPower = 100.0;
         
         //act
-        boolean result = kitchen.getDeviceByPosition(0).setNominalPower(20.0);
+        boolean result = livingRoom.getDeviceByPosition(0).setNominalPower(20.0);
 
         assertTrue(result);
     }
@@ -155,7 +155,7 @@ public class FridgeSpecsTest {
         double nominalPower = 100.0;
         
         //act
-        boolean result = kitchen.getDeviceByPosition(0).setAnnualEnergyConsumption(10000.0);
+        boolean result = livingRoom.getDeviceByPosition(0).setAnnualEnergyConsumption(10000.0);
 
         assertFalse(result);
     }
@@ -170,7 +170,7 @@ public class FridgeSpecsTest {
         double nominalPower = 100.0;
         
         //act
-        boolean result = kitchen.getDeviceByPosition(0).setAnnualEnergyConsumption(2000.0);
+        boolean result = livingRoom.getDeviceByPosition(0).setAnnualEnergyConsumption(2000.0);
 
         assertTrue(result);
     }*/
@@ -198,143 +198,6 @@ public class FridgeSpecsTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-
-    /*@Test
-    public void setAttributeTrueFreezer() {
-        // Arrange
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        
-        // Act
-        boolean result = kitchen.getDeviceByPosition(0).setAttribute(1, 21);
-
-        // assert
-        assertTrue(result);
-    }
-
-    @Test
-    public void setAttributeFalseFreezer() {
-        // Arrange
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        
-        // Act
-        boolean result = kitchen.getDeviceByPosition(0).setAttribute(1, 20.0);
-
-        // assert
-        assertFalse(result);
-    }
-
-    @Test
-    public void setAttributeTrueRefrigerator() {
-        // Arrange
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        
-        // Act
-        boolean result = kitchen.getDeviceByPosition(0).setAttribute(2, 101);
-
-        // assert
-        assertTrue(result);
-    }
-
-    @Test
-    public void setAttributeFalseRefrigerator() {
-        // Arrange
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        
-        // Act
-        boolean result = kitchen.getDeviceByPosition(0).setAttribute(2, 100.0);
-
-        // assert
-        assertFalse(result);
-    }
-
-
-    @Test
-    public void setAttributeTrueAnnualEnergyConsumption() {
-        // Arrange
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        
-        // Act
-        boolean result = kitchen.getDeviceByPosition(0).setAttribute(3, 10001);
-
-        // assert
-        assertTrue(result);
-    }
-
-    @Test
-    public void setAttributeFalseAnnualEnergyConsumption() {
-        // Arrange
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-
-        // Act
-        boolean result = kitchen.getDeviceByPosition(0).setAttribute(3, 10000.0);
-
-        // assert
-        assertFalse(result);
-    }
-
-
-    @Test
-    public void setAttributeTrueNominalPower() {
-        // Arrange
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-
-        // Act
-        boolean result = kitchen.getDeviceByPosition(0).setAttribute(4, 101);
-
-        // assert
-        assertTrue(result);
-    }
-
-    @Test
-    public void setAttributeFalseNominalPower() {
-        // Arrange
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-
-        // Act
-        boolean result = kitchen.getDeviceByPosition(0).setAttribute(4, 100.0);
-
-        // assert
-        assertFalse(result);
-    }
-
-    @Test
-    public void setAttributeFalse() {
-        // Arrange
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-
-        // Act
-        boolean result = kitchen.getDeviceByPosition(0).setAttribute(5, 100.0);
-
-        // assert
-        assertFalse(result);
-    }*/
 
     @Test
     public void getNumberOfAttributes() {
