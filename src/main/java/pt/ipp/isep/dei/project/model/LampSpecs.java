@@ -132,7 +132,7 @@ public class LampSpecs implements DeviceSpecs {
     }
 
     @Override
-    public List<String> getAttributeToString() {
+    public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
         result.add(ATTRIBUTE_LUMINOUS_FLUX);
         result.add(ATTRIBUTE_TIME);
