@@ -4,17 +4,44 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class HouseGridTest {
 
     @Test
-    void TestDisplayRoomsAttachedToHouseGrid() {
+    public void testHashCode(){
+        //Arrange
+        String name = "Main Grid";
+        HouseGrid grid = new HouseGrid(name);
+        int expectedResult = Objects.hash(name);
+
+        //Act
+        int result = grid.hashCode();
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void testHashCodeWithDifferentName(){
+        //Arrange
+        String name1 = "Main Grid";
+        String name2 = "Secondary Grid";
+
+        HouseGrid grid = new HouseGrid(name1);
+        int expectedResult = Objects.hash(name2);
+
+        //Act
+        int result = grid.hashCode();
+
+        //Assert
+        assertNotEquals(expectedResult,result);
+    }
+
+    @Test
+    public void testDisplayRoomsAttachedToHouseGrid() {
 
         // Arrange
         Dimension dimensionRoom1 = new Dimension(5.2, 3.7, 8.5);
