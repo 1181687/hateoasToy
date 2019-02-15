@@ -50,7 +50,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     }
 
     @Test
-    public void getSensorsListContentOfARoomTest () {
+    public void getSensorsListContentOfARoomTest() {
         // Arrange
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
@@ -78,7 +78,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     }
 
     @Test
-    public void checkIfSensorListIsEmptyTestTrue () {
+    public void checkIfSensorListIsEmptyTestTrue() {
         // Arrange
         this.house.addRoom(room);
         int position = 0;
@@ -91,7 +91,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     }
 
     @Test
-    public void checkIfSensorListIsEmptyTestFalse () {
+    public void checkIfSensorListIsEmptyTestFalse() {
         // Arrange
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
@@ -109,29 +109,20 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         assertFalse(result);
     }
 
-   /* @Test
+    @Test
     public void getDeviceListContentTest() {
         // Arrange
-        double freezerCapacity = 5.5;
-        double refrigeratorCapacity = 15.5;
-        double annualEnergyConsumption = 5000;
-        double nominalPower = 100.5;
-        DeviceSpecs deviceSpecs = new FridgeSpecs(freezerCapacity, refrigeratorCapacity, annualEnergyConsumption, nominalPower);
-        Device dev = new Device("Fridge1", room, deviceSpecs);
+        FridgeType fridgeType = new FridgeType();
+        Device dev = fridgeType.createDevice("Fridge1", room);
 
-        double luminousFlux = 10.0;
-        double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        LampType lampType = new LampType();
+        Device dev1 = lampType.createDevice("Lamp1", room);
 
-        room.addDevice(dev);
-        room.addDevice(dev1);
         house.addRoom(room);
 
         int position = 0;
         String expectedResult =
-                "1 - Name of the device: Fridge1\n" +
-                        "2 - Name of the device: Lamp1\n";
+                "1 - Name of the device: Fridge1\n" + "2 - Name of the device: Lamp1\n";
         // Act
         String result = controller.getDeviceListContent(position);
         // Assert
@@ -152,12 +143,9 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     @Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
-        double luminousFlux = 10.0;
-        double nominalPower1 = 1.0;
-        DeviceSpecs deviceSpecs1 = new LampSpecs(luminousFlux, nominalPower1);
-        Device dev1 = new Device("Lamp1", room, deviceSpecs1);
+        LampType lampType = new LampType();
+        Device dev1 = lampType.createDevice("Lamp1", room);
 
-        room.addDevice(dev1);
         house.addRoom(room);
         int position = 0;
         // Act
@@ -165,7 +153,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         // Assert
         assertFalse(result);
     }
-*/
+
     @Test
     public void getListSize() {
         //arrange
@@ -198,7 +186,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     }
 
     @Test
-    public void getRoomListTest () {
+    public void getRoomListTest() {
         // Arrange
         house.addRoom(room);
         RoomList expectedResult = this.roomList;
