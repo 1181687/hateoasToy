@@ -193,7 +193,7 @@ public class Sensor {
         Double biggestMeasurement = measurementsBetweenDates.get(0);
 
         for (Double measurement : measurementsBetweenDates) {
-            if (measurement > biggestMeasurement) {
+            if (Double.compare(measurement, biggestMeasurement) == 1) {
                 biggestMeasurement = measurement;
             }
         }
