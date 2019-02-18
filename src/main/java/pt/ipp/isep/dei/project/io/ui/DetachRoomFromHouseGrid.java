@@ -17,6 +17,20 @@ public class DetachRoomFromHouseGrid {
         this.ctrl = new DetachRoomFromHouseGridController(house, roomList);
     }
 
+    public void showFinalList ( int firstOption){
+        String label = "Do you want to see the list of room(s) on the selected Grid? (Y/N)";
+        String answer = InputValidator.confirmValidation(label);
+        if ("y".equals(answer) || "Y".equals(answer)) {
+            if (ctrl.getListOfRoomsInACertainHouseGrid(firstOption).isEmpty()) {
+                System.out.println("There's no rooms in this list now.");
+            } else {
+                System.out.println(ctrl.getListOfRoomsInACertainHouseGrid(firstOption));
+            }
+        } else {
+            return;
+        }
+    }
+
     public void run() {
         if (ctrl.getGridListSize() == 0) {
             System.out.println("There are no house grids in your house. Please insert a new house grid.");
@@ -35,17 +49,7 @@ public class DetachRoomFromHouseGrid {
                 int secondOption = InputValidator.getIntRange(label2, 0, ctrl.getListOfRoomsInACertainHouseGrid(firstOption).length()) - 1;
                 if (ctrl.detachRoomFromGridList((ctrl.getHouseGridFromTheList(firstOption)), ctrl.getRoomFromTheListOfRoomByAPosition(secondOption))) {
                     System.out.println("The room has been detached from the grid.");
-                    String label = "Do you want to see the list of room(s) on the selected Grid? (Y/N)";
-                    String answer = InputValidator.confirmValidation(label);
-                    if ("y".equals(answer) || "Y".equals(answer)) {
-                        if (ctrl.getListOfRoomsInACertainHouseGrid(firstOption).isEmpty()) {
-                            System.out.println("There's no rooms in this list now.");
-                        } else {
-                            System.out.println(ctrl.getListOfRoomsInACertainHouseGrid(firstOption));
-                        }
-                    } else {
-                        return;
-                    }
+                   showFinalList(firstOption);
                 } else {
                     System.out.println("Please select a valid room to detach.");
                 }
