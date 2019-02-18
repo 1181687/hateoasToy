@@ -50,7 +50,7 @@ public class DishWasherSpecs implements DeviceSpecs {
      * @param capacity
      * @return
      */
-    public boolean setCapacity(Object capacity) {
+    private boolean setCapacity(Object capacity) {
         int intCapacity = (Integer) capacity;
         if (Utils.isSameDouble(this.mCapacity, intCapacity)) {
             return false;
@@ -65,7 +65,7 @@ public class DishWasherSpecs implements DeviceSpecs {
      * @param nominalPower
      * @return
      */
-    public boolean setNominalPower(Object nominalPower) {
+    private boolean setNominalPower(Object nominalPower) {
         double nomPower = (Double) nominalPower;
         if (Utils.isSameDouble(this.mNominalPower, nomPower)) {
             return false;

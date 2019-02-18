@@ -49,7 +49,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
      * set method
      * @param capacity
      */
-    public boolean setCapacity(Object capacity) {
+    private boolean setCapacity(Object capacity) {
         double wmcapacity = (Double) capacity;
         if (Utils.isSameDouble(this.mCapacity, wmcapacity)) {
             return false;
@@ -62,7 +62,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
      * set method
      * @param wmNominalPower
      */
-    public boolean setNominalPower(Object wmNominalPower) {
+    private boolean setNominalPower(Object wmNominalPower) {
         double nomPower = (Double) wmNominalPower;
         if (Utils.isSameDouble(this.mNominalPower, nomPower)) {
             return false;
@@ -70,6 +70,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
         this.mNominalPower = nomPower;
         return true;
     }
+
 
     /**
      * method that displays a string of the choosen attribute (name of the attribute and its value)
