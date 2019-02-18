@@ -115,6 +115,12 @@ class LampTest {
     }
 
     @Test
+    public void setNameWithSameNameAndInListTest() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> kitchen.addDevice(lamp));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> lamp.setName("TaoTronics Elune TT-DL01"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -302,7 +308,7 @@ class LampTest {
 
     @Test
     void getIsActiveFalseTest() {
-        // Assert
+        // Arrange
         lamp.setDeactivateDevice();
 
         // Act
@@ -314,7 +320,7 @@ class LampTest {
 
     @Test
     void getDataSeriesTest() {
-        // Assert
+        // Arrange
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
@@ -329,7 +335,7 @@ class LampTest {
 
     @Test
     void getSpecsListTest() {
-        // Assert
+        // Arrange
         List<String> expectedResult = new ArrayList<>();
         expectedResult.add("Luminous Flux");
         expectedResult.add("Nominal Power");
@@ -343,12 +349,23 @@ class LampTest {
 
     @Test
     void getAttributeValueTest() {
-        // Assert
+        // Arrange
         double expectedResult = 300.0;
 
         // Act
         Object result = lamp.getAttributeValue("Nominal Power");
 
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testGetSpecsToString() {
+        // Arrange
+        String expectedResult = "1 - Luminous Flux: 2800.0\n" +
+                "2 - Nominal Power: 300.0\n";
+        // Act
+        String result = lamp.getSpecsToString();
         // Assert
         assertEquals(expectedResult, result);
     }
