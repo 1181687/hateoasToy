@@ -17,11 +17,8 @@ public class HouseTest {
 
     private House house;
     private GeographicalArea ag;
-    private DishWasherType dishWasherType;
-    private ElectricWaterHeaterType electricWaterHeaterType;
-    private WashingMachineType washingMachineType;
-    private LampType lampType;
-    private FridgeType fridgeType;
+
+
 
     @BeforeEach
     public void StartUp() {
@@ -44,6 +41,80 @@ public class HouseTest {
         this.house.setInsertedGeoArea(ag);
 
 
+    }
+
+    @Test
+    public void createDeviceTrue() {
+
+        //arrange
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+        String deviceName = "Bosch2000";
+        String fridgeType = "Fridge";
+        boolean result = house.createDevice(fridgeType, deviceName, room1);
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void createDeviceDeviceTypeNotExists_False() {
+
+        //arrange
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+        String deviceName = "Bosch2000";
+        String fridgeType = "Fridg";
+        boolean result = house.createDevice(fridgeType, deviceName, room1);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void createDeviceNameAlreadyExists_False() {
+
+        //arrange
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+        String deviceName = "Bosch2000";
+        String fridgeType = "Fridge";
+        house.createDevice(fridgeType, deviceName, room1);
+        String lampType = "Lamp";
+
+        boolean result = house.createDevice(lampType, deviceName, room2);
+
+        assertFalse(result);
     }
 
     @Test
@@ -1686,5 +1757,216 @@ public class HouseTest {
 
     }
 
+    @Test
+    public void testGetDateLastTemperatureOfTheHouseArea() {
+        //arrange
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+        //Instantiate Sensors
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Temperature");
+        Location locS0 = new Location(41.178553, -8.608035, 111);
+        Sensor s0 = new Sensor("A122", dataFuncionamento0, sensorType0, locS0);
+        ag.getSensorListInTheGeographicArea().addSensor(s0);
+
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Temperature");
+        Location locS1 = new Location(41.178553, -8.608035, 111);
+        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        ag.getSensorListInTheGeographicArea().addSensor(s1);
+
+
+        //Instantiate Readings
+        // Sensor0
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 4, 17, 24, 00);
+
+        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(30, dataHoraDaMedicao02);
+
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
+
+        //Sensor1
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
+
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
+
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
+
+        LocalDateTime expectedResult = LocalDateTime.of(2018,12,4,17,24);
+
+        SensorType type = new SensorType("Temperature");
+
+        //Act
+        LocalDateTime result = house.getDateOfLastMeasurementByType(type);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetDateLastTemperatureOfTheHouseAreaWithoutMeasurements() {
+        //arrange
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+        //Instantiate Sensors
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Temperature");
+        Location locS0 = new Location(-1, 30, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        ag.getSensorListInTheGeographicArea().addSensor(s0);
+
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Temperature");
+        Location locS1 = new Location(32.1576, 7.6199, 100);
+        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        ag.getSensorListInTheGeographicArea().addSensor(s1);
+
+        LocalDateTime expectedResult = null;
+
+        SensorType type = new SensorType("Temperature");
+
+        //Act
+        LocalDateTime result = house.getDateOfLastMeasurementByType(type);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testDateGetLastTemperatureOfTheHouseAreaWithoutSensors() {
+        //arrange
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+        LocalDateTime expectedResult = null;
+
+        SensorType type = new SensorType("Temperature");
+
+        //Act
+        LocalDateTime result = house.getDateOfLastMeasurementByType(type);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddGridTrue(){
+        //Arrange
+        String gridName = "main grid";
+        HouseGrid houseGrid = new HouseGrid(gridName);
+        //Act
+        boolean result = this.house.addGrid(houseGrid);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testAddGridFalse(){
+        //Arrange
+        String gridName = "main grid";
+        HouseGrid houseGrid = new HouseGrid(gridName);
+        this.house.addGrid(houseGrid);
+        //Act
+        boolean result = this.house.addGrid(houseGrid);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testGridNameAlreadyExistsTrue(){
+        //Arrange
+        String gridName = "main grid";
+        HouseGrid grid = new HouseGrid(gridName);
+        this.house.addGrid(grid);
+        //Act
+        boolean result = this.house.gridNameAlreadyExists(gridName);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testGridNameAlreadyExistsFalse(){
+        //Arrange
+        String gridName = "main grid";
+        HouseGrid grid = new HouseGrid(gridName);
+        this.house.addGrid(grid);
+        String gridName2 = "grid 1";
+        //Act
+        boolean result = this.house.gridNameAlreadyExists(gridName2);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testGridNameAlreadyExists_WithNoHouseGrids_ShouldReturnFalse(){
+        //Arrange
+        String gridName2 = "grid 1";
+        //Act
+        boolean result = this.house.gridNameAlreadyExists(gridName2);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testNewHouseGrid_ThrowsException(){
+        //Arrange
+        String name = "Main Grid";
+        HouseGrid grid = new HouseGrid(name);
+        this.house.addGrid(grid);
+        //Act
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                this.house.newHouseGrid(name)
+        );
+        //Assert
+        assertEquals("Name already exists. Please, write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void testNewHouseGrid_CreatesHouseGrid(){
+        //Arrange
+        String name = "Main Grid";
+        HouseGrid expectedResult = new HouseGrid(name);
+        //Act
+        HouseGrid result = this.house.newHouseGrid(name);
+        //Assert
+        assertEquals(expectedResult,result);
+    }
 }
 

@@ -5,6 +5,7 @@ import java.util.List;
 
 public interface Device extends Measurable {
 
+
     /**
      * method that get the nominal power of the devices.
      *

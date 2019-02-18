@@ -84,6 +84,10 @@ public class HouseGrid implements Measurable {
         return mRoomList;
     }
 
+    public Room getRoomFromTheListOfRoomByAPosition (int position){
+        return getRoomList().getRoomFromPosition(position);
+    }
+
     /**
      * Method that detaches a room from a house grid. It return a true in case of success
      * and false in the case of a failure.

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class FridgeSpecsTest {
     Room kitchen;
@@ -68,113 +69,6 @@ public class FridgeSpecsTest {
         assertEquals(expectedResult, result, 0.0001);
 
     }
-    /*
-
-    @Test
-    public void setmFreezerCapacityFalse() {
-        // Arrange
-        // FridgeSpecs Instantiation
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-
-        //act
-        boolean result = livingRoom.getDeviceByPosition(0).setFreezerCapacity(20.0);
-
-        assertFalse(result);
-    }
-
-    @Test
-    public void setmRefrigeratorCapacityTrue() {
-        // Arrange
-        // FridgeSpecs Instantiation
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        
-        //act
-        boolean result = livingRoom.getDeviceByPosition(0).setRefrigeratorCapacity(20.0);
-
-        assertTrue(result);
-    }
-
-    @Test
-    public void setmRefrigeratorCapacityFalse() {
-        // Arrange
-        // FridgeSpecs Instantiation
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-
-        //act
-        boolean result = livingRoom.getDeviceByPosition(0).setRefrigeratorCapacity(100.0);
-
-        assertFalse(result);
-    }
-
-    @Test
-    public void setmNominalPowerFalse() {
-        // Arrange
-        // FridgeSpecs Instantiation
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        
-        //act
-        boolean result = livingRoom.getDeviceByPosition(0).setNominalPower(100.0);
-
-        assertFalse(result);
-    }
-
-    @Test
-    public void setmNominalPowerTrue() {
-        // Arrange
-        // FridgeSpecs Instantiation
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        
-        //act
-        boolean result = livingRoom.getDeviceByPosition(0).setNominalPower(20.0);
-
-        assertTrue(result);
-    }
-
-    @Test
-    public void setmAnnualEnergyConsumptionFalse() {
-        // Arrange
-        // FridgeSpecs Instantiation
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        
-        //act
-        boolean result = livingRoom.getDeviceByPosition(0).setAnnualEnergyConsumption(10000.0);
-
-        assertFalse(result);
-    }
-
-    @Test
-    public void setmAnnualEnergyConsumptionTrue() {
-        // Arrange
-        // FridgeSpecs Instantiation
-        double freezerCapacity = 20.0;
-        double refrigeratorCapacity = 100.0;
-        double annualEnergyConsumption = 10000.0;
-        double nominalPower = 100.0;
-        
-        //act
-        boolean result = livingRoom.getDeviceByPosition(0).setAnnualEnergyConsumption(2000.0);
-
-        assertTrue(result);
-    }*/
-
 
     @Test
     public void getAttributesToString() {
@@ -305,5 +199,75 @@ public class FridgeSpecsTest {
         Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Not Valid");
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeFreezerCapacityValueNotAValidType() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Freezer Capacity", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeRefrigeratorCapacityValueNotAValidType() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeAnnualPowerConsumptionValueNotAValidType() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Power Consumption", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerValueNotAValidType() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerSameValue() {
+        // Arrange
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 1.5);
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 1.5);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeFreezerCapacitySameValue() {
+        // Arrange
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Freezer Capacity", 20);
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Freezer Capacity", 20);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeRefrigeratorCapacitySameValue() {
+        // Arrange
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 50);
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 50);
+        // Assert
+        assertFalse(result);
     }
 }

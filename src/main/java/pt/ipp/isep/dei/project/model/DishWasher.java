@@ -230,6 +230,8 @@ public class DishWasher implements Device, Measurable {
 
     /**
      * Method that calculates the total energy consumption of a device in a given interval.
+     * This method has in count all the fully contained readings, i.e., if there's just one reading in the interval, it
+     * is not counted.
      *
      * @param startDate Start date.
      * @param endDate   End date.
@@ -239,7 +241,7 @@ public class DishWasher implements Device, Measurable {
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
         List<Readings> readingsList = getReadingsListInInterval(startDate, endDate);
-        if (readingsList.size() > 1) {
+        if (!(readingsList.isEmpty())) {
             readingsList.remove(0);
             totalEnergyConsumption = getSumOfTheReadings(readingsList);
         }

@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.Lamp;
-import pt.ipp.isep.dei.project.model.Readings;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -15,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LampTest {
     private Room kitchen;
     private Room laundry;
-    private Lamp lamp;
+    private Device lamp;
     private Map<LocalDateTime, Double> map;
 
     @BeforeEach
@@ -26,8 +23,9 @@ class LampTest {
         laundry = new Room("Laundry", 1, dim);
 
         // Devices
-        Lamp dummyLamp = new Lamp("TaoTronics Elune TT-DL01", kitchen);
-        lamp = new Lamp("TaoTronics Elune TT-DL02", kitchen);
+        LampType lampType = new LampType();
+        Device dummyLamp = lampType.createDevice("TaoTronics Elune TT-DL01", kitchen);
+        lamp = lampType.createDevice("TaoTronics Elune TT-DL02", kitchen);
         lamp.setAttributesDevType("Luminous Flux", 2800);
         lamp.setAttributesDevType("Time", 1);
         lamp.setAttributesDevType("Nominal Power", 300);
@@ -117,6 +115,12 @@ class LampTest {
     }
 
     @Test
+    public void setNameWithSameNameAndInListTest() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> kitchen.addDevice(lamp));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> lamp.setName("TaoTronics Elune TT-DL01"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -181,6 +185,23 @@ class LampTest {
 
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributesDevTypeTrue(){
+        //Act
+        double value = 2600.5;
+        boolean result= lamp.setAttributesDevType("Luminous Flux", value);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testSetAttributesDevTypeFalse(){
+        //Act
+        boolean result= lamp.setAttributesDevType("Luminous Flux", 2800);
+        //Assert
+        assertFalse(result);
     }
 
     @Test
@@ -287,7 +308,7 @@ class LampTest {
 
     @Test
     void getIsActiveFalseTest() {
-        // Assert
+        // Arrange
         lamp.setDeactivateDevice();
 
         // Act
@@ -299,7 +320,7 @@ class LampTest {
 
     @Test
     void getDataSeriesTest() {
-        // Assert
+        // Arrange
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
@@ -314,7 +335,7 @@ class LampTest {
 
     @Test
     void getSpecsListTest() {
-        // Assert
+        // Arrange
         List<String> expectedResult = new ArrayList<>();
         expectedResult.add("Luminous Flux");
         expectedResult.add("Nominal Power");
@@ -328,12 +349,23 @@ class LampTest {
 
     @Test
     void getAttributeValueTest() {
-        // Assert
+        // Arrange
         double expectedResult = 300.0;
 
         // Act
         Object result = lamp.getAttributeValue("Nominal Power");
 
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testGetSpecsToString() {
+        // Arrange
+        String expectedResult = "1 - Luminous Flux: 2800.0\n" +
+                "2 - Nominal Power: 300.0\n";
+        // Act
+        String result = lamp.getSpecsToString();
         // Assert
         assertEquals(expectedResult, result);
     }

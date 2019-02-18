@@ -160,22 +160,22 @@ public class FridgeSpecs implements DeviceSpecs {
         switch (attributeName) {
             case ATTRIBUTE_FREEZER_CAPACITY:
                 if (attributeValue instanceof Number) {
-                    setFreezerCapacity(((Number) attributeValue).doubleValue());
+                    return setFreezerCapacity(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_REFRIGERATOR_CAPACITY:
                 if (attributeValue instanceof Number) {
-                    setRefrigeratorCapacity(((Number) attributeValue).doubleValue());
+                    return setRefrigeratorCapacity(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION:
                 if (attributeValue instanceof Number) {
-                    setAnnualEnergyConsumption(((Number) attributeValue).doubleValue());
+                    return setAnnualEnergyConsumption(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:
                 if (attributeValue instanceof Number) {
-                    setNominalPower(((Number) attributeValue).doubleValue());
+                    return setNominalPower(((Number) attributeValue).doubleValue());
                 }
                 return false;
             default:

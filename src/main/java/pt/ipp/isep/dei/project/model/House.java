@@ -4,6 +4,7 @@ package pt.ipp.isep.dei.project.model;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +44,30 @@ public class House {
                 e.printStackTrace();
             }
         }
+    }
+
+    /**
+     * creates a Device and returns true if type name exists and deviceName not exists in the
+     * rooms of the house
+     *
+     * @param typeName   String type name of Device
+     * @param deviceName String device name
+     * @param location   Room location to add advice
+     * @return true if creates and false if not
+     */
+    public boolean createDevice(String typeName, String deviceName, Room location) {
+
+        if (Objects.isNull(getDeviceType(typeName))) {
+            return false;
+        }
+        for (int i = 0; i < mRoomList.getRoomList().size(); i++) {
+
+            if (mRoomList.getRoomList().get(i).isDeviceNameExistant(deviceName)) {
+                return false;
+            }
+        }
+        getDeviceType(typeName).createDevice(deviceName, location);
+        return true;
     }
 
     public DeviceType getDeviceType(String type) {
@@ -384,10 +409,8 @@ public class House {
     }
 
     public boolean gridNameAlreadyExists(String name) {
-        int listSize = this.mListHouseGrids.size();
-
-        for (int i = 0; i < listSize; i++) {
-            if (this.mListHouseGrids.get(i).getName().equalsIgnoreCase(name)) {
+        for (HouseGrid houseGrid : mListHouseGrids) {
+            if (houseGrid.getName().equalsIgnoreCase(name)){
                 return true;
             }
         }
@@ -669,5 +692,9 @@ public class House {
 
     public boolean isDeviceListOfAllRoomsEmpty() {
         return this.mRoomList.isDeviceListOfAllRoomsEmpty();
+    }
+
+    public LocalDateTime getDateOfLastMeasurementByType(SensorType type) {
+        return mInsertedGeoArea.getDateLastMeasurementByLocationType(mAddress.getLocation(), type);
     }
 }

@@ -62,7 +62,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseArea {
             return;
         } else {
             System.out.println("The most recent measurement available in the house area for "
-                    + mCtrl.getTypeTemperature() + " is " + mCtrl.getMostRecentAvailableMeasurement() + ".");
+                    + mCtrl.getTypeTemperature() + " is " + mCtrl.getMostRecentAvailableMeasurement() +" on "+mCtrl.getDateOfLastMeasurement()+".\n");
         }
     }
 }
