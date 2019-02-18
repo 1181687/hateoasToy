@@ -317,8 +317,8 @@ class WashingMachineTest {
     void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("1 - Capacity: 40.0");
-        expectedResult.add("2 - Nominal Power: 1000.0");
+        expectedResult.add("Capacity");
+        expectedResult.add("Nominal Power");
 
         // Act
         List<String> result = washingMachine.getSpecsList();

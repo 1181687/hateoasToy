@@ -111,8 +111,8 @@ public class DishWasherSpecsTest {
     public void testgetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("1 - Capacity: 0");
-        expectedResult.add("2 - Nominal Power: 0.0");
+        expectedResult.add("Capacity");
+        expectedResult.add("Nominal Power");
 
         // Act
         List<String> result = kitchen.getDeviceByPosition(0).getSpecsList();

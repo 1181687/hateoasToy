@@ -316,8 +316,8 @@ class DishWasherTest {
     void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("1 - Capacity: 10");
-        expectedResult.add("2 - Nominal Power: 1200.0");
+        expectedResult.add("Capacity");
+        expectedResult.add("Nominal Power");
 
         // Act
         List<String> result = dishwasher.getSpecsList();

@@ -101,9 +101,9 @@ class ElectricWaterHeaterSpecsTest {
     public void testgetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("1 - Hot-Water Temperature: 0.0");
-        expectedResult.add("2 - Performance Ratio: 0.0");
-        expectedResult.add("3 - Nominal Power: 0.0");
+        expectedResult.add("Hot-Water Temperature");
+        expectedResult.add("Performance Ratio");
+        expectedResult.add("Nominal Power");
 
         // Act
         List<String> result = kitchen.getDeviceByPosition(0).getSpecsList();
