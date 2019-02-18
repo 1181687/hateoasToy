@@ -4,9 +4,11 @@ import pt.ipp.isep.dei.project.controllers.DetachRoomFromHouseGridController;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.RoomList;
 
-/** US149 As an Administrator, I want to detach a room from a house grid, so that the room’s
-power and energy consumption is not included in that grid. The room’s
-characteristics are not changed. */
+/**
+ * US149 As an Administrator, I want to detach a room from a house grid, so that the room’s
+ * power and energy consumption is not included in that grid. The room’s
+ * characteristics are not changed.
+ */
 
 public class DetachRoomFromHouseGrid {
     private DetachRoomFromHouseGridController ctrl;
@@ -33,11 +35,22 @@ public class DetachRoomFromHouseGrid {
                 int secondOption = InputValidator.getIntRange(label2, 0, ctrl.getListOfRoomsInACertainHouseGrid(firstOption).length()) - 1;
                 if (ctrl.detachRoomFromGridList((ctrl.getHouseGridFromTheList(firstOption)), ctrl.getRoomFromTheListOfRoomByAPosition(secondOption))) {
                     System.out.println("The room has been detached from the grid.");
+                    String label = "Do you want to see the list of room(s) on the selected Grid? (Y/N)";
+                    String answer = InputValidator.confirmValidation(label);
+                    if ("y".equals(answer) || "Y".equals(answer)) {
+                        if(ctrl.getListOfRoomsInACertainHouseGrid(firstOption).isEmpty()){
+                            System.out.println("There's no rooms in this list now.");
+                        } else{
+                        System.out.println(ctrl.getListOfRoomsInACertainHouseGrid(firstOption));}
+                    } else {
+                        return;
+                    }
                 } else {
                     System.out.println("Please select a valid room to detach.");
                 }
             }
         }
+
     }
 
 

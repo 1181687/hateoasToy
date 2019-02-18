@@ -105,7 +105,7 @@ class DetachRoomFromHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+   /* @Test
     void getRoomFromTheListOfRoomByAPosition() {
         //Arrange
         Room expectedResult = r1;
@@ -114,7 +114,7 @@ class DetachRoomFromHouseGridControllerTest {
         //Assert
         assertEquals(result, expectedResult);
     }
-
+*/
     @Test
     void detachRoomFromGridList() {
         //Arrange
