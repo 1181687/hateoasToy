@@ -153,9 +153,9 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     @Override
     public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
-        result.add("1 - " + ATTRIBUTE_HOT_WATER_TEMP + ": " + mHotWaterTemperature);
-        result.add("2 - " + ATTRIBUTE_PERFORMANCE_RATIO + ": " + mPerformanceRatio);
-        result.add("3 - " + ATTRIBUTE_NOMINAL_POWER + ": " + mNominalPower);
+        result.add(ATTRIBUTE_HOT_WATER_TEMP);
+        result.add(ATTRIBUTE_PERFORMANCE_RATIO);
+        result.add(ATTRIBUTE_NOMINAL_POWER);
 
         return result;
     }

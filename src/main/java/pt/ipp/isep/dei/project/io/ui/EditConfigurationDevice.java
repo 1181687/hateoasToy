@@ -4,8 +4,6 @@ import pt.ipp.isep.dei.project.controllers.EditConfigurationDeviceController;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import java.util.List;
-
 public class EditConfigurationDevice {
 
     private EditConfigurationDeviceController controller;
@@ -37,7 +35,7 @@ public class EditConfigurationDevice {
 
     public void changeSpecsOfDevice() {
         String exitCase2 = "0 - Return to the previous menu  ";
-        List<String> listOfDevSpecs = controller.getSpecsList();
+        String listOfDevSpecs = controller.getSpecsToString();
 
         String label5 = "Choose the specification you want to change.\n" + listOfDevSpecs + "\n" + exitCase2;
         int attributePosition = InputValidator.getIntRange(label5, 0, controller.getNumberOfAttributesInDeviceSpecs());
@@ -46,8 +44,7 @@ public class EditConfigurationDevice {
             return;
         }
 
-        String attributeName = controller.getDevSpecsListToString(listOfDevSpecs, attributePosition);
-
+        String attributeName = controller.getSpecsList().get(attributePosition - 1);
         String label6 = "What is the new value?";
         double value = InputValidator.getDouble(label6);
         if (Utils.isSameDouble(value, 0)) {

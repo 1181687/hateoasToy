@@ -109,8 +109,8 @@ public class Admin {
                     ui172.run();
                     break;
                 case 10:
-                    //AddDeviceToRoom ui210 = new AddDeviceToRoom(house);
-                    //ui210.run();
+                    AddDeviceToRoom ui210 = new AddDeviceToRoom(house);
+                    ui210.run();
                     break;
                 case 11:
                     DeleteDeviceFromRoom ui220 = new DeleteDeviceFromRoom(house);

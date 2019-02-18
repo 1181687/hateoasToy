@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.project.model.RoomList;
 public class DetachRoomFromHouseGridController {
     private House mHouse;
     private RoomList mListOfRooms;
+    private HouseGrid mhouseGrid;
 
     public DetachRoomFromHouseGridController(House house, RoomList listOfRooms) {
         this.mHouse = house;
@@ -19,7 +20,7 @@ public class DetachRoomFromHouseGridController {
     }
 
     public HouseGrid getHouseGridFromTheList(int position) {
-        return mHouse.getHouseGridByPosition(position);
+        return mhouseGrid = mHouse.getHouseGridByPosition(position);
     }
 
     public String getRoomListContent() {
@@ -30,8 +31,14 @@ public class DetachRoomFromHouseGridController {
         return mHouse.getRoomsInTheHouseGrid(position);
     }
 
+    /**
+     * TODO - separar este método no model. Gabi_X
+     *
+     * @param position
+     * @return
+     */
     public Room getRoomFromTheListOfRoomByAPosition(int position) {
-        return mListOfRooms.getRoomFromPosition(position);
+        return mhouseGrid.getRoomList().getRoomFromPosition(position);
     }
 
     public boolean detachRoomFromGridList(HouseGrid houseGrid, Room roomSelected) {
