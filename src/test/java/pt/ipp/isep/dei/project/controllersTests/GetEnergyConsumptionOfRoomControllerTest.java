@@ -335,4 +335,19 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         // Assert
         assertEquals(expectedResult, result, 0.000001);
     }
+
+    @Test
+    void roundTest() {
+        // Arrange
+        double valueToBeRounded = 3.7654;
+        int decimalPlaces = 1;
+
+        double expectedResult = 3.8;
+
+        // Act
+        double result = ctrl.resultWithTwoDecimalPlaces(valueToBeRounded, decimalPlaces);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 }

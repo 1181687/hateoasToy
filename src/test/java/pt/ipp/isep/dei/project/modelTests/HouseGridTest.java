@@ -41,10 +41,10 @@ public class HouseGridTest {
     }
 
     @Test
-    public void testEqualsWithDifferentObjects(){
+    public void testEqualsWithDifferentObjects() {
         //Arrange
         HouseGrid grid = new HouseGrid("Main Grid");
-        Dimension dimension = new Dimension(2,2,2);
+        Dimension dimension = new Dimension(2, 2, 2);
         //Act
         boolean result = grid.equals(dimension);
         //Assert

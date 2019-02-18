@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.ElectricWaterHeater;
-import pt.ipp.isep.dei.project.model.Readings;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -15,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ElectricWaterHeaterTest {
     private Room kitchen;
     private Room laundry;
-    private ElectricWaterHeater electricWaterHeater;
+    private Device electricWaterHeater;
     private Map<LocalDateTime, Double> map;
 
     @BeforeEach
@@ -26,8 +23,9 @@ class ElectricWaterHeaterTest {
         laundry = new Room("Laundry", 1, dim);
 
         // Devices
-        ElectricWaterHeater dummyWaterHeater = new ElectricWaterHeater("Bosch Tronic 2000", kitchen);
-        electricWaterHeater = new ElectricWaterHeater("Bosch Tronic 3000", kitchen);
+        ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
+        Device dummyWaterHeater =electricWaterHeaterType.createDevice("Bosch Tronic 2000", kitchen);
+        electricWaterHeater = electricWaterHeaterType.createDevice("Bosch Tronic 3000", kitchen);
         electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 55);
         electricWaterHeater.setAttributesDevType("Performance Ratio", 0.9);
         electricWaterHeater.setAttributesDevType("Nominal Power", 700);
@@ -185,6 +183,22 @@ class ElectricWaterHeaterTest {
     }
 
     @Test
+    public void setAttributesDevTypeTrue(){
+        //Act
+        boolean result = this.electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 50);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void setAttributesDevTypeFalse(){
+        //Act
+        boolean result = this.electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 55);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
     void hashCodeTest() {
         // Arrange
         int expectedResult = Objects.hash(electricWaterHeater.getName());
@@ -317,9 +331,9 @@ class ElectricWaterHeaterTest {
     void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("1 - Hot-Water Temperature: 55.0");
-        expectedResult.add("2 - Performance Ratio: 0.9");
-        expectedResult.add("3 - Nominal Power: 700.0");
+        expectedResult.add("Hot-Water Temperature");
+        expectedResult.add("Performance Ratio");
+        expectedResult.add("Nominal Power");
 
         // Act
         List<String> result = electricWaterHeater.getSpecsList();
