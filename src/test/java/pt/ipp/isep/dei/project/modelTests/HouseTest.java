@@ -1837,5 +1837,65 @@ public class HouseTest {
         //Assert
         assertFalse(result);
     }
+
+    @Test
+    public void testGridNameAlreadyExistsTrue(){
+        //Arrange
+        String gridName = "main grid";
+        HouseGrid grid = new HouseGrid(gridName);
+        this.house.addGrid(grid);
+        //Act
+        boolean result = this.house.gridNameAlreadyExists(gridName);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testGridNameAlreadyExistsFalse(){
+        //Arrange
+        String gridName = "main grid";
+        HouseGrid grid = new HouseGrid(gridName);
+        this.house.addGrid(grid);
+        String gridName2 = "grid 1";
+        //Act
+        boolean result = this.house.gridNameAlreadyExists(gridName2);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testGridNameAlreadyExists_WithNoHouseGrids_ShouldReturnFalse(){
+        //Arrange
+        String gridName2 = "grid 1";
+        //Act
+        boolean result = this.house.gridNameAlreadyExists(gridName2);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testNewHouseGrid_ThrowsException(){
+        //Arrange
+        String name = "Main Grid";
+        HouseGrid grid = new HouseGrid(name);
+        this.house.addGrid(grid);
+        //Act
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                this.house.newHouseGrid(name)
+        );
+        //Assert
+        assertEquals("Name already exists. Please, write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void testNewHouseGrid_CreatesHouseGrid(){
+        //Arrange
+        String name = "Main Grid";
+        HouseGrid expectedResult = new HouseGrid(name);
+        //Act
+        HouseGrid result = this.house.newHouseGrid(name);
+        //Assert
+        assertEquals(expectedResult,result);
+    }
 }
 
