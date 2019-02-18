@@ -239,7 +239,7 @@ public class DishWasher implements Device, Measurable {
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
         List<Readings> readingsList = getReadingsListInInterval(startDate, endDate);
-        if (readingsList.size() > 1) {
+        if (!(readingsList.isEmpty())) {
             readingsList.remove(0);
             totalEnergyConsumption = getSumOfTheReadings(readingsList);
         }
