@@ -111,10 +111,11 @@ public class HouseTest {
         house.addRoom(room1);
         house.addRoom(room2);
         String deviceName = "Bosch2000";
-        String fridgeType = "Lamp";
+        String fridgeType = "Fridge";
         house.createDevice(fridgeType, deviceName, room1);
+        String lampType = "Lamp";
 
-        boolean result = house.createDevice(fridgeType, deviceName, room2);
+        boolean result = house.createDevice(lampType, deviceName, room2);
 
         assertFalse(result);
     }
