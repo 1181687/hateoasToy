@@ -84,14 +84,7 @@ public final class Utils {
         return readingsMap.toString();
     }
 
-    /*public static String getDevSpecsListToString(List<String> deviceSpecsAttributes, int position) {
-        StringBuilder specifications = new StringBuilder();
-        int numberOfAttributes = deviceSpecsAttributes.size();
-        for (int i = 1; i <= numberOfAttributes; i++) {
-            specifications.append(position + " - " + i);
-            specifications.append("\n");
-            position++;
-        }
-        return specifications.toString();
-    } */
+    public static boolean isSameNumber(Number value1, Number value2) {
+        return value1.equals(value2);
+    }
 }

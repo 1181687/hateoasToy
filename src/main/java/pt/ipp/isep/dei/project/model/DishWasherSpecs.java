@@ -123,8 +123,8 @@ public class DishWasherSpecs implements DeviceSpecs {
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
             case ATTRIBUTE_CAPACITY:
-                if (attributeValue instanceof Integer) {
-                    return setCapacity(attributeValue);
+                if (attributeValue instanceof Number) {
+                    return setCapacity(((Number) attributeValue).intValue());
                 }
                 return false;
             case ATTRIBUTE_DURATION:
@@ -143,5 +143,7 @@ public class DishWasherSpecs implements DeviceSpecs {
         }
     }
 
-
+    public String getAttributeType(String attributeName) {
+        return getAttributeValue(attributeName).getClass().getName().substring(10);
+    }
 }

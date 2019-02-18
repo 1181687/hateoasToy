@@ -35,4 +35,5 @@ public interface DeviceSpecs {
 
     boolean setAttributeValue(String attributeName, Object attributeValue);
 
+    String getAttributeType(String attributeName);
 }
