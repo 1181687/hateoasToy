@@ -46,8 +46,9 @@ public class EditConfigurationDevice {
 
         String attributeName = controller.getSpecsList().get(attributePosition - 1);
         String label6 = "What is the new value?";
-        double value = InputValidator.getDouble(label6);
-        if (Utils.isSameDouble(value, 0)) {
+        Number value = InputValidator.getNumber(label6, controller.getAttributeType(attributeName));
+        if (Utils.isSameNumber(value.doubleValue(), 0)
+                || Utils.isSameNumber(value, controller.getAttributeValue(attributeName))) {
             System.out.println("This value is not valid.");
             return;
         } else {

@@ -146,4 +146,6 @@ public interface Device extends Measurable {
     Object getAttributeValue(String attributeName);
 
     String getSpecsToString();
+
+    String getAttributeType(String attributeName);
 }

@@ -303,4 +303,8 @@ public class DishWasher implements Device, Measurable {
     public String getSpecsToString() {
         return this.mDWSpec.getAttributesToString();
     }
+
+    public String getAttributeType(String attributeName) {
+        return mDWSpec.getAttributeType(attributeName);
+    }
 }
