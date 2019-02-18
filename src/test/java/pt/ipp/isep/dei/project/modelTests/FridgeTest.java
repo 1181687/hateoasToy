@@ -187,7 +187,7 @@ class FridgeTest {
     @Test
     public void setAttributesDevTypeTrue(){
         //Act
-        boolean result= fridge.setAttributesDevType("Refrigerator Capacity", 25);
+        boolean result = fridge.setAttributesDevType("Refrigerator Capacity", 25);
         //Assert
         assertTrue(result);
     }

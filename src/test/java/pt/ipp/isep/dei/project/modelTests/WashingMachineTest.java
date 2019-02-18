@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.Readings;
-import pt.ipp.isep.dei.project.model.Room;
-import pt.ipp.isep.dei.project.model.WashingMachine;
+import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -15,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class WashingMachineTest {
     private Room kitchen;
     private Room laundry;
-    private WashingMachine washingMachine;
+    private Device washingMachine;
     private Map<LocalDateTime, Double> map;
 
     @BeforeEach
@@ -26,8 +23,9 @@ class WashingMachineTest {
         laundry = new Room("Laundry", 1, dim);
 
         // Devices
-        WashingMachine dummyWashingMachine = new WashingMachine("Maytag 2.6", kitchen);
-        washingMachine = new WashingMachine("Maytag 3.6", kitchen);
+        WashingMachineType washingMachineType = new WashingMachineType();
+        Device dummyWashingMachine = washingMachineType.createDevice("Maytag 2.6", kitchen);
+        washingMachine = washingMachineType.createDevice("Maytag 3.6", kitchen);
         washingMachine.setAttributesDevType("Capacity", 40);
         washingMachine.setAttributesDevType("Duration", 1);
         washingMachine.setAttributesDevType("Energy Consumption", 1);
@@ -182,6 +180,22 @@ class WashingMachineTest {
 
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void setAttributesDevTypeTrue(){
+        //Act
+        boolean result = washingMachine.setAttributesDevType("Nominal Power", 1001);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void setAttributesDevTypeFalse(){
+        //Act
+        boolean result = washingMachine.setAttributesDevType("Nominal Power", 1000);
+        //Assert
+        assertFalse(result);
     }
 
     @Test
