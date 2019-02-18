@@ -17,11 +17,8 @@ public class HouseTest {
 
     private House house;
     private GeographicalArea ag;
-    private DishWasherType dishWasherType;
-    private ElectricWaterHeaterType electricWaterHeaterType;
-    private WashingMachineType washingMachineType;
-    private LampType lampType;
-    private FridgeType fridgeType;
+
+
 
     @BeforeEach
     public void StartUp() {

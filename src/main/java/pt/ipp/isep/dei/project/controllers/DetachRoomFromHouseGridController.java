@@ -20,7 +20,8 @@ public class DetachRoomFromHouseGridController {
     }
 
     public HouseGrid getHouseGridFromTheList(int position) {
-        return mhouseGrid= mHouse.getHouseGridByPosition(position);
+        mhouseGrid = mHouse.getHouseGridByPosition(position);
+        return mhouseGrid;
     }
 
     public String getRoomListContent() {
