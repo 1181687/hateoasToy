@@ -29,6 +29,25 @@ public class GetCurrentAndMaxTempRoom {
     }
 
     /**
+     * outputs the latest temperature with date, of the room
+     *
+     * @param roomName given String room name
+     * @param temp     given double temperature
+     * @param dateTime given string date and time
+     */
+    private static void displayResults(String roomName, double temp, String dateTime) {
+        StringBuilder content = new StringBuilder();
+        content.append("The latest temperature of the room ");
+        content.append(roomName);
+        content.append(" is ");
+        content.append(temp);
+        content.append(" Celsius, and was registered at ");
+        content.append(dateTime);
+        content.append(".\n");
+        System.out.println(content.toString());
+    }
+
+    /**
      * method that displays the rooms available to the user, so he can choose one
      * to get the current temperature.
      */
@@ -50,25 +69,7 @@ public class GetCurrentAndMaxTempRoom {
             return;
         }
 
-        this.displayResults(roomName, temp.getValue(), temp.getDateTime().toString());
-    }
-
-    /**
-     * outputs the latest temperature with date, of the room
-     * @param roomName given String room name
-     * @param temp given double temperature
-     * @param dateTime given string date and time
-     */
-    private void displayResults(String roomName, double temp, String dateTime) {
-        StringBuilder content = new StringBuilder();
-        content.append("The latest temperature of the room ");
-        content.append(roomName);
-        content.append(" is ");
-        content.append(temp);
-        content.append(" Celsius, and was registered at ");
-        content.append(dateTime);
-        content.append(".\n");
-        System.out.println(content.toString());
+        displayResults(roomName, temp.getValue(), temp.getDateTime().toString());
     }
 
     public void run2() {
