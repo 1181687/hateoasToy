@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.Lamp;
-import pt.ipp.isep.dei.project.model.Readings;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -15,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LampTest {
     private Room kitchen;
     private Room laundry;
-    private Lamp lamp;
+    private Device lamp;
     private Map<LocalDateTime, Double> map;
 
     @BeforeEach
@@ -26,8 +23,9 @@ class LampTest {
         laundry = new Room("Laundry", 1, dim);
 
         // Devices
-        Lamp dummyLamp = new Lamp("TaoTronics Elune TT-DL01", kitchen);
-        lamp = new Lamp("TaoTronics Elune TT-DL02", kitchen);
+        LampType lampType = new LampType();
+        Device dummyLamp = lampType.createDevice("TaoTronics Elune TT-DL01", kitchen);
+        lamp = lampType.createDevice("TaoTronics Elune TT-DL02", kitchen);
         lamp.setAttributesDevType("Luminous Flux", 2800);
         lamp.setAttributesDevType("Time", 1);
         lamp.setAttributesDevType("Nominal Power", 300);

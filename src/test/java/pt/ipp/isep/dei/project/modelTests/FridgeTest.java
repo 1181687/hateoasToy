@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.Fridge;
-import pt.ipp.isep.dei.project.model.Readings;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -15,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class FridgeTest {
     private Room kitchen;
     private Room laundry;
-    private Fridge fridge;
+    private Device fridge;
     private Map<LocalDateTime, Double> map;
 
     @BeforeEach
@@ -26,8 +23,9 @@ class FridgeTest {
         laundry = new Room("Laundry", 1, dim);
 
         // Devices
-        Fridge dummyFridge = new Fridge("Miele PerfectCool Series 1000", kitchen);
-        fridge = new Fridge("Miele PerfectCool Series 3500", kitchen);
+        FridgeType fridgeType = new FridgeType();
+        Device dummyFridge = fridgeType.createDevice("Miele PerfectCool Series 1000", kitchen);
+        fridge = fridgeType.createDevice("Miele PerfectCool Series 3500", kitchen);
         fridge.setAttributesDevType("Freezer Capacity", 40);
         fridge.setAttributesDevType("Refrigerator Capacity", 20);
         fridge.setAttributesDevType("Annual Energy Consumption", 36500);
@@ -185,6 +183,23 @@ class FridgeTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void setAttributesDevTypeTrue(){
+        //Act
+        boolean result= fridge.setAttributesDevType("Refrigerator Capacity", 25);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void setAttributesDevTypeFalse(){
+        //Act
+        boolean result= fridge.setAttributesDevType("Refrigerator Capacity", 20);
+        //Assert
+        assertFalse(result);
+    }
+
 
     @Test
     void hashCodeTest() {
