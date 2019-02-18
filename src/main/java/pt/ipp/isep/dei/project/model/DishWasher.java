@@ -5,20 +5,20 @@ import java.util.*;
 
 public class DishWasher implements Device, Measurable {
 
-    private String mName;
-    private Room mLocation;
-    private DishWasherSpecs mSpec;
-    private List<Readings> mReadingsList;
-    private boolean mIsActive;
-    private LocalDateTime mDeactivationDate;
+    private String mDWName;
+    private Room mDWLocation;
+    private DishWasherSpecs mDWSpec;
+    private List<Readings> mDWReadingsList;
+    private boolean mIsDWActive;
+    private LocalDateTime mDWDeactivationDate;
 
     public DishWasher(String name, Room location) {
-        this.mName = name;
-        this.mSpec = new DishWasherSpecs();
-        this.mLocation = location;
-        this.mLocation.addDevice(this);
-        this.mIsActive = true;
-        this.mReadingsList = new ArrayList<>();
+        this.mDWName = name;
+        this.mDWSpec = new DishWasherSpecs();
+        this.mDWLocation = location;
+        this.mDWLocation.addDevice(this);
+        this.mIsDWActive = true;
+        this.mDWReadingsList = new ArrayList<>();
     }
 
     /**
@@ -28,7 +28,7 @@ public class DishWasher implements Device, Measurable {
      */
     @Override
     public double getNominalPower() {
-        return mSpec.getNominalPower();
+        return mDWSpec.getNominalPower();
     }
 
     /**
@@ -38,7 +38,7 @@ public class DishWasher implements Device, Measurable {
      */
     @Override
     public Room getLocation() {
-        return this.mLocation;
+        return this.mDWLocation;
     }
 
     /**
@@ -48,7 +48,7 @@ public class DishWasher implements Device, Measurable {
      */
     @Override
     public String getName() {
-        return this.mName;
+        return this.mDWName;
     }
 
     /**
@@ -58,7 +58,7 @@ public class DishWasher implements Device, Measurable {
      */
     @Override
     public String getType() {
-        return mSpec.getTypeName();
+        return mDWSpec.getTypeName();
     }
 
     /**
@@ -68,7 +68,7 @@ public class DishWasher implements Device, Measurable {
      */
     @Override
     public double getEnergyConsumptionInADay() {
-        return mSpec.getEnergyConsumptionInADay();
+        return mDWSpec.getEnergyConsumptionInADay();
     }
 
     /**
@@ -80,10 +80,10 @@ public class DishWasher implements Device, Measurable {
      */
     @Override
     public boolean setName(String name) {
-        if (this.mLocation.isDeviceNameExistant(name) || this.mName == name) {
+        if (this.mDWLocation.isDeviceNameExistant(name) || this.mDWName == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
-        this.mName = name;
+        this.mDWName = name;
         return true;
     }
 
@@ -95,12 +95,12 @@ public class DishWasher implements Device, Measurable {
      */
     @Override
     public boolean setLocation(Room location) {
-        if (this.mLocation.equals(location)) {
+        if (this.mDWLocation.equals(location)) {
             return false;
         }
-        this.mLocation.getDeviceList().remove(this);
-        this.mLocation = location;
-        this.mLocation.addDevice(this);
+        this.mDWLocation.getDeviceList().remove(this);
+        this.mDWLocation = location;
+        this.mDWLocation.addDevice(this);
         return true;
     }
 
@@ -110,7 +110,7 @@ public class DishWasher implements Device, Measurable {
      * @return String with the attributes.
      */
     public String getDevSpecsAttributesToString() {
-        return mSpec.getAttributesToString();
+        return mDWSpec.getAttributesToString();
     }
 
     /**
@@ -121,9 +121,9 @@ public class DishWasher implements Device, Measurable {
     public String getAttributesToString() {
 
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Name: " + mName + "\n");
+        attributes.append("1 - Name: " + mDWName + "\n");
         attributes.append("2 - Device Specifications \n");
-        attributes.append("3 - Location: " + mLocation.getName() + "\n");
+        attributes.append("3 - Location: " + mDWLocation.getName() + "\n");
         return attributes.toString();
     }
 
@@ -135,7 +135,7 @@ public class DishWasher implements Device, Measurable {
      * @return the position of an attribute and the value of it.
      */
     public boolean setAttributesDevType(String attribute, Object value) {
-        return this.mSpec.setAttributeValue(attribute,value);
+        return this.mDWSpec.setAttributeValue(attribute,value);
     }
 
     /**
@@ -145,7 +145,7 @@ public class DishWasher implements Device, Measurable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(this.mName);
+        return Objects.hash(this.mDWName);
     }
 
     /**
@@ -163,7 +163,7 @@ public class DishWasher implements Device, Measurable {
             return false;
         }
         Device listOne = (Device) obj;
-        return this.mName.equalsIgnoreCase(listOne.getName());
+        return this.mDWName.equalsIgnoreCase(listOne.getName());
     }
 
     /**
@@ -172,7 +172,7 @@ public class DishWasher implements Device, Measurable {
      * @return the number of attributes.
      */
     public int getNumberOfSpecsAttributes() {
-        return mSpec.getNumberOfAttributes();
+        return mDWSpec.getNumberOfAttributes();
     }
 
     /**
@@ -183,8 +183,8 @@ public class DishWasher implements Device, Measurable {
     @Override
     public String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
-        nameLocation.append("Device: " + mName);
-        nameLocation.append(", located in room: " + mLocation.getName() + "\n");
+        nameLocation.append("Device: " + mDWName);
+        nameLocation.append(", located in room: " + mDWLocation.getName() + "\n");
         return nameLocation.toString();
     }
 
@@ -194,7 +194,7 @@ public class DishWasher implements Device, Measurable {
      * @param readings Readings to be added.
      */
     public void addReadingsToTheList(Readings readings) {
-        mReadingsList.add(readings);
+        mDWReadingsList.add(readings);
     }
 
     /**
@@ -220,7 +220,7 @@ public class DishWasher implements Device, Measurable {
      */
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
         List<Readings> readingsList = new ArrayList<>();
-        for (Readings readings : mReadingsList) {
+        for (Readings readings : mDWReadingsList) {
             if (!startDate.isAfter(readings.getDateTime()) && !endDate.isBefore(readings.getDateTime())) {
                 readingsList.add(readings);
             }
@@ -250,8 +250,8 @@ public class DishWasher implements Device, Measurable {
      * method that set the deactivate device, turning it to false and giving a date
      */
     public void setDeactivateDevice() {
-        this.mIsActive = false;
-        this.mDeactivationDate = LocalDateTime.now();
+        this.mIsDWActive = false;
+        this.mDWDeactivationDate = LocalDateTime.now();
     }
 
     /**
@@ -260,7 +260,7 @@ public class DishWasher implements Device, Measurable {
      * @return an active device.
      */
     public boolean getIsActive() {
-        return mIsActive;
+        return mIsDWActive;
     }
 
     /**
@@ -285,7 +285,7 @@ public class DishWasher implements Device, Measurable {
      */
     @Override
     public List<String> getSpecsList() {
-        return mSpec.getSpecsList();
+        return mDWSpec.getSpecsList();
     }
 
     /**
@@ -296,11 +296,11 @@ public class DishWasher implements Device, Measurable {
      */
     @Override
     public Object getAttributeValue(String attributeName) {
-        return mSpec.getAttributeValue(attributeName);
+        return mDWSpec.getAttributeValue(attributeName);
     }
 
     @Override
     public String getSpecsToString() {
-        return this.mSpec.getAttributesToString();
+        return this.mDWSpec.getAttributesToString();
     }
 }
