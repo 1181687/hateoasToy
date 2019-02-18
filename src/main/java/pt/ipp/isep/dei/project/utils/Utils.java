@@ -84,7 +84,7 @@ public final class Utils {
         return readingsMap.toString();
     }
 
-    public static String getDevSpecsListToString(List<String> deviceSpecsAttributes, int position) {
+    /*public static String getDevSpecsListToString(List<String> deviceSpecsAttributes, int position) {
         StringBuilder specifications = new StringBuilder();
         int numberOfAttributes = deviceSpecsAttributes.size();
         for (int i = 1; i <= numberOfAttributes; i++) {
@@ -93,5 +93,5 @@ public final class Utils {
             position++;
         }
         return specifications.toString();
-    }
+    } */
 }

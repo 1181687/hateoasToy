@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
-import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
@@ -170,11 +169,11 @@ public class EditConfigurationDeviceController {
         return mDevice.getNumberOfSpecsAttributes();
     }
 
-    public List<String> getSpecsList() {
-        return this.mDevice.getSpecsList();
+    public String getSpecsToString() {
+        return this.mDevice.getSpecsToString();
     }
 
-    public String getDevSpecsListToString(List<String> deviceSpecsAttributes, int position) {
-        return Utils.getDevSpecsListToString(deviceSpecsAttributes, position);
+    public List<String> getSpecsList() {
+        return this.mDevice.getSpecsList();
     }
 }
