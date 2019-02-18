@@ -251,6 +251,21 @@ class DishWasherTest {
         // Arrange
         double expectedResult = 7;
 
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 7, 00, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+
+        // Act
+        double result = dishwasher.getEnergyConsumptionInAnInterval(startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest2() {
+        // Arrange
+        double expectedResult = 7;
+
         LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
