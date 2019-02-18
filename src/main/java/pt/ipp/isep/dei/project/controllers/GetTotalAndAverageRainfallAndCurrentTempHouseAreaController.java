@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.SensorType;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
@@ -37,5 +38,9 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
 
     public String getTypeTemperature() {
         return mTypeTemperature.getType();
+    }
+
+    public LocalDateTime getDateOfLastMeasurement() {
+        return mHouse.getDateOfLastMeasurementByType(mTypeTemperature);
     }
 }
