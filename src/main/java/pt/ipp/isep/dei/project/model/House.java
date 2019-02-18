@@ -45,6 +45,25 @@ public class House {
         }
     }
 
+    /**
+     * @param typeName
+     * @param deviceName
+     * @param location
+     * @return
+     */
+    public boolean createDevice(String typeName, String deviceName, Room location) {
+
+        for (int i = 0; i < mRoomList.getRoomList().size(); i++) {
+
+            if (mRoomList.getRoomList().get(i).isDeviceNameExistant(deviceName)) {
+                return false;
+            }
+
+        }
+        getDeviceType(typeName).createDevice(deviceName, location);
+        return true;
+    }
+
     public DeviceType getDeviceType(String type) {
         for (DeviceType deviceType : this.mDeviceTypeList) {
             if (deviceType.getTypeName().equals(type)) {
