@@ -147,17 +147,15 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     @Override
     public int getNumberOfAttributes() {
-        return 4;
+        return 3;
     }
 
     @Override
     public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
-        result.add(ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT);
-        result.add(ATTRIBUTE_HOT_WATER_TEMP);
-        result.add(ATTRIBUTE_PERFORMANCE_RATIO);
-        result.add(ATTRIBUTE_COLD_WATER_TEMP);
-        result.add(ATTRIBUTE_NOMINAL_POWER);
+        result.add("1 - " + ATTRIBUTE_HOT_WATER_TEMP + ": " + mHotWaterTemperature);
+        result.add("2 - " + ATTRIBUTE_PERFORMANCE_RATIO + ": " + mPerformanceRatio);
+        result.add("3 - " + ATTRIBUTE_NOMINAL_POWER + ": " + mNominalPower);
 
         return result;
     }

@@ -212,16 +212,16 @@ public class FridgeSpecsTest {
     }
 
     @Test
-    public void testgetSpecsInAListOfStrings() {
+    public void testGetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("Freezer Capacity");
-        expectedResult.add("Refrigerator Capacity");
-        expectedResult.add("Annual Energy Consumption");
-        expectedResult.add("Nominal Power");
+        expectedResult.add("1 - Freezer Capacity: 0.0");
+        expectedResult.add("2 - Refrigerator Capacity: 0.0");
+        expectedResult.add("3 - Annual Energy Consumption: 0.0");
+        expectedResult.add("4 - Nominal Power: 0.0");
 
         // Act
-        List<String> result = kitchen.getDeviceByPosition(0).getSpecs().getSpecsList();
+        List<String> result = kitchen.getDeviceByPosition(0).getSpecsList();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -238,7 +238,7 @@ public class FridgeSpecsTest {
 
         Object expectedResult = 100.0;
         // Act
-        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Nominal Power");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Nominal Power");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -254,7 +254,7 @@ public class FridgeSpecsTest {
 
         Object expectedResult = 20.0;
         // Act
-        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Freezer Capacity");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Freezer Capacity");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -270,7 +270,7 @@ public class FridgeSpecsTest {
 
         Object expectedResult = 100.0;
         // Act
-        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Refrigerator Capacity");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Refrigerator Capacity");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -286,7 +286,7 @@ public class FridgeSpecsTest {
 
         Object expectedResult = 10000.0;
         // Act
-        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Annual Energy Consumption");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Annual Energy Consumption");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -302,7 +302,7 @@ public class FridgeSpecsTest {
 
         Object expectedResult = -1;
         // Act
-        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Not Valid");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Not Valid");
         // Assert
         assertEquals(expectedResult, result);
     }

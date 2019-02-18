@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 public interface Device extends Measurable {
 
@@ -11,7 +10,6 @@ public interface Device extends Measurable {
      *
      * @return the nominal power of the device.
      */
-
     double getNominalPower();
 
     /**
@@ -132,16 +130,6 @@ public interface Device extends Measurable {
     List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate);
 
     /**
-     * Method that calculates the total energy consumption of a device in a given interval.
-     *
-     * @param startDate Start date.
-     * @param endDate   End date.
-     * @return Double with the required energy consumption.
-     */
-
-    double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate);
-
-    /**
      * method that set the deactivate device, turning it to false and giving a date
      */
     void setDeactivateDevice();
@@ -153,19 +141,9 @@ public interface Device extends Measurable {
      */
     boolean getIsActive();
 
-    /**
-     * method that creates a data series from a list of reading between two dates
-     *
-     * @param startDate
-     * @param endDate
-     * @return
-     */
+    List<String> getSpecsList();
 
-    Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate);
-
-    DeviceSpecs getSpecs();
+    Object getAttributeValue(String attributeName);
 
     String getSpecsToString();
-
-
 }

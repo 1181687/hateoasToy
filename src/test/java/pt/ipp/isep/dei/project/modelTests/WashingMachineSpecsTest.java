@@ -146,9 +146,59 @@ class WashingMachineSpecsTest {
                 "2 - Nominal Power: 30.0\n";
 
         //Act
-        String result = this.washingMachine.getSpecs().getAttributesToString();
+        String result = this.washingMachine.getDevSpecsAttributesToString();
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeCapacityTrue() {
+        //Arrange
+        int capacity = 31;
+        double nominalPower = 30;
+        this.washingMachine.setAttributesDevType(CAPACITY,capacity);
+        this.washingMachine.setAttributesDevType(NOMINAL_POWER,nominalPower);
+        double value = 20.6;
+
+        boolean expectedResult = true;
+        //Act
+        boolean result = this.washingMachine.setAttributesDevType("Capacity", value);
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    public void testSetAttributeNonExistentFalse() {
+        //Arrange
+        int capacity = 31;
+
+        int attribute = 3;
+        double value = 20.6;
+        this.washingMachine.setAttributesDevType(CAPACITY,capacity);
+
+        boolean expectedResult = false;
+
+        //Act
+        boolean result = this.washingMachine.setAttributesDevType("Non-existant attribute", value);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerTrue() {
+        //Arrange
+        double nominalPower = 30;
+        this.washingMachine.setAttributesDevType(NOMINAL_POWER,nominalPower);
+        double value = 20.6;
+
+        boolean expectedResult = true;
+
+        //Act
+        boolean result = this.washingMachine.setAttributesDevType("Nominal Power", value);
+        //Assert
+        assertEquals(expectedResult, result);
+
     }
 
     @Test
@@ -168,7 +218,6 @@ class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-
     @Test
     public void testGetEnergyConsumptionInADay() {
         //Arrange
@@ -182,19 +231,17 @@ class WashingMachineSpecsTest {
         double result = this.washingMachine.getEnergyConsumptionInADay();
         //Assert
         assertEquals(result, expectedResult);
-    }
 
+    }
     @Test
-    public void testgetSpecsInAListOfStrings() {
+    public void testGetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("Capacity");
-        expectedResult.add("Duration");
-        expectedResult.add("Energy Consumption");
-        expectedResult.add("Nominal Power");
+        expectedResult.add("1 - Capacity: 0.0");
+        expectedResult.add("2 - Nominal Power: 0.0");
 
         // Act
-        List<String> result = room.getDeviceByPosition(0).getSpecs().getSpecsList();
+        List<String> result = room.getDeviceByPosition(0).getSpecsList();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -209,7 +256,7 @@ class WashingMachineSpecsTest {
 
         Object expectedResult = 100.0;
         // Act
-        Object result = room.getDeviceByPosition(0).getSpecs().getAttributeValue("Nominal Power");
+        Object result = room.getDeviceByPosition(0).getAttributeValue("Nominal Power");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -223,7 +270,7 @@ class WashingMachineSpecsTest {
 
         Object expectedResult = 30.0;
         // Act
-        Object result = room.getDeviceByPosition(0).getSpecs().getAttributeValue("Capacity");
+        Object result = room.getDeviceByPosition(0).getAttributeValue("Capacity");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -238,7 +285,7 @@ class WashingMachineSpecsTest {
 
         Object expectedResult = 30.0;
         // Act
-        Object result = room.getDeviceByPosition(0).getSpecs().getAttributeValue("Duration");
+        Object result = room.getDeviceByPosition(0).getAttributeValue("Duration");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -252,7 +299,7 @@ class WashingMachineSpecsTest {
 
         Object expectedResult = -1;
         // Act
-        Object result = room.getDeviceByPosition(0).getSpecs().getAttributeValue("Not Valid");
+        Object result = room.getDeviceByPosition(0).getAttributeValue("Not Valid");
         // Assert
         assertEquals(expectedResult, result);
     }

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class DishWasherSpecsTest {
     Room kitchen;
@@ -110,12 +111,11 @@ public class DishWasherSpecsTest {
     public void testgetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("Capacity");
-        expectedResult.add("Duration");
-        expectedResult.add("Nominal Power");
+        expectedResult.add("1 - Capacity: 0");
+        expectedResult.add("2 - Nominal Power: 0.0");
 
         // Act
-        List<String> result = kitchen.getDeviceByPosition(0).getSpecs().getSpecsList();
+        List<String> result = kitchen.getDeviceByPosition(0).getSpecsList();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -130,7 +130,7 @@ public class DishWasherSpecsTest {
 
         Object expectedResult = 100.0;
         // Act
-        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Nominal Power");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Nominal Power");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -144,7 +144,7 @@ public class DishWasherSpecsTest {
 
         Object expectedResult = 30;
         // Act
-        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Capacity");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Capacity");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -159,7 +159,7 @@ public class DishWasherSpecsTest {
 
         Object expectedResult = 30.0;
         // Act
-        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Duration");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Duration");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -173,8 +173,48 @@ public class DishWasherSpecsTest {
 
         Object expectedResult = -1;
         // Act
-        Object result = kitchen.getDeviceByPosition(0).getSpecs().getAttributeValue("Not Valid");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Not Valid");
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeCapacityValueNotAValidType() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Capacity", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeDurationValueNotAValidType() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Duration", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerValueNotAValidType() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerSameValue() {
+        // Arrange
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        // Assert
+        assertFalse(result);
     }
 }

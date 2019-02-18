@@ -118,12 +118,11 @@ public class LampSpecsTest {
     public void testGetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("Luminous Flux");
-        expectedResult.add("Time");
-        expectedResult.add("Nominal Power");
+        expectedResult.add("1 - Luminous Flux: 0.0");
+        expectedResult.add("2 - Nominal Power: 0.0");
 
         // Act
-        List<String> result = livingRoom.getDeviceByPosition(0).getSpecs().getSpecsList();
+        List<String> result = livingRoom.getDeviceByPosition(0).getSpecsList();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -138,7 +137,7 @@ public class LampSpecsTest {
 
         Object expectedResult = 30.0;
         // Act
-        Object result = livingRoom.getDeviceByPosition(0).getSpecs().getAttributeValue("Nominal Power");
+        Object result = livingRoom.getDeviceByPosition(0).getAttributeValue("Nominal Power");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -152,7 +151,7 @@ public class LampSpecsTest {
 
         Object expectedResult = 50.0;
         // Act
-        Object result = livingRoom.getDeviceByPosition(0).getSpecs().getAttributeValue("Luminous Flux");
+        Object result = livingRoom.getDeviceByPosition(0).getAttributeValue("Luminous Flux");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -166,7 +165,7 @@ public class LampSpecsTest {
 
         Object expectedResult = -1;
         // Act
-        Object result = livingRoom.getDeviceByPosition(0).getSpecs().getAttributeValue("Not Valid");
+        Object result = livingRoom.getDeviceByPosition(0).getAttributeValue("Not Valid");
         // Assert
         assertEquals(expectedResult, result);
     }

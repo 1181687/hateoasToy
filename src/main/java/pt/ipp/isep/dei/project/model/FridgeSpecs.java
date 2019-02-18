@@ -131,10 +131,10 @@ public class FridgeSpecs implements DeviceSpecs {
     @Override
     public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
-        result.add(ATTRIBUTE_FREEZER_CAPACITY);
-        result.add(ATTRIBUTE_REFRIGERATOR_CAPACITY);
-        result.add(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION);
-        result.add(ATTRIBUTE_NOMINAL_POWER);
+        result.add("1 - " + ATTRIBUTE_FREEZER_CAPACITY + ": " + mFreezerCapacity);
+        result.add("2 - " + ATTRIBUTE_REFRIGERATOR_CAPACITY + ": " + mRefrigeratorCapacity);
+        result.add("3 - " + ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION + ": " + mAnnualEnergyConsumption);
+        result.add("4 - " + ATTRIBUTE_NOMINAL_POWER + ": " + mNominalPower);
 
         return result;
     }

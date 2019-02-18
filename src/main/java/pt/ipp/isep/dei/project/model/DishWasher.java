@@ -87,7 +87,6 @@ public class DishWasher implements Device, Measurable {
         return true;
     }
 
-
     /**
      * method that set the location (room) of a added device.
      *
@@ -212,6 +211,13 @@ public class DishWasher implements Device, Measurable {
         return sum;
     }
 
+    /**
+     * TODO
+     *
+     * @param startDate
+     * @param endDate
+     * @return
+     */
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
         List<Readings> readingsList = new ArrayList<>();
         for (Readings readings : mReadingsList) {
@@ -257,6 +263,12 @@ public class DishWasher implements Device, Measurable {
         return mIsActive;
     }
 
+    /**
+     * TODO
+     * @param startDate
+     * @param endDate
+     * @return
+     */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> hmap = new TreeMap<>();
@@ -269,12 +281,22 @@ public class DishWasher implements Device, Measurable {
 
     /**
      * TODO
-     *
      * @return
      */
     @Override
-    public DeviceSpecs getSpecs() {
-        return this.mSpec;
+    public List<String> getSpecsList() {
+        return mSpec.getSpecsList();
+    }
+
+    /**
+     * TODO
+     *
+     * @param attributeName
+     * @return
+     */
+    @Override
+    public Object getAttributeValue(String attributeName) {
+        return mSpec.getAttributeValue(attributeName);
     }
 
     @Override
