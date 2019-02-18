@@ -357,4 +357,17 @@ class FridgeTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    void testGetSpecsToString() {
+        // Arrange
+        String expectedResult = "1 - Freezer Capacity: 40.0\n" +
+                "2 - Refrigerator Capacity: 20.0\n" +
+                "3 - Annual Energy Consumption: 36500.0\n" +
+                "4 - Nominal Power: 900.0\n";
+        // Act
+        String result = fridge.getSpecsToString();
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 }
