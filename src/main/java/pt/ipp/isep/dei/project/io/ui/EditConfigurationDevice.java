@@ -45,17 +45,23 @@ public class EditConfigurationDevice {
         }
 
         String attributeName = controller.getSpecsList().get(attributePosition - 1);
-        String label6 = "What is the new value?";
-        Number value = InputValidator.getNumber(label6, controller.getAttributeType(attributeName));
-        if (Utils.isSameNumber(value.doubleValue(), 0)
-                || Utils.isSameNumber(value, controller.getAttributeValue(attributeName))) {
-            System.out.println("This value is not valid.");
-            return;
-        } else {
-            controller.setDeviceSpecs(attributeName, value);
-            System.out.println("The value was changed with success!\nNow, the value is " + value + "! \n");
-            return;
+
+        boolean flag1 = true;
+        while (flag1) {
+            String label6 = "What is the new value?";
+            Number value = InputValidator.getNumber(label6, controller.getAttributeType(attributeName));
+            Number sameNumber = controller.getAttributeValue(attributeName);
+
+            if (Utils.isSameNumber(value, 0) || Utils.isSameNumber(value, sameNumber)) {
+                System.out.println("This value is not valid. Please choose another value.\n");
+                continue;
+            } else {
+                controller.setDeviceSpecs(attributeName, value);
+                System.out.println("The value was changed with success!\nNow, the value is " + value + "! \n");
+                return;
+            }
         }
+        flag1 = false;
     }
 
     public void changeLocationOfDevice() {
