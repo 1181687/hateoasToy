@@ -190,7 +190,7 @@ public class Sensor {
         if (measurementsBetweenDates.isEmpty()) {
             return Double.NaN;
         }
-        double biggestMeasurement = measurementsBetweenDates.get(0);
+        Double biggestMeasurement = measurementsBetweenDates.get(0);
 
         for (Double measurement : measurementsBetweenDates) {
             if (measurement > biggestMeasurement) {
