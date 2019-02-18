@@ -184,6 +184,23 @@ class LampTest {
     }
 
     @Test
+    public void testSetAttributesDevTypeTrue(){
+        //Act
+        double value = 2600.5;
+        boolean result= lamp.setAttributesDevType("Luminous Flux", value);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testSetAttributesDevTypeFalse(){
+        //Act
+        boolean result= lamp.setAttributesDevType("Luminous Flux", 2800);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
     void hashCodeTest() {
         // Arrange
         int expectedResult = Objects.hash(lamp.getName());
