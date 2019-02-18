@@ -116,6 +116,18 @@ class FridgeTest {
     }
 
     @Test
+    public void setNameWithSameLocationTestFridge1() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> kitchen.getDeviceByPosition(0).setName("Miele PerfectCool Series 3500"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void setNameWithSameLocationTestFridge2() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> kitchen.getDeviceByPosition(0).setName("Miele PerfectCool Series 1000"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> fridge.setName("Miele PerfectCool Series 1000"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
