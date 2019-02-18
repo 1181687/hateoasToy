@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.DishWasher;
-import pt.ipp.isep.dei.project.model.Readings;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -15,19 +12,20 @@ import static org.junit.jupiter.api.Assertions.*;
 class DishWasherTest {
     private Room kitchen;
     private Room laundry;
-    private DishWasher dishwasher;
+    private Device dishwasher;
     private Map<LocalDateTime, Double> map;
 
     @BeforeEach
     public void StartUp() {
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
-        kitchen = new Room("Kitchen", 1, dim);
-        laundry = new Room("Laundry", 1, dim);
+        this.kitchen = new Room("Kitchen", 1, dim);
+        this.laundry = new Room("Laundry", 1, dim);
 
         // Devices
-        DishWasher dummyWasher = new DishWasher("Bosch 400 Series", kitchen);
-        dishwasher = new DishWasher("Bosch 500 Series", kitchen);
+        DishWasherType dishWasherType = new DishWasherType();
+        Device dummyWasher = dishWasherType.createDevice("Bosch 400 Series", kitchen);
+        dishwasher = dishWasherType.createDevice("Bosch 500 Series", kitchen);
         dishwasher.setAttributesDevType("Capacity", 10);
         dishwasher.setAttributesDevType("Duration", 0);
         dishwasher.setAttributesDevType("Nominal Power", 1200);
@@ -181,6 +179,22 @@ class DishWasherTest {
 
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void setSetAttributesDevTypeTrue(){
+        //Act
+        boolean result = dishwasher.setAttributesDevType("Capacity", 15);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void setSetAttributesDevTypeFalse(){
+        //Act
+        boolean result = dishwasher.setAttributesDevType("Capacity", 10);
+        //Assert
+        assertFalse(result);
     }
 
     @Test
