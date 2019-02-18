@@ -237,8 +237,8 @@ class WashingMachineSpecsTest {
     public void testGetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("1 - Capacity: 0.0");
-        expectedResult.add("2 - Nominal Power: 0.0");
+        expectedResult.add("Capacity");
+        expectedResult.add("Nominal Power");
 
         // Act
         List<String> result = room.getDeviceByPosition(0).getSpecsList();

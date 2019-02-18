@@ -319,10 +319,10 @@ class FridgeTest {
     void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("1 - Freezer Capacity: 40.0");
-        expectedResult.add("2 - Refrigerator Capacity: 20.0");
-        expectedResult.add("3 - Annual Energy Consumption: 36500.0");
-        expectedResult.add("4 - Nominal Power: 900.0");
+        expectedResult.add("Freezer Capacity");
+        expectedResult.add("Refrigerator Capacity");
+        expectedResult.add("Annual Energy Consumption");
+        expectedResult.add("Nominal Power");
 
         // Act
         List<String> result = fridge.getSpecsList();

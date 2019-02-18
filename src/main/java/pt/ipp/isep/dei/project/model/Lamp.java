@@ -129,7 +129,7 @@ public class Lamp implements Device, Measurable {
      * @return the position of an attribute and the value of it.
      */
     public boolean setAttributesDevType(String attribute, Object value) {
-        return this.mLampSpec.setAttributeValue(attribute,value);
+        return this.mLampSpec.setAttributeValue(attribute, value);
     }
 
     /**

@@ -130,7 +130,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return the position of an attribute and the value of it.
      */
     public boolean setAttributesDevType(String attribute, Object value) {
-        return this.mEWHSpec.setAttributeValue(attribute,value);
+        return this.mEWHSpec.setAttributeValue(attribute, value);
     }
 
     /**

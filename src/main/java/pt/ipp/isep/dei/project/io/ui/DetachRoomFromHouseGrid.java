@@ -38,10 +38,11 @@ public class DetachRoomFromHouseGrid {
                     String label = "Do you want to see the list of room(s) on the selected Grid? (Y/N)";
                     String answer = InputValidator.confirmValidation(label);
                     if ("y".equals(answer) || "Y".equals(answer)) {
-                        if(ctrl.getListOfRoomsInACertainHouseGrid(firstOption).isEmpty()){
+                        if (ctrl.getListOfRoomsInACertainHouseGrid(firstOption).isEmpty()) {
                             System.out.println("There's no rooms in this list now.");
-                        } else{
-                        System.out.println(ctrl.getListOfRoomsInACertainHouseGrid(firstOption));}
+                        } else {
+                            System.out.println(ctrl.getListOfRoomsInACertainHouseGrid(firstOption));
+                        }
                     } else {
                         return;
                     }

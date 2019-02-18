@@ -135,7 +135,7 @@ public class DishWasher implements Device, Measurable {
      * @return the position of an attribute and the value of it.
      */
     public boolean setAttributesDevType(String attribute, Object value) {
-        return this.mDWSpec.setAttributeValue(attribute,value);
+        return this.mDWSpec.setAttributeValue(attribute, value);
     }
 
     /**

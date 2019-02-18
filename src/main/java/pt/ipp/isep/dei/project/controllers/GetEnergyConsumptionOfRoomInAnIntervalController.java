@@ -42,7 +42,7 @@ public class GetEnergyConsumptionOfRoomInAnIntervalController {
         return mSelectedRoom.getEnergyConsumptionInAnInterval(initialDate, finalDate);
     }
 
-    public double resultWithTwoDecimalPlaces(double value, int decimalPlaces){
+    public double resultWithTwoDecimalPlaces(double value, int decimalPlaces) {
         return Utils.round(value, decimalPlaces);
     }
 }
