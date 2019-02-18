@@ -46,6 +46,30 @@ public class House {
         }
     }
 
+    /**
+     * creates a Device and returns true if type name exists and deviceName not exists in the
+     * rooms of the house
+     *
+     * @param typeName   String type name of Device
+     * @param deviceName String device name
+     * @param location   Room location to add advice
+     * @return true if creates and false if not
+     */
+    public boolean createDevice(String typeName, String deviceName, Room location) {
+
+        if (Objects.isNull(getDeviceType(typeName))) {
+            return false;
+        }
+        for (int i = 0; i < mRoomList.getRoomList().size(); i++) {
+
+            if (mRoomList.getRoomList().get(i).isDeviceNameExistant(deviceName)) {
+                return false;
+            }
+        }
+        getDeviceType(typeName).createDevice(deviceName, location);
+        return true;
+    }
+
     public DeviceType getDeviceType(String type) {
         for (DeviceType deviceType : this.mDeviceTypeList) {
             if (deviceType.getTypeName().equals(type)) {

@@ -47,6 +47,80 @@ public class HouseTest {
     }
 
     @Test
+    public void createDeviceTrue() {
+
+        //arrange
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+        String deviceName = "Bosch2000";
+        String fridgeType = "Fridge";
+        boolean result = house.createDevice(fridgeType, deviceName, room1);
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void createDeviceDeviceTypeNotExists_False() {
+
+        //arrange
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+        String deviceName = "Bosch2000";
+        String fridgeType = "Fridg";
+        boolean result = house.createDevice(fridgeType, deviceName, room1);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void createDeviceNameAlreadyExists_False() {
+
+        //arrange
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+        String deviceName = "Bosch2000";
+        String fridgeType = "Fridge";
+        house.createDevice(fridgeType, deviceName, room1);
+        String lampType = "Lamp";
+
+        boolean result = house.createDevice(lampType, deviceName, room2);
+
+        assertFalse(result);
+    }
+
+    @Test
     public void getDisplayRoomListTest() {
         //arrange
         String name1 = "Kitchen";
