@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class LampSpecsTest {
     Room livingRoom;
@@ -168,5 +169,102 @@ public class LampSpecsTest {
         Object result = livingRoom.getDeviceByPosition(0).getAttributeValue("Not Valid");
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeTimeValueNotAValidSpec() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        livingRoom.getDeviceByPosition(0).setAttributesDevType("Time", 50);
+
+        Object expectedResult = 50.0;
+        // Act
+        Object result = livingRoom.getDeviceByPosition(0).getAttributeValue("Time");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeLuminousFlux() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        livingRoom.getDeviceByPosition(0).setAttributesDevType("Luminous Flux", 50);
+        livingRoom.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 30);
+
+        Object expectedResult = 50.0;
+        // Act
+        Object result = livingRoom.getDeviceByPosition(0).getAttributeValue("Luminous Flux");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeLuminousFluxNotValid() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = livingRoom.getDeviceByPosition(0).setAttributesDevType("Luminous Flux", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeLuminousFluxSameValue() {
+        // Arrange
+        livingRoom.getDeviceByPosition(0).setAttributesDevType("Luminous Flux", 50);
+        // Act
+        boolean result = livingRoom.getDeviceByPosition(0).setAttributesDevType("Luminous Flux", 50);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeTimeNotValid() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = livingRoom.getDeviceByPosition(0).setAttributesDevType("Time", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeTimeSameValue() {
+        // Arrange
+        livingRoom.getDeviceByPosition(0).setAttributesDevType("Time", 20);
+        // Act
+        boolean result = livingRoom.getDeviceByPosition(0).setAttributesDevType("Time", 20);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerNotValid() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = livingRoom.getDeviceByPosition(0).setAttributesDevType("Nominal Power", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerSameValue() {
+        // Arrange
+        livingRoom.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 1.5);
+        // Act
+        boolean result = livingRoom.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 1.5);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNotValid() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = livingRoom.getDeviceByPosition(0).setAttributesDevType(tuff, 1.5);
+        // Assert
+        assertFalse(result);
     }
 }
