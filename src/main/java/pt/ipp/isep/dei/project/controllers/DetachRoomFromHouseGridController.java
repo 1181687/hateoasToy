@@ -31,13 +31,8 @@ public class DetachRoomFromHouseGridController {
         return mHouse.getRoomsInTheHouseGrid(position);
     }
 
-    /**
-     * TODO - separar este método no model. Gabi_X
-     * @param position
-     * @return
-     */
     public Room getRoomFromTheListOfRoomByAPosition(int position) {
-        return mhouseGrid.getRoomList().getRoomFromPosition(position);
+        return mhouseGrid.getRoomFromTheListOfRoomByAPosition(position);
     }
 
     public boolean detachRoomFromGridList(HouseGrid houseGrid, Room roomSelected) {
