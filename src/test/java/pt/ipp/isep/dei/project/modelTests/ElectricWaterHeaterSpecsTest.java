@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class ElectricWaterHeaterSpecsTest {
     Room kitchen;
@@ -191,6 +192,86 @@ class ElectricWaterHeaterSpecsTest {
         Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Not Valid");
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeVolumeOfWaterToHeatValueNotAValidType() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Volume Of Water To Heat", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeHotWaterTemperatureValueNotAValidType() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Hot-Water Temperature", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerValueNotAValidType() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributePerformanceRatioValueNotAValidType() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Performance Ratio", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeColdWaterTemperatureValueNotAValidType() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Cold-Water Temperature", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeVolumeOfWaterToHeatValueNotAValidTypeNegative() {
+        // Arrange
+        double tuff = -200;
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Volume Of Water To Heat", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerSameValue() {
+        // Arrange
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributePerformanceRatioSameValue() {
+        // Arrange
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Performance Ratio", 0.9);
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Performance Ratio", 0.9);
+        // Assert
+        assertFalse(result);
     }
 
 
