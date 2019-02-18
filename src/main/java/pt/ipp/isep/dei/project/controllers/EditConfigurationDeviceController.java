@@ -176,4 +176,12 @@ public class EditConfigurationDeviceController {
     public List<String> getSpecsList() {
         return this.mDevice.getSpecsList();
     }
+
+    public String getAttributeType(String attributeName) {
+        return mDevice.getAttributeType(attributeName);
+    }
+
+    public Number getAttributeValue(String attributeName) {
+        return (Number) mDevice.getAttributeValue(attributeName);
+    }
 }

@@ -230,6 +230,8 @@ public class DishWasher implements Device, Measurable {
 
     /**
      * Method that calculates the total energy consumption of a device in a given interval.
+     * This method has in count all the fully contained readings, i.e., if there's just one reading in the interval, it
+     * is not counted.
      *
      * @param startDate Start date.
      * @param endDate   End date.
@@ -302,5 +304,9 @@ public class DishWasher implements Device, Measurable {
     @Override
     public String getSpecsToString() {
         return this.mDWSpec.getAttributesToString();
+    }
+
+    public String getAttributeType(String attributeName) {
+        return mDWSpec.getAttributeType(attributeName);
     }
 }

@@ -292,4 +292,9 @@ public class WashingMachine implements Device, Measurable {
     public String getSpecsToString() {
         return this.mWMSpec.getAttributesToString();
     }
+
+    @Override
+    public String getAttributeType(String attributeName) {
+        return null;
+    }
 }

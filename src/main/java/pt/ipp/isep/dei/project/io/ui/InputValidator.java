@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class InputValidator {
@@ -278,6 +279,31 @@ public class InputValidator {
             try {
                 flag = false;
                 x = in.nextDouble();
+            } catch (Exception e) {
+                System.out.println("Error! Please insert a valid number.");
+                flag = true;
+                in.nextLine();
+            }
+        } while (flag);
+        return x;
+    }
+
+    public static Number getNumber(String label, String dataType) {
+        Scanner in = new Scanner(System.in).useLocale(Locale.ENGLISH);
+        Number x = -1;
+        boolean flag;
+        do {
+            System.out.println(label);
+            try {
+                flag = false;
+                if (dataType.equals("Integer")) {
+                    x = in.nextInt();
+                    break;
+                }
+                if (dataType.equals(("Double"))) {
+                    x = in.nextDouble();
+                    break;
+                }
             } catch (Exception e) {
                 System.out.println("Error! Please insert a valid number.");
                 flag = true;

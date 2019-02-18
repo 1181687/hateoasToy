@@ -18,7 +18,7 @@ public class LampSpecsTest {
         Dimension dim = new Dimension(3, 5, 6);
         livingRoom = new Room("Living Room", 1, dim);
         LampType lampType = new LampType();
-        this.lamp=lampType.createDevice("Lamp Philips", livingRoom);
+        this.lamp = lampType.createDevice("Lamp Philips", livingRoom);
     }
 
     @Test
@@ -224,7 +224,7 @@ public class LampSpecsTest {
     }
 
     @Test
-    public void testSetAttributeTimeTrue () {
+    public void testSetAttributeTimeTrue() {
         //Arrange
 
         double value1 = 30.5;
@@ -270,6 +270,24 @@ public class LampSpecsTest {
         boolean result = lamp.setAttributesDevType("Nominal Power", 1.5);
         // Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerTrue() {
+        //Arrange
+        double value1 = 30.5;
+        String attribute = "Nominal Power";
+        lamp.setAttributesDevType(attribute, value1);
+        double value2 = 20.6;
+
+        boolean expectedResult = true;
+
+        //Act
+        boolean result = lamp.setAttributesDevType(attribute, value2);
+
+        //Assert
+        assertEquals(expectedResult, result);
+
     }
 
     @Test
