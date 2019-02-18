@@ -18,7 +18,7 @@ public interface DeviceSpecs {
     double getNominalPower();
 
     /**
-     * method that displays a string of the choosen attribute (name of the attribute and its value)
+     * method that displays a string of the chosen attribute (name of the attribute and its value)
      * @return
      */
     String getAttributesToString();
@@ -35,4 +35,5 @@ public interface DeviceSpecs {
 
     boolean setAttributeValue(String attributeName, Object attributeValue);
 
+    String getAttributeType(String attributeName);
 }

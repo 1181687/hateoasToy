@@ -118,7 +118,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
     }
 
     /**
-     * method that get a device by a pposition.
+     * method that get a device by a position.
      * @param position
      * @return a postiion.
      */

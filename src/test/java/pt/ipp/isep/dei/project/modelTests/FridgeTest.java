@@ -116,6 +116,18 @@ class FridgeTest {
     }
 
     @Test
+    public void setNameWithSameLocationTestFridge1() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> kitchen.getDeviceByPosition(0).setName("Miele PerfectCool Series 3500"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void setNameWithSameLocationTestFridge2() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> kitchen.getDeviceByPosition(0).setName("Miele PerfectCool Series 1000"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> fridge.setName("Miele PerfectCool Series 1000"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -354,6 +366,19 @@ class FridgeTest {
         // Act
         Object result = fridge.getAttributeValue("Nominal Power");
 
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testGetSpecsToString() {
+        // Arrange
+        String expectedResult = "1 - Freezer Capacity: 40.0\n" +
+                "2 - Refrigerator Capacity: 20.0\n" +
+                "3 - Annual Energy Consumption: 36500.0\n" +
+                "4 - Nominal Power: 900.0\n";
+        // Act
+        String result = fridge.getSpecsToString();
         // Assert
         assertEquals(expectedResult, result);
     }

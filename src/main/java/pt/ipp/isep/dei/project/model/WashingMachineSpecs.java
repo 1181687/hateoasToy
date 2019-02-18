@@ -12,7 +12,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
     private String mTypeName;
-    private double mCapacity;
+    private int mCapacity;
     private double mDuration;
     private double mEnergyConsumption;
     private double mNominalPower;
@@ -50,7 +50,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
      * @param capacity
      */
     private boolean setCapacity(Object capacity) {
-        double wmcapacity = (Double) capacity;
+        int wmcapacity = (Integer) capacity;
         if (Utils.isSameDouble(this.mCapacity, wmcapacity)) {
             return false;
         }
@@ -123,7 +123,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
         switch (attributeName) {
             case ATTRIBUTE_CAPACITY:
                 if (attributeValue instanceof Number) {
-                    return setCapacity(((Number) attributeValue).doubleValue());
+                    return setCapacity(((Number) attributeValue).intValue());
                 }
                 return false;
             case ATTRIBUTE_DURATION:
@@ -146,5 +146,10 @@ public class WashingMachineSpecs implements DeviceSpecs {
             default:
                 return false;
         }
+    }
+
+    @Override
+    public String getAttributeType(String attributeName) {
+        return null;
     }
 }

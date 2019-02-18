@@ -17,11 +17,8 @@ public class HouseTest {
 
     private House house;
     private GeographicalArea ag;
-    private DishWasherType dishWasherType;
-    private ElectricWaterHeaterType electricWaterHeaterType;
-    private WashingMachineType washingMachineType;
-    private LampType lampType;
-    private FridgeType fridgeType;
+
+
 
     @BeforeEach
     public void StartUp() {
@@ -44,6 +41,80 @@ public class HouseTest {
         this.house.setInsertedGeoArea(ag);
 
 
+    }
+
+    @Test
+    public void createDeviceTrue() {
+
+        //arrange
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+        String deviceName = "Bosch2000";
+        String fridgeType = "Fridge";
+        boolean result = house.createDevice(fridgeType, deviceName, room1);
+
+        assertTrue(result);
+    }
+
+    @Test
+    public void createDeviceDeviceTypeNotExists_False() {
+
+        //arrange
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+        String deviceName = "Bosch2000";
+        String fridgeType = "Fridg";
+        boolean result = house.createDevice(fridgeType, deviceName, room1);
+
+        assertFalse(result);
+    }
+
+    @Test
+    public void createDeviceNameAlreadyExists_False() {
+
+        //arrange
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
+
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
+
+        house.addRoom(room1);
+        house.addRoom(room2);
+        String deviceName = "Bosch2000";
+        String fridgeType = "Fridge";
+        house.createDevice(fridgeType, deviceName, room1);
+        String lampType = "Lamp";
+
+        boolean result = house.createDevice(lampType, deviceName, room2);
+
+        assertFalse(result);
     }
 
     @Test
@@ -1815,5 +1886,87 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void testAddGridTrue(){
+        //Arrange
+        String gridName = "main grid";
+        HouseGrid houseGrid = new HouseGrid(gridName);
+        //Act
+        boolean result = this.house.addGrid(houseGrid);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testAddGridFalse(){
+        //Arrange
+        String gridName = "main grid";
+        HouseGrid houseGrid = new HouseGrid(gridName);
+        this.house.addGrid(houseGrid);
+        //Act
+        boolean result = this.house.addGrid(houseGrid);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testGridNameAlreadyExistsTrue(){
+        //Arrange
+        String gridName = "main grid";
+        HouseGrid grid = new HouseGrid(gridName);
+        this.house.addGrid(grid);
+        //Act
+        boolean result = this.house.gridNameAlreadyExists(gridName);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testGridNameAlreadyExistsFalse(){
+        //Arrange
+        String gridName = "main grid";
+        HouseGrid grid = new HouseGrid(gridName);
+        this.house.addGrid(grid);
+        String gridName2 = "grid 1";
+        //Act
+        boolean result = this.house.gridNameAlreadyExists(gridName2);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testGridNameAlreadyExists_WithNoHouseGrids_ShouldReturnFalse(){
+        //Arrange
+        String gridName2 = "grid 1";
+        //Act
+        boolean result = this.house.gridNameAlreadyExists(gridName2);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testNewHouseGrid_ThrowsException(){
+        //Arrange
+        String name = "Main Grid";
+        HouseGrid grid = new HouseGrid(name);
+        this.house.addGrid(grid);
+        //Act
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                this.house.newHouseGrid(name)
+        );
+        //Assert
+        assertEquals("Name already exists. Please, write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void testNewHouseGrid_CreatesHouseGrid(){
+        //Arrange
+        String name = "Main Grid";
+        HouseGrid expectedResult = new HouseGrid(name);
+        //Act
+        HouseGrid result = this.house.newHouseGrid(name);
+        //Assert
+        assertEquals(expectedResult,result);
+    }
 }
 

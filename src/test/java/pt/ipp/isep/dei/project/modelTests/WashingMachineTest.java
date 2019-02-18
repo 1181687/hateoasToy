@@ -160,7 +160,7 @@ class WashingMachineTest {
     @Test
     void getDevSpecsAttributesToStringTest() {
         // Arrange
-        String expectedResult = "1 - Capacity: 40.0\n" +
+        String expectedResult = "1 - Capacity: 40\n" +
                 "2 - Nominal Power: 1000.0\n";
         // Act
         String result = washingMachine.getDevSpecsAttributesToString();

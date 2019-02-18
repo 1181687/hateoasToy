@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class WashingMachineSpecsTest {
     private Room room;
@@ -142,7 +143,7 @@ class WashingMachineSpecsTest {
         this.washingMachine.setAttributesDevType(CAPACITY, capacity);
         this.washingMachine.setAttributesDevType(NOMINAL_POWER, nominalPower);
 
-        String expectedResult = "1 - Capacity: 20.0\n" +
+        String expectedResult = "1 - Capacity: 20\n" +
                 "2 - Nominal Power: 30.0\n";
 
         //Act
@@ -268,7 +269,7 @@ class WashingMachineSpecsTest {
         room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
         room.getDeviceByPosition(0).setAttributesDevType("Capacity", 30);
 
-        Object expectedResult = 30.0;
+        Object expectedResult = 30;
         // Act
         Object result = room.getDeviceByPosition(0).getAttributeValue("Capacity");
         // Assert
@@ -291,6 +292,20 @@ class WashingMachineSpecsTest {
     }
 
     @Test
+    public void testGetAttributeValueEnergyConsumption() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 30);
+
+        Object expectedResult = 30.0;
+        // Act
+        Object result = room.getDeviceByPosition(0).getAttributeValue("Energy Consumption");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
         // FridgeSpecs Instantiation
@@ -302,5 +317,55 @@ class WashingMachineSpecsTest {
         Object result = room.getDeviceByPosition(0).getAttributeValue("Not Valid");
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeCapacityValueNotAValidType() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Capacity", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeDurationValueNotAValidType() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Duration", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerValueNotAValidType() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", tuff);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerSameValue() {
+        // Arrange
+        room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        // Act
+        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeEnergyConsumptionNotValid() {
+        // Arrange
+        String tuff = "coiso";
+        // Act
+        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", tuff);
+        // Assert
+        assertFalse(result);
     }
 }

@@ -157,4 +157,9 @@ public class LampSpecs implements DeviceSpecs {
                 return false;
         }
     }
+
+    @Override
+    public String getAttributeType(String attributeName) {
+        return null;
+    }
 }
