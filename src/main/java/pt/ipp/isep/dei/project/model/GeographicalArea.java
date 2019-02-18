@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -260,6 +261,26 @@ public class GeographicalArea {
         }
         return latestReadingValue;
     }
+
+    public LocalDateTime getDateLastMeasurementByLocationType(Location location, SensorType type) {
+        SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
+        LocalDateTime latestReadingDate = null;
+        if (!sensorListWithTheRequiredType.getSensorList().isEmpty()) {
+            SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
+            Readings latestReading = null;
+            for (Sensor sensor : nearestSensors.getSensorList()) {
+                if ((!Objects.isNull(sensor.getLastMeasurement())) && (Objects.isNull(latestReading) ||
+                        sensor.getLastMeasurement().getDateTime().isAfter(latestReading.getDateTime()))) {
+                    latestReading = sensor.getLastMeasurement();
+                    latestReadingDate = latestReading.getDateTime();
+                }
+
+            }
+        }
+        return latestReadingDate;
+    }
+
+
 
 
     /**

@@ -31,6 +31,6 @@ public class GetEnergyConsumptionOfRoom {
         String label3 = "Please insert the final date/hour of the period you want to consider for the calculations in the following format: yyyy-MM-dd HH:mm. ";
         LocalDateTime finalDate = InputValidator.getStringDateTime(label3);
         System.out.println("The energy consumption of room " + mController.getRoomName()
-                + " is " + mController.resultWithTwoDecimalPlaces(mController.getEnergyConsumptionOfRoomInInterval(initialDate, finalDate),2) + " kWh.\n");
+                + " is " + mController.resultWithTwoDecimalPlaces(mController.getEnergyConsumptionOfRoomInInterval(initialDate, finalDate), 2) + " kWh.\n");
     }
 }

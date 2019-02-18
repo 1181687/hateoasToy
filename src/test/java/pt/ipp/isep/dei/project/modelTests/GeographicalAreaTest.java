@@ -1507,4 +1507,111 @@ class GeographicalAreaTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void getDateLastTemperatureInTheAreaTest() {
+        // Arrange
+        // Instantiate GeoAreas
+        String nomeAG2 = "Região Norte";
+        GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
+        Location local2 = new Location(32.1496, 7.6109, 98);
+        AreaShape area2 = new AreaShape(10, 10, local2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+
+        String nomeAG1 = "Distrito Porto";
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
+        Location local1 = new Location(41.1496, -6.6109, 100);
+        AreaShape area1 = new AreaShape(10, 10, local1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        ag1.setInsertedIn(ag2);
+
+        String nomeAG = "Porto";
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
+        Location local = new Location(42.1496, -8.6109, 97);
+        AreaShape area = new AreaShape(10, 10, local);
+        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        ag.setInsertedIn(ag1);
+
+
+        // Instantiate Sensors
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Temperature");
+        Location locS0 = new Location(-1, 30, 50);
+        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        ag2.getSensorListInTheGeographicArea().addSensor(s0);
+
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Temperature");
+        Location locS1 = new Location(0, 30, 50);
+        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        ag2.getSensorListInTheGeographicArea().addSensor(s1);
+
+        // Instantiate Measurements
+        // Sensor0
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
+
+        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
+        Readings readings02 = new Readings(30, dataHoraDaMedicao02);
+
+        s0.addReadingsToList(readings01);
+        s0.addReadingsToList(readings02);
+
+        //Sensor1
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
+
+        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
+        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
+
+        s1.addReadingsToList(readings11);
+        s1.addReadingsToList(readings12);
+
+        Location location = new Location(0, 30, 50);
+
+        LocalDateTime expectedResult = LocalDateTime.of(2018,12,03,17,24);
+        SensorType type = new SensorType("Temperature");
+
+        //Act
+        LocalDateTime result = ag.getDateLastMeasurementByLocationType(location, type);
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void getDateLastTemperatureInTheAreaTestWithoutSensors() {
+        // Arrange
+        // Instantiate GeoAreas
+        String nomeAG2 = "Região Norte";
+        GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
+        Location local2 = new Location(32.1496, 7.6109, 98);
+        AreaShape area2 = new AreaShape(10, 10, local2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+
+        String nomeAG1 = "Distrito Porto";
+        GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
+        Location local1 = new Location(41.1496, -6.6109, 100);
+        AreaShape area1 = new AreaShape(10, 10, local1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        ag1.setInsertedIn(ag2);
+
+        String nomeAG = "Porto";
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
+        Location local = new Location(42.1496, -8.6109, 97);
+        AreaShape area = new AreaShape(10, 10, local);
+        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        ag.setInsertedIn(ag1);
+
+        Location location = new Location(0, 30, 50);
+        LocalDateTime expectedResult = null;
+        SensorType type = new SensorType("Temperature");
+
+        //Act
+        LocalDateTime result = ag.getDateLastMeasurementByLocationType(location, type);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
 }

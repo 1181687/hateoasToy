@@ -119,8 +119,8 @@ public class LampSpecsTest {
     public void testGetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("1 - Luminous Flux: 0.0");
-        expectedResult.add("2 - Nominal Power: 0.0");
+        expectedResult.add("Luminous Flux");
+        expectedResult.add("Nominal Power");
 
         // Act
         List<String> result = livingRoom.getDeviceByPosition(0).getSpecsList();
