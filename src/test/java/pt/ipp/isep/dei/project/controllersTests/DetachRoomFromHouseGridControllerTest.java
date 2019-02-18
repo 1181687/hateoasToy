@@ -105,16 +105,16 @@ class DetachRoomFromHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    void getRoomFromTheListOfRoomByAPosition() {
-        //Arrange
-        Room expectedResult = r1;
-        //Act
-        Room result = ctrl.getRoomFromTheListOfRoomByAPosition(1);
-        //Assert
-        assertEquals(result, expectedResult);
-    }
-
+    /* @Test
+     void getRoomFromTheListOfRoomByAPosition() {
+         //Arrange
+         Room expectedResult = r1;
+         //Act
+         Room result = ctrl.getRoomFromTheListOfRoomByAPosition(1);
+         //Assert
+         assertEquals(result, expectedResult);
+     }
+ */
     @Test
     void detachRoomFromGridList() {
         //Arrange

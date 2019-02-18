@@ -1,13 +1,14 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
+import pt.ipp.isep.dei.project.model.House;
 
 
 public class AddDeviceToRoom {
 
     private AddDeviceToRoomController mCtrl;
 
- /*    public AddDeviceToRoom(House house) {
+    public AddDeviceToRoom(House house) {
         this.mCtrl = new AddDeviceToRoomController(house);
     }
 
@@ -181,5 +182,5 @@ public class AddDeviceToRoom {
 
         mCtrl.createNewElectricWaterHeater(electricWaterHeaterDeviceName, maxHotTemperature, volumeOfWater, electricWaterHeaterNominalPower, performanceRatio);
         System.out.println("The Electric Water Heater was successfully created and added to the selected room.");
-    }*/
+    }
 }

@@ -4,20 +4,20 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class Fridge implements Device, Measurable {
-    private String mName;
-    private Room mLocation;
-    private FridgeSpecs mSpec;
-    private List<Readings> mReadings;
-    private boolean mIsActive;
-    private LocalDateTime mDeactivationDate;
+    private String mFridgeName;
+    private Room mFridgeLocation;
+    private FridgeSpecs mFridgeSpec;
+    private List<Readings> mFridgeReadings;
+    private boolean mIsFridgeActive;
+    private LocalDateTime mFridgeDeactivationDate;
 
     public Fridge(String name, Room location) {
-        this.mName = name;
-        this.mLocation = location;
-        this.mLocation.addDevice(this);
-        this.mSpec = new FridgeSpecs();
-        this.mIsActive = true;
-        this.mReadings = new ArrayList<>();
+        this.mFridgeName = name;
+        this.mFridgeLocation = location;
+        this.mFridgeLocation.addDevice(this);
+        this.mFridgeSpec = new FridgeSpecs();
+        this.mIsFridgeActive = true;
+        this.mFridgeReadings = new ArrayList<>();
     }
 
 
@@ -28,7 +28,7 @@ public class Fridge implements Device, Measurable {
      */
     @Override
     public double getNominalPower() {
-        return this.mSpec.getNominalPower();
+        return this.mFridgeSpec.getNominalPower();
     }
 
     /**
@@ -37,7 +37,7 @@ public class Fridge implements Device, Measurable {
      * @return the location.
      */
     public Room getLocation() {
-        return this.mLocation;
+        return this.mFridgeLocation;
     }
 
     /**
@@ -46,7 +46,7 @@ public class Fridge implements Device, Measurable {
      * @return name of device
      */
     public String getName() {
-        return this.mName;
+        return this.mFridgeName;
     }
 
     /**
@@ -55,7 +55,7 @@ public class Fridge implements Device, Measurable {
      * @return String
      */
     public String getType() {
-        return this.mSpec.getTypeName();
+        return this.mFridgeSpec.getTypeName();
     }
 
     /**
@@ -64,7 +64,7 @@ public class Fridge implements Device, Measurable {
      * @return Energy consumption of the device in a given day.
      */
     public double getEnergyConsumptionInADay() {
-        return this.mSpec.getEnergyConsumptionInADay();
+        return this.mFridgeSpec.getEnergyConsumptionInADay();
     }
 
 
@@ -76,10 +76,10 @@ public class Fridge implements Device, Measurable {
      * @return true if sets false if don't
      */
     public boolean setName(String name) {
-        if (this.mLocation.isDeviceNameExistant(name) || this.mName == name) {
+        if (this.mFridgeLocation.isDeviceNameExistant(name) || this.mFridgeName == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
-        this.mName = name;
+        this.mFridgeName = name;
         return true;
     }
 
@@ -90,12 +90,12 @@ public class Fridge implements Device, Measurable {
      * @return false if the location is equals to another device. True if not.
      */
     public boolean setLocation(Room location) {
-        if (this.mLocation.equals(location)) {
+        if (this.mFridgeLocation.equals(location)) {
             return false;
         }
-        this.mLocation.getDeviceList().remove(this);
-        this.mLocation = location;
-        this.mLocation.addDevice(this);
+        this.mFridgeLocation.getDeviceList().remove(this);
+        this.mFridgeLocation = location;
+        this.mFridgeLocation.addDevice(this);
         return true;
     }
 
@@ -105,7 +105,7 @@ public class Fridge implements Device, Measurable {
      * @return String with the attributes.
      */
     public String getDevSpecsAttributesToString() {
-        return this.mSpec.getAttributesToString();
+        return this.mFridgeSpec.getAttributesToString();
     }
 
     /**
@@ -116,9 +116,9 @@ public class Fridge implements Device, Measurable {
     public String getAttributesToString() {
 
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Name: " + mName + "\n");
+        attributes.append("1 - Name: " + mFridgeName + "\n");
         attributes.append("2 - Device Specifications\n");
-        attributes.append("3 - Location: " + mLocation.getName() + "\n");
+        attributes.append("3 - Location: " + mFridgeLocation.getName() + "\n");
         return attributes.toString();
     }
 
@@ -130,7 +130,7 @@ public class Fridge implements Device, Measurable {
      * @return the position of an attribute and the value of it.
      */
     public boolean setAttributesDevType(String attribute, Object value) {
-        return this.mSpec.setAttributeValue(attribute, value);
+        return this.mFridgeSpec.setAttributeValue(attribute, value);
     }
 
     /**
@@ -140,7 +140,7 @@ public class Fridge implements Device, Measurable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(this.mName);
+        return Objects.hash(this.mFridgeName);
     }
 
     /**
@@ -158,7 +158,7 @@ public class Fridge implements Device, Measurable {
             return false;
         }
         Device listOne = (Device) obj;
-        return this.mName.equalsIgnoreCase(listOne.getName());
+        return this.mFridgeName.equalsIgnoreCase(listOne.getName());
     }
 
     /**
@@ -167,7 +167,7 @@ public class Fridge implements Device, Measurable {
      * @return the number of attributes.
      */
     public int getNumberOfSpecsAttributes() {
-        return this.mSpec.getNumberOfAttributes();
+        return this.mFridgeSpec.getNumberOfAttributes();
     }
 
     /**
@@ -178,8 +178,8 @@ public class Fridge implements Device, Measurable {
     @Override
     public String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
-        nameLocation.append("Device: " + mName);
-        nameLocation.append(", located in room: " + mLocation.getName() + "\n");
+        nameLocation.append("Device: " + mFridgeName);
+        nameLocation.append(", located in room: " + mFridgeLocation.getName() + "\n");
         return nameLocation.toString();
     }
 
@@ -189,7 +189,7 @@ public class Fridge implements Device, Measurable {
      * @param readings Readings to be added.
      */
     public void addReadingsToTheList(Readings readings) {
-        this.mReadings.add(readings);
+        this.mFridgeReadings.add(readings);
     }
 
     /**
@@ -215,7 +215,7 @@ public class Fridge implements Device, Measurable {
      */
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
         List<Readings> readingsList = new ArrayList<>();
-        for (Readings readings : this.mReadings) {
+        for (Readings readings : this.mFridgeReadings) {
             if (!startDate.isAfter(readings.getDateTime()) && !endDate.isBefore(readings.getDateTime())) {
                 readingsList.add(readings);
             }
@@ -245,8 +245,8 @@ public class Fridge implements Device, Measurable {
      * method that set the deactivate device, turning it to false and giving a date
      */
     public void setDeactivateDevice() {
-        this.mIsActive = false;
-        this.mDeactivationDate = LocalDateTime.now();
+        this.mIsFridgeActive = false;
+        this.mFridgeDeactivationDate = LocalDateTime.now();
     }
 
     /**
@@ -255,7 +255,7 @@ public class Fridge implements Device, Measurable {
      * @return an active device.
      */
     public boolean getIsActive() {
-        return mIsActive;
+        return mIsFridgeActive;
     }
 
     /**
@@ -280,7 +280,7 @@ public class Fridge implements Device, Measurable {
      */
     @Override
     public List<String> getSpecsList() {
-        return mSpec.getSpecsList();
+        return mFridgeSpec.getSpecsList();
     }
 
     /**
@@ -291,10 +291,10 @@ public class Fridge implements Device, Measurable {
      */
     @Override
     public Object getAttributeValue(String attributeName) {
-        return mSpec.getAttributeValue(attributeName);
+        return mFridgeSpec.getAttributeValue(attributeName);
     }
 
     public String getSpecsToString() {
-        return this.mSpec.getAttributesToString();
+        return this.mFridgeSpec.getAttributesToString();
     }
 }
