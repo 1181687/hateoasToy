@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
 
@@ -39,5 +40,9 @@ public class GetEnergyConsumptionOfRoomInAnIntervalController {
 
     public double getEnergyConsumptionOfRoomInInterval(LocalDateTime initialDate, LocalDateTime finalDate) {
         return mSelectedRoom.getEnergyConsumptionInAnInterval(initialDate, finalDate);
+    }
+
+    public double resultWithTwoDecimalPlaces(double value, int decimalPlaces){
+        return Utils.round(value, decimalPlaces);
     }
 }
