@@ -288,21 +288,6 @@ public class InputValidator {
         return x;
     }
 
-    public static void getNumberIfDouble(String dataType) {
-        Scanner in = new Scanner(System.in).useLocale(Locale.ENGLISH);
-        Number x = -1;
-        boolean flag = true;
-        do {
-
-            String doubleValue = "Double";
-            if (dataType.equals((doubleValue))) {
-                x = in.nextDouble();
-                break;
-            }
-        } while (flag);
-    }
-
-
     public static Number getNumber(String label, String dataType) {
         Scanner in = new Scanner(System.in).useLocale(Locale.ENGLISH);
         Number x = -1;
@@ -316,9 +301,11 @@ public class InputValidator {
                     x = in.nextInt();
                     break;
                 }
-                getNumberIfDouble(dataType);
-                break;
-
+                String doubleValue = "Double";
+                if (dataType.equals((doubleValue))) {
+                    x = in.nextDouble();
+                    break;
+                }
             } catch (Exception e) {
                 System.out.println("Error! Please insert a valid number.");
                 flag = true;
