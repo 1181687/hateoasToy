@@ -385,10 +385,8 @@ public class House {
     }
 
     public boolean gridNameAlreadyExists(String name) {
-        int listSize = this.mListHouseGrids.size();
-
-        for (int i = 0; i < listSize; i++) {
-            if (this.mListHouseGrids.get(i).getName().equalsIgnoreCase(name)) {
+        for (HouseGrid houseGrid : mListHouseGrids) {
+            if (houseGrid.getName().equalsIgnoreCase(name)){
                 return true;
             }
         }
