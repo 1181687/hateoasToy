@@ -1815,5 +1815,27 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void testAddGridTrue(){
+        //Arrange
+        String gridName = "main grid";
+        HouseGrid houseGrid = new HouseGrid(gridName);
+        //Act
+        boolean result = this.house.addGrid(houseGrid);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testAddGridFalse(){
+        //Arrange
+        String gridName = "main grid";
+        HouseGrid houseGrid = new HouseGrid(gridName);
+        this.house.addGrid(houseGrid);
+        //Act
+        boolean result = this.house.addGrid(houseGrid);
+        //Assert
+        assertFalse(result);
+    }
 }
 
