@@ -11,6 +11,9 @@ import java.util.Scanner;
 
 public class InputValidator {
 
+    private InputValidator() {
+    }
+
     /**
      * Method that keeps displaying the string label until the input is a int.
      *

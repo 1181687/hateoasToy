@@ -4,6 +4,9 @@ import java.time.LocalDateTime;
 
 public class Menu {
 
+    private Menu() {
+    }
+
     private static final String CHOOSE_OPTIONS = "Choose one of the options:";
 
     private static final String RETURN_MENU = "0-Return to the previous menu";
