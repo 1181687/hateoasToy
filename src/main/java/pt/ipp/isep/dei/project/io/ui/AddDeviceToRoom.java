@@ -12,7 +12,7 @@ public class AddDeviceToRoom {
         this.mCtrl = new AddDeviceToRoomController(house);
     }
 
-   public void run() {
+    public void run() {
         boolean flag = true;
         int indexSelectedRoom = -1;
 
@@ -28,87 +28,63 @@ public class AddDeviceToRoom {
                 mCtrl.getRoom(indexSelectedRoom);
             } else {
                 System.out.println("There are no rooms available. Please create one\n");
-
             }
-
-
             //SELECT A DEVICE TYPE
             String label0 = "Please select the Device1 Type: \n" + mCtrl.getDeviceTypeListToString() + "\r0 - Exit";
             int selectedType = InputValidator.getIntRange(label0, 0, mCtrl.getNumberOfDeviceTypes());
             if (selectedType == 0) {
                 continue;
             }
-
-            int option = selectedType;
-
-            while (option != 0) {
-                switch (option) {
-                    case 1:
-                        //CREATION OF A FRIGDE
-                        creationOfFridge();
-                        option = 0;
-
-                        break;
-
-                    case 2:
-                        //CREATION OF A LAMP
-                        creationOfLamp();
-                        option = 0;
-
-                        break;
-
-                    case 3:
-                        //CREATION OF A DISH WASHER
-                        creationOfDishWasher();
-                        option = 0;
-
-                        break;
-                    case 4:
-                        //CREATION OF A WASHING MACHINE
-                        creationOfWashingMachine();
-
-                        option = 0;
-                        break;
-                    case 5:
-                        //CREATION OF A ELECTRIC WATER HEATER
-                        creationOfElectricWaterHeater();
-
-                        option = 0;
-                        break;
-                    default:
-                        System.out.println("Invalid option. Please choose a number between 1 and 5.");
-                }
-
-            }
+            selectADeviceType(selectedType);
             flag = false;
         }
-        String label = "Do you want to see the list of devices of the selected Room? (Y/N)";
-        String answer = InputValidator.confirmValidation(label);
-        if ("y".equals(answer) || "Y".equals(answer)) {
-            System.out.println(mCtrl.getDeviceListContentOfARoom(indexSelectedRoom));
-        } else {
-            return;
+        showUpdatedDeviceListOfRoom(indexSelectedRoom);
+    }
+
+    public void selectADeviceType(int selectedType) {
+
+        int option = selectedType;
+
+        while (option != 0) {
+            switch (option) {
+                case 1:
+                    //CREATION OF A FRIGDE
+                    creationOfFridge();
+                    option = 0;
+
+                    break;
+
+                case 2:
+                    //CREATION OF A LAMP
+                    creationOfLamp();
+                    option = 0;
+
+                    break;
+
+                case 3:
+                    //CREATION OF A DISH WASHER
+                    creationOfDishWasher();
+                    option = 0;
+
+                    break;
+                case 4:
+                    //CREATION OF A WASHING MACHINE
+                    creationOfWashingMachine();
+
+                    option = 0;
+                    break;
+                case 5:
+                    //CREATION OF A ELECTRIC WATER HEATER
+                    creationOfElectricWaterHeater();
+
+                    option = 0;
+                    break;
+                default:
+                    System.out.println("Invalid option. Please choose a number between 1 and 5.");
+            }
         }
     }
 
-
-    public void creationOfPrograms() {
-        String label34 = "How many programs has the washing machine?";
-        int numberOfPrograms = InputValidator.getIntPos(label34);
-        String programName = "";
-        double programDuration = 0;
-        double programEnergyConsumption = 0;
-        for (int i = 0; i < numberOfPrograms; i++) {
-            System.out.println("PROGRAM " + (i + 1));
-            String label45 = "What is the name of this program?";
-            programName = InputValidator.getString(label45);
-            String label46 = "What is the duration of this program?";
-            programDuration = InputValidator.getDoublePos(label46);
-            String label47 = "What is the energy consumption of this program?";
-            programEnergyConsumption = InputValidator.getDoublePos(label47);
-            mCtrl.addProgramToList(mCtrl.createNewProgram(programName, programDuration, programEnergyConsumption));
-        }
-    }
 
     public void creationOfFridge() {
         String label11 = "What is the name of the fridge?";
@@ -153,6 +129,7 @@ public class AddDeviceToRoom {
         System.out.println("The Dish Washer was successfully created and added to the selected room.");
     }
 
+
     public void creationOfWashingMachine() {
         String label41 = "What is the name of the washing machine?";
         String washingMachineDeviceName = InputValidator.getString(label41);
@@ -166,6 +143,24 @@ public class AddDeviceToRoom {
         mCtrl.createNewWashingMachine(washingMachineDeviceName, washingMachineNominalPower,
                 washingMachineCapacity);
         System.out.println("The Washing Machine was successfully created and added to the selected room.");
+    }
+
+    public void creationOfPrograms() {
+        String label34 = "How many programs has the washing machine?";
+        int numberOfPrograms = InputValidator.getIntPos(label34);
+        String programName = "";
+        double programDuration = 0;
+        double programEnergyConsumption = 0;
+        for (int i = 0; i < numberOfPrograms; i++) {
+            System.out.println("PROGRAM " + (i + 1));
+            String label45 = "What is the name of this program?";
+            programName = InputValidator.getString(label45);
+            String label46 = "What is the duration of this program?";
+            programDuration = InputValidator.getDoublePos(label46);
+            String label47 = "What is the energy consumption of this program?";
+            programEnergyConsumption = InputValidator.getDoublePos(label47);
+            mCtrl.addProgramToList(mCtrl.createNewProgram(programName, programDuration, programEnergyConsumption));
+        }
     }
 
     public void creationOfElectricWaterHeater() {
@@ -182,5 +177,15 @@ public class AddDeviceToRoom {
 
         mCtrl.createNewElectricWaterHeater(electricWaterHeaterDeviceName, maxHotTemperature, volumeOfWater, electricWaterHeaterNominalPower, performanceRatio);
         System.out.println("The Electric Water Heater was successfully created and added to the selected room.");
+    }
+
+    public void showUpdatedDeviceListOfRoom(int indexSelectedRoom) {
+        String label = "Do you want to see the list of devices of the selected Room? (Y/N)";
+        String answer = InputValidator.confirmValidation(label);
+        if ("y".equals(answer) || "Y".equals(answer)) {
+            System.out.println(mCtrl.getDeviceListContentOfARoom(indexSelectedRoom));
+        } else {
+            return;
+        }
     }
 }
