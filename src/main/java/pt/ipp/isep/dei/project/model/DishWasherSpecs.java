@@ -19,6 +19,7 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     public DishWasherSpecs() {
         this.mTypeName = "Dishwasher";
+        this.mProgramList = new ArrayList<>();
     }
 
     public String getTypeName() {

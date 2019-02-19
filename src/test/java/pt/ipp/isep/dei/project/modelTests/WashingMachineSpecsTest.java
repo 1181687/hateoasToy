@@ -398,4 +398,18 @@ class WashingMachineSpecsTest {
         // assert
         assertEquals(attributeDataType, result);
     }
+
+    @Test
+    public void newProgram() {
+        //Arrange
+        String programName = "Economic";
+        double duration = 0.5;
+        double energyConsumption = 12.0;
+        Programmable programmable = this.washingMachine.asProgrammable();
+        Program expectedResult = new Program(programName, duration, energyConsumption);
+        //Act
+        Program result = programmable.newProgram(programName, duration, energyConsumption);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 }

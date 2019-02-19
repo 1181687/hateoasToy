@@ -22,6 +22,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
 
     public WashingMachineSpecs() {
         this.mTypeName = "Washing Machine";
+        this.mProgramList = new ArrayList<>();
     }
 
     public String getTypeName() {
