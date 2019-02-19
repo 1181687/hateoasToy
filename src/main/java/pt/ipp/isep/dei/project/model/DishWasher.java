@@ -62,6 +62,11 @@ public class DishWasher implements Device, Measurable {
         return specs.getTypeName();
     }
 
+    @Override
+    public List<Readings> getReadings() {
+        return this.mDWReadingsList;
+    }
+
     /**
      * Method that gets the energy consumption in a day.
      *
