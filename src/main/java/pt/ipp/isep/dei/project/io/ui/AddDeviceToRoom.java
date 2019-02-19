@@ -15,7 +15,6 @@ public class AddDeviceToRoom {
     public void run() {
         boolean flag = true;
         int indexSelectedRoom = -1;
-
         while (flag) {
             //SELECT A ROOM
             String exit = "\r0 - Exit";
