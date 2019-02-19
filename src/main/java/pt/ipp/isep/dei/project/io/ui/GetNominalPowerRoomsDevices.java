@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.model.House;
 public class GetNominalPowerRoomsDevices {
 
     private GetNominalPowerRoomsDevicesController mController;
+    private static final String EXIT_OPTION = "0 - Exit";
 
     public GetNominalPowerRoomsDevices(House house) {
         this.mController = new GetNominalPowerRoomsDevicesController(house);
@@ -13,9 +14,8 @@ public class GetNominalPowerRoomsDevices {
 
     public void chooseSubsetOfRoomsDevices() {
         if (!mController.isGridListEmpty()) {
-            String exitMenu = "0 - Exit";
             String label1 = "Please select a House Grid to check the total nominal power of a subset of rooms " +
-                    "and/or devices of your choosing connected to that grid: \n" + mController.getHouseGridsListToString() + exitMenu;
+                    "and/or devices of your choosing connected to that grid: \n" + mController.getHouseGridsListToString() + EXIT_OPTION;
             int positionHG = InputValidator.getIntRange(label1, 0, mController.getHouseGridListSize());
             if (positionHG == 0) {
                 return;
@@ -45,10 +45,9 @@ public class GetNominalPowerRoomsDevices {
 
     public void selectDevicesAndRooms() {
         boolean flag = true;
-        String exit = "0 - Exit";
         do {
             String label2 = "Please select a room to check its nominal power or the nominal power of a subset " +
-                    "of devices located in that room: \n" + mController.getRoomListInHouseGridToString() + exit;
+                    "of devices located in that room: \n" + mController.getRoomListInHouseGridToString() + EXIT_OPTION;
             int positionRoom = InputValidator.getIntRange(label2, 0, mController.getRoomListInHouseGridSize()) - 1;
 
             if (positionRoom == -1) {
@@ -72,10 +71,9 @@ public class GetNominalPowerRoomsDevices {
     }
 
     public void selectDevice(int positionRoom) {
-        String exit = "0 - Exit";
         String label3 = "Please select a device to check its nominal power: \n"
                 + mController.getDeviceListToString(positionRoom) +
-                (mController.getDeviceListSize(positionRoom) + 1) + " - Total nominal power of room\n" + exit;
+                (mController.getDeviceListSize(positionRoom) + 1) + " - Total nominal power of room\n" + EXIT_OPTION;
         int positionDevice = InputValidator.getIntRange(label3, 0, mController.getDeviceListSize(positionRoom) + 1);
         if (positionDevice == 0) {
             return;

@@ -20,6 +20,7 @@ public class InputValidator {
     public static int getInt(String label) {
         Scanner in = new Scanner(System.in);
         int x = -1;
+        String errorMessage = "Error! Please insert a integer number.";
         boolean flag;
         do {
             System.out.println(label);
@@ -27,7 +28,7 @@ public class InputValidator {
                 flag = false;
                 x = in.nextInt();
             } catch (Exception e) {
-                System.out.println("Error! Please insert a valid number.");
+                System.out.println(errorMessage);
                 flag = true;
                 in.nextLine();
             }
@@ -44,6 +45,7 @@ public class InputValidator {
     public static int getIntPos(String label) {
         Scanner in = new Scanner(System.in);
         int x = -1;
+        String errorMessageInteger = "Error! Please insert a positive integer number.";
         boolean flag;
         do {
             System.out.println(label);
@@ -55,7 +57,7 @@ public class InputValidator {
                 }
 
             } catch (Exception e) {
-                System.out.println("Error! Please insert a positive integer number.");
+                System.out.println(errorMessageInteger);
                 flag = true;
                 in.nextLine();
             }
@@ -73,6 +75,7 @@ public class InputValidator {
     public static double getDoublePos(String label) {
         Scanner in = new Scanner(System.in);
         double x = -1;
+        String positiveNumberMessage = "Error! Please insert a positive number.";
         boolean flag;
         do {
             System.out.println(label);
@@ -84,7 +87,7 @@ public class InputValidator {
                 }
 
             } catch (Exception e) {
-                System.out.println("Error! Please insert a positive number.");
+                System.out.println(positiveNumberMessage);
                 flag = true;
                 in.nextLine();
             }
@@ -162,6 +165,7 @@ public class InputValidator {
     public static String getString(String label) {
         Scanner in = new Scanner(System.in);
         String str = "";
+        String emptyNamesMessage = "Error! Empty names are not valid. Please insert a valid name";
         boolean flag;
         do {
             System.out.println(label);
@@ -173,7 +177,7 @@ public class InputValidator {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                System.out.println("Error! Empty names are not valid. Please insert a valid name");
+                System.out.println(emptyNamesMessage);
                 flag = true;
             }
         } while (flag);
@@ -189,6 +193,7 @@ public class InputValidator {
     public static String confirmValidation(String label) {
         Scanner in = new Scanner(System.in);
         String str = "";
+        String confirmationMessage = "Error! Please, use 'y' or 'n' to answer.";
         boolean flag;
         do {
             System.out.println(label);
@@ -200,7 +205,7 @@ public class InputValidator {
                     throw new Exception();
                 }
             } catch (Exception e) {
-                System.out.println("Error! Please, use 'y' or 'n' to answer.");
+                System.out.println(confirmationMessage);
                 flag = true;
             }
         } while (flag);
@@ -279,6 +284,7 @@ public class InputValidator {
     public static double getDouble(String label) {
         Scanner in = new Scanner(System.in);
         double x = -1;
+        String errorMessageDouble = "Error! Please insert a decimal number.";
         boolean flag;
         do {
             System.out.println(label);
@@ -286,7 +292,7 @@ public class InputValidator {
                 flag = false;
                 x = in.nextDouble();
             } catch (Exception e) {
-                System.out.println("Error! Please insert a valid number.");
+                System.out.println(errorMessageDouble);
                 flag = true;
                 in.nextLine();
             }
@@ -297,6 +303,7 @@ public class InputValidator {
     public static Number getNumber(String label, String dataType) {
         Scanner in = new Scanner(System.in).useLocale(Locale.ENGLISH);
         Number x = -1;
+        String errorMessage = "This is an invalid number! Please insert another one.";
         boolean flag;
         do {
             System.out.println(label);
@@ -313,7 +320,7 @@ public class InputValidator {
                     break;
                 }
             } catch (Exception e) {
-                System.out.println("Error! Please insert a valid number.");
+                System.out.println(errorMessage);
                 flag = true;
                 in.nextLine();
             }
