@@ -4,20 +4,20 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class ElectricWaterHeater implements Device, Measurable {
-    private String mEWHName;
-    private Room mEWHLocation;
-    private ElectricWaterHeaterSpecs mEWHSpec;
-    private List<Readings> mEWHReadings;
-    private boolean mIsEWHActive;
-    private LocalDateTime mEWHDeactivationDate;
+    private String name;
+    private Room location;
+    private ElectricWaterHeaterSpecs specs;
+    private List<Readings> readings;
+    private boolean isActive;
+    private LocalDateTime deactivationDate;
 
     public ElectricWaterHeater(String name, Room location) {
-        this.mEWHName = name;
-        this.mEWHLocation = location;
-        this.mEWHLocation.addDevice(this);
-        this.mEWHSpec = new ElectricWaterHeaterSpecs();
-        this.mIsEWHActive = true;
-        this.mEWHReadings = new ArrayList<>();
+        this.name = name;
+        this.location = location;
+        this.location.addDevice(this);
+        this.specs = new ElectricWaterHeaterSpecs();
+        this.isActive = true;
+        this.readings = new ArrayList<>();
 
     }
 
@@ -28,7 +28,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      */
     @Override
     public double getNominalPower() {
-        return this.mEWHSpec.getNominalPower();
+        return this.specs.getNominalPower();
     }
 
     /**
@@ -37,7 +37,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return the location.
      */
     public Room getLocation() {
-        return this.mEWHLocation;
+        return this.location;
     }
 
     /**
@@ -46,7 +46,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return name of device
      */
     public String getName() {
-        return this.mEWHName;
+        return this.name;
     }
 
     /**
@@ -55,7 +55,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return String
      */
     public String getType() {
-        return this.mEWHSpec.getTypeName();
+        return this.specs.getTypeName();
     }
 
     /**
@@ -64,7 +64,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return Energy consumption of the device in a given day.
      */
     public double getEnergyConsumptionInADay() {
-        return this.mEWHSpec.getEnergyConsumptionInADay();
+        return this.specs.getEnergyConsumptionInADay();
     }
 
 
@@ -76,10 +76,10 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return true if sets false if don't
      */
     public boolean setName(String name) {
-        if (this.mEWHLocation.isDeviceNameExistant(name) || this.mEWHName == name) {
+        if (this.location.isDeviceNameExistant(name) || this.name == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
-        this.mEWHName = name;
+        this.name = name;
         return true;
     }
 
@@ -90,12 +90,12 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return false if the location is equals to another device. True if not.
      */
     public boolean setLocation(Room location) {
-        if (this.mEWHLocation.equals(location)) {
+        if (this.location.equals(location)) {
             return false;
         }
-        this.mEWHLocation.getDeviceList().remove(this);
-        this.mEWHLocation = location;
-        this.mEWHLocation.addDevice(this);
+        this.location.getDeviceList().remove(this);
+        this.location = location;
+        this.location.addDevice(this);
         return true;
     }
 
@@ -105,7 +105,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return String with the attributes.
      */
     public String getDevSpecsAttributesToString() {
-        return this.mEWHSpec.getAttributesToString();
+        return this.specs.getAttributesToString();
     }
 
     /**
@@ -116,9 +116,9 @@ public class ElectricWaterHeater implements Device, Measurable {
     public String getAttributesToString() {
 
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Name: " + mEWHName + "\n");
+        attributes.append("1 - Name: " + name + "\n");
         attributes.append("2 - Device1 Specifications\n");
-        attributes.append("3 - Location: " + mEWHLocation.getName() + "\n");
+        attributes.append("3 - Location: " + location.getName() + "\n");
         return attributes.toString();
     }
 
@@ -130,7 +130,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return the position of an attribute and the value of it.
      */
     public boolean setAttributesDevType(String attribute, Object value) {
-        return this.mEWHSpec.setAttributeValue(attribute, value);
+        return this.specs.setAttributeValue(attribute, value);
     }
 
     /**
@@ -140,7 +140,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(this.mEWHName);
+        return Objects.hash(this.name);
     }
 
     /**
@@ -158,7 +158,7 @@ public class ElectricWaterHeater implements Device, Measurable {
             return false;
         }
         Device listOne = (Device) obj;
-        return this.mEWHName.equalsIgnoreCase(listOne.getName());
+        return this.name.equalsIgnoreCase(listOne.getName());
     }
 
     /**
@@ -167,7 +167,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return the number of attributes.
      */
     public int getNumberOfSpecsAttributes() {
-        return this.mEWHSpec.getNumberOfAttributes();
+        return this.specs.getNumberOfAttributes();
     }
 
     /**
@@ -178,8 +178,8 @@ public class ElectricWaterHeater implements Device, Measurable {
     @Override
     public String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
-        nameLocation.append("Device: " + mEWHName);
-        nameLocation.append(", located in room: " + mEWHLocation.getName() + "\n");
+        nameLocation.append("Device: " + name);
+        nameLocation.append(", located in room: " + location.getName() + "\n");
         return nameLocation.toString();
     }
 
@@ -189,7 +189,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @param readings Readings to be added.
      */
     public void addReadingsToTheList(Readings readings) {
-        this.mEWHReadings.add(readings);
+        this.readings.add(readings);
     }
 
     /**
@@ -214,7 +214,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      */
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
         List<Readings> readingsList = new ArrayList<>();
-        for (Readings readings : this.mEWHReadings) {
+        for (Readings readings : this.readings) {
             if (!startDate.isAfter(readings.getDateTime()) && !endDate.isBefore(readings.getDateTime())) {
                 readingsList.add(readings);
             }
@@ -240,12 +240,16 @@ public class ElectricWaterHeater implements Device, Measurable {
         return totalEnergyConsumption;
     }
 
+    public LocalDateTime getDeactivationDate() {
+        return deactivationDate;
+    }
+
     /**
      * method that set the deactivate device, turning it to false and giving a date
      */
     public void setDeactivateDevice() {
-        this.mIsEWHActive = false;
-        this.mEWHDeactivationDate = LocalDateTime.now();
+        this.isActive = false;
+        this.deactivationDate = LocalDateTime.now();
     }
 
     /**
@@ -254,7 +258,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return an active device.
      */
     public boolean getIsActive() {
-        return mIsEWHActive;
+        return isActive;
     }
 
     /**
@@ -280,7 +284,7 @@ public class ElectricWaterHeater implements Device, Measurable {
 
     @Override
     public List<String> getSpecsList() {
-        return mEWHSpec.getSpecsList();
+        return specs.getSpecsList();
     }
 
     /**
@@ -291,7 +295,7 @@ public class ElectricWaterHeater implements Device, Measurable {
 
     @Override
     public Object getAttributeValue(String attributeName) {
-        return mEWHSpec.getAttributeValue(attributeName);
+        return specs.getAttributeValue(attributeName);
     }
 
 
@@ -301,7 +305,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      */
     @Override
     public String getSpecsToString() {
-        return this.mEWHSpec.getAttributesToString();
+        return this.specs.getAttributesToString();
     }
 
 
@@ -310,6 +314,6 @@ public class ElectricWaterHeater implements Device, Measurable {
      * @return type data of the attribute (ex.integer, double)
      */
     public String getAttributeDataType(String attributeName) {
-        return mEWHSpec.getAttributeDataType(attributeName);
+        return specs.getAttributeDataType(attributeName);
     }
 }
