@@ -298,8 +298,8 @@ public class Fridge implements Device, Measurable {
         return this.mFridgeSpec.getAttributesToString();
     }
 
-    public String getAttributeType(String attributeName) {
-        return mFridgeSpec.getAttributeType(attributeName);
+    public String getAttributeDataType(String attributeName) {
+        return mFridgeSpec.getAttributeDataType(attributeName);
     }
 
     @Override

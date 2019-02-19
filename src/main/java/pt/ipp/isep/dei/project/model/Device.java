@@ -148,7 +148,7 @@ public interface Device extends Measurable {
 
     String getSpecsToString();
 
-    String getAttributeType(String attributeName);
+    String getAttributeDataType(String attributeName);
 
     boolean isProgrammable();
 }
