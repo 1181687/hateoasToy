@@ -307,6 +307,17 @@ class FridgeTest {
     }
 
     @Test
+    void getDeactivationDate() {
+        // arrange
+        LocalDateTime date = LocalDateTime.now();
+        fridge.setDeactivateDevice();
+        // act
+        LocalDateTime result = fridge.getDeactivationDate();
+        // assert
+        assertEquals(date, result);
+    }
+
+    @Test
     void getIsActiveTrueTest() {
         // Act
         boolean result = fridge.getIsActive();

@@ -247,7 +247,7 @@ public class WashingMachine implements Device, Measurable {
     }
 
     public LocalDateTime getDeactivationDate() {
-        return deactivationDate;
+        return this.deactivationDate;
     }
 
     /**

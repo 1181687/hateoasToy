@@ -242,7 +242,7 @@ public class Fridge implements Device, Measurable {
     }
 
     public LocalDateTime getDeactivationDate() {
-        return deactivationDate;
+        return this.deactivationDate;
     }
 
     /**

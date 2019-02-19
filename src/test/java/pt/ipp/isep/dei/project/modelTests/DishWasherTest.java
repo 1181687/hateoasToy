@@ -306,6 +306,17 @@ class DishWasherTest {
     }
 
     @Test
+    void getDeactivationDate() {
+        // arrange
+        LocalDateTime date = LocalDateTime.now();
+        dishwasher.setDeactivateDevice();
+        // act
+        LocalDateTime result = dishwasher.getDeactivationDate();
+        // assert
+        assertEquals(date, result);
+    }
+
+    @Test
     void getIsActiveTrueTest() {
         // Act
         boolean result = dishwasher.getIsActive();
@@ -316,7 +327,7 @@ class DishWasherTest {
 
     @Test
     void getIsActiveFalseTest() {
-        // Assert
+        // arrange
         dishwasher.setDeactivateDevice();
 
         // Act

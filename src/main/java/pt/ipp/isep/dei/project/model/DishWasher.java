@@ -249,7 +249,7 @@ public class DishWasher implements Device, Measurable {
     }
 
     public LocalDateTime getDeactivationDate() {
-        return deactivationDate;
+        return this.deactivationDate;
     }
 
     /**
