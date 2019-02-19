@@ -148,7 +148,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
         }
     }
 
-    public String getAttributeType(String attributeName) {
+    public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 }

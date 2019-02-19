@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.FridgeType;
 import pt.ipp.isep.dei.project.model.Room;
@@ -14,13 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class FridgeSpecsTest {
     Room kitchen;
+    Device fridge;
 
     @BeforeEach
     public void StartUp() {
         Dimension dim = new Dimension(3, 5, 6);
         kitchen = new Room("Kitchen", 1, dim);
         FridgeType fridgeType = new FridgeType();
-        fridgeType.createDevice("Fridge Ariston", kitchen);
+        fridge = fridgeType.createDevice("Fridge Ariston", kitchen);
     }
 
     @Test
@@ -269,5 +271,15 @@ public class FridgeSpecsTest {
         boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 50);
         // Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void getAttributeDataTypeTest() {
+        // arrange
+        String attributeDataType = "Integer";
+        // act
+        String result = fridge.getAttributeDataType("Integer");
+        // assert
+        assertEquals(attributeDataType, result);
     }
 }

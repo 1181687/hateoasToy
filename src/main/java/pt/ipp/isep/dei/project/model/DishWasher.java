@@ -306,7 +306,7 @@ public class DishWasher implements Device, Measurable {
         return this.mDWSpec.getAttributesToString();
     }
 
-    public String getAttributeType(String attributeName) {
-        return mDWSpec.getAttributeType(attributeName);
+    public String getAttributeDataType(String attributeName) {
+        return mDWSpec.getAttributeDataType(attributeName);
     }
 }
