@@ -60,6 +60,20 @@ public class WashingMachineSpecs implements DeviceSpecs {
 
     /**
      * set method
+     *
+     * @param duration
+     */
+    private boolean setDuration(Object duration) {
+        double wmduration = (Double) duration;
+        if (Utils.isSameDouble(this.mDuration, wmduration) || Utils.isSameDouble(wmduration, 0)) {
+            return false;
+        }
+        this.mDuration = wmduration;
+        return true;
+    }
+
+    /**
+     * set method
      * @param wmNominalPower
      */
     private boolean setNominalPower(Object wmNominalPower) {
@@ -68,6 +82,20 @@ public class WashingMachineSpecs implements DeviceSpecs {
             return false;
         }
         this.mNominalPower = nomPower;
+        return true;
+    }
+
+    /**
+     * set method
+     *
+     * @param wmEnergyConsumption
+     */
+    private boolean setEnergyConsumption(Object wmEnergyConsumption) {
+        double energyConsumption = (Double) wmEnergyConsumption;
+        if (Utils.isSameDouble(this.mEnergyConsumption, energyConsumption)) {
+            return false;
+        }
+        this.mEnergyConsumption = energyConsumption;
         return true;
     }
 
@@ -128,14 +156,12 @@ public class WashingMachineSpecs implements DeviceSpecs {
                 return false;
             case ATTRIBUTE_DURATION:
                 if (attributeValue instanceof Number) {
-                    this.mDuration = ((Number) attributeValue).doubleValue();
-                    return true;
+                    return setDuration(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_ENERGY_CONSUMPTION:
                 if (attributeValue instanceof Number) {
-                    this.mEnergyConsumption = ((Number) attributeValue).doubleValue();
-                    return true;
+                    return setEnergyConsumption(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:

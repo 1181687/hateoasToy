@@ -368,4 +368,24 @@ class WashingMachineSpecsTest {
         // Assert
         assertFalse(result);
     }
+
+    @Test
+    public void testSetAttributeDurationSameValue() {
+        // Arrange
+        room.getDeviceByPosition(0).setAttributesDevType("Duration", 100.0);
+        // Act
+        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Duration", 100.0);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeEnergyConsumptionSameValue() {
+        // Arrange
+        room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 100.0);
+        // Act
+        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 100.0);
+        // Assert
+        assertFalse(result);
+    }
 }
