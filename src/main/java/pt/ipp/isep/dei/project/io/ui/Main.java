@@ -9,14 +9,13 @@ import java.util.List;
 
 public class Main {
 
-
+    private static final String VOLUME_OF_WATER = "Volume Of Water To Heat";
+    private static final String HOT_WATER_TEMPERATURE = "Hot-Water Temperature";
+    private static final String NOMINAL_POWER = "Nominal Power";
+    private static final String PERFORMANCE_RATIO = "Performance Ratio";
+    private static final String CAPACITY = "Capacity";
 
     public static void main(String[] args) {
-        final String VOLUME_OF_WATER = "Volume Of Water To Heat";
-        final String HOT_WATER_TEMPERATURE= "Hot-Water Temperature";
-        final String NOMINAL_POWER = "Nominal Power";
-        final String PERFORMANCE_RATIO = "Performance Ratio";
-        final String CAPACITY = "Capacity";
 
 
         String configFile = "Configuration.properties";
