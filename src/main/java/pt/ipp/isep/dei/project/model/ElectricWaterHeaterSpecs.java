@@ -27,7 +27,6 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         return mTypeName;
     }
 
-
     /**
      * Method that sets the volume of water to be heated.
      *
@@ -65,9 +64,8 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     public double getEnergyConsumptionInADay() {
         double specificHeatOfWater = 1.163 / 1000;
         double differenceInTemperature = mHotWaterTemperature - mColdWaterTemperature;
-        double formula = specificHeatOfWater * mVolumeOfWaterToHeat * differenceInTemperature
+        return specificHeatOfWater * mVolumeOfWaterToHeat * differenceInTemperature
                 * mPerformanceRatio;
-        return formula;
     }
 
     /**
@@ -94,7 +92,6 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         this.mHotWaterTemperature = hwt;
         return true;
     }
-
 
     /**
      * method that determine if the value of the performanceRatio is the same that the method receive.
@@ -150,6 +147,11 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         return 3;
     }
 
+    /**
+     * TODO
+     *
+     * @return
+     */
     @Override
     public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
@@ -160,6 +162,11 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         return result;
     }
 
+    /**
+     * TODO
+     * @param attributeName
+     * @return
+     */
     @Override
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
@@ -178,6 +185,12 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         }
     }
 
+    /**
+     * TODO
+     * @param attributeName
+     * @param attributeValue
+     * @return
+     */
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
             case ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT:
@@ -210,6 +223,11 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         }
     }
 
+    /**
+     * TODO
+     * @param attributeName
+     * @return
+     */
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }

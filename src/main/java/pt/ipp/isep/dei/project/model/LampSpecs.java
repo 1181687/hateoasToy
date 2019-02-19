@@ -121,6 +121,12 @@ public class LampSpecs implements DeviceSpecs {
         return result;
     }
 
+    /**
+     * TODO
+     *
+     * @param attributeName
+     * @return
+     */
     @Override
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
@@ -135,6 +141,12 @@ public class LampSpecs implements DeviceSpecs {
         }
     }
 
+    /**
+     * TODO
+     * @param attributeName
+     * @param attributeValue
+     * @return
+     */
     @Override
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
@@ -158,6 +170,11 @@ public class LampSpecs implements DeviceSpecs {
         }
     }
 
+    /**
+     * TODO
+     * @param attributeName
+     * @return
+     */
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
