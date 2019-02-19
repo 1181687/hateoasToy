@@ -20,7 +20,7 @@ public class InputValidator {
     public static int getInt(String label) {
         Scanner in = new Scanner(System.in);
         int x = -1;
-        String errorMessage = "Error! Please insert a valid number.";
+        String errorMessage = "Error! Please insert a integer number.";
         boolean flag;
         do {
             System.out.println(label);
@@ -284,7 +284,7 @@ public class InputValidator {
     public static double getDouble(String label) {
         Scanner in = new Scanner(System.in);
         double x = -1;
-        String errorMessageDouble = "Error! Please insert a valid number.";
+        String errorMessageDouble = "Error! Please insert a decimal number.";
         boolean flag;
         do {
             System.out.println(label);
