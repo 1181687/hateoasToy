@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -300,7 +301,7 @@ class LampTest {
     @Test
     void getDeactivationDate() {
         // arrange
-        LocalDateTime date = LocalDateTime.now();
+        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
         lamp.setDeactivateDevice();
         // act
         LocalDateTime result = lamp.getDeactivationDate();
