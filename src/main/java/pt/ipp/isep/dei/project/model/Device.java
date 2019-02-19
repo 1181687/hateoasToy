@@ -149,4 +149,6 @@ public interface Device extends Measurable {
     String getSpecsToString();
 
     String getAttributeDataType(String attributeName);
+
+    LocalDateTime getDeactivationDate();
 }

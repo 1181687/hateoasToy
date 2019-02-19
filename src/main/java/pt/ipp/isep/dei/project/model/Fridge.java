@@ -1,23 +1,24 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Fridge implements Device, Measurable {
-    private String mFridgeName;
-    private Room mFridgeLocation;
-    private FridgeSpecs mFridgeSpec;
-    private List<Readings> mFridgeReadings;
-    private boolean mIsFridgeActive;
-    private LocalDateTime mFridgeDeactivationDate;
+    private String name;
+    private Room location;
+    private FridgeSpecs specs;
+    private List<Readings> readings;
+    private boolean isActive;
+    private LocalDateTime deactivationDate;
 
     public Fridge(String name, Room location) {
-        this.mFridgeName = name;
-        this.mFridgeLocation = location;
-        this.mFridgeLocation.addDevice(this);
-        this.mFridgeSpec = new FridgeSpecs();
-        this.mIsFridgeActive = true;
-        this.mFridgeReadings = new ArrayList<>();
+        this.name = name;
+        this.location = location;
+        this.location.addDevice(this);
+        this.specs = new FridgeSpecs();
+        this.isActive = true;
+        this.readings = new ArrayList<>();
     }
 
 
@@ -28,7 +29,7 @@ public class Fridge implements Device, Measurable {
      */
     @Override
     public double getNominalPower() {
-        return this.mFridgeSpec.getNominalPower();
+        return this.specs.getNominalPower();
     }
 
     /**
@@ -37,7 +38,7 @@ public class Fridge implements Device, Measurable {
      * @return the location.
      */
     public Room getLocation() {
-        return this.mFridgeLocation;
+        return this.location;
     }
 
     /**
@@ -46,7 +47,7 @@ public class Fridge implements Device, Measurable {
      * @return name of device
      */
     public String getName() {
-        return this.mFridgeName;
+        return this.name;
     }
 
     /**
@@ -55,7 +56,7 @@ public class Fridge implements Device, Measurable {
      * @return String
      */
     public String getType() {
-        return this.mFridgeSpec.getTypeName();
+        return this.specs.getTypeName();
     }
 
     /**
@@ -64,7 +65,7 @@ public class Fridge implements Device, Measurable {
      * @return Energy consumption of the device in a given day.
      */
     public double getEnergyConsumptionInADay() {
-        return this.mFridgeSpec.getEnergyConsumptionInADay();
+        return this.specs.getEnergyConsumptionInADay();
     }
 
 
@@ -76,10 +77,10 @@ public class Fridge implements Device, Measurable {
      * @return true if sets false if don't
      */
     public boolean setName(String name) {
-        if (this.mFridgeLocation.isDeviceNameExistant(name) || this.mFridgeName == name) {
+        if (this.location.isDeviceNameExistant(name) || this.name == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
-        this.mFridgeName = name;
+        this.name = name;
         return true;
     }
 
@@ -90,12 +91,12 @@ public class Fridge implements Device, Measurable {
      * @return false if the location is equals to another device. True if not.
      */
     public boolean setLocation(Room location) {
-        if (this.mFridgeLocation.equals(location)) {
+        if (this.location.equals(location)) {
             return false;
         }
-        this.mFridgeLocation.getDeviceList().remove(this);
-        this.mFridgeLocation = location;
-        this.mFridgeLocation.addDevice(this);
+        this.location.getDeviceList().remove(this);
+        this.location = location;
+        this.location.addDevice(this);
         return true;
     }
 
@@ -105,7 +106,7 @@ public class Fridge implements Device, Measurable {
      * @return String with the attributes.
      */
     public String getDevSpecsAttributesToString() {
-        return this.mFridgeSpec.getAttributesToString();
+        return this.specs.getAttributesToString();
     }
 
     /**
@@ -116,9 +117,9 @@ public class Fridge implements Device, Measurable {
     public String getAttributesToString() {
 
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Name: " + mFridgeName + "\n");
+        attributes.append("1 - Name: " + name + "\n");
         attributes.append("2 - Device Specifications\n");
-        attributes.append("3 - Location: " + mFridgeLocation.getName() + "\n");
+        attributes.append("3 - Location: " + location.getName() + "\n");
         return attributes.toString();
     }
 
@@ -130,7 +131,7 @@ public class Fridge implements Device, Measurable {
      * @return the position of an attribute and the value of it.
      */
     public boolean setAttributesDevType(String attribute, Object value) {
-        return this.mFridgeSpec.setAttributeValue(attribute, value);
+        return this.specs.setAttributeValue(attribute, value);
     }
 
     /**
@@ -140,7 +141,7 @@ public class Fridge implements Device, Measurable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(this.mFridgeName);
+        return Objects.hash(this.name);
     }
 
     /**
@@ -158,7 +159,7 @@ public class Fridge implements Device, Measurable {
             return false;
         }
         Device listOne = (Device) obj;
-        return this.mFridgeName.equalsIgnoreCase(listOne.getName());
+        return this.name.equalsIgnoreCase(listOne.getName());
     }
 
     /**
@@ -167,7 +168,7 @@ public class Fridge implements Device, Measurable {
      * @return the number of attributes.
      */
     public int getNumberOfSpecsAttributes() {
-        return this.mFridgeSpec.getNumberOfAttributes();
+        return this.specs.getNumberOfAttributes();
     }
 
     /**
@@ -178,8 +179,8 @@ public class Fridge implements Device, Measurable {
     @Override
     public String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
-        nameLocation.append("Device: " + mFridgeName);
-        nameLocation.append(", located in room: " + mFridgeLocation.getName() + "\n");
+        nameLocation.append("Device: " + name);
+        nameLocation.append(", located in room: " + location.getName() + "\n");
         return nameLocation.toString();
     }
 
@@ -189,7 +190,7 @@ public class Fridge implements Device, Measurable {
      * @param readings Readings to be added.
      */
     public void addReadingsToTheList(Readings readings) {
-        this.mFridgeReadings.add(readings);
+        this.readings.add(readings);
     }
 
     /**
@@ -207,15 +208,15 @@ public class Fridge implements Device, Measurable {
     }
 
     /**
-     * TODO
+     * Method that gets the reading list in an interval
      *
-     * @param startDate
-     * @param endDate
-     * @return
+     * @param startDate starting date of readings
+     * @param endDate   end date of readings
+     * @return reading list
      */
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
         List<Readings> readingsList = new ArrayList<>();
-        for (Readings readings : this.mFridgeReadings) {
+        for (Readings readings : this.readings) {
             if (!startDate.isAfter(readings.getDateTime()) && !endDate.isBefore(readings.getDateTime())) {
                 readingsList.add(readings);
             }
@@ -241,12 +242,16 @@ public class Fridge implements Device, Measurable {
         return totalEnergyConsumption;
     }
 
+    public LocalDateTime getDeactivationDate() {
+        return this.deactivationDate;
+    }
+
     /**
      * method that set the deactivate device, turning it to false and giving a date
      */
     public void setDeactivateDevice() {
-        this.mIsFridgeActive = false;
-        this.mFridgeDeactivationDate = LocalDateTime.now();
+        this.isActive = false;
+        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     }
 
     /**
@@ -255,14 +260,14 @@ public class Fridge implements Device, Measurable {
      * @return an active device.
      */
     public boolean getIsActive() {
-        return mIsFridgeActive;
+        return isActive;
     }
 
     /**
-     * TODO
-     * @param startDate
-     * @param endDate
-     * @return
+     * get method
+     * @param startDate starting date of reading
+     * @param endDate end date of reading
+     * @return map with coordinates (value of reading and time)
      */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
@@ -275,30 +280,41 @@ public class Fridge implements Device, Measurable {
     }
 
     /**
-     * TODO
-     * @return
+     * get method
+     * @return list of specs of fridge specs
      */
+
     @Override
     public List<String> getSpecsList() {
-        return mFridgeSpec.getSpecsList();
+        return specs.getSpecsList();
     }
 
-    /**
-     * TODO
-     *
-     * @param attributeName
-     * @return
+     /**
+      * * get method
+     * @param attributeName string attribute
+     * @return  name of attributes of fridge specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
-        return mFridgeSpec.getAttributeValue(attributeName);
+        return specs.getAttributeValue(attributeName);
     }
 
+    /**
+     * get method
+     * @return the string of an attribute of Fridge Specs
+     */
     public String getSpecsToString() {
-        return this.mFridgeSpec.getAttributesToString();
+        return this.specs.getAttributesToString();
     }
 
+
+    /**
+     * get method
+     *
+     * @param attributeName string attribute
+     * @return type data of the attribute (ex.integer, double)
+     */
     public String getAttributeDataType(String attributeName) {
-        return mFridgeSpec.getAttributeDataType(attributeName);
+        return specs.getAttributeDataType(attributeName);
     }
 }

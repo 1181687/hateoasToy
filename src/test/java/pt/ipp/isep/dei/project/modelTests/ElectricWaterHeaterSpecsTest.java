@@ -10,8 +10,7 @@ import pt.ipp.isep.dei.project.model.Room;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class ElectricWaterHeaterSpecsTest {
@@ -119,7 +118,6 @@ class ElectricWaterHeaterSpecsTest {
     @Test
     public void testGetAttributeValueNominalPower() {
         // Arrange
-        // FridgeSpecs Instantiation
         electricWaterHeater.setAttributesDevType("Nominal Power", 100.0);
 
         Object expectedResult = 100.0;
@@ -132,7 +130,6 @@ class ElectricWaterHeaterSpecsTest {
     @Test
     public void testGetAttributeValueVolumeOfWaterToHeat() {
         // Arrange
-        // FridgeSpecs Instantiation
         electricWaterHeater.setAttributesDevType("Volume Of Water To Heat", 100);
 
         Object expectedResult = 100.0;
@@ -145,7 +142,6 @@ class ElectricWaterHeaterSpecsTest {
     @Test
     public void testGetAttributeValuePerformanceRatio() {
         // Arrange
-        // FridgeSpecs Instantiation
         electricWaterHeater.setAttributesDevType("Performance Ratio", 0.9);
 
         Object expectedResult = 0.9;
@@ -194,6 +190,16 @@ class ElectricWaterHeaterSpecsTest {
         Object result = electricWaterHeater.getAttributeValue("Not Valid");
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeNotAValidType() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = electricWaterHeater.setAttributesDevType("Wrong Attribute", attribute);
+        // Assert
+        assertFalse(result);
     }
 
     @Test
@@ -298,13 +304,22 @@ class ElectricWaterHeaterSpecsTest {
     }
 
     @Test
-    public void testSetAttributeVolumeOfWaterToHeatTrue() {
+    public void setAttributeVolumeOfWaterToHeatFalseTest() {
        //Arrange
         double value = 0;
         // Act
         boolean result = electricWaterHeater.setAttributesDevType("Volume Of Water To Heat", value);
         // Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void setAttributeVolumeOfWaterToHeatTrueTest() {
+        // Act
+        boolean result = electricWaterHeater.setAttributesDevType("Volume Of Water To Heat", 1);
+
+        // Assert
+        assertTrue(result);
     }
 
     @Test
