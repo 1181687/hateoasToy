@@ -282,4 +282,27 @@ class AddSensorToGeoAreaControllerTest {
         //Assert
         assertTrue(resultado);
     }
+
+    @Test
+    void testarNovoSensor() {
+        //Arrange
+        String name = "A123";
+        SensorType sensorType = new SensorType("Temperatura");
+        Location locS1 = new Location(45, 45, 45);
+        Sensor s1 = new Sensor(name, sensorType, locS1);
+
+        sensorTypeList.addSensorType(sensorType);
+        geographicalAreaList.getGeoAreaList().add(CampusDoIsep);
+        controller.getAreaGeograficaNaListaPorPosicao(0);
+        controller.getTipoSensorPorPosicao(0);
+        controller.criarNovaLocalizacao(45, 45, 45);
+
+        Sensor expectedResult = s1;
+
+        //Act
+        Sensor result = controller.criarNovoSensor(name);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 }
