@@ -196,6 +196,16 @@ class ElectricWaterHeaterSpecsTest {
     }
 
     @Test
+    public void testSetAttributeNotAValidType() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = electricWaterHeater.setAttributesDevType("Wrong Attribute", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
     public void testSetAttributeVolumeOfWaterToHeatValueNotAValidType() {
         // Arrange
         String attribute = "stuff";

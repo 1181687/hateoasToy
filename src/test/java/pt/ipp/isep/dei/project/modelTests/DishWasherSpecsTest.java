@@ -10,8 +10,7 @@ import pt.ipp.isep.dei.project.model.Room;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DishWasherSpecsTest {
     Room kitchen;
@@ -211,11 +210,58 @@ public class DishWasherSpecsTest {
     }
 
     @Test
+    public void testSetAttributeNominalPowerValidValue() {
+        // Arrange
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 1.3);
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testSetAttributeNotAValidAttribute() {
+        // Arrange
+        // Act
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Wrong Attribute", 1.3);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
     public void testSetAttributeNominalPowerSameValue() {
         // Arrange
         dishWasher.setAttributesDevType("Nominal Power", 100.0);
         // Act
         boolean result = dishWasher.setAttributesDevType("Nominal Power", 100.0);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeDurationValidValue() {
+        // Arrange
+        // Act
+        boolean result = dishWasher.setAttributesDevType("Duration", 100.0);
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testSetAttributeDurationSameValue() {
+        // Arrange
+        dishWasher.setAttributesDevType("Duration", 100.0);
+        // Act
+        boolean result = dishWasher.setAttributesDevType("Duration", 100.0);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeDurationValueZero() {
+        // Arrange
+        dishWasher.setAttributesDevType("Duration", 100.0);
+        // Act
+        boolean result = dishWasher.setAttributesDevType("Duration", 0);
         // Assert
         assertFalse(result);
     }

@@ -34,7 +34,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setVolumeOfWaterToHeat(Object volumeOfWaterToHeat) {
         double volumeWater = (Double) volumeOfWaterToHeat;
-        if (volumeWater > 0 && !(Utils.isSameDouble(volumeWater, this.mVolumeOfWaterToHeat))) {
+        if (Double.compare(volumeWater, 0) == 1 && !(Utils.isSameDouble(volumeWater, this.mVolumeOfWaterToHeat))) {
             this.mVolumeOfWaterToHeat = volumeWater;
             return true;
         }
@@ -48,7 +48,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setColdWaterTemperature(Object coldWaterTemperature) {
         double cwt = (Double) coldWaterTemperature;
-        if (cwt < this.mHotWaterTemperature) {
+        if (Double.compare(cwt, this.mHotWaterTemperature) == -1) {
             this.mColdWaterTemperature = cwt;
             return true;
         }
