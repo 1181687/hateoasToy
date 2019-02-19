@@ -301,4 +301,9 @@ public class Lamp implements Device, Measurable {
     public String getAttributeType(String attributeName) {
         return mLampSpec.getAttributeType(attributeName);
     }
+
+    @Override
+    public boolean isProgrammable() {
+        return false;
+    }
 }

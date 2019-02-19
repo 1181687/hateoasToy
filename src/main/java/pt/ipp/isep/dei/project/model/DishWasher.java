@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.model;
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class DishWasher implements Device, Measurable {
+public class DishWasher implements Device, Measurable, Programmable {
 
     private String mDWName;
     private Room mDWLocation;
@@ -308,5 +308,10 @@ public class DishWasher implements Device, Measurable {
 
     public String getAttributeType(String attributeName) {
         return mDWSpec.getAttributeType(attributeName);
+    }
+
+    @Override
+    public boolean isProgrammable() {
+        return true;
     }
 }

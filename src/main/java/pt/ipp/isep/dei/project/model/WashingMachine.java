@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.model;
 import java.time.LocalDateTime;
 import java.util.*;
 
-public class WashingMachine implements Device, Measurable {
+public class WashingMachine implements Device, Measurable, Programmable {
 
     private String mWMName;
     private Room mWMLocation;
@@ -11,6 +11,7 @@ public class WashingMachine implements Device, Measurable {
     private List<Readings> mWMReadingsList;
     private boolean mIsWMActive;
     private LocalDateTime mWMDeactivationDate;
+
 
     public WashingMachine(String name, Room location) {
         this.mWMName = name;
@@ -295,5 +296,14 @@ public class WashingMachine implements Device, Measurable {
 
     public String getAttributeType(String attributeName) {
         return mWMSpec.getAttributeType(attributeName);
+    }
+
+    @Override
+    public boolean isProgrammable() {
+        return true;
+    }
+
+    public Programmable asProgrammable(){
+        return this;
     }
 }

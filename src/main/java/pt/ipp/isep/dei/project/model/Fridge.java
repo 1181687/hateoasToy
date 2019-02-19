@@ -301,4 +301,9 @@ public class Fridge implements Device, Measurable {
     public String getAttributeType(String attributeName) {
         return mFridgeSpec.getAttributeType(attributeName);
     }
+
+    @Override
+    public boolean isProgrammable() {
+        return false;
+    }
 }
