@@ -9,7 +9,10 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class InputValidator {
+public final class InputValidator {
+
+    private InputValidator() {
+    }
 
     /**
      * Method that keeps displaying the string label until the input is a int.
