@@ -27,7 +27,6 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         return mTypeName;
     }
 
-
     /**
      * Method that sets the volume of water to be heated.
      *
@@ -93,7 +92,6 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         this.mHotWaterTemperature = hwt;
         return true;
     }
-
 
     /**
      * method that determine if the value of the performanceRatio is the same that the method receive.

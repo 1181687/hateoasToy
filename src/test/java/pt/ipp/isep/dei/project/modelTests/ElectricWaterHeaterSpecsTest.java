@@ -10,8 +10,7 @@ import pt.ipp.isep.dei.project.model.Room;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class ElectricWaterHeaterSpecsTest {
@@ -298,13 +297,22 @@ class ElectricWaterHeaterSpecsTest {
     }
 
     @Test
-    public void testSetAttributeVolumeOfWaterToHeatTrue() {
+    public void setAttributeVolumeOfWaterToHeatFalseTest() {
        //Arrange
         double value = 0;
         // Act
         boolean result = electricWaterHeater.setAttributesDevType("Volume Of Water To Heat", value);
         // Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void setAttributeVolumeOfWaterToHeatTrueTest() {
+        // Act
+        boolean result = electricWaterHeater.setAttributesDevType("Volume Of Water To Heat", 1);
+
+        // Assert
+        assertTrue(result);
     }
 
     @Test
