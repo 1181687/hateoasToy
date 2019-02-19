@@ -303,7 +303,7 @@ public class InputValidator {
     public static Number getNumber(String label, String dataType) {
         Scanner in = new Scanner(System.in).useLocale(Locale.ENGLISH);
         Number x = -1;
-        String errorMessage = "Error! Please insert a valid number.";
+        String errorMessage = "This is an invalid number! Please insert another one.";
         boolean flag;
         do {
             System.out.println(label);
