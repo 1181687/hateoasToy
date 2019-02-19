@@ -193,9 +193,9 @@ public class DishWasherSpecsTest {
     @Test
     public void testSetAttributeDurationValueNotAValidType() {
         // Arrange
-        String tuff = "coiso";
+        String stuff = "stuff";
         // Act
-        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Duration", tuff);
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Duration", stuff);
         // Assert
         assertFalse(result);
     }
@@ -203,9 +203,9 @@ public class DishWasherSpecsTest {
     @Test
     public void testSetAttributeNominalPowerValueNotAValidType() {
         // Arrange
-        String tuff = "coiso";
+        String stuff = "stuff";
         // Act
-        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", tuff);
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", stuff);
         // Assert
         assertFalse(result);
     }
@@ -213,9 +213,9 @@ public class DishWasherSpecsTest {
     @Test
     public void testSetAttributeNominalPowerSameValue() {
         // Arrange
-        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        dishWasher.setAttributesDevType("Nominal Power", 100.0);
         // Act
-        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        boolean result = dishWasher.setAttributesDevType("Nominal Power", 100.0);
         // Assert
         assertFalse(result);
     }
