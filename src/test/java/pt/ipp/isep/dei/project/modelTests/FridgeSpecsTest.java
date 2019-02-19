@@ -245,13 +245,13 @@ public class FridgeSpecsTest {
     }
 
     @Test
-    public void testSetAttributeAnnualPowerConsumptionValueValidType() {
+    public void testSetAttributeAnnualEnergyConsumptionValueValidType() {
         // Arrange
         double annualPowerConsumption = 20.3;
         // Act
-        boolean result = fridge.setAttributesDevType("Annual Power Consumption", annualPowerConsumption);
+        boolean result = fridge.setAttributesDevType("Annual Energy Consumption", annualPowerConsumption);
         // Assert
-        assertFalse(result);
+        assertTrue(result);
     }
 
     @Test
@@ -259,7 +259,7 @@ public class FridgeSpecsTest {
         // Arrange
         String stuff = "stuff";
         // Act
-        boolean result = fridge.setAttributesDevType("Annual Power Consumption", stuff);
+        boolean result = fridge.setAttributesDevType("Annual Energy Consumption", stuff);
         // Assert
         assertFalse(result);
     }
