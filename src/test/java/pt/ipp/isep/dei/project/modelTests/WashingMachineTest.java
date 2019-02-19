@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -289,6 +290,17 @@ class WashingMachineTest {
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    void getDeactivationDate() {
+        // arrange
+        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        washingMachine.setDeactivateDevice();
+        // act
+        LocalDateTime result = washingMachine.getDeactivationDate();
+        // assert
+        assertEquals(date, result);
     }
 
     @Test

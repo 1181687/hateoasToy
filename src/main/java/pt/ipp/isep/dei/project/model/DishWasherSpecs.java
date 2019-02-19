@@ -114,6 +114,10 @@ public class DishWasherSpecs implements DeviceSpecs {
         return 2;
     }
 
+    /**
+     * get metod
+     * @return list os specs of dishwasher
+     */
     @Override
     public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
@@ -122,6 +126,11 @@ public class DishWasherSpecs implements DeviceSpecs {
         return result;
     }
 
+    /**
+     * get method
+     * @param attributeName string name of the attribute
+     * @return  attribute
+     */
     @Override
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
@@ -136,6 +145,12 @@ public class DishWasherSpecs implements DeviceSpecs {
         }
     }
 
+    /**
+     * set method
+     * @param attributeName string name of the attribute
+     * @param attributeValue value of the attribute
+     * @return
+     */
     @Override
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
@@ -159,6 +174,11 @@ public class DishWasherSpecs implements DeviceSpecs {
         }
     }
 
+    /**
+     * get method
+     * @param attributeName string name of attribute
+     * @return type data of the attribute (ex.integer, double)
+     */
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }

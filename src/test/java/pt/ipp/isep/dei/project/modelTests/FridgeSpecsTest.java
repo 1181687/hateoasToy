@@ -249,9 +249,9 @@ public class FridgeSpecsTest {
         // Arrange
         double annualPowerConsumption = 20.3;
         // Act
-        boolean result = fridge.setAttributesDevType("Annual Power Consumption", annualPowerConsumption);
+        boolean result = fridge.setAttributesDevType("Annual Energy Consumption", annualPowerConsumption);
         // Assert
-        assertFalse(result);
+        assertTrue(result);
     }
 
     @Test

@@ -1,25 +1,26 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class WashingMachine implements Device, Measurable, Programmable {
 
-    private String mWMName;
-    private Room mWMLocation;
-    private WashingMachineSpecs mWMSpec;
-    private List<Readings> mWMReadingsList;
-    private boolean mIsWMActive;
-    private LocalDateTime mWMDeactivationDate;
+    private String name;
+    private Room location;
+    private WashingMachineSpecs specs;
+    private List<Readings> readings;
+    private boolean isActive;
+    private LocalDateTime deactivationDate;
 
 
     public WashingMachine(String name, Room location) {
-        this.mWMName = name;
-        this.mWMLocation = location;
-        this.mWMSpec = new WashingMachineSpecs();
-        this.mWMLocation.addDevice(this);
-        this.mIsWMActive = true;
-        this.mWMReadingsList = new ArrayList<>();
+        this.name = name;
+        this.location = location;
+        this.specs = new WashingMachineSpecs();
+        this.location.addDevice(this);
+        this.isActive = true;
+        this.readings = new ArrayList<>();
 
     }
 
@@ -30,7 +31,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
      */
     @Override
     public double getNominalPower() {
-        return mWMSpec.getNominalPower();
+        return specs.getNominalPower();
     }
 
     /**
@@ -40,7 +41,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
      */
     @Override
     public Room getLocation() {
-        return this.mWMLocation;
+        return this.location;
     }
 
     /**
@@ -50,7 +51,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
      */
     @Override
     public String getName() {
-        return this.mWMName;
+        return this.name;
     }
 
     /**
@@ -60,7 +61,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
      */
     @Override
     public String getType() {
-        return mWMSpec.getTypeName();
+        return specs.getTypeName();
     }
 
     /**
@@ -70,7 +71,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
      */
     @Override
     public double getEnergyConsumptionInADay() {
-        return mWMSpec.getEnergyConsumptionInADay();
+        return specs.getEnergyConsumptionInADay();
     }
 
     /**
@@ -82,10 +83,10 @@ public class WashingMachine implements Device, Measurable, Programmable {
      */
     @Override
     public boolean setName(String name) {
-        if (this.mWMLocation.isDeviceNameExistant(name) || this.mWMName == name) {
+        if (this.location.isDeviceNameExistant(name) || this.name == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
-        this.mWMName = name;
+        this.name = name;
         return true;
     }
 
@@ -97,12 +98,12 @@ public class WashingMachine implements Device, Measurable, Programmable {
      */
     @Override
     public boolean setLocation(Room location) {
-        if (this.mWMLocation.equals(location)) {
+        if (this.location.equals(location)) {
             return false;
         }
-        this.mWMLocation.getDeviceList().remove(this);
-        this.mWMLocation = location;
-        this.mWMLocation.addDevice(this);
+        this.location.getDeviceList().remove(this);
+        this.location = location;
+        this.location.addDevice(this);
         return true;
     }
 
@@ -112,7 +113,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
      * @return String with the attributes.
      */
     public String getDevSpecsAttributesToString() {
-        return mWMSpec.getAttributesToString();
+        return specs.getAttributesToString();
     }
 
     /**
@@ -123,9 +124,9 @@ public class WashingMachine implements Device, Measurable, Programmable {
     public String getAttributesToString() {
 
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Name: " + mWMName + "\n");
+        attributes.append("1 - Name: " + name + "\n");
         attributes.append("2 - Device1 Specifications\n");
-        attributes.append("3 - Location: " + mWMLocation.getName() + "\n");
+        attributes.append("3 - Location: " + location.getName() + "\n");
         return attributes.toString();
     }
 
@@ -137,7 +138,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
      * @return the position of an attribute and the value of it.
      */
     public boolean setAttributesDevType(String attribute, Object value) {
-        return this.mWMSpec.setAttributeValue(attribute, value);
+        return this.specs.setAttributeValue(attribute, value);
     }
 
     /**
@@ -147,7 +148,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(this.mWMName);
+        return Objects.hash(this.name);
     }
 
     /**
@@ -165,7 +166,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
             return false;
         }
         Device listOne = (Device) obj;
-        return this.mWMName.equalsIgnoreCase(listOne.getName());
+        return this.name.equalsIgnoreCase(listOne.getName());
     }
 
     /**
@@ -174,7 +175,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
      * @return the number of attributes.
      */
     public int getNumberOfSpecsAttributes() {
-        return mWMSpec.getNumberOfAttributes();
+        return specs.getNumberOfAttributes();
     }
 
     /**
@@ -185,8 +186,8 @@ public class WashingMachine implements Device, Measurable, Programmable {
     @Override
     public String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
-        nameLocation.append("Device: " + mWMName);
-        nameLocation.append(", located in room: " + mWMLocation.getName() + "\n");
+        nameLocation.append("Device: " + name);
+        nameLocation.append(", located in room: " + location.getName() + "\n");
         return nameLocation.toString();
     }
 
@@ -196,7 +197,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
      * @param readings Readings to be added.
      */
     public void addReadingsToTheList(Readings readings) {
-        mWMReadingsList.add(readings);
+        this.readings.add(readings);
     }
 
     /**
@@ -221,7 +222,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
      */
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
         List<Readings> readingsList = new ArrayList<>();
-        for (Readings readings : mWMReadingsList) {
+        for (Readings readings : readings) {
             if (!startDate.isAfter(readings.getDateTime()) && !endDate.isBefore(readings.getDateTime())) {
                 readingsList.add(readings);
             }
@@ -247,12 +248,16 @@ public class WashingMachine implements Device, Measurable, Programmable {
         return totalEnergyConsumption;
     }
 
+    public LocalDateTime getDeactivationDate() {
+        return this.deactivationDate;
+    }
+
     /**
      * method that set the deactivate device, turning it to false and giving a date
      */
     public void setDeactivateDevice() {
-        this.mIsWMActive = false;
-        this.mWMDeactivationDate = LocalDateTime.now();
+        this.isActive = false;
+        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     }
 
     /**
@@ -261,7 +266,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
      * @return an active device.
      */
     public boolean getIsActive() {
-        return mIsWMActive;
+        return isActive;
     }
 
 
@@ -288,7 +293,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
      */
     @Override
     public List<String> getSpecsList() {
-        return mWMSpec.getSpecsList();
+        return specs.getSpecsList();
     }
 
     /**
@@ -298,7 +303,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
      */
     @Override
     public Object getAttributeValue(String attributeName) {
-        return mWMSpec.getAttributeValue(attributeName);
+        return specs.getAttributeValue(attributeName);
     }
 
 
@@ -309,7 +314,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
 
     @Override
     public String getSpecsToString() {
-        return this.mWMSpec.getAttributesToString();
+        return this.specs.getAttributesToString();
     }
 
     /**
@@ -319,7 +324,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
      */
 
     public String getAttributeDataType(String attributeName) {
-        return mWMSpec.getAttributeDataType(attributeName);
+        return specs.getAttributeDataType(attributeName);
     }
 
     @Override
