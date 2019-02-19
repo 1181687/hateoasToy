@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DishWasherSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_CAPACITY = "Capacity";
@@ -14,7 +15,7 @@ public class DishWasherSpecs implements DeviceSpecs {
     private int mCapacity;
     private double mDuration;
     private double mNominalPower;
-    private ProgramList mProgramList;
+    private List<Program> mProgramList;
 
     public DishWasherSpecs() {
         this.mTypeName = "Dishwasher";
@@ -159,5 +160,13 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
+    }
+
+    public boolean addProgram(Program program) {
+        if (!Objects.isNull(program) && !(mProgramList.contains(program))) {
+            this.mProgramList.add(program);
+            return true;
+        }
+        return false;
     }
 }

@@ -187,10 +187,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
     }
 
     public boolean addProgram(Program program) {
-        if (Objects.isNull(program)) {
-            return false;
-        }
-        if (!(mProgramList.contains(program))) {
+        if (!Objects.isNull(program) && !(mProgramList.contains(program))) {
             this.mProgramList.add(program);
             return true;
         }
