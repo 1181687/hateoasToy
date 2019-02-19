@@ -107,12 +107,8 @@ public class SensorList {
         if (!mSensorList.isEmpty()) {
             double maxValue = mSensorList.get(0).getMaximumValueOfDay(date);
             for (Sensor sensor : mSensorList) {
-                if (sensor.getSensorType().equals(type) && (!(sensor.getDailyMeasurement(date).isEmpty()))) {
-                    if (sensor.getMaximumValueOfDay(date) > maxValue) {
+                if (sensor.getSensorType().equals(type) && (!(sensor.getDailyMeasurement(date).isEmpty())) && (Double.compare(sensor.getMaximumValueOfDay(date), maxValue) == 1)) {
                         maxValue = sensor.getMaximumValueOfDay(date);
-
-                    }
-
                 }
             }
             return maxValue;
