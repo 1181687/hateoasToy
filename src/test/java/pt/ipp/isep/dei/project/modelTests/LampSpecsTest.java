@@ -7,7 +7,8 @@ import pt.ipp.isep.dei.project.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class LampSpecsTest {
     private Room livingRoom;
@@ -298,5 +299,15 @@ public class LampSpecsTest {
         boolean result = lamp.setAttributesDevType(attribute, 1.5);
         // Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void getAttributeDataTypeTest() {
+        // arrange
+        String attributeDataType = "Integer";
+        // act
+        String result = lamp.getAttributeDataType("Integer");
+        // assert
+        assertEquals(attributeDataType, result);
     }
 }

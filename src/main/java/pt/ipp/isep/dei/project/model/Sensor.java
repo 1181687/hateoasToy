@@ -168,7 +168,7 @@ public class Sensor {
         double smallestMeasurement = measurementsBetweenDates.get(0);
 
         for (int i = 0; i < measurementsBetweenDates.size(); i++) {
-            if (smallestMeasurement > measurementsBetweenDates.get(i)) {
+            if (Double.compare(smallestMeasurement, measurementsBetweenDates.get(i)) == 1) {
                 smallestMeasurement = measurementsBetweenDates.get(i);
             }
         }
