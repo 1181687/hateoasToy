@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 import java.util.Scanner;
 
-public class InputValidator {
+public final class InputValidator {
 
     private InputValidator() {
     }
