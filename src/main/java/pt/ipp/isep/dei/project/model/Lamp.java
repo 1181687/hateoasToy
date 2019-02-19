@@ -298,7 +298,7 @@ public class Lamp implements Device, Measurable {
         return this.mLampSpec.getAttributesToString();
     }
 
-    public String getAttributeType(String attributeName) {
-        return mLampSpec.getAttributeType(attributeName);
+    public String getAttributeDataType(String attributeName) {
+        return mLampSpec.getAttributeDataType(attributeName);
     }
 }

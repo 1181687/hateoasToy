@@ -359,6 +359,15 @@ class ElectricWaterHeaterSpecsTest {
 
         //Assert
         assertEquals(expectedResult, result);
+    }
 
+    @Test
+    public void getAttributeDataTypeTest() {
+        // arrange
+        String attributeDataType = "Integer";
+        // act
+        String result = electricWaterHeater.getAttributeDataType("Integer");
+        // assert
+        assertEquals(attributeDataType, result);
     }
 }

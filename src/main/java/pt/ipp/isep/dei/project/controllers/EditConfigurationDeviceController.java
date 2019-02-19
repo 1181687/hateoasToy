@@ -178,7 +178,7 @@ public class EditConfigurationDeviceController {
     }
 
     public String getAttributeType(String attributeName) {
-        return mDevice.getAttributeType(attributeName);
+        return mDevice.getAttributeDataType(attributeName);
     }
 
     public Number getAttributeValue(String attributeName) {

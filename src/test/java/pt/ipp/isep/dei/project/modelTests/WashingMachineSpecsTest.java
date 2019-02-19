@@ -388,4 +388,14 @@ class WashingMachineSpecsTest {
         // Assert
         assertFalse(result);
     }
+
+    @Test
+    public void getAttributeDataTypeTest() {
+        // arrange
+        String attributeDataType = "Integer";
+        // act
+        String result = washingMachine.getAttributeDataType("Integer");
+        // assert
+        assertEquals(attributeDataType, result);
+    }
 }

@@ -8,7 +8,6 @@ public class AddSensorToRoomController {
     private SensorTypeList mListSensorsType;
     private RoomList mRoomList;
     private House mHouse;
-    private Sensor mNewSensor;
     private Room mSelectedRoom;
     private SensorType mSensorType;
     private Location mLocationOfTheHouse;
@@ -64,8 +63,8 @@ public class AddSensorToRoomController {
      * @return a new sensor added in the list of sensors in the room.
      */
     public boolean createAndAddSensorToTheList (String name) {
-        mNewSensor = mSelectedRoom.getSensorList().newSensor(name, mSensorType, mLocationOfTheHouse);
-        return mSelectedRoom.addSensorToListOfSensorsInRoom(mNewSensor);
+        Sensor newSensor = mSelectedRoom.getSensorList().newSensor(name, mSensorType, mLocationOfTheHouse);
+        return mSelectedRoom.addSensorToListOfSensorsInRoom(newSensor);
     }
 
     /**

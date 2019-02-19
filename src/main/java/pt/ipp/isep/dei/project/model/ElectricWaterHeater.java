@@ -299,7 +299,7 @@ public class ElectricWaterHeater implements Device, Measurable {
         return this.mEWHSpec.getAttributesToString();
     }
 
-    public String getAttributeType(String attributeName) {
-        return mEWHSpec.getAttributeType(attributeName);
+    public String getAttributeDataType(String attributeName) {
+        return mEWHSpec.getAttributeDataType(attributeName);
     }
 }

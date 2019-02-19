@@ -70,6 +70,11 @@ public class House {
         return true;
     }
 
+    /**
+     * get method
+     * @param type type of device
+     * @return device type
+     */
     public DeviceType getDeviceType(String type) {
         for (DeviceType deviceType : this.mDeviceTypeList) {
             if (deviceType.getTypeName().equals(type)) {
@@ -79,8 +84,19 @@ public class House {
         return null;
     }
 
+    /**
+     * get method
+     * @return metering period of the grid
+     */
     public int getMeteringPeriodGrid() {
         return mMeteringPeriodGrid;
+    }
+
+    /**
+     * get method
+     * @return metring period of the device
+     */
+    public int getMeteringPeriodDevice() { return mMeteringPeriodDevice;
     }
 
     /**
@@ -707,6 +723,10 @@ public class House {
         return getAllDevices().size();
     }
 
+    /**
+     * Method that checks if the device list of all rooms is empty
+     * @return boolean true
+     */
     public boolean isDeviceListOfAllRoomsEmpty() {
         return this.mRoomList.isDeviceListOfAllRoomsEmpty();
     }
