@@ -2,11 +2,14 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import java.time.LocalDateTime;
 
-public class Menu {
+public final class Menu {
 
     private static final String CHOOSE_OPTIONS = "Choose one of the options:";
 
     private static final String RETURN_MENU = "0-Return to the previous menu";
+
+    private Menu() {
+    }
 
     public static int usersMenu() {
         StringBuilder content = new StringBuilder();

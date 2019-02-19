@@ -10,7 +10,8 @@ import pt.ipp.isep.dei.project.model.Room;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 class ElectricWaterHeaterSpecsTest {
@@ -358,6 +359,15 @@ class ElectricWaterHeaterSpecsTest {
 
         //Assert
         assertEquals(expectedResult, result);
+    }
 
+    @Test
+    public void getAttributeDataTypeTest() {
+        // arrange
+        String attributeDataType = "Integer";
+        // act
+        String result = electricWaterHeater.getAttributeDataType("Integer");
+        // assert
+        assertEquals(attributeDataType, result);
     }
 }
