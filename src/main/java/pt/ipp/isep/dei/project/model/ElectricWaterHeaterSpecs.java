@@ -105,7 +105,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setPerformanceRatio(Object performanceRatio) {
         double perfRatio = (Double) performanceRatio;
-        if (Utils.isSameDouble(this.mPerformanceRatio, perfRatio) && !(Utils.isSameDouble(perfRatio, 0))) {
+        if (!Utils.isSameDouble(this.mPerformanceRatio, perfRatio) && !(Utils.isSameDouble(perfRatio, 0))) {
             this.mPerformanceRatio = perfRatio;
             return true;
         }
@@ -120,11 +120,11 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setNominalPower(Object nominalPower) {
         double nomPower = (Double) nominalPower;
-        if (Utils.isSameDouble(this.mNominalPower, nomPower)) {
-            return false;
+        if (!Utils.isSameDouble(this.mNominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
+            this.mNominalPower = nomPower;
+            return true;
         }
-        this.mNominalPower = nomPower;
-        return true;
+        return false;
     }
 
     /**
