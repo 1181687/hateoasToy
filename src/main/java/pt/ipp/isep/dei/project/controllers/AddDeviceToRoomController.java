@@ -7,7 +7,6 @@ import java.util.List;
 public class AddDeviceToRoomController {
     private House mHouse;
     private Device mDevice;
-    private List<Device> mDeviceList;
     private Room mRoom;
     private ProgramList mProgramList;
 
@@ -46,10 +45,6 @@ public class AddDeviceToRoomController {
         return mRoom;
     }
 
-
-    public void getDeviceList() {
-        mDeviceList = this.mRoom.getDeviceList();
-    }
 
     /**
      * Method that asks for the size of the list of rooms.

@@ -207,10 +207,11 @@ public class ElectricWaterHeater implements Device, Measurable {
     }
 
     /**
-       Method that gets the reading list in an interval
-     * @param startDate starting date of readings
-     * @param endDate end date of readings
-     * @return reading list
+     * TODO
+     *
+     * @param startDate
+     * @param endDate
+     * @return
      */
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
         List<Readings> readingsList = new ArrayList<>();
@@ -258,10 +259,10 @@ public class ElectricWaterHeater implements Device, Measurable {
     }
 
     /**
-     * get method
-     * @param startDate starting date of reading
-     * @param endDate end date of reading
-     * @return map with coordinates (value of reading and time)
+     * TODO
+     * @param startDate
+     * @param endDate
+     * @return
      */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
@@ -274,41 +275,30 @@ public class ElectricWaterHeater implements Device, Measurable {
     }
 
     /**
-     * get method
-     * @return list of specs of ElectricWaterHeater specs
+     * TODO
+     * @return
      */
-
     @Override
     public List<String> getSpecsList() {
         return mEWHSpec.getSpecsList();
     }
 
     /**
-     * get method
-     * @param attributeName string attribute
-     * @return  name of attributes of ElectricWaterHeater specs
+     * TODO
+     *
+     * @param attributeName
+     * @return
      */
-
     @Override
     public Object getAttributeValue(String attributeName) {
         return mEWHSpec.getAttributeValue(attributeName);
     }
 
-
-    /**
-     * get method
-     * @return the string of an attribute of ElectricWaterHeater
-     */
     @Override
     public String getSpecsToString() {
         return this.mEWHSpec.getAttributesToString();
     }
 
-
-  /** get method
-     * @param attributeName string attribute
-     * @return type data of the attribute (ex.integer, double)
-     */
     public String getAttributeDataType(String attributeName) {
         return mEWHSpec.getAttributeDataType(attributeName);
     }
