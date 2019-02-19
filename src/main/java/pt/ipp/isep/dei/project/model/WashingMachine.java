@@ -213,6 +213,12 @@ public class WashingMachine implements Device, Measurable, Programmable {
         return sum;
     }
 
+    /**
+     * Method that gets the reading list in an interval
+     * @param startDate starting date of readings
+     * @param endDate end date of readings
+     * @return reading list
+     */
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
         List<Readings> readingsList = new ArrayList<>();
         for (Readings readings : mWMReadingsList) {
@@ -258,6 +264,13 @@ public class WashingMachine implements Device, Measurable, Programmable {
         return mIsWMActive;
     }
 
+
+    /**
+     * get method
+     * @param startDate starting date of reading
+     * @param endDate end date of reading
+     * @return map with coordinates (value of reading and time)
+     */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> hmap = new TreeMap<>();
@@ -268,10 +281,10 @@ public class WashingMachine implements Device, Measurable, Programmable {
         return hmap;
     }
 
+
     /**
-     * TODO
-     *
-     * @return
+     * get method
+     * @return list of specs of washing machine specs
      */
     @Override
     public List<String> getSpecsList() {
@@ -279,20 +292,31 @@ public class WashingMachine implements Device, Measurable, Programmable {
     }
 
     /**
-     * TODO
-     *
-     * @param attributeName
-     * @return
+     * get method
+     * @param attributeName string attribute
+     * @return  name of attributes of washing machine specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
         return mWMSpec.getAttributeValue(attributeName);
     }
 
+
+    /**
+     * get method
+     * @return the string of an attribute of washing machine Specs
+     */
+
     @Override
     public String getSpecsToString() {
         return this.mWMSpec.getAttributesToString();
     }
+
+    /**
+     * get method
+     * @param attributeName string attribute
+     * @return type data of the attribute (ex.integer, double)
+     */
 
     public String getAttributeDataType(String attributeName) {
         return mWMSpec.getAttributeDataType(attributeName);

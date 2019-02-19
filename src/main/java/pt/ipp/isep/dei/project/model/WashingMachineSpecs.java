@@ -55,11 +55,11 @@ public class WashingMachineSpecs implements DeviceSpecs {
      */
     private boolean setCapacity(Object capacity) {
         int wmcapacity = (Integer) capacity;
-        if (Utils.isSameDouble(this.mCapacity, wmcapacity)) {
-            return false;
+        if (!(Utils.isSameDouble(this.mCapacity, wmcapacity)) && !(Utils.isSameDouble(wmcapacity, 0))) {
+            this.mCapacity = wmcapacity;
+            return true;
         }
-        this.mCapacity = wmcapacity;
-        return true;
+        return false;
     }
 
     /**
@@ -69,11 +69,11 @@ public class WashingMachineSpecs implements DeviceSpecs {
      */
     private boolean setDuration(Object duration) {
         double wmduration = (Double) duration;
-        if (Utils.isSameDouble(this.mDuration, wmduration) || Utils.isSameDouble(wmduration, 0)) {
-            return false;
+        if (!(Utils.isSameDouble(this.mDuration, wmduration) && !(Utils.isSameDouble(wmduration, 0)))) {
+            this.mDuration = wmduration;
+            return true;
         }
-        this.mDuration = wmduration;
-        return true;
+        return false;
     }
 
     /**
@@ -83,11 +83,11 @@ public class WashingMachineSpecs implements DeviceSpecs {
      */
     private boolean setNominalPower(Object wmNominalPower) {
         double nomPower = (Double) wmNominalPower;
-        if (Utils.isSameDouble(this.mNominalPower, nomPower)) {
-            return false;
+        if (!Utils.isSameDouble(this.mNominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
+            this.mNominalPower = nomPower;
+            return true;
         }
-        this.mNominalPower = nomPower;
-        return true;
+        return false;
     }
 
     /**
@@ -97,11 +97,12 @@ public class WashingMachineSpecs implements DeviceSpecs {
      */
     private boolean setEnergyConsumption(Object wmEnergyConsumption) {
         double energyConsumption = (Double) wmEnergyConsumption;
-        if (Utils.isSameDouble(this.mEnergyConsumption, energyConsumption)) {
-            return false;
+        if (!Utils.isSameDouble(this.mEnergyConsumption, energyConsumption) && !(Utils.isSameDouble(energyConsumption, 0))) {
+            this.mEnergyConsumption = energyConsumption;
+            return true;
         }
-        this.mEnergyConsumption = energyConsumption;
-        return true;
+
+        return false;
     }
 
 
