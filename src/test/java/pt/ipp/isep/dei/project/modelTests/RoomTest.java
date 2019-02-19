@@ -1,11 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -253,7 +249,7 @@ public class RoomTest {
         Device dev2 = washingMachineType.createDevice("WashingMachineBosh", room);
         Device dev3 = dishWasherType.createDevice("DishWasherSpecs", room);
 
-        
+
         List<Device> expectedResult = new ArrayList<>();
         expectedResult.add(dev1);
         expectedResult.add(dev2);
@@ -407,7 +403,6 @@ public class RoomTest {
 
         LampType lampType = new LampType();
         Device dev1 = lampType.createDevice("Lamp1", room2);
-
 
 
         Room expectedResult = room2;
@@ -609,12 +604,8 @@ public class RoomTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-        double luminousFlux1 = 10.0;
-        double nominalPower1 = 1.0;
-
         LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room);
-
+        lampType.createDevice("Lamp1", room);
 
         // act
         boolean result = room.deleteDevice("Lamp1");
@@ -688,7 +679,6 @@ public class RoomTest {
 
         LampType lampType = new LampType();
         Device dev1 = lampType.createDevice("Lamp1", room);
-
 
 
         // act
@@ -836,5 +826,65 @@ public class RoomTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void removeDevice_True() {
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
 
+        LampType lampType = new LampType();
+        Device lamp = lampType.createDevice("Lamp1", room);
+
+        // act
+        boolean result = room.removeDevice(lamp);
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void removeDevice_False() {
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        LampType lampType = new LampType();
+        Device lamp = lampType.createDevice("Lamp1", room);
+        room.removeDevice(lamp);
+
+        // act
+        boolean result = room.removeDevice(lamp);
+
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testAddDeviceNameAlreadyExists_false() {
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        LampType lampType = new LampType();
+        Device lamp = lampType.createDevice("Lamp", room);
+
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                room.addDevice(lamp)
+
+        );
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void testAddDeviceNull_false() {
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        boolean result = room.addDevice(null);
+
+        assertFalse(result);
+    }
 }
