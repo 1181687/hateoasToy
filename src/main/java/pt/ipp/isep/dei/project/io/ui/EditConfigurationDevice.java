@@ -61,7 +61,6 @@ public class EditConfigurationDevice {
                 return;
             }
         }
-        flag1 = false;
     }
 
     public void changeLocationOfDevice() {

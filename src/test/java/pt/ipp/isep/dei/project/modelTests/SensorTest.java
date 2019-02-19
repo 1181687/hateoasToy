@@ -477,10 +477,10 @@ class SensorTest {
         LocalDateTime data3 = LocalDateTime.of(2018, 2, 11, 7, 30);
         LocalDateTime data4 = LocalDateTime.of(2018, 2, 12, 15, 20);
 
-        Readings registo1 = new Readings(26, data1);
-        Readings registo2 = new Readings(25, data2);
-        Readings registo3 = new Readings(28, data3);
-        Readings registo4 = new Readings(27, data4);
+        Readings registo1 = new Readings(28, data1);
+        Readings registo2 = new Readings(27, data2);
+        Readings registo3 = new Readings(26, data3);
+        Readings registo4 = new Readings(28, data4);
 
         double expectedResult = 28;
         LocalDate dataDoMes = LocalDate.of(2018, 2, 5);

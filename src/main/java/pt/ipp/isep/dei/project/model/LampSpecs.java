@@ -158,8 +158,7 @@ public class LampSpecs implements DeviceSpecs {
         }
     }
 
-    @Override
     public String getAttributeType(String attributeName) {
-        return null;
+        return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 }
