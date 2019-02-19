@@ -118,7 +118,6 @@ class ElectricWaterHeaterSpecsTest {
     @Test
     public void testGetAttributeValueNominalPower() {
         // Arrange
-        // FridgeSpecs Instantiation
         electricWaterHeater.setAttributesDevType("Nominal Power", 100.0);
 
         Object expectedResult = 100.0;
@@ -131,7 +130,6 @@ class ElectricWaterHeaterSpecsTest {
     @Test
     public void testGetAttributeValueVolumeOfWaterToHeat() {
         // Arrange
-        // FridgeSpecs Instantiation
         electricWaterHeater.setAttributesDevType("Volume Of Water To Heat", 100);
 
         Object expectedResult = 100.0;
@@ -144,7 +142,6 @@ class ElectricWaterHeaterSpecsTest {
     @Test
     public void testGetAttributeValuePerformanceRatio() {
         // Arrange
-        // FridgeSpecs Instantiation
         electricWaterHeater.setAttributesDevType("Performance Ratio", 0.9);
 
         Object expectedResult = 0.9;
