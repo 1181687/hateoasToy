@@ -551,29 +551,46 @@ public class House {
     }
 
     /**
-     * Method that sets the value of an attribute of a device of a certain type in the house.
-     *
-     * @param type              Type of the device.
-     * @param devicePosition    Device position in the list of devices.
-     * @param attributePosition Position of the attribute to be set.
-     * @param value             Value to be used.
-     * @return True or false.
+     * Method that returns a device in the house by its name.
+     * @param deviceName Device name.
+     * @return Device with the specified name.
      */
-    public boolean setDeviceAttribute(String type, int devicePosition, String attributePosition, Object value) {
-        List<Device> listWithAllDevicesOfAType = getAllDevicesOfAType(type);
-        return listWithAllDevicesOfAType.get(devicePosition).setAttributesDevType(attributePosition, value);
+    public Device getDeviceByName(String deviceName) {
+        List<Device> houseDevices = getAllDevices();
+        Device chosenDevice = null;
+        for (Device device : houseDevices) {
+            if (device.getName().equals(deviceName)) {
+                chosenDevice = device;
+            }
+        }
+        if (Objects.isNull(chosenDevice)) {
+            throw new RuntimeException("There isn't any device with that name.");
+        }
+        return chosenDevice;
     }
 
     /**
-     * Method that returns the energy consumption of a device of a certain type in the house daily.
+     * Method that sets the value of an attribute of a device in the house.
      *
-     * @param type           Type of the device.
-     * @param devicePosition Device position in the list of devices.
+     * @param deviceName    Device name.
+     * @param attributeName Name of the attribute to be set.
+     * @param value             Value to be used.
+     * @return True or false.
+     */
+    public boolean setDeviceAttribute(String deviceName, String attributeName, Object value) {
+        Device chosenDevice = getDeviceByName(deviceName);
+        return chosenDevice.setAttributesDevType(attributeName, value);
+    }
+
+    /**
+     * Method that returns the daily energy consumption of a device in the house.
+     *
+     * @param deviceName Device name.
      * @return Double with the energy consumption.
      */
-    public double getDailyEnergyConsumptionOfADevice(String type, int devicePosition) {
-        List<Device> listWithAllDevicesOfAType = getAllDevicesOfAType(type);
-        return listWithAllDevicesOfAType.get(devicePosition).getEnergyConsumptionInADay();
+    public double getDailyEnergyConsumptionOfADevice(String deviceName) {
+        Device chosenDevice = getDeviceByName(deviceName);
+        return chosenDevice.getEnergyConsumptionInADay();
     }
 
     /**
@@ -588,7 +605,7 @@ public class House {
         for (Device device : listWithAllDevicesOfAType) {
             totalEnergyConsumption += device.getEnergyConsumptionInADay();
         }
-        return Utils.round(totalEnergyConsumption, 2);
+        return totalEnergyConsumption;
     }
 
     public MeasurableList getNewMeasurableObjList() {

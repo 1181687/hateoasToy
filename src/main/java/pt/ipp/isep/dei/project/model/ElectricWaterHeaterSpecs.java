@@ -67,7 +67,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         double differenceInTemperature = mHotWaterTemperature - mColdWaterTemperature;
         double formula = specificHeatOfWater * mVolumeOfWaterToHeat * differenceInTemperature
                 * mPerformanceRatio;
-        return Utils.round(formula, 2);
+        return formula;
     }
 
     /**
