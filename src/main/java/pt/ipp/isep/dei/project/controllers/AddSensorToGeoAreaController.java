@@ -14,7 +14,6 @@ public class AddSensorToGeoAreaController {
         this.mListaAreaGeografica = geographicalAreaList;
     }
 
-
     public void getTipoSensorPorPosicao (int posicao) {
         mSensorType = mSensorTypeList.getSensorTypeByPosition(posicao);
     }
