@@ -35,7 +35,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setVolumeOfWaterToHeat(Object volumeOfWaterToHeat) {
         double volumeWater = (Double) volumeOfWaterToHeat;
-        if (volumeWater > 0) {
+        if (volumeWater > 0 && !(Utils.isSameDouble(volumeWater, this.mVolumeOfWaterToHeat))) {
             this.mVolumeOfWaterToHeat = volumeWater;
             return true;
         }
@@ -88,11 +88,12 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setHotWaterTemperature(Object hotWaterTemperature) {
         double hwt = (Double) hotWaterTemperature;
-        if (Utils.isSameDouble(this.mHotWaterTemperature, hwt)) {
-            return false;
+        if (!Utils.isSameDouble(this.mHotWaterTemperature, hwt) && !(Utils.isSameDouble(hwt, 0))) {
+            this.mHotWaterTemperature = hwt;
+            return true;
         }
-        this.mHotWaterTemperature = hwt;
-        return true;
+
+        return false;
     }
 
 
@@ -104,11 +105,11 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setPerformanceRatio(Object performanceRatio) {
         double perfRatio = (Double) performanceRatio;
-        if (Utils.isSameDouble(this.mPerformanceRatio, perfRatio)) {
-            return false;
+        if (Utils.isSameDouble(this.mPerformanceRatio, perfRatio) && !(Utils.isSameDouble(perfRatio, 0))) {
+            this.mPerformanceRatio = perfRatio;
+            return true;
         }
-        this.mPerformanceRatio = perfRatio;
-        return true;
+        return false;
     }
 
     /**
