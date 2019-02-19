@@ -26,13 +26,13 @@ public class AttachRoomToHouseGrid {
     }
 
     public void chooseHouseGridAndRoom() {
-        if (chooseHouseGrid() == false) {
+        if (!chooseHouseGrid()) {
             return;
         }
         if (mCtrl.isRoomListEmpty()) {
             System.out.println("There are no rooms available. Please create one\n");
         } else {
-            if (chooseAndAttachRoomToGrid() == false) {
+            if (!chooseAndAttachRoomToGrid()) {
                 return;
             }
         }
@@ -57,7 +57,7 @@ public class AttachRoomToHouseGrid {
         }
         mCtrl.setRoomToBeAttached(mCtrl.getRoomFromTheList(indexOfTheChosenRoom));
 
-        if(checkIfRoomIsAlreadyInAGrid()==false){
+        if(!checkIfRoomIsAlreadyInAGrid()){
             return false;
         }
         attachRoomConfirmation();
