@@ -292,6 +292,17 @@ class ElectricWaterHeaterTest {
     }
 
     @Test
+    void getDeactivationDate() {
+        // arrange
+        LocalDateTime date = LocalDateTime.now();
+        electricWaterHeater.setDeactivateDevice();
+        // act
+        LocalDateTime result = electricWaterHeater.getDeactivationDate();
+        // assert
+        assertEquals(date, result);
+    }
+
+    @Test
     void getIsActiveTrueTest() {
         // Act
         boolean result = electricWaterHeater.getIsActive();

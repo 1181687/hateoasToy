@@ -292,6 +292,17 @@ class WashingMachineTest {
     }
 
     @Test
+    void getDeactivationDate() {
+        // arrange
+        LocalDateTime date = LocalDateTime.now();
+        washingMachine.setDeactivateDevice();
+        // act
+        LocalDateTime result = washingMachine.getDeactivationDate();
+        // assert
+        assertEquals(date, result);
+    }
+
+    @Test
     void getIsActiveTrueTest() {
         // Act
         boolean result = washingMachine.getIsActive();

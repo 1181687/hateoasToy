@@ -298,6 +298,17 @@ class LampTest {
     }
 
     @Test
+    void getDeactivationDate() {
+        // arrange
+        LocalDateTime date = LocalDateTime.now();
+        lamp.setDeactivateDevice();
+        // act
+        LocalDateTime result = lamp.getDeactivationDate();
+        // assert
+        assertEquals(date, result);
+    }
+
+    @Test
     void getIsActiveTrueTest() {
         // Act
         boolean result = lamp.getIsActive();
