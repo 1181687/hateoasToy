@@ -224,11 +224,6 @@ class SensorListTest {
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
 
         //Instanciar Readings
-        // Sensor0
-        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
-
-        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
-
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
@@ -355,7 +350,6 @@ class SensorListTest {
         //Readings
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
-
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 11, 3, 17, 24, 00);
 
         Readings readings01 = new Readings(23, dataHoraDaMedicao01);
@@ -363,7 +357,6 @@ class SensorListTest {
 
         s0.addReadingsToList(readings01);
         s0.addReadingsToList(readings02);
-
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
@@ -486,16 +479,14 @@ class SensorListTest {
 
 
     @Test
-    public void getMaximumMeasureOfATypeOfSensorInAGivenDayTwoSensors() {
+    public void getMaximumMeasureOfATypeOfSensorInAGivenDayTwoTemperatureSensors() {
         //arrange
-
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
         LocalDateTime dateTimeDayMeasure1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
-
         LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 11, 2, 20, 24, 00);
 
         Readings readings1 = new Readings(20.0, dateTimeDayMeasure1);
@@ -510,8 +501,7 @@ class SensorListTest {
         Sensor s1 = new Sensor("B123", dataFuncionamento1, sensorType1, locS1);
 
         LocalDateTime dateTimeDayMeasure3 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
-
-        LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 11, 2, 17, 24, 00);
+        LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 11, 2, 20, 24, 00);
 
         Readings readings3 = new Readings(20.0, dateTimeDayMeasure3);
         Readings readings4 = new Readings(30.0, dateTimeDayMeasure4);
@@ -526,7 +516,7 @@ class SensorListTest {
         double expectedResult = 30.0;
 
         //Act
-        double result = listOfSensors.getMaximumMeasureOfTypeOfSensorInGivenDay(sensorType0, dateTimeDayMeasure2.toLocalDate());
+        double result = listOfSensors.getMaximumMeasureOfTypeOfSensorInGivenDay(sensorType1, dateTimeDayMeasure4.toLocalDate());
 
 
         //Assert

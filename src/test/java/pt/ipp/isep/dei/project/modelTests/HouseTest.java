@@ -1731,7 +1731,7 @@ public class HouseTest {
 
 
     @Test
-    public void testNewConstructor() {
+    public void testNewConstructorGrid() {
         //arrange
         //initiate House
         int meteringPeriodGrid = 15;
@@ -1756,6 +1756,34 @@ public class HouseTest {
         assertEquals(expectedResult, result);
 
     }
+
+    @Test
+    public void testNewConstructorDevice() {
+        //arrange
+        //initiate House
+        int meteringPeriodGrid = 15;
+        int meteringPeriodDevice = 15;
+
+        List<String> deviceTypeList = new ArrayList<>();
+        deviceTypeList.add("Fridge");
+        deviceTypeList.add("Lamp");
+        deviceTypeList.add("DishWasher");
+        deviceTypeList.add("WashingMachine");
+        deviceTypeList.add("ElectricWaterHeater");
+
+        House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+        int expectedResult = 15;
+
+
+        //Act
+        int result = house.getMeteringPeriodDevice();
+
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
+
 
     @Test
     public void testGetDateLastTemperatureOfTheHouseArea() {
