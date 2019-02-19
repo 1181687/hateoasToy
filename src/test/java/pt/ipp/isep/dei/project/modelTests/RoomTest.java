@@ -259,26 +259,6 @@ public class RoomTest {
 
         assertEquals(expectedResult, result);
     }
-/*
-    @Test
-    public void testAddDevice() {
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        FridgeSpecs specFridgeSpecs = new FridgeSpecs(100, 100, 100, 100);
-        Device dev1 = new Device("FridgeAriston", room, specFridgeSpecs);
-
-        List<Device> expectedResult = new ArrayList<>();
-        expectedResult.add(dev1);
-
-        room.addDevice(dev1);
-        List<Device> result = room.getDeviceList();
-
-        assertEquals(expectedResult, result);
-    }
-    */
-
 
     @Test
     public void getDeviceListContentTest() {
@@ -862,7 +842,7 @@ public class RoomTest {
     }
 
     @Test
-    public void testAddDeviceNameAlreadyExists_false() {
+    public void testAddDeviceSameDevice_Exception() {
         String name = "Kitchen";
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
@@ -874,17 +854,56 @@ public class RoomTest {
                 room.addDevice(lamp)
 
         );
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+        assertEquals("Device with same name is already in the roomList", exception.getMessage());
     }
 
     @Test
-    public void testAddDeviceNull_false() {
+    public void testAddDeviceNull_Exception() {
         String name = "Kitchen";
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-        boolean result = room.addDevice(null);
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                room.addDevice(null)
 
-        assertFalse(result);
+        );
+        assertEquals("Device is null.", exception.getMessage());
+    }
+
+    @Test
+    public void testAddDeviceTrue() {
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+        Room room2 = new Room("room2", 3, dim);
+
+        LampType lampType = new LampType();
+        Device lamp = lampType.createDevice("Lamp", room2);
+
+        // act
+        boolean result = room.addDevice(lamp);
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testAddDeviceSameName_Exception() {
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3.5, 3.5, 3.5);
+        Room room2 = new Room("room2", 3, dim);
+        Room room3 = new Room("room3", 1, dim);
+
+        LampType lampType = new LampType();
+        lampType.createDevice("LampA", room2);
+
+        Device lampB = lampType.createDevice("LampA", room3);
+
+        // act
+        Throwable exception = assertThrows(RuntimeException.class, () ->
+                room2.addDevice(lampB)
+
+        );
+        assertEquals("Device with same name is already in the roomList", exception.getMessage());
     }
 }

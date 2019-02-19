@@ -117,7 +117,7 @@ class LampTest {
     @Test
     public void setNameWithSameNameAndInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> kitchen.addDevice(lamp));
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+        assertEquals("Device with same name is already in the roomList", exception.getMessage());
     }
 
     @Test
