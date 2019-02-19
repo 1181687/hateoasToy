@@ -314,4 +314,9 @@ public class DishWasher implements Device, Measurable, Programmable {
     public boolean isProgrammable() {
         return true;
     }
+
+    @Override
+    public Programmable asProgrammable() {
+        return this;
+    }
 }

@@ -306,4 +306,9 @@ public class Fridge implements Device, Measurable {
     public boolean isProgrammable() {
         return false;
     }
+
+    @Override
+    public Programmable asProgrammable() {
+        return null;
+    }
 }
