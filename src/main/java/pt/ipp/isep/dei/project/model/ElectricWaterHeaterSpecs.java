@@ -34,7 +34,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setVolumeOfWaterToHeat(Object volumeOfWaterToHeat) {
         double volumeWater = (Double) volumeOfWaterToHeat;
-        if (volumeWater > 0 && !(Utils.isSameDouble(volumeWater, this.mVolumeOfWaterToHeat))) {
+        if (Double.compare(volumeWater, 0) == 1 && !(Utils.isSameDouble(volumeWater, this.mVolumeOfWaterToHeat))) {
             this.mVolumeOfWaterToHeat = volumeWater;
             return true;
         }
@@ -48,7 +48,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setColdWaterTemperature(Object coldWaterTemperature) {
         double cwt = (Double) coldWaterTemperature;
-        if (cwt < this.mHotWaterTemperature) {
+        if (Double.compare(cwt, this.mHotWaterTemperature) == -1) {
             this.mColdWaterTemperature = cwt;
             return true;
         }
@@ -149,9 +149,8 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     }
 
     /**
-     * TODO
-     *
-     * @return
+     * get method
+     * @return list os specs of electric water heater
      */
     @Override
     public List<String> getSpecsList() {
@@ -163,10 +162,11 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         return result;
     }
 
+
     /**
-     * TODO
-     * @param attributeName
-     * @return
+     * get method
+     * @param attributeName string name of the attribute
+     * @return  attribute
      */
     @Override
     public Object getAttributeValue(String attributeName) {
@@ -187,9 +187,9 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     }
 
     /**
-     * TODO
-     * @param attributeName
-     * @param attributeValue
+     * set method
+     * @param attributeName string name of the attribute
+     * @param attributeValue value of the attribute
      * @return
      */
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
@@ -224,10 +224,11 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         }
     }
 
+
     /**
-     * TODO
-     * @param attributeName
-     * @return
+     * get method
+     * @param attributeName string name of attribute
+     * @return type data of the attribute (ex.integer, double)
      */
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
