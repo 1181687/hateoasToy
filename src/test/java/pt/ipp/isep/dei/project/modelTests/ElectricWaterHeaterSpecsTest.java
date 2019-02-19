@@ -36,7 +36,7 @@ class ElectricWaterHeaterSpecsTest {
         electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 50);
         electricWaterHeater.setAttributesDevType("Cold-Water Temperature", 30);
 
-        double expectedResult = 2.09;
+        double expectedResult = 2.0934;
 
         // Act
         double result = electricWaterHeater.getEnergyConsumptionInADay();
@@ -55,7 +55,7 @@ class ElectricWaterHeaterSpecsTest {
         electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 80);
         electricWaterHeater.setAttributesDevType("Cold-Water Temperature", 30);
 
-        double expectedResult = 5.23;
+        double expectedResult = 5.2335;
 
         // Act
         double result = electricWaterHeater.getEnergyConsumptionInADay();
@@ -74,7 +74,7 @@ class ElectricWaterHeaterSpecsTest {
         electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 70);
         electricWaterHeater.setAttributesDevType("Cold-Water Temperature", 30);
 
-        double expectedResult = 4.19;
+        double expectedResult = 4.1868;
 
         // Act
         double result = electricWaterHeater.getEnergyConsumptionInADay();
