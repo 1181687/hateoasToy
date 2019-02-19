@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 public class Lamp implements Device, Measurable {
@@ -248,7 +249,7 @@ public class Lamp implements Device, Measurable {
      */
     public void setDeactivateDevice() {
         this.isActive = false;
-        this.deactivationDate = LocalDateTime.now();
+        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
     }
 
     /**
