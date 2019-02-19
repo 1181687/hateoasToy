@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.Device;
 import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.DishWasherType;
 import pt.ipp.isep.dei.project.model.Room;
@@ -14,13 +15,14 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class DishWasherSpecsTest {
     Room kitchen;
+    Device dishWasher;
 
     @BeforeEach
     public void StartUp() {
         Dimension dim = new Dimension(3, 5, 6);
         kitchen = new Room("Kitchen", 1, dim);
         DishWasherType dishWasherType = new DishWasherType();
-        dishWasherType.createDevice("DishWasher Bosch", kitchen);
+        this.dishWasher = dishWasherType.createDevice("DishWasher Bosch", kitchen);
     }
     
     @Test
@@ -216,5 +218,15 @@ public class DishWasherSpecsTest {
         boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
         // Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void getAttributeDataTypeTest() {
+        // arrange
+        String attributeDataType = "Integer";
+        // act
+        String result = dishWasher.getAttributeDataType("Integer");
+        // assert
+        assertEquals(attributeDataType, result);
     }
 }

@@ -335,17 +335,18 @@ public class GeographicalArea {
         double totalDailyMeasurement = Double.NaN;
         SensorList sensorListWithSameTypeDuringADay = getSensorListByTypeInADay(sensorType, day);
         SensorList nearestSensors = sensorListWithSameTypeDuringADay.getNearestSensorsToLocation(location);
-        Readings latestReading = null;
-        if (!nearestSensors.isEmpty()) {
+        Readings latestReading;
+        if (!(nearestSensors.isEmpty()) && !(nearestSensors.getSensorList().get(0).isMeasurementListEmpty())) {
+            latestReading = nearestSensors.getSensorList().get(0).getLastMeasurement();
+
             for (Sensor sensor : nearestSensors.getSensorList()) {
                 List<Readings> readingsList = sensor.getDailyMeasurement(day);
                 int lastReadingPosition = readingsList.size() - 1;
-                if (!(readingsList.isEmpty() && Objects.isNull(readingsList.get(lastReadingPosition))) &&
-                        (Objects.isNull(latestReading) || readingsList.get(lastReadingPosition).getDateTime().isAfter(latestReading.getDateTime()))) {
+                if (!(readingsList.isEmpty()) && readingsList.get(lastReadingPosition).getDateTime().isAfter(latestReading.getDateTime())) {
                     latestReading = sensor.getLastMeasurement();
+                }
                     totalDailyMeasurement = latestReading.getValue();
                 }
-            }
         }
         return totalDailyMeasurement;
     }
