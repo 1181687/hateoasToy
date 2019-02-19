@@ -200,7 +200,7 @@ public class DishWasher implements Device, Measurable {
     /**
      * Method that calculates the sum of the value in each Readings in a given Readings list.
      *
-     * @param readingsList List with Readingss.
+     * @param readingsList List with Readings.
      * @return Double with the required sum.
      */
     public double getSumOfTheReadings(List<Readings> readingsList) {
@@ -212,11 +212,11 @@ public class DishWasher implements Device, Measurable {
     }
 
     /**
-     * TODO
+     * Method that gets the reading list in an interval
      *
-     * @param startDate
-     * @param endDate
-     * @return
+     * @param startDate starting date of readings
+     * @param endDate end date of readings
+     * @return reading list
      */
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
         List<Readings> readingsList = new ArrayList<>();
@@ -265,11 +265,12 @@ public class DishWasher implements Device, Measurable {
         return mIsDWActive;
     }
 
+
     /**
-     * TODO
-     * @param startDate
-     * @param endDate
-     * @return
+     * get method
+     * @param startDate starting date of reading
+     * @param endDate end date of reading
+     * @return map with coordinates (value of reading and time)
      */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
@@ -282,8 +283,8 @@ public class DishWasher implements Device, Measurable {
     }
 
     /**
-     * TODO
-     * @return
+     * get method
+     * @return list of specs of dishwasher specs
      */
     @Override
     public List<String> getSpecsList() {
@@ -291,21 +292,31 @@ public class DishWasher implements Device, Measurable {
     }
 
     /**
-     * TODO
      *
-     * @param attributeName
-     * @return
+     * get method
+     * @param attributeName string attribute
+     * @return  name of attributes of dishwasher specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
         return mDWSpec.getAttributeValue(attributeName);
     }
 
+
+    /**
+     * get method
+     * @return the string of an attribute of Dishwasher Specs
+     */
     @Override
     public String getSpecsToString() {
         return this.mDWSpec.getAttributesToString();
     }
 
+    /**
+     * get method
+     * @param attributeName string attribute
+     * @return type data of the attribute (ex.integer, double)
+     */
     public String getAttributeDataType(String attributeName) {
         return mDWSpec.getAttributeDataType(attributeName);
     }

@@ -48,6 +48,8 @@ public class HouseTest {
         house.setDeviceAttribute("Bosch Tronic 3000", "Nominal Power", 0.5);
         house.setDeviceAttribute("Bosch Tronic 3000", "Performance Ratio", 0.8);
         house.setDeviceAttribute("Bosch Tronic 3000", "Hot-Water Temperature", 70);
+        house.setDeviceAttribute("Bosch Tronic 3000", "Cold-Water Temperature", "Non-existent");
+
     }
 
     @Test
@@ -1799,5 +1801,7 @@ public class HouseTest {
         // Assert
         assertEquals(expectedResult, exception.getMessage());
     }
+
+
 }
 

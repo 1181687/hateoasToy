@@ -27,7 +27,6 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         return mTypeName;
     }
 
-
     /**
      * Method that sets the volume of water to be heated.
      *
@@ -35,7 +34,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setVolumeOfWaterToHeat(Object volumeOfWaterToHeat) {
         double volumeWater = (Double) volumeOfWaterToHeat;
-        if (volumeWater > 0) {
+        if (Double.compare(volumeWater, 0) == 1 && !(Utils.isSameDouble(volumeWater, this.mVolumeOfWaterToHeat))) {
             this.mVolumeOfWaterToHeat = volumeWater;
             return true;
         }
@@ -49,7 +48,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setColdWaterTemperature(Object coldWaterTemperature) {
         double cwt = (Double) coldWaterTemperature;
-        if (cwt < this.mHotWaterTemperature) {
+        if (Double.compare(cwt, this.mHotWaterTemperature) == -1) {
             this.mColdWaterTemperature = cwt;
             return true;
         }
@@ -65,9 +64,8 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     public double getEnergyConsumptionInADay() {
         double specificHeatOfWater = 1.163 / 1000;
         double differenceInTemperature = mHotWaterTemperature - mColdWaterTemperature;
-        double formula = specificHeatOfWater * mVolumeOfWaterToHeat * differenceInTemperature
+        return specificHeatOfWater * mVolumeOfWaterToHeat * differenceInTemperature
                 * mPerformanceRatio;
-        return formula;
     }
 
     /**
@@ -88,13 +86,13 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setHotWaterTemperature(Object hotWaterTemperature) {
         double hwt = (Double) hotWaterTemperature;
-        if (Utils.isSameDouble(this.mHotWaterTemperature, hwt)) {
-            return false;
+        if (!Utils.isSameDouble(this.mHotWaterTemperature, hwt) && !(Utils.isSameDouble(hwt, 0))) {
+            this.mHotWaterTemperature = hwt;
+            return true;
         }
-        this.mHotWaterTemperature = hwt;
-        return true;
-    }
 
+        return false;
+    }
 
     /**
      * method that determine if the value of the performanceRatio is the same that the method receive.
@@ -104,11 +102,11 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setPerformanceRatio(Object performanceRatio) {
         double perfRatio = (Double) performanceRatio;
-        if (Utils.isSameDouble(this.mPerformanceRatio, perfRatio)) {
-            return false;
+        if (!Utils.isSameDouble(this.mPerformanceRatio, perfRatio) && !(Utils.isSameDouble(perfRatio, 0))) {
+            this.mPerformanceRatio = perfRatio;
+            return true;
         }
-        this.mPerformanceRatio = perfRatio;
-        return true;
+        return false;
     }
 
     /**
@@ -119,11 +117,11 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setNominalPower(Object nominalPower) {
         double nomPower = (Double) nominalPower;
-        if (Utils.isSameDouble(this.mNominalPower, nomPower)) {
-            return false;
+        if (!Utils.isSameDouble(this.mNominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
+            this.mNominalPower = nomPower;
+            return true;
         }
-        this.mNominalPower = nomPower;
-        return true;
+        return false;
     }
 
     /**
@@ -150,6 +148,10 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         return 3;
     }
 
+    /**
+     * get method
+     * @return list os specs of electric water heater
+     */
     @Override
     public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
@@ -160,6 +162,12 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         return result;
     }
 
+
+    /**
+     * get method
+     * @param attributeName string name of the attribute
+     * @return  attribute
+     */
     @Override
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
@@ -178,6 +186,12 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         }
     }
 
+    /**
+     * set method
+     * @param attributeName string name of the attribute
+     * @param attributeValue value of the attribute
+     * @return
+     */
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
             case ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT:
@@ -210,6 +224,12 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         }
     }
 
+
+    /**
+     * get method
+     * @param attributeName string name of attribute
+     * @return type data of the attribute (ex.integer, double)
+     */
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
