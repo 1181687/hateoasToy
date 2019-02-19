@@ -9,6 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 class WashingMachineSpecsTest {
     private Room room;
@@ -380,6 +381,15 @@ class WashingMachineSpecsTest {
     }
 
     @Test
+    public void testSetAttributeDurationValidValue() {
+        // Arrange
+        // Act
+        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Duration", 100.0);
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
     public void testSetAttributeEnergyConsumptionSameValue() {
         // Arrange
         room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 100.0);
@@ -387,6 +397,24 @@ class WashingMachineSpecsTest {
         boolean result = room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 100.0);
         // Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeEnergyConsumptionZero() {
+        // Arrange
+        // Act
+        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 0);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeEnergyConsumptionValidValue() {
+        // Arrange
+        // Act
+        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 100.0);
+        // Assert
+        assertTrue(result);
     }
 
     @Test
