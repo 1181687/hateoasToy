@@ -82,7 +82,9 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * TODO
+     * Method that returns a selected room through the use of an Integer.
+     * This method relies of the position of the room in the list.
+     *
      * @param position
      * @return
      */
@@ -91,7 +93,8 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * TODO
+     * Method that returns a list of readings from all of the rooms in the HouseGrid.
+     *
      * @return
      */
     @Override
