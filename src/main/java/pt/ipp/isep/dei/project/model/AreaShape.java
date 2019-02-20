@@ -1,9 +1,9 @@
 package pt.ipp.isep.dei.project.model;
 
 public class AreaShape {
-    private double mLength;
-    private double mWidth;
-    private Location mLocationAreaShape;
+    private double length;
+    private double width;
+    private Location locationAreaShape;
 
     /**
      * constructor of AreaShape that receives a width, a length and a locationAreaShape.
@@ -12,9 +12,9 @@ public class AreaShape {
      * @param locationAreaShape
      */
     public AreaShape(double width, double length, Location locationAreaShape) {
-        mLength = length;
-        mWidth = width;
-        mLocationAreaShape = locationAreaShape;
+        this.length = length;
+        this.width = width;
+        this.locationAreaShape = locationAreaShape;
     }
 
     /**
@@ -23,11 +23,11 @@ public class AreaShape {
      * @return a location with their geographical coordinates
      */
     public boolean checkIfLocationIsInsertedInAnArea(Location location){
-        double upperLeftCornerLatitude = mLocationAreaShape.getLatitude() + (mWidth / 2);
-        double upperLeftCornerLongitude = mLocationAreaShape.getLongitude() - (mLength / 2);
+        double upperLeftCornerLatitude = locationAreaShape.getLatitude() + (width / 2);
+        double upperLeftCornerLongitude = locationAreaShape.getLongitude() - (length / 2);
 
-        double bottomRightCornerLatitude = mLocationAreaShape.getLatitude() - (mWidth / 2);
-        double bottomRightCornerLongitude = mLocationAreaShape.getLongitude() + (mLength / 2);
+        double bottomRightCornerLatitude = locationAreaShape.getLatitude() - (width / 2);
+        double bottomRightCornerLongitude = locationAreaShape.getLongitude() + (length / 2);
 
         return (location.getLatitude() >= bottomRightCornerLatitude
                 && location.getLatitude() <= upperLeftCornerLatitude
@@ -44,7 +44,7 @@ public class AreaShape {
 
     /**
      * Equals method to determine if two AreaShape are equal.
-     * They are equals if all atributtes (mLength, mWidth and mLocationAreaShape) are equal.
+     * They are equals if all atributtes (length, width and locationAreaShape) are equal.
      * @param obj
      * @return boolean
      */
@@ -57,13 +57,13 @@ public class AreaShape {
         }
 
         AreaShape local = (AreaShape) obj;
-        Double comparablemLength = mLength;
-        Double comparablemWidth = mWidth;
-        Location comparablemLocationAreaShape = mLocationAreaShape;
+        Double comparablemLength = length;
+        Double comparablemWidth = width;
+        Location comparablemLocationAreaShape = locationAreaShape;
 
-        Double comparableAreaShapemLength = local.mLength;
-        Double comparableAreaShapemWidth = local.mWidth;
-        Location comparableAreaShapemLocationAreaShape = local.mLocationAreaShape;
+        Double comparableAreaShapemLength = local.length;
+        Double comparableAreaShapemWidth = local.width;
+        Location comparableAreaShapemLocationAreaShape = local.locationAreaShape;
 
         return comparableAreaShapemLength.equals(comparablemLength)
                 && comparableAreaShapemWidth.equals(comparablemWidth)

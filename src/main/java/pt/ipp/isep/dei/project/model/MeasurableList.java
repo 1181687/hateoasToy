@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class MeasurableList {
-    private Set<Measurable> mMeasurableList = new HashSet<>();
+    private Set<Measurable> measurableList = new HashSet<>();
 
     public MeasurableList() {
         //intentionally empty
@@ -18,7 +18,7 @@ public class MeasurableList {
      * @param measurable Object: Room or Device1
      */
     public void addMeasurable(Measurable measurable) {
-        this.mMeasurableList.add(measurable);
+        this.measurableList.add(measurable);
     }
 
     /**
@@ -28,7 +28,7 @@ public class MeasurableList {
      */
     public double getNominalPower() {
         double totalNominalPower = 0;
-        for (Measurable measurable : mMeasurableList) {
+        for (Measurable measurable : measurableList) {
             totalNominalPower += measurable.getNominalPower();
         }
         return Utils.round(totalNominalPower, 2);
@@ -40,7 +40,7 @@ public class MeasurableList {
      * @return true if measurable is in list or false if it is not
      */
     public boolean checkIfMeasurableObjIsInList(Measurable measurable) {
-        return mMeasurableList.contains(measurable);
+        return measurableList.contains(measurable);
     }
 
     /**
@@ -49,7 +49,7 @@ public class MeasurableList {
      */
     public String getListToString() {
         StringBuilder measurableId = new StringBuilder();
-        for (Measurable measurable : mMeasurableList) {
+        for (Measurable measurable : measurableList) {
             measurableId.append(measurable.getNameToString());
         }
         return measurableId.toString();

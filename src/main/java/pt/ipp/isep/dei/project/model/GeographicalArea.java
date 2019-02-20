@@ -7,12 +7,12 @@ import java.util.List;
 import java.util.Objects;
 
 public class GeographicalArea {
-    private String mGeoAreaName;
-    private GeographicalAreaType mGeographicalAreaType;
-    private GeographicalArea mInsertedIn;
-    private Location mLocation;
-    private AreaShape mAreaShape;
-    private SensorList mSensorList = new SensorList();
+    private String geoAreaName;
+    private GeographicalAreaType geographicalAreaType;
+    private GeographicalArea insertedIn;
+    private Location location;
+    private AreaShape areaShape;
+    private SensorList sensorList = new SensorList();
 
     /**
      * constructor of geographical area that receives a name, type, insertedIn, location, areaShape and a sensor list.
@@ -23,10 +23,10 @@ public class GeographicalArea {
      * @param areaShape
      */
     public GeographicalArea(String geoAreaName, GeographicalAreaType geographicalAreaType, Location location, AreaShape areaShape) {
-        this.mGeoAreaName = geoAreaName;
-        this.mGeographicalAreaType = geographicalAreaType;
-        this.mLocation = location;
-        this.mAreaShape = areaShape;
+        this.geoAreaName = geoAreaName;
+        this.geographicalAreaType = geographicalAreaType;
+        this.location = location;
+        this.areaShape = areaShape;
     }
 
     /**
@@ -35,7 +35,7 @@ public class GeographicalArea {
      * @return a sensor list.
      */
     public SensorList getSensorListInTheGeographicArea() {
-        return mSensorList;
+        return sensorList;
     }
 
     /**
@@ -62,7 +62,7 @@ public class GeographicalArea {
             return false;
         }
         GeographicalArea ag = (GeographicalArea) obj;
-        return this.mGeoAreaName.equals(ag.mGeoAreaName) && this.mGeographicalAreaType.equals(ag.mGeographicalAreaType) && this.mLocation.equals(ag.mLocation);
+        return this.geoAreaName.equals(ag.geoAreaName) && this.geographicalAreaType.equals(ag.geographicalAreaType) && this.location.equals(ag.location);
     }
 
     /**
@@ -71,7 +71,7 @@ public class GeographicalArea {
      * @return the name of geographical area.
      */
     public String getNameOfGeoArea() {
-        return mGeoAreaName;
+        return geoAreaName;
     }
 
     /**
@@ -80,7 +80,7 @@ public class GeographicalArea {
      * @return a type of geographical area.
      */
     public GeographicalAreaType getGeoAreaType() {
-        return mGeographicalAreaType;
+        return geographicalAreaType;
     }
 
     /**
@@ -89,7 +89,7 @@ public class GeographicalArea {
      * @return a location
      */
     public Location getLocation() {
-        return this.mLocation;
+        return this.location;
     }
 
     /**
@@ -98,7 +98,7 @@ public class GeographicalArea {
      * @return the area inserted
      */
     public GeographicalArea getInsertedIn() {
-        return mInsertedIn;
+        return insertedIn;
     }
 
     /**
@@ -107,7 +107,7 @@ public class GeographicalArea {
      * @param mainGeoArea Geographical area where THIS Geo Area will be inserted in.
      */
     public void setInsertedIn(GeographicalArea mainGeoArea) {
-        this.mInsertedIn = mainGeoArea;
+        this.insertedIn = mainGeoArea;
     }
 
     /**
@@ -117,7 +117,7 @@ public class GeographicalArea {
      * @return location between two geo areas.
      */
     public double linearDistanceBetweenTwoGeoAreas(GeographicalArea newGeoArea) {
-        return this.mLocation.distanceBetweenTwoLocations(newGeoArea.getLocation());
+        return this.location.distanceBetweenTwoLocations(newGeoArea.getLocation());
     }
 
     /**
@@ -128,7 +128,7 @@ public class GeographicalArea {
      */
     public boolean checkIfSensorInInsideOfGeoArea(Sensor sensor) {
 
-        return mAreaShape.checkIfLocationIsInsertedInAnArea(sensor.getLocation());
+        return areaShape.checkIfLocationIsInsertedInAnArea(sensor.getLocation());
 
     }
 
@@ -140,7 +140,7 @@ public class GeographicalArea {
      */
     public SensorList getSensorsInGeographicalAreaByType(SensorType sensorType) {
         SensorList listOfInsertedSensors = new SensorList();
-        for (Sensor sensor : this.mSensorList.getSensorList()) {
+        for (Sensor sensor : this.sensorList.getSensorList()) {
             if (checkIfSensorInInsideOfGeoArea(sensor) && sensor.getSensorType().equals(sensorType)) {
                 listOfInsertedSensors.addSensor(sensor);
             }
@@ -219,9 +219,9 @@ public class GeographicalArea {
      * @return sensor list.
      */
     public SensorList getTheSensorListOfAGivenType(SensorType type) {
-        GeographicalArea areaToBeUsed = new GeographicalArea(mGeoAreaName, mGeographicalAreaType, mLocation, mAreaShape);
-        areaToBeUsed.setInsertedIn(mInsertedIn);
-        areaToBeUsed.getSensorListInTheGeographicArea().setSensorList(mSensorList.getSensorList());
+        GeographicalArea areaToBeUsed = new GeographicalArea(geoAreaName, geographicalAreaType, location, areaShape);
+        areaToBeUsed.setInsertedIn(insertedIn);
+        areaToBeUsed.getSensorListInTheGeographicArea().setSensorList(sensorList.getSensorList());
 
         SensorList sensorList = new SensorList();
         sensorList.setSensorList(getSensorsInGeographicalAreaByType(type).getSensorList());

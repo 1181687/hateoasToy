@@ -1,17 +1,17 @@
 package pt.ipp.isep.dei.project.model;
 
 public class Address {
-    private String mZipCode;
-    private Location mLocation;
+    private String zipCode;
+    private Location location;
 
     /**
      * constructor of Address that receives a zipCode and a location
-     * @param mZipCode
+     * @param zipCode
      * @param location
      */
-    public Address(String mZipCode, Location location) {
-        this.mZipCode = mZipCode;
-        this.mLocation = location;
+    public Address(String zipCode, Location location) {
+        this.zipCode = zipCode;
+        this.location = location;
     }
 
     /**
@@ -24,7 +24,7 @@ public class Address {
 
     /**
      * Equals method to determine if two Addresses are equal.
-     * They are equals if all atributtes (mZipCode and mLocation) are equal.
+     * They are equals if all atributtes (zipCode and location) are equal.
      * @param obj
      * @return boolean
      */
@@ -37,10 +37,10 @@ public class Address {
             return false;
         }
         Address address = (Address) obj;
-        String comparablemZipCode = mZipCode;
-        Location comparablemLocation = mLocation;
-        String comparableAddressZipCode = address.mZipCode;
-        Location comparableAddressLocation = address.mLocation;
+        String comparablemZipCode = zipCode;
+        Location comparablemLocation = location;
+        String comparableAddressZipCode = address.zipCode;
+        Location comparableAddressLocation = address.location;
         return comparableAddressZipCode.equals(comparablemZipCode)
                 && comparableAddressLocation.equals(comparablemLocation);
     }
@@ -50,6 +50,6 @@ public class Address {
      * @return a location
      */
     public Location getLocation() {
-        return mLocation;
+        return location;
     }
 }

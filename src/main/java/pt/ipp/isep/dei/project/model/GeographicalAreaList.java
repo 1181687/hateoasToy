@@ -5,13 +5,13 @@ import java.util.List;
 
 public class GeographicalAreaList {
 
-    private List<GeographicalArea> mGeoAreaList;
+    private List<GeographicalArea> geoAreaList;
 
     /**
      * constructor that receives a new list of Geographical Areas.
      */
     public GeographicalAreaList() {
-        this.mGeoAreaList = new ArrayList<>();
+        this.geoAreaList = new ArrayList<>();
     }
 
     /**
@@ -19,7 +19,7 @@ public class GeographicalAreaList {
      * @return a list of geographical areas
      */
     public List<GeographicalArea> getGeoAreaList() {
-        return mGeoAreaList;
+        return geoAreaList;
     }
 
     /**
@@ -28,8 +28,8 @@ public class GeographicalAreaList {
      * @return boolean
      */
     public boolean addGeoArea(GeographicalArea geoArea) {
-        if (!(mGeoAreaList.contains(geoArea))) {
-            mGeoAreaList.add(geoArea);
+        if (!(geoAreaList.contains(geoArea))) {
+            geoAreaList.add(geoArea);
             return true;
         }
         return false;
@@ -41,7 +41,7 @@ public class GeographicalAreaList {
      * @return a geoArea if exists on the list. If not, return null.
      */
     public GeographicalArea getGeographicalArea(GeographicalArea geographicalArea) {
-        for (GeographicalArea area : mGeoAreaList) {
+        for (GeographicalArea area : geoAreaList) {
             if (area.equals(geographicalArea)) {
                 return area;
             }
@@ -55,7 +55,7 @@ public class GeographicalAreaList {
      * @return the name of a geoArea that is on the position selected on the list.
      */
     public String getGeographicalAreaNameByPosition(int position) {
-        return this.mGeoAreaList.get(position).getNameOfGeoArea();
+        return this.geoAreaList.get(position).getNameOfGeoArea();
     }
 
     /**
@@ -65,7 +65,7 @@ public class GeographicalAreaList {
      */
     public List<String> getListOfGeographicalAreasByType(String geoAreaType) {
         List<String> geoAreaListWithSameType = new ArrayList<>();
-        for (GeographicalArea areaGeo : mGeoAreaList) {
+        for (GeographicalArea areaGeo : geoAreaList) {
             if (areaGeo.getGeoAreaType().checkIfOneTypeOfGeoAreaIsEqualToAnotherType(geoAreaType)) {
                 geoAreaListWithSameType.add(areaGeo.getNameOfGeoArea());
             }
@@ -79,7 +79,7 @@ public class GeographicalAreaList {
      * @return the geographical area on list selected by position.
      */
     public GeographicalArea getGeographicalAreaInTheList(int position) {
-        return mGeoAreaList.get(position);
+        return geoAreaList.get(position);
     }
 
     /**
@@ -95,7 +95,7 @@ public class GeographicalAreaList {
      * @param geoArea
      */
     public boolean removeGeoArea(GeographicalArea geoArea) {
-        return mGeoAreaList.remove(geoArea);
+        return geoAreaList.remove(geoArea);
     }
 
     /**
@@ -104,7 +104,7 @@ public class GeographicalAreaList {
      * @param geoArea
      */
     public void addGeoAreaInASpecificPosition(int position, GeographicalArea geoArea) {
-        mGeoAreaList.add(position, geoArea);
+        geoAreaList.add(position, geoArea);
     }
 
     /**
@@ -114,8 +114,8 @@ public class GeographicalAreaList {
      * @return true if a geo area is inserted in another. Return false if not.
      */
     public boolean checkIfGeoAreaIsinsertedInAnother(int selection1, int selection2) {
-        GeographicalArea firstGeoArea = mGeoAreaList.get(selection1);
-        GeographicalArea secondGeoArea = mGeoAreaList.get(selection2);
+        GeographicalArea firstGeoArea = geoAreaList.get(selection1);
+        GeographicalArea secondGeoArea = geoAreaList.get(selection2);
         while (firstGeoArea.getInsertedIn() != null) {
             if (!firstGeoArea.getInsertedIn().equals(secondGeoArea)) {
                 firstGeoArea = firstGeoArea.getInsertedIn();
@@ -133,14 +133,14 @@ public class GeographicalAreaList {
      */
     public String getGeoAreaListToString(boolean useCriteria) {
         StringBuilder content = new StringBuilder();
-        for (int i = 1; i <= mGeoAreaList.size(); i++) {
-            content.append(i + " - Name: " + mGeoAreaList.get(i - 1).getNameOfGeoArea());
-            content.append(", Type: " + mGeoAreaList.get(i - 1).getGeoAreaType().getStringOfTypeOfGeoArea());
-            content.append(", Latitude: " + mGeoAreaList.get(i - 1).getLocation().getLatitude());
-            content.append(", Longitude: " + mGeoAreaList.get(i - 1).getLocation().getLongitude());
-            if (useCriteria && !checkIfGeoAreaDoesntHaveAnInsertedArea(mGeoAreaList.get(i - 1))) {
-                content.append(", Inserted in: " + mGeoAreaList.get(i - 1).getInsertedIn().getGeoAreaType().getStringOfTypeOfGeoArea());
-                content.append(" " + mGeoAreaList.get(i - 1).getInsertedIn().getNameOfGeoArea());
+        for (int i = 1; i <= geoAreaList.size(); i++) {
+            content.append(i + " - Name: " + geoAreaList.get(i - 1).getNameOfGeoArea());
+            content.append(", Type: " + geoAreaList.get(i - 1).getGeoAreaType().getStringOfTypeOfGeoArea());
+            content.append(", Latitude: " + geoAreaList.get(i - 1).getLocation().getLatitude());
+            content.append(", Longitude: " + geoAreaList.get(i - 1).getLocation().getLongitude());
+            if (useCriteria && !checkIfGeoAreaDoesntHaveAnInsertedArea(geoAreaList.get(i - 1))) {
+                content.append(", Inserted in: " + geoAreaList.get(i - 1).getInsertedIn().getGeoAreaType().getStringOfTypeOfGeoArea());
+                content.append(" " + geoAreaList.get(i - 1).getInsertedIn().getNameOfGeoArea());
             }
             content.append("\n");
         }
@@ -170,6 +170,6 @@ public class GeographicalAreaList {
      * @return integer
      */
     public int getSize() {
-        return this.mGeoAreaList.size();
+        return this.geoAreaList.size();
     }
 }
