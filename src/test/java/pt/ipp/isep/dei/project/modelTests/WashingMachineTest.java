@@ -297,7 +297,7 @@ class WashingMachineTest {
     @Test
     void getDeactivationDate() {
         // arrange
-        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         washingMachine.setDeactivateDevice();
         // act
         LocalDateTime result = washingMachine.getDeactivationDate();

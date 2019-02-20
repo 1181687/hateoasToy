@@ -248,7 +248,7 @@ public class ElectricWaterHeater implements Device, Measurable {
 
     @Override
     public String getDateDeactivateDeviceToString() {
-        return this.deactivationDate.toLocalDate().toString() + " " + this.deactivationDate.toLocalTime().toString().substring(0, 5);
+        return this.deactivationDate.toLocalDate().toString() + " " + this.deactivationDate.toLocalTime().toString();
     }
 
     /**
@@ -257,7 +257,7 @@ public class ElectricWaterHeater implements Device, Measurable {
     @Override
     public void setDeactivateDevice() {
         this.isActive = false;
-        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     }
 
     /**

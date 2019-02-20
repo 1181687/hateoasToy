@@ -312,7 +312,7 @@ class FridgeTest {
     @Test
     void getDeactivationDate() {
         // arrange
-        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         fridge.setDeactivateDevice();
         // act
         LocalDateTime result = fridge.getDeactivationDate();

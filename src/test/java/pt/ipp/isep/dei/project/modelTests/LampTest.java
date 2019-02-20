@@ -303,7 +303,7 @@ class LampTest {
     @Test
     void getDeactivationDate() {
         // arrange
-        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         lamp.setDeactivateDevice();
         // act
         LocalDateTime result = lamp.getDeactivationDate();

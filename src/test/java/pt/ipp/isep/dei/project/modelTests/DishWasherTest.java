@@ -311,7 +311,7 @@ class DishWasherTest {
     @Test
     void getDeactivationDate() {
         // arrange
-        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         dishwasher.setDeactivateDevice();
         // act
         LocalDateTime result = dishwasher.getDeactivationDate();
@@ -322,7 +322,7 @@ class DishWasherTest {
     @Test
     void getDateDeactivateDeviceToString() {
         // arrange
-        String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 8);
+        String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
         dishwasher.setDeactivateDevice();
         // act
         String result = dishwasher.getDateDeactivateDeviceToString();

@@ -256,7 +256,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
 
     @Override
     public String getDateDeactivateDeviceToString() {
-        return this.deactivationDate.toLocalDate().toString() + " " + this.deactivationDate.toLocalTime().toString().substring(0, 5);
+        return this.deactivationDate.toLocalDate().toString() + " " + this.deactivationDate.toLocalTime().toString();
     }
 
     /**
@@ -265,7 +265,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
     @Override
     public void setDeactivateDevice() {
         this.isActive = false;
-        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     }
 
     /**

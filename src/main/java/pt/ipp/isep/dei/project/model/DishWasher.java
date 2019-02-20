@@ -265,7 +265,7 @@ public class DishWasher implements Device, Measurable, Programmable {
     @Override
     public void setDeactivateDevice() {
         this.isActive = false;
-        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     }
 
 

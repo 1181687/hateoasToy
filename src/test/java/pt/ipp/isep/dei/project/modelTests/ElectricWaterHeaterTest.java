@@ -297,7 +297,7 @@ class ElectricWaterHeaterTest {
     @Test
     void getDeactivationDate() {
         // arrange
-        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         electricWaterHeater.setDeactivateDevice();
         // act
         LocalDateTime result = electricWaterHeater.getDeactivationDate();
