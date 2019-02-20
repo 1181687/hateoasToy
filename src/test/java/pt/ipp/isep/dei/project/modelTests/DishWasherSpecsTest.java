@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Device;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.DishWasherType;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +20,7 @@ public class DishWasherSpecsTest {
         DishWasherType dishWasherType = new DishWasherType();
         this.dishWasher = dishWasherType.createDevice("DishWasher Bosch", kitchen);
     }
-    
+
     @Test
     public void testGetTypeName() {
         //Arrange
@@ -270,5 +267,70 @@ public class DishWasherSpecsTest {
         String result = dishWasher.getAttributeDataType("Integer");
         // assert
         assertEquals(attributeDataType, result);
+    }
+
+    @Test
+    public void newProgram() {
+        //Arrange
+        String programName = "Economic";
+        double duration = 0.5;
+        double energyConsumption = 12.0;
+        Programmable dishwasher = this.dishWasher.asProgrammable();
+        Program expectedResult = new Program(programName, duration, energyConsumption);
+        //Act
+        Program result = dishwasher.newProgram(programName, duration, energyConsumption);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
+        //Arrange
+        Program program = null;
+        boolean expectedResult = false;
+        Programmable programmable = this.dishWasher.asProgrammable();
+        //Act
+        boolean result = programmable.addProgram(program);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
+        //Arrange
+        ProgramList programList = new ProgramList();
+        String programName = "fast";
+        double duration = 15;
+        double energyConsumption = 1;
+        Programmable programmable = this.dishWasher.asProgrammable();
+        Program programA = programmable.newProgram(programName, duration, energyConsumption);
+        Program programB = programmable.newProgram(programName, duration, energyConsumption);
+        programList.addProgram(programA);
+        boolean expectedResult = false;
+
+        //Act
+        boolean result = programList.addProgram(programB);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
+        //Arrange
+        ProgramList programList = new ProgramList();
+        String programName = "fast";
+        double duration = 15;
+        double energyConsumption = 1;
+        Programmable programmable = this.dishWasher.asProgrammable();
+        Program programA = programmable.newProgram(programName, duration, energyConsumption);
+
+        boolean expectedResult = true;
+
+        //Act
+        boolean result = programList.addProgram(programA);
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 }

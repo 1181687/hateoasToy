@@ -4,12 +4,12 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class DishWasher implements Device, Measurable {
+public class DishWasher implements Device, Measurable, Programmable {
 
     private String name;
     private Room location;
     private DishWasherSpecs specs;
-    private List<Readings> readings;
+    private List<Readings> reading;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
@@ -19,7 +19,7 @@ public class DishWasher implements Device, Measurable {
         this.location = location;
         this.location.addDevice(this);
         this.isActive = true;
-        this.readings = new ArrayList<>();
+        this.reading = new ArrayList<>();
     }
 
     /**
@@ -195,12 +195,12 @@ public class DishWasher implements Device, Measurable {
     }
 
     /**
-     * Method that adds a readings to the device.
+     * Method that adds a reading to the device.
      *
      * @param readings Readings to be added.
      */
     public void addReadingsToTheList(Readings readings) {
-        this.readings.add(readings);
+        this.reading.add(readings);
     }
 
     /**
@@ -220,13 +220,13 @@ public class DishWasher implements Device, Measurable {
     /**
      * Method that gets the reading list in an interval
      *
-     * @param startDate starting date of readings
-     * @param endDate end date of readings
+     * @param startDate starting date of reading
+     * @param endDate end date of reading
      * @return reading list
      */
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
         List<Readings> readingsList = new ArrayList<>();
-        for (Readings readings : readings) {
+        for (Readings readings : reading) {
             if (!startDate.isAfter(readings.getDateTime()) && !endDate.isBefore(readings.getDateTime())) {
                 readingsList.add(readings);
             }
@@ -236,7 +236,7 @@ public class DishWasher implements Device, Measurable {
 
     /**
      * Method that calculates the total energy consumption of a device in a given interval.
-     * This method has in count all the fully contained readings, i.e., if there's just one reading in the interval, it
+     * This method has in count all the fully contained reading, i.e., if there's just one reading in the interval, it
      * is not counted.
      *
      * @param startDate Start date.
@@ -329,5 +329,20 @@ public class DishWasher implements Device, Measurable {
      */
     public String getAttributeDataType(String attributeName) {
         return specs.getAttributeDataType(attributeName);
+    }
+
+    @Override
+    public boolean isProgrammable() {
+        return true;
+    }
+
+    @Override
+    public Programmable asProgrammable() {
+        return this;
+    }
+
+    @Override
+    public boolean addProgram(Program program) {
+        return false;
     }
 }

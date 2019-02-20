@@ -254,17 +254,19 @@ public class Room implements Measurable {
     }
 
     /**
-     * Method that adds a device to the list of Devices
-     *
+     * Method that adds a device to the list of Devices if device not null
+     * and the roomlist has not device with the same name
      * @param device the device to be added
      * @return true if it adds, false if it doesn't add
      */
     public boolean addDevice(Device device) {
-        if (!(Objects.isNull(device)) && isDeviceNameExistant(device.getName())) {
-            throw new RuntimeException("Name already exists. Please write a new one.");
+
+        if (Objects.isNull(device)) {
+            throw new RuntimeException("Device is null.");
         }
-        if (Objects.isNull(device) || this.equals(device.getLocation()) && this.mDeviceList.contains(device)) {
-            return false;
+
+        if (this.equals(device.getLocation()) && this.mDeviceList.contains(device)) {
+            throw new RuntimeException("Device with same name is already in the roomList");
         }
         device.getLocation().removeDevice(device);
         device.setLocation(this);

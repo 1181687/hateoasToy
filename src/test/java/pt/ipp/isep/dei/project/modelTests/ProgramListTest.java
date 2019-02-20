@@ -24,7 +24,7 @@ public class ProgramListTest {
     }
 
     @Test
-    public void testAddProgram() {
+    public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
         //Arrange
         ProgramList programList = new ProgramList();
         Program program = null;
@@ -38,7 +38,7 @@ public class ProgramListTest {
     }
 
     @Test
-    public void testAddProgramReturnFalse() {
+    public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
         //Arrange
         ProgramList programList = new ProgramList();
         String programName = "fast";

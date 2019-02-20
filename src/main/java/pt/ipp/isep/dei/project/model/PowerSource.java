@@ -5,8 +5,8 @@ import java.util.Objects;
 import static java.util.Objects.isNull;
 
 public class PowerSource {
-    private String mName;
-    private PowerSourceType mPowerSourceType;
+    private String name;
+    private PowerSourceType powerSourceType;
 
     /**
      * constructor that receives a power source name (String) and a PowerSourceType. Throws an exception if any of the parameters is invalid.
@@ -19,8 +19,8 @@ public class PowerSource {
         validateName(powerSourceName);
         validatePowerSourceType(powerSourceType);
 
-        this.mPowerSourceType = powerSourceType;
-        this.mName = powerSourceName;
+        this.powerSourceType = powerSourceType;
+        this.name = powerSourceName;
     }
 
     /**
@@ -52,7 +52,7 @@ public class PowerSource {
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.mName);
+        return Objects.hash(this.name);
     }
 
     /**
@@ -72,7 +72,7 @@ public class PowerSource {
 
         PowerSource type = (PowerSource) obj;
 
-        return this.mName.equalsIgnoreCase(type.mName);
+        return this.name.equalsIgnoreCase(type.name);
     }
 
     /**
@@ -80,6 +80,6 @@ public class PowerSource {
      * @return power source name
      */
     public String getName() {
-        return mName;
+        return name;
     }
 }

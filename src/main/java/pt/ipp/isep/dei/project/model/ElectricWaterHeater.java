@@ -8,7 +8,7 @@ public class ElectricWaterHeater implements Device, Measurable {
     private String name;
     private Room location;
     private ElectricWaterHeaterSpecs specs;
-    private List<Readings> readings;
+    private List<Readings> reading;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
@@ -18,7 +18,7 @@ public class ElectricWaterHeater implements Device, Measurable {
         this.location.addDevice(this);
         this.specs = new ElectricWaterHeaterSpecs();
         this.isActive = true;
-        this.readings = new ArrayList<>();
+        this.reading = new ArrayList<>();
 
     }
 
@@ -185,12 +185,12 @@ public class ElectricWaterHeater implements Device, Measurable {
     }
 
     /**
-     * Method that adds a readings to the device.
+     * Method that adds a reading to the device.
      *
      * @param readings Readings to be added.
      */
     public void addReadingsToTheList(Readings readings) {
-        this.readings.add(readings);
+        this.reading.add(readings);
     }
 
     /**
@@ -208,15 +208,14 @@ public class ElectricWaterHeater implements Device, Measurable {
     }
 
     /**
-     * TODO
-     *
-     * @param startDate
-     * @param endDate
-     * @return
+       Method that gets the reading list in an interval
+     * @param startDate starting date of reading
+     * @param endDate end date of reading
+     * @return reading list
      */
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
         List<Readings> readingsList = new ArrayList<>();
-        for (Readings readings : this.readings) {
+        for (Readings readings : this.reading) {
             if (!startDate.isAfter(readings.getDateTime()) && !endDate.isBefore(readings.getDateTime())) {
                 readingsList.add(readings);
             }
@@ -264,10 +263,10 @@ public class ElectricWaterHeater implements Device, Measurable {
     }
 
     /**
-     * TODO
-     * @param startDate
-     * @param endDate
-     * @return
+     * get method
+     * @param startDate starting date of reading
+     * @param endDate end date of reading
+     * @return map with coordinates (value of reading and time)
      */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
@@ -280,8 +279,8 @@ public class ElectricWaterHeater implements Device, Measurable {
     }
 
     /**
-     * TODO
-     * @return
+     * get method
+     * @return list of specs of ElectricWaterHeater specs
      */
     @Override
     public List<String> getSpecsList() {
@@ -289,22 +288,41 @@ public class ElectricWaterHeater implements Device, Measurable {
     }
 
     /**
-     * TODO
-     *
-     * @param attributeName
-     * @return
+     * get method
+     * @param attributeName string attribute
+     * @return  name of attributes of ElectricWaterHeater specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
         return specs.getAttributeValue(attributeName);
     }
 
+
+    /**
+     * get method
+     * @return the string of an attribute of ElectricWaterHeater
+     */
     @Override
     public String getSpecsToString() {
         return this.specs.getAttributesToString();
     }
 
+
+  /** get method
+     * @param attributeName string attribute
+     * @return type data of the attribute (ex.integer, double)
+     */
     public String getAttributeDataType(String attributeName) {
         return specs.getAttributeDataType(attributeName);
+    }
+
+    @Override
+    public boolean isProgrammable() {
+        return false;
+    }
+
+    @Override
+    public Programmable asProgrammable() {
+        return null;
     }
 }

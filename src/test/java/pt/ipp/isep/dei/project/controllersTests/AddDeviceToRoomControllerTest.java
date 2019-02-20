@@ -160,7 +160,7 @@ class AddDeviceToRoomControllerTest {
                         1000, 200, 20, 50));
 
         // Assert
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+        assertEquals("Device with same name is already in the roomList", exception.getMessage());
     }
 
     @Test
@@ -192,7 +192,7 @@ class AddDeviceToRoomControllerTest {
                         200, 100));
 
         // Assert
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+        assertEquals("Device with same name is already in the roomList", exception.getMessage());
     }
 
     @Test
@@ -224,7 +224,7 @@ class AddDeviceToRoomControllerTest {
                         controller.createNewWashingMachine("Washing Machine", 200, 100));
 
         // Assert
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+        assertEquals("Device with same name is already in the roomList", exception.getMessage());
     }
 
     @Test
@@ -261,7 +261,7 @@ class AddDeviceToRoomControllerTest {
                                 150, 100, 0.9));
 
         // Assert
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+        assertEquals("Device with same name is already in the roomList", exception.getMessage());
     }
 
     @Test
@@ -293,7 +293,7 @@ class AddDeviceToRoomControllerTest {
                 controller.createNewDishWasher("DW1", 12, 50));
 
         // Assert
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+        assertEquals("Device with same name is already in the roomList", exception.getMessage());
     }
 
     @Test
