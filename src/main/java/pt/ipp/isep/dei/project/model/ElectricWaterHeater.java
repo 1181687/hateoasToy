@@ -331,4 +331,14 @@ public class ElectricWaterHeater implements Device, Measurable {
     public String getAttributeDataType(String attributeName) {
         return specs.getAttributeDataType(attributeName);
     }
+
+    @Override
+    public boolean isProgrammable() {
+        return false;
+    }
+
+    @Override
+    public Programmable asProgrammable() {
+        return null;
+    }
 }

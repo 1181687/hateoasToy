@@ -83,4 +83,58 @@ public class PowerSourceListTest {
         //Assert
         assertEquals(expectedResult,result);
     }
+
+    @Test
+    public void testPowerSourceNameAlreadyExistsTrue() {
+        //Arrange
+        String name = "Power Source 1";
+        String name2 = "Power Source 2";
+        String typeName = "Battery";
+        PowerSourceType type1 = new PowerSourceType(typeName);
+        PowerSource powerSource1 = new PowerSource(name, type1);
+        PowerSource powerSource2 = new PowerSource(name2, type1);
+        PowerSourceList list = new PowerSourceList();
+        list.addPowerSource(powerSource1);
+        list.addPowerSource(powerSource2);
+
+        //Act
+        boolean result = list.powerSourceNameAlreadyExists(name);
+
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testPowerSourceNameAlreadyExistsFalse() {
+        //Arrange
+        String name = "Power Source 1";
+        String name2 = "Power Source 2";
+        String name3 = "Power Source 3";
+        String typeName = "Battery";
+        PowerSourceType type1 = new PowerSourceType(typeName);
+        PowerSource powerSource1 = new PowerSource(name, type1);
+        PowerSource powerSource2 = new PowerSource(name2, type1);
+        PowerSourceList list = new PowerSourceList();
+        list.addPowerSource(powerSource1);
+        list.addPowerSource(powerSource2);
+
+        //Act
+        boolean result = list.powerSourceNameAlreadyExists(name3);
+
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testPowerSourceNameAlreadyExistsEmptyList() {
+        //Arrange
+        String name = "Power Source 1";
+        PowerSourceList list = new PowerSourceList();
+
+        //Act
+        boolean result = list.powerSourceNameAlreadyExists(name);
+
+        //Assert
+        assertFalse(result);
+    }
 }

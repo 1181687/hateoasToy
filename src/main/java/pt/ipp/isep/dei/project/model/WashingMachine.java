@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class WashingMachine implements Device, Measurable {
+public class WashingMachine implements Device, Measurable, Programmable {
 
     private String name;
     private Room location;
@@ -12,6 +12,7 @@ public class WashingMachine implements Device, Measurable {
     private List<Readings> reading;
     private boolean isActive;
     private LocalDateTime deactivationDate;
+
 
     public WashingMachine(String name, Room location) {
         this.name = name;
@@ -339,4 +340,19 @@ public class WashingMachine implements Device, Measurable {
     public String getAttributeDataType(String attributeName) {
         return specs.getAttributeDataType(attributeName);
     }
+
+    @Override
+    public boolean isProgrammable() {
+        return true;
+    }
+
+    public Programmable asProgrammable() {
+        return this;
+    }
+
+    @Override
+    public boolean addProgram(Program program) {
+        return false;
+    }
+
 }

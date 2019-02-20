@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class DishWasher implements Device, Measurable {
+public class DishWasher implements Device, Measurable, Programmable {
 
     private String name;
     private Room location;
@@ -338,5 +338,20 @@ public class DishWasher implements Device, Measurable {
     @Override
     public String getAttributeDataType(String attributeName) {
         return specs.getAttributeDataType(attributeName);
+    }
+
+    @Override
+    public boolean isProgrammable() {
+        return true;
+    }
+
+    @Override
+    public Programmable asProgrammable() {
+        return this;
+    }
+
+    @Override
+    public boolean addProgram(Program program) {
+        return false;
     }
 }
