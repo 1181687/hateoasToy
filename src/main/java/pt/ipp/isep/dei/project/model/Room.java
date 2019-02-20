@@ -379,7 +379,8 @@ public class Room implements Measurable {
                 content.append("\n");
                 numberInTheList++;
             } else {
-                content.append(numberInTheList + deviceName + getDeviceList().get(i - 1).getName() + " - DEACTIVATED");
+                String dateHour = mDeviceList.get(0).getDateDeactivateDeviceToString();
+                content.append(numberInTheList + deviceName + getDeviceList().get(i - 1).getName() + " - DEACTIVATED at " + dateHour);
                 content.append("\n");
                 numberInTheList++;
             }

@@ -126,4 +126,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
         return this.mRoom.getDeviceList().get(position);
     }
 
+    public String getDateDeactivateDeviceToString() {
+        return this.mRoom.getDeviceList().get(0).getDateDeactivateDeviceToString();
+    }
 }
