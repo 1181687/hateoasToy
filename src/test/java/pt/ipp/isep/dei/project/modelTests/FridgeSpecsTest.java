@@ -287,7 +287,7 @@ public class FridgeSpecsTest {
     @Test
     public void testSetAttributeFreezerCapacitySameValue() {
         // Arrange
-        kitchen.getDeviceByPosition(0).setAttributesDevType("Freezer Capacity", 20);
+        fridge.setAttributesDevType("Freezer Capacity", 20);
         // Act
         boolean result = fridge.setAttributesDevType("Freezer Capacity", 20);
         // Assert
@@ -297,9 +297,19 @@ public class FridgeSpecsTest {
     @Test
     public void testSetAttributeRefrigeratorCapacitySameValue() {
         // Arrange
-        kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 50);
+        fridge.setAttributesDevType("Refrigerator Capacity", 50);
         // Act
         boolean result = fridge.setAttributesDevType("Refrigerator Capacity", 50);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeAnnualEnergyConsumptionSameValue() {
+        // Arrange
+        fridge.setAttributesDevType("Annual Energy Consumption", 100);
+        // Act
+        boolean result = fridge.setAttributesDevType("Annual Energy Consumption", 100);
         // Assert
         assertFalse(result);
     }
