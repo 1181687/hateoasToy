@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
@@ -11,6 +12,57 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class GeographicalAreaTest {
+    private GeographicalArea northernRegion;
+    private GeographicalArea portoDistrict;
+    private GeographicalArea portoCity;
+    private Sensor temperatureSensor;
+    private Sensor temperatureSensor1;
+    private SensorType temperature;
+
+
+    @BeforeEach
+    public void StartUp() {
+        // Geographical Area Types
+        GeographicalAreaType region = new GeographicalAreaType("Region");
+        GeographicalAreaType district = new GeographicalAreaType("District");
+        GeographicalAreaType city = new GeographicalAreaType("City");
+
+        // Geographical Areas
+        Location location = new Location(32.1496, 7.6109, 98);
+        AreaShape areaShape = new AreaShape(100, 100, location);
+        northernRegion = new GeographicalArea("Northern Region", region, location, areaShape);
+        Location location1 = new Location(41.1496, -6.6109, 100);
+        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        portoDistrict = new GeographicalArea("Porto District", district, location1, areaShape1);
+        portoDistrict.setInsertedIn(northernRegion);
+        Location location2 = new Location(42.1496, -8.6109, 97);
+        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        portoCity = new GeographicalArea("Porto City", city, location2, areaShape2);
+        portoCity.setInsertedIn(portoDistrict);
+
+        // Sensors
+        temperature = new SensorType("Temperature");
+        LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        Location sensorLocation = new Location(42.1596, -8.6109, 97);
+        temperatureSensor = new Sensor("A123", startDate, temperature, sensorLocation);
+        LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
+        temperatureSensor1 = new Sensor("A123", startDate1, temperature, sensorLocation1);
+
+        // Readings
+        LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime readingDate1 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
+        Readings reading = new Readings(23, readingDate);
+        Readings reading1 = new Readings(30, readingDate1);
+        temperatureSensor.addReadingsToList(reading);
+        temperatureSensor.addReadingsToList(reading1);
+        LocalDateTime readingDate2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
+        Readings reading2 = new Readings(22, readingDate2);
+        Readings reading3 = new Readings(25, readingDate3);
+        temperatureSensor1.addReadingsToList(reading2);
+        temperatureSensor1.addReadingsToList(reading3);
+    }
 
     @Test
     public void testarEqualsSame() {
@@ -641,102 +693,37 @@ class GeographicalAreaTest {
     }
 
     @Test
-    public void getTheSensorListInTheFirstAreaWithSensorOfAGivenTypeTest() {
+    public void getTheSensorListInTheFirstAreaWithSensorOfAGivenTypeFirstAreaTest() {
         // Arrange
-        // Instantiate GeoAreas
-        String nomeAG2 = "Região Norte";
-        GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
-        Location local2 = new Location(32.1496, 7.6109, 98);
-        AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
+        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
 
-        String nomeAG1 = "Distrito Porto";
-        GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
-        Location local1 = new Location(41.1496, -6.6109, 100);
-        AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-        ag1.setInsertedIn(ag2);
+        // Act
+        boolean result = portoCity.getTheSensorListOfAGivenType(temperature).getSensorList().isEmpty();
 
-        String nomeAG = "Porto";
-        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
-        Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-        ag.setInsertedIn(ag1);
-
-        // Instantiate Sensors
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperature");
-        Location locS0 = new Location(-1, 30, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
-        ag2.getSensorListInTheGeographicArea().addSensor(s0);
-
-        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperature");
-        Location locS1 = new Location(0, 30, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
-        ag2.getSensorListInTheGeographicArea().addSensor(s1);
-
-        // Instantiate Measurements
-        // Sensor0
-        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
-
-        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
-        Readings readings02 = new Readings(30, dataHoraDaMedicao02);
-
-        s0.addReadingsToList(readings01);
-        s0.addReadingsToList(readings02);
-
-        //Sensor1
-        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
-
-        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
-        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
-
-        s1.addReadingsToList(readings11);
-        s1.addReadingsToList(readings12);
-
-        SensorType typeRequired = new SensorType("Temperature");
-
-        //Act
-        Boolean result = ag.getTheSensorListOfAGivenType(typeRequired).getSensorList().isEmpty();
-
-        //Assert
+        // Assert
         assertFalse(result);
     }
 
     @Test
-    public void getTheSensorListInTheFirstAreaWithSensorOfAGivenTypeTestWithoutSensors() {
+    public void getTheSensorListInTheFirstAreaWithSensorOfAGivenTypeLastAreaTest() {
         // Arrange
-        // Instantiate GeoAreas
-        String nomeAG2 = "Região Norte";
-        GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
-        Location local2 = new Location(32.1496, 7.6109, 98);
-        AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+        northernRegion.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
+        northernRegion.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
 
-        String nomeAG1 = "Distrito Porto";
-        GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
-        Location local1 = new Location(41.1496, -6.6109, 100);
-        AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-        ag1.setInsertedIn(ag2);
+        // Act
+        boolean result = portoCity.getTheSensorListOfAGivenType(temperature).getSensorList().isEmpty();
 
-        String nomeAG = "Porto";
-        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
-        Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
-        ag.setInsertedIn(ag1);
+        // Assert
+        assertFalse(result);
+    }
 
-        SensorType typeRequired = new SensorType("Temperature");
+    @Test
+    public void getTheSensorListInTheFirstAreaWithSensorOfAGivenTypeNoSensorsTest() {
+        // Act
+        Boolean result = portoCity.getTheSensorListOfAGivenType(temperature).getSensorList().isEmpty();
 
-        //Act
-        Boolean result = ag.getTheSensorListOfAGivenType(typeRequired).getSensorList().isEmpty();
-
-        //Assert
+        // Assert
         assertTrue(result);
     }
 
