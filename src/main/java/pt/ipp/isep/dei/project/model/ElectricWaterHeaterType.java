@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.project.model;
 
 public class ElectricWaterHeaterType implements DeviceType {
-    String mTypeName;
+    String typeName;
 
     public ElectricWaterHeaterType() {
-        this.mTypeName = "Electric Water Heater";
+        this.typeName = "Electric Water Heater";
     }
 
     public String getTypeName() {
-        return mTypeName;
+        return typeName;
     }
 
     public Device createDevice(String name, Room location) {

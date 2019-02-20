@@ -12,19 +12,19 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_COLD_WATER_TEMP = "Cold-Water Temperature";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
-    private String mTypeName;
-    private double mVolumeOfWaterToHeat;
-    private double mColdWaterTemperature;
-    private double mHotWaterTemperature;
-    private double mPerformanceRatio;
-    private double mNominalPower;
+    private String typeName;
+    private double volumeOfWaterToHeat;
+    private double coldWaterTemperature;
+    private double hotWaterTemperature;
+    private double performanceRatio;
+    private double nominalPower;
 
     public ElectricWaterHeaterSpecs() {
-        this.mTypeName = "Electric Water Heater";
+        this.typeName = "Electric Water Heater";
     }
 
     public String getTypeName() {
-        return mTypeName;
+        return typeName;
     }
 
     /**
@@ -34,8 +34,8 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setVolumeOfWaterToHeat(Object volumeOfWaterToHeat) {
         double volumeWater = (Double) volumeOfWaterToHeat;
-        if (Double.compare(volumeWater, 0) == 1 && !(Utils.isSameDouble(volumeWater, this.mVolumeOfWaterToHeat))) {
-            this.mVolumeOfWaterToHeat = volumeWater;
+        if (Double.compare(volumeWater, 0) == 1 && !(Utils.isSameDouble(volumeWater, this.volumeOfWaterToHeat))) {
+            this.volumeOfWaterToHeat = volumeWater;
             return true;
         }
         return false;
@@ -48,8 +48,8 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setColdWaterTemperature(Object coldWaterTemperature) {
         double cwt = (Double) coldWaterTemperature;
-        if (Double.compare(cwt, this.mHotWaterTemperature) == -1) {
-            this.mColdWaterTemperature = cwt;
+        if (Double.compare(cwt, this.hotWaterTemperature) == -1) {
+            this.coldWaterTemperature = cwt;
             return true;
         }
         return false;
@@ -63,9 +63,9 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public double getEnergyConsumptionInADay() {
         double specificHeatOfWater = 1.163 / 1000;
-        double differenceInTemperature = mHotWaterTemperature - mColdWaterTemperature;
-        return specificHeatOfWater * mVolumeOfWaterToHeat * differenceInTemperature
-                * mPerformanceRatio;
+        double differenceInTemperature = hotWaterTemperature - coldWaterTemperature;
+        return specificHeatOfWater * volumeOfWaterToHeat * differenceInTemperature
+                * performanceRatio;
     }
 
     /**
@@ -75,7 +75,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     @Override
     public double getNominalPower() {
-        return mNominalPower;
+        return nominalPower;
     }
 
     /**
@@ -86,8 +86,8 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setHotWaterTemperature(Object hotWaterTemperature) {
         double hwt = (Double) hotWaterTemperature;
-        if (!Utils.isSameDouble(this.mHotWaterTemperature, hwt) && !(Utils.isSameDouble(hwt, 0))) {
-            this.mHotWaterTemperature = hwt;
+        if (!Utils.isSameDouble(this.hotWaterTemperature, hwt) && !(Utils.isSameDouble(hwt, 0))) {
+            this.hotWaterTemperature = hwt;
             return true;
         }
 
@@ -102,8 +102,8 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setPerformanceRatio(Object performanceRatio) {
         double perfRatio = (Double) performanceRatio;
-        if (!Utils.isSameDouble(this.mPerformanceRatio, perfRatio) && !(Utils.isSameDouble(perfRatio, 0))) {
-            this.mPerformanceRatio = perfRatio;
+        if (!Utils.isSameDouble(this.performanceRatio, perfRatio) && !(Utils.isSameDouble(perfRatio, 0))) {
+            this.performanceRatio = perfRatio;
             return true;
         }
         return false;
@@ -117,8 +117,8 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setNominalPower(Object nominalPower) {
         double nomPower = (Double) nominalPower;
-        if (!Utils.isSameDouble(this.mNominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
-            this.mNominalPower = nomPower;
+        if (!Utils.isSameDouble(this.nominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
+            this.nominalPower = nomPower;
             return true;
         }
         return false;
@@ -132,9 +132,9 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Hot Water Temperature: " + mHotWaterTemperature + "\n");
-        attributes.append("2 - Performance Ratio: " + mPerformanceRatio + "\n");
-        attributes.append("3 - Nominal Power: " + mNominalPower + "\n");
+        attributes.append("1 - Hot Water Temperature: " + hotWaterTemperature + "\n");
+        attributes.append("2 - Performance Ratio: " + performanceRatio + "\n");
+        attributes.append("3 - Nominal Power: " + nominalPower + "\n");
         return attributes.toString();
     }
 
@@ -172,15 +172,15 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
             case ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT:
-                return mVolumeOfWaterToHeat;
+                return volumeOfWaterToHeat;
             case ATTRIBUTE_HOT_WATER_TEMP:
-                return mHotWaterTemperature;
+                return hotWaterTemperature;
             case ATTRIBUTE_PERFORMANCE_RATIO:
-                return mPerformanceRatio;
+                return performanceRatio;
             case ATTRIBUTE_COLD_WATER_TEMP:
-                return mColdWaterTemperature;
+                return coldWaterTemperature;
             case ATTRIBUTE_NOMINAL_POWER:
-                return mNominalPower;
+                return nominalPower;
             default:
                 return -1;
         }

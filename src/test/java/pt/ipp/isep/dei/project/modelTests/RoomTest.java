@@ -136,9 +136,9 @@ public class RoomTest {
 
         room.addSensorToListOfSensorsInRoom(s0);
         sensorList.addSensor(s0);
-        List<Sensor> expectedResult = sensorList.getSensorList();
+        List<Sensor> expectedResult = sensorList.getListOfsensors();
         //Act
-        List<Sensor> result = room.getSensorList().getSensorList();
+        List<Sensor> result = room.getSensorList().getListOfsensors();
         //Assert
         assertEquals(result, expectedResult);
     }

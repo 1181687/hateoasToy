@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.project.model;
 
 public class LampType implements DeviceType {
-    String mTypeName;
+    String typeName;
 
     public LampType() {
-        this.mTypeName = "Lamp";
+        this.typeName = "Lamp";
     }
 
     @Override
     public String getTypeName() {
-        return this.mTypeName;
+        return this.typeName;
     }
 
     public Device createDevice(String name, Room location) {

@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.project.model;
 
 public class DishWasherType implements DeviceType {
-    String mTypeName;
+    String typeName;
 
     public DishWasherType() {
-        this.mTypeName = "DishWasher";
+        this.typeName = "DishWasher";
     }
 
     public String getTypeName() {
-        return mTypeName;
+        return typeName;
     }
 
     public Device createDevice(String name, Room location) {

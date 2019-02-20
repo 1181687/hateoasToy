@@ -8,10 +8,10 @@ import java.util.Scanner;
 public class ConfHouseLocation {
 
     /** US101 As an Administrator, I want to configure the location of the house. */
-    private ConfHouseLocationController ctrl;
+    private ConfHouseLocationController controller;
 
     public ConfHouseLocation(House house) {
-        this.ctrl = new ConfHouseLocationController(house);
+        this.controller = new ConfHouseLocationController(house);
     }
 
 
@@ -28,8 +28,8 @@ public class ConfHouseLocation {
         String label3 = "Introduce the altitude of the new location.";
         double altitude = InputValidator.getInt(label3);
 
-        ctrl.defineNewAddress(zipCode, latitude, longitude, altitude);
-        ctrl.setAddress();
+        controller.defineNewAddress(zipCode, latitude, longitude, altitude);
+        controller.setAddress();
         System.out.println("Success!");
     }
 }

@@ -3,8 +3,8 @@ package pt.ipp.isep.dei.project.model;
 import java.time.LocalDateTime;
 
 public class Readings {
-    private double mValue;
-    private LocalDateTime mDateTime;
+    private double value;
+    private LocalDateTime dateTime;
 
     /**
      * constructor that receives a value and a date
@@ -13,24 +13,24 @@ public class Readings {
      * @param dateTime date
      */
     public Readings(double value, LocalDateTime dateTime) {
-        this.mValue = value;
-        this.mDateTime = dateTime;
+        this.value = value;
+        this.dateTime = dateTime;
     }
 
     /**
      * Get method
-     * @return mValue
+     * @return value
      */
     public double getValue() {
-        return mValue;
+        return value;
     }
 
     /**
      * Get method
-     * @return mDateTime
+     * @return dateTime
      */
     public LocalDateTime getDateTime() {
-        return mDateTime;
+        return dateTime;
     }
 
 }

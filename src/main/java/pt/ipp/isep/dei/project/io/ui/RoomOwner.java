@@ -3,10 +3,10 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.model.House;
 
 public class RoomOwner {
-    House mhouse;
+    House house;
 
     public RoomOwner(House house) {
-        this.mhouse = house;
+        this.house = house;
     }
 
     public void runRoomOwnerMenu() {
@@ -17,7 +17,7 @@ public class RoomOwner {
         while (option != 0) {
             switch (option) {
                 case 1:
-                    GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(mhouse);
+                    GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(house);
                     ui230.run();
                     break;
             }

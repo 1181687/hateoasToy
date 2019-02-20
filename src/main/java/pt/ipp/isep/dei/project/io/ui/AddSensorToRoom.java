@@ -12,39 +12,39 @@ sensor types, in order to configure it. */
 
 public class AddSensorToRoom {
 
-    private AddSensorToRoomController mAddSensorToRoomController;
+    private AddSensorToRoomController controller;
 
     public AddSensorToRoom(House house, RoomList roomList, SensorTypeList listSensorsType) {
-        mAddSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, house);
+        controller = new AddSensorToRoomController(listSensorsType, roomList, house);
     }
 
     public void run() {
 
         Scanner read = new Scanner(System.in);
 
-        if (mAddSensorToRoomController.isRoomListEmpty()) {
+        if (controller.isRoomListEmpty()) {
             System.out.println("There are no rooms in the house. Please create a room");
-        } else if (mAddSensorToRoomController.isSensorTypeListEmpty()) {
+        } else if (controller.isSensorTypeListEmpty()) {
             System.out.println("There are no sensor types created. Please create one.");
         } else {
             System.out.println("To which room do you want to add a sensor?");
-            System.out.println(mAddSensorToRoomController.getRoomListContent());
+            System.out.println(controller.getRoomListContent());
             int positionOfTheRoom = read.nextInt() - 1;
             read.nextLine();
-            mAddSensorToRoomController.getRoomByIndex(positionOfTheRoom);
+            controller.getRoomByIndex(positionOfTheRoom);
 
             System.out.println("What's the name of the new sensor?");
             String nameOfSensor = read.nextLine();
 
             System.out.println("Please, select a sensor type");
-            System.out.println(mAddSensorToRoomController.displayListOfSensorsType());
+            System.out.println(controller.displayListOfSensorsType());
             int positionOfTheSensorType = read.nextInt() - 1;
             read.nextLine();
-            mAddSensorToRoomController.getSensorTypeByIndex(positionOfTheSensorType);
+            controller.getSensorTypeByIndex(positionOfTheSensorType);
 
-            mAddSensorToRoomController.getLocationOfTheHouse();
+            controller.getLocationOfTheHouse();
 
-            if (mAddSensorToRoomController.createAndAddSensorToTheList(nameOfSensor)) {
+            if (controller.createAndAddSensorToTheList(nameOfSensor)) {
                 System.out.println("A sensor was added to the room.");
             } else {
                 System.out.println("Sensor was not created.");

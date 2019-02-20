@@ -10,10 +10,10 @@ import java.util.Scanner;
 
 public class AddGeoArea {
 
-    private AddGeoAreaController ctrl3;
+    private AddGeoAreaController controller;
 
     public AddGeoArea(GeographicalAreaList lista, GeographicalAreaTypeList listaTAG) {
-        this.ctrl3 = new AddGeoAreaController(lista, listaTAG);
+        this.controller = new AddGeoAreaController(lista, listaTAG);
     }
 
     public void run() {
@@ -21,12 +21,12 @@ public class AddGeoArea {
         Scanner ler = new Scanner(System.in);
         String nome = ler.nextLine();
         System.out.println("Choose the Geographical Area type");
-        for (int i = 1; i <= ctrl3.getTGAList().size(); i++) {
+        for (int i = 1; i <= controller.getTGAList().size(); i++) {
             System.out.println(i + " - " +
-                    "Type: " + ctrl3.getTGAList().get(i - 1));
+                    "Type: " + controller.getTGAList().get(i - 1));
         }
         int opcao = ler.nextInt();
-        String nomeTipoAG = ctrl3.getTGAList().get(opcao - 1);
+        String nomeTipoAG = controller.getTGAList().get(opcao - 1);
         String label1 = "Introduce the latitude of the Geographical Area(valid numbers between -90 and 90).";
         double latitude = InputValidator.getDoubleRange(label1, -90, 90);
 
@@ -42,8 +42,8 @@ public class AddGeoArea {
         String label5 = "Introduce the width of the Geographical Area(valid numbers greater than 0).";
         double largura = InputValidator.getDoublePos(label5);
 
-        GeographicalArea novaAG = ctrl3.createNewGeoArea(nome, nomeTipoAG, latitude, longitude, altitude, comprimento, largura);
-        if (ctrl3.addNewGeoArea(novaAG)) {
+        GeographicalArea novaAG = controller.createNewGeoArea(nome, nomeTipoAG, latitude, longitude, altitude, comprimento, largura);
+        if (controller.addNewGeoArea(novaAG)) {
             System.out.println("Success!");
         } else {
             System.out.println("That Geographical Area already exists!");

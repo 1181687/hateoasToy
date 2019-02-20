@@ -10,10 +10,10 @@ import java.util.Scanner;
 area, so that one can get measurements of that type in that area. */
 
 public class AddSensorToGeoArea {
-    private AddSensorToGeoAreaController controller6;
+    private AddSensorToGeoAreaController controller;
 
     public AddSensorToGeoArea(GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList) {
-        this.controller6 = new AddSensorToGeoAreaController(sensorTypeList, geographicalAreaList);
+        this.controller = new AddSensorToGeoAreaController(sensorTypeList, geographicalAreaList);
     }
 
     public void run() {
@@ -33,29 +33,29 @@ public class AddSensorToGeoArea {
         System.out.println("Introduce the type of sensor");
         int posicao1 = -1;
         do {
-            for (int i = 0; i < controller6.numeroElementosDaListaTipoDeSensor(); i++) {
-                System.out.println((i + 1) + " - " +(controller6.getNomeTipoSensorPorIndice(i)));
+            for (int i = 0; i < controller.numeroElementosDaListaTipoDeSensor(); i++) {
+                System.out.println((i + 1) + " - " + (controller.getNomeTipoSensorPorIndice(i)));
             }
             posicao1 = ler.nextInt();
         }
-        while (posicao1 < 0 || posicao1 > controller6.numeroElementosDaListaTipoDeSensor());
+        while (posicao1 < 0 || posicao1 > controller.numeroElementosDaListaTipoDeSensor());
 
         ler.nextLine();
         System.out.println("In which geographical area is this sensor included?");
         int posicao2 = -1;
         do {
-            for (int i = 0; i < controller6.numeroElementosDaListaAreaGeografica(); i++) {
-                System.out.println((i + 1) + " - " + (controller6.getNomeAreaGeograficaPorIndice(i)));
+            for (int i = 0; i < controller.numeroElementosDaListaAreaGeografica(); i++) {
+                System.out.println((i + 1) + " - " + (controller.getNomeAreaGeograficaPorIndice(i)));
             }
             posicao2 = ler.nextInt();
         }
-        while (posicao2 < 0 || posicao2 > controller6.numeroElementosDaListaAreaGeografica());
+        while (posicao2 < 0 || posicao2 > controller.numeroElementosDaListaAreaGeografica());
 
-        controller6.getAreaGeograficaNaListaPorPosicao(posicao2 - 1);
-        controller6.criarNovaLocalizacao(altitude, latitude, longitude);
-        controller6.getTipoSensorPorPosicao(posicao1-1);
+        controller.getAreaGeograficaNaListaPorPosicao(posicao2 - 1);
+        controller.criarNovaLocalizacao(altitude, latitude, longitude);
+        controller.getTipoSensorPorPosicao(posicao1 - 1);
 
-        if (controller6.adicionarSensorAAreaGeografica(controller6.criarNovoSensor(nome))) {
+        if (controller.adicionarSensorAAreaGeografica(controller.criarNovoSensor(nome))) {
             System.out.println("Success! A sensor was created.");
         } else {
             System.out.println("This sensor already exists in this geographical area.");

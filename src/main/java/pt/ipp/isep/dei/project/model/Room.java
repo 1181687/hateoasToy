@@ -9,40 +9,40 @@ import java.util.*;
 import static java.util.Objects.isNull;
 
 public class Room implements Measurable {
-    private String mName;
-    private int mHouseFloor;
-    private Dimension mDimension;
-    private SensorList mSensorList;
-    private List<Device> mDeviceList;
+    private String roomName;
+    private int houseFloor;
+    private Dimension dimension;
+    private SensorList sensorList;
+    private List<Device> deviceList;
 
     /**
-     * constructor that receives name, houseFloor, dimension
+     * constructor that receives roomName, houseFloor, dimension
      * throw an exception if any of the parameters is invalid.
-     * Invalid parameters if Dimension is null or name is null or empty
+     * Invalid parameters if Dimension is null or roomName is null or empty
      *
-     * @param name
+     * @param roomName
      * @param houseFloor
      * @param dimension
      */
-    public Room(String name, int houseFloor, Dimension dimension) {
-        validateName(name);
+    public Room(String roomName, int houseFloor, Dimension dimension) {
+        validateName(roomName);
         validateDimensions(dimension);
-        this.mName = name.trim();
-        this.mHouseFloor = houseFloor;
-        this.mDimension = dimension;
-        this.mSensorList = new SensorList();
-        this.mDeviceList = new ArrayList<>();
+        this.roomName = roomName.trim();
+        this.houseFloor = houseFloor;
+        this.dimension = dimension;
+        this.sensorList = new SensorList();
+        this.deviceList = new ArrayList<>();
     }
 
     /**
-     * method that receives a name and validates it. It can not be null or empty
-     * throw an exception if the name is invalid
+     * method that receives a roomName and validates it. It can not be null or empty
+     * throw an exception if the roomName is invalid
      *
-     * @param name given name
+     * @param name given roomName
      */
     private static void validateName(String name) {
         if (isNull(name) || name.trim().length() == 0) {
-            throw new RuntimeException("Please enter a valid name. Name should not be empty");
+            throw new RuntimeException("Please enter a valid roomName. Name should not be empty");
         }
     }
 
@@ -61,34 +61,34 @@ public class Room implements Measurable {
     /**
      * Get method
      *
-     * @return mName
+     * @return roomName
      */
-    public String getName() {
-        return mName;
+    public String getRoomName() {
+        return roomName;
     }
 
     /**
-     * Method that defines the name of the room
+     * Method that defines the roomName of the room
      *
-     * @param name name of a room (string)
+     * @param roomName roomName of a room (string)
      */
-    public void setName(String name) {
-        this.mName = name;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 
     /**
      * Get Method
      *
-     * @return mHouseFloor
+     * @return houseFloor
      */
     public int getHouseFloor() {
-        return mHouseFloor;
+        return houseFloor;
     }
 
     @Override
     public List<Readings> getReadings() {
         List<Readings> listOfReadings = new ArrayList<>();
-        for (Device device : this.mDeviceList) {
+        for (Device device : this.deviceList) {
             listOfReadings.addAll(device.getReadings());
         }
         return listOfReadings;
@@ -100,26 +100,26 @@ public class Room implements Measurable {
      * @param houseFloor house floor of the room (int number)
      */
     public void setHouseFloor(int houseFloor) {
-        this.mHouseFloor = houseFloor;
+        this.houseFloor = houseFloor;
     }
 
     /**
      * Get Method
      *
-     * @return mDimension
+     * @return dimension
      */
     public Dimension getDimension() {
-        return mDimension;
+        return dimension;
     }
 
     /**
-     * method that displays a Room with its characteristics (name, house floor, height, length and width)
+     * method that displays a Room with its characteristics (roomName, house floor, height, length and width)
      *
      * @return Rooms
      */
     public String getRoomToString() {
         StringBuilder content = new StringBuilder();
-        content.append("Name: " + getName());
+        content.append("Name: " + getRoomName());
         content.append(", House Floor: " + getHouseFloor());
         content.append(", Dimension - Height: " + getDimension().getHeight());
         content.append(", Length: " + getDimension().getLength());
@@ -128,18 +128,18 @@ public class Room implements Measurable {
     }
 
     /**
-     * method that creates the same hashcode to rooms with the same attribute name.
+     * method that creates the same hashcode to rooms with the same attribute roomName.
      *
      * @return the hashcode created
      */
     @Override
     public int hashCode() {
-        return Objects.hash(this.mName);
+        return Objects.hash(this.roomName);
     }
 
     /**
      * Equals method to determine if two Rooms are equal.
-     * They are equals if name are equal.
+     * They are equals if roomName are equal.
      * Names are case insensitive.
      *
      * @param obj receives an object
@@ -154,7 +154,7 @@ public class Room implements Measurable {
             return false;
         }
         Room roomOne = (Room) obj;
-        return this.mName.equalsIgnoreCase(roomOne.mName);
+        return this.roomName.equalsIgnoreCase(roomOne.roomName);
     }
 
     /**
@@ -164,7 +164,7 @@ public class Room implements Measurable {
      * @return a new sensor to the list of sensors
      */
     public boolean addSensorToListOfSensorsInRoom(Sensor newSensor) {
-        return this.mSensorList.addSensor(newSensor);
+        return this.sensorList.addSensor(newSensor);
     }
 
     /**
@@ -173,7 +173,7 @@ public class Room implements Measurable {
      * @return the list of sensors.
      */
     public SensorList getSensorList() {
-        return mSensorList;
+        return sensorList;
     }
 
     /**
@@ -182,7 +182,7 @@ public class Room implements Measurable {
      * @return maximum temperature
      */
     public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
-        return mSensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(type, date);
+        return sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(type, date);
     }
 
     /**
@@ -192,7 +192,7 @@ public class Room implements Measurable {
      * @return latest measurement by sensor type
      */
     public Readings getLatestMeasurementBySensorType(SensorType type) {
-        return mSensorList.getLatestMeasurementBySensorType(type);
+        return sensorList.getLatestMeasurementBySensorType(type);
     }
 
     /**
@@ -205,7 +205,7 @@ public class Room implements Measurable {
     public double getNominalPower() {
         double totalNominalPower = 0;
         if (this.getSize() != 0) {
-            for (Device device : this.mDeviceList) {
+            for (Device device : this.deviceList) {
                 totalNominalPower += device.getNominalPower();
             }
         }
@@ -218,14 +218,14 @@ public class Room implements Measurable {
      * @return sensor list content
      */
     public String getSensorListContent() {
-        return this.mSensorList.getSensorListToString();
+        return this.sensorList.getSensorListToString();
     }
 
     /**
      * method that check if the sensor list of the room is empty
      */
     public boolean isSensorListEmpty() {
-        return this.mSensorList.isEmpty();
+        return this.sensorList.isEmpty();
     }
 
 
@@ -250,12 +250,12 @@ public class Room implements Measurable {
      * method that checks if Device List of the room is empty
      */
     public boolean isDeviceListEmpty() {
-        return this.mDeviceList.isEmpty();
+        return this.deviceList.isEmpty();
     }
 
     /**
      * Method that adds a device to the list of Devices if device not null
-     * and the roomlist has not device with the same name
+     * and the roomlist has not device with the same roomName
      * @param device the device to be added
      * @return true if it adds, false if it doesn't add
      */
@@ -265,24 +265,24 @@ public class Room implements Measurable {
             throw new RuntimeException("Device is null.");
         }
 
-        if (this.equals(device.getLocation()) && this.mDeviceList.contains(device)) {
-            throw new RuntimeException("Device with same name is already in the roomList");
+        if (this.equals(device.getLocation()) && this.deviceList.contains(device)) {
+            throw new RuntimeException("Device with same roomName is already in the roomList");
         }
         device.getLocation().removeDevice(device);
         device.setLocation(this);
-        this.mDeviceList.add(device);
+        this.deviceList.add(device);
         return true;
     }
 
     /**
-     * method that returns the name of room
+     * method that returns the roomName of room
      *
      * @return String
      */
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();
-        name.append("Room: " + mName + "\n");
+        name.append("Room: " + this.roomName + "\n");
         return name.toString();
     }
 
@@ -296,8 +296,8 @@ public class Room implements Measurable {
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        if (!this.mDeviceList.isEmpty()) {
-            for (Device device : this.mDeviceList) {
+        if (!this.deviceList.isEmpty()) {
+            for (Device device : this.deviceList) {
                 totalEnergyConsumption += device.getEnergyConsumptionInAnInterval(startDate, endDate);
             }
         }
@@ -308,7 +308,7 @@ public class Room implements Measurable {
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> map = new TreeMap<>();
-        for (Device device : this.mDeviceList) {
+        for (Device device : this.deviceList) {
             Map<LocalDateTime, Double> map2 = device.getDataSeries(startDate, endDate);
             for (Map.Entry<LocalDateTime, Double> entry : map2.entrySet()) {
                 LocalDateTime key = entry.getKey();
@@ -325,7 +325,7 @@ public class Room implements Measurable {
      * @return List<Device>
      */
     public List<Device> getDeviceList() {
-        return this.mDeviceList;
+        return this.deviceList;
     }
 
     /**
@@ -334,31 +334,30 @@ public class Room implements Measurable {
      * @return integer
      */
     public int getSize() {
-        return this.mDeviceList.size();
+        return this.deviceList.size();
     }
 
     /**
      * method that get a Device by it's position
-     *
      * @param position integer position of Device
      * @return Device
      */
     public Device getDeviceByPosition(int position) {
-        return this.mDeviceList.get(position);
+        return this.deviceList.get(position);
     }
 
     /**
-     * method that check if a name of a Device already exists on the list of devices.
+     * method that check if a roomName of a Device already exists on the list of devices.
      *
-     * @param name name of device
+     * @param name roomName of device
      * @return boolean true if exists, false if it doesn't
      */
     public boolean isDeviceNameExistant(String name) {
-        for (int i = 0; i < this.mDeviceList.size(); i++) {
-            if (isNull(this.mDeviceList.get(i).getName())) {
+        for (int i = 0; i < this.deviceList.size(); i++) {
+            if (isNull(this.deviceList.get(i).getName())) {
                 break;
             }
-            if (this.mDeviceList.get(i).getName().equalsIgnoreCase(name)) {
+            if (this.deviceList.get(i).getName().equalsIgnoreCase(name)) {
                 return true;
             }
         }
@@ -369,26 +368,26 @@ public class Room implements Measurable {
      * method that check if the device list is empty
      */
     public boolean isEmpty() {
-        return this.mDeviceList.isEmpty();
+        return this.deviceList.isEmpty();
     }
 
     /**
      * method that gets the state of every device in the list of devices.
      *
-     * @return String of the name and the status of the device ("Activated" or "Deactivated").
+     * @return String of the roomName and the status of the device ("Activated" or "Deactivated").
      */
     public String getActiveDeactiveDeviceListToString() {
-        String deviceName = " - Device name: ";
+        String deviceName = " - Device roomName: ";
         StringBuilder content = new StringBuilder();
         int deviceListLength = getSize();
         int numberInTheList = 1;
         for (int i = 1; i <= deviceListLength; i++) {
-            if (mDeviceList.get(i - 1).getIsActive()) {
+            if (deviceList.get(i - 1).getIsActive()) {
                 content.append(numberInTheList + deviceName + getDeviceList().get(i - 1).getName() + " - ACTIVATED");
                 content.append("\n");
                 numberInTheList++;
             } else {
-                String dateHour = mDeviceList.get(0).getDateDeactivateDeviceToString();
+                String dateHour = deviceList.get(0).getDateDeactivateDeviceToString();
                 content.append(numberInTheList + deviceName + getDeviceList().get(i - 1).getName() + " - DEACTIVATED at " + dateHour);
                 content.append("\n");
                 numberInTheList++;
@@ -401,7 +400,7 @@ public class Room implements Measurable {
      * Method that remove a device from the list of devices
      */
     public boolean removeDevice(Device device) {
-        return this.mDeviceList.remove(device);
+        return this.deviceList.remove(device);
     }
 
     /**
@@ -412,7 +411,7 @@ public class Room implements Measurable {
      */
     public List<Device> getAllDevicesOfAType(String type) {
         List<Device> listOfDevicesWithTheType = new ArrayList<>();
-        for (Device device : this.mDeviceList) {
+        for (Device device : this.deviceList) {
             if (device.getType().equals(type)) {
                 listOfDevicesWithTheType.add(device);
             }
@@ -429,7 +428,7 @@ public class Room implements Measurable {
      * @return True or false.
      */
     public boolean setDeviceSpecAttribute(int devicePosition, String attributePosition, Object value) {
-        Device device = this.mDeviceList.get(devicePosition);
+        Device device = this.deviceList.get(devicePosition);
         return device.setAttributesDevType(attributePosition, value);
     }
 
@@ -440,7 +439,7 @@ public class Room implements Measurable {
      * @return Double with the energy consumption.
      */
     public double getEnergyConsumptionOfADevice(int devicePosition) {
-        Device device = this.mDeviceList.get(devicePosition);
+        Device device = this.deviceList.get(devicePosition);
         return device.getEnergyConsumptionInADay();
     }
 
@@ -451,7 +450,7 @@ public class Room implements Measurable {
      */
     public double getTotalEnergyConsumption() {
         double totalEnergyConsumption = 0;
-        for (Device device : this.mDeviceList) {
+        for (Device device : this.deviceList) {
             totalEnergyConsumption += device.getEnergyConsumptionInADay();
         }
         return Utils.round(totalEnergyConsumption, 2);
@@ -464,9 +463,9 @@ public class Room implements Measurable {
      * @return true if the device was removed. False if not.
      */
     public boolean deleteDevice(String device) {
-        for (Device searchDevice : this.mDeviceList) {
+        for (Device searchDevice : this.deviceList) {
             if (device.equals(searchDevice.getName())) {
-                this.mDeviceList.remove(searchDevice);
+                this.deviceList.remove(searchDevice);
                 return true;
             }
         }
@@ -474,16 +473,16 @@ public class Room implements Measurable {
     }
 
     /**
-     * method that get the name of the device by position.
+     * method that get the roomName of the device by position.
      *
      * @param position
      * @return null if the list is empty.
      */
     public String getDeviceNameByPosition(int position) {
-        if (this.mDeviceList.isEmpty()) {
+        if (this.deviceList.isEmpty()) {
             return "There are no devices in the device list.";
         }
-        return this.mDeviceList.get(position).getName();
+        return this.deviceList.get(position).getName();
     }
 
     /**
@@ -493,7 +492,7 @@ public class Room implements Measurable {
      * @return true if the device was deactivated. False, if not.
      */
     public boolean deactivateDevice(String device) {
-        for (Device searchDevice : this.mDeviceList) {
+        for (Device searchDevice : this.deviceList) {
             if (device.equals(searchDevice.getName())) {
                 searchDevice.setDeactivateDevice();
                 return true;

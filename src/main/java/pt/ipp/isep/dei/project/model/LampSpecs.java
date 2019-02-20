@@ -10,17 +10,17 @@ public class LampSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_TIME = "Time";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
-    private String mTypeName;
-    private double mLuminousFlux;
-    private double mTime;
-    private double mNominalPower;
+    private String typeName;
+    private double luminousFlux;
+    private double time;
+    private double nominalPower;
 
     public LampSpecs() {
-        this.mTypeName = "Lamp";
+        this.typeName = "Lamp";
     }
 
     public String getTypeName() {
-        return mTypeName;
+        return typeName;
     }
 
     /**
@@ -30,7 +30,7 @@ public class LampSpecs implements DeviceSpecs {
      */
     @Override
     public double getNominalPower() {
-        return mNominalPower;
+        return nominalPower;
     }
 
     /**
@@ -40,7 +40,7 @@ public class LampSpecs implements DeviceSpecs {
      */
     @Override
     public double getEnergyConsumptionInADay() {
-        return mNominalPower * mTime;
+        return nominalPower * time;
     }
 
     /**
@@ -51,10 +51,10 @@ public class LampSpecs implements DeviceSpecs {
      */
     public boolean setLuminousFlux(Object luminousFlux) {
         double lumFLux = (Double) luminousFlux;
-        if (Utils.isSameDouble(this.mLuminousFlux, lumFLux)) {
+        if (Utils.isSameDouble(this.luminousFlux, lumFLux)) {
             return false;
         }
-        this.mLuminousFlux = lumFLux;
+        this.luminousFlux = lumFLux;
         return true;
     }
 
@@ -66,10 +66,10 @@ public class LampSpecs implements DeviceSpecs {
      */
     public boolean setTime(Object time) {
         double lampTime = (Double) time;
-        if (Utils.isSameDouble(this.mTime, lampTime)) {
+        if (Utils.isSameDouble(this.time, lampTime)) {
             return false;
         }
-        this.mTime = lampTime;
+        this.time = lampTime;
         return true;
     }
 
@@ -81,10 +81,10 @@ public class LampSpecs implements DeviceSpecs {
      */
     public boolean setNominalPower(Object nominalPower) {
         double lampNomPower = (Double) nominalPower;
-        if (Utils.isSameDouble(this.mNominalPower, lampNomPower)) {
+        if (Utils.isSameDouble(this.nominalPower, lampNomPower)) {
             return false;
         }
-        this.mNominalPower = lampNomPower;
+        this.nominalPower = lampNomPower;
         return true;
     }
 
@@ -96,8 +96,8 @@ public class LampSpecs implements DeviceSpecs {
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Luminous Flux: " + mLuminousFlux + "\n");
-        attributes.append("2 - Nominal Power: " + mNominalPower + "\n");
+        attributes.append("1 - Luminous Flux: " + luminousFlux + "\n");
+        attributes.append("2 - Nominal Power: " + nominalPower + "\n");
         return attributes.toString();
     }
 
@@ -135,11 +135,11 @@ public class LampSpecs implements DeviceSpecs {
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
             case ATTRIBUTE_LUMINOUS_FLUX:
-                return mLuminousFlux;
+                return luminousFlux;
             case ATTRIBUTE_TIME:
-                return mTime;
+                return time;
             case ATTRIBUTE_NOMINAL_POWER:
-                return mNominalPower;
+                return nominalPower;
             default:
                 return -1;
         }

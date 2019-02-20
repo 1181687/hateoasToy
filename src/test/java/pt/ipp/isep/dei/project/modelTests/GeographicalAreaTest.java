@@ -583,7 +583,7 @@ class GeographicalAreaTest {
         Location local = new Location(45, 45, 45);
         Sensor s1 = new Sensor("s1", data, tipo, local);
         Sensor s2 = new Sensor("s2", data, tipo, local);
-        ag1.getSensorListInTheGeographicArea().getSensorList().add(s1);
+        ag1.getSensorListInTheGeographicArea().getListOfsensors().add(s1);
 
         //Act
         boolean resultado = ag1.getSensorListInTheGeographicArea().addSensor(s2);

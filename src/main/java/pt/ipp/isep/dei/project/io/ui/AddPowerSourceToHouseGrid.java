@@ -11,20 +11,20 @@ import pt.ipp.isep.dei.project.model.PowerSourceTypeList;
 
 public class AddPowerSourceToHouseGrid {
 
-    private AddPowerSourceToHouseGridController mController;
+    private AddPowerSourceToHouseGridController controller;
 
     public AddPowerSourceToHouseGrid(House house, PowerSourceTypeList powerSourceTypeList) {
-        this.mController = new AddPowerSourceToHouseGridController(house, powerSourceTypeList);
+        this.controller = new AddPowerSourceToHouseGridController(house, powerSourceTypeList);
     }
 
     public void run() {
-        if (mController.isHouseGridListEmpty()) {
+        if (controller.isHouseGridListEmpty()) {
             System.out.println("There are no house grids in your house. Please insert a new house grid." + "\n");
         } else {
 
-            String label1 = "Please select the House Grid you want to add the Power Source: \n" + mController.getHouseGridListToString();
-            int positionOfHouseGrid = InputValidator.getIntRange(label1, 1, mController.getHouseGridListSize()) - 1;
-            mController.getHouseGridFromListByPosition(positionOfHouseGrid);
+            String label1 = "Please select the House Grid you want to add the Power Source: \n" + controller.getHouseGridListToString();
+            int positionOfHouseGrid = InputValidator.getIntRange(label1, 1, controller.getHouseGridListSize()) - 1;
+            controller.getHouseGridFromListByPosition(positionOfHouseGrid);
 
             String powerSourceName;
             boolean isPowerSourceAdded = false;
@@ -33,12 +33,12 @@ public class AddPowerSourceToHouseGrid {
                 String label2 = "Please insert the name of the new power source";
                 powerSourceName = InputValidator.getString(label2);
 
-                String label3 = "Please select the power source type: \n" + mController.getPowerSourceTypeListToString();
-                int positionOfPowerSource = InputValidator.getIntRange(label3, 1, mController.getPowerSourceTypeListSize()) - 1;
-                mController.getPowerSourceTypeByPosition(positionOfPowerSource);
+                String label3 = "Please select the power source type: \n" + controller.getPowerSourceTypeListToString();
+                int positionOfPowerSource = InputValidator.getIntRange(label3, 1, controller.getPowerSourceTypeListSize()) - 1;
+                controller.getPowerSourceTypeByPosition(positionOfPowerSource);
 
                 try {
-                    isPowerSourceAdded = mController.createAndAddPowerSourceToHouseGrid(powerSourceName);
+                    isPowerSourceAdded = controller.createAndAddPowerSourceToHouseGrid(powerSourceName);
                 } catch (Exception e) {
                     System.out.println("Name already exists. Please write a new one.");
                     isPowerSourceAdded = false;
@@ -46,12 +46,12 @@ public class AddPowerSourceToHouseGrid {
 
             } while (!isPowerSourceAdded);
 
-            String houseGridName = mController.getHouseGridName();
+            String houseGridName = controller.getHouseGridName();
             System.out.println("Success! The power source " + powerSourceName + " was added to the house grid " + houseGridName + ".");
             String label4 = "Do you want to see the list of power sources added to this house grid? (y/n)";
             String answer = InputValidator.confirmValidation(label4);
             if ("y".equals(answer) || "Y".equals(answer)) {
-                System.out.println(mController.listPowerSourcesConnectedToGrid());
+                System.out.println(controller.listPowerSourcesConnectedToGrid());
             }
         }
     }
