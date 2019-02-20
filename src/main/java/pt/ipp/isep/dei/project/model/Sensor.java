@@ -372,7 +372,6 @@ public class Sensor {
             iterator++;
         }
         return sumOfLowestMeasurementOfWeek / lowestMeasurementOfWeek.size();
-
     }
 
     /**
