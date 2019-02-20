@@ -8,7 +8,7 @@ public class Lamp implements Device, Measurable {
     private String name;
     private Room location;
     private LampSpecs specs;
-    private List<Readings> readings;
+    private List<Readings> reading;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
@@ -18,7 +18,7 @@ public class Lamp implements Device, Measurable {
         this.location.addDevice(this);
         this.specs = new LampSpecs();
         this.isActive = true;
-        this.readings = new ArrayList<>();
+        this.reading = new ArrayList<>();
     }
 
     /**
@@ -184,12 +184,12 @@ public class Lamp implements Device, Measurable {
     }
 
     /**
-     * Method that adds a readings to the device.
+     * Method that adds a reading to the device.
      *
      * @param readings Readings to be added.
      */
     public void addReadingsToTheList(Readings readings) {
-        this.readings.add(readings);
+        this.reading.add(readings);
     }
 
     /**
@@ -208,13 +208,13 @@ public class Lamp implements Device, Measurable {
 
     /**
      * Method that gets the reading list in an interval
-     * @param startDate starting date of readings
-     * @param endDate end date of readings
+     * @param startDate starting date of reading
+     * @param endDate end date of reading
      * @return reading list
      */
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
         List<Readings> readingsList = new ArrayList<>();
-        for (Readings readings : this.readings) {
+        for (Readings readings : this.reading) {
             if (!startDate.isAfter(readings.getDateTime()) && !endDate.isBefore(readings.getDateTime())) {
                 readingsList.add(readings);
             }
@@ -314,5 +314,15 @@ public class Lamp implements Device, Measurable {
      */
     public String getAttributeDataType(String attributeName) {
         return specs.getAttributeDataType(attributeName);
+    }
+
+    @Override
+    public boolean isProgrammable() {
+        return false;
+    }
+
+    @Override
+    public Programmable asProgrammable() {
+        return null;
     }
 }
