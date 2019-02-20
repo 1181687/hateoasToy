@@ -93,7 +93,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
 
     /**
      * set method
-     *
+     * 
      * @param wmEnergyConsumption
      */
     private boolean setEnergyConsumption(Object wmEnergyConsumption) {
