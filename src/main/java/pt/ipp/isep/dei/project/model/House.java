@@ -192,7 +192,7 @@ public class House {
      * @param type
      * @return the last measurement with a location and a type of sensor.
      */
-    public double getLastMeasurementByType(SensorType type) {
+    public double getLastMeasurementByTypeInHouseArea(SensorType type) {
         return insertedGeoArea.getLastMeasurementByLocationType(address.getLocation(), type);
     }
 
@@ -204,7 +204,7 @@ public class House {
      * @param endDate
      * @return the average daily measurement.
      */
-    public double getAverageDailyMeasurement(SensorType measurementType, LocalDate startDate, LocalDate endDate) {
+    public double getAverageDailyMeasurementInHouseArea(SensorType measurementType, LocalDate startDate, LocalDate endDate) {
         List<Double> listOfDailyAverages = insertedGeoArea.getDailyAverageMeasurement(measurementType, address.getLocation(), startDate, endDate);
         double sum = 0;
         if (listOfDailyAverages.isEmpty()) {
@@ -223,7 +223,7 @@ public class House {
      * @param day
      * @return total daily measurement.
      */
-    public double getTotalDailyMeasurement(SensorType measurementType, LocalDate day) {
+    public double getTotalDailyMeasurementInHouseArea(SensorType measurementType, LocalDate day) {
         return insertedGeoArea.getTotalDailyMeasurement(measurementType, day, this.address.getLocation());
     }
 

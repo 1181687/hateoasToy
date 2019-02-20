@@ -231,7 +231,7 @@ public class HouseTest {
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getAverageDailyMeasurement(searchType, startDate, endDate);
+        double result = house.getAverageDailyMeasurementInHouseArea(searchType, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -260,7 +260,7 @@ public class HouseTest {
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getAverageDailyMeasurement(searchType, startDate, endDate);
+        double result = house.getAverageDailyMeasurementInHouseArea(searchType, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -322,7 +322,7 @@ public class HouseTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = house.getLastMeasurementByType(type);
+        double result = house.getLastMeasurementByTypeInHouseArea(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -362,7 +362,7 @@ public class HouseTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = house.getLastMeasurementByType(type);
+        double result = house.getLastMeasurementByTypeInHouseArea(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -389,7 +389,7 @@ public class HouseTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = house.getLastMeasurementByType(type);
+        double result = house.getLastMeasurementByTypeInHouseArea(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -437,7 +437,7 @@ public class HouseTest {
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getTotalDailyMeasurement(searchType, day);
+        double result = house.getTotalDailyMeasurementInHouseArea(searchType, day);
 
         //Assert
         assertEquals(expectedResult, result);
