@@ -6,7 +6,7 @@ public class AddDeviceToRoomController {
     private House mHouse;
     private Device mDevice;
     private Room mRoom;
-    private ProgramList mProgramList;
+    private Programmable programmableDevice;
     private static final String NOMINAL_POWER = "Nominal Power";
     private static final String LUMINOUS_FLUX = "Luminous Flux";
     private static final String ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
@@ -25,7 +25,7 @@ public class AddDeviceToRoomController {
      */
     public AddDeviceToRoomController(House house) {
         this.mHouse = house;
-        this.mProgramList = new ProgramList();
+
     }
 
     /**
@@ -37,7 +37,9 @@ public class AddDeviceToRoomController {
         return mHouse.getRoomListContent();
     }
 
-    /** Method that asks for the room in a specific position in the list.
+    /**
+     * Method that asks for the room in a specific position in the list.
+     *
      * @param position Specifies the position of the room in the list.
      * @return The respective room.
      */
@@ -47,6 +49,7 @@ public class AddDeviceToRoomController {
 
     /**
      * Method that show the room selected.
+     *
      * @return selected room
      */
     public Room getSelectedRoom() {
@@ -73,6 +76,7 @@ public class AddDeviceToRoomController {
 
     /**
      * Method that asks for the content (that is the name of the device type) of list of devices from the class DeviceList.
+     *
      * @return the name of the device types in the device types list.
      */
     public String getDeviceTypeListToString() {
@@ -146,7 +150,7 @@ public class AddDeviceToRoomController {
     /**
      * Method that create a new Electric Water Heater in a selected Room.
      *
-     * @param name                 of the Electric Water Heater
+     * @param name                of the Electric Water Heater
      * @param hotWaterTemperature the temperature that is configured by the user (a specification of the Electric Water Heater and the user)
      * @param maximumVolume       the capacity in l of the Electric Water Heater (a specification of the Electric Water Heater)
      * @param nominalPower        the nominal power of the Electric Water Heater (a specification of the Electric Water Heater)
@@ -171,7 +175,7 @@ public class AddDeviceToRoomController {
         return mHouse.getDeviceListContentRoom(selectedRoom);
     }
 
-    public Program createNewProgram(String programName, double duration, double energyConsumption) {
+/*    public Program createNewProgram(String programName, double duration, double energyConsumption) {
         return mProgramList.newProgram(programName, duration, energyConsumption);
     }
 
@@ -180,17 +184,32 @@ public class AddDeviceToRoomController {
      *
      * @param program
      * @return a list of programs
-     */
+     *//*
     public boolean addProgramToList(Program program) {
         return mProgramList.addProgram(program);
+    }*/
+
+    public boolean createAndAddProgram(String programName, double duration, double energyConsumption) {
+        Program newProgram = programmableDevice.newProgram(programName, duration, energyConsumption);
+        return programmableDevice.addProgram(newProgram);
     }
 
     /**
      * method that get a Device by it's position
+     *
      * @param position
      * @return Device
      */
     public Device getDevice(int position) {
         return mRoom.getDeviceByPosition(position);
     }
+
+    public boolean isProgrammable() {
+        if (mDevice.isProgrammable()) {
+            programmableDevice = mDevice.asProgrammable();
+            return true;
+        }
+        return false;
+    }
+
 }

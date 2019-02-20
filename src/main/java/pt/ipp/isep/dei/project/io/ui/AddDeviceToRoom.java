@@ -29,7 +29,7 @@ public class AddDeviceToRoom {
                 System.out.println("There are no rooms available. Please create one\n");
             }
             //SELECT A DEVICE TYPE
-            String label0 = "Please select the Device1 Type: \n" + controller.getDeviceTypeListToString() + "\r0 - Exit";
+            String label0 = "Please select the Device Type: \n" + controller.getDeviceTypeListToString() + "\r0 - Exit";
             int selectedType = InputValidator.getIntRange(label0, 0, controller.getNumberOfDeviceTypes());
             if (selectedType == 0) {
                 continue;
@@ -121,11 +121,14 @@ public class AddDeviceToRoom {
         String label33 = "What is the capacity (in dish sets)?";
         int dishWasherCapacity = InputValidator.getIntPos(label33);
 
-        creationOfPrograms();
-
         controller.createNewDishWasher(dishWasherDeviceName, dishWasherNominalPower,
                 dishWasherCapacity);
-        System.out.println("The Dish Washer was successfully created and added to the selected room.");
+
+        if (controller.isProgrammable()) {
+            creationOfPrograms();
+        }
+
+        System.out.println("The Dishwasher was successfully created and added to the selected room.");
     }
 
 
@@ -137,10 +140,13 @@ public class AddDeviceToRoom {
         String label43 = "What is the capacity (kg)?";
         double washingMachineCapacity = InputValidator.getDoublePos(label43);
 
-        creationOfPrograms();
-
         controller.createNewWashingMachine(washingMachineDeviceName, washingMachineNominalPower,
                 washingMachineCapacity);
+
+        if (controller.isProgrammable()) {
+            creationOfPrograms();
+        }
+
         System.out.println("The Washing Machine was successfully created and added to the selected room.");
     }
 
@@ -158,7 +164,9 @@ public class AddDeviceToRoom {
             programDuration = InputValidator.getDoublePos(label46);
             String label47 = "What is the energy consumption of this program?";
             programEnergyConsumption = InputValidator.getDoublePos(label47);
-            controller.addProgramToList(controller.createNewProgram(programName, programDuration, programEnergyConsumption));
+            if (controller.createAndAddProgram(programName, programDuration, programEnergyConsumption)) {
+                System.out.println("The program " + programName + " was added to the washing machine.\n");
+            }
         }
     }
 
@@ -183,8 +191,6 @@ public class AddDeviceToRoom {
         String answer = InputValidator.confirmValidation(label);
         if ("y".equals(answer) || "Y".equals(answer)) {
             System.out.println(controller.getDeviceListContentOfARoom(indexSelectedRoom));
-        } else {
-            return;
         }
     }
 }
