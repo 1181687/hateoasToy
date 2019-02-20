@@ -9,7 +9,6 @@ import java.util.*;
 import static java.util.Objects.isNull;
 
 public class Room implements Measurable {
-    private static final String SAME_NAME = "Name already exists. Please write a new one.";
     private String mName;
     private int mHouseFloor;
     private Dimension mDimension;
@@ -84,6 +83,15 @@ public class Room implements Measurable {
      */
     public int getHouseFloor() {
         return mHouseFloor;
+    }
+
+    @Override
+    public List<Readings> getReadings() {
+        List<Readings> listOfReadings = new ArrayList<>();
+        for (Device device : this.mDeviceList) {
+            listOfReadings.addAll(device.getReadings());
+        }
+        return listOfReadings;
     }
 
     /**
@@ -331,6 +339,7 @@ public class Room implements Measurable {
 
     /**
      * method that get a Device by it's position
+     *
      * @param position integer position of Device
      * @return Device
      */
