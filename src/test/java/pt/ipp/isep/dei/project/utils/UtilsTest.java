@@ -179,4 +179,22 @@ class UtilsTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    void isSameNumberTrueTest() {
+        // Act
+        boolean result = Utils.isSameNumber(1.1, 1.1);
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    void isSameNumberFalseTest() {
+        // Act
+        boolean result = Utils.isSameNumber(1.1, 1.0);
+
+        // Assert
+        assertFalse(result);
+    }
 }
