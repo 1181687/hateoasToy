@@ -97,7 +97,7 @@ public class HouseTest {
     @Test
     public void getDisplayRoomListEmptyTest() {
         // Arrange
-        house.getRoomList().getRoomList().remove(laundry);
+        house.getRoomList().getListOfRooms().remove(laundry);
         String expectResult = "";
 
         // Act
@@ -122,7 +122,7 @@ public class HouseTest {
     @Test
     public void testGetNameOfRoomInEmptyListOfRooms() {
         // Arrange
-        house.getRoomList().getRoomList().remove(laundry);
+        house.getRoomList().getListOfRooms().remove(laundry);
         String expectedResult = null;
 
         // Act
@@ -147,7 +147,7 @@ public class HouseTest {
     @Test
     public void getListSizeEmptyList() {
         // Arrange
-        house.getRoomList().getRoomList().remove(laundry);
+        house.getRoomList().getListOfRooms().remove(laundry);
         int expectResult = 0;
 
         // Act
@@ -1335,7 +1335,7 @@ public class HouseTest {
     @Test
     public void checkIfRoomListIsEmptyTrue() {
         // Arrange
-        house.getRoomList().getRoomList().remove(laundry);
+        house.getRoomList().getListOfRooms().remove(laundry);
 
         // Act
         boolean result = house.roomListIsEmpty();
@@ -1443,7 +1443,7 @@ public class HouseTest {
     @Test
     public void getDeviceListSizeEmptyList() {
         // Arrange
-        house.getRoomList().getRoomList().remove(laundry);
+        house.getRoomList().getListOfRooms().remove(laundry);
         int expectResult = 0;
 
         // Act

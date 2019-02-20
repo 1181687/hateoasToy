@@ -15,7 +15,7 @@ class SensorType{
 String type
 }
 class Sensor{
-String name
+String roomName
 LocalDateTime startingDate
 }
 class Readings{
@@ -28,7 +28,7 @@ class GeographicalAreaType{
 String type
 }
 class GeographicalArea{
-String name
+String roomName
 }
 class AreaShape{
 double length
@@ -41,7 +41,7 @@ String zipCode
 class House{
 }
 class Room{
-String name
+String roomName
 int houseFloor
 }
 class Dimension{
@@ -50,16 +50,16 @@ double width
 double height
 }
 class HouseGrid{
-String name
+String roomName
 }
 class PowerSource{
-String name
+String roomName
 }
 class PowerSourceType{
 String type
 }
 class Device{
-String name
+String roomName
 boolean isActive
 }
 ENUM DeviceType{

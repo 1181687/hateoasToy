@@ -5,10 +5,10 @@ import java.util.List;
 import java.util.Objects;
 
 public class ProgramList {
-    private List<Program> programList;
+    private List<Program> listOfPrograms;
 
     public ProgramList() {
-        this.programList = new ArrayList<>();
+        this.listOfPrograms = new ArrayList<>();
     }
 
 
@@ -20,8 +20,8 @@ public class ProgramList {
         if (Objects.isNull(program)) {
             return false;
         }
-        if (!(programList.contains(program))) {
-            this.programList.add(program);
+        if (!(listOfPrograms.contains(program))) {
+            this.listOfPrograms.add(program);
             return true;
         }
         return false;

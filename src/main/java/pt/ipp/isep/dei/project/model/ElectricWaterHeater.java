@@ -130,7 +130,7 @@ public class ElectricWaterHeater implements Device, Measurable {
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Name: " + name + "\n");
         attributes.append("2 - Device1 Specifications\n");
-        attributes.append("3 - Location: " + location.getName() + "\n");
+        attributes.append("3 - Location: " + location.getRoomName() + "\n");
         return attributes.toString();
     }
 
@@ -191,7 +191,7 @@ public class ElectricWaterHeater implements Device, Measurable {
     public String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
         nameLocation.append("Device: " + name);
-        nameLocation.append(", located in room: " + location.getName() + "\n");
+        nameLocation.append(", located in room: " + location.getRoomName() + "\n");
         return nameLocation.toString();
     }
 

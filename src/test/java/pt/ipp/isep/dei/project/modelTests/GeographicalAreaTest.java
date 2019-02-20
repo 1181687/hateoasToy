@@ -531,7 +531,7 @@ class GeographicalAreaTest {
         Location local = new Location(45, 45, 45);
         Sensor s1 = new Sensor("s1", data, tipo, local);
         Sensor s2 = new Sensor("s2", data, tipo, local);
-        ag1.getSensorListInTheGeographicArea().getSensorList().add(s1);
+        ag1.getSensorListInTheGeographicArea().getListOfsensors().add(s1);
 
         //Act
         boolean resultado = ag1.getSensorListInTheGeographicArea().addSensor(s2);
@@ -701,7 +701,7 @@ class GeographicalAreaTest {
         SensorType typeRequired = new SensorType("Temperature");
 
         //Act
-        Boolean result = ag.getTheSensorListOfAGivenType(typeRequired).getSensorList().isEmpty();
+        Boolean result = ag.getTheSensorListOfAGivenType(typeRequired).getListOfsensors().isEmpty();
 
         //Assert
         assertFalse(result);
@@ -734,7 +734,7 @@ class GeographicalAreaTest {
         SensorType typeRequired = new SensorType("Temperature");
 
         //Act
-        Boolean result = ag.getTheSensorListOfAGivenType(typeRequired).getSensorList().isEmpty();
+        Boolean result = ag.getTheSensorListOfAGivenType(typeRequired).getListOfsensors().isEmpty();
 
         //Assert
         assertTrue(result);

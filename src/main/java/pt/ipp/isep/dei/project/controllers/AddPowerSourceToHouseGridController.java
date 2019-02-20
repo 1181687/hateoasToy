@@ -98,7 +98,7 @@ public class AddPowerSourceToHouseGridController {
      * @return String
      */
     public String getHouseGridName(){
-        return mSelectedHouseGrid.getName();
+        return mSelectedHouseGrid.getHouseGridName();
     }
 
     /**
