@@ -5,34 +5,34 @@ import pt.ipp.isep.dei.project.model.House;
 
 public class GetNominalPowerRoomsDevices {
 
-    private GetNominalPowerRoomsDevicesController mController;
+    private GetNominalPowerRoomsDevicesController controller;
     private static final String EXIT_OPTION = "0 - Exit";
 
     public GetNominalPowerRoomsDevices(House house) {
-        this.mController = new GetNominalPowerRoomsDevicesController(house);
+        this.controller = new GetNominalPowerRoomsDevicesController(house);
     }
 
     public void chooseSubsetOfRoomsDevices() {
-        if (!mController.isGridListEmpty()) {
+        if (!controller.isGridListEmpty()) {
             String label1 = "Please select a House Grid to check the total nominal power of a subset of rooms " +
-                    "and/or devices of your choosing connected to that grid: \n" + mController.getHouseGridsListToString() + EXIT_OPTION;
-            int positionHG = InputValidator.getIntRange(label1, 0, mController.getHouseGridListSize());
+                    "and/or devices of your choosing connected to that grid: \n" + controller.getHouseGridsListToString() + EXIT_OPTION;
+            int positionHG = InputValidator.getIntRange(label1, 0, controller.getHouseGridListSize());
             if (positionHG == 0) {
                 return;
             }
-            mController.getHouseGridByPosition(positionHG - 1);
+            controller.getHouseGridByPosition(positionHG - 1);
             afterChoosingHouseGrid();
         } else {
             System.out.println("There are no house grids in the house. Please, add one.\n");
             return;
         }
-        System.out.println("You have selected the following rooms/devices:\n" + mController.getListToString() + "The total nominal power for the selected subset of rooms and/or devices is " + mController.getNominalPowerOfMeasurableObjects() + " kW\n");
+        System.out.println("You have selected the following rooms/devices:\n" + controller.getListToString() + "The total nominal power for the selected subset of rooms and/or devices is " + controller.getNominalPowerOfMeasurableObjects() + " kW\n");
     }
 
     public void afterChoosingHouseGrid() {
         boolean flag = true;
         do {
-            if (!mController.roomListOfHouseGridIsEmpty()) {
+            if (!controller.roomListOfHouseGridIsEmpty()) {
                 selectDevicesAndRooms();
                 flag = false;
             } else {
@@ -47,17 +47,17 @@ public class GetNominalPowerRoomsDevices {
         boolean flag = true;
         do {
             String label2 = "Please select a room to check its nominal power or the nominal power of a subset " +
-                    "of devices located in that room: \n" + mController.getRoomListInHouseGridToString() + EXIT_OPTION;
-            int positionRoom = InputValidator.getIntRange(label2, 0, mController.getRoomListInHouseGridSize()) - 1;
+                    "of devices located in that room: \n" + controller.getRoomListInHouseGridToString() + EXIT_OPTION;
+            int positionRoom = InputValidator.getIntRange(label2, 0, controller.getRoomListInHouseGridSize()) - 1;
 
             if (positionRoom == -1) {
                 return;
             }
-            if (mController.deviceListIsEmpty(positionRoom)) {
+            if (controller.deviceListIsEmpty(positionRoom)) {
                 System.out.println("There are no devices in this room. Please, choose another room or add devices to the chosen room.\n");
                 return;
             }
-            if (!mController.isMeasurableInList(mController.getRoomOfHouseGridByPosition(positionRoom))) {
+            if (!controller.isMeasurableInList(controller.getRoomOfHouseGridByPosition(positionRoom))) {
                 selectDevice(positionRoom);
             } else {
                 System.out.println("That room was already chosen.");
@@ -72,20 +72,20 @@ public class GetNominalPowerRoomsDevices {
 
     public void selectDevice(int positionRoom) {
         String label3 = "Please select a device to check its nominal power: \n"
-                + mController.getDeviceListToString(positionRoom) +
-                (mController.getDeviceListSize(positionRoom) + 1) + " - Total nominal power of room\n" + EXIT_OPTION;
-        int positionDevice = InputValidator.getIntRange(label3, 0, mController.getDeviceListSize(positionRoom) + 1);
+                + controller.getDeviceListToString(positionRoom) +
+                (controller.getDeviceListSize(positionRoom) + 1) + " - Total nominal power of room\n" + EXIT_OPTION;
+        int positionDevice = InputValidator.getIntRange(label3, 0, controller.getDeviceListSize(positionRoom) + 1);
         if (positionDevice == 0) {
             return;
         }
-        if (positionDevice == mController.getDeviceListSize(positionRoom) + 1) {
-            mController.addMeasurable(mController.getRoomOfHouseGridByPosition(positionRoom));
+        if (positionDevice == controller.getDeviceListSize(positionRoom) + 1) {
+            controller.addMeasurable(controller.getRoomOfHouseGridByPosition(positionRoom));
             return;
         } else {
-            if (mController.isMeasurableInList(mController.getDeviceListByPosition(positionRoom, positionDevice - 1))) {
+            if (controller.isMeasurableInList(controller.getDeviceListByPosition(positionRoom, positionDevice - 1))) {
                 System.out.println("That device was already chosen.");
             }
-            mController.addMeasurable(mController.getDeviceListByPosition(positionRoom, (positionDevice - 1)));
+            controller.addMeasurable(controller.getDeviceListByPosition(positionRoom, (positionDevice - 1)));
         }
         addAnotherDeviceOrNot(positionRoom);
     }
@@ -95,16 +95,16 @@ public class GetNominalPowerRoomsDevices {
                 "please type the number of that device; if not, please type 0.";
         boolean flag3 = true;
         do {
-            int addOtherDeviceOrNot = InputValidator.getIntRange(label4, 0, mController.getDeviceListSize(positionRoom) + 1);
+            int addOtherDeviceOrNot = InputValidator.getIntRange(label4, 0, controller.getDeviceListSize(positionRoom) + 1);
             if (addOtherDeviceOrNot == 0) {
                 return;
             }
-            if (addOtherDeviceOrNot != mController.getDeviceListSize(positionRoom) + 1) {
+            if (addOtherDeviceOrNot != controller.getDeviceListSize(positionRoom) + 1) {
 
-                if (mController.isMeasurableInList(mController.getDeviceListByPosition(positionRoom, addOtherDeviceOrNot - 1))) {
+                if (controller.isMeasurableInList(controller.getDeviceListByPosition(positionRoom, addOtherDeviceOrNot - 1))) {
                     label4 = "That device was already chosen.\nWould you like to add any other device of this room to the nominal power calculations? If yes please type the number of that device; if not, please type 0.";
                 } else {
-                    mController.addMeasurable(mController.getDeviceListByPosition(positionRoom, addOtherDeviceOrNot - 1));
+                    controller.addMeasurable(controller.getDeviceListByPosition(positionRoom, addOtherDeviceOrNot - 1));
                     label4 = "Would you like to add any other device of this room to the nominal power calculations? \nIf yes," +
                             "please type the number of that device; if not, please type 0.";
                     continue;

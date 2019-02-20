@@ -11,18 +11,18 @@ public class FridgeSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
-    private String mTypeName;
-    private double mFreezerCapacity;
-    private double mRefrigeratorCapacity;
-    private double mAnnualEnergyConsumption;
-    private double mNominalPower;
+    private String typeName;
+    private double freezerCapacity;
+    private double refrigeratorCapacity;
+    private double annualEnergyConsumption;
+    private double nominalPower;
 
     public FridgeSpecs() {
-        this.mTypeName = "Fridge";
+        this.typeName = "Fridge";
     }
 
     public String getTypeName() {
-        return mTypeName;
+        return typeName;
     }
 
     /**
@@ -31,7 +31,7 @@ public class FridgeSpecs implements DeviceSpecs {
      * @return energy consumption in a day
      */
     public double getEnergyConsumptionInADay() {
-        return mAnnualEnergyConsumption / 365;
+        return annualEnergyConsumption / 365;
     }
 
     /**
@@ -41,7 +41,7 @@ public class FridgeSpecs implements DeviceSpecs {
      */
     @Override
     public double getNominalPower() {
-        return mNominalPower;
+        return nominalPower;
     }
 
 
@@ -53,8 +53,8 @@ public class FridgeSpecs implements DeviceSpecs {
      */
     public boolean setFreezerCapacity(Object freezerCapacity) {
         double freezCapacity = (Double) freezerCapacity;
-        if (!Utils.isSameDouble(this.mFreezerCapacity, freezCapacity) && !Utils.isSameDouble(freezCapacity, 0)) {
-            this.mFreezerCapacity = freezCapacity;
+        if (!Utils.isSameDouble(this.freezerCapacity, freezCapacity) && !Utils.isSameDouble(freezCapacity, 0)) {
+            this.freezerCapacity = freezCapacity;
             return true;
         }
         return false;
@@ -67,8 +67,8 @@ public class FridgeSpecs implements DeviceSpecs {
      */
     public boolean setRefrigeratorCapacity(Object refrigeratorCapacity) {
         double refrigCapacity = (Double) refrigeratorCapacity;
-        if (!Utils.isSameDouble(this.mRefrigeratorCapacity, refrigCapacity) && !Utils.isSameDouble(refrigCapacity, 0)) {
-            this.mRefrigeratorCapacity = refrigCapacity;
+        if (!Utils.isSameDouble(this.refrigeratorCapacity, refrigCapacity) && !Utils.isSameDouble(refrigCapacity, 0)) {
+            this.refrigeratorCapacity = refrigCapacity;
             return true;
         }
 
@@ -82,8 +82,8 @@ public class FridgeSpecs implements DeviceSpecs {
      */
     public boolean setAnnualEnergyConsumption(Object annualEnConsumption) {
         double annualEnergyConsumption = (Double) annualEnConsumption;
-        if (!Utils.isSameDouble(this.mAnnualEnergyConsumption, annualEnergyConsumption) && !Utils.isSameDouble(annualEnergyConsumption, 0)) {
-            this.mAnnualEnergyConsumption = annualEnergyConsumption;
+        if (!Utils.isSameDouble(this.annualEnergyConsumption, annualEnergyConsumption) && !Utils.isSameDouble(annualEnergyConsumption, 0)) {
+            this.annualEnergyConsumption = annualEnergyConsumption;
             return true;
         }
 
@@ -97,8 +97,8 @@ public class FridgeSpecs implements DeviceSpecs {
      */
     public boolean setNominalPower(Object fridgeNominalPower) {
         double nominalPower = (Double) fridgeNominalPower;
-        if (!Utils.isSameDouble(this.mNominalPower, nominalPower) && !Utils.isSameDouble(nominalPower, 0)) {
-            this.mNominalPower = nominalPower;
+        if (!Utils.isSameDouble(this.nominalPower, nominalPower) && !Utils.isSameDouble(nominalPower, 0)) {
+            this.nominalPower = nominalPower;
             return true;
         }
 
@@ -113,10 +113,10 @@ public class FridgeSpecs implements DeviceSpecs {
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Freezer Capacity: " + mFreezerCapacity + "\n");
-        attributes.append("2 - Refrigerator Capacity: " + mRefrigeratorCapacity + "\n");
-        attributes.append("3 - Annual Energy Consumption: " + mAnnualEnergyConsumption + "\n");
-        attributes.append("4 - Nominal Power: " + mNominalPower + "\n");
+        attributes.append("1 - Freezer Capacity: " + freezerCapacity + "\n");
+        attributes.append("2 - Refrigerator Capacity: " + refrigeratorCapacity + "\n");
+        attributes.append("3 - Annual Energy Consumption: " + annualEnergyConsumption + "\n");
+        attributes.append("4 - Nominal Power: " + nominalPower + "\n");
         return attributes.toString();
     }
 
@@ -157,13 +157,13 @@ public class FridgeSpecs implements DeviceSpecs {
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
             case ATTRIBUTE_FREEZER_CAPACITY:
-                return mFreezerCapacity;
+                return freezerCapacity;
             case ATTRIBUTE_REFRIGERATOR_CAPACITY:
-                return mRefrigeratorCapacity;
+                return refrigeratorCapacity;
             case ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION:
-                return mAnnualEnergyConsumption;
+                return annualEnergyConsumption;
             case ATTRIBUTE_NOMINAL_POWER:
-                return mNominalPower;
+                return nominalPower;
             default:
                 return -1;
         }

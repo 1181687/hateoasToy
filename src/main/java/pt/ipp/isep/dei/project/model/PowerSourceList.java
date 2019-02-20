@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PowerSourceList {
-    private List<PowerSource> mPowerSourceList;
+    private List<PowerSource> powerSourceList;
 
     /**
      * Power Source List constructor
      */
     public PowerSourceList() {
-        this.mPowerSourceList = new ArrayList<>();
+        this.powerSourceList = new ArrayList<>();
     }
 
     /**
@@ -28,10 +28,10 @@ public class PowerSourceList {
     }
 
     public boolean powerSourceNameAlreadyExists(String name){
-        int listSize = this.mPowerSourceList.size();
+        int listSize = this.powerSourceList.size();
 
         for (int i = 0; i < listSize; i++) {
-            if (this.mPowerSourceList.get(i).getName().equalsIgnoreCase(name)) {
+            if (this.powerSourceList.get(i).getName().equalsIgnoreCase(name)) {
                 return true;
             }
         }
@@ -46,8 +46,8 @@ public class PowerSourceList {
      */
     public boolean addPowerSource(PowerSource newPowerSource){
 
-        if(!(this.mPowerSourceList.contains(newPowerSource))){
-            this.mPowerSourceList.add(newPowerSource);
+        if (!(this.powerSourceList.contains(newPowerSource))) {
+            this.powerSourceList.add(newPowerSource);
             return true;
         }
         return false;
@@ -56,8 +56,8 @@ public class PowerSourceList {
     public String getPowerSourcesListToString() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
-        for (int i = 0; i < mPowerSourceList.size(); i++) {
-            String powerSourceName = mPowerSourceList.get(i).getName();
+        for (int i = 0; i < powerSourceList.size(); i++) {
+            String powerSourceName = powerSourceList.get(i).getName();
             content.append(numberInTheList + "- ");
             content.append(powerSourceName);
             content.append("\n");

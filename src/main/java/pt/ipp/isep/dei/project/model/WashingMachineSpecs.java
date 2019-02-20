@@ -13,20 +13,20 @@ public class WashingMachineSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_ENERGY_CONSUMPTION = "Energy Consumption";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
-    private String mTypeName;
-    private int mCapacity;
-    private double mDuration;
-    private double mEnergyConsumption;
-    private double mNominalPower;
-    private List<Program> mProgramList;
+    private String typeName;
+    private int capacity;
+    private double duration;
+    private double energyConsumption;
+    private double nominalPower;
+    private List<Program> programList;
 
     public WashingMachineSpecs() {
-        this.mTypeName = "Washing Machine";
-        this.mProgramList = new ArrayList<>();
+        this.typeName = "Washing Machine";
+        this.programList = new ArrayList<>();
     }
 
     public String getTypeName() {
-        return mTypeName;
+        return typeName;
     }
 
     /**
@@ -36,7 +36,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
      */
     @Override
     public double getNominalPower() {
-        return mNominalPower;
+        return nominalPower;
     }
 
     /**
@@ -56,8 +56,8 @@ public class WashingMachineSpecs implements DeviceSpecs {
      */
     private boolean setCapacity(Object capacity) {
         int wmcapacity = (Integer) capacity;
-        if (!(Utils.isSameDouble(this.mCapacity, wmcapacity)) && !(Utils.isSameDouble(wmcapacity, 0))) {
-            this.mCapacity = wmcapacity;
+        if (!(Utils.isSameDouble(this.capacity, wmcapacity)) && !(Utils.isSameDouble(wmcapacity, 0))) {
+            this.capacity = wmcapacity;
             return true;
         }
         return false;
@@ -70,8 +70,8 @@ public class WashingMachineSpecs implements DeviceSpecs {
      */
     private boolean setDuration(Object duration) {
         double wmduration = (Double) duration;
-        if (!(Utils.isSameDouble(this.mDuration, wmduration) && !(Utils.isSameDouble(wmduration, 0)))) {
-            this.mDuration = wmduration;
+        if (!(Utils.isSameDouble(this.duration, wmduration) && !(Utils.isSameDouble(wmduration, 0)))) {
+            this.duration = wmduration;
             return true;
         }
         return false;
@@ -84,8 +84,8 @@ public class WashingMachineSpecs implements DeviceSpecs {
      */
     private boolean setNominalPower(Object wmNominalPower) {
         double nomPower = (Double) wmNominalPower;
-        if (!Utils.isSameDouble(this.mNominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
-            this.mNominalPower = nomPower;
+        if (!Utils.isSameDouble(this.nominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
+            this.nominalPower = nomPower;
             return true;
         }
         return false;
@@ -93,13 +93,13 @@ public class WashingMachineSpecs implements DeviceSpecs {
 
     /**
      * set method
-     *
+     * 
      * @param wmEnergyConsumption
      */
     private boolean setEnergyConsumption(Object wmEnergyConsumption) {
-        double energyConsumption = (Double) wmEnergyConsumption;
-        if (!Utils.isSameDouble(this.mEnergyConsumption, energyConsumption) && !(Utils.isSameDouble(energyConsumption, 0))) {
-            this.mEnergyConsumption = energyConsumption;
+        double eConsumption = (Double) wmEnergyConsumption;
+        if (!Utils.isSameDouble(this.energyConsumption, eConsumption) && !(Utils.isSameDouble(eConsumption, 0))) {
+            this.energyConsumption = eConsumption;
             return true;
         }
 
@@ -115,8 +115,8 @@ public class WashingMachineSpecs implements DeviceSpecs {
     @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Capacity: " + mCapacity + "\n");
-        attributes.append("2 - Nominal Power: " + mNominalPower + "\n");
+        attributes.append("1 - Capacity: " + capacity + "\n");
+        attributes.append("2 - Nominal Power: " + nominalPower + "\n");
         return attributes.toString();
     }
 
@@ -153,13 +153,13 @@ public class WashingMachineSpecs implements DeviceSpecs {
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
             case ATTRIBUTE_CAPACITY:
-                return mCapacity;
+                return capacity;
             case ATTRIBUTE_DURATION:
-                return mDuration;
+                return duration;
             case ATTRIBUTE_ENERGY_CONSUMPTION:
-                return mEnergyConsumption;
+                return energyConsumption;
             case ATTRIBUTE_NOMINAL_POWER:
-                return mNominalPower;
+                return nominalPower;
             default:
                 return -1;
         }
@@ -210,8 +210,8 @@ public class WashingMachineSpecs implements DeviceSpecs {
     }
 
     public boolean addProgram(Program program) {
-        if (!Objects.isNull(program) && !(mProgramList.contains(program))) {
-            this.mProgramList.add(program);
+        if (!Objects.isNull(program) && !(programList.contains(program))) {
+            this.programList.add(program);
             return true;
         }
         return false;

@@ -16,7 +16,7 @@ in order to check if heating/cooling in that room was effective.*/
 
 public class GetCurrentAndMaxTempRoom {
 
-    private GetCurrentAndMaxTempRoomController mctrl;
+    private GetCurrentAndMaxTempRoomController controller;
 
     /**
      * constructor that receives a House and a SensorTypeList
@@ -25,7 +25,7 @@ public class GetCurrentAndMaxTempRoom {
      * @param sensorType   SensorType
      */
     public GetCurrentAndMaxTempRoom(House house, SensorType sensorType) {
-        this.mctrl = new GetCurrentAndMaxTempRoomController(house, sensorType);
+        this.controller = new GetCurrentAndMaxTempRoomController(house, sensorType);
     }
 
     /**
@@ -53,16 +53,16 @@ public class GetCurrentAndMaxTempRoom {
      */
     public void run1() {
 
-        if (mctrl.getRoomListContent().isEmpty()) {
+        if (controller.getRoomListContent().isEmpty()) {
             System.out.println("There are no rooms available\n");
             return;
         }
-        System.out.println(mctrl.getRoomListContent());
+        System.out.println(controller.getRoomListContent());
 
         String label0 = "Choose the room you want to get the current temperature";
-        int option = InputValidator.getIntRange(label0, 1, mctrl.getRoomListSize());
-        String roomName = mctrl.getRoomNameByPos(option - 1);
-        Readings temp = mctrl.getLatestMeasurementByRoomName(roomName);
+        int option = InputValidator.getIntRange(label0, 1, controller.getRoomListSize());
+        String roomName = controller.getRoomNameByPos(option - 1);
+        Readings temp = controller.getLatestMeasurementByRoomName(roomName);
 
         if (Objects.isNull(temp)) {
             System.out.println("There are no temperature values available");
@@ -74,20 +74,20 @@ public class GetCurrentAndMaxTempRoom {
 
     public void run2() {
 
-        System.out.println(mctrl.getRoomListContent());
-        if (mctrl.getRoomListContent().isEmpty()) {
+        System.out.println(controller.getRoomListContent());
+        if (controller.getRoomListContent().isEmpty()) {
             System.out.println("There are no rooms available\n");
             return;
         }
 
         String label0 = "Choose the room you want to get the maximum temperature";
-        int option = InputValidator.getIntRange(label0, 1, mctrl.getRoomListSize());
-        String roomName = mctrl.getRoomNameByPos(option - 1);
+        int option = InputValidator.getIntRange(label0, 1, controller.getRoomListSize());
+        String roomName = controller.getRoomNameByPos(option - 1);
 
         String label1 = "Please insert the date when you want to get the maximum temperature (yyyy-MM-dd):";
         LocalDate dateLD = InputValidator.getStringDate(label1);
 
-        double temp = mctrl.getMaximumTemperatureOfRoomInGivenDay(roomName, mctrl.getType(), dateLD);
+        double temp = controller.getMaximumTemperatureOfRoomInGivenDay(roomName, controller.getType(), dateLD);
         if (Double.isNaN(temp)) {
             System.out.println("There are no temperature values available");
             return;

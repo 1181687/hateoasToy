@@ -9,17 +9,17 @@ import java.util.Scanner;
 able to create a classification of geographical areas. */
 
 public class AddGeoAreaType {
-    private AddGeoAreaTypeController ctrl;
+    private AddGeoAreaTypeController controller;
 
     public AddGeoAreaType(GeographicalAreaTypeList lista) {
-        this.ctrl = new AddGeoAreaTypeController(lista);
+        this.controller = new AddGeoAreaTypeController(lista);
     }
 
     public void run() {
         System.out.println("Introduce the name of the new type of Geographical Area.");
         Scanner ler = new Scanner(System.in);
         String nome = ler.nextLine();
-        if (ctrl.addTypeOfGeoAreaToTheList(nome)) {
+        if (controller.addTypeOfGeoAreaToTheList(nome)) {
             System.out.println("Success!");
         } else {
             System.out.println("Try another name!");

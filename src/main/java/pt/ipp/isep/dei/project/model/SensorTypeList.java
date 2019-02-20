@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SensorTypeList {
 
-    private List<SensorType> mSensorTypeList = new ArrayList<>();
+    private List<SensorType> sensorTypeList = new ArrayList<>();
 
     public SensorTypeList() {
     }
@@ -16,7 +16,7 @@ public class SensorTypeList {
      * @param sensorTypeList List of Sensor Types
      */
     public SensorTypeList(List<SensorType> sensorTypeList) {
-        this.mSensorTypeList = sensorTypeList;
+        this.sensorTypeList = sensorTypeList;
     }
 
     /**
@@ -25,7 +25,7 @@ public class SensorTypeList {
      * @return Sensor Type List
      */
     public List<SensorType> getSensorTypeList() {
-        return mSensorTypeList;
+        return sensorTypeList;
     }
 
     /**
@@ -45,8 +45,8 @@ public class SensorTypeList {
      * @return true or false
      */
     public boolean addSensorType(SensorType novoSensorType) {
-        if (!(this.mSensorTypeList.contains(novoSensorType))) {
-            this.mSensorTypeList.add(novoSensorType);
+        if (!(this.sensorTypeList.contains(novoSensorType))) {
+            this.sensorTypeList.add(novoSensorType);
             return true;
         }
         return false;
@@ -59,7 +59,7 @@ public class SensorTypeList {
      * @return the Sensor Type of that position
      */
     public SensorType getSensorTypeByPosition(int posicao) {
-        return this.mSensorTypeList.get(posicao);
+        return this.sensorTypeList.get(posicao);
     }
 
     /**
@@ -68,8 +68,8 @@ public class SensorTypeList {
      */
     public String getSensorTypeListToString() {
         StringBuilder content = new StringBuilder();
-        for (int i = 1; i <= this.mSensorTypeList.size(); i++) {
-            content.append(i + " - Sensor Type: " + this.mSensorTypeList.get(i - 1).getType());
+        for (int i = 1; i <= this.sensorTypeList.size(); i++) {
+            content.append(i + " - Sensor Type: " + this.sensorTypeList.get(i - 1).getType());
             content.append("\n");
         }
         return content.toString();
@@ -80,7 +80,7 @@ public class SensorTypeList {
      * @return empty Sensor Type List
      */
     public boolean isEmpty() {
-        return this.mSensorTypeList.isEmpty();
+        return this.sensorTypeList.isEmpty();
     }
 
 }

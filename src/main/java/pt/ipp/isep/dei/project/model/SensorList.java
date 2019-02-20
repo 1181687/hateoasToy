@@ -6,22 +6,22 @@ import java.util.List;
 import java.util.Objects;
 
 public class SensorList {
-    private List<Sensor> mSensorList;
+    private List<Sensor> sensorList;
 
     /**
      * Constructor method.
      */
     public SensorList() {
-        this.mSensorList = new ArrayList<>();
+        this.sensorList = new ArrayList<>();
     }
 
     /**
      * Get method of the sensor list.
      *
-     * @return mSensorList.
+     * @return sensorList.
      */
     public List<Sensor> getSensorList() {
-        return mSensorList;
+        return sensorList;
     }
 
     /**
@@ -30,7 +30,7 @@ public class SensorList {
      * @param sensorList List of sensors to be used.
      */
     public void setSensorList(List<Sensor> sensorList) {
-        this.mSensorList = sensorList;
+        this.sensorList = sensorList;
     }
 
     /**
@@ -40,8 +40,8 @@ public class SensorList {
      * @return True or false.
      */
     public boolean addSensor(Sensor sensor) {
-        if (!(mSensorList.contains(sensor))) {
-            mSensorList.add(sensor);
+        if (!(sensorList.contains(sensor))) {
+            sensorList.add(sensor);
             return true;
         }
         return false;
@@ -67,7 +67,7 @@ public class SensorList {
      */
     public List<Readings> getListOfLatestMeasurementsBySensorType(SensorType type) {
         List<Readings> listOfLatestReadings = new ArrayList<>();
-        for (Sensor sensor : mSensorList) {
+        for (Sensor sensor : sensorList) {
             if (sensor.isMeasurementListEmpty()) {
                 break;
             }
@@ -104,9 +104,9 @@ public class SensorList {
      * @return maximum value of the temperature sensor in a given day.
      */
     public double getMaximumMeasureOfTypeOfSensorInGivenDay(SensorType type, LocalDate date) {
-        if (!mSensorList.isEmpty()) {
-            double maxValue = mSensorList.get(0).getMaximumValueOfDay(date);
-            for (Sensor sensor : mSensorList) {
+        if (!sensorList.isEmpty()) {
+            double maxValue = sensorList.get(0).getMaximumValueOfDay(date);
+            for (Sensor sensor : sensorList) {
                 if (sensor.getSensorType().equals(type) && (!(sensor.getDailyMeasurement(date).isEmpty())) && (Double.compare(sensor.getMaximumValueOfDay(date), maxValue) == 1)) {
                         maxValue = sensor.getMaximumValueOfDay(date);
                 }
@@ -124,7 +124,7 @@ public class SensorList {
      */
     public double getDailyAverage(LocalDate date) {
         double dailyAverage = Double.NaN;
-        for (Sensor sensor : mSensorList) {
+        for (Sensor sensor : sensorList) {
             if (!(sensor.getDailyMeasurement(date).isEmpty())) {
                 dailyAverage = sensor.getDailyAverage(date);
             }
@@ -141,7 +141,7 @@ public class SensorList {
     public SensorList getNearestSensorsToLocation(Location location) {
         SensorList nearestSensors = new SensorList();
         double shortestDistance = Double.NaN;
-        for (Sensor sensor : mSensorList) {
+        for (Sensor sensor : sensorList) {
             if (Double.isNaN(shortestDistance) || shortestDistance > sensor.distanceBetweenSensorAndLocation(location)) {
                 shortestDistance = sensor.distanceBetweenSensorAndLocation(location);
                 nearestSensors.getSensorList().clear();
@@ -186,7 +186,7 @@ public class SensorList {
      * method that check if sensor list is empty
      */
     public boolean isEmpty() {
-        return mSensorList.isEmpty();
+        return sensorList.isEmpty();
     }
 
 
@@ -197,7 +197,7 @@ public class SensorList {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(mSensorList);
+        return Objects.hash(sensorList);
     }
 
     /**
@@ -215,7 +215,7 @@ public class SensorList {
             return false;
         }
         SensorList listOne = (SensorList) obj;
-        return this.mSensorList.equals(listOne.mSensorList);
+        return this.sensorList.equals(listOne.sensorList);
     }
 
     /**

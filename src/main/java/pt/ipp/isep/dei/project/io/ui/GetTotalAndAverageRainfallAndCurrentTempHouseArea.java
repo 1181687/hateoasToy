@@ -17,10 +17,10 @@ includes the house, there is more than one temperature sensor, the nearest one
 should be used.
  */
 public class GetTotalAndAverageRainfallAndCurrentTempHouseArea {
-    private GetTotalAndAverageRainfallAndCurrentTempHouseAreaController mCtrl;
+    private GetTotalAndAverageRainfallAndCurrentTempHouseAreaController controller;
 
     public GetTotalAndAverageRainfallAndCurrentTempHouseArea(House house) {
-        this.mCtrl = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
+        this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
     }
 
     public void run() {
@@ -28,8 +28,8 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseArea {
         String label1 = "Please insert the date when you want to get the total Rainfall (yyyy-MM-dd):";
         LocalDate dateLD = InputValidator.getStringDate(label1);
 
-        if (!(Double.isNaN(mCtrl.getTotalRainfallInTheHouseAreaInTheSelectedDay(dateLD)))) {
-            System.out.println("The total Rainfall of this House Area is " + mCtrl.getTotalRainfallInTheHouseAreaInTheSelectedDay(dateLD) + "l/m2");
+        if (!(Double.isNaN(controller.getTotalRainfallInTheHouseAreaInTheSelectedDay(dateLD)))) {
+            System.out.println("The total Rainfall of this House Area is " + controller.getTotalRainfallInTheHouseAreaInTheSelectedDay(dateLD) + "l/m2");
         } else {
             System.out.println("There's no registers for this day.");
         }
@@ -49,20 +49,20 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseArea {
         }
 
 
-        if (!(Double.isNaN(mCtrl.getAverageDailyRainfall(firstDate, secondDate)))) {
-            System.out.println("The average daily rainfall for the chosen period is: " + mCtrl.getAverageDailyRainfall(firstDate, secondDate) + " l/m2");
+        if (!(Double.isNaN(controller.getAverageDailyRainfall(firstDate, secondDate)))) {
+            System.out.println("The average daily rainfall for the chosen period is: " + controller.getAverageDailyRainfall(firstDate, secondDate) + " l/m2");
         } else {
             System.out.println("There's no registers for this period.");
         }
     }
 
     public void run3() {
-        if (Double.isNaN(mCtrl.getMostRecentAvailableMeasurement())) {
-            System.out.println("There are no " + mCtrl.getTypeTemperature() + " sensors with valid measurements in the house area.");
+        if (Double.isNaN(controller.getMostRecentAvailableMeasurement())) {
+            System.out.println("There are no " + controller.getTypeTemperature() + " sensors with valid measurements in the house area.");
             return;
         } else {
             System.out.println("The most recent measurement available in the house area for "
-                    + mCtrl.getTypeTemperature() + " is " + mCtrl.getMostRecentAvailableMeasurement() +" on "+mCtrl.getDateOfLastMeasurement()+".\n");
+                    + controller.getTypeTemperature() + " is " + controller.getMostRecentAvailableMeasurement() + " on " + controller.getDateOfLastMeasurement() + ".\n");
         }
     }
 }

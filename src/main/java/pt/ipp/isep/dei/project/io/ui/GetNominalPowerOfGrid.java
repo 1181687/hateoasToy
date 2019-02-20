@@ -5,26 +5,26 @@ import pt.ipp.isep.dei.project.model.House;
 
 public class GetNominalPowerOfGrid {
 
-    private GetNominalPowerOfAGridController mController;
+    private GetNominalPowerOfAGridController controller;
 
     public GetNominalPowerOfGrid(House house) {
-        this.mController = new GetNominalPowerOfAGridController(house);
+        this.controller = new GetNominalPowerOfAGridController(house);
     }
 
     public void run() {
         String exit = "0- Exit";
-        if (mController.isGridListEmpty()) {
+        if (controller.isGridListEmpty()) {
             System.out.println("There are no house grids in the house. Please, add one");
         } else {
-            String label1 = "Please select a House Grid to see its total nominal power: \n" + mController.listHouseGrids() + exit;
-            int gridListLength = mController.getHouseGridListSize();
+            String label1 = "Please select a House Grid to see its total nominal power: \n" + controller.listHouseGrids() + exit;
+            int gridListLength = controller.getHouseGridListSize();
             int position = InputValidator.getIntRange(label1, 0, gridListLength);
             if (position == 0) {
                 return;
             }
-            mController.getHouseGridByPosition(position);
+            controller.getHouseGridByPosition(position);
 
-            double nominalPower = mController.getHouseGridTotalNominalPower();
+            double nominalPower = controller.getHouseGridTotalNominalPower();
             System.out.println("The total nominal power of the selected house grid is " + nominalPower + "kW.");
 
         }

@@ -2,9 +2,9 @@ package pt.ipp.isep.dei.project.model;
 
 
 public class Location {
-    private double mLatitude;
-    private double mLongitude;
-    private double mAltitude;
+    private double latitude;
+    private double longitude;
+    private double altitude;
 
     /**
      * constructor of Location that receives a latitude, a longitude and an altitude.
@@ -15,14 +15,14 @@ public class Location {
     public Location(double latitude, double longitude, double altitude) {
         setLatitude(latitude);
         setLongitude(longitude);
-        this.mAltitude = altitude;
+        this.altitude = altitude;
     }
 
     /**
      * method that get the latitude.
      */
     public double getLatitude() {
-        return mLatitude;
+        return latitude;
     }
 
     /**
@@ -31,15 +31,15 @@ public class Location {
      */
     public void setLatitude(double latitude) {
         if (latitude < -90 || latitude > 90) {
-            this.mLatitude = Double.NaN;
-        } else this.mLatitude = latitude;
+            this.latitude = Double.NaN;
+        } else this.latitude = latitude;
     }
 
     /**
      * method that get the longitude.
      */
     public double getLongitude() {
-        return mLongitude;
+        return longitude;
     }
 
     /**
@@ -48,15 +48,15 @@ public class Location {
      */
     public void setLongitude(double longitude) {
         if (longitude < -180 || longitude > 180) {
-            this.mLongitude = Double.NaN;
-        } else this.mLongitude = longitude;
+            this.longitude = Double.NaN;
+        } else this.longitude = longitude;
     }
 
     /**
      * method that get the altitude.
      */
     public double getAltitude() {
-        return mAltitude;
+        return altitude;
     }
 
     /**
@@ -71,15 +71,15 @@ public class Location {
         double altNovoLocal = novoLocal.getAltitude();
         double latNovoLocal = novoLocal.getLatitude();
 
-        double distEntreLon = Math.toRadians(lonNovoLocal - this.mLongitude);
+        double distEntreLon = Math.toRadians(lonNovoLocal - this.longitude);
 
-        double distEntreLocais = Math.acos(Math.cos(Math.toRadians(this.mLatitude)) * Math.cos(Math.toRadians(latNovoLocal))
-                * Math.cos(distEntreLon) + Math.sin(Math.toRadians(this.mLatitude)) * Math.sin(Math.toRadians(latNovoLocal)));
+        double distEntreLocais = Math.acos(Math.cos(Math.toRadians(this.latitude)) * Math.cos(Math.toRadians(latNovoLocal))
+                * Math.cos(distEntreLon) + Math.sin(Math.toRadians(this.latitude)) * Math.sin(Math.toRadians(latNovoLocal)));
 
 
         double distanciaKm = raioDaTerra * distEntreLocais * 1000; // convert to km
 
-        double altura = this.mAltitude - altNovoLocal;
+        double altura = this.altitude - altNovoLocal;
 
 
         return Math.hypot(distanciaKm, altura);
@@ -106,12 +106,12 @@ public class Location {
         }
 
         Location local = (Location) obj;
-        Double comparableLatitude = mLatitude;
-        Double comparableLongitude = mLongitude;
-        Double comparableAltitude = mAltitude;
-        Double comparableLocalLatitude = local.mLatitude;
-        Double comparableLocalLongitude = local.mLongitude;
-        Double comparableLocalAltitude = local.mAltitude;
+        Double comparableLatitude = latitude;
+        Double comparableLongitude = longitude;
+        Double comparableAltitude = altitude;
+        Double comparableLocalLatitude = local.latitude;
+        Double comparableLocalLongitude = local.longitude;
+        Double comparableLocalAltitude = local.altitude;
         return comparableLocalLatitude.equals(comparableLatitude)
                 && comparableLocalLongitude.equals(comparableLongitude)
                 && comparableLocalAltitude.equals(comparableAltitude);

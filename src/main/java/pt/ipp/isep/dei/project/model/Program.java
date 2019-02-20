@@ -3,14 +3,14 @@ package pt.ipp.isep.dei.project.model;
 import java.util.Objects;
 
 public class Program {
-    private String mName;
-    private double mDuration;
-    private double mEnergyConsumption;
+    private String name;
+    private double duration;
+    private double energyConsumption;
 
     public Program(String name, double duration, double energyConsumption) {
-        this.mName = name;
-        this.mDuration = duration;
-        this.mEnergyConsumption = energyConsumption;
+        this.name = name;
+        this.duration = duration;
+        this.energyConsumption = energyConsumption;
     }
 
     /**
@@ -19,7 +19,7 @@ public class Program {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(mName);
+        return Objects.hash(name);
     }
 
     /**
@@ -39,6 +39,6 @@ public class Program {
             return false;
         }
         Program programOne = (Program) obj;
-        return this.mName.equalsIgnoreCase(programOne.mName);
+        return this.name.equalsIgnoreCase(programOne.name);
     }
 }

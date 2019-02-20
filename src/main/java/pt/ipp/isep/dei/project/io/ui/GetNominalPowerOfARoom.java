@@ -4,26 +4,26 @@ import pt.ipp.isep.dei.project.controllers.GetNominalPowerOfARoomController;
 import pt.ipp.isep.dei.project.model.House;
 
 public class GetNominalPowerOfARoom {
-    private GetNominalPowerOfARoomController mController;
+    private GetNominalPowerOfARoomController controller;
 
     public GetNominalPowerOfARoom(House house) {
-        this.mController = new GetNominalPowerOfARoomController(house);
+        this.controller = new GetNominalPowerOfARoomController(house);
     }
 
     public void run() {
         String exit = "0- Exit";
-        mController.getListOfRooms();
-        int roomListLength = mController.getRoomListSize();
-        String label1 = "Please select a room to see its total nominal power: \n" + mController.getListOfRooms() + exit;
+        controller.getListOfRooms();
+        int roomListLength = controller.getRoomListSize();
+        String label1 = "Please select a room to see its total nominal power: \n" + controller.getListOfRooms() + exit;
         int position = InputValidator.getIntRange(label1, 0, roomListLength);
         if (position == 0) {
             return;
         }
-        mController.getRoom(position - 1);
-        if (mController.isDeviceListEmpty(position-1)) {
+        controller.getRoom(position - 1);
+        if (controller.isDeviceListEmpty(position - 1)) {
             System.out.println("There are no devices in the room. Please, add one first");
         } else {
-            double nominalPower = mController.getNominalPower();
+            double nominalPower = controller.getNominalPower();
             System.out.println("The total nominal power of the selected room is " + nominalPower + " kW");
         }
     }

@@ -7,7 +7,7 @@ it (name, house floor and dimensions).*/
 
 public class AddRoom {
 
-    private AddRoomController mctrl;
+    private AddRoomController controller;
 
     /**
      * method constructor that receives a house
@@ -15,7 +15,7 @@ public class AddRoom {
      * @param house house received
      */
     public AddRoom(House house) {
-        this.mctrl = new AddRoomController(house);
+        this.controller = new AddRoomController(house);
     }
 
     /**
@@ -28,7 +28,7 @@ public class AddRoom {
         String label1 = "What is the name of the room you want to add to the house?";
         String name = InputValidator.getString(label1);
 
-        while (mctrl.isNameExistant(name)) {
+        while (controller.isNameExistant(name)) {
             System.out.println("Name already exists. Please write a new one.");
             name = InputValidator.getString(label1);
         }
@@ -45,8 +45,8 @@ public class AddRoom {
         String label5 = "Write the width of the room";
         double width = InputValidator.getDoublePos(label5);
 
-        mctrl.newRoom(height, length, width, name, houseFloor);
-        mctrl.addRoomToHouse();
+        controller.newRoom(height, length, width, name, houseFloor);
+        controller.addRoomToHouse();
 
         StringBuilder content = new StringBuilder();
         content.append("The new room ");

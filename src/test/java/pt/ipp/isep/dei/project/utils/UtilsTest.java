@@ -181,6 +181,24 @@ class UtilsTest {
     }
 
     @Test
+    void isSameNumberTrueTest() {
+        // Act
+        boolean result = Utils.isSameNumber(1.1, 1.1);
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    void isSameNumberFalseTest() {
+        // Act
+        boolean result = Utils.isSameNumber(1.1, 1.0);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
     void isFirstDoubleBiggerThanSecondOneTestTrue() {
         // arrange
         double value1 = 1.2;

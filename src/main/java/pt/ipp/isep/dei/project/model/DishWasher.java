@@ -64,6 +64,7 @@ public class DishWasher implements Device, Programmable {
 
     /**
      * method that gets the list of Readings of the Device.
+     *
      * @return
      */
     @Override
@@ -234,10 +235,10 @@ public class DishWasher implements Device, Programmable {
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        List<Readings> readingsList = getReadingsListInInterval(startDate, endDate);
-        if (!(readingsList.isEmpty())) {
-            readingsList.remove(0);
-            totalEnergyConsumption = getSumOfTheReadings(readingsList);
+        List<Readings> readings = getReadingsListInInterval(startDate, endDate);
+        if (!(readings.isEmpty())) {
+            readings.remove(0);
+            totalEnergyConsumption = getSumOfTheReadings(readings);
         }
         return totalEnergyConsumption;
     }
