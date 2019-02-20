@@ -3,7 +3,9 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -700,7 +702,7 @@ public class RoomTest {
                 "1 - Device name: Lamp1 - ACTIVATED\n" +
                         "2 - Device name: Lamp2 - ACTIVATED\n";
         // Act
-        String result = room.getActiveDeviceListToString();
+        String result = room.getActiveDeactiveDeviceListToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -721,10 +723,10 @@ public class RoomTest {
         dev1.setDeactivateDevice();
 
         String expectedResult =
-                "1 - Device name: Lamp1 - DEACTIVATED\n" +
+                "1 - Device name: Lamp1 - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n" +
                         "2 - Device name: Lamp2 - ACTIVATED\n";
         // Act
-        String result = room.getActiveDeviceListToString();
+        String result = room.getActiveDeactiveDeviceListToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -747,10 +749,10 @@ public class RoomTest {
         dev2.setDeactivateDevice();
 
         String expectedResult =
-                "1 - Device name: Lamp1 - DEACTIVATED\n" +
-                        "2 - Device name: Lamp2 - DEACTIVATED\n";
+                "1 - Device name: Lamp1 - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n" +
+                        "2 - Device name: Lamp2 - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n";
         // Act
-        String result = room.getActiveDeviceListToString();
+        String result = room.getActiveDeactiveDeviceListToString();
 
         // Assert
         assertEquals(expectedResult, result);

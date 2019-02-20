@@ -4,7 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
@@ -308,6 +310,18 @@ class LampTest {
         // assert
         assertEquals(date, result);
     }
+
+    @Test
+    void getDateDeactivateDeviceToString() {
+        // arrange
+        String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
+        lamp.setDeactivateDevice();
+        // act
+        String result = lamp.getDateDeactivateDeviceToString();
+        // assert
+        assertEquals(date, result);
+    }
+
 
     @Test
     void getIsActiveTrueTest() {

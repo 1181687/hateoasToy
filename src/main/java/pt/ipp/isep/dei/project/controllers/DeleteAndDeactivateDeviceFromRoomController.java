@@ -114,7 +114,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @return an ative device.
      */
     public String getActiveDeviceListToString() {
-        return this.mRoom.getActiveDeviceListToString();
+        return this.mRoom.getActiveDeactiveDeviceListToString();
     }
 
     /**
