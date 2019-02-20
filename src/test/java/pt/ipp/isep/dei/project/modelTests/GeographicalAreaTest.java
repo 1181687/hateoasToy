@@ -699,7 +699,7 @@ class GeographicalAreaTest {
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
 
         // Act
-        boolean result = portoCity.getTheSensorListOfAGivenType(temperature).getSensorList().isEmpty();
+        boolean result = portoCity.getTheSensorListOfAGivenType(temperature).getListOfsensors().isEmpty();
 
         // Assert
         assertFalse(result);
@@ -712,7 +712,7 @@ class GeographicalAreaTest {
         northernRegion.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
 
         // Act
-        boolean result = portoCity.getTheSensorListOfAGivenType(temperature).getSensorList().isEmpty();
+        boolean result = portoCity.getTheSensorListOfAGivenType(temperature).getListOfsensors().isEmpty();
 
         // Assert
         assertFalse(result);
@@ -721,7 +721,7 @@ class GeographicalAreaTest {
     @Test
     public void getTheSensorListInTheFirstAreaWithSensorOfAGivenTypeNoSensorsTest() {
         // Act
-        Boolean result = portoCity.getTheSensorListOfAGivenType(temperature).getSensorList().isEmpty();
+        Boolean result = portoCity.getTheSensorListOfAGivenType(temperature).getListOfsensors().isEmpty();
 
         // Assert
         assertTrue(result);

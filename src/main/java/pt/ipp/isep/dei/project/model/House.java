@@ -60,9 +60,9 @@ public class House {
         if (Objects.isNull(getDeviceType(typeName))) {
             return false;
         }
-        for (int i = 0; i < roomList.getListOfRooms().size(); i++) {
+        for (int i = 0; i < roomList.getRoomList().size(); i++) {
 
-            if (roomList.getListOfRooms().get(i).isDeviceNameExistant(deviceName)) {
+            if (roomList.getRoomList().get(i).isDeviceNameExistant(deviceName)) {
                 return false;
             }
         }
@@ -383,7 +383,7 @@ public class House {
                 content.append("- Device Name: ");
                 content.append(dev.getName());
                 content.append(", Location: ");
-                content.append(dev.getLocation().getRoomName());
+                content.append(dev.getLocation().getName());
                 content.append(".\n");
             }
             content.append("\n");
@@ -427,7 +427,7 @@ public class House {
 
     public boolean gridNameAlreadyExists(String name) {
         for (HouseGrid houseGrid : listHouseGrids) {
-            if (houseGrid.getHouseGridName().equalsIgnoreCase(name)) {
+            if (houseGrid.getName().equalsIgnoreCase(name)) {
                 return true;
             }
         }
@@ -442,7 +442,7 @@ public class House {
     public String getHouseGridListToString() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= listHouseGrids.size(); i++) {
-            content.append(i + " - Name: " + listHouseGrids.get(i - 1).getHouseGridName());
+            content.append(i + " - Name: " + listHouseGrids.get(i - 1).getName());
             content.append("\n");
         }
         return content.toString();
@@ -483,7 +483,7 @@ public class House {
         if (listHouseGrids.isEmpty()) {
             return "There are no Grids in the house";
         }
-        return listHouseGrids.get(position).getHouseGridName();
+        return listHouseGrids.get(position).getName();
     }
 
     /**

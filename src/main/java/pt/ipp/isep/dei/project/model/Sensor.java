@@ -11,7 +11,7 @@ import java.util.List;
 public class Sensor {
     private String sensorName;
     private LocalDateTime startingDate;
-    private List<Readings> listOfreadings = new ArrayList<>();
+    private List<Readings> readings = new ArrayList<>();
     private SensorType sensorType;
     private Location location;
 
@@ -129,7 +129,7 @@ public class Sensor {
 
         List<Double> measurementsBetweenDates = new ArrayList<>();
 
-        for (Readings readings : listOfreadings) {
+        for (Readings readings : readings) {
             if ((readings.getDateTime().toLocalDate().isEqual(startDate) || readings.getDateTime().toLocalDate().isAfter(startDate)) && (readings.getDateTime().toLocalDate().isEqual(endDate) || readings.getDateTime().toLocalDate().isBefore(endDate))) {
                 measurementsBetweenDates.add(readings.getValue());
             }
@@ -227,12 +227,12 @@ public class Sensor {
     }
 
     /**
-     * Method that adds a listOfreadings to a list of measurements
+     * Method that adds a readings to a list of measurements
      *
-     * @param readings listOfreadings of a sensor
+     * @param readings readings of a sensor
      */
     public void addReadingsToList(Readings readings) {
-        this.listOfreadings.add(readings);
+        this.readings.add(readings);
     }
 
     /**
@@ -241,7 +241,7 @@ public class Sensor {
      * @return empty list of measurements
      */
     public boolean isMeasurementListEmpty() {
-        return listOfreadings.isEmpty();
+        return readings.isEmpty();
     }
 
     /**
@@ -250,9 +250,9 @@ public class Sensor {
      * @return last measurement
      */
     public Readings getLastMeasurement() {
-        for (int i = (listOfreadings.size() - 1); i >= 0; i--) {
-            if (!(Double.isNaN(listOfreadings.get(i).getValue()))) {
-                return listOfreadings.get(i);
+        for (int i = (readings.size() - 1); i >= 0; i--) {
+            if (!(Double.isNaN(readings.get(i).getValue()))) {
+                return readings.get(i);
             }
         }
         return null;
@@ -277,7 +277,7 @@ public class Sensor {
      */
     public List<Readings> getDailyMeasurement(LocalDate date) {
         List<Readings> registosDoDia = new ArrayList<>();
-        for (Readings registo : listOfreadings) {
+        for (Readings registo : readings) {
             LocalDate secondDate = registo.getDateTime().toLocalDate();
 
             if (checkIfDaysAreEqual(date, secondDate) && (!Double.isNaN(registo.getValue()))) {

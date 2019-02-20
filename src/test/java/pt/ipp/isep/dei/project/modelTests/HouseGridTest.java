@@ -88,7 +88,7 @@ public class HouseGridTest {
         grid.attachRoom(room);
 
         // Act
-        boolean result = grid.getRoomList().getListOfRooms().contains(room);
+        boolean result = grid.getRoomList().getRoomList().contains(room);
 
         // Assert
         assertTrue(result);

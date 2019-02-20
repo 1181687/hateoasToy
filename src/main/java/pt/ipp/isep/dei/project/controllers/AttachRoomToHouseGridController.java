@@ -79,7 +79,7 @@ public class AttachRoomToHouseGridController {
      * @return Size of the list.
      */
     public int getRoomListSize() {
-        return mListOfRooms.getListOfRooms().size();
+        return mListOfRooms.getRoomList().size();
     }
 
     /**

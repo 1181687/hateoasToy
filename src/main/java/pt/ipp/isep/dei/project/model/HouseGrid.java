@@ -6,19 +6,19 @@ import java.util.*;
 import static java.util.Objects.isNull;
 
 public class HouseGrid implements Measurable {
-    private String houseGridName;
+    private String name;
     private PowerSourceList powerSourceList;
     private RoomList roomList;
 
     /**
-     * constructor of a house grid that receives a houseGridName, a room list, a list of power sources and a maximum contracted power.
+     * constructor of a house grid that receives a name, a room list, a list of power sources and a maximum contracted power.
      *
      * @param houseGridName
      */
 
     public HouseGrid(String houseGridName) {
         validateName(houseGridName);
-        this.houseGridName = houseGridName;
+        this.name = houseGridName;
         this.roomList = new RoomList();
         this.powerSourceList = new PowerSourceList();
     }
@@ -26,23 +26,23 @@ public class HouseGrid implements Measurable {
 
     private static void validateName(String name) {
         if (isNull(name) || name.trim().length() == 0) {
-            throw new RuntimeException("Please enter a valid houseGridName. Name should not be empty");
+            throw new RuntimeException("Please enter a valid name. Name should not be empty");
         }
     }
 
     /**
-     * method that creates the same hashcode to grids with the same houseGridName.
+     * method that creates the same hashcode to grids with the same name.
      *
      * @return the hashcode created
      */
     @Override
     public int hashCode() {
-        return Objects.hash(this.houseGridName);
+        return Objects.hash(this.name);
     }
 
     /**
      * Equals method to determine if two Rooms are equal.
-     * They are equals if houseGridName are equal.
+     * They are equals if name are equal.
      * Names are case insensitive.
      *
      * @param obj receives an object
@@ -57,14 +57,14 @@ public class HouseGrid implements Measurable {
             return false;
         }
         HouseGrid houseGrid = (HouseGrid) obj;
-        return this.houseGridName.equalsIgnoreCase(houseGrid.houseGridName);
+        return this.name.equalsIgnoreCase(houseGrid.name);
     }
 
     /**
-     * method that get the houseGridName of the house grid.
+     * method that get the name of the house grid.
      */
-    public String getHouseGridName() {
-        return houseGridName;
+    public String getName() {
+        return name;
     }
 
     /**
@@ -100,7 +100,7 @@ public class HouseGrid implements Measurable {
     @Override
     public List<Readings> getReadings() {
         List<Readings> listOfReadings = new ArrayList<>();
-        for (Room room : this.roomList.getListOfRooms()) {
+        for (Room room : this.roomList.getRoomList()) {
             listOfReadings.addAll(room.getReadings());
         }
         return listOfReadings;
@@ -114,9 +114,9 @@ public class HouseGrid implements Measurable {
      * @return
      */
     public boolean detachRoom(Room roomToDetach) {
-        for (Room room : this.roomList.getListOfRooms()) {
+        for (Room room : this.roomList.getRoomList()) {
             if (room.equals(roomToDetach)) {
-                this.roomList.getListOfRooms().remove(room);
+                this.roomList.getRoomList().remove(room);
                 return true;
             }
         }
@@ -129,7 +129,7 @@ public class HouseGrid implements Measurable {
      * @param room Speficied room to attach.
      */
     public void attachRoom(Room room) {
-        roomList.getListOfRooms().add(room);
+        roomList.getRoomList().add(room);
     }
 
     /**
@@ -159,7 +159,7 @@ public class HouseGrid implements Measurable {
      * @return True or false.
      */
     public boolean checkIfRoomIsInHouseGrid(Room room) {
-        return roomList.getListOfRooms().contains(room);
+        return roomList.getRoomList().contains(room);
     }
 
     public String getPowerSourceListContent() {
@@ -169,7 +169,7 @@ public class HouseGrid implements Measurable {
     @Override
     public double getNominalPower() {
         double totalNominalPower = 0;
-        for (Room room : roomList.getListOfRooms()) {
+        for (Room room : roomList.getRoomList()) {
             totalNominalPower += room.getNominalPower();
         }
         return totalNominalPower;
@@ -223,14 +223,14 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * method that returns the houseGridName of house grid
+     * method that returns the name of house grid
      *
      * @return String
      */
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();
-        name.append("HouseGrid: " + this.houseGridName + "\n");
+        name.append("HouseGrid: " + this.name + "\n");
         return name.toString();
     }
 
@@ -248,7 +248,7 @@ public class HouseGrid implements Measurable {
         if (this.roomList.isEmpty()) {
             throw new RuntimeException("There are no rooms connected to this house grid.");
         } else {
-            for (Room room : this.roomList.getListOfRooms()) {
+            for (Room room : this.roomList.getRoomList()) {
                 totalEnergyConsumption += room.getEnergyConsumptionInAnInterval(startDate, endDate);
             }
             return totalEnergyConsumption;
@@ -259,7 +259,7 @@ public class HouseGrid implements Measurable {
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         TreeMap<LocalDateTime, Double> map = new TreeMap<>();
 
-        for (Room room : this.roomList.getListOfRooms()) {
+        for (Room room : this.roomList.getRoomList()) {
             Map<LocalDateTime, Double> map2 = room.getDataSeries(startDate, endDate);
 
             for (Map.Entry<LocalDateTime, Double> entry : map2.entrySet()) {
