@@ -87,4 +87,8 @@ public final class Utils {
     public static boolean isSameNumber(Number value1, Number value2) {
         return value1.equals(value2);
     }
+
+    public static boolean isFirstDoubleBiggerThanSecondOne(Double value1, Double value2) {
+        return value1 > value2;
+    }
 }
