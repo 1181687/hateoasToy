@@ -346,13 +346,14 @@ public class WashingMachine implements Device, Measurable, Programmable {
         return true;
     }
 
-    public Programmable asProgrammable() {
+    @Override
+    public Programmable asProgrammable(){
         return this;
     }
 
     @Override
     public boolean addProgram(Program program) {
-        return false;
+        return this.specs.addProgram(program);
     }
 
 }

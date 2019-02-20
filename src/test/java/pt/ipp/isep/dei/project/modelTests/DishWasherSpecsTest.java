@@ -270,20 +270,6 @@ public class DishWasherSpecsTest {
     }
 
     @Test
-    public void newProgram() {
-        //Arrange
-        String programName = "Economic";
-        double duration = 0.5;
-        double energyConsumption = 12.0;
-        Programmable dishwasher = this.dishWasher.asProgrammable();
-        Program expectedResult = new Program(programName, duration, energyConsumption);
-        //Act
-        Program result = dishwasher.newProgram(programName, duration, energyConsumption);
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
     public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
         //Arrange
         Program program = null;

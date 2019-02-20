@@ -352,6 +352,6 @@ public class DishWasher implements Device, Measurable, Programmable {
 
     @Override
     public boolean addProgram(Program program) {
-        return false;
+        return this.specs.addProgram(program);
     }
 }
