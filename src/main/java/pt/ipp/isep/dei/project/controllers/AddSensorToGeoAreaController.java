@@ -39,7 +39,7 @@ public class AddSensorToGeoAreaController {
     }
 
     public boolean adicionarSensorAAreaGeografica(Sensor sensor) {
-        if ((!(this.mListaAreaGeografica.getGeographicalArea(this.mGeographicalArea).getSensorListInTheGeographicArea().getListOfsensors().contains(sensor)))) {
+        if ((!(this.mListaAreaGeografica.getGeographicalArea(this.mGeographicalArea).getSensorListInTheGeographicArea().getSensorList().contains(sensor)))) {
             mListaAreaGeografica.getGeographicalArea(this.mGeographicalArea).getSensorListInTheGeographicArea().addSensor(sensor);
             return true;
         }

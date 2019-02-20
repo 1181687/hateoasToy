@@ -140,7 +140,7 @@ public class GeographicalArea {
      */
     public SensorList getSensorsInGeographicalAreaByType(SensorType sensorType) {
         SensorList listOfInsertedSensors = new SensorList();
-        for (Sensor sensor : this.sensorList.getListOfsensors()) {
+        for (Sensor sensor : this.sensorList.getSensorList()) {
             if (checkIfSensorInInsideOfGeoArea(sensor) && sensor.getSensorType().equals(sensorType)) {
                 listOfInsertedSensors.addSensor(sensor);
             }
@@ -161,7 +161,7 @@ public class GeographicalArea {
         SensorList listOfSensorsInGeoAreaByType = getSensorsInGeographicalAreaByType(type);
         SensorList listOfSensorsOfATypeDuringAPeriod = new SensorList();
 
-        for (Sensor sensor : listOfSensorsInGeoAreaByType.getListOfsensors()) {
+        for (Sensor sensor : listOfSensorsInGeoAreaByType.getSensorList()) {
             if (sensor.checkMeasurementExistenceBetweenDates(startDate, endDate)) {
                 listOfSensorsOfATypeDuringAPeriod.addSensor(sensor);
             }
@@ -180,7 +180,7 @@ public class GeographicalArea {
         SensorList sensorListByTypeInAGeoArea = getSensorsInGeographicalAreaByType(type);
         SensorList sensorListByTypeInADay = new SensorList();
 
-        for (Sensor sensor : sensorListByTypeInAGeoArea.getListOfsensors()) {
+        for (Sensor sensor : sensorListByTypeInAGeoArea.getSensorList()) {
             if (sensor.checkMeasurementExistenceBetweenDates(day, day)) {
                 sensorListByTypeInADay.addSensor(sensor);
             }
@@ -221,20 +221,20 @@ public class GeographicalArea {
     public SensorList getTheSensorListOfAGivenType(SensorType type) {
         GeographicalArea areaToBeUsed = new GeographicalArea(geoAreaName, geographicalAreaType, location, areaShape);
         areaToBeUsed.setInsertedIn(insertedIn);
-        areaToBeUsed.getSensorListInTheGeographicArea().setListOfsensors(sensorList.getListOfsensors());
+        areaToBeUsed.getSensorListInTheGeographicArea().setSensorList(sensorList.getSensorList());
 
-        SensorList listOfSensors = new SensorList();
-        listOfSensors.setListOfsensors(getSensorsInGeographicalAreaByType(type).getListOfsensors());
-        while (listOfSensors.getListOfsensors().isEmpty()) {
+        SensorList sensorList = new SensorList();
+        sensorList.setSensorList(getSensorsInGeographicalAreaByType(type).getSensorList());
+        while (sensorList.getSensorList().isEmpty()) {
             if (areaToBeUsed.getInsertedIn() != null) {
-                areaToBeUsed.getSensorListInTheGeographicArea().setListOfsensors(areaToBeUsed.getInsertedIn().getSensorListInTheGeographicArea().getListOfsensors());
+                areaToBeUsed.getSensorListInTheGeographicArea().setSensorList(areaToBeUsed.getInsertedIn().getSensorListInTheGeographicArea().getSensorList());
                 areaToBeUsed.setInsertedIn(areaToBeUsed.getInsertedIn().getInsertedIn());
-                listOfSensors.setListOfsensors(areaToBeUsed.getSensorListInTheGeographicArea().getListOfsensors());
+                sensorList.setSensorList(areaToBeUsed.getSensorListInTheGeographicArea().getSensorList());
             } else {
-                return listOfSensors;
+                return sensorList;
             }
         }
-        return listOfSensors;
+        return sensorList;
     }
 
     /**
@@ -247,10 +247,10 @@ public class GeographicalArea {
     public double getLastMeasurementByLocationType(Location location, SensorType type) {
         SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
         double latestReadingValue = Double.NaN;
-        if (!sensorListWithTheRequiredType.getListOfsensors().isEmpty()) {
+        if (!sensorListWithTheRequiredType.getSensorList().isEmpty()) {
             SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
             Readings latestReading = null;
-            for (Sensor sensor : nearestSensors.getListOfsensors()) {
+            for (Sensor sensor : nearestSensors.getSensorList()) {
                 if ((!Objects.isNull(sensor.getLastMeasurement())) && (Objects.isNull(latestReading) ||
                         sensor.getLastMeasurement().getDateTime().isAfter(latestReading.getDateTime()))) {
                     latestReading = sensor.getLastMeasurement();
@@ -265,10 +265,10 @@ public class GeographicalArea {
     public LocalDateTime getDateLastMeasurementByLocationType(Location location, SensorType type) {
         SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
         LocalDateTime latestReadingDate = null;
-        if (!sensorListWithTheRequiredType.getListOfsensors().isEmpty()) {
+        if (!sensorListWithTheRequiredType.getSensorList().isEmpty()) {
             SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
             Readings latestReading = null;
-            for (Sensor sensor : nearestSensors.getListOfsensors()) {
+            for (Sensor sensor : nearestSensors.getSensorList()) {
                 if ((!Objects.isNull(sensor.getLastMeasurement())) && (Objects.isNull(latestReading) ||
                         sensor.getLastMeasurement().getDateTime().isAfter(latestReading.getDateTime()))) {
                     latestReading = sensor.getLastMeasurement();
@@ -336,10 +336,10 @@ public class GeographicalArea {
         SensorList sensorListWithSameTypeDuringADay = getSensorListByTypeInADay(sensorType, day);
         SensorList nearestSensors = sensorListWithSameTypeDuringADay.getNearestSensorsToLocation(location);
         Readings latestReading;
-        if (!(nearestSensors.isEmpty()) && !(nearestSensors.getListOfsensors().get(0).isMeasurementListEmpty())) {
-            latestReading = nearestSensors.getListOfsensors().get(0).getLastMeasurement();
+        if (!(nearestSensors.isEmpty()) && !(nearestSensors.getSensorList().get(0).isMeasurementListEmpty())) {
+            latestReading = nearestSensors.getSensorList().get(0).getLastMeasurement();
 
-            for (Sensor sensor : nearestSensors.getListOfsensors()) {
+            for (Sensor sensor : nearestSensors.getSensorList()) {
                 List<Readings> readingsList = sensor.getDailyMeasurement(day);
                 int lastReadingPosition = readingsList.size() - 1;
                 if (!(readingsList.isEmpty()) && readingsList.get(lastReadingPosition).getDateTime().isAfter(latestReading.getDateTime())) {

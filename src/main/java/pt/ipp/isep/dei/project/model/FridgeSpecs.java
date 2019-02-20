@@ -81,9 +81,9 @@ public class FridgeSpecs implements DeviceSpecs {
      * @param annualEnConsumption annual energy comsumption
      */
     public boolean setAnnualEnergyConsumption(Object annualEnConsumption) {
-        double annualEConsumption = (Double) annualEnConsumption;
-        if (!Utils.isSameDouble(this.annualEnergyConsumption, annualEConsumption) && !Utils.isSameDouble(annualEConsumption, 0)) {
-            this.annualEnergyConsumption = annualEConsumption;
+        double annualEnergyConsumption = (Double) annualEnConsumption;
+        if (!Utils.isSameDouble(this.annualEnergyConsumption, annualEnergyConsumption) && !Utils.isSameDouble(annualEnergyConsumption, 0)) {
+            this.annualEnergyConsumption = annualEnergyConsumption;
             return true;
         }
 
@@ -96,9 +96,9 @@ public class FridgeSpecs implements DeviceSpecs {
      * @param fridgeNominalPower nominal power
      */
     public boolean setNominalPower(Object fridgeNominalPower) {
-        double nominalPwr = (Double) fridgeNominalPower;
-        if (!Utils.isSameDouble(this.nominalPower, nominalPwr) && !Utils.isSameDouble(nominalPwr, 0)) {
-            this.nominalPower = nominalPwr;
+        double nominalPower = (Double) fridgeNominalPower;
+        if (!Utils.isSameDouble(this.nominalPower, nominalPower) && !Utils.isSameDouble(nominalPower, 0)) {
+            this.nominalPower = nominalPower;
             return true;
         }
 

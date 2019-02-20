@@ -12,7 +12,7 @@ public class GetListOfSensorsAndDevicesRoomController {
     }
 
     /**
-     * method that return the method getListOfRooms of the class House
+     * method that return the method getRoomList of the class House
      * @return the room list.
      */
     public RoomList getListOfRooms () {

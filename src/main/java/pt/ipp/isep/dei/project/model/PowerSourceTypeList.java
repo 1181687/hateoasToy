@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PowerSourceTypeList {
-    private List<PowerSourceType> powerSourceListOfTypes;
+    private List<PowerSourceType> powerSourceTypeList;
 
     public PowerSourceTypeList() {
-        this.powerSourceListOfTypes = new ArrayList<>();
+        this.powerSourceTypeList = new ArrayList<>();
     }
 
     /**
@@ -17,8 +17,8 @@ public class PowerSourceTypeList {
      * @return true if the adds a power source type or false if it doesn't
      */
     public boolean addPowerSourceType(PowerSourceType newPowerSourceType) {
-        if (!(this.powerSourceListOfTypes.contains(newPowerSourceType))) {
-            powerSourceListOfTypes.add(newPowerSourceType);
+        if (!(this.powerSourceTypeList.contains(newPowerSourceType))) {
+            powerSourceTypeList.add(newPowerSourceType);
             return true;
         }
         return false;
@@ -31,8 +31,8 @@ public class PowerSourceTypeList {
      */
     public String getPowerSourceTypeListToString() {
         StringBuilder content = new StringBuilder();
-        for (int i = 1; i <= this.powerSourceListOfTypes.size(); i++) {
-            content.append(i + " - Power Source Type: " + this.powerSourceListOfTypes.get(i - 1).getTypeOfPowerSource());
+        for (int i = 1; i <= this.powerSourceTypeList.size(); i++) {
+            content.append(i + " - Power Source Type: " + this.powerSourceTypeList.get(i - 1).getPowerSourceType());
             content.append("\n");
         }
         return content.toString();
@@ -45,7 +45,7 @@ public class PowerSourceTypeList {
      * @return Type of Power Source
      */
     public PowerSourceType getPowerSourceTypeFromASpecificPosition(int position) {
-        return powerSourceListOfTypes.get(position);
+        return powerSourceTypeList.get(position);
     }
 
     /**
@@ -53,6 +53,6 @@ public class PowerSourceTypeList {
      * @return Power Source List size
      */
     public int getSize() {
-        return this.powerSourceListOfTypes.size();
+        return this.powerSourceTypeList.size();
     }
 }

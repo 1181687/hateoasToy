@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GeographicalAreaTypeList {
-    private List<GeographicalAreaType> geoAreaTypeList = new ArrayList<>();
+    private List<GeographicalAreaType> geographicalAreaTypeList = new ArrayList<>();
 
     /**
      * constructor that receives a list of geographical areas type.
@@ -12,7 +12,7 @@ public class GeographicalAreaTypeList {
      * @param geographicalAreaTypeList
      */
     public GeographicalAreaTypeList(List<GeographicalAreaType> geographicalAreaTypeList) {
-        this.geoAreaTypeList = geographicalAreaTypeList;
+        this.geographicalAreaTypeList = geographicalAreaTypeList;
     }
 
     /**
@@ -27,7 +27,7 @@ public class GeographicalAreaTypeList {
      * @return a geographical areas types list
      */
     public List<GeographicalAreaType> getGeoAreaTypeList() {
-        return geoAreaTypeList;
+        return geographicalAreaTypeList;
     }
 
     /**
@@ -36,8 +36,8 @@ public class GeographicalAreaTypeList {
      * @return true if a geographicalAreaType is added. If not, return false.
      */
     public boolean addTypeOfGeoAreaToTheList(GeographicalAreaType geographicalAreaType) {
-        if (!(this.geoAreaTypeList.contains(geographicalAreaType))) {
-            this.geoAreaTypeList.add(geographicalAreaType);
+        if (!(geographicalAreaTypeList.contains(geographicalAreaType))) {
+            geographicalAreaTypeList.add(geographicalAreaType);
             return true;
         }
         return false;
@@ -59,7 +59,7 @@ public class GeographicalAreaTypeList {
      */
     public List<String> getListOfGeoAreaTypes() {
         List<String> listOfGeoAreaTypes = new ArrayList<>();
-        for (GeographicalAreaType object : this.geoAreaTypeList) {
+        for (GeographicalAreaType object : geographicalAreaTypeList) {
             listOfGeoAreaTypes.add(object.getStringOfTypeOfGeoArea());
         }
         return listOfGeoAreaTypes;

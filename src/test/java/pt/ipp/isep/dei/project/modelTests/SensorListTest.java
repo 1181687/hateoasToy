@@ -41,7 +41,7 @@ class SensorListTest {
         List<Sensor> expectedResult = new ArrayList<>();
         expectedResult.add(s0);
         //Act
-        List<Sensor> result = newList.getListOfsensors();
+        List<Sensor> result = newList.getSensorList();
         //Assert
         assertEquals(result, expectedResult);
     }
@@ -804,7 +804,7 @@ class SensorListTest {
     @Test
     public void testHashCode() {
         SensorList sensorList = new SensorList();
-        int expectedResult = Objects.hash(sensorList.getListOfsensors());
+        int expectedResult = Objects.hash(sensorList.getSensorList());
 
         // Act
         int result = sensorList.hashCode();

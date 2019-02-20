@@ -8,7 +8,7 @@
     <artifactId>smarthome</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-    <roomName>smarthome</roomName>
+    <name>smarthome</name>
 
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
@@ -90,7 +90,7 @@
                     <!-- new configuration needed for coverage per test -->
                     <properties>
                         <property>
-                            <roomName>listener</roomName>
+                            <name>listener</name>
                             <value>org.sonar.java.jacoco.JUnitListener</value>
                         </property>
                     </properties>
