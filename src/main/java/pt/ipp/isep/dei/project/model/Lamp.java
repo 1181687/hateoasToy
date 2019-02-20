@@ -226,10 +226,10 @@ public class Lamp implements Device {
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        List<Readings> readingsList = getReadingsListInInterval(startDate, endDate);
-        if (!(readingsList.isEmpty())) {
-            readingsList.remove(0);
-            totalEnergyConsumption = getSumOfTheReadings(readingsList);
+        List<Readings> readings = getReadingsListInInterval(startDate, endDate);
+        if (!(readings.isEmpty())) {
+            readings.remove(0);
+            totalEnergyConsumption = getSumOfTheReadings(readings);
         }
         return totalEnergyConsumption;
     }

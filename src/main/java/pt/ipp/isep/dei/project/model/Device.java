@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public interface Device extends Measurable {
