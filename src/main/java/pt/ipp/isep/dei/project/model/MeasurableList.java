@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,7 +31,7 @@ public class MeasurableList {
         for (Measurable measurable : mMeasurableList) {
             totalNominalPower += measurable.getNominalPower();
         }
-        return Math.floor(totalNominalPower);
+        return Utils.round(totalNominalPower, 2);
     }
 
     /**

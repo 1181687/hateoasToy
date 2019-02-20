@@ -37,7 +37,8 @@ public interface Device extends Measurable {
     /**
      * Method that gets the energy consumption in a day.
      *
-     * @return Energy consumption of the device in a given day.
+     * @return
+     * consumption of the device in a given day.
      */
     double getEnergyConsumptionInADay();
 
