@@ -17,6 +17,9 @@ class DishWasherTest {
     private Room laundry;
     private Device dishwasher;
     private Map<LocalDateTime, Double> map;
+    private Readings readings0;
+    private Readings readings1;
+    private Readings readings2;
 
     @BeforeEach
     public void StartUp() {
@@ -27,7 +30,7 @@ class DishWasherTest {
 
         // Devices
         DishWasherType dishWasherType = new DishWasherType();
-        Device dummyWasher = dishWasherType.createDevice("Bosch 400 Series", kitchen);
+        dishWasherType.createDevice("Bosch 400 Series", kitchen);
         dishwasher = dishWasherType.createDevice("Bosch 500 Series", kitchen);
         dishwasher.setAttributesDevType("Capacity", 10);
         dishwasher.setAttributesDevType("Duration", 0);
@@ -35,11 +38,11 @@ class DishWasherTest {
 
         // Readings
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        readings2 = new Readings(7, time2);
         dishwasher.addReadingsToTheList(readings0);
         dishwasher.addReadingsToTheList(readings1);
         dishwasher.addReadingsToTheList(readings2);
@@ -185,7 +188,7 @@ class DishWasherTest {
     }
 
     @Test
-    public void setSetAttributesDevTypeTrue(){
+    public void setSetAttributesDevTypeTrue() {
         //Act
         boolean result = dishwasher.setAttributesDevType("Capacity", 15);
         //Assert
@@ -193,7 +196,7 @@ class DishWasherTest {
     }
 
     @Test
-    public void setSetAttributesDevTypeFalse(){
+    public void setSetAttributesDevTypeFalse() {
         //Act
         boolean result = dishwasher.setAttributesDevType("Capacity", 10);
         //Assert
@@ -453,5 +456,21 @@ class DishWasherTest {
 
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetReadings() {
+        //Arrange
+        List<Readings> expectedResult = new ArrayList<>();
+        expectedResult.add(readings0);
+        expectedResult.add(readings1);
+        expectedResult.add(readings2);
+
+        //Act
+        List<Readings> result = dishwasher.getReadings();
+
+        //Assert
+        assertEquals(expectedResult, result);
+
     }
 }

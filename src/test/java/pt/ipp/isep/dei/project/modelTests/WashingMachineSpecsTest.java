@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,9 @@ class WashingMachineSpecsTest {
     private Device washingMachine;
     private final String CAPACITY = "Capacity";
     private final String NOMINAL_POWER = "Nominal Power";
+    private Readings readings0;
+    private Readings readings1;
+    private Readings readings2;
 
     @BeforeEach
     public void StartUp() {
@@ -25,6 +29,33 @@ class WashingMachineSpecsTest {
 
         WashingMachineType type = new WashingMachineType();
         this.washingMachine = type.createDevice("Wm1", room);
+
+        // Readings
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        readings0 = new Readings(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        readings1 = new Readings(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        readings2 = new Readings(7, time2);
+        washingMachine.addReadingsToTheList(readings0);
+        washingMachine.addReadingsToTheList(readings1);
+        washingMachine.addReadingsToTheList(readings2);
+
+    }
+
+    @Test
+    public void testGetReadings() {
+        //Arrange
+        List<Readings> expectedResult = new ArrayList<>();
+        expectedResult.add(readings0);
+        expectedResult.add(readings1);
+        expectedResult.add(readings2);
+
+        //Act
+        List<Readings> result = washingMachine.getReadings();
+
+        //Assert
+        assertEquals(expectedResult, result);
 
     }
 
