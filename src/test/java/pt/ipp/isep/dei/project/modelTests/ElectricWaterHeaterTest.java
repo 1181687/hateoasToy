@@ -17,6 +17,9 @@ class ElectricWaterHeaterTest {
     private Room laundry;
     private Device electricWaterHeater;
     private Map<LocalDateTime, Double> map;
+    private Readings readings0;
+    private Readings readings1;
+    private Readings readings2;
 
     @BeforeEach
     public void StartUp() {
@@ -27,7 +30,7 @@ class ElectricWaterHeaterTest {
 
         // Devices
         ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
-        Device dummyWaterHeater =electricWaterHeaterType.createDevice("Bosch Tronic 2000", kitchen);
+        electricWaterHeaterType.createDevice("Bosch Tronic 2000", kitchen);
         electricWaterHeater = electricWaterHeaterType.createDevice("Bosch Tronic 3000", kitchen);
         electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 55);
         electricWaterHeater.setAttributesDevType("Performance Ratio", 0.9);
@@ -35,11 +38,11 @@ class ElectricWaterHeaterTest {
 
         // Readings
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        readings2 = new Readings(7, time2);
         electricWaterHeater.addReadingsToTheList(readings0);
         electricWaterHeater.addReadingsToTheList(readings1);
         electricWaterHeater.addReadingsToTheList(readings2);
@@ -49,6 +52,22 @@ class ElectricWaterHeaterTest {
         map.put(time0, 3.0);
         map.put(time1, 5.0);
         map.put(time2, 7.0);
+    }
+
+    @Test
+    public void testGetReadings() {
+        //Arrange
+        List<Readings> expectedResult = new ArrayList<>();
+        expectedResult.add(readings0);
+        expectedResult.add(readings1);
+        expectedResult.add(readings2);
+
+        //Act
+        List<Readings> result = electricWaterHeater.getReadings();
+
+        //Assert
+        assertEquals(expectedResult, result);
+
     }
 
     @Test

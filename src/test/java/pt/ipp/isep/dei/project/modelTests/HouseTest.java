@@ -51,34 +51,38 @@ public class HouseTest {
     }
 
     @Test
-    public void createDeviceTrue() {
+    public void createDevice() {
         // Act
-        boolean result = house.createDevice("Fridge", "Bosch 2000", laundry);
+        Device result = house.createDevice("Fridge", "Bosch 2000", laundry);
+        Device expectedResult = house.getDeviceByName("Bosch 2000");
+
 
         // Assert
-        assertTrue(result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
     public void createDeviceDeviceTypeNotExists_False() {
         // Act
-        boolean result = house.createDevice("Hoven", "Bosch 1000", laundry);
+        Device result = house.createDevice("Hoven", "Bosch 1000", laundry);
+
+        Device expectedResult = null;
 
         // Assert
-        assertFalse(result);
+        assertEquals(expectedResult, result);
+
     }
 
     @Test
-    public void createDeviceNameAlreadyExists_False() {
-        // Arrange
-        house.createDevice("Fridge", "Bosch 2000", laundry);
+    public void createDeviceNameAlreadyExists() {
 
-        // Act
-        // Act
-        boolean result = house.createDevice("Lamp", "Bosch 2000", laundry);
+        house.createDevice("Fridge", "Bosch 2000", laundry);
+        Device result = house.createDevice("Fridge", "Bosch 2000", laundry);
+
+        Device expectedResult = null;
 
         // Assert
-        assertFalse(result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -231,7 +235,7 @@ public class HouseTest {
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getAverageDailyMeasurement(searchType, startDate, endDate);
+        double result = house.getAverageDailyMeasurementInHouseArea(searchType, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -260,7 +264,7 @@ public class HouseTest {
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getAverageDailyMeasurement(searchType, startDate, endDate);
+        double result = house.getAverageDailyMeasurementInHouseArea(searchType, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -322,7 +326,7 @@ public class HouseTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = house.getLastMeasurementByType(type);
+        double result = house.getLastMeasurementByTypeInHouseArea(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -362,7 +366,7 @@ public class HouseTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = house.getLastMeasurementByType(type);
+        double result = house.getLastMeasurementByTypeInHouseArea(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -389,7 +393,7 @@ public class HouseTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = house.getLastMeasurementByType(type);
+        double result = house.getLastMeasurementByTypeInHouseArea(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -437,7 +441,7 @@ public class HouseTest {
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getTotalDailyMeasurement(searchType, day);
+        double result = house.getTotalDailyMeasurementInHouseArea(searchType, day);
 
         //Assert
         assertEquals(expectedResult, result);

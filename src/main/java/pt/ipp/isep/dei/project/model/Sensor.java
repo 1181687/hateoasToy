@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -309,7 +311,7 @@ public class Sensor {
         if (!getDailyMeasurement(data).isEmpty()) {
             double valorMinimoDoDia = getDailyMeasurement(data).get(0).getValue();
             for (Readings registo : getDailyMeasurement(data)) {
-                if (valorMinimoDoDia > registo.getValue()) {
+                if (Utils.isFirstDoubleBiggerThanSecondOne(valorMinimoDoDia, registo.getValue())) {
                     valorMinimoDoDia = registo.getValue();
                 }
             }
@@ -370,7 +372,6 @@ public class Sensor {
             iterator++;
         }
         return sumOfLowestMeasurementOfWeek / lowestMeasurementOfWeek.size();
-
     }
 
     /**
@@ -383,7 +384,7 @@ public class Sensor {
         if (!getDailyMeasurement(date).isEmpty()) {
             double maximumValueOfDay = getDailyMeasurement(date).get(0).getValue();
             for (Readings readings : getDailyMeasurement(date)) {
-                if (maximumValueOfDay < readings.getValue()) {
+                if (!Utils.isFirstDoubleBiggerThanSecondOne(maximumValueOfDay, readings.getValue()) && !Utils.isSameDouble(maximumValueOfDay, readings.getValue())) {
                     maximumValueOfDay = readings.getValue();
                 }
             }

@@ -49,25 +49,23 @@ public class House {
     /**
      * creates a Device and returns true if type name exists and deviceName not exists in the
      * rooms of the house
-     *
      * @param typeName   String type name of Device
      * @param deviceName String device name
      * @param location   Room location to add advice
      * @return true if creates and false if not
      */
-    public boolean createDevice(String typeName, String deviceName, Room location) {
+    public Device createDevice(String typeName, String deviceName, Room location) {
 
         if (Objects.isNull(getDeviceType(typeName))) {
-            return false;
+            return null;
         }
         for (int i = 0; i < roomList.getListOfRooms().size(); i++) {
 
             if (roomList.getListOfRooms().get(i).isDeviceNameExistant(deviceName)) {
-                return false;
+                return null;
             }
         }
-        getDeviceType(typeName).createDevice(deviceName, location);
-        return true;
+        return getDeviceType(typeName).createDevice(deviceName, location);
     }
 
     /**
@@ -192,7 +190,7 @@ public class House {
      * @param type
      * @return the last measurement with a location and a type of sensor.
      */
-    public double getLastMeasurementByType(SensorType type) {
+    public double getLastMeasurementByTypeInHouseArea(SensorType type) {
         return insertedGeoArea.getLastMeasurementByLocationType(address.getLocation(), type);
     }
 
@@ -204,7 +202,7 @@ public class House {
      * @param endDate
      * @return the average daily measurement.
      */
-    public double getAverageDailyMeasurement(SensorType measurementType, LocalDate startDate, LocalDate endDate) {
+    public double getAverageDailyMeasurementInHouseArea(SensorType measurementType, LocalDate startDate, LocalDate endDate) {
         List<Double> listOfDailyAverages = insertedGeoArea.getDailyAverageMeasurement(measurementType, address.getLocation(), startDate, endDate);
         double sum = 0;
         if (listOfDailyAverages.isEmpty()) {
@@ -223,7 +221,7 @@ public class House {
      * @param day
      * @return total daily measurement.
      */
-    public double getTotalDailyMeasurement(SensorType measurementType, LocalDate day) {
+    public double getTotalDailyMeasurementInHouseArea(SensorType measurementType, LocalDate day) {
         return insertedGeoArea.getTotalDailyMeasurement(measurementType, day, this.address.getLocation());
     }
 
