@@ -135,7 +135,6 @@ class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.getDeviceList();
         Device d2 = controller.createNewFridge("Fridge", 1000,
                 200, 20, 50);
         Device expectedResult = d2;
@@ -152,7 +151,6 @@ class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.getDeviceList();
         controller.createNewFridge("Fridge", 1000, 200,
                 20, 50);
 
@@ -170,7 +168,6 @@ class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.getDeviceList();
         Device device = controller.createNewLamp("Lamp", 200, 100);
 
         Device expectedResult = device;
@@ -187,7 +184,6 @@ class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.getDeviceList();
         controller.createNewLamp("Lamp", 200, 100);
 
         // Act
@@ -204,7 +200,6 @@ class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.getDeviceList();
         Device device = controller.createNewWashingMachine("Washing Machine", 200, 100);
 
         Device expectedResult = device;
@@ -221,7 +216,6 @@ class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.getDeviceList();
         controller.createNewWashingMachine("Washing Machine", 200, 100);
 
         // Act
@@ -238,7 +232,7 @@ class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.getDeviceList();
+
         Device device = controller.createNewElectricWaterHeater("Electric Water Heater", 50,
                 150, 100, 0.9);
 
@@ -256,7 +250,7 @@ class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.getDeviceList();
+
         controller.createNewElectricWaterHeater("Electric Water Heater", 50, 150,
                 100, 0.9);
 
@@ -275,7 +269,7 @@ class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.getDeviceList();
+
         Device device = controller.createNewDishWasher("Dishwasher", 12, 50);
 
         Device expectedResult = device;
@@ -292,7 +286,6 @@ class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.getDeviceList();
         controller.createNewDishWasher("DW1", 12, 50);
 
         // Act

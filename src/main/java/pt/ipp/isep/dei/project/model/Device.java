@@ -129,7 +129,6 @@ public interface Device extends Measurable {
      */
     double getSumOfTheReadings(List<Readings> readingsList);
 
-    List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate);
 
     /**
      * method that set the deactivate device, turning it to false and giving a date
@@ -158,4 +157,6 @@ public interface Device extends Measurable {
     Programmable asProgrammable();
 
     String getDateDeactivateDeviceToString();
+
+
 }

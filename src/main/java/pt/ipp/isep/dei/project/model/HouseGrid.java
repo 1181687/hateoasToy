@@ -1,10 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.util.*;
 
 import static java.util.Objects.isNull;
 
@@ -84,8 +81,29 @@ public class HouseGrid implements Measurable {
         return roomList;
     }
 
+    /**
+     * Method that returns a selected room through the use of an Integer.
+     * This method relies of the position of the room in the list.
+     *
+     * @param position
+     * @return
+     */
     public Room getRoomFromTheListOfRoomByAPosition (int position){
         return getRoomList().getRoomFromPosition(position);
+    }
+
+    /**
+     * Method that returns a list of readings from all of the rooms in the HouseGrid.
+     *
+     * @return
+     */
+    @Override
+    public List<Readings> getReadings() {
+        List<Readings> listOfReadings = new ArrayList<>();
+        for (Room room : this.mRoomList.getRoomList()) {
+            listOfReadings.addAll(room.getReadings());
+        }
+        return listOfReadings;
     }
 
     /**
