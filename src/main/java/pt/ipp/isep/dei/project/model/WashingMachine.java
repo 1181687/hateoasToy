@@ -4,14 +4,15 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class WashingMachine implements Device, Measurable {
+public class WashingMachine implements Device, Programmable {
 
     private String name;
     private Room location;
     private WashingMachineSpecs specs;
-    private List<Readings> readings;
+    private List<Readings> readingsList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
+
 
     public WashingMachine(String name, Room location) {
         this.name = name;
@@ -19,7 +20,7 @@ public class WashingMachine implements Device, Measurable {
         this.specs = new WashingMachineSpecs();
         this.location.addDevice(this);
         this.isActive = true;
-        this.readings = new ArrayList<>();
+        this.readingsList = new ArrayList<>();
 
     }
 
@@ -61,6 +62,16 @@ public class WashingMachine implements Device, Measurable {
     @Override
     public String getType() {
         return specs.getTypeName();
+    }
+
+    /**
+     * method that gets the list of Readings of the Device.
+     *
+     * @return
+     */
+    @Override
+    public List<Readings> getReadings() {
+        return this.readingsList;
     }
 
     /**
@@ -191,12 +202,12 @@ public class WashingMachine implements Device, Measurable {
     }
 
     /**
-     * Method that adds a readings to the device.
+     * Method that adds a readingsList to the device.
      *
      * @param readings Readings to be added.
      */
     public void addReadingsToTheList(Readings readings) {
-        this.readings.add(readings);
+        this.readingsList.add(readings);
     }
 
     /**
@@ -213,21 +224,6 @@ public class WashingMachine implements Device, Measurable {
         return sum;
     }
 
-    /**
-     * Method that gets the reading list in an interval
-     * @param startDate starting date of readings
-     * @param endDate end date of readings
-     * @return reading list
-     */
-    public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        List<Readings> readingsList = new ArrayList<>();
-        for (Readings readings : readings) {
-            if (!startDate.isAfter(readings.getDateTime()) && !endDate.isBefore(readings.getDateTime())) {
-                readingsList.add(readings);
-            }
-        }
-        return readingsList;
-    }
 
     /**
      * Method that calculates the total energy consumption of a device in a given interval.
@@ -239,24 +235,31 @@ public class WashingMachine implements Device, Measurable {
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        List<Readings> readingsList = getReadingsListInInterval(startDate, endDate);
-        if (!(readingsList.isEmpty())) {
-            readingsList.remove(0);
-            totalEnergyConsumption = getSumOfTheReadings(readingsList);
+        List<Readings> readings = getReadingsListInInterval(startDate, endDate);
+        if (!(readings.isEmpty())) {
+            readings.remove(0);
+            totalEnergyConsumption = getSumOfTheReadings(readings);
         }
         return totalEnergyConsumption;
     }
 
+    @Override
     public LocalDateTime getDeactivationDate() {
         return this.deactivationDate;
+    }
+
+    @Override
+    public String getDateDeactivateDeviceToString() {
+        return this.deactivationDate.toLocalDate().toString() + " " + this.deactivationDate.toLocalTime().toString();
     }
 
     /**
      * method that set the deactivate device, turning it to false and giving a date
      */
+    @Override
     public void setDeactivateDevice() {
         this.isActive = false;
-        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     }
 
     /**
@@ -264,6 +267,7 @@ public class WashingMachine implements Device, Measurable {
      *
      * @return an active device.
      */
+    @Override
     public boolean getIsActive() {
         return isActive;
     }
@@ -271,9 +275,10 @@ public class WashingMachine implements Device, Measurable {
 
     /**
      * get method
-     * @param startDate starting date of reading
-     * @param endDate end date of reading
-     * @return map with coordinates (value of reading and time)
+     *
+     * @param startDate starting date of readingsList
+     * @param endDate   end date of readingsList
+     * @return map with coordinates (value of readingsList and time)
      */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
@@ -288,6 +293,7 @@ public class WashingMachine implements Device, Measurable {
 
     /**
      * get method
+     *
      * @return list of specs of washing machine specs
      */
     @Override
@@ -297,8 +303,9 @@ public class WashingMachine implements Device, Measurable {
 
     /**
      * get method
+     *
      * @param attributeName string attribute
-     * @return  name of attributes of washing machine specs
+     * @return name of attributes of washing machine specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
@@ -308,6 +315,7 @@ public class WashingMachine implements Device, Measurable {
 
     /**
      * get method
+     *
      * @return the string of an attribute of washing machine Specs
      */
 
@@ -318,11 +326,28 @@ public class WashingMachine implements Device, Measurable {
 
     /**
      * get method
+     *
      * @param attributeName string attribute
      * @return type data of the attribute (ex.integer, double)
      */
-
+    @Override
     public String getAttributeDataType(String attributeName) {
         return specs.getAttributeDataType(attributeName);
     }
+
+    @Override
+    public boolean isProgrammable() {
+        return true;
+    }
+
+    @Override
+    public Programmable asProgrammable(){
+        return this;
+    }
+
+    @Override
+    public boolean addProgram(Program program) {
+        return this.specs.addProgram(program);
+    }
+
 }

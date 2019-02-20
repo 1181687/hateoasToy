@@ -10,10 +10,10 @@ import pt.ipp.isep.dei.project.model.HouseGrid;
  */
 
 public class CreateHouseGrid {
-    private CreateHouseGridController mController;
+    private CreateHouseGridController controller;
 
     public CreateHouseGrid(House house) {
-        this.mController = new CreateHouseGridController(house);
+        this.controller = new CreateHouseGridController(house);
     }
 
     public void run() {
@@ -24,8 +24,8 @@ public class CreateHouseGrid {
         do {
             nameHG = InputValidator.getString(label1);
             try {
-                HouseGrid houseGridCreated = mController.createANewHouseGrid(nameHG);
-                mController.addHouseGridToTheListOfHouseGrids(houseGridCreated);
+                HouseGrid houseGridCreated = controller.createANewHouseGrid(nameHG);
+                controller.addHouseGridToTheListOfHouseGrids(houseGridCreated);
                 System.out.println("Your House Grid was successfully created! \n");
                 flag=false;
             } catch (Exception e) {

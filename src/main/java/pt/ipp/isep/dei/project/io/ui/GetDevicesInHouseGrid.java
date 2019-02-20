@@ -9,14 +9,14 @@ import pt.ipp.isep.dei.project.model.House;
  */
 public class GetDevicesInHouseGrid {
 
-    private GetDevicesInHouseGridController mctrl;
+    private GetDevicesInHouseGridController controller;
 
     /**
      * method constructor that receives a house
      * @param house house received
      */
     public GetDevicesInHouseGrid(House house) {
-        this.mctrl = new GetDevicesInHouseGridController(house);
+        this.controller = new GetDevicesInHouseGridController(house);
     }
 
     /**
@@ -26,17 +26,17 @@ public class GetDevicesInHouseGrid {
      * if there aren't devices in that House Grid, it shows that message.
      */
     public void run() {
-        if (mctrl.isHouseGridListEmpty()) {
+        if (controller.isHouseGridListEmpty()) {
             System.out.println("There aren't House Grids in the House.\n");
             return;
         }
 
         StringBuilder content = new StringBuilder();
-        content.append(mctrl.getHouseGridListToString());
+        content.append(controller.getHouseGridListToString());
         content.append("0 - Exit");
         String listContentRoom = content.toString();
 
-        int maxPosition = mctrl.getHouseGridListSize();
+        int maxPosition = controller.getHouseGridListSize();
         String label1 = "\nChoose the House Grid you want to get the list of devices\n" + listContentRoom;
         int selection = InputValidator.getIntRange(label1, 0, maxPosition);
         int positionHG = (selection - 1);
@@ -45,15 +45,15 @@ public class GetDevicesInHouseGrid {
         }
         content.delete(0, content.length());
 
-        if (mctrl.checkIfThereAreNoDevicesHGbyPosition(positionHG)) {
+        if (controller.checkIfThereAreNoDevicesHGbyPosition(positionHG)) {
             System.out.println("There aren't devices in the chosen House Grid.\n");
             return;
         }
 
         content.append("\n\nThe list of devices in House Grid ");
-        content.append(mctrl.getHGNameByHGPosition(positionHG));
+        content.append(controller.getHGNameByHGPosition(positionHG));
         content.append(" is:\n\n");
-        content.append(mctrl.getDeviceListContentNameTypeLocationByHG(positionHG));
+        content.append(controller.getDeviceListContentNameTypeLocationByHG(positionHG));
         System.out.println(content.toString());
     }
 }

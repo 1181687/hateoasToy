@@ -7,58 +7,58 @@ import java.time.LocalDateTime;
 
 public class GetEnergyConsumptionDataSeries {
 
-    private GetEnergyConsumptionDataSeriesController mCtrl;
+    private GetEnergyConsumptionDataSeriesController controller;
 
     public GetEnergyConsumptionDataSeries(House house) {
-        this.mCtrl = new GetEnergyConsumptionDataSeriesController(house);
+        this.controller = new GetEnergyConsumptionDataSeriesController(house);
     }
 
     private String getDataSeriesGrid() {
-        if (mCtrl.houseGridListIsEmpty()){
+        if (controller.houseGridListIsEmpty()) {
             return ("Sorry! There are no house grids.");
         }
         else {
-            String label2 = "Please choose a house grid:\n" + mCtrl.getHouseGridListToString();
-            int chosenGrid = InputValidator.getIntRange(label2, 1, mCtrl.getHouseGridListSize()) - 1;
-            mCtrl.getHouseGridByPosition(chosenGrid);
-            while (mCtrl.roomListIsEmpty()) {
+            String label2 = "Please choose a house grid:\n" + controller.getHouseGridListToString();
+            int chosenGrid = InputValidator.getIntRange(label2, 1, controller.getHouseGridListSize()) - 1;
+            controller.getHouseGridByPosition(chosenGrid);
+            while (controller.roomListIsEmpty()) {
                 System.out.println("\"There are no devices in this house grid, so it is not possible to \" " +
                         "+\ncalculate its energy consumption. Please choose another house grid.\\n\");");
                 continue;
             }
             LocalDateTime initialDate = Menu.getInitialDate();
             LocalDateTime finalDate = Menu.getFinalDate();
-            return mCtrl.getHouseGridDataSeriesToString(initialDate, finalDate);
+            return controller.getHouseGridDataSeriesToString(initialDate, finalDate);
         }
     }
 
     private String getDataSeriesRoom() {
-        if (mCtrl.roomListIsEmpty()){
+        if (controller.roomListIsEmpty()) {
             return ("Sorry! There are no rooms.");
         }
-        String label2 = "Please choose a room:\n" + mCtrl.getRoomListToString();
-        int chosenRoom = InputValidator.getIntRange(label2, 1, mCtrl.getRoomListSize())-1;
-        mCtrl.getRoomByPosition(chosenRoom);
-        while (mCtrl.deviceListIsEmpty()) {
+        String label2 = "Please choose a room:\n" + controller.getRoomListToString();
+        int chosenRoom = InputValidator.getIntRange(label2, 1, controller.getRoomListSize()) - 1;
+        controller.getRoomByPosition(chosenRoom);
+        while (controller.deviceListIsEmpty()) {
             System.out.println("There are no devices in this room, so it is not possible to calculate its energy consumption.\n");
-            chosenRoom = InputValidator.getIntRange(label2, 1, mCtrl.getRoomListSize())-1;
-            mCtrl.getRoomByPosition(chosenRoom);
+            chosenRoom = InputValidator.getIntRange(label2, 1, controller.getRoomListSize()) - 1;
+            controller.getRoomByPosition(chosenRoom);
         }
         LocalDateTime initialDate = Menu.getInitialDate();
         LocalDateTime finalDate = Menu.getFinalDate();
-        return mCtrl.getRoomDataSeriesToString(initialDate, finalDate);
+        return controller.getRoomDataSeriesToString(initialDate, finalDate);
     }
 
     private String getDataSeriesDevice() {
-        if (mCtrl.deviceListIsEmpty()){
+        if (controller.deviceListIsEmpty()) {
             return ("Sorry! There are no devices.");
         }
-        String label2 = "Please choose a device:\n" + mCtrl.getDeviceListToString();
-        int chosenDevice = InputValidator.getIntRange(label2, 1, mCtrl.getDeviceListSize()) - 1;
-        mCtrl.getDeviceByPosition(chosenDevice);
+        String label2 = "Please choose a device:\n" + controller.getDeviceListToString();
+        int chosenDevice = InputValidator.getIntRange(label2, 1, controller.getDeviceListSize()) - 1;
+        controller.getDeviceByPosition(chosenDevice);
         LocalDateTime initialDate = Menu.getInitialDate();
         LocalDateTime finalDate = Menu.getFinalDate();
-        return mCtrl.getDeviceDataSeriesToString(initialDate, finalDate);
+        return controller.getDeviceDataSeriesToString(initialDate, finalDate);
     }
 
 

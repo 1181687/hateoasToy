@@ -37,7 +37,8 @@ public interface Device extends Measurable {
     /**
      * Method that gets the energy consumption in a day.
      *
-     * @return Energy consumption of the device in a given day.
+     * @return
+     * consumption of the device in a given day.
      */
     double getEnergyConsumptionInADay();
 
@@ -128,7 +129,6 @@ public interface Device extends Measurable {
      */
     double getSumOfTheReadings(List<Readings> readingsList);
 
-    List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate);
 
     /**
      * method that set the deactivate device, turning it to false and giving a date
@@ -151,4 +151,12 @@ public interface Device extends Measurable {
     String getAttributeDataType(String attributeName);
 
     LocalDateTime getDeactivationDate();
+
+    boolean isProgrammable();
+
+    Programmable asProgrammable();
+
+    String getDateDeactivateDeviceToString();
+
+
 }

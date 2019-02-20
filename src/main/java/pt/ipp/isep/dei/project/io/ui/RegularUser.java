@@ -4,18 +4,18 @@ import pt.ipp.isep.dei.project.model.*;
 
 public class RegularUser {
 
-    GeographicalAreaTypeList mGeographicalAreaTypeList;
-    GeographicalAreaList mGeographicalAreaList;
-    SensorTypeList mSensorTypeList;
+    GeographicalAreaTypeList geographicalAreaTypeList;
+    GeographicalAreaList geographicalAreaList;
+    SensorTypeList sensorTypeList;
     House house;
-    SensorType mSensorTypeTemperature;
+    SensorType sensorTypeTemperature;
 
-    public RegularUser(GeographicalAreaTypeList mGeographicalAreaTypeList, GeographicalAreaList mGeographicalAreaList, SensorTypeList mSensorTypeList, House house, SensorType mSensorTypeTemperature) {
-        this.mGeographicalAreaTypeList = mGeographicalAreaTypeList;
-        this.mGeographicalAreaList = mGeographicalAreaList;
-        this.mSensorTypeList = mSensorTypeList;
+    public RegularUser(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, SensorType sensorTypeTemperature) {
+        this.geographicalAreaTypeList = geographicalAreaTypeList;
+        this.geographicalAreaList = geographicalAreaList;
+        this.sensorTypeList = sensorTypeList;
         this.house = house;
-        this.mSensorTypeTemperature = mSensorTypeTemperature;
+        this.sensorTypeTemperature = sensorTypeTemperature;
     }
 
     public void runRegularUserHouseArea() {
@@ -52,11 +52,11 @@ public class RegularUser {
 
             switch (option) {
                 case 1:
-                    GetCurrentAndMaxTempRoom ui605 = new GetCurrentAndMaxTempRoom(house, mSensorTypeTemperature);
+                    GetCurrentAndMaxTempRoom ui605 = new GetCurrentAndMaxTempRoom(house, sensorTypeTemperature);
                     ui605.run1();
                     break;
                 case 2:
-                    GetCurrentAndMaxTempRoom ui610 = new GetCurrentAndMaxTempRoom(house, mSensorTypeTemperature);
+                    GetCurrentAndMaxTempRoom ui610 = new GetCurrentAndMaxTempRoom(house, sensorTypeTemperature);
                     ui610.run2();
                     break;
                 case 3:

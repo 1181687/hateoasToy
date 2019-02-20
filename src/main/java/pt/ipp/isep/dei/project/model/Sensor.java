@@ -9,11 +9,11 @@ import java.util.List;
 
 
 public class Sensor {
-    private String mSensorName;
-    private LocalDateTime mStartingDate;
-    private List<Readings> mReadings = new ArrayList<>();
-    private SensorType mSensorType;
-    private Location mLocation;
+    private String sensorName;
+    private LocalDateTime startingDate;
+    private List<Readings> readings = new ArrayList<>();
+    private SensorType sensorType;
+    private Location location;
 
 
     /**
@@ -25,10 +25,10 @@ public class Sensor {
      * @param location     Location of the Sensor
      */
     public Sensor(String sensorName, LocalDateTime startingDate, SensorType sensorType, Location location) {
-        this.mSensorName = sensorName;
-        this.mStartingDate = startingDate;
-        this.mSensorType = sensorType;
-        this.mLocation = location;
+        this.sensorName = sensorName;
+        this.startingDate = startingDate;
+        this.sensorType = sensorType;
+        this.location = location;
     }
 
     /**
@@ -39,10 +39,10 @@ public class Sensor {
      * @param location   Location of the Sensor
      */
     public Sensor(String sensorName, SensorType sensorType, Location location) {
-        this.mSensorName = sensorName;
-        this.mStartingDate = LocalDateTime.now();
-        this.mSensorType = sensorType;
-        this.mLocation = location;
+        this.sensorName = sensorName;
+        this.startingDate = LocalDateTime.now();
+        this.sensorType = sensorType;
+        this.location = location;
     }
 
     /**
@@ -51,7 +51,7 @@ public class Sensor {
      * @return Sensor Name
      */
     public String getSensorName() {
-        return mSensorName;
+        return sensorName;
     }
 
     /**
@@ -60,7 +60,7 @@ public class Sensor {
      * @return Starting date of a sensor
      */
     public LocalDateTime getStartingDate() {
-        return mStartingDate;
+        return startingDate;
     }
 
     /**
@@ -69,7 +69,7 @@ public class Sensor {
      * @return Sensor Type
      */
     public SensorType getSensorType() {
-        return mSensorType;
+        return sensorType;
     }
 
     /**
@@ -78,7 +78,7 @@ public class Sensor {
      * @return Sensor Location
      */
     public Location getLocation() {
-        return mLocation;
+        return location;
     }
 
     /**
@@ -95,7 +95,7 @@ public class Sensor {
             return false;
         }
         Sensor sensor = (Sensor) objeto;
-        return (this.mSensorName.equals(sensor.mSensorName) && this.mSensorType.equals(sensor.mSensorType) && this.mLocation.equals(sensor.mLocation));
+        return (this.sensorName.equals(sensor.sensorName) && this.sensorType.equals(sensor.sensorType) && this.location.equals(sensor.location));
     }
 
     /**
@@ -115,7 +115,7 @@ public class Sensor {
      */
     public double distanceBetweenTwoLocations(Sensor sensor1) {
 
-        return this.mLocation.distanceBetweenTwoLocations(sensor1.mLocation);
+        return this.location.distanceBetweenTwoLocations(sensor1.location);
     }
 
     /**
@@ -129,7 +129,7 @@ public class Sensor {
 
         List<Double> measurementsBetweenDates = new ArrayList<>();
 
-        for (Readings readings : mReadings) {
+        for (Readings readings : readings) {
             if ((readings.getDateTime().toLocalDate().isEqual(startDate) || readings.getDateTime().toLocalDate().isAfter(startDate)) && (readings.getDateTime().toLocalDate().isEqual(endDate) || readings.getDateTime().toLocalDate().isBefore(endDate))) {
                 measurementsBetweenDates.add(readings.getValue());
             }
@@ -232,7 +232,7 @@ public class Sensor {
      * @param readings readings of a sensor
      */
     public void addReadingsToList(Readings readings) {
-        mReadings.add(readings);
+        this.readings.add(readings);
     }
 
     /**
@@ -241,7 +241,7 @@ public class Sensor {
      * @return empty list of measurements
      */
     public boolean isMeasurementListEmpty() {
-        return mReadings.isEmpty();
+        return readings.isEmpty();
     }
 
     /**
@@ -250,9 +250,9 @@ public class Sensor {
      * @return last measurement
      */
     public Readings getLastMeasurement() {
-        for (int i = (mReadings.size() - 1); i >= 0; i--) {
-            if (!(Double.isNaN(mReadings.get(i).getValue()))) {
-                return mReadings.get(i);
+        for (int i = (readings.size() - 1); i >= 0; i--) {
+            if (!(Double.isNaN(readings.get(i).getValue()))) {
+                return readings.get(i);
             }
         }
         return null;
@@ -277,7 +277,7 @@ public class Sensor {
      */
     public List<Readings> getDailyMeasurement(LocalDate date) {
         List<Readings> registosDoDia = new ArrayList<>();
-        for (Readings registo : mReadings) {
+        for (Readings registo : readings) {
             LocalDate secondDate = registo.getDateTime().toLocalDate();
 
             if (checkIfDaysAreEqual(date, secondDate) && (!Double.isNaN(registo.getValue()))) {
@@ -442,7 +442,7 @@ public class Sensor {
      * @return distance between a sensor and a location
      */
     public double distanceBetweenSensorAndLocation(Location location) {
-        return this.mLocation.distanceBetweenTwoLocations(location);
+        return this.location.distanceBetweenTwoLocations(location);
     }
 
     /**

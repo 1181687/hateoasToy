@@ -10,24 +10,24 @@ import java.util.Scanner;
 or indirectly, in another one. */
 
 public class InsertedGeoArea {
-    private InsertedGeoAreaController ctrl;
+    private InsertedGeoAreaController controller;
 
     public InsertedGeoArea(GeographicalAreaList lista) {
-        this.ctrl = new InsertedGeoAreaController(lista);
+        this.controller = new InsertedGeoAreaController(lista);
     }
 
     public void run() {
         System.out.println("Choose the geographical area to evaluate if it is inserted in another area (directly or indirectly).");
-        System.out.println(ctrl.getConteudoLista(false));
+        System.out.println(controller.getConteudoLista(false));
         Scanner ler = new Scanner(System.in);
         int posicaoDaPrimeiraOpcao = ler.nextInt() - 1;
-        GeographicalArea primeiraAG = ctrl.getAGNaListaApresentada(posicaoDaPrimeiraOpcao);
-        if (!ctrl.verSeAGTemAreaInseridaVazia(primeiraAG)) {
+        GeographicalArea primeiraAG = controller.getAGNaListaApresentada(posicaoDaPrimeiraOpcao);
+        if (!controller.verSeAGTemAreaInseridaVazia(primeiraAG)) {
             System.out.println("Choose the geographical area to check if it contains the previous one (directly or indirectly).");
-            System.out.println(ctrl.getConteudoLista(false));
+            System.out.println(controller.getConteudoLista(false));
             int posicaoDaSegundaOpcao = ler.nextInt()- 1;
             if(posicaoDaPrimeiraOpcao != posicaoDaSegundaOpcao){
-                if(ctrl.verificarSeAGEstaContidaDiretaOuIndiretamenteNoutraAG(posicaoDaPrimeiraOpcao,posicaoDaSegundaOpcao)) {
+                if (controller.verificarSeAGEstaContidaDiretaOuIndiretamenteNoutraAG(posicaoDaPrimeiraOpcao, posicaoDaSegundaOpcao)) {
                     System.out.println("Success!");
                 }
                 else{

@@ -3,9 +3,9 @@ package pt.ipp.isep.dei.project.model;
 import java.util.Objects;
 
 public class Dimension {
-    private double mHeight;
-    private double mLength;
-    private double mWidth;
+    private double height;
+    private double length;
+    private double width;
 
     /**
      * constructor that receives height, length, width and
@@ -20,9 +20,9 @@ public class Dimension {
         validateHeight(height);
         validateLength(length);
         validateWidth(width);
-        this.mHeight = height;
-        this.mLength = length;
-        this.mWidth = width;
+        this.height = height;
+        this.length = length;
+        this.width = width;
     }
 
     /**
@@ -66,7 +66,7 @@ public class Dimension {
      * @return a height
      */
     public double getHeight() {
-        return mHeight;
+        return height;
     }
 
     /**
@@ -75,7 +75,7 @@ public class Dimension {
      * @param height
      */
     public void setHeight(double height) {
-        this.mHeight = height;
+        this.height = height;
     }
 
     /**
@@ -83,7 +83,7 @@ public class Dimension {
      * @return a length
      */
     public double getLength() {
-        return mLength;
+        return length;
     }
 
     /**
@@ -92,7 +92,7 @@ public class Dimension {
      * @param length
      */
     public void setLength(double length) {
-        this.mLength = length;
+        this.length = length;
     }
 
     /**
@@ -100,7 +100,7 @@ public class Dimension {
      * @return a width
      */
     public double getWidth() {
-        return mWidth;
+        return width;
     }
 
     /**
@@ -108,7 +108,7 @@ public class Dimension {
      * @param width
      */
     public void setWidth(double width) {
-        this.mWidth = width;
+        this.width = width;
     }
 
     /**
@@ -118,7 +118,7 @@ public class Dimension {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(mHeight, mLength, mWidth);
+        return Objects.hash(height, length, width);
     }
 
 
@@ -137,12 +137,12 @@ public class Dimension {
             return false;
         }
         Dimension dim = (Dimension) obj;
-        Double comparableHeight = mHeight;
-        Double comparableLength = mLength;
-        Double comparableWidth = mWidth;
-        Double comparableDimensionsHeight = dim.mHeight;
-        Double comparableDimensionsLength = dim.mLength;
-        Double comparableDimensionsWidth = dim.mWidth;
+        Double comparableHeight = height;
+        Double comparableLength = length;
+        Double comparableWidth = width;
+        Double comparableDimensionsHeight = dim.height;
+        Double comparableDimensionsLength = dim.length;
+        Double comparableDimensionsWidth = dim.width;
         return comparableDimensionsHeight.equals(comparableHeight)
                 && comparableDimensionsLength.equals(comparableLength)
                 && comparableDimensionsWidth.equals(comparableWidth);

@@ -12,21 +12,21 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class House {
-    private RoomList mRoomList;
-    private List<HouseGrid> mListHouseGrids;
-    private Address mAddress;
-    private GeographicalArea mInsertedGeoArea;
-    private List<DeviceType> mDeviceTypeList;
-    private int mMeteringPeriodGrid;
-    private int mMeteringPeriodDevice;
+    private RoomList roomList;
+    private List<HouseGrid> listHouseGrids;
+    private Address address;
+    private GeographicalArea insertedGeoArea;
+    private List<DeviceType> deviceTypeList;
+    private int meteringPeriodGrid;
+    private int meteringPeriodDevice;
 
     public House(List<String> deviceTypeList, int meteringPeriodGrid, int meteringPeriodDevice) {
-        this.mRoomList = new RoomList();
-        this.mListHouseGrids = new ArrayList<>();
-        this.mDeviceTypeList = new ArrayList<>();
+        this.roomList = new RoomList();
+        this.listHouseGrids = new ArrayList<>();
+        this.deviceTypeList = new ArrayList<>();
         createDeviceTypes(deviceTypeList);
-        this.mMeteringPeriodGrid = meteringPeriodGrid;
-        this.mMeteringPeriodDevice = meteringPeriodDevice;
+        this.meteringPeriodGrid = meteringPeriodGrid;
+        this.meteringPeriodDevice = meteringPeriodDevice;
     }
 
     /**
@@ -39,7 +39,7 @@ public class House {
             String path = "pt.ipp.isep.dei.project.model." + className + "Type";
             try {
                 DeviceType dt = (DeviceType) Class.forName(path).newInstance();
-                mDeviceTypeList.add(dt);
+                this.deviceTypeList.add(dt);
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -59,9 +59,9 @@ public class House {
         if (Objects.isNull(getDeviceType(typeName))) {
             return null;
         }
-        for (int i = 0; i < mRoomList.getRoomList().size(); i++) {
+        for (int i = 0; i < roomList.getRoomList().size(); i++) {
 
-            if (mRoomList.getRoomList().get(i).isDeviceNameExistant(deviceName)) {
+            if (roomList.getRoomList().get(i).isDeviceNameExistant(deviceName)) {
                 return null;
             }
         }
@@ -75,7 +75,7 @@ public class House {
      * @return device type
      */
     public DeviceType getDeviceType(String type) {
-        for (DeviceType deviceType : this.mDeviceTypeList) {
+        for (DeviceType deviceType : this.deviceTypeList) {
             if (deviceType.getTypeName().equals(type)) {
                 return deviceType;
             }
@@ -88,14 +88,15 @@ public class House {
      * @return metering period of the grid
      */
     public int getMeteringPeriodGrid() {
-        return mMeteringPeriodGrid;
+        return meteringPeriodGrid;
     }
 
     /**
      * get method
      * @return metring period of the device
      */
-    public int getMeteringPeriodDevice() { return mMeteringPeriodDevice;
+    public int getMeteringPeriodDevice() {
+        return meteringPeriodDevice;
     }
 
     /**
@@ -104,24 +105,24 @@ public class House {
      * @param houseGrid House grid used.
      */
     public boolean addGrid(HouseGrid houseGrid) {
-        if (!(this.mListHouseGrids.contains(houseGrid))) {
-            mListHouseGrids.add(houseGrid);
+        if (!(this.listHouseGrids.contains(houseGrid))) {
+            listHouseGrids.add(houseGrid);
             return true;
         }
         return false;
     }
 
     public RoomList getRoomList() {
-        return mRoomList;
+        return roomList;
     }
 
     /**
      * Get Method of Address
      *
-     * @return mAddress
+     * @return address
      */
     public Address getAddress() {
-        return mAddress;
+        return address;
     }
 
     /**
@@ -130,7 +131,7 @@ public class House {
      * @param address
      */
     public void setAddress(Address address) {
-        this.mAddress = address;
+        this.address = address;
     }
 
     /**
@@ -153,7 +154,7 @@ public class House {
      * @return inserted geo area.
      */
     public GeographicalArea getInsertedGeoArea() {
-        return mInsertedGeoArea;
+        return insertedGeoArea;
     }
 
     /**
@@ -162,7 +163,7 @@ public class House {
      * @param geoArea House area.
      */
     public void setInsertedGeoArea(GeographicalArea geoArea) {
-        mInsertedGeoArea = geoArea;
+        insertedGeoArea = geoArea;
     }
 
     /**
@@ -172,7 +173,7 @@ public class House {
      * @return true if adds, false if doesn't
      */
     public boolean addRoom(Room room) {
-        return this.mRoomList.addRoom(room);
+        return this.roomList.addRoom(room);
     }
 
     /**
@@ -181,7 +182,7 @@ public class House {
      * @return the location of the house.
      */
     public Location getLocation() {
-        return this.mAddress.getLocation();
+        return this.address.getLocation();
     }
 
     /**
@@ -191,7 +192,7 @@ public class House {
      * @return the last measurement with a location and a type of sensor.
      */
     public double getLastMeasurementByType(SensorType type) {
-        return mInsertedGeoArea.getLastMeasurementByLocationType(mAddress.getLocation(), type);
+        return insertedGeoArea.getLastMeasurementByLocationType(address.getLocation(), type);
     }
 
     /**
@@ -203,7 +204,7 @@ public class House {
      * @return the average daily measurement.
      */
     public double getAverageDailyMeasurement(SensorType measurementType, LocalDate startDate, LocalDate endDate) {
-        List<Double> listOfDailyAverages = mInsertedGeoArea.getDailyAverageMeasurement(measurementType, mAddress.getLocation(), startDate, endDate);
+        List<Double> listOfDailyAverages = insertedGeoArea.getDailyAverageMeasurement(measurementType, address.getLocation(), startDate, endDate);
         double sum = 0;
         if (listOfDailyAverages.isEmpty()) {
             return 0;
@@ -222,7 +223,7 @@ public class House {
      * @return total daily measurement.
      */
     public double getTotalDailyMeasurement(SensorType measurementType, LocalDate day) {
-        return mInsertedGeoArea.getTotalDailyMeasurement(measurementType, day, this.mAddress.getLocation());
+        return insertedGeoArea.getTotalDailyMeasurement(measurementType, day, this.address.getLocation());
     }
 
     /**
@@ -232,7 +233,7 @@ public class House {
      * @return returns the maximum temperature in a specific day
      */
     public double getMaximumTemperatureOfRoomInSpecificDay(String name, SensorType type, LocalDate date) {
-        return this.mRoomList.getMaximumTemperatureInRoomInGivenDay(name, type, date);
+        return this.roomList.getMaximumTemperatureInRoomInGivenDay(name, type, date);
     }
 
 
@@ -244,7 +245,7 @@ public class House {
      * @return latest measurement.
      */
     public Readings getLatestMeasurementBySensorType(String name, SensorType type) {
-        Room room = mRoomList.getRoomByName(name);
+        Room room = roomList.getRoomByName(name);
         if (Objects.isNull(room)) {
             return null;
         }
@@ -259,7 +260,7 @@ public class House {
      * method that display a room list.
      */
     public String getRoomListContent() {
-        return mRoomList.getRoomListContent();
+        return roomList.getRoomListContent();
     }
 
     /**
@@ -268,7 +269,7 @@ public class House {
      * @return size of the list of rooms.
      */
     public int getRoomListSize() {
-        return mRoomList.getLength();
+        return roomList.getLength();
     }
 
     /**
@@ -278,7 +279,7 @@ public class House {
      * @return a position.
      */
     public String getRoomNameByPosition(int position) {
-        return mRoomList.getRoomNameByPosition(position);
+        return roomList.getRoomNameByPosition(position);
     }
 
     /**
@@ -292,7 +293,7 @@ public class House {
      * @return a new room in the list.
      */
     public Room newRoom(double height, double length, double width, String name, int housefloor) {
-        return mRoomList.newRoom(name, housefloor, height, length, width);
+        return roomList.newRoom(name, housefloor, height, length, width);
     }
 
     /**
@@ -301,7 +302,7 @@ public class House {
      * @param name
      */
     public boolean isNameExistant(String name) {
-        return this.mRoomList.isNameExistant(name);
+        return this.roomList.isNameExistant(name);
     }
 
     /**
@@ -310,7 +311,7 @@ public class House {
      * @param option
      */
     public Room getRoomOfTheRoomList(int option) {
-        return mRoomList.getRoomFromPosition(option);
+        return roomList.getRoomFromPosition(option);
     }
 
     /**
@@ -320,7 +321,7 @@ public class House {
      * @return list of devices of a roomMethod that displays the content
      */
     public String getDeviceListContentRoom(int position) {
-        return mRoomList.getDeviceListContentByPosition(position);
+        return roomList.getDeviceListContentByPosition(position);
     }
 
 
@@ -330,7 +331,7 @@ public class House {
      * @param position chosen room
      */
     public boolean isDeviceListEmpty(int position) {
-        return mRoomList.isDeviceListEmpty(position);
+        return roomList.isDeviceListEmpty(position);
     }
 
     /**
@@ -339,7 +340,7 @@ public class House {
      * @param position
      */
     public String getSensorListContentOfARoom(int position) {
-        return mRoomList.getSensorListContentOfRoom(position);
+        return roomList.getSensorListContentOfRoom(position);
     }
 
     /**
@@ -348,7 +349,7 @@ public class House {
      * @param position
      */
     public boolean isSensorListEmpty(int position) {
-        return mRoomList.isSensorListEmpty(position);
+        return roomList.isSensorListEmpty(position);
     }
 
     /**
@@ -358,7 +359,7 @@ public class House {
      * @return List <Device>
      */
     public List<Device> getAllDevicesListByGridPosition(int position) {
-        return this.mListHouseGrids.get(position).getAllDevicesList();
+        return this.listHouseGrids.get(position).getAllDevicesList();
     }
 
     /**
@@ -407,7 +408,7 @@ public class House {
      * @return True or false.
      */
     public boolean isHouseGridListEmpty() {
-        return mListHouseGrids.isEmpty();
+        return listHouseGrids.isEmpty();
     }
 
     /**
@@ -424,8 +425,8 @@ public class House {
     }
 
     public boolean gridNameAlreadyExists(String name) {
-        for (HouseGrid houseGrid : mListHouseGrids) {
-            if (houseGrid.getName().equalsIgnoreCase(name)){
+        for (HouseGrid houseGrid : listHouseGrids) {
+            if (houseGrid.getName().equalsIgnoreCase(name)) {
                 return true;
             }
         }
@@ -439,15 +440,15 @@ public class House {
      */
     public String getHouseGridListToString() {
         StringBuilder content = new StringBuilder();
-        for (int i = 1; i <= mListHouseGrids.size(); i++) {
-            content.append(i + " - Name: " + mListHouseGrids.get(i - 1).getName());
+        for (int i = 1; i <= listHouseGrids.size(); i++) {
+            content.append(i + " - Name: " + listHouseGrids.get(i - 1).getName());
             content.append("\n");
         }
         return content.toString();
     }
 
     public HouseGrid getHouseGridByPosition(int position) {
-        return mListHouseGrids.get(position);
+        return listHouseGrids.get(position);
     }
 
     /**
@@ -456,11 +457,11 @@ public class House {
      * @return integer
      */
     public int getHouseGridListSize() {
-        return this.mListHouseGrids.size();
+        return this.listHouseGrids.size();
     }
 
     public List<HouseGrid> getHouseGridList() {
-        return this.mListHouseGrids;
+        return this.listHouseGrids;
     }
 
     public boolean checkIfThereAreNoDevicesHGbyPosition(int position) {
@@ -468,7 +469,7 @@ public class House {
     }
 
     public int houseRoomListSize() {
-        return this.mRoomList.getLength();
+        return this.roomList.getLength();
     }
 
     /**
@@ -478,10 +479,10 @@ public class House {
      * @return String name
      */
     public String getHGNameByHGPosition(int position) {
-        if (mListHouseGrids.isEmpty()) {
+        if (listHouseGrids.isEmpty()) {
             return "There are no Grids in the house";
         }
-        return mListHouseGrids.get(position).getName();
+        return listHouseGrids.get(position).getName();
     }
 
     /**
@@ -492,8 +493,8 @@ public class House {
      * @return True or false.
      */
     public boolean checkIfRoomIsAlreadyInHouseGrid(HouseGrid chosenGrid, Room room) {
-        int index = mListHouseGrids.indexOf(chosenGrid);
-        return mListHouseGrids.get(index).checkIfRoomIsInHouseGrid(room);
+        int index = listHouseGrids.indexOf(chosenGrid);
+        return listHouseGrids.get(index).checkIfRoomIsInHouseGrid(room);
     }
 
     /**
@@ -503,7 +504,7 @@ public class House {
      * @return Grid where the room is is connected to.
      */
     public HouseGrid getTheGridWhereTheRoomIsConnected(Room room) {
-        for (HouseGrid houseGrid : mListHouseGrids) {
+        for (HouseGrid houseGrid : listHouseGrids) {
             if (houseGrid.checkIfRoomIsInHouseGrid(room)) {
                 return houseGrid;
             }
@@ -518,7 +519,7 @@ public class House {
      * @return rooms in the house grid
      */
     public String getRoomsInTheHouseGrid(int position) {
-        return mListHouseGrids.get(position).getRoomListContent();
+        return listHouseGrids.get(position).getRoomListContent();
     }
 
 
@@ -529,8 +530,8 @@ public class House {
      * @param roomSelected      Specified room.
      */
     public boolean detachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
-        int index = mListHouseGrids.indexOf(houseGridSelected);
-        return mListHouseGrids.get(index).detachRoom(roomSelected);
+        int index = listHouseGrids.indexOf(houseGridSelected);
+        return listHouseGrids.get(index).detachRoom(roomSelected);
     }
 
     /**
@@ -540,8 +541,8 @@ public class House {
      * @param roomSelected      Specified room.
      */
     public void attachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
-        int index = mListHouseGrids.indexOf(houseGridSelected);
-        mListHouseGrids.get(index).attachRoom(roomSelected);
+        int index = listHouseGrids.indexOf(houseGridSelected);
+        listHouseGrids.get(index).attachRoom(roomSelected);
     }
 
 
@@ -552,7 +553,7 @@ public class House {
      * @return DeviceList with all the devices of the required type.
      */
     public List<Device> getAllDevicesOfAType(String type) {
-        return mRoomList.getAllDevicesOfAType(type);
+        return roomList.getAllDevicesOfAType(type);
     }
 
     /**
@@ -633,7 +634,7 @@ public class House {
      * @return true if it is empty
      */
     public boolean roomListIsEmpty() {
-        return mRoomList.isEmpty();
+        return roomList.isEmpty();
     }
 
     /**
@@ -642,7 +643,7 @@ public class House {
      * @return String with the list of devices content.
      */
     public String getAllDevicesToString() {
-        return mRoomList.getAllDevicesToString();
+        return roomList.getAllDevicesToString();
     }
 
     /**
@@ -651,7 +652,7 @@ public class House {
      * @return DeviceList with all the devices in the house.
      */
     public List<Device> getAllDevices() {
-        return mRoomList.getAllDevicesList();
+        return roomList.getAllDevicesList();
     }
 
     /**
@@ -727,10 +728,10 @@ public class House {
      * @return boolean true
      */
     public boolean isDeviceListOfAllRoomsEmpty() {
-        return this.mRoomList.isDeviceListOfAllRoomsEmpty();
+        return this.roomList.isDeviceListOfAllRoomsEmpty();
     }
 
     public LocalDateTime getDateOfLastMeasurementByType(SensorType type) {
-        return mInsertedGeoArea.getDateLastMeasurementByLocationType(mAddress.getLocation(), type);
+        return insertedGeoArea.getDateLastMeasurementByLocationType(address.getLocation(), type);
     }
 }

@@ -4,24 +4,26 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class DishWasherSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_CAPACITY = "Capacity";
     private static final String ATTRIBUTE_DURATION = "Duration";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
-    private String mTypeName;
-    private int mCapacity;
-    private double mDuration;
-    private double mNominalPower;
-    private ProgramList mProgramList;
+    private String typeName;
+    private int capacity;
+    private double duration;
+    private double nominalPower;
+    private List<Program> programList;
 
     public DishWasherSpecs() {
-        this.mTypeName = "Dishwasher";
+        this.typeName = "Dishwasher";
+        this.programList = new ArrayList<>();
     }
 
     public String getTypeName() {
-        return mTypeName;
+        return typeName;
     }
 
     /**
@@ -41,7 +43,7 @@ public class DishWasherSpecs implements DeviceSpecs {
      */
     @Override
     public double getNominalPower() {
-        return mNominalPower;
+        return nominalPower;
     }
 
     /**
@@ -52,8 +54,8 @@ public class DishWasherSpecs implements DeviceSpecs {
      */
     private boolean setCapacity(Object capacity) {
         int dWCapacity = (Integer) capacity;
-        if (!Utils.isSameDouble(this.mCapacity, dWCapacity) && !(Utils.isSameDouble(dWCapacity, 0))) {
-            this.mCapacity = dWCapacity;
+        if (!Utils.isSameDouble(this.capacity, dWCapacity) && !(Utils.isSameDouble(dWCapacity, 0))) {
+            this.capacity = dWCapacity;
             return true;
         }
         return false;
@@ -67,8 +69,8 @@ public class DishWasherSpecs implements DeviceSpecs {
      */
     private boolean setDuration(Object duration) {
         Double dWDuration = (Double) duration;
-        if (!Utils.isSameDouble(this.mDuration, dWDuration) && !(Utils.isSameDouble(dWDuration, 0))) {
-            this.mDuration = dWDuration;
+        if (!Utils.isSameDouble(this.duration, dWDuration) && !(Utils.isSameDouble(dWDuration, 0))) {
+            this.duration = dWDuration;
             return true;
         }
         return false;
@@ -82,8 +84,8 @@ public class DishWasherSpecs implements DeviceSpecs {
      */
     private boolean setNominalPower(Object nominalPower) {
         double nomPower = (Double) nominalPower;
-        if (!Utils.isSameDouble(this.mNominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
-            this.mNominalPower = nomPower;
+        if (!Utils.isSameDouble(this.nominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
+            this.nominalPower = nomPower;
             return true;
         }
         return false;
@@ -96,8 +98,8 @@ public class DishWasherSpecs implements DeviceSpecs {
      */
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Capacity: " + mCapacity + "\n");
-        attributes.append("2 - Nominal Power: " + mNominalPower + "\n");
+        attributes.append("1 - Capacity: " + capacity + "\n");
+        attributes.append("2 - Nominal Power: " + nominalPower + "\n");
         return attributes.toString();
     }
 
@@ -133,11 +135,11 @@ public class DishWasherSpecs implements DeviceSpecs {
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
             case ATTRIBUTE_CAPACITY:
-                return mCapacity;
+                return capacity;
             case ATTRIBUTE_DURATION:
-                return mDuration;
+                return duration;
             case ATTRIBUTE_NOMINAL_POWER:
-                return mNominalPower;
+                return nominalPower;
             default:
                 return -1;
         }
@@ -179,5 +181,13 @@ public class DishWasherSpecs implements DeviceSpecs {
      */
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
+    }
+
+    public boolean addProgram(Program program) {
+        if (!Objects.isNull(program) && !(programList.contains(program))) {
+            this.programList.add(program);
+            return true;
+        }
+        return false;
     }
 }
