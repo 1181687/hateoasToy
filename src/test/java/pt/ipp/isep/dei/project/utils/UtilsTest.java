@@ -179,4 +179,43 @@ class UtilsTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    void isFirstDoubleBiggerThanSecondOneTestTrue() {
+        // arrange
+        double value1 = 1.2;
+        double value2 = 1.1;
+
+        // act
+        boolean result = Utils.isFirstDoubleBiggerThanSecondOne(value1, value2);
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    void isFirstDoubleBiggerThanSecondOneTestFalse() {
+        // arrange
+        double value1 = 1.1;
+        double value2 = 1.1;
+
+        // act
+        boolean result = Utils.isFirstDoubleBiggerThanSecondOne(value1, value2);
+
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
+    void isFirstDoubleBiggerThanSecondOneTestFalse2() {
+        // arrange
+        double value1 = 1.1;
+        double value2 = 1.2;
+
+        // act
+        boolean result = Utils.isFirstDoubleBiggerThanSecondOne(value1, value2);
+
+        // assert
+        assertFalse(result);
+    }
 }
