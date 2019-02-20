@@ -4,6 +4,8 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 
 public class WashingMachineSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_CAPACITY = "Capacity";
@@ -16,10 +18,11 @@ public class WashingMachineSpecs implements DeviceSpecs {
     private double mDuration;
     private double mEnergyConsumption;
     private double mNominalPower;
-    private ProgramList mProgramList;
+    private List<Program> mProgramList;
 
     public WashingMachineSpecs() {
         this.mTypeName = "Washing Machine";
+        this.mProgramList = new ArrayList<>();
     }
 
     public String getTypeName() {
@@ -38,6 +41,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
 
     /**
      * get method
+     *
      * @return energy consumption
      */
     @Override
@@ -47,6 +51,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
 
     /**
      * set method
+     *
      * @param capacity
      */
     private boolean setCapacity(Object capacity) {
@@ -74,6 +79,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
 
     /**
      * set method
+     *
      * @param wmNominalPower
      */
     private boolean setNominalPower(Object wmNominalPower) {
@@ -103,6 +109,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
 
     /**
      * method that displays a string of the choosen attribute (name of the attribute and its value)
+     *
      * @return
      */
     @Override
@@ -115,6 +122,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
 
     /**
      * get method
+     *
      * @return number of Washing Machine attributes
      */
     @Override
@@ -199,5 +207,13 @@ public class WashingMachineSpecs implements DeviceSpecs {
      */
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
+    }
+
+    public boolean addProgram(Program program) {
+        if (!Objects.isNull(program) && !(mProgramList.contains(program))) {
+            this.mProgramList.add(program);
+            return true;
+        }
+        return false;
     }
 }
