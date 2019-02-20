@@ -242,16 +242,23 @@ public class Fridge implements Device, Measurable {
         return totalEnergyConsumption;
     }
 
+    @Override
     public LocalDateTime getDeactivationDate() {
         return this.deactivationDate;
+    }
+
+    @Override
+    public String getDateDeactivateDeviceToString() {
+        return this.deactivationDate.toLocalDate().toString() + " " + this.deactivationDate.toLocalTime().toString();
     }
 
     /**
      * method that set the deactivate device, turning it to false and giving a date
      */
+    @Override
     public void setDeactivateDevice() {
         this.isActive = false;
-        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     }
 
     /**
@@ -259,14 +266,16 @@ public class Fridge implements Device, Measurable {
      *
      * @return an active device.
      */
+    @Override
     public boolean getIsActive() {
         return isActive;
     }
 
     /**
      * get method
+     *
      * @param startDate starting date of reading
-     * @param endDate end date of reading
+     * @param endDate   end date of reading
      * @return map with coordinates (value of reading and time)
      */
     @Override
@@ -281,6 +290,7 @@ public class Fridge implements Device, Measurable {
 
     /**
      * get method
+     *
      * @return list of specs of fridge specs
      */
 
@@ -289,10 +299,11 @@ public class Fridge implements Device, Measurable {
         return specs.getSpecsList();
     }
 
-     /**
-      * * get method
+    /**
+     * * get method
+     *
      * @param attributeName string attribute
-     * @return  name of attributes of fridge specs
+     * @return name of attributes of fridge specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
@@ -301,8 +312,10 @@ public class Fridge implements Device, Measurable {
 
     /**
      * get method
+     *
      * @return the string of an attribute of Fridge Specs
      */
+    @Override
     public String getSpecsToString() {
         return this.specs.getAttributesToString();
     }
@@ -314,6 +327,7 @@ public class Fridge implements Device, Measurable {
      * @param attributeName string attribute
      * @return type data of the attribute (ex.integer, double)
      */
+    @Override
     public String getAttributeDataType(String attributeName) {
         return specs.getAttributeDataType(attributeName);
     }

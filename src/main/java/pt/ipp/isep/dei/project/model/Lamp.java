@@ -208,8 +208,9 @@ public class Lamp implements Device, Measurable {
 
     /**
      * Method that gets the reading list in an interval
+     *
      * @param startDate starting date of reading
-     * @param endDate end date of reading
+     * @param endDate   end date of reading
      * @return reading list
      */
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
@@ -240,16 +241,23 @@ public class Lamp implements Device, Measurable {
         return totalEnergyConsumption;
     }
 
+    @Override
     public LocalDateTime getDeactivationDate() {
         return this.deactivationDate;
+    }
+
+    @Override
+    public String getDateDeactivateDeviceToString() {
+        return this.deactivationDate.toLocalDate().toString() + " " + this.deactivationDate.toLocalTime().toString();
     }
 
     /**
      * method that set the deactivate device, turning it to false and giving a date
      */
+    @Override
     public void setDeactivateDevice() {
         this.isActive = false;
-        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     }
 
     /**
@@ -257,14 +265,16 @@ public class Lamp implements Device, Measurable {
      *
      * @return an active device.
      */
+    @Override
     public boolean getIsActive() {
         return isActive;
     }
 
     /**
      * get method
+     *
      * @param startDate starting date of reading
-     * @param endDate end date of reading
+     * @param endDate   end date of reading
      * @return map with coordinates (value of reading and time)
      */
     @Override
@@ -279,6 +289,7 @@ public class Lamp implements Device, Measurable {
 
     /**
      * get method
+     *
      * @return list of specs of lamp specs
      */
     @Override
@@ -288,8 +299,9 @@ public class Lamp implements Device, Measurable {
 
     /**
      * get method
+     *
      * @param attributeName string attribute
-     * @return  name of attributes of Lamp specs
+     * @return name of attributes of Lamp specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
@@ -299,6 +311,7 @@ public class Lamp implements Device, Measurable {
 
     /**
      * get method
+     *
      * @return the string of an attribute of Lamp Specs
      */
 
@@ -309,9 +322,11 @@ public class Lamp implements Device, Measurable {
 
     /**
      * get method
+     *
      * @param attributeName string attribute
      * @return type data of the attribute (ex.integer, double)
      */
+    @Override
     public String getAttributeDataType(String attributeName) {
         return specs.getAttributeDataType(attributeName);
     }
