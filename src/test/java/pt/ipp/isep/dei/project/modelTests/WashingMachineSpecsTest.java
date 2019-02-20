@@ -9,6 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 class WashingMachineSpecsTest {
     private Room room;
@@ -380,6 +381,15 @@ class WashingMachineSpecsTest {
     }
 
     @Test
+    public void testSetAttributeDurationValidValue() {
+        // Arrange
+        // Act
+        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Duration", 100.0);
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
     public void testSetAttributeEnergyConsumptionSameValue() {
         // Arrange
         room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 100.0);
@@ -390,6 +400,24 @@ class WashingMachineSpecsTest {
     }
 
     @Test
+    public void testSetAttributeEnergyConsumptionZero() {
+        // Arrange
+        // Act
+        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 0);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeEnergyConsumptionValidValue() {
+        // Arrange
+        // Act
+        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 100.0);
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
     public void getAttributeDataTypeTest() {
         // arrange
         String attributeDataType = "Integer";
@@ -397,5 +425,55 @@ class WashingMachineSpecsTest {
         String result = washingMachine.getAttributeDataType("Integer");
         // assert
         assertEquals(attributeDataType, result);
+    }
+
+    @Test
+    public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
+        //Arrange
+        Program program = null;
+        boolean expectedResult = false;
+        Programmable programmable = this.washingMachine.asProgrammable();
+        //Act
+        boolean result = programmable.addProgram(program);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
+        //Arrange
+        String programName = "fast";
+        double duration = 15;
+        double energyConsumption = 1;
+        Programmable programmable = this.washingMachine.asProgrammable();
+        Program programA = programmable.newProgram(programName, duration, energyConsumption);
+        Program programB = programmable.newProgram(programName, duration, energyConsumption);
+        programmable.addProgram(programA);
+        boolean expectedResult = false;
+
+        //Act
+        boolean result = programmable.addProgram(programB);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
+        //Arrange
+
+        String programName = "fast";
+        double duration = 15;
+        double energyConsumption = 1;
+        Programmable programmable = this.washingMachine.asProgrammable();
+        Program programA = programmable.newProgram(programName, duration, energyConsumption);
+
+        boolean expectedResult = true;
+
+        //Act
+        boolean result = programmable.addProgram(programA);
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 }

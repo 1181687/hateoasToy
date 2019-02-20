@@ -217,9 +217,9 @@ public class LampSpecsTest {
     @Test
     public void testSetAttributeTimeNotValid() {
         // Arrange
-        String attribute = "Time";
+        String attribute = "stuff";
         // Act
-        boolean result = lamp.setAttributesDevType("Stuff", attribute);
+        boolean result = lamp.setAttributesDevType("Time", attribute);
         // Assert
         assertFalse(result);
     }

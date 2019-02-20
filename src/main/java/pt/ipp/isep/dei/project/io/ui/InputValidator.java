@@ -315,12 +315,10 @@ public final class InputValidator {
                 String integerValue = "Integer";
                 if (dataType.equals(integerValue)) {
                     x = in.nextInt();
-                    break;
                 }
                 String doubleValue = "Double";
                 if (dataType.equals((doubleValue))) {
                     x = in.nextDouble();
-                    break;
                 }
             } catch (Exception e) {
                 System.out.println(errorMessage);

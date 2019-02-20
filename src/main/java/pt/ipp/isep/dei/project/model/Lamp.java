@@ -1,23 +1,24 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class Lamp implements Device, Measurable {
-    private String mLampName;
-    private Room mLampLocation;
-    private LampSpecs mLampSpec;
-    private List<Readings> mLampReadings;
-    private boolean mIsLampActive;
-    private LocalDateTime mLampDeactivationDate;
+public class Lamp implements Device {
+    private String name;
+    private Room location;
+    private LampSpecs specs;
+    private List<Readings> readingsList;
+    private boolean isActive;
+    private LocalDateTime deactivationDate;
 
     public Lamp(String name, Room location) {
-        this.mLampName = name;
-        this.mLampLocation = location;
-        this.mLampLocation.addDevice(this);
-        this.mLampSpec = new LampSpecs();
-        this.mIsLampActive = true;
-        this.mLampReadings = new ArrayList<>();
+        this.name = name;
+        this.location = location;
+        this.location.addDevice(this);
+        this.specs = new LampSpecs();
+        this.isActive = true;
+        this.readingsList = new ArrayList<>();
     }
 
     /**
@@ -27,7 +28,7 @@ public class Lamp implements Device, Measurable {
      */
     @Override
     public double getNominalPower() {
-        return this.mLampSpec.getNominalPower();
+        return this.specs.getNominalPower();
     }
 
     /**
@@ -36,7 +37,7 @@ public class Lamp implements Device, Measurable {
      * @return the location.
      */
     public Room getLocation() {
-        return this.mLampLocation;
+        return this.location;
     }
 
     /**
@@ -45,7 +46,7 @@ public class Lamp implements Device, Measurable {
      * @return name of device
      */
     public String getName() {
-        return this.mLampName;
+        return this.name;
     }
 
     /**
@@ -54,7 +55,16 @@ public class Lamp implements Device, Measurable {
      * @return String
      */
     public String getType() {
-        return this.mLampSpec.getTypeName();
+        return this.specs.getTypeName();
+    }
+
+    /**
+     * method that gets the list of Readings of the Device.
+     * @return
+     */
+    @Override
+    public List<Readings> getReadings() {
+        return this.readingsList;
     }
 
     /**
@@ -63,7 +73,7 @@ public class Lamp implements Device, Measurable {
      * @return Energy consumption of the device in a given day.
      */
     public double getEnergyConsumptionInADay() {
-        return this.mLampSpec.getEnergyConsumptionInADay();
+        return this.specs.getEnergyConsumptionInADay();
     }
 
 
@@ -75,10 +85,10 @@ public class Lamp implements Device, Measurable {
      * @return true if sets false if don't
      */
     public boolean setName(String name) {
-        if (this.mLampLocation.isDeviceNameExistant(name) || this.mLampName == name) {
+        if (this.location.isDeviceNameExistant(name) || this.name == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
-        this.mLampName = name;
+        this.name = name;
         return true;
     }
 
@@ -89,12 +99,12 @@ public class Lamp implements Device, Measurable {
      * @return false if the location is equals to another device. True if not.
      */
     public boolean setLocation(Room location) {
-        if (this.mLampLocation.equals(location)) {
+        if (this.location.equals(location)) {
             return false;
         }
-        this.mLampLocation.getDeviceList().remove(this);
-        this.mLampLocation = location;
-        this.mLampLocation.addDevice(this);
+        this.location.getDeviceList().remove(this);
+        this.location = location;
+        this.location.addDevice(this);
         return true;
     }
 
@@ -104,7 +114,7 @@ public class Lamp implements Device, Measurable {
      * @return String with the attributes.
      */
     public String getDevSpecsAttributesToString() {
-        return this.mLampSpec.getAttributesToString();
+        return this.specs.getAttributesToString();
     }
 
     /**
@@ -115,9 +125,9 @@ public class Lamp implements Device, Measurable {
     public String getAttributesToString() {
 
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Name: " + mLampName + "\n");
+        attributes.append("1 - Name: " + name + "\n");
         attributes.append("2 - Device1 Specifications\n");
-        attributes.append("3 - Location: " + mLampLocation.getName() + "\n");
+        attributes.append("3 - Location: " + location.getName() + "\n");
         return attributes.toString();
     }
 
@@ -129,7 +139,7 @@ public class Lamp implements Device, Measurable {
      * @return the position of an attribute and the value of it.
      */
     public boolean setAttributesDevType(String attribute, Object value) {
-        return this.mLampSpec.setAttributeValue(attribute, value);
+        return this.specs.setAttributeValue(attribute, value);
     }
 
     /**
@@ -139,7 +149,7 @@ public class Lamp implements Device, Measurable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(this.mLampName);
+        return Objects.hash(this.name);
     }
 
     /**
@@ -157,7 +167,7 @@ public class Lamp implements Device, Measurable {
             return false;
         }
         Device listOne = (Device) obj;
-        return this.mLampName.equalsIgnoreCase(listOne.getName());
+        return this.name.equalsIgnoreCase(listOne.getName());
     }
 
     /**
@@ -166,7 +176,7 @@ public class Lamp implements Device, Measurable {
      * @return the number of attributes.
      */
     public int getNumberOfSpecsAttributes() {
-        return this.mLampSpec.getNumberOfAttributes();
+        return this.specs.getNumberOfAttributes();
     }
 
     /**
@@ -177,18 +187,18 @@ public class Lamp implements Device, Measurable {
     @Override
     public String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
-        nameLocation.append("Device: " + mLampName);
-        nameLocation.append(", located in room: " + mLampLocation.getName() + "\n");
+        nameLocation.append("Device: " + name);
+        nameLocation.append(", located in room: " + location.getName() + "\n");
         return nameLocation.toString();
     }
 
     /**
-     * Method that adds a readings to the device.
+     * Method that adds a readingsList to the device.
      *
      * @param readings Readings to be added.
      */
     public void addReadingsToTheList(Readings readings) {
-        this.mLampReadings.add(readings);
+        this.readingsList.add(readings);
     }
 
     /**
@@ -205,22 +215,6 @@ public class Lamp implements Device, Measurable {
         return sum;
     }
 
-    /**
-     * TODO
-     *
-     * @param startDate
-     * @param endDate
-     * @return
-     */
-    public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        List<Readings> readingsList = new ArrayList<>();
-        for (Readings readings : this.mLampReadings) {
-            if (!startDate.isAfter(readings.getDateTime()) && !endDate.isBefore(readings.getDateTime())) {
-                readingsList.add(readings);
-            }
-        }
-        return readingsList;
-    }
 
     /**
      * Method that calculates the total energy consumption of a device in a given interval.
@@ -232,20 +226,31 @@ public class Lamp implements Device, Measurable {
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        List<Readings> readingsList = getReadingsListInInterval(startDate, endDate);
-        if (!(readingsList.isEmpty())) {
-            readingsList.remove(0);
-            totalEnergyConsumption = getSumOfTheReadings(readingsList);
+        List<Readings> readings = getReadingsListInInterval(startDate, endDate);
+        if (!(readings.isEmpty())) {
+            readings.remove(0);
+            totalEnergyConsumption = getSumOfTheReadings(readings);
         }
         return totalEnergyConsumption;
+    }
+
+    @Override
+    public LocalDateTime getDeactivationDate() {
+        return this.deactivationDate;
+    }
+
+    @Override
+    public String getDateDeactivateDeviceToString() {
+        return this.deactivationDate.toLocalDate().toString() + " " + this.deactivationDate.toLocalTime().toString();
     }
 
     /**
      * method that set the deactivate device, turning it to false and giving a date
      */
+    @Override
     public void setDeactivateDevice() {
-        this.mIsLampActive = false;
-        this.mLampDeactivationDate = LocalDateTime.now();
+        this.isActive = false;
+        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     }
 
     /**
@@ -253,15 +258,17 @@ public class Lamp implements Device, Measurable {
      *
      * @return an active device.
      */
+    @Override
     public boolean getIsActive() {
-        return mIsLampActive;
+        return isActive;
     }
 
     /**
-     * TODO
-     * @param startDate
-     * @param endDate
-     * @return
+     * get method
+     *
+     * @param startDate starting date of readingsList
+     * @param endDate   end date of readingsList
+     * @return map with coordinates (value of readingsList and time)
      */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
@@ -274,41 +281,56 @@ public class Lamp implements Device, Measurable {
     }
 
     /**
-     * TODO
-     * @return
+     * get method
+     *
+     * @return list of specs of lamp specs
      */
     @Override
     public List<String> getSpecsList() {
-        return mLampSpec.getSpecsList();
+        return specs.getSpecsList();
     }
 
     /**
-     * TODO
+     * get method
      *
-     * @param attributeName
-     * @return
+     * @param attributeName string attribute
+     * @return name of attributes of Lamp specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
-        return mLampSpec.getAttributeValue(attributeName);
+        return specs.getAttributeValue(attributeName);
     }
 
+
     /**
-     * TODO
+     * get method
      *
-     * @return
+     * @return the string of an attribute of Lamp Specs
      */
+
     @Override
     public String getSpecsToString() {
-        return this.mLampSpec.getAttributesToString();
+        return this.specs.getAttributesToString();
     }
 
     /**
-     * TODO
-     * @param attributeName
-     * @return
+     * get method
+     *
+     * @param attributeName string attribute
+     * @return type data of the attribute (ex.integer, double)
      */
+    @Override
     public String getAttributeDataType(String attributeName) {
-        return mLampSpec.getAttributeDataType(attributeName);
+        return specs.getAttributeDataType(attributeName);
+    }
+
+    @Override
+    public boolean isProgrammable() {
+        return false;
+    }
+
+    @Override
+    public Programmable asProgrammable() {
+        return null;
     }
 }

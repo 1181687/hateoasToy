@@ -97,7 +97,7 @@ public class GetNominalPowerRoomsDevices {
         do {
             int addOtherDeviceOrNot = InputValidator.getIntRange(label4, 0, mController.getDeviceListSize(positionRoom) + 1);
             if (addOtherDeviceOrNot == 0) {
-                break;
+                return;
             }
             if (addOtherDeviceOrNot != mController.getDeviceListSize(positionRoom) + 1) {
 

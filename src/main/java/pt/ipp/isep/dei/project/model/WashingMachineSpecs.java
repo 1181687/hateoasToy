@@ -4,6 +4,8 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 
 public class WashingMachineSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_CAPACITY = "Capacity";
@@ -16,10 +18,11 @@ public class WashingMachineSpecs implements DeviceSpecs {
     private double mDuration;
     private double mEnergyConsumption;
     private double mNominalPower;
-    private ProgramList mProgramList;
+    private List<Program> mProgramList;
 
     public WashingMachineSpecs() {
         this.mTypeName = "Washing Machine";
+        this.mProgramList = new ArrayList<>();
     }
 
     public String getTypeName() {
@@ -38,6 +41,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
 
     /**
      * get method
+     *
      * @return energy consumption
      */
     @Override
@@ -47,15 +51,16 @@ public class WashingMachineSpecs implements DeviceSpecs {
 
     /**
      * set method
+     *
      * @param capacity
      */
     private boolean setCapacity(Object capacity) {
         int wmcapacity = (Integer) capacity;
-        if (Utils.isSameDouble(this.mCapacity, wmcapacity)) {
-            return false;
+        if (!(Utils.isSameDouble(this.mCapacity, wmcapacity)) && !(Utils.isSameDouble(wmcapacity, 0))) {
+            this.mCapacity = wmcapacity;
+            return true;
         }
-        this.mCapacity = wmcapacity;
-        return true;
+        return false;
     }
 
     /**
@@ -65,24 +70,25 @@ public class WashingMachineSpecs implements DeviceSpecs {
      */
     private boolean setDuration(Object duration) {
         double wmduration = (Double) duration;
-        if (Utils.isSameDouble(this.mDuration, wmduration) || Utils.isSameDouble(wmduration, 0)) {
-            return false;
+        if (!(Utils.isSameDouble(this.mDuration, wmduration) && !(Utils.isSameDouble(wmduration, 0)))) {
+            this.mDuration = wmduration;
+            return true;
         }
-        this.mDuration = wmduration;
-        return true;
+        return false;
     }
 
     /**
      * set method
+     *
      * @param wmNominalPower
      */
     private boolean setNominalPower(Object wmNominalPower) {
         double nomPower = (Double) wmNominalPower;
-        if (Utils.isSameDouble(this.mNominalPower, nomPower)) {
-            return false;
+        if (!Utils.isSameDouble(this.mNominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
+            this.mNominalPower = nomPower;
+            return true;
         }
-        this.mNominalPower = nomPower;
-        return true;
+        return false;
     }
 
     /**
@@ -92,16 +98,18 @@ public class WashingMachineSpecs implements DeviceSpecs {
      */
     private boolean setEnergyConsumption(Object wmEnergyConsumption) {
         double energyConsumption = (Double) wmEnergyConsumption;
-        if (Utils.isSameDouble(this.mEnergyConsumption, energyConsumption)) {
-            return false;
+        if (!Utils.isSameDouble(this.mEnergyConsumption, energyConsumption) && !(Utils.isSameDouble(energyConsumption, 0))) {
+            this.mEnergyConsumption = energyConsumption;
+            return true;
         }
-        this.mEnergyConsumption = energyConsumption;
-        return true;
+
+        return false;
     }
 
 
     /**
      * method that displays a string of the choosen attribute (name of the attribute and its value)
+     *
      * @return
      */
     @Override
@@ -114,6 +122,7 @@ public class WashingMachineSpecs implements DeviceSpecs {
 
     /**
      * get method
+     *
      * @return number of Washing Machine attributes
      */
     @Override
@@ -121,6 +130,11 @@ public class WashingMachineSpecs implements DeviceSpecs {
         return 2;
     }
 
+
+    /**
+     * get method
+     * @return list os specs of washing machine
+     */
     @Override
     public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
@@ -130,6 +144,11 @@ public class WashingMachineSpecs implements DeviceSpecs {
         return result;
     }
 
+    /**
+     * get method
+     * @param attributeName string name of the attribute
+     * @return  attribute
+     */
     @Override
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
@@ -146,6 +165,12 @@ public class WashingMachineSpecs implements DeviceSpecs {
         }
     }
 
+    /**
+     * set method
+     * @param attributeName string name of the attribute
+     * @param attributeValue value of the attribute
+     * @return
+     */
     @Override
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
@@ -174,7 +199,21 @@ public class WashingMachineSpecs implements DeviceSpecs {
         }
     }
 
+
+    /**
+     * get method
+     * @param attributeName string name of attribute
+     * @return type data of the attribute (ex.integer, double)
+     */
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
+    }
+
+    public boolean addProgram(Program program) {
+        if (!Objects.isNull(program) && !(mProgramList.contains(program))) {
+            this.mProgramList.add(program);
+            return true;
+        }
+        return false;
     }
 }

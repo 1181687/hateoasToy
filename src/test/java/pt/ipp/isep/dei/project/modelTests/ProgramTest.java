@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ProgramTest {
 
     @Test
-    void testarEqualsSameObject() {
+    void testEqualsSameObject() {
         //Arrange
         String name = "Program 1";
         double duration = 5;

@@ -53,11 +53,11 @@ public class FridgeSpecs implements DeviceSpecs {
      */
     public boolean setFreezerCapacity(Object freezerCapacity) {
         double freezCapacity = (Double) freezerCapacity;
-        if (Utils.isSameDouble(this.mFreezerCapacity, freezCapacity)) {
-            return false;
+        if (!Utils.isSameDouble(this.mFreezerCapacity, freezCapacity) && !Utils.isSameDouble(freezCapacity, 0)) {
+            this.mFreezerCapacity = freezCapacity;
+            return true;
         }
-        this.mFreezerCapacity = freezCapacity;
-        return true;
+        return false;
     }
 
     /**
@@ -67,11 +67,12 @@ public class FridgeSpecs implements DeviceSpecs {
      */
     public boolean setRefrigeratorCapacity(Object refrigeratorCapacity) {
         double refrigCapacity = (Double) refrigeratorCapacity;
-        if (Utils.isSameDouble(this.mRefrigeratorCapacity, refrigCapacity)) {
-            return false;
+        if (!Utils.isSameDouble(this.mRefrigeratorCapacity, refrigCapacity) && !Utils.isSameDouble(refrigCapacity, 0)) {
+            this.mRefrigeratorCapacity = refrigCapacity;
+            return true;
         }
-        this.mRefrigeratorCapacity = refrigCapacity;
-        return true;
+
+        return false;
     }
 
     /**
@@ -81,11 +82,12 @@ public class FridgeSpecs implements DeviceSpecs {
      */
     public boolean setAnnualEnergyConsumption(Object annualEnConsumption) {
         double annualEnergyConsumption = (Double) annualEnConsumption;
-        if (Utils.isSameDouble(this.mAnnualEnergyConsumption, annualEnergyConsumption)) {
-            return false;
+        if (!Utils.isSameDouble(this.mAnnualEnergyConsumption, annualEnergyConsumption) && !Utils.isSameDouble(annualEnergyConsumption, 0)) {
+            this.mAnnualEnergyConsumption = annualEnergyConsumption;
+            return true;
         }
-        this.mAnnualEnergyConsumption = annualEnergyConsumption;
-        return true;
+
+        return false;
     }
 
     /**
@@ -95,11 +97,12 @@ public class FridgeSpecs implements DeviceSpecs {
      */
     public boolean setNominalPower(Object fridgeNominalPower) {
         double nominalPower = (Double) fridgeNominalPower;
-        if (Utils.isSameDouble(this.mNominalPower, nominalPower)) {
-            return false;
+        if (!Utils.isSameDouble(this.mNominalPower, nominalPower) && !Utils.isSameDouble(nominalPower, 0)) {
+            this.mNominalPower = nominalPower;
+            return true;
         }
-        this.mNominalPower = nominalPower;
-        return true;
+
+        return false;
     }
 
     /**
@@ -128,6 +131,12 @@ public class FridgeSpecs implements DeviceSpecs {
         return 4;
     }
 
+
+    /**
+     * get method
+     * @return list os specs of fridge
+     */
+
     @Override
     public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
@@ -139,6 +148,11 @@ public class FridgeSpecs implements DeviceSpecs {
         return result;
     }
 
+    /**
+     * get method
+     * @param attributeName string name of the attribute
+     * @return  attribute
+     */
     @Override
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
@@ -155,6 +169,13 @@ public class FridgeSpecs implements DeviceSpecs {
         }
     }
 
+
+    /**
+     * set method
+     * @param attributeName string name of the attribute
+     * @param attributeValue value of the attribute
+     * @return
+     */
     @Override
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
@@ -183,6 +204,11 @@ public class FridgeSpecs implements DeviceSpecs {
         }
     }
 
+    /**
+     * get method
+     * @param attributeName string name of attribute
+     * @return type data of the attribute (ex.integer, double)
+     */
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }

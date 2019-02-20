@@ -34,7 +34,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setVolumeOfWaterToHeat(Object volumeOfWaterToHeat) {
         double volumeWater = (Double) volumeOfWaterToHeat;
-        if (volumeWater > 0) {
+        if (Double.compare(volumeWater, 0) == 1 && !(Utils.isSameDouble(volumeWater, this.mVolumeOfWaterToHeat))) {
             this.mVolumeOfWaterToHeat = volumeWater;
             return true;
         }
@@ -48,7 +48,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setColdWaterTemperature(Object coldWaterTemperature) {
         double cwt = (Double) coldWaterTemperature;
-        if (cwt < this.mHotWaterTemperature) {
+        if (Double.compare(cwt, this.mHotWaterTemperature) == -1) {
             this.mColdWaterTemperature = cwt;
             return true;
         }
@@ -86,11 +86,12 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setHotWaterTemperature(Object hotWaterTemperature) {
         double hwt = (Double) hotWaterTemperature;
-        if (Utils.isSameDouble(this.mHotWaterTemperature, hwt)) {
-            return false;
+        if (!Utils.isSameDouble(this.mHotWaterTemperature, hwt) && !(Utils.isSameDouble(hwt, 0))) {
+            this.mHotWaterTemperature = hwt;
+            return true;
         }
-        this.mHotWaterTemperature = hwt;
-        return true;
+
+        return false;
     }
 
     /**
@@ -101,11 +102,11 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setPerformanceRatio(Object performanceRatio) {
         double perfRatio = (Double) performanceRatio;
-        if (Utils.isSameDouble(this.mPerformanceRatio, perfRatio)) {
-            return false;
+        if (!Utils.isSameDouble(this.mPerformanceRatio, perfRatio) && !(Utils.isSameDouble(perfRatio, 0))) {
+            this.mPerformanceRatio = perfRatio;
+            return true;
         }
-        this.mPerformanceRatio = perfRatio;
-        return true;
+        return false;
     }
 
     /**
@@ -116,11 +117,11 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
      */
     public boolean setNominalPower(Object nominalPower) {
         double nomPower = (Double) nominalPower;
-        if (Utils.isSameDouble(this.mNominalPower, nomPower)) {
-            return false;
+        if (!Utils.isSameDouble(this.mNominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
+            this.mNominalPower = nomPower;
+            return true;
         }
-        this.mNominalPower = nomPower;
-        return true;
+        return false;
     }
 
     /**
@@ -148,9 +149,8 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     }
 
     /**
-     * TODO
-     *
-     * @return
+     * get method
+     * @return list os specs of electric water heater
      */
     @Override
     public List<String> getSpecsList() {
@@ -162,10 +162,11 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         return result;
     }
 
+
     /**
-     * TODO
-     * @param attributeName
-     * @return
+     * get method
+     * @param attributeName string name of the attribute
+     * @return  attribute
      */
     @Override
     public Object getAttributeValue(String attributeName) {
@@ -186,9 +187,9 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     }
 
     /**
-     * TODO
-     * @param attributeName
-     * @param attributeValue
+     * set method
+     * @param attributeName string name of the attribute
+     * @param attributeValue value of the attribute
      * @return
      */
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
@@ -223,10 +224,11 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
         }
     }
 
+
     /**
-     * TODO
-     * @param attributeName
-     * @return
+     * get method
+     * @param attributeName string name of attribute
+     * @return type data of the attribute (ex.integer, double)
      */
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
