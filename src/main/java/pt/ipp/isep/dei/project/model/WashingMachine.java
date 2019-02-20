@@ -9,7 +9,7 @@ public class WashingMachine implements Device, Measurable {
     private String name;
     private Room location;
     private WashingMachineSpecs specs;
-    private List<Readings> readings;
+    private List<Readings> reading;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
@@ -19,7 +19,7 @@ public class WashingMachine implements Device, Measurable {
         this.specs = new WashingMachineSpecs();
         this.location.addDevice(this);
         this.isActive = true;
-        this.readings = new ArrayList<>();
+        this.reading = new ArrayList<>();
 
     }
 
@@ -191,12 +191,12 @@ public class WashingMachine implements Device, Measurable {
     }
 
     /**
-     * Method that adds a readings to the device.
+     * Method that adds a reading to the device.
      *
      * @param readings Readings to be added.
      */
     public void addReadingsToTheList(Readings readings) {
-        this.readings.add(readings);
+        this.reading.add(readings);
     }
 
     /**
@@ -215,13 +215,13 @@ public class WashingMachine implements Device, Measurable {
 
     /**
      * Method that gets the reading list in an interval
-     * @param startDate starting date of readings
-     * @param endDate end date of readings
+     * @param startDate starting date of reading
+     * @param endDate end date of reading
      * @return reading list
      */
     public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
         List<Readings> readingsList = new ArrayList<>();
-        for (Readings readings : readings) {
+        for (Readings readings : reading) {
             if (!startDate.isAfter(readings.getDateTime()) && !endDate.isBefore(readings.getDateTime())) {
                 readingsList.add(readings);
             }
