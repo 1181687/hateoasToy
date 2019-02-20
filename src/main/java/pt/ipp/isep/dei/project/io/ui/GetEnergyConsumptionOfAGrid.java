@@ -7,26 +7,26 @@ import java.time.LocalDateTime;
 
 public class GetEnergyConsumptionOfAGrid {
 
-    private GetEnergyConsumptionOfAGridController mController;
+    private GetEnergyConsumptionOfAGridController controller;
 
     public GetEnergyConsumptionOfAGrid(House house) {
-        this.mController = new GetEnergyConsumptionOfAGridController(house);
+        this.controller = new GetEnergyConsumptionOfAGridController(house);
     }
 
     public void run() {
 
         String exit = "0- Exit";
 
-        if (mController.isHouseGridListEmpty()) {
+        if (controller.isHouseGridListEmpty()) {
             System.out.println("There are no house grids in the house. Please, add one");
         } else {
-            String label1 = "Please select a House Grid to see its total energy consumption: \n" + mController.getHouseGridListToString() + exit;
-            int gridListLength = mController.getHouseGridListSize();
+            String label1 = "Please select a House Grid to see its total energy consumption: \n" + controller.getHouseGridListToString() + exit;
+            int gridListLength = controller.getHouseGridListSize();
             int position = InputValidator.getIntRange(label1, 0, gridListLength);
             if (position == 0) {
                 return;
             }
-            mController.getHouseGridByPosition(position-1);
+            controller.getHouseGridByPosition(position - 1);
 
             LocalDateTime startDate;
             LocalDateTime endDate;
@@ -42,8 +42,8 @@ public class GetEnergyConsumptionOfAGrid {
                 }
             }while (endDate.isBefore(startDate));
 
-            double energyConsumption = mController.getEnergyConsumptionInAnInterval(startDate, endDate);
-            String houseGridName = mController.getHouseGridName();
+            double energyConsumption = controller.getEnergyConsumptionInAnInterval(startDate, endDate);
+            String houseGridName = controller.getHouseGridName();
             System.out.println("The total energy consumption of the grid " + houseGridName + " is " + energyConsumption + " kWh.");
         }
     }

@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.project.model;
 
 public class WashingMachineType implements DeviceType {
-    String mTypeName;
+    String typeName;
 
     public WashingMachineType() {
-        this.mTypeName = "Washing Machine";
+        this.typeName = "Washing Machine";
     }
 
     @Override
     public String getTypeName() {
-        return this.mTypeName;
+        return this.typeName;
     }
 
     public Device createDevice(String name, Room location) {

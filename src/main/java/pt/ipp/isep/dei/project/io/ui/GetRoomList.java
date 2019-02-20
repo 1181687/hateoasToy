@@ -8,18 +8,18 @@ one to edit it. */
 
 public class GetRoomList {
 
-    private GetRoomListController ctrl;
+    private GetRoomListController controller;
 
     public GetRoomList(RoomList list) {
-        this.ctrl = new GetRoomListController(list);
+        this.controller = new GetRoomListController(list);
     }
 
     public void run() {
-        if (ctrl.isEmpty()) {
+        if (controller.isEmpty()) {
             System.out.println("The list is empty. Please add a room.");
             return;
         }
         System.out.println("This is the list of existing rooms.");
-        System.out.println(ctrl.getRoomListContent());
+        System.out.println(controller.getRoomListContent());
     }
 }

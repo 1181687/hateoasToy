@@ -8,18 +8,18 @@ import java.util.Scanner;
 
 public class DefineSensorType {
 
-    private DefineSensorTypeController mController;
+    private DefineSensorTypeController controller;
 
     public DefineSensorType(SensorTypeList mSensorTypeList) {
 
-        this.mController = new DefineSensorTypeController(mSensorTypeList);
+        this.controller = new DefineSensorTypeController(mSensorTypeList);
     }
 
     public void run(){
         System.out.println("Introduce a new sensor type.");
         Scanner ler = new Scanner(System.in);
         String nome = ler.nextLine();
-        if (this.mController.createAndAddSensorType(nome)) {
+        if (this.controller.createAndAddSensorType(nome)) {
             System.out.println("Success!");
         }
         else{

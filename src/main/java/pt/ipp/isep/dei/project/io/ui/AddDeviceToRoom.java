@@ -6,10 +6,10 @@ import pt.ipp.isep.dei.project.model.House;
 
 public class AddDeviceToRoom {
 
-    private AddDeviceToRoomController mCtrl;
+    private AddDeviceToRoomController controller;
 
     public AddDeviceToRoom(House house) {
-        this.mCtrl = new AddDeviceToRoomController(house);
+        this.controller = new AddDeviceToRoomController(house);
     }
 
     public void run() {
@@ -18,19 +18,19 @@ public class AddDeviceToRoom {
         while (flag) {
             //SELECT A ROOM
             String exit = "\r0 - Exit";
-            if (mCtrl.roomListSize() != 0) {
-                String label2 = "Please choose a room to attach a new device: \n" + mCtrl.getRoomListContent() + exit;
-                indexSelectedRoom = InputValidator.getIntRange(label2, 0, mCtrl.roomListSize()) - 1;
+            if (controller.roomListSize() != 0) {
+                String label2 = "Please choose a room to attach a new device: \n" + controller.getRoomListContent() + exit;
+                indexSelectedRoom = InputValidator.getIntRange(label2, 0, controller.roomListSize()) - 1;
                 if (indexSelectedRoom == -1) {
                     return;
                 }
-                mCtrl.getRoom(indexSelectedRoom);
+                controller.getRoom(indexSelectedRoom);
             } else {
                 System.out.println("There are no rooms available. Please create one\n");
             }
             //SELECT A DEVICE TYPE
-            String label0 = "Please select the Device1 Type: \n" + mCtrl.getDeviceTypeListToString() + "\r0 - Exit";
-            int selectedType = InputValidator.getIntRange(label0, 0, mCtrl.getNumberOfDeviceTypes());
+            String label0 = "Please select the Device1 Type: \n" + controller.getDeviceTypeListToString() + "\r0 - Exit";
+            int selectedType = InputValidator.getIntRange(label0, 0, controller.getNumberOfDeviceTypes());
             if (selectedType == 0) {
                 continue;
             }
@@ -97,7 +97,7 @@ public class AddDeviceToRoom {
         String label15 = "What is the annual energy consumption (kWh)?";
         double annualEnergyConsumption = InputValidator.getDoublePos(label15);
 
-        mCtrl.createNewFridge(fridgeDeviceName, annualEnergyConsumption, fridgeNominalPower, freezerCapacity, refrigeratorCapacity);
+        controller.createNewFridge(fridgeDeviceName, annualEnergyConsumption, fridgeNominalPower, freezerCapacity, refrigeratorCapacity);
         System.out.println("The FridgeSpecs was successfully created and added to the selected room.");
     }
 
@@ -109,7 +109,7 @@ public class AddDeviceToRoom {
         String label23 = "What is the luminous flux (lm)?";
         double luminousFlux = InputValidator.getDoublePos(label23);
 
-        mCtrl.createNewLamp(lampDeviceName, lampNominalPower, luminousFlux);
+        controller.createNewLamp(lampDeviceName, lampNominalPower, luminousFlux);
         System.out.println("The LampSpecs was successfully created and added to the selected room.");
     }
 
@@ -123,7 +123,7 @@ public class AddDeviceToRoom {
 
         creationOfPrograms();
 
-        mCtrl.createNewDishWasher(dishWasherDeviceName, dishWasherNominalPower,
+        controller.createNewDishWasher(dishWasherDeviceName, dishWasherNominalPower,
                 dishWasherCapacity);
         System.out.println("The Dish Washer was successfully created and added to the selected room.");
     }
@@ -139,7 +139,7 @@ public class AddDeviceToRoom {
 
         creationOfPrograms();
 
-        mCtrl.createNewWashingMachine(washingMachineDeviceName, washingMachineNominalPower,
+        controller.createNewWashingMachine(washingMachineDeviceName, washingMachineNominalPower,
                 washingMachineCapacity);
         System.out.println("The Washing Machine was successfully created and added to the selected room.");
     }
@@ -158,7 +158,7 @@ public class AddDeviceToRoom {
             programDuration = InputValidator.getDoublePos(label46);
             String label47 = "What is the energy consumption of this program?";
             programEnergyConsumption = InputValidator.getDoublePos(label47);
-            mCtrl.addProgramToList(mCtrl.createNewProgram(programName, programDuration, programEnergyConsumption));
+            controller.addProgramToList(controller.createNewProgram(programName, programDuration, programEnergyConsumption));
         }
     }
 
@@ -174,7 +174,7 @@ public class AddDeviceToRoom {
         String label55 = "What is the performance ratio (tipically 0.9)?";
         double performanceRatio = InputValidator.getDoublePos(label55);
 
-        mCtrl.createNewElectricWaterHeater(electricWaterHeaterDeviceName, maxHotTemperature, volumeOfWater, electricWaterHeaterNominalPower, performanceRatio);
+        controller.createNewElectricWaterHeater(electricWaterHeaterDeviceName, maxHotTemperature, volumeOfWater, electricWaterHeaterNominalPower, performanceRatio);
         System.out.println("The Electric Water Heater was successfully created and added to the selected room.");
     }
 
@@ -182,7 +182,7 @@ public class AddDeviceToRoom {
         String label = "Do you want to see the list of devices of the selected Room? (Y/N)";
         String answer = InputValidator.confirmValidation(label);
         if ("y".equals(answer) || "Y".equals(answer)) {
-            System.out.println(mCtrl.getDeviceListContentOfARoom(indexSelectedRoom));
+            System.out.println(controller.getDeviceListContentOfARoom(indexSelectedRoom));
         } else {
             return;
         }

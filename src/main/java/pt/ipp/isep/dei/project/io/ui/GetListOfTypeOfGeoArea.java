@@ -10,16 +10,16 @@ import java.util.Scanner;
 public class GetListOfTypeOfGeoArea {
 
     /** US004 As an Administrator, I want to get a list of existing geographical areas of a given type. */
-    private GetListOfTypeOfGeoAreaController mCtrl;
+    private GetListOfTypeOfGeoAreaController controller;
 
 
     public GetListOfTypeOfGeoArea(GeographicalAreaList lista, GeographicalAreaTypeList listaTAG) {
-        this.mCtrl = new GetListOfTypeOfGeoAreaController(lista, listaTAG);
+        this.controller = new GetListOfTypeOfGeoAreaController(lista, listaTAG);
     }
 
     public void run() {
         System.out.println("Choose the Geographical Area type you wish to see.");
-        List<String> listaDeTiposDeAG = mCtrl.getListaDosTiposDeAG();
+        List<String> listaDeTiposDeAG = controller.getListaDosTiposDeAG();
         Scanner ler = new Scanner(System.in);
         int opcaoEscolhida = -1;
         do {
@@ -32,7 +32,7 @@ public class GetListOfTypeOfGeoArea {
 
         String tipoEscolhido = listaDeTiposDeAG.get(opcaoEscolhida - 1);
 
-        List<String> listaDeAGPorTipo = mCtrl.getListaAGPorTipo(tipoEscolhido);
+        List<String> listaDeAGPorTipo = controller.getListaAGPorTipo(tipoEscolhido);
 
         if (listaDeAGPorTipo.isEmpty()) {
             System.out.println("No Geographical Areas of the chosen type were found.");
