@@ -377,7 +377,7 @@ public class Room implements Measurable {
      *
      * @return String of the name and the status of the device ("Activated" or "Deactivated").
      */
-    public String getActiveDeviceListToString() {
+    public String getActiveDeactiveDeviceListToString() {
         String deviceName = " - Device name: ";
         StringBuilder content = new StringBuilder();
         int deviceListLength = getSize();
@@ -388,7 +388,8 @@ public class Room implements Measurable {
                 content.append("\n");
                 numberInTheList++;
             } else {
-                content.append(numberInTheList + deviceName + getDeviceList().get(i - 1).getName() + " - DEACTIVATED");
+                String dateHour = mDeviceList.get(0).getDateDeactivateDeviceToString();
+                content.append(numberInTheList + deviceName + getDeviceList().get(i - 1).getName() + " - DEACTIVATED at " + dateHour);
                 content.append("\n");
                 numberInTheList++;
             }

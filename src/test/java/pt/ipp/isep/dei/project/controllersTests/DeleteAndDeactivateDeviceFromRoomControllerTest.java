@@ -6,6 +6,8 @@ import pt.ipp.isep.dei.project.controllers.DeleteAndDeactivateDeviceFromRoomCont
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -507,7 +509,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         int position = 0;
 
         String expectedResult =
-                "1 - Device name: Fridge Ariston - DEACTIVATED\n" +
+                "1 - Device name: Fridge Ariston - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n" +
                         "2 - Device name: Fridge Bosch - ACTIVATED\n";
         controller.getRoomPosition(position);
         // Act
@@ -548,8 +550,8 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         house.addRoom(room);
 
         String expectedResult =
-                "1 - Device name: Fridge Ariston - DEACTIVATED\n" +
-                        "2 - Device name: Fridge Bosch - DEACTIVATED\n";
+                "1 - Device name: Fridge Ariston - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n" +
+                        "2 - Device name: Fridge Bosch - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n";
         controller.getRoomPosition(position);
         // Act
         String result = controller.getActiveDeviceListToString();

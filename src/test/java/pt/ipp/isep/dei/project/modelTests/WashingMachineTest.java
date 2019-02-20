@@ -4,7 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
@@ -295,13 +297,25 @@ class WashingMachineTest {
     @Test
     void getDeactivationDate() {
         // arrange
-        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.SECONDS);
+        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         washingMachine.setDeactivateDevice();
         // act
         LocalDateTime result = washingMachine.getDeactivationDate();
         // assert
         assertEquals(date, result);
     }
+
+    @Test
+    void getDateDeactivateDeviceToString() {
+        // arrange
+        String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
+        washingMachine.setDeactivateDevice();
+        // act
+        String result = washingMachine.getDateDeactivateDeviceToString();
+        // assert
+        assertEquals(date, result);
+    }
+
 
     @Test
     void getIsActiveTrueTest() {
@@ -362,6 +376,71 @@ class WashingMachineTest {
         Object result = washingMachine.getAttributeValue("Nominal Power");
 
         // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void newProgram() {
+        //Arrange
+        String programName = "Economic";
+        double duration = 0.5;
+        double energyConsumption = 12.0;
+        Programmable programmable = this.washingMachine.asProgrammable();
+        Program expectedResult = new Program(programName, duration, energyConsumption);
+        //Act
+        Program result = programmable.newProgram(programName, duration, energyConsumption);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
+        //Arrange
+        Program program = null;
+        boolean expectedResult = false;
+        Programmable programmable = this.washingMachine.asProgrammable();
+        //Act
+        boolean result = programmable.addProgram(program);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
+        //Arrange
+        ProgramList programList = new ProgramList();
+        String programName = "fast";
+        double duration = 15;
+        double energyConsumption = 1;
+        Programmable programmable = this.washingMachine.asProgrammable();
+        Program programA = programmable.newProgram(programName, duration, energyConsumption);
+        Program programB = programmable.newProgram(programName, duration, energyConsumption);
+        programList.addProgram(programA);
+        boolean expectedResult = false;
+
+        //Act
+        boolean result = programList.addProgram(programB);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
+        //Arrange
+        ProgramList programList = new ProgramList();
+        String programName = "fast";
+        double duration = 15;
+        double energyConsumption = 1;
+        Programmable programmable = this.washingMachine.asProgrammable();
+        Program programA = programmable.newProgram(programName, duration, energyConsumption);
+
+        boolean expectedResult = true;
+
+        //Act
+        boolean result = programList.addProgram(programA);
+
+        //Assert
         assertEquals(expectedResult, result);
     }
 }

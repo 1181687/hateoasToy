@@ -157,4 +157,6 @@ public interface Device extends Measurable {
     boolean isProgrammable();
 
     Programmable asProgrammable();
+
+    String getDateDeactivateDeviceToString();
 }

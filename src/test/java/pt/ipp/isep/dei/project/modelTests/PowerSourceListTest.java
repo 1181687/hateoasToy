@@ -85,14 +85,14 @@ public class PowerSourceListTest {
     }
 
     @Test
-    public void testPowerSourceNameAlreadyExistsTrue(){
+    public void testPowerSourceNameAlreadyExistsTrue() {
         //Arrange
         String name = "Power Source 1";
         String name2 = "Power Source 2";
         String typeName = "Battery";
         PowerSourceType type1 = new PowerSourceType(typeName);
-        PowerSource powerSource1 = new PowerSource(name,type1);
-        PowerSource powerSource2 = new PowerSource(name2,type1);
+        PowerSource powerSource1 = new PowerSource(name, type1);
+        PowerSource powerSource2 = new PowerSource(name2, type1);
         PowerSourceList list = new PowerSourceList();
         list.addPowerSource(powerSource1);
         list.addPowerSource(powerSource2);
@@ -105,15 +105,15 @@ public class PowerSourceListTest {
     }
 
     @Test
-    public void testPowerSourceNameAlreadyExistsFalse(){
+    public void testPowerSourceNameAlreadyExistsFalse() {
         //Arrange
         String name = "Power Source 1";
         String name2 = "Power Source 2";
         String name3 = "Power Source 3";
         String typeName = "Battery";
         PowerSourceType type1 = new PowerSourceType(typeName);
-        PowerSource powerSource1 = new PowerSource(name,type1);
-        PowerSource powerSource2 = new PowerSource(name2,type1);
+        PowerSource powerSource1 = new PowerSource(name, type1);
+        PowerSource powerSource2 = new PowerSource(name2, type1);
         PowerSourceList list = new PowerSourceList();
         list.addPowerSource(powerSource1);
         list.addPowerSource(powerSource2);
@@ -126,7 +126,7 @@ public class PowerSourceListTest {
     }
 
     @Test
-    public void testPowerSourceNameAlreadyExistsEmptyList(){
+    public void testPowerSourceNameAlreadyExistsEmptyList() {
         //Arrange
         String name = "Power Source 1";
         PowerSourceList list = new PowerSourceList();
