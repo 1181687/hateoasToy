@@ -9,25 +9,25 @@ import java.util.*;
 import static java.util.Objects.isNull;
 
 public class Room implements Measurable {
-    private String name;
+    private String roomName;
     private int houseFloor;
     private Dimension dimension;
     private SensorList sensorList;
     private List<Device> deviceList;
 
     /**
-     * constructor that receives name, houseFloor, dimension
+     * constructor that receives roomName, houseFloor, dimension
      * throw an exception if any of the parameters is invalid.
-     * Invalid parameters if Dimension is null or name is null or empty
+     * Invalid parameters if Dimension is null or roomName is null or empty
      *
-     * @param name
+     * @param roomName
      * @param houseFloor
      * @param dimension
      */
-    public Room(String name, int houseFloor, Dimension dimension) {
-        validateName(name);
+    public Room(String roomName, int houseFloor, Dimension dimension) {
+        validateName(roomName);
         validateDimensions(dimension);
-        this.name = name.trim();
+        this.roomName = roomName.trim();
         this.houseFloor = houseFloor;
         this.dimension = dimension;
         this.sensorList = new SensorList();
@@ -35,14 +35,14 @@ public class Room implements Measurable {
     }
 
     /**
-     * method that receives a name and validates it. It can not be null or empty
-     * throw an exception if the name is invalid
+     * method that receives a roomName and validates it. It can not be null or empty
+     * throw an exception if the roomName is invalid
      *
-     * @param name given name
+     * @param name given roomName
      */
     private static void validateName(String name) {
         if (isNull(name) || name.trim().length() == 0) {
-            throw new RuntimeException("Please enter a valid name. Name should not be empty");
+            throw new RuntimeException("Please enter a valid roomName. Name should not be empty");
         }
     }
 
@@ -61,19 +61,19 @@ public class Room implements Measurable {
     /**
      * Get method
      *
-     * @return name
+     * @return roomName
      */
-    public String getName() {
-        return name;
+    public String getRoomName() {
+        return roomName;
     }
 
     /**
-     * Method that defines the name of the room
+     * Method that defines the roomName of the room
      *
-     * @param name name of a room (string)
+     * @param roomName roomName of a room (string)
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 
     /**
@@ -113,13 +113,13 @@ public class Room implements Measurable {
     }
 
     /**
-     * method that displays a Room with its characteristics (name, house floor, height, length and width)
+     * method that displays a Room with its characteristics (roomName, house floor, height, length and width)
      *
      * @return Rooms
      */
     public String getRoomToString() {
         StringBuilder content = new StringBuilder();
-        content.append("Name: " + getName());
+        content.append("Name: " + getRoomName());
         content.append(", House Floor: " + getHouseFloor());
         content.append(", Dimension - Height: " + getDimension().getHeight());
         content.append(", Length: " + getDimension().getLength());
@@ -128,18 +128,18 @@ public class Room implements Measurable {
     }
 
     /**
-     * method that creates the same hashcode to rooms with the same attribute name.
+     * method that creates the same hashcode to rooms with the same attribute roomName.
      *
      * @return the hashcode created
      */
     @Override
     public int hashCode() {
-        return Objects.hash(this.name);
+        return Objects.hash(this.roomName);
     }
 
     /**
      * Equals method to determine if two Rooms are equal.
-     * They are equals if name are equal.
+     * They are equals if roomName are equal.
      * Names are case insensitive.
      *
      * @param obj receives an object
@@ -154,7 +154,7 @@ public class Room implements Measurable {
             return false;
         }
         Room roomOne = (Room) obj;
-        return this.name.equalsIgnoreCase(roomOne.name);
+        return this.roomName.equalsIgnoreCase(roomOne.roomName);
     }
 
     /**
@@ -255,7 +255,7 @@ public class Room implements Measurable {
 
     /**
      * Method that adds a device to the list of Devices if device not null
-     * and the roomlist has not device with the same name
+     * and the roomlist has not device with the same roomName
      * @param device the device to be added
      * @return true if it adds, false if it doesn't add
      */
@@ -266,7 +266,7 @@ public class Room implements Measurable {
         }
 
         if (this.equals(device.getLocation()) && this.deviceList.contains(device)) {
-            throw new RuntimeException("Device with same name is already in the roomList");
+            throw new RuntimeException("Device with same roomName is already in the roomList");
         }
         device.getLocation().removeDevice(device);
         device.setLocation(this);
@@ -275,14 +275,14 @@ public class Room implements Measurable {
     }
 
     /**
-     * method that returns the name of room
+     * method that returns the roomName of room
      *
      * @return String
      */
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();
-        name.append("Room: " + this.name + "\n");
+        name.append("Room: " + this.roomName + "\n");
         return name.toString();
     }
 
@@ -347,9 +347,9 @@ public class Room implements Measurable {
     }
 
     /**
-     * method that check if a name of a Device already exists on the list of devices.
+     * method that check if a roomName of a Device already exists on the list of devices.
      *
-     * @param name name of device
+     * @param name roomName of device
      * @return boolean true if exists, false if it doesn't
      */
     public boolean isDeviceNameExistant(String name) {
@@ -374,10 +374,10 @@ public class Room implements Measurable {
     /**
      * method that gets the state of every device in the list of devices.
      *
-     * @return String of the name and the status of the device ("Activated" or "Deactivated").
+     * @return String of the roomName and the status of the device ("Activated" or "Deactivated").
      */
     public String getActiveDeactiveDeviceListToString() {
-        String deviceName = " - Device name: ";
+        String deviceName = " - Device roomName: ";
         StringBuilder content = new StringBuilder();
         int deviceListLength = getSize();
         int numberInTheList = 1;
@@ -473,7 +473,7 @@ public class Room implements Measurable {
     }
 
     /**
-     * method that get the name of the device by position.
+     * method that get the roomName of the device by position.
      *
      * @param position
      * @return null if the list is empty.

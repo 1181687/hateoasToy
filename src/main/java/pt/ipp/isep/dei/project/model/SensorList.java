@@ -6,31 +6,31 @@ import java.util.List;
 import java.util.Objects;
 
 public class SensorList {
-    private List<Sensor> sensorList;
+    private List<Sensor> listOfsensors;
 
     /**
      * Constructor method.
      */
     public SensorList() {
-        this.sensorList = new ArrayList<>();
+        this.listOfsensors = new ArrayList<>();
     }
 
     /**
      * Get method of the sensor list.
      *
-     * @return sensorList.
+     * @return listOfsensors.
      */
-    public List<Sensor> getSensorList() {
-        return sensorList;
+    public List<Sensor> getListOfsensors() {
+        return listOfsensors;
     }
 
     /**
      * Set method.
      *
-     * @param sensorList List of sensors to be used.
+     * @param listOfsensors List of sensors to be used.
      */
-    public void setSensorList(List<Sensor> sensorList) {
-        this.sensorList = sensorList;
+    public void setListOfsensors(List<Sensor> listOfsensors) {
+        this.listOfsensors = listOfsensors;
     }
 
     /**
@@ -40,8 +40,8 @@ public class SensorList {
      * @return True or false.
      */
     public boolean addSensor(Sensor sensor) {
-        if (!(sensorList.contains(sensor))) {
-            sensorList.add(sensor);
+        if (!(listOfsensors.contains(sensor))) {
+            listOfsensors.add(sensor);
             return true;
         }
         return false;
@@ -67,7 +67,7 @@ public class SensorList {
      */
     public List<Readings> getListOfLatestMeasurementsBySensorType(SensorType type) {
         List<Readings> listOfLatestReadings = new ArrayList<>();
-        for (Sensor sensor : sensorList) {
+        for (Sensor sensor : listOfsensors) {
             if (sensor.isMeasurementListEmpty()) {
                 break;
             }
@@ -104,9 +104,9 @@ public class SensorList {
      * @return maximum value of the temperature sensor in a given day.
      */
     public double getMaximumMeasureOfTypeOfSensorInGivenDay(SensorType type, LocalDate date) {
-        if (!sensorList.isEmpty()) {
-            double maxValue = sensorList.get(0).getMaximumValueOfDay(date);
-            for (Sensor sensor : sensorList) {
+        if (!listOfsensors.isEmpty()) {
+            double maxValue = listOfsensors.get(0).getMaximumValueOfDay(date);
+            for (Sensor sensor : listOfsensors) {
                 if (sensor.getSensorType().equals(type) && (!(sensor.getDailyMeasurement(date).isEmpty())) && (Double.compare(sensor.getMaximumValueOfDay(date), maxValue) == 1)) {
                         maxValue = sensor.getMaximumValueOfDay(date);
                 }
@@ -124,7 +124,7 @@ public class SensorList {
      */
     public double getDailyAverage(LocalDate date) {
         double dailyAverage = Double.NaN;
-        for (Sensor sensor : sensorList) {
+        for (Sensor sensor : listOfsensors) {
             if (!(sensor.getDailyMeasurement(date).isEmpty())) {
                 dailyAverage = sensor.getDailyAverage(date);
             }
@@ -141,15 +141,15 @@ public class SensorList {
     public SensorList getNearestSensorsToLocation(Location location) {
         SensorList nearestSensors = new SensorList();
         double shortestDistance = Double.NaN;
-        for (Sensor sensor : sensorList) {
+        for (Sensor sensor : listOfsensors) {
             if (Double.isNaN(shortestDistance) || shortestDistance > sensor.distanceBetweenSensorAndLocation(location)) {
                 shortestDistance = sensor.distanceBetweenSensorAndLocation(location);
-                nearestSensors.getSensorList().clear();
+                nearestSensors.getListOfsensors().clear();
                 nearestSensors.addSensor(sensor);
             } else {
                 Double comparableShortestDistance = shortestDistance;
                 if (comparableShortestDistance.equals(sensor.distanceBetweenSensorAndLocation(location))
-                        && !sensor.equals(nearestSensors.getSensorList().get(0))) {
+                        && !sensor.equals(nearestSensors.getListOfsensors().get(0))) {
                     nearestSensors.addSensor(sensor);
                 }
             }
@@ -162,7 +162,7 @@ public class SensorList {
      * method that get the length of the sensors list.
      */
     public int getLength() {
-        return getSensorList().size();
+        return getListOfsensors().size();
     }
 
     /**
@@ -175,7 +175,7 @@ public class SensorList {
         int sensorListLength = getLength();
         int numberInTheList = 1;
         for (int i = 1; i <= sensorListLength; i++) {
-            content.append(numberInTheList + " - Name of the sensor: " + getSensorList().get(i - 1).getSensorName());
+            content.append(numberInTheList + " - Name of the sensor: " + getListOfsensors().get(i - 1).getSensorName());
             content.append("\n");
             numberInTheList++;
         }
@@ -186,7 +186,7 @@ public class SensorList {
      * method that check if sensor list is empty
      */
     public boolean isEmpty() {
-        return sensorList.isEmpty();
+        return listOfsensors.isEmpty();
     }
 
 
@@ -197,7 +197,7 @@ public class SensorList {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(sensorList);
+        return Objects.hash(listOfsensors);
     }
 
     /**
@@ -215,7 +215,7 @@ public class SensorList {
             return false;
         }
         SensorList listOne = (SensorList) obj;
-        return this.sensorList.equals(listOne.sensorList);
+        return this.listOfsensors.equals(listOne.listOfsensors);
     }
 
     /**
@@ -225,8 +225,8 @@ public class SensorList {
      * @return
      */
     public Sensor getSensorWithMostRecentReading(SensorList sensorList) {
-        Sensor sensorWithMostRecentReading = sensorList.getSensorList().get(0);
-        for (Sensor sensor : sensorList.getSensorList()) {
+        Sensor sensorWithMostRecentReading = sensorList.getListOfsensors().get(0);
+        for (Sensor sensor : sensorList.getListOfsensors()) {
             if (!(sensor.isMeasurementListEmpty()) && sensor.getLastMeasurement().getDateTime().toLocalDate().isAfter(sensorWithMostRecentReading.getLastMeasurement().getDateTime().toLocalDate())) {
                 sensorWithMostRecentReading = sensor;
             }
