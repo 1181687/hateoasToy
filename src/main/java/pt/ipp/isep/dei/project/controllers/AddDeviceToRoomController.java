@@ -9,6 +9,16 @@ public class AddDeviceToRoomController {
     private Device mDevice;
     private Room mRoom;
     private ProgramList mProgramList;
+    private static final String NOMINAL_POWER = "Nominal Power";
+    private static final String LUMINOUS_FLUX = "Luminous Flux";
+    private static final String ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
+    private static final String FREEZER_CAPACITY = "Freezer Capacity";
+    private static final String REFRIGERATOR_CAPACITY = "Refrigerator Capacity";
+    private static final String CAPACITY = "Capacity";
+    private static final String HOTWATER_TEMPERATURE = "Hot-Water Temperature";
+    private static final String MAXIMUM_VOLUME = "Maximum Volume";
+    private static final String PERFORMANCE_RATIO = "Performance Ratio";
+
 
     /**
      * Constructor.
@@ -83,10 +93,10 @@ public class AddDeviceToRoomController {
      */
     public Device createNewFridge(String name, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
         mDevice = mHouse.getDeviceType("Fridge").createDevice(name, mRoom);
-        mDevice.setAttributesDevType("Annual Energy Consumption", annualEnergyConsumption);
-        mDevice.setAttributesDevType("Nominal Power", nominalPower);
-        mDevice.setAttributesDevType("Freezer Capacity", freezerCapacity);
-        mDevice.setAttributesDevType("Refrigerator Capacity", refrigeratorCapacity);
+        mDevice.setAttributesDevType(ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
+        mDevice.setAttributesDevType(NOMINAL_POWER, nominalPower);
+        mDevice.setAttributesDevType(FREEZER_CAPACITY, freezerCapacity);
+        mDevice.setAttributesDevType(REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         return mDevice;
     }
 
@@ -100,8 +110,8 @@ public class AddDeviceToRoomController {
      */
     public Device createNewLamp(String name, double nominalPower, double luminousFlux) {
         mDevice = mHouse.getDeviceType("Lamp").createDevice(name, mRoom);
-        mDevice.setAttributesDevType("Luminous Flux", luminousFlux);
-        mDevice.setAttributesDevType("Nominal Power", nominalPower);
+        mDevice.setAttributesDevType(LUMINOUS_FLUX, luminousFlux);
+        mDevice.setAttributesDevType(NOMINAL_POWER, nominalPower);
         return mDevice;
     }
 
@@ -115,8 +125,8 @@ public class AddDeviceToRoomController {
      */
     public Device createNewDishWasher(String name, double nominalPower, int capacity) {
         mDevice = mHouse.getDeviceType("DishWasher").createDevice(name, mRoom);
-        mDevice.setAttributesDevType("Capacity", capacity);
-        mDevice.setAttributesDevType("Nominal Power", nominalPower);
+        mDevice.setAttributesDevType(CAPACITY, capacity);
+        mDevice.setAttributesDevType(NOMINAL_POWER, nominalPower);
         return mDevice;
     }
 
@@ -130,8 +140,8 @@ public class AddDeviceToRoomController {
      */
     public Device createNewWashingMachine(String name, double nominalPower, double capacity) {
         mDevice = mHouse.getDeviceType("Washing Machine").createDevice(name, mRoom);
-        mDevice.setAttributesDevType("Capacity", capacity);
-        mDevice.setAttributesDevType("Nominal Power", nominalPower);
+        mDevice.setAttributesDevType(CAPACITY, capacity);
+        mDevice.setAttributesDevType(NOMINAL_POWER, nominalPower);
         return mDevice;
     }
 
@@ -146,10 +156,10 @@ public class AddDeviceToRoomController {
      */
     public Device createNewElectricWaterHeater(String name, double hotWaterTemperature, double maximumVolume, double nominalPower, double performanceRatio) {
         mDevice = mHouse.getDeviceType("Electric Water Heater").createDevice(name, mRoom);
-        mDevice.setAttributesDevType("Hot-Water Temperature", hotWaterTemperature);
-        mDevice.setAttributesDevType("Nominal Power", nominalPower);
-        mDevice.setAttributesDevType("Maximum Volume", maximumVolume);
-        mDevice.setAttributesDevType("Performance Ratio", performanceRatio);
+        mDevice.setAttributesDevType(HOTWATER_TEMPERATURE, hotWaterTemperature);
+        mDevice.setAttributesDevType(NOMINAL_POWER, nominalPower);
+        mDevice.setAttributesDevType(MAXIMUM_VOLUME, maximumVolume);
+        mDevice.setAttributesDevType(PERFORMANCE_RATIO, performanceRatio);
         return mDevice;
     }
 
