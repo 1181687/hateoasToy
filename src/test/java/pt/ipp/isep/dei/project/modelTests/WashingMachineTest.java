@@ -27,7 +27,7 @@ class WashingMachineTest {
 
         // Devices
         WashingMachineType washingMachineType = new WashingMachineType();
-        Device dummyWashingMachine = washingMachineType.createDevice("Maytag 2.6", kitchen);
+        washingMachineType.createDevice("Maytag 2.6", kitchen);
         washingMachine = washingMachineType.createDevice("Maytag 3.6", kitchen);
         washingMachine.setAttributesDevType("Capacity", 40);
         washingMachine.setAttributesDevType("Duration", 1);

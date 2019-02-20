@@ -4,12 +4,12 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class WashingMachine implements Device, Measurable, Programmable {
+public class WashingMachine implements Device, Programmable {
 
     private String name;
     private Room location;
     private WashingMachineSpecs specs;
-    private List<Readings> reading;
+    private List<Readings> readingsList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
@@ -20,7 +20,7 @@ public class WashingMachine implements Device, Measurable, Programmable {
         this.specs = new WashingMachineSpecs();
         this.location.addDevice(this);
         this.isActive = true;
-        this.reading = new ArrayList<>();
+        this.readingsList = new ArrayList<>();
 
     }
 
@@ -62,6 +62,15 @@ public class WashingMachine implements Device, Measurable, Programmable {
     @Override
     public String getType() {
         return specs.getTypeName();
+    }
+
+    /**
+     * method that gets the list of Readings of the Device.
+     * @return
+     */
+    @Override
+    public List<Readings> getReadings() {
+        return this.readingsList;
     }
 
     /**
@@ -192,12 +201,12 @@ public class WashingMachine implements Device, Measurable, Programmable {
     }
 
     /**
-     * Method that adds a reading to the device.
+     * Method that adds a readingsList to the device.
      *
      * @param readings Readings to be added.
      */
     public void addReadingsToTheList(Readings readings) {
-        this.reading.add(readings);
+        this.readingsList.add(readings);
     }
 
     /**
@@ -214,22 +223,6 @@ public class WashingMachine implements Device, Measurable, Programmable {
         return sum;
     }
 
-    /**
-     * Method that gets the reading list in an interval
-     *
-     * @param startDate starting date of reading
-     * @param endDate   end date of reading
-     * @return reading list
-     */
-    public List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        List<Readings> readingsList = new ArrayList<>();
-        for (Readings readings : reading) {
-            if (!startDate.isAfter(readings.getDateTime()) && !endDate.isBefore(readings.getDateTime())) {
-                readingsList.add(readings);
-            }
-        }
-        return readingsList;
-    }
 
     /**
      * Method that calculates the total energy consumption of a device in a given interval.
@@ -282,9 +275,9 @@ public class WashingMachine implements Device, Measurable, Programmable {
     /**
      * get method
      *
-     * @param startDate starting date of reading
-     * @param endDate   end date of reading
-     * @return map with coordinates (value of reading and time)
+     * @param startDate starting date of readingsList
+     * @param endDate   end date of readingsList
+     * @return map with coordinates (value of readingsList and time)
      */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
