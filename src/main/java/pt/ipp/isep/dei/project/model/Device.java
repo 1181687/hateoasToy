@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public interface Device extends Measurable {
@@ -130,8 +131,6 @@ public interface Device extends Measurable {
     double getSumOfTheReadings(List<Readings> readingsList);
 
 
-    List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate);
-
     /**
      * method that set the deactivate device, turning it to false and giving a date
      */
@@ -159,4 +158,6 @@ public interface Device extends Measurable {
     Programmable asProgrammable();
 
     String getDateDeactivateDeviceToString();
+
+
 }

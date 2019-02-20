@@ -17,13 +17,7 @@ public interface Measurable {
 
     List<Readings> getReadings();
 
-    /**
-     * Method that gets the reading list in an interval
-     *
-     * @param startDate starting date of readings
-     * @param endDate   end date of readings
-     * @return reading list
-     */
+
     default List<Readings> getReadingsListInInterval(LocalDateTime startDate, LocalDateTime endDate) {
         List<Readings> readingsList = new ArrayList<>();
         for (Readings readings : getReadings()) {
