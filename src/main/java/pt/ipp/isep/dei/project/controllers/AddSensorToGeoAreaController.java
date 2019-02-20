@@ -31,7 +31,7 @@ public class AddSensorToGeoAreaController {
     }
 
     public int numeroElementosDaListaTipoDeSensor () {
-        return mSensorTypeList.getSensorTypeList().size();
+        return mSensorTypeList.getListOfSensorTypes().size();
     }
 
     public String getNomeTipoSensorPorIndice (int posicao) {
@@ -39,7 +39,7 @@ public class AddSensorToGeoAreaController {
     }
 
     public boolean adicionarSensorAAreaGeografica(Sensor sensor) {
-        if ((!(this.mListaAreaGeografica.getGeographicalArea(this.mGeographicalArea).getSensorListInTheGeographicArea().getSensorList().contains(sensor)))) {
+        if ((!(this.mListaAreaGeografica.getGeographicalArea(this.mGeographicalArea).getSensorListInTheGeographicArea().getListOfSensors().contains(sensor)))) {
             mListaAreaGeografica.getGeographicalArea(this.mGeographicalArea).getSensorListInTheGeographicArea().addSensor(sensor);
             return true;
         }

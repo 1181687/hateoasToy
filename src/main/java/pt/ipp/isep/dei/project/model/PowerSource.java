@@ -18,7 +18,6 @@ public class PowerSource {
     public PowerSource(String powerSourceName, PowerSourceType powerSourceType) {
         validateName(powerSourceName);
         validatePowerSourceType(powerSourceType);
-
         this.powerSourceType = powerSourceType;
         this.name = powerSourceName;
     }

@@ -3,23 +3,23 @@ package pt.ipp.isep.dei.project.model;
 import java.util.Objects;
 
 public class PowerSourceType {
-    private String powerSourceType;
+    private String typeOfPowerSource;
 
     /**
      * constructor that receives a power source type (String)
      *
-     * @param powerSourceType type of Power Source
+     * @param typeOfPowerSource type of Power Source
      */
-    public PowerSourceType(String powerSourceType) {
-        this.powerSourceType = powerSourceType;
+    public PowerSourceType(String typeOfPowerSource) {
+        this.typeOfPowerSource = typeOfPowerSource;
     }
 
     /**
      * Get Method
-     * @return powerSourceType
+     * @return typeOfPowerSource
      */
-    public String getPowerSourceType() {
-        return powerSourceType;
+    public String getTypeOfPowerSource() {
+        return typeOfPowerSource;
     }
 
     /**
@@ -28,7 +28,7 @@ public class PowerSourceType {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(this.powerSourceType);
+        return Objects.hash(this.typeOfPowerSource);
     }
 
     /**
@@ -47,7 +47,7 @@ public class PowerSourceType {
         }
 
         PowerSourceType type = (PowerSourceType) obj;
-        return this.powerSourceType.equalsIgnoreCase(type.powerSourceType);
+        return this.typeOfPowerSource.equalsIgnoreCase(type.typeOfPowerSource);
 
     }
 }

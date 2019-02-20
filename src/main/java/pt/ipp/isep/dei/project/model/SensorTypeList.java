@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SensorTypeList {
 
-    private List<SensorType> sensorTypeList = new ArrayList<>();
+    private List<SensorType> listOfSensorTypes = new ArrayList<>();
 
     public SensorTypeList() {
     }
@@ -13,10 +13,10 @@ public class SensorTypeList {
     /**
      * Constructor Method
      *
-     * @param sensorTypeList List of Sensor Types
+     * @param listOfSensorTypes List of Sensor Types
      */
-    public SensorTypeList(List<SensorType> sensorTypeList) {
-        this.sensorTypeList = sensorTypeList;
+    public SensorTypeList(List<SensorType> listOfSensorTypes) {
+        this.listOfSensorTypes = listOfSensorTypes;
     }
 
     /**
@@ -24,8 +24,8 @@ public class SensorTypeList {
      *
      * @return Sensor Type List
      */
-    public List<SensorType> getSensorTypeList() {
-        return sensorTypeList;
+    public List<SensorType> getListOfSensorTypes() {
+        return listOfSensorTypes;
     }
 
     /**
@@ -45,8 +45,8 @@ public class SensorTypeList {
      * @return true or false
      */
     public boolean addSensorType(SensorType novoSensorType) {
-        if (!(this.sensorTypeList.contains(novoSensorType))) {
-            this.sensorTypeList.add(novoSensorType);
+        if (!(this.listOfSensorTypes.contains(novoSensorType))) {
+            this.listOfSensorTypes.add(novoSensorType);
             return true;
         }
         return false;
@@ -59,7 +59,7 @@ public class SensorTypeList {
      * @return the Sensor Type of that position
      */
     public SensorType getSensorTypeByPosition(int posicao) {
-        return this.sensorTypeList.get(posicao);
+        return this.listOfSensorTypes.get(posicao);
     }
 
     /**
@@ -68,8 +68,8 @@ public class SensorTypeList {
      */
     public String getSensorTypeListToString() {
         StringBuilder content = new StringBuilder();
-        for (int i = 1; i <= this.sensorTypeList.size(); i++) {
-            content.append(i + " - Sensor Type: " + this.sensorTypeList.get(i - 1).getType());
+        for (int i = 1; i <= this.listOfSensorTypes.size(); i++) {
+            content.append(i + " - Sensor Type: " + this.listOfSensorTypes.get(i - 1).getType());
             content.append("\n");
         }
         return content.toString();
@@ -80,7 +80,7 @@ public class SensorTypeList {
      * @return empty Sensor Type List
      */
     public boolean isEmpty() {
-        return this.sensorTypeList.isEmpty();
+        return this.listOfSensorTypes.isEmpty();
     }
 
 }

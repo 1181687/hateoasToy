@@ -60,9 +60,9 @@ public class House {
         if (Objects.isNull(getDeviceType(typeName))) {
             return false;
         }
-        for (int i = 0; i < roomList.getRoomList().size(); i++) {
+        for (int i = 0; i < roomList.getListOfRooms().size(); i++) {
 
-            if (roomList.getRoomList().get(i).isDeviceNameExistant(deviceName)) {
+            if (roomList.getListOfRooms().get(i).isDeviceNameExistant(deviceName)) {
                 return false;
             }
         }
