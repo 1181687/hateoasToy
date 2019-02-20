@@ -65,8 +65,7 @@ public class House {
                 return null;
             }
         }
-        Device device = getDeviceType(typeName).createDevice(deviceName, location);
-        return device;
+        return getDeviceType(typeName).createDevice(deviceName, location);
     }
 
     /**
