@@ -6,8 +6,8 @@ import pt.ipp.isep.dei.project.model.House;
 import java.time.LocalDateTime;
 
 public class GetEnergyConsumptionDeviceController {
-    private House mHouse;
-    private Device mDevice;
+    private House house;
+    private Device device;
 
     /**
      * Constructor.
@@ -15,7 +15,7 @@ public class GetEnergyConsumptionDeviceController {
      * @param house House to be used.
      */
     public GetEnergyConsumptionDeviceController(House house) {
-        mHouse = house;
+        this.house = house;
     }
 
     /**
@@ -24,7 +24,7 @@ public class GetEnergyConsumptionDeviceController {
      * @return String with the list of devices content.
      */
     public String getAllDevicesToString() {
-        return mHouse.getAllDevicesToString();
+        return house.getAllDevicesToString();
     }
 
     /**
@@ -33,7 +33,7 @@ public class GetEnergyConsumptionDeviceController {
      * @return DeviceList with all the devices in the house.
      */
     public int getNumberOfDevices() {
-        return mHouse.getNumberOfDevices();
+        return house.getNumberOfDevices();
     }
 
     /**
@@ -43,7 +43,7 @@ public class GetEnergyConsumptionDeviceController {
      * @return Device1 chosen.
      */
     public void setDevice(int position) {
-        mDevice = mHouse.getDeviceByPosition(position);
+        device = house.getDeviceByPosition(position);
     }
 
     /**
@@ -54,6 +54,6 @@ public class GetEnergyConsumptionDeviceController {
      * @return Double with the required energy consumption.
      */
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        return mDevice.getEnergyConsumptionInAnInterval(startDate, endDate);
+        return device.getEnergyConsumptionInAnInterval(startDate, endDate);
     }
 }

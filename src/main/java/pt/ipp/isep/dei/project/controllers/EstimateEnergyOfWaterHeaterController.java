@@ -4,8 +4,8 @@ import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 public class EstimateEnergyOfWaterHeaterController {
-    private House mHouse;
-    private String mType;
+    private House house;
+    private String type;
 
     /**
      * Constructor.
@@ -13,8 +13,8 @@ public class EstimateEnergyOfWaterHeaterController {
      * @param house House to be used.
      */
     public EstimateEnergyOfWaterHeaterController(House house) {
-        this.mHouse = house;
-        this.mType = "Electric Water Heater";
+        this.house = house;
+        this.type = "Electric Water Heater";
     }
 
     /**
@@ -23,7 +23,7 @@ public class EstimateEnergyOfWaterHeaterController {
      * @return Integer with the number of water heaters.
      */
     public int getNumberOfWaterHeaters() {
-        return mHouse.getNumberOfDevicesOfAType(mType);
+        return house.getNumberOfDevicesOfAType(type);
     }
 
     /**
@@ -33,7 +33,7 @@ public class EstimateEnergyOfWaterHeaterController {
      * @return String with the name of the water heater.
      */
     public String getNameOfWaterHeater(int devicePosition) {
-        return mHouse.getDeviceNameOfATypeByPosition(mType, devicePosition);
+        return house.getDeviceNameOfATypeByPosition(type, devicePosition);
     }
 
     /**
@@ -43,7 +43,7 @@ public class EstimateEnergyOfWaterHeaterController {
      * @param coldWaterTemperature Inputted value to be used.
      */
     public void setColdWaterTemp(String deviceName, double coldWaterTemperature) {
-        mHouse.setDeviceAttribute(deviceName, "Cold-Water Temperature", coldWaterTemperature);
+        house.setDeviceAttribute(deviceName, "Cold-Water Temperature", coldWaterTemperature);
     }
 
     /**
@@ -53,7 +53,7 @@ public class EstimateEnergyOfWaterHeaterController {
      * @param volumeOfWaterToHeat Inputted value to be used.
      */
     public void setVolumeOfWaterToHeat(String deviceName, double volumeOfWaterToHeat) {
-        mHouse.setDeviceAttribute(deviceName, "Volume Of Water To Heat", volumeOfWaterToHeat);
+        house.setDeviceAttribute(deviceName, "Volume Of Water To Heat", volumeOfWaterToHeat);
     }
 
     /**
@@ -62,7 +62,7 @@ public class EstimateEnergyOfWaterHeaterController {
      * @return Double with the energy consumption.
      */
     public double getEnergyConsumptionOfAWaterHeater(String deviceName) {
-        return Utils.round(mHouse.getDailyEnergyConsumptionOfADevice(deviceName), 2);
+        return Utils.round(house.getDailyEnergyConsumptionOfADevice(deviceName), 2);
     }
 
     /**
@@ -71,6 +71,6 @@ public class EstimateEnergyOfWaterHeaterController {
      * @return Double with the combined energy consumption of all the water heaters in the house.
      */
     public double getTotalEnergyConsumptionOfAllElectricWaterHeaters() {
-        return Utils.round(mHouse.getTotalEnergyConsumptionOfDevicesOfCertainType("Electric Water Heater"), 2);
+        return Utils.round(house.getTotalEnergyConsumptionOfDevicesOfCertainType("Electric Water Heater"), 2);
     }
 }

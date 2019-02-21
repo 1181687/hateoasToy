@@ -3,9 +3,9 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.*;
 
 public class AddDeviceToRoomController {
-    private House mHouse;
-    private Device mDevice;
-    private Room mRoom;
+    private House house;
+    private Device device;
+    private Room room;
     private Programmable programmableDevice;
     private static final String NOMINAL_POWER = "Nominal Power";
     private static final String LUMINOUS_FLUX = "Luminous Flux";
@@ -24,7 +24,7 @@ public class AddDeviceToRoomController {
      * @param house
      */
     public AddDeviceToRoomController(House house) {
-        this.mHouse = house;
+        this.house = house;
 
     }
 
@@ -34,7 +34,7 @@ public class AddDeviceToRoomController {
      * @return List of house grids.
      */
     public String getRoomListContent() {
-        return mHouse.getRoomListContent();
+        return house.getRoomListContent();
     }
 
     /**
@@ -44,7 +44,7 @@ public class AddDeviceToRoomController {
      * @return The respective room.
      */
     public void getRoom(int position) {
-        mRoom = mHouse.getRoomOfTheRoomList(position);
+        room = house.getRoomOfTheRoomList(position);
     }
 
     /**
@@ -53,7 +53,7 @@ public class AddDeviceToRoomController {
      * @return selected room
      */
     public Room getSelectedRoom() {
-        return mRoom;
+        return room;
     }
 
 
@@ -63,14 +63,14 @@ public class AddDeviceToRoomController {
      * @return Size of the list.
      */
     public int roomListSize() {
-        return mHouse.getRoomListSize();
+        return house.getRoomListSize();
     }
 
     /**
      * @return
      */
     public int getNumberOfDeviceTypes() {
-        return mHouse.numberOfDeviceTypes();
+        return house.numberOfDeviceTypes();
     }
 
 
@@ -80,7 +80,7 @@ public class AddDeviceToRoomController {
      * @return the name of the device types in the device types list.
      */
     public String getDeviceTypeListToString() {
-        return mHouse.getDeviceTypeListToString();
+        return house.getDeviceTypeListToString();
     }
 
     /**
@@ -94,12 +94,12 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewFridge(String name, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
-        mDevice = mHouse.getDeviceType("Fridge").createDevice(name, mRoom);
-        mDevice.setAttributesDevType(ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
-        mDevice.setAttributesDevType(NOMINAL_POWER, nominalPower);
-        mDevice.setAttributesDevType(FREEZER_CAPACITY, freezerCapacity);
-        mDevice.setAttributesDevType(REFRIGERATOR_CAPACITY, refrigeratorCapacity);
-        return mDevice;
+        device = house.getDeviceType("Fridge").createDevice(name, room);
+        device.setAttributesDevType(ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
+        device.setAttributesDevType(NOMINAL_POWER, nominalPower);
+        device.setAttributesDevType(FREEZER_CAPACITY, freezerCapacity);
+        device.setAttributesDevType(REFRIGERATOR_CAPACITY, refrigeratorCapacity);
+        return device;
     }
 
     /**
@@ -111,10 +111,10 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewLamp(String name, double nominalPower, double luminousFlux) {
-        mDevice = mHouse.getDeviceType("Lamp").createDevice(name, mRoom);
-        mDevice.setAttributesDevType(LUMINOUS_FLUX, luminousFlux);
-        mDevice.setAttributesDevType(NOMINAL_POWER, nominalPower);
-        return mDevice;
+        device = house.getDeviceType("Lamp").createDevice(name, room);
+        device.setAttributesDevType(LUMINOUS_FLUX, luminousFlux);
+        device.setAttributesDevType(NOMINAL_POWER, nominalPower);
+        return device;
     }
 
     /**
@@ -126,10 +126,10 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewDishWasher(String name, double nominalPower, int capacity) {
-        mDevice = mHouse.getDeviceType("DishWasher").createDevice(name, mRoom);
-        mDevice.setAttributesDevType(CAPACITY, capacity);
-        mDevice.setAttributesDevType(NOMINAL_POWER, nominalPower);
-        return mDevice;
+        device = house.getDeviceType("DishWasher").createDevice(name, room);
+        device.setAttributesDevType(CAPACITY, capacity);
+        device.setAttributesDevType(NOMINAL_POWER, nominalPower);
+        return device;
     }
 
     /**
@@ -141,10 +141,10 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewWashingMachine(String name, double nominalPower, double capacity) {
-        mDevice = mHouse.getDeviceType("Washing Machine").createDevice(name, mRoom);
-        mDevice.setAttributesDevType(CAPACITY, capacity);
-        mDevice.setAttributesDevType(NOMINAL_POWER, nominalPower);
-        return mDevice;
+        device = house.getDeviceType("Washing Machine").createDevice(name, room);
+        device.setAttributesDevType(CAPACITY, capacity);
+        device.setAttributesDevType(NOMINAL_POWER, nominalPower);
+        return device;
     }
 
     /**
@@ -157,12 +157,12 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewElectricWaterHeater(String name, double hotWaterTemperature, double maximumVolume, double nominalPower, double performanceRatio) {
-        mDevice = mHouse.getDeviceType("Electric Water Heater").createDevice(name, mRoom);
-        mDevice.setAttributesDevType(HOTWATER_TEMPERATURE, hotWaterTemperature);
-        mDevice.setAttributesDevType(NOMINAL_POWER, nominalPower);
-        mDevice.setAttributesDevType(MAXIMUM_VOLUME, maximumVolume);
-        mDevice.setAttributesDevType(PERFORMANCE_RATIO, performanceRatio);
-        return mDevice;
+        device = house.getDeviceType("Electric Water Heater").createDevice(name, room);
+        device.setAttributesDevType(HOTWATER_TEMPERATURE, hotWaterTemperature);
+        device.setAttributesDevType(NOMINAL_POWER, nominalPower);
+        device.setAttributesDevType(MAXIMUM_VOLUME, maximumVolume);
+        device.setAttributesDevType(PERFORMANCE_RATIO, performanceRatio);
+        return device;
     }
 
     /**
@@ -172,7 +172,7 @@ public class AddDeviceToRoomController {
      * @return list of devices of a roomMethod that displays the content
      */
     public String getDeviceListContentOfARoom(int selectedRoom) {
-        return mHouse.getDeviceListContentRoom(selectedRoom);
+        return house.getDeviceListContentRoom(selectedRoom);
     }
 
 /*    public Program createNewProgram(String programName, double duration, double energyConsumption) {
@@ -201,12 +201,12 @@ public class AddDeviceToRoomController {
      * @return Device
      */
     public Device getDevice(int position) {
-        return mRoom.getDeviceByPosition(position);
+        return room.getDeviceByPosition(position);
     }
 
     public boolean isProgrammable() {
-        if (mDevice.isProgrammable()) {
-            programmableDevice = mDevice.asProgrammable();
+        if (device.isProgrammable()) {
+            programmableDevice = device.asProgrammable();
             return true;
         }
         return false;

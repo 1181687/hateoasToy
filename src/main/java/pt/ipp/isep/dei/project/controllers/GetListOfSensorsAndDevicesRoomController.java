@@ -5,10 +5,10 @@ import pt.ipp.isep.dei.project.model.RoomList;
 
 public class GetListOfSensorsAndDevicesRoomController {
 
-    private House mHouse;
+    private House house;
 
-    public GetListOfSensorsAndDevicesRoomController(House mHouse) {
-        this.mHouse = mHouse;
+    public GetListOfSensorsAndDevicesRoomController(House house) {
+        this.house = house;
     }
 
     /**
@@ -16,7 +16,7 @@ public class GetListOfSensorsAndDevicesRoomController {
      * @return the room list.
      */
     public RoomList getListOfRooms () {
-        return this.mHouse.getRoomList();
+        return this.house.getRoomList();
     }
 
     /**
@@ -25,7 +25,7 @@ public class GetListOfSensorsAndDevicesRoomController {
      * @return the name of the chosen room in a specific position of the room list.
      */
     public String getRoomNameByPosition(int option) {
-        return this.mHouse.getRoomNameByPosition(option);
+        return this.house.getRoomNameByPosition(option);
     }
 
     /**
@@ -33,7 +33,7 @@ public class GetListOfSensorsAndDevicesRoomController {
      * @return the room list content.
      */
     public String getRoomListContent () {
-        return this.mHouse.getRoomListContent();
+        return this.house.getRoomListContent();
     }
 
     /**
@@ -42,7 +42,7 @@ public class GetListOfSensorsAndDevicesRoomController {
      * @return the sensor list content of a room by a position
      */
     public String getSensorsListContent(int position) {
-        return this.mHouse.getSensorListContentOfARoom(position);
+        return this.house.getSensorListContentOfARoom(position);
     }
 
     /**
@@ -50,7 +50,7 @@ public class GetListOfSensorsAndDevicesRoomController {
      * @param position
      */
     public boolean isSensorListEmpty(int position) {
-        return this.mHouse.isSensorListEmpty(position);
+        return this.house.isSensorListEmpty(position);
     }
 
     /**
@@ -60,7 +60,7 @@ public class GetListOfSensorsAndDevicesRoomController {
      * @return the device list content of a room by position
      */
     public String getDeviceListContent(int position) {
-        return this.mHouse.getDeviceListContentRoom(position);
+        return this.house.getDeviceListContentRoom(position);
     }
 
     /**
@@ -68,7 +68,7 @@ public class GetListOfSensorsAndDevicesRoomController {
      * @param position
      */
     public boolean isDeviceListEmpty(int position) {
-        return this.mHouse.isDeviceListEmpty(position);
+        return this.house.isDeviceListEmpty(position);
     }
 
     /**
@@ -76,7 +76,7 @@ public class GetListOfSensorsAndDevicesRoomController {
      * @return
      */
     public int roomListSize () {
-        return mHouse.getRoomListSize();
+        return house.getRoomListSize();
     }
 
 }

@@ -11,46 +11,46 @@ import java.util.Map;
 
 public class GetEnergyConsumptionDataSeriesController {
 
-    private House mHouse;
-    private HouseGrid mSelectedHouseGrid;
-    private Room mSelectedRoom;
-    private Device mSelectedDevice;
+    private House house;
+    private HouseGrid selectedHouseGrid;
+    private Room selectedRoom;
+    private Device selectedDevice;
     private static final String NO_VALID_VALUES = "No valid values found for that period.\n";
 
-    public GetEnergyConsumptionDataSeriesController(House mHouse) {
-        this.mHouse = mHouse;
+    public GetEnergyConsumptionDataSeriesController(House house) {
+        this.house = house;
     }
 
     public String getHouseGridListToString() {
-        return mHouse.getHouseGridListToString();
+        return house.getHouseGridListToString();
     }
 
     public String getRoomListToString() {
-        return mHouse.getRoomListContent();
+        return house.getRoomListContent();
     }
 
     public String getDeviceListToString() {
-        return mHouse.getAllDevicesToString();
+        return house.getAllDevicesToString();
     }
 
     public boolean houseGridListIsEmpty() {
-        return mHouse.isHouseGridListEmpty();
+        return house.isHouseGridListEmpty();
     }
 
     public void getHouseGridByPosition(int position) {
-        mSelectedHouseGrid = mHouse.getHouseGridByPosition(position);
+        selectedHouseGrid = house.getHouseGridByPosition(position);
     }
 
     public void getRoomByPosition(int position) {
-        mSelectedRoom = mHouse.getRoomOfTheRoomList(position);
+        selectedRoom = house.getRoomOfTheRoomList(position);
     }
 
     public void getDeviceByPosition(int position) {
-        mSelectedDevice = mHouse.getDeviceByPosition(position);
+        selectedDevice = house.getDeviceByPosition(position);
     }
 
     public String getHouseGridDataSeriesToString(LocalDateTime startDate, LocalDateTime endDate) {
-        Map<LocalDateTime, Double> map = mSelectedHouseGrid.getDataSeries(startDate, endDate);
+        Map<LocalDateTime, Double> map = selectedHouseGrid.getDataSeries(startDate, endDate);
         if (map.isEmpty()) {
             return NO_VALID_VALUES;
         }
@@ -58,7 +58,7 @@ public class GetEnergyConsumptionDataSeriesController {
     }
 
     public String getRoomDataSeriesToString(LocalDateTime startDate, LocalDateTime endDate) {
-        Map<LocalDateTime, Double> map = mSelectedRoom.getDataSeries(startDate, endDate);
+        Map<LocalDateTime, Double> map = selectedRoom.getDataSeries(startDate, endDate);
         if (map.isEmpty()) {
             return NO_VALID_VALUES;
         }
@@ -66,7 +66,7 @@ public class GetEnergyConsumptionDataSeriesController {
     }
 
     public String getDeviceDataSeriesToString(LocalDateTime startDate, LocalDateTime endDate) {
-        Map<LocalDateTime, Double> map = mSelectedDevice.getDataSeries(startDate, endDate);
+        Map<LocalDateTime, Double> map = selectedDevice.getDataSeries(startDate, endDate);
         if (map.isEmpty()) {
             return NO_VALID_VALUES;
         }
@@ -74,22 +74,22 @@ public class GetEnergyConsumptionDataSeriesController {
     }
 
     public int getHouseGridListSize() {
-        return mHouse.getHouseGridListSize();
+        return house.getHouseGridListSize();
     }
 
     public int getRoomListSize() {
-        return mHouse.getRoomListSize();
+        return house.getRoomListSize();
     }
 
     public int getDeviceListSize() {
-        return mHouse.getDeviceSize();
+        return house.getDeviceSize();
     }
 
     public boolean roomListIsEmpty() {
-        return mHouse.roomListIsEmpty();
+        return house.roomListIsEmpty();
     }
 
     public boolean deviceListIsEmpty() {
-        return mHouse.isDeviceListOfAllRoomsEmpty();
+        return house.isDeviceListOfAllRoomsEmpty();
     }
 }

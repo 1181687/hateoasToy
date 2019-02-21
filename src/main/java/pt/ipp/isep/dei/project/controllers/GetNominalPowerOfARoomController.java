@@ -4,11 +4,11 @@ import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
 
 public class GetNominalPowerOfARoomController {
-    private Room mChosenRoom;
-    private House mHouse;
+    private Room chosenRoom;
+    private House house;
 
-    public GetNominalPowerOfARoomController(House mHouse) {
-        this.mHouse = mHouse;
+    public GetNominalPowerOfARoomController(House house) {
+        this.house = house;
     }
 
     /**
@@ -17,7 +17,7 @@ public class GetNominalPowerOfARoomController {
      * @return A string with the list of rooms.
      */
     public String getListOfRooms() {
-        return mHouse.getRoomListContent();
+        return house.getRoomListContent();
     }
 
     /**
@@ -25,7 +25,7 @@ public class GetNominalPowerOfARoomController {
      * @return integer
      */
     public int getRoomListSize() {
-        return mHouse.houseRoomListSize();
+        return house.houseRoomListSize();
     }
 
     /**
@@ -34,7 +34,7 @@ public class GetNominalPowerOfARoomController {
      * @return
      */
     public boolean isDeviceListEmpty(int option) {
-        return mHouse.isDeviceListEmpty(option);
+        return house.isDeviceListEmpty(option);
     }
 
     /**
@@ -42,7 +42,7 @@ public class GetNominalPowerOfARoomController {
      * @param option Chosen room from the list as an integer.
      */
     public void getRoom(int option) {
-        mChosenRoom = mHouse.getRoomOfTheRoomList(option);
+        chosenRoom = house.getRoomOfTheRoomList(option);
     }
 
     /**
@@ -50,6 +50,6 @@ public class GetNominalPowerOfARoomController {
      * @return
      */
     public double getNominalPower() {
-        return mChosenRoom.getNominalPower();
+        return chosenRoom.getNominalPower();
     }
 }

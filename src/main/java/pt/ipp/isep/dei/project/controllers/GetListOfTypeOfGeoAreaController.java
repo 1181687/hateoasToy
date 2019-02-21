@@ -7,20 +7,20 @@ import java.util.List;
 
 public class GetListOfTypeOfGeoAreaController {
 
-    private GeographicalAreaList mGeographicalAreaList;
-    private GeographicalAreaTypeList mListaTAG;
+    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaTypeList geographicalAreaTypeList;
 
     public GetListOfTypeOfGeoAreaController(GeographicalAreaList geographicalAreaList, GeographicalAreaTypeList listaTAG) {
-        this.mGeographicalAreaList = geographicalAreaList;
-        this.mListaTAG = listaTAG;
+        this.geographicalAreaList = geographicalAreaList;
+        this.geographicalAreaTypeList = listaTAG;
     }
 
     public List<String> getListaAGPorTipo(String tipo) {
-        return this.mGeographicalAreaList.getListOfGeographicalAreasByType(tipo);
+        return this.geographicalAreaList.getListOfGeographicalAreasByType(tipo);
     }
 
     public List<String> getListaDosTiposDeAG(){
-        return mListaTAG.getListOfGeoAreaTypes();
+        return geographicalAreaTypeList.getListOfGeoAreaTypes();
     }
 
 
