@@ -17,6 +17,10 @@ class FridgeTest {
     private Room laundry;
     private Device fridge;
     private Map<LocalDateTime, Double> map;
+    private Readings readings0;
+    private Readings readings1;
+    private Readings readings2;
+
 
     @BeforeEach
     public void StartUp() {
@@ -36,11 +40,11 @@ class FridgeTest {
 
         // Readings
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        readings0 = new Readings(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        readings1 = new Readings(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        readings2 = new Readings(7, time2);
         fridge.addReadingsToTheList(readings0);
         fridge.addReadingsToTheList(readings1);
         fridge.addReadingsToTheList(readings2);
@@ -50,6 +54,22 @@ class FridgeTest {
         map.put(time0, 3.0);
         map.put(time1, 5.0);
         map.put(time2, 7.0);
+    }
+
+    @Test
+    public void testGetReadings() {
+        //Arrange
+        List<Readings> expectedResult = new ArrayList<>();
+        expectedResult.add(readings0);
+        expectedResult.add(readings1);
+        expectedResult.add(readings2);
+
+        //Act
+        List<Readings> result = fridge.getReadings();
+
+        //Assert
+        assertEquals(expectedResult, result);
+
     }
 
     @Test

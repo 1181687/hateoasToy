@@ -9,7 +9,7 @@ import java.util.*;
 import static java.util.Objects.isNull;
 
 public class Room implements Measurable {
-    private String name;
+    private String roomName;
     private int houseFloor;
     private Dimension dimension;
     private SensorList sensorList;
@@ -27,7 +27,7 @@ public class Room implements Measurable {
     public Room(String name, int houseFloor, Dimension dimension) {
         validateName(name);
         validateDimensions(dimension);
-        this.name = name.trim();
+        this.roomName = name.trim();
         this.houseFloor = houseFloor;
         this.dimension = dimension;
         this.sensorList = new SensorList();
@@ -64,7 +64,7 @@ public class Room implements Measurable {
      * @return name
      */
     public String getName() {
-        return name;
+        return roomName;
     }
 
     /**
@@ -73,7 +73,7 @@ public class Room implements Measurable {
      * @param name name of a room (string)
      */
     public void setName(String name) {
-        this.name = name;
+        this.roomName = name;
     }
 
     /**
@@ -134,7 +134,7 @@ public class Room implements Measurable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(this.name);
+        return Objects.hash(this.roomName);
     }
 
     /**
@@ -154,7 +154,7 @@ public class Room implements Measurable {
             return false;
         }
         Room roomOne = (Room) obj;
-        return this.name.equalsIgnoreCase(roomOne.name);
+        return this.roomName.equalsIgnoreCase(roomOne.roomName);
     }
 
     /**
@@ -282,7 +282,7 @@ public class Room implements Measurable {
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();
-        name.append("Room: " + this.name + "\n");
+        name.append("Room: " + this.roomName + "\n");
         return name.toString();
     }
 

@@ -93,13 +93,13 @@ public class WashingMachineSpecs implements DeviceSpecs {
 
     /**
      * set method
-     *
+     * 
      * @param wmEnergyConsumption
      */
     private boolean setEnergyConsumption(Object wmEnergyConsumption) {
-        double energyConsumption = (Double) wmEnergyConsumption;
-        if (!Utils.isSameDouble(this.energyConsumption, energyConsumption) && !(Utils.isSameDouble(energyConsumption, 0))) {
-            this.energyConsumption = energyConsumption;
+        double eConsumption = (Double) wmEnergyConsumption;
+        if (!Utils.isSameDouble(this.energyConsumption, eConsumption) && !(Utils.isSameDouble(eConsumption, 0))) {
+            this.energyConsumption = eConsumption;
             return true;
         }
 

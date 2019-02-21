@@ -25,15 +25,15 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
     }
 
     public double getTotalRainfallInTheHouseAreaInTheSelectedDay(LocalDate day) {
-        return mHouse.getTotalDailyMeasurement(mTypeRainfall, day);
+        return mHouse.getTotalDailyMeasurementInHouseArea(mTypeRainfall, day);
     }
 
     public double getAverageDailyRainfall(LocalDate date1, LocalDate date2) {
-        return mHouse.getAverageDailyMeasurement(mTypeRainfall, date1, date2);
+        return mHouse.getAverageDailyMeasurementInHouseArea(mTypeRainfall, date1, date2);
     }
 
     public double getMostRecentAvailableMeasurement() {
-        return mHouse.getLastMeasurementByType(mTypeTemperature);
+        return mHouse.getLastMeasurementByTypeInHouseArea(mTypeTemperature);
     }
 
     public String getTypeTemperature() {

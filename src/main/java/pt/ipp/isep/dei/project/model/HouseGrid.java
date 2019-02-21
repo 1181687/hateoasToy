@@ -6,7 +6,7 @@ import java.util.*;
 import static java.util.Objects.isNull;
 
 public class HouseGrid implements Measurable {
-    private String name;
+    private String houseGridName;
     private PowerSourceList powerSourceList;
     private RoomList roomList;
 
@@ -18,7 +18,7 @@ public class HouseGrid implements Measurable {
 
     public HouseGrid(String houseGridName) {
         validateName(houseGridName);
-        this.name = houseGridName;
+        this.houseGridName = houseGridName;
         this.roomList = new RoomList();
         this.powerSourceList = new PowerSourceList();
     }
@@ -37,7 +37,7 @@ public class HouseGrid implements Measurable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(this.name);
+        return Objects.hash(this.houseGridName);
     }
 
     /**
@@ -57,14 +57,14 @@ public class HouseGrid implements Measurable {
             return false;
         }
         HouseGrid houseGrid = (HouseGrid) obj;
-        return this.name.equalsIgnoreCase(houseGrid.name);
+        return this.houseGridName.equalsIgnoreCase(houseGrid.houseGridName);
     }
 
     /**
      * method that get the name of the house grid.
      */
     public String getName() {
-        return name;
+        return this.houseGridName;
     }
 
     /**
@@ -100,7 +100,7 @@ public class HouseGrid implements Measurable {
     @Override
     public List<Readings> getReadings() {
         List<Readings> listOfReadings = new ArrayList<>();
-        for (Room room : this.roomList.getRoomList()) {
+        for (Room room : this.roomList.getListOfRooms()) {
             listOfReadings.addAll(room.getReadings());
         }
         return listOfReadings;
@@ -114,9 +114,9 @@ public class HouseGrid implements Measurable {
      * @return
      */
     public boolean detachRoom(Room roomToDetach) {
-        for (Room room : this.roomList.getRoomList()) {
+        for (Room room : this.roomList.getListOfRooms()) {
             if (room.equals(roomToDetach)) {
-                this.roomList.getRoomList().remove(room);
+                this.roomList.getListOfRooms().remove(room);
                 return true;
             }
         }
@@ -129,7 +129,7 @@ public class HouseGrid implements Measurable {
      * @param room Speficied room to attach.
      */
     public void attachRoom(Room room) {
-        roomList.getRoomList().add(room);
+        roomList.getListOfRooms().add(room);
     }
 
     /**
@@ -159,7 +159,7 @@ public class HouseGrid implements Measurable {
      * @return True or false.
      */
     public boolean checkIfRoomIsInHouseGrid(Room room) {
-        return roomList.getRoomList().contains(room);
+        return roomList.getListOfRooms().contains(room);
     }
 
     public String getPowerSourceListContent() {
@@ -169,7 +169,7 @@ public class HouseGrid implements Measurable {
     @Override
     public double getNominalPower() {
         double totalNominalPower = 0;
-        for (Room room : roomList.getRoomList()) {
+        for (Room room : roomList.getListOfRooms()) {
             totalNominalPower += room.getNominalPower();
         }
         return totalNominalPower;
@@ -230,7 +230,7 @@ public class HouseGrid implements Measurable {
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();
-        name.append("HouseGrid: " + this.name + "\n");
+        name.append("HouseGrid: " + this.houseGridName + "\n");
         return name.toString();
     }
 
@@ -248,7 +248,7 @@ public class HouseGrid implements Measurable {
         if (this.roomList.isEmpty()) {
             throw new RuntimeException("There are no rooms connected to this house grid.");
         } else {
-            for (Room room : this.roomList.getRoomList()) {
+            for (Room room : this.roomList.getListOfRooms()) {
                 totalEnergyConsumption += room.getEnergyConsumptionInAnInterval(startDate, endDate);
             }
             return totalEnergyConsumption;
@@ -259,7 +259,7 @@ public class HouseGrid implements Measurable {
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         TreeMap<LocalDateTime, Double> map = new TreeMap<>();
 
-        for (Room room : this.roomList.getRoomList()) {
+        for (Room room : this.roomList.getListOfRooms()) {
             Map<LocalDateTime, Double> map2 = room.getDataSeries(startDate, endDate);
 
             for (Map.Entry<LocalDateTime, Double> entry : map2.entrySet()) {

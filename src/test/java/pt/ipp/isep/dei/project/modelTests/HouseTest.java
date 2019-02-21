@@ -48,39 +48,41 @@ public class HouseTest {
         house.setDeviceAttribute("Bosch Tronic 3000", "Nominal Power", 0.5);
         house.setDeviceAttribute("Bosch Tronic 3000", "Performance Ratio", 0.8);
         house.setDeviceAttribute("Bosch Tronic 3000", "Hot-Water Temperature", 70);
-        house.setDeviceAttribute("Bosch Tronic 3000", "Cold-Water Temperature", "Non-existent");
-
     }
 
     @Test
-    public void createDeviceTrue() {
+    public void createDevice() {
         // Act
-        boolean result = house.createDevice("Fridge", "Bosch 2000", laundry);
+        Device result = house.createDevice("Fridge", "Bosch 2000", laundry);
+        Device expectedResult = house.getDeviceByName("Bosch 2000");
+
 
         // Assert
-        assertTrue(result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
     public void createDeviceDeviceTypeNotExists_False() {
         // Act
-        boolean result = house.createDevice("Hoven", "Bosch 1000", laundry);
+        Device result = house.createDevice("Hoven", "Bosch 1000", laundry);
+
+        Device expectedResult = null;
 
         // Assert
-        assertFalse(result);
+        assertEquals(expectedResult, result);
+
     }
 
     @Test
-    public void createDeviceNameAlreadyExists_False() {
-        // Arrange
-        house.createDevice("Fridge", "Bosch 2000", laundry);
+    public void createDeviceNameAlreadyExists() {
 
-        // Act
-        // Act
-        boolean result = house.createDevice("Lamp", "Bosch 2000", laundry);
+        house.createDevice("Fridge", "Bosch 2000", laundry);
+        Device result = house.createDevice("Fridge", "Bosch 2000", laundry);
+
+        Device expectedResult = null;
 
         // Assert
-        assertFalse(result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -97,7 +99,7 @@ public class HouseTest {
     @Test
     public void getDisplayRoomListEmptyTest() {
         // Arrange
-        house.getRoomList().getRoomList().remove(laundry);
+        house.getRoomList().getListOfRooms().remove(laundry);
         String expectResult = "";
 
         // Act
@@ -122,7 +124,7 @@ public class HouseTest {
     @Test
     public void testGetNameOfRoomInEmptyListOfRooms() {
         // Arrange
-        house.getRoomList().getRoomList().remove(laundry);
+        house.getRoomList().getListOfRooms().remove(laundry);
         String expectedResult = null;
 
         // Act
@@ -147,7 +149,7 @@ public class HouseTest {
     @Test
     public void getListSizeEmptyList() {
         // Arrange
-        house.getRoomList().getRoomList().remove(laundry);
+        house.getRoomList().getListOfRooms().remove(laundry);
         int expectResult = 0;
 
         // Act
@@ -233,7 +235,7 @@ public class HouseTest {
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getAverageDailyMeasurement(searchType, startDate, endDate);
+        double result = house.getAverageDailyMeasurementInHouseArea(searchType, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -262,7 +264,7 @@ public class HouseTest {
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getAverageDailyMeasurement(searchType, startDate, endDate);
+        double result = house.getAverageDailyMeasurementInHouseArea(searchType, startDate, endDate);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -324,7 +326,7 @@ public class HouseTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = house.getLastMeasurementByType(type);
+        double result = house.getLastMeasurementByTypeInHouseArea(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -364,7 +366,7 @@ public class HouseTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = house.getLastMeasurementByType(type);
+        double result = house.getLastMeasurementByTypeInHouseArea(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -391,7 +393,7 @@ public class HouseTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = house.getLastMeasurementByType(type);
+        double result = house.getLastMeasurementByTypeInHouseArea(type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -439,7 +441,7 @@ public class HouseTest {
 
         SensorType searchType = new SensorType("Rainfall");
         //Act
-        double result = house.getTotalDailyMeasurement(searchType, day);
+        double result = house.getTotalDailyMeasurementInHouseArea(searchType, day);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1335,7 +1337,7 @@ public class HouseTest {
     @Test
     public void checkIfRoomListIsEmptyTrue() {
         // Arrange
-        house.getRoomList().getRoomList().remove(laundry);
+        house.getRoomList().getListOfRooms().remove(laundry);
 
         // Act
         boolean result = house.roomListIsEmpty();
@@ -1443,7 +1445,7 @@ public class HouseTest {
     @Test
     public void getDeviceListSizeEmptyList() {
         // Arrange
-        house.getRoomList().getRoomList().remove(laundry);
+        house.getRoomList().getListOfRooms().remove(laundry);
         int expectResult = 0;
 
         // Act
@@ -1802,6 +1804,22 @@ public class HouseTest {
         assertEquals(expectedResult, exception.getMessage());
     }
 
+    @Test
+    void setAttributeTrueTest() {
+        // Act
+        boolean result = house.setDeviceAttribute("Bosch Tronic 3000", "Cold-Water Temperature", 40);
 
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void setAttributeFalseTest() {
+        // Act
+        boolean result = house.setDeviceAttribute("Bosch Tronic 3000", "Hot-Water Temperature", 70);
+
+        // Assert
+        assertFalse(result);
+    }
 }
 

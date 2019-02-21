@@ -17,7 +17,7 @@ public final class Utils {
     }
 
     /**
-     * method that compares two double values.
+     * Method that compares two double values.
      *
      * @param value1
      * @param value2
@@ -46,9 +46,17 @@ public final class Utils {
         return (double) tmp / factor;
     }
 
+    /**
+     * Method that reads specific information (through the use of an option that refers to a key)
+     * inside a specific configuration file (searched by its name).
+     *
+     * @param file   Name of the file.
+     * @param option Name of the key.
+     * @return String with the value related to the specified key.
+     */
     public static String readConfigFile(String file, String option) {
         Properties prop = new Properties();
-        InputStream in = null;
+        InputStream in;
         try {
             in = new FileInputStream(file);
         } catch (FileNotFoundException ex) {
@@ -66,6 +74,14 @@ public final class Utils {
         return property;
     }
 
+    /**
+     * Method turns specific information (through the use of an option that refers to a key)
+     * inside a specific configuration file (searched by its name) to a list of strings.
+     * @param file
+     * @param count
+     * @param property
+     * @return
+     */
     public static List<String> readConfigFileToList(String file, String count, String property) {
         List<String> readingsList = new ArrayList<>();
         int numberOfProperties = Integer.parseInt(readConfigFile(file, count));
@@ -76,6 +92,11 @@ public final class Utils {
         return readingsList;
     }
 
+    /**
+     * Method that turns a map (data series) into information in the form of a string.
+     * @param map Map to be used.
+     * @return String with the required information.
+     */
     public static String getDataSeriesToString(Map<LocalDateTime, Double> map) {
         StringBuilder readingsMap = new StringBuilder();
         for (Map.Entry<LocalDateTime, Double> entry : map.entrySet())
@@ -84,7 +105,17 @@ public final class Utils {
         return readingsMap.toString();
     }
 
+    /**
+     * Method that checks if two numbers are the same.
+     * @param value1 Number 1.
+     * @param value2 Number 2.
+     * @return True or false.
+     */
     public static boolean isSameNumber(Number value1, Number value2) {
         return value1.equals(value2);
+    }
+
+    public static boolean isFirstDoubleBiggerThanSecondOne(Double value1, Double value2) {
+        return value1 > value2;
     }
 }

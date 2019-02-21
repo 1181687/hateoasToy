@@ -20,7 +20,7 @@ class SensorTypeListTest {
         lista.add(tipo2);
         SensorTypeList novaLista = new SensorTypeList(lista);
         //Act
-        boolean resultado = !(novaLista.getSensorTypeList().isEmpty());
+        boolean resultado = !(novaLista.getListOfSensorTypes().isEmpty());
         //Assert
         assertTrue(resultado);
     }
@@ -38,7 +38,7 @@ class SensorTypeListTest {
         resultadoEsperado.add(tipo1);
         resultadoEsperado.add(tipo2);
         //Act
-        List<SensorType> resultado = novaLista.getSensorTypeList();
+        List<SensorType> resultado = novaLista.getListOfSensorTypes();
         //Assert
         assertEquals(resultadoEsperado, resultado);
     }
