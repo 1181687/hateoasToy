@@ -3,54 +3,54 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.*;
 
 public class AddSensorToGeoAreaController {
-    private SensorTypeList mSensorTypeList;
-    private GeographicalAreaList mListaAreaGeografica;
-    private GeographicalArea mGeographicalArea;
-    private Location mLocation;
-    private SensorType mSensorType;
+    private SensorTypeList sensorTypeList;
+    private GeographicalAreaList geographicalAreaList;
+    private GeographicalArea geographicalArea;
+    private Location location;
+    private SensorType sensorType;
 
     public AddSensorToGeoAreaController(SensorTypeList sensorTypeList, GeographicalAreaList geographicalAreaList) {
-        this.mSensorTypeList = sensorTypeList;
-        this.mListaAreaGeografica = geographicalAreaList;
+        this.sensorTypeList = sensorTypeList;
+        this.geographicalAreaList = geographicalAreaList;
     }
 
     public void getTipoSensorPorPosicao (int posicao) {
-        mSensorType = mSensorTypeList.getSensorTypeByPosition(posicao);
+        sensorType = sensorTypeList.getSensorTypeByPosition(posicao);
     }
 
     public String getNomeAreaGeograficaPorIndice (int posicao) {
-        return mListaAreaGeografica.getGeographicalAreaNameByPosition(posicao);
+        return geographicalAreaList.getGeographicalAreaNameByPosition(posicao);
     }
 
     public void getAreaGeograficaNaListaPorPosicao(int posicao) {
-        mGeographicalArea = mListaAreaGeografica.getGeoAreaList().get(posicao);
+        geographicalArea = geographicalAreaList.getGeoAreaList().get(posicao);
     }
 
     public int numeroElementosDaListaAreaGeografica () {
-        return mListaAreaGeografica.getGeoAreaList().size();
+        return geographicalAreaList.getGeoAreaList().size();
     }
 
     public int numeroElementosDaListaTipoDeSensor () {
-        return mSensorTypeList.getListOfSensorTypes().size();
+        return sensorTypeList.getListOfSensorTypes().size();
     }
 
     public String getNomeTipoSensorPorIndice (int posicao) {
-        return mSensorTypeList.getSensorTypeByPosition(posicao).getType();
+        return sensorTypeList.getSensorTypeByPosition(posicao).getType();
     }
 
     public boolean adicionarSensorAAreaGeografica(Sensor sensor) {
-        if ((!(this.mListaAreaGeografica.getGeographicalArea(this.mGeographicalArea).getSensorListInTheGeographicArea().getListOfSensors().contains(sensor)))) {
-            mListaAreaGeografica.getGeographicalArea(this.mGeographicalArea).getSensorListInTheGeographicArea().addSensor(sensor);
+        if ((!(this.geographicalAreaList.getGeographicalArea(this.geographicalArea).getSensorListInTheGeographicArea().getListOfSensors().contains(sensor)))) {
+            geographicalAreaList.getGeographicalArea(this.geographicalArea).getSensorListInTheGeographicArea().addSensor(sensor);
             return true;
         }
         return false;
     }
 
     public void criarNovaLocalizacao(double mAltitude, double mLatitude, double mLongitude) {
-        mLocation = this.mListaAreaGeografica.getGeographicalArea(this.mGeographicalArea).newLocation(mAltitude, mLatitude, mLongitude);
+        location = this.geographicalAreaList.getGeographicalArea(this.geographicalArea).newLocation(mAltitude, mLatitude, mLongitude);
     }
 
     public Sensor criarNovoSensor(String nome) {
-        return this.mListaAreaGeografica.getGeographicalArea(this.mGeographicalArea).newSensor(nome, this.mSensorType, this.mLocation);
+        return this.geographicalAreaList.getGeographicalArea(this.geographicalArea).newSensor(nome, this.sensorType, this.location);
     }
 }

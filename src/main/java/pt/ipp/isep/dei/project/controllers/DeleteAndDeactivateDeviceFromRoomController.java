@@ -6,16 +6,16 @@ import pt.ipp.isep.dei.project.model.Room;
 
 public class DeleteAndDeactivateDeviceFromRoomController {
 
-    private House mHouse;
-    private Room mRoom;
+    private House house;
+    private Room room;
 
     /**
      * construtor of controller
      *
-     * @param mHouse
+     * @param house
      */
-    public DeleteAndDeactivateDeviceFromRoomController(House mHouse) {
-        this.mHouse = mHouse;
+    public DeleteAndDeactivateDeviceFromRoomController(House house) {
+        this.house = house;
     }
 
     /**
@@ -24,7 +24,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @return the room list content.
      */
     public String getRoomListContent() {
-        return this.mHouse.getRoomListContent();
+        return this.house.getRoomListContent();
     }
 
     /**
@@ -33,7 +33,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @return
      */
     public int roomListSize() {
-        return this.mHouse.getRoomListSize();
+        return this.house.getRoomListSize();
     }
 
     /**
@@ -42,7 +42,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @return the position
      */
     public String deviceNameByPosition(int position) {
-        return this.mRoom.getDeviceNameByPosition(position);
+        return this.room.getDeviceNameByPosition(position);
     }
 
     /**
@@ -51,7 +51,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @return the size of the device list.
      */
     public int deviceListSize() {
-        return this.mRoom.getDeviceList().size();
+        return this.room.getDeviceList().size();
     }
 
     /**
@@ -60,7 +60,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @return boolean.
      */
     public boolean roomListEmpty() {
-        return this.mHouse.getRoomList().isEmpty();
+        return this.house.getRoomList().isEmpty();
     }
 
     /**
@@ -68,7 +68,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @param option
      */
     public void getRoomPosition(int option) {
-        this.mRoom = this.mHouse.getRoomOfTheRoomList(option);
+        this.room = this.house.getRoomOfTheRoomList(option);
     }
 
     /**
@@ -77,7 +77,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @return a boolean.
      */
     public boolean deviceListEmpty() {
-        return this.mRoom.isDeviceListEmpty();
+        return this.room.isDeviceListEmpty();
     }
 
     /**
@@ -86,7 +86,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @return a device list to string.
      */
     public String getDeviceListToString() {
-        return this.mRoom.getDeviceListToString();
+        return this.room.getDeviceListToString();
     }
 
     /**
@@ -96,7 +96,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @return a boolean.
      */
     public boolean deleteDevice(String device) {
-        return this.mRoom.deleteDevice(device);
+        return this.room.deleteDevice(device);
     }
 
     /**
@@ -106,7 +106,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @return a boolean.
      */
     public boolean deactivateDevice(String device) {
-        return this.mRoom.deactivateDevice(device);
+        return this.room.deactivateDevice(device);
     }
 
     /**
@@ -114,7 +114,7 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @return an ative device.
      */
     public String getActiveDeviceListToString() {
-        return this.mRoom.getActiveDeactiveDeviceListToString();
+        return this.room.getActiveDeactiveDeviceListToString();
     }
 
     /**
@@ -123,10 +123,10 @@ public class DeleteAndDeactivateDeviceFromRoomController {
      * @return a postiion.
      */
     public Device getDevice(int position) {
-        return this.mRoom.getDeviceList().get(position);
+        return this.room.getDeviceList().get(position);
     }
 
     public String getDateDeactivateDeviceToString() {
-        return this.mRoom.getDeviceList().get(0).getDateDeactivateDeviceToString();
+        return this.room.getDeviceList().get(0).getDateDeactivateDeviceToString();
     }
 }

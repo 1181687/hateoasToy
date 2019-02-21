@@ -5,17 +5,17 @@ import pt.ipp.isep.dei.project.model.*;
 
 public class AddSensorToRoomController {
 
-    private SensorTypeList mListSensorsType;
-    private RoomList mRoomList;
-    private House mHouse;
-    private Room mSelectedRoom;
-    private SensorType mSensorType;
-    private Location mLocationOfTheHouse;
+    private SensorTypeList sensorTypeList;
+    private RoomList roomList;
+    private House house;
+    private Room selectedRoom;
+    private SensorType sensorType;
+    private Location locationOfTheHouse;
 
-    public AddSensorToRoomController(SensorTypeList mListSensorsType, RoomList mRoomList, House mHouse) {
-        this.mListSensorsType = mListSensorsType;
-        this.mRoomList = mRoomList;
-        this.mHouse = mHouse;
+    public AddSensorToRoomController(SensorTypeList sensorTypeList, RoomList roomList, House house) {
+        this.sensorTypeList = sensorTypeList;
+        this.roomList = roomList;
+        this.house = house;
     }
 
     /**
@@ -23,7 +23,7 @@ public class AddSensorToRoomController {
      * @return the RoomList.
      */
     public String getRoomListContent() {
-        return this.mRoomList.getRoomListContent();
+        return this.roomList.getRoomListContent();
     }
 
     /**
@@ -31,7 +31,7 @@ public class AddSensorToRoomController {
      * @param position of the room in the list of rooms.
      */
     public void getRoomByIndex (int position) {
-        mSelectedRoom = this.mRoomList.getRoomFromPosition(position);
+        selectedRoom = this.roomList.getRoomFromPosition(position);
     }
 
     /**
@@ -39,7 +39,7 @@ public class AddSensorToRoomController {
      * @return the sensor type list.
      */
     public String displayListOfSensorsType () {
-        return this.mListSensorsType.getSensorTypeListToString();
+        return this.sensorTypeList.getSensorTypeListToString();
     }
 
     /**
@@ -47,14 +47,14 @@ public class AddSensorToRoomController {
      * @param position of sensors type in the sensors type list.
      */
     public void getSensorTypeByIndex (int position) {
-        mSensorType = this.mListSensorsType.getSensorTypeByPosition(position);
+        sensorType = this.sensorTypeList.getSensorTypeByPosition(position);
     }
 
     /**
      * This method get the location of the house.
      */
     public void getLocationOfTheHouse () {
-        mLocationOfTheHouse = mHouse.getLocation();
+        locationOfTheHouse = house.getLocation();
     }
 
     /**
@@ -63,8 +63,8 @@ public class AddSensorToRoomController {
      * @return a new sensor added in the list of sensors in the room.
      */
     public boolean createAndAddSensorToTheList (String name) {
-        Sensor newSensor = mSelectedRoom.getSensorList().newSensor(name, mSensorType, mLocationOfTheHouse);
-        return mSelectedRoom.addSensorToListOfSensorsInRoom(newSensor);
+        Sensor newSensor = selectedRoom.getSensorList().newSensor(name, sensorType, locationOfTheHouse);
+        return selectedRoom.addSensorToListOfSensorsInRoom(newSensor);
     }
 
     /**
@@ -72,7 +72,7 @@ public class AddSensorToRoomController {
      * @return true or false.
      */
     public boolean isRoomListEmpty() {
-        return mRoomList.isEmpty();
+        return roomList.isEmpty();
     }
 
     /**
@@ -80,6 +80,6 @@ public class AddSensorToRoomController {
      * @return true or false.
      */
     public boolean isSensorTypeListEmpty() {
-        return mListSensorsType.isEmpty();
+        return sensorTypeList.isEmpty();
     }
 }

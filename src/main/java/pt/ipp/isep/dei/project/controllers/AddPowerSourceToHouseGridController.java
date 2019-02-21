@@ -4,10 +4,10 @@ import pt.ipp.isep.dei.project.model.*;
 
 public class AddPowerSourceToHouseGridController {
 
-    private House mHouse;
-    private PowerSourceTypeList mPowerSourceTypeList;
-    private HouseGrid mSelectedHouseGrid;
-    private PowerSourceType mSelectedPowerSourceType;
+    private House house;
+    private PowerSourceTypeList powerSourceTypeList;
+    private HouseGrid selectedHouseGrid;
+    private PowerSourceType selectedPowerSourceType;
 
     /**
      * this is the construtor of the controller, with the house and the PowerSourceTypeList
@@ -15,8 +15,8 @@ public class AddPowerSourceToHouseGridController {
      * @param powerSourceTypeList
      */
     public AddPowerSourceToHouseGridController(House house, PowerSourceTypeList powerSourceTypeList) {
-        this.mHouse = house;
-        this.mPowerSourceTypeList = powerSourceTypeList;
+        this.house = house;
+        this.powerSourceTypeList = powerSourceTypeList;
     }
 
     /**
@@ -25,7 +25,7 @@ public class AddPowerSourceToHouseGridController {
      * @return boolean
      */
     public boolean isHouseGridListEmpty() {
-        return mHouse.isHouseGridListEmpty();
+        return house.isHouseGridListEmpty();
     }
 
 
@@ -35,7 +35,7 @@ public class AddPowerSourceToHouseGridController {
      * @return String
      */
     public String getHouseGridListToString() {
-        return mHouse.getHouseGridListToString();
+        return house.getHouseGridListToString();
     }
 
     /**
@@ -44,7 +44,7 @@ public class AddPowerSourceToHouseGridController {
      */
 
     public int getHouseGridListSize(){
-        return mHouse.getHouseGridListSize();
+        return house.getHouseGridListSize();
     }
 
     /**
@@ -53,7 +53,7 @@ public class AddPowerSourceToHouseGridController {
      */
 
     public void getHouseGridFromListByPosition(int position) {
-        this.mSelectedHouseGrid = this.mHouse.getHouseGridByPosition(position);
+        this.selectedHouseGrid = this.house.getHouseGridByPosition(position);
     }
 
     /**
@@ -63,8 +63,8 @@ public class AddPowerSourceToHouseGridController {
      */
 
     public boolean createAndAddPowerSourceToHouseGrid(String name) {
-        PowerSource newPowerSource = this.mSelectedHouseGrid.getPowerSourceList().createNewPowerSource(name, this.mSelectedPowerSourceType);
-        return this.mSelectedHouseGrid.addPowerSource(newPowerSource);
+        PowerSource newPowerSource = this.selectedHouseGrid.getPowerSourceList().createNewPowerSource(name, this.selectedPowerSourceType);
+        return this.selectedHouseGrid.addPowerSource(newPowerSource);
     }
 
     /**
@@ -72,7 +72,7 @@ public class AddPowerSourceToHouseGridController {
      * @return String
      */
     public String getPowerSourceTypeListToString() {
-        return mPowerSourceTypeList.getPowerSourceTypeListToString();
+        return powerSourceTypeList.getPowerSourceTypeListToString();
     }
 
     /**
@@ -81,7 +81,7 @@ public class AddPowerSourceToHouseGridController {
      * @return
      */
     public int getPowerSourceTypeListSize() {
-        return mPowerSourceTypeList.getSize();
+        return powerSourceTypeList.getSize();
     }
 
     /**
@@ -90,7 +90,7 @@ public class AddPowerSourceToHouseGridController {
      * @param position
      */
     public void getPowerSourceTypeByPosition(int position) {
-        this.mSelectedPowerSourceType = this.mPowerSourceTypeList.getPowerSourceTypeFromASpecificPosition(position);
+        this.selectedPowerSourceType = this.powerSourceTypeList.getPowerSourceTypeFromASpecificPosition(position);
     }
 
     /**
@@ -98,7 +98,7 @@ public class AddPowerSourceToHouseGridController {
      * @return String
      */
     public String getHouseGridName(){
-        return mSelectedHouseGrid.getName();
+        return selectedHouseGrid.getName();
     }
 
     /**
@@ -106,6 +106,6 @@ public class AddPowerSourceToHouseGridController {
      * @return
      */
     public String listPowerSourcesConnectedToGrid(){
-        return mSelectedHouseGrid.getPowerSourceListContent();
+        return selectedHouseGrid.getPowerSourceListContent();
     }
 }

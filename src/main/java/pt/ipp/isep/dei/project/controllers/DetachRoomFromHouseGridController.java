@@ -6,42 +6,42 @@ import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.RoomList;
 
 public class DetachRoomFromHouseGridController {
-    private House mHouse;
-    private RoomList mListOfRooms;
-    private HouseGrid mhouseGrid;
+    private House house;
+    private RoomList roomList;
+    private HouseGrid houseGrid;
 
     public DetachRoomFromHouseGridController(House house, RoomList listOfRooms) {
-        this.mHouse = house;
-        this.mListOfRooms = listOfRooms;
+        this.house = house;
+        this.roomList = listOfRooms;
     }
 
     public String getListOfHouseGridsAttachedToHouseGrid() {
-        return mHouse.getHouseGridListToString();
+        return house.getHouseGridListToString();
     }
 
     public HouseGrid getHouseGridFromTheList(int position) {
-        mhouseGrid = mHouse.getHouseGridByPosition(position);
-        return mhouseGrid;
+        houseGrid = house.getHouseGridByPosition(position);
+        return houseGrid;
     }
 
     public String getRoomListContent() {
-        return mListOfRooms.getRoomListContent();
+        return roomList.getRoomListContent();
     }
 
     public String getListOfRoomsInACertainHouseGrid(int position) {
-        return mHouse.getRoomsInTheHouseGrid(position);
+        return house.getRoomsInTheHouseGrid(position);
     }
 
     public Room getRoomFromTheListOfRoomByAPosition(int position) {
-        return mhouseGrid.getRoomFromTheListOfRoomByAPosition(position);
+        return houseGrid.getRoomFromTheListOfRoomByAPosition(position);
     }
 
     public boolean detachRoomFromGridList(HouseGrid houseGrid, Room roomSelected) {
-        return mHouse.detachRoomInASpecificHouseGridInTheList(houseGrid, roomSelected);
+        return house.detachRoomInASpecificHouseGridInTheList(houseGrid, roomSelected);
     }
 
     public int getGridListSize() {
-        return mHouse.getHouseGridListSize();
+        return house.getHouseGridListSize();
     }
 
 }

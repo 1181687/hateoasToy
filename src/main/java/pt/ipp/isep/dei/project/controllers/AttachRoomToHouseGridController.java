@@ -6,10 +6,10 @@ import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.RoomList;
 
 public class AttachRoomToHouseGridController {
-    private House mHouse;
-    private RoomList mListOfRooms;
-    private HouseGrid mGridToBeUsed;
-    private Room mRoomToBeAttached;
+    private House house;
+    private RoomList roomList;
+    private HouseGrid gridToBeUsed;
+    private Room roomToBeAttached;
 
     /**
      * Constructor.
@@ -18,8 +18,8 @@ public class AttachRoomToHouseGridController {
      * @param listOfRooms      RoomList attribute.
      */
     public AttachRoomToHouseGridController(House house, RoomList listOfRooms) {
-        this.mHouse = house;
-        this.mListOfRooms = listOfRooms;
+        this.house = house;
+        this.roomList = listOfRooms;
     }
 
     /**
@@ -27,7 +27,7 @@ public class AttachRoomToHouseGridController {
      * @return True or false.
      */
     public boolean isHouseGridListEmpty() {
-        return mHouse.isHouseGridListEmpty();
+        return house.isHouseGridListEmpty();
     }
 
     /**
@@ -35,7 +35,7 @@ public class AttachRoomToHouseGridController {
      * @return List of house grids.
      */
     public String getHouseGridListToString() {
-        return mHouse.getHouseGridListToString();
+        return house.getHouseGridListToString();
     }
 
     /**
@@ -44,7 +44,7 @@ public class AttachRoomToHouseGridController {
      * @return Size of the list.
      */
     public int getHouseGridListSize() {
-        return mHouse.getHouseGridListSize();
+        return house.getHouseGridListSize();
     }
 
     /**
@@ -53,7 +53,7 @@ public class AttachRoomToHouseGridController {
      * @return The respective house grid.
      */
     public HouseGrid getHouseGridFromTheList(int position){
-        return mHouse.getHouseGridByPosition(position);
+        return house.getHouseGridByPosition(position);
     }
 
     /**
@@ -62,7 +62,7 @@ public class AttachRoomToHouseGridController {
      * @return True or false.
      */
     public boolean isRoomListEmpty() {
-        return mListOfRooms.isEmpty();
+        return roomList.isEmpty();
     }
 
     /**
@@ -70,7 +70,7 @@ public class AttachRoomToHouseGridController {
      * @return List of house grids.
      */
     public String getRoomListContent() {
-        return mListOfRooms.getRoomListContent();
+        return roomList.getRoomListContent();
     }
 
     /**
@@ -79,7 +79,7 @@ public class AttachRoomToHouseGridController {
      * @return Size of the list.
      */
     public int getRoomListSize() {
-        return mListOfRooms.getListOfRooms().size();
+        return roomList.getListOfRooms().size();
     }
 
     /**
@@ -88,25 +88,25 @@ public class AttachRoomToHouseGridController {
      * @return The respective room.
      */
     public Room getRoomFromTheList(int position) {
-        return mListOfRooms.getRoomFromPosition(position);
+        return roomList.getRoomFromPosition(position);
     }
 
     /**
-     * Method that sets the attribute mGridToBeUsed as the house grid selected.
+     * Method that sets the attribute gridToBeUsed as the house grid selected.
      *
      * @param gridSelected Grid to be used in the set.
      */
     public void setGridToBeUsed(HouseGrid gridSelected) {
-        this.mGridToBeUsed = gridSelected;
+        this.gridToBeUsed = gridSelected;
     }
 
     /**
-     * Method that sets the attribute mRoomToBeAttached as the room selected.
+     * Method that sets the attribute roomToBeAttached as the room selected.
      *
      * @param roomSelected Room to be used in the set.
      */
     public void setRoomToBeAttached(Room roomSelected) {
-        this.mRoomToBeAttached = roomSelected;
+        this.roomToBeAttached = roomSelected;
     }
 
     /**
@@ -114,7 +114,7 @@ public class AttachRoomToHouseGridController {
      * @return True or false.
      */
     public boolean checkIfTheChosenRoomIsAlreadyInTheChosenGrid() {
-        return mHouse.checkIfRoomIsAlreadyInHouseGrid(mGridToBeUsed, mRoomToBeAttached);
+        return house.checkIfRoomIsAlreadyInHouseGrid(gridToBeUsed, roomToBeAttached);
     }
 
     /**
@@ -123,20 +123,20 @@ public class AttachRoomToHouseGridController {
      * @return Grid where the room is is connected to.
      */
     public HouseGrid getTheGridWhereTheRoomIsConnected() {
-        return mHouse.getTheGridWhereTheRoomIsConnected(mRoomToBeAttached);
+        return house.getTheGridWhereTheRoomIsConnected(roomToBeAttached);
     }
 
     /**
      * Method that detach the specified room in the specified house grid via class HouseGrid.
      */
     public void detachRoomFromTheHouseGrid(HouseGrid grid) {
-        mHouse.detachRoomInASpecificHouseGridInTheList(grid, mRoomToBeAttached);
+        house.detachRoomInASpecificHouseGridInTheList(grid, roomToBeAttached);
     }
 
     /**
      * Method that attach the specified room in the specified house grid via class HouseGrid.
      */
     public void attachRoomInTheHouseGrid() {
-        mHouse.attachRoomInASpecificHouseGridInTheList(mGridToBeUsed, mRoomToBeAttached);
+        house.attachRoomInASpecificHouseGridInTheList(gridToBeUsed, roomToBeAttached);
     }
 }
