@@ -18,29 +18,32 @@ skinparam sequence {
 }
 
 actor User
-User -> ":UI": 1- DeactivateDeviceFromRoom
-activate ":UI"
-activate ":Controller"
-":UI" -> ":Controller": 1.1- getRoomListContent()
-":Controller" -> ":House": 1.1.1- getRoomListContent()
+User -> ":DeactivateDevice\nFromRoomUI": 1- DeactivateDeviceFromRoom
+activate ":DeactivateDevice\nFromRoomUI"
+":DeactivateDevice\nFromRoomUI" -> ":DeactivationDeviceFrom\nRoomController": 1.1- getRoomListContent()
+activate ":DeactivationDeviceFrom\nRoomController"
+":DeactivationDeviceFrom\nRoomController" -> ":House": 1.1.1- getRoomListContent()
 activate ":House"
 
-":Controller" <-- ":House": 1.1.2- roomListContent
+":DeactivationDeviceFrom\nRoomController" <-- ":House": 1.1.2- roomListContent
 deactivate ":House"
-":UI" <-- ":Controller": 1.2- roomListContent
-User <-- ":UI": 1.3- roomListContent
+":DeactivateDevice\nFromRoomUI" <-- ":DeactivationDeviceFrom\nRoomController": 1.2- roomListContent
+deactivate ":DeactivationDeviceFrom\nRoomController"
+User <-- ":DeactivateDevice\nFromRoomUI": 1.3- roomListContent
 
-User -> ":UI": 2- Int position: Room
-":UI" -> ":Controller": 2.1- getRoomName(position)
-":Controller" -> ":House": 2.1.1- getRoomName(position)
+User -> ":DeactivateDevice\nFromRoomUI": 2- Int position: Room
+":DeactivateDevice\nFromRoomUI" -> ":DeactivationDeviceFrom\nRoomController": 2.1- getRoomName(position)
+activate ":DeactivationDeviceFrom\nRoomController"
+":DeactivationDeviceFrom\nRoomController" -> ":House": 2.1.1- getRoomName(position)
 activate ":House"
-":Controller" <-- ":House": 2.1.2- roomName
+":DeactivationDeviceFrom\nRoomController" <-- ":House": 2.1.2- roomName
 deactivate ":House"
-":UI" <-- ":Controller": 2.2- roomName
+":DeactivateDevice\nFromRoomUI" <-- ":DeactivationDeviceFrom\nRoomController": 2.2- roomName
+deactivate ":DeactivationDeviceFrom\nRoomController"
 
-
-":UI" -> ":Controller": 2.3- getDeviceListContent(Room)
-":Controller" -> ":House": 2.3.1- getDeviceListContent(Room)
+":DeactivateDevice\nFromRoomUI" -> ":DeactivationDeviceFrom\nRoomController": 2.3- getDeviceListContent(Room)
+activate ":DeactivationDeviceFrom\nRoomController"
+":DeactivationDeviceFrom\nRoomController" -> ":House": 2.3.1- getDeviceListContent(Room)
 activate ":House"
 ":House" -> ":RoomList": 2.3.1.1- getDeviceListContent(Room)
 activate ":RoomList"
@@ -50,37 +53,40 @@ activate ":Room"
 deactivate ":Room"
 ":House" <-- ":RoomList":  2.3.1.2- deviceListContent
 deactivate ":RoomList"
-":Controller" <-- ":House": 2.3.2- deviceListContent
+":DeactivationDeviceFrom\nRoomController" <-- ":House": 2.3.2- deviceListContent
 deactivate ":House"
-":UI" <-- ":Controller": 2.4- deviceListContent
-User <-- ":UI": 2.5- deviceListContent
+":DeactivateDevice\nFromRoomUI" <-- ":DeactivationDeviceFrom\nRoomController": 2.4- deviceListContent
+deactivate ":DeactivationDeviceFrom\nRoomController"
+User <-- ":DeactivateDevice\nFromRoomUI": 2.5- deviceListContent
 
-User -> ":UI": 3- Int position
-":UI" -> ":Controller": 3.1- getDevice(position)
-":Controller" -> ":Room": 3.1.1- getDevice(position)
+User -> ":DeactivateDevice\nFromRoomUI": 3- Int position
+":DeactivateDevice\nFromRoomUI" -> ":DeactivationDeviceFrom\nRoomController": 3.1- getDevice(position)
+activate ":DeactivationDeviceFrom\nRoomController"
+":DeactivationDeviceFrom\nRoomController" -> ":Room": 3.1.1- getDevice(position)
 activate ":Room"
 ":Room" -> ":DeviceList": 3.1.1.1- getDevice(position)
 activate ":DeviceList"
 ":Room" <-- ":DeviceList": 3.1.1.2- device
 deactivate ":DeviceList"
-":Controller" <-- ":Room": 3.1.2- device
+":DeactivationDeviceFrom\nRoomController" <-- ":Room": 3.1.2- device
 deactivate ":Room"
-":UI" <-- ":Controller": 3.2- device
-
+":DeactivateDevice\nFromRoomUI" <-- ":DeactivationDeviceFrom\nRoomController": 3.2- device
+deactivate ":DeactivationDeviceFrom\nRoomController"
 
 User --> User: 4- ConfirmDeactivationDevice
-":UI" --> ":Controller": 4.1- deactivationDevice()
-":Controller" --> ":Room": 4.1.1- deactivationDevice()
+":DeactivateDevice\nFromRoomUI" --> ":DeactivationDeviceFrom\nRoomController": 4.1- deactivationDevice()
+activate ":DeactivationDeviceFrom\nRoomController"
+":DeactivationDeviceFrom\nRoomController" --> ":Room": 4.1.1- deactivationDevice()
 activate ":Room"
 ":Room" --> ":DeviceList": 4.1.1.1- deactivationDevice()
 activate ":DeviceList"
 ":Room" <-- ":DeviceList": 4.1.1.2- successMessage
 deactivate ":DeviceList"
-":Controller" <-- ":Room": 4.1.2- successMessage
+":DeactivationDeviceFrom\nRoomController" <-- ":Room": 4.1.2- successMessage
 deactivate ":Room"
-":UI" <-- ":Controller": 4.2- successMessage
-deactivate ":Controller"
-User <-- ":UI": 4.3- successMessage
-deactivate ":UI"
+":DeactivateDevice\nFromRoomUI" <-- ":DeactivationDeviceFrom\nRoomController": 4.2- successMessage
+deactivate ":DeactivationDeviceFrom\nRoomController"
+User <-- ":DeactivateDevice\nFromRoomUI": 4.3- successMessage
+deactivate ":DeactivateDevice\nFromRoomUI"
 
 @enduml
