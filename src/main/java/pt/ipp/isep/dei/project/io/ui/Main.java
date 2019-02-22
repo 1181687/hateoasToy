@@ -352,7 +352,7 @@ public class Main {
         // LISTS OF PROGRAMS
         double durationNotAsked = 30;
         // Dishwasher B107/B109
-        Program program = new Program("Glasses", durationNotAsked, 0.9);
+/*        Program program = new Program("Glasses", durationNotAsked, 0.9);
         Program program1 = new Program("Eco", durationNotAsked, 1.3);
         Program program2 = new Program("Eco turbo", durationNotAsked, 1.7);
         Program program3 = new Program("Dishes", durationNotAsked, 2.1);
@@ -360,10 +360,10 @@ public class Main {
         dishwasherPrograms.addProgram(program);
         dishwasherPrograms.addProgram(program1);
         dishwasherPrograms.addProgram(program2);
-        dishwasherPrograms.addProgram(program3);
+        dishwasherPrograms.addProgram(program3);*/
 
         // Washing Machine B107
-        Program program4 = new Program("Wool", durationNotAsked, 1.1);
+      /*  Program program4 = new Program("Wool", durationNotAsked, 1.1);
         Program program5 = new Program("Fast", durationNotAsked, 1.8);
         Program program6 = new Program("Fast plus", durationNotAsked, 2.7);
         Program program7 = new Program("Synthetic 30º", durationNotAsked, 2.8);
@@ -371,10 +371,10 @@ public class Main {
         washingMachinePrograms.addProgram(program4);
         washingMachinePrograms.addProgram(program5);
         washingMachinePrograms.addProgram(program6);
-        washingMachinePrograms.addProgram(program7);
+        washingMachinePrograms.addProgram(program7);*/
 
         // Washing Machine B109
-        Program program8 = new Program("Wool", durationNotAsked, 0.9);
+ /*       Program program8 = new Program("Wool", durationNotAsked, 0.9);
         Program program9 = new Program("Fast", durationNotAsked, 1.3);
         Program program10 = new Program("Fast plus", durationNotAsked, 1.7);
         Program program11 = new Program("Synthetic 30º", durationNotAsked, 2.1);
@@ -382,10 +382,10 @@ public class Main {
         washingMachinePrograms1.addProgram(program8);
         washingMachinePrograms1.addProgram(program9);
         washingMachinePrograms1.addProgram(program10);
-        washingMachinePrograms1.addProgram(program11);
+        washingMachinePrograms1.addProgram(program11);*/
 
         // Dishwasher B106
-        Program program12 = new Program("Glasses", durationNotAsked, 0.8);
+      /*  Program program12 = new Program("Glasses", durationNotAsked, 0.8);
         Program program13 = new Program("Light", durationNotAsked, 1.3);
         Program program14 = new Program("Light turbo", durationNotAsked, 1.9);
         Program program15 = new Program("Dishes", durationNotAsked, 2.3);
@@ -393,7 +393,7 @@ public class Main {
         dishwasherPrograms1.addProgram(program12);
         dishwasherPrograms1.addProgram(program13);
         dishwasherPrograms1.addProgram(program14);
-        dishwasherPrograms1.addProgram(program15);
+        dishwasherPrograms1.addProgram(program15);*/
 
 
         // DEVICES
@@ -443,6 +443,16 @@ public class Main {
         dwB107.addReadingsToTheList(dwEC8);
         dwB107.addReadingsToTheList(dwEC9);
 
+        Programmable dwB107Programmable = dwB107.asProgrammable();
+        Program program = dwB107Programmable.newProgram("Glasses", durationNotAsked, 0.9);
+        Program program1 = dwB107Programmable.newProgram("Eco", durationNotAsked, 1.3);
+        Program program2 = dwB107Programmable.newProgram("Eco turbo", durationNotAsked, 1.7);
+        Program program3 = dwB107Programmable.newProgram("Dishes", durationNotAsked, 2.1);
+        dwB107Programmable.addProgram(program);
+        dwB107Programmable.addProgram(program1);
+        dwB107Programmable.addProgram(program2);
+        dwB107Programmable.addProgram(program3);
+
         // Washing Machine B107
         WashingMachineType washingMachineType = new WashingMachineType();
         Device wmB107 = washingMachineType.createDevice("Washing Machine B107", room1);
@@ -453,6 +463,16 @@ public class Main {
         wmB107.addReadingsToTheList(wmEC1);
         wmB107.addReadingsToTheList(wmEC2);
         wmB107.addReadingsToTheList(wmEC3);
+
+        Programmable wmB107Programmable = wmB107.asProgrammable();
+        Program program4 = wmB107Programmable.newProgram("Wool", durationNotAsked, 1.1);
+        Program program5 = wmB107Programmable.newProgram("Fast", durationNotAsked, 1.8);
+        Program program6 = wmB107Programmable.newProgram("Fast plus", durationNotAsked, 2.7);
+        Program program7 = wmB107Programmable.newProgram("Synthetic 30º", durationNotAsked, 2.8);
+        wmB107Programmable.addProgram(program4);
+        wmB107Programmable.addProgram(program5);
+        wmB107Programmable.addProgram(program6);
+        wmB107Programmable.addProgram(program7);
 
         // Electric Water Heater B109
         ElectricWaterHeaterType electricWaterHeaterTypeB109 = new ElectricWaterHeaterType();
@@ -489,6 +509,16 @@ public class Main {
         dwB109.setAttributesDevType(CAPACITY, 50);
         dwB109.setAttributesDevType(NOMINAL_POWER, 1.5);
 
+        Programmable dwB109Programmable = dwB109.asProgrammable();
+        Program program16 = dwB109Programmable.newProgram("Glasses", durationNotAsked, 0.9);
+        Program program17 = dwB109Programmable.newProgram("Eco", durationNotAsked, 1.3);
+        Program program18 = dwB109Programmable.newProgram("Eco turbo", durationNotAsked, 1.7);
+        Program program19 = dwB109Programmable.newProgram("Dishes", durationNotAsked, 2.1);
+        dwB109Programmable.addProgram(program16);
+        dwB109Programmable.addProgram(program17);
+        dwB109Programmable.addProgram(program18);
+        dwB109Programmable.addProgram(program19);
+
 
         // Washing Machine B109
 
@@ -501,6 +531,16 @@ public class Main {
         wmB109.addReadingsToTheList(wm1EC2);
         wmB109.addReadingsToTheList(wm1EC3);
         wmB109.addReadingsToTheList(wm1EC4);
+
+        Programmable wmB109Programmable = wmB109.asProgrammable();
+        Program program8 = wmB109Programmable.newProgram("Wool", durationNotAsked, 0.9);
+        Program program9 = wmB109Programmable.newProgram("Fast", durationNotAsked, 1.3);
+        Program program10 = wmB109Programmable.newProgram("Fast plus", durationNotAsked, 1.7);
+        Program program11 = wmB109Programmable.newProgram("Synthetic 30º", durationNotAsked, 2.1);
+        wmB109Programmable.addProgram(program8);
+        wmB109Programmable.addProgram(program9);
+        wmB109Programmable.addProgram(program10);
+        wmB109Programmable.addProgram(program11);
 
         // Electric Water Heater 106
         Device ewhB106 = electricWaterHeaterTypeB109.createDevice("EHW B106", room3);
@@ -515,6 +555,16 @@ public class Main {
         Device dwB106 = dishWasherTypeB106.createDevice("Dishwasher B106", room3);
         dwB106.setAttributesDevType(CAPACITY, 50);
         dwB106.setAttributesDevType(NOMINAL_POWER, 1.4);
+
+        Programmable dwB106Programmable = dwB106.asProgrammable();
+        Program program12 = dwB106Programmable.newProgram("Glasses", durationNotAsked, 0.8);
+        Program program13 = dwB106Programmable.newProgram("Light", durationNotAsked, 1.3);
+        Program program14 = dwB106Programmable.newProgram("Light turbo", durationNotAsked, 1.9);
+        Program program15 = dwB106Programmable.newProgram("Dishes", durationNotAsked, 2.3);
+        dwB106Programmable.addProgram(program12);
+        dwB106Programmable.addProgram(program13);
+        dwB106Programmable.addProgram(program14);
+        dwB106Programmable.addProgram(program15);
 
         // ROOM LIST
         houseEdificioB.addRoom(room1);
