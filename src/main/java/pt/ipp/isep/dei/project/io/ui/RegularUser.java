@@ -28,15 +28,15 @@ public class RegularUser {
             switch (option) {
                 case 1:
                     GetTotalAndAverageRainfallAndCurrentTempHouseArea ui600 = new GetTotalAndAverageRainfallAndCurrentTempHouseArea(house);
-                    ui600.run3();
+                    ui600.mostRecentMeasurement();
                     break;
                 case 2:
                     GetTotalAndAverageRainfallAndCurrentTempHouseArea ui620 = new GetTotalAndAverageRainfallAndCurrentTempHouseArea(house);
-                    ui620.run();
+                    ui620.totalRainfall();
                     break;
                 case 3:
                     GetTotalAndAverageRainfallAndCurrentTempHouseArea ui623 = new GetTotalAndAverageRainfallAndCurrentTempHouseArea(house);
-                    ui623.run2();
+                    ui623.averageRainfall();
                     break;
             }
             option = Menu.regularUserHouseAreaMenu();

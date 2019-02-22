@@ -23,7 +23,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseArea {
         this.controller = new GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(house);
     }
 
-    public void run() {
+    public void totalRainfall() {
 
         String label1 = "Please insert the date when you want to get the total Rainfall (yyyy-MM-dd):";
         LocalDate dateLD = InputValidator.getStringDate(label1);
@@ -35,7 +35,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseArea {
         }
     }
 
-    public void run2() {
+    public void averageRainfall() {
 
         String label1 = "Please insert the first date of the period (yyyy-MM-dd):";
         LocalDate firstDate = InputValidator.getStringDate(label1);
@@ -56,7 +56,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseArea {
         }
     }
 
-    public void run3() {
+    public void mostRecentMeasurement() {
         if (Double.isNaN(controller.getMostRecentAvailableMeasurement())) {
             System.out.println("There are no " + controller.getTypeTemperature() + " sensors with valid measurements in the house area.");
             return;
