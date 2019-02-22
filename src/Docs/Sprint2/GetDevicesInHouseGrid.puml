@@ -17,44 +17,40 @@ skinparam sequence {
 }
 
 autonumber
-actor User
-User -> UI: GetDevicesInHouseGrid
-activate UI
-UI -> Controller: GetHouseGridListToString()
-activate Controller
-Controller -> House: GetHouseGridListToString()
-activate House
-House -> HouseGridList: GetHouseGridListToString()
-activate HouseGridList
-UI <-- HouseGridList: HouseGridListToString
-deactivate HouseGridList
-deactivate House
-User <-- UI: HouseGridListToString
+actor PowerUserAdministrator
+User -> ":UI": GetDevicesInHouseGrid
+activate ":UI"
+":UI" -> ":Controller": GetHouseGridListToString()
+activate ":Controller"
+":Controller" -> ":House": GetHouseGridListToString()
+activate ":House"
+":House" -> ":House": GetHouseGridListToString()
+":Controller" <-- ":House": String
+deactivate ":House"
+":UI" <-- ":Controller": String
+deactivate ":Controller"
+User <--":UI":String
 
-User -> UI: ChooseHouseGrid
-UI -> Controller: GetHGNameByHGPosition()
-Controller -> House: GetHGNameByHGPosition()
-activate House
-House -> HouseGridList: GetNameByHGPosition()
-activate HouseGridList
-House <-- HouseGridList: NameByHGPosition
-deactivate HouseGridList
-Controller <-- House: HGNameByHGPosition
-deactivate House
-UI <-- Controller: HGNameByHGPosition
+User -> ":UI": ChooseHouseGrid
+":UI" -> ":Controller": GetGridNameByPosition()
+activate ":Controller"
+":Controller" -> ":House": GetGridNameByPosition()
+activate ":House"
+":House" -> ":House": GetGridNameByPosition()
+":Controller" <-- ":House": String
+deactivate ":House"
+":UI" <-- ":Controller": String
+deactivate ":Controller"
 
 
-UI -> Controller: GetDeviceListContentNameTypeLocationByHG()
-
-Controller -> House: GetDeviceListContentNameTypeLocationByHG()
-activate House
-House -> HouseGridList: GetHGByPosition()
-activate HouseGridList
-House <-- HouseGridList: HGByPosition
-deactivate HouseGridList
-Controller <-- House: DeviceListContentNameTypeLocationByHG
-deactivate House
-UI <-- Controller: DeviceListContentNameTypeLocationByHG
-deactivate Controller
-User <-- UI: DeviceListContentNameTypeLocationByHG
+":UI" -> ":Controller": GetDeviceListContentNameTypeLocationByGrid()
+activate ":Controller"
+":Controller" -> ":House": GetDeviceListContentNameTypeLocationByGrid()
+activate ":House"
+":House" -> ":House": GetDeviceListContentNameTypeLocationByGrid()
+":Controller" <-- ":House": String
+deactivate ":House"
+":UI" <-- ":Controller": String
+deactivate ":Controller"
+User <-- ":UI": String
 @enduml
