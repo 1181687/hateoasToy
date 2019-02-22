@@ -113,7 +113,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         Dimension dimension = new Dimension(25, 25, 25);
         Room room1 = new Room("Room", 2, dimension);
         String name = "Lamp IKEA";
-        LampType lampType = new LampType();
+        DeviceType lampType = house.getDeviceType("Lamp");
         Device lamp = lampType.createDevice(name, room1);
         lamp.setAttributesDevType("Nominal Power", 20);
 

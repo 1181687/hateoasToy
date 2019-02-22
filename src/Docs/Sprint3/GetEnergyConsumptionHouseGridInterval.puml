@@ -35,7 +35,7 @@ PowerUser -> ":GetEnergyConsumption\nHouseGridUI": 2- Int House Grid Position
 activate ":GetEnergyConsumption\nHouseGridController"
 ":GetEnergyConsumption\nHouseGridController" -> ":House": 2.2- getHouseGridByPosition (position)
 activate ":House"
-":GetEnergyConsumption\nHouseGridController" <-- ":House": 2.3- choosenHouseGrid
+":GetEnergyConsumption\nHouseGridController" <-- ":House": 2.3- chosenHouseGrid
 deactivate ":GetEnergyConsumption\nHouseGridController"
 deactivate ":House"
 

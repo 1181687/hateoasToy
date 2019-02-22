@@ -349,52 +349,7 @@ public class Main {
         houseEdificioB.addRoom(room3);
 
 
-        // LISTS OF PROGRAMS
         double durationNotAsked = 30;
-        // Dishwasher B107/B109
-/*        Program program = new Program("Glasses", durationNotAsked, 0.9);
-        Program program1 = new Program("Eco", durationNotAsked, 1.3);
-        Program program2 = new Program("Eco turbo", durationNotAsked, 1.7);
-        Program program3 = new Program("Dishes", durationNotAsked, 2.1);
-        ProgramList dishwasherPrograms = new ProgramList();
-        dishwasherPrograms.addProgram(program);
-        dishwasherPrograms.addProgram(program1);
-        dishwasherPrograms.addProgram(program2);
-        dishwasherPrograms.addProgram(program3);*/
-
-        // Washing Machine B107
-      /*  Program program4 = new Program("Wool", durationNotAsked, 1.1);
-        Program program5 = new Program("Fast", durationNotAsked, 1.8);
-        Program program6 = new Program("Fast plus", durationNotAsked, 2.7);
-        Program program7 = new Program("Synthetic 30º", durationNotAsked, 2.8);
-        ProgramList washingMachinePrograms = new ProgramList();
-        washingMachinePrograms.addProgram(program4);
-        washingMachinePrograms.addProgram(program5);
-        washingMachinePrograms.addProgram(program6);
-        washingMachinePrograms.addProgram(program7);*/
-
-        // Washing Machine B109
- /*       Program program8 = new Program("Wool", durationNotAsked, 0.9);
-        Program program9 = new Program("Fast", durationNotAsked, 1.3);
-        Program program10 = new Program("Fast plus", durationNotAsked, 1.7);
-        Program program11 = new Program("Synthetic 30º", durationNotAsked, 2.1);
-        ProgramList washingMachinePrograms1 = new ProgramList();
-        washingMachinePrograms1.addProgram(program8);
-        washingMachinePrograms1.addProgram(program9);
-        washingMachinePrograms1.addProgram(program10);
-        washingMachinePrograms1.addProgram(program11);*/
-
-        // Dishwasher B106
-      /*  Program program12 = new Program("Glasses", durationNotAsked, 0.8);
-        Program program13 = new Program("Light", durationNotAsked, 1.3);
-        Program program14 = new Program("Light turbo", durationNotAsked, 1.9);
-        Program program15 = new Program("Dishes", durationNotAsked, 2.3);
-        ProgramList dishwasherPrograms1 = new ProgramList();
-        dishwasherPrograms1.addProgram(program12);
-        dishwasherPrograms1.addProgram(program13);
-        dishwasherPrograms1.addProgram(program14);
-        dishwasherPrograms1.addProgram(program15);*/
-
 
         // DEVICES
         // Electric Water Heater B107

@@ -38,5 +38,4 @@ public class GetEnergyConsumptionOfAGridController {
         return this.houseGrid.getName();
     }
 
-
 }
