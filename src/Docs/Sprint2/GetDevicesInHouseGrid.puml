@@ -18,7 +18,7 @@ skinparam sequence {
 
 autonumber
 actor PowerUserAdministrator
-User -> ":UI": GetDevicesInHouseGrid
+PowerUserAdministrator -> ":UI": GetDevicesInHouseGrid
 activate ":UI"
 ":UI" -> ":Controller": GetHouseGridListToString()
 activate ":Controller"
@@ -29,9 +29,9 @@ activate ":House"
 deactivate ":House"
 ":UI" <-- ":Controller": String
 deactivate ":Controller"
-User <--":UI":String
+PowerUserAdministrator <--":UI":String
 
-User -> ":UI": ChooseHouseGrid
+PowerUserAdministrator -> ":UI": ChooseHouseGrid
 ":UI" -> ":Controller": GetGridNameByPosition()
 activate ":Controller"
 ":Controller" -> ":House": GetGridNameByPosition()
@@ -52,5 +52,5 @@ activate ":House"
 deactivate ":House"
 ":UI" <-- ":Controller": String
 deactivate ":Controller"
-User <-- ":UI": String
+PowerUserAdministrator <-- ":UI": String
 @enduml
