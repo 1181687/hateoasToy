@@ -29,11 +29,6 @@ public class GetDevicesInHouseGridControllerTest {
 
     @BeforeEach
     public void StartUp() {
-        //Geographical Area
-        Location location = new Location(41.178553, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
 
         //House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -42,29 +37,20 @@ public class GetDevicesInHouseGridControllerTest {
 
         houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
-        Location houseLocation = new Location(41.177748, -8.607745, 112);
-        Address address = new Address("4200-072", houseLocation);
-        houseEdificioB.setAddress(address);
-        houseEdificioB.setInsertedGeoArea(insertedGeoArea);
-
+        //Controller
         this.ctrl = new GetDevicesInHouseGridController(houseEdificioB);
-
 
         //Room ONE
         String name = "Kitchen";
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
-        // DeviceSpecs specFridge = new FridgeSpecs(100, 100, 100, 100);
-        // ProgramList wmProgramList = new ProgramList();
-        // ProgramList dwProgramList = new ProgramList();
+        //Room TWO
+        String name2 = "KitchenBasement";
+        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
+        Room room2 = new Room(name2, -1, dim2);
 
-        // DeviceSpecs specWashing = new WashingMachineSpecs(100, 100, wmProgramList);
-        //DeviceSpecs specDishWasher = new DishWasherSpecs(100, 100, dwProgramList);
-        //Device dev1 = new Device("FridgeAriston", room1, specFridge);
-        //Device dev2 = new Device("WashingMachineBosh", room1, specWashing);
-        //Device dev3 = new Device("DishWasher", room1, specDishWasher);
-
+        //Devices
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
@@ -93,18 +79,6 @@ public class GetDevicesInHouseGridControllerTest {
         washingMachine1.setAttributesDevType(ATTRIBUTE_ENERGY_CONSUMPTION, energyConsumption);
         washingMachine1.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPowerWash);
 
-
-        //Room TWO
-        String name2 = "KitchenBasement";
-        Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
-        Room room2 = new Room(name2, -1, dim2);
-        //DeviceSpecs specWaterHeater = new ElectricWaterHeaterSpecs(100, 100, 100, 0.9);
-        //Device dev4 = new Device("FridgeSiemens", room2, specFridge);
-        //Device dev5 = new Device("DishWasherTeka", room2, specDishWasher);
-        //Device dev6 = new Device("ElectricWaterHeater", room2, specWaterHeater);
-
-
-        // FridgeType fridgeType = new FridgeType();
         Device fridge3 = fridgeType.createDevice("Fridge1100", room2);
         fridge3.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge3.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
@@ -123,10 +97,7 @@ public class GetDevicesInHouseGridControllerTest {
         washingMachine2.setAttributesDevType(ATTRIBUTE_ENERGY_CONSUMPTION, energyConsumption);
         washingMachine2.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPowerWash);
 
-
         //add to Lists
-
-
         HouseGrid houseGrid = new HouseGrid("grid1");
         HouseGrid houseGridEmpty = new HouseGrid("grid2");
         houseGrid.attachRoom(room1);
