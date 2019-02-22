@@ -9,10 +9,10 @@ import java.util.List;
 
 public class CreateHouseGridController {
 
-    private House mHouse;
+    private House house;
 
     public CreateHouseGridController(House house) {
-        this.mHouse = house;
+        this.house = house;
     }
 
     /**
@@ -21,7 +21,7 @@ public class CreateHouseGridController {
      * @return mHouseGridList.
      */
     public List<HouseGrid> getHouseGridList() {
-        return mHouse.getHouseGridList();
+        return house.getHouseGridList();
     }
 
     /**
@@ -31,7 +31,7 @@ public class CreateHouseGridController {
      * @return New object of the class HouseGrid.
      */
     public HouseGrid createANewHouseGrid (String nameOfHG){
-        return mHouse.newHouseGrid(nameOfHG);
+        return house.newHouseGrid(nameOfHG);
     }
 
     /**
@@ -40,6 +40,6 @@ public class CreateHouseGridController {
      * @param grid Specified grid.
      */
     public void addHouseGridToTheListOfHouseGrids(HouseGrid grid) {
-        mHouse.addGrid(grid);
+        house.addGrid(grid);
     }
 }

@@ -6,15 +6,15 @@ import java.util.List;
 
 public class GetListGeoAreaTypesController {
 
-    private GeographicalAreaTypeList mListaTAG;
+    private GeographicalAreaTypeList geographicalAreaTypeList;
 
 
     public GetListGeoAreaTypesController(GeographicalAreaTypeList listaTAG) {
-        this.mListaTAG = listaTAG;
+        this.geographicalAreaTypeList = listaTAG;
     }
 
 
     public List<String> getListaTiposDeAG (){
-        return mListaTAG.getListOfGeoAreaTypes();
+        return geographicalAreaTypeList.getListOfGeoAreaTypes();
     }
 }

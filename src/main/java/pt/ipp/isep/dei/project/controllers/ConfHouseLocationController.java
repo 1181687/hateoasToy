@@ -4,20 +4,20 @@ import pt.ipp.isep.dei.project.model.Address;
 import pt.ipp.isep.dei.project.model.House;
 
 public class ConfHouseLocationController {
-    private House mHouse;
-    private Address mAddress;
+    private House house;
+    private Address address;
 
     public ConfHouseLocationController(House house) {
-        this.mHouse = house;
+        this.house = house;
     }
 
     /**
      * Get method
      *
-     * @return mHouse
+     * @return house
      */
     public House getHouse() {
-        return mHouse;
+        return house;
     }
 
     /**
@@ -28,13 +28,13 @@ public class ConfHouseLocationController {
      * @param altitude attribute of Location. Double given by user
      */
     public void defineNewAddress(String zipCode, double latitude, double longitude, double altitude) {
-        this.mAddress = mHouse.newAddresses(zipCode, latitude, longitude, altitude);
+        this.address = house.newAddresses(zipCode, latitude, longitude, altitude);
     }
 
     /**
      * Method that sets the Address to the House
      */
     public void setAddress() {
-        mHouse.setAddress(mAddress);
+        house.setAddress(address);
     }
 }

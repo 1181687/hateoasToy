@@ -5,14 +5,14 @@ import pt.ipp.isep.dei.project.model.GeographicalAreaTypeList;
 
 
 public class AddGeoAreaTypeController {
-    private GeographicalAreaTypeList mList;
+    private GeographicalAreaTypeList geographicalAreaTypeList;
 
     /**
      * this is the construtor of the addGeoAreaTypeController
      * @param list
      */
     public AddGeoAreaTypeController(GeographicalAreaTypeList list) {
-        this.mList = list;
+        this.geographicalAreaTypeList = list;
     }
 
     /**
@@ -21,15 +21,15 @@ public class AddGeoAreaTypeController {
      * @return true if a geographicalAreaType is added. If not, return false.
      */
     public boolean addTypeOfGeoAreaToTheList(String geoAreaType) {
-        GeographicalAreaType newTypeOfGeoArea = mList.newTypeOfGeoArea(geoAreaType);
-        return mList.addTypeOfGeoAreaToTheList(newTypeOfGeoArea);
+        GeographicalAreaType newTypeOfGeoArea = geographicalAreaTypeList.newTypeOfGeoArea(geoAreaType);
+        return geographicalAreaTypeList.addTypeOfGeoAreaToTheList(newTypeOfGeoArea);
     }
 
     /**
      * method that get the list of geo area types.
      */
     public GeographicalAreaTypeList getList() {
-        return mList;
+        return geographicalAreaTypeList;
     }
 }
 

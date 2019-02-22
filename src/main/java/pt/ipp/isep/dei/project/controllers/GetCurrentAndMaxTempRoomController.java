@@ -8,8 +8,8 @@ import java.time.LocalDate;
 
 public class GetCurrentAndMaxTempRoomController {
 
-    private House mHouse;
-    private SensorType mType;
+    private House house;
+    private SensorType sensorType;
 
     /**
      * constructor that receives a House and a SensorType
@@ -18,12 +18,12 @@ public class GetCurrentAndMaxTempRoomController {
      * @param type  SensorType received
      */
     public GetCurrentAndMaxTempRoomController(House house, SensorType type) {
-        this.mHouse = house;
-        this.mType = type;
+        this.house = house;
+        this.sensorType = type;
     }
 
     public SensorType getType() {
-        return mType;
+        return sensorType;
     }
 
     /**
@@ -34,7 +34,7 @@ public class GetCurrentAndMaxTempRoomController {
      * @return latest measurement
      */
     public Readings getLatestMeasurementByRoomName(String name) {
-        return this.mHouse.getLatestMeasurementBySensorType(name, mType);
+        return this.house.getLatestMeasurementBySensorType(name, sensorType);
     }
 
     /**
@@ -43,7 +43,7 @@ public class GetCurrentAndMaxTempRoomController {
      * @return a String with room's name, house floor, height, length and width:
      */
     public String getRoomListContent() {
-        return this.mHouse.getRoomListContent();
+        return this.house.getRoomListContent();
     }
 
     /**
@@ -52,7 +52,7 @@ public class GetCurrentAndMaxTempRoomController {
      * @return lenght of roomList
      */
     public int getRoomListSize() {
-        return this.mHouse.getRoomListSize();
+        return this.house.getRoomListSize();
     }
 
     /**
@@ -62,7 +62,7 @@ public class GetCurrentAndMaxTempRoomController {
      * @return a String with the name of room
      */
     public String getRoomNameByPos(int position) {
-        return this.mHouse.getRoomNameByPosition(position);
+        return this.house.getRoomNameByPosition(position);
     }
 
     /**
@@ -72,6 +72,6 @@ public class GetCurrentAndMaxTempRoomController {
      * @return the maximum temperature of that room in the choosen day
      */
     public double getMaximumTemperatureOfRoomInGivenDay(String name, SensorType type, LocalDate date) {
-        return this.mHouse.getMaximumTemperatureOfRoomInSpecificDay(name, type, date);
+        return this.house.getMaximumTemperatureOfRoomInSpecificDay(name, type, date);
     }
 }

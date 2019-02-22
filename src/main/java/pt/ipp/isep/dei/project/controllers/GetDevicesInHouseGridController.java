@@ -8,7 +8,7 @@ import pt.ipp.isep.dei.project.model.House;
  */
 
 public class GetDevicesInHouseGridController {
-    private House mHouse;
+    private House house;
 
     /**
      * constructor that receives a House
@@ -16,11 +16,11 @@ public class GetDevicesInHouseGridController {
      * @param house House received
      */
     public GetDevicesInHouseGridController(House house) {
-        this.mHouse = house;
+        this.house = house;
     }
 
     public String getDeviceListContentNameTypeLocationByHG(int position) {
-        return mHouse.getDeviceListContentNameTypeLocationByHG(position);
+        return house.getDeviceListContentNameTypeLocationByHG(position);
     }
 
     /**
@@ -29,7 +29,7 @@ public class GetDevicesInHouseGridController {
      * @return String
      */
     public String getHouseGridListToString() {
-        return this.mHouse.getHouseGridListToString();
+        return this.house.getHouseGridListToString();
     }
 
     /**
@@ -37,7 +37,7 @@ public class GetDevicesInHouseGridController {
      * @return True or false.
      */
     public boolean isHouseGridListEmpty() {
-        return mHouse.isHouseGridListEmpty();
+        return house.isHouseGridListEmpty();
     }
 
     /**
@@ -45,7 +45,7 @@ public class GetDevicesInHouseGridController {
      * @return integer
      */
     public int getHouseGridListSize() {
-        return this.mHouse.getHouseGridListSize();
+        return this.house.getHouseGridListSize();
     }
 
     /**
@@ -53,7 +53,7 @@ public class GetDevicesInHouseGridController {
      * @return true if there aren't devices. False if there are devices
      */
     public boolean checkIfThereAreNoDevicesHGbyPosition(int position) {
-        return this.mHouse.checkIfThereAreNoDevicesHGbyPosition(position);
+        return this.house.checkIfThereAreNoDevicesHGbyPosition(position);
     }
 
     /**
@@ -62,6 +62,6 @@ public class GetDevicesInHouseGridController {
      * @return String name
      */
     public String getHGNameByHGPosition(int position) {
-        return this.mHouse.getHGNameByHGPosition(position);
+        return this.house.getHGNameByHGPosition(position);
     }
 }

@@ -4,11 +4,11 @@ import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.HouseGrid;
 
 public class GetNominalPowerOfAGridController {
-    private House mHouse;
-    private HouseGrid mSelectedHouseGrid;
+    private House house;
+    private HouseGrid selectedHouseGrid;
 
     public GetNominalPowerOfAGridController(House house) {
-        this.mHouse=house;
+        this.house = house;
     }
 
     /**
@@ -17,7 +17,7 @@ public class GetNominalPowerOfAGridController {
      * @return true in case there are no HouseGrids or false if there is at least one HouseGrid in the House.
      */
     public boolean isGridListEmpty() {
-        return this.mHouse.isHouseGridListEmpty();
+        return this.house.isHouseGridListEmpty();
     }
 
 
@@ -27,7 +27,7 @@ public class GetNominalPowerOfAGridController {
      */
 
     public String listHouseGrids(){
-        return this.mHouse.getHouseGridListToString();
+        return this.house.getHouseGridListToString();
     }
 
     /**
@@ -37,7 +37,7 @@ public class GetNominalPowerOfAGridController {
      */
 
     public int getHouseGridListSize() {
-        return mHouse.getHouseGridListSize();
+        return house.getHouseGridListSize();
     }
 
     /**
@@ -46,7 +46,7 @@ public class GetNominalPowerOfAGridController {
      */
 
     public void getHouseGridByPosition(int position){
-        mSelectedHouseGrid = this.mHouse.getHouseGridByPosition(position);
+        selectedHouseGrid = this.house.getHouseGridByPosition(position);
     }
 
     /**
@@ -54,6 +54,6 @@ public class GetNominalPowerOfAGridController {
      * @return double
      */
     public double getHouseGridTotalNominalPower(){
-        return mSelectedHouseGrid.getNominalPower();
+        return selectedHouseGrid.getNominalPower();
     }
 }

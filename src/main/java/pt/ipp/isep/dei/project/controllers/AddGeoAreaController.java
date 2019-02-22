@@ -7,8 +7,8 @@ import pt.ipp.isep.dei.project.model.GeographicalAreaTypeList;
 import java.util.List;
 
 public class AddGeoAreaController {
-    private GeographicalAreaList mGeographicalAreaList;
-    private GeographicalAreaTypeList mTGAList;
+    private GeographicalAreaList geographicalAreaList;
+    private GeographicalAreaTypeList geographicalAreaTypeList;
 
     /**
      * construtor of the controller with geoAreaList and types of GeoAreaList.
@@ -16,8 +16,8 @@ public class AddGeoAreaController {
      * @param typesGeoAreaList
      */
     public AddGeoAreaController(GeographicalAreaList geographicalAreaList, GeographicalAreaTypeList typesGeoAreaList) {
-        this.mGeographicalAreaList = geographicalAreaList;
-        this.mTGAList = typesGeoAreaList;
+        this.geographicalAreaList = geographicalAreaList;
+        this.geographicalAreaTypeList = typesGeoAreaList;
     }
 
     /**
@@ -26,14 +26,14 @@ public class AddGeoAreaController {
      * @return boolean
      */
     public boolean addNewGeoArea(GeographicalArea newGA) {
-        return mGeographicalAreaList.addGeoArea(newGA);
+        return geographicalAreaList.addGeoArea(newGA);
     }
 
     /**
      * method that get the geo area list.
      */
     public GeographicalAreaList getGeographicalAreaList() {
-        return mGeographicalAreaList;
+        return geographicalAreaList;
     }
 
     /**
@@ -41,7 +41,7 @@ public class AddGeoAreaController {
      * @return a list of geo area types.
      */
     public List<String> getTGAList() {
-        return mTGAList.getListOfGeoAreaTypes();
+        return geographicalAreaTypeList.getListOfGeoAreaTypes();
     }
 
     /**
@@ -56,7 +56,7 @@ public class AddGeoAreaController {
      * @return a new geographical area.
      */
     public GeographicalArea createNewGeoArea(String name, String typeName, double altitude, double longitude, double latitude, double width, double height) {
-        return mGeographicalAreaList.newGeographicalArea(name, typeName, altitude, longitude, latitude, width, height);
+        return geographicalAreaList.newGeographicalArea(name, typeName, altitude, longitude, latitude, width, height);
 
     }
 }

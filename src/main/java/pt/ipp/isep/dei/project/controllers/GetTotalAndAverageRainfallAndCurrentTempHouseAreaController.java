@@ -8,9 +8,9 @@ import java.time.LocalDateTime;
 
 
 public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
-    private House mHouse;
-    private SensorType mTypeRainfall;
-    private SensorType mTypeTemperature;
+    private House house;
+    private SensorType sensorTypeRainfall;
+    private SensorType sensorTypeTemperature;
 
 
     /**
@@ -19,28 +19,28 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaController {
      * @param house
      */
     public GetTotalAndAverageRainfallAndCurrentTempHouseAreaController(House house) {
-        this.mHouse = house;
-        this.mTypeRainfall = new SensorType("Rainfall");
-        this.mTypeTemperature = new SensorType("temperature");
+        this.house = house;
+        this.sensorTypeRainfall = new SensorType("Rainfall");
+        this.sensorTypeTemperature = new SensorType("temperature");
     }
 
     public double getTotalRainfallInTheHouseAreaInTheSelectedDay(LocalDate day) {
-        return mHouse.getTotalDailyMeasurementInHouseArea(mTypeRainfall, day);
+        return house.getTotalDailyMeasurementInHouseArea(sensorTypeRainfall, day);
     }
 
     public double getAverageDailyRainfall(LocalDate date1, LocalDate date2) {
-        return mHouse.getAverageDailyMeasurementInHouseArea(mTypeRainfall, date1, date2);
+        return house.getAverageDailyMeasurementInHouseArea(sensorTypeRainfall, date1, date2);
     }
 
     public double getMostRecentAvailableMeasurement() {
-        return mHouse.getLastMeasurementByTypeInHouseArea(mTypeTemperature);
+        return house.getLastMeasurementByTypeInHouseArea(sensorTypeTemperature);
     }
 
     public String getTypeTemperature() {
-        return mTypeTemperature.getType();
+        return sensorTypeTemperature.getType();
     }
 
     public LocalDateTime getDateOfLastMeasurement() {
-        return mHouse.getDateOfLastMeasurementByType(mTypeTemperature);
+        return house.getDateOfLastMeasurementByType(sensorTypeTemperature);
     }
 }

@@ -7,35 +7,35 @@ import java.time.LocalDateTime;
 
 public class GetEnergyConsumptionOfAGridController {
 
-    private House mHouse;
-    private HouseGrid mHouseGrid;
+    private House house;
+    private HouseGrid houseGrid;
 
     public GetEnergyConsumptionOfAGridController(House house) {
-        this.mHouse = house;
+        this.house = house;
     }
 
     public boolean isHouseGridListEmpty() {
-        return mHouse.isHouseGridListEmpty();
+        return house.isHouseGridListEmpty();
     }
 
     public int getHouseGridListSize() {
-        return mHouse.getHouseGridListSize();
+        return house.getHouseGridListSize();
     }
 
     public String getHouseGridListToString() {
-        return this.mHouse.getHouseGridListToString();
+        return this.house.getHouseGridListToString();
     }
 
     public void getHouseGridByPosition(int position) {
-        this.mHouseGrid = mHouse.getHouseGridByPosition(position);
+        this.houseGrid = house.getHouseGridByPosition(position);
     }
 
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        return this.mHouseGrid.getEnergyConsumptionInAnInterval(startDate, endDate);
+        return this.houseGrid.getEnergyConsumptionInAnInterval(startDate, endDate);
     }
 
     public String getHouseGridName(){
-        return this.mHouseGrid.getName();
+        return this.houseGrid.getName();
     }
 
 

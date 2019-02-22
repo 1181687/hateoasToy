@@ -8,9 +8,9 @@ import java.util.List;
 
 public class EditConfigurationDeviceController {
 
-    private House mHouse;
-    private Device mDevice;
-    private Room mRoom;
+    private House house;
+    private Device device;
+    private Room room;
     private Room newRoom;
 
     /**
@@ -19,7 +19,7 @@ public class EditConfigurationDeviceController {
      * @param house
      */
     public EditConfigurationDeviceController(House house) {
-        this.mHouse = house;
+        this.house = house;
     }
 
     /**
@@ -28,7 +28,7 @@ public class EditConfigurationDeviceController {
      * @return the content of the room list.
      */
     public String getRoomListContent() {
-        return this.mHouse.getRoomListContent();
+        return this.house.getRoomListContent();
     }
 
     /**
@@ -38,7 +38,7 @@ public class EditConfigurationDeviceController {
      * @return the name of the room by position.
      */
     public String getRoomName(int position) {
-        return this.mHouse.getRoomNameByPosition(position);
+        return this.house.getRoomNameByPosition(position);
     }
 
     /**
@@ -47,7 +47,7 @@ public class EditConfigurationDeviceController {
      * @param option
      */
     public void getRoomByPosition(int option) {
-        this.mRoom = this.mHouse.getRoomOfTheRoomList(option);
+        this.room = this.house.getRoomOfTheRoomList(option);
     }
 
     /**
@@ -56,7 +56,7 @@ public class EditConfigurationDeviceController {
      * @return the content of the device list.
      */
     public String getDevicesInTheRoom() {
-        return this.mRoom.getDeviceListToString();
+        return this.room.getDeviceListToString();
     }
 
     /**
@@ -65,7 +65,7 @@ public class EditConfigurationDeviceController {
      * @param position
      */
     public void getDeviceByPosition(int position) {
-        this.mDevice = this.mRoom.getDeviceList().get(position);
+        this.device = this.room.getDeviceList().get(position);
     }
 
     /**
@@ -74,7 +74,7 @@ public class EditConfigurationDeviceController {
      * @return tha attributes.
      */
     public String getDeviceAttributesToString() {
-        return this.mDevice.getAttributesToString();
+        return this.device.getAttributesToString();
     }
 
     /**
@@ -83,7 +83,7 @@ public class EditConfigurationDeviceController {
      * @return the editable attributes content.
      */
     public String getDevSpecsAttributesToString() {
-        return this.mDevice.getDevSpecsAttributesToString();
+        return this.device.getDevSpecsAttributesToString();
     }
 
     /**
@@ -93,7 +93,7 @@ public class EditConfigurationDeviceController {
      * @return a boolean.
      */
     public boolean setDeviceName(String newName) {
-        return this.mDevice.setName(newName);
+        return this.device.setName(newName);
     }
 
     /**
@@ -104,7 +104,7 @@ public class EditConfigurationDeviceController {
      * @return th set of the device type.
      */
     public boolean setDeviceSpecs(String attribute, Object value) {
-        return this.mDevice.setAttributesDevType(attribute, value);
+        return this.device.setAttributesDevType(attribute, value);
     }
 
     /**
@@ -113,7 +113,7 @@ public class EditConfigurationDeviceController {
      * @return the set location of the new room.
      */
     public boolean setLocation() {
-        return this.mDevice.setLocation(newRoom);
+        return this.device.setLocation(newRoom);
     }
 
     /**
@@ -122,7 +122,7 @@ public class EditConfigurationDeviceController {
      * @return a boolean.
      */
     public boolean roomListIsEmpty() {
-        return this.mHouse.getRoomList().isEmpty();
+        return this.house.getRoomList().isEmpty();
     }
 
     /**
@@ -131,7 +131,7 @@ public class EditConfigurationDeviceController {
      * @return room list size.
      */
     public int roomListSize() {
-        return mHouse.getRoomListSize();
+        return house.getRoomListSize();
     }
 
     /**
@@ -139,7 +139,7 @@ public class EditConfigurationDeviceController {
      * @return length of the list of Devices.
      */
     public int getDeviceListSize() {
-        return this.mRoom.getDeviceList().size();
+        return this.room.getDeviceList().size();
     }
 
     /**
@@ -148,7 +148,7 @@ public class EditConfigurationDeviceController {
      * @return a boolean.
      */
     public boolean deviceListIsEmpty() {
-        return this.mRoom.isDeviceListEmpty();
+        return this.room.isDeviceListEmpty();
     }
 
     /**
@@ -157,7 +157,7 @@ public class EditConfigurationDeviceController {
      * @param position
      */
     public void getNewRoom(int position) {
-        this.newRoom = mHouse.getRoomOfTheRoomList(position);
+        this.newRoom = house.getRoomOfTheRoomList(position);
     }
 
     /**
@@ -166,22 +166,22 @@ public class EditConfigurationDeviceController {
      * @return number of attributes.
      */
     public int getNumberOfAttributesInDeviceSpecs() {
-        return mDevice.getNumberOfSpecsAttributes();
+        return device.getNumberOfSpecsAttributes();
     }
 
     public String getSpecsToString() {
-        return this.mDevice.getSpecsToString();
+        return this.device.getSpecsToString();
     }
 
     public List<String> getSpecsList() {
-        return this.mDevice.getSpecsList();
+        return this.device.getSpecsList();
     }
 
     public String getAttributeType(String attributeName) {
-        return mDevice.getAttributeDataType(attributeName);
+        return device.getAttributeDataType(attributeName);
     }
 
     public Number getAttributeValue(String attributeName) {
-        return (Number) mDevice.getAttributeValue(attributeName);
+        return (Number) device.getAttributeValue(attributeName);
     }
 }

@@ -7,39 +7,39 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.time.LocalDateTime;
 
 public class GetEnergyConsumptionOfRoomInAnIntervalController {
-    private House mHouse;
-    private Room mSelectedRoom;
+    private House house;
+    private Room selectedRoom;
 
     public GetEnergyConsumptionOfRoomInAnIntervalController(House house) {
-        this.mHouse = house;
+        this.house = house;
     }
 
     public String getRoomListToString() {
-        return mHouse.getRoomListContent();
+        return house.getRoomListContent();
     }
 
     public void getRoomByPosition(int position) {
-        mSelectedRoom = this.mHouse.getRoomOfTheRoomList(position);
+        selectedRoom = this.house.getRoomOfTheRoomList(position);
     }
 
     public boolean roomListIsEmpty() {
-        return mHouse.roomListIsEmpty();
+        return house.roomListIsEmpty();
     }
 
     public int getRoomListSize() {
-        return mHouse.getRoomListSize();
+        return house.getRoomListSize();
     }
 
     public boolean isDeviceListEmpty() {
-        return mSelectedRoom.isDeviceListEmpty();
+        return selectedRoom.isDeviceListEmpty();
     }
 
     public String getRoomName(){
-        return mSelectedRoom.getName();
+        return selectedRoom.getName();
     }
 
     public double getEnergyConsumptionOfRoomInInterval(LocalDateTime initialDate, LocalDateTime finalDate) {
-        return mSelectedRoom.getEnergyConsumptionInAnInterval(initialDate, finalDate);
+        return selectedRoom.getEnergyConsumptionInAnInterval(initialDate, finalDate);
     }
 
     public double resultWithTwoDecimalPlaces(double value, int decimalPlaces) {
