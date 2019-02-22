@@ -175,19 +175,6 @@ public class AddDeviceToRoomController {
         return house.getDeviceListContentRoom(selectedRoom);
     }
 
-/*    public Program createNewProgram(String programName, double duration, double energyConsumption) {
-        return mProgramList.newProgram(programName, duration, energyConsumption);
-    }
-
-    /**
-     * Method that add a Device Program to the list of Programs
-     *
-     * @param program
-     * @return a list of programs
-     *//*
-    public boolean addProgramToList(Program program) {
-        return mProgramList.addProgram(program);
-    }*/
 
     public boolean createAndAddProgram(String programName, double duration, double energyConsumption) {
         Program newProgram = programmableDevice.newProgram(programName, duration, energyConsumption);
