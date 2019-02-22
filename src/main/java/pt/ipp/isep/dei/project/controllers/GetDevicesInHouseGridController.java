@@ -19,8 +19,8 @@ public class GetDevicesInHouseGridController {
         this.house = house;
     }
 
-    public String getDeviceListContentNameTypeLocationByHG(int position) {
-        return house.getDeviceListContentNameTypeLocationByHG(position);
+    public String getDeviceListContentNameTypeLocationByGrid(int position) {
+        return house.getDeviceListContentNameTypeLocationByGrid(position);
     }
 
     /**
@@ -52,8 +52,8 @@ public class GetDevicesInHouseGridController {
      * method that checks if there are no devices in the RoomList
      * @return true if there aren't devices. False if there are devices
      */
-    public boolean checkIfThereAreNoDevicesHGbyPosition(int position) {
-        return this.house.checkIfThereAreNoDevicesHGbyPosition(position);
+    public boolean checkIfThereAreNoDevicesInGridbyPosition(int position) {
+        return this.house.checkIfThereAreNoDevicesInGridbyPosition(position);
     }
 
     /**
@@ -61,7 +61,7 @@ public class GetDevicesInHouseGridController {
      * @param position position of the House Grid
      * @return String name
      */
-    public String getHGNameByHGPosition(int position) {
-        return this.house.getHGNameByHGPosition(position);
+    public String getGridNameByPosition(int position) {
+        return this.house.getGridNameByPosition(position);
     }
 }

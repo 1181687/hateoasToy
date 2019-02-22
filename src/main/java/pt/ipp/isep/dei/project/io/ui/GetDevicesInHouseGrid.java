@@ -39,21 +39,21 @@ public class GetDevicesInHouseGrid {
         int maxPosition = controller.getHouseGridListSize();
         String label1 = "\nChoose the House Grid you want to get the list of devices\n" + listContentRoom;
         int selection = InputValidator.getIntRange(label1, 0, maxPosition);
-        int positionHG = (selection - 1);
+        int gridPosition = (selection - 1);
         if (selection == 0) {
             return;
         }
         content.delete(0, content.length());
 
-        if (controller.checkIfThereAreNoDevicesHGbyPosition(positionHG)) {
+        if (controller.checkIfThereAreNoDevicesInGridbyPosition(gridPosition)) {
             System.out.println("There aren't devices in the chosen House Grid.\n");
             return;
         }
 
         content.append("\n\nThe list of devices in House Grid ");
-        content.append(controller.getHGNameByHGPosition(positionHG));
+        content.append(controller.getGridNameByPosition(gridPosition));
         content.append(" is:\n\n");
-        content.append(controller.getDeviceListContentNameTypeLocationByHG(positionHG));
+        content.append(controller.getDeviceListContentNameTypeLocationByGrid(gridPosition));
         System.out.println(content.toString());
     }
 }
