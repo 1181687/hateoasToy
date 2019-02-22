@@ -755,15 +755,14 @@ public class HouseGridTest {
         LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
 
-        String expectedResult = "There are no rooms connected to this house grid.";
+        double expectedResult = 0;
 
         //Act
-        Throwable exception = assertThrows(RuntimeException.class, () ->
-                grid1.getEnergyConsumptionInAnInterval(startTime, endTime)
-        );
+        double result = grid1.getEnergyConsumptionInAnInterval(startTime, endTime);
+
 
         //Assert
-        assertEquals(expectedResult, exception.getMessage());
+        assertEquals(expectedResult, result);
     }
 
     @Test
