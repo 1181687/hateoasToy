@@ -11,7 +11,7 @@ public interface Device extends Measurable {
      *
      * @return the nominal power of the device.
      */
-    double getNominalPower();
+    //double getNominalPower();
 
     /**
      * method that get a location (room) of a device.

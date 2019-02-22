@@ -25,11 +25,6 @@ class AddDeviceToRoomControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         livingRoom = new Room("Living Room", 1, dimension2);
 
-        // Geographical Area
-        Location location = new Location(41.178553, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
 
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -39,7 +34,6 @@ class AddDeviceToRoomControllerTest {
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation);
         house.setAddress(address);
-        house.setInsertedGeoArea(insertedGeoArea);
 
         // Controller
         controller = new AddDeviceToRoomController(house);
