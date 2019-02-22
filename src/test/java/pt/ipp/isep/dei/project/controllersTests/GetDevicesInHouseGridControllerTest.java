@@ -155,7 +155,7 @@ public class GetDevicesInHouseGridControllerTest {
                 "\n";
 
         //Act
-        String result = ctrl.getDeviceListContentNameTypeLocationByHG(0);
+        String result = ctrl.getDeviceListContentNameTypeLocationByGrid(0);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -213,7 +213,7 @@ public class GetDevicesInHouseGridControllerTest {
     public void testCheckIfThereAreNoDevicesHGbyPositionFalse() {
 
         // Act
-        boolean result = ctrl.checkIfThereAreNoDevicesHGbyPosition(0);
+        boolean result = ctrl.checkIfThereAreNoDevicesInGridbyPosition(0);
 
         // Assert
         assertFalse(result);
@@ -223,7 +223,7 @@ public class GetDevicesInHouseGridControllerTest {
     public void testCheckIfThereAreNoDevicesHGbyPositionTrue() {
 
         // Act
-        boolean result = ctrl.checkIfThereAreNoDevicesHGbyPosition(1);
+        boolean result = ctrl.checkIfThereAreNoDevicesInGridbyPosition(1);
 
         // Assert
         assertTrue(result);
@@ -236,7 +236,7 @@ public class GetDevicesInHouseGridControllerTest {
         String expectedResult = "grid1";
 
         // Act
-        String result = ctrl.getHGNameByHGPosition(position);
+        String result = ctrl.getGridNameByPosition(position);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -257,7 +257,7 @@ public class GetDevicesInHouseGridControllerTest {
         String expectedResult = "There are no Grids in the house";
 
         // Act
-        String result = controller.getHGNameByHGPosition(position);
+        String result = controller.getGridNameByPosition(position);
 
         // Assert
         assertEquals(expectedResult, result);
