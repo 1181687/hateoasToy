@@ -23,23 +23,12 @@ public class GetEnergyConsumptionOfRoomControllerTest {
 
     @BeforeEach
     public void StartUp() {
-        //Geographical Area
-        Location location = new Location(41.178553, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
-        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
-
         //House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
-
-        Location houseLocation = new Location(41.177748, -8.607745, 112);
-        Address address = new Address("4200-072", houseLocation);
-        this.house.setAddress(address);
-        this.house.setInsertedGeoArea(insertedGeoArea);
 
         this.ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
     }

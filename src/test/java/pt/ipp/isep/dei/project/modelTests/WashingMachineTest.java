@@ -408,18 +408,17 @@ class WashingMachineTest {
     @Test
     public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
         //Arrange
-        ProgramList programList = new ProgramList();
         String programName = "fast";
         double duration = 15;
         double energyConsumption = 1;
         Programmable programmable = this.washingMachine.asProgrammable();
         Program programA = programmable.newProgram(programName, duration, energyConsumption);
         Program programB = programmable.newProgram(programName, duration, energyConsumption);
-        programList.addProgram(programA);
+        programmable.addProgram(programA);
         boolean expectedResult = false;
 
         //Act
-        boolean result = programList.addProgram(programB);
+        boolean result = programmable.addProgram(programB);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -428,7 +427,6 @@ class WashingMachineTest {
     @Test
     public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
         //Arrange
-        ProgramList programList = new ProgramList();
         String programName = "fast";
         double duration = 15;
         double energyConsumption = 1;
@@ -438,7 +436,7 @@ class WashingMachineTest {
         boolean expectedResult = true;
 
         //Act
-        boolean result = programList.addProgram(programA);
+        boolean result = programmable.addProgram(programA);
 
         //Assert
         assertEquals(expectedResult, result);
