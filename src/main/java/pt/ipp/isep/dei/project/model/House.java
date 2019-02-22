@@ -396,7 +396,7 @@ public class House {
      * @param positionHG integer number relative to position of the HouseGrid
      * @return String with Devices Names and Location grouped by Type.
      */
-    public String getDeviceListContentNameTypeLocationByHG(int positionHG) {
+    public String getDeviceListContentNameTypeLocationByGrid(int positionHG) {
         List<Device> deviceList = getAllDevicesListByGridPosition(positionHG);
         return getContentNameLocationOrderedByType(deviceList);
     }
@@ -463,7 +463,7 @@ public class House {
         return this.listHouseGrids;
     }
 
-    public boolean checkIfThereAreNoDevicesHGbyPosition(int position) {
+    public boolean checkIfThereAreNoDevicesInGridbyPosition(int position) {
         return this.getHouseGridList().get(position).isDeviceListOfAllRoomsEmpty();
     }
 
@@ -477,7 +477,7 @@ public class House {
      * @param position position of the House Grid
      * @return String name
      */
-    public String getHGNameByHGPosition(int position) {
+    public String getGridNameByPosition(int position) {
         if (listHouseGrids.isEmpty()) {
             return "There are no Grids in the house";
         }

@@ -961,7 +961,7 @@ public class HouseTest {
                 "- Device Name: FridgeSiemens, Location: KitchenBasement.\n" +
                 "\n";
 
-        String result = house.getDeviceListContentNameTypeLocationByHG(0);
+        String result = house.getDeviceListContentNameTypeLocationByGrid(0);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -1038,7 +1038,7 @@ public class HouseTest {
         String expectedResult = "Grid0";
 
         // Act
-        String result = house.getHGNameByHGPosition(position);
+        String result = house.getGridNameByPosition(position);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -1052,7 +1052,7 @@ public class HouseTest {
         String expectedResult = "There are no Grids in the house";
 
         // Act
-        String result = house.getHGNameByHGPosition(position);
+        String result = house.getGridNameByPosition(position);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -1255,7 +1255,7 @@ public class HouseTest {
         house.addGrid(grid);
 
         // Act
-        boolean result = house.checkIfThereAreNoDevicesHGbyPosition(0);
+        boolean result = house.checkIfThereAreNoDevicesInGridbyPosition(0);
 
         // Assert
         assertFalse(result);
@@ -1267,7 +1267,7 @@ public class HouseTest {
         HouseGrid grid = new HouseGrid("g1");
         house.addGrid(grid);
         // Act
-        boolean result = house.checkIfThereAreNoDevicesHGbyPosition(0);
+        boolean result = house.checkIfThereAreNoDevicesInGridbyPosition(0);
 
         // Assert
         assertTrue(result);

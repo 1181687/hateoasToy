@@ -108,7 +108,7 @@ class UtilsTest {
         //Arrange
         String expectedResult = "There is no file with that filename.";
         //Act
-        String result = Utils.readConfigFile("Coisas.propertiers", "Cenas");
+        String result = Utils.readConfigFile("Dummy.properties", "dummyname");
         //Assert
         assertEquals(expectedResult, result);
 
