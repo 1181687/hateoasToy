@@ -144,7 +144,7 @@ public class HouseGridTest {
         //Room TWO
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
-        Room room2 = new Room(name2, -1, dim);
+        Room room2 = new Room(name2, -1, dim2);
 
         Device dev4 = fridgeType.createDevice("FridgeSiemens", room2);
         Device dev5 = dishWasherType.createDevice("DishWasherTeka", room2);
@@ -168,6 +168,17 @@ public class HouseGridTest {
         HouseGrid housegrid = new HouseGrid("grid1");
         housegrid.attachRoom(room1);
         housegrid.attachRoom(room2);
+
+        List<Device> result = housegrid.getAllDevicesList();
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAllDevicesListEmptylist() {
+        HouseGrid housegrid = new HouseGrid("grid1");
+
+        List<Device> expectedResult = new ArrayList<>();
 
         List<Device> result = housegrid.getAllDevicesList();
 
