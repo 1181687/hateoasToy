@@ -34,13 +34,15 @@ public class AddDeviceToRoom {
             if (selectedType == 0) {
                 continue;
             }
-            selectADeviceType(selectedType);
+            //CREATE A DEVICE
+            createDevice(selectedType);
             flag = false;
         }
+        //SHOW DEVICE LIST IN THE ROOM - Y/N?
         showUpdatedDeviceListOfRoom(indexSelectedRoom);
     }
 
-    public void selectADeviceType(int selectedType) {
+    public void createDevice(int selectedType) {
 
         int option = selectedType;
 
