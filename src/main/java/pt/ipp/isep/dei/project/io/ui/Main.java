@@ -14,6 +14,9 @@ public class Main {
     private static final String NOMINAL_POWER = "Nominal Power";
     private static final String PERFORMANCE_RATIO = "Performance Ratio";
     private static final String CAPACITY = "Capacity";
+    private static final String GLASSES = "Glasses";
+    private static final String DISHES = "Dishes";
+
 
     public static void main(String[] args) {
 
@@ -349,9 +352,10 @@ public class Main {
         houseEdificioB.addRoom(room3);
 
 
-        double durationNotAsked = 30;
 
         // DEVICES
+        double durationNotAsked = 30;
+
         // Electric Water Heater B107
         ElectricWaterHeaterType electricWaterHeaterType= new ElectricWaterHeaterType();
         Device ewhB107 = electricWaterHeaterType.createDevice("EHW B107", room1);
@@ -399,10 +403,10 @@ public class Main {
         dwB107.addReadingsToTheList(dwEC9);
 
         Programmable dwB107Programmable = dwB107.asProgrammable();
-        Program program = dwB107Programmable.newProgram("Glasses", durationNotAsked, 0.9);
+        Program program = dwB107Programmable.newProgram(GLASSES, durationNotAsked, 0.9);
         Program program1 = dwB107Programmable.newProgram("Eco", durationNotAsked, 1.3);
         Program program2 = dwB107Programmable.newProgram("Eco turbo", durationNotAsked, 1.7);
-        Program program3 = dwB107Programmable.newProgram("Dishes", durationNotAsked, 2.1);
+        Program program3 = dwB107Programmable.newProgram(DISHES, durationNotAsked, 2.1);
         dwB107Programmable.addProgram(program);
         dwB107Programmable.addProgram(program1);
         dwB107Programmable.addProgram(program2);
@@ -465,10 +469,10 @@ public class Main {
         dwB109.setAttributesDevType(NOMINAL_POWER, 1.5);
 
         Programmable dwB109Programmable = dwB109.asProgrammable();
-        Program program16 = dwB109Programmable.newProgram("Glasses", durationNotAsked, 0.9);
+        Program program16 = dwB109Programmable.newProgram(GLASSES, durationNotAsked, 0.9);
         Program program17 = dwB109Programmable.newProgram("Eco", durationNotAsked, 1.3);
         Program program18 = dwB109Programmable.newProgram("Eco turbo", durationNotAsked, 1.7);
-        Program program19 = dwB109Programmable.newProgram("Dishes", durationNotAsked, 2.1);
+        Program program19 = dwB109Programmable.newProgram(DISHES, durationNotAsked, 2.1);
         dwB109Programmable.addProgram(program16);
         dwB109Programmable.addProgram(program17);
         dwB109Programmable.addProgram(program18);
@@ -512,10 +516,10 @@ public class Main {
         dwB106.setAttributesDevType(NOMINAL_POWER, 1.4);
 
         Programmable dwB106Programmable = dwB106.asProgrammable();
-        Program program12 = dwB106Programmable.newProgram("Glasses", durationNotAsked, 0.8);
+        Program program12 = dwB106Programmable.newProgram(GLASSES, durationNotAsked, 0.8);
         Program program13 = dwB106Programmable.newProgram("Light", durationNotAsked, 1.3);
         Program program14 = dwB106Programmable.newProgram("Light turbo", durationNotAsked, 1.9);
-        Program program15 = dwB106Programmable.newProgram("Dishes", durationNotAsked, 2.3);
+        Program program15 = dwB106Programmable.newProgram(DISHES, durationNotAsked, 2.3);
         dwB106Programmable.addProgram(program12);
         dwB106Programmable.addProgram(program13);
         dwB106Programmable.addProgram(program14);
