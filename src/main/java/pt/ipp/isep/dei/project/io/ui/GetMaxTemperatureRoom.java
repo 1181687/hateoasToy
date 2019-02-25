@@ -2,10 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.Readings;
 import pt.ipp.isep.dei.project.model.SensorType;
 import java.time.LocalDate;
-import java.util.Objects;
 
 /** US610 As a Regular User, I want to get the maximum temperature in a room in a given day,
  in order to check if heating/cooling in that room was effective.*/

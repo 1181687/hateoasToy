@@ -86,8 +86,8 @@ public class Room implements Measurable {
     }
 
     @Override
-    public List<Readings> getReadings() {
-        List<Readings> listOfReadings = new ArrayList<>();
+    public List<Reading> getReadings() {
+        List<Reading> listOfReadings = new ArrayList<>();
         for (Device device : this.deviceList) {
             listOfReadings.addAll(device.getReadings());
         }
@@ -191,7 +191,7 @@ public class Room implements Measurable {
      * @param type type of sensor
      * @return latest measurement by sensor type
      */
-    public Readings getLatestMeasurementBySensorType(SensorType type) {
+    public Reading getLatestMeasurementBySensorType(SensorType type) {
         return sensorList.getLatestMeasurementBySensorType(type);
     }
 

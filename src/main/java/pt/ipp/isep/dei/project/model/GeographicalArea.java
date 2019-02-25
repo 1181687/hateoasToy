@@ -247,7 +247,7 @@ public class GeographicalArea {
         double latestReadingValue = Double.NaN;
         if (!sensorListWithTheRequiredType.getListOfSensors().isEmpty()) {
             SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
-            Readings latestReading = null;
+            Reading latestReading = null;
             for (Sensor sensor : nearestSensors.getListOfSensors()) {
                 if ((!Objects.isNull(sensor.getLastMeasurement())) && (Objects.isNull(latestReading) ||
                         sensor.getLastMeasurement().getDateTime().isAfter(latestReading.getDateTime()))) {
@@ -265,7 +265,7 @@ public class GeographicalArea {
         LocalDateTime latestReadingDate = null;
         if (!sensorListWithTheRequiredType.getListOfSensors().isEmpty()) {
             SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
-            Readings latestReading = null;
+            Reading latestReading = null;
             for (Sensor sensor : nearestSensors.getListOfSensors()) {
                 if ((!Objects.isNull(sensor.getLastMeasurement())) && (Objects.isNull(latestReading) ||
                         sensor.getLastMeasurement().getDateTime().isAfter(latestReading.getDateTime()))) {
@@ -321,7 +321,7 @@ public class GeographicalArea {
     }
 
     /**
-     * Method that returns the Total Daily Readings of a Sensor Type in The Geographic Area. This method considers
+     * Method that returns the Total Daily Reading of a Sensor Type in The Geographic Area. This method considers
      * the maximum value of the Sensor on that Area. In case there's no sensors in that Area, it returns Double NaN.
      *
      * @param sensorType
@@ -333,14 +333,14 @@ public class GeographicalArea {
         double totalDailyMeasurement = Double.NaN;
         SensorList sensorListWithSameTypeDuringADay = getSensorListByTypeInADay(sensorType, day);
         SensorList nearestSensors = sensorListWithSameTypeDuringADay.getNearestSensorsToLocation(location);
-        Readings latestReading;
+        Reading latestReading;
         if (!(nearestSensors.isEmpty()) && !(nearestSensors.getListOfSensors().get(0).isMeasurementListEmpty())) {
             latestReading = nearestSensors.getListOfSensors().get(0).getLastMeasurement();
 
             for (Sensor sensor : nearestSensors.getListOfSensors()) {
-                List<Readings> readingsList = sensor.getDailyMeasurement(day);
-                int lastReadingPosition = readingsList.size() - 1;
-                if (!(readingsList.isEmpty()) && readingsList.get(lastReadingPosition).getDateTime().isAfter(latestReading.getDateTime())) {
+                List<Reading> readingList = sensor.getDailyMeasurement(day);
+                int lastReadingPosition = readingList.size() - 1;
+                if (!(readingList.isEmpty()) && readingList.get(lastReadingPosition).getDateTime().isAfter(latestReading.getDateTime())) {
                     latestReading = sensor.getLastMeasurement();
                 }
                     totalDailyMeasurement = latestReading.getValue();
