@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.Readings;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.SensorType;
 
 import java.time.LocalDate;
@@ -27,13 +27,13 @@ public class GetCurrentAndMaxTempRoomController {
     }
 
     /**
-     * receives a Room name, and gets the latest Readings according to the sensorType
+     * receives a Room name, and gets the latest Reading according to the sensorType
      * passed on the constructor
      *
      * @param name String name of the room
      * @return latest measurement
      */
-    public Readings getLatestMeasurementByRoomName(String name) {
+    public Reading getLatestMeasurementByRoomName(String name) {
         return this.house.getLatestMeasurementBySensorType(name, sensorType);
     }
 

@@ -126,15 +126,15 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        lamp.addReadingsToTheList(readings0);
-        lamp.addReadingsToTheList(readings1);
-        lamp.addReadingsToTheList(readings2);
+        lamp.addReadingsToTheList(reading0);
+        lamp.addReadingsToTheList(reading1);
+        lamp.addReadingsToTheList(reading2);
 
         int position = 0;
         controller.getHouseGridByPosition(position);

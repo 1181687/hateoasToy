@@ -2,9 +2,9 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.Readings;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.SensorType;
-import java.time.LocalDate;
+
 import java.util.Objects;
 
 
@@ -59,7 +59,7 @@ public class GetCurrentTemperatureRoom {
         String label0 = "Choose the room you want to get the current temperature";
         int option = InputValidator.getIntRange(label0, 1, controller.getRoomListSize());
         String roomName = controller.getRoomNameByPos(option - 1);
-        Readings temp = controller.getLatestMeasurementByRoomName(roomName);
+        Reading temp = controller.getLatestMeasurementByRoomName(roomName);
 
         if (Objects.isNull(temp)) {
             System.out.println("There are no temperature values available");

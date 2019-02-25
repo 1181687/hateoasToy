@@ -501,21 +501,21 @@ public class RoomListTest {
 
         LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 11, 2, 20, 24, 00);
 
-        Readings readings1 = new Readings(20.0, dateTimeDayMeasure1);
-        Readings readings2 = new Readings(25.0, dateTimeDayMeasure2);
+        Reading reading1 = new Reading(20.0, dateTimeDayMeasure1);
+        Reading reading2 = new Reading(25.0, dateTimeDayMeasure2);
 
-        s0.addReadingsToList(readings1);
-        s0.addReadingsToList(readings2);
+        s0.addReadingsToList(reading1);
+        s0.addReadingsToList(reading2);
 
         LocalDateTime dateTimeDayMeasure3 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 11, 2, 17, 24, 00);
 
-        Readings readings3 = new Readings(20.0, dateTimeDayMeasure3);
-        Readings readings4 = new Readings(30.0, dateTimeDayMeasure4);
+        Reading reading3 = new Reading(20.0, dateTimeDayMeasure3);
+        Reading reading4 = new Reading(30.0, dateTimeDayMeasure4);
 
-        s1.addReadingsToList(readings3);
-        s1.addReadingsToList(readings4);
+        s1.addReadingsToList(reading3);
+        s1.addReadingsToList(reading4);
 
         room1.getSensorList().addSensor(s0);
         room1.getSensorList().addSensor(s1);
@@ -558,21 +558,21 @@ public class RoomListTest {
 
         LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 11, 2, 20, 24, 00);
 
-        Readings readings1 = new Readings(-20.0, dateTimeDayMeasure1);
-        Readings readings2 = new Readings(-25.0, dateTimeDayMeasure2);
+        Reading reading1 = new Reading(-20.0, dateTimeDayMeasure1);
+        Reading reading2 = new Reading(-25.0, dateTimeDayMeasure2);
 
-        s0.addReadingsToList(readings1);
-        s0.addReadingsToList(readings2);
+        s0.addReadingsToList(reading1);
+        s0.addReadingsToList(reading2);
 
         LocalDateTime dateTimeDayMeasure3 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
         LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 11, 2, 17, 24, 00);
 
-        Readings readings3 = new Readings(-10.0, dateTimeDayMeasure3);
-        Readings readings4 = new Readings(-15.0, dateTimeDayMeasure4);
+        Reading reading3 = new Reading(-10.0, dateTimeDayMeasure3);
+        Reading reading4 = new Reading(-15.0, dateTimeDayMeasure4);
 
-        s1.addReadingsToList(readings3);
-        s1.addReadingsToList(readings4);
+        s1.addReadingsToList(reading3);
+        s1.addReadingsToList(reading4);
 
         room1.getSensorList().addSensor(s0);
         room1.getSensorList().addSensor(s1);

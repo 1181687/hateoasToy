@@ -115,19 +115,19 @@ public interface Device extends Measurable {
     String getNameToString();
 
     /**
-     * Method that adds a readings to the device.
+     * Method that adds a reading to the device.
      *
-     * @param readings Readings to be added.
+     * @param reading Reading to be added.
      */
-    void addReadingsToTheList(Readings readings);
+    void addReadingsToTheList(Reading reading);
 
     /**
-     * Method that calculates the sum of the value in each Readings in a given Readings list.
+     * Method that calculates the sum of the value in each Reading in a given Reading list.
      *
-     * @param readingsList List with Readingss.
+     * @param readingList List with Readingss.
      * @return Double with the required sum.
      */
-    double getSumOfTheReadings(List<Readings> readingsList);
+    double getSumOfTheReadings(List<Reading> readingList);
 
 
     /**

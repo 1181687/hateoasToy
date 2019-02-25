@@ -143,7 +143,7 @@ class UtilsTest {
     void testGetDataSeries() {
         //Arrange
 
-        // Readings Instantiation
+        // Reading Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
