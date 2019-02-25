@@ -658,13 +658,30 @@ public class RoomTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-
         LampType lampType = new LampType();
         Device dev1 = lampType.createDevice("Lamp1", room);
 
-
         // act
         boolean result = room.deactivateDevice("Lamp1");
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void deactivationDeviceTwoDevicesTrue() {
+
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        LampType lampType = new LampType();
+        Device dev1 = lampType.createDevice("Lamp1", room);
+        Device dev2 = lampType.createDevice("Lamp2", room);
+
+        // act
+        boolean result = room.deactivateDevice("Lamp2");
 
         // assert
         assertTrue(result);
