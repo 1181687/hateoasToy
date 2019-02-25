@@ -4,17 +4,14 @@ import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Readings;
 import pt.ipp.isep.dei.project.model.SensorType;
-
 import java.time.LocalDate;
 import java.util.Objects;
 
 
 /** US605 As a Regular User, I want to get the current temperature in a room, in order to check
-if it meets my personal comfort requirements.
-US610 As a Regular User, I want to get the maximum temperature in a room in a given day,
-in order to check if heating/cooling in that room was effective.*/
+if it meets my personal comfort requirements.*/
 
-public class GetCurrentAndMaxTempRoom {
+public class GetCurrentTemperatureRoom {
 
     private GetCurrentAndMaxTempRoomController controller;
 
@@ -24,7 +21,7 @@ public class GetCurrentAndMaxTempRoom {
      * @param house          House
      * @param sensorType   SensorType
      */
-    public GetCurrentAndMaxTempRoom(House house, SensorType sensorType) {
+    public GetCurrentTemperatureRoom(House house, SensorType sensorType) {
         this.controller = new GetCurrentAndMaxTempRoomController(house, sensorType);
     }
 
@@ -51,7 +48,7 @@ public class GetCurrentAndMaxTempRoom {
      * method that displays the rooms available to the user, so he can choose one
      * to get the current temperature.
      */
-    public void run1() {
+    public void run() {
 
         if (controller.getRoomListContent().isEmpty()) {
             System.out.println("There are no rooms available\n");
@@ -72,27 +69,4 @@ public class GetCurrentAndMaxTempRoom {
         displayResults(roomName, temp.getValue(), temp.getDateTime().toString());
     }
 
-    public void run2() {
-
-        System.out.println(controller.getRoomListContent());
-        if (controller.getRoomListContent().isEmpty()) {
-            System.out.println("There are no rooms available\n");
-            return;
-        }
-
-        String label0 = "Choose the room you want to get the maximum temperature";
-        int option = InputValidator.getIntRange(label0, 1, controller.getRoomListSize());
-        String roomName = controller.getRoomNameByPos(option - 1);
-
-        String label1 = "Please insert the date when you want to get the maximum temperature (yyyy-MM-dd):";
-        LocalDate dateLD = InputValidator.getStringDate(label1);
-
-        double temp = controller.getMaximumTemperatureOfRoomInGivenDay(roomName, controller.getType(), dateLD);
-        if (Double.isNaN(temp)) {
-            System.out.println("There are no temperature values available");
-            return;
-        }
-
-        System.out.println("The maximum temperature is " + temp + "ºC");
-    }
 }

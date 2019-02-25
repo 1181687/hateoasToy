@@ -492,6 +492,7 @@ public class Room implements Measurable {
      * @return true if the device was deactivated. False, if not.
      */
     public boolean deactivateDevice(String device) {
+
         for (Device searchDevice : this.deviceList) {
             if (device.equals(searchDevice.getName())) {
                 searchDevice.setDeactivateDevice();
