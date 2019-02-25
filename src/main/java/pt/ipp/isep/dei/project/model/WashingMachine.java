@@ -14,10 +14,10 @@ public class WashingMachine implements Device, Programmable {
     private LocalDateTime deactivationDate;
 
 
-    public WashingMachine(String name, Room location) {
+    public WashingMachine(String name, Room location, DeviceSpecs washingMachineSpecs) {
         this.name = name;
         this.location = location;
-        this.specs = new WashingMachineSpecs();
+        this.specs = (WashingMachineSpecs) washingMachineSpecs;
         this.location.addDevice(this);
         this.isActive = true;
         this.readingsList = new ArrayList<>();
@@ -347,7 +347,7 @@ public class WashingMachine implements Device, Programmable {
 
     @Override
     public boolean addProgram(Program program) {
-        return this.specs.addProgram(program);
+        return specs.addProgram(program);
     }
 
 }

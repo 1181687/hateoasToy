@@ -85,7 +85,7 @@ class GetEnergyConsumptionDeviceControllerTest {
         device3.setAttributesDevType(NOMINAL_POWER,100);
 
 
-        Device device4 = new ElectricWaterHeater("Bosh Tronic 4000", room1);
+        Device device4 = eWHType.createDevice("Bosh Tronic 4000", room1);
         device4.setAttributesDevType(HOT_WATER_TEMP,50);
         device4.setAttributesDevType(PERFORMANCE_RATIO,0.9);
         device4.setAttributesDevType(NOMINAL_POWER,100);

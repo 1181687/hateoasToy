@@ -36,4 +36,6 @@ public interface DeviceSpecs {
     String getAttributeDataType(String attributeName);
 
     boolean setAttributeValue(String attributeName, Object attributeValue);
+
+    String getTypeName();
 }

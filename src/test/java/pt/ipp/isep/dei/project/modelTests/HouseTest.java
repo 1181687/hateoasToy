@@ -44,7 +44,8 @@ public class HouseTest {
         kitchen = new Room("Kitchen", 1, dim);
 
         // ElectricWaterHeaters Instantiation
-        electricWaterHeater = new ElectricWaterHeater("Bosch Tronic 3000", laundry);
+        ElectricWaterHeaterType eWHType = new ElectricWaterHeaterType();
+        electricWaterHeater = eWHType.createDevice("Bosch Tronic 3000", laundry);
         house.setDeviceAttribute("Bosch Tronic 3000", "Nominal Power", 0.5);
         house.setDeviceAttribute("Bosch Tronic 3000", "Performance Ratio", 0.8);
         house.setDeviceAttribute("Bosch Tronic 3000", "Hot-Water Temperature", 70);

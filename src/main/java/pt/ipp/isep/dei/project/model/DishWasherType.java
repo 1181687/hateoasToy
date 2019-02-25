@@ -12,6 +12,7 @@ public class DishWasherType implements DeviceType {
     }
 
     public Device createDevice(String name, Room location) {
-        return new DishWasher(name, location);
+        DeviceSpecs dishWasherSpecs = new DishWasherSpecs();
+        return new DishWasher(name, location, dishWasherSpecs);
     }
 }

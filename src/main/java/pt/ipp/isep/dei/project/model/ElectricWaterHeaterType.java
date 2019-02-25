@@ -12,6 +12,7 @@ public class ElectricWaterHeaterType implements DeviceType {
     }
 
     public Device createDevice(String name, Room location) {
-        return new ElectricWaterHeater(name, location);
+        DeviceSpecs electricWaterHeaterSpecs = new ElectricWaterHeaterSpecs();
+        return new ElectricWaterHeater(name, location, electricWaterHeaterSpecs);
     }
 }

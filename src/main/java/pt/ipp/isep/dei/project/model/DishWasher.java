@@ -13,9 +13,9 @@ public class DishWasher implements Device, Programmable {
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public DishWasher(String name, Room location) {
+    public DishWasher(String name, Room location, DeviceSpecs dishWasherSpecs) {
         this.name = name;
-        this.specs = new DishWasherSpecs();
+        this.specs = (DishWasherSpecs) dishWasherSpecs;
         this.location = location;
         this.location.addDevice(this);
         this.isActive = true;
@@ -347,6 +347,6 @@ public class DishWasher implements Device, Programmable {
 
     @Override
     public boolean addProgram(Program program) {
-        return this.specs.addProgram(program);
+        return specs.addProgram(program);
     }
 }

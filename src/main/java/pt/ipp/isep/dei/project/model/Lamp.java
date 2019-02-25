@@ -12,11 +12,11 @@ public class Lamp implements Device {
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public Lamp(String name, Room location) {
+    public Lamp(String name, Room location, DeviceSpecs lampSpecs) {
         this.name = name;
         this.location = location;
         this.location.addDevice(this);
-        this.specs = new LampSpecs();
+        this.specs = (LampSpecs) lampSpecs;
         this.isActive = true;
         this.readingsList = new ArrayList<>();
     }
