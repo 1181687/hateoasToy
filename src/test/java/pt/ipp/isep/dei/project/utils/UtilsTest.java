@@ -97,7 +97,7 @@ class UtilsTest {
         //Arrange
         String expectedResult = "Wrong Key";
         //Act
-        String result = Utils.readConfigFile("Configuration.properties", "Cenas");
+        String result = Utils.readConfigFile("Configuration.properties", "dummyname");
         //Assert
         assertEquals(expectedResult, result);
 
