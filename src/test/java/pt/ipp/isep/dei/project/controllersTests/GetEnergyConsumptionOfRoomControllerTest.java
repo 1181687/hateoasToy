@@ -48,7 +48,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         fridge.setAttributesDevType("Freezer Capacity", 35);
         fridge.setAttributesDevType("Refrigerator Capacity", 20);
         fridge.setAttributesDevType("Annual Energy Consumption", 1000);
-        fridge.setAttributesDevType("Annual Energy Consumption", 1000);
+        fridge.setAttributesDevType("Nominal Power", 1000);
 
         // Readings Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
