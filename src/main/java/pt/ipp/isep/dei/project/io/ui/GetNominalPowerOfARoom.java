@@ -1,13 +1,13 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.GetNominalPowerOfARoomController;
+import pt.ipp.isep.dei.project.controllers.GetNominalPowerOfAGirdOfARoomAndRoomsDevicesController;
 import pt.ipp.isep.dei.project.model.House;
 
 public class GetNominalPowerOfARoom {
-    private GetNominalPowerOfARoomController controller;
+    private GetNominalPowerOfAGirdOfARoomAndRoomsDevicesController controller;
 
     public GetNominalPowerOfARoom(House house) {
-        this.controller = new GetNominalPowerOfARoomController(house);
+        this.controller = new GetNominalPowerOfAGirdOfARoomAndRoomsDevicesController(house);
     }
 
     public void run() {

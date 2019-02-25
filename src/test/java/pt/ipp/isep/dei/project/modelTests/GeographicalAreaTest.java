@@ -49,17 +49,17 @@ class GeographicalAreaTest {
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
         temperatureSensor1 = new Sensor("A123", startDate1, temperature, sensorLocation1);
 
-        // Readings
+        // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime readingDate1 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
-        Readings reading = new Readings(23, readingDate);
-        Readings reading1 = new Readings(30, readingDate1);
+        Reading reading = new Reading(23, readingDate);
+        Reading reading1 = new Reading(30, readingDate1);
         temperatureSensor.addReadingsToList(reading);
         temperatureSensor.addReadingsToList(reading1);
         LocalDateTime readingDate2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
-        Readings reading2 = new Readings(22, readingDate2);
-        Readings reading3 = new Readings(25, readingDate3);
+        Reading reading2 = new Reading(22, readingDate2);
+        Reading reading3 = new Reading(25, readingDate3);
         temperatureSensor1.addReadingsToList(reading2);
         temperatureSensor1.addReadingsToList(reading3);
     }
@@ -381,36 +381,36 @@ class GeographicalAreaTest {
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
         ag1.getSensorListInTheGeographicArea().addSensor(s2);
 
-        //Instanciar Readings
+        //Instanciar Reading
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2015, 12, 2, 5, 22, 40);
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2015, 12, 3, 19, 36, 55);
 
-        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
-        Readings readings02 = new Readings(25, dataHoraDaMedicao02);
+        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
+        Reading reading02 = new Reading(25, dataHoraDaMedicao02);
 
-        s0.addReadingsToList(readings01);
-        s0.addReadingsToList(readings02);
+        s0.addReadingsToList(reading01);
+        s0.addReadingsToList(reading02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 2, 2, 8, 59, 13);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 6, 4, 2, 05, 27);
 
-        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
-        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
+        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
 
-        s1.addReadingsToList(readings11);
-        s1.addReadingsToList(readings12);
+        s1.addReadingsToList(reading11);
+        s1.addReadingsToList(reading12);
 
         //Sensor2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 4, 30, 20, 17, 50);
 
-        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
-        Readings readings22 = new Readings(25, dataHoraDaMedicao22);
+        Reading reading21 = new Reading(20, dataHoraDaMedicao21);
+        Reading reading22 = new Reading(25, dataHoraDaMedicao22);
 
-        s2.addReadingsToList(readings21);
-        s2.addReadingsToList(readings22);
+        s2.addReadingsToList(reading21);
+        s2.addReadingsToList(reading22);
 
         ag1.getSensorListInTheGeographicArea().addSensor(s0);
         ag1.getSensorListInTheGeographicArea().addSensor(s1);
@@ -461,36 +461,36 @@ class GeographicalAreaTest {
         Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
         ag1.getSensorListInTheGeographicArea().addSensor(s2);
 
-        //Instanciar Readings
+        //Instanciar Reading
         // Sensor0
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2015, 12, 2, 0, 0, 0);
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2015, 12, 3, 0, 0, 0);
 
-        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
-        Readings readings02 = new Readings(25, dataHoraDaMedicao02);
+        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
+        Reading reading02 = new Reading(25, dataHoraDaMedicao02);
 
-        s0.addReadingsToList(readings01);
-        s0.addReadingsToList(readings02);
+        s0.addReadingsToList(reading01);
+        s0.addReadingsToList(reading02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2015, 2, 2, 0, 0, 0);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2015, 6, 4, 0, 0, 0);
 
-        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
-        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
+        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
 
-        s1.addReadingsToList(readings11);
-        s1.addReadingsToList(readings12);
+        s1.addReadingsToList(reading11);
+        s1.addReadingsToList(reading12);
 
         //Sensor2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2015, 4, 30, 0, 0, 0);
 
-        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
-        Readings readings22 = new Readings(25, dataHoraDaMedicao22);
+        Reading reading21 = new Reading(20, dataHoraDaMedicao21);
+        Reading reading22 = new Reading(25, dataHoraDaMedicao22);
 
-        s2.addReadingsToList(readings21);
-        s2.addReadingsToList(readings22);
+        s2.addReadingsToList(reading21);
+        s2.addReadingsToList(reading22);
 
         ag1.getSensorListInTheGeographicArea().addSensor(s0);
         ag1.getSensorListInTheGeographicArea().addSensor(s1);
@@ -770,21 +770,21 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
-        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
-        Readings readings02 = new Readings(30, dataHoraDaMedicao02);
+        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
+        Reading reading02 = new Reading(30, dataHoraDaMedicao02);
 
-        s0.addReadingsToList(readings01);
-        s0.addReadingsToList(readings02);
+        s0.addReadingsToList(reading01);
+        s0.addReadingsToList(reading02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
-        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
-        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
+        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
 
-        s1.addReadingsToList(readings11);
-        s1.addReadingsToList(readings12);
+        s1.addReadingsToList(reading11);
+        s1.addReadingsToList(reading12);
 
         Location location = new Location(0, 30, 50);
 
@@ -922,21 +922,21 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 19, 24, 00);
 
-        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
-        Readings readings02 = new Readings(30, dataHoraDaMedicao02);
+        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
+        Reading reading02 = new Reading(30, dataHoraDaMedicao02);
 
-        s0.addReadingsToList(readings01);
-        s0.addReadingsToList(readings02);
+        s0.addReadingsToList(reading01);
+        s0.addReadingsToList(reading02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
-        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
-        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
+        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
 
-        s1.addReadingsToList(readings11);
-        s1.addReadingsToList(readings12);
+        s1.addReadingsToList(reading11);
+        s1.addReadingsToList(reading12);
 
         Location location = new Location(0, 30, 50);
         double expectedResult = 30.0;
@@ -976,23 +976,23 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
-        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
-        Readings readings02 = new Readings(30, dataHoraDaMedicao02);
+        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
+        Reading reading02 = new Reading(30, dataHoraDaMedicao02);
 
-        s0.addReadingsToList(readings01);
-        s0.addReadingsToList(readings02);
+        s0.addReadingsToList(reading01);
+        s0.addReadingsToList(reading02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 5, 17, 24, 00);
 
-        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
-        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
-        Readings readings13 = new Readings(20, dataHoraDaMedicao12);
+        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
+        Reading reading13 = new Reading(20, dataHoraDaMedicao12);
 
-        s1.addReadingsToList(readings11);
-        s1.addReadingsToList(readings12);
-        s1.addReadingsToList(readings13);
+        s1.addReadingsToList(reading11);
+        s1.addReadingsToList(reading12);
+        s1.addReadingsToList(reading13);
 
         LocalDate startDate = LocalDate.of(2018, 12, 1);
         LocalDate endDate = LocalDate.of(2018, 12, 6);
@@ -1037,13 +1037,13 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 5, 17, 24, 00);
 
-        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
-        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
-        Readings readings13 = new Readings(20, dataHoraDaMedicao12);
+        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
+        Reading reading13 = new Reading(20, dataHoraDaMedicao12);
 
-        s1.addReadingsToList(readings11);
-        s1.addReadingsToList(readings12);
-        s1.addReadingsToList(readings13);
+        s1.addReadingsToList(reading11);
+        s1.addReadingsToList(reading12);
+        s1.addReadingsToList(reading13);
 
         LocalDate startDate = LocalDate.of(2018, 12, 1);
         LocalDate endDate = LocalDate.of(2018, 12, 6);
@@ -1124,11 +1124,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 4, 17, 24, 00);
 
-        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
-        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
+        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
 
-        s1.addReadingsToList(readings11);
-        s1.addReadingsToList(readings12);
+        s1.addReadingsToList(reading11);
+        s1.addReadingsToList(reading12);
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
         double expectedResult = 23.5;
 
@@ -1166,11 +1166,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 4, 17, 24, 00);
 
-        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
-        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
+        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
 
-        s1.addReadingsToList(readings11);
-        s1.addReadingsToList(readings12);
+        s1.addReadingsToList(reading11);
+        s1.addReadingsToList(reading12);
 
         LocalDate searchDate = LocalDate.of(2018, 12, 5);
         double expectedResult = Double.NaN;
@@ -1205,11 +1205,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 1, 8, 59, 13);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 1, 2, 05, 27);
 
-        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
-        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
+        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
 
-        s1.addReadingsToList(readings11);
-        s1.addReadingsToList(readings12);
+        s1.addReadingsToList(reading11);
+        s1.addReadingsToList(reading12);
 
         //Sensor2
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -1222,11 +1222,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
 
-        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
-        Readings readings22 = new Readings(25, dataHoraDaMedicao22);
+        Reading reading21 = new Reading(20, dataHoraDaMedicao21);
+        Reading reading22 = new Reading(25, dataHoraDaMedicao22);
 
-        s2.addReadingsToList(readings21);
-        s2.addReadingsToList(readings22);
+        s2.addReadingsToList(reading21);
+        s2.addReadingsToList(reading22);
 
         //Instance of SensorType
         SensorType typeOfSensorTested = new SensorType("Rainfall");
@@ -1269,11 +1269,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 2, 8, 59, 13);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 2, 2, 05, 27);
 
-        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
-        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
+        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
 
-        s1.addReadingsToList(readings11);
-        s1.addReadingsToList(readings12);
+        s1.addReadingsToList(reading11);
+        s1.addReadingsToList(reading12);
 
         //Sensor2
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -1286,11 +1286,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
 
-        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
-        Readings readings22 = new Readings(25, dataHoraDaMedicao22);
+        Reading reading21 = new Reading(20, dataHoraDaMedicao21);
+        Reading reading22 = new Reading(25, dataHoraDaMedicao22);
 
-        s2.addReadingsToList(readings21);
-        s2.addReadingsToList(readings22);
+        s2.addReadingsToList(reading21);
+        s2.addReadingsToList(reading22);
 
         //Instance of SensorType
         SensorType typeOfSensorTested = new SensorType("Rainfall");
@@ -1334,11 +1334,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 1, 8, 59, 13);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 1, 2, 05, 27);
 
-        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
-        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
+        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
 
-        s1.addReadingsToList(readings11);
-        s1.addReadingsToList(readings12);
+        s1.addReadingsToList(reading11);
+        s1.addReadingsToList(reading12);
 
         //Sensor2
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
@@ -1353,11 +1353,11 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
 
-        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
-        Readings readings22 = new Readings(25, dataHoraDaMedicao22);
+        Reading reading21 = new Reading(20, dataHoraDaMedicao21);
+        Reading reading22 = new Reading(25, dataHoraDaMedicao22);
 
-        s2.addReadingsToList(readings21);
-        s2.addReadingsToList(readings22);
+        s2.addReadingsToList(reading21);
+        s2.addReadingsToList(reading22);
 
         //Instance of SensorType
         SensorType typeOfSensorTested = new SensorType("Rainfall");
@@ -1401,12 +1401,12 @@ class GeographicalAreaTest {
 
         //  add measurements to Sensor 1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2016, 1, 1, 8, 59, 13);
-        Readings readings11 = new Readings(11, dataHoraDaMedicao11);
-        s1.addReadingsToList(readings11);
+        Reading reading11 = new Reading(11, dataHoraDaMedicao11);
+        s1.addReadingsToList(reading11);
 
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2016, 1, 1, 10, 05, 27);
-        Readings readings12 = new Readings(11, dataHoraDaMedicao12);
-        s1.addReadingsToList(readings12);
+        Reading reading12 = new Reading(11, dataHoraDaMedicao12);
+        s1.addReadingsToList(reading12);
 
         //Sensor2
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(2016, 12, 2, 15, 20, 00);
@@ -1417,12 +1417,12 @@ class GeographicalAreaTest {
         ag.getSensorListInTheGeographicArea().addSensor(s2);
         //  add measurements to Sensor 2
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(2016, 1, 1, 18, 24, 10);
-        Readings readings21 = new Readings(20, dataHoraDaMedicao21);
-        s2.addReadingsToList(readings21);
+        Reading reading21 = new Reading(20, dataHoraDaMedicao21);
+        s2.addReadingsToList(reading21);
 
         LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(2016, 1, 1, 20, 17, 50);
-        Readings readings22 = new Readings(11, dataHoraDaMedicao22);
-        s2.addReadingsToList(readings22);
+        Reading reading22 = new Reading(11, dataHoraDaMedicao22);
+        s2.addReadingsToList(reading22);
 
         //Instance of SensorType
         SensorType typeOfSensorTested = new SensorType("Rainfall");
@@ -1554,21 +1554,21 @@ class GeographicalAreaTest {
         LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
-        Readings readings01 = new Readings(23, dataHoraDaMedicao01);
-        Readings readings02 = new Readings(30, dataHoraDaMedicao02);
+        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
+        Reading reading02 = new Reading(30, dataHoraDaMedicao02);
 
-        s0.addReadingsToList(readings01);
-        s0.addReadingsToList(readings02);
+        s0.addReadingsToList(reading01);
+        s0.addReadingsToList(reading02);
 
         //Sensor1
         LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
 
-        Readings readings11 = new Readings(22, dataHoraDaMedicao11);
-        Readings readings12 = new Readings(25, dataHoraDaMedicao12);
+        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
 
-        s1.addReadingsToList(readings11);
-        s1.addReadingsToList(readings12);
+        s1.addReadingsToList(reading11);
+        s1.addReadingsToList(reading12);
 
         Location location = new Location(0, 30, 50);
 

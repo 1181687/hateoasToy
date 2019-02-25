@@ -27,16 +27,16 @@ public class RegularUser {
 
             switch (option) {
                 case 1:
-                    GetTotalAndAverageRainfallAndCurrentTempHouseArea ui600 = new GetTotalAndAverageRainfallAndCurrentTempHouseArea(house);
-                    ui600.mostRecentMeasurement();
+                    GetCurrentTemperatureHouseArea ui600 = new GetCurrentTemperatureHouseArea(house);
+                    ui600.run();
                     break;
                 case 2:
-                    GetTotalAndAverageRainfallAndCurrentTempHouseArea ui620 = new GetTotalAndAverageRainfallAndCurrentTempHouseArea(house);
-                    ui620.totalRainfall();
+                    GetAverageRainfall ui620 = new GetAverageRainfall(house);
+                    ui620.run();
                     break;
                 case 3:
-                    GetTotalAndAverageRainfallAndCurrentTempHouseArea ui623 = new GetTotalAndAverageRainfallAndCurrentTempHouseArea(house);
-                    ui623.averageRainfall();
+                    GetTotalRainfall ui623 = new GetTotalRainfall(house);
+                    ui623.run();
                     break;
             }
             option = Menu.regularUserHouseAreaMenu();
@@ -52,12 +52,12 @@ public class RegularUser {
 
             switch (option) {
                 case 1:
-                    GetCurrentAndMaxTempRoom ui605 = new GetCurrentAndMaxTempRoom(house, sensorTypeTemperature);
-                    ui605.run1();
+                    GetCurrentTemperatureRoom ui605 = new GetCurrentTemperatureRoom(house, sensorTypeTemperature);
+                    ui605.run();
                     break;
                 case 2:
-                    GetCurrentAndMaxTempRoom ui610 = new GetCurrentAndMaxTempRoom(house, sensorTypeTemperature);
-                    ui610.run2();
+                    GetMaxTemperatureRoom ui610 = new GetMaxTemperatureRoom(house, sensorTypeTemperature);
+                    ui610.run();
                     break;
                 case 3:
                     // JUST TESTING

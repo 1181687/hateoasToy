@@ -98,8 +98,8 @@ public class HouseGrid implements Measurable {
      * @return
      */
     @Override
-    public List<Readings> getReadings() {
-        List<Readings> listOfReadings = new ArrayList<>();
+    public List<Reading> getReadings() {
+        List<Reading> listOfReadings = new ArrayList<>();
         for (Room room : this.roomList.getListOfRooms()) {
             listOfReadings.addAll(room.getReadings());
         }

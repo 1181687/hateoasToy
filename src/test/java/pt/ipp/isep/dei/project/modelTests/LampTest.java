@@ -17,9 +17,9 @@ class LampTest {
     private Room laundry;
     private Device lamp;
     private Map<LocalDateTime, Double> map;
-    private Readings readings0;
-    private Readings readings1;
-    private Readings readings2;
+    private Reading reading0;
+    private Reading reading1;
+    private Reading reading2;
 
     @BeforeEach
     public void StartUp() {
@@ -36,16 +36,16 @@ class LampTest {
         lamp.setAttributesDevType("Time", 1);
         lamp.setAttributesDevType("Nominal Power", 300);
 
-        // Readings
+        // Reading
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        readings0 = new Readings(3, time0);
+        reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        readings1 = new Readings(5, time1);
+        reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        readings2 = new Readings(7, time2);
-        lamp.addReadingsToTheList(readings0);
-        lamp.addReadingsToTheList(readings1);
-        lamp.addReadingsToTheList(readings2);
+        reading2 = new Reading(7, time2);
+        lamp.addReadingsToTheList(reading0);
+        lamp.addReadingsToTheList(reading1);
+        lamp.addReadingsToTheList(reading2);
 
         // Maps
         map = new TreeMap<>();
@@ -57,13 +57,13 @@ class LampTest {
     @Test
     public void testGetReadings() {
         //Arrange
-        List<Readings> expectedResult = new ArrayList<>();
-        expectedResult.add(readings0);
-        expectedResult.add(readings1);
-        expectedResult.add(readings2);
+        List<Reading> expectedResult = new ArrayList<>();
+        expectedResult.add(reading0);
+        expectedResult.add(reading1);
+        expectedResult.add(reading2);
 
         //Act
-        List<Readings> result = lamp.getReadings();
+        List<Reading> result = lamp.getReadings();
 
         //Assert
         assertEquals(expectedResult, result);
