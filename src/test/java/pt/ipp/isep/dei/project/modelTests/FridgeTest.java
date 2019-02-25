@@ -330,6 +330,21 @@ class FridgeTest {
     }
 
     @Test
+    public void setDeactivateDeviceTrue() {
+
+        boolean result = fridge.setDeactivateDevice();
+        assertTrue(result);
+    }
+
+    @Test
+    public void setDeactivateDeviceAlreadyDeactivatedFalse() {
+
+        fridge.setDeactivateDevice();
+        boolean result = fridge.setDeactivateDevice();
+        assertFalse(result);
+    }
+
+    @Test
     void getDeactivationDate() {
         // arrange
         LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
