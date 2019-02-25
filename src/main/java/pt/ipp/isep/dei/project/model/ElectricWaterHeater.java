@@ -250,9 +250,13 @@ public class ElectricWaterHeater implements Device, Measurable {
      * method that set the deactivate device, turning it to false and giving a date
      */
     @Override
-    public void setDeactivateDevice() {
-        this.isActive = false;
-        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+    public boolean setDeactivateDevice() {
+        if (this.isActive) {
+            this.isActive = false;
+            this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+            return true;
+        }
+        return false;
     }
 
     /**
