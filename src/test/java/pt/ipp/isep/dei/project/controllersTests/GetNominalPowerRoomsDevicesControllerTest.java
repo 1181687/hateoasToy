@@ -8,7 +8,9 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class GetNominalPowerRoomsDevicesControllerTest {
     private GetNominalPowerRoomsDevicesController controller;
@@ -439,9 +441,153 @@ class GetNominalPowerRoomsDevicesControllerTest {
                 "Room: Bathroom\n";
 
         // act
-        String result = controller.getListToString();
+        String result = controller.getMeasurableListToString();
 
         // assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getHouseGridTotalNominalPower_CalculatesTotalNominalPowerOfHGWithTwoDevices_ShouldReturn15() {
+        //Arrange
+        HouseGrid grid1 = new HouseGrid("Grid 1");
+        houseEdificioB.addGrid(grid1);
+
+        Dimension dimension = new Dimension(2, 5, 10);
+        Room room1 = new Room("Quarto", 1, dimension);
+        FridgeType fridgeType = new FridgeType();
+        String name = "Fridge Teka";
+        Device Fridge1 = fridgeType.createDevice(name, room1);
+
+        String name1 = "Fridge Bosch";
+        Device Fridge2 = fridgeType.createDevice(name1, room1);
+
+        Fridge1.setAttributesDevType("Nominal Power", 7.5);
+        Fridge2.setAttributesDevType("Nominal Power", 7.5);
+
+        grid1.attachRoom(room1);
+        controller.getHouseGridByPosition(0);
+        double expectedResult = 15;
+
+        //Act
+        double result = controller.getHouseGridTotalNominalPower();
+
+        //Assert
+        assertEquals(expectedResult, result, 0.00001);
+    }
+
+    @Test
+    void testGetListOfRooms() {
+
+        String expectedResult = "1- Name: Kid's room, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n" +
+                "2- Name: Bathroom, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n";
+
+        //Act
+        String result = this.controller.getListOfRooms();
+
+        //Assert
+        assertEquals(result, expectedResult);
+    }
+
+
+    @Test
+    void testGetListOfRoomsEmpty() {
+        String expectedResult = "1- Name: Kid's room, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n" +
+                "2- Name: Bathroom, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n";
+        //Act
+
+        String result = this.controller.getListOfRooms();
+
+        //Assert
+        assertEquals(result, expectedResult);
+    }
+
+    @Test
+    void getNominalPower() {
+
+        this.controller.getRoom(0);
+
+
+        FridgeType fridgeType = new FridgeType();
+        Device d1 = fridgeType.createDevice("Fridge1", this.roomOne);
+        d1.setAttributesDevType("Nominal Power", 110);
+
+        DishWasherType dishWasher = new DishWasherType();
+        Device d2 = dishWasher.createDevice("Dish Washer1", this.roomTwo);
+        d2.setAttributesDevType("Nominal Power", 110);
+
+
+        double expectedResult = 110;
+
+        //Act
+        double result = controller.getNominalPower();
+
+        //Assert
+        assertEquals(result, expectedResult);
+    }
+
+    @Test
+    void getNominalPowerNoDevices() {
+
+        this.controller.getRoom(0);
+        double expectedResult = 0;
+
+        //Act
+        double result = controller.getNominalPower();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    @Test
+    void testGetRoomListLength() {
+        //Arrange
+        int expectedResult = 2;
+
+        //Act
+        int result = this.controller.getRoomListSize();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testIfDeviceListIsEmpty() {
+
+        Dimension dim1 = new Dimension(4, 4, 4);
+        Room room1 = new Room("Kitchen", 1, dim1);
+
+        Dimension dim2 = new Dimension(4, 4, 4);
+        Room room2 = new Room("Bedroom", 1, dim2);
+
+        houseEdificioB.addRoom(room1);
+        houseEdificioB.addRoom(room2);
+
+        //Act
+        boolean result = controller.isDeviceListEmpty(1);
+
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testifDeviceListIsEmptyWithDevices() {
+
+        FridgeType fridgeType = new FridgeType();
+        Device d1 = fridgeType.createDevice("Fridge1", roomOne);
+
+        DishWasherType dishWasher = new DishWasherType();
+        Device d2 = dishWasher.createDevice("Dish Washer1", roomTwo);
+
+        roomOne.getDeviceList().add(d1);
+
+        roomTwo.getDeviceList().add(d2);
+
+        //Act
+        boolean result = this.controller.isDeviceListEmpty(1);
+
+        //Assert
+        assertFalse(result);
     }
 }

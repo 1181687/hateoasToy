@@ -127,18 +127,18 @@ class GetEnergyConsumptionDeviceControllerTest {
     @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithOneSolution() {
         // Arrange
-        // Readings Instantiation
+        // Reading Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        // List<Readings Configuration
-        room.getDeviceByPosition(0).addReadingsToTheList(readings0);
-        room.getDeviceByPosition(0).addReadingsToTheList(readings1);
-        room.getDeviceByPosition(0).addReadingsToTheList(readings2);
+        // List<Reading Configuration
+        room.getDeviceByPosition(0).addReadingsToTheList(reading0);
+        room.getDeviceByPosition(0).addReadingsToTheList(reading1);
+        room.getDeviceByPosition(0).addReadingsToTheList(reading2);
 
         ctrl.setDevice(0);
 
@@ -157,18 +157,18 @@ class GetEnergyConsumptionDeviceControllerTest {
     @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithTwoSolutions() {
         // Arrange
-        // Readings Instantiation
+        // Reading Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        // List<Readings Configuration
-        room.getDeviceByPosition(0).addReadingsToTheList(readings0);
-        room.getDeviceByPosition(0).addReadingsToTheList(readings1);
-        room.getDeviceByPosition(0).addReadingsToTheList(readings2);
+        // List<Reading Configuration
+        room.getDeviceByPosition(0).addReadingsToTheList(reading0);
+        room.getDeviceByPosition(0).addReadingsToTheList(reading1);
+        room.getDeviceByPosition(0).addReadingsToTheList(reading2);
 
         ctrl.setDevice(0);
 
@@ -187,18 +187,18 @@ class GetEnergyConsumptionDeviceControllerTest {
     @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithNoSolutions() {
         // Arrange
-        // Readings Instantiation
+        // Reading Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        // List<Readings Configuration
-        room.getDeviceByPosition(0).addReadingsToTheList(readings0);
-        room.getDeviceByPosition(0).addReadingsToTheList(readings1);
-        room.getDeviceByPosition(0).addReadingsToTheList(readings2);
+        // List<Reading Configuration
+        room.getDeviceByPosition(0).addReadingsToTheList(reading0);
+        room.getDeviceByPosition(0).addReadingsToTheList(reading1);
+        room.getDeviceByPosition(0).addReadingsToTheList(reading2);
 
         ctrl.setDevice(0);
 

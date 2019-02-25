@@ -13,7 +13,7 @@ import java.util.List;
 public class Sensor {
     private String sensorName;
     private LocalDateTime startingDate;
-    private List<Readings> listOfReadings = new ArrayList<>();
+    private List<Reading> listOfReadings = new ArrayList<>();
     private SensorType sensorType;
     private Location location;
 
@@ -131,9 +131,9 @@ public class Sensor {
 
         List<Double> measurementsBetweenDates = new ArrayList<>();
 
-        for (Readings readings : listOfReadings) {
-            if ((readings.getDateTime().toLocalDate().isEqual(startDate) || readings.getDateTime().toLocalDate().isAfter(startDate)) && (readings.getDateTime().toLocalDate().isEqual(endDate) || readings.getDateTime().toLocalDate().isBefore(endDate))) {
-                measurementsBetweenDates.add(readings.getValue());
+        for (Reading reading : listOfReadings) {
+            if ((reading.getDateTime().toLocalDate().isEqual(startDate) || reading.getDateTime().toLocalDate().isAfter(startDate)) && (reading.getDateTime().toLocalDate().isEqual(endDate) || reading.getDateTime().toLocalDate().isBefore(endDate))) {
+                measurementsBetweenDates.add(reading.getValue());
             }
         }
         return measurementsBetweenDates;
@@ -231,10 +231,10 @@ public class Sensor {
     /**
      * Method that adds a listOfReadings to a list of measurements
      *
-     * @param readings listOfReadings of a sensor
+     * @param reading listOfReadings of a sensor
      */
-    public void addReadingsToList(Readings readings) {
-        this.listOfReadings.add(readings);
+    public void addReadingsToList(Reading reading) {
+        this.listOfReadings.add(reading);
     }
 
     /**
@@ -251,7 +251,7 @@ public class Sensor {
      *
      * @return last measurement
      */
-    public Readings getLastMeasurement() {
+    public Reading getLastMeasurement() {
         for (int i = (listOfReadings.size() - 1); i >= 0; i--) {
             if (!(Double.isNaN(listOfReadings.get(i).getValue()))) {
                 return listOfReadings.get(i);
@@ -277,9 +277,9 @@ public class Sensor {
      * @param date a given day
      * @return the measurements of a given day
      */
-    public List<Readings> getDailyMeasurement(LocalDate date) {
-        List<Readings> registosDoDia = new ArrayList<>();
-        for (Readings registo : listOfReadings) {
+    public List<Reading> getDailyMeasurement(LocalDate date) {
+        List<Reading> registosDoDia = new ArrayList<>();
+        for (Reading registo : listOfReadings) {
             LocalDate secondDate = registo.getDateTime().toLocalDate();
 
             if (checkIfDaysAreEqual(date, secondDate) && (!Double.isNaN(registo.getValue()))) {
@@ -310,7 +310,7 @@ public class Sensor {
     public double getLowestMeasurementOfDay(LocalDate data) {
         if (!getDailyMeasurement(data).isEmpty()) {
             double valorMinimoDoDia = getDailyMeasurement(data).get(0).getValue();
-            for (Readings registo : getDailyMeasurement(data)) {
+            for (Reading registo : getDailyMeasurement(data)) {
                 if (Utils.isFirstDoubleBiggerThanSecondOne(valorMinimoDoDia, registo.getValue())) {
                     valorMinimoDoDia = registo.getValue();
                 }
@@ -383,9 +383,9 @@ public class Sensor {
     public double getMaximumValueOfDay(LocalDate date) {
         if (!getDailyMeasurement(date).isEmpty()) {
             double maximumValueOfDay = getDailyMeasurement(date).get(0).getValue();
-            for (Readings readings : getDailyMeasurement(date)) {
-                if (!Utils.isFirstDoubleBiggerThanSecondOne(maximumValueOfDay, readings.getValue()) && !Utils.isSameDouble(maximumValueOfDay, readings.getValue())) {
-                    maximumValueOfDay = readings.getValue();
+            for (Reading reading : getDailyMeasurement(date)) {
+                if (!Utils.isFirstDoubleBiggerThanSecondOne(maximumValueOfDay, reading.getValue()) && !Utils.isSameDouble(maximumValueOfDay, reading.getValue())) {
+                    maximumValueOfDay = reading.getValue();
                 }
             }
             return maximumValueOfDay;
@@ -456,8 +456,8 @@ public class Sensor {
     public double getTotalDailyMeasurements(LocalDate day) {
         double sum = 0;
         if (!(getDailyMeasurement(day).isEmpty())) {
-            for (Readings readings : getDailyMeasurement(day)) {
-                sum += readings.getValue();
+            for (Reading reading : getDailyMeasurement(day)) {
+                sum += reading.getValue();
             }
         }
         return sum;

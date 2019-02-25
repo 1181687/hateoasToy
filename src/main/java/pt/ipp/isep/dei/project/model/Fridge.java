@@ -8,7 +8,7 @@ public class Fridge implements Device {
     private String name;
     private Room location;
     private FridgeSpecs specs;
-    private List<Readings> readingsList;
+    private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
@@ -18,7 +18,7 @@ public class Fridge implements Device {
         this.location.addDevice(this);
         this.specs = new FridgeSpecs();
         this.isActive = true;
-        this.readingsList = new ArrayList<>();
+        this.readingList = new ArrayList<>();
     }
 
 
@@ -60,13 +60,13 @@ public class Fridge implements Device {
     }
 
     /**
-     * method that gets the list of Readings of the Device.
+     * method that gets the list of Reading of the Device.
      *
      * @return
      */
     @Override
-    public List<Readings> getReadings() {
-        return this.readingsList;
+    public List<Reading> getReadings() {
+        return this.readingList;
     }
 
     /**
@@ -195,24 +195,24 @@ public class Fridge implements Device {
     }
 
     /**
-     * Method that adds a readingsList to the device.
+     * Method that adds a readingList to the device.
      *
-     * @param readings Readings to be added.
+     * @param reading Reading to be added.
      */
-    public void addReadingsToTheList(Readings readings) {
-        this.readingsList.add(readings);
+    public void addReadingsToTheList(Reading reading) {
+        this.readingList.add(reading);
     }
 
     /**
-     * Method that calculates the sum of the value in each Readings in a given Readings list.
+     * Method that calculates the sum of the value in each Reading in a given Reading list.
      *
-     * @param readingsList List with Readingss.
+     * @param readingList List with Readingss.
      * @return Double with the required sum.
      */
-    public double getSumOfTheReadings(List<Readings> readingsList) {
+    public double getSumOfTheReadings(List<Reading> readingList) {
         double sum = 0;
-        for (Readings readings : readingsList) {
-            sum += readings.getValue();
+        for (Reading reading : readingList) {
+            sum += reading.getValue();
         }
         return sum;
     }
@@ -227,7 +227,7 @@ public class Fridge implements Device {
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        List<Readings> readings = getReadingsListInInterval(startDate, endDate);
+        List<Reading> readings = getReadingsListInInterval(startDate, endDate);
         if (!(readings.isEmpty())) {
             readings.remove(0);
             totalEnergyConsumption = getSumOfTheReadings(readings);
@@ -249,9 +249,13 @@ public class Fridge implements Device {
      * method that set the deactivate device, turning it to false and giving a date
      */
     @Override
-    public void setDeactivateDevice() {
-        this.isActive = false;
-        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+    public boolean setDeactivateDevice() {
+        if (this.isActive) {
+            this.isActive = false;
+            this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -267,16 +271,16 @@ public class Fridge implements Device {
     /**
      * get method
      *
-     * @param startDate starting date of readingsList
-     * @param endDate   end date of readingsList
-     * @return map with coordinates (value of readingsList and time)
+     * @param startDate starting date of readingList
+     * @param endDate   end date of readingList
+     * @return map with coordinates (value of readingList and time)
      */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> hmap = new TreeMap<>();
-        List<Readings> validReadingsList = getReadingsListInInterval(startDate, endDate);
-        for (Readings readings : validReadingsList) {
-            hmap.put(readings.getDateTime(), readings.getValue());
+        List<Reading> validReadingList = getReadingsListInInterval(startDate, endDate);
+        for (Reading reading : validReadingList) {
+            hmap.put(reading.getDateTime(), reading.getValue());
         }
         return hmap;
     }

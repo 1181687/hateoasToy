@@ -26,7 +26,7 @@ public class GetNominalPowerRoomsDevices {
             System.out.println("There are no house grids in the house. Please, add one.\n");
             return;
         }
-        System.out.println("You have selected the following rooms/devices:\n" + controller.getListToString() + "The total nominal power for the selected subset of rooms and/or devices is " + controller.getNominalPowerOfMeasurableObjects() + " kW\n");
+        System.out.println("You have selected the following rooms/devices:\n" + controller.getMeasurableListToString() + "The total nominal power for the selected subset of rooms and/or devices is " + controller.getNominalPowerOfMeasurableObjects() + " kW\n");
     }
 
     public void afterChoosingHouseGrid() {
