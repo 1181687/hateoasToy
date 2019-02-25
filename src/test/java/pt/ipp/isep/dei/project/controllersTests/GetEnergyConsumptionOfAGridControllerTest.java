@@ -152,7 +152,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         double expectedResult = 12;
 
         //Act
-        double result = controller.getEnergyConsumptionInAnInterval(startTime, endTime);
+        double result = controller.getHouseGridEnergyConsumptionInAnInterval(startTime, endTime);
 
         //Assert
         assertEquals(expectedResult, result, 0.001);

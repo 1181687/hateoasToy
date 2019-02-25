@@ -5,11 +5,11 @@ import pt.ipp.isep.dei.project.model.Room;
 
 import java.time.LocalDateTime;
 
-public class GetEnergyConsumptionOfRoomInAnIntervalController {
+public class GetEnergyConsumptionRoomController {
     private House house;
     private Room selectedRoom;
 
-    public GetEnergyConsumptionOfRoomInAnIntervalController(House house) {
+    public GetEnergyConsumptionRoomController(House house) {
         this.house = house;
     }
 
@@ -37,7 +37,7 @@ public class GetEnergyConsumptionOfRoomInAnIntervalController {
         return selectedRoom.getName();
     }
 
-    public double getEnergyConsumptionOfRoomInInterval(LocalDateTime initialDate, LocalDateTime finalDate) {
+    public double getRoomEnergyConsumptionOfRoomInInterval(LocalDateTime initialDate, LocalDateTime finalDate) {
         return selectedRoom.getEnergyConsumptionInAnInterval(initialDate, finalDate);
     }
 }

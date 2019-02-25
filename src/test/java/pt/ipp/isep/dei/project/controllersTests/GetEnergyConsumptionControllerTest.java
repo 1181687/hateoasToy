@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionDeviceController;
+import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionController;
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -11,8 +11,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class GetEnergyConsumptionDeviceControllerTest {
-    private GetEnergyConsumptionDeviceController ctrl;
+class GetEnergyConsumptionControllerTest {
+    private GetEnergyConsumptionController ctrl;
     private House house;
     private Room room;
 
@@ -90,7 +90,7 @@ class GetEnergyConsumptionDeviceControllerTest {
         device4.setAttributesDevType(PERFORMANCE_RATIO,0.9);
         device4.setAttributesDevType(NOMINAL_POWER,100);
 
-        this.ctrl = new GetEnergyConsumptionDeviceController(house);
+        this.ctrl = new GetEnergyConsumptionController(house);
         room = house.getRoomOfTheRoomList(0);
     }
 
@@ -140,7 +140,7 @@ class GetEnergyConsumptionDeviceControllerTest {
         room.getDeviceByPosition(0).addReadingsToTheList(readings1);
         room.getDeviceByPosition(0).addReadingsToTheList(readings2);
 
-        ctrl.setDevice(0);
+        ctrl.getDeviceByPosition(0);
 
         double expectedResult = 7;
 
@@ -170,7 +170,7 @@ class GetEnergyConsumptionDeviceControllerTest {
         room.getDeviceByPosition(0).addReadingsToTheList(readings1);
         room.getDeviceByPosition(0).addReadingsToTheList(readings2);
 
-        ctrl.setDevice(0);
+        ctrl.getDeviceByPosition(0);
 
         double expectedResult = 12;
 
@@ -200,7 +200,7 @@ class GetEnergyConsumptionDeviceControllerTest {
         room.getDeviceByPosition(0).addReadingsToTheList(readings1);
         room.getDeviceByPosition(0).addReadingsToTheList(readings2);
 
-        ctrl.setDevice(0);
+        ctrl.getDeviceByPosition(0);
 
         double expectedResult = 0;
 

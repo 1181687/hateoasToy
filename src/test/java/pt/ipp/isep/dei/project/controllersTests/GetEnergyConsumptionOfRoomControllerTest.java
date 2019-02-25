@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionOfRoomInAnIntervalController;
+import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionRoomController;
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -14,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GetEnergyConsumptionOfRoomControllerTest {
 
-    private GetEnergyConsumptionOfRoomInAnIntervalController ctrl;
+    private GetEnergyConsumptionRoomController ctrl;
     private House house;
     private Room kitchen;
     private Room livingRoom;
@@ -64,7 +64,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         fridge.addReadingsToTheList(readings2);
 
 
-        this.ctrl = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
+        this.ctrl = new GetEnergyConsumptionRoomController(house);
     }
 
     @Test
@@ -186,7 +186,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
 
         ctrl.getRoomByPosition(0);
         // Act
-        double result = ctrl.getEnergyConsumptionOfRoomInInterval(startDate, endDate);
+        double result = ctrl.getRoomEnergyConsumptionOfRoomInInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -204,7 +204,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
 
         ctrl.getRoomByPosition(0);
         // Act
-        double result = ctrl.getEnergyConsumptionOfRoomInInterval(startDate, endDate);
+        double result = ctrl.getRoomEnergyConsumptionOfRoomInInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -222,7 +222,7 @@ public class GetEnergyConsumptionOfRoomControllerTest {
 
         ctrl.getRoomByPosition(0);
         // Act
-        double result = ctrl.getEnergyConsumptionOfRoomInInterval(startDate, endDate);
+        double result = ctrl.getRoomEnergyConsumptionOfRoomInInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
