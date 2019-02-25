@@ -495,8 +495,7 @@ public class Room implements Measurable {
 
         for (Device searchDevice : this.deviceList) {
             if (device.equals(searchDevice.getName())) {
-                searchDevice.setDeactivateDevice();
-                return true;
+                return searchDevice.setDeactivateDevice();
             }
         }
         return false;

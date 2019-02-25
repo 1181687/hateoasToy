@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.project.model.*;
 
 public class GetNominalPowerRoomsDevicesController {
     private House house;
+    private Room chosenRoom;
     private HouseGrid selectedHouseGrid;
     private MeasurableList measurableList;
 
@@ -143,12 +144,67 @@ public class GetNominalPowerRoomsDevicesController {
     }
 
     /**
-     * method that returns the method getListToString of model class MeasurableList
+     * method that returns the method getMeasurableListToString of model class MeasurableList
      *
      * @return list (string)
      */
-    public String getListToString() {
+    public String getMeasurableListToString() {
         return measurableList.getListToString();
+    }
+
+    /**
+     * Calculates the nominal power of the selected HouseGrid.
+     *
+     * @return double
+     */
+    public double getHouseGridTotalNominalPower() {
+        return selectedHouseGrid.getNominalPower();
+    }
+
+    /**
+     * Method that returns the String builder with the list of rooms.
+     *
+     * @return A string with the list of rooms.
+     */
+    public String getListOfRooms() {
+        return house.getRoomListContent();
+    }
+
+    /**
+     * Method that returns the length of the roomList.
+     *
+     * @return integer
+     */
+    public int getRoomListSize() {
+        return house.houseRoomListSize();
+    }
+
+    /**
+     * Method that checks if the device list is empty, given a room from the list of rooms.
+     *
+     * @param option Chosen room from the list as an integer.
+     * @return
+     */
+    public boolean isDeviceListEmpty(int option) {
+        return house.isDeviceListEmpty(option);
+    }
+
+    /**
+     * Method that selects the room from the list and saves it in the controller.
+     *
+     * @param option Chosen room from the list as an integer.
+     */
+    public void getRoom(int option) {
+        chosenRoom = house.getRoomOfTheRoomList(option);
+    }
+
+    /**
+     * Method that returns the nominal power of the room previously chosen.
+     *
+     * @return
+     */
+    public double getNominalPower() {
+        return chosenRoom.getNominalPower();
     }
 
 }

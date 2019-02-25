@@ -133,7 +133,7 @@ public interface Device extends Measurable {
     /**
      * method that set the deactivate device, turning it to false and giving a date
      */
-    void setDeactivateDevice();
+    boolean setDeactivateDevice();
 
     /**
      * method that get an active device.
