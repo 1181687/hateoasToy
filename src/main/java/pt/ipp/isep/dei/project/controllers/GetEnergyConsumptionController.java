@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.HouseGrid;
+import pt.ipp.isep.dei.project.model.Measurable;
+import pt.ipp.isep.dei.project.model.Room;
 
 import java.time.LocalDateTime;
 
 public class GetEnergyConsumptionController {
     private House house;
-    private Device device;
-    private Room selectedRoom;
-    private HouseGrid houseGrid;
     private Measurable measurable;
 
 
