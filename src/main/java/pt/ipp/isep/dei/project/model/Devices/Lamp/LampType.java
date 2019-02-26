@@ -17,8 +17,10 @@ public class LampType implements DeviceType {
         return this.typeName;
     }
 
-    public Device createDevice(String name) {
+    public Device createDevice(String name, Room location) {
         DeviceSpecs lampSpecs = new LampSpecs();
-        return new Lamp(name, lampSpecs);
+        return new Lamp(name, location, lampSpecs);
     }
+
+
 }

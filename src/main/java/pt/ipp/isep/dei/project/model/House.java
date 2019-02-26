@@ -58,7 +58,7 @@ public class House {
      * @param location   Room location to add advice
      * @return true if creates and false if not
      */
-    /*public Device createDevice(String typeName, String deviceName, Room location) {
+    public Device createDevice(String typeName, String deviceName, Room location) {
 
         if (Objects.isNull(getDeviceType(typeName))) {
             return null;
@@ -70,7 +70,7 @@ public class House {
             }
         }
         return getDeviceType(typeName).createDevice(deviceName, location);
-    }*/
+    }
 
     /**
      * get method

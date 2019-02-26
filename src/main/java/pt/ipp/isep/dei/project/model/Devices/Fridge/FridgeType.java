@@ -17,8 +17,8 @@ public class FridgeType implements DeviceType {
         return this.typeName;
     }
 
-    public Device createDevice(String name) {
+    public Device createDevice(String name, Room location) {
         DeviceSpecs fridgeSpecs = new FridgeSpecs();
-        return new Fridge(name, fridgeSpecs);
+        return new Fridge(name, location, fridgeSpecs);
     }
 }
