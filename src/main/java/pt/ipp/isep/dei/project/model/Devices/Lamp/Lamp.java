@@ -1,25 +1,30 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.Devices.Lamp;
+
+import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.Devices.Programmable;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.Room;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class ElectricWaterHeater implements Device, Measurable {
+public class Lamp implements Device {
     private String name;
     private Room location;
-    private ElectricWaterHeaterSpecs specs;
+    private LampSpecs specs;
     private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public ElectricWaterHeater(String name, Room location, DeviceSpecs electricWaterHeaterSpecs) {
+    public Lamp(String name, Room location, DeviceSpecs lampSpecs) {
         this.name = name;
         this.location = location;
         this.location.addDevice(this);
-        this.specs = (ElectricWaterHeaterSpecs) electricWaterHeaterSpecs;
+        this.specs = (LampSpecs) lampSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
-
     }
 
     /**
@@ -68,7 +73,6 @@ public class ElectricWaterHeater implements Device, Measurable {
     public List<Reading> getReadings() {
         return this.readingList;
     }
-
 
     /**
      * Method that gets the energy consumption in a day.
@@ -237,6 +241,7 @@ public class ElectricWaterHeater implements Device, Measurable {
         return totalEnergyConsumption;
     }
 
+    @Override
     public LocalDateTime getDeactivationDate() {
         return this.deactivationDate;
     }
@@ -264,6 +269,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      *
      * @return an active device.
      */
+    @Override
     public boolean getIsActive() {
         return isActive;
     }
@@ -288,7 +294,7 @@ public class ElectricWaterHeater implements Device, Measurable {
     /**
      * get method
      *
-     * @return list of specs of ElectricWaterHeater specs
+     * @return list of specs of lamp specs
      */
     @Override
     public List<String> getSpecsList() {
@@ -299,7 +305,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      * get method
      *
      * @param attributeName string attribute
-     * @return name of attributes of ElectricWaterHeater specs
+     * @return name of attributes of Lamp specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
@@ -310,13 +316,13 @@ public class ElectricWaterHeater implements Device, Measurable {
     /**
      * get method
      *
-     * @return the string of an attribute of ElectricWaterHeater
+     * @return the string of an attribute of Lamp Specs
      */
+
     @Override
     public String getSpecsToString() {
         return this.specs.getAttributesToString();
     }
-
 
     /**
      * get method

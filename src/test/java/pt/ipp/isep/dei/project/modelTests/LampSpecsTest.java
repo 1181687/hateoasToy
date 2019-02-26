@@ -2,7 +2,11 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.Lamp.LampSpecs;
+import pt.ipp.isep.dei.project.model.Devices.Lamp.LampType;
+import pt.ipp.isep.dei.project.model.Dimension;
+import pt.ipp.isep.dei.project.model.Room;
 
 import java.util.ArrayList;
 import java.util.List;

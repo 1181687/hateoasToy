@@ -1,5 +1,7 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.Devices.DishWasher;
 
+import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.Program;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;

@@ -1,24 +1,29 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.Devices.ElectricWaterHeater;
+
+import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.Devices.Programmable;
+import pt.ipp.isep.dei.project.model.Measurable;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.Room;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class WashingMachine implements Device, Programmable {
-
+public class ElectricWaterHeater implements Device, Measurable {
     private String name;
     private Room location;
-    private WashingMachineSpecs specs;
+    private ElectricWaterHeaterSpecs specs;
     private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-
-    public WashingMachine(String name, Room location, DeviceSpecs washingMachineSpecs) {
+    public ElectricWaterHeater(String name, Room location, DeviceSpecs electricWaterHeaterSpecs) {
         this.name = name;
         this.location = location;
-        this.specs = (WashingMachineSpecs) washingMachineSpecs;
         this.location.addDevice(this);
+        this.specs = (ElectricWaterHeaterSpecs) electricWaterHeaterSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
 
@@ -31,7 +36,7 @@ public class WashingMachine implements Device, Programmable {
      */
     @Override
     public double getNominalPower() {
-        return specs.getNominalPower();
+        return this.specs.getNominalPower();
     }
 
     /**
@@ -39,7 +44,6 @@ public class WashingMachine implements Device, Programmable {
      *
      * @return the location.
      */
-    @Override
     public Room getLocation() {
         return this.location;
     }
@@ -49,7 +53,6 @@ public class WashingMachine implements Device, Programmable {
      *
      * @return name of device
      */
-    @Override
     public String getName() {
         return this.name;
     }
@@ -59,9 +62,8 @@ public class WashingMachine implements Device, Programmable {
      *
      * @return String
      */
-    @Override
     public String getType() {
-        return specs.getTypeName();
+        return this.specs.getTypeName();
     }
 
     /**
@@ -74,15 +76,16 @@ public class WashingMachine implements Device, Programmable {
         return this.readingList;
     }
 
+
     /**
      * Method that gets the energy consumption in a day.
      *
      * @return Energy consumption of the device in a given day.
      */
-    @Override
     public double getEnergyConsumptionInADay() {
-        return specs.getEnergyConsumptionInADay();
+        return this.specs.getEnergyConsumptionInADay();
     }
+
 
     /**
      * method that set the given name only if the name don't exists in DeviceList
@@ -91,7 +94,6 @@ public class WashingMachine implements Device, Programmable {
      * @param name String given name
      * @return true if sets false if don't
      */
-    @Override
     public boolean setName(String name) {
         if (this.location.isDeviceNameExistant(name) || this.name == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
@@ -106,7 +108,6 @@ public class WashingMachine implements Device, Programmable {
      * @param location
      * @return false if the location is equals to another device. True if not.
      */
-    @Override
     public boolean setLocation(Room location) {
         if (this.location.equals(location)) {
             return false;
@@ -123,7 +124,7 @@ public class WashingMachine implements Device, Programmable {
      * @return String with the attributes.
      */
     public String getDevSpecsAttributesToString() {
-        return specs.getAttributesToString();
+        return this.specs.getAttributesToString();
     }
 
     /**
@@ -185,7 +186,7 @@ public class WashingMachine implements Device, Programmable {
      * @return the number of attributes.
      */
     public int getNumberOfSpecsAttributes() {
-        return specs.getNumberOfAttributes();
+        return this.specs.getNumberOfAttributes();
     }
 
     /**
@@ -243,7 +244,6 @@ public class WashingMachine implements Device, Programmable {
         return totalEnergyConsumption;
     }
 
-    @Override
     public LocalDateTime getDeactivationDate() {
         return this.deactivationDate;
     }
@@ -271,11 +271,9 @@ public class WashingMachine implements Device, Programmable {
      *
      * @return an active device.
      */
-    @Override
     public boolean getIsActive() {
         return isActive;
     }
-
 
     /**
      * get method
@@ -294,11 +292,10 @@ public class WashingMachine implements Device, Programmable {
         return hmap;
     }
 
-
     /**
      * get method
      *
-     * @return list of specs of washing machine specs
+     * @return list of specs of ElectricWaterHeater specs
      */
     @Override
     public List<String> getSpecsList() {
@@ -309,7 +306,7 @@ public class WashingMachine implements Device, Programmable {
      * get method
      *
      * @param attributeName string attribute
-     * @return name of attributes of washing machine specs
+     * @return name of attributes of ElectricWaterHeater specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
@@ -320,13 +317,13 @@ public class WashingMachine implements Device, Programmable {
     /**
      * get method
      *
-     * @return the string of an attribute of washing machine Specs
+     * @return the string of an attribute of ElectricWaterHeater
      */
-
     @Override
     public String getSpecsToString() {
         return this.specs.getAttributesToString();
     }
+
 
     /**
      * get method
@@ -341,17 +338,11 @@ public class WashingMachine implements Device, Programmable {
 
     @Override
     public boolean isProgrammable() {
-        return true;
+        return false;
     }
 
     @Override
-    public Programmable asProgrammable(){
-        return this;
+    public Programmable asProgrammable() {
+        return null;
     }
-
-    @Override
-    public boolean addProgram(Program program) {
-        return specs.addProgram(program);
-    }
-
 }

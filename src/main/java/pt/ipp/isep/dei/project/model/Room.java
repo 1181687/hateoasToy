@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.model.Devices.Device;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;

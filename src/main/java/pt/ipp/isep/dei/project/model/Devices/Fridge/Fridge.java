@@ -1,26 +1,32 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.Devices.Fridge;
+
+import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.Devices.Programmable;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.Room;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class DishWasher implements Device, Programmable {
-
+public class Fridge implements Device {
     private String name;
     private Room location;
-    private DishWasherSpecs specs;
+    private FridgeSpecs specs;
     private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public DishWasher(String name, Room location, DeviceSpecs dishWasherSpecs) {
+    public Fridge(String name, Room location, DeviceSpecs fridgeSpecs) {
         this.name = name;
-        this.specs = (DishWasherSpecs) dishWasherSpecs;
         this.location = location;
         this.location.addDevice(this);
+        this.specs = (FridgeSpecs) fridgeSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
     }
+
 
     /**
      * method that get the nominal power of the devices.
@@ -29,7 +35,7 @@ public class DishWasher implements Device, Programmable {
      */
     @Override
     public double getNominalPower() {
-        return specs.getNominalPower();
+        return this.specs.getNominalPower();
     }
 
     /**
@@ -37,7 +43,6 @@ public class DishWasher implements Device, Programmable {
      *
      * @return the location.
      */
-    @Override
     public Room getLocation() {
         return this.location;
     }
@@ -47,7 +52,6 @@ public class DishWasher implements Device, Programmable {
      *
      * @return name of device
      */
-    @Override
     public String getName() {
         return this.name;
     }
@@ -57,9 +61,8 @@ public class DishWasher implements Device, Programmable {
      *
      * @return String
      */
-    @Override
     public String getType() {
-        return specs.getTypeName();
+        return this.specs.getTypeName();
     }
 
     /**
@@ -77,10 +80,10 @@ public class DishWasher implements Device, Programmable {
      *
      * @return Energy consumption of the device in a given day.
      */
-    @Override
     public double getEnergyConsumptionInADay() {
-        return specs.getEnergyConsumptionInADay();
+        return this.specs.getEnergyConsumptionInADay();
     }
+
 
     /**
      * method that set the given name only if the name don't exists in DeviceList
@@ -89,7 +92,6 @@ public class DishWasher implements Device, Programmable {
      * @param name String given name
      * @return true if sets false if don't
      */
-    @Override
     public boolean setName(String name) {
         if (this.location.isDeviceNameExistant(name) || this.name == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
@@ -104,7 +106,6 @@ public class DishWasher implements Device, Programmable {
      * @param location
      * @return false if the location is equals to another device. True if not.
      */
-    @Override
     public boolean setLocation(Room location) {
         if (this.location.equals(location)) {
             return false;
@@ -121,7 +122,7 @@ public class DishWasher implements Device, Programmable {
      * @return String with the attributes.
      */
     public String getDevSpecsAttributesToString() {
-        return specs.getAttributesToString();
+        return this.specs.getAttributesToString();
     }
 
     /**
@@ -133,7 +134,7 @@ public class DishWasher implements Device, Programmable {
 
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Name: " + name + "\n");
-        attributes.append("2 - Device Specifications \n");
+        attributes.append("2 - Device Specifications\n");
         attributes.append("3 - Location: " + location.getName() + "\n");
         return attributes.toString();
     }
@@ -183,7 +184,7 @@ public class DishWasher implements Device, Programmable {
      * @return the number of attributes.
      */
     public int getNumberOfSpecsAttributes() {
-        return specs.getNumberOfAttributes();
+        return this.specs.getNumberOfAttributes();
     }
 
     /**
@@ -200,7 +201,7 @@ public class DishWasher implements Device, Programmable {
     }
 
     /**
-     * Method that adds a reading to the device.
+     * Method that adds a readingList to the device.
      *
      * @param reading Reading to be added.
      */
@@ -211,7 +212,7 @@ public class DishWasher implements Device, Programmable {
     /**
      * Method that calculates the sum of the value in each Reading in a given Reading list.
      *
-     * @param readingList List with Reading.
+     * @param readingList List with Readingss.
      * @return Double with the required sum.
      */
     public double getSumOfTheReadings(List<Reading> readingList) {
@@ -222,11 +223,8 @@ public class DishWasher implements Device, Programmable {
         return sum;
     }
 
-
     /**
      * Method that calculates the total energy consumption of a device in a given interval.
-     * This method has in count all the fully contained readingList, i.e., if there's just one readingList in the interval, it
-     * is not counted.
      *
      * @param startDate Start date.
      * @param endDate   End date.
@@ -266,7 +264,6 @@ public class DishWasher implements Device, Programmable {
         return false;
     }
 
-
     /**
      * method that get an active device.
      *
@@ -277,13 +274,12 @@ public class DishWasher implements Device, Programmable {
         return isActive;
     }
 
-
     /**
      * get method
      *
-     * @param startDate starting date of reading
-     * @param endDate   end date of reading
-     * @return map with coordinates (value of reading and time)
+     * @param startDate starting date of readingList
+     * @param endDate   end date of readingList
+     * @return map with coordinates (value of readingList and time)
      */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
@@ -298,35 +294,35 @@ public class DishWasher implements Device, Programmable {
     /**
      * get method
      *
-     * @return list of specs of dishwasher specs
+     * @return list of specs of fridge specs
      */
+
     @Override
     public List<String> getSpecsList() {
         return specs.getSpecsList();
     }
 
     /**
-     *
-     * get method
+     * * get method
      *
      * @param attributeName string attribute
-     * @return name of attributes of dishwasher specs
+     * @return name of attributes of fridge specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
         return specs.getAttributeValue(attributeName);
     }
 
-
     /**
      * get method
      *
-     * @return the string of an attribute of Dishwasher Specs
+     * @return the string of an attribute of Fridge Specs
      */
     @Override
     public String getSpecsToString() {
         return this.specs.getAttributesToString();
     }
+
 
     /**
      * get method
@@ -341,16 +337,11 @@ public class DishWasher implements Device, Programmable {
 
     @Override
     public boolean isProgrammable() {
-        return true;
+        return false;
     }
 
     @Override
     public Programmable asProgrammable() {
-        return this;
-    }
-
-    @Override
-    public boolean addProgram(Program program) {
-        return specs.addProgram(program);
+        return null;
     }
 }
