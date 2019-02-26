@@ -1,4 +1,6 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.Devices;
+
+import pt.ipp.isep.dei.project.model.Program;
 
 public interface Programmable {
 

@@ -1,6 +1,12 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.DishWasher.DishWasherType;
+import pt.ipp.isep.dei.project.model.Devices.ElectricWaterHeater.ElectricWaterHeaterType;
+import pt.ipp.isep.dei.project.model.Devices.Fridge.FridgeType;
+import pt.ipp.isep.dei.project.model.Devices.Lamp.LampType;
+import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineType;
 import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDateTime;

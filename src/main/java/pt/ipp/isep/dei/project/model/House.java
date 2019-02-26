@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.model;
 
 
+import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.DeviceType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -36,7 +38,9 @@ public class House {
      */
     public void createDeviceTypes(List<String> deviceTypeList) {
         for (String className : deviceTypeList) {
-            String path = "pt.ipp.isep.dei.project.model." + className + "Type";
+            String path = Utils.readConfigFile("Configuration.properties", className);
+
+            //String path = "pt.ipp.isep.dei.project.model." + className + "Type";
             try {
                 DeviceType dt = (DeviceType) Class.forName(path).newInstance();
                 this.deviceTypeList.add(dt);

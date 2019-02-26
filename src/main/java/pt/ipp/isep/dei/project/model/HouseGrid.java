@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.model.Devices.Device;
+
 import java.time.LocalDateTime;
 import java.util.*;
 

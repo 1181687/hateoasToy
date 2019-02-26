@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.controllers;
 
+import pt.ipp.isep.dei.project.model.Devices.Device;
 import pt.ipp.isep.dei.project.model.*;
 
 public class GetNominalPowerOfAGirdOfARoomAndRoomsDevicesController {
