@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionController;
-import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionRoomController;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.utils.Utils;
 
