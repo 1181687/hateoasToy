@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionDeviceController;
+import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionController;
 import pt.ipp.isep.dei.project.model.House;
 
 import java.time.LocalDateTime;
 
 public class GetEnergyConsumptionDevice {
-    private GetEnergyConsumptionDeviceController controller;
+    private GetEnergyConsumptionController controller;
 
     public GetEnergyConsumptionDevice(House house) {
-        controller = new GetEnergyConsumptionDeviceController(house);
+        controller = new GetEnergyConsumptionController(house);
     }
 
     public void run() {
@@ -19,7 +19,7 @@ public class GetEnergyConsumptionDevice {
         if (devicePosition == -1) {
             return;
         }
-        controller.setDevice(devicePosition);
+        controller.getDeviceByPosition(devicePosition);
         String label1 = "Please insert a start date (in the format YYYY-MM-DD).";
         LocalDateTime startDate = InputValidator.getStringDateTime(label1);
         String label2 = "\nPlease insert an end date (in the format YYYY-MM-DD).";

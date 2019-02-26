@@ -2,9 +2,9 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Device;
+import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.Fridge.FridgeType;
 import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.FridgeType;
 import pt.ipp.isep.dei.project.model.Room;
 
 import java.util.ArrayList;

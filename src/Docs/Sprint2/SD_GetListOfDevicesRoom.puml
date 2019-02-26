@@ -1,0 +1,56 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+	}
+
+autonumber
+activate User
+actor User
+User -> ":ListOfDevicesRoom UI": GetListOfDevicesInARoom
+activate ":ListOfDevicesRoom UI"
+":ListOfDevicesRoom UI" -> ":ListOfDevicesRoom Controller": getRoomNameByPosition()
+activate ":ListOfDevicesRoom Controller"
+":ListOfDevicesRoom Controller" -> ":House": getRoomNameByPosition()
+activate ":House"
+":House" -> ":RoomList": getRoomNameByPosition()
+activate ":RoomList"
+":House" <-- ":RoomList": RoomName
+deactivate ":RoomList"
+":ListOfDevicesRoom Controller" <-- ":House": RoomName
+deactivate ":House"
+":ListOfDevicesRoom UI" <-- ":ListOfDevicesRoom Controller": RoomName
+deactivate ":ListOfDevicesRoom Controller"
+User <-- ":ListOfDevicesRoom UI":RoomName
+deactivate ":ListOfDevicesRoom UI"
+
+User -> ":ListOfDevicesRoom UI": int Room (position)
+activate ":ListOfDevicesRoom UI"
+":ListOfDevicesRoom UI" -> ":ListOfDevicesRoom Controller": getDeviceListContent()
+activate ":ListOfDevicesRoom Controller"
+":ListOfDevicesRoom Controller" -> ":House": getDeviceListContentRoom()
+activate ":House"
+":House" -> ":RoomList": getDeviceListContentByPosition()
+activate ":RoomList"
+":House" <-- ":RoomList": DeviceListContent
+deactivate ":RoomList"
+":ListOfDevicesRoom Controller" <-- ":House": DeviceListContent
+deactivate ":House"
+":ListOfDevicesRoom UI" <-- ":ListOfDevicesRoom Controller": DeviceListContent
+deactivate ":ListOfDevicesRoom Controller"
+User <-- ":ListOfDevicesRoom UI": DeviceListContent
+deactivate ":ListOfDevicesRoom UI"
+@enduml

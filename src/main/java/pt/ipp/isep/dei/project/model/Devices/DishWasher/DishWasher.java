@@ -1,24 +1,31 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.Devices.DishWasher;
+
+import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.Devices.Programmable;
+import pt.ipp.isep.dei.project.model.Program;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.Room;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class Fridge implements Device {
+public class DishWasher implements Device, Programmable {
+
     private String name;
     private Room location;
-    private FridgeSpecs specs;
+    private DishWasherSpecs specs;
     private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public Fridge(String name, DeviceSpecs fridgeSpecs) {
+    public DishWasher(String name, DeviceSpecs dishWasherSpecs) {
         this.name = name;
-        this.specs = (FridgeSpecs) fridgeSpecs;
+        this.specs = (DishWasherSpecs) dishWasherSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
     }
-
 
     /**
      * method that get the nominal power of the devices.
@@ -27,7 +34,7 @@ public class Fridge implements Device {
      */
     @Override
     public double getNominalPower() {
-        return this.specs.getNominalPower();
+        return specs.getNominalPower();
     }
 
     /**
@@ -35,6 +42,7 @@ public class Fridge implements Device {
      *
      * @return the location.
      */
+    @Override
     public Room getLocation() {
         return this.location;
     }
@@ -44,6 +52,7 @@ public class Fridge implements Device {
      *
      * @return name of device
      */
+    @Override
     public String getName() {
         return this.name;
     }
@@ -53,8 +62,9 @@ public class Fridge implements Device {
      *
      * @return String
      */
+    @Override
     public String getType() {
-        return this.specs.getTypeName();
+        return specs.getTypeName();
     }
 
     /**
@@ -72,10 +82,10 @@ public class Fridge implements Device {
      *
      * @return Energy consumption of the device in a given day.
      */
+    @Override
     public double getEnergyConsumptionInADay() {
-        return this.specs.getEnergyConsumptionInADay();
+        return specs.getEnergyConsumptionInADay();
     }
-
 
     /**
      * method that set the given name only if the name don't exists in DeviceList
@@ -84,6 +94,7 @@ public class Fridge implements Device {
      * @param name String given name
      * @return true if sets false if don't
      */
+    @Override
     public boolean setName(String name) {
         if (this.location.isDeviceNameExistant(name) || this.name == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
@@ -98,6 +109,7 @@ public class Fridge implements Device {
      * @param location
      * @return false if the location is equals to another device. True if not.
      */
+    @Override
     public boolean setLocation(Room location) {
         if (this.location.equals(location)) {
             return false;
@@ -114,7 +126,7 @@ public class Fridge implements Device {
      * @return String with the attributes.
      */
     public String getDevSpecsAttributesToString() {
-        return this.specs.getAttributesToString();
+        return specs.getAttributesToString();
     }
 
     /**
@@ -126,7 +138,7 @@ public class Fridge implements Device {
 
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Name: " + name + "\n");
-        attributes.append("2 - Device Specifications\n");
+        attributes.append("2 - Device Specifications \n");
         attributes.append("3 - Location: " + location.getName() + "\n");
         return attributes.toString();
     }
@@ -176,7 +188,7 @@ public class Fridge implements Device {
      * @return the number of attributes.
      */
     public int getNumberOfSpecsAttributes() {
-        return this.specs.getNumberOfAttributes();
+        return specs.getNumberOfAttributes();
     }
 
     /**
@@ -193,7 +205,7 @@ public class Fridge implements Device {
     }
 
     /**
-     * Method that adds a readingList to the device.
+     * Method that adds a reading to the device.
      *
      * @param reading Reading to be added.
      */
@@ -204,7 +216,7 @@ public class Fridge implements Device {
     /**
      * Method that calculates the sum of the value in each Reading in a given Reading list.
      *
-     * @param readingList List with Readingss.
+     * @param readingList List with Reading.
      * @return Double with the required sum.
      */
     public double getSumOfTheReadings(List<Reading> readingList) {
@@ -215,8 +227,11 @@ public class Fridge implements Device {
         return sum;
     }
 
+
     /**
      * Method that calculates the total energy consumption of a device in a given interval.
+     * This method has in count all the fully contained readingList, i.e., if there's just one readingList in the interval, it
+     * is not counted.
      *
      * @param startDate Start date.
      * @param endDate   End date.
@@ -256,6 +271,7 @@ public class Fridge implements Device {
         return false;
     }
 
+
     /**
      * method that get an active device.
      *
@@ -266,12 +282,13 @@ public class Fridge implements Device {
         return isActive;
     }
 
+
     /**
      * get method
      *
-     * @param startDate starting date of readingList
-     * @param endDate   end date of readingList
-     * @return map with coordinates (value of readingList and time)
+     * @param startDate starting date of reading
+     * @param endDate   end date of reading
+     * @return map with coordinates (value of reading and time)
      */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
@@ -286,35 +303,35 @@ public class Fridge implements Device {
     /**
      * get method
      *
-     * @return list of specs of fridge specs
+     * @return list of specs of dishwasher specs
      */
-
     @Override
     public List<String> getSpecsList() {
         return specs.getSpecsList();
     }
 
     /**
-     * * get method
+     *
+     * get method
      *
      * @param attributeName string attribute
-     * @return name of attributes of fridge specs
+     * @return name of attributes of dishwasher specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
         return specs.getAttributeValue(attributeName);
     }
 
+
     /**
      * get method
      *
-     * @return the string of an attribute of Fridge Specs
+     * @return the string of an attribute of Dishwasher Specs
      */
     @Override
     public String getSpecsToString() {
         return this.specs.getAttributesToString();
     }
-
 
     /**
      * get method
@@ -329,11 +346,16 @@ public class Fridge implements Device {
 
     @Override
     public boolean isProgrammable() {
-        return false;
+        return true;
     }
 
     @Override
     public Programmable asProgrammable() {
-        return null;
+        return this;
+    }
+
+    @Override
+    public boolean addProgram(Program program) {
+        return specs.addProgram(program);
     }
 }

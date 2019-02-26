@@ -1,4 +1,9 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.Devices.Fridge;
+
+import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.Devices.DeviceType;
+import pt.ipp.isep.dei.project.model.Room;
 
 public class FridgeType implements DeviceType {
     String typeName;
