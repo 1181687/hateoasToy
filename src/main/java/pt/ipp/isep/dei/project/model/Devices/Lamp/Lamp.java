@@ -1,26 +1,29 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.Devices.Lamp;
+
+import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.Devices.Programmable;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.Room;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class Fridge implements Device {
+public class Lamp implements Device {
     private String name;
     private Room location;
-    private FridgeSpecs specs;
+    private LampSpecs specs;
     private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public Fridge(String name, Room location) {
+    public Lamp(String name, DeviceSpecs lampSpecs) {
         this.name = name;
-        this.location = location;
-        this.location.addDevice(this);
-        this.specs = new FridgeSpecs();
+        this.specs = (LampSpecs) lampSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
     }
-
 
     /**
      * method that get the nominal power of the devices.
@@ -128,7 +131,7 @@ public class Fridge implements Device {
 
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Name: " + name + "\n");
-        attributes.append("2 - Device Specifications\n");
+        attributes.append("2 - Device1 Specifications\n");
         attributes.append("3 - Location: " + location.getName() + "\n");
         return attributes.toString();
     }
@@ -217,6 +220,7 @@ public class Fridge implements Device {
         return sum;
     }
 
+
     /**
      * Method that calculates the total energy consumption of a device in a given interval.
      *
@@ -288,35 +292,35 @@ public class Fridge implements Device {
     /**
      * get method
      *
-     * @return list of specs of fridge specs
+     * @return list of specs of lamp specs
      */
-
     @Override
     public List<String> getSpecsList() {
         return specs.getSpecsList();
     }
 
     /**
-     * * get method
+     * get method
      *
      * @param attributeName string attribute
-     * @return name of attributes of fridge specs
+     * @return name of attributes of Lamp specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
         return specs.getAttributeValue(attributeName);
     }
 
+
     /**
      * get method
      *
-     * @return the string of an attribute of Fridge Specs
+     * @return the string of an attribute of Lamp Specs
      */
+
     @Override
     public String getSpecsToString() {
         return this.specs.getAttributesToString();
     }
-
 
     /**
      * get method

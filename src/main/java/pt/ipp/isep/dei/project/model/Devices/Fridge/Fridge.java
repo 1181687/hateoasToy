@@ -1,26 +1,30 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.Devices.Fridge;
+
+import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.Devices.Programmable;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.Room;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class ElectricWaterHeater implements Device, Measurable {
+public class Fridge implements Device {
     private String name;
     private Room location;
-    private ElectricWaterHeaterSpecs specs;
+    private FridgeSpecs specs;
     private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public ElectricWaterHeater(String name, Room location) {
+    public Fridge(String name, DeviceSpecs fridgeSpecs) {
         this.name = name;
-        this.location = location;
-        this.location.addDevice(this);
-        this.specs = new ElectricWaterHeaterSpecs();
+        this.specs = (FridgeSpecs) fridgeSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
-
     }
+
 
     /**
      * method that get the nominal power of the devices.
@@ -68,7 +72,6 @@ public class ElectricWaterHeater implements Device, Measurable {
     public List<Reading> getReadings() {
         return this.readingList;
     }
-
 
     /**
      * Method that gets the energy consumption in a day.
@@ -129,7 +132,7 @@ public class ElectricWaterHeater implements Device, Measurable {
 
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Name: " + name + "\n");
-        attributes.append("2 - Device1 Specifications\n");
+        attributes.append("2 - Device Specifications\n");
         attributes.append("3 - Location: " + location.getName() + "\n");
         return attributes.toString();
     }
@@ -218,7 +221,6 @@ public class ElectricWaterHeater implements Device, Measurable {
         return sum;
     }
 
-
     /**
      * Method that calculates the total energy consumption of a device in a given interval.
      *
@@ -237,6 +239,7 @@ public class ElectricWaterHeater implements Device, Measurable {
         return totalEnergyConsumption;
     }
 
+    @Override
     public LocalDateTime getDeactivationDate() {
         return this.deactivationDate;
     }
@@ -264,6 +267,7 @@ public class ElectricWaterHeater implements Device, Measurable {
      *
      * @return an active device.
      */
+    @Override
     public boolean getIsActive() {
         return isActive;
     }
@@ -288,29 +292,29 @@ public class ElectricWaterHeater implements Device, Measurable {
     /**
      * get method
      *
-     * @return list of specs of ElectricWaterHeater specs
+     * @return list of specs of fridge specs
      */
+
     @Override
     public List<String> getSpecsList() {
         return specs.getSpecsList();
     }
 
     /**
-     * get method
+     * * get method
      *
      * @param attributeName string attribute
-     * @return name of attributes of ElectricWaterHeater specs
+     * @return name of attributes of fridge specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
         return specs.getAttributeValue(attributeName);
     }
 
-
     /**
      * get method
      *
-     * @return the string of an attribute of ElectricWaterHeater
+     * @return the string of an attribute of Fridge Specs
      */
     @Override
     public String getSpecsToString() {

@@ -18,6 +18,7 @@ skinparam sequence {
 
 autonumber
 actor User
+activate User
 User -> UI: EditConfigurationDevice
 activate UI
 UI -> Controller: getRoomListContent()
@@ -147,6 +148,7 @@ UI <-- Controller: string
 deactivate Controller
 User <-- UI: string
 deactivate UI
+deactivate User
 
 
 @enduml

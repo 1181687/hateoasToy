@@ -1,27 +1,30 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.Devices.DishWasher;
+
+import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.Devices.Programmable;
+import pt.ipp.isep.dei.project.model.Program;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.Room;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class WashingMachine implements Device, Programmable {
+public class DishWasher implements Device, Programmable {
 
     private String name;
     private Room location;
-    private WashingMachineSpecs specs;
+    private DishWasherSpecs specs;
     private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-
-    public WashingMachine(String name, Room location) {
+    public DishWasher(String name, DeviceSpecs dishWasherSpecs) {
         this.name = name;
-        this.location = location;
-        this.specs = new WashingMachineSpecs();
-        this.location.addDevice(this);
+        this.specs = (DishWasherSpecs) dishWasherSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
-
     }
 
     /**
@@ -135,7 +138,7 @@ public class WashingMachine implements Device, Programmable {
 
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Name: " + name + "\n");
-        attributes.append("2 - Device1 Specifications\n");
+        attributes.append("2 - Device Specifications \n");
         attributes.append("3 - Location: " + location.getName() + "\n");
         return attributes.toString();
     }
@@ -202,7 +205,7 @@ public class WashingMachine implements Device, Programmable {
     }
 
     /**
-     * Method that adds a readingList to the device.
+     * Method that adds a reading to the device.
      *
      * @param reading Reading to be added.
      */
@@ -213,7 +216,7 @@ public class WashingMachine implements Device, Programmable {
     /**
      * Method that calculates the sum of the value in each Reading in a given Reading list.
      *
-     * @param readingList List with Readingss.
+     * @param readingList List with Reading.
      * @return Double with the required sum.
      */
     public double getSumOfTheReadings(List<Reading> readingList) {
@@ -227,6 +230,8 @@ public class WashingMachine implements Device, Programmable {
 
     /**
      * Method that calculates the total energy consumption of a device in a given interval.
+     * This method has in count all the fully contained readingList, i.e., if there's just one readingList in the interval, it
+     * is not counted.
      *
      * @param startDate Start date.
      * @param endDate   End date.
@@ -266,6 +271,7 @@ public class WashingMachine implements Device, Programmable {
         return false;
     }
 
+
     /**
      * method that get an active device.
      *
@@ -280,9 +286,9 @@ public class WashingMachine implements Device, Programmable {
     /**
      * get method
      *
-     * @param startDate starting date of readingList
-     * @param endDate   end date of readingList
-     * @return map with coordinates (value of readingList and time)
+     * @param startDate starting date of reading
+     * @param endDate   end date of reading
+     * @return map with coordinates (value of reading and time)
      */
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
@@ -294,11 +300,10 @@ public class WashingMachine implements Device, Programmable {
         return hmap;
     }
 
-
     /**
      * get method
      *
-     * @return list of specs of washing machine specs
+     * @return list of specs of dishwasher specs
      */
     @Override
     public List<String> getSpecsList() {
@@ -309,7 +314,7 @@ public class WashingMachine implements Device, Programmable {
      * get method
      *
      * @param attributeName string attribute
-     * @return name of attributes of washing machine specs
+     * @return name of attributes of dishwasher specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
@@ -320,9 +325,8 @@ public class WashingMachine implements Device, Programmable {
     /**
      * get method
      *
-     * @return the string of an attribute of washing machine Specs
+     * @return the string of an attribute of Dishwasher Specs
      */
-
     @Override
     public String getSpecsToString() {
         return this.specs.getAttributesToString();
@@ -345,7 +349,7 @@ public class WashingMachine implements Device, Programmable {
     }
 
     @Override
-    public Programmable asProgrammable(){
+    public Programmable asProgrammable() {
         return this;
     }
 
@@ -353,5 +357,4 @@ public class WashingMachine implements Device, Programmable {
     public boolean addProgram(Program program) {
         return this.specs.addProgram(program);
     }
-
 }

@@ -2,8 +2,12 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.GetNominalPowerOfAGirdOfARoomAndRoomsDevicesController;
+import pt.ipp.isep.dei.project.controllers.GetNominalPowerController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.DishWasher.DishWasherType;
+import pt.ipp.isep.dei.project.model.Devices.Fridge.FridgeType;
+import pt.ipp.isep.dei.project.model.Devices.Lamp.LampType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
@@ -12,8 +16,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class GetNominalPowerOfAGirdOfARoomAndRoomsDevicesControllerTest {
-    private GetNominalPowerOfAGirdOfARoomAndRoomsDevicesController controller;
+class GetNominalPowerControllerTest {
+    private GetNominalPowerController controller;
     private House houseEdificioB;
     private HouseGrid grid;
     private HouseGrid gridTwo;
@@ -56,7 +60,7 @@ class GetNominalPowerOfAGirdOfARoomAndRoomsDevicesControllerTest {
         grid = new HouseGrid("Grid");
         gridTwo = new HouseGrid("Grid2");
 
-        this.controller = new GetNominalPowerOfAGirdOfARoomAndRoomsDevicesController(houseEdificioB);
+        this.controller = new GetNominalPowerController(houseEdificioB);
 
     }
 

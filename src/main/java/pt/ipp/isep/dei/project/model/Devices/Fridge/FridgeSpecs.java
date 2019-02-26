@@ -1,5 +1,6 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.Devices.Fridge;
 
+import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;

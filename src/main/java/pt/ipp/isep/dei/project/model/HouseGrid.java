@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import pt.ipp.isep.dei.project.model.Devices.Device;
+
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -61,7 +63,7 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * method that get the name of the house grid.
+     * method that gets the name of the house grid.
      */
     public String getName() {
         return this.houseGridName;

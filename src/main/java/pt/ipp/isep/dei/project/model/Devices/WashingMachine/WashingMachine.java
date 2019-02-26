@@ -1,24 +1,32 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.Devices.WashingMachine;
+
+import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.Devices.Programmable;
+import pt.ipp.isep.dei.project.model.Program;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.Room;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class Lamp implements Device {
+public class WashingMachine implements Device, Programmable {
+
     private String name;
     private Room location;
-    private LampSpecs specs;
+    private WashingMachineSpecs specs;
     private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public Lamp(String name, Room location) {
+
+    public WashingMachine(String name, DeviceSpecs washingMachineSpecs) {
         this.name = name;
-        this.location = location;
-        this.location.addDevice(this);
-        this.specs = new LampSpecs();
+        this.specs = (WashingMachineSpecs) washingMachineSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
+
     }
 
     /**
@@ -28,7 +36,7 @@ public class Lamp implements Device {
      */
     @Override
     public double getNominalPower() {
-        return this.specs.getNominalPower();
+        return specs.getNominalPower();
     }
 
     /**
@@ -36,6 +44,7 @@ public class Lamp implements Device {
      *
      * @return the location.
      */
+    @Override
     public Room getLocation() {
         return this.location;
     }
@@ -45,6 +54,7 @@ public class Lamp implements Device {
      *
      * @return name of device
      */
+    @Override
     public String getName() {
         return this.name;
     }
@@ -54,8 +64,9 @@ public class Lamp implements Device {
      *
      * @return String
      */
+    @Override
     public String getType() {
-        return this.specs.getTypeName();
+        return specs.getTypeName();
     }
 
     /**
@@ -73,10 +84,10 @@ public class Lamp implements Device {
      *
      * @return Energy consumption of the device in a given day.
      */
+    @Override
     public double getEnergyConsumptionInADay() {
-        return this.specs.getEnergyConsumptionInADay();
+        return specs.getEnergyConsumptionInADay();
     }
-
 
     /**
      * method that set the given name only if the name don't exists in DeviceList
@@ -85,6 +96,7 @@ public class Lamp implements Device {
      * @param name String given name
      * @return true if sets false if don't
      */
+    @Override
     public boolean setName(String name) {
         if (this.location.isDeviceNameExistant(name) || this.name == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
@@ -99,6 +111,7 @@ public class Lamp implements Device {
      * @param location
      * @return false if the location is equals to another device. True if not.
      */
+    @Override
     public boolean setLocation(Room location) {
         if (this.location.equals(location)) {
             return false;
@@ -115,7 +128,7 @@ public class Lamp implements Device {
      * @return String with the attributes.
      */
     public String getDevSpecsAttributesToString() {
-        return this.specs.getAttributesToString();
+        return specs.getAttributesToString();
     }
 
     /**
@@ -177,7 +190,7 @@ public class Lamp implements Device {
      * @return the number of attributes.
      */
     public int getNumberOfSpecsAttributes() {
-        return this.specs.getNumberOfAttributes();
+        return specs.getNumberOfAttributes();
     }
 
     /**
@@ -268,6 +281,7 @@ public class Lamp implements Device {
         return isActive;
     }
 
+
     /**
      * get method
      *
@@ -285,10 +299,11 @@ public class Lamp implements Device {
         return hmap;
     }
 
+
     /**
      * get method
      *
-     * @return list of specs of lamp specs
+     * @return list of specs of washing machine specs
      */
     @Override
     public List<String> getSpecsList() {
@@ -299,7 +314,7 @@ public class Lamp implements Device {
      * get method
      *
      * @param attributeName string attribute
-     * @return name of attributes of Lamp specs
+     * @return name of attributes of washing machine specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
@@ -310,7 +325,7 @@ public class Lamp implements Device {
     /**
      * get method
      *
-     * @return the string of an attribute of Lamp Specs
+     * @return the string of an attribute of washing machine Specs
      */
 
     @Override
@@ -331,11 +346,17 @@ public class Lamp implements Device {
 
     @Override
     public boolean isProgrammable() {
-        return false;
+        return true;
     }
 
     @Override
-    public Programmable asProgrammable() {
-        return null;
+    public Programmable asProgrammable(){
+        return this;
     }
+
+    @Override
+    public boolean addProgram(Program program) {
+        return specs.addProgram(program);
+    }
+
 }
