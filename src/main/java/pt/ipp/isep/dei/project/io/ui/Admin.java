@@ -90,11 +90,11 @@ public class Admin {
                     break;
                 case 5:
                     GetListOfSensorsAndDevicesRoom ui201 = new GetListOfSensorsAndDevicesRoom(house);
-                    ui201.run2();
+                    ui201.listOfDevices();
                     break;
                 case 6:
                     GetListOfSensorsAndDevicesRoom ui250 = new GetListOfSensorsAndDevicesRoom(house);
-                    ui250.run1();
+                    ui250.listOfSensors();
                     break;
                 case 7:
                     EditConfigurationDevice ui215 = new EditConfigurationDevice(house);

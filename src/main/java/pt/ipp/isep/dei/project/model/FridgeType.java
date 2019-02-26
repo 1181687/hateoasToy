@@ -13,6 +13,7 @@ public class FridgeType implements DeviceType {
     }
 
     public Device createDevice(String name, Room location) {
-        return new Fridge(name, location);
+        DeviceSpecs fridgeSpecs = new FridgeSpecs();
+        return new Fridge(name, location, fridgeSpecs);
     }
 }

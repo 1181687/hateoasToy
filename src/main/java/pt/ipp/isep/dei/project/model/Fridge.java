@@ -12,11 +12,11 @@ public class Fridge implements Device {
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public Fridge(String name, Room location) {
+    public Fridge(String name, Room location, DeviceSpecs fridgeSpecs) {
         this.name = name;
         this.location = location;
         this.location.addDevice(this);
-        this.specs = new FridgeSpecs();
+        this.specs = (FridgeSpecs) fridgeSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
     }
