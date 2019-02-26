@@ -3,8 +3,6 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.GetTotalAndAverageRainfallAndCurrentTempHouseAreaController;
 import pt.ipp.isep.dei.project.model.House;
 
-import java.time.LocalDate;
-
 
 /** US600 As a Regular User, I want to get the current temperature in the house area. If, in the
  first element with temperature sensors of the hierarchy of geographical areas that
