@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.project.model.Devices.Fridge;
 import pt.ipp.isep.dei.project.model.Devices.Device;
 import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.Devices.DeviceType;
-import pt.ipp.isep.dei.project.model.Room;
 
 public class FridgeType implements DeviceType {
     String typeName;
@@ -17,8 +16,8 @@ public class FridgeType implements DeviceType {
         return this.typeName;
     }
 
-    public Device createDevice(String name, Room location) {
+    public Device createDevice(String name) {
         DeviceSpecs fridgeSpecs = new FridgeSpecs();
-        return new Fridge(name, location, fridgeSpecs);
+        return new Fridge(name, fridgeSpecs);
     }
 }

@@ -18,10 +18,8 @@ public class Lamp implements Device {
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public Lamp(String name, Room location, DeviceSpecs lampSpecs) {
+    public Lamp(String name, DeviceSpecs lampSpecs) {
         this.name = name;
-        this.location = location;
-        this.location.addDevice(this);
         this.specs = (LampSpecs) lampSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();

@@ -21,11 +21,9 @@ public class WashingMachine implements Device, Programmable {
     private LocalDateTime deactivationDate;
 
 
-    public WashingMachine(String name, Room location, DeviceSpecs washingMachineSpecs) {
+    public WashingMachine(String name, DeviceSpecs washingMachineSpecs) {
         this.name = name;
-        this.location = location;
         this.specs = (WashingMachineSpecs) washingMachineSpecs;
-        this.location.addDevice(this);
         this.isActive = true;
         this.readingList = new ArrayList<>();
 
