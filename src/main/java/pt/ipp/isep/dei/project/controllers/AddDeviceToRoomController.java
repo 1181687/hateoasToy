@@ -94,7 +94,7 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewFridge(String name, double annualEnergyConsumption, double nominalPower, double freezerCapacity, double refrigeratorCapacity) {
-        device = house.getDeviceType("Fridge").createDevice(name, room);
+        device = house.getDeviceType("Fridge").createDevice(name);
         device.setAttributesDevType(ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
         device.setAttributesDevType(NOMINAL_POWER, nominalPower);
         device.setAttributesDevType(FREEZER_CAPACITY, freezerCapacity);
@@ -111,7 +111,7 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewLamp(String name, double nominalPower, double luminousFlux) {
-        device = house.getDeviceType("Lamp").createDevice(name, room);
+        device = house.getDeviceType("Lamp").createDevice(name);
         device.setAttributesDevType(LUMINOUS_FLUX, luminousFlux);
         device.setAttributesDevType(NOMINAL_POWER, nominalPower);
         return device;
@@ -126,7 +126,7 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewDishWasher(String name, double nominalPower, int capacity) {
-        device = house.getDeviceType("DishWasher").createDevice(name, room);
+        device = house.getDeviceType("DishWasher").createDevice(name);
         device.setAttributesDevType(CAPACITY, capacity);
         device.setAttributesDevType(NOMINAL_POWER, nominalPower);
         return device;
@@ -141,7 +141,7 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewWashingMachine(String name, double nominalPower, double capacity) {
-        device = house.getDeviceType("Washing Machine").createDevice(name, room);
+        device = house.getDeviceType("Washing Machine").createDevice(name);
         device.setAttributesDevType(CAPACITY, capacity);
         device.setAttributesDevType(NOMINAL_POWER, nominalPower);
         return device;
@@ -157,7 +157,7 @@ public class AddDeviceToRoomController {
      * @return the Device that has been created
      */
     public Device createNewElectricWaterHeater(String name, double hotWaterTemperature, double maximumVolume, double nominalPower, double performanceRatio) {
-        device = house.getDeviceType("Electric Water Heater").createDevice(name, room);
+        device = house.getDeviceType("Electric Water Heater").createDevice(name);
         device.setAttributesDevType(HOTWATER_TEMPERATURE, hotWaterTemperature);
         device.setAttributesDevType(NOMINAL_POWER, nominalPower);
         device.setAttributesDevType(MAXIMUM_VOLUME, maximumVolume);

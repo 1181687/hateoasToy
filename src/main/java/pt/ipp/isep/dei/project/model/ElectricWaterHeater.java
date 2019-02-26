@@ -12,10 +12,8 @@ public class ElectricWaterHeater implements Device, Measurable {
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public ElectricWaterHeater(String name, Room location, DeviceSpecs electricWaterHeaterSpecs) {
+    public ElectricWaterHeater(String name, DeviceSpecs electricWaterHeaterSpecs) {
         this.name = name;
-        this.location = location;
-        this.location.addDevice(this);
         this.specs = (ElectricWaterHeaterSpecs) electricWaterHeaterSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();

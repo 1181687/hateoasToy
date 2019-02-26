@@ -4,5 +4,5 @@ public interface DeviceType {
 
     String getTypeName();
 
-    Device createDevice(String name, Room location);
+    Device createDevice(String name);
 }
