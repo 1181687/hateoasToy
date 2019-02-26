@@ -50,6 +50,7 @@ PowerUser -> ":GetEnergyConsumption\nHouseGridUI": 3.2- Insert End Date (LocalDa
 activate ":GetEnergyConsumption\nHouseGridController"
 ":GetEnergyConsumption\nHouseGridController" -> ":HouseGrid": 3.2.1.1- GetEnergyConsumption(startDate, endDate)
 activate ":HouseGrid"
+ref over ":HouseGrid" : GetEnergyConsumption()
 ":GetEnergyConsumption\nHouseGridController" <-- ":HouseGrid": 3.2.1.2- Energy Consumption
 deactivate ":HouseGrid"
 ":GetEnergyConsumption\nHouseGridUI" <-- ":GetEnergyConsumption\nHouseGridController": 3.2.2- energyConsumption
