@@ -48,20 +48,20 @@ public class GetEnergyConsumptionOfRoomControllerTest {
         fridge.setAttributesDevType("Freezer Capacity", 35);
         fridge.setAttributesDevType("Refrigerator Capacity", 20);
         fridge.setAttributesDevType("Annual Energy Consumption", 1000);
-        fridge.setAttributesDevType("Annual Energy Consumption", 1000);
+        fridge.setAttributesDevType("Nominal Power", 1000);
 
-        // Readings Instantiation
+        // Reading Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        // List<Readings Configuration
-        fridge.addReadingsToTheList(readings0);
-        fridge.addReadingsToTheList(readings1);
-        fridge.addReadingsToTheList(readings2);
+        // List<Reading Configuration
+        fridge.addReadingsToTheList(reading0);
+        fridge.addReadingsToTheList(reading1);
+        fridge.addReadingsToTheList(reading2);
 
 
         this.ctrl = new GetEnergyConsumptionRoomController(house);

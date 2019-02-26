@@ -17,9 +17,9 @@ class DishWasherTest {
     private Room laundry;
     private Device dishwasher;
     private Map<LocalDateTime, Double> map;
-    private Readings readings0;
-    private Readings readings1;
-    private Readings readings2;
+    private Reading reading0;
+    private Reading reading1;
+    private Reading reading2;
 
     @BeforeEach
     public void StartUp() {
@@ -36,16 +36,16 @@ class DishWasherTest {
         dishwasher.setAttributesDevType("Duration", 0);
         dishwasher.setAttributesDevType("Nominal Power", 1200);
 
-        // Readings
+        // Reading
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        readings0 = new Readings(3, time0);
+        reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        readings1 = new Readings(5, time1);
+        reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        readings2 = new Readings(7, time2);
-        dishwasher.addReadingsToTheList(readings0);
-        dishwasher.addReadingsToTheList(readings1);
-        dishwasher.addReadingsToTheList(readings2);
+        reading2 = new Reading(7, time2);
+        dishwasher.addReadingsToTheList(reading0);
+        dishwasher.addReadingsToTheList(reading1);
+        dishwasher.addReadingsToTheList(reading2);
 
         // Maps
         map = new TreeMap<>();
@@ -461,13 +461,13 @@ class DishWasherTest {
     @Test
     public void testGetReadings() {
         //Arrange
-        List<Readings> expectedResult = new ArrayList<>();
-        expectedResult.add(readings0);
-        expectedResult.add(readings1);
-        expectedResult.add(readings2);
+        List<Reading> expectedResult = new ArrayList<>();
+        expectedResult.add(reading0);
+        expectedResult.add(reading1);
+        expectedResult.add(reading2);
 
         //Act
-        List<Readings> result = dishwasher.getReadings();
+        List<Reading> result = dishwasher.getReadings();
 
         //Assert
         assertEquals(expectedResult, result);

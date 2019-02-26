@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.GetNominalPowerRoomsDevicesController;
+import pt.ipp.isep.dei.project.controllers.GetNominalPowerOfAGirdOfARoomAndRoomsDevicesController;
 import pt.ipp.isep.dei.project.model.House;
 
 public class GetNominalPowerRoomsDevices {
 
-    private GetNominalPowerRoomsDevicesController controller;
+    private GetNominalPowerOfAGirdOfARoomAndRoomsDevicesController controller;
     private static final String EXIT_OPTION = "0 - Exit";
 
     public GetNominalPowerRoomsDevices(House house) {
-        this.controller = new GetNominalPowerRoomsDevicesController(house);
+        this.controller = new GetNominalPowerOfAGirdOfARoomAndRoomsDevicesController(house);
     }
 
     public void chooseSubsetOfRoomsDevices() {
@@ -26,7 +26,7 @@ public class GetNominalPowerRoomsDevices {
             System.out.println("There are no house grids in the house. Please, add one.\n");
             return;
         }
-        System.out.println("You have selected the following rooms/devices:\n" + controller.getListToString() + "The total nominal power for the selected subset of rooms and/or devices is " + controller.getNominalPowerOfMeasurableObjects() + " kW\n");
+        System.out.println("You have selected the following rooms/devices:\n" + controller.getMeasurableListToString() + "The total nominal power for the selected subset of rooms and/or devices is " + controller.getNominalPowerOfMeasurableObjects() + " kW\n");
     }
 
     public void afterChoosingHouseGrid() {

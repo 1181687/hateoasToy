@@ -15,7 +15,7 @@ public class GetListOfSensorsAndDevicesRoom {
         this.controller = new GetListOfSensorsAndDevicesRoomController(house);
     }
 
-    public void run1() {
+    public void listOfSensors() {
         String label = "In which room do you want to see the list of sensors?";
         int choosenOption = -1;
 
@@ -39,7 +39,7 @@ public class GetListOfSensorsAndDevicesRoom {
     }
 
 
-    public void run2() {
+    public void listOfDevices() {
         StringBuilder content = new StringBuilder();
 
         content.append(controller.getRoomListContent());

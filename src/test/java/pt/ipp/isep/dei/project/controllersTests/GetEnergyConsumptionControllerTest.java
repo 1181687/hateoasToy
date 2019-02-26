@@ -85,7 +85,7 @@ class GetEnergyConsumptionControllerTest {
         device3.setAttributesDevType(NOMINAL_POWER,100);
 
 
-        Device device4 = new ElectricWaterHeater("Bosh Tronic 4000", room1);
+        Device device4 = eWHType.createDevice("Bosh Tronic 4000", room1);
         device4.setAttributesDevType(HOT_WATER_TEMP,50);
         device4.setAttributesDevType(PERFORMANCE_RATIO,0.9);
         device4.setAttributesDevType(NOMINAL_POWER,100);
@@ -127,18 +127,18 @@ class GetEnergyConsumptionControllerTest {
     @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithOneSolution() {
         // Arrange
-        // Readings Instantiation
+        // Reading Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        // List<Readings Configuration
-        room.getDeviceByPosition(0).addReadingsToTheList(readings0);
-        room.getDeviceByPosition(0).addReadingsToTheList(readings1);
-        room.getDeviceByPosition(0).addReadingsToTheList(readings2);
+        // List<Reading Configuration
+        room.getDeviceByPosition(0).addReadingsToTheList(reading0);
+        room.getDeviceByPosition(0).addReadingsToTheList(reading1);
+        room.getDeviceByPosition(0).addReadingsToTheList(reading2);
 
         ctrl.getDeviceByPosition(0);
 
@@ -157,18 +157,18 @@ class GetEnergyConsumptionControllerTest {
     @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithTwoSolutions() {
         // Arrange
-        // Readings Instantiation
+        // Reading Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        // List<Readings Configuration
-        room.getDeviceByPosition(0).addReadingsToTheList(readings0);
-        room.getDeviceByPosition(0).addReadingsToTheList(readings1);
-        room.getDeviceByPosition(0).addReadingsToTheList(readings2);
+        // List<Reading Configuration
+        room.getDeviceByPosition(0).addReadingsToTheList(reading0);
+        room.getDeviceByPosition(0).addReadingsToTheList(reading1);
+        room.getDeviceByPosition(0).addReadingsToTheList(reading2);
 
         ctrl.getDeviceByPosition(0);
 
@@ -187,18 +187,18 @@ class GetEnergyConsumptionControllerTest {
     @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithNoSolutions() {
         // Arrange
-        // Readings Instantiation
+        // Reading Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        // List<Readings Configuration
-        room.getDeviceByPosition(0).addReadingsToTheList(readings0);
-        room.getDeviceByPosition(0).addReadingsToTheList(readings1);
-        room.getDeviceByPosition(0).addReadingsToTheList(readings2);
+        // List<Reading Configuration
+        room.getDeviceByPosition(0).addReadingsToTheList(reading0);
+        room.getDeviceByPosition(0).addReadingsToTheList(reading1);
+        room.getDeviceByPosition(0).addReadingsToTheList(reading2);
 
         ctrl.getDeviceByPosition(0);
 

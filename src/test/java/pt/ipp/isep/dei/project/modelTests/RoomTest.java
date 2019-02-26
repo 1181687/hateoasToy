@@ -451,18 +451,18 @@ public class RoomTest {
         FridgeType fridgeType = new FridgeType();
         Device device = fridgeType.createDevice("Fridgerator", room);
 
-        // Readings Instantiation
+        // Reading Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        // List<Readings Configuration
-        device.addReadingsToTheList(readings0);
-        device.addReadingsToTheList(readings1);
-        device.addReadingsToTheList(readings2);
+        // List<Reading Configuration
+        device.addReadingsToTheList(reading0);
+        device.addReadingsToTheList(reading1);
+        device.addReadingsToTheList(reading2);
 
         double expectedResult = 7;
 
@@ -492,18 +492,18 @@ public class RoomTest {
         FridgeType fridgeType = new FridgeType();
         Device device = fridgeType.createDevice("Fridgerator", room);
 
-        // Readings Instantiation
+        // Reading Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        // List<Readings Configuration
-        device.addReadingsToTheList(readings0);
-        device.addReadingsToTheList(readings1);
-        device.addReadingsToTheList(readings2);
+        // List<Reading Configuration
+        device.addReadingsToTheList(reading0);
+        device.addReadingsToTheList(reading1);
+        device.addReadingsToTheList(reading2);
 
         double expectedResult = 12;
 
@@ -534,18 +534,18 @@ public class RoomTest {
         FridgeType fridgeType = new FridgeType();
         Device device = fridgeType.createDevice("Fridgerator", room);
 
-        // Readings Instantiation
+        // Reading Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        // List<Readings Configuration
-        device.addReadingsToTheList(readings0);
-        device.addReadingsToTheList(readings1);
-        device.addReadingsToTheList(readings2);
+        // List<Reading Configuration
+        device.addReadingsToTheList(reading0);
+        device.addReadingsToTheList(reading1);
+        device.addReadingsToTheList(reading2);
 
         double expectedResult = 0;
 
@@ -658,16 +658,53 @@ public class RoomTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-
         LampType lampType = new LampType();
         Device dev1 = lampType.createDevice("Lamp1", room);
-
 
         // act
         boolean result = room.deactivateDevice("Lamp1");
 
         // assert
         assertTrue(result);
+    }
+
+    @Test
+    public void deactivationDeviceTwoDevicesTrue() {
+
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        LampType lampType = new LampType();
+        Device dev1 = lampType.createDevice("Lamp1", room);
+        Device dev2 = lampType.createDevice("Lamp2", room);
+
+        // act
+        boolean result = room.deactivateDevice("Lamp2");
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void deactivationDeviceAlreadyDeactivatedFalse() {
+
+        // Arrange
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room(name, 2, dim);
+
+        LampType lampType = new LampType();
+        Device dev1 = lampType.createDevice("Lamp1", room);
+        Device dev2 = lampType.createDevice("Lamp2", room);
+        dev2.setDeactivateDevice();
+
+        // act
+        boolean result = room.deactivateDevice("Lamp2");
+
+        // assert
+        assertFalse(result);
     }
 
     @Test
@@ -772,26 +809,26 @@ public class RoomTest {
         Device fridge = fridgeType.createDevice("FridgeSpecs", room);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        lamp.addReadingsToTheList(readings0);
-        lamp.addReadingsToTheList(readings1);
-        lamp.addReadingsToTheList(readings2);
+        lamp.addReadingsToTheList(reading0);
+        lamp.addReadingsToTheList(reading1);
+        lamp.addReadingsToTheList(reading2);
 
         LocalDateTime time3 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings3 = new Readings(3, time3);
+        Reading reading3 = new Reading(3, time3);
         LocalDateTime time4 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings4 = new Readings(5, time4);
+        Reading reading4 = new Reading(5, time4);
         LocalDateTime time5 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings5 = new Readings(7, time5);
+        Reading reading5 = new Reading(7, time5);
 
-        fridge.addReadingsToTheList(readings3);
-        fridge.addReadingsToTheList(readings4);
-        fridge.addReadingsToTheList(readings5);
+        fridge.addReadingsToTheList(reading3);
+        fridge.addReadingsToTheList(reading4);
+        fridge.addReadingsToTheList(reading5);
 
         LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);

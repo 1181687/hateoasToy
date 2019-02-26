@@ -9,17 +9,17 @@ public class DishWasher implements Device, Programmable {
     private String name;
     private Room location;
     private DishWasherSpecs specs;
-    private List<Readings> readingsList;
+    private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public DishWasher(String name, Room location) {
+    public DishWasher(String name, Room location, DeviceSpecs dishWasherSpecs) {
         this.name = name;
-        this.specs = new DishWasherSpecs();
+        this.specs = (DishWasherSpecs) dishWasherSpecs;
         this.location = location;
         this.location.addDevice(this);
         this.isActive = true;
-        this.readingsList = new ArrayList<>();
+        this.readingList = new ArrayList<>();
     }
 
     /**
@@ -63,13 +63,13 @@ public class DishWasher implements Device, Programmable {
     }
 
     /**
-     * method that gets the list of Readings of the Device.
+     * method that gets the list of Reading of the Device.
      *
      * @return
      */
     @Override
-    public List<Readings> getReadings() {
-        return this.readingsList;
+    public List<Reading> getReadings() {
+        return this.readingList;
     }
 
     /**
@@ -202,22 +202,22 @@ public class DishWasher implements Device, Programmable {
     /**
      * Method that adds a reading to the device.
      *
-     * @param readings Readings to be added.
+     * @param reading Reading to be added.
      */
-    public void addReadingsToTheList(Readings readings) {
-        this.readingsList.add(readings);
+    public void addReadingsToTheList(Reading reading) {
+        this.readingList.add(reading);
     }
 
     /**
-     * Method that calculates the sum of the value in each Readings in a given Readings list.
+     * Method that calculates the sum of the value in each Reading in a given Reading list.
      *
-     * @param readingsList List with Readings.
+     * @param readingList List with Reading.
      * @return Double with the required sum.
      */
-    public double getSumOfTheReadings(List<Readings> readingsList) {
+    public double getSumOfTheReadings(List<Reading> readingList) {
         double sum = 0;
-        for (Readings readings : readingsList) {
-            sum += readings.getValue();
+        for (Reading reading : readingList) {
+            sum += reading.getValue();
         }
         return sum;
     }
@@ -225,7 +225,7 @@ public class DishWasher implements Device, Programmable {
 
     /**
      * Method that calculates the total energy consumption of a device in a given interval.
-     * This method has in count all the fully contained readingsList, i.e., if there's just one readingsList in the interval, it
+     * This method has in count all the fully contained readingList, i.e., if there's just one readingList in the interval, it
      * is not counted.
      *
      * @param startDate Start date.
@@ -235,7 +235,7 @@ public class DishWasher implements Device, Programmable {
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        List<Readings> readings = getReadingsListInInterval(startDate, endDate);
+        List<Reading> readings = getReadingsListInInterval(startDate, endDate);
         if (!(readings.isEmpty())) {
             readings.remove(0);
             totalEnergyConsumption = getSumOfTheReadings(readings);
@@ -257,9 +257,13 @@ public class DishWasher implements Device, Programmable {
      * method that set the deactivate device, turning it to false and giving a date
      */
     @Override
-    public void setDeactivateDevice() {
-        this.isActive = false;
-        this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+    public boolean setDeactivateDevice() {
+        if (this.isActive) {
+            this.isActive = false;
+            this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+            return true;
+        }
+        return false;
     }
 
 
@@ -284,9 +288,9 @@ public class DishWasher implements Device, Programmable {
     @Override
     public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
         Map<LocalDateTime, Double> hmap = new TreeMap<>();
-        List<Readings> validReadingsList = getReadingsListInInterval(startDate, endDate);
-        for (Readings readings : validReadingsList) {
-            hmap.put(readings.getDateTime(), readings.getValue());
+        List<Reading> validReadingList = getReadingsListInInterval(startDate, endDate);
+        for (Reading reading : validReadingList) {
+            hmap.put(reading.getDateTime(), reading.getValue());
         }
         return hmap;
     }
@@ -347,6 +351,6 @@ public class DishWasher implements Device, Programmable {
 
     @Override
     public boolean addProgram(Program program) {
-        return this.specs.addProgram(program);
+        return specs.addProgram(program);
     }
 }

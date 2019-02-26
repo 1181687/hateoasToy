@@ -88,7 +88,7 @@ public class HouseGrid implements Measurable {
      * @param position
      * @return
      */
-    public Room getRoomFromTheListOfRoomByAPosition (int position){
+    public Room getRoomFromTheListOfRoomByAPosition(int position) {
         return getRoomList().getRoomFromPosition(position);
     }
 
@@ -98,8 +98,8 @@ public class HouseGrid implements Measurable {
      * @return
      */
     @Override
-    public List<Readings> getReadings() {
-        List<Readings> listOfReadings = new ArrayList<>();
+    public List<Reading> getReadings() {
+        List<Reading> listOfReadings = new ArrayList<>();
         for (Room room : this.roomList.getListOfRooms()) {
             listOfReadings.addAll(room.getReadings());
         }
@@ -245,14 +245,15 @@ public class HouseGrid implements Measurable {
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
 
         double totalEnergyConsumption = 0;
-        if (this.roomList.isEmpty()) {
-            throw new RuntimeException("There are no rooms connected to this house grid.");
-        } else {
+
+        if (!this.roomList.isEmpty()) {
             for (Room room : this.roomList.getListOfRooms()) {
                 totalEnergyConsumption += room.getEnergyConsumptionInAnInterval(startDate, endDate);
             }
-            return totalEnergyConsumption;
+
         }
+        return totalEnergyConsumption;
+
     }
 
     @Override

@@ -144,7 +144,7 @@ public class HouseGridTest {
         //Room TWO
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
-        Room room2 = new Room(name2, -1, dim);
+        Room room2 = new Room(name2, -1, dim2);
 
         Device dev4 = fridgeType.createDevice("FridgeSiemens", room2);
         Device dev5 = dishWasherType.createDevice("DishWasherTeka", room2);
@@ -168,6 +168,17 @@ public class HouseGridTest {
         HouseGrid housegrid = new HouseGrid("grid1");
         housegrid.attachRoom(room1);
         housegrid.attachRoom(room2);
+
+        List<Device> result = housegrid.getAllDevicesList();
+
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAllDevicesListEmptylist() {
+        HouseGrid housegrid = new HouseGrid("grid1");
+
+        List<Device> expectedResult = new ArrayList<>();
 
         List<Device> result = housegrid.getAllDevicesList();
 
@@ -590,15 +601,15 @@ public class HouseGridTest {
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        lamp.addReadingsToTheList(readings0);
-        lamp.addReadingsToTheList(readings1);
-        lamp.addReadingsToTheList(readings2);
+        lamp.addReadingsToTheList(reading0);
+        lamp.addReadingsToTheList(reading1);
+        lamp.addReadingsToTheList(reading2);
 
         double expectedResult = 12;
         //Act
@@ -626,15 +637,15 @@ public class HouseGridTest {
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        lamp.addReadingsToTheList(readings0);
-        lamp.addReadingsToTheList(readings1);
-        lamp.addReadingsToTheList(readings2);
+        lamp.addReadingsToTheList(reading0);
+        lamp.addReadingsToTheList(reading1);
+        lamp.addReadingsToTheList(reading2);
 
         double expectedResult = 0;
         //Act
@@ -663,15 +674,15 @@ public class HouseGridTest {
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        lamp.addReadingsToTheList(readings0);
-        lamp.addReadingsToTheList(readings1);
-        lamp.addReadingsToTheList(readings2);
+        lamp.addReadingsToTheList(reading0);
+        lamp.addReadingsToTheList(reading1);
+        lamp.addReadingsToTheList(reading2);
 
         double expectedResult = 0;
 
@@ -707,34 +718,34 @@ public class HouseGridTest {
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        lamp.addReadingsToTheList(readings0);
-        lamp.addReadingsToTheList(readings1);
-        lamp.addReadingsToTheList(readings2);
+        lamp.addReadingsToTheList(reading0);
+        lamp.addReadingsToTheList(reading1);
+        lamp.addReadingsToTheList(reading2);
 
         LocalDateTime time3 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings3 = new Readings(3, time3);
+        Reading reading3 = new Reading(3, time3);
         LocalDateTime time4 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings4 = new Readings(5, time4);
+        Reading reading4 = new Reading(5, time4);
         LocalDateTime time5 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings5 = new Readings(7, time5);
+        Reading reading5 = new Reading(7, time5);
 
-        fridge.addReadingsToTheList(readings3);
-        fridge.addReadingsToTheList(readings4);
-        fridge.addReadingsToTheList(readings5);
+        fridge.addReadingsToTheList(reading3);
+        fridge.addReadingsToTheList(reading4);
+        fridge.addReadingsToTheList(reading5);
 
         LocalDateTime time6 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings6 = new Readings(3, time6);
+        Reading reading6 = new Reading(3, time6);
         LocalDateTime time7 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings7 = new Readings(5, time7);
+        Reading reading7 = new Reading(5, time7);
 
-        electricWaterHeater.addReadingsToTheList(readings6);
-        electricWaterHeater.addReadingsToTheList(readings7);
+        electricWaterHeater.addReadingsToTheList(reading6);
+        electricWaterHeater.addReadingsToTheList(reading7);
 
         double expectedResult = 29;
 
@@ -755,15 +766,14 @@ public class HouseGridTest {
         LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
 
-        String expectedResult = "There are no rooms connected to this house grid.";
+        double expectedResult = 0;
 
         //Act
-        Throwable exception = assertThrows(RuntimeException.class, () ->
-                grid1.getEnergyConsumptionInAnInterval(startTime, endTime)
-        );
+        double result = grid1.getEnergyConsumptionInAnInterval(startTime, endTime);
+
 
         //Assert
-        assertEquals(expectedResult, exception.getMessage());
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -790,34 +800,34 @@ public class HouseGridTest {
         Device electricWaterHeater = electricWaterHeaterType.createDevice("EWH200", room2);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        lamp.addReadingsToTheList(readings0);
-        lamp.addReadingsToTheList(readings1);
-        lamp.addReadingsToTheList(readings2);
+        lamp.addReadingsToTheList(reading0);
+        lamp.addReadingsToTheList(reading1);
+        lamp.addReadingsToTheList(reading2);
 
         LocalDateTime time3 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings3 = new Readings(3, time3);
+        Reading reading3 = new Reading(3, time3);
         LocalDateTime time4 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings4 = new Readings(5, time4);
+        Reading reading4 = new Reading(5, time4);
         LocalDateTime time5 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings5 = new Readings(7, time5);
+        Reading reading5 = new Reading(7, time5);
 
-        fridge.addReadingsToTheList(readings3);
-        fridge.addReadingsToTheList(readings4);
-        fridge.addReadingsToTheList(readings5);
+        fridge.addReadingsToTheList(reading3);
+        fridge.addReadingsToTheList(reading4);
+        fridge.addReadingsToTheList(reading5);
 
         LocalDateTime time6 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings6 = new Readings(3, time6);
+        Reading reading6 = new Reading(3, time6);
         LocalDateTime time7 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings7 = new Readings(5, time7);
+        Reading reading7 = new Reading(5, time7);
 
-        electricWaterHeater.addReadingsToTheList(readings6);
-        electricWaterHeater.addReadingsToTheList(readings7);
+        electricWaterHeater.addReadingsToTheList(reading6);
+        electricWaterHeater.addReadingsToTheList(reading7);
 
         LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);

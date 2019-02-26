@@ -13,6 +13,7 @@ public class WashingMachineType implements DeviceType {
     }
 
     public Device createDevice(String name, Room location) {
-        return new WashingMachine(name, location);
+        DeviceSpecs washingMachineSpecs = new WashingMachineSpecs();
+        return new WashingMachine(name, location, washingMachineSpecs);
     }
 }

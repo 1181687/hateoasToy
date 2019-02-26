@@ -18,11 +18,6 @@ public class GetEnergyConsumptionOfAGridControllerTest {
 
     @BeforeEach
     public void StartUp() {
-        //Geographical Area
-        Location location = new Location(41.178553, -8.608035, 111);
-        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
-        GeographicalAreaType geoAreaType = new GeographicalAreaType("Urban area");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geoAreaType, location, areaShape);
 
         //House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -31,16 +26,11 @@ public class GetEnergyConsumptionOfAGridControllerTest {
 
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
-        Location houseLocation = new Location(41.177748, -8.607745, 112);
-        Address address = new Address("4200-072", houseLocation);
-        this.house.setAddress(address);
-        this.house.setInsertedGeoArea(insertedGeoArea);
-
         this.controller = new GetEnergyConsumptionOfAGridController(house);
     }
 
     @Test
-    public void checkIfGridListIsEmptyWithEmptyHouseGridListShouldReturnTrue() {
+    public void checkIfGridListIsEmpty_WithEmptyHouseGridList_ShouldReturnTrue() {
         //Act
         boolean result = controller.isHouseGridListEmpty();
 
@@ -49,7 +39,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     }
 
     @Test
-    public void checkIfGridListIsEmptyWhenHouseGridListIsNotEmptyShouldReturnFalse() {
+    public void checkIfGridListIsEmpty_WhenHouseGridListIsNotEmpty_ShouldReturnFalse() {
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
         house.addGrid(grid1);
@@ -62,7 +52,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     }
 
     @Test
-    public void getHouseGridListLengthWhenHouseGridListHasOneGridShouldReturnOne() {
+    public void getHouseGridListLength_WhenHouseGridListHasOneGrid_ShouldReturnOne() {
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
         house.addGrid(grid1);
@@ -77,7 +67,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     }
 
     @Test
-    public void getHouseGridListLengthWhenHouseGridHasNoGridsShouldReturnZero() {
+    public void getHouseGridListLength_WhenHouseGridHasNoGrids_ShouldReturnZero() {
         //Arrange
         int expectedResult = 0;
 
@@ -89,7 +79,7 @@ public class GetEnergyConsumptionOfAGridControllerTest {
     }
 
     @Test
-    public void listHouseGridsTestWithOneHouseGridShouldShowListWithOneGrid() {
+    public void listHouseGridsTest_WithOneHouseGrid_ShouldShowListWithOneGrid() {
         //Arrange
         HouseGrid grid1 = new HouseGrid("Grid 1");
         house.addGrid(grid1);
@@ -117,15 +107,15 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-  @Test
-    public void getEnergyConsumptionInAInterval(){
+    @Test
+    public void getEnergyConsumptionInAInterval() {
         //Arrange
         Dimension dimension = new Dimension(25, 25, 25);
         Room room1 = new Room("Room", 2, dimension);
         String name = "Lamp IKEA";
-        LampType lampType = new LampType();
-        Device lamp = lampType.createDevice(name,room1);
-        lamp.setAttributesDevType("Nominal Power",20);
+        DeviceType lampType = house.getDeviceType("Lamp");
+        Device lamp = lampType.createDevice(name, room1);
+        lamp.setAttributesDevType("Nominal Power", 20);
 
         String gridName = "Grid 1";
         HouseGrid grid1 = new HouseGrid(gridName);
@@ -136,15 +126,15 @@ public class GetEnergyConsumptionOfAGridControllerTest {
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
+        Reading reading2 = new Reading(7, time2);
 
-        lamp.addReadingsToTheList(readings0);
-        lamp.addReadingsToTheList(readings1);
-        lamp.addReadingsToTheList(readings2);
+        lamp.addReadingsToTheList(reading0);
+        lamp.addReadingsToTheList(reading1);
+        lamp.addReadingsToTheList(reading2);
 
         int position = 0;
         controller.getHouseGridByPosition(position);

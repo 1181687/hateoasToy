@@ -65,8 +65,8 @@ public class SensorList {
      * @param type Sensor type needed.
      * @return List with the lastest measeruments for the required type.
      */
-    public List<Readings> getListOfLatestMeasurementsBySensorType(SensorType type) {
-        List<Readings> listOfLatestReadings = new ArrayList<>();
+    public List<Reading> getListOfLatestMeasurementsBySensorType(SensorType type) {
+        List<Reading> listOfLatestReadings = new ArrayList<>();
         for (Sensor sensor : listOfSensors) {
             if (sensor.isMeasurementListEmpty()) {
                 break;
@@ -79,23 +79,23 @@ public class SensorList {
     }
 
     /**
-     * method that receives a Sensortype, and gets the latest Readings available by that Sensortype
+     * method that receives a Sensortype, and gets the latest Reading available by that Sensortype
      *
      * @param type Sensortype
      * @return Measuremnt
      */
-    public Readings getLatestMeasurementBySensorType(SensorType type) {
-        List<Readings> listOfLatestReadings = getListOfLatestMeasurementsBySensorType(type);
+    public Reading getLatestMeasurementBySensorType(SensorType type) {
+        List<Reading> listOfLatestReadings = getListOfLatestMeasurementsBySensorType(type);
         if (getListOfLatestMeasurementsBySensorType(type).isEmpty()) {
             return null;
         }
-        Readings latestReadings = listOfLatestReadings.get(0);
-        for (Readings readings : listOfLatestReadings) {
-            if (readings.getDateTime().isAfter(latestReadings.getDateTime())) {
-                latestReadings = readings;
+        Reading latestReading = listOfLatestReadings.get(0);
+        for (Reading reading : listOfLatestReadings) {
+            if (reading.getDateTime().isAfter(latestReading.getDateTime())) {
+                latestReading = reading;
             }
         }
-        return latestReadings;
+        return latestReading;
     }
 
     /**

@@ -34,16 +34,16 @@ class WashingMachineTest {
         washingMachine.setAttributesDevType("Energy Consumption", 1);
         washingMachine.setAttributesDevType("Nominal Power", 1000);
 
-        // Readings
+        // Reading
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Readings readings0 = new Readings(3, time0);
+        Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Readings readings1 = new Readings(5, time1);
+        Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Readings readings2 = new Readings(7, time2);
-        washingMachine.addReadingsToTheList(readings0);
-        washingMachine.addReadingsToTheList(readings1);
-        washingMachine.addReadingsToTheList(readings2);
+        Reading reading2 = new Reading(7, time2);
+        washingMachine.addReadingsToTheList(reading0);
+        washingMachine.addReadingsToTheList(reading1);
+        washingMachine.addReadingsToTheList(reading2);
 
         // Maps
         map = new TreeMap<>();
