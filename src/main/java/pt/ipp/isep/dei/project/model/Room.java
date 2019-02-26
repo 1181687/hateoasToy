@@ -268,8 +268,6 @@ public class Room implements Measurable {
         if (this.equals(device.getLocation()) && this.deviceList.contains(device)) {
             throw new RuntimeException("Device with same name is already in the roomList");
         }
-        device.getLocation().removeDevice(device);
-        device.setLocation(this);
         this.deviceList.add(device);
         return true;
     }

@@ -51,10 +51,9 @@ public class House {
      * rooms of the house
      * @param typeName   String type name of Device
      * @param deviceName String device name
-     * @param location   Room location to add advice
      * @return true if creates and false if not
      */
-    public Device createDevice(String typeName, String deviceName, Room location) {
+    public Device createDevice(String typeName, String deviceName, Room room) {
 
         if (Objects.isNull(getDeviceType(typeName))) {
             return null;
@@ -65,7 +64,10 @@ public class House {
                 return null;
             }
         }
-        return getDeviceType(typeName).createDevice(deviceName, location);
+        Device device = getDeviceType(typeName).createDevice(deviceName);
+        room.addDevice(device);
+        device.setLocation(room);
+        return device;
     }
 
     /**

@@ -13,8 +13,8 @@ public class DishWasher implements Device, Programmable {
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public DishWasher(String name, Room location) {
-        this.name = name;
+    private DishWasher(DishWasherBuilder devBuilder) {
+        this.name = devBuilder.name;
         this.specs = new DishWasherSpecs();
         this.location = location;
         this.location.addDevice(this);
@@ -306,7 +306,6 @@ public class DishWasher implements Device, Programmable {
     }
 
     /**
-     *
      * get method
      *
      * @param attributeName string attribute
@@ -353,4 +352,31 @@ public class DishWasher implements Device, Programmable {
     public boolean addProgram(Program program) {
         return this.specs.addProgram(program);
     }
+
+
+    public static class DishWasherBuilder {
+
+        private String name;
+        private Room location;
+        private DishWasherSpecs specs;
+        private List<Reading> readingList;
+        private boolean isActive;
+        private LocalDateTime deactivationDate;
+
+        public DishWasherBuilder(String name, Room location) {
+            this.name = name;
+            this.location = location;
+            this.specs = specs;
+            this.readingList = readingList;
+            this.isActive = isActive;
+            this.deactivationDate = deactivationDate;
+        }
+
+        public DishWasher build() {
+            return new DishWasher(this);
+        }
+
+
+    }
 }
+
