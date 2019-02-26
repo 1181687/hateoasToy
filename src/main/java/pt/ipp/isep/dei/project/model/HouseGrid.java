@@ -63,7 +63,7 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * method that get the name of the house grid.
+     * method that gets the name of the house grid.
      */
     public String getName() {
         return this.houseGridName;

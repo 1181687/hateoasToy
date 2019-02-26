@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
+import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionController;
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionOfAGridController;
 import pt.ipp.isep.dei.project.model.House;
 
@@ -7,10 +8,10 @@ import java.time.LocalDateTime;
 
 public class GetEnergyConsumptionOfAGrid {
 
-    private GetEnergyConsumptionOfAGridController controller;
+    private GetEnergyConsumptionController controller;
 
     public GetEnergyConsumptionOfAGrid(House house) {
-        this.controller = new GetEnergyConsumptionOfAGridController(house);
+        this.controller = new GetEnergyConsumptionController(house);
     }
 
     public void run() {

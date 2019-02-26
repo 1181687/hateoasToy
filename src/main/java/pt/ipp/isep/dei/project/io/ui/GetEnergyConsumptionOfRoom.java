@@ -1,16 +1,17 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionOfRoomInAnIntervalController;
+import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionController;
+import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionRoomController;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
 
 public class GetEnergyConsumptionOfRoom {
-    private GetEnergyConsumptionOfRoomInAnIntervalController controller;
+    private GetEnergyConsumptionController controller;
 
-    public GetEnergyConsumptionOfRoom(House house) {
-        this.controller = new GetEnergyConsumptionOfRoomInAnIntervalController(house);
+    public GetEnergyConsumptionOfRoom (House house) {
+        controller = new GetEnergyConsumptionController(house);
     }
 
     public void run() {
@@ -32,6 +33,6 @@ public class GetEnergyConsumptionOfRoom {
         String label3 = "Please insert the final date/hour of the period you want to consider for the calculations in the following format: yyyy-MM-dd HH:mm. ";
         LocalDateTime finalDate = InputValidator.getStringDateTime(label3);
         System.out.println("The energy consumption of room " + controller.getRoomName()
-                + " is " + Utils.round(controller.getEnergyConsumptionOfRoomInInterval(initialDate, finalDate), 2) + " kWh.\n");
+                + " is " + Utils.round(controller.getEnergyConsumptionInAnInterval(initialDate, finalDate), 2) + " kWh.\n");
     }
 }

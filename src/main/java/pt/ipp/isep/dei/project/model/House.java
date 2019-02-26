@@ -450,6 +450,10 @@ public class House {
         return content.toString();
     }
 
+    /**
+     * Method that gets a House Grid of the list of HouseGrids, from a specific position.
+     * @param position
+     */
     public HouseGrid getHouseGridByPosition(int position) {
         return listHouseGrids.get(position);
     }

@@ -3,13 +3,13 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.Devices.Device;
 import pt.ipp.isep.dei.project.model.*;
 
-public class GetNominalPowerOfAGirdOfARoomAndRoomsDevicesController {
+public class GetNominalPowerController {
     private House house;
     private Room chosenRoom;
     private HouseGrid selectedHouseGrid;
     private MeasurableList measurableList;
 
-    public GetNominalPowerOfAGirdOfARoomAndRoomsDevicesController(House house) {
+    public GetNominalPowerController(House house) {
         this.house = house;
         this.measurableList = house.getNewMeasurableObjList();
 
