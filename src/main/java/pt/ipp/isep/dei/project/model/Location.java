@@ -4,18 +4,18 @@ package pt.ipp.isep.dei.project.model;
 public class Location {
     private double latitude;
     private double longitude;
-    private double altitude;
+    private double elevation;
 
     /**
-     * constructor of Location that receives a latitude, a longitude and an altitude.
+     * constructor of Location that receives a latitude, a longitude and an elevation.
      * @param latitude
      * @param longitude
-     * @param altitude
+     * @param elevation
      */
-    public Location(double latitude, double longitude, double altitude) {
+    public Location(double latitude, double longitude, double elevation) {
         setLatitude(latitude);
         setLongitude(longitude);
-        this.altitude = altitude;
+        this.elevation = elevation;
     }
 
     /**
@@ -53,10 +53,10 @@ public class Location {
     }
 
     /**
-     * method that get the altitude.
+     * method that get the elevation.
      */
-    public double getAltitude() {
-        return altitude;
+    public double getElevation() {
+        return elevation;
     }
 
     /**
@@ -68,7 +68,7 @@ public class Location {
 
         final int raioDaTerra = 6371; // raio da Terra
         double lonNovoLocal = novoLocal.getLongitude();
-        double altNovoLocal = novoLocal.getAltitude();
+        double altNovoLocal = novoLocal.getElevation();
         double latNovoLocal = novoLocal.getLatitude();
 
         double distEntreLon = Math.toRadians(lonNovoLocal - this.longitude);
@@ -79,7 +79,7 @@ public class Location {
 
         double distanciaKm = raioDaTerra * distEntreLocais * 1000; // convert to km
 
-        double altura = this.altitude - altNovoLocal;
+        double altura = this.elevation - altNovoLocal;
 
 
         return Math.hypot(distanciaKm, altura);
@@ -108,10 +108,10 @@ public class Location {
         Location local = (Location) obj;
         Double comparableLatitude = latitude;
         Double comparableLongitude = longitude;
-        Double comparableAltitude = altitude;
+        Double comparableAltitude = elevation;
         Double comparableLocalLatitude = local.latitude;
         Double comparableLocalLongitude = local.longitude;
-        Double comparableLocalAltitude = local.altitude;
+        Double comparableLocalAltitude = local.elevation;
         return comparableLocalLatitude.equals(comparableLatitude)
                 && comparableLocalLongitude.equals(comparableLongitude)
                 && comparableLocalAltitude.equals(comparableAltitude);
