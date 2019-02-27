@@ -71,6 +71,7 @@ public class DishWasher implements Device, Programmable {
      * method that gets the Device Specifications
      * @return DeviceSpecs
      */
+    @Override
     public DeviceSpecs getSpecs() {
         return this.specs;
     }
