@@ -551,7 +551,7 @@ public class House {
      */
     public void attachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
         int index = listHouseGrids.indexOf(houseGridSelected);
-        listHouseGrids.get(index).attachRoom(roomSelected);
+        listHouseGrids.get(index).addRoom(roomSelected);
     }
 
 

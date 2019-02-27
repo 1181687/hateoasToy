@@ -3,10 +3,10 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.Lamp.LampSpecs;
-import pt.ipp.isep.dei.project.model.Devices.Lamp.LampType;
 import pt.ipp.isep.dei.project.model.Dimension;
+import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,29 +17,37 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class LampSpecsTest {
     private Room livingRoom;
     private Device lamp;
+    private House house;
 
     @BeforeEach
     public void StartUp() {
+
+        // House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+        //Room
         Dimension dim = new Dimension(3, 5, 6);
         livingRoom = new Room("Living Room", 1, dim);
-        LampType lampType = new LampType();
-        this.lamp = lampType.createDevice("Lamp Philips", livingRoom);
+        this.house.addRoom(livingRoom);
+
+        //Device
+        this.lamp = this.house.createDevice("Lamp", "Lamp Philips", livingRoom);
+        lamp.setAttributesDevType("Luminous Flux", 50.0);
+        lamp.setAttributesDevType("Nominal Power", 100.0);
+        lamp.setAttributesDevType("Time", 10.0);
     }
 
     @Test
     public void getEnergyConsumptionInADayTestWithValidValues() {
+
         // Arrange
-        // LampSpecs Instantiation
-        LampSpecs lampSpecs = new LampSpecs();
-        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
-        lampSpecs.setAttributeValue("Nominal Power", 100.0);
-
-        lampSpecs.setTime(10.0);
-
         double expectedResult = 1000.0;
 
         // Act
-        double result = lampSpecs.getEnergyConsumptionInADay();
+        double result = lamp.getSpecs().getEnergyConsumptionInADay();
 
         // Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -48,15 +56,11 @@ public class LampSpecsTest {
     @Test
     public void getNominalPower() {
         // Arrange
-        // LampSpecs Instantiation
-        LampSpecs lampSpecs = new LampSpecs();
-        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
-        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
         double expectedResult = 100.0;
 
         //Act
-        double result = lampSpecs.getNominalPower();
+        double result = lamp.getSpecs().getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -66,14 +70,11 @@ public class LampSpecsTest {
     @Test
     public void testEmptyConstructor() {
         // Arrange
-        // LampSpecs Instantiation
-        LampSpecs lampSpecs = new LampSpecs();
-        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
         double expectedResult = 100.0;
 
         //Act
-        double result = lampSpecs.getNominalPower();
+        double result = lamp.getSpecs().getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -83,16 +84,13 @@ public class LampSpecsTest {
     @Test
     public void getAttributesToString() {
         // Arrange
-        LampSpecs lampSpecs = new LampSpecs();
-        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
-        lampSpecs.setAttributeValue("Nominal Power", 100.0);
 
         String expectedResult =
                 "1 - Luminous Flux: 50.0\n" +
                         "2 - Nominal Power: 100.0\n";
 
         // Act
-        String result = lampSpecs.getAttributesToString();
+        String result = lamp.getSpecs().getAttributesToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -101,15 +99,11 @@ public class LampSpecsTest {
     @Test
     public void getNumberOfAttributes() {
         // Arrange
-        LampSpecs lampSpecs = new LampSpecs();
-        lampSpecs.setAttributeValue("Luminous Flux", 50.0);
-        lampSpecs.setAttributeValue("Nominal Power", 100.0);
-
 
         int expectedResult = 2;
 
         // Act
-        int result = lampSpecs.getNumberOfAttributes();
+        int result = lamp.getSpecs().getNumberOfAttributes();
 
         // assert
         assertEquals(expectedResult, result);
@@ -123,7 +117,7 @@ public class LampSpecsTest {
         expectedResult.add("Nominal Power");
 
         // Act
-        List<String> result = lamp.getSpecsList();
+        List<String> result = lamp.getSpecs().getSpecsList();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -132,13 +126,12 @@ public class LampSpecsTest {
     @Test
     public void testGetAttributeValueNominalPower() {
         // Arrange
-        // FridgeSpecs Instantiation
-        lamp.setAttributesDevType("Luminous Flux", 50.0);
+
         lamp.setAttributesDevType("Nominal Power", 30);
 
         Object expectedResult = 30.0;
         // Act
-        Object result = lamp.getAttributeValue("Nominal Power");
+        Object result = lamp.getSpecs().getAttributeValue("Nominal Power");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -146,13 +139,11 @@ public class LampSpecsTest {
     @Test
     public void testGetAttributeValueLuminousFlux() {
         // Arrange
-        // FridgeSpecs Instantiation
-        lamp.setAttributesDevType("Luminous Flux", 50);
         lamp.setAttributesDevType("Nominal Power", 30);
 
         Object expectedResult = 50.0;
         // Act
-        Object result = lamp.getAttributeValue("Luminous Flux");
+        Object result = lamp.getSpecs().getAttributeValue("Luminous Flux");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -160,13 +151,11 @@ public class LampSpecsTest {
     @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
-        // FridgeSpecs Instantiation
-        lamp.setAttributesDevType("Luminous Flux", 50);
         lamp.setAttributesDevType("Nominal Power", 30);
 
         Object expectedResult = -1;
         // Act
-        Object result = lamp.getAttributeValue("Not Valid");
+        Object result = lamp.getSpecs().getAttributeValue("Not Valid");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -174,12 +163,11 @@ public class LampSpecsTest {
     @Test
     public void testGetAttributeTimeValueNotAValidSpec() {
         // Arrange
-        // FridgeSpecs Instantiation
         lamp.setAttributesDevType("Time", 50);
 
         Object expectedResult = 50.0;
         // Act
-        Object result = lamp.getAttributeValue("Time");
+        Object result = lamp.getSpecs().getAttributeValue("Time");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -187,13 +175,11 @@ public class LampSpecsTest {
     @Test
     public void testGetAttributeLuminousFlux() {
         // Arrange
-        // FridgeSpecs Instantiation
-        lamp.setAttributesDevType("Luminous Flux", 50);
         lamp.setAttributesDevType("Nominal Power", 30);
 
         Object expectedResult = 50.0;
         // Act
-        Object result = lamp.getAttributeValue("Luminous Flux");
+        Object result = lamp.getSpecs().getAttributeValue("Luminous Flux");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -203,17 +189,15 @@ public class LampSpecsTest {
         // Arrange
         String attribute = "stuff";
         // Act
-        boolean result = lamp.setAttributesDevType("Luminous Flux", attribute);
+        boolean result = lamp.getSpecs().setAttributeValue("Luminous Flux", attribute);
         // Assert
         assertFalse(result);
     }
 
     @Test
     public void testSetAttributeLuminousFluxSameValue() {
-        // Arrange
-        lamp.setAttributesDevType("Luminous Flux", 50);
         // Act
-        boolean result = lamp.setAttributesDevType("Luminous Flux", 50);
+        boolean result = lamp.getSpecs().setAttributeValue("Luminous Flux", 50);
         // Assert
         assertFalse(result);
     }
@@ -223,7 +207,7 @@ public class LampSpecsTest {
         // Arrange
         String attribute = "stuff";
         // Act
-        boolean result = lamp.setAttributesDevType("Time", attribute);
+        boolean result = lamp.getSpecs().setAttributeValue("Time", attribute);
         // Assert
         assertFalse(result);
     }
@@ -240,7 +224,7 @@ public class LampSpecsTest {
         boolean expectedResult = true;
 
         //Act
-        boolean result = lamp.setAttributesDevType(attribute, value2);
+        boolean result = lamp.getSpecs().setAttributeValue(attribute, value2);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -252,7 +236,7 @@ public class LampSpecsTest {
         // Arrange
         lamp.setAttributesDevType("Time", 20);
         // Act
-        boolean result = lamp.setAttributesDevType("Time", 20);
+        boolean result = lamp.getSpecs().setAttributeValue("Time", 20);
         // Assert
         assertFalse(result);
     }
@@ -262,7 +246,7 @@ public class LampSpecsTest {
         // Arrange
         String attribute = "stuff";
         // Act
-        boolean result = lamp.setAttributesDevType("Nominal Power", attribute);
+        boolean result = lamp.getSpecs().setAttributeValue("Nominal Power", attribute);
         // Assert
         assertFalse(result);
     }
@@ -272,7 +256,7 @@ public class LampSpecsTest {
         // Arrange
         lamp.setAttributesDevType("Nominal Power", 1.5);
         // Act
-        boolean result = lamp.setAttributesDevType("Nominal Power", 1.5);
+        boolean result = lamp.getSpecs().setAttributeValue("Nominal Power", 1.5);
         // Assert
         assertFalse(result);
     }
@@ -288,7 +272,7 @@ public class LampSpecsTest {
         boolean expectedResult = true;
 
         //Act
-        boolean result = lamp.setAttributesDevType(attribute, value2);
+        boolean result = lamp.getSpecs().setAttributeValue(attribute, value2);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -300,7 +284,7 @@ public class LampSpecsTest {
         // Arrange
         String attribute = "stuff";
         // Act
-        boolean result = lamp.setAttributesDevType(attribute, 1.5);
+        boolean result = lamp.getSpecs().setAttributeValue(attribute, 1.5);
         // Assert
         assertFalse(result);
     }
@@ -310,7 +294,7 @@ public class LampSpecsTest {
         // arrange
         String attributeDataType = "Integer";
         // act
-        String result = lamp.getAttributeDataType("Integer");
+        String result = lamp.getSpecs().getAttributeDataType("Integer");
         // assert
         assertEquals(attributeDataType, result);
     }

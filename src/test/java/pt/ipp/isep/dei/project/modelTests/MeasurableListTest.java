@@ -3,42 +3,54 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.Devices.Device;
 import pt.ipp.isep.dei.project.model.Devices.DishWasher.DishWasherType;
 import pt.ipp.isep.dei.project.model.Devices.Fridge.FridgeType;
 import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineType;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.MeasurableList;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MeasurableListTest {
-
+    private House house;
     private Device dev1;
     private Device dev2;
     private Device dev3;
     private Room room1;
     private Room room2;
     private MeasurableList mList;
+    private static final String FRIDGE_TYPE = "Fridge";
+    private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
+    private static final String DISHWASHER_TYPE = "DishWasher";
+    private static final String LAMP_TYPE = "Lamp";
+    private static final String WASHING_MACHINE_TYPE = "Washing Machine";
+
 
     @BeforeEach
     public void StartUp() {
+        // House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Location houseLocation = new Location(41.178553, -8.608035, 111);
+        Address address = new Address("4200-072", houseLocation);
+        this.house.setAddress(address);
 
         Dimension dim = new Dimension(3, 3.5, 3.5);
         this.room1 = new Room("Room1", 2, dim);
         this.room2 = new Room("Room2", 2, dim);
 
-        FridgeType fridgeType = new FridgeType();
-        this.dev1 = fridgeType.createDevice("FridgeAriston", room1);
+        this.dev1 = house.createDevice(FRIDGE_TYPE, "FridgeAriston", room1);
         dev1.setAttributesDevType("Nominal Power",500);
 
-        WashingMachineType washingMachineType = new WashingMachineType();
-        this.dev2 = washingMachineType.createDevice("Washing Machine", room1);
+        this.dev2 = house.createDevice(WASHING_MACHINE_TYPE, "Washing Machine", room1);
         dev2.setAttributesDevType("Nominal Power",250);
 
-        DishWasherType dishWasherType = new DishWasherType();
-        this.dev3 = dishWasherType.createDevice("Dishwasher", room2);
+        this.dev3 = house.createDevice(DISHWASHER_TYPE, "Dishwasher", room2);
         dev3.setAttributesDevType("Nominal Power",250);
 
         this.mList = new MeasurableList();

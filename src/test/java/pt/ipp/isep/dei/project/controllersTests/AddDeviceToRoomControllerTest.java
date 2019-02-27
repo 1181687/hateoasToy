@@ -1,19 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
-import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.utils.Utils;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
 class AddDeviceToRoomControllerTest {
-    private AddDeviceToRoomController controller;
+    /*private AddDeviceToRoomController controller;
     private House house;
     private Room kitchen;
     private Room livingRoom;
@@ -363,7 +351,7 @@ class AddDeviceToRoomControllerTest {
             // Assert
             assertTrue(result);
         }
-    */
+
     @Test
     public void testGetNumberOfDeviceTypes() {
         // Arrange
@@ -374,5 +362,5 @@ class AddDeviceToRoomControllerTest {
 
         // Assert
         assertEquals(expectedResult, result);
-    }
+    }*/
 }

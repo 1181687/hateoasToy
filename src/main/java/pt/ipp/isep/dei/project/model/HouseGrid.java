@@ -130,8 +130,8 @@ public class HouseGrid implements Measurable {
      *
      * @param room Speficied room to attach.
      */
-    public void attachRoom(Room room) {
-        roomList.getListOfRooms().add(room);
+    public void addRoom(Room room) {
+        roomList.addRoom(room);
     }
 
     /**

@@ -1,21 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionController;
-import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.ElectricWaterHeater.ElectricWaterHeaterType;
-import pt.ipp.isep.dei.project.model.Devices.Fridge.FridgeType;
-import pt.ipp.isep.dei.project.utils.Utils;
-
-import java.time.LocalDateTime;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 class GetEnergyConsumptionControllerTest {
-    private GetEnergyConsumptionController ctrl;
+    /*private GetEnergyConsumptionController ctrl;
     private House house;
     private Room room;
 
@@ -215,5 +201,5 @@ class GetEnergyConsumptionControllerTest {
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
-    }
+    }*/
 }
