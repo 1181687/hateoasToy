@@ -65,6 +65,14 @@ public class ElectricWaterHeater implements Device, Measurable {
     }
 
     /**
+     * method that gets the Device Specifications
+     * @return DeviceSpecs
+     */
+    public DeviceSpecs getSpecs() {
+        return this.specs;
+    }
+
+    /**
      * method that gets the list of Reading of the Device.
      *
      * @return
@@ -224,32 +232,11 @@ public class ElectricWaterHeater implements Device, Measurable {
     }
 
 
-    /**
-     * Method that calculates the total energy consumption of a device in a given interval.
-     *
-     * @param startDate Start date.
-     * @param endDate   End date.
-     * @return Double with the required energy consumption.
-     */
-    @Override
-    public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        double totalEnergyConsumption = 0;
-        List<Reading> readings = getReadingsListInInterval(startDate, endDate);
-        if (!(readings.isEmpty())) {
-            readings.remove(0);
-            totalEnergyConsumption = getSumOfTheReadings(readings);
-        }
-        return totalEnergyConsumption;
-    }
 
     public LocalDateTime getDeactivationDate() {
         return this.deactivationDate;
     }
 
-    @Override
-    public String getDateDeactivateDeviceToString() {
-        return this.deactivationDate.toLocalDate().toString() + " " + this.deactivationDate.toLocalTime().toString();
-    }
 
     /**
      * method that set the deactivate device, turning it to false and giving a date

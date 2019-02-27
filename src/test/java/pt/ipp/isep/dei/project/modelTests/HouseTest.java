@@ -24,6 +24,11 @@ public class HouseTest {
     private Room laundry;
     private Room kitchen;
     private Device electricWaterHeater;
+    private static final String FRIDGE_TYPE = "Fridge";
+    private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
+    private static final String DISHWASHER_TYPE = "DishWasher";
+    private static final String LAMP_TYPE = "Lamp";
+    private static final String WASHING_MACHINE_TYPE = "Washing Machine";
 
     @BeforeEach
     public void StartUp() {
@@ -50,8 +55,7 @@ public class HouseTest {
         kitchen = new Room("Kitchen", 1, dim);
 
         // ElectricWaterHeaters Instantiation
-        ElectricWaterHeaterType eWHType = new ElectricWaterHeaterType();
-        electricWaterHeater = eWHType.createDevice("Bosch Tronic 3000", laundry);
+        electricWaterHeater = house.createDevice(ELECTRIC_W_H_TYPE, "Bosch Tronic 3000", laundry);
         house.setDeviceAttribute("Bosch Tronic 3000", "Nominal Power", 0.5);
         house.setDeviceAttribute("Bosch Tronic 3000", "Performance Ratio", 0.8);
         house.setDeviceAttribute("Bosch Tronic 3000", "Hot-Water Temperature", 70);
@@ -60,7 +64,7 @@ public class HouseTest {
     @Test
     public void createDevice() {
         // Act
-        Device result = house.createDevice("Fridge", "Bosch 2000", laundry);
+        Device result = house.createDevice(FRIDGE_TYPE, "Bosch 2000", laundry);
         Device expectedResult = house.getDeviceByName("Bosch 2000");
 
 
@@ -71,7 +75,7 @@ public class HouseTest {
     @Test
     public void createDeviceDeviceTypeNotExists_False() {
         // Act
-        Device result = house.createDevice("Hoven", "Bosch 1000", laundry);
+        Device result = house.createDevice("Hoven2", "Bosch 1000", laundry);
 
         Device expectedResult = null;
 
@@ -850,8 +854,7 @@ public class HouseTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room);
+        Device dev1 = house.createDevice("Lamp", "Lamp1", room);
 
         house.addRoom(room);
 
@@ -871,14 +874,11 @@ public class HouseTest {
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
-        FridgeType fridgeType = new FridgeType();
-        Device dev1 = fridgeType.createDevice("FridgeAriston", room1);
+        Device dev1 = house.createDevice(FRIDGE_TYPE,"FridgeAriston", room1);
 
-        WashingMachineType washingMachineType = new WashingMachineType();
-        Device dev2 = washingMachineType.createDevice("WashingMachineBosh", room1);
+        Device dev2 = house.createDevice(WASHING_MACHINE_TYPE, "WashingMachineBosh", room1);
 
-        DishWasherType dishWasherType = new DishWasherType();
-        Device dev3 = dishWasherType.createDevice("DishWasherSpecs", room1);
+        Device dev3 = house.createDevice(DISHWASHER_TYPE, "DishWasherSpecs", room1);
 
 
 
@@ -886,11 +886,10 @@ public class HouseTest {
         String name2 = "KitchenBasement";
         Room room2 = new Room(name2, -1, dim);
 
-        Device dev4 = fridgeType.createDevice("FridgeSiemens", room2);
-        Device dev5 = dishWasherType.createDevice("DishWasherTeka", room2);
+        Device dev4 = house.createDevice(FRIDGE_TYPE, "FridgeSiemens", room2);
+        Device dev5 = house.createDevice(DISHWASHER_TYPE, "DishWasherTeka", room2);
 
-        ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
-        Device dev6 = electricWaterHeaterType.createDevice("ElectricWaterHeaterSpecs", room2);
+        Device dev6 = house.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeaterSpecs", room2);
 
         //add to Lists
         house.addRoom(room1);
@@ -922,14 +921,11 @@ public class HouseTest {
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
-        FridgeType fridgeType = new FridgeType();
-        Device dev1 = fridgeType.createDevice("FridgeAriston", room1);
+        Device dev1 = house.createDevice(FRIDGE_TYPE, "FridgeAriston", room1);
 
-        WashingMachineType washingMachineType = new WashingMachineType();
-        Device dev2 = washingMachineType.createDevice("WashingMachineBosh", room1);
+        Device dev2 = house.createDevice(WASHING_MACHINE_TYPE, "WashingMachineBosh", room1);
 
-        DishWasherType dishWasherType = new DishWasherType();
-        Device dev3 = dishWasherType.createDevice("DishWasherSpecs", room1);
+        Device dev3 = house.createDevice(DISHWASHER_TYPE, "DishWasherSpecs", room1);
 
 
 
@@ -937,11 +933,10 @@ public class HouseTest {
         String name2 = "KitchenBasement";
         Room room2 = new Room(name2, -1, dim);
 
-        Device dev4 = fridgeType.createDevice("FridgeSiemens", room2);
-        Device dev5 = dishWasherType.createDevice("DishWasherTeka", room2);
+        Device dev4 = house.createDevice(FRIDGE_TYPE, "FridgeSiemens", room2);
+        Device dev5 = house.createDevice(DISHWASHER_TYPE, "DishWasherTeka", room2);
 
-        ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
-        Device dev6 = electricWaterHeaterType.createDevice("ElectricWaterHeaterSpecs", room2);
+        Device dev6 = house.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeaterSpecs", room2);
 
 
         HouseGrid hg = new HouseGrid("Grid");
@@ -986,8 +981,8 @@ public class HouseTest {
         assertEquals(expectedResult, result);
 
     }
-
-  /*  @Test
+/* --> TESTE A SER ALTERADO DEPOIS DE IMPLEMENTAÇÃO DE DTO's.
+    @Test
     public void getEnergyConsumptionInADayOfAllDevicesOfATypeTestWithValidValues() {
         // Arrange
         // Dimension Instantiation
@@ -1000,8 +995,7 @@ public class HouseTest {
         Room room = new Room("Room", 2, dim);
 
         // ElectricWaterHeaterSpecs Instantiation
-        ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
-        Device device0 = electricWaterHeaterType.createDevice("Electric Water Heater", room);
+        Device device0 = house.createDevice(ELECTRIC_W_H_TYPE, "Electric Water Heater", room);
         device0.setAttributesDevType("Hot-Water Temperature",50);
         device0.setAttributesDevType("Volume Of Water To Heat",150);
         device0.setAttributesDevType("Performance Ratio",0.9);
@@ -1247,14 +1241,11 @@ public class HouseTest {
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
 
-        FridgeType fridgeType = new FridgeType();
-        Device dev4 = fridgeType.createDevice("FridgeSiemens", room2);
+        house.createDevice(FRIDGE_TYPE, "FridgeSiemens", room2);
 
-        DishWasherType dishWasherType = new DishWasherType();
-        Device dev5 = dishWasherType.createDevice("DishWasherTeka", room2);
+        house.createDevice(DISHWASHER_TYPE, "DishWasherTeka", room2);
 
-        ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
-        Device dev6 = electricWaterHeaterType.createDevice("ElectricWaterHeaterSpecs", room2);
+        house.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeaterSpecs", room2);
 
         HouseGrid grid = new HouseGrid("g1");
         grid.addRoom(room2);
@@ -1288,14 +1279,11 @@ public class HouseTest {
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
-        FridgeType fridgeType = new FridgeType();
-        WashingMachineType washingMachineType = new WashingMachineType();
-        DishWasherType dishWasherType = new DishWasherType();
-        ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
 
-        Device dev1 = fridgeType.createDevice("FridgeAriston", room1);
-        Device dev2 = washingMachineType.createDevice("WashingMachineBosh", room1);
-        Device dev3 = dishWasherType.createDevice("DishWasher", room1);
+
+        house.createDevice(FRIDGE_TYPE, "FridgeAriston", room1);
+        house.createDevice(WASHING_MACHINE_TYPE, "WashingMachineBosh", room1);
+        house.createDevice(DISHWASHER_TYPE, "DishWasher", room1);
 
 
         //Room TWO
@@ -1303,9 +1291,9 @@ public class HouseTest {
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
 
-        Device dev4 = fridgeType.createDevice("FridgeSiemens", room2);
-        Device dev5 = dishWasherType.createDevice("DishWasherTeka", room2);
-        Device dev6 = electricWaterHeaterType.createDevice("ElectricWaterHeater", room2);
+        house.createDevice(FRIDGE_TYPE, "FridgeSiemens", room2);
+        house.createDevice(DISHWASHER_TYPE, "DishWasherTeka", room2);
+        house.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeater", room2);
 
         int expectedResult = 2;
 
@@ -1405,16 +1393,13 @@ public class HouseTest {
         Room room0 = new Room("Kitchen", 1, dim);
         Room room1 = new Room("Laundry", 2, dim);
 
-        FridgeType fridgeType = new FridgeType();
-        ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
-
-        // Device Instantiation
-        Device device0 = fridgeType.createDevice("Fridgeratah V14", room0);
-
-        Device Device = electricWaterHeaterType.createDevice("Bosch Tronic 3000", room1);
-
         house.addRoom(room0);
         house.addRoom(room1);
+
+
+        // Device Creation
+        house.createDevice(FRIDGE_TYPE, "Fridgeratah V14", room0);
+        house.createDevice(ELECTRIC_W_H_TYPE, "Bosch Tronic 3000", room1);
 
         int expectedResult = 2;
 
@@ -1497,13 +1482,11 @@ public class HouseTest {
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
 
-        FridgeType fridgeType = new FridgeType();
-        ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
 
         // Device Instantiation
-        Device device0 = fridgeType.createDevice("Fridgeratah V14", room);
+        house.createDevice(FRIDGE_TYPE, "Fridgeratah V14", room);
 
-        Device Device = electricWaterHeaterType.createDevice("Bosch Tronic 3000", room2);
+        house.createDevice(ELECTRIC_W_H_TYPE, "Bosch Tronic 3000", room2);
 
 
         house.addRoom(room);
