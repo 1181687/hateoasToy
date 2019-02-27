@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Devices.Device;
 import pt.ipp.isep.dei.project.model.Devices.DishWasher.DishWasherType;
@@ -7,6 +8,7 @@ import pt.ipp.isep.dei.project.model.Devices.Fridge.FridgeType;
 import pt.ipp.isep.dei.project.model.Devices.Lamp.LampType;
 import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineType;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -18,19 +20,54 @@ import static org.testng.Assert.assertNotEquals;
 
 public class RoomTest {
 
+    private House house;
+    private Room laundry;
+    private Room kitchen;
+    private static final String FRIDGE_TYPE = "Fridge";
+    private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
+    private static final String DISHWASHER_TYPE = "DishWasher";
+    private static final String LAMP_TYPE = "Lamp";
+    private static final String WASHING_MACHINE_TYPE = "Washing Machine";
+
+
+    @BeforeEach
+    public void StartUp() {
+        //Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+
+        //House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
+        Location houseLocation = new Location(41.177748, -8.607745, 112);
+        Address address = new Address("4200-072", houseLocation);
+        house.setAddress(address);
+        house.setInsertedGeoArea(insertedGeoArea);
+
+        // Room Instantiation
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        laundry = new Room("Laundry", 2, dim);
+        house.addRoom(laundry);
+        kitchen = new Room("Kitchen", 1, dim);
+        house.addRoom(kitchen);
+
+    }
+
 
     @Test
     public void getDisplayRoomTest() {
         //arrange
-        String name1 = "Kitchen";
-        int houseFloor1 = 0;
-        Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room = new Room(name1, houseFloor1, dimension1);
 
-        String expectResult = "Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0";
+        String expectResult = "Name: Kitchen, House Floor: 1, Dimension - Height: 3.0, Length: 3.5, Width: 3.5";
 
         //act
-        String result = room.getRoomToString();
+        String result = kitchen.getRoomToString();
         //assert
         assertEquals(expectResult, result);
     }
@@ -38,15 +75,11 @@ public class RoomTest {
     @Test
     void testHashCode() {
         //Arrange
-        String name = "roomOne";
-        int housefloor = 2;
-        Dimension dim = new Dimension(4, 10.5, 7.5);
-        Room room = new Room(name, housefloor, dim);
 
-        int expectedResult = Objects.hash(name);
+        int expectedResult = Objects.hash("Kitchen");
 
         // Act
-        int result = room.hashCode();
+        int result = kitchen.hashCode();
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -82,12 +115,9 @@ public class RoomTest {
     @Test
     void testEqualsFalse() {
         //Arrange
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-        Dimension dim2 = new Dimension(3.5, 3.5, 3.5);
-        Room room2 = new Room("RoomTwo", 2, dim2);
+
         //Act
-        boolean result = room.equals(room2);
+        boolean result = kitchen.equals(laundry);
         //Assert
         assertFalse(result);
     }
@@ -95,13 +125,11 @@ public class RoomTest {
     @Test
     void testEqualsFalseDifTypes() {
         //Arrange
-        Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
 
         SensorType tipo = new SensorType("humidade");
 
         //Act
-        boolean result = room.equals(tipo);
+        boolean result = kitchen.equals(tipo);
         //Assert
         assertFalse(result);
     }
@@ -181,10 +209,6 @@ public class RoomTest {
     @Test
     public void getSensorsListContentTest() {
         // Arrange
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-        SensorList sensorList = new SensorList();
-
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
@@ -195,14 +219,14 @@ public class RoomTest {
         Location locS1 = new Location(123, 300, 50);
         Sensor s1 = new Sensor("A456", dataFuncionamento1, sensorType1, locS1);
 
-        room.addSensorToListOfSensorsInRoom(s0);
-        room.addSensorToListOfSensorsInRoom(s1);
+        kitchen.addSensorToListOfSensorsInRoom(s0);
+        kitchen.addSensorToListOfSensorsInRoom(s1);
 
         String expectedResult =
                 "1 - Name of the sensor: A123\n" +
                         "2 - Name of the sensor: A456\n";
         // Act
-        String result = room.getSensorListContent();
+        String result = kitchen.getSensorListContent();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -211,11 +235,9 @@ public class RoomTest {
     @Test
     public void checkIfSensorListIsEmptyTestTrue() {
         // Arrange
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
 
         // Act
-        boolean result = room.isSensorListEmpty();
+        boolean result = kitchen.isSensorListEmpty();
 
         // Assert
         assertTrue(result);
@@ -229,13 +251,10 @@ public class RoomTest {
         Location locS0 = new Location(123, 345, 50);
         Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
-        room.addSensorToListOfSensorsInRoom(s0);
+        kitchen.addSensorToListOfSensorsInRoom(s0);
 
         // Act
-        boolean result = room.isSensorListEmpty();
+        boolean result = kitchen.isSensorListEmpty();
 
         // Assert
         assertFalse(result);
@@ -243,18 +262,10 @@ public class RoomTest {
 
     @Test
     public void testGetDeviceList() {
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
 
-        FridgeType fridgeType = new FridgeType();
-        WashingMachineType washingMachineType = new WashingMachineType();
-        DishWasherType dishWasherType = new DishWasherType();
-
-
-        Device dev1 = fridgeType.createDevice("FridgeAriston", room);
-        Device dev2 = washingMachineType.createDevice("WashingMachineBosh", room);
-        Device dev3 = dishWasherType.createDevice("DishWasherSpecs", room);
+        Device dev1 = house.createDevice(FRIDGE_TYPE, "FridgeAriston", kitchen);
+        Device dev2 = house.createDevice(WASHING_MACHINE_TYPE, "WashingMachineBosh", kitchen);
+        Device dev3 = house.createDevice(DISHWASHER_TYPE, "DishWasherSpecs", kitchen);
 
 
         List<Device> expectedResult = new ArrayList<>();
@@ -262,7 +273,7 @@ public class RoomTest {
         expectedResult.add(dev2);
         expectedResult.add(dev3);
 
-        List<Device> result = room.getDeviceList();
+        List<Device> result = kitchen.getDeviceList();
 
         assertEquals(expectedResult, result);
     }
@@ -270,19 +281,10 @@ public class RoomTest {
     @Test
     public void getDeviceListContentTest() {
         // Arrange
-
-        //initiate Room
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
         //initiate Devices
 
-        FridgeType fridgeType = new FridgeType();
-        LampType lampType = new LampType();
-
-
-        Device dev = fridgeType.createDevice("Fridge1", room);
-        Device dev1 = lampType.createDevice("Lamp1", room);
+        Device dev = house.createDevice(FRIDGE_TYPE, "Fridge1", laundry);
+        Device dev1 = house.createDevice(LAMP_TYPE, "Lamp1", laundry);
 
 
         String expectedResult =
@@ -291,7 +293,7 @@ public class RoomTest {
 
 
         // Act
-        String result = room.getDeviceListToString();
+        String result = laundry.getDeviceListToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -301,27 +303,20 @@ public class RoomTest {
     @Test
     public void testGetNominalPower() {
         // Arrange
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
-        FridgeType fridgeType = new FridgeType();
-        WashingMachineType washingMachineType = new WashingMachineType();
-        DishWasherType dishWasher = new DishWasherType();
-
-        Device dev1 = fridgeType.createDevice("FridgeAriston", room);
+        Device dev1 = house.createDevice(FRIDGE_TYPE, "FridgeAriston", kitchen);
         dev1.setAttributesDevType("Nominal Power", 500);
 
-        Device dev2 = washingMachineType.createDevice("WashingMachineBosh", room);
+        Device dev2 = house.createDevice(WASHING_MACHINE_TYPE, "WashingMachineBosh", kitchen);
         dev2.setAttributesDevType("Nominal Power", 250);
 
-        Device dev3 = dishWasher.createDevice("DishWasherSpecs", room);
+        Device dev3 = house.createDevice(DISHWASHER_TYPE, "DishWasherSpecs", kitchen);
         dev3.setAttributesDevType("Nominal Power", 250);
 
 
         double expectedResult = 1000;
 
         // Act
-        double result = room.getNominalPower();
+        double result = kitchen.getNominalPower();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -330,11 +325,8 @@ public class RoomTest {
     @Test
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
         // Act
-        boolean result = room.isDeviceListEmpty();
+        boolean result = kitchen.isDeviceListEmpty();
 
         // Assert
         assertTrue(result);
@@ -343,15 +335,11 @@ public class RoomTest {
     @Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
-        LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room);
+        Device dev1 = house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
 
 
         // Act
-        boolean result = room.isDeviceListEmpty();
+        boolean result = kitchen.isDeviceListEmpty();
 
         // Assert
         assertFalse(result);
@@ -365,9 +353,8 @@ public class RoomTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-        LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room);
-        Device dev2 = lampType.createDevice("Lamp2", room);
+        house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
+        house.createDevice(LAMP_TYPE, "Lamp2", kitchen);
 
 
         int expectResult = 2;
@@ -380,19 +367,11 @@ public class RoomTest {
     @Test
     public void testAddDeviceDevicePointer() {
         //Arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room1 = new Room(name, 2, dim);
 
-        String name2 = "Bedroom";
-        Dimension dim2 = new Dimension(3, 3.5, 3.5);
-        Room room2 = new Room(name2, 2, dim2);
-
-        LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room2);
+        Device dev1 = house.createDevice(LAMP_TYPE, "Lamp1", laundry);
 
 
-        Room expectedResult = room2;
+        Room expectedResult = laundry;
 
         //act
         Room result = dev1.getLocation();
@@ -404,22 +383,14 @@ public class RoomTest {
     @Test
     public void testAddDeviceDeviceListPointer() {
         //Arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room1 = new Room(name, 2, dim);
 
-        String name2 = "Bedroom";
-        Dimension dim2 = new Dimension(3, 3.5, 3.5);
-        Room room2 = new Room(name2, 2, dim2);
-
-        LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room2);
+        Device dev1 = house.createDevice(LAMP_TYPE, "Lamp1", laundry);
 
 
         Device expectedResult = dev1;
 
         //act
-        Device result = room2.getDeviceList().get(0);
+        Device result = laundry.getDeviceList().get(0);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -447,14 +418,8 @@ public class RoomTest {
     @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithOneFullPeriod() {
         // Arrange
-
-        //initiate Room
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Kitchen", 1, dim);
-
         // Device Instantiation
-        FridgeType fridgeType = new FridgeType();
-        Device device = fridgeType.createDevice("Fridgerator", room);
+        Device device = house.createDevice(FRIDGE_TYPE, "Fridgerator", kitchen);
 
         // Reading Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -475,7 +440,7 @@ public class RoomTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
-        double result = room.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = kitchen.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -484,18 +449,8 @@ public class RoomTest {
     @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithTwoFullPeriods() {
         // Arrange
-        // Dimension Instantiation
-        double height = 3;
-        double length = 5;
-        double width = 6;
-        Dimension dim = new Dimension(height, length, width);
-
-        // Room Instantiation
-        Room room = new Room("Kitchen", 1, dim);
-
         // Device Instantiation
-        FridgeType fridgeType = new FridgeType();
-        Device device = fridgeType.createDevice("Fridgerator", room);
+        Device device = house.createDevice(FRIDGE_TYPE, "Fridgerator", kitchen);
 
         // Reading Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -516,7 +471,7 @@ public class RoomTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
-        double result = room.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = kitchen.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -525,19 +480,9 @@ public class RoomTest {
     @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithoutFullPeriods() {
         // Arrange
-        // Dimension Instantiation
-        double height = 3;
-        double length = 5;
-        double width = 6;
-        Dimension dim = new Dimension(height, length, width);
-
-        // Room Instantiation
-        Room room = new Room("Kitchen", 1, dim);
-
 
         // Device Instantiation
-        FridgeType fridgeType = new FridgeType();
-        Device device = fridgeType.createDevice("Fridgerator", room);
+        Device device = house.createDevice(FRIDGE_TYPE, "Fridgerator", kitchen);
 
         // Reading Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -558,7 +503,7 @@ public class RoomTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
-        double result = room.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = kitchen.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -567,18 +512,13 @@ public class RoomTest {
     @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithOneFullPeriodDeviceListEmpty() {
         // Arrange
-
-        //initiate Room
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Kitchen", 1, dim);
-
         double expectedResult = 0.0;
 
         LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
-        double result = room.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = kitchen.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -587,15 +527,10 @@ public class RoomTest {
     @Test
     public void deleteDeviceTrue() {
         // Arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        LampType lampType = new LampType();
-        lampType.createDevice("Lamp1", room);
+        house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
 
         // act
-        boolean result = room.deleteDevice("Lamp1");
+        boolean result = kitchen.deleteDevice("Lamp1");
 
         // assert
         assertTrue(result);
@@ -604,12 +539,8 @@ public class RoomTest {
     @Test
     public void deleteDeviceFalse() {
         // Arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
         // act
-        boolean result = room.deleteDevice("Lamp1");
+        boolean result = kitchen.deleteDevice("Lamp1");
 
         // assert
         assertFalse(result);
@@ -618,16 +549,12 @@ public class RoomTest {
     @Test
     public void getDeviceNameByPositionIsEmpty() {
         // Arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        int position = 0;
+         int position = 0;
 
         String expectedResult = "There are no devices in the device list.";
 
         // act
-        String result = room.getDeviceNameByPosition(position);
+        String result = kitchen.getDeviceNameByPosition(position);
 
         // assert
         assertEquals(expectedResult, result);
@@ -636,20 +563,14 @@ public class RoomTest {
     @Test
     public void getDeviceNameByPosition() {
         // Arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-
-        LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room);
+        house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
 
         int position = 0;
 
         String expectedResult = "Lamp1";
 
         // act
-        String result = room.getDeviceNameByPosition(position);
+        String result = kitchen.getDeviceNameByPosition(position);
 
         // assert
         assertEquals(expectedResult, result);
@@ -659,15 +580,10 @@ public class RoomTest {
     public void deactivationDeviceTrue() {
 
         // Arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room);
+        house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
 
         // act
-        boolean result = room.deactivateDevice("Lamp1");
+        boolean result = kitchen.deactivateDevice("Lamp1");
 
         // assert
         assertTrue(result);
@@ -677,16 +593,11 @@ public class RoomTest {
     public void deactivationDeviceTwoDevicesTrue() {
 
         // Arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room);
-        Device dev2 = lampType.createDevice("Lamp2", room);
+        Device dev1 = house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
+        Device dev2 = house.createDevice(LAMP_TYPE, "Lamp2", kitchen);
 
         // act
-        boolean result = room.deactivateDevice("Lamp2");
+        boolean result = kitchen.deactivateDevice("Lamp2");
 
         // assert
         assertTrue(result);
@@ -696,17 +607,12 @@ public class RoomTest {
     public void deactivationDeviceAlreadyDeactivatedFalse() {
 
         // Arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room);
-        Device dev2 = lampType.createDevice("Lamp2", room);
+        Device dev1 = house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
+        Device dev2 = house.createDevice(LAMP_TYPE, "Lamp2", kitchen);
         dev2.setDeactivateDevice();
 
         // act
-        boolean result = room.deactivateDevice("Lamp2");
+        boolean result = kitchen.deactivateDevice("Lamp2");
 
         // assert
         assertFalse(result);
@@ -714,14 +620,9 @@ public class RoomTest {
 
     @Test
     public void deactivationDeviceFalse() {
-
         // Arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
         // act
-        boolean result = room.deactivateDevice("Lamp1");
+        boolean result = kitchen.deactivateDevice("Lamp1");
 
         // assert
         assertFalse(result);
@@ -731,20 +632,15 @@ public class RoomTest {
     public void getActiveDeviceListToString_Active() {
 
         // Arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room);
-        Device dev2 = lampType.createDevice("Lamp2", room);
+        house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
+        house.createDevice(LAMP_TYPE, "Lamp2", kitchen);
 
 
         String expectedResult =
                 "1 - Device name: Lamp1 - ACTIVATED\n" +
                         "2 - Device name: Lamp2 - ACTIVATED\n";
         // Act
-        String result = room.getActiveDeactiveDeviceListToString();
+        String result = kitchen.getActiveDeactiveDeviceListToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -754,13 +650,9 @@ public class RoomTest {
     public void getActiveDeviceListToString_OneDeviceDeactivated() {
 
         // Arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
 
-        LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room);
-        Device dev2 = lampType.createDevice("Lamp2", room);
+        Device dev1 = house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
+        Device dev2 = house.createDevice(LAMP_TYPE, "Lamp2", kitchen);
 
         dev1.setDeactivateDevice();
 
@@ -768,7 +660,7 @@ public class RoomTest {
                 "1 - Device name: Lamp1 - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n" +
                         "2 - Device name: Lamp2 - ACTIVATED\n";
         // Act
-        String result = room.getActiveDeactiveDeviceListToString();
+        String result = kitchen.getActiveDeactiveDeviceListToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -778,13 +670,8 @@ public class RoomTest {
     public void getActiveDeviceListToString_Deactivated() {
 
         // Arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room);
-        Device dev2 = lampType.createDevice("Lamp2", room);
+        Device dev1 = house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
+        Device dev2 = house.createDevice(LAMP_TYPE, "Lamp2", kitchen);
 
 
         dev1.setDeactivateDevice();
@@ -794,7 +681,7 @@ public class RoomTest {
                 "1 - Device name: Lamp1 - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n" +
                         "2 - Device name: Lamp2 - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n";
         // Act
-        String result = room.getActiveDeactiveDeviceListToString();
+        String result = kitchen.getActiveDeactiveDeviceListToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -806,12 +693,8 @@ public class RoomTest {
         Dimension dimension = new Dimension(25, 25, 25);
         Room room = new Room("Room", 2, dimension);
 
-        LampType lampType = new LampType();
-        Device lamp = lampType.createDevice("LampSpecs", room);
-
-
-        FridgeType fridgeType = new FridgeType();
-        Device fridge = fridgeType.createDevice("FridgeSpecs", room);
+        Device lamp = house.createDevice(LAMP_TYPE, "LampSpecs", room);
+        Device fridge = house.createDevice(FRIDGE_TYPE, "FridgeSpecs", room);
 
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         Reading reading0 = new Reading(3, time0);
@@ -857,8 +740,7 @@ public class RoomTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-        LampType lampType = new LampType();
-        Device lamp = lampType.createDevice("Lamp1", room);
+        Device lamp = house.createDevice(LAMP_TYPE, "Lamp1", room);
 
         // act
         boolean result = room.removeDevice(lamp);
@@ -870,16 +752,11 @@ public class RoomTest {
     @Test
     public void removeDevice_False() {
         // Arrange
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
-        LampType lampType = new LampType();
-        Device lamp = lampType.createDevice("Lamp1", room);
-        room.removeDevice(lamp);
+        Device lamp = house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
+        kitchen.removeDevice(lamp);
 
         // act
-        boolean result = room.removeDevice(lamp);
+        boolean result = kitchen.removeDevice(lamp);
 
         // assert
         assertFalse(result);
@@ -887,15 +764,11 @@ public class RoomTest {
 
     @Test
     public void testAddDeviceSameDevice_Exception() {
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
 
-        LampType lampType = new LampType();
-        Device lamp = lampType.createDevice("Lamp", room);
+        Device lamp = house.createDevice(LAMP_TYPE, "Lamp", kitchen);
 
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                room.addDevice(lamp)
+                kitchen.addDevice(lamp)
 
         );
         assertEquals("Device with same name is already in the roomList", exception.getMessage());
@@ -903,12 +776,8 @@ public class RoomTest {
 
     @Test
     public void testAddDeviceNull_Exception() {
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                room.addDevice(null)
+                kitchen.addDevice(null)
 
         );
         assertEquals("Device is null.", exception.getMessage());
@@ -916,16 +785,10 @@ public class RoomTest {
 
     @Test
     public void testAddDeviceTrue() {
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
-        Room room2 = new Room("room2", 3, dim);
-
-        LampType lampType = new LampType();
-        Device lamp = lampType.createDevice("Lamp", room2);
+        Device lamp = house.createDevice(LAMP_TYPE, "Lamp", laundry);
 
         // act
-        boolean result = room.addDevice(lamp);
+        boolean result = kitchen.addDevice(lamp);
 
         // assert
         assertTrue(result);
@@ -933,19 +796,13 @@ public class RoomTest {
 
     @Test
     public void testAddDeviceSameName_Exception() {
-        String name = "Kitchen";
-        Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        Room room2 = new Room("room2", 3, dim);
-        Room room3 = new Room("room3", 1, dim);
+        house.createDevice(LAMP_TYPE, "LampA", kitchen);
 
-        LampType lampType = new LampType();
-        lampType.createDevice("LampA", room2);
-
-        Device lampB = lampType.createDevice("LampA", room3);
+        Device lampB = house.createDevice(LAMP_TYPE, "LampA", laundry);
 
         // act
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                room2.addDevice(lampB)
+                kitchen.addDevice(lampB)
 
         );
         assertEquals("Device with same name is already in the roomList", exception.getMessage());
