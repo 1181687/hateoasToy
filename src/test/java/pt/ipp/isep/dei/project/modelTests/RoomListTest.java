@@ -21,6 +21,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class RoomListTest {
 
     private House house;
+    private static final String FRIDGE_TYPE = "Fridge";
+    private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
+    private static final String DISHWASHER_TYPE = "DishWasher";
+    private static final String LAMP_TYPE = "Lamp";
+    private static final String WASHING_MACHINE_TYPE = "Washing Machine";
 
 
     @BeforeEach
@@ -694,28 +699,23 @@ public class RoomListTest {
         Room room1 = new Room(name, 2, dim);
 
         String nameFridge = "FridgeAriston";
-        FridgeType fridgeType = new FridgeType();
-        Device fridge1 = fridgeType.createDevice(nameFridge, room1);
+        Device fridge1 = house.createDevice(FRIDGE_TYPE, nameFridge, room1);
 
         String nameWashingMachine = "WashingMachineBosch";
-        WashingMachineType washingMachineType = new WashingMachineType();
-        Device washingMachine1 = washingMachineType.createDevice(nameWashingMachine, room1);
+        Device washingMachine1 = house.createDevice(WASHING_MACHINE_TYPE, nameWashingMachine, room1);
 
         String nameDishWasher = "DishWasherAriston";
-        DishWasherType dishWasherType = new DishWasherType();
-        Device dishwasher1 = dishWasherType.createDevice(nameDishWasher, room1);
+        Device dishwasher1 = house.createDevice(DISHWASHER_TYPE, nameDishWasher, room1);
 
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
 
         String nameFridge1 = "FridgeSiemens";
-        FridgeType fridgeType1 = new FridgeType();
-        Device fridge2 = fridgeType1.createDevice(nameFridge1, room2);
+        Device fridge2 = house.createDevice(FRIDGE_TYPE, nameFridge1, room2);
 
         String nameDishWasher1 = "DishWasherTeka";
-        DishWasherType dishWasherType1 = new DishWasherType();
-        Device dishwasher2 = dishWasherType1.createDevice(nameDishWasher1, room2);
+        Device dishwasher2 = house.createDevice(DISHWASHER_TYPE, nameDishWasher1, room2);
 
         List<Device> expectedResult = new ArrayList<>();
         expectedResult.add(fridge1);
@@ -740,12 +740,10 @@ public class RoomListTest {
         Room room = new Room("Room", 2, dim);
 
         String nameFridge1 = "Fridge1";
-        FridgeType fridgeType1 = new FridgeType();
-        Device fridge = fridgeType1.createDevice(nameFridge1, room);
+        house.createDevice(FRIDGE_TYPE, nameFridge1, room);
 
         String nameLamp1 = "Lamp1";
-        LampType lampType = new LampType();
-        Device lamp = lampType.createDevice(nameLamp1, room);
+        house.createDevice(LAMP_TYPE, nameLamp1, room);
 
         house.addRoom(room);
 
@@ -789,8 +787,7 @@ public class RoomListTest {
         RoomList roomList = new RoomList();
 
         String nameFridge1 = "Fridge1";
-        FridgeType fridgeType1 = new FridgeType();
-        Device fridge = fridgeType1.createDevice(nameFridge1, room);
+        house.createDevice(FRIDGE_TYPE, nameFridge1, room);
 
         roomList.addRoom(room);
 
@@ -813,28 +810,23 @@ public class RoomListTest {
         RoomList roomList = new RoomList();
 
         String nameFridge = "FridgeAriston";
-        FridgeType fridgeType = new FridgeType();
-        Device fridge1 = fridgeType.createDevice(nameFridge, room1);
+        house.createDevice(FRIDGE_TYPE, nameFridge, room1);
 
         String nameWashingMachine = "WashingMachineBosch";
-        WashingMachineType washingMachineType = new WashingMachineType();
-        Device washingMachine1 = washingMachineType.createDevice(nameWashingMachine, room1);
+        house.createDevice(WASHING_MACHINE_TYPE, nameWashingMachine, room1);
 
         String nameDishWasher = "DishWasherAriston";
-        DishWasherType dishWasherType = new DishWasherType();
-        Device dishwasher1 = dishWasherType.createDevice(nameDishWasher, room1);
+        house.createDevice(DISHWASHER_TYPE, nameDishWasher, room1);
 
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
 
         String nameFridge1 = "FridgeSiemens";
-        FridgeType fridgeType1 = new FridgeType();
-        Device fridge2 = fridgeType1.createDevice(nameFridge1, room2);
+        house.createDevice(FRIDGE_TYPE, nameFridge1, room2);
 
         String nameDishWasher1 = "DishWasherTeka";
-        DishWasherType dishWasherType1 = new DishWasherType();
-        Device dishwasher2 = dishWasherType1.createDevice(nameDishWasher1, room2);
+        house.createDevice(DISHWASHER_TYPE, nameDishWasher1, room2);
 
         roomList.addRoom(room1);
         roomList.addRoom(room2);
@@ -915,24 +907,19 @@ public class RoomListTest {
         Room room1 = new Room("Laundry", 2, dim);
 
         String nameFridge = "Fridgeratah V14";
-        FridgeType fridgeType = new FridgeType();
-        Device fridge1 = fridgeType.createDevice(nameFridge, room0);
+        house.createDevice(FRIDGE_TYPE, nameFridge, room0);
 
         String nameFridge1 = "Fridgeratah V15";
-        FridgeType fridgeType1 = new FridgeType();
-        Device fridge2 = fridgeType1.createDevice(nameFridge1, room0);
+        house.createDevice(FRIDGE_TYPE, nameFridge1, room0);
 
         String nameFridge2 = "Fridgeratah V16";
-        FridgeType fridgeType2 = new FridgeType();
-        Device fridge3 = fridgeType2.createDevice(nameFridge2, room0);
+        house.createDevice(FRIDGE_TYPE, nameFridge2, room0);
 
         String nameElectricWaterHeater = "Bosch Tronic 3000";
-        ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
-        Device electricWaterHeater = electricWaterHeaterType.createDevice(nameElectricWaterHeater, room1);
+        house.createDevice(ELECTRIC_W_H_TYPE, nameElectricWaterHeater, room1);
 
         String nameElectricWaterHeater2 = "Bosch Tronic 4000";
-        ElectricWaterHeaterType electricWaterHeaterType2 = new ElectricWaterHeaterType();
-        Device electricWaterHeater2 = electricWaterHeaterType2.createDevice(nameElectricWaterHeater2, room1);
+        house.createDevice(ELECTRIC_W_H_TYPE, nameElectricWaterHeater2, room1);
 
         RoomList roomList = new RoomList();
         roomList.addRoom(room0);
