@@ -81,6 +81,9 @@ public class Lamp implements Device {
         return this.specs.getEnergyConsumptionInADay();
     }
 
+    public DeviceSpecs getSpecs() {
+        return specs;
+    }
 
     /**
      * method that set the given name only if the name don't exists in DeviceList
