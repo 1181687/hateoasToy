@@ -1,27 +1,8 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionDataSeriesController;
-import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.DishWasher.DishWasherType;
-import pt.ipp.isep.dei.project.model.Devices.ElectricWaterHeater.ElectricWaterHeaterType;
-import pt.ipp.isep.dei.project.model.Devices.Fridge.FridgeType;
-import pt.ipp.isep.dei.project.model.Devices.Lamp.LampType;
-import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineType;
-import pt.ipp.isep.dei.project.utils.Utils;
-
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
-import static org.junit.jupiter.api.Assertions.*;
-
 public class GetEnergyConsumptionDataSeriesControllerTest {
-    private GetEnergyConsumptionDataSeriesController ctrl;
+    /*private GetEnergyConsumptionDataSeriesController ctrl;
     private House house;
     private HouseGrid houseGrid;
 
@@ -679,6 +660,6 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
 
         // Assert
         assertTrue(result);
-    }
+    }*/
 
 }
