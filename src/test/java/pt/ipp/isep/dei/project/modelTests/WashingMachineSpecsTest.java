@@ -2,14 +2,12 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.Devices.Programmable;
 import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineSpecs;
 import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineType;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.Program;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.Room;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 class WashingMachineSpecsTest {
+    private House house;
     private Room room;
     private Device washingMachine;
     private final String CAPACITY = "Capacity";
@@ -27,6 +26,8 @@ class WashingMachineSpecsTest {
     private Reading reading0;
     private Reading reading1;
     private Reading reading2;
+    private static final String WASHING_MACHINE_TYPE = "Washing Machine";
+
 
     @BeforeEach
     public void StartUp() {
@@ -34,8 +35,7 @@ class WashingMachineSpecsTest {
         Dimension dimension = new Dimension(2, 2, 2);
         this.room = new Room("Kitchen", 0, dimension);
 
-        WashingMachineType type = new WashingMachineType();
-        this.washingMachine = type.createDevice("Wm1", room);
+        this.washingMachine = house.createDevice(WASHING_MACHINE_TYPE,"Wm1", room);
 
         // Reading
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -470,9 +470,9 @@ class WashingMachineSpecsTest {
         //Arrange
         Program program = null;
         boolean expectedResult = false;
-        Programmable programmable = this.washingMachine.asProgrammable();
+        DeviceSpecs deviceSpecs = this.washingMachine.getSpecs();
         //Act
-        boolean result = programmable.addProgram(program);
+        boolean result = ((WashingMachineSpecs)deviceSpecs).addProgram(program);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -483,14 +483,15 @@ class WashingMachineSpecsTest {
         String programName = "fast";
         double duration = 15;
         double energyConsumption = 1;
+        DeviceSpecs deviceSpecs = this.washingMachine.getSpecs();
         Programmable programmable = this.washingMachine.asProgrammable();
-        Program programA = programmable.newProgram(programName, duration, energyConsumption);
-        Program programB = programmable.newProgram(programName, duration, energyConsumption);
-        programmable.addProgram(programA);
+        Program programA = programmable.newProgram(programName, duration, energyConsumption,15);
+        Program programB = programmable.newProgram(programName, duration, energyConsumption,15);
+        ((WashingMachineSpecs)deviceSpecs).addProgram(programA);
         boolean expectedResult = false;
 
         //Act
-        boolean result = programmable.addProgram(programB);
+        boolean result = ((WashingMachineSpecs)deviceSpecs).addProgram(programB);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -503,13 +504,15 @@ class WashingMachineSpecsTest {
         String programName = "fast";
         double duration = 15;
         double energyConsumption = 1;
+        DeviceSpecs deviceSpecs = this.washingMachine.getSpecs();
+
         Programmable programmable = this.washingMachine.asProgrammable();
-        Program programA = programmable.newProgram(programName, duration, energyConsumption);
+        Program programA = programmable.newProgram(programName, duration, energyConsumption,15);
 
         boolean expectedResult = true;
 
         //Act
-        boolean result = programmable.addProgram(programA);
+        boolean result = ((WashingMachineSpecs)deviceSpecs).addProgram(programA);
 
         //Assert
         assertEquals(expectedResult, result);

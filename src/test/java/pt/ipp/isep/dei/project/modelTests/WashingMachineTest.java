@@ -398,9 +398,9 @@ class WashingMachineTest {
         double duration = 0.5;
         double energyConsumption = 12.0;
         Programmable programmable = this.washingMachine.asProgrammable();
-        Program expectedResult = new Program(programName, duration, energyConsumption);
+        Program expectedResult = new Program(programName, duration, energyConsumption,15);
         //Act
-        Program result = programmable.newProgram(programName, duration, energyConsumption);
+        Program result = programmable.newProgram(programName, duration, energyConsumption,15);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -424,8 +424,8 @@ class WashingMachineTest {
         double duration = 15;
         double energyConsumption = 1;
         Programmable programmable = this.washingMachine.asProgrammable();
-        Program programA = programmable.newProgram(programName, duration, energyConsumption);
-        Program programB = programmable.newProgram(programName, duration, energyConsumption);
+        Program programA = programmable.newProgram(programName, duration, energyConsumption,15);
+        Program programB = programmable.newProgram(programName, duration, energyConsumption,15);
         programmable.addProgram(programA);
         boolean expectedResult = false;
 
@@ -443,7 +443,7 @@ class WashingMachineTest {
         double duration = 15;
         double energyConsumption = 1;
         Programmable programmable = this.washingMachine.asProgrammable();
-        Program programA = programmable.newProgram(programName, duration, energyConsumption);
+        Program programA = programmable.newProgram(programName, duration, energyConsumption,15);
 
         boolean expectedResult = true;
 
