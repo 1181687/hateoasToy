@@ -6,11 +6,13 @@ public class Program {
     private String name;
     private double duration;
     private double energyConsumption;
+    private double nominalPower;
 
-    public Program(String name, double duration, double energyConsumption) {
+    public Program(String name, double duration, double energyConsumption, double nominalPower) {
         this.name = name;
         this.duration = duration;
         this.energyConsumption = energyConsumption;
+        this.nominalPower = nominalPower;
     }
 
     /**
