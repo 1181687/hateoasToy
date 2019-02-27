@@ -274,7 +274,7 @@ class AttachRoomToHouseGridControllerTest {
         HouseGrid grid1 = new HouseGrid(gridName1);
         String gridName2 = "Grid2";
         HouseGrid grid2 = new HouseGrid(gridName2);
-        grid2.attachRoom(room);
+        grid2.addRoom(room);
 
         // Instantiate List of House Grids
         house.addGrid(grid0);

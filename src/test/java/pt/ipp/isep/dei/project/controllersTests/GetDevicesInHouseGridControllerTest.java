@@ -106,8 +106,8 @@ public class GetDevicesInHouseGridControllerTest {
         //add to Lists
         HouseGrid houseGrid = new HouseGrid("grid1");
         HouseGrid houseGridEmpty = new HouseGrid("grid2");
-        houseGrid.attachRoom(room1);
-        houseGrid.attachRoom(room2);
+        houseGrid.addRoom(room1);
+        houseGrid.addRoom(room2);
         List<HouseGrid> houseGridList1 = new ArrayList<>();
         houseGridList1.add(houseGrid);
         houseGridList1.add(houseGridEmpty);

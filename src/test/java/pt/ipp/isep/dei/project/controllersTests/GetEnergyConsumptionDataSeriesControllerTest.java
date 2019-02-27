@@ -469,7 +469,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         houseGrid = new HouseGrid(gridName);
         house.addGrid(houseGrid);
 
-        houseGrid.attachRoom(room);
+        houseGrid.addRoom(room);
 
         house.addRoom(room);
 
@@ -531,7 +531,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
 
         house.addRoom(room);
 
-        houseGrid.attachRoom(room);
+        houseGrid.addRoom(room);
 
         LampType lampType = new LampType();
         Device lamp = lampType.createDevice("LampSpecs", room);
