@@ -66,6 +66,7 @@ public class Lamp implements Device {
      * method that gets the Device Specifications
      * @return DeviceSpecs
      */
+    @Override
     public DeviceSpecs getSpecs() {
         return this.specs;
     }
@@ -87,10 +88,6 @@ public class Lamp implements Device {
      */
     public double getEnergyConsumptionInADay() {
         return this.specs.getEnergyConsumptionInADay();
-    }
-
-    public DeviceSpecs getSpecs() {
-        return specs;
     }
 
     /**

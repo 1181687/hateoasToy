@@ -47,7 +47,7 @@ public class LampSpecsTest {
         double expectedResult = 1000.0;
 
         // Act
-        double result = lamp.getSpecs.getEnergyConsumptionInADay();
+        double result = lamp.getSpecs().getEnergyConsumptionInADay();
 
         // Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -60,7 +60,7 @@ public class LampSpecsTest {
         double expectedResult = 100.0;
 
         //Act
-        double result = lamp.getSpecs.getNominalPower();
+        double result = lamp.getSpecs().getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -74,7 +74,7 @@ public class LampSpecsTest {
         double expectedResult = 100.0;
 
         //Act
-        double result = lamp.getSpecs.getNominalPower();
+        double result = lamp.getSpecs().getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -90,7 +90,7 @@ public class LampSpecsTest {
                         "2 - Nominal Power: 100.0\n";
 
         // Act
-        String result = lamp.getSpecs.getDevSpecsAttributesToString();
+        String result = lamp.getSpecs().getAttributesToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -103,7 +103,7 @@ public class LampSpecsTest {
         int expectedResult = 2;
 
         // Act
-        int result = lamp.getSpecs.getNumberOfAttributes();
+        int result = lamp.getSpecs().getNumberOfAttributes();
 
         // assert
         assertEquals(expectedResult, result);
@@ -117,7 +117,7 @@ public class LampSpecsTest {
         expectedResult.add("Nominal Power");
 
         // Act
-        List<String> result = lamp.getSpecs.getSpecsList();
+        List<String> result = lamp.getSpecs().getSpecsList();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -131,7 +131,7 @@ public class LampSpecsTest {
 
         Object expectedResult = 30.0;
         // Act
-        Object result = lamp.getSpecs.getAttributeValue("Nominal Power");
+        Object result = lamp.getSpecs().getAttributeValue("Nominal Power");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -143,7 +143,7 @@ public class LampSpecsTest {
 
         Object expectedResult = 50.0;
         // Act
-        Object result = lamp.getSpecs.getAttributeValue("Luminous Flux");
+        Object result = lamp.getSpecs().getAttributeValue("Luminous Flux");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -155,7 +155,7 @@ public class LampSpecsTest {
 
         Object expectedResult = -1;
         // Act
-        Object result = lamp.getSpecs.getAttributeValue("Not Valid");
+        Object result = lamp.getSpecs().getAttributeValue("Not Valid");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -167,7 +167,7 @@ public class LampSpecsTest {
 
         Object expectedResult = 50.0;
         // Act
-        Object result = lamp.getSpecs.getAttributeValue("Time");
+        Object result = lamp.getSpecs().getAttributeValue("Time");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -179,7 +179,7 @@ public class LampSpecsTest {
 
         Object expectedResult = 50.0;
         // Act
-        Object result = lamp.getSpecs.getAttributeValue("Luminous Flux");
+        Object result = lamp.getSpecs().getAttributeValue("Luminous Flux");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -189,7 +189,7 @@ public class LampSpecsTest {
         // Arrange
         String attribute = "stuff";
         // Act
-        boolean result = lamp.getSpecs.setAttributesDevType("Luminous Flux", attribute);
+        boolean result = lamp.getSpecs().setAttributeValue("Luminous Flux", attribute);
         // Assert
         assertFalse(result);
     }
@@ -197,7 +197,7 @@ public class LampSpecsTest {
     @Test
     public void testSetAttributeLuminousFluxSameValue() {
         // Act
-        boolean result = lamp.getSpecs.setAttributesDevType("Luminous Flux", 50);
+        boolean result = lamp.getSpecs().setAttributeValue("Luminous Flux", 50);
         // Assert
         assertFalse(result);
     }
@@ -207,7 +207,7 @@ public class LampSpecsTest {
         // Arrange
         String attribute = "stuff";
         // Act
-        boolean result = lamp.getSpecs.setAttributesDevType("Time", attribute);
+        boolean result = lamp.getSpecs().setAttributeValue("Time", attribute);
         // Assert
         assertFalse(result);
     }
@@ -224,7 +224,7 @@ public class LampSpecsTest {
         boolean expectedResult = true;
 
         //Act
-        boolean result = lamp.getSpecs.setAttributesDevType(attribute, value2);
+        boolean result = lamp.getSpecs().setAttributeValue(attribute, value2);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -236,7 +236,7 @@ public class LampSpecsTest {
         // Arrange
         lamp.setAttributesDevType("Time", 20);
         // Act
-        boolean result = lamp.getSpecs.setAttributesDevType("Time", 20);
+        boolean result = lamp.getSpecs().setAttributeValue("Time", 20);
         // Assert
         assertFalse(result);
     }
@@ -246,7 +246,7 @@ public class LampSpecsTest {
         // Arrange
         String attribute = "stuff";
         // Act
-        boolean result = lamp.getSpecs.setAttributesDevType("Nominal Power", attribute);
+        boolean result = lamp.getSpecs().setAttributeValue("Nominal Power", attribute);
         // Assert
         assertFalse(result);
     }
@@ -256,7 +256,7 @@ public class LampSpecsTest {
         // Arrange
         lamp.setAttributesDevType("Nominal Power", 1.5);
         // Act
-        boolean result = lamp.getSpecs.setAttributesDevType("Nominal Power", 1.5);
+        boolean result = lamp.getSpecs().setAttributeValue("Nominal Power", 1.5);
         // Assert
         assertFalse(result);
     }
@@ -272,7 +272,7 @@ public class LampSpecsTest {
         boolean expectedResult = true;
 
         //Act
-        boolean result = lamp.getSpecs.setAttributesDevType(attribute, value2);
+        boolean result = lamp.getSpecs().setAttributeValue(attribute, value2);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -284,7 +284,7 @@ public class LampSpecsTest {
         // Arrange
         String attribute = "stuff";
         // Act
-        boolean result = lamp.getSpecs.setAttributesDevType(attribute, 1.5);
+        boolean result = lamp.getSpecs().setAttributeValue(attribute, 1.5);
         // Assert
         assertFalse(result);
     }
@@ -294,7 +294,7 @@ public class LampSpecsTest {
         // arrange
         String attributeDataType = "Integer";
         // act
-        String result = lamp.getSpecs.getAttributeDataType("Integer");
+        String result = lamp.getSpecs().getAttributeDataType("Integer");
         // assert
         assertEquals(attributeDataType, result);
     }
