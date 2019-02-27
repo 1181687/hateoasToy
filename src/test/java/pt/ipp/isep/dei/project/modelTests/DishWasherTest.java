@@ -26,6 +26,7 @@ class DishWasherTest {
     private Reading reading1;
     private Reading reading2;
 
+
     @BeforeEach
     public void StartUp() {
         // House
@@ -42,6 +43,9 @@ class DishWasherTest {
         Dimension dim = new Dimension(3, 5, 6);
         this.kitchen = new Room("Kitchen", 1, dim);
         this.laundry = new Room("Laundry", 1, dim);
+
+        house.addRoom(kitchen);
+        house.addRoom(laundry);
 
 
         // Devices
