@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.Room;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public interface Device extends Measurable {
@@ -39,11 +40,11 @@ public interface Device extends Measurable {
     DeviceSpecs getSpecs ();
 
     /**
-     * method that gets the Type
-     *
-     * @return String
+     * Method that gets the boolean attribute from each device.
+     * @return boolean
      */
-    String getType();
+    boolean isActive();
+
 
     /**
      * Method that gets the energy consumption in a day.
@@ -51,7 +52,9 @@ public interface Device extends Measurable {
      * @return
      * consumption of the device in a given day.
      */
-    double getEnergyConsumptionInADay();
+    default double getEnergyConsumptionInADay(){
+            return getSpecs().getEnergyConsumptionInADay();
+    }
 
 
     /**
@@ -61,7 +64,14 @@ public interface Device extends Measurable {
      * @param name String given name
      * @return true if sets false if don't
      */
-    boolean setName(String name);
+    default boolean setName(String name) {
+        String oldName = getName();
+        if (this.getLocation().isDeviceNameExistant(name) || oldName == name) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
+        getName().equals(name);
+        return true;
+    }
 
     /**
      * method that set the location (room) of a added device.
@@ -69,21 +79,39 @@ public interface Device extends Measurable {
      * @param location
      * @return false if the location is equals to another device. True if not.
      */
-    boolean setLocation(Room location);
+    default boolean setLocation(Room location){
+        if (this.getLocation().equals(location)) {
+            return false;
+        }
+        this.getLocation().getDeviceList().remove(this);
+        this.getLocation().equals(location);
+        this.getLocation().addDevice(this);
+        return true;
+    }
 
     /**
      * Method that returns the attributes of the device specs.
      *
      * @return String with the attributes.
      */
-    String getDevSpecsAttributesToString();
+    default String getDevSpecsAttributesToString(){
+        return getSpecs().getAttributesToString();
+    }
 
     /**
      * method that get all attributes of a device by strings.
      *
      * @return the device attributes.
      */
-    String getAttributesToString();
+    default String getAttributesToString(){
+
+        StringBuilder attributes = new StringBuilder();
+        attributes.append("1 - Name: " + getName() + "\n");
+        attributes.append("2 - Device Specifications \n");
+        attributes.append("3 - Location: " + getLocation().getName() + "\n");
+        return attributes.toString();
+    }
+
 
     /**
      * method that set the attributes of a device type.
@@ -92,7 +120,9 @@ public interface Device extends Measurable {
      * @param value
      * @return the position of an attribute and the value of it.
      */
-    boolean setAttributesDevType(String attribute, Object value);
+    default boolean setAttributesDevType(String attribute, Object value){
+        return this.getSpecs().setAttributeValue(attribute, value);
+    }
 
     /**
      * method that creates the hashcode to two devices that are have the same name.
@@ -116,21 +146,30 @@ public interface Device extends Measurable {
      *
      * @return the number of attributes.
      */
-    int getNumberOfSpecsAttributes();
+    default int getNumberOfSpecsAttributes()  {
+        return getSpecs().getNumberOfAttributes();
+    }
 
     /**
      * method that returns the name of device and its location
      *
      * @return String
      */
-    String getNameToString();
+    default String getNameToString() {
+        StringBuilder nameLocation = new StringBuilder();
+        nameLocation.append("Device: " + getName());
+        nameLocation.append(", located in room: " + getLocation().getName() + "\n");
+        return nameLocation.toString();
+    }
 
     /**
      * Method that adds a reading to the device.
      *
      * @param reading Reading to be added.
      */
-    void addReadingsToTheList(Reading reading);
+    default void addReadingsToTheList(Reading reading)  {
+        this.getReadings().add(reading);
+    }
 
     /**
      * Method that calculates the sum of the value in each Reading in a given Reading list.
@@ -138,13 +177,28 @@ public interface Device extends Measurable {
      * @param readingList List with Readingss.
      * @return Double with the required sum.
      */
-    double getSumOfTheReadings(List<Reading> readingList);
-
+    default double getSumOfTheReadings(List<Reading> readingList) {
+        double sum = 0;
+        for (Reading reading : readingList) {
+            sum += reading.getValue();
+        }
+        return sum;
+    }
 
     /**
+     * TODO - GABIX
+     * ???????? - está bem ?????
      * method that set the deactivate device, turning it to false and giving a date
      */
-    boolean setDeactivateDevice();
+    default boolean setDeactivateDevice(){
+        boolean isActive = this.getIsActive();
+        if (isActive) {
+            isActive = false;
+            this.getDeactivationDate().isEqual(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
+            return true;
+        }
+        return false;
+    }
 
     /**
      * method that get an active device.
@@ -189,6 +243,16 @@ public interface Device extends Measurable {
         }
         return totalEnergyConsumption;
     }
+
+    /**
+     * method that gets the Device Type
+     *
+     * @return String
+     */
+    default String getType() {
+        return getSpecs().getTypeName();
+    }
+
 
 
 

@@ -6,8 +6,8 @@ public interface Programmable {
 
     boolean addProgram(Program program);
 
-    default Program newProgram(String programName, double duration, double energyConsumption) {
-        return new Program(programName, duration, energyConsumption);
+    default Program newProgram(String programName, double duration, double energyConsumption, double nominalPower) {
+        return new Program(programName, duration, energyConsumption, nominalPower);
     }
 
 }

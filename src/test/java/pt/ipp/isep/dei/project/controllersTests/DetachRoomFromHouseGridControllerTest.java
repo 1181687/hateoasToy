@@ -53,8 +53,8 @@ class DetachRoomFromHouseGridControllerTest {
         //HouseGrid
         this.mainGrid = new HouseGrid("Main Grid");
         house.addGrid(mainGrid);
-        mainGrid.attachRoom(r0);
-        mainGrid.attachRoom(r1);
+        mainGrid.addRoom(r0);
+        mainGrid.addRoom(r1);
 
         RoomList roomList = house.getRoomList();
 
@@ -135,7 +135,7 @@ class DetachRoomFromHouseGridControllerTest {
         Room r2 = new Room("Bathroom", 2, r1Dimension);
 
         HouseGrid newGrid1 = new HouseGrid("Secondary Grid");
-        newGrid1.attachRoom(r2);
+        newGrid1.addRoom(r2);
         ctrl.detachRoomFromGridList(mainGrid, r2);
         String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimension - Height: 2.0, Length: 3.0, Width: 4.0\n" +
                 "2- Name: Living Room, House Floor: 2, Dimension - Height: 2.0, Length: 3.0, Width: 3.0\n";
@@ -153,7 +153,7 @@ class DetachRoomFromHouseGridControllerTest {
         Room r2 = new Room("Bathroom", 2, r1Dimension);
 
         HouseGrid newGrid1 = new HouseGrid("Secondary Grid");
-        newGrid1.attachRoom(r2);
+        newGrid1.addRoom(r2);
 
         //Act
         boolean result = ctrl.detachRoomFromGridList(mainGrid, r2);
@@ -177,7 +177,7 @@ class DetachRoomFromHouseGridControllerTest {
         Room r2 = new Room("Bathroom", 2, r1Dimension);
 
         HouseGrid newGrid1 = new HouseGrid("Secondary Grid");
-        newGrid1.attachRoom(r2);
+        newGrid1.addRoom(r2);
         house.addGrid(newGrid1);
 
         int expectedResult = 2;

@@ -896,8 +896,8 @@ public class HouseTest {
         house.addRoom(room2);
 
         HouseGrid grid = new HouseGrid("g1");
-        grid.attachRoom(room1);
-        grid.attachRoom(room2);
+        grid.addRoom(room1);
+        grid.addRoom(room2);
         house.addGrid(grid);
 
         List<Device> expectedResult = new ArrayList<>();
@@ -941,8 +941,8 @@ public class HouseTest {
 
         HouseGrid hg = new HouseGrid("Grid");
         house.addGrid(hg);
-        hg.attachRoom(room1);
-        hg.attachRoom(room2);
+        hg.addRoom(room1);
+        hg.addRoom(room2);
 
         //add to Lists
         house.addRoom(room1);
@@ -1118,7 +1118,7 @@ public class HouseTest {
         HouseGrid grid1 = new HouseGrid(gridName1);
         String gridName2 = "Grid3";
         HouseGrid grid2 = new HouseGrid(gridName2);
-        grid2.attachRoom(room);
+        grid2.addRoom(room);
 
         house.addGrid(grid0);
         house.addGrid(grid1);
@@ -1248,8 +1248,8 @@ public class HouseTest {
         house.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeaterSpecs", room2);
 
         HouseGrid grid = new HouseGrid("g1");
-        grid.attachRoom(room2);
-        grid.attachRoom(room2);
+        grid.addRoom(room2);
+        grid.addRoom(room2);
         house.addGrid(grid);
 
         // Act
