@@ -32,6 +32,13 @@ public interface Device extends Measurable {
     String getName();
 
     /**
+     * get method
+     *
+     * @return device Specifications
+     */
+    DeviceSpecs getSpecs ();
+
+    /**
      * method that gets the Type
      *
      * @return String
@@ -160,7 +167,30 @@ public interface Device extends Measurable {
 
     Programmable asProgrammable();
 
-    String getDateDeactivateDeviceToString();
+    default String getDateDeactivateDeviceToString() {
+        return this.getDeactivationDate().toLocalDate().toString() + " " + this.getDeactivationDate().toLocalTime().toString();
+    }
+
+    /**
+     * Method that calculates the total energy consumption of a device in a given interval.
+     * This method has in count all the fully contained readingList, i.e., if there's just one readingList in the interval, it
+     * is not counted.
+     *
+     * @param startDate Start date.
+     * @param endDate   End date.
+     * @return Double with the required energy consumption.
+     */
+    default double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
+        double totalEnergyConsumption = 0;
+        List<Reading> readings = getReadingsListInInterval(startDate, endDate);
+        if (!(readings.isEmpty())) {
+            readings.remove(0);
+            totalEnergyConsumption = getSumOfTheReadings(readings);
+        }
+        return totalEnergyConsumption;
+    }
+
+
 
 
 }
