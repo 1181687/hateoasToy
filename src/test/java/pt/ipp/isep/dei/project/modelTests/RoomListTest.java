@@ -22,6 +22,7 @@ public class RoomListTest {
 
     private House house;
 
+
     @BeforeEach
     public void StartUp() {
         //Geographical Area
