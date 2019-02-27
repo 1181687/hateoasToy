@@ -105,8 +105,6 @@ public class HouseGridTest {
         map.put(time0, 9.0);
         map.put(time1, 15.0);
         map.put(time2, 14.0);
-
-
     }
 
 
@@ -201,6 +199,9 @@ public class HouseGridTest {
     @Test
     public void testGetAllDevicesListEmptylist() {
 
+        String houseGridName = "hg2";
+        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        this.house.addGrid(houseGrid1);
 
         List<Device> expectedResult = new ArrayList<>();
 
@@ -212,10 +213,6 @@ public class HouseGridTest {
     @Test
     public void getNominalPower() {
         //Assert
-
-        this.mainGrid.addRoom(room1);
-        this.mainGrid.addRoom(room2);
-
         double expectedResult = 400;
 
         //Act
@@ -228,10 +225,6 @@ public class HouseGridTest {
     @Test
     public void getRoomFromAPosition() {
         //arrange
-
-        mainGrid.addRoom(room1);
-        mainGrid.addRoom(room2);
-
         Room expectResult = room1;
 
         //act
@@ -243,24 +236,6 @@ public class HouseGridTest {
     @Test
     public void getDeviceListContentTest() {
         // Arrange
-        /*String houseGridName = "hgname1";
-        HouseGrid houseGrid = new HouseGrid(houseGridName);
-
-        //initiate Room
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
-        houseGrid.addRoom(room);
-
-        //initiate Devices
-        Device dev = house.createDevice("Fridge","Fridge1", room);
-
-
-        Device dev1 = house.createDevice("Lamp","Lamp1", room);*/
-
-        this.mainGrid.addRoom(room1);
-        this.mainGrid.addRoom(room2);
-
         String expectedResult =
                 "1 - Name of the device: FridgeAriston\n" +
                         "2 - Name of the device: WashingMachineBosh\n" +
@@ -276,10 +251,6 @@ public class HouseGridTest {
     @Test
     public void getDeviceListSize() {
         // Arrange
-
-        this.mainGrid.addRoom(room1);
-        this.mainGrid.addRoom(room2);
-
         int expectResult = 3;
         //act
         int result = mainGrid.getDeviceListSizeByRoomPosition(0);
@@ -289,8 +260,13 @@ public class HouseGridTest {
 
     @Test
     public void checkIfRoomListIsEmptyTrue() {
+        //arrange
+        String houseGridName = "hg2";
+        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        this.house.addGrid(houseGrid1);
+
         //act
-        boolean result = mainGrid.isRoomListEmpty();
+        boolean result = houseGrid1.isRoomListEmpty();
         //assert
         assertTrue(result);
     }
@@ -298,8 +274,6 @@ public class HouseGridTest {
     @Test
     public void checkIfRoomListIsEmptyFalse() {
         //arrange
-        this.mainGrid.addRoom(room1);
-        this.mainGrid.addRoom(room2);
         //act
         boolean result = mainGrid.isRoomListEmpty();
         //assert
@@ -309,10 +283,12 @@ public class HouseGridTest {
     @Test
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
-        this.mainGrid.addRoom(room3);
+        String houseGridName = "hg2";
+        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        this.house.addGrid(houseGrid1);
 
         // Act
-        boolean result = mainGrid.isDeviceListOfAllRoomsEmpty();
+        boolean result = houseGrid1.isDeviceListOfAllRoomsEmpty();
         // Assert
         assertTrue(result);
     }
@@ -321,9 +297,6 @@ public class HouseGridTest {
     @Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
-        this.mainGrid.addRoom(room1);
-        this.mainGrid.addRoom(room2);
-        this.mainGrid.addRoom(room3);
 
         // Act
         boolean result = mainGrid.isDeviceListOfAllRoomsEmpty();
@@ -336,9 +309,6 @@ public class HouseGridTest {
     public void getDeviceFromPositionInList() {
 
         //Arrange
-        this.mainGrid.addRoom(room1);
-        this.mainGrid.addRoom(room2);
-        this.mainGrid.addRoom(room3);
 
         Device expectedResult = dev1;
 
@@ -352,10 +322,6 @@ public class HouseGridTest {
     @Test
     public void getListSize() {
         // Arrange
-        this.mainGrid.addRoom(room1);
-        this.mainGrid.addRoom(room2);
-        this.mainGrid.addRoom(room3);
-
 
         int expectResult = 3;
         //act
@@ -368,18 +334,27 @@ public class HouseGridTest {
     @Test
     public void getListSizeEmptyList() {
         //arrange
+
+        String houseGridName = "hg2";
+        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        this.house.addGrid(houseGrid1);
+
         int expectResult = 0;
         //act
-        int result = mainGrid.getRoomListSize();
+        int result = houseGrid1.getRoomListSize();
         //assert
         assertEquals(expectResult, result);
     }
 
     @Test
     public void testCheckThereAreNoDevices() {
-        //Act
+        //arrange
+        String houseGridName = "hg2";
+        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
+        this.house.addGrid(houseGrid1);
 
-        boolean result = mainGrid.isDeviceListOfAllRoomsEmpty();
+        //Act
+        boolean result = houseGrid1.isDeviceListOfAllRoomsEmpty();
 
         //Assert
         assertTrue(result);
@@ -388,10 +363,6 @@ public class HouseGridTest {
     @Test
     public void testCheckThereAreNoDevicesWithDevices() {
         //arrange
-        this.mainGrid.addRoom(room1);
-        this.mainGrid.addRoom(room2);
-        this.mainGrid.addRoom(room3);
-
         boolean result = mainGrid.isDeviceListOfAllRoomsEmpty();
 
         //Assert
@@ -503,11 +474,6 @@ public class HouseGridTest {
     public void testGetEnergyConsumptionInAnIntervalWithNoValidReadingss() {
 
         //Arrange
-
-        this.mainGrid.addRoom(room1);
-        this.mainGrid.addRoom(room2);
-        this.mainGrid.addRoom(room3);
-
         LocalDateTime startTime = LocalDateTime.of(2019, 01, 25, 15, 20, 00);
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
 
@@ -523,11 +489,6 @@ public class HouseGridTest {
     @Test
     public void testGetEnergyConsumptionInAnIntervalWithTwoRooms() {
         //Arrange
-
-        this.mainGrid.addRoom(room1);
-        this.mainGrid.addRoom(room2);
-        this.mainGrid.addRoom(room3);
-
         LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
 
@@ -544,7 +505,6 @@ public class HouseGridTest {
     public void testGetEnergyConsumptionInAnIntervalWithNoRoomsConnected() {
 
         //Arrange
-
         LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
 
@@ -562,7 +522,6 @@ public class HouseGridTest {
     public void testGetDataSeries() {
 
         //Arrange
-
         LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
 
