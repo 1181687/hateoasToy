@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.DishWasher.DishWasherType;
-import pt.ipp.isep.dei.project.model.Devices.ElectricWaterHeater.ElectricWaterHeaterType;
 import pt.ipp.isep.dei.project.model.Devices.Programmable;
-import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -358,7 +355,6 @@ public class Main {
 
         // DEVICES
         // Electric Water Heater B107
-        ElectricWaterHeaterType electricWaterHeaterType= new ElectricWaterHeaterType();
         Device ewhB107 = houseEdificioB.createDevice("Electric Water Heater", "EHW B107", room1);
         ewhB107.setAttributesDevType(VOLUME_OF_WATER, 55);
         ewhB107.setAttributesDevType(HOT_WATER_TEMPERATURE, 100);
@@ -386,7 +382,6 @@ public class Main {
         ewhB107.addReadingsToTheList(ewhEC18);
 
         // Dishwasher B107
-        DishWasherType dishWasherType =  new DishWasherType();
         Device dwB107 = houseEdificioB.createDevice("DishWasher", "Dishwasher B107", room1);
         dwB107.setAttributesDevType(CAPACITY, 50);
         dwB107.setAttributesDevType(NOMINAL_POWER, 1.5);
@@ -414,7 +409,6 @@ public class Main {
         dwB107Programmable.addProgram(program3);
 
         // Washing Machine B107
-        WashingMachineType washingMachineType = new WashingMachineType();
         Device wmB107 = houseEdificioB.createDevice("Washing Machine", "Washing Machine B107", room1);
         wmB107.setAttributesDevType(CAPACITY, 10);
         wmB107.setAttributesDevType(NOMINAL_POWER, 3.5);
@@ -435,7 +429,6 @@ public class Main {
         wmB107Programmable.addProgram(program7);
 
         // Electric Water Heater B109
-        ElectricWaterHeaterType electricWaterHeaterTypeB109 = new ElectricWaterHeaterType();
         Device ewhB109 = houseEdificioB.createDevice("Electric Water Heater", "EHW B109", room2);
         ewhB109.setAttributesDevType(VOLUME_OF_WATER, 55);
         ewhB109.setAttributesDevType(HOT_WATER_TEMPERATURE, 100);
@@ -463,8 +456,6 @@ public class Main {
         ewhB109.addReadingsToTheList(ewh1EC18);
 
         // Dishwasher B019
-
-        DishWasherType dishWasherTypeB109 =  new DishWasherType();
         Device dwB109 = houseEdificioB.createDevice("DishWasher", "Dishwasher B109", room2);
         dwB109.setAttributesDevType(CAPACITY, 50);
         dwB109.setAttributesDevType(NOMINAL_POWER, 1.5);
@@ -481,7 +472,6 @@ public class Main {
 
 
         // Washing Machine B109
-
         Device wmB109 = houseEdificioB.createDevice("Washing Machine", "Washing Machine B109", room2);
         wmB109.setAttributesDevType(CAPACITY, 10);
         wmB109.setAttributesDevType(NOMINAL_POWER, 2.5);
@@ -511,7 +501,6 @@ public class Main {
 
 
         // Dishwasher B106
-        DishWasherType dishWasherTypeB106 =  new DishWasherType();
         Device dwB106 = houseEdificioB.createDevice("DishWasher", "Dishwasher B106", room3);
         dwB106.setAttributesDevType(CAPACITY, 50);
         dwB106.setAttributesDevType(NOMINAL_POWER, 1.4);
