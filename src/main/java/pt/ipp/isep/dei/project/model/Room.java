@@ -261,11 +261,9 @@ public class Room implements Measurable {
      * @return true if it adds, false if it doesn't add
      */
     public boolean addDevice(Device device) {
-
         if (Objects.isNull(device)) {
             throw new RuntimeException("Device is null.");
         }
-
         if (this.equals(device.getLocation()) && this.deviceList.contains(device)) {
             throw new RuntimeException("Device with same name is already in the roomList");
         }

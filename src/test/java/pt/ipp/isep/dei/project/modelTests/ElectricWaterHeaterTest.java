@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.ElectricWaterHeater.ElectricWaterHeaterType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -49,7 +48,7 @@ class ElectricWaterHeaterTest {
         house.addRoom(laundry);
 
         // Devices
-
+        house.createDevice(ELECTRIC_W_H_TYPE, "Bosch Tronic 2000", kitchen);
         electricWaterHeater = house.createDevice(ELECTRIC_W_H_TYPE,"Bosch Tronic 3000", kitchen);
         electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 55);
         electricWaterHeater.setAttributesDevType("Performance Ratio", 0.9);
@@ -214,7 +213,7 @@ class ElectricWaterHeaterTest {
     void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Bosch Tronic 3000\n" +
-                "2 - Device1 Specifications\n" +
+                "2 - Device Specifications \n" +
                 "3 - Location: Kitchen\n";
         // Act
         String result = electricWaterHeater.getAttributesToString();

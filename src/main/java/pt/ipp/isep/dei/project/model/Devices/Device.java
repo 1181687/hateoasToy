@@ -79,15 +79,7 @@ public interface Device extends Measurable {
      * @param location
      * @return false if the location is equals to another device. True if not.
      */
-    default boolean setLocation(Room location){
-        if (this.getLocation().equals(location)) {
-            return false;
-        }
-        this.getLocation().getDeviceList().remove(this);
-        this.getLocation().equals(location);
-        this.getLocation().addDevice(this);
-        return true;
-    }
+    boolean setLocation(Room location);
 
     /**
      * Method that returns the attributes of the device specs.
@@ -238,7 +230,9 @@ public interface Device extends Measurable {
         double totalEnergyConsumption = 0;
         List<Reading> readings = getReadingsListInInterval(startDate, endDate);
         if (!(readings.isEmpty())) {
-            readings.remove(0);
+            if (!(readings.get(0).equals(getReadings().get(0))) || startDate.equals(readings.get(0).getDateTime())) {
+                readings.remove(0);
+            }
             totalEnergyConsumption = getSumOfTheReadings(readings);
         }
         return totalEnergyConsumption;

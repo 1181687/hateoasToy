@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.DishWasher.DishWasherType;
 import pt.ipp.isep.dei.project.model.Devices.Programmable;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -49,6 +48,7 @@ class DishWasherTest {
 
 
         // Devices
+        house.createDevice("DishWasher", "Bosch 600 Series", kitchen);
         dishwasher = house.createDevice("DishWasher", "Bosch 500 Series", kitchen);
         dishwasher.setAttributesDevType("Capacity", 10);
         dishwasher.setAttributesDevType("Duration", 0);
@@ -140,7 +140,7 @@ class DishWasherTest {
 
     @Test
     public void setNameAlreadyInListTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> dishwasher.setName("Bosch 400 Series"));
+        Throwable exception = assertThrows(RuntimeException.class, () -> dishwasher.setName("Bosch 600 Series"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
@@ -156,7 +156,7 @@ class DishWasherTest {
     @Test
     public void setNameTrueTest() {
         // Act
-        boolean result = dishwasher.setName("Bosch 600 Series");
+        boolean result = dishwasher.setName("Bosch 700 Series");
 
         // Assert
         assertTrue(result);

@@ -2,10 +2,9 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.Devices.Device;
 import pt.ipp.isep.dei.project.model.Devices.Programmable;
-import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineType;
+import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -40,7 +39,8 @@ class WashingMachineTest {
         laundry = new Room("Laundry", 1, dim);
 
         // Devices
-        washingMachine= house.createDevice(WASHING_MACHINE_TYPE,"Maytag 3.6", kitchen);
+        house.createDevice(WASHING_MACHINE_TYPE, "Maytag 2.6", kitchen);
+        washingMachine = house.createDevice(WASHING_MACHINE_TYPE, "Maytag 3.6", kitchen);
         washingMachine.setAttributesDevType("Capacity", 40);
         washingMachine.setAttributesDevType("Duration", 1);
         washingMachine.setAttributesDevType("Energy Consumption", 1);
@@ -188,7 +188,7 @@ class WashingMachineTest {
     void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Maytag 3.6\n" +
-                "2 - Device1 Specifications\n" +
+                "2 - Device Specifications \n" +
                 "3 - Location: Kitchen\n";
         // Act
         String result = washingMachine.getAttributesToString();
@@ -398,9 +398,9 @@ class WashingMachineTest {
         double duration = 0.5;
         double energyConsumption = 12.0;
         Programmable programmable = this.washingMachine.asProgrammable();
-        Program expectedResult = new Program(programName, duration, energyConsumption,15);
+        Program expectedResult = new Program(programName, duration, energyConsumption);
         //Act
-        Program result = programmable.newProgram(programName, duration, energyConsumption,15);
+        Program result = programmable.newProgram(programName, duration, energyConsumption);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -424,8 +424,8 @@ class WashingMachineTest {
         double duration = 15;
         double energyConsumption = 1;
         Programmable programmable = this.washingMachine.asProgrammable();
-        Program programA = programmable.newProgram(programName, duration, energyConsumption,15);
-        Program programB = programmable.newProgram(programName, duration, energyConsumption,15);
+        Program programA = programmable.newProgram(programName, duration, energyConsumption);
+        Program programB = programmable.newProgram(programName, duration, energyConsumption);
         programmable.addProgram(programA);
         boolean expectedResult = false;
 
@@ -443,7 +443,7 @@ class WashingMachineTest {
         double duration = 15;
         double energyConsumption = 1;
         Programmable programmable = this.washingMachine.asProgrammable();
-        Program programA = programmable.newProgram(programName, duration, energyConsumption,15);
+        Program programA = programmable.newProgram(programName, duration, energyConsumption);
 
         boolean expectedResult = true;
 

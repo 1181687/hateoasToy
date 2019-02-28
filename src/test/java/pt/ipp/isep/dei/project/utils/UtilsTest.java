@@ -133,6 +133,8 @@ class UtilsTest {
         expectedResult.add("DishWasher");
         expectedResult.add("WashingMachine");
         expectedResult.add("ElectricWaterHeater");
+        expectedResult.add("ElectricOven");
+
 
         List<String> result = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
         assertEquals(expectedResult, result);

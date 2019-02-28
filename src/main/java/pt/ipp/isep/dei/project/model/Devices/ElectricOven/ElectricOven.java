@@ -26,6 +26,16 @@ public class ElectricOven implements Device {
         this.readingList = new ArrayList<>();
     }
 
+    @Override
+    public DeviceSpecs getSpecs() {
+        return specs;
+    }
+
+    @Override
+    public boolean isActive() {
+        return isActive;
+    }
+
     /**
      * method that get the nominal power of the devices.
      *
@@ -99,18 +109,22 @@ public class ElectricOven implements Device {
     }
 
     /**
-     * method that set the location (room) of a added device.
-     *
-     * @param location
-     * @return false if the location is equals to another device. True if not.
-     */
+     -     * method that set the location (room) of a added device.
+     -     *
+     -     * @param location
+     -     * @return false if the location is equals to another device. True if not.
+     -     */
+    @Override
     public boolean setLocation(Room location) {
+        if (Objects.isNull(this.location)) {
+            this.location = location;
+            return true;
+        }
         if (this.location.equals(location)) {
             return false;
         }
         this.location.getDeviceList().remove(this);
         this.location = location;
-        this.location.addDevice(this);
         return true;
     }
 

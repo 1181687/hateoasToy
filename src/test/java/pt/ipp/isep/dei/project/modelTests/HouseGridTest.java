@@ -14,39 +14,39 @@ import static org.junit.jupiter.api.Assertions.*;
 public class HouseGridTest {
     private House house;
     private HouseGrid mainGrid;
-    private Room room1;
-    private Room room2;
-    private Room room3;
-    private Device dev1;
-    private Device dev2;
-    private Device dev3;
-    private Device dev6;
+    private HouseGrid secondaryGrid;
+    private Room kidsRoom;
+    private Room bathroom;
+    private Room livingRoom;
+    private Device fridge;
+    private Device washingMachine;
+    private Device dishwasher;
+    private Device electricWaterHeater;
     private Map<LocalDateTime, Double> map;
 
     @BeforeEach
     public void StartUp() {
-
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
-        String houseGridName = "hg1";
-        this.mainGrid = new HouseGrid(houseGridName);
+        // House Grids
+        this.mainGrid = new HouseGrid("Main grid");
+        this.secondaryGrid = new HouseGrid("Secondary grid");
         this.house.addGrid(mainGrid);
 
-        Dimension dimensionRoom1 = new Dimension(5.2, 3.7, 8.5);
-        room1 = new Room("Kid's room", 1, dimensionRoom1);
-        Dimension dimensionRoom2 = new Dimension(5.2, 3.7, 8.5);
-        room2 = new Room("Bathroom", 1, dimensionRoom2);
-        Dimension dimensionRoom3 = new Dimension(5.2, 3.7, 8.5);
-        room3 = new Room("Livingroom", 1, dimensionRoom3);
+        // Rooms
+        Dimension dimensionRoom = new Dimension(5.2, 3.7, 8.5);
+        kidsRoom = new Room("Kid's room", 1, dimensionRoom);
+        bathroom = new Room("Bathroom", 1, dimensionRoom);
+        livingRoom = new Room("Living Room", 1, dimensionRoom);
+        this.mainGrid.addRoom(kidsRoom);
+        this.mainGrid.addRoom(bathroom);
+        this.mainGrid.addRoom(livingRoom);
 
-        this.mainGrid.addRoom(room1);
-        this.mainGrid.addRoom(room2);
-        this.mainGrid.addRoom(room3);
-
+        // Power Source
         String name = "Power Source 1";
         String name2 = "Power Source 2";
         String typeName = "Battery";
@@ -56,51 +56,45 @@ public class HouseGridTest {
         mainGrid.addPowerSource(powerSource1);
         mainGrid.addPowerSource(powerSource2);
 
-        //Fridge - dev1
-        dev1 = house.createDevice("Fridge", "FridgeAriston", room1);
-        dev1.setAttributesDevType("Freezer Capacity", 100);
-        dev1.setAttributesDevType("Refrigerator Capacity", 100);
-        dev1.setAttributesDevType("Annual Energy Consumption", 100);
-        dev1.setAttributesDevType("Nominal Power", 100);
+        // Devices
+        fridge = house.createDevice("Fridge", "Miele PerfectCool Series 3500", kidsRoom);
+        fridge.setAttributesDevType("Freezer Capacity", 100);
+        fridge.setAttributesDevType("Refrigerator Capacity", 100);
+        fridge.setAttributesDevType("Annual Energy Consumption", 100);
+        fridge.setAttributesDevType("Nominal Power", 100);
 
-        //WashingMachine - dev2
-        dev2 = house.createDevice("Washing Machine", "WashingMachineBosh", room1);
-        dev2.setAttributesDevType("Capacity", 100);
-        dev2.setAttributesDevType("Nominal Power", 100);
+        washingMachine = house.createDevice("Washing Machine", "Maytag 3.6", kidsRoom);
+        washingMachine.setAttributesDevType("Capacity", 100);
+        washingMachine.setAttributesDevType("Nominal Power", 100);
 
-        //DishWasher - dev3
-        dev3 = house.createDevice("DishWasher", "DishWasher1", room1);
-        dev3.setAttributesDevType("Capacity", 100);
-        dev3.setAttributesDevType("Nominal Power", 100);
+        dishwasher = house.createDevice("DishWasher", "Bosch 500 Series", kidsRoom);
+        dishwasher.setAttributesDevType("Capacity", 100);
+        dishwasher.setAttributesDevType("Nominal Power", 100);
 
-        //Device dev4 = house.createDevice("Fridge", "FridgeSiemens", room2);
-        //Device dev5 = house.createDevice("DishWasher", "DishWasherTeka", room2);
+        electricWaterHeater = house.createDevice("Electric Water Heater", "Bosch Tronic 3000", bathroom);
+        electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 100);
+        electricWaterHeater.setAttributesDevType("Volume Of Water To Heat", 100);
+        electricWaterHeater.setAttributesDevType("Performance Ratio", 100);
+        electricWaterHeater.setAttributesDevType("Nominal Power", 100);
+        electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 100);
 
-        //EWH - dev6
-        dev6 = house.createDevice("Electric Water Heater", "ElectricWaterHeater1", room2);
-        dev6.setAttributesDevType("Hot-Water Temperature", 100);
-        dev6.setAttributesDevType("Volume Of Water To Heat", 100);
-        dev6.setAttributesDevType("Performance Ratio", 100);
-        dev6.setAttributesDevType("Hot-Water Temperature", 100);
-
+        // Readings
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         Reading reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
         Reading reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
         Reading reading2 = new Reading(7, time2);
+        fridge.addReadingsToTheList(reading0);
+        fridge.addReadingsToTheList(reading1);
+        fridge.addReadingsToTheList(reading2);
+        dishwasher.addReadingsToTheList(reading0);
+        dishwasher.addReadingsToTheList(reading1);
+        dishwasher.addReadingsToTheList(reading2);
+        electricWaterHeater.addReadingsToTheList(reading0);
+        electricWaterHeater.addReadingsToTheList(reading1);
 
-        dev1.addReadingsToTheList(reading0);
-        dev1.addReadingsToTheList(reading1);
-        dev1.addReadingsToTheList(reading2);
-
-        dev3.addReadingsToTheList(reading0);
-        dev3.addReadingsToTheList(reading1);
-        dev3.addReadingsToTheList(reading2);
-
-        dev6.addReadingsToTheList(reading0);
-        dev6.addReadingsToTheList(reading1);
-
+        // Map
         map = new TreeMap<>();
         map.put(time0, 9.0);
         map.put(time1, 15.0);
@@ -155,7 +149,7 @@ public class HouseGridTest {
         String expectedResult =
                 "1- Name: Kid's room, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n" +
                         "2- Name: Bathroom, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n" +
-                        "3- Name: Livingroom, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n";
+                        "3- Name: Living Room, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n";
         // Act
         String result = mainGrid.getRoomListContent();
 
@@ -166,7 +160,7 @@ public class HouseGridTest {
     @Test
     public void attachRoomInTheHouseGridRoomListTest() {
         // Act
-        boolean result = mainGrid.getRoomList().getListOfRooms().contains(room1);
+        boolean result = mainGrid.getRoomList().getListOfRooms().contains(kidsRoom);
 
         // Assert
         assertTrue(result);
@@ -187,9 +181,10 @@ public class HouseGridTest {
     public void testGetAllDevicesList() {
         //Arrange
         List<Device> expectedResult = new ArrayList<>();
-        expectedResult.add(dev1);
-        expectedResult.add(dev2);
-        expectedResult.add(dev6);
+        expectedResult.add(fridge);
+        expectedResult.add(washingMachine);
+        expectedResult.add(dishwasher);
+        expectedResult.add(electricWaterHeater);
 
         List<Device> result = mainGrid.getAllDevicesList();
 
@@ -198,15 +193,13 @@ public class HouseGridTest {
 
     @Test
     public void testGetAllDevicesListEmptylist() {
-
-        String houseGridName = "hg2";
-        HouseGrid houseGrid1 = new HouseGrid(houseGridName);
-        this.house.addGrid(houseGrid1);
-
+        // Arrange
         List<Device> expectedResult = new ArrayList<>();
 
-        List<Device> result = mainGrid.getAllDevicesList();
+        // Act
+        List<Device> result = secondaryGrid.getAllDevicesList();
 
+        // Assert
         assertEquals(expectedResult, result);
     }
 
@@ -225,7 +218,7 @@ public class HouseGridTest {
     @Test
     public void getRoomFromAPosition() {
         //arrange
-        Room expectResult = room1;
+        Room expectResult = kidsRoom;
 
         //act
         Room result = mainGrid.getRoomByPosition(0);
@@ -237,9 +230,9 @@ public class HouseGridTest {
     public void getDeviceListContentTest() {
         // Arrange
         String expectedResult =
-                "1 - Name of the device: FridgeAriston\n" +
-                        "2 - Name of the device: WashingMachineBosh\n" +
-                        "3 - Name of the device: DishWasher1\n";
+                "1 - Name of the device: Miele PerfectCool Series 3500\n" +
+                        "2 - Name of the device: Maytag 3.6\n" +
+                        "3 - Name of the device: Bosch 500 Series\n";
 
         // Act
         String result = mainGrid.getDeviceListContent(0);
@@ -310,7 +303,7 @@ public class HouseGridTest {
 
         //Arrange
 
-        Device expectedResult = dev1;
+        Device expectedResult = fridge;
 
         // Act
         Device result = mainGrid.getDeviceByRoomAndDevicePosition(0, 0);
@@ -384,12 +377,9 @@ public class HouseGridTest {
 
     @Test
     public void testValidateNameWithNullNameShouldThrowException() {
-        //Arrange
-        String name = null;
-
         //Act
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new HouseGrid(name)
+                new HouseGrid(null)
         );
         //Assert
         assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
@@ -411,12 +401,9 @@ public class HouseGridTest {
 
     @Test
     public void testConstructorWithNullNameShouldThrowException() {
-        //Arrange
-        String name = null;
-
         //Act
         Throwable exception = assertThrows(RuntimeException.class, () ->
-                new HouseGrid(name)
+                new HouseGrid(null)
         );
 
         //Assert
@@ -426,9 +413,11 @@ public class HouseGridTest {
     @Test
     public void testGetNameToString() {
         // Arrange
-        String expectResult = "HouseGrid: mainGrid\n";
+        String expectResult = "HouseGrid: Main grid\n";
+
         //act
         String result = mainGrid.getNameToString();
+
         //assert
         assertEquals(expectResult, result);
     }
@@ -436,14 +425,10 @@ public class HouseGridTest {
     @Test
     public void testGetEnergyConsumptionInAnIntervalWithThreeValidReadingss() {
         //Arrange
-        this.mainGrid.addRoom(room1);
-        this.mainGrid.addRoom(room2);
-        this.mainGrid.addRoom(room3);
-
         LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
 
-        double expectedResult = 12;
+        double expectedResult = 38;
         //Act
         double result = mainGrid.getEnergyConsumptionInAnInterval(startTime, endTime);
 
@@ -453,12 +438,7 @@ public class HouseGridTest {
 
     @Test
     public void testGetEnergyConsumptionInAnIntervalWithOneValidReadings() {
-        //Arrange
-
-        this.mainGrid.addRoom(room1);
-        this.mainGrid.addRoom(room2);
-        this.mainGrid.addRoom(room3);
-
+        // Arrange
         LocalDateTime startTime = LocalDateTime.of(2019, 01, 24, 15, 20, 00);
         LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
 
@@ -487,21 +467,6 @@ public class HouseGridTest {
     }
 
     @Test
-    public void testGetEnergyConsumptionInAnIntervalWithTwoRooms() {
-        //Arrange
-        LocalDateTime startTime = LocalDateTime.of(2019, 01, 23, 15, 20, 00);
-        LocalDateTime endTime = LocalDateTime.of(2019, 01, 25, 17, 40, 00);
-
-        double expectedResult = 29;
-
-        //Act
-        double result = mainGrid.getEnergyConsumptionInAnInterval(startTime, endTime);
-
-        //Assert
-        assertEquals(expectedResult, result, 0.001);
-    }
-
-    @Test
     public void testGetEnergyConsumptionInAnIntervalWithNoRoomsConnected() {
 
         //Arrange
@@ -511,7 +476,7 @@ public class HouseGridTest {
         double expectedResult = 0;
 
         //Act
-        double result = mainGrid.getEnergyConsumptionInAnInterval(startTime, endTime);
+        double result = secondaryGrid.getEnergyConsumptionInAnInterval(startTime, endTime);
 
 
         //Assert

@@ -39,7 +39,7 @@ public class DishWasherTypeTest {
     @Test
     public void getTypeNameTest() {
         // Arrange
-        String expectedResult = "Electric Oven";
+        String expectedResult = "DishWasher";
 
         // Act
         String result = dishWasherType.getTypeName();

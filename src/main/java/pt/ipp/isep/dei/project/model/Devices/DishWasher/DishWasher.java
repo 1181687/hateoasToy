@@ -38,6 +38,27 @@ public class DishWasher implements Device, Programmable {
     }
 
     /**
+     * -     * method that set the location (room) of a added device.
+     * -     *
+     * -     * @param location
+     * -     * @return false if the location is equals to another device. True if not.
+     * -
+     */
+    @Override
+    public boolean setLocation(Room location) {
+        if (Objects.isNull(this.location)) {
+            this.location = location;
+            return true;
+        }
+        if (this.location.equals(location)) {
+            return false;
+        }
+        this.location.getDeviceList().remove(this);
+        this.location = location;
+        return true;
+    }
+
+    /**
      * method that get a location (room) of a device.
      *
      * @return the location.

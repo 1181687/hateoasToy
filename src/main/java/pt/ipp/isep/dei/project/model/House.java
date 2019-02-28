@@ -58,12 +58,10 @@ public class House {
      * @return true if creates and false if not
      */
     public Device createDevice(String typeName, String deviceName, Room room) {
-
         if (Objects.isNull(getDeviceType(typeName))) {
             return null;
         }
         for (int i = 0; i < roomList.getListOfRooms().size(); i++) {
-
             if (roomList.getListOfRooms().get(i).isDeviceNameExistant(deviceName)) {
                 return null;
             }

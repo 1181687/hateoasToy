@@ -2,12 +2,8 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.DishWasher.DishWasherType;
-import pt.ipp.isep.dei.project.model.Devices.Fridge.FridgeType;
-import pt.ipp.isep.dei.project.model.Devices.Lamp.LampType;
-import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineType;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Devices.Device;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -388,7 +384,7 @@ public class RoomTest {
         // Arrange
 
         String expectedResult =
-                "Room: Room1\n";
+                "Room: Kitchen\n";
 
         // Act
         String result = kitchen.getNameToString();
@@ -767,19 +763,5 @@ public class RoomTest {
 
         // assert
         assertTrue(result);
-    }
-
-    @Test
-    public void testAddDeviceSameName_Exception() {
-        house.createDevice(LAMP_TYPE, "LampA", kitchen);
-
-        Device lampB = house.createDevice(LAMP_TYPE, "LampA", laundry);
-
-        // act
-        Throwable exception = assertThrows(RuntimeException.class, () ->
-                kitchen.addDevice(lampB)
-
-        );
-        assertEquals("Device with same name is already in the roomList", exception.getMessage());
     }
 }

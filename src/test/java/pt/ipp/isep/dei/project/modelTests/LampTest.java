@@ -213,7 +213,7 @@ class LampTest {
     void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: TaoTronics Elune TT-DL02\n" +
-                "2 - Device1 Specifications\n" +
+                "2 - Device Specifications \n" +
                 "3 - Location: Kitchen\n";
         // Act
         String result = lamp.getAttributesToString();

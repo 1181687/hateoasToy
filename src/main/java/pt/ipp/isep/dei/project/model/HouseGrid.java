@@ -245,14 +245,11 @@ public class HouseGrid implements Measurable {
      */
     @Override
     public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
-
         double totalEnergyConsumption = 0;
-
         if (!this.roomList.isEmpty()) {
             for (Room room : this.roomList.getListOfRooms()) {
                 totalEnergyConsumption += room.getEnergyConsumptionInAnInterval(startDate, endDate);
             }
-
         }
         return totalEnergyConsumption;
 
