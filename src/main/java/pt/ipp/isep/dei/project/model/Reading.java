@@ -58,7 +58,7 @@ public class Reading {
             return false;
         }
         Reading reading = (Reading) obj;
-        Double value = this.value;
-        return value.equals(reading.getValue()) && this.dateTime.equals(reading.getDateTime());
+        Double valueOfTheReading = this.value;
+        return valueOfTheReading.equals(reading.getValue()) && this.dateTime.equals(reading.getDateTime());
     }
 }

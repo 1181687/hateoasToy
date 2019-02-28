@@ -69,6 +69,7 @@ public class ElectricOven implements Device {
      *
      * @return String
      */
+    @Override
     public String getType() {
         return this.specs.getTypeName();
     }
@@ -88,6 +89,7 @@ public class ElectricOven implements Device {
      *
      * @return Energy consumption of the device in a given day.
      */
+    @Override
     public double getEnergyConsumptionInADay() {
         return this.specs.getEnergyConsumptionInADay();
     }
@@ -100,6 +102,7 @@ public class ElectricOven implements Device {
      * @param name String given name
      * @return true if sets false if don't
      */
+    @Override
     public boolean setName(String name) {
         if (this.location.isDeviceNameExistant(name) || this.name == name) {
             throw new RuntimeException("Name already exists. Please write a new one.");
@@ -133,6 +136,7 @@ public class ElectricOven implements Device {
      *
      * @return String with the attributes.
      */
+    @Override
     public String getDevSpecsAttributesToString() {
         return this.specs.getAttributesToString();
     }
@@ -142,6 +146,7 @@ public class ElectricOven implements Device {
      *
      * @return the device attributes.
      */
+    @Override
     public String getAttributesToString() {
 
         StringBuilder attributes = new StringBuilder();
@@ -158,6 +163,7 @@ public class ElectricOven implements Device {
      * @param value
      * @return the position of an attribute and the value of it.
      */
+    @Override
     public boolean setAttributesDevType(String attribute, Object value) {
         return this.specs.setAttributeValue(attribute, value);
     }
@@ -195,6 +201,7 @@ public class ElectricOven implements Device {
      *
      * @return the number of attributes.
      */
+    @Override
     public int getNumberOfSpecsAttributes() {
         return this.specs.getNumberOfAttributes();
     }
@@ -217,6 +224,7 @@ public class ElectricOven implements Device {
      *
      * @param reading Reading to be added.
      */
+    @Override
     public void addReadingsToTheList(Reading reading) {
         this.readingList.add(reading);
     }
@@ -227,6 +235,7 @@ public class ElectricOven implements Device {
      * @param readingList List with Readingss.
      * @return Double with the required sum.
      */
+    @Override
     public double getSumOfTheReadings(List<Reading> readingList) {
         double sum = 0;
         for (Reading reading : readingList) {
