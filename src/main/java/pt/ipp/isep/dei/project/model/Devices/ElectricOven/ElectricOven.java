@@ -2,8 +2,8 @@ package pt.ipp.isep.dei.project.model.Devices.ElectricOven;
 
 import pt.ipp.isep.dei.project.model.Devices.Device;
 import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.Devices.ElectricOven.ElectricOvenSpecs;
 import pt.ipp.isep.dei.project.model.Devices.Programmable;
+import pt.ipp.isep.dei.project.model.Program;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.Room;
 
@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class ElectricOven implements Device {
+public class ElectricOven implements Device, Programmable {
     private String name;
     private Room location;
     private ElectricOvenSpecs specs;
@@ -94,23 +94,6 @@ public class ElectricOven implements Device {
         return this.specs.getEnergyConsumptionInADay();
     }
 
-
-    /**
-     * method that set the given name only if the name don't exists in DeviceList
-     * and if it is different than the name that the Device1 has.
-     *
-     * @param name String given name
-     * @return true if sets false if don't
-     */
-    @Override
-    public boolean setName(String name) {
-        if (this.location.isDeviceNameExistant(name) || this.name == name) {
-            throw new RuntimeException("Name already exists. Please write a new one.");
-        }
-        this.name = name;
-        return true;
-    }
-
     /**
      -     * method that set the location (room) of a added device.
      -     *
@@ -121,6 +104,7 @@ public class ElectricOven implements Device {
     public boolean setLocation(Room location) {
         if (Objects.isNull(this.location)) {
             this.location = location;
+            location.addDevice(this);
             return true;
         }
         if (this.location.equals(location)) {
@@ -128,6 +112,7 @@ public class ElectricOven implements Device {
         }
         this.location.getDeviceList().remove(this);
         this.location = location;
+        location.addDevice(this);
         return true;
     }
 
@@ -139,21 +124,6 @@ public class ElectricOven implements Device {
     @Override
     public String getDevSpecsAttributesToString() {
         return this.specs.getAttributesToString();
-    }
-
-    /**
-     * method that get all attributes of a device by strings.
-     *
-     * @return the device attributes.
-     */
-    @Override
-    public String getAttributesToString() {
-
-        StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Name: " + name + "\n");
-        attributes.append("2 - Device1 Specifications\n");
-        attributes.append("3 - Location: " + location.getName() + "\n");
-        return attributes.toString();
     }
 
     /**
@@ -206,71 +176,9 @@ public class ElectricOven implements Device {
         return this.specs.getNumberOfAttributes();
     }
 
-    /**
-     * method that returns the name of device and its location
-     *
-     * @return String
-     */
-    @Override
-    public String getNameToString() {
-        StringBuilder nameLocation = new StringBuilder();
-        nameLocation.append("Device: " + name);
-        nameLocation.append(", located in room: " + location.getName() + "\n");
-        return nameLocation.toString();
-    }
-
-    /**
-     * Method that adds a readingList to the device.
-     *
-     * @param reading Reading to be added.
-     */
-    @Override
-    public void addReadingsToTheList(Reading reading) {
-        this.readingList.add(reading);
-    }
-
-    /**
-     * Method that calculates the sum of the value in each Reading in a given Reading list.
-     *
-     * @param readingList List with Readingss.
-     * @return Double with the required sum.
-     */
-    @Override
-    public double getSumOfTheReadings(List<Reading> readingList) {
-        double sum = 0;
-        for (Reading reading : readingList) {
-            sum += reading.getValue();
-        }
-        return sum;
-    }
-
-
-    /**
-     * Method that calculates the total energy consumption of a device in a given interval.
-     *
-     * @param startDate Start date.
-     * @param endDate   End date.
-     * @return Double with the required energy consumption.
-     */
-    @Override
-    public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        double totalEnergyConsumption = 0;
-        List<Reading> readings = getReadingsListInInterval(startDate, endDate);
-        if (!(readings.isEmpty())) {
-            readings.remove(0);
-            totalEnergyConsumption = getSumOfTheReadings(readings);
-        }
-        return totalEnergyConsumption;
-    }
-
     @Override
     public LocalDateTime getDeactivationDate() {
         return this.deactivationDate;
-    }
-
-    @Override
-    public String getDateDeactivateDeviceToString() {
-        return this.deactivationDate.toLocalDate().toString() + " " + this.deactivationDate.toLocalTime().toString();
     }
 
     /**
@@ -357,13 +265,33 @@ public class ElectricOven implements Device {
         return specs.getAttributeDataType(attributeName);
     }
 
+    /**
+     * Method that checks if this class is programmable.
+     *
+     * @return True.
+     */
     @Override
     public boolean isProgrammable() {
-        return false;
+        return true;
     }
 
+    /**
+     * Method that turns an object into Programmable.
+     * @return Programmable object.
+     */
     @Override
     public Programmable asProgrammable() {
-        return null;
+        return this;
+    }
+
+    /**
+     * Method that adds a program to the device.
+     *
+     * @param program Program to be added.
+     * @return True or false.
+     */
+    @Override
+    public boolean addProgram(Program program) {
+        return this.specs.addProgram(program);
     }
 }
