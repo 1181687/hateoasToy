@@ -55,11 +55,11 @@ public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
      * @return
      */
     public boolean setTime(Object time) {
-        double lampTime = (Double) time;
-        if (Utils.isSameDouble(this.time, lampTime)) {
+        double electricOvenTime = (Double) time;
+        if (Utils.isSameDouble(this.time, electricOvenTime)) {
             return false;
         }
-        this.time = lampTime;
+        this.time = electricOvenTime;
         return true;
     }
 

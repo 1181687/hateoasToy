@@ -50,7 +50,7 @@ class ElectricOvenTest {
         // Devices
         house.createDevice("Electric Oven", "Kenmore Elite 95067", kitchen);
         electricOven = house.createDevice("Electric Oven", "Kenmore Elite 95053", kitchen);
-        electricOven.setAttributesDevType("Time", 0);
+        electricOven.setAttributesDevType("Time", 1);
         electricOven.setAttributesDevType("Nominal Power", 1200);
 
         // Reading
@@ -204,19 +204,36 @@ class ElectricOvenTest {
     }
 
     @Test
-    public void setAttributesDevTypeTrueTest() {
-        // Act
-        boolean result = electricOven.setAttributesDevType("Nominal Power", 1500);
-
-        // Assert
-        assertTrue(result);
+    public void setAttributesDevTypeTimeSameValueTest() {
+        //Act
+        boolean result = electricOven.setAttributesDevType("Time", 1);
+        //Assert
+        assertFalse(result);
     }
 
     @Test
-    public void setAttributesDevTypeFalseTest() {
+    public void setAttributesDevTypeTimeNotValidDataTypeTest() {
+        // Act
+        boolean result = electricOven.setAttributesDevType("Time", "Not Valid Data Type");
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void setAttributesDevTypeNominalPowerSameValueTest() {
         //Act
         boolean result = electricOven.setAttributesDevType("Nominal Power", 1200);
         //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void setAttributesDevTypeNominalPowerNotValidDataTypeTest() {
+        // Act
+        boolean result = electricOven.setAttributesDevType("Nominal Power", "Not Valid Data Type");
+
+        // Assert
         assertFalse(result);
     }
 
@@ -400,12 +417,48 @@ class ElectricOvenTest {
     }
 
     @Test
-    void getAttributeValueTest() {
+    void getAttributeValueTimeTest() {
+        // Assert
+        double expectedResult = 1.0;
+
+        // Act
+        Object result = electricOven.getAttributeValue("Time");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getAttributeValueNominalPowerTest() {
         // Assert
         double expectedResult = 1200.0;
 
         // Act
         Object result = electricOven.getAttributeValue("Nominal Power");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getAttributeValueNotValidTest() {
+        // Arrange
+        Object expectedResult = -1;
+
+        // Act
+        Object result = electricOven.getAttributeValue("Not Valid");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getAttributeDataTypeTest() {
+        // Arrange
+        String expectedResult = "Double";
+
+        // Act
+        String result = electricOven.getAttributeDataType("Nominal Power");
 
         // Assert
         assertEquals(expectedResult, result);
