@@ -29,7 +29,7 @@ public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
     }
 
     /**
-     * get method of the energy consumption of a DishWasher
+     * get method of the energy consumption of an Electric Oven
      *
      * @return energy consumption
      */
@@ -39,7 +39,7 @@ public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
 
 
     /**
-     * get method of the nominal power of a DishWasher
+     * get method of the nominal power of an Electric Oven
      *
      * @return nominal power
      */
@@ -64,7 +64,7 @@ public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
     }
 
     /**
-     * set method to Nominal Power of a DishWasher
+     * set method to Nominal Power of an Electric Oven
      *
      * @param nominalPower
      * @return
@@ -81,7 +81,7 @@ public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
     /**
      * method that get the attributes by strings.
      *
-     * @return an attribute of the Dish Washer.
+     * @return an attribute of the Electric Oven
      */
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
@@ -103,7 +103,7 @@ public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
     /**
      * get metod
      *
-     * @return list os specs of dishwasher
+     * @return list os specs of an Electric Oven
      */
     @Override
     public List<String> getSpecsList() {

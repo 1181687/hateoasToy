@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.model.Devices.ElectricOven;
 
 import pt.ipp.isep.dei.project.model.Devices.Device;
 import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.Devices.Lamp.LampSpecs;
+import pt.ipp.isep.dei.project.model.Devices.ElectricOven.ElectricOvenSpecs;
 import pt.ipp.isep.dei.project.model.Devices.Programmable;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.Room;
@@ -14,14 +14,14 @@ import java.util.*;
 public class ElectricOven implements Device {
     private String name;
     private Room location;
-    private LampSpecs specs;
+    private ElectricOvenSpecs specs;
     private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public ElectricOven(String name, DeviceSpecs lampSpecs) {
+    public ElectricOven(String name, DeviceSpecs electricOvenSpecs) {
         this.name = name;
-        this.specs = (LampSpecs) lampSpecs;
+        this.specs = (ElectricOvenSpecs) electricOvenSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
     }
@@ -181,10 +181,10 @@ public class ElectricOven implements Device {
     }
 
     /**
-     * Equals method to determine if two Device1 are equal.     *
+     * Equals method to determine if two Devices are equal.     *
      *
      * @param obj receives an object
-     * @return boolean true if are equal and false if are not.
+     * @return boolean true if are equal and false if they are not.
      */
     @Override
     public boolean equals(Object obj) {
@@ -318,7 +318,7 @@ public class ElectricOven implements Device {
     /**
      * get method
      *
-     * @return list of specs of lamp specs
+     * @return list of specs of electric oven specs
      */
     @Override
     public List<String> getSpecsList() {
@@ -329,7 +329,7 @@ public class ElectricOven implements Device {
      * get method
      *
      * @param attributeName string attribute
-     * @return name of attributes of Lamp specs
+     * @return name of attributes of electric oven specs
      */
     @Override
     public Object getAttributeValue(String attributeName) {
@@ -340,7 +340,7 @@ public class ElectricOven implements Device {
     /**
      * get method
      *
-     * @return the string of an attribute of Lamp Specs
+     * @return the string of an attribute of electric oven Specs
      */
 
     @Override
