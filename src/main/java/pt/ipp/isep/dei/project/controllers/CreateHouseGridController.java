@@ -2,7 +2,9 @@ package pt.ipp.isep.dei.project.controllers;
 
 
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.HouseGrid;
+import pt.ipp.isep.dei.project.model.HouseGrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.HouseGrid.HouseGridDTO;
+import pt.ipp.isep.dei.project.model.HouseGrid.HouseGridMapper;
 
 import java.util.List;
 
@@ -27,19 +29,12 @@ public class CreateHouseGridController {
     /**
      * Method that creates a new house grid.
      *
-     * @param nameOfHG Name of the grid.
+     * @param gridDTO HouseGridDTO.
      * @return New object of the class HouseGrid.
      */
-    public HouseGrid createANewHouseGrid (String nameOfHG){
-        return house.newHouseGrid(nameOfHG);
+    public boolean createANewHouseGrid (HouseGridDTO gridDTO){
+        HouseGrid newGrid = HouseGridMapper.mapToEntity(gridDTO);
+        return house.createHouseGrid(newGrid);
     }
 
-    /**
-     * Method that adds a new grid to the list of grids.
-     *
-     * @param grid Specified grid.
-     */
-    public void addHouseGridToTheListOfHouseGrids(HouseGrid grid) {
-        house.addGrid(grid);
-    }
 }
