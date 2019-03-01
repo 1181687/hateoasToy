@@ -121,6 +121,7 @@ public class ElectricOven implements Device {
     public boolean setLocation(Room location) {
         if (Objects.isNull(this.location)) {
             this.location = location;
+            location.addDevice(this);
             return true;
         }
         if (this.location.equals(location)) {
@@ -128,6 +129,7 @@ public class ElectricOven implements Device {
         }
         this.location.getDeviceList().remove(this);
         this.location = location;
+        location.addDevice(this);
         return true;
     }
 
