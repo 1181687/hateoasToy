@@ -292,11 +292,11 @@ class WashingMachineTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithTwoSolutionsTest() {
+    void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
         // Arrange
-        double expectedResult = 12;
+        double expectedResult = 15;
 
-        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 0, 00, 00);
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 23, 23, 45, 00);
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
