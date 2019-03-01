@@ -1,0 +1,14 @@
+NON-FUNCTIONAL REQUIREMENTS
+
+- System development uses an agile approach.
+- The system is implemented using the Java programming language using a Test-Driven Development (TDD) approach regarding
+code development.
+- A minimum of 95% of code coverage and mutation coverage (80%) of tests is required. (UI and IO packages are not
+included in this coverage requirements.)
+- All code, comments and documentation are in English.
+- System’s documentation is in the project’s Bitbucket wiki.
+- A text console UI is available for local system management by the Administrator.
+- In the early stages of development, the other users use a text console to interact with the system.
+- The UI is in English.
+- All data exchange between controller and UI classes will use DTOs, in order to improve application's
+serviceability

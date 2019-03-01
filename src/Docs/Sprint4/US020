@@ -1,0 +1,23 @@
+NUMBER: US020
+
+DESCRIPTION: As an Administrator, I want to import geographical areas sensors’ readings into the application from a
+CSV file. Data outside the valid sensor operation period shouldn’t be imported but registered in the application log.
+
+TEAM MEMBERS: Developer - Luis de Almeida; QA - Gabriela Alves;
+
+ACCEPTANCE CRITERIA:
+
+- All acceptance tests with "Process finished with exit code 0" message:
+    - Test coverage: 95% (minimum).
+    - Mutation Coverage:80% (minimum).
+- Correct Sequence and Class Diagrams.
+- JavaDoc documentation in both code and tests.
+- JUnit conventions in code and tests. (eg. tests should be named like this:
+                                        testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
+- All code, comments and documentation are in proper English.
+
+
+ASSUMPTIONS:
+There is User interaction: the application asks the user the location of the files to be imported.
+
+OTHER INFORMATION:
