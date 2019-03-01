@@ -2,13 +2,10 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.DishWasher.DishWasherType;
 import pt.ipp.isep.dei.project.model.Devices.Programmable;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.Program;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,22 +19,37 @@ class DishWasherTest {
     private Room kitchen;
     private Room laundry;
     private Device dishwasher;
+    private House house;
     private Map<LocalDateTime, Double> map;
     private Reading reading0;
     private Reading reading1;
     private Reading reading2;
 
+
     @BeforeEach
     public void StartUp() {
+        // House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Location houseLocation = new Location(41.178553, -8.608035, 111);
+        Address address = new Address("4200-072", houseLocation);
+        this.house.setAddress(address);
+
+
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
         this.kitchen = new Room("Kitchen", 1, dim);
         this.laundry = new Room("Laundry", 1, dim);
 
+        house.addRoom(kitchen);
+        house.addRoom(laundry);
+
+
         // Devices
-        DishWasherType dishWasherType = new DishWasherType();
-        dishWasherType.createDevice("Bosch 400 Series", kitchen);
-        dishwasher = dishWasherType.createDevice("Bosch 500 Series", kitchen);
+        house.createDevice("DishWasher", "Bosch 600 Series", kitchen);
+        dishwasher = house.createDevice("DishWasher", "Bosch 500 Series", kitchen);
         dishwasher.setAttributesDevType("Capacity", 10);
         dishwasher.setAttributesDevType("Duration", 0);
         dishwasher.setAttributesDevType("Nominal Power", 1200);
@@ -128,7 +140,7 @@ class DishWasherTest {
 
     @Test
     public void setNameAlreadyInListTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> dishwasher.setName("Bosch 400 Series"));
+        Throwable exception = assertThrows(RuntimeException.class, () -> dishwasher.setName("Bosch 600 Series"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
@@ -144,7 +156,7 @@ class DishWasherTest {
     @Test
     public void setNameTrueTest() {
         // Act
-        boolean result = dishwasher.setName("Bosch 600 Series");
+        boolean result = dishwasher.setName("Bosch 700 Series");
 
         // Assert
         assertTrue(result);

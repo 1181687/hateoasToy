@@ -1,19 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.EstimateEnergyOfWaterHeaterController;
-import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.ElectricWaterHeater.ElectricWaterHeaterType;
-import pt.ipp.isep.dei.project.utils.Utils;
-
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 class EstimateEnergyOfWaterHeaterControllerTest {
-    private EstimateEnergyOfWaterHeaterController controller;
+    /*private EstimateEnergyOfWaterHeaterController controller;
     private House house;
     private Room kitchen;
     private Room laundry;
@@ -109,5 +97,5 @@ class EstimateEnergyOfWaterHeaterControllerTest {
 
         // Assert
         assertEquals(expectedResult, result, 0.0001);
-    }
+    }*/
 }

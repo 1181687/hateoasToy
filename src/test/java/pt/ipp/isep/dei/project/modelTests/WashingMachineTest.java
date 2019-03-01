@@ -4,11 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Devices.Device;
 import pt.ipp.isep.dei.project.model.Devices.Programmable;
-import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineType;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.Program;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -19,22 +16,31 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class WashingMachineTest {
+    private House house;
     private Room kitchen;
     private Room laundry;
     private Device washingMachine;
     private Map<LocalDateTime, Double> map;
+    private static final String WASHING_MACHINE_TYPE = "Washing Machine";
+
 
     @BeforeEach
     public void StartUp() {
+        //House
+        // House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
         kitchen = new Room("Kitchen", 1, dim);
         laundry = new Room("Laundry", 1, dim);
 
         // Devices
-        WashingMachineType washingMachineType = new WashingMachineType();
-        washingMachineType.createDevice("Maytag 2.6", kitchen);
-        washingMachine = washingMachineType.createDevice("Maytag 3.6", kitchen);
+        house.createDevice(WASHING_MACHINE_TYPE, "Maytag 2.6", kitchen);
+        washingMachine = house.createDevice(WASHING_MACHINE_TYPE, "Maytag 3.6", kitchen);
         washingMachine.setAttributesDevType("Capacity", 40);
         washingMachine.setAttributesDevType("Duration", 1);
         washingMachine.setAttributesDevType("Energy Consumption", 1);
@@ -182,7 +188,7 @@ class WashingMachineTest {
     void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Maytag 3.6\n" +
-                "2 - Device1 Specifications\n" +
+                "2 - Device Specifications \n" +
                 "3 - Location: Kitchen\n";
         // Act
         String result = washingMachine.getAttributesToString();

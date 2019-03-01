@@ -3,10 +3,11 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.Fridge.FridgeType;
 import pt.ipp.isep.dei.project.model.Dimension;
+import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,19 +25,31 @@ class FridgeTest {
     private Reading reading0;
     private Reading reading1;
     private Reading reading2;
+    private House house;
 
 
     @BeforeEach
     public void StartUp() {
+
+        // House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
         kitchen = new Room("Kitchen", 1, dim);
         laundry = new Room("Laundry", 1, dim);
+        this.house.addRoom(kitchen);
+        this.house.addRoom(laundry);
 
         // Devices
-        FridgeType fridgeType = new FridgeType();
-        Device dummyFridge = fridgeType.createDevice("Miele PerfectCool Series 1000", kitchen);
-        fridge = fridgeType.createDevice("Miele PerfectCool Series 3500", kitchen);
+        // Dummy Fridge
+        house.createDevice("Fridge", "Miele PerfectCool Series 1000", kitchen);
+
+        // Fridge
+        fridge = house.createDevice("Fridge", "Miele PerfectCool Series 3500", kitchen);
         fridge.setAttributesDevType("Freezer Capacity", 40);
         fridge.setAttributesDevType("Refrigerator Capacity", 20);
         fridge.setAttributesDevType("Annual Energy Consumption", 36500);
@@ -214,8 +227,9 @@ class FridgeTest {
     void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Miele PerfectCool Series 3500\n" +
-                "2 - Device Specifications\n" +
+                "2 - Device Specifications \n" +
                 "3 - Location: Kitchen\n";
+
         // Act
         String result = fridge.getAttributesToString();
 
@@ -331,6 +345,21 @@ class FridgeTest {
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    public void setDeactivateDeviceTrue() {
+
+        boolean result = fridge.setDeactivateDevice();
+        assertTrue(result);
+    }
+
+    @Test
+    public void setDeactivateDeviceAlreadyDeactivatedFalse() {
+
+        fridge.setDeactivateDevice();
+        boolean result = fridge.setDeactivateDevice();
+        assertFalse(result);
     }
 
     @Test

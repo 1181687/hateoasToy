@@ -3,13 +3,11 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.Devices.Programmable;
 import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineSpecs;
-import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineType;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.Program;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,22 +18,32 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.testng.Assert.assertTrue;
 
 class WashingMachineSpecsTest {
-    private Room room;
+    private House house;
+    private Room kitchen;
     private Device washingMachine;
     private final String CAPACITY = "Capacity";
     private final String NOMINAL_POWER = "Nominal Power";
     private Reading reading0;
     private Reading reading1;
     private Reading reading2;
+    private static final String WASHING_MACHINE_TYPE = "Washing Machine";
+
 
     @BeforeEach
     public void StartUp() {
+        // House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
+        // Room
         Dimension dimension = new Dimension(2, 2, 2);
-        this.room = new Room("Kitchen", 0, dimension);
+        this.kitchen = new Room("Kitchen", 0, dimension);
+        house.addRoom(kitchen);
 
-        WashingMachineType type = new WashingMachineType();
-        this.washingMachine = type.createDevice("Wm1", room);
+        // Device
+        this.washingMachine = house.createDevice(WASHING_MACHINE_TYPE, "Wm1", kitchen);
 
         // Reading
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -281,7 +289,7 @@ class WashingMachineSpecsTest {
         expectedResult.add("Nominal Power");
 
         // Act
-        List<String> result = room.getDeviceByPosition(0).getSpecsList();
+        List<String> result = kitchen.getDeviceByPosition(0).getSpecsList();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -291,12 +299,12 @@ class WashingMachineSpecsTest {
     public void testGetAttributeValueNominalPower() {
         // Arrange
         // FridgeSpecs Instantiation
-        room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
-        room.getDeviceByPosition(0).setAttributesDevType("Capacity", 30);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Capacity", 30);
 
         Object expectedResult = 100.0;
         // Act
-        Object result = room.getDeviceByPosition(0).getAttributeValue("Nominal Power");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Nominal Power");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -305,12 +313,12 @@ class WashingMachineSpecsTest {
     public void testGetAttributeValueCapacity() {
         // Arrange
         // FridgeSpecs Instantiation
-        room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
-        room.getDeviceByPosition(0).setAttributesDevType("Capacity", 30);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Capacity", 30);
 
         Object expectedResult = 30;
         // Act
-        Object result = room.getDeviceByPosition(0).getAttributeValue("Capacity");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Capacity");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -319,13 +327,13 @@ class WashingMachineSpecsTest {
     public void testGetAttributeValueDuration() {
         // Arrange
         // FridgeSpecs Instantiation
-        room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
-        room.getDeviceByPosition(0).setAttributesDevType("Duration", 30);
-        room.getDeviceByPosition(0).setAttributesDevType("Capacity", 30);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Duration", 30);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Capacity", 30);
 
         Object expectedResult = 30.0;
         // Act
-        Object result = room.getDeviceByPosition(0).getAttributeValue("Duration");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Duration");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -334,12 +342,12 @@ class WashingMachineSpecsTest {
     public void testGetAttributeValueEnergyConsumption() {
         // Arrange
         // FridgeSpecs Instantiation
-        room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
-        room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 30);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 30);
 
         Object expectedResult = 30.0;
         // Act
-        Object result = room.getDeviceByPosition(0).getAttributeValue("Energy Consumption");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Energy Consumption");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -348,12 +356,12 @@ class WashingMachineSpecsTest {
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
         // FridgeSpecs Instantiation
-        room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
-        room.getDeviceByPosition(0).setAttributesDevType("Capacity", 20.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Capacity", 20.0);
 
         Object expectedResult = -1;
         // Act
-        Object result = room.getDeviceByPosition(0).getAttributeValue("Not Valid");
+        Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Not Valid");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -363,7 +371,7 @@ class WashingMachineSpecsTest {
         // Arrange
         String tuff = "coiso";
         // Act
-        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Capacity", tuff);
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Capacity", tuff);
         // Assert
         assertFalse(result);
     }
@@ -373,7 +381,7 @@ class WashingMachineSpecsTest {
         // Arrange
         String tuff = "coiso";
         // Act
-        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Duration", tuff);
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Duration", tuff);
         // Assert
         assertFalse(result);
     }
@@ -383,7 +391,7 @@ class WashingMachineSpecsTest {
         // Arrange
         String tuff = "coiso";
         // Act
-        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", tuff);
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", tuff);
         // Assert
         assertFalse(result);
     }
@@ -391,9 +399,9 @@ class WashingMachineSpecsTest {
     @Test
     public void testSetAttributeNominalPowerSameValue() {
         // Arrange
-        room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
         // Act
-        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
         // Assert
         assertFalse(result);
     }
@@ -403,7 +411,7 @@ class WashingMachineSpecsTest {
         // Arrange
         String tuff = "coiso";
         // Act
-        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", tuff);
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", tuff);
         // Assert
         assertFalse(result);
     }
@@ -411,9 +419,9 @@ class WashingMachineSpecsTest {
     @Test
     public void testSetAttributeDurationSameValue() {
         // Arrange
-        room.getDeviceByPosition(0).setAttributesDevType("Duration", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Duration", 100.0);
         // Act
-        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Duration", 100.0);
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Duration", 100.0);
         // Assert
         assertFalse(result);
     }
@@ -422,7 +430,7 @@ class WashingMachineSpecsTest {
     public void testSetAttributeDurationValidValue() {
         // Arrange
         // Act
-        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Duration", 100.0);
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Duration", 100.0);
         // Assert
         assertTrue(result);
     }
@@ -430,9 +438,9 @@ class WashingMachineSpecsTest {
     @Test
     public void testSetAttributeEnergyConsumptionSameValue() {
         // Arrange
-        room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 100.0);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 100.0);
         // Act
-        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 100.0);
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 100.0);
         // Assert
         assertFalse(result);
     }
@@ -441,7 +449,7 @@ class WashingMachineSpecsTest {
     public void testSetAttributeEnergyConsumptionZero() {
         // Arrange
         // Act
-        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 0);
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 0);
         // Assert
         assertFalse(result);
     }
@@ -450,7 +458,7 @@ class WashingMachineSpecsTest {
     public void testSetAttributeEnergyConsumptionValidValue() {
         // Arrange
         // Act
-        boolean result = room.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 100.0);
+        boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 100.0);
         // Assert
         assertTrue(result);
     }
@@ -470,9 +478,9 @@ class WashingMachineSpecsTest {
         //Arrange
         Program program = null;
         boolean expectedResult = false;
-        Programmable programmable = this.washingMachine.asProgrammable();
+        DeviceSpecs deviceSpecs = this.washingMachine.getSpecs();
         //Act
-        boolean result = programmable.addProgram(program);
+        boolean result = ((WashingMachineSpecs)deviceSpecs).addProgram(program);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -483,14 +491,15 @@ class WashingMachineSpecsTest {
         String programName = "fast";
         double duration = 15;
         double energyConsumption = 1;
+        DeviceSpecs deviceSpecs = this.washingMachine.getSpecs();
         Programmable programmable = this.washingMachine.asProgrammable();
         Program programA = programmable.newProgram(programName, duration, energyConsumption);
         Program programB = programmable.newProgram(programName, duration, energyConsumption);
-        programmable.addProgram(programA);
+        ((WashingMachineSpecs)deviceSpecs).addProgram(programA);
         boolean expectedResult = false;
 
         //Act
-        boolean result = programmable.addProgram(programB);
+        boolean result = ((WashingMachineSpecs)deviceSpecs).addProgram(programB);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -503,13 +512,15 @@ class WashingMachineSpecsTest {
         String programName = "fast";
         double duration = 15;
         double energyConsumption = 1;
+        DeviceSpecs deviceSpecs = this.washingMachine.getSpecs();
+
         Programmable programmable = this.washingMachine.asProgrammable();
         Program programA = programmable.newProgram(programName, duration, energyConsumption);
 
         boolean expectedResult = true;
 
         //Act
-        boolean result = programmable.addProgram(programA);
+        boolean result = ((WashingMachineSpecs)deviceSpecs).addProgram(programA);
 
         //Assert
         assertEquals(expectedResult, result);

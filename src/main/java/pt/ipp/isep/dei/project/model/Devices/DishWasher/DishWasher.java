@@ -20,11 +20,9 @@ public class DishWasher implements Device, Programmable {
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public DishWasher(String name, Room location, DeviceSpecs dishWasherSpecs) {
+    public DishWasher(String name, DeviceSpecs dishWasherSpecs) {
         this.name = name;
         this.specs = (DishWasherSpecs) dishWasherSpecs;
-        this.location = location;
-        this.location.addDevice(this);
         this.isActive = true;
         this.readingList = new ArrayList<>();
     }
@@ -37,6 +35,27 @@ public class DishWasher implements Device, Programmable {
     @Override
     public double getNominalPower() {
         return specs.getNominalPower();
+    }
+
+    /**
+     * -     * method that set the location (room) of a added device.
+     * -     *
+     * -     * @param location
+     * -     * @return false if the location is equals to another device. True if not.
+     * -
+     */
+    @Override
+    public boolean setLocation(Room location) {
+        if (Objects.isNull(this.location)) {
+            this.location = location;
+            return true;
+        }
+        if (this.location.equals(location)) {
+            return false;
+        }
+        this.location.getDeviceList().remove(this);
+        this.location = location;
+        return true;
     }
 
     /**
@@ -59,14 +78,15 @@ public class DishWasher implements Device, Programmable {
         return this.name;
     }
 
+
+
     /**
-     * method that gets the Type
-     *
-     * @return String
+     * method that gets the Device Specifications
+     * @return DeviceSpecs
      */
     @Override
-    public String getType() {
-        return specs.getTypeName();
+    public DeviceSpecs getSpecs() {
+        return this.specs;
     }
 
     /**
@@ -80,81 +100,13 @@ public class DishWasher implements Device, Programmable {
     }
 
     /**
-     * Method that gets the energy consumption in a day.
-     *
-     * @return Energy consumption of the device in a given day.
+     * Method that gets the boolean attribute from each device.
+     * @return boolean
      */
-    @Override
-    public double getEnergyConsumptionInADay() {
-        return specs.getEnergyConsumptionInADay();
+    public boolean isActive() {
+        return isActive;
     }
 
-    /**
-     * method that set the given name only if the name don't exists in DeviceList
-     * and if it is different than the name that the Device1 has.
-     *
-     * @param name String given name
-     * @return true if sets false if don't
-     */
-    @Override
-    public boolean setName(String name) {
-        if (this.location.isDeviceNameExistant(name) || this.name == name) {
-            throw new RuntimeException("Name already exists. Please write a new one.");
-        }
-        this.name = name;
-        return true;
-    }
-
-    /**
-     * method that set the location (room) of a added device.
-     *
-     * @param location
-     * @return false if the location is equals to another device. True if not.
-     */
-    @Override
-    public boolean setLocation(Room location) {
-        if (this.location.equals(location)) {
-            return false;
-        }
-        this.location.getDeviceList().remove(this);
-        this.location = location;
-        this.location.addDevice(this);
-        return true;
-    }
-
-    /**
-     * Method that returns the attributes of the device specs.
-     *
-     * @return String with the attributes.
-     */
-    public String getDevSpecsAttributesToString() {
-        return specs.getAttributesToString();
-    }
-
-    /**
-     * method that get all attributes of a device by strings.
-     *
-     * @return the device attributes.
-     */
-    public String getAttributesToString() {
-
-        StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Name: " + name + "\n");
-        attributes.append("2 - Device Specifications \n");
-        attributes.append("3 - Location: " + location.getName() + "\n");
-        return attributes.toString();
-    }
-
-    /**
-     * method that set the attributes of a device type.
-     *
-     * @param attribute
-     * @param value
-     * @return the position of an attribute and the value of it.
-     */
-    public boolean setAttributesDevType(String attribute, Object value) {
-        return this.specs.setAttributeValue(attribute, value);
-    }
 
     /**
      * method that creates the hashcode to two devices that are have the same name.
@@ -184,81 +136,13 @@ public class DishWasher implements Device, Programmable {
         return this.name.equalsIgnoreCase(listOne.getName());
     }
 
-    /**
-     * method that get the number of specifications of a device.
-     *
-     * @return the number of attributes.
-     */
-    public int getNumberOfSpecsAttributes() {
-        return specs.getNumberOfAttributes();
-    }
-
-    /**
-     * method that returns the name of device and its location
-     *
-     * @return String
-     */
-    @Override
-    public String getNameToString() {
-        StringBuilder nameLocation = new StringBuilder();
-        nameLocation.append("Device: " + name);
-        nameLocation.append(", located in room: " + location.getName() + "\n");
-        return nameLocation.toString();
-    }
-
-    /**
-     * Method that adds a reading to the device.
-     *
-     * @param reading Reading to be added.
-     */
-    public void addReadingsToTheList(Reading reading) {
-        this.readingList.add(reading);
-    }
-
-    /**
-     * Method that calculates the sum of the value in each Reading in a given Reading list.
-     *
-     * @param readingList List with Reading.
-     * @return Double with the required sum.
-     */
-    public double getSumOfTheReadings(List<Reading> readingList) {
-        double sum = 0;
-        for (Reading reading : readingList) {
-            sum += reading.getValue();
-        }
-        return sum;
-    }
-
-
-    /**
-     * Method that calculates the total energy consumption of a device in a given interval.
-     * This method has in count all the fully contained readingList, i.e., if there's just one readingList in the interval, it
-     * is not counted.
-     *
-     * @param startDate Start date.
-     * @param endDate   End date.
-     * @return Double with the required energy consumption.
-     */
-    @Override
-    public double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
-        double totalEnergyConsumption = 0;
-        List<Reading> readings = getReadingsListInInterval(startDate, endDate);
-        if (!(readings.isEmpty())) {
-            readings.remove(0);
-            totalEnergyConsumption = getSumOfTheReadings(readings);
-        }
-        return totalEnergyConsumption;
-    }
 
     @Override
     public LocalDateTime getDeactivationDate() {
         return this.deactivationDate;
     }
 
-    @Override
-    public String getDateDeactivateDeviceToString() {
-        return this.deactivationDate.toLocalDate().toString() + " " + this.deactivationDate.toLocalTime().toString();
-    }
+
 
     /**
      * method that set the deactivate device, turning it to false and giving a date
@@ -313,7 +197,6 @@ public class DishWasher implements Device, Programmable {
     }
 
     /**
-     *
      * get method
      *
      * @param attributeName string attribute
@@ -358,6 +241,6 @@ public class DishWasher implements Device, Programmable {
 
     @Override
     public boolean addProgram(Program program) {
-        return specs.addProgram(program);
+        return this.specs.addProgram(program);
     }
 }

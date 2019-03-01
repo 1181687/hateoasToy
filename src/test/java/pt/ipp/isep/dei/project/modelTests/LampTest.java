@@ -3,10 +3,11 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.Lamp.LampType;
 import pt.ipp.isep.dei.project.model.Dimension;
+import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,6 +21,7 @@ class LampTest {
     private Room kitchen;
     private Room laundry;
     private Device lamp;
+    private House house;
     private Map<LocalDateTime, Double> map;
     private Reading reading0;
     private Reading reading1;
@@ -27,15 +29,22 @@ class LampTest {
 
     @BeforeEach
     public void StartUp() {
+        // House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
         kitchen = new Room("Kitchen", 1, dim);
         laundry = new Room("Laundry", 1, dim);
+        this.house.addRoom(kitchen);
+        this.house.addRoom(laundry);
 
         // Devices
-        LampType lampType = new LampType();
-        Device dummyLamp = lampType.createDevice("TaoTronics Elune TT-DL01", kitchen);
-        lamp = lampType.createDevice("TaoTronics Elune TT-DL02", kitchen);
+        Device dummyLamp = house.createDevice("Lamp", "TaoTronics Elune TT-DL01", kitchen);
+        lamp = house.createDevice("Lamp", "TaoTronics Elune TT-DL02", kitchen);
         lamp.setAttributesDevType("Luminous Flux", 2800);
         lamp.setAttributesDevType("Time", 1);
         lamp.setAttributesDevType("Nominal Power", 300);
@@ -204,7 +213,7 @@ class LampTest {
     void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: TaoTronics Elune TT-DL02\n" +
-                "2 - Device1 Specifications\n" +
+                "2 - Device Specifications \n" +
                 "3 - Location: Kitchen\n";
         // Act
         String result = lamp.getAttributesToString();

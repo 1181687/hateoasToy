@@ -1,14 +1,14 @@
-package pt.ipp.isep.dei.project.model.Devices.WashingMachine;
+package pt.ipp.isep.dei.project.model.Devices.ElectricOven;
 
 import pt.ipp.isep.dei.project.model.Devices.Device;
 import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.Devices.DeviceType;
 
-public class WashingMachineType implements DeviceType {
+public class ElectricOvenType implements DeviceType {
     String typeName;
 
-    public WashingMachineType() {
-        this.typeName = "Washing Machine";
+    public ElectricOvenType() {
+        this.typeName = "Electric Oven";
     }
 
     @Override
@@ -17,7 +17,7 @@ public class WashingMachineType implements DeviceType {
     }
 
     public Device createDevice(String name) {
-        DeviceSpecs washingMachineSpecs = new WashingMachineSpecs();
-        return new WashingMachine(name, washingMachineSpecs);
+        DeviceSpecs electricOvenSpecs = new ElectricOvenSpecs();
+        return new ElectricOven(name, electricOvenSpecs);
     }
 }

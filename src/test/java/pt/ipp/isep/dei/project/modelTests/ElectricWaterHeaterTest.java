@@ -2,11 +2,9 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.ElectricWaterHeater.ElectricWaterHeaterType;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -20,22 +18,38 @@ class ElectricWaterHeaterTest {
     private Room kitchen;
     private Room laundry;
     private Device electricWaterHeater;
+    private House house;
     private Map<LocalDateTime, Double> map;
     private Reading reading0;
     private Reading reading1;
     private Reading reading2;
+    private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
+
 
     @BeforeEach
     public void StartUp() {
+        // House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Location houseLocation = new Location(41.178553, -8.608035, 111);
+        Address address = new Address("4200-072", houseLocation);
+        this.house.setAddress(address);
+
+
+
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
         kitchen = new Room("Kitchen", 1, dim);
         laundry = new Room("Laundry", 1, dim);
 
+        house.addRoom(kitchen);
+        house.addRoom(laundry);
+
         // Devices
-        ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
-        electricWaterHeaterType.createDevice("Bosch Tronic 2000", kitchen);
-        electricWaterHeater = electricWaterHeaterType.createDevice("Bosch Tronic 3000", kitchen);
+        house.createDevice(ELECTRIC_W_H_TYPE, "Bosch Tronic 2000", kitchen);
+        electricWaterHeater = house.createDevice(ELECTRIC_W_H_TYPE,"Bosch Tronic 3000", kitchen);
         electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 55);
         electricWaterHeater.setAttributesDevType("Performance Ratio", 0.9);
         electricWaterHeater.setAttributesDevType("Nominal Power", 700);
@@ -199,7 +213,7 @@ class ElectricWaterHeaterTest {
     void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Bosch Tronic 3000\n" +
-                "2 - Device1 Specifications\n" +
+                "2 - Device Specifications \n" +
                 "3 - Location: Kitchen\n";
         // Act
         String result = electricWaterHeater.getAttributesToString();
