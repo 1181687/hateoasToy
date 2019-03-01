@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.model.Devices;
 import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -228,12 +229,14 @@ public interface Device extends Measurable {
      */
     default double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate) {
         double totalEnergyConsumption = 0;
-        List<Reading> readings = getReadingsListInInterval(startDate, endDate);
-        if (!(readings.isEmpty())) {
-            if (!(readings.get(0).equals(getReadings().get(0))) || startDate.equals(readings.get(0).getDateTime())) {
-                readings.remove(0);
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
+        List<Reading> validReadings = getReadingsListInInterval(startDate, endDate);
+        if (!(validReadings.isEmpty())) {
+            LocalDateTime firstValidReadingDateTime = validReadings.get(0).getDateTime();
+            if (startDate.isAfter(firstValidReadingDateTime.minusMinutes(meteringPeriodGrid))) {
+                validReadings.remove(0);
             }
-            totalEnergyConsumption = getSumOfTheReadings(readings);
+            totalEnergyConsumption = getSumOfTheReadings(validReadings);
         }
         return totalEnergyConsumption;
     }

@@ -478,7 +478,7 @@ public class RoomTest {
         double expectedResult = 0;
 
         LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 9, 00, 00);
-        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 15, 00, 00);
 
         // Act
         double result = kitchen.getEnergyConsumptionInAnInterval(startDate, endDate);
