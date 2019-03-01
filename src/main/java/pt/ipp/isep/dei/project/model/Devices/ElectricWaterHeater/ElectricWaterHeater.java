@@ -48,6 +48,7 @@ public class ElectricWaterHeater implements Device, Measurable {
     public boolean setLocation(Room location) {
         if (Objects.isNull(this.location)) {
             this.location = location;
+            location.addDevice(this);
             return true;
         }
         if (this.location.equals(location)) {
@@ -55,6 +56,7 @@ public class ElectricWaterHeater implements Device, Measurable {
         }
         this.location.getDeviceList().remove(this);
         this.location = location;
+        location.addDevice(this);
         return true;
     }
 

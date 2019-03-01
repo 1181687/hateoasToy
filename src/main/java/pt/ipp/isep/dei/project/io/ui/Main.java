@@ -20,6 +20,8 @@ public class Main {
     private static final String GLASSES = "Glasses";
     private static final String DISHES = "Dishes";
 
+    private static final String ELECTRIC_WATER_HEATER = "Electric Water Heater";
+    private static final String DISHWASHER = "DishWasher";
 
     public static void main(String[] args) {
 
@@ -360,7 +362,7 @@ public class Main {
         double durationNotAsked = 30;
 
         // Electric Water Heater B107
-        Device ewhB107 = houseEdificioB.createDevice("Electric Water Heater", "EHW B107", room1);
+        Device ewhB107 = houseEdificioB.createDevice(ELECTRIC_WATER_HEATER, "EHW B107", room1);
         ewhB107.setAttributesDevType(VOLUME_OF_WATER, 55);
         ewhB107.setAttributesDevType(HOT_WATER_TEMPERATURE, 100);
         ewhB107.setAttributesDevType(NOMINAL_POWER, 1.5);
@@ -387,7 +389,7 @@ public class Main {
         ewhB107.addReadingsToTheList(ewhEC18);
 
         // Dishwasher B107
-        Device dwB107 = houseEdificioB.createDevice("DishWasher", "Dishwasher B107", room1);
+        Device dwB107 = houseEdificioB.createDevice(DISHWASHER, "Dishwasher B107", room1);
         dwB107.setAttributesDevType(CAPACITY, 50);
         dwB107.setAttributesDevType(NOMINAL_POWER, 1.5);
 
@@ -434,7 +436,7 @@ public class Main {
         wmB107Programmable.addProgram(program7);
 
         // Electric Water Heater B109
-        Device ewhB109 = houseEdificioB.createDevice("Electric Water Heater", "EHW B109", room2);
+        Device ewhB109 = houseEdificioB.createDevice(ELECTRIC_WATER_HEATER, "EHW B109", room2);
         ewhB109.setAttributesDevType(VOLUME_OF_WATER, 55);
         ewhB109.setAttributesDevType(HOT_WATER_TEMPERATURE, 100);
         ewhB109.setAttributesDevType(NOMINAL_POWER, 1.5);
@@ -461,7 +463,7 @@ public class Main {
         ewhB109.addReadingsToTheList(ewh1EC18);
 
         // Dishwasher B019
-        Device dwB109 = houseEdificioB.createDevice("DishWasher", "Dishwasher B109", room2);
+        Device dwB109 = houseEdificioB.createDevice(DISHWASHER, "Dishwasher B109", room2);
         dwB109.setAttributesDevType(CAPACITY, 50);
         dwB109.setAttributesDevType(NOMINAL_POWER, 1.5);
 
@@ -498,7 +500,7 @@ public class Main {
         wmB109Programmable.addProgram(program11);
 
         // Electric Water Heater 106
-        Device ewhB106 = houseEdificioB.createDevice("Electric Water Heater", "EHW B106", room3);
+        Device ewhB106 = houseEdificioB.createDevice(ELECTRIC_WATER_HEATER, "EHW B106", room3);
         ewhB106.setAttributesDevType(VOLUME_OF_WATER, 55);
         ewhB106.setAttributesDevType(HOT_WATER_TEMPERATURE, 150);
         ewhB106.setAttributesDevType(NOMINAL_POWER, 2.2);
@@ -506,7 +508,7 @@ public class Main {
 
 
         // Dishwasher B106
-        Device dwB106 = houseEdificioB.createDevice("DishWasher", "Dishwasher B106", room3);
+        Device dwB106 = houseEdificioB.createDevice(DISHWASHER, "Dishwasher B106", room3);
         dwB106.setAttributesDevType(CAPACITY, 50);
         dwB106.setAttributesDevType(NOMINAL_POWER, 1.4);
 

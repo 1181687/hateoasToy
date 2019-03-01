@@ -68,7 +68,6 @@ public class House {
             }
         }
         Device device = getDeviceType(typeName).createDevice(deviceName);
-        room.addDevice(device);
         device.setLocation(room);
         return device;
     }

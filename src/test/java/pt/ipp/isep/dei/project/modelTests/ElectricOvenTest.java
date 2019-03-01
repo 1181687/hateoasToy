@@ -2,9 +2,9 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.Devices.Device;
 import pt.ipp.isep.dei.project.model.Devices.Programmable;
-import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -15,47 +15,54 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class WashingMachineTest {
-    private House house;
+class ElectricOvenTest {
     private Room kitchen;
     private Room laundry;
-    private Device washingMachine;
+    private Device electricOven;
+    private House house;
     private Map<LocalDateTime, Double> map;
-    private static final String WASHING_MACHINE_TYPE = "Washing Machine";
+    private Reading reading0;
+    private Reading reading1;
+    private Reading reading2;
 
 
     @BeforeEach
     public void StartUp() {
-        //House
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Location houseLocation = new Location(41.178553, -8.608035, 111);
+        Address address = new Address("4200-072", houseLocation);
+        this.house.setAddress(address);
+
 
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
-        kitchen = new Room("Kitchen", 1, dim);
-        laundry = new Room("Laundry", 1, dim);
+        this.kitchen = new Room("Kitchen", 1, dim);
+        this.laundry = new Room("Laundry", 1, dim);
+
+        house.addRoom(kitchen);
+        house.addRoom(laundry);
+
 
         // Devices
-        house.createDevice(WASHING_MACHINE_TYPE, "Maytag 2.6", kitchen);
-        washingMachine = house.createDevice(WASHING_MACHINE_TYPE, "Maytag 3.6", kitchen);
-        washingMachine.setAttributesDevType("Capacity", 40);
-        washingMachine.setAttributesDevType("Duration", 1);
-        washingMachine.setAttributesDevType("Energy Consumption", 1);
-        washingMachine.setAttributesDevType("Nominal Power", 1000);
+        house.createDevice("Electric Oven", "Kenmore Elite 95067", kitchen);
+        electricOven = house.createDevice("Electric Oven", "Kenmore Elite 95053", kitchen);
+        electricOven.setAttributesDevType("Time", 1);
+        electricOven.setAttributesDevType("Nominal Power", 1200);
 
         // Reading
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Reading reading0 = new Reading(3, time0);
+        reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Reading reading1 = new Reading(5, time1);
+        reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Reading reading2 = new Reading(7, time2);
-        washingMachine.addReadingsToTheList(reading0);
-        washingMachine.addReadingsToTheList(reading1);
-        washingMachine.addReadingsToTheList(reading2);
+        reading2 = new Reading(7, time2);
+        electricOven.addReadingsToTheList(reading0);
+        electricOven.addReadingsToTheList(reading1);
+        electricOven.addReadingsToTheList(reading2);
 
         // Maps
         map = new TreeMap<>();
@@ -67,10 +74,10 @@ class WashingMachineTest {
     @Test
     void getNominalPowerTest() {
         //Arrange
-        double expectedResult = 1000.0;
+        double expectedResult = 1200.0;
 
         //Act
-        double result = washingMachine.getNominalPower();
+        double result = electricOven.getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -82,7 +89,7 @@ class WashingMachineTest {
         Room expectedResult = kitchen;
 
         // Act
-        Room result = washingMachine.getLocation();
+        Room result = electricOven.getLocation();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -91,10 +98,10 @@ class WashingMachineTest {
     @Test
     void getNameTest() {
         // Arrange
-        String expectedResult = "Maytag 3.6";
+        String expectedResult = "Kenmore Elite 95053";
 
         // Act
-        String result = washingMachine.getName();
+        String result = electricOven.getName();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -103,10 +110,10 @@ class WashingMachineTest {
     @Test
     void getTypeTest() {
         // Arrange
-        String expectedResult = "Washing Machine";
+        String expectedResult = "Electric Oven";
 
         // act
-        String result = washingMachine.getType();
+        String result = electricOven.getType();
 
         // assert
         assertEquals(expectedResult, result);
@@ -115,10 +122,10 @@ class WashingMachineTest {
     @Test
     public void getEnergyConsumptionInADayTest() {
         // Arrange
-        double expectedResult = 0.0;
+        double expectedResult = 0;
 
         // Act
-        double result = washingMachine.getEnergyConsumptionInADay();
+        double result = electricOven.getEnergyConsumptionInADay();
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -126,20 +133,20 @@ class WashingMachineTest {
 
     @Test
     public void setNameWithSameNameTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> washingMachine.setName("Maytag 3.6"));
+        Throwable exception = assertThrows(RuntimeException.class, () -> electricOven.setName("Kenmore Elite 95053"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
     public void setNameAlreadyInListTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> washingMachine.setName("Maytag 2.6"));
+        Throwable exception = assertThrows(RuntimeException.class, () -> electricOven.setName("Kenmore Elite 95067"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
     public void setNameFalseTest() {
         // Act
-        boolean result = washingMachine.setName("");
+        boolean result = electricOven.setName("");
 
         // Assert
         assertTrue(result);
@@ -148,7 +155,7 @@ class WashingMachineTest {
     @Test
     public void setNameTrueTest() {
         // Act
-        boolean result = washingMachine.setName("Maytag 4.0");
+        boolean result = electricOven.setName("Kenmore Elite 95054");
 
         // Assert
         assertTrue(result);
@@ -157,7 +164,7 @@ class WashingMachineTest {
     @Test
     void setLocationFalseTest() {
         // Act
-        boolean result = washingMachine.setLocation(kitchen);
+        boolean result = electricOven.setLocation(kitchen);
 
         // Assert
         assertFalse(result);
@@ -166,7 +173,7 @@ class WashingMachineTest {
     @Test
     void setLocationTrueTest() {
         // Act
-        boolean result = washingMachine.setLocation(laundry);
+        boolean result = electricOven.setLocation(laundry);
 
         // Assert
         assertTrue(result);
@@ -175,10 +182,9 @@ class WashingMachineTest {
     @Test
     void getDevSpecsAttributesToStringTest() {
         // Arrange
-        String expectedResult = "1 - Capacity: 40\n" +
-                "2 - Nominal Power: 1000.0\n";
+        String expectedResult = "1 - Nominal Power: 1200.0\n";
         // Act
-        String result = washingMachine.getDevSpecsAttributesToString();
+        String result = electricOven.getDevSpecsAttributesToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -187,39 +193,57 @@ class WashingMachineTest {
     @Test
     void getAttributesToStringTest() {
         // Arrange
-        String expectedResult = "1 - Name: Maytag 3.6\n" +
+        String expectedResult = "1 - Name: Kenmore Elite 95053\n" +
                 "2 - Device Specifications \n" +
                 "3 - Location: Kitchen\n";
         // Act
-        String result = washingMachine.getAttributesToString();
+        String result = electricOven.getAttributesToString();
 
         // Assert
         assertEquals(expectedResult, result);
     }
 
     @Test
-    public void setAttributesDevTypeTrue(){
+    public void setAttributesDevTypeTimeSameValueTest() {
         //Act
-        boolean result = washingMachine.setAttributesDevType("Nominal Power", 1001);
+        boolean result = electricOven.setAttributesDevType("Time", 1);
         //Assert
-        assertTrue(result);
+        assertFalse(result);
     }
 
     @Test
-    public void setAttributesDevTypeFalse(){
+    public void setAttributesDevTypeTimeNotValidDataTypeTest() {
+        // Act
+        boolean result = electricOven.setAttributesDevType("Time", "Not Valid Data Type");
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void setAttributesDevTypeNominalPowerSameValueTest() {
         //Act
-        boolean result = washingMachine.setAttributesDevType("Nominal Power", 1000);
+        boolean result = electricOven.setAttributesDevType("Nominal Power", 1200);
         //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void setAttributesDevTypeNominalPowerNotValidDataTypeTest() {
+        // Act
+        boolean result = electricOven.setAttributesDevType("Nominal Power", "Not Valid Data Type");
+
+        // Assert
         assertFalse(result);
     }
 
     @Test
     void hashCodeTest() {
         // Arrange
-        int expectedResult = Objects.hash(washingMachine.getName());
+        int expectedResult = Objects.hash(electricOven.getName());
 
         // Act
-        int result = washingMachine.hashCode();
+        int result = electricOven.hashCode();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -231,7 +255,7 @@ class WashingMachineTest {
         Object object = new Object();
 
         // Act
-        boolean result = washingMachine.equals(object);
+        boolean result = electricOven.equals(object);
 
         // Assert
         assertFalse(result);
@@ -243,7 +267,7 @@ class WashingMachineTest {
         int expectedResult = 2;
 
         // Act
-        int result = washingMachine.getNumberOfSpecsAttributes();
+        int result = electricOven.getNumberOfSpecsAttributes();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -252,10 +276,10 @@ class WashingMachineTest {
     @Test
     void getNameToStringTest() {
         // Arrange
-        String expectedResult = "Device: Maytag 3.6, located in room: Kitchen\n";
+        String expectedResult = "Device: Kenmore Elite 95053, located in room: Kitchen\n";
 
         // Act
-        String result = washingMachine.getNameToString();
+        String result = electricOven.getNameToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -270,7 +294,7 @@ class WashingMachineTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 15, 00, 00);
 
         // Act
-        double result = washingMachine.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = electricOven.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -279,13 +303,28 @@ class WashingMachineTest {
     @Test
     void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
         // Arrange
+        double expectedResult = 12;
+
+        LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 7, 45, 00);
+        LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+
+        // Act
+        double result = electricOven.getEnergyConsumptionInAnInterval(startDate, endDate);
+
+        // Assert
+        assertEquals(expectedResult, result, 0.000001);
+    }
+
+    @Test
+    void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest2() {
+        // Arrange
         double expectedResult = 7;
 
         LocalDateTime startDate = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
-        double result = washingMachine.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = electricOven.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -300,7 +339,7 @@ class WashingMachineTest {
         LocalDateTime endDate = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
 
         // Act
-        double result = washingMachine.getEnergyConsumptionInAnInterval(startDate, endDate);
+        double result = electricOven.getEnergyConsumptionInAnInterval(startDate, endDate);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -310,9 +349,9 @@ class WashingMachineTest {
     void getDeactivationDate() {
         // arrange
         LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
-        washingMachine.setDeactivateDevice();
+        electricOven.setDeactivateDevice();
         // act
-        LocalDateTime result = washingMachine.getDeactivationDate();
+        LocalDateTime result = electricOven.getDeactivationDate();
         // assert
         assertEquals(date, result);
     }
@@ -321,18 +360,17 @@ class WashingMachineTest {
     void getDateDeactivateDeviceToString() {
         // arrange
         String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
-        washingMachine.setDeactivateDevice();
+        electricOven.setDeactivateDevice();
         // act
-        String result = washingMachine.getDateDeactivateDeviceToString();
+        String result = electricOven.getDateDeactivateDeviceToString();
         // assert
         assertEquals(date, result);
     }
 
-
     @Test
     void getIsActiveTrueTest() {
         // Act
-        boolean result = washingMachine.getIsActive();
+        boolean result = electricOven.getIsActive();
 
         // Assert
         assertTrue(result);
@@ -340,11 +378,11 @@ class WashingMachineTest {
 
     @Test
     void getIsActiveFalseTest() {
-        // Assert
-        washingMachine.setDeactivateDevice();
+        // arrange
+        electricOven.setDeactivateDevice();
 
         // Act
-        boolean result = washingMachine.getIsActive();
+        boolean result = electricOven.getIsActive();
 
         // Assert
         assertFalse(result);
@@ -359,7 +397,7 @@ class WashingMachineTest {
         Map<LocalDateTime, Double> expectedResult = map;
 
         // Act
-        Map<LocalDateTime, Double> result = washingMachine.getDataSeries(time0, time2);
+        Map<LocalDateTime, Double> result = electricOven.getDataSeries(time0, time2);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -369,23 +407,58 @@ class WashingMachineTest {
     void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
-        expectedResult.add("Capacity");
         expectedResult.add("Nominal Power");
 
         // Act
-        List<String> result = washingMachine.getSpecsList();
+        List<String> result = electricOven.getSpecsList();
 
         // Assert
         assertEquals(expectedResult, result);
     }
 
     @Test
-    void getAttributeValueTest() {
+    void getAttributeValueTimeTest() {
         // Assert
-        double expectedResult = 1000.0;
+        double expectedResult = 1.0;
 
         // Act
-        Object result = washingMachine.getAttributeValue("Nominal Power");
+        Object result = electricOven.getAttributeValue("Time");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getAttributeValueNominalPowerTest() {
+        // Assert
+        double expectedResult = 1200.0;
+
+        // Act
+        Object result = electricOven.getAttributeValue("Nominal Power");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getAttributeValueNotValidTest() {
+        // Arrange
+        Object expectedResult = -1;
+
+        // Act
+        Object result = electricOven.getAttributeValue("Not Valid");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getAttributeDataTypeTest() {
+        // Arrange
+        String expectedResult = "Double";
+
+        // Act
+        String result = electricOven.getAttributeDataType("Nominal Power");
 
         // Assert
         assertEquals(expectedResult, result);
@@ -397,10 +470,10 @@ class WashingMachineTest {
         String programName = "Economic";
         double duration = 0.5;
         double energyConsumption = 12.0;
-        Programmable programmable = this.washingMachine.asProgrammable();
+        Programmable dishwasher = this.electricOven.asProgrammable();
         Program expectedResult = new Program(programName, duration, energyConsumption);
         //Act
-        Program result = programmable.newProgram(programName, duration, energyConsumption);
+        Program result = dishwasher.newProgram(programName, duration, energyConsumption);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -410,7 +483,7 @@ class WashingMachineTest {
         //Arrange
         Program program = null;
         boolean expectedResult = false;
-        Programmable programmable = this.washingMachine.asProgrammable();
+        Programmable programmable = this.electricOven.asProgrammable();
         //Act
         boolean result = programmable.addProgram(program);
         //Assert
@@ -423,7 +496,7 @@ class WashingMachineTest {
         String programName = "fast";
         double duration = 15;
         double energyConsumption = 1;
-        Programmable programmable = this.washingMachine.asProgrammable();
+        Programmable programmable = this.electricOven.asProgrammable();
         Program programA = programmable.newProgram(programName, duration, energyConsumption);
         Program programB = programmable.newProgram(programName, duration, energyConsumption);
         programmable.addProgram(programA);
@@ -442,7 +515,7 @@ class WashingMachineTest {
         String programName = "fast";
         double duration = 15;
         double energyConsumption = 1;
-        Programmable programmable = this.washingMachine.asProgrammable();
+        Programmable programmable = this.electricOven.asProgrammable();
         Program programA = programmable.newProgram(programName, duration, energyConsumption);
 
         boolean expectedResult = true;
@@ -453,4 +526,21 @@ class WashingMachineTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void testGetReadings() {
+        //Arrange
+        List<Reading> expectedResult = new ArrayList<>();
+        expectedResult.add(reading0);
+        expectedResult.add(reading1);
+        expectedResult.add(reading2);
+
+        //Act
+        List<Reading> result = electricOven.getReadings();
+
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
+
 }

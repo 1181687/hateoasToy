@@ -440,8 +440,8 @@ public class HouseGridTest {
     @Test
     public void testGetEnergyConsumptionInAnIntervalWithOneValidReadings() {
         // Arrange
-        LocalDateTime startTime = LocalDateTime.of(2019, 01, 24, 15, 20, 00);
-        LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
+        LocalDateTime startTime = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 16, 40, 00);
 
         double expectedResult = 0;
         //Act

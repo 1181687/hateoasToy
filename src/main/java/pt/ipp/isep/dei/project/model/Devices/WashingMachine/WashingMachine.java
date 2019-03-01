@@ -50,6 +50,7 @@ public class WashingMachine implements Device, Programmable {
     public boolean setLocation(Room location) {
         if (Objects.isNull(this.location)) {
             this.location = location;
+            location.addDevice(this);
             return true;
         }
         if (this.location.equals(location)) {
@@ -57,6 +58,7 @@ public class WashingMachine implements Device, Programmable {
         }
         this.location.getDeviceList().remove(this);
         this.location = location;
+        location.addDevice(this);
         return true;
     }
 
