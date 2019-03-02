@@ -403,7 +403,7 @@ public class Sensor {
         List<Double> biggestWeeklyMeasurements = new ArrayList<>();
         LocalDate firstDayOfWeek = getFirstDayOfWeek(date);
         int iterator = 1;
-        while (iterator < 8) {
+        while (iterator < 8 && iterator > 0) {
             double maximumValueOfDay = getMaximumValueOfDay(firstDayOfWeek);
             if (!Double.isNaN(maximumValueOfDay)) {
                 biggestWeeklyMeasurements.add(maximumValueOfDay);

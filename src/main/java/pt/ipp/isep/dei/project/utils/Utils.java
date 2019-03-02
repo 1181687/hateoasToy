@@ -77,6 +77,7 @@ public final class Utils {
     /**
      * Method turns specific information (through the use of an option that refers to a key)
      * inside a specific configuration file (searched by its name) to a list of strings.
+     *
      * @param file
      * @param count
      * @param property
@@ -85,7 +86,7 @@ public final class Utils {
     public static List<String> readConfigFileToList(String file, String count, String property) {
         List<String> readingsList = new ArrayList<>();
         int numberOfProperties = Integer.parseInt(readConfigFile(file, count));
-        for (int i = 1; i <= numberOfProperties; i++) {
+        for (int i = 1; i <= numberOfProperties && i > 0; i++) {
             String deviceType = Utils.readConfigFile(file, property + "." + i);
             readingsList.add(deviceType);
         }
@@ -94,6 +95,7 @@ public final class Utils {
 
     /**
      * Method that turns a map (data series) into information in the form of a string.
+     *
      * @param map Map to be used.
      * @return String with the required information.
      */
@@ -107,6 +109,7 @@ public final class Utils {
 
     /**
      * Method that checks if two numbers are the same.
+     *
      * @param value1 Number 1.
      * @param value2 Number 2.
      * @return True or false.
