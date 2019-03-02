@@ -41,7 +41,7 @@ public class FreezerSpecs implements DeviceSpecs {
 
     public boolean setFreezerCapacity(Object freezerCapacity) {
         double newFreezerCapacity = (Double) freezerCapacity;
-        if (Utils.isSameDouble(this.annualEnergyConsumption, newFreezerCapacity) || newFreezerCapacity == 0) {
+        if (Utils.isSameDouble(this.annualEnergyConsumption, newFreezerCapacity) || Utils.isSameNumber(newFreezerCapacity, 0)) {
             return false;
         }
         this.annualEnergyConsumption = newFreezerCapacity;
@@ -54,7 +54,7 @@ public class FreezerSpecs implements DeviceSpecs {
 
     public boolean setAnnualEnergyConsumption(Object energyConsumption) {
         double annualEnergyConsumption = (Double) energyConsumption;
-        if (Utils.isSameDouble(this.annualEnergyConsumption, annualEnergyConsumption) || annualEnergyConsumption == 0) {
+        if (Utils.isSameDouble(this.annualEnergyConsumption, annualEnergyConsumption) || Utils.isSameDouble(annualEnergyConsumption, 0)) {
             return false;
         }
         this.annualEnergyConsumption = annualEnergyConsumption;
