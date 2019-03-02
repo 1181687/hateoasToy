@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Devices.Device;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.HouseGrid.HouseGrid;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
@@ -439,8 +440,8 @@ public class HouseGridTest {
     @Test
     public void testGetEnergyConsumptionInAnIntervalWithOneValidReadings() {
         // Arrange
-        LocalDateTime startTime = LocalDateTime.of(2019, 01, 24, 15, 20, 00);
-        LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 17, 40, 00);
+        LocalDateTime startTime = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        LocalDateTime endTime = LocalDateTime.of(2019, 01, 24, 16, 40, 00);
 
         double expectedResult = 0;
         //Act

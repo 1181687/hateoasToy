@@ -4,11 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.DishWasher.DishWasherType;
-import pt.ipp.isep.dei.project.model.Devices.ElectricWaterHeater.ElectricWaterHeaterType;
-import pt.ipp.isep.dei.project.model.Devices.Fridge.FridgeType;
-import pt.ipp.isep.dei.project.model.Devices.Lamp.LampType;
-import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineType;
+import pt.ipp.isep.dei.project.model.HouseGrid.HouseGrid;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -1082,7 +1078,7 @@ public class HouseTest {
         // Assert
         assertFalse(result);
     }
-
+/*
     @Test
     public void checkIfARoomIsAlreadyInAHouseGridOfTheListWithNegativeTest() {
         // Arrange
@@ -1091,7 +1087,7 @@ public class HouseTest {
         Dimension dimension1 = new Dimension(2, 2, 2);
         Room room = new Room(roomName, houseFloor1, dimension1);
         String gridName = "Grid";
-        HouseGrid grid = house.newHouseGrid(gridName);
+        HouseGrid grid = house.createHouseGrid(gridName);
         house.addGrid(grid);
 
         // Act
@@ -1100,7 +1096,7 @@ public class HouseTest {
         // Assert
         assertFalse(result);
     }
-
+*/
 
     @Test
     public void getTheGridWhereTheRoomIsConnectedTest() {
@@ -1754,32 +1750,32 @@ public class HouseTest {
         //Assert
         assertFalse(result);
     }
+    /*
+        @Test
+        public void testNewHouseGrid_ThrowsException(){
+            //Arrange
+            String name = "Main Grid";
+            HouseGrid grid = new HouseGrid(name);
+            this.house.addGrid(grid);
+            //Act
+            Throwable exception = assertThrows(RuntimeException.class, () ->
+                    this.house.createHouseGrid(name)
+            );
+            //Assert
+            assertEquals("Name already exists. Please, write a new one.", exception.getMessage());
+        }
 
-    @Test
-    public void testNewHouseGrid_ThrowsException(){
-        //Arrange
-        String name = "Main Grid";
-        HouseGrid grid = new HouseGrid(name);
-        this.house.addGrid(grid);
-        //Act
-        Throwable exception = assertThrows(RuntimeException.class, () ->
-                this.house.newHouseGrid(name)
-        );
-        //Assert
-        assertEquals("Name already exists. Please, write a new one.", exception.getMessage());
-    }
-
-    @Test
-    public void testNewHouseGrid_CreatesHouseGrid(){
-        //Arrange
-        String name = "Main Grid";
-        HouseGrid expectedResult = new HouseGrid(name);
-        //Act
-        HouseGrid result = this.house.newHouseGrid(name);
-        //Assert
-        assertEquals(expectedResult,result);
-    }
-
+        @Test
+        public void testNewHouseGrid_CreatesHouseGrid(){
+            //Arrange
+            String name = "Main Grid";
+            HouseGrid expectedResult = new HouseGrid(name);
+            //Act
+            HouseGrid result = this.house.createHouseGrid(name);
+            //Assert
+            assertEquals(expectedResult,result);
+        }
+    */
     @Test
     void getDeviceByNameExceptionTest() {
         // Arrange

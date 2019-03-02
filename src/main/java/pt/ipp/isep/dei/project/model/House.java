@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.model.Devices.Device;
 import pt.ipp.isep.dei.project.model.Devices.DeviceType;
+import pt.ipp.isep.dei.project.model.HouseGrid.HouseGrid;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -67,7 +68,6 @@ public class House {
             }
         }
         Device device = getDeviceType(typeName).createDevice(deviceName);
-        room.addDevice(device);
         device.setLocation(room);
         return device;
     }
@@ -417,12 +417,12 @@ public class House {
     /**
      * Method that creates a house grid.
      *
-     * @param name Name of the grid.
+     * @param grid Name of the grid.
      * @return New object of the class HouseGrid.
      */
-    public HouseGrid newHouseGrid(String name) {
-        if (!this.gridNameAlreadyExists(name)) {
-            return new HouseGrid(name);
+    public boolean createHouseGrid(HouseGrid grid) {
+        if (!this.gridNameAlreadyExists(grid.getName())) {
+            return this.addGrid(grid);
         }
         throw new RuntimeException("Name already exists. Please, write a new one.");
     }
