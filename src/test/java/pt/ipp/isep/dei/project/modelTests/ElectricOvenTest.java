@@ -367,14 +367,14 @@ class ElectricOvenTest {
         assertEquals(date, result);
     }
 
-    @Test
+   /* @Test
     void getIsActiveTrueTest() {
         // Act
         boolean result = electricOven.getIsActive();
 
         // Assert
         assertTrue(result);
-    }
+    }*/
 
     @Test
     void getIsActiveFalseTest() {
