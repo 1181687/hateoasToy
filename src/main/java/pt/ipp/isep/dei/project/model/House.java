@@ -22,6 +22,8 @@ public class House {
     private List<DeviceType> deviceTypeList;
     private int meteringPeriodGrid;
     private int meteringPeriodDevice;
+    private static final String CONFIG_PROPERTIES = "Configuration.properties";
+
 
     public House(List<String> deviceTypeList, int meteringPeriodGrid, int meteringPeriodDevice) {
         this.roomList = new RoomList();
@@ -39,9 +41,8 @@ public class House {
      */
     public void createDeviceTypes(List<String> deviceTypeList) {
         for (String className : deviceTypeList) {
-            String path = Utils.readConfigFile("Configuration.properties", className);
+            String path = Utils.readConfigFile(CONFIG_PROPERTIES, className);
 
-            //String path = "pt.ipp.isep.dei.project.model." + className + "Type";
             try {
                 DeviceType dt = (DeviceType) Class.forName(path).newInstance();
                 this.deviceTypeList.add(dt);
@@ -708,7 +709,7 @@ public class House {
         StringBuilder content = new StringBuilder();
         int numberOfDeviceTypes = numberOfDeviceTypes();
         for (int i = 1; i <= numberOfDeviceTypes; i++) {
-            String deviceType = Utils.readConfigFile("Configuration.properties", "devicetype.name." + i);
+            String deviceType = Utils.readConfigFile(CONFIG_PROPERTIES, "devicetype.name." + i);
             content.append(i + "- ");
             content.append(deviceType);
             content.append("\n");
@@ -723,7 +724,7 @@ public class House {
      * @return the number os existing Devices
      */
     public int numberOfDeviceTypes() {
-        return Integer.parseInt(Utils.readConfigFile("Configuration.properties", "devicetype.count"));
+        return Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "devicetype.count"));
     }
 
     public int getDeviceSize() {

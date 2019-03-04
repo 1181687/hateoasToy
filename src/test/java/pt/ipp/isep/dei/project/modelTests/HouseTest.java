@@ -25,6 +25,8 @@ public class HouseTest {
     private static final String DISHWASHER_TYPE = "DishWasher";
     private static final String LAMP_TYPE = "Lamp";
     private static final String WASHING_MACHINE_TYPE = "Washing Machine";
+    private static final String CONFIG_PROPERTIES = "Configuration.properties";
+
 
     @BeforeEach
     public void StartUp() {
@@ -35,9 +37,9 @@ public class HouseTest {
         ag = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
 
         // House
-        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
-        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
-        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         Location houseLocation = new Location(41.178553, -8.608035, 111);
         Address address = new Address("4200-072", houseLocation);

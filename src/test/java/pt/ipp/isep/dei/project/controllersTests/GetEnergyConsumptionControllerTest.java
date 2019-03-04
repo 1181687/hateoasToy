@@ -1,9 +1,29 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionController;
+import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.testng.Assert.assertTrue;
+
 class GetEnergyConsumptionControllerTest {
-    /*private GetEnergyConsumptionController ctrl;
+    private GetEnergyConsumptionController ctrl;
     private House house;
     private Room room;
+    private static final String FRIDGE_TYPE = "Fridge";
+    private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
+    private static final String DISHWASHER_TYPE = "DishWasher";
+    private static final String LAMP_TYPE = "Lamp";
+    private static final String WASHING_MACHINE_TYPE = "Washing Machine";
+
+
 
     @BeforeEach
     public void StartUp() {
@@ -35,8 +55,8 @@ class GetEnergyConsumptionControllerTest {
         house.addRoom(room0);
         house.addRoom(room1);
 
-        FridgeType fridgeType = new FridgeType();
         // ElectricWaterHeaterSpecs Instantiation
+
 
         // Device Instantiation
         String freezerCapacity = "Freezer Capacity";
@@ -44,20 +64,20 @@ class GetEnergyConsumptionControllerTest {
         String annualEnergyConsumption = "Annual Energy Consumption";
         String nominalPower = "Annual Energy Consumption";
 
-        Device device0 = fridgeType.createDevice("Fridgeratah V14", room0);
+        Device device0 = house.createDevice(FRIDGE_TYPE, "Fridgeratah V14", room0);
 
         device0.setAttributesDevType(freezerCapacity,35);
         device0.setAttributesDevType(refrigeratorCapacity,20);
         device0.setAttributesDevType(annualEnergyConsumption,1000);
         device0.setAttributesDevType(nominalPower,10);
 
-        Device device1 = fridgeType.createDevice("Fridgeratah V15", room0);
+        Device device1 = house.createDevice(FRIDGE_TYPE, "Fridgeratah V15", room0);
         device1.setAttributesDevType(freezerCapacity,35);
         device1.setAttributesDevType(refrigeratorCapacity,20);
         device1.setAttributesDevType(annualEnergyConsumption,1000);
         device1.setAttributesDevType(nominalPower,10);
 
-        Device device2 = fridgeType.createDevice("Fridgeratah V16", room0);
+        Device device2 = house.createDevice(FRIDGE_TYPE, "Fridgeratah V16", room0);
         device2.setAttributesDevType(freezerCapacity,35);
         device2.setAttributesDevType(refrigeratorCapacity,20);
         device2.setAttributesDevType(annualEnergyConsumption,1000);
@@ -67,14 +87,13 @@ class GetEnergyConsumptionControllerTest {
         String PERFORMANCE_RATIO = "Performance Ratio";
         String NOMINAL_POWER = "Nominal Power";
 
-        ElectricWaterHeaterType eWHType = new ElectricWaterHeaterType();
-        Device device3 = eWHType.createDevice("Bosh Tronic 3000", room1);
+        Device device3 = house.createDevice(ELECTRIC_W_H_TYPE, "Bosh Tronic 3000", room1);
         device3.setAttributesDevType(HOT_WATER_TEMP,50);
         device3.setAttributesDevType(PERFORMANCE_RATIO,0.9);
         device3.setAttributesDevType(NOMINAL_POWER,100);
 
 
-        Device device4 = eWHType.createDevice("Bosh Tronic 4000", room1);
+        Device device4 = house.createDevice(ELECTRIC_W_H_TYPE, "Bosh Tronic 4000", room1);
         device4.setAttributesDevType(HOT_WATER_TEMP,50);
         device4.setAttributesDevType(PERFORMANCE_RATIO,0.9);
         device4.setAttributesDevType(NOMINAL_POWER,100);
@@ -83,7 +102,7 @@ class GetEnergyConsumptionControllerTest {
         room = house.getRoomOfTheRoomList(0);
     }
 
-    @Test
+   /* @Test
     public void getAllDevicesToStringTest() {
         // Arrange
         // Controller Instantiation
@@ -99,6 +118,11 @@ class GetEnergyConsumptionControllerTest {
 
         // Assert
         assertEquals(expectedResult, result);
+
+        //assertEquals(expectedResult, result);
+    }
+
+    private void assertEquals(int expectedResult, int result) {
     }
 
     @Test
@@ -201,5 +225,5 @@ class GetEnergyConsumptionControllerTest {
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
-    }*/
+    } */
 }

@@ -6,7 +6,6 @@ import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 public interface Device extends Measurable {
