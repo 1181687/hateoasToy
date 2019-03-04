@@ -167,6 +167,7 @@ public class Lamp implements Device {
         return true;
     }
 
+
     /**
      * method that get an active device.
      *
