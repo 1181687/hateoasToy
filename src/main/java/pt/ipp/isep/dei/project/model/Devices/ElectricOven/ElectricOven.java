@@ -220,7 +220,7 @@ public class ElectricOven implements Device, Programmable {
     public boolean getIsActive() {
         return isActive;
     }
-    
+
     /**
      * get method
      *
@@ -229,17 +229,6 @@ public class ElectricOven implements Device, Programmable {
     @Override
     public List<String> getSpecsList() {
         return specs.getSpecsList();
-    }
-
-    /**
-     * get method
-     *
-     * @param attributeName string attribute
-     * @return name of attributes of electric oven specs
-     */
-    @Override
-    public Object getAttributeValue(String attributeName) {
-        return specs.getAttributeValue(attributeName);
     }
 
 

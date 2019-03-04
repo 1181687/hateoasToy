@@ -72,7 +72,6 @@ public interface Device extends Measurable {
 
     List<String> getSpecsList();
 
-    Object getAttributeValue(String attributeName);
 
     String getSpecsToString();
 
@@ -235,6 +234,11 @@ public interface Device extends Measurable {
         }
         return map;
     }
+
+    default  Object getAttributeValue(String attributeName){
+        return getSpecs().getAttributeValue(attributeName);
+    }
+
 
 
 }

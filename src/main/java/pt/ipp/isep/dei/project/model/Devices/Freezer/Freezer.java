@@ -94,11 +94,6 @@ public class Freezer implements Device {
     }
 
     @Override
-    public Object getAttributeValue(String attributeName) {
-        return null;
-    }
-
-    @Override
     public String getSpecsToString() {
         return null;
     }

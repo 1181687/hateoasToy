@@ -194,17 +194,6 @@ public class Fridge implements Device {
     }
 
     /**
-     * * get method
-     *
-     * @param attributeName string attribute
-     * @return name of attributes of fridge specs
-     */
-    @Override
-    public Object getAttributeValue(String attributeName) {
-        return specs.getAttributeValue(attributeName);
-    }
-
-    /**
      * get method
      *
      * @return the string of an attribute of Fridge Specs
