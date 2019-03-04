@@ -181,17 +181,6 @@ public class Lamp implements Device {
     /**
      * get method
      *
-     * @return list of specs of lamp specs
-     */
-    @Override
-    public List<String> getSpecsList() {
-        return specs.getSpecsList();
-    }
-
-
-    /**
-     * get method
-     *
      * @return the string of an attribute of Lamp Specs
      */
 

@@ -89,11 +89,6 @@ public class Freezer implements Device {
     }
 
     @Override
-    public List<String> getSpecsList() {
-        return null;
-    }
-
-    @Override
     public String getSpecsToString() {
         return null;
     }

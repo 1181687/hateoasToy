@@ -187,18 +187,6 @@ public class DishWasher implements Device, Programmable {
         return isActive;
     }
 
-
-
-    /**
-     * get method
-     *
-     * @return list of specs of dishwasher specs
-     */
-    @Override
-    public List<String> getSpecsList() {
-        return specs.getSpecsList();
-    }
-
     /**
      * get method
      *

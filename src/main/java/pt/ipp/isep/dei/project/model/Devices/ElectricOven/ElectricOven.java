@@ -224,17 +224,6 @@ public class ElectricOven implements Device, Programmable {
     /**
      * get method
      *
-     * @return list of specs of electric oven specs
-     */
-    @Override
-    public List<String> getSpecsList() {
-        return specs.getSpecsList();
-    }
-
-
-    /**
-     * get method
-     *
      * @return the string of an attribute of electric oven Specs
      */
 

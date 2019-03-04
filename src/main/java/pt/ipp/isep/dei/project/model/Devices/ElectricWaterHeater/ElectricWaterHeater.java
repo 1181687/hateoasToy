@@ -182,16 +182,6 @@ public class ElectricWaterHeater implements Device, Measurable {
     /**
      * get method
      *
-     * @return list of specs of ElectricWaterHeater specs
-     */
-    @Override
-    public List<String> getSpecsList() {
-        return specs.getSpecsList();
-    }
-
-    /**
-     * get method
-     *
      * @return the string of an attribute of ElectricWaterHeater
      */
     @Override

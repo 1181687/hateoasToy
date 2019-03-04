@@ -70,9 +70,6 @@ public interface Device extends Measurable {
      */
     boolean getIsActive();
 
-    List<String> getSpecsList();
-
-
     String getSpecsToString();
 
     String getAttributeDataType(String attributeName);
@@ -238,6 +235,11 @@ public interface Device extends Measurable {
     default  Object getAttributeValue(String attributeName){
         return getSpecs().getAttributeValue(attributeName);
     }
+
+    default List<String> getSpecsList(){
+        return getSpecs().getSpecsList();
+    }
+
 
 
 

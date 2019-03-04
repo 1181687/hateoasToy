@@ -180,19 +180,6 @@ public class Fridge implements Device {
         return isActive;
     }
 
-
-
-    /**
-     * get method
-     *
-     * @return list of specs of fridge specs
-     */
-
-    @Override
-    public List<String> getSpecsList() {
-        return specs.getSpecsList();
-    }
-
     /**
      * get method
      *

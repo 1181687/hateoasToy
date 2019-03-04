@@ -185,18 +185,6 @@ public class WashingMachine implements Device, Programmable {
         return isActive;
     }
 
-
-
-    /**
-     * get method
-     *
-     * @return list of specs of washing machine specs
-     */
-    @Override
-    public List<String> getSpecsList() {
-        return specs.getSpecsList();
-    }
-
     /**
      * get method
      *
