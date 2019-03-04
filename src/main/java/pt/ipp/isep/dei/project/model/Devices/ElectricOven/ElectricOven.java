@@ -75,6 +75,16 @@ public class ElectricOven implements Device, Programmable {
     }
 
     /**
+     * method that get an active device.
+     *
+     * @return an active device.
+     */
+    @Override
+    public boolean getIsActive() {
+        return false;
+    }
+
+    /**
      * method that gets the list of Reading of the Device.
      *
      * @return
@@ -209,27 +219,6 @@ public class ElectricOven implements Device, Programmable {
         }
         this.name = name;
         return true;
-    }
-
-    /**
-     * method that get an active device.
-     *
-     * @return an active device.
-     */
-    @Override
-    public boolean getIsActive() {
-        return isActive;
-    }
-
-    /**
-     * get method
-     *
-     * @param attributeName string attribute
-     * @return type data of the attribute (ex.integer, double)
-     */
-    @Override
-    public String getAttributeDataType(String attributeName) {
-        return specs.getAttributeDataType(attributeName);
     }
 
     /**

@@ -177,17 +177,6 @@ public class Lamp implements Device {
         return isActive;
     }
 
-    /**
-     * get method
-     *
-     * @param attributeName string attribute
-     * @return type data of the attribute (ex.integer, double)
-     */
-    @Override
-    public String getAttributeDataType(String attributeName) {
-        return specs.getAttributeDataType(attributeName);
-    }
-
     @Override
     public boolean isProgrammable() {
         return false;

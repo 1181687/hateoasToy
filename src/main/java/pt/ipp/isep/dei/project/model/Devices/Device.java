@@ -70,8 +70,6 @@ public interface Device extends Measurable {
      */
     boolean getIsActive();
 
-    String getAttributeDataType(String attributeName);
-
     LocalDateTime getDeactivationDate();
 
     boolean isProgrammable();
@@ -241,4 +239,9 @@ public interface Device extends Measurable {
     default  String getSpecsToString(){
         return getSpecs().getAttributesToString();
     }
+
+    default String getAttributeDataType(String attributeName){
+       return getSpecs().getAttributeDataType(attributeName);
+    }
+
 }

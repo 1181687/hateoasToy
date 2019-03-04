@@ -88,10 +88,6 @@ public class Freezer implements Device {
         return false;
     }
 
-    @Override
-    public String getAttributeDataType(String attributeName) {
-        return null;
-    }
 
     @Override
     public LocalDateTime getDeactivationDate() {
