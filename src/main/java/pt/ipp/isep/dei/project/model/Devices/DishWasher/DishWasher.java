@@ -188,22 +188,6 @@ public class DishWasher implements Device, Programmable {
     }
 
 
-    /**
-     * get method
-     *
-     * @param startDate starting date of reading
-     * @param endDate   end date of reading
-     * @return map with coordinates (value of reading and time)
-     */
-    @Override
-    public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
-        Map<LocalDateTime, Double> hmap = new TreeMap<>();
-        List<Reading> validReadingList = getReadingsListInInterval(startDate, endDate);
-        for (Reading reading : validReadingList) {
-            hmap.put(reading.getDateTime(), reading.getValue());
-        }
-        return hmap;
-    }
 
     /**
      * get method

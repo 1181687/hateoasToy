@@ -7,6 +7,8 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 public interface Device extends Measurable {
 
@@ -83,6 +85,16 @@ public interface Device extends Measurable {
     Programmable asProgrammable();
 
     boolean setDeactivateDevice();
+
+    /**
+     * method that set the given name only if the name don't exists in DeviceList
+     * and if it is different than the name that the Device1 has.
+     *
+     * @param name String given name
+     * @return true if sets false if don't
+     */
+    boolean setName(String name);
+
 
 
     //DEFAULT METHODS
@@ -215,17 +227,14 @@ public interface Device extends Measurable {
         return getSpecs().getEnergyConsumptionInADay();
     }
 
-
-    /**
-     * method that set the given name only if the name don't exists in DeviceList
-     * and if it is different than the name that the Device1 has.
-     *
-     * @param name String given name
-     * @return true if sets false if don't
-     */
-    boolean setName(String name);
-
-
+    default Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
+        Map<LocalDateTime, Double> map = new TreeMap<>();
+        List<Reading> validReadingList = getReadingsListInInterval(startDate, endDate);
+        for (Reading reading : validReadingList) {
+            map.put(reading.getDateTime(), reading.getValue());
+        }
+        return map;
+    }
 
 
 }

@@ -128,10 +128,6 @@ public class Freezer implements Device {
         return 0;
     }
 
-    @Override
-    public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
-        return null;
-    }
 
     @Override
     public List<Reading> getReadings() {

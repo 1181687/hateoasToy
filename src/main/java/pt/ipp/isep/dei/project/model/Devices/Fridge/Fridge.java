@@ -180,22 +180,7 @@ public class Fridge implements Device {
         return isActive;
     }
 
-    /**
-     * get method
-     *
-     * @param startDate starting date of readingList
-     * @param endDate   end date of readingList
-     * @return map with coordinates (value of readingList and time)
-     */
-    @Override
-    public Map<LocalDateTime, Double> getDataSeries(LocalDateTime startDate, LocalDateTime endDate) {
-        Map<LocalDateTime, Double> hmap = new TreeMap<>();
-        List<Reading> validReadingList = getReadingsListInInterval(startDate, endDate);
-        for (Reading reading : validReadingList) {
-            hmap.put(reading.getDateTime(), reading.getValue());
-        }
-        return hmap;
-    }
+
 
     /**
      * get method
