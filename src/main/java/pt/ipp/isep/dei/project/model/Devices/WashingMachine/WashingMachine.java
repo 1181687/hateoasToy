@@ -185,18 +185,7 @@ public class WashingMachine implements Device, Programmable {
         return isActive;
     }
 
-    /**
-     * get method
-     *
-     * @return the string of an attribute of washing machine Specs
-     */
-
-    @Override
-    public String getSpecsToString() {
-        return this.specs.getAttributesToString();
-    }
-
-    /**
+  /**
      * get method
      *
      * @param attributeName string attribute

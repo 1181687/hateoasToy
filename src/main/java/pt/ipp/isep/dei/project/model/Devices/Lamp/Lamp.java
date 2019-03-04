@@ -177,18 +177,6 @@ public class Lamp implements Device {
         return isActive;
     }
 
-
-    /**
-     * get method
-     *
-     * @return the string of an attribute of Lamp Specs
-     */
-
-    @Override
-    public String getSpecsToString() {
-        return this.specs.getAttributesToString();
-    }
-
     /**
      * get method
      *
