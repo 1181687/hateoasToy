@@ -149,6 +149,7 @@ public class Lamp implements Device {
         }
         return false;
     }
+    
 
     /**
      * -     * method that set the given name only if the name don't exists in DeviceList
