@@ -63,6 +63,23 @@ public class WashingMachine implements Device, Programmable {
     }
 
     /**
+     * -     * method that set the given name only if the name don't exists in DeviceList
+     * -     * and if it is different than the name that the Device1 has.
+     * -     *
+     * -     * @param name String given name
+     * -     * @return true if sets false if don't
+     * -
+     */
+    @Override
+    public boolean setName(String name) {
+        if (this.location.isDeviceNameExistant(name) || this.name == name) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
+        this.name = name;
+        return true;
+    }
+
+    /**
      * method that get a location (room) of a device.
      *
      * @return the location.

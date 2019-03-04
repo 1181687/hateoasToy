@@ -13,13 +13,6 @@ public interface Device extends Measurable {
 
 
     /**
-     * method that get the nominal power of the devices.
-     *
-     * @return the nominal power of the device.
-     */
-    //double getNominalPower();
-
-    /**
      * method that get a location (room) of a device.
      *
      * @return the location.
@@ -46,34 +39,6 @@ public interface Device extends Measurable {
      */
     boolean isActive();
 
-
-    /**
-     * Method that gets the energy consumption in a day.
-     *
-     * @return
-     * consumption of the device in a given day.
-     */
-    default double getEnergyConsumptionInADay(){
-            return getSpecs().getEnergyConsumptionInADay();
-    }
-
-
-    /**
-     * method that set the given name only if the name don't exists in DeviceList
-     * and if it is different than the name that the Device1 has.
-     *
-     * @param name String given name
-     * @return true if sets false if don't
-     */
-    default boolean setName(String name) {
-        String oldName = getName();
-        if (this.getLocation().isDeviceNameExistant(name) || oldName == name) {
-            throw new RuntimeException("Name already exists. Please write a new one.");
-        }
-        getName().equals(name);
-        return true;
-    }
-
     /**
      * method that set the location (room) of a added device.
      *
@@ -81,6 +46,48 @@ public interface Device extends Measurable {
      * @return false if the location is equals to another device. True if not.
      */
     boolean setLocation(Room location);
+
+    /**
+     * method that creates the hashcode to two devices that are have the same name.
+     *
+     * @return the hashcode created
+     */
+    int hashCode();
+
+    /**
+     * Equals method to determine if two Device1 are equal.     *
+     *
+     * @param obj receives an object
+     * @return boolean true if are equal and false if are not.
+     */
+    boolean equals(Object obj);
+
+    /**
+     * method that get an active device.
+     *
+     * @return an active device.
+     */
+    boolean getIsActive();
+
+    List<String> getSpecsList();
+
+    Object getAttributeValue(String attributeName);
+
+    String getSpecsToString();
+
+    String getAttributeDataType(String attributeName);
+
+    LocalDateTime getDeactivationDate();
+
+    boolean isProgrammable();
+
+    Programmable asProgrammable();
+
+    boolean setDeactivateDevice();
+
+
+    //DEFAULT METHODS
+
 
     /**
      * Method that returns the attributes of the device specs.
@@ -117,22 +124,6 @@ public interface Device extends Measurable {
         return this.getSpecs().setAttributeValue(attribute, value);
     }
 
-    /**
-     * method that creates the hashcode to two devices that are have the same name.
-     *
-     * @return the hashcode created
-     */
-
-    int hashCode();
-
-    /**
-     * Equals method to determine if two Device1 are equal.     *
-     *
-     * @param obj receives an object
-     * @return boolean true if are equal and false if are not.
-     */
-
-    boolean equals(Object obj);
 
     /**
      * method that get the number of specifications of a device.
@@ -178,41 +169,6 @@ public interface Device extends Measurable {
         return sum;
     }
 
-    /**
-     * TODO - GABIX
-     * ???????? - está bem ?????
-     * method that set the deactivate device, turning it to false and giving a date
-     */
-    default boolean setDeactivateDevice(){
-        boolean isActive = this.getIsActive();
-        if (isActive) {
-            isActive = false;
-            this.getDeactivationDate().isEqual(LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES));
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * method that get an active device.
-     *
-     * @return an active device.
-     */
-    boolean getIsActive();
-
-    List<String> getSpecsList();
-
-    Object getAttributeValue(String attributeName);
-
-    String getSpecsToString();
-
-    String getAttributeDataType(String attributeName);
-
-    LocalDateTime getDeactivationDate();
-
-    boolean isProgrammable();
-
-    Programmable asProgrammable();
 
     default String getDateDeactivateDeviceToString() {
         return this.getDeactivationDate().toLocalDate().toString() + " " + this.getDeactivationDate().toLocalTime().toString();
@@ -250,6 +206,25 @@ public interface Device extends Measurable {
         return getSpecs().getTypeName();
     }
 
+    /**
+     * Method that gets the energy consumption in a day.
+     *
+     * @return
+     * consumption of the device in a given day.
+     */
+    default double getEnergyConsumptionInADay(){
+        return getSpecs().getEnergyConsumptionInADay();
+    }
+
+
+    /**
+     * method that set the given name only if the name don't exists in DeviceList
+     * and if it is different than the name that the Device1 has.
+     *
+     * @param name String given name
+     * @return true if sets false if don't
+     */
+    boolean setName(String name);
 
 
 
