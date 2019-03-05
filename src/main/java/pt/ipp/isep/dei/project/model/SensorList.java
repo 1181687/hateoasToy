@@ -227,7 +227,8 @@ public class SensorList {
     public Sensor getSensorWithMostRecentReading(SensorList sensorList) {
         Sensor sensorWithMostRecentReading = sensorList.getListOfSensors().get(0);
         for (Sensor sensor : sensorList.getListOfSensors()) {
-            if (!(sensor.isMeasurementListEmpty()) && sensor.getLastMeasurement().getDateTime().toLocalDate().isAfter(sensorWithMostRecentReading.getLastMeasurement().getDateTime().toLocalDate())) {
+            if (!(sensor.isMeasurementListEmpty()) &&
+                    sensor.getLastMeasurement().getDateTime().isAfter(sensorWithMostRecentReading.getLastMeasurement().getDateTime())) {
                 sensorWithMostRecentReading = sensor;
             }
         }

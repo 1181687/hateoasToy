@@ -55,6 +55,7 @@ public class House {
     /**
      * creates a Device and returns true if type name exists and deviceName not exists in the
      * rooms of the house
+     *
      * @param typeName   String type name of Device
      * @param deviceName String device name
      * @return true if creates and false if not
@@ -75,6 +76,7 @@ public class House {
 
     /**
      * get method
+     *
      * @param type type of device
      * @return device type
      */
@@ -89,6 +91,7 @@ public class House {
 
     /**
      * get method
+     *
      * @return metering period of the grid
      */
     public int getMeteringPeriodGrid() {
@@ -97,6 +100,7 @@ public class House {
 
     /**
      * get method
+     *
      * @return metring period of the device
      */
     public int getMeteringPeriodDevice() {
@@ -453,6 +457,7 @@ public class House {
 
     /**
      * Method that gets a House Grid of the list of HouseGrids, from a specific position.
+     *
      * @param position
      */
     public HouseGrid getHouseGridByPosition(int position) {
@@ -576,6 +581,7 @@ public class House {
 
     /**
      * Method that returns a device in the house by its name.
+     *
      * @param deviceName Device name.
      * @return Device with the specified name.
      */
@@ -598,7 +604,7 @@ public class House {
      *
      * @param deviceName    Device name.
      * @param attributeName Name of the attribute to be set.
-     * @param value             Value to be used.
+     * @param value         Value to be used.
      * @return True or false.
      */
     public boolean setDeviceAttribute(String deviceName, String attributeName, Object value) {
@@ -733,6 +739,7 @@ public class House {
 
     /**
      * Method that checks if the device list of all rooms is empty
+     *
      * @return boolean true
      */
     public boolean isDeviceListOfAllRoomsEmpty() {
@@ -741,5 +748,9 @@ public class House {
 
     public LocalDateTime getDateOfLastMeasurementByType(SensorType type) {
         return insertedGeoArea.getDateLastMeasurementByLocationType(address.getLocation(), type);
+    }
+
+    public LocalDate getFirstHighestReadingDateHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
+        return insertedGeoArea.getFirstHighestReadingDate(location, type, startDate, endDate);
     }
 }

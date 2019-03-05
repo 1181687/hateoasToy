@@ -472,4 +472,26 @@ public class Sensor {
     public double getDailyAverage(LocalDate date) {
         return getTotalDailyMeasurements(date) / getDailyMeasurement(date).size();
     }
+
+    public List<Reading> getReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
+        List<Reading> measurementsBetweenDates = new ArrayList<>();
+        for (Reading reading : listOfReadings) {
+            if ((reading.getDateTime().toLocalDate().isEqual(startDate) || reading.getDateTime().toLocalDate().isAfter(startDate)) && (reading.getDateTime().toLocalDate().isEqual(endDate) || reading.getDateTime().toLocalDate().isBefore(endDate))) {
+                measurementsBetweenDates.add(reading);
+            }
+        }
+        return measurementsBetweenDates;
+    }
+
+    public Reading getHighestReading(LocalDate startDate, LocalDate endDate) {
+        Reading highestReading = getReadingsBetweenDates(startDate, endDate).get(0);
+        for (Reading reading : getReadingsBetweenDates(startDate, endDate)) {
+            if (reading.getValue() != Double.NaN) {
+                if (reading.getValue() > highestReading.getValue()) {
+                    highestReading = reading;
+                }
+            }
+        }
+        return highestReading;
+    }
 }
