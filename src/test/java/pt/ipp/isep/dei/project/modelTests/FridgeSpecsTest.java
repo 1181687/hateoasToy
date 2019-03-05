@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
@@ -31,7 +31,7 @@ public class FridgeSpecsTest {
 
         Dimension dim = new Dimension(3, 5, 6);
         kitchen = new Room("Kitchen", 1, dim);
-        fridge = house.createDevice("Fridge", "Fridge Ariston", kitchen);
+        fridge = house.createDevice("Fridge", "fridge Ariston", kitchen);
         this.house.addRoom(kitchen);
 
         // FridgeSpecs Set

@@ -2,16 +2,15 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionController;
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.testng.Assert.assertTrue;
 
 class GetEnergyConsumptionControllerTest {
     private GetEnergyConsumptionController ctrl;
@@ -59,7 +58,7 @@ class GetEnergyConsumptionControllerTest {
 
 
         // Device Instantiation
-        String freezerCapacity = "Freezer Capacity";
+        String freezerCapacity = "freezer Capacity";
         String refrigeratorCapacity = "Refrigerator Capacity";
         String annualEnergyConsumption = "Annual Energy Consumption";
         String nominalPower = "Annual Energy Consumption";

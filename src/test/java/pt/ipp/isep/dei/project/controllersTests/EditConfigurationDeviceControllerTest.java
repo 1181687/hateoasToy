@@ -4,7 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.EditConfigurationDeviceController;
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
@@ -126,8 +129,8 @@ class EditConfigurationDeviceControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        //initiate Device Fridge
-        String freezerCapacity = "Freezer Capacity";
+        //initiate Device fridge
+        String freezerCapacity = "freezer Capacity";
         String refrigeratorCapacity = "Refrigerator Capacity";
         String annualEnergyConsumption = "Annual Energy Consumption";
         String nominalPower = "Nominal Power";
@@ -172,8 +175,8 @@ class EditConfigurationDeviceControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        //initiate Device Fridge
-        String freezerCapacity = "Freezer Capacity";
+        //initiate Device fridge
+        String freezerCapacity = "freezer Capacity";
         String refrigeratorCapacity = "Refrigerator Capacity";
         String annualEnergyConsumption = "Annual Energy Consumption";
         String nominalPower = "Nominal Power";
@@ -209,8 +212,8 @@ class EditConfigurationDeviceControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-        //initiate Device Fridge
-        String freezerCapacity = "Freezer Capacity";
+        //initiate Device fridge
+        String freezerCapacity = "freezer Capacity";
         String refrigeratorCapacity = "Refrigerator Capacity";
         String annualEnergyConsumption = "Annual Energy Consumption";
         String nominalPower = "Nominal Power";
@@ -252,8 +255,8 @@ class EditConfigurationDeviceControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-        //initiate Device Fridge
-        String freezerCapacity = "Freezer Capacity";
+        //initiate Device fridge
+        String freezerCapacity = "freezer Capacity";
         String refrigeratorCapacity = "Refrigerator Capacity";
         String annualEnergyConsumption = "Annual Energy Consumption";
         String nominalPower = "Nominal Power";
@@ -335,7 +338,7 @@ class EditConfigurationDeviceControllerTest {
         Room room = new Room("Room", 2, dim);
         Room room2 = new Room("Bedroom", 1, dim);
 
-        //initiate Device Fridge
+        //initiate Device fridge
         String freezerCapacity = "Freezer Capacity";
         String refrigeratorCapacity = "Refrigerator Capacity";
         String annualEnergyConsumption = "Annual Energy Consumption";
@@ -436,8 +439,8 @@ class EditConfigurationDeviceControllerTest {
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-        //initiate Device Fridge
-        String freezerCapacity = "Freezer Capacity";
+        //initiate Device fridge
+        String freezerCapacity = "freezer Capacity";
         String refrigeratorCapacity = "Refrigerator Capacity";
         String annualEnergyConsumption = "Annual Energy Consumption";
         String nominalPower = "Nominal Power";
@@ -510,8 +513,8 @@ class EditConfigurationDeviceControllerTest {
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-        //initiate Device Fridge
-        String freezerCapacity = "Freezer Capacity";
+        //initiate Device fridge
+        String freezerCapacity = "freezer Capacity";
         String refrigeratorCapacity = "Refrigerator Capacity";
         String annualEnergyConsumption = "Annual Energy Consumption";
         String nominalPower = "Nominal Power";
@@ -548,8 +551,8 @@ class EditConfigurationDeviceControllerTest {
         // Room Instantiation
         Room room = new Room("Room", 2, dim);
 
-        //initiate Device Fridge
-        String freezerCapacity = "Freezer Capacity";
+        //initiate Device fridge
+        String freezerCapacity = "freezer Capacity";
         String refrigeratorCapacity = "Refrigerator Capacity";
         String annualEnergyConsumption = "Annual Energy Consumption";
         String nominalPower = "Nominal Power";
@@ -589,9 +592,9 @@ class EditConfigurationDeviceControllerTest {
         // Room Instantiation
         Room room = new Room("Room", 2, dim);
 
-        //initiate Device Fridge
+        //initiate Device fridge
         FridgeType fridgeType = new FridgeType();
-        String freezerCapacity = "Freezer Capacity";
+        String freezerCapacity = "freezer Capacity";
         String refrigeratorCapacity = "Refrigerator Capacity";
         String annualEnergyConsumption = "Annual Energy Consumption";
         String nominalPower = "Nominal Power";
@@ -633,9 +636,9 @@ class EditConfigurationDeviceControllerTest {
         // Room Instantiation
         Room room = new Room("Room", 2, dim);
 
-        //initiate Device Fridge
+        //initiate Device fridge
         FridgeType fridgeType = new FridgeType();
-        String freezerCapacity = "Freezer Capacity";
+        String freezerCapacity = "freezer Capacity";
         String refrigeratorCapacity = "Refrigerator Capacity";
         String annualEnergyConsumption = "Annual Energy Consumption";
         String nominalPower = "Nominal Power";
@@ -654,7 +657,7 @@ class EditConfigurationDeviceControllerTest {
         controller.getDeviceByPosition(position);
         controller.getNewRoom(0);
 
-        String expectedResult = "1 - Freezer Capacity: 35.0\n" +
+        String expectedResult = "1 - freezer Capacity: 35.0\n" +
                 "2 - Refrigerator Capacity: 20.0\n" +
                 "3 - Annual Energy Consumption: 1000.0\n" +
                 "4 - Nominal Power: 10.0\n";

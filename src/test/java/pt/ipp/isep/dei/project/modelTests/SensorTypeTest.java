@@ -2,8 +2,8 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.Sensor;
-import pt.ipp.isep.dei.project.model.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDateTime;
 
@@ -69,7 +69,7 @@ class SensorTypeTest {
     void testaEqualsObjetosDiferentes() {
         //Arrange
         SensorType tipo0 = new SensorType("Temperatura");
-        // Instanciar Sensor
+        // Instanciar sensor
         LocalDateTime dataFuncionamento = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);

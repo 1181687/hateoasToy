@@ -4,6 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddSensorToRoomController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
@@ -94,7 +99,7 @@ class AddSensorToRoomControllerTest {
 
         AddSensorToRoomController addSensorToRoomController = new AddSensorToRoomController(listSensorsType, roomList, houseEdificioB);
 
-        String expectedResult = "1 - Sensor Type: Temperatura\n";
+        String expectedResult = "1 - sensor Type: Temperatura\n";
 
         // Act
         String result = addSensorToRoomController.displayListOfSensorsType();
@@ -106,7 +111,7 @@ class AddSensorToRoomControllerTest {
     void createAndAddSensorToTheList() {
         // Arrange
 
-        // Sensor
+        // sensor
         SensorType sensorType = new SensorType("Temperatura");
         String sensorName = "A123";
 

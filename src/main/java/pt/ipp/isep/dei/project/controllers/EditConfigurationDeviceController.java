@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
 
@@ -136,7 +136,7 @@ public class EditConfigurationDeviceController {
 
     /**
      * method that get the length of the device list.
-     * @return length of the list of Devices.
+     * @return length of the list of devices.
      */
     public int getDeviceListSize() {
         return this.room.getDeviceList().size();

@@ -100,11 +100,11 @@ class AddDeviceToRoomControllerTest {
     @Test
     void getDeviceTypeListToString() {
         // Arrange
-        String expectedResult = "1- Fridge\n" +
-                "2- Lamp\n" +
-                "3- DishWasher\n" +
-                "4- WashingMachine\n" +
-                "5- ElectricWaterHeater\n";
+        String expectedResult = "1- fridge\n" +
+                "2- lamp\n" +
+                "3- dishwasher\n" +
+                "4- washingmachine\n" +
+                "5- electricwaterheater\n";
 
         // Act
         String result = controller.getDeviceTypeListToString();
@@ -118,7 +118,7 @@ class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        Device d2 = controller.createNewFridge("Fridge", 1000,
+        Device d2 = controller.createNewFridge("fridge", 1000,
                 200, 20, 50);
         Device expectedResult = d2;
 
@@ -134,12 +134,12 @@ class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.createNewFridge("Fridge", 1000, 200,
+        controller.createNewFridge("fridge", 1000, 200,
                 20, 50);
 
         // Act
         Throwable exception =
-                assertThrows(RuntimeException.class, () -> controller.createNewFridge("Fridge",
+                assertThrows(RuntimeException.class, () -> controller.createNewFridge("fridge",
                         1000, 200, 20, 50));
 
         // Assert
@@ -151,7 +151,7 @@ class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        Device device = controller.createNewLamp("Lamp", 200, 100);
+        Device device = controller.createNewLamp("lamp", 200, 100);
 
         Device expectedResult = device;
 
@@ -167,11 +167,11 @@ class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.createNewLamp("Lamp", 200, 100);
+        controller.createNewLamp("lamp", 200, 100);
 
         // Act
         Throwable exception =
-                assertThrows(RuntimeException.class, () -> controller.createNewLamp("Lamp",
+                assertThrows(RuntimeException.class, () -> controller.createNewLamp("lamp",
                         200, 100));
 
         // Assert
@@ -283,18 +283,18 @@ class AddDeviceToRoomControllerTest {
     public void testGetDeviceListContentOfARoomTest() {
         // Arrange
         house.addRoom(kitchen);
-        house.getDeviceType("Fridge").createDevice("Fridgeratah V14", kitchen);
-        kitchen.getDeviceByPosition(0).setAttributesDevType("Freezer Capacity", 5.5);
+        house.getDeviceType("fridge").createDevice("Fridgeratah V14", kitchen);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("freezer Capacity", 5.5);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 15.5);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 5000);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.5);
 
-        house.getDeviceType("Lamp").createDevice("Lamp Bizkit 5000", kitchen);
+        house.getDeviceType("lamp").createDevice("lamp Bizkit 5000", kitchen);
         kitchen.getDeviceByPosition(1).setAttributesDevType("Nominal Power", 1.0);
         kitchen.getDeviceByPosition(1).setAttributesDevType("Luminous Flux", 10.0);
 
         String expectedResult = "1 - Name of the device: Fridgeratah V14\n" +
-                "2 - Name of the device: Lamp Bizkit 5000\n";
+                "2 - Name of the device: lamp Bizkit 5000\n";
 
         // Act
         String result = controller.getDeviceListContentOfARoom(0);

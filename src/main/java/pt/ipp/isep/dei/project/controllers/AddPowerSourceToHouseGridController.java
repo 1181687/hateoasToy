@@ -1,7 +1,10 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.HouseGrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.powersource.PowerSource;
+import pt.ipp.isep.dei.project.model.powersource.PowerSourceType;
+import pt.ipp.isep.dei.project.model.powersource.PowerSourceTypeList;
 
 public class AddPowerSourceToHouseGridController {
 
@@ -40,7 +43,7 @@ public class AddPowerSourceToHouseGridController {
     }
 
     /**
-     * Method that calculates the size of the HouseGrid list.
+     * Method that calculates the size of the housegrid list.
      * @return int
      */
 
@@ -49,7 +52,7 @@ public class AddPowerSourceToHouseGridController {
     }
 
     /**
-     * Method that gets a HouseGrid from a list of Housegrids by position.
+     * Method that gets a housegrid from a list of Housegrids by position.
      * @param position
      */
 
@@ -58,9 +61,9 @@ public class AddPowerSourceToHouseGridController {
     }
 
     /**
-     * Method that creates a PowerSource and adds it to the PowerSourceList in the selected HouseGrid.
+     * Method that creates a powersource and adds it to the PowerSourceList in the selected housegrid.
      * @param name of the Power Source.
-     * @return true if the Power Source is created and added with success to the HouseGrid or false if the PowerSource is not added
+     * @return true if the Power Source is created and added with success to the housegrid or false if the powersource is not added
      */
 
     public boolean createAndAddPowerSourceToHouseGrid(String name) {
@@ -95,7 +98,7 @@ public class AddPowerSourceToHouseGridController {
     }
 
     /**
-     * Returns the selected HouseGrid name.
+     * Returns the selected housegrid name.
      * @return String
      */
     public String getHouseGridName(){
@@ -103,7 +106,7 @@ public class AddPowerSourceToHouseGridController {
     }
 
     /**
-     * Returns a list of PowerSources that have been added to the HouseGrid's PowerSourceList.
+     * Returns a list of PowerSources that have been added to the housegrid's PowerSourceList.
      * @return
      */
     public String listPowerSourcesConnectedToGrid(){

@@ -2,10 +2,10 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.Devices.DishWasher.DishWasherSpecs;
-import pt.ipp.isep.dei.project.model.Devices.Programmable;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.devices.dishwasher.DishWasherSpecs;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Program;
@@ -35,7 +35,7 @@ public class DishWasherSpecsTest {
         Dimension dim = new Dimension(3, 5, 6);
         this.kitchen = new Room("Kitchen", 1, dim);
         this.house.addRoom(kitchen);
-        this.dishWasher = this.house.createDevice("DishWasher", "DishWasher Bosch", kitchen);
+        this.dishWasher = this.house.createDevice("Dishwasher", "dishwasher Bosch", kitchen);
         this.dishWasher.setAttributesDevType("Nominal Power", 30);
         this.dishWasher.setAttributesDevType("Capacity", 30);
 

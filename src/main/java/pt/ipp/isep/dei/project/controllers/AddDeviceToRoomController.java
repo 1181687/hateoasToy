@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.Programmable;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Program;
 import pt.ipp.isep.dei.project.model.Room;
@@ -14,7 +14,7 @@ public class AddDeviceToRoomController {
     private static final String NOMINAL_POWER = "Nominal Power";
     private static final String LUMINOUS_FLUX = "Luminous Flux";
     private static final String ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
-    private static final String FREEZER_CAPACITY = "Freezer Capacity";
+    private static final String FREEZER_CAPACITY = "freezer Capacity";
     private static final String REFRIGERATOR_CAPACITY = "Refrigerator Capacity";
     private static final String CAPACITY = "Capacity";
     private static final String HOTWATER_TEMPERATURE = "Hot-Water Temperature";
