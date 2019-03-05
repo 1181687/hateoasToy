@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.PowerSource.PowerSourceTypeList;
+import pt.ipp.isep.dei.project.model.powersource.PowerSourceTypeList;
 
 /**
  * US135 As an Administrator, I want to add a power source to a house grid, so that the

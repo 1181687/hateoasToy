@@ -2,10 +2,10 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.Devices.DishWasher.DishWasherSpecs;
-import pt.ipp.isep.dei.project.model.Devices.Programmable;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.devices.DishWasher.DishWasherSpecs;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Program;

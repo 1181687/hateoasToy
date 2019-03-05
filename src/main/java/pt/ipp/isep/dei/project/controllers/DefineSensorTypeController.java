@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Sensor.SensorType;
-import pt.ipp.isep.dei.project.model.Sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
 public class DefineSensorTypeController {
     private SensorTypeList sensorTypeList;
@@ -12,7 +12,7 @@ public class DefineSensorTypeController {
     }
 
     /**
-     * Creates a new Sensor type and adds it to the list of available Sensor types.
+     * Creates a new sensor type and adds it to the list of available sensor types.
      *
      * @param sensorType
      * @return true or false

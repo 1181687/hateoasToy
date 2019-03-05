@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.Sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDate;
 

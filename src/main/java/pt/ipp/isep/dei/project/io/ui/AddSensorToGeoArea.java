@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddSensorToGeoAreaController;
-import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalAreaList;
-import pt.ipp.isep.dei.project.model.Sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
 import java.util.Scanner;
 

@@ -1,11 +1,11 @@
 package pt.ipp.isep.dei.project.model;
 
 
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.DeviceType;
-import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.HouseGrid.HouseGrid;
-import pt.ipp.isep.dei.project.model.Sensor.SensorType;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.DeviceType;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -359,7 +359,7 @@ public class House {
     }
 
     /**
-     * method that gets a List of all Devices in a house grid, by it position in a HouseGridList
+     * method that gets a List of all devices in a house grid, by it position in a HouseGridList
      *
      * @param position position of the grid in the houseGridList
      * @return List <Device>
@@ -397,11 +397,11 @@ public class House {
     }
 
     /**
-     * method that get the String content Name and Location of all devices in the list, of a given HouseGrid,
+     * method that get the String content Name and Location of all devices in the list, of a given housegrid,
      * and grouped by device type.
      *
-     * @param positionHG integer number relative to position of the HouseGrid
-     * @return String with Devices Names and Location grouped by Type.
+     * @param positionHG integer number relative to position of the housegrid
+     * @return String with devices Names and Location grouped by Type.
      */
     public String getDeviceListContentNameTypeLocationByGrid(int positionHG) {
         List<Device> deviceList = getAllDevicesListByGridPosition(positionHG);
@@ -421,7 +421,7 @@ public class House {
      * Method that creates a house grid.
      *
      * @param grid Name of the grid.
-     * @return New object of the class HouseGrid.
+     * @return New object of the class housegrid.
      */
     public boolean createHouseGrid(HouseGrid grid) {
         if (!this.gridNameAlreadyExists(grid.getName())) {
@@ -534,7 +534,7 @@ public class House {
 
 
     /**
-     * Method that calls the method in HouseGrid that detaches a selected room from the list of HouseGrids.
+     * Method that calls the method in housegrid that detaches a selected room from the list of HouseGrids.
      *
      * @param houseGridSelected Specified house grid in the list.
      * @param roomSelected      Specified room.
@@ -545,7 +545,7 @@ public class House {
     }
 
     /**
-     * Method that asks the class HouseGrid to add a room to it's list.
+     * Method that asks the class housegrid to add a room to it's list.
      *
      * @param houseGridSelected Specified house grid in the list.
      * @param roomSelected      Specified room.
@@ -721,9 +721,9 @@ public class House {
 
 
     /**
-     * method that get the number os existing Devices on the configuration file.
+     * method that get the number os existing devices on the configuration file.
      *
-     * @return the number os existing Devices
+     * @return the number os existing devices
      */
     public int numberOfDeviceTypes() {
         return Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "devicetype.count"));

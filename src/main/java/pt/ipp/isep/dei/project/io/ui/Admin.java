@@ -1,11 +1,11 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalAreaList;
-import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalAreaTypeList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.PowerSource.PowerSourceTypeList;
+import pt.ipp.isep.dei.project.model.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.model.RoomList;
-import pt.ipp.isep.dei.project.model.Sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
 public class Admin {
     private GeographicalAreaTypeList geographicalAreaTypeList;

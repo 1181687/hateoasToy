@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalAreaList;
-import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalAreaTypeList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 
 import java.util.List;
 

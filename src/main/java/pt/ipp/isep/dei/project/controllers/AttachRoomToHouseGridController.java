@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.HouseGrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.RoomList;
 
@@ -127,14 +127,14 @@ public class AttachRoomToHouseGridController {
     }
 
     /**
-     * Method that detach the specified room in the specified house grid via class HouseGrid.
+     * Method that detach the specified room in the specified house grid via class housegrid.
      */
     public void detachRoomFromTheHouseGrid(HouseGrid grid) {
         house.detachRoomInASpecificHouseGridInTheList(grid, roomToBeAttached);
     }
 
     /**
-     * Method that attach the specified room in the specified house grid via class HouseGrid.
+     * Method that attach the specified room in the specified house grid via class housegrid.
      */
     public void attachRoomInTheHouseGrid() {
         house.attachRoomInASpecificHouseGridInTheList(gridToBeUsed, roomToBeAttached);

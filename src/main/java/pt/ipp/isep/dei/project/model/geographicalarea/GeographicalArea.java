@@ -1,0 +1,357 @@
+package pt.ipp.isep.dei.project.model.geographicalarea;
+
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorList;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+public class GeographicalArea {
+    private String geoAreaName;
+    private GeographicalAreaType geographicalAreaType;
+    private GeographicalArea insertedIn;
+    private Location location;
+    private AreaShape areaShape;
+    private SensorList sensorList = new SensorList();
+
+    /**
+     * constructor of geographical area that receives a name, type, insertedIn, location, areaShape and a sensor list.
+     *
+     * @param geoAreaName
+     * @param geographicalAreaType
+     * @param location
+     * @param areaShape
+     */
+    public GeographicalArea(String geoAreaName, GeographicalAreaType geographicalAreaType, Location location, AreaShape areaShape) {
+        this.geoAreaName = geoAreaName;
+        this.geographicalAreaType = geographicalAreaType;
+        this.location = location;
+        this.areaShape = areaShape;
+    }
+
+    /**
+     * get a sensor list in the geographical area.
+     *
+     * @return a sensor list.
+     */
+    public SensorList getSensorListInTheGeographicArea() {
+        return sensorList;
+    }
+
+    /**
+     * method that creates the hashcode to geographical area.
+     */
+    @Override
+    public int hashCode() {
+        return 1;
+    }
+
+    /**
+     * Equals method to determine if two geographical area are equal.
+     * They are equals if all atributtes (name, type, insertedIn, location, areaShape and a sensor list) are equal.
+     *
+     * @param obj
+     * @return boolean.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof GeographicalArea)) {
+            return false;
+        }
+        GeographicalArea ag = (GeographicalArea) obj;
+        return this.geoAreaName.equals(ag.geoAreaName) && this.geographicalAreaType.equals(ag.geographicalAreaType) && this.location.equals(ag.location);
+    }
+
+    /**
+     * get the name of a geographical area.
+     *
+     * @return the name of geographical area.
+     */
+    public String getNameOfGeoArea() {
+        return geoAreaName;
+    }
+
+    /**
+     * get a geographical area type.
+     *
+     * @return a type of geographical area.
+     */
+    public GeographicalAreaType getGeoAreaType() {
+        return geographicalAreaType;
+    }
+
+    /**
+     * get the location of a geographical area.
+     *
+     * @return a location
+     */
+    public Location getLocation() {
+        return this.location;
+    }
+
+    /**
+     * get the inserted area where the geographical area is.
+     *
+     * @return the area inserted
+     */
+    public GeographicalArea getInsertedIn() {
+        return insertedIn;
+    }
+
+    /**
+     * set the inserted area where the geo area is.
+     *
+     * @param mainGeoArea Geographical area where THIS Geo Area will be inserted in.
+     */
+    public void setInsertedIn(GeographicalArea mainGeoArea) {
+        this.insertedIn = mainGeoArea;
+    }
+
+    /**
+     * method that calculate the linear distance between two geao areas.
+     *
+     * @param newGeoArea
+     * @return location between two geo areas.
+     */
+    public double linearDistanceBetweenTwoGeoAreas(GeographicalArea newGeoArea) {
+        return this.location.distanceBetweenTwoLocations(newGeoArea.getLocation());
+    }
+
+    /**
+     * method that check if a sensor is inside the geographical area.
+     *
+     * @param sensor
+     * @return boolean.
+     */
+    public boolean checkIfSensorInInsideOfGeoArea(Sensor sensor) {
+
+        return areaShape.checkIfLocationIsInsertedInAnArea(sensor.getLocation());
+
+    }
+
+    /**
+     * this method get sensors by type inserted in a geo area.
+     *
+     * @param sensorType
+     * @return the Sensorlist of sensors by type.
+     */
+    public SensorList getSensorsInGeographicalAreaByType(SensorType sensorType) {
+        SensorList listOfInsertedSensors = new SensorList();
+        for (Sensor sensor : this.sensorList.getListOfSensors()) {
+            if (checkIfSensorInInsideOfGeoArea(sensor) && sensor.getSensorType().equals(sensorType)) {
+                listOfInsertedSensors.addSensor(sensor);
+            }
+        }
+        return listOfInsertedSensors;
+    }
+
+    /**
+     * method that list the type of sensors of a certain area in a given period
+     *
+     * @param type
+     * @param startDate
+     * @param endDate
+     * @return the list of type of sensors of a certain area in a given period
+     */
+    public SensorList getSensorListByTypeInAPeriod(SensorType type, LocalDate startDate, LocalDate endDate) {
+
+        SensorList listOfSensorsInGeoAreaByType = getSensorsInGeographicalAreaByType(type);
+        SensorList listOfSensorsOfATypeDuringAPeriod = new SensorList();
+
+        for (Sensor sensor : listOfSensorsInGeoAreaByType.getListOfSensors()) {
+            if (sensor.checkMeasurementExistenceBetweenDates(startDate, endDate)) {
+                listOfSensorsOfATypeDuringAPeriod.addSensor(sensor);
+            }
+        }
+        return listOfSensorsOfATypeDuringAPeriod;
+    }
+
+    /**
+     * method that gets a SensorList of a given type of a geo area in a day
+     *
+     * @param type of sensor
+     * @param day
+     * @return the list of sensors by type in a day.
+     */
+    public SensorList getSensorListByTypeInADay(SensorType type, LocalDate day) {
+        SensorList sensorListByTypeInAGeoArea = getSensorsInGeographicalAreaByType(type);
+        SensorList sensorListByTypeInADay = new SensorList();
+
+        for (Sensor sensor : sensorListByTypeInAGeoArea.getListOfSensors()) {
+            if (sensor.checkMeasurementExistenceBetweenDates(day, day)) {
+                sensorListByTypeInADay.addSensor(sensor);
+            }
+        }
+        return sensorListByTypeInADay;
+    }
+
+    /**
+     * that method create a new sensor with a name, a type and a location.
+     *
+     * @param name
+     * @param newSensorType
+     * @param newLocation
+     * @return a new sensor.
+     */
+    public Sensor newSensor(String name, SensorType newSensorType, Location newLocation) {
+        return new Sensor(name, newSensorType, newLocation);
+    }
+
+    /**
+     * that method create a new location with a latitude, longitude and altitude
+     *
+     * @param latitude
+     * @param longitude
+     * @param altitude
+     * @return a new location.
+     */
+    public Location newLocation(double latitude, double longitude, double altitude) {
+        return new Location(latitude, longitude, altitude);
+    }
+
+    /**
+     * Method that get the list of sensors that exists in an area, with a certain type of sensor.
+     *
+     * @param type
+     * @return sensor list.
+     */
+    public SensorList getTheSensorListOfAGivenType(SensorType type) {
+        GeographicalArea areaToBeUsed = new GeographicalArea(geoAreaName, geographicalAreaType, location, areaShape);
+        areaToBeUsed.setInsertedIn(insertedIn);
+        SensorList listOfSensors = new SensorList();
+        listOfSensors.setListOfSensors(getSensorsInGeographicalAreaByType(type).getListOfSensors());
+        while (listOfSensors.getListOfSensors().isEmpty()) {
+            if (areaToBeUsed.getInsertedIn() != null) {
+                areaToBeUsed.getSensorListInTheGeographicArea().setListOfSensors(areaToBeUsed.getInsertedIn().getSensorListInTheGeographicArea().getListOfSensors());
+                areaToBeUsed.setInsertedIn(areaToBeUsed.getInsertedIn().getInsertedIn());
+                listOfSensors.setListOfSensors(areaToBeUsed.getSensorListInTheGeographicArea().getListOfSensors());
+            } else {
+                return listOfSensors;
+            }
+        }
+        return listOfSensors;
+    }
+
+    /**
+     * Method that returns the last measurement of a given type in the area.
+     *
+     * @param location Location to be used.
+     * @param type     sensor type.
+     * @return Last measurement.
+     */
+    public double getLastMeasurementByLocationType(Location location, SensorType type) {
+        SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
+        double latestReadingValue = Double.NaN;
+        if (!sensorListWithTheRequiredType.getListOfSensors().isEmpty()) {
+            SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
+            Reading latestReading = null;
+            for (Sensor sensor : nearestSensors.getListOfSensors()) {
+                if ((!Objects.isNull(sensor.getLastMeasurement())) && (Objects.isNull(latestReading) ||
+                        sensor.getLastMeasurement().getDateTime().isAfter(latestReading.getDateTime()))) {
+                    latestReading = sensor.getLastMeasurement();
+                    latestReadingValue = latestReading.getValue();
+                }
+
+            }
+        }
+        return latestReadingValue;
+    }
+
+    public LocalDateTime getDateLastMeasurementByLocationType(Location location, SensorType type) {
+        SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
+        LocalDateTime latestReadingDate = null;
+        if (!sensorListWithTheRequiredType.getListOfSensors().isEmpty()) {
+            SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
+            Reading latestReading = null;
+            for (Sensor sensor : nearestSensors.getListOfSensors()) {
+                if ((!Objects.isNull(sensor.getLastMeasurement())) && (Objects.isNull(latestReading) ||
+                        sensor.getLastMeasurement().getDateTime().isAfter(latestReading.getDateTime()))) {
+                    latestReading = sensor.getLastMeasurement();
+                    latestReadingDate = latestReading.getDateTime();
+                }
+
+            }
+        }
+        return latestReadingDate;
+    }
+
+
+
+
+    /**
+     * Method that returns de daily average of the measurements of a sensor.
+     *
+     * @param date
+     * @return
+     */
+    public double getDailyAverageOfASensor(Sensor sensor, LocalDate date) {
+        double dailyAverage = Double.NaN;
+        if (!(sensor.getDailyMeasurement(date).isEmpty())) {
+            dailyAverage = sensor.getDailyAverage(date);
+        }
+        return dailyAverage;
+    }
+
+    /**
+     * Method that returns an ArrayList with the daily averages between two dates.
+     *
+     * @param sensorType
+     * @param startDate
+     * @param endDate
+     * @return
+     */
+    public List<Double> getDailyAverageMeasurement(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
+        List<Double> listOfDailyAverages = new ArrayList<>();
+        SensorList nearestSensorsWithRightTypeDuringPeriod = getSensorListByTypeInAPeriod(sensorType, startDate, endDate).getNearestSensorsToLocation(location);
+        if (nearestSensorsWithRightTypeDuringPeriod.isEmpty()) {
+            return listOfDailyAverages;
+        }
+        Sensor nearestSensor = nearestSensorsWithRightTypeDuringPeriod.getSensorWithMostRecentReading(nearestSensorsWithRightTypeDuringPeriod);
+
+        for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate); dateIterator = dateIterator.plusDays(1)) {
+            double dailyAverage = getDailyAverageOfASensor(nearestSensor, dateIterator);
+            if (!Double.isNaN(dailyAverage)) {
+                listOfDailyAverages.add(getDailyAverageOfASensor(nearestSensor, dateIterator));
+            }
+        }
+        return listOfDailyAverages;
+    }
+
+    /**
+     * Method that returns the Total Daily Reading of a sensor Type in The Geographic Area. This method considers
+     * the maximum value of the sensor on that Area. In case there's no sensors in that Area, it returns Double NaN.
+     *
+     * @param sensorType
+     * @param day
+     * @return
+     */
+
+    public double getTotalDailyMeasurement(SensorType sensorType, LocalDate day, Location location) {
+        double totalDailyMeasurement = Double.NaN;
+        SensorList sensorListWithSameTypeDuringADay = getSensorListByTypeInADay(sensorType, day);
+        SensorList nearestSensors = sensorListWithSameTypeDuringADay.getNearestSensorsToLocation(location);
+        Reading latestReading;
+        if (!(nearestSensors.isEmpty()) && !(nearestSensors.getListOfSensors().get(0).isMeasurementListEmpty())) {
+            latestReading = nearestSensors.getListOfSensors().get(0).getLastMeasurement();
+
+            for (Sensor sensor : nearestSensors.getListOfSensors()) {
+                List<Reading> readingList = sensor.getDailyMeasurement(day);
+                int lastReadingPosition = readingList.size() - 1;
+                if (!(readingList.isEmpty()) && readingList.get(lastReadingPosition).getDateTime().isAfter(latestReading.getDateTime())) {
+                    latestReading = sensor.getLastMeasurement();
+                }
+                    totalDailyMeasurement = latestReading.getValue();
+                }
+        }
+        return totalDailyMeasurement;
+    }
+}

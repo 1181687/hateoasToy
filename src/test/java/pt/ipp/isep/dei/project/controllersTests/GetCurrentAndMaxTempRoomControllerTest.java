@@ -4,11 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.GeographicalArea.AreaShape;
-import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.Sensor.Sensor;
-import pt.ipp.isep.dei.project.model.Sensor.SensorType;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
@@ -112,7 +112,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         Dimension dimension = new Dimension(300, 600, 600);
         Room room1 = new Room("room1", 1, dimension);
 
-        //Instanciar Sensor
+        //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(123, 345, 50);
@@ -182,7 +182,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         Dimension dimension = new Dimension(300, 600, 600);
         Room room1 = new Room("room1", 1, dimension);
 
-        //Sensor
+        //sensor
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Humidity");
         Location locS2 = new Location(123, 345, 55);

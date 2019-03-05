@@ -5,9 +5,9 @@ import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.RoomList;
-import pt.ipp.isep.dei.project.model.Sensor.Sensor;
-import pt.ipp.isep.dei.project.model.Sensor.SensorList;
-import pt.ipp.isep.dei.project.model.Sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorList;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -74,7 +74,7 @@ class SensorListTest {
     @Test
     public void testargetListaUltimosRegistosPorTipoSensorCasoPositivo() {
         //Arrange
-        //Instanciar Sensor
+        //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
@@ -144,7 +144,7 @@ class SensorListTest {
     @Test
     public void testarGetListaUltimosRegistosPorTipoSensorCasoUltimoRegistoDoubleNan() {
         //Arrange
-        //Instanciar Sensor
+        //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
@@ -213,7 +213,7 @@ class SensorListTest {
     @Test
     public void testarGetListaUltimosRegistosPorTipoSensorListaVazia() {
         //Arrange
-        //Instanciar Sensor
+        //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
@@ -337,7 +337,7 @@ class SensorListTest {
     @Test
     public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresIguais() {
         //arrange
-        //Sensor
+        //sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
@@ -404,7 +404,7 @@ class SensorListTest {
     @Test
     public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresQueNaoTem() {
         //arrange
-        //Instanciar Sensor
+        //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
@@ -672,7 +672,7 @@ class SensorListTest {
         //arrange
         SensorList list = new SensorList();
 
-        //Instanciar Sensor
+        //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
@@ -711,7 +711,7 @@ class SensorListTest {
         //arrange
         SensorList list = new SensorList();
 
-        //Instanciar Sensor
+        //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
@@ -861,7 +861,7 @@ class SensorListTest {
         //arrange
         SensorList sensorList = new SensorList();
 
-        //Instanciar Sensor
+        //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);

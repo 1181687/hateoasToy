@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.AddSensorToRoomController;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.RoomList;
-import pt.ipp.isep.dei.project.model.Sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
 import java.util.Scanner;
 
@@ -47,7 +47,7 @@ public class AddSensorToRoom {
             if (controller.createAndAddSensorToTheList(nameOfSensor)) {
                 System.out.println("A sensor was added to the room.");
             } else {
-                System.out.println("Sensor was not created.");
+                System.out.println("sensor was not created.");
             }
 
         }

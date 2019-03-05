@@ -1,9 +1,9 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.PowerSource.PowerSource;
-import pt.ipp.isep.dei.project.model.PowerSource.PowerSourceList;
-import pt.ipp.isep.dei.project.model.PowerSource.PowerSourceType;
+import pt.ipp.isep.dei.project.model.powersource.PowerSource;
+import pt.ipp.isep.dei.project.model.powersource.PowerSourceList;
+import pt.ipp.isep.dei.project.model.powersource.PowerSourceType;
 
 import static org.junit.jupiter.api.Assertions.*;
 

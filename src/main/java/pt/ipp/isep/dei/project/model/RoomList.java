@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Sensor.SensorType;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -194,7 +194,7 @@ public class RoomList {
     /**
      * method that get the maximum temperature in a room in a given day.
      * @param name of Room
-     * @param type of Sensor (temperature)
+     * @param type of sensor (temperature)
      * @param date any given day
      * @return the maximum temperature in a specific Room in a given day
      */

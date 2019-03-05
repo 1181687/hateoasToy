@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaTypeController;
-import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalAreaTypeList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 
 import java.util.Scanner;
 

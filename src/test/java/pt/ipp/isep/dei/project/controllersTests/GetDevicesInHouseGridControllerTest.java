@@ -37,7 +37,7 @@ public class GetDevicesInHouseGridControllerTest {
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
         Room room2 = new Room(name2, -1, dim2);
 
-        //Devices
+        //devices
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
@@ -85,11 +85,11 @@ public class GetDevicesInHouseGridControllerTest {
         washingMachine2.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPowerWash);
 
         //add to Lists
-        HouseGrid houseGrid = new HouseGrid("grid1");
-        HouseGrid houseGridEmpty = new HouseGrid("grid2");
+        housegrid houseGrid = new housegrid("grid1");
+        housegrid houseGridEmpty = new housegrid("grid2");
         houseGrid.addRoom(room1);
         houseGrid.addRoom(room2);
-        List<HouseGrid> houseGridList1 = new ArrayList<>();
+        List<housegrid> houseGridList1 = new ArrayList<>();
         houseGridList1.add(houseGrid);
         houseGridList1.add(houseGridEmpty);
 

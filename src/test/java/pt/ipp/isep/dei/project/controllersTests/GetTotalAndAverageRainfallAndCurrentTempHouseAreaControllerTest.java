@@ -4,11 +4,11 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetTotalAndAverageRainfallAndCurrentTempHouseAreaController;
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.GeographicalArea.AreaShape;
-import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.Sensor.Sensor;
-import pt.ipp.isep.dei.project.model.Sensor.SensorType;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
@@ -49,7 +49,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
     @Test
     public void testTotalDailyMeasurementInAHouseArea () {
         //Arrange
-        //Instantiate Sensor
+        //Instantiate sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.15, -8.610, 97);
@@ -95,7 +95,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
     @Test
     public void testeAverageRainfallOfHouseArea() {
         //Arrange
-        //Instanciar Sensor
+        //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
