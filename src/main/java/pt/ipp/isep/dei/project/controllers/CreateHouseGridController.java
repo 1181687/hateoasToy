@@ -26,6 +26,7 @@ public class CreateHouseGridController {
         return house.getHouseGridList();
     }
 
+
     /**
      * Method that creates a new house grid.
      *
