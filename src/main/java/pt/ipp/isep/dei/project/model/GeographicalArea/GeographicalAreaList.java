@@ -1,4 +1,6 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.GeographicalArea;
+
+import pt.ipp.isep.dei.project.model.Location;
 
 import java.util.ArrayList;
 import java.util.List;

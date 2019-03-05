@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.PowerSource;
 
 import java.util.ArrayList;
 import java.util.List;

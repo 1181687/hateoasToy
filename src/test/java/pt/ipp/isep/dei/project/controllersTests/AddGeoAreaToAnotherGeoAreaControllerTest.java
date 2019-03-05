@@ -3,7 +3,11 @@ package pt.ipp.isep.dei.project.controllersTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaToAnotherGeoAreaController;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.GeographicalArea.AreaShape;
+import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.Location;
 
 import static org.junit.jupiter.api.Assertions.*;
 

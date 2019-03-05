@@ -1,4 +1,10 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.GeographicalArea;
+
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.Sensor.Sensor;
+import pt.ipp.isep.dei.project.model.Sensor.SensorList;
+import pt.ipp.isep.dei.project.model.Sensor.SensorType;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.GeographicalArea;
 
 public class GeographicalAreaType {
     private String geoAreaType;

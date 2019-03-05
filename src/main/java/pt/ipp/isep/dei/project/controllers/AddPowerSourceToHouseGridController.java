@@ -1,7 +1,10 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.HouseGrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.PowerSource.PowerSource;
+import pt.ipp.isep.dei.project.model.PowerSource.PowerSourceType;
+import pt.ipp.isep.dei.project.model.PowerSource.PowerSourceTypeList;
 
 public class AddPowerSourceToHouseGridController {
 

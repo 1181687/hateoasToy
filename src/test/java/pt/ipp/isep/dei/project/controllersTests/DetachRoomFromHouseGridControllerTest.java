@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.DetachRoomFromHouseGridController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.GeographicalArea.AreaShape;
+import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.GeographicalArea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.HouseGrid.HouseGrid;
 import pt.ipp.isep.dei.project.utils.Utils;
 
