@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Freezer implements Device {
     private String name;
@@ -63,7 +64,7 @@ public class Freezer implements Device {
      */
     @Override
     public boolean isActive() {
-        return false;
+        return this.isActive;
     }
 
     /**
@@ -74,7 +75,18 @@ public class Freezer implements Device {
      */
     @Override
     public boolean setLocation(Room location) {
-        return false;
+        if (Objects.isNull(this.location)) {
+            this.location = location;
+            location.addDevice(this);
+            return true;
+        }
+        if (this.location.equals(location)) {
+            return false;
+        }
+        this.location.getDeviceList().remove(this);
+        this.location = location;
+        location.addDevice(this);
+        return true;
     }
 
     /**
@@ -84,13 +96,13 @@ public class Freezer implements Device {
      */
     @Override
     public boolean getIsActive() {
-        return false;
+        return this.isActive;
     }
 
 
     @Override
     public LocalDateTime getDeactivationDate() {
-        return null;
+        return this.deactivationDate;
     }
 
     @Override
@@ -105,13 +117,13 @@ public class Freezer implements Device {
 
     @Override
     public double getNominalPower() {
-        return 0;
+        return this.specs.getNominalPower();
     }
 
 
     @Override
     public List<Reading> getReadings() {
-        return null;
+        return this.readingList;
     }
 
     /**

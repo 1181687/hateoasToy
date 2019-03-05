@@ -1,7 +1,19 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-class AddDeviceToRoomControllerTest {
-    /*private AddDeviceToRoomController controller;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
+import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
+import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class AddDeviceToRoomControllerTest {
+    private AddDeviceToRoomController controller;
     private House house;
     private Room kitchen;
     private Room livingRoom;
@@ -100,11 +112,13 @@ class AddDeviceToRoomControllerTest {
     @Test
     void getDeviceTypeListToString() {
         // Arrange
-        String expectedResult = "1- fridge\n" +
-                "2- lamp\n" +
-                "3- dishwasher\n" +
-                "4- washingmachine\n" +
-                "5- electricwaterheater\n";
+        String expectedResult = "1- Fridge\n" +
+                "2- Lamp\n" +
+                "3- DishWasher\n" +
+                "4- WashingMachine\n" +
+                "5- ElectricWaterHeater\n" +
+                "6- ElectricOven\n" +
+                "7- Freezer\n";
 
         // Act
         String result = controller.getDeviceTypeListToString();
@@ -118,7 +132,7 @@ class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        Device d2 = controller.createNewFridge("fridge", 1000,
+        Device d2 = controller.createNewFridge("Fridge", 1000,
                 200, 20, 50);
         Device expectedResult = d2;
 
@@ -129,17 +143,18 @@ class AddDeviceToRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
+    /*
     @Test
     public void testNewFridgeNegative() {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.createNewFridge("fridge", 1000, 200,
+        controller.createNewFridge("Fridge", 1000, 200,
                 20, 50);
 
         // Act
         Throwable exception =
-                assertThrows(RuntimeException.class, () -> controller.createNewFridge("fridge",
+                assertThrows(RuntimeException.class, () -> controller.createNewFridge("Fridge",
                         1000, 200, 20, 50));
 
         // Assert
@@ -283,13 +298,15 @@ class AddDeviceToRoomControllerTest {
     public void testGetDeviceListContentOfARoomTest() {
         // Arrange
         house.addRoom(kitchen);
-        house.getDeviceType("fridge").createDevice("Fridgeratah V14", kitchen);
+        //house.getDeviceType("fridge").createDevice("Fridgeratah V14", kitchen);
+        house.createDevice("Fridge", "Fridgeratah V14", kitchen);
         kitchen.getDeviceByPosition(0).setAttributesDevType("freezer Capacity", 5.5);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 15.5);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 5000);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.5);
 
-        house.getDeviceType("lamp").createDevice("lamp Bizkit 5000", kitchen);
+        //house.getDeviceType("lamp").createDevice("lamp Bizkit 5000", kitchen);
+        house.createDevice("Lamp", "lamp Bizkit 5000", kitchen);
         kitchen.getDeviceByPosition(1).setAttributesDevType("Nominal Power", 1.0);
         kitchen.getDeviceByPosition(1).setAttributesDevType("Luminous Flux", 10.0);
 
@@ -303,64 +320,64 @@ class AddDeviceToRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    /*
-        @Test
-        void testCreateNewProgram() {
-            // Arrange
-            house.getDeviceType("Electric Water Heater").createDevice("Electric Water Heater", kitchen);
-            kitchen.getDeviceByPosition(0).setAttributesDevType("Volume Of Water To Heat", 5.5);
-            kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 15.5);
-            kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 5000);
-            kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.5);
 
-            DeviceSpecs eWHSpecs = new ElectricWaterHeaterSpecs(50, 150, 100, 0.9);
-            Device electricWaterHeater = new Device("Electric Water Heater", kitchen, eWHSpecs);
-            kitchen.addDevice(electricWaterHeater);
-            house.addRoom(kitchen);
+    @Test
+    public void testCreateNewProgram() {
+        // Arrange
+        Device device = house.createDevice("Electric Water Heater", "Electric Water Heater", kitchen);
+        //house.getDeviceType("Electric Water Heater").createDevice("Electric Water Heater", kitchen);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Volume Of Water To Heat", 5.5);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 15.5);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 5000);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.5);
 
-            Program expectedResult = new Program("Program1", 10.2, 50);
+        //DeviceSpecs eWHSpecs = new ElectricWaterHeaterSpecs(50, 150, 100, 0.9);
 
-            // Act
-            Program result = controller.createNewProgram("Program1", 10.2, 50);
+        //Device electricWaterHeater = new Device("Electric Water Heater", kitchen, eWHSpecs);
+        //kitchen.addDevice(electricWaterHeater);
+        house.addRoom(kitchen);
 
-            // Assert
-            assertEquals(expectedResult, result);
-        }
+        // Act
+        boolean result = controller.createAndAddProgram("Program1", 10.2, 50);
 
-        @Test
-        void addProgramToListFalse() {
-            //Arrange
-            Program program = null;
-            boolean expectedResult = false;
+        // Assert
+        assertTrue(result);
+    }
 
-            //Act
-            boolean result = controller.addProgramToList(program);
+    @Test
+    public void addProgramToListFalse() {
+        //Arrange
+        Program program = null;
+        boolean expectedResult = false;
 
-            //Assert
-            assertEquals(expectedResult, result);
-        }
+        //Act
+        boolean result = controller.createAndAddProgram(null, Double.NaN, Double.NaN);
 
-        @Test
-        void addProgramToListTrue() {
-            // Arrange
-            Program program1 = controller.createNewProgram("Program1", 10.2, 50);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 
-            // Act
-            boolean result = controller.addProgramToList(program1);
+    @Test
+    public void addProgramToListTrue() {
+        // Arrange
+        //boolean program = controller.createAndAddProgram("Program1", 10.2, 50);
 
-            // Assert
-            assertTrue(result);
-        }
+        // Act
+        boolean result = controller.createAndAddProgram("Program1", 10.2, 50);
 
+        // Assert
+        assertTrue(result);
+    }
+*/
     @Test
     public void testGetNumberOfDeviceTypes() {
         // Arrange
-        int expectedResult = 5;
+        int expectedResult = 7;
 
         // Act
         int result = controller.getNumberOfDeviceTypes();
 
         // Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 }
