@@ -5,11 +5,9 @@ import org.junit.jupiter.api.Test;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Modifier;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -237,5 +235,57 @@ class UtilsTest {
 
         // assert
         assertFalse(result);
+    }
+
+    @Test
+    void removeDoubleNanHashMap_oneDoubleNan() {
+
+        //LocalDate
+        LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
+        LocalDateTime time1 = LocalDateTime.of(2018, 12, 3, 13, 20, 00);
+        LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
+
+        // Maps
+        Map<LocalDate, Double> dailyAmplitudes = new HashMap<>();
+
+        double value = Double.NaN;
+        dailyAmplitudes.put(time0.toLocalDate(), 10.0);
+        dailyAmplitudes.put(time1.toLocalDate(), value);
+        dailyAmplitudes.put(time2.toLocalDate(), 15.0);
+
+        Map<LocalDate, Double> expectedResult = new HashMap<>();
+        expectedResult.put(time0.toLocalDate(), 10.0);
+        expectedResult.put(time2.toLocalDate(), 15.0);
+
+        //Act
+        Map<LocalDate, Double> result = Utils.removeDoubleNanHashMap(dailyAmplitudes);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void removeDoubleNanHashMap_allDoubleNan() {
+
+        //LocalDate
+        LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
+        LocalDateTime time1 = LocalDateTime.of(2018, 12, 3, 13, 20, 00);
+        LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
+
+        // Maps
+        Map<LocalDate, Double> dailyAmplitudes = new HashMap<>();
+
+        double value = Double.NaN;
+        dailyAmplitudes.put(time0.toLocalDate(), value);
+        dailyAmplitudes.put(time1.toLocalDate(), value);
+        dailyAmplitudes.put(time2.toLocalDate(), value);
+
+        Map<LocalDate, Double> expectedResult = new HashMap<>();
+
+        //Act
+        Map<LocalDate, Double> result = Utils.removeDoubleNanHashMap(dailyAmplitudes);
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 }
