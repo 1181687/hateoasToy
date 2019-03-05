@@ -354,4 +354,6 @@ public class GeographicalArea {
         }
         return totalDailyMeasurement;
     }
+
+
 }
