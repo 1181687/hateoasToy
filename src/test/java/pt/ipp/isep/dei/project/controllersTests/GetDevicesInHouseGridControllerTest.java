@@ -4,7 +4,7 @@ public class GetDevicesInHouseGridControllerTest {
     /*private GetDevicesInHouseGridController ctrl;
     private House houseEdificioB;
 
-    private static final String ATTRIBUTE_FREEZER_CAPACITY = "Freezer Capacity";
+    private static final String ATTRIBUTE_FREEZER_CAPACITY = "freezer Capacity";
     private static final String ATTRIBUTE_REFRIGERATOR_CAPACITY = "Refrigerator Capacity";
     private static final String ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
@@ -43,13 +43,13 @@ public class GetDevicesInHouseGridControllerTest {
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
         FridgeType fridgeType = new FridgeType();
-        Device fridge1 = fridgeType.createDevice("Fridge Ariston", room1);
+        Device fridge1 = fridgeType.createDevice("fridge Ariston", room1);
         fridge1.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
         fridge1.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
 
-        Device fridge2 = fridgeType.createDevice("Fridge Bosch", room1);
+        Device fridge2 = fridgeType.createDevice("fridge Bosch", room1);
         fridge2.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge2.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge2.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
@@ -105,9 +105,9 @@ public class GetDevicesInHouseGridControllerTest {
                 "- Device Name: Washing Machine Bosh, Location: Kitchen.\n" +
                 "- Device Name: Washing Machine 625, Location: KitchenBasement.\n" +
                 "\n" +
-                "Fridge\n" +
-                "- Device Name: Fridge Ariston, Location: Kitchen.\n" +
-                "- Device Name: Fridge Bosch, Location: Kitchen.\n" +
+                "fridge\n" +
+                "- Device Name: fridge Ariston, Location: Kitchen.\n" +
+                "- Device Name: fridge Bosch, Location: Kitchen.\n" +
                 "- Device Name: Fridge1100, Location: KitchenBasement.\n" +
                 "- Device Name: Fridge5000, Location: KitchenBasement.\n" +
                 "\n";

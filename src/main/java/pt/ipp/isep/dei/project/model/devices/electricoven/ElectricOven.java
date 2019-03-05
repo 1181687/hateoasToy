@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.devices.ElectricOven;
+package pt.ipp.isep.dei.project.model.devices.electricoven;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;

@@ -1,9 +1,8 @@
-package pt.ipp.isep.dei.project.model.devices.ElectricWaterHeater;
+package pt.ipp.isep.dei.project.model.devices.fridge;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.Room;
 
@@ -11,21 +10,21 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class ElectricWaterHeater implements Device, Measurable {
+public class Fridge implements Device {
     private String name;
     private Room location;
-    private ElectricWaterHeaterSpecs specs;
+    private FridgeSpecs specs;
     private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public ElectricWaterHeater(String name, DeviceSpecs electricWaterHeaterSpecs) {
+    public Fridge(String name, DeviceSpecs fridgeSpecs) {
         this.name = name;
-        this.specs = (ElectricWaterHeaterSpecs) electricWaterHeaterSpecs;
+        this.specs = (FridgeSpecs) fridgeSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
-
     }
+
 
     /**
      * method that get the nominal power of the devices.
@@ -57,23 +56,6 @@ public class ElectricWaterHeater implements Device, Measurable {
         this.location.getDeviceList().remove(this);
         this.location = location;
         location.addDevice(this);
-        return true;
-    }
-
-    /**
-     * -     * method that set the given name only if the name don't exists in DeviceList
-     * -     * and if it is different than the name that the Device1 has.
-     * -     *
-     * -     * @param name String given name
-     * -     * @return true if sets false if don't
-     * -
-     */
-    @Override
-    public boolean setName(String name) {
-        if (this.location.isDeviceNameExistant(name) || this.name == name) {
-            throw new RuntimeException("Name already exists. Please write a new one.");
-        }
-        this.name = name;
         return true;
     }
 
@@ -123,6 +105,7 @@ public class ElectricWaterHeater implements Device, Measurable {
         return isActive;
     }
 
+
     /**
      * method that creates the hashcode to two devices that are have the same name.
      *
@@ -151,6 +134,7 @@ public class ElectricWaterHeater implements Device, Measurable {
         return this.name.equalsIgnoreCase(listOne.getName());
     }
 
+    @Override
     public LocalDateTime getDeactivationDate() {
         return this.deactivationDate;
     }
@@ -170,10 +154,28 @@ public class ElectricWaterHeater implements Device, Measurable {
     }
 
     /**
+     * -     * method that set the given name only if the name don't exists in DeviceList
+     * -     * and if it is different than the name that the Device1 has.
+     * -     *
+     * -     * @param name String given name
+     * -     * @return true if sets false if don't
+     * -
+     */
+    @Override
+    public boolean setName(String name) {
+        if (this.location.isDeviceNameExistant(name) || this.name == name) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
+        this.name = name;
+        return true;
+    }
+
+    /**
      * method that get an active device.
      *
      * @return an active device.
      */
+    @Override
     public boolean getIsActive() {
         return isActive;
     }

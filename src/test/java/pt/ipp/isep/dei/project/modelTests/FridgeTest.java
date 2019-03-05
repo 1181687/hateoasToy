@@ -45,10 +45,10 @@ class FridgeTest {
         this.house.addRoom(laundry);
 
         // devices
-        // Dummy Fridge
+        // Dummy fridge
         house.createDevice("Fridge", "Miele PerfectCool Series 1000", kitchen);
 
-        // Fridge
+        // fridge
         fridge = house.createDevice("Fridge", "Miele PerfectCool Series 3500", kitchen);
         fridge.setAttributesDevType("Freezer Capacity", 40);
         fridge.setAttributesDevType("Refrigerator Capacity", 20);

@@ -1,27 +1,23 @@
-package pt.ipp.isep.dei.project.model.devices.ElectricOven;
+package pt.ipp.isep.dei.project.model.devices.lamp;
 
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.Program;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
-public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
+public class LampSpecs implements DeviceSpecs {
+    private static final String ATTRIBUTE_LUMINOUS_FLUX = "Luminous Flux";
     private static final String ATTRIBUTE_TIME = "Time";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
     private String typeName;
+    private double luminousFlux;
     private double time;
     private double nominalPower;
-    private List<Program> programList;
 
-    public ElectricOvenSpecs() {
-
-        this.typeName = "Electric Oven";
-        this.programList = new ArrayList<>();
+    public LampSpecs() {
+        this.typeName = "Lamp";
     }
 
     public String getTypeName() {
@@ -29,17 +25,7 @@ public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
     }
 
     /**
-     * get method of the energy consumption of an Electric Oven
-     *
-     * @return energy consumption
-     */
-    public double getEnergyConsumptionInADay() {
-        return 0;
-    }
-
-
-    /**
-     * get method of the nominal power of an Electric Oven
+     * get Method
      *
      * @return nominal power
      */
@@ -49,51 +35,78 @@ public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
     }
 
     /**
+     * get method
+     *
+     * @return energy consumption in a Day
+     */
+    @Override
+    public double getEnergyConsumptionInADay() {
+        return nominalPower * time;
+    }
+
+    /**
+     * set method
+     *
+     * @param luminousFlux
+     * @return
+     */
+    public boolean setLuminousFlux(Object luminousFlux) {
+        double lumFLux = (Double) luminousFlux;
+        if (Utils.isSameDouble(this.luminousFlux, lumFLux)) {
+            return false;
+        }
+        this.luminousFlux = lumFLux;
+        return true;
+    }
+
+    /**
      * set method
      *
      * @param time
      * @return
      */
     public boolean setTime(Object time) {
-        double electricOvenTime = (Double) time;
-        if (Utils.isSameDouble(this.time, electricOvenTime)) {
+        double lampTime = (Double) time;
+        if (Utils.isSameDouble(this.time, lampTime)) {
             return false;
         }
-        this.time = electricOvenTime;
+        this.time = lampTime;
         return true;
     }
 
     /**
-     * set method to Nominal Power of an Electric Oven
+     * set method
      *
      * @param nominalPower
      * @return
      */
-    private boolean setNominalPower(Object nominalPower) {
-        double nomPower = (Double) nominalPower;
-        if (!Utils.isSameDouble(this.nominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
-            this.nominalPower = nomPower;
-            return true;
+    public boolean setNominalPower(Object nominalPower) {
+        double lampNomPower = (Double) nominalPower;
+        if (Utils.isSameDouble(this.nominalPower, lampNomPower)) {
+            return false;
         }
-        return false;
+        this.nominalPower = lampNomPower;
+        return true;
     }
 
     /**
-     * method that get the attributes by strings.
+     * method that displays a string of the choosen attribute (name of the attribute and its value)
      *
-     * @return an attribute of the Electric Oven
+     * @return
      */
+    @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Nominal Power: " + nominalPower + "\n");
+        attributes.append("1 - Luminous Flux: " + luminousFlux + "\n");
+        attributes.append("2 - Nominal Power: " + nominalPower + "\n");
         return attributes.toString();
     }
 
 
     /**
-     * method that get the number of the attributes of the device.
+     * get method
      *
-     * @return the number of attributes.
+     * @return number of FridgeSpecs attributes
      */
     @Override
     public int getNumberOfAttributes() {
@@ -101,26 +114,29 @@ public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
     }
 
     /**
-     * get metod
-     *
-     * @return list os specs of an Electric Oven
+     * get method
+     * @return list os specs of lamp
      */
     @Override
     public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
+        result.add(ATTRIBUTE_LUMINOUS_FLUX);
         result.add(ATTRIBUTE_NOMINAL_POWER);
+
         return result;
     }
 
     /**
      * get method
-     *
      * @param attributeName string name of the attribute
-     * @return attribute
+     * @return  attribute
      */
+
     @Override
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
+            case ATTRIBUTE_LUMINOUS_FLUX:
+                return luminousFlux;
             case ATTRIBUTE_TIME:
                 return time;
             case ATTRIBUTE_NOMINAL_POWER:
@@ -132,14 +148,18 @@ public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
 
     /**
      * set method
-     *
-     * @param attributeName  string name of the attribute
+     * @param attributeName string name of the attribute
      * @param attributeValue value of the attribute
      * @return
      */
     @Override
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
+            case ATTRIBUTE_LUMINOUS_FLUX:
+                if (attributeValue instanceof Number) {
+                    return setLuminousFlux(((Number) attributeValue).doubleValue());
+                }
+                return false;
             case ATTRIBUTE_TIME:
                 if (attributeValue instanceof Number) {
                     return setTime(((Number) attributeValue).doubleValue());
@@ -157,19 +177,10 @@ public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
 
     /**
      * get method
-     *
      * @param attributeName string name of attribute
      * @return type data of the attribute (ex.integer, double)
      */
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
-    }
-
-    public boolean addProgram(Program program) {
-        if (!Objects.isNull(program) && !(programList.contains(program))) {
-            this.programList.add(program);
-            return true;
-        }
-        return false;
     }
 }

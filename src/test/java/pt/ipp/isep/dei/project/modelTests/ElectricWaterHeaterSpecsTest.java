@@ -32,7 +32,7 @@ class ElectricWaterHeaterSpecsTest {
         Dimension dim = new Dimension(3, 5, 6);
         kitchen = new Room("Kitchen", 1, dim);
 
-        electricWaterHeater = house.createDevice(ELECTRIC_W_H_TYPE, "DishWasher Bosch", kitchen);
+        electricWaterHeater = house.createDevice(ELECTRIC_W_H_TYPE, "dishwasher Bosch", kitchen);
     }
 
     @Test

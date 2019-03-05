@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.devices.Fridge;
+package pt.ipp.isep.dei.project.model.devices.fridge;
 
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.utils.Utils;

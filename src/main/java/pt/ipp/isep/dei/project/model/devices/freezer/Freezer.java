@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.devices.Freezer;
+package pt.ipp.isep.dei.project.model.devices.freezer;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
