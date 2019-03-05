@@ -1,8 +1,9 @@
-package pt.ipp.isep.dei.project.model.devices.Lamp;
+package pt.ipp.isep.dei.project.model.devices.electricwaterheater;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
+import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.Room;
 
@@ -10,19 +11,20 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class Lamp implements Device {
+public class ElectricWaterHeater implements Device, Measurable {
     private String name;
     private Room location;
-    private LampSpecs specs;
+    private ElectricWaterHeaterSpecs specs;
     private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public Lamp(String name, DeviceSpecs lampSpecs) {
+    public ElectricWaterHeater(String name, DeviceSpecs electricWaterHeaterSpecs) {
         this.name = name;
-        this.specs = (LampSpecs) lampSpecs;
+        this.specs = (ElectricWaterHeaterSpecs) electricWaterHeaterSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
+
     }
 
     /**
@@ -59,6 +61,23 @@ public class Lamp implements Device {
     }
 
     /**
+     * -     * method that set the given name only if the name don't exists in DeviceList
+     * -     * and if it is different than the name that the Device1 has.
+     * -     *
+     * -     * @param name String given name
+     * -     * @return true if sets false if don't
+     * -
+     */
+    @Override
+    public boolean setName(String name) {
+        if (this.location.isDeviceNameExistant(name) || this.name == name) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
+        this.name = name;
+        return true;
+    }
+
+    /**
      * method that get a location (room) of a device.
      *
      * @return the location.
@@ -75,6 +94,7 @@ public class Lamp implements Device {
     public String getName() {
         return this.name;
     }
+
 
     /**
      * method that gets the Device Specifications
@@ -102,7 +122,6 @@ public class Lamp implements Device {
     public boolean isActive() {
         return isActive;
     }
-
 
     /**
      * method that creates the hashcode to two devices that are have the same name.
@@ -132,10 +151,10 @@ public class Lamp implements Device {
         return this.name.equalsIgnoreCase(listOne.getName());
     }
 
-    @Override
     public LocalDateTime getDeactivationDate() {
         return this.deactivationDate;
     }
+
 
     /**
      * method that set the deactivate device, turning it to false and giving a date
@@ -149,32 +168,12 @@ public class Lamp implements Device {
         }
         return false;
     }
-    
-
-    /**
-     * -     * method that set the given name only if the name don't exists in DeviceList
-     * -     * and if it is different than the name that the Device1 has.
-     * -     *
-     * -     * @param name String given name
-     * -     * @return true if sets false if don't
-     * -
-     */
-    @Override
-    public boolean setName(String name) {
-        if (this.location.isDeviceNameExistant(name) || this.name == name) {
-            throw new RuntimeException("Name already exists. Please write a new one.");
-        }
-        this.name = name;
-        return true;
-    }
-
 
     /**
      * method that get an active device.
      *
      * @return an active device.
      */
-    @Override
     public boolean getIsActive() {
         return isActive;
     }

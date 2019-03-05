@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.devices.WashingMachine;
+package pt.ipp.isep.dei.project.model.devices.washingmachine;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;

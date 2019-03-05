@@ -31,7 +31,7 @@ public class FridgeSpecsTest {
 
         Dimension dim = new Dimension(3, 5, 6);
         kitchen = new Room("Kitchen", 1, dim);
-        fridge = house.createDevice("Fridge", "Fridge Ariston", kitchen);
+        fridge = house.createDevice("Fridge", "fridge Ariston", kitchen);
         this.house.addRoom(kitchen);
 
         // FridgeSpecs Set

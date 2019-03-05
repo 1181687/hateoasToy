@@ -73,7 +73,7 @@ public class HouseGridTest {
         washingMachine.setAttributesDevType("Capacity", 100);
         washingMachine.setAttributesDevType("Nominal Power", 100);
 
-        dishwasher = house.createDevice("DishWasher", "Bosch 500 Series", kidsRoom);
+        dishwasher = house.createDevice("Dishwasher", "Bosch 500 Series", kidsRoom);
         dishwasher.setAttributesDevType("Capacity", 100);
         dishwasher.setAttributesDevType("Nominal Power", 100);
 

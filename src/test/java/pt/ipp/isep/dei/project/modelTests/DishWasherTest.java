@@ -48,8 +48,8 @@ class DishWasherTest {
 
 
         // devices
-        house.createDevice("DishWasher", "Bosch 600 Series", kitchen);
-        dishwasher = house.createDevice("DishWasher", "Bosch 500 Series", kitchen);
+        house.createDevice("Dishwasher", "Bosch 600 Series", kitchen);
+        dishwasher = house.createDevice("Dishwasher", "Bosch 500 Series", kitchen);
         dishwasher.setAttributesDevType("Capacity", 10);
         dishwasher.setAttributesDevType("Duration", 0);
         dishwasher.setAttributesDevType("Nominal Power", 1200);

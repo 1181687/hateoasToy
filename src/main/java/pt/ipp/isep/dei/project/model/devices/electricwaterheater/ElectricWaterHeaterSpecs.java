@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.devices.ElectricWaterHeater;
+package pt.ipp.isep.dei.project.model.devices.electricwaterheater;
 
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.utils.Utils;

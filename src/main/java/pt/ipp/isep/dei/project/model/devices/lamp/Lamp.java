@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.devices.Fridge;
+package pt.ipp.isep.dei.project.model.devices.lamp;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
@@ -10,21 +10,20 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-public class Fridge implements Device {
+public class Lamp implements Device {
     private String name;
     private Room location;
-    private FridgeSpecs specs;
+    private LampSpecs specs;
     private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public Fridge(String name, DeviceSpecs fridgeSpecs) {
+    public Lamp(String name, DeviceSpecs lampSpecs) {
         this.name = name;
-        this.specs = (FridgeSpecs) fridgeSpecs;
+        this.specs = (LampSpecs) lampSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
     }
-
 
     /**
      * method that get the nominal power of the devices.
@@ -76,7 +75,6 @@ public class Fridge implements Device {
     public String getName() {
         return this.name;
     }
-
 
     /**
      * method that gets the Device Specifications
@@ -139,7 +137,6 @@ public class Fridge implements Device {
         return this.deactivationDate;
     }
 
-
     /**
      * method that set the deactivate device, turning it to false and giving a date
      */
@@ -152,6 +149,7 @@ public class Fridge implements Device {
         }
         return false;
     }
+    
 
     /**
      * -     * method that set the given name only if the name don't exists in DeviceList
@@ -169,6 +167,7 @@ public class Fridge implements Device {
         this.name = name;
         return true;
     }
+
 
     /**
      * method that get an active device.

@@ -146,11 +146,11 @@ class GetNominalPowerControllerTest {
 
         grid.addRoom(roomOne);
 
-        //Device - Fridge
+        //Device - fridge
         FridgeType fridgeType = new FridgeType();
         Device fridge = fridgeType.createDevice("Fridge1", roomOne);
 
-        //Device - Lamp
+        //Device - lamp
         LampType lampType = new LampType();
         Device lamp = lampType.createDevice("Lamp1", roomOne);
 
@@ -177,11 +177,11 @@ class GetNominalPowerControllerTest {
 
         grid.addRoom(roomOne);
 
-        //Device - Lamp
+        //Device - lamp
         LampType lampType = new LampType();
         Device lamp = lampType.createDevice("Lamp1", roomOne);
 
-        //Device - Fridge
+        //Device - fridge
         FridgeType fridgeType = new FridgeType();
         Device fridge = fridgeType.createDevice("Fridge1", roomOne);
 
@@ -246,7 +246,7 @@ class GetNominalPowerControllerTest {
         houseEdificioB.addGrid(grid);
         grid.addRoom(roomOne);
 
-        //Device - Fridge
+        //Device - fridge
         FridgeType fridgeType = new FridgeType();
         Device fridge = fridgeType.createDevice("Fridge1", roomOne);
 
@@ -265,7 +265,7 @@ class GetNominalPowerControllerTest {
         houseEdificioB.addGrid(grid);
         grid.addRoom(roomOne);
 
-        //Device - Fridge
+        //Device - fridge
         FridgeType fridgeType = new FridgeType();
         Device fridge = fridgeType.createDevice("Fridge1", roomOne);
 
@@ -338,7 +338,7 @@ class GetNominalPowerControllerTest {
         grid.addRoom(roomOne);
 
 
-        //Device - Fridge
+        //Device - fridge
         FridgeType fridgeType = new FridgeType();
         Device fridge = fridgeType.createDevice("Fridge1", roomOne);
         fridge.setAttributesDevType("Nominal Power", 1);
@@ -364,7 +364,7 @@ class GetNominalPowerControllerTest {
         houseEdificioB.addGrid(grid);
         grid.addRoom(roomOne);
 
-        //Device - Fridge
+        //Device - fridge
         FridgeType fridgeType = new FridgeType();
         Device fridge = fridgeType.createDevice("Fridge1", roomOne);
 
@@ -444,10 +444,10 @@ class GetNominalPowerControllerTest {
         Dimension dimension = new Dimension(2, 5, 10);
         Room room1 = new Room("Quarto", 1, dimension);
         FridgeType fridgeType = new FridgeType();
-        String name = "Fridge Teka";
+        String name = "fridge Teka";
         Device Fridge1 = fridgeType.createDevice(name, room1);
 
-        String name1 = "Fridge Bosch";
+        String name1 = "fridge Bosch";
         Device Fridge2 = fridgeType.createDevice(name1, room1);
 
         Fridge1.setAttributesDevType("Nominal Power", 7.5);

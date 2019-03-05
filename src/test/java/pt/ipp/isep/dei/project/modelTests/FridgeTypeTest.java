@@ -20,7 +20,7 @@ public class FridgeTypeTest {
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
         House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
-        String name = "Fridge Ariston 2000";
+        String name = "fridge Ariston 2000";
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 

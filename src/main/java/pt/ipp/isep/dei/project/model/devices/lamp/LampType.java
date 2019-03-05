@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.devices.Lamp;
+package pt.ipp.isep.dei.project.model.devices.lamp;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;

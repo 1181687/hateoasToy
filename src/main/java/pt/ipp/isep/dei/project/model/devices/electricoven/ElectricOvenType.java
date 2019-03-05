@@ -1,14 +1,14 @@
-package pt.ipp.isep.dei.project.model.devices.Fridge;
+package pt.ipp.isep.dei.project.model.devices.electricoven;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.devices.DeviceType;
 
-public class FridgeType implements DeviceType {
+public class ElectricOvenType implements DeviceType {
     String typeName;
 
-    public FridgeType() {
-        this.typeName = "Fridge";
+    public ElectricOvenType() {
+        this.typeName = "Electric Oven";
     }
 
     @Override
@@ -17,7 +17,7 @@ public class FridgeType implements DeviceType {
     }
 
     public Device createDevice(String name) {
-        DeviceSpecs fridgeSpecs = new FridgeSpecs();
-        return new Fridge(name, fridgeSpecs);
+        DeviceSpecs electricOvenSpecs = new ElectricOvenSpecs();
+        return new ElectricOven(name, electricOvenSpecs);
     }
 }

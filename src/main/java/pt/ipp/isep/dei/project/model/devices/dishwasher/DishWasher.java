@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.devices.DishWasher;
+package pt.ipp.isep.dei.project.model.devices.dishwasher;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;

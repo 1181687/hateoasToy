@@ -58,7 +58,7 @@ class GetEnergyConsumptionControllerTest {
 
 
         // Device Instantiation
-        String freezerCapacity = "Freezer Capacity";
+        String freezerCapacity = "freezer Capacity";
         String refrigeratorCapacity = "Refrigerator Capacity";
         String annualEnergyConsumption = "Annual Energy Consumption";
         String nominalPower = "Annual Energy Consumption";

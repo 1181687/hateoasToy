@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.devices.DishWasher;
+package pt.ipp.isep.dei.project.model.devices.washingmachine;
 
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.Program;
@@ -8,19 +8,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class DishWasherSpecs implements DeviceSpecs {
+
+public class WashingMachineSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_CAPACITY = "Capacity";
     private static final String ATTRIBUTE_DURATION = "Duration";
+    private static final String ATTRIBUTE_ENERGY_CONSUMPTION = "Energy Consumption";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
     private String typeName;
     private int capacity;
     private double duration;
+    private double energyConsumption;
     private double nominalPower;
     private List<Program> programList;
 
-    public DishWasherSpecs() {
-        this.typeName = "Dishwasher";
+    public WashingMachineSpecs() {
+        this.typeName = "Washing Machine";
         this.programList = new ArrayList<>();
     }
 
@@ -29,17 +32,7 @@ public class DishWasherSpecs implements DeviceSpecs {
     }
 
     /**
-     * get method of the energy consumption of a DishWasher
-     *
-     * @return energy consumption
-     */
-    public double getEnergyConsumptionInADay() {
-        return 0;
-    }
-
-
-    /**
-     * get method of the nominal power of a DishWasher
+     * get method
      *
      * @return nominal power
      */
@@ -49,15 +42,24 @@ public class DishWasherSpecs implements DeviceSpecs {
     }
 
     /**
+     * get method
+     *
+     * @return energy consumption
+     */
+    @Override
+    public double getEnergyConsumptionInADay() {
+        return 0;
+    }
+
+    /**
      * set method
      *
      * @param capacity
-     * @return
      */
     private boolean setCapacity(Object capacity) {
-        int dWCapacity = (Integer) capacity;
-        if (!Utils.isSameDouble(this.capacity, dWCapacity) && !(Utils.isSameDouble(dWCapacity, 0))) {
-            this.capacity = dWCapacity;
+        int wmcapacity = (Integer) capacity;
+        if (!(Utils.isSameDouble(this.capacity, wmcapacity)) && !(Utils.isSameDouble(wmcapacity, 0))) {
+            this.capacity = wmcapacity;
             return true;
         }
         return false;
@@ -67,25 +69,23 @@ public class DishWasherSpecs implements DeviceSpecs {
      * set method
      *
      * @param duration
-     * @return
      */
     private boolean setDuration(Object duration) {
-        Double dWDuration = (Double) duration;
-        if (!Utils.isSameDouble(this.duration, dWDuration) && !(Utils.isSameDouble(dWDuration, 0))) {
-            this.duration = dWDuration;
+        double wmduration = (Double) duration;
+        if (!(Utils.isSameDouble(this.duration, wmduration) && !(Utils.isSameDouble(wmduration, 0)))) {
+            this.duration = wmduration;
             return true;
         }
         return false;
     }
 
     /**
-     * set method to Nominal Power of a DishWasher
+     * set method
      *
-     * @param nominalPower
-     * @return
+     * @param wmNominalPower
      */
-    private boolean setNominalPower(Object nominalPower) {
-        double nomPower = (Double) nominalPower;
+    private boolean setNominalPower(Object wmNominalPower) {
+        double nomPower = (Double) wmNominalPower;
         if (!Utils.isSameDouble(this.nominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
             this.nominalPower = nomPower;
             return true;
@@ -94,10 +94,27 @@ public class DishWasherSpecs implements DeviceSpecs {
     }
 
     /**
-     * method that get the attributes by strings.
-     *
-     * @return an attribute of the Dish Washer.
+     * set method
+     * 
+     * @param wmEnergyConsumption
      */
+    private boolean setEnergyConsumption(Object wmEnergyConsumption) {
+        double eConsumption = (Double) wmEnergyConsumption;
+        if (!Utils.isSameDouble(this.energyConsumption, eConsumption) && !(Utils.isSameDouble(eConsumption, 0))) {
+            this.energyConsumption = eConsumption;
+            return true;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * method that displays a string of the choosen attribute (name of the attribute and its value)
+     *
+     * @return
+     */
+    @Override
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Capacity: " + capacity + "\n");
@@ -105,26 +122,27 @@ public class DishWasherSpecs implements DeviceSpecs {
         return attributes.toString();
     }
 
-
     /**
-     * method that get the number of the attributes of the device.
+     * get method
      *
-     * @return the number of attributes.
+     * @return number of Washing Machine attributes
      */
     @Override
     public int getNumberOfAttributes() {
         return 2;
     }
 
+
     /**
-     * get metod
-     * @return list os specs of dishwasher
+     * get method
+     * @return list os specs of washing machine
      */
     @Override
     public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
         result.add(ATTRIBUTE_CAPACITY);
         result.add(ATTRIBUTE_NOMINAL_POWER);
+
         return result;
     }
 
@@ -140,6 +158,8 @@ public class DishWasherSpecs implements DeviceSpecs {
                 return capacity;
             case ATTRIBUTE_DURATION:
                 return duration;
+            case ATTRIBUTE_ENERGY_CONSUMPTION:
+                return energyConsumption;
             case ATTRIBUTE_NOMINAL_POWER:
                 return nominalPower;
             default:
@@ -166,6 +186,11 @@ public class DishWasherSpecs implements DeviceSpecs {
                     return setDuration(((Number) attributeValue).doubleValue());
                 }
                 return false;
+            case ATTRIBUTE_ENERGY_CONSUMPTION:
+                if (attributeValue instanceof Number) {
+                    return setEnergyConsumption(((Number) attributeValue).doubleValue());
+                }
+                return false;
             case ATTRIBUTE_NOMINAL_POWER:
                 if (attributeValue instanceof Number) {
                     return setNominalPower(((Number) attributeValue).doubleValue());
@@ -175,6 +200,7 @@ public class DishWasherSpecs implements DeviceSpecs {
                 return false;
         }
     }
+
 
     /**
      * get method
