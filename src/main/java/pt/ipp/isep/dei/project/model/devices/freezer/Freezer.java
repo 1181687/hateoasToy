@@ -156,4 +156,32 @@ public class Freezer implements Device {
         return true;
     }
 
+    /**
+     * method that creates the hashcode to two devices that are have the same name.
+     *
+     * @return the hashcode created
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.name);
+    }
+
+    /**
+     * Equals method to determine if two Device1 are equal.     *
+     *
+     * @param obj receives an object
+     * @return boolean true if are equal and false if are not.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Device)) {
+            return false;
+        }
+        Device listOne = (Device) obj;
+        return this.name.equalsIgnoreCase(listOne.getName());
+    }
+
 }
