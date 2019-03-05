@@ -16,7 +16,7 @@ public class GetFirstHottestDayHouseAreaController {
     }
 
     public LocalDate getFirstHighestReadingDateHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
-        return getFirstHighestReadingDateHouseArea(location, type, startDate, endDate);
+        return house.getFirstHighestReadingDateHouseArea(location, type, startDate, endDate);
     }
 
     public Location getHouseLocation() {
