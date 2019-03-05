@@ -18,7 +18,7 @@ public class ReadJSONfile {
         //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("ReadJSONfile")) {
+        try (FileReader reader = new FileReader("JSONfile")) {
             //Read JSON file
             Object obj = jsonParser.parse(reader);
 
