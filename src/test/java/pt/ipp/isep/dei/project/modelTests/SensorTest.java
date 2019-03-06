@@ -1860,4 +1860,96 @@ class SensorTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void getHighestReadingOfADay_WithSeveralReadingsInOneDay(){
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("T123", data, sensorType, locS1);
+
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(10.0, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(11, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 2, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 2, 17, 20, 00);
+        Reading reading4 = new Reading(5, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
+        Reading reading5 = new Reading(10, data5);
+
+        //Adding readings to sensor
+        sensor1.addReadingsToList(reading1);
+        sensor1.addReadingsToList(reading2);
+        sensor1.addReadingsToList(reading3);
+        sensor1.addReadingsToList(reading4);
+        sensor1.addReadingsToList(reading5);
+
+        LocalDate day = LocalDate.of(2018,11,2);
+
+        Reading expectedResult = reading2;
+
+        //Act
+        Reading result = sensor1.getHighestReadingOfADay(day);
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void getHighestReadingOfADay_WithSeveralReadingsInTwoDays(){
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("T123", data, sensorType, locS1);
+
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(10.0, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(11, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 3, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 3, 17, 20, 00);
+        Reading reading4 = new Reading(5, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 3, 17, 20, 10);
+        Reading reading5 = new Reading(13, data5);
+
+        //Adding readings to sensor
+        sensor1.addReadingsToList(reading1);
+        sensor1.addReadingsToList(reading2);
+        sensor1.addReadingsToList(reading3);
+        sensor1.addReadingsToList(reading4);
+        sensor1.addReadingsToList(reading5);
+
+        LocalDate day = LocalDate.of(2018,11,3);
+
+        Reading expectedResult = reading5;
+
+        //Act
+        Reading result = sensor1.getHighestReadingOfADay(day);
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
 }
