@@ -20,6 +20,12 @@ public class WineCoolerSpecs implements DeviceSpecs {
         this.typeName = "WineCooler";
     }
 
+    /**
+     * get method
+     *
+     * @return type of device
+     */
+    @Override
     public String getTypeName() {
         return typeName;
     }
@@ -67,10 +73,11 @@ public class WineCoolerSpecs implements DeviceSpecs {
     /**
      * get method
      *
-     * @return energy consumption in a day
+     * @return energy consumption
      */
+    @Override
     public double getEnergyConsumptionInADay() {
-        return annualEnergyConsumption / 365;
+        return Utils.round((this.annualEnergyConsumption / 365), 2);
     }
 
     /**

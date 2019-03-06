@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -10,7 +10,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AddDeviceToRoomControllerTest {
     private AddDeviceToRoomController controller;
@@ -118,7 +118,9 @@ public class AddDeviceToRoomControllerTest {
                 "4- WashingMachine\n" +
                 "5- ElectricWaterHeater\n" +
                 "6- ElectricOven\n" +
-                "7- Freezer\n";
+                "7- Freezer\n" +
+                "8- WineCooler\n" +
+                "9- Television\n";
 
         // Act
         String result = controller.getDeviceTypeListToString();
@@ -372,7 +374,7 @@ public class AddDeviceToRoomControllerTest {
     @Test
     public void testGetNumberOfDeviceTypes() {
         // Arrange
-        int expectedResult = 7;
+        int expectedResult = 9;
 
         // Act
         int result = controller.getNumberOfDeviceTypes();

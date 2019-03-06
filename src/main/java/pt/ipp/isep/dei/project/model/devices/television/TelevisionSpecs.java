@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.devices.tv;
+package pt.ipp.isep.dei.project.model.devices.television;
 
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.utils.Utils;
@@ -6,7 +6,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TVSpecs implements DeviceSpecs {
+public class TelevisionSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
     private static final String ATTRIBUTE_STANDBY_POWER = "Standby Power";
     private static final String ATTRIBUTE_TIME = "Time";
@@ -16,10 +16,11 @@ public class TVSpecs implements DeviceSpecs {
     private double standbyPower;
     private double time;
 
-    public TVSpecs() {
-        this.typeName = "TV";
+    public TelevisionSpecs() {
+        this.typeName = "Television";
     }
 
+    @Override
     public String getTypeName() {
         return typeName;
     }
@@ -32,6 +33,21 @@ public class TVSpecs implements DeviceSpecs {
     @Override
     public double getNominalPower() {
         return nominalPower;
+    }
+
+    /**
+     * set method
+     *
+     * @param nominalPower
+     * @return
+     */
+    public boolean setNominalPower(Object nominalPower) {
+        double televisionNomPower = (Double) nominalPower;
+        if (Utils.isSameDouble(this.nominalPower, televisionNomPower)) {
+            return false;
+        }
+        this.nominalPower = televisionNomPower;
+        return true;
     }
 
     /**
@@ -66,28 +82,14 @@ public class TVSpecs implements DeviceSpecs {
      * @return
      */
     public boolean setTime(Object time) {
-        double tvTime = (Double) time;
-        if (Utils.isSameDouble(this.time, tvTime)) {
+        double televisionTime = (Double) time;
+        if (Utils.isSameDouble(this.time, televisionTime)) {
             return false;
         }
-        this.time = tvTime;
+        this.time = televisionTime;
         return true;
     }
 
-    /**
-     * set method
-     *
-     * @param nominalPower
-     * @return
-     */
-    public boolean setNominalPower(Object nominalPower) {
-        double tvNomPower = (Double) nominalPower;
-        if (Utils.isSameDouble(this.nominalPower, tvNomPower)) {
-            return false;
-        }
-        this.nominalPower = tvNomPower;
-        return true;
-    }
 
     /**
      * method that displays a string of the choosen attribute (name of the attribute and its value)
@@ -107,7 +109,7 @@ public class TVSpecs implements DeviceSpecs {
     /**
      * get method
      *
-     * @return number of FridgeSpecs attributes
+     * @return number of televisonSpecs attributes
      */
     @Override
     public int getNumberOfAttributes() {
@@ -117,7 +119,7 @@ public class TVSpecs implements DeviceSpecs {
     /**
      * get method
      *
-     * @return list os specs of lamp
+     * @return list os specs of television
      */
     @Override
     public List<String> getSpecsList() {
@@ -185,6 +187,7 @@ public class TVSpecs implements DeviceSpecs {
      * @param attributeName string name of attribute
      * @return type data of the attribute (ex.integer, double)
      */
+    @Override
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }

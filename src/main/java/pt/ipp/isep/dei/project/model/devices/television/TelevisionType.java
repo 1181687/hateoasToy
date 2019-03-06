@@ -1,14 +1,15 @@
-package pt.ipp.isep.dei.project.model.devices.winecooler;
+package pt.ipp.isep.dei.project.model.devices.television;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.devices.DeviceType;
 
-public class WineCoolerType implements DeviceType {
+
+public class TelevisionType implements DeviceType {
     String typeName;
 
-    public WineCoolerType() {
-        this.typeName = "WineCooler";
+    public TelevisionType() {
+        this.typeName = "Television";
     }
 
     @Override
@@ -17,7 +18,7 @@ public class WineCoolerType implements DeviceType {
     }
 
     public Device createDevice(String name) {
-        DeviceSpecs wineCoolerSpecs = new WineCoolerSpecs();
-        return new WineCooler(name, wineCoolerSpecs);
+        DeviceSpecs televisionSpecs = new TelevisionSpecs();
+        return new Television(name, televisionSpecs);
     }
 }

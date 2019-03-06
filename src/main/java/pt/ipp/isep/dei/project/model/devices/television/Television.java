@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.devices.tv;
+package pt.ipp.isep.dei.project.model.devices.television;
 
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.Room;
@@ -12,17 +12,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class TV implements Device {
+public class Television implements Device {
     private String name;
     private Room location;
-    private TVSpecs specs;
+    private TelevisionSpecs specs;
     private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public TV(String name, DeviceSpecs TVSpecs) {
+    public Television(String name, DeviceSpecs TelevisionSpecs) {
         this.name = name;
-        this.specs = (TVSpecs) TVSpecs;
+        this.specs = (TelevisionSpecs) TelevisionSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
     }
