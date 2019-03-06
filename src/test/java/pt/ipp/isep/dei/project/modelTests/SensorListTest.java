@@ -904,4 +904,52 @@ class SensorListTest {
         assertEquals(expectedResult, result);
 
     }
+
+    @Test
+    public void testGetSensorWithMostRecentReadingNoArguments() {
+        //arrange
+        SensorList sensorList = new SensorList();
+
+        //Instanciar sensor
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Rainfall");
+        Location locS0 = new Location(42.1496, -8.6109, 97);
+        Sensor s0 = new Sensor("Sensor0", dataFuncionamento0, sensorType0, locS0);
+        sensorList.addSensor(s0);
+
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Rainfall");
+        Location locS1 = new Location(42.1496, -8.6109, 97);
+        Sensor s1 = new Sensor("Sensor1", dataFuncionamento1, sensorType1, locS1);
+        sensorList.addSensor(s1);
+
+        // Sensor0
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
+
+        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
+        Reading reading02 = new Reading(30, dataHoraDaMedicao02);
+
+        s0.addReadingsToList(reading01);
+        s0.addReadingsToList(reading02);
+
+        //Sensor1
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 4, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 5, 17, 24, 00);
+
+        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
+        Reading reading13 = new Reading(20, dataHoraDaMedicao12);
+
+        s1.addReadingsToList(reading11);
+        s1.addReadingsToList(reading12);
+        s1.addReadingsToList(reading13);
+
+        Sensor expectedResult = s1;
+
+        Sensor result = sensorList.getSensorWithMostRecentReading();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 }
