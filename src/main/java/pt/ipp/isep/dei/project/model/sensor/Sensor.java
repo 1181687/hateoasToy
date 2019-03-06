@@ -509,7 +509,6 @@ public class Sensor {
 
     public List<Reading> getMaximumReadingsInAnInterval(LocalDate startDate, LocalDate endDate) {
         List<Reading> maximumReadings = new ArrayList<>();
-        List<Reading> readingsBetweenDates = getReadingsBetweenDates(startDate, endDate);
         for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate.plusDays(1)); dateIterator = dateIterator.plusDays(1)) {
             maximumReadings.add(getHighestReadingOfADay(dateIterator));
         }
