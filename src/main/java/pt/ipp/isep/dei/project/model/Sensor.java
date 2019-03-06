@@ -1,7 +1,5 @@
-package pt.ipp.isep.dei.project.model.sensor;
+package pt.ipp.isep.dei.project.model;
 
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.DayOfWeek;
@@ -488,7 +486,7 @@ public class Sensor {
     public Reading getHighestReading(LocalDate startDate, LocalDate endDate) {
         Reading highestReading = getReadingsBetweenDates(startDate, endDate).get(0);
         for (Reading reading : getReadingsBetweenDates(startDate, endDate)) {
-            if (reading.getValue() != Double.NaN) {
+            if (!Double.isNaN(reading.getValue())) {
                 if (reading.getValue() > highestReading.getValue()) {
                     highestReading = reading;
                 }

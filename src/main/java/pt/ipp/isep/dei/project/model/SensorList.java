@@ -1,7 +1,4 @@
-package pt.ipp.isep.dei.project.model.sensor;
-
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.Reading;
+package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -236,5 +233,14 @@ public class SensorList {
             }
         }
         return sensorWithMostRecentReading;
+    }
+
+    public Reading getHighestReadingOfSensor(LocalDate startDate, LocalDate endDate) {
+        return getSensorWithMostRecentReading(this).getHighestReading(startDate, endDate);
+    }
+
+    public boolean checkMeasurementExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
+        return getSensorWithMostRecentReading(this).checkMeasurementExistenceBetweenDates(startDate, endDate);
+
     }
 }

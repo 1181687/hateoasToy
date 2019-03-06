@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.housegrid;
+package pt.ipp.isep.dei.project.model;
 
 public class HouseGridDTO {
 
