@@ -36,6 +36,7 @@ public class House {
         this.meteringPeriodDevice = meteringPeriodDevice;
     }
 
+
     /**
      * This method create device types using a path and a class name.
      *
