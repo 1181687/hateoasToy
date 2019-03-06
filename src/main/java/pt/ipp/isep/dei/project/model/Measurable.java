@@ -7,8 +7,6 @@ import java.util.Map;
 
 public interface Measurable {
 
-    double getNominalPower();
-
     String getNameToString();
 
     double getEnergyConsumptionInAnInterval(LocalDateTime startDate, LocalDateTime endDate);
@@ -27,4 +25,6 @@ public interface Measurable {
         }
         return readingList;
     }
+
+    double getNominalPower();
 }
