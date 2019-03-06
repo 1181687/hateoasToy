@@ -1,13 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.RoomList;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;

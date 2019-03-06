@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
+import pt.ipp.isep.dei.project.model.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.GeographicalAreaTypeList;
 
 
 public class AddGeoAreaTypeController {
