@@ -38,6 +38,10 @@ public class RegularUser {
                     GetTotalRainfall ui623 = new GetTotalRainfall(house);
                     ui623.run();
                     break;
+                case 4:
+                    GetFirstHottestDayHouseArea ui631 = new GetFirstHottestDayHouseArea(house);
+                    ui631.run();
+                    break;
             }
             option = Menu.regularUserHouseAreaMenu();
         }

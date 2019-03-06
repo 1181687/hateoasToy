@@ -234,4 +234,13 @@ public class SensorList {
         }
         return sensorWithMostRecentReading;
     }
+
+    public Reading getHighestReadingOfSensor(LocalDate startDate, LocalDate endDate) {
+        return getSensorWithMostRecentReading(this).getHighestReading(startDate, endDate);
+    }
+
+    public boolean checkMeasurementExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
+        return getSensorWithMostRecentReading(this).checkMeasurementExistenceBetweenDates(startDate, endDate);
+
+    }
 }

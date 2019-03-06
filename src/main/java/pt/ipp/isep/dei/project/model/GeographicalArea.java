@@ -407,8 +407,11 @@ public class GeographicalArea {
         return totalDailyMeasurement;
     }
 
+    public Reading getHighestReadingOfASensor(LocalDate startDate, LocalDate endDate) {
+        return sensorList.getHighestReadingOfSensor(startDate, endDate);
+    }
 
-    public LocalDate getFirstHighestReadingDate(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
+    public Reading getFirstHighestReading(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
         SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
         Sensor chosenSensor = null;
         if (!sensorListWithTheRequiredType.getListOfSensors().isEmpty()) {
@@ -416,12 +419,15 @@ public class GeographicalArea {
             chosenSensor = sensorList.getSensorWithMostRecentReading(nearestSensors);
         }
         Reading highestReading = chosenSensor.getHighestReading(startDate, endDate);
-        LocalDate firstDateOfHighestReading = chosenSensor.getReadingsBetweenDates(startDate, endDate).get(0).getDateTime().toLocalDate();
         for (Reading reading : chosenSensor.getReadingsBetweenDates(startDate, endDate)) {
             if (reading.getValue() == highestReading.getValue()) {
-                firstDateOfHighestReading = reading.getDateTime().toLocalDate();
+                highestReading = reading;
             }
         }
-        return firstDateOfHighestReading;
+        return highestReading;
+    }
+
+    public boolean checkMeasurementExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
+        return sensorList.checkMeasurementExistenceBetweenDates(startDate, endDate);
     }
 }

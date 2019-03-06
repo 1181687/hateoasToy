@@ -15,8 +15,16 @@ public class GetFirstHottestDayHouseAreaController {
         this.sensorTypeTemperature = new SensorType("temperature");
     }
 
+    public double getHighestReadingOfASensor(LocalDate startDate, LocalDate endDate) {
+        return house.getHighestReadingOfASensor(startDate, endDate);
+    }
+
     public LocalDate getFirstHighestReadingDateHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
         return house.getFirstHighestReadingDateHouseArea(location, type, startDate, endDate);
+    }
+
+    public Double getFirstHighestReadingValueHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
+        return house.getFirstHighestReadingValueHouseArea(location, type, startDate, endDate);
     }
 
     public Location getHouseLocation() {
@@ -25,5 +33,9 @@ public class GetFirstHottestDayHouseAreaController {
 
     public SensorType getTypeTemperature() {
         return sensorTypeTemperature;
+    }
+
+    public boolean checkMeasurementExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
+        return house.checkMeasurementExistenceBetweenDates(startDate, endDate);
     }
 }
