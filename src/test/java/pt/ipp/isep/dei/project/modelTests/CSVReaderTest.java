@@ -18,8 +18,8 @@ class CSVReaderTest {
         List<String> result = CSVReader.parseLine(line);
 
         // Assert
-        assertEquals(3, result.size());
-        assertEquals("10", result.get(0));
+        assertEquals(2, result.size());
+        assertEquals("1", result.get(0));
         assertEquals("Temperature", result.get(1));
     }
 
