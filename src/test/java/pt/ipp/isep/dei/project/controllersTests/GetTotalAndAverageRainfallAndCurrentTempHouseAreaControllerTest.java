@@ -49,6 +49,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
     @Test
     public void testTotalDailyMeasurementInAHouseArea () {
         //Arrange
+
         //Instantiate sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
