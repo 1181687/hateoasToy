@@ -3,12 +3,13 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.DishWasher.DishWasherType;
-import pt.ipp.isep.dei.project.model.Devices.ElectricWaterHeater.ElectricWaterHeaterType;
-import pt.ipp.isep.dei.project.model.Devices.Fridge.FridgeType;
-import pt.ipp.isep.dei.project.model.Devices.Lamp.LampType;
-import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineType;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -26,9 +27,11 @@ public class HouseTest {
     private Device electricWaterHeater;
     private static final String FRIDGE_TYPE = "Fridge";
     private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
-    private static final String DISHWASHER_TYPE = "DishWasher";
+    private static final String DISHWASHER_TYPE = "Dishwasher";
     private static final String LAMP_TYPE = "Lamp";
     private static final String WASHING_MACHINE_TYPE = "Washing Machine";
+    private static final String CONFIG_PROPERTIES = "Configuration.properties";
+
 
     @BeforeEach
     public void StartUp() {
@@ -39,9 +42,9 @@ public class HouseTest {
         ag = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
 
         // House
-        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
-        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
-        List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         Location houseLocation = new Location(41.178553, -8.608035, 111);
         Address address = new Address("4200-072", houseLocation);
@@ -204,7 +207,7 @@ public class HouseTest {
     @Test
     public void testeAverageRainfallOfHouseArea() {
         //Arrange
-        //Instanciar Sensor
+        //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(41.178553, -8.608035, 111);
@@ -255,7 +258,7 @@ public class HouseTest {
     @Test
     public void testeAverageRainfallOfHouseAreaNoMeasurements() {
         //Arrange
-        //Instanciar Sensor
+        //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
@@ -413,7 +416,7 @@ public class HouseTest {
     @Test
     public void testTotalDailyMeasurementInAHouseArea() {
         //Arrange
-        //Instantiate Sensor
+        //Instantiate sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(41.1, -8.6, 111);
@@ -461,7 +464,7 @@ public class HouseTest {
     @Test
     public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresIguais() {
         //arrange
-        //Sensor
+        //sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
@@ -529,7 +532,7 @@ public class HouseTest {
     @Test
     public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresQueNaoTem() {
         //arrange
-        //Instanciar Sensor
+        //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
@@ -596,7 +599,7 @@ public class HouseTest {
     @Test
     public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresQuartoNulo() {
         //arrange
-        //Instanciar Sensor
+        //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
@@ -1082,7 +1085,7 @@ public class HouseTest {
         // Assert
         assertFalse(result);
     }
-
+/*
     @Test
     public void checkIfARoomIsAlreadyInAHouseGridOfTheListWithNegativeTest() {
         // Arrange
@@ -1091,7 +1094,7 @@ public class HouseTest {
         Dimension dimension1 = new Dimension(2, 2, 2);
         Room room = new Room(roomName, houseFloor1, dimension1);
         String gridName = "Grid";
-        HouseGrid grid = house.newHouseGrid(gridName);
+        housegrid grid = house.createHouseGrid(gridName);
         house.addGrid(grid);
 
         // Act
@@ -1100,7 +1103,7 @@ public class HouseTest {
         // Assert
         assertFalse(result);
     }
-
+*/
 
     @Test
     public void getTheGridWhereTheRoomIsConnectedTest() {
@@ -1754,32 +1757,32 @@ public class HouseTest {
         //Assert
         assertFalse(result);
     }
+    /*
+        @Test
+        public void testNewHouseGrid_ThrowsException(){
+            //Arrange
+            String name = "Main Grid";
+            housegrid grid = new housegrid(name);
+            this.house.addGrid(grid);
+            //Act
+            Throwable exception = assertThrows(RuntimeException.class, () ->
+                    this.house.createHouseGrid(name)
+            );
+            //Assert
+            assertEquals("Name already exists. Please, write a new one.", exception.getMessage());
+        }
 
-    @Test
-    public void testNewHouseGrid_ThrowsException(){
-        //Arrange
-        String name = "Main Grid";
-        HouseGrid grid = new HouseGrid(name);
-        this.house.addGrid(grid);
-        //Act
-        Throwable exception = assertThrows(RuntimeException.class, () ->
-                this.house.newHouseGrid(name)
-        );
-        //Assert
-        assertEquals("Name already exists. Please, write a new one.", exception.getMessage());
-    }
-
-    @Test
-    public void testNewHouseGrid_CreatesHouseGrid(){
-        //Arrange
-        String name = "Main Grid";
-        HouseGrid expectedResult = new HouseGrid(name);
-        //Act
-        HouseGrid result = this.house.newHouseGrid(name);
-        //Assert
-        assertEquals(expectedResult,result);
-    }
-
+        @Test
+        public void testNewHouseGrid_CreatesHouseGrid(){
+            //Arrange
+            String name = "Main Grid";
+            housegrid expectedResult = new housegrid(name);
+            //Act
+            housegrid result = this.house.createHouseGrid(name);
+            //Assert
+            assertEquals(expectedResult,result);
+        }
+    */
     @Test
     void getDeviceByNameExceptionTest() {
         // Arrange

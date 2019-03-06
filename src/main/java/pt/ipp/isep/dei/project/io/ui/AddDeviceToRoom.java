@@ -90,7 +90,7 @@ public class AddDeviceToRoom {
     public void creationOfFridge() {
         String label11 = "What is the name of the fridge?";
         String fridgeDeviceName = InputValidator.getString(label11);
-        String label12 = "What is the Fridge nominal power (kW)?";
+        String label12 = "What is the fridge nominal power (kW)?";
         double fridgeNominalPower = InputValidator.getDoublePos(label12);
         String label13 = "What is the freezer capacity (l)?";
         double freezerCapacity = InputValidator.getDoublePos(label13);
@@ -106,7 +106,7 @@ public class AddDeviceToRoom {
     public void creationOfLamp() {
         String label21 = "What is the name of the lamp?";
         String lampDeviceName = InputValidator.getString(label21);
-        String label22 = "What is the Lamp nominal power (kW)?";
+        String label22 = "What is the lamp nominal power (kW)?";
         double lampNominalPower = InputValidator.getDoublePos(label22);
         String label23 = "What is the luminous flux (lm)?";
         double luminousFlux = InputValidator.getDoublePos(label23);

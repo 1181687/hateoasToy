@@ -2,7 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.CreateHouseGridController;
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.HouseGrid;
+import pt.ipp.isep.dei.project.model.housegrid.HouseGridDTO;
+import pt.ipp.isep.dei.project.model.housegrid.HouseGridMapper;
 
 /**
  * US130 As an Administrator, I want to create a house grid, so that I can define the rooms
@@ -11,6 +12,7 @@ import pt.ipp.isep.dei.project.model.HouseGrid;
 
 public class CreateHouseGrid {
     private CreateHouseGridController controller;
+    private HouseGridDTO gridDTO;
 
     public CreateHouseGrid(House house) {
         this.controller = new CreateHouseGridController(house);
@@ -18,16 +20,20 @@ public class CreateHouseGrid {
 
     public void run() {
         boolean flag = true;
+        gridDTO = HouseGridMapper.newHouseGridDTO();
         String label1 = "Please insert the name of the House Grid you want to create.";
         String nameHG;
 
         do {
             nameHG = InputValidator.getString(label1);
+            gridDTO.setName(nameHG);
             try {
-                HouseGrid houseGridCreated = controller.createANewHouseGrid(nameHG);
-                controller.addHouseGridToTheListOfHouseGrids(houseGridCreated);
-                System.out.println("Your House Grid was successfully created! \n");
-                flag=false;
+                if(controller.createANewHouseGrid(gridDTO)){
+
+                    System.out.println("Your House Grid was successfully created! \n");
+                    flag=false;
+                }
+
             } catch (Exception e) {
                 System.out.println("Name already exists. Please write a new one.");
                 flag = true;

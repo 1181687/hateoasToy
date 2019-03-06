@@ -1,6 +1,12 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.RoomList;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
 
 public class AddSensorToRoomController {

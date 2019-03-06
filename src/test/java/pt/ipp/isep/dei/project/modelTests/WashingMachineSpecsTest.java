@@ -2,10 +2,10 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.Devices.Programmable;
-import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineSpecs;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
+import pt.ipp.isep.dei.project.model.devices.washingmachine.WashingMachineSpecs;
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 

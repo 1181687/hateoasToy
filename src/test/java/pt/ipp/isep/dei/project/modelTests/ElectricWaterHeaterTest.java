@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -47,7 +47,7 @@ class ElectricWaterHeaterTest {
         house.addRoom(kitchen);
         house.addRoom(laundry);
 
-        // Devices
+        // devices
         house.createDevice(ELECTRIC_W_H_TYPE, "Bosch Tronic 2000", kitchen);
         electricWaterHeater = house.createDevice(ELECTRIC_W_H_TYPE,"Bosch Tronic 3000", kitchen);
         electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 55);

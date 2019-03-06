@@ -14,7 +14,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+        geographicalarea insertedGeoArea = new geographicalarea("Campus do ISEP", geographicalAreaType, location, areaShape);
 
         // Room 1
         String name = "room1";
@@ -44,12 +44,12 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        sensor s0 = new sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2010, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(123, 300, 50);
-        Sensor s1 = new Sensor("A456", dataFuncionamento1, sensorType1, locS1);
+        sensor s1 = new sensor("A456", dataFuncionamento1, sensorType1, locS1);
 
         this.room.addSensorToListOfSensorsInRoom(s0);
         this.room.addSensorToListOfSensorsInRoom(s1);
@@ -85,7 +85,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        sensor s0 = new sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
         room.addSensorToListOfSensorsInRoom(s0);
         house.addRoom(room);

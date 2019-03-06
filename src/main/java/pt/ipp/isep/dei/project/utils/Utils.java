@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +78,7 @@ public final class Utils {
     /**
      * Method turns specific information (through the use of an option that refers to a key)
      * inside a specific configuration file (searched by its name) to a list of strings.
+     *
      * @param file
      * @param count
      * @param property
@@ -85,7 +87,7 @@ public final class Utils {
     public static List<String> readConfigFileToList(String file, String count, String property) {
         List<String> readingsList = new ArrayList<>();
         int numberOfProperties = Integer.parseInt(readConfigFile(file, count));
-        for (int i = 1; i <= numberOfProperties; i++) {
+        for (int i = 1; i <= numberOfProperties && i > 0; i++) {
             String deviceType = Utils.readConfigFile(file, property + "." + i);
             readingsList.add(deviceType);
         }
@@ -94,6 +96,7 @@ public final class Utils {
 
     /**
      * Method that turns a map (data series) into information in the form of a string.
+     *
      * @param map Map to be used.
      * @return String with the required information.
      */
@@ -107,6 +110,7 @@ public final class Utils {
 
     /**
      * Method that checks if two numbers are the same.
+     *
      * @param value1 Number 1.
      * @param value2 Number 2.
      * @return True or false.
@@ -117,5 +121,18 @@ public final class Utils {
 
     public static boolean isFirstDoubleBiggerThanSecondOne(Double value1, Double value2) {
         return value1 > value2;
+    }
+
+    /**
+     * receives a Map and cleans the entries key-value that have a doubleNan value
+     *
+     * @param mapOfDailyValues given Map<LocalDate, Double>
+     * @return Map<LocalDate       ,               Double> map Of Daily Values without doubleNans entries
+     */
+    public static Map<LocalDate, Double> removeDoubleNanHashMap(Map<LocalDate, Double> mapOfDailyValues) {
+
+        mapOfDailyValues.entrySet().removeIf(entries -> entries.getValue().equals(Double.NaN));
+
+        return mapOfDailyValues;
     }
 }

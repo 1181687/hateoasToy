@@ -2,8 +2,8 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.DishWasher.DishWasherType;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.dishwasher.DishWasherType;
 import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.Room;
 
@@ -39,7 +39,7 @@ public class DishWasherTypeTest {
     @Test
     public void getTypeNameTest() {
         // Arrange
-        String expectedResult = "DishWasher";
+        String expectedResult = "Dishwasher";
 
         // Act
         String result = dishWasherType.getTypeName();
