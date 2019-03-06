@@ -144,7 +144,6 @@ public class FreezerSpecs implements DeviceSpecs {
         }
     }
 
-
     @Override
     public String getTypeName() {
         return this.typeName;
