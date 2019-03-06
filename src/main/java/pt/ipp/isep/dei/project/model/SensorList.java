@@ -1,7 +1,4 @@
-package pt.ipp.isep.dei.project.model.sensor;
-
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.Reading;
+package pt.ipp.isep.dei.project.model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

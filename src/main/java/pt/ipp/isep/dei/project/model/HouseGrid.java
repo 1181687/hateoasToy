@@ -1,12 +1,6 @@
-package pt.ipp.isep.dei.project.model.housegrid;
+package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.Measurable;
-import pt.ipp.isep.dei.project.model.powersource.PowerSource;
-import pt.ipp.isep.dei.project.model.powersource.PowerSourceList;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.Room;
-import pt.ipp.isep.dei.project.model.RoomList;
 
 import java.time.LocalDateTime;
 import java.util.*;

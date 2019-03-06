@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.powersource;
+package pt.ipp.isep.dei.project.model;
 
 import java.util.Objects;
 

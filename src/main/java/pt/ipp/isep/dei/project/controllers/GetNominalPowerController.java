@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.devices.Device;
 
 public class GetNominalPowerController {
     private House house;
