@@ -6,11 +6,11 @@ import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
+import pt.ipp.isep.dei.project.utils.Utils;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class GeographicalArea {
     private String geoAreaName;
@@ -329,6 +329,59 @@ public class GeographicalArea {
             }
         }
         return listOfDailyAverages;
+    }
+
+    /**
+     * get Daily Amplitude Map <localdate, Double> in a given interval of Localdate by given sensortype and location
+     *
+     * @param sensorType type of sensor
+     * @param location   location of the area wanted to get the daily amplitude
+     * @param startDate  initial Localdate of the interval
+     * @param endDate    final Localdate of the interval
+     * @return Map<LocalDate   ,       Double> map Of Daily Amplitude
+     */
+    public Map<LocalDate, Double> getDailyAmplitudeInInterval(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
+        Map<LocalDate, Double> mapOfDailyAmplitude = new HashMap<>();
+        SensorList nearestSensorsWithRightTypeDuringPeriod = getSensorListByTypeInAPeriod(sensorType, startDate, endDate).getNearestSensorsToLocation(location);
+        if (nearestSensorsWithRightTypeDuringPeriod.isEmpty()) {
+            return mapOfDailyAmplitude;
+        }
+        Sensor nearestSensor = nearestSensorsWithRightTypeDuringPeriod.getSensorWithMostRecentReading(nearestSensorsWithRightTypeDuringPeriod);
+
+        for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate.plusDays(1)); dateIterator = dateIterator.plusDays(1)) {
+
+            Double dailyAmplitude = Math.abs(nearestSensor.getMaximumValueOfDay(dateIterator) - nearestSensor.getLowestMeasurementOfDay(dateIterator));
+            mapOfDailyAmplitude.put(dateIterator, dailyAmplitude);
+        }
+        return mapOfDailyAmplitude;
+    }
+
+    /**
+     * receives a map Of Daily Amplitude and gets the Highest Daily Amplitude (localdate-Double)
+     * if there are two equal amplitudes, it gets both.
+     *
+     * @param mapOfDailyAmplitude given daily Amplitude Map<LocalDate, Double>
+     * @return Map<LocalDate   ,       Double> map Of Highest Daily Amplitude
+     */
+    public Map<LocalDate, Double> getHighestDailyAmplitude(Map<LocalDate, Double> mapOfDailyAmplitude) {
+
+        Map<LocalDate, Double> mapOfHighestDailyAmplitude = new HashMap<>();
+        Map<LocalDate, Double> cleanList = Utils.removeDoubleNanHashMap(mapOfDailyAmplitude);
+
+        Set<Map.Entry<LocalDate, Double>> set = cleanList.entrySet();
+
+        if (!set.isEmpty()) {
+
+            Double maximumValueOfInterval = (Collections.max(cleanList.values()));
+            for (Map.Entry<LocalDate, Double> dailyAmplitude : set) {
+
+                if (dailyAmplitude.getValue() == maximumValueOfInterval) {
+                    mapOfHighestDailyAmplitude.put(dailyAmplitude.getKey(), dailyAmplitude.getValue());
+                }
+            }
+        }
+
+        return mapOfHighestDailyAmplitude;
     }
 
     /**
