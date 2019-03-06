@@ -44,7 +44,7 @@ public class FreezerSpecs implements DeviceSpecs {
         if (Utils.isSameDouble(this.annualEnergyConsumption, newFreezerCapacity) || Utils.isSameNumber(newFreezerCapacity, 0)) {
             return false;
         }
-        this.annualEnergyConsumption = newFreezerCapacity;
+        this.freezerCapacity = newFreezerCapacity;
         return true;
     }
 

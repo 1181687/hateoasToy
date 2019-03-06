@@ -10,6 +10,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Freezer implements Device {
     private String name;
@@ -63,7 +64,7 @@ public class Freezer implements Device {
      */
     @Override
     public boolean isActive() {
-        return false;
+        return this.isActive;
     }
 
     /**
@@ -74,7 +75,18 @@ public class Freezer implements Device {
      */
     @Override
     public boolean setLocation(Room location) {
-        return false;
+        if (Objects.isNull(this.location)) {
+            this.location = location;
+            location.addDevice(this);
+            return true;
+        }
+        if (this.location.equals(location)) {
+            return false;
+        }
+        this.location.getDeviceList().remove(this);
+        this.location = location;
+        location.addDevice(this);
+        return true;
     }
 
     /**
@@ -84,13 +96,13 @@ public class Freezer implements Device {
      */
     @Override
     public boolean getIsActive() {
-        return false;
+        return this.isActive;
     }
 
 
     @Override
     public LocalDateTime getDeactivationDate() {
-        return null;
+        return this.deactivationDate;
     }
 
     @Override
@@ -105,13 +117,13 @@ public class Freezer implements Device {
 
     @Override
     public double getNominalPower() {
-        return 0;
+        return this.specs.getNominalPower();
     }
 
 
     @Override
     public List<Reading> getReadings() {
-        return null;
+        return this.readingList;
     }
 
     /**
@@ -142,6 +154,34 @@ public class Freezer implements Device {
         }
         this.name = name;
         return true;
+    }
+
+    /**
+     * method that creates the hashcode to two devices that are have the same name.
+     *
+     * @return the hashcode created
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(this.name);
+    }
+
+    /**
+     * Equals method to determine if two Device1 are equal.     *
+     *
+     * @param obj receives an object
+     * @return boolean true if are equal and false if are not.
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof Device)) {
+            return false;
+        }
+        Device listOne = (Device) obj;
+        return this.name.equalsIgnoreCase(listOne.getName());
     }
 
 }
