@@ -8,17 +8,34 @@ import java.time.LocalDate;
 public class GetFirstHottestDayHouseArea {
     private GetFirstHottestDayHouseAreaController ctrl;
 
-    private GetFirstHottestDayHouseArea(House house) {
+    public GetFirstHottestDayHouseArea(House house) {
         this.ctrl = new GetFirstHottestDayHouseAreaController(house);
     }
 
     public void run() {
-        String label0 = "Please insert the initial date/hour of the period you want to consider for the calculations in the following format: yyyy-MM-dd HH:mm. ";
-        LocalDate initialDate = InputValidator.getStringDate(label0);
-        String label1 = "Please insert the final date/hour of the period you want to consider for the calculations in the following format: yyyy-MM-dd HH:mm. ";
-        LocalDate finalDate = InputValidator.getStringDate(label1);
-        System.out.println("The the first hottest day in the house area in the chosen interval is " +
-                ctrl.getFirstHighestReadingDateHouseArea(ctrl.getHouseLocation(), ctrl.getTypeTemperature(), initialDate, finalDate));
+        boolean flag;
+        LocalDate initialDate = null;
+        LocalDate finalDate = null;
+        do {
+            flag = false;
+            String label0 = "Please insert the initial date of the period you want to consider for the calculations in the following format: yyyy-MM-dd. ";
+            initialDate = InputValidator.getStringDate(label0);
+            String label1 = "Please insert the final date of the period you want to consider for the calculations in the following format: yyyy-MM-dd. ";
+            finalDate = InputValidator.getStringDate(label1);
+            if (initialDate.isAfter(finalDate)) {
+                System.out.println("That is not a valid period (final date should be after initial date). Please try again.\n");
+                flag = true;
+            }
+        } while (flag);
+        if (Double.isNaN(ctrl.getHighestReadingOfASensor(initialDate, finalDate)) || (!(ctrl.checkMeasurementExistenceBetweenDates(initialDate, finalDate)))) {
+            System.out.println("There are no " + ctrl.getTypeTemperature() + " sensors with valid measurements in the house area.");
+            return;
+        } else {
+            System.out.println("The first hottest day in the house area in the chosen interval is " +
+                    ctrl.getFirstHighestReadingDateHouseArea(ctrl.getHouseLocation(), ctrl.getTypeTemperature(), initialDate, finalDate) +
+                    " (maximum temperature of " +
+                    ctrl.getFirstHighestReadingValueHouseArea(ctrl.getHouseLocation(), ctrl.getTypeTemperature(), initialDate, finalDate) + " Celsius).\n");
+        }
     }
 }
 

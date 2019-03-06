@@ -752,7 +752,19 @@ public class House {
         return insertedGeoArea.getDateLastMeasurementByLocationType(address.getLocation(), type);
     }
 
+    public double getHighestReadingOfASensor(LocalDate startDate, LocalDate endDate) {
+        return insertedGeoArea.getHighestReadingOfASensor(startDate, endDate).getValue();
+    }
+
     public LocalDate getFirstHighestReadingDateHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
-        return insertedGeoArea.getFirstHighestReadingDate(location, type, startDate, endDate);
+        return insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate).getDateTime().toLocalDate();
+    }
+
+    public Double getFirstHighestReadingValueHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
+        return insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate).getValue();
+    }
+
+    public boolean checkMeasurementExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
+        return insertedGeoArea.checkMeasurementExistenceBetweenDates(startDate, endDate);
     }
 }
