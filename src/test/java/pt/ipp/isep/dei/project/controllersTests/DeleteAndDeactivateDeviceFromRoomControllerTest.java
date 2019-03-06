@@ -5,7 +5,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
     /*private DeleteAndDeactivateDeviceFromRoomController controller;
     private House house;
 
-    private static final String ATTRIBUTE_FREEZER_CAPACITY = "Freezer Capacity";
+    private static final String ATTRIBUTE_FREEZER_CAPACITY = "freezer Capacity";
     private static final String ATTRIBUTE_REFRIGERATOR_CAPACITY = "Refrigerator Capacity";
     private static final String ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
@@ -16,7 +16,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+        geographicalarea insertedGeoArea = new geographicalarea("Campus do ISEP", geographicalAreaType, location, areaShape);
 
         //House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -258,7 +258,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         fridge1.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, 100);
         fridge1.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, 100);
 
-        Device fridge2 = fridgeType.createDevice("Fridge Bosch", room);
+        Device fridge2 = fridgeType.createDevice("fridge Bosch", room);
         fridge2.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, 100);
         fridge2.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, 100);
         fridge2.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, 100);
@@ -307,28 +307,28 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        //initiate Devices
+        //initiate devices
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
 
         FridgeType fridgeType = new FridgeType();
-        Device fridge1 = fridgeType.createDevice("Fridge Ariston", room);
+        Device fridge1 = fridgeType.createDevice("fridge Ariston", room);
         fridge1.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
         fridge1.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
 
-        Device fridge2 = fridgeType.createDevice("Fridge Bosch", room);
+        Device fridge2 = fridgeType.createDevice("fridge Bosch", room);
         fridge2.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge2.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge2.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
         fridge2.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
 
         String expectedResult =
-                "1 - Name of the device: Fridge Ariston\n" +
-                        "2 - Name of the device: Fridge Bosch\n";
+                "1 - Name of the device: fridge Ariston\n" +
+                        "2 - Name of the device: fridge Bosch\n";
 
         int position = 0;
         house.addRoom(room);
@@ -357,7 +357,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         double nominalPower = 100.5;
 
         FridgeType fridgeType = new FridgeType();
-        Device fridge1 = fridgeType.createDevice("Fridge Ariston", room);
+        Device fridge1 = fridgeType.createDevice("fridge Ariston", room);
         fridge1.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
@@ -368,7 +368,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         this.controller.getRoomPosition(position);
 
         // act
-        boolean result = this.controller.deactivateDevice("Fridge Ariston");
+        boolean result = this.controller.deactivateDevice("fridge Ariston");
 
         // assert
         assertTrue(result);
@@ -400,14 +400,14 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        //initiate Devices
+        //initiate devices
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
 
         FridgeType fridgeType = new FridgeType();
-        Device fridge1 = fridgeType.createDevice("Fridge Ariston", room);
+        Device fridge1 = fridgeType.createDevice("fridge Ariston", room);
         fridge1.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
@@ -440,13 +440,13 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
         FridgeType fridgeType = new FridgeType();
-        Device fridge1 = fridgeType.createDevice("Fridge Ariston", room);
+        Device fridge1 = fridgeType.createDevice("fridge Ariston", room);
         fridge1.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
         fridge1.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
 
-        Device fridge2 = fridgeType.createDevice("Fridge Bosch", room);
+        Device fridge2 = fridgeType.createDevice("fridge Bosch", room);
         fridge2.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge2.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge2.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
@@ -456,8 +456,8 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
 
         int position = 0;
         String expectedResult =
-                "1 - Device name: Fridge Ariston - ACTIVATED\n" +
-                        "2 - Device name: Fridge Bosch - ACTIVATED\n";
+                "1 - Device name: fridge Ariston - ACTIVATED\n" +
+                        "2 - Device name: fridge Bosch - ACTIVATED\n";
         controller.getRoomPosition(position);
         // Act
         String result = controller.getActiveDeviceListToString();
@@ -479,13 +479,13 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
         FridgeType fridgeType = new FridgeType();
-        Device fridge1 = fridgeType.createDevice("Fridge Ariston", room);
+        Device fridge1 = fridgeType.createDevice("fridge Ariston", room);
         fridge1.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
         fridge1.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
 
-        Device fridge2 = fridgeType.createDevice("Fridge Bosch", room);
+        Device fridge2 = fridgeType.createDevice("fridge Bosch", room);
         fridge2.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge2.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge2.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
@@ -495,8 +495,8 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         int position = 0;
 
         String expectedResult =
-                "1 - Device name: Fridge Ariston - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n" +
-                        "2 - Device name: Fridge Bosch - ACTIVATED\n";
+                "1 - Device name: fridge Ariston - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n" +
+                        "2 - Device name: fridge Bosch - ACTIVATED\n";
         controller.getRoomPosition(position);
         // Act
         String result = controller.getActiveDeviceListToString();
@@ -517,13 +517,13 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
         FridgeType fridgeType = new FridgeType();
-        Device fridge1 = fridgeType.createDevice("Fridge Ariston", room);
+        Device fridge1 = fridgeType.createDevice("fridge Ariston", room);
         fridge1.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
         fridge1.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
 
-        Device fridge2 = fridgeType.createDevice("Fridge Bosch", room);
+        Device fridge2 = fridgeType.createDevice("fridge Bosch", room);
         fridge2.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge2.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge2.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
@@ -536,8 +536,8 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         house.addRoom(room);
 
         String expectedResult =
-                "1 - Device name: Fridge Ariston - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n" +
-                        "2 - Device name: Fridge Bosch - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n";
+                "1 - Device name: fridge Ariston - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n" +
+                        "2 - Device name: fridge Bosch - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n";
         controller.getRoomPosition(position);
         // Act
         String result = controller.getActiveDeviceListToString();

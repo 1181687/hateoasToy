@@ -3,7 +3,12 @@ package pt.ipp.isep.dei.project.controllersTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.ConfHouseLocationController;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Address;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;

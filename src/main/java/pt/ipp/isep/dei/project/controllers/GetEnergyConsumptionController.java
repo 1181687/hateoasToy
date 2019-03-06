@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.HouseGrid;
+import pt.ipp.isep.dei.project.model.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.Room;
 
@@ -55,7 +55,7 @@ public class GetEnergyConsumptionController {
     //HOUSE GRID
 
     /**
-     * Method that verify if HouseGrid List is empty.
+     * Method that verify if housegrid List is empty.
      *
      * @return True if it is empty or false if it is not.
      */
@@ -64,7 +64,7 @@ public class GetEnergyConsumptionController {
     }
 
     /**
-     * Method that gets the size of the HouseGrid List.
+     * Method that gets the size of the housegrid List.
      * @return the number of HouseGrids in the list.
      */
     public int getHouseGridListSize() {
@@ -72,8 +72,8 @@ public class GetEnergyConsumptionController {
     }
 
     /**
-     * Method that show a String of the HouseGrid List content.
-     * @return the HouseGrid List content.
+     * Method that show a String of the housegrid List content.
+     * @return the housegrid List content.
      */
     public String getHouseGridListToString() {
         return this.house.getHouseGridListToString();

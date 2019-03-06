@@ -87,7 +87,7 @@ public final class Utils {
     public static List<String> readConfigFileToList(String file, String count, String property) {
         List<String> readingsList = new ArrayList<>();
         int numberOfProperties = Integer.parseInt(readConfigFile(file, count));
-        for (int i = 1; i <= numberOfProperties; i++) {
+        for (int i = 1; i <= numberOfProperties && i > 0; i++) {
             String deviceType = Utils.readConfigFile(file, property + "." + i);
             readingsList.add(deviceType);
         }

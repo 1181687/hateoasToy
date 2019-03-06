@@ -41,4 +41,13 @@ public class Program {
         Program programOne = (Program) obj;
         return this.name.equalsIgnoreCase(programOne.name);
     }
+
+
+    public double getDuration() {
+        return duration;
+    }
+
+    public double getEnergyConsumption() {
+        return energyConsumption;
+    }
 }

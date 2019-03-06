@@ -3,7 +3,13 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorList;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -20,7 +26,7 @@ public class RoomTest {
     private Room laundry;
     private Room kitchen;
     private static final String FRIDGE_TYPE = "Fridge";
-    private static final String DISHWASHER_TYPE = "DishWasher";
+    private static final String DISHWASHER_TYPE = "Dishwasher";
     private static final String LAMP_TYPE = "Lamp";
     private static final String WASHING_MACHINE_TYPE = "Washing Machine";
 
@@ -269,7 +275,7 @@ public class RoomTest {
     @Test
     public void getDeviceListContentTest() {
         // Arrange
-        //initiate Devices
+        //initiate devices
 
         Device dev = house.createDevice(FRIDGE_TYPE, "Fridge1", laundry);
         Device dev1 = house.createDevice(LAMP_TYPE, "Lamp1", laundry);

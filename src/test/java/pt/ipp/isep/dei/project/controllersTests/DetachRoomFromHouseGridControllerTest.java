@@ -4,6 +4,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.DetachRoomFromHouseGridController;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
@@ -50,7 +54,7 @@ class DetachRoomFromHouseGridControllerTest {
         house.addRoom(r0);
         house.addRoom(r1);
 
-        //HouseGrid
+        //housegrid
         this.mainGrid = new HouseGrid("Main Grid");
         house.addGrid(mainGrid);
         mainGrid.addRoom(r0);

@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
@@ -34,7 +34,7 @@ public class LampSpecsTest {
         this.house.addRoom(livingRoom);
 
         //Device
-        this.lamp = this.house.createDevice("Lamp", "Lamp Philips", livingRoom);
+        this.lamp = this.house.createDevice("Lamp", "lamp Philips", livingRoom);
         lamp.setAttributesDevType("Luminous Flux", 50.0);
         lamp.setAttributesDevType("Nominal Power", 100.0);
         lamp.setAttributesDevType("Time", 10.0);

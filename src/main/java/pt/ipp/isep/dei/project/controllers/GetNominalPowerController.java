@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.housegrid.HouseGrid;
 
 public class GetNominalPowerController {
     private House house;
@@ -154,7 +155,7 @@ public class GetNominalPowerController {
     }
 
     /**
-     * Calculates the nominal power of the selected HouseGrid.
+     * Calculates the nominal power of the selected housegrid.
      *
      * @return double
      */

@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -44,11 +44,11 @@ class FridgeTest {
         this.house.addRoom(kitchen);
         this.house.addRoom(laundry);
 
-        // Devices
-        // Dummy Fridge
+        // devices
+        // Dummy fridge
         house.createDevice("Fridge", "Miele PerfectCool Series 1000", kitchen);
 
-        // Fridge
+        // fridge
         fridge = house.createDevice("Fridge", "Miele PerfectCool Series 3500", kitchen);
         fridge.setAttributesDevType("Freezer Capacity", 40);
         fridge.setAttributesDevType("Refrigerator Capacity", 20);

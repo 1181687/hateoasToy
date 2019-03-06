@@ -18,6 +18,7 @@ skinparam sequence {
 }
 
 actor PowerUser
+activate PowerUser
 PowerUser -> ":GetEnergyConsumption\nHouseGridUI": 1- GetEnergyConsumptionOfHouseGrid
 activate ":GetEnergyConsumption\nHouseGridUI"
 ":GetEnergyConsumption\nHouseGridUI" -> ":GetEnergyConsumption\nHouseGridController": 1.1- getHouseGridListToString()
@@ -29,17 +30,19 @@ deactivate ":House"
 ":GetEnergyConsumption\nHouseGridUI" <-- ":GetEnergyConsumption\nHouseGridController": 1.2- houseGridList
 deactivate ":GetEnergyConsumption\nHouseGridController"
 PowerUser <-- ":GetEnergyConsumption\nHouseGridUI": 1.3- houseGridList
-
+deactivate ":GetEnergyConsumption\nHouseGridUI"
 PowerUser -> ":GetEnergyConsumption\nHouseGridUI": 2- Int House Grid Position
+activate ":GetEnergyConsumption\nHouseGridUI"
 ":GetEnergyConsumption\nHouseGridUI" -> ":GetEnergyConsumption\nHouseGridController": 2.1- getHouseGridByPosition(position)
+deactivate ":GetEnergyConsumption\nHouseGridUI"
 activate ":GetEnergyConsumption\nHouseGridController"
 ":GetEnergyConsumption\nHouseGridController" -> ":House": 2.2- getHouseGridByPosition (position)
 activate ":House"
 ":GetEnergyConsumption\nHouseGridController" <-- ":House": 2.3- chosenHouseGrid
 deactivate ":GetEnergyConsumption\nHouseGridController"
 deactivate ":House"
-
 PowerUser <- ":GetEnergyConsumption\nHouseGridUI": 3- Ask for Start Date and End Date
+activate ":GetEnergyConsumption\nHouseGridUI"
 
 PowerUser -> ":GetEnergyConsumption\nHouseGridUI": 3.1- Insert Start Date (LocalDateTime)
 PowerUser -> ":GetEnergyConsumption\nHouseGridUI": 3.2- Insert End Date (LocalDateTime)
@@ -47,6 +50,7 @@ PowerUser -> ":GetEnergyConsumption\nHouseGridUI": 3.2- Insert End Date (LocalDa
 activate ":GetEnergyConsumption\nHouseGridController"
 ":GetEnergyConsumption\nHouseGridController" -> ":HouseGrid": 3.2.1.1- GetEnergyConsumption(startDate, endDate)
 activate ":HouseGrid"
+ref over ":HouseGrid" : GetEnergyConsumption()
 ":GetEnergyConsumption\nHouseGridController" <-- ":HouseGrid": 3.2.1.2- Energy Consumption
 deactivate ":HouseGrid"
 ":GetEnergyConsumption\nHouseGridUI" <-- ":GetEnergyConsumption\nHouseGridController": 3.2.2- energyConsumption
