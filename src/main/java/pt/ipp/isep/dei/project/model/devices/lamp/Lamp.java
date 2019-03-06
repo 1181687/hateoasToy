@@ -26,16 +26,6 @@ public class Lamp implements Device {
     }
 
     /**
-     * method that get the nominal power of the devices.
-     *
-     * @return the nominal power of the device.
-     */
-    @Override
-    public double getNominalPower() {
-        return this.specs.getNominalPower();
-    }
-
-    /**
      * -     * method that set the location (room) of a added device.
      * -     *
      * -     * @param location
@@ -96,15 +86,6 @@ public class Lamp implements Device {
     }
 
     /**
-     * Method that gets the boolean attribute from each device.
-     * @return boolean
-     */
-    public boolean isActive() {
-        return isActive;
-    }
-
-
-    /**
      * method that creates the hashcode to two devices that are have the same name.
      *
      * @return the hashcode created
@@ -149,7 +130,7 @@ public class Lamp implements Device {
         }
         return false;
     }
-    
+
 
     /**
      * -     * method that set the given name only if the name don't exists in DeviceList

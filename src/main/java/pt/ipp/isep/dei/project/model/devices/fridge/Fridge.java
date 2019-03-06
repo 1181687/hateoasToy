@@ -25,17 +25,6 @@ public class Fridge implements Device {
         this.readingList = new ArrayList<>();
     }
 
-
-    /**
-     * method that get the nominal power of the devices.
-     *
-     * @return the nominal power of the device.
-     */
-    @Override
-    public double getNominalPower() {
-        return this.specs.getNominalPower();
-    }
-
     /**
      * -     * method that set the location (room) of a added device.
      * -     *
@@ -95,14 +84,6 @@ public class Fridge implements Device {
     @Override
     public List<Reading> getReadings() {
         return this.readingList;
-    }
-
-    /**
-     * Method that gets the boolean attribute from each device.
-     * @return boolean
-     */
-    public boolean isActive() {
-        return isActive;
     }
 
 

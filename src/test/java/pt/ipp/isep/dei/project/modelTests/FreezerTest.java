@@ -437,7 +437,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getNominalPowerTest() {
+    void testGetNominalPowerTest() {
         //Arrange
         double expectedResult = 900.0;
 
@@ -446,5 +446,43 @@ public class FreezerTest {
 
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void testIfDeviceIsActiveTrue() {
+        //Arrange
+        //Act
+        boolean result = freezer.getIsActive();
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void testIfDeviceIsActiveFalse() {
+        //Arrange
+        freezer.setDeactivateDevice();
+        //Act
+        boolean result = freezer.getIsActive();
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testIfDeviceIsProgrammableFalse() {
+        //Arrange
+        //Act
+        boolean result = freezer.isProgrammable();
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
+        //Arrange
+        freezer.asProgrammable();
+        //Act
+        boolean result = freezer.isProgrammable();
+        //Assert
+        assertFalse(result);
     }
 }

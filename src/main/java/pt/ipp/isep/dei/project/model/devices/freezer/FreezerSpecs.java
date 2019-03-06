@@ -30,26 +30,14 @@ public class FreezerSpecs implements DeviceSpecs {
         return Utils.round((this.annualEnergyConsumption / 365), 2);
     }
 
-    /**
-     * get method
-     *
-     * @return freezer capacity
-     */
-    public double getFreezerCapacity() {
-        return this.freezerCapacity;
-    }
 
     public boolean setFreezerCapacity(Object freezerCapacity) {
         double newFreezerCapacity = (Double) freezerCapacity;
-        if (Utils.isSameDouble(this.annualEnergyConsumption, newFreezerCapacity) || Utils.isSameNumber(newFreezerCapacity, 0)) {
+        if (Utils.isSameDouble(this.freezerCapacity, newFreezerCapacity) || Utils.isSameNumber(newFreezerCapacity, 0)) {
             return false;
         }
         this.freezerCapacity = newFreezerCapacity;
         return true;
-    }
-
-    public double getAnnualEnergyConsumption() {
-        return this.annualEnergyConsumption;
     }
 
     public boolean setAnnualEnergyConsumption(Object energyConsumption) {

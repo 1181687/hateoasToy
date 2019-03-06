@@ -1,0 +1,204 @@
+GLOSSARY
+
+GEOGRAPHICAL AREA
+It represents an area of the land with a specific meaning. There are several types of areas: street,
+place, parish, town/city, district, region, country, continent, urban area, rural area, forest area, etc. A
+geographical area may be part of another area.
+A geographical area has location (centre of the area): GPS coordinates + altitude (polar coordinates).
+Also has the actual representation of the area that, for the moment, is a rectangle centred in the area’s
+centre. Areas are measured in km2.
+
+
+HOUSE
+A house or apartment that is to be managed. A house may include gardens and other outbuildings
+that are part of the house (e.g. garage, garden shed, etc.). A house is located in a geographical area
+and has an address, including ZIP code, and a GPS location.
+
+
+ROOM
+A part of the house that has an independent logical and possibly physical representation (e.g. kitchen,
+bedroom, corridor, hall, garage, a delimited area in the basement, a section of the garden). A room
+has a name, house floor and dimensions. For the sake of simplicity, it is assumed a room always have
+a parallelepiped shape.
+A room may have a set of owners and all devices in the room have the same set of permissions.
+
+
+HOME GRID
+The electrical network of the house. All devices at home are connected to the home grid, which is
+connected through an energy meter and a power limiter differential circuit breaker to the public
+power grid. A house may have more than one independent grids (e.g. one for the main house and
+another for the garden). A room belongs only to one grid.
+
+
+DEVICE
+An active electrical device that consumes electricity in order to fulfil its tasks. About devices:
+Every device has a name, so that the users understand its purpose, a type, a location (room)
+and nominal power, i.e. the maximum power it can consume;
+A device may be metered, i.e. it has a meter connected to it (e.g. a metering plug) or has an
+internal meter. One cannot know the actual energy consumption of a non-metered device, so
+that the device’s consumption will be an estimate based on its working profile;
+A device may be switchable, i.e. it is connected to a switchable plug, a switch in the
+distribution board or itself supports that functionality.
+A device may be programmable, i.e. may be able to run several predefined/user defined
+programs at a configurable starting hour (e.g. washing machine, dishwasher, etc.).
+A device may be “self-managed”, i.e. its operation is fully based on internal decisions. That is the case
+of devices that have a thermostat (e.g. water heater, fridge, etc.). Though these are autonomous,
+some of these devices may be switchable.
+Regarding device types, there aren’t many specific requirements at the moment, except that the use
+of types should help users to understand the purpose of the device, standardize behaviours and also
+simplify system development and future extension. The client has already identified the following
+common types of devices that one can find at home:
+
+• Electric water heater
+o Nominal power (kW), volume of water (l), hot water temperature (°C), cold water temperature (°C), performance ratio
+(typically 0.9)
+o Energy consumption = C*V*dT*PR (kWh)
+     C -> Specific heat of water = 1,163 Wh/kg°C
+     V -> Volume of water to heat (water consumption in litres)
+     Dt -> difference in temperature = hot water temperature – cold water temperature
+     PR -> performance ratio (typically 0.9)
+
+• Washing machine
+o Nominal power (kW), capacity (kg), list of programs (duration, energy consumption)
+o Energy consumption = energy consumption of the program (kWh)
+
+• Dishwasher
+o Nominal power (kW), capacity (in dish sets), list of programs (duration, energy consumption)
+o Energy consumption = energy consumption of the program (kWh)
+
+• Fridge
+o Nominal power (kW), freezer capacity (l), refrigerator capacity (l), annual energy consumption (kWh)
+o Energy consumption (daily) = annual energy consumption 1 / 365 (kWh)
+
+• Freezer
+o Nominal power (kW), freezer capacity (l), annual energy consumption (kWh)
+o Energy consumption (daily) = annual energy consumption / 365 (kWh)
+
+• Wine cooler
+o Nominal power (kW), number of bottles, annual energy consumption (kWh)
+o Energy consumption (daily) = annual energy consumption / 365 (kWh)
+
+• Kettler
+o Nominal power (kW), maximum volume of water (l), performance ratio
+o Energy consumption = C*V*dT*PR (kWh)
+     C -> Specific heat of water = 1,163 Wh/kg°C
+     V -> Volume of water to heat (l)
+     Dt -> difference in temperature = 100 – cold water temperature
+     PR -> performance ratio (typically 0.95)
+
+• Electric Oven
+o Nominal power (kW), list of programs (nominal power of the program)
+o Energy consumption = nominal power of the program * time
+
+• Stove
+o Nominal power (kW), list of programs (nominal power of the program)
+o Energy consumption = nominal power of the program * time
+
+• Microwave oven
+o Nominal power (kW), list of programs (nominal power of the program)
+o Energy consumption = nominal power of the program * time
+
+• Wall electric heater
+
+• Portable electric oil heater
+
+• Portable electric convection heater
+
+• Wall towel heater
+o Nominal power (W)
+o Energy consumption = Nominal power * time (Wh)
+
+• Lamp
+o Nominal power (W), luminous flux (lm)
+o Energy consumption = Nominal power * time (Wh)
+
+• Fan
+o Nominal power (W), list of programs (nominal power of the program)
+o Energy consumption = Nominal power of the program * time (Wh)
+
+• TV
+o Nominal power (W), standby power (W)
+o Energy consumption = Nominal power * time (Wh)
+
+
+POWER SOURCE
+A power source supplies electric energy to the home grid. This may include the public electric grid,
+photovoltaic panels, wind generator, batteries, etc. Some power sources may be “chargeable”, i.e. the
+may be used to storage energy for later use.
+power source has a maximum power output and, if it has storage capabilities, the maximum amount
+of storable energy and the maximum power it can provide in continuous operation (the peak instant
+power it is not relevant, for the moment).
+
+
+PASSIVE HEAT SOURCE
+A device that supplies or absorbs heat from a room. When designing a house, the architect should give
+special care to the use of passive sources (e.g. windows) in order to reduce active energy consumption,
+thus reducing the house’s carbon footprint. A house that requires little or no active heating/cooling is
+called a passive house8.
+Passive heat sources may be truly passive (e.g. window) or active devices with little electric energy
+consumption regarding their overall heat production (e.g. window with electric blinders, ventilation fan).
+
+
+SENSOR
+The virtual representation of a real sensor that provides information on the house environment. Thus,
+in the context of the system, a sensor is not a physical device (see above). The power consumption of
+the sensors is deemed negligible.
+In order to further simplify the system’s management and extension, a sensor is a virtual entity that
+represents a set of operations related to a single physical quantity9 (e.g. air humidity sensor) or a
+condition (e.g. presence detection). A sensor belongs either to a location in the house, i.e. a room (see
+the extended room definition above) or to a geographical area (e.g. outside temperature sensor, solar
+radiation sensor, etc.). Sensors in geographical areas have a location (latitude, longitude, altitude).
+A sensor has a name, a start operation date, a stop operation date (optional), its readings and a type.
+Some common sensor types:
+• Air humidity;
+• Air speed;
+• Atmospheric pressure;
+• Human presence;
+• Light intensity;
+• Solar radiation;
+• Rain;
+• Temperature.
+
+
+USERS
+Inhabitants of the house (permanent or guests) or someone who uses it regularly (e.g. house staff)
+with access to the system, which must be granted by an Administrator (c.f. User Roles).
+
+USER ROLES
+ A house has at least 3 types of roles:
+• Administrator, which is used only to manage the system;
+• Regular users, the default user;
+• Power user(s), a regular user with the ability to override all other permissions regarding regular house operation;
+• Room owner(s), a regular user with “power user like” abilities in a room, but whose commands/setups can be overridden
+by a power user.
+
+
+ELECTRIC POWER
+Instant electric power10 available at a power source or consumed by a device.
+
+ELECTRIC ENERGY CONSUMPTION/PRODUCTION
+Total amount of energy produced/consumed11 during a certain period. Energy is measured in KWh,
+the basic trade unit of energy.
+
+ENERGY PRICE
+The price of 1 KWh of electric energy. The price of energy changes over time according to market
+needs and the energy produced. The basic period of pricing is 15 min. Energy prices are obtained from
+a service provided by the utility. Regarding energy sale prices, they may be provided by the utility or
+by other services, e.g. provided by the area’s energy market.
+
+ELECTRIC ENERGY METER
+A sensor that measures the amount of electric energy that travels through it at a certain point of the
+grid. By convention, energy consumption is a positive value and energy production a negative one.
+Though many meters can provide almost continuous readings (e.g. one every second), there is no real
+interest in that. It is assumed that the average energy consumption for a period of 5 minutes is detailed
+enough for energy monitoring and consumption planning purposes. Thus, the system will receive
+readings with that period. Nevertheless, this period may change in the future or even be configurable
+by the Administrator.
+
+GRID METER
+An electric energy meter that measures the electric energy consumption/production of the grid
+relative to the public power grid (outside). Every house has at least one.
+
+CONTRACTED MAXIMUM POWER
+The maximum electric power the public grid can provide to a house grid. This is enforced by the grid’s
+power limiter circuit breaker.

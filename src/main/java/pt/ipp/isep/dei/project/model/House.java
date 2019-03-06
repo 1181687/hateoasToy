@@ -36,6 +36,7 @@ public class House {
         this.meteringPeriodDevice = meteringPeriodDevice;
     }
 
+
     /**
      * This method create device types using a path and a class name.
      *
@@ -716,7 +717,7 @@ public class House {
     public String getDeviceTypeListToString() {
         StringBuilder content = new StringBuilder();
         int numberOfDeviceTypes = numberOfDeviceTypes();
-        for (int i = 1; i <= numberOfDeviceTypes; i++) {
+        for (int i = 1; i <= numberOfDeviceTypes && i >= 1; i++) {
             String deviceType = Utils.readConfigFile(CONFIG_PROPERTIES, "devicetype.name." + i);
             content.append(i + "- ");
             content.append(deviceType);
@@ -767,4 +768,29 @@ public class House {
     public boolean checkMeasurementExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
         return insertedGeoArea.checkMeasurementExistenceBetweenDates(startDate, endDate);
     }
+
+    /**
+     * get Daily Amplitude Map <localdate, Double> in a given interval of Localdate by given sensortype and location
+     *
+     * @param sensorType type of sensor
+     * @param location   location of the area wanted to get the daily amplitude
+     * @param startDate  initial Localdate of the interval
+     * @param endDate    final Localdate of the interval
+     * @return Map<LocalDate   ,       Double> map Of Daily Amplitude
+     */
+    public Map<LocalDate, Double> getDailyAmplitudeInIntervalInHouseArea(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
+        return this.insertedGeoArea.getDailyAmplitudeInInterval(sensorType, location, startDate, endDate);
+    }
+
+    /**
+     * receives a map Of Daily Amplitude and gets the Highest Daily Amplitude (localdate-Double)
+     * if there are two equal amplitudes, it gets both.
+     *
+     * @param mapOfDailyAmplitude given daily Amplitude Map<LocalDate, Double>
+     * @return Map<LocalDate   ,       Double> map Of Highest Daily Amplitude
+     */
+    public Map<LocalDate, Double> getHighestDailyAmplitudeInHouseArea(Map<LocalDate, Double> mapOfDailyAmplitude) {
+        return this.insertedGeoArea.getHighestDailyAmplitude(mapOfDailyAmplitude);
+    }
+
 }
