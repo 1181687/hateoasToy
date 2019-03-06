@@ -338,11 +338,9 @@ public class GeographicalArea {
         Sensor nearestSensor = nearestSensorsWithRightTypeDuringPeriod.getSensorWithMostRecentReading(nearestSensorsWithRightTypeDuringPeriod);
 
         for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate.plusDays(1)); dateIterator = dateIterator.plusDays(1)) {
-            //  if(!(Double.isNaN(nearestSensor.getMaximumValueOfDay(dateIterator)) && Double.isNaN(nearestSensor.getLowestMeasurementOfDay(dateIterator)))) {
-            Double dailyAmplitude = Math.abs(nearestSensor.getMaximumValueOfDay(dateIterator) - nearestSensor.getLowestMeasurementOfDay(dateIterator));
 
+            Double dailyAmplitude = Math.abs(nearestSensor.getMaximumValueOfDay(dateIterator) - nearestSensor.getLowestMeasurementOfDay(dateIterator));
             mapOfDailyAmplitude.put(dateIterator, dailyAmplitude);
-            // }
         }
         return mapOfDailyAmplitude;
     }
