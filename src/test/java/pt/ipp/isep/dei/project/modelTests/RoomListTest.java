@@ -3,12 +3,12 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.DishWasher.DishWasherType;
-import pt.ipp.isep.dei.project.model.Devices.ElectricWaterHeater.ElectricWaterHeaterType;
-import pt.ipp.isep.dei.project.model.Devices.Fridge.FridgeType;
-import pt.ipp.isep.dei.project.model.Devices.Lamp.LampType;
-import pt.ipp.isep.dei.project.model.Devices.WashingMachine.WashingMachineType;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
@@ -23,7 +23,7 @@ public class RoomListTest {
     private House house;
     private static final String FRIDGE_TYPE = "Fridge";
     private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
-    private static final String DISHWASHER_TYPE = "DishWasher";
+    private static final String DISHWASHER_TYPE = "Dishwasher";
     private static final String LAMP_TYPE = "Lamp";
     private static final String WASHING_MACHINE_TYPE = "Washing Machine";
 

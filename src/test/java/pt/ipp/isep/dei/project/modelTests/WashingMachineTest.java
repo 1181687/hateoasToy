@@ -2,8 +2,8 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.Programmable;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -38,7 +38,7 @@ class WashingMachineTest {
         kitchen = new Room("Kitchen", 1, dim);
         laundry = new Room("Laundry", 1, dim);
 
-        // Devices
+        // devices
         house.createDevice(WASHING_MACHINE_TYPE, "Maytag 2.6", kitchen);
         washingMachine = house.createDevice(WASHING_MACHINE_TYPE, "Maytag 3.6", kitchen);
         washingMachine.setAttributesDevType("Capacity", 40);

@@ -1,9 +1,15 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.Programmable;
-import pt.ipp.isep.dei.project.model.HouseGrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.powersource.PowerSourceType;
+import pt.ipp.isep.dei.project.model.powersource.PowerSourceTypeList;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -21,10 +27,11 @@ public class Main {
     private static final String DISHES = "Dishes";
 
     private static final String ELECTRIC_WATER_HEATER = "Electric Water Heater";
-    private static final String DISHWASHER = "DishWasher";
+    private static final String DISHWASHER = "Dishwasher";
 
     public static void main(String[] args) {
 
+        // ReadJSONfile.readJSONFileToList();
 
         String configFile = "Configuration.properties";
 
@@ -80,7 +87,7 @@ public class Main {
         LocalDateTime sensorDate4 = LocalDate.of(2019, 1, 2).atStartOfDay();
         LocalDateTime sensorDate5 = LocalDate.of(2019, 1, 3).atStartOfDay();
 
-        // Sensor 1
+        // sensor 1
         Reading temp = new Reading(14.0, sensorDate1);
         Reading temp1 = new Reading(13.7, sensorDate1);
         Reading temp2 = new Reading(16.5, sensorDate1);
@@ -98,7 +105,7 @@ public class Main {
         Reading temp14 = new Reading(13.5, sensorDate4);
         Reading temp15 = new Reading(12.8, sensorDate4);
 
-        // Sensor 2
+        // sensor 2
         Reading temp16 = new Reading(84.0, sensorDate1);
         Reading temp17 = new Reading(85.7, sensorDate1);
         Reading temp18 = new Reading(76.5, sensorDate1);
@@ -116,7 +123,7 @@ public class Main {
         Reading temp30 = new Reading(71.5, sensorDate4);
         Reading temp31 = new Reading(72.8, sensorDate4);
 
-        // Sensor 3
+        // sensor 3
         Reading temp32 = new Reading(0.5, sensorDate);
         Reading temp33 = new Reading(1.2, sensorDate1);
         Reading temp34 = new Reading(1.5, sensorDate2);
@@ -125,7 +132,7 @@ public class Main {
         Reading temp37 = new Reading(0.0, sensorDate4);
         Reading temp38 = new Reading(0.0, sensorDate5);
 
-        // Sensor 4
+        // sensor 4
         Reading temp39 = new Reading(8.0, sensorDate1);
         Reading temp40 = new Reading(6.9, sensorDate1);
         Reading temp41 = new Reading(16.5, sensorDate1);
@@ -247,7 +254,7 @@ public class Main {
 
 
         // SENSORS
-        // Sensor 1
+        // sensor 1
         SensorType sensorTypeTemperature = new SensorType("temperature");
         LocalDateTime startingDate = LocalDate.of(2018, 10, 15).atStartOfDay();
         Sensor sensor = new Sensor("Temperature B109", startingDate, sensorTypeTemperature, houseLocation);
@@ -270,7 +277,7 @@ public class Main {
         // Add sensor to the Inserted area
         insertedGeoArea.getSensorListInTheGeographicArea().addSensor(sensor);
 
-        // Sensor 2
+        // sensor 2
         SensorType sensorTypeHumidity = new SensorType("humidity");
         LocalDateTime startingDate2 = LocalDate.of(2018, 11, 22).atStartOfDay();
         Sensor sensor2 = new Sensor("Humidity B109", startingDate2, sensorTypeHumidity, houseLocation);
@@ -291,7 +298,7 @@ public class Main {
         sensor2.addReadingsToList(temp30);
         sensor2.addReadingsToList(temp31);
 
-        // Sensor 3
+        // sensor 3
         Location locationOfAreaSensors = new Location(41.179230, -8.606409, 125);
         SensorType sensorTypeRainfall = new SensorType("Rainfall");
         LocalDateTime startingDate3 = LocalDate.of(2016, 11, 15).atStartOfDay();
@@ -305,7 +312,7 @@ public class Main {
         sensor3.addReadingsToList(temp38);
         insertedGeoArea.getSensorListInTheGeographicArea().addSensor(sensor3);
 
-        // Sensor 4
+        // sensor 4
         SensorType sensorTypeTemp = new SensorType("temperature");
         LocalDateTime startingDate4 = LocalDate.of(2016, 11, 15).atStartOfDay();
         Sensor sensor4 = new Sensor("Meteo station ISEP - rainfall", startingDate4, sensorTypeTemp, locationOfAreaSensors);

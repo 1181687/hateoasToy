@@ -3,8 +3,8 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.Programmable;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -47,7 +47,7 @@ class ElectricOvenTest {
         house.addRoom(laundry);
 
 
-        // Devices
+        // devices
         house.createDevice("Electric Oven", "Kenmore Elite 95067", kitchen);
         electricOven = house.createDevice("Electric Oven", "Kenmore Elite 95053", kitchen);
         electricOven.setAttributesDevType("Time", 1);

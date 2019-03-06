@@ -2,8 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.ElectricWaterHeater.ElectricWaterHeaterType;
+import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
@@ -33,7 +32,7 @@ class ElectricWaterHeaterSpecsTest {
         Dimension dim = new Dimension(3, 5, 6);
         kitchen = new Room("Kitchen", 1, dim);
 
-        electricWaterHeater = house.createDevice(ELECTRIC_W_H_TYPE, "DishWasher Bosch", kitchen);
+        electricWaterHeater = house.createDevice(ELECTRIC_W_H_TYPE, "dishwasher Bosch", kitchen);
     }
 
     @Test

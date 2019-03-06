@@ -3,8 +3,8 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.Devices.Programmable;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -47,9 +47,9 @@ class DishWasherTest {
         house.addRoom(laundry);
 
 
-        // Devices
-        house.createDevice("DishWasher", "Bosch 600 Series", kitchen);
-        dishwasher = house.createDevice("DishWasher", "Bosch 500 Series", kitchen);
+        // devices
+        house.createDevice("Dishwasher", "Bosch 600 Series", kitchen);
+        dishwasher = house.createDevice("Dishwasher", "Bosch 500 Series", kitchen);
         dishwasher.setAttributesDevType("Capacity", 10);
         dishwasher.setAttributesDevType("Duration", 0);
         dishwasher.setAttributesDevType("Nominal Power", 1200);

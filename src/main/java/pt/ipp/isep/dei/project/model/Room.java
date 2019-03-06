@@ -1,6 +1,9 @@
 package pt.ipp.isep.dei.project.model;
 
-import pt.ipp.isep.dei.project.model.Devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorList;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -255,7 +258,7 @@ public class Room implements Measurable {
     }
 
     /**
-     * Method that adds a device to the list of Devices if device not null
+     * Method that adds a device to the list of devices if device not null
      * and the roomlist has not device with the same name
      * @param device the device to be added
      * @return true if it adds, false if it doesn't add
@@ -317,7 +320,7 @@ public class Room implements Measurable {
     }
 
     /**
-     * get List of Devices
+     * get List of devices
      *
      * @return List<Device>
      */

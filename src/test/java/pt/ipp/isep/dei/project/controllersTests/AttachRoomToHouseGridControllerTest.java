@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AttachRoomToHouseGridController;
 import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.HouseGrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
@@ -149,7 +149,7 @@ class AttachRoomToHouseGridControllerTest {
     void checkIfTheChosenRoomIsAlreadyInTheChosenGridPositiveTest() {
         // Arrange
         String gridName = "Grid";
-        HouseGrid grid = house.createHouseGrid(gridName);
+        housegrid grid = house.createHouseGrid(gridName);
         house.addGrid(grid);
         String roomName = "Kitchen";
         int houseFloor1 = 0;
@@ -173,7 +173,7 @@ class AttachRoomToHouseGridControllerTest {
         // Arrange
 
         String gridName = "Grid";
-        HouseGrid grid = house.createHouseGrid(gridName);
+        housegrid grid = house.createHouseGrid(gridName);
         house.addGrid(grid);
 
         String roomName = "Kitchen";

@@ -2,9 +2,14 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Devices.Device;
-import pt.ipp.isep.dei.project.model.*;
-import pt.ipp.isep.dei.project.model.HouseGrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.Dimension;
+import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.powersource.PowerSource;
+import pt.ipp.isep.dei.project.model.powersource.PowerSourceType;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
@@ -57,7 +62,7 @@ public class HouseGridTest {
         mainGrid.addPowerSource(powerSource1);
         mainGrid.addPowerSource(powerSource2);
 
-        // Devices
+        // devices
         fridge = house.createDevice("Fridge", "Miele PerfectCool Series 3500", kidsRoom);
         fridge.setAttributesDevType("Freezer Capacity", 100);
         fridge.setAttributesDevType("Refrigerator Capacity", 100);
@@ -68,7 +73,7 @@ public class HouseGridTest {
         washingMachine.setAttributesDevType("Capacity", 100);
         washingMachine.setAttributesDevType("Nominal Power", 100);
 
-        dishwasher = house.createDevice("DishWasher", "Bosch 500 Series", kidsRoom);
+        dishwasher = house.createDevice("Dishwasher", "Bosch 500 Series", kidsRoom);
         dishwasher.setAttributesDevType("Capacity", 100);
         dishwasher.setAttributesDevType("Nominal Power", 100);
 
@@ -414,7 +419,7 @@ public class HouseGridTest {
     @Test
     public void testGetNameToString() {
         // Arrange
-        String expectResult = "HouseGrid: Main grid\n";
+        String expectResult = "housegrid: Main grid\n";
 
         //act
         String result = mainGrid.getNameToString();

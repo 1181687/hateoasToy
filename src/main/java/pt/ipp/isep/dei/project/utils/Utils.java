@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -120,5 +121,18 @@ public final class Utils {
 
     public static boolean isFirstDoubleBiggerThanSecondOne(Double value1, Double value2) {
         return value1 > value2;
+    }
+
+    /**
+     * receives a Map and cleans the entries key-value that have a doubleNan value
+     *
+     * @param mapOfDailyValues given Map<LocalDate, Double>
+     * @return Map<LocalDate       ,               Double> map Of Daily Values without doubleNans entries
+     */
+    public static Map<LocalDate, Double> removeDoubleNanHashMap(Map<LocalDate, Double> mapOfDailyValues) {
+
+        mapOfDailyValues.entrySet().removeIf(entries -> entries.getValue().equals(Double.NaN));
+
+        return mapOfDailyValues;
     }
 }

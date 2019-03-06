@@ -2,9 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.CreateHouseGridController;
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.HouseGrid.HouseGrid;
-import pt.ipp.isep.dei.project.model.HouseGrid.HouseGridDTO;
-import pt.ipp.isep.dei.project.model.HouseGrid.HouseGridMapper;
+import pt.ipp.isep.dei.project.model.housegrid.HouseGridDTO;
+import pt.ipp.isep.dei.project.model.housegrid.HouseGridMapper;
 
 /**
  * US130 As an Administrator, I want to create a house grid, so that I can define the rooms
