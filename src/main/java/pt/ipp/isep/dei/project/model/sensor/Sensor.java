@@ -500,7 +500,7 @@ public class Sensor {
     public Reading getHighestReadingOfADay(LocalDate day) {
         Reading highestReading = getDailyMeasurement(day).get(0);
         for (Reading reading : getDailyMeasurement(day)) {
-            if (reading.getValue() != Double.NaN && Utils.isFirstDoubleBiggerThanSecondOne(reading.getValue(), highestReading.getValue())) {
+            if (!Double.isNaN(reading.getValue()) && Utils.isFirstDoubleBiggerThanSecondOne(reading.getValue(), highestReading.getValue())) {
                 highestReading = reading;
             }
         }
