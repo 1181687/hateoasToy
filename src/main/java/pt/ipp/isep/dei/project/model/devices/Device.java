@@ -35,12 +35,6 @@ public interface Device extends Measurable {
     DeviceSpecs getSpecs ();
 
     /**
-     * Method that gets the boolean attribute from each device.
-     * @return boolean
-     */
-    boolean isActive();
-
-    /**
      * method that set the location (room) of a added device.
      *
      * @param location
@@ -243,5 +237,10 @@ public interface Device extends Measurable {
     default String getAttributeDataType(String attributeName){
        return getSpecs().getAttributeDataType(attributeName);
     }
+
+    default double getNominalPower(){
+        return getSpecs().getNominalPower();
+    }
+
 
 }

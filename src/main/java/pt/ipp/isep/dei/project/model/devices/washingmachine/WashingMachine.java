@@ -30,16 +30,6 @@ public class WashingMachine implements Device, Programmable {
     }
 
     /**
-     * method that get the nominal power of the devices.
-     *
-     * @return the nominal power of the device.
-     */
-    @Override
-    public double getNominalPower() {
-        return specs.getNominalPower();
-    }
-
-    /**
      * -     * method that set the location (room) of a added device.
      * -     *
      * -     * @param location
@@ -118,15 +108,6 @@ public class WashingMachine implements Device, Programmable {
     public List<Reading> getReadings() {
         return this.readingList;
     }
-
-    /**
-     * Method that gets the boolean attribute from each device.
-     * @return boolean
-     */
-    public boolean isActive() {
-        return isActive;
-    }
-
 
     /**
      * method that creates the hashcode to two devices that are have the same name.

@@ -31,21 +31,6 @@ public class ElectricOven implements Device, Programmable {
         return specs;
     }
 
-    @Override
-    public boolean isActive() {
-        return isActive;
-    }
-
-    /**
-     * method that get the nominal power of the devices.
-     *
-     * @return the nominal power of the device.
-     */
-    @Override
-    public double getNominalPower() {
-        return this.specs.getNominalPower();
-    }
-
     /**
      * method that get a location (room) of a device.
      *
