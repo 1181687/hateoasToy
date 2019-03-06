@@ -27,7 +27,7 @@ public class Main {
     private static final String DISHES = "Dishes";
 
     private static final String ELECTRIC_WATER_HEATER = "Electric Water Heater";
-    private static final String DISHWASHER = "DishWasher";
+    private static final String DISHWASHER = "Dishwasher";
 
     public static void main(String[] args) {
 
