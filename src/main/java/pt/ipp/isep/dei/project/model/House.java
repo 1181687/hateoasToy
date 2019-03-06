@@ -36,6 +36,7 @@ public class House {
         this.meteringPeriodDevice = meteringPeriodDevice;
     }
 
+
     /**
      * This method create device types using a path and a class name.
      *
@@ -716,7 +717,7 @@ public class House {
     public String getDeviceTypeListToString() {
         StringBuilder content = new StringBuilder();
         int numberOfDeviceTypes = numberOfDeviceTypes();
-        for (int i = 1; i <= numberOfDeviceTypes; i++) {
+        for (int i = 1; i <= numberOfDeviceTypes && i >= 1; i++) {
             String deviceType = Utils.readConfigFile(CONFIG_PROPERTIES, "devicetype.name." + i);
             content.append(i + "- ");
             content.append(deviceType);
