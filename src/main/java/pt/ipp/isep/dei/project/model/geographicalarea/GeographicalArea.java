@@ -116,6 +116,14 @@ public class GeographicalArea {
         this.insertedIn = mainGeoArea;
     }
 
+    public AreaShape getAreaShape() {
+        return areaShape;
+    }
+
+    public void setAreaShape(AreaShape areaShape) {
+        this.areaShape = areaShape;
+    }
+
     /**
      * method that calculate the linear distance between two geao areas.
      *

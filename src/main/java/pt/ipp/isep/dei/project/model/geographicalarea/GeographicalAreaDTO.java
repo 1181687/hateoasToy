@@ -10,12 +10,8 @@ public class GeographicalAreaDTO {
     private Location location;
     private AreaShape areaShape;
 
-    public GeographicalAreaDTO(String geoAreaName, GeographicalAreaType geographicalAreaType, GeographicalArea insertedIn, Location location, AreaShape areaShape) {
-        this.geoAreaName = geoAreaName;
-        this.geographicalAreaType = geographicalAreaType;
-        this.insertedIn = insertedIn;
-        this.location = location;
-        this.areaShape = areaShape;
+    public GeographicalAreaDTO() {
+        // empty
     }
 
     public String getGeoAreaName() {

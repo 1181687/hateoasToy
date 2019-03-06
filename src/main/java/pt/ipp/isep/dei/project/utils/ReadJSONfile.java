@@ -13,12 +13,12 @@ import java.time.LocalDateTime;
 public class ReadJSONfile {
 
     @SuppressWarnings("unchecked")
-    public static void readJSONFileToList(String[] args) {
+    public static void readJSONFileToList() {
 
         //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
 
-        try (FileReader reader = new FileReader("JSONfile")) {
+        try (FileReader reader = new FileReader("JSONfile.json")) {
             //Read JSON file
             Object obj = jsonParser.parse(reader);
 
