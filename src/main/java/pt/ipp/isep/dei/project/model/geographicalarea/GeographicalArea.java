@@ -433,7 +433,7 @@ public class GeographicalArea {
 
     public LocalDate getLastLowestMaximumReading(Location location, SensorType sensorType, LocalDate startDate, LocalDate endDate) {
         Sensor sensor = getNearestSensorWithMostRecentReading(sensorType, location);
-        List<Reading> readings = sensor.getMaximumReadingsInAnInterval(startDate,endDate);
+        List<Reading> readings = sensor.getDailyMaxReadingsInAnInterval(startDate,endDate);
         Reading lowestMaximumReading = sensor.getLastLowestReading(readings);
         return lowestMaximumReading.getDateTime().toLocalDate();
 

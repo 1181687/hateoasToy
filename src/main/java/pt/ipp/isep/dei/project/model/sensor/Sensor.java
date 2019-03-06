@@ -510,7 +510,7 @@ public class Sensor {
         return highestReading;
     }
 
-    public List<Reading> getMaximumReadingsInAnInterval(LocalDate startDate, LocalDate endDate) {
+    public List<Reading> getDailyMaxReadingsInAnInterval(LocalDate startDate, LocalDate endDate) {
         List<Reading> maximumReadings = new ArrayList<>();
 
         for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate.plusDays(1)); dateIterator = dateIterator.plusDays(1)) {
