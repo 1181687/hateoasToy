@@ -12,6 +12,21 @@ public class SensorMapper {
     }
 
     /**
+     * Method that creates a SensorDTO based on a existing Sensor.
+     *
+     * @param sensor Sensor to be used.
+     * @return SensorDTO.
+     */
+    public static SensorDTO entityToMap(Sensor sensor) {
+        SensorDTO sensorDTO = newSensorDTO();
+        sensorDTO.setName(sensor.getSensorName());
+        sensorDTO.setStartingDate(sensor.getStartingDate());
+        sensorDTO.setSensorType(sensor.getSensorType());
+        sensorDTO.setLocation(sensor.getLocation());
+        return sensorDTO;
+    }
+
+    /**
      * Method that turns a SensorDTO into a Sensor.
      *
      * @param sensorDTO Sensor to be used.
