@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -10,7 +10,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AddDeviceToRoomControllerTest {
     private AddDeviceToRoomController controller;
@@ -113,7 +113,7 @@ public class AddDeviceToRoomControllerTest {
     void getDeviceTypeListToString() {
         // Arrange
         String expectedResult = "1- Fridge\n" +
-                "2- Lamp\n" +
+                "2- lamp\n" +
                 "3- DishWasher\n" +
                 "4- WashingMachine\n" +
                 "5- ElectricWaterHeater\n" +
@@ -306,7 +306,7 @@ public class AddDeviceToRoomControllerTest {
         kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.5);
 
         //house.getDeviceType("lamp").createDevice("lamp Bizkit 5000", kitchen);
-        house.createDevice("Lamp", "lamp Bizkit 5000", kitchen);
+        house.createDevice("lamp", "lamp Bizkit 5000", kitchen);
         kitchen.getDeviceByPosition(1).setAttributesDevType("Nominal Power", 1.0);
         kitchen.getDeviceByPosition(1).setAttributesDevType("Luminous Flux", 10.0);
 

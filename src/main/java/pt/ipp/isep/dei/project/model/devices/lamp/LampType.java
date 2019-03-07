@@ -8,7 +8,7 @@ public class LampType implements DeviceType {
     String typeName;
 
     public LampType() {
-        this.typeName = "Lamp";
+        this.typeName = "lamp";
     }
 
     @Override

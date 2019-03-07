@@ -17,7 +17,7 @@ public class LampSpecs implements DeviceSpecs {
     private double nominalPower;
 
     public LampSpecs() {
-        this.typeName = "Lamp";
+        this.typeName = "lamp";
     }
 
     public String getTypeName() {
@@ -183,4 +183,5 @@ public class LampSpecs implements DeviceSpecs {
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
+
 }
