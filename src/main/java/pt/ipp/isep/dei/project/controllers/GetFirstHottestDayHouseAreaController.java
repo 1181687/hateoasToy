@@ -35,7 +35,7 @@ public class GetFirstHottestDayHouseAreaController {
         return sensorTypeTemperature;
     }
 
-    public boolean checkMeasurementExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
-        return house.checkMeasurementExistenceBetweenDates(startDate, endDate);
+    public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
+        return house.checkMeasurementExistenceBetweenDates(location, startDate, endDate);
     }
 }
