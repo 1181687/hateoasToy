@@ -239,8 +239,8 @@ public class SensorList {
         return getSensorWithMostRecentReading(this).getHighestReading(startDate, endDate);
     }
 
-    public boolean checkMeasurementExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
-        return getSensorWithMostRecentReading(this).checkMeasurementExistenceBetweenDates(startDate, endDate);
+    public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
+        return getSensorWithMostRecentReading(getNearestSensorsToLocation(location)).checkMeasurementExistenceBetweenDates(startDate, endDate);
 
     }
 }

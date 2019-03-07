@@ -62,9 +62,9 @@ public class WineCoolerSpecs implements DeviceSpecs {
      * @return
      */
     private boolean setNumberOfBottles(Object numberOfBottles) {
-        int WCNumberOfBottles = (Integer) numberOfBottles;
-        if (!Utils.isSameDouble(this.numberOfBottles, WCNumberOfBottles) && !(Utils.isSameDouble(WCNumberOfBottles, 0))) {
-            this.numberOfBottles = WCNumberOfBottles;
+        int wineCoolerNumberOfBottles = (Integer) numberOfBottles;
+        if (!Utils.isSameDouble(this.numberOfBottles, wineCoolerNumberOfBottles) && !(Utils.isSameDouble(wineCoolerNumberOfBottles, 0))) {
+            this.numberOfBottles = wineCoolerNumberOfBottles;
             return true;
         }
         return false;

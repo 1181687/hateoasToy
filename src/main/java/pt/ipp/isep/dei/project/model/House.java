@@ -762,8 +762,8 @@ public class House {
         return insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate).getValue();
     }
 
-    public boolean checkMeasurementExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
-        return insertedGeoArea.checkMeasurementExistenceBetweenDates(startDate, endDate);
+    public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
+        return insertedGeoArea.checkMeasurementExistenceBetweenDates(location, startDate, endDate);
     }
 
     /**

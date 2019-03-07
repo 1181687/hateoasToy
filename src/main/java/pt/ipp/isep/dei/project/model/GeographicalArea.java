@@ -429,7 +429,7 @@ public class GeographicalArea {
         return highestReading;
     }
 
-    public boolean checkMeasurementExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
-        return sensorList.checkMeasurementExistenceBetweenDates(startDate, endDate);
+    public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
+        return sensorList.checkMeasurementExistenceBetweenDates(location, startDate, endDate);
     }
 }
