@@ -9,8 +9,8 @@ public class ReadJSONfileUI {
     private ReadJSONfileController controller;
     private GeographicalAreaDTO geographicalAreaDTO;
 
-    public ReadJSONfileUI(GeographicalArea geographicalArea) {
-        this.controller = new ReadJSONfileController(geographicalArea);
+    public ReadJSONfileUI() {
+        this.controller = new ReadJSONfileController();
     }
 
     public void run() {

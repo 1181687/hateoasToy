@@ -8,16 +8,17 @@ public class ReadJSONfileController {
 
     private GeographicalArea geographicalArea;
 
-    public ReadJSONfileController(GeographicalArea geographicalArea) {
-        this.geographicalArea = geographicalArea;
+    public ReadJSONfileController() {
+        // empty
     }
-
-    /* public GeographicalArea getGeographicalArea() {
-        this.geographicalArea = this.geographicalArea
+/*
+    public GeographicalArea getGeographicalArea(long id) {
+        this.geographicalArea = geographicalArea.
         return geographicalArea;
-    } */
+    }
 
     public void setGeographicalArea(GeographicalAreaDTO geographicalAreaDTO) {
         GeographicalAreaMapping.mapToEntity(geographicalAreaDTO, this.geographicalArea);
     }
+    */
 }

@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.util.*;
 
 public class GeographicalArea {
+    private String id;
     private String geoAreaName;
     private GeographicalAreaType geographicalAreaType;
     private GeographicalArea insertedIn;
@@ -24,6 +25,14 @@ public class GeographicalArea {
      * @param areaShape
      */
     public GeographicalArea(String geoAreaName, GeographicalAreaType geographicalAreaType, Location location, AreaShape areaShape) {
+        this.geoAreaName = geoAreaName;
+        this.geographicalAreaType = geographicalAreaType;
+        this.location = location;
+        this.areaShape = areaShape;
+    }
+
+    public GeographicalArea(String id, String geoAreaName, GeographicalAreaType geographicalAreaType, Location location, AreaShape areaShape) {
+        this.id = id;
         this.geoAreaName = geoAreaName;
         this.geographicalAreaType = geographicalAreaType;
         this.location = location;
@@ -64,6 +73,10 @@ public class GeographicalArea {
         }
         GeographicalArea ag = (GeographicalArea) obj;
         return this.geoAreaName.equals(ag.geoAreaName) && this.geographicalAreaType.equals(ag.geographicalAreaType) && this.location.equals(ag.location);
+    }
+
+    public String getId() {
+        return id;
     }
 
     /**
