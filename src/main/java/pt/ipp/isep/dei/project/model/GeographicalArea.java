@@ -6,7 +6,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
-
 public class GeographicalArea {
     private String id;
     private String geoAreaName;
