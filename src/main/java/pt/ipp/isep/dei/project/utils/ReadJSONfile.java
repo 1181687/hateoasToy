@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.utils;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -18,6 +20,160 @@ public class ReadJSONfile {
         //JSON parser object to parse read file
         JSONParser jsonParser = new JSONParser();
 
+        JsonElement elem = new JsonParser().parse("{\"geographical_area\": [\n" +
+                "    {\n" +
+                "      \"id\": \"ISEP\",\n" +
+                "      \"description\": \"Campus do ISEP\",\n" +
+                "      \"type\": \"urban area\",\n" +
+                "      \"width\": 0.261,\n" +
+                "      \"length\": 0.249,\n" +
+                "      \"location\": {\n" +
+                "        \"latitude\": 41.178553,\n" +
+                "        \"longitude\": -8.608035,\n" +
+                "        \"altitude\": 111\n" +
+                "      },\n" +
+                "\n" +
+                "      \"area_sensor\": [\n" +
+                "        {\n" +
+                "          \"sensor\": {\n" +
+                "            \"name\": \"Meteo station ISEP - rainfall\",\n" +
+                "            \"start_date\": \"2016/11/15\",\n" +
+                "            \"type\": \"rainfall\",\n" +
+                "            \"units\": \"l/m2\",\n" +
+                "            \"readings\": [\n" +
+                "              {\n" +
+                "                \"date\": \"2018-12-29\",\n" +
+                "                \"value\": 0.5\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"date\": \"2018-12-30\",\n" +
+                "                \"value\": 1.2\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"date\": \"2018-12-31\",\n" +
+                "                \"value\": 1.5\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"date\": \"2019-01-01\",\n" +
+                "                \"value\": 0.3\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"date\": \"2019-01-02\",\n" +
+                "                \"value\": 0.0\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"date\": \"2019-01-02\",\n" +
+                "                \"value\": 0.0\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"date\": \"2019-01-03\",\n" +
+                "                \"value\": 0.0\n" +
+                "              }\n" +
+                "            ]\n" +
+                "          },\n" +
+                "          \"location\": {\n" +
+                "            \"latitude\": 41.179230,\n" +
+                "            \"longitude\": -8.606409,\n" +
+                "            \"altitude\": 125\n" +
+                "          }\n" +
+                "        },\n" +
+                "        {\n" +
+                "          \"sensor\": {\n" +
+                "            \"name\": \"Meteo station ISEP - temperature\",\n" +
+                "            \"start_date\": \"2016/11/15\",\n" +
+                "            \"type\": \"temperature\",\n" +
+                "            \"units\": \"C\",\n" +
+                "            \"readings\": [\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2018-12-30T02:00:00+00:00\",\n" +
+                "                \"value\": 8.0\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2018-12-30T08:00:00+00:00\",\n" +
+                "                \"value\": 6.9\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2018-12-30T14:00:00+00:00\",\n" +
+                "                \"value\": 16.5\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2018-12-30T20:00:00+00:00\",\n" +
+                "                \"value\": 11.2\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2018-12-31T02:00:00+00:00\",\n" +
+                "                \"value\": 7.2\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2018-12-31T08:00:00+00:00\",\n" +
+                "                \"value\": 5.3\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2018-12-31T14:00:00+00:00\",\n" +
+                "                \"value\": 15.1\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2018-12-31T20:00:00+00:00\",\n" +
+                "                \"value\": 9.2\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2019-01-01T02:00:00+00:00\",\n" +
+                "                \"value\": 6.5\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2019-01-01T08:00:00+00:00\",\n" +
+                "                \"value\": 4.3\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2019-01-01T14:00:00+00:00\",\n" +
+                "                \"value\": 14.8\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2019-01-01T20:00:00+00:00\",\n" +
+                "                \"value\": 8.9\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2019-01-02T02:00:00+00:00\",\n" +
+                "                \"value\": 6.1\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2019-01-02T08:00:00+00:00\",\n" +
+                "                \"value\": 3.2\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2019-01-02T14:00:00+00:00\",\n" +
+                "                \"value\": 14.1\n" +
+                "              },\n" +
+                "              {\n" +
+                "                \"timestamp\": \"2019-01-02T20:00:00+00:00\",\n" +
+                "                \"value\": 8.3\n" +
+                "              }\n" +
+                "            ]\n" +
+                "          },\n" +
+                "          \"location\": {\n" +
+                "            \"latitude\": 41.179230,\n" +
+                "            \"longitude\": -8.606409,\n" +
+                "            \"altitude\": 125\n" +
+                "          }\n" +
+                "        }\n" +
+                "      ]\n" +
+                "    },\n" +
+                "    {\n" +
+                "      \"id\": \"Porto\",\n" +
+                "      \"description\": \"City of Porto\",\n" +
+                "      \"type\": \"city\",\n" +
+                "      \"width\": 10.09,\n" +
+                "      \"length\": 3.30,\n" +
+                "      \"location\": {\n" +
+                "        \"latitude\": 41.164077,\n" +
+                "        \"longitude\": -8.620802,\n" +
+                "        \"altitude\": 118\n" +
+                "      }\n" +
+                "    }\n" +
+                "  ]\n" +
+                "}");
+
+        System.out.println(elem.getAsJsonObject().get("id"));
         try (FileReader reader = new FileReader("JSONfile.json")) {
             //Read JSON file
             Object obj = jsonParser.parse(reader);

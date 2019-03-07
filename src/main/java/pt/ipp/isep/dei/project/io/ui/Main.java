@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
+import pt.ipp.isep.dei.project.utils.ReadJSONfile;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -24,7 +25,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // ReadJSONfile.readJSONFileToList();
+        ReadJSONfile.readJSONFileToList();
 
         String configFile = "Configuration.properties";
 
