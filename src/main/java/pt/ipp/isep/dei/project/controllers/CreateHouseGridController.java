@@ -2,9 +2,9 @@ package pt.ipp.isep.dei.project.controllers;
 
 
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.housegrid.HouseGrid;
-import pt.ipp.isep.dei.project.model.housegrid.HouseGridDTO;
-import pt.ipp.isep.dei.project.model.housegrid.HouseGridMapper;
+import pt.ipp.isep.dei.project.model.HouseGrid;
+import pt.ipp.isep.dei.project.model.HouseGridDTO;
+import pt.ipp.isep.dei.project.model.HouseGridMapper;
 
 import java.util.List;
 

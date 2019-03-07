@@ -1,7 +1,7 @@
-package pt.ipp.isep.dei.project;
+package pt.ipp.isep.dei.project.utils;
 
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.Sensor;
+import pt.ipp.isep.dei.project.model.SensorType;
 
 import java.io.File;
 import java.util.ArrayList;

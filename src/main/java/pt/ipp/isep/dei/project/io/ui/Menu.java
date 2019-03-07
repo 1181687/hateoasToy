@@ -124,6 +124,8 @@ public final class Menu {
         content.append("\n");
         content.append("5-Get day with highest temperature amplitude in the house area");
         content.append("\n");
+        content.append("4-Get the first hottest day in the house area in a given period");
+        content.append("\n");
         content.append(RETURN_MENU);
         String label = content.toString();
         return InputValidator.getIntRange(label, 0, 5);

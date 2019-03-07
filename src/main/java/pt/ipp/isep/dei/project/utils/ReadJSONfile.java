@@ -1,14 +1,16 @@
 package pt.ipp.isep.dei.project.utils;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReadJSONfile {
 
@@ -16,21 +18,16 @@ public class ReadJSONfile {
     public static void readJSONFileToList() {
 
         //JSON parser object to parse read file
-        JSONParser jsonParser = new JSONParser();
+        JsonParser jsonParser = new JsonParser();
 
         try (FileReader reader = new FileReader("JSONfile.json")) {
             //Read JSON file
-            Object obj = jsonParser.parse(reader);
 
-            JSONArray geoAreaList = (JSONArray) obj;
-            System.out.println(geoAreaList);
+            JsonElement elem = jsonParser.parse(reader);
+            //System.out.println(elem);
 
-            //Iterate over employee array
-            geoAreaList.forEach(areaGeo -> parseAreaGeoObject((JSONObject) areaGeo));
-
+            parseAreaGeoObject(elem);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -39,107 +36,88 @@ public class ReadJSONfile {
         }
     }
 
-    private static void parseAreaGeoObject(JSONObject areGeo) {
+    private static void parseAreaGeoObject(JsonElement areaGeo) {
 
         // Get area geo object within list
-        JSONObject areaGeoObject = (JSONObject) areGeo.get("geographical_area");
+        if (areaGeo.isJsonObject()) {
+            JsonObject jObject = areaGeo.getAsJsonObject();
+            JsonObject geoArea = jObject.get("geographical_area_list").getAsJsonObject();
+            JsonArray cenas = geoArea.get("geographical_area").getAsJsonArray();
+            List<JsonObject> lista = new ArrayList<>();
+            for (int i = 0; i < cenas.size(); i++) {
+                lista.add(cenas.get(i).getAsJsonObject());
+            }
 
-        // Get objects from geo area
-        String id = (String) areaGeoObject.get("id");
-        System.out.println("Id: " + id);
+            //Reads Geo Area attributes
+            for (JsonObject object : lista) {
 
-        String description = (String) areaGeoObject.get("description");
-        System.out.println("Description: " + description);
+                // Get objects from geo area
+                String id = object.get("id").getAsString();
+                System.out.println("Id: " + id);
 
-        String type = (String) areaGeoObject.get("type");
-        System.out.println("Type: " + type);
+                String description = object.get("description").getAsString();
+                System.out.println("Description: " + description);
 
-        double width = (double) areaGeoObject.get("width");
-        System.out.println("Width: " + width);
+                String type = object.get("type").getAsString();
+                System.out.println("Type: " + type);
 
-        double length = (double) areaGeoObject.get("length");
-        System.out.println("Length: " + length);
+                double width = object.get("width").getAsDouble();
+                System.out.println("Width: " + width);
 
-        JSONObject location = (JSONObject) areaGeoObject.get("location");
+                double length = object.get("length").getAsDouble();
+                System.out.println("Length: " + length);
 
-        double latitude = (double) location.get("latitude");
-        System.out.println("Latitude: " + latitude);
+                JsonObject location = object.get("location").getAsJsonObject();
 
-        double longitude = (double) location.get("longitude");
-        System.out.println("Longitude: " + longitude);
+                double latitude = location.get("latitude").getAsDouble();
+                System.out.println("Latitude: " + latitude);
 
-        double altitude = (double) location.get("altitude");
-        System.out.println("Altitude: " + altitude);
+                double longitude = location.get("longitude").getAsDouble();
+                System.out.println("Longitude: " + longitude);
 
-        // JSONArray sensors = areaGeoObject
-        JSONObject areaSensor = (JSONObject) areaGeoObject.get("area_sensor");
+                double altitude = location.get("altitude").getAsDouble();
+                System.out.println("Altitude: " + altitude);
 
-        // SENSOR 1
-        String nameSensor1 = (String) areaSensor.get("name");
-        System.out.println("Name: " + nameSensor1);
+                //Reads Sensor attributes
+                JsonArray areaSensor = object.get("area_sensor").getAsJsonArray();
 
-        LocalDateTime startDateSensor1 = (LocalDateTime) areaSensor.get("start_date");
-        System.out.println("Start date: " + startDateSensor1);
+                List<JsonObject> sensorList = new ArrayList<>();
+                for (JsonElement sensor : areaSensor) {
+                    sensorList.add(sensor.getAsJsonObject());
+                }
 
-        String areaSensorType1 = (String) areaSensor.get("type");
-        System.out.println("Type: " + areaSensorType1);
+                for (JsonObject sensor1 : sensorList) {
+                    JsonObject sensor = sensor1.get("sensor").getAsJsonObject();
 
-        String unitsSensor1 = (String) areaSensor.get("units");
-        System.out.println("Units: " + unitsSensor1);
+                    String sensorId = sensor.get("id").getAsString();
+                    System.out.println("Id: " + sensorId);
 
-        // Readings sensor 1
-        JSONArray readingsSensor1 = (JSONArray) areaSensor.get("readings");
+                    String sensorName = sensor.get("name").getAsString();
+                    System.out.println("Name: " + sensorName);
 
-        for (int i = 0; i < readingsSensor1.size(); i++) {
-            areaSensor = (JSONObject) readingsSensor1.get(i);
+                    LocalDate startingDate = LocalDate.parse(sensor.get("start_date").getAsString());
+                    System.out.println("Start date: " + startingDate);
 
-            System.out.println(areaSensor.toString());
+                    String sensorType = sensor.get("type").getAsString();
+                    System.out.println("Type: " + sensorType);
+
+                    String sensorUnits = sensor.get("units").getAsString();
+                    System.out.println("Units: " + sensorUnits);
+
+                    //Reads sensor Location
+                    JsonObject sensorLocation = sensor1.get("location").getAsJsonObject();
+
+                    double sensorLatitude = sensorLocation.get("latitude").getAsDouble();
+                    System.out.println("Latitude: " + sensorLatitude);
+
+                    double sensorLongitude = sensorLocation.get("longitude").getAsDouble();
+                    System.out.println("Longitude: " + sensorLongitude);
+
+                    double sensorAltitude = sensorLocation.get("altitude").getAsDouble();
+                    System.out.println("Altitude: " + sensorAltitude);
+
+                }
+            }
         }
-
-        JSONObject sensorLocation1 = (JSONObject) areaSensor.get("location");
-
-        double sensorLatitude1 = (double) sensorLocation1.get("latitude");
-        System.out.println("Latitude: " + sensorLatitude1);
-
-        double sensorLongitude1 = (double) sensorLocation1.get("longitude");
-        System.out.println("Longitude: " + sensorLongitude1);
-
-        double sensorAltitude1 = (double) sensorLocation1.get("altitude");
-        System.out.println("Altitude: " + sensorAltitude1);
-
-
-        // SENSOR 2
-        String nameSensor2 = (String) areaSensor.get("name");
-        System.out.println("Name: " + nameSensor2);
-
-        LocalDateTime startDateSensor2 = (LocalDateTime) areaSensor.get("start_date");
-        System.out.println("Start date: " + startDateSensor2);
-
-        String areaSensorType2 = (String) areaSensor.get("type");
-        System.out.println("Type: " + areaSensorType2);
-
-        String unitsSensor2 = (String) areaSensor.get("units");
-        System.out.println("Units: " + unitsSensor2);
-
-        // Readings sensor 2
-        JSONArray readingsSensor2 = (JSONArray) areaSensor.get("readings");
-
-        for (int i = 0; i < readingsSensor2.size(); i++) {
-            areaSensor = (JSONObject) readingsSensor2.get(i);
-
-            System.out.println(areaSensor.toString());
-        }
-
-        JSONObject sensorLocation2 = (JSONObject) areaSensor.get("location");
-
-        double sensorLatitude2 = (double) sensorLocation2.get("latitude");
-        System.out.println("Latitude: " + sensorLatitude2);
-
-        double sensorLongitude2 = (double) sensorLocation2.get("longitude");
-        System.out.println("Longitude: " + sensorLongitude2);
-
-        double sensorAltitude2 = (double) sensorLocation2.get("altitude");
-        System.out.println("Altitude: " + sensorAltitude2);
-
     }
 }

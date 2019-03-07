@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.sensor;
+package pt.ipp.isep.dei.project.model;
 
 public class SensorType {
     private String type;

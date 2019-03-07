@@ -3,9 +3,6 @@ package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceType;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.housegrid.HouseGrid;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -753,8 +750,20 @@ public class House {
         return insertedGeoArea.getDateLastMeasurementByLocationType(address.getLocation(), type);
     }
 
+    public double getHighestReadingOfASensor(LocalDate startDate, LocalDate endDate) {
+        return insertedGeoArea.getHighestReadingOfASensor(startDate, endDate).getValue();
+    }
+
     public LocalDate getFirstHighestReadingDateHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
-        return insertedGeoArea.getFirstHighestReadingDate(location, type, startDate, endDate);
+        return insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate).getDateTime().toLocalDate();
+    }
+
+    public Double getFirstHighestReadingValueHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
+        return insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate).getValue();
+    }
+
+    public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
+        return insertedGeoArea.checkMeasurementExistenceBetweenDates(location, startDate, endDate);
     }
 
     /**

@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.SensorType;
 
 import java.time.LocalDate;
 
@@ -15,8 +15,16 @@ public class GetFirstHottestDayHouseAreaController {
         this.sensorTypeTemperature = new SensorType("temperature");
     }
 
+    public double getHighestReadingOfASensor(LocalDate startDate, LocalDate endDate) {
+        return house.getHighestReadingOfASensor(startDate, endDate);
+    }
+
     public LocalDate getFirstHighestReadingDateHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
         return house.getFirstHighestReadingDateHouseArea(location, type, startDate, endDate);
+    }
+
+    public Double getFirstHighestReadingValueHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
+        return house.getFirstHighestReadingValueHouseArea(location, type, startDate, endDate);
     }
 
     public Location getHouseLocation() {
@@ -25,5 +33,9 @@ public class GetFirstHottestDayHouseAreaController {
 
     public SensorType getTypeTemperature() {
         return sensorTypeTemperature;
+    }
+
+    public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
+        return house.checkMeasurementExistenceBetweenDates(location, startDate, endDate);
     }
 }

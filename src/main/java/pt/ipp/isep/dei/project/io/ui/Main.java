@@ -3,13 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.geographicalarea.*;
-import pt.ipp.isep.dei.project.model.housegrid.HouseGrid;
-import pt.ipp.isep.dei.project.model.powersource.PowerSourceType;
-import pt.ipp.isep.dei.project.model.powersource.PowerSourceTypeList;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
+import pt.ipp.isep.dei.project.utils.ReadJSONfile;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -31,7 +25,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        // ReadJSONfile.readJSONFileToList();
+        ReadJSONfile.readJSONFileToList();
 
         String configFile = "Configuration.properties";
 

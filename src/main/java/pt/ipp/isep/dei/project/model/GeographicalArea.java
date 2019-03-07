@@ -1,10 +1,4 @@
-package pt.ipp.isep.dei.project.model.geographicalarea;
-
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -413,21 +407,29 @@ public class GeographicalArea {
         return totalDailyMeasurement;
     }
 
+    public Reading getHighestReadingOfASensor(LocalDate startDate, LocalDate endDate) {
+        return sensorList.getHighestReadingOfSensor(startDate, endDate);
+    }
 
-    public LocalDate getFirstHighestReadingDate(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
+    public Reading getFirstHighestReading(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
         SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
-        Sensor chosenSensor = null;
+        Sensor chosenSensor = sensorList.getSensorWithMostRecentReading(sensorListWithTheRequiredType);
         if (!sensorListWithTheRequiredType.getListOfSensors().isEmpty()) {
             SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
             chosenSensor = sensorList.getSensorWithMostRecentReading(nearestSensors);
         }
         Reading highestReading = chosenSensor.getHighestReading(startDate, endDate);
-        LocalDate firstDateOfHighestReading = chosenSensor.getReadingsBetweenDates(startDate, endDate).get(0).getDateTime().toLocalDate();
         for (Reading reading : chosenSensor.getReadingsBetweenDates(startDate, endDate)) {
-            if (reading.getValue() == highestReading.getValue()) {
-                firstDateOfHighestReading = reading.getDateTime().toLocalDate();
+            Number readingValue = reading.getValue();
+            Number highestReadingValue = highestReading.getValue();
+            if (readingValue == highestReadingValue) {
+                highestReading = reading;
             }
         }
-        return firstDateOfHighestReading;
+        return highestReading;
+    }
+
+    public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
+        return sensorList.checkMeasurementExistenceBetweenDates(location, startDate, endDate);
     }
 }

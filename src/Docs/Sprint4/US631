@@ -7,9 +7,10 @@ TEAM MEMBERS: Developer - Joana Figueira; QA - Ricardo Araújo;
 
 ACCEPTANCE CRITERIA:
 
-- All acceptance tests with "Process finished with exit code 0" message:
-    - Test coverage: 95% (minimum).
-    - Mutation Coverage:80% (minimum).
+- All acceptance tests with "Process finished with exit code 0" message
+
+INDICAR AQUI RESULTADOS ESPERADOS DOS TESTES
+
 - Correct Sequence and Class Diagrams.
 - JavaDoc documentation in both code and tests.
 - JUnit conventions in code and tests. (eg. tests should be named like this:
