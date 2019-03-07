@@ -10,11 +10,11 @@ import java.util.Set;
 
 /*US633: As a Regular User, I want to get the day with the highest temperature amplitude in the house area in a given period.*/
 
-public class getDayWithHighestTemperatureAmplitude {
+public class GetDayWithHighestTemperatureAmplitude {
 
     private GetDayWithHighestTemperatureAmplitudeController controller;
 
-    public getDayWithHighestTemperatureAmplitude(House house) {
+    public GetDayWithHighestTemperatureAmplitude(House house) {
         this.controller = new GetDayWithHighestTemperatureAmplitudeController(house);
     }
 

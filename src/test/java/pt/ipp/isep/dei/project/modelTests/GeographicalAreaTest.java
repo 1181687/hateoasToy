@@ -1802,7 +1802,7 @@ class GeographicalAreaTest {
      * expected a empty Map.
      */
     @Test
-    void getHighestDailyAmplitude_emptyMap() {
+    void getHighestDailyAmplitude_emptyMap_emptyMap() {
 
         // Maps
         Map<LocalDate, Double> dailyAmplitudesEmpty = new HashMap<>();
