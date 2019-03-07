@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

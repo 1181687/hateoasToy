@@ -58,16 +58,6 @@ public class Freezer implements Device {
     }
 
     /**
-     * Method that gets the boolean attribute from each device.
-     *
-     * @return boolean
-     */
-    @Override
-    public boolean isActive() {
-        return this.isActive;
-    }
-
-    /**
      * method that set the location (room) of a added device.
      *
      * @param location
@@ -113,11 +103,6 @@ public class Freezer implements Device {
     @Override
     public Programmable asProgrammable() {
         return null;
-    }
-
-    @Override
-    public double getNominalPower() {
-        return this.specs.getNominalPower();
     }
 
 
