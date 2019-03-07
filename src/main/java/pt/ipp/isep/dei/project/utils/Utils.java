@@ -65,6 +65,7 @@ public final class Utils {
         }
         try {
             prop.load(in);
+            in.close();
         } catch (IOException ex) {
             return ("No info was found.");
         }
