@@ -413,14 +413,16 @@ public class GeographicalArea {
 
     public Reading getFirstHighestReading(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
         SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
-        Sensor chosenSensor = null;
+        Sensor chosenSensor = sensorList.getSensorWithMostRecentReading(sensorListWithTheRequiredType);
         if (!sensorListWithTheRequiredType.getListOfSensors().isEmpty()) {
             SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
             chosenSensor = sensorList.getSensorWithMostRecentReading(nearestSensors);
         }
         Reading highestReading = chosenSensor.getHighestReading(startDate, endDate);
         for (Reading reading : chosenSensor.getReadingsBetweenDates(startDate, endDate)) {
-            if (reading.getValue() == highestReading.getValue()) {
+            Number readingValue = reading.getValue();
+            Number highestReadingValue = highestReading.getValue();
+            if (readingValue == highestReadingValue) {
                 highestReading = reading;
             }
         }

@@ -11,26 +11,26 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class WashingMachineTypeTest {
+public class TelevisionTypeTest {
 
     @Test
     public void testCreateDevice() {
-
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
+
         House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        String name = "Smart TV";
+        Dimension dim = new Dimension(3.3, 2.2, 1.0);
+        Room room = new Room("Living Room", 1, dim);
 
+        Device expectedResult = house.createDevice("Television", name, room);
 
-        String name = "washingmachine Teka";
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
-        Device expectedResult = house.createDevice("Washing Machine", name, room);
         //Act
         Device result = room.getDeviceByPosition(0);
+
         //Assert
         assertEquals(expectedResult, result);
     }
-
 }
+
