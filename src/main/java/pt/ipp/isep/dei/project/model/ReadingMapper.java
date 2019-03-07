@@ -3,15 +3,17 @@ package pt.ipp.isep.dei.project.model;
 public class ReadingMapper {
 
     /**
-     * @return
+     * Method that creates a new ReadingDTO.
+     * @return ReadingDTO.
      */
     public static ReadingDTO newReadingDTO() {
         return new ReadingDTO();
     }
 
     /**
-     * @param readingDTO
-     * @return
+     * Method that turns a ReadingDTO into a Reading.
+     * @param readingDTO Reading to be used.
+     * @return Reading with the required information.
      */
     public static Reading mapToEntity(ReadingDTO readingDTO) {
         return new Reading(readingDTO.getValue(), readingDTO.getDateTime());
