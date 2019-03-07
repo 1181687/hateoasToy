@@ -1,13 +1,13 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.devices;
 
-import pt.ipp.isep.dei.project.model.devices.ProgramSpecs;
 import pt.ipp.isep.dei.project.utils.Utils;
 
-public class TimeConstantProgramSpecs implements ProgramSpecs {
-    private double duration;
-    private double energyConsumption;
+public class TimeVariableProgramSpecs implements ProgramSpecs {
+    private double programNominalPower;
+    private double time;
 
-    public TimeConstantProgramSpecs() {
+    public TimeVariableProgramSpecs() {
+        this.time = 0;
     }
 
     /**
@@ -17,7 +17,7 @@ public class TimeConstantProgramSpecs implements ProgramSpecs {
     /*@Override
     public int hashCode() {
         return Objects.hash(name);
-    }
+    }*/
 
     /**
      * Equals method to determine if two Programs are equal.
@@ -32,56 +32,59 @@ public class TimeConstantProgramSpecs implements ProgramSpecs {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof TimeConstantProgramSpecs)) {
+        if (!(obj instanceof TimeVariableProgramSpecs)) {
             return false;
         }
-        TimeConstantProgramSpecs programOne = (TimeConstantProgramSpecs) obj;
+        TimeVariableProgramSpecs programOne = (TimeVariableProgramSpecs) obj;
         return this.name.equalsIgnoreCase(programOne.name);
     }*/
-
-
-    public double getDuration() {
-        return duration;
+    public double getTime() {
+        return this.time;
     }
 
-    public boolean setDuration(Object duration) {
-        double programDuration = (Double) duration;
-        if (Utils.isSameDouble(this.duration, programDuration)) {
+    public boolean setTime(Object time) {
+        double programTime = (Double) time;
+        if (Utils.isSameDouble(this.time, programTime)) {
             return false;
         }
-        this.duration = programDuration;
+        this.time = programTime;
         return true;
     }
 
-    public boolean setEnergyConsumption(Object energyConsumption) {
-        double programEnergyConsumption = (Double) energyConsumption;
-        if (Utils.isSameDouble(this.energyConsumption, programEnergyConsumption)) {
+    public double getProgramNominalPower() {
+        return this.programNominalPower;
+    }
+
+    public boolean setProgramNominalPower(Object programNominalPower) {
+        double nominalPower = (Double) programNominalPower;
+        if (Utils.isSameDouble(this.programNominalPower, nominalPower)) {
             return false;
         }
-        this.energyConsumption = programEnergyConsumption;
+        this.programNominalPower = nominalPower;
         return true;
     }
 
     @Override
     public double getEnergyConsumption() {
-        return energyConsumption;
+        return this.programNominalPower * this.time;
     }
 
     @Override
     public boolean setAttributes(String attributeName, Object attributeValue) {
         switch (attributeName) {
-            case "duration":
+            case "time":
                 if (attributeValue instanceof Number) {
-                    return setDuration(((Number) attributeValue).doubleValue());
+                    return setTime(((Number) attributeValue).doubleValue());
                 }
                 return false;
-            case "energyConsumption":
+            case "programNominalPower":
                 if (attributeValue instanceof Number) {
-                    return setEnergyConsumption(((Number) attributeValue).doubleValue());
+                    return setProgramNominalPower(((Number) attributeValue).doubleValue());
                 }
                 return false;
             default:
                 return false;
+
         }
     }
 }

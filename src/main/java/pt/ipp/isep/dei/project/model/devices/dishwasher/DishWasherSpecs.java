@@ -118,6 +118,7 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
 
     /**
      * get metod
+     *
      * @return list os specs of dishwasher
      */
     @Override
@@ -130,8 +131,9 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
 
     /**
      * get method
+     *
      * @param attributeName string name of the attribute
-     * @return  attribute
+     * @return attribute
      */
     @Override
     public Object getAttributeValue(String attributeName) {
@@ -149,7 +151,8 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
 
     /**
      * set method
-     * @param attributeName string name of the attribute
+     *
+     * @param attributeName  string name of the attribute
      * @param attributeValue value of the attribute
      * @return
      */
@@ -178,6 +181,7 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
 
     /**
      * get method
+     *
      * @param attributeName string name of attribute
      * @return type data of the attribute (ex.integer, double)
      */
@@ -208,7 +212,7 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
         return this.programList;
     }
 
-    @Override
+    /*@Override
     public boolean addNewProgram(String programName, ProgramSpecs specs) {
         TimeConstantProgram program = new TimeConstantProgram(programName, specs);
         if (!Objects.isNull(program) && !(getProgramList().contains(program))) {
@@ -216,5 +220,19 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
             return true;
         }
         return false;
+    }*/
+
+    @Override
+    public boolean addProgram(Program program) {
+        if (!Objects.isNull(program) && !(getProgramList().contains(program))) {
+            getProgramList().add(program);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Program createNewProgram(String programName, ProgramSpecs specs) {
+        return new TimeConstantProgram(programName, specs);
     }
 }

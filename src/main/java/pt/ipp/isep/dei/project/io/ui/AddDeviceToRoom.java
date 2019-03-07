@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
 import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.devices.Program;
+import pt.ipp.isep.dei.project.model.devices.ProgramSpecs;
 
 
 public class AddDeviceToRoom {
@@ -127,7 +129,7 @@ public class AddDeviceToRoom {
                 dishWasherCapacity);
 
         if (controller.isProgrammable()) {
-            creationOfPrograms();
+            creationOfTimeConstantPrograms();
         }
 
         System.out.println("The Dishwasher was successfully created and added to the selected room.");
@@ -146,14 +148,14 @@ public class AddDeviceToRoom {
                 washingMachineCapacity);
 
         if (controller.isProgrammable()) {
-            creationOfPrograms();
+            creationOfTimeConstantPrograms();
         }
 
         System.out.println("The Washing Machine was successfully created and added to the selected room.");
     }
 
-    public void creationOfPrograms() {
-        String label34 = "How many programs has the washing machine?";
+    public void creationOfTimeConstantPrograms() {
+        String label34 = "How many programs has the selected device?";
         int numberOfPrograms = InputValidator.getIntPos(label34);
         String programName = "";
         double programDuration = 0;
@@ -166,9 +168,12 @@ public class AddDeviceToRoom {
             programDuration = InputValidator.getDoublePos(label46);
             String label47 = "What is the energy consumption of this program?";
             programEnergyConsumption = InputValidator.getDoublePos(label47);
-
-            if (controller.createAndAddProgram(programName, specs)) {
-                System.out.println("The program " + programName + " was added to the washing machine.\n");
+            controller.setProgramAttributes("duration", programDuration);
+            controller.setProgramAttributes("energyConsumption", programEnergyConsumption);
+            ProgramSpecs specs = controller.getProgramSpecs();
+            Program program = controller.createNewProgram(programName, specs);
+            if (controller.addProgram(program)) {
+                System.out.println("The program " + programName + " was added to the selected device.\n");
             }
         }
     }

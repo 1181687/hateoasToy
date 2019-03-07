@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
-import pt.ipp.isep.dei.project.model.TimeConstantProgramSpecs;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
+import pt.ipp.isep.dei.project.model.devices.TimeConstantProgramSpecs;
 import pt.ipp.isep.dei.project.model.devices.dishwasher.DishWasherSpecs;
 import pt.ipp.isep.dei.project.utils.Utils;
 

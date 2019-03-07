@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.model.devices.electricoven;
 
-import pt.ipp.isep.dei.project.model.TimeConstantProgramSpecs;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
+import pt.ipp.isep.dei.project.model.devices.TimeConstantProgramSpecs;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;

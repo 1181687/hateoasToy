@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.TimeConstantProgramSpecs;
+import pt.ipp.isep.dei.project.model.devices.TimeConstantProgramSpecs;
 
 import java.util.Objects;
 

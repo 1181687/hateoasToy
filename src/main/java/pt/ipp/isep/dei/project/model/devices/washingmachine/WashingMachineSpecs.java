@@ -41,7 +41,7 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
         return this.programList;
     }
 
-    @Override
+    /*@Override
     public boolean addNewProgram(String programName, ProgramSpecs specs) {
         TimeConstantProgram program = new TimeConstantProgram(programName, specs);
         if (!Objects.isNull(program) && !(getProgramList().contains(program))) {
@@ -49,7 +49,7 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
             return true;
         }
         return false;
-    }
+    }*/
 
     public String getTypeName() {
         return typeName;
@@ -242,4 +242,18 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
         }
         return false;
     }*/
+
+    @Override
+    public boolean addProgram(Program program) {
+        if (!Objects.isNull(program) && !(getProgramList().contains(program))) {
+            getProgramList().add(program);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Program createNewProgram(String programName, ProgramSpecs specs) {
+        return new TimeConstantProgram(programName, specs);
+    }
 }

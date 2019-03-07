@@ -2,10 +2,7 @@ package pt.ipp.isep.dei.project.controllers;
 
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
-import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.devices.ProgramSpecs;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
+import pt.ipp.isep.dei.project.model.devices.*;
 
 public class AddDeviceToRoomController {
     private House house;
@@ -13,6 +10,7 @@ public class AddDeviceToRoomController {
     private Room room;
     private Programmable programmableDevice;
     private DeviceSpecs devSpecs;
+    private Program program;
     private static final String NOMINAL_POWER = "Nominal Power";
     private static final String LUMINOUS_FLUX = "Luminous Flux";
     private static final String ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
@@ -182,9 +180,9 @@ public class AddDeviceToRoomController {
     }
 
 
-    public boolean createAndAddProgram(String programName, ProgramSpecs specs) {
+    /*public boolean createAndAddProgram(String programName, ProgramSpecs specs) {
         return programmableDevice.addNewProgram(programName, specs);
-    }
+    }*/
 
     /**
      * method that get a Device by it's position
@@ -216,5 +214,21 @@ public class AddDeviceToRoomController {
         return false;
     }
 
-    public ProgramSpecs getProgramSpecs()
+    public ProgramSpecs getProgramSpecs() {
+        return program.getProgramSpecs();
+    }
+
+    public boolean setProgramAttributes(String attributeName, Object attributeValue) {
+        return program.setProgramAttributes(attributeName, attributeValue);
+    }
+
+    public Program createNewProgram(String name, ProgramSpecs specs) {
+        return program = programmableDevice.createNewProgram(name, specs);
+    }
+
+    public boolean addProgram(Program program) {
+        return programmableDevice.addProgram(program);
+    }
+
+
 }

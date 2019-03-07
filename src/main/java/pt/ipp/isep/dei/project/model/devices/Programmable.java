@@ -12,5 +12,11 @@ public interface Programmable {
 
     List<Program> getProgramList();
 
-    boolean addNewProgram(String programName, ProgramSpecs specs);
+    boolean addProgram(Program program);
+
+    Program createNewProgram(String programName, ProgramSpecs specs);
+
+    //boolean addNewProgram(String programName, ProgramSpecs specs);
+
+    //Program getProgram();
 }
