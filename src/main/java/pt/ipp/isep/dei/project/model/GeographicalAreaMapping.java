@@ -16,4 +16,13 @@ public class GeographicalAreaMapping {
         return geographicalAreaDTO;
     }
 
+    public static GeographicalArea mapToEntity(GeographicalAreaDTO geographicalAreaDTO, GeographicalArea geographicalArea) {
+        geographicalArea.setGeoAreaName(geographicalAreaDTO.getGeoAreaName());
+        geographicalArea.setGeographicalAreaType(geographicalAreaDTO.getGeographicalAreaType());
+        geographicalArea.setInsertedIn(geographicalAreaDTO.getInsertedIn());
+        geographicalArea.setLocation(geographicalAreaDTO.getLocation());
+        geographicalArea.setAreaShape(geographicalAreaDTO.getAreaShape());
+        return geographicalArea;
+    }
+
 }

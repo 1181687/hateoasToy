@@ -25,8 +25,6 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ReadJSONfile.readJSONFileToList();
-
         String configFile = "Configuration.properties";
 
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(configFile, "MeteringPeriodGrid"));

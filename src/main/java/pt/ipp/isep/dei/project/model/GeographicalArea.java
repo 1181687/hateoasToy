@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
+import com.sun.xml.internal.bind.v2.model.core.ID;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -74,6 +75,10 @@ public class GeographicalArea {
         return geoAreaName;
     }
 
+    public void setGeoAreaName(String geoAreaName) {
+        this.geoAreaName = geoAreaName;
+    }
+
     /**
      * get a geographical area type.
      *
@@ -83,6 +88,10 @@ public class GeographicalArea {
         return geographicalAreaType;
     }
 
+    public void setGeographicalAreaType(GeographicalAreaType geographicalAreaType) {
+        this.geographicalAreaType = geographicalAreaType;
+    }
+
     /**
      * get the location of a geographical area.
      *
@@ -90,6 +99,10 @@ public class GeographicalArea {
      */
     public Location getLocation() {
         return this.location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     /**
