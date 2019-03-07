@@ -1,13 +1,16 @@
 package pt.ipp.isep.dei.project.model.devices;
 
-import pt.ipp.isep.dei.project.model.Program;
+import java.util.List;
 
 public interface Programmable {
 
-    boolean addProgram(Program program);
+    //boolean addProgram(Program program);
 
-    default Program newProgram(String programName, double duration, double energyConsumption) {
+    /*default Program newProgram(String programName, double duration, double energyConsumption) {
         return new Program(programName, duration, energyConsumption);
-    }
+    }*/
 
+    List<Program> getProgramList();
+
+    boolean addNewProgram(String programName, ProgramSpecs specs);
 }

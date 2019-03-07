@@ -1,16 +1,18 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.Program;
 import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.devices.ProgramSpecs;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 
 public class AddDeviceToRoomController {
     private House house;
     private Device device;
     private Room room;
     private Programmable programmableDevice;
+    private DeviceSpecs devSpecs;
     private static final String NOMINAL_POWER = "Nominal Power";
     private static final String LUMINOUS_FLUX = "Luminous Flux";
     private static final String ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
@@ -180,9 +182,8 @@ public class AddDeviceToRoomController {
     }
 
 
-    public boolean createAndAddProgram(String programName, double duration, double energyConsumption) {
-        Program newProgram = programmableDevice.newProgram(programName, duration, energyConsumption);
-        return programmableDevice.addProgram(newProgram);
+    public boolean createAndAddProgram(String programName, ProgramSpecs specs) {
+        return programmableDevice.addNewProgram(programName, specs);
     }
 
     /**
@@ -195,12 +196,25 @@ public class AddDeviceToRoomController {
         return room.getDeviceByPosition(position);
     }
 
-    public boolean isProgrammable() {
+    /*public boolean isProgrammable() {
         if (device.isProgrammable()) {
             programmableDevice = device.asProgrammable();
             return true;
         }
         return false;
+    }*/
+
+    public DeviceSpecs getDevSpecs() {
+        return devSpecs = device.getSpecs();
     }
 
+    public boolean isProgrammable() {
+        if (devSpecs.isProgrammable()) {
+            programmableDevice = devSpecs.asProgrammable();
+            return true;
+        }
+        return false;
+    }
+
+    public ProgramSpecs getProgramSpecs()
 }

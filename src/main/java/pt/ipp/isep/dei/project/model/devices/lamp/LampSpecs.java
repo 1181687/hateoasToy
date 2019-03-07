@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model.devices.lamp;
 
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
@@ -18,6 +19,16 @@ public class LampSpecs implements DeviceSpecs {
 
     public LampSpecs() {
         this.typeName = "Lamp";
+    }
+
+    @Override
+    public boolean isProgrammable() {
+        return false;
+    }
+
+    @Override
+    public Programmable asProgrammable() {
+        return null;
     }
 
     public String getTypeName() {

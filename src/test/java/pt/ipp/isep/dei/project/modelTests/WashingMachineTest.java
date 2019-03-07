@@ -2,9 +2,9 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -398,9 +398,9 @@ class WashingMachineTest {
         double duration = 0.5;
         double energyConsumption = 12.0;
         Programmable programmable = this.washingMachine.asProgrammable();
-        Program expectedResult = new Program(programName, duration, energyConsumption);
+        TimeConstantProgramSpecs expectedResult = new TimeConstantProgramSpecs(programName, duration, energyConsumption);
         //Act
-        Program result = programmable.newProgram(programName, duration, energyConsumption);
+        TimeConstantProgramSpecs result = programmable.newProgram(programName, duration, energyConsumption);
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -408,7 +408,7 @@ class WashingMachineTest {
     @Test
     public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
         //Arrange
-        Program program = null;
+        TimeConstantProgramSpecs program = null;
         boolean expectedResult = false;
         Programmable programmable = this.washingMachine.asProgrammable();
         //Act
@@ -424,8 +424,8 @@ class WashingMachineTest {
         double duration = 15;
         double energyConsumption = 1;
         Programmable programmable = this.washingMachine.asProgrammable();
-        Program programA = programmable.newProgram(programName, duration, energyConsumption);
-        Program programB = programmable.newProgram(programName, duration, energyConsumption);
+        TimeConstantProgramSpecs programA = programmable.newProgram(programName, duration, energyConsumption);
+        TimeConstantProgramSpecs programB = programmable.newProgram(programName, duration, energyConsumption);
         programmable.addProgram(programA);
         boolean expectedResult = false;
 
@@ -443,7 +443,7 @@ class WashingMachineTest {
         double duration = 15;
         double energyConsumption = 1;
         Programmable programmable = this.washingMachine.asProgrammable();
-        Program programA = programmable.newProgram(programName, duration, energyConsumption);
+        TimeConstantProgramSpecs programA = programmable.newProgram(programName, duration, energyConsumption);
 
         boolean expectedResult = true;
 

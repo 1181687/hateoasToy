@@ -166,7 +166,8 @@ public class AddDeviceToRoom {
             programDuration = InputValidator.getDoublePos(label46);
             String label47 = "What is the energy consumption of this program?";
             programEnergyConsumption = InputValidator.getDoublePos(label47);
-            if (controller.createAndAddProgram(programName, programDuration, programEnergyConsumption)) {
+
+            if (controller.createAndAddProgram(programName, specs)) {
                 System.out.println("The program " + programName + " was added to the washing machine.\n");
             }
         }

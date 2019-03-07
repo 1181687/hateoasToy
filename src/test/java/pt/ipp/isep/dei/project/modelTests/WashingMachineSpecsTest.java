@@ -2,11 +2,11 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.devices.washingmachine.WashingMachineSpecs;
-import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
@@ -476,7 +476,7 @@ class WashingMachineSpecsTest {
     @Test
     public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
         //Arrange
-        Program program = null;
+        TimeConstantProgramSpecs program = null;
         boolean expectedResult = false;
         DeviceSpecs deviceSpecs = this.washingMachine.getSpecs();
         //Act
@@ -493,8 +493,8 @@ class WashingMachineSpecsTest {
         double energyConsumption = 1;
         DeviceSpecs deviceSpecs = this.washingMachine.getSpecs();
         Programmable programmable = this.washingMachine.asProgrammable();
-        Program programA = programmable.newProgram(programName, duration, energyConsumption);
-        Program programB = programmable.newProgram(programName, duration, energyConsumption);
+        TimeConstantProgramSpecs programA = programmable.newProgram(programName, duration, energyConsumption);
+        TimeConstantProgramSpecs programB = programmable.newProgram(programName, duration, energyConsumption);
         ((WashingMachineSpecs)deviceSpecs).addProgram(programA);
         boolean expectedResult = false;
 
@@ -515,7 +515,7 @@ class WashingMachineSpecsTest {
         DeviceSpecs deviceSpecs = this.washingMachine.getSpecs();
 
         Programmable programmable = this.washingMachine.asProgrammable();
-        Program programA = programmable.newProgram(programName, duration, energyConsumption);
+        TimeConstantProgramSpecs programA = programmable.newProgram(programName, duration, energyConsumption);
 
         boolean expectedResult = true;
 

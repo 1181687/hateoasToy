@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model.devices.winecooler;
 
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
@@ -18,6 +19,21 @@ public class WineCoolerSpecs implements DeviceSpecs {
 
     public WineCoolerSpecs() {
         this.typeName = "WineCooler";
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean isProgrammable() {
+        return false;
+    }
+
+    @Override
+    public Programmable asProgrammable() {
+        return null;
     }
 
     /**
