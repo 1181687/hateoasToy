@@ -1,10 +1,5 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 import pt.ipp.isep.dei.project.model.*;
 
 public class RegularUser {
@@ -44,7 +39,7 @@ public class RegularUser {
                     ui623.run();
                     break;
                 case 5:
-                    GetDayWithHighestTemperatureAmplitude ui633 = new GetDayWithHighestTemperatureAmplitude(house);
+                    getDayWithHighestTemperatureAmplitude ui633 = new getDayWithHighestTemperatureAmplitude(house);
                     ui633.run();
                     break;
                 case 4:

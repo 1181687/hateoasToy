@@ -17,7 +17,7 @@ public class LampSpecs implements DeviceSpecs {
     private double nominalPower;
 
     public LampSpecs() {
-        this.typeName = "lamp";
+        this.typeName = "Lamp";
     }
 
     public String getTypeName() {

@@ -113,7 +113,7 @@ public class AddDeviceToRoomControllerTest {
     void getDeviceTypeListToString() {
         // Arrange
         String expectedResult = "1- Fridge\n" +
-                "2- lamp\n" +
+                "2- Lamp\n" +
                 "3- DishWasher\n" +
                 "4- WashingMachine\n" +
                 "5- ElectricWaterHeater\n" +

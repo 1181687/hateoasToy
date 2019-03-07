@@ -1,39 +1,50 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.getDayWithHighestTemperatureAmplitudeController;
+import pt.ipp.isep.dei.project.controllers.GetDayWithHighestTemperatureAmplitudeController;
 import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.util.Map;
 import java.util.Set;
 
+/*US633: As a Regular User, I want to get the day with the highest temperature amplitude in the house area in a given period.*/
+
 public class getDayWithHighestTemperatureAmplitude {
 
-    private getDayWithHighestTemperatureAmplitudeController controller;
-
+    private GetDayWithHighestTemperatureAmplitudeController controller;
 
     public getDayWithHighestTemperatureAmplitude(House house) {
-        this.controller = new getDayWithHighestTemperatureAmplitudeController(house);
+        this.controller = new GetDayWithHighestTemperatureAmplitudeController(house);
     }
 
     public void run() {
 
-        String label1 = "Please insert the first date of the period (yyyy-MM-dd):";
-        LocalDate firstDate = InputValidator.getStringDate(label1);
+        LocalDate firstDate;
+        LocalDate secondDate;
+        boolean flag;
 
-        String label2 = "Please insert the second date of the period (yyyy-MM-dd):";
-        LocalDate secondDate = InputValidator.getStringDate(label2);
+        do {
+            flag = false;
 
-        if (firstDate.isAfter(secondDate)) {
-            System.out.println("That is not a valid period. Please try again.\n");
-            return;
+            String label1 = "Please insert the first date of the period (yyyy-MM-dd):";
+            firstDate = InputValidator.getStringDate(label1);
+
+            String label2 = "Please insert the second date of the period (yyyy-MM-dd):";
+            secondDate = InputValidator.getStringDate(label2);
+
+            if (firstDate.isAfter(secondDate)) {
+                System.out.println("That is not a valid period. Please try again.\n");
+                flag = true;
+            }
         }
+        while (flag);
 
         Map<LocalDate, Double> dailyAmplitudes = controller.getDailyAmplitudeInIntervalInHouseArea(firstDate, secondDate);
 
         if (!((controller.getHighestDailyAmplitudeInHouseArea(dailyAmplitudes).isEmpty()))) {
 
-            Set<Map.Entry<LocalDate, Double>> set = dailyAmplitudes.entrySet();
+            Set<Map.Entry<LocalDate, Double>> set = controller.getHighestDailyAmplitudeInHouseArea(dailyAmplitudes).entrySet();
 
             for (Map.Entry<LocalDate, Double> dailyAmplitude : set) {
 
@@ -43,7 +54,7 @@ public class getDayWithHighestTemperatureAmplitude {
                             dailyAmplitude.getKey().toString());
                 } else {
                     System.out.println("The highest daily temperature for the chosen period is: " +
-                            dailyAmplitude.getValue().toString() + " Celsius, and was registered on these dates: " +
+                            Utils.round(dailyAmplitude.getValue(), 2) + " Celsius, and was registered on these dates: " +
                             dailyAmplitude.getKey().toString());
                 }
             }
@@ -51,5 +62,4 @@ public class getDayWithHighestTemperatureAmplitude {
             System.out.println("There's no registers for this period.");
         }
     }
-
 }
