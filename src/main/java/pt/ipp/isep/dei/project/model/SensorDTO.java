@@ -7,7 +7,7 @@ import java.util.List;
 public class SensorDTO {
     private String sensorName;
     private LocalDateTime startingDate;
-    private List<Reading> listOfReadings = new ArrayList<>();
+    private List<ReadingDTO> listOfReadings = new ArrayList<>();
     private SensorType sensorType;
     private Location location;
 
@@ -58,17 +58,17 @@ public class SensorDTO {
      *
      * @return List of readings.
      */
-    public List<Reading> getListOfReadings() {
+    public List<ReadingDTO> getListOfReadings() {
         return listOfReadings;
     }
 
     /**
      * Method that adds a reading to a sensor.
      *
-     * @param reading Reading to be used.
+     * @param readingDTO Reading to be used.
      */
-    public void addReading(Reading reading) {
-        this.listOfReadings.add(reading);
+    public void addReadingDTO(ReadingDTO readingDTO) {
+        this.listOfReadings.add(readingDTO);
     }
 
     /**
