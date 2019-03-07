@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.model;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
