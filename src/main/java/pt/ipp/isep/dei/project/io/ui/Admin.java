@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.*;
 
+import java.io.FileNotFoundException;
+
 public class Admin {
     private GeographicalAreaTypeList geographicalAreaTypeList;
     private GeographicalAreaList geographicalAreaList;
@@ -64,6 +66,13 @@ public class Admin {
                     ReadJSONfileUI ui9 = new ReadJSONfileUI();
                     ui9.run();
                     break;
+                case 10:
+                    ImportReadingsFromCSV ui10 = new ImportReadingsFromCSV(geographicalAreaList);
+                    try {
+                        ui10.run();
+                    } catch (FileNotFoundException e) {
+                        System.out.println(e.getMessage() + "\n");
+                    }
             }
             option = Menu.adminGeoAreaMenu();
         }

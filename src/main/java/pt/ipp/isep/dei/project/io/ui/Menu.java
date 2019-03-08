@@ -61,9 +61,11 @@ public final class Menu {
         content.append("\n");
         content.append("8-Verify if one geographical area is included in another one");
         content.append("\n");
+        content.append("10-Import readings from CSV file");
+        content.append("\n");
         content.append(RETURN_MENU);
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 9);
+        return InputValidator.getIntRange(label, 0, 10);
     }
 
     public static int adminHouseMenu() {
