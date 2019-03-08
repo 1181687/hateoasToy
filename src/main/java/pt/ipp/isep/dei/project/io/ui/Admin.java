@@ -60,6 +60,10 @@ public class Admin {
                     InsertedGeoArea ui8 = new InsertedGeoArea(geographicalAreaList);
                     ui8.run();
                     break;
+                case 9:
+                    ReadJSONfileUI ui9 = new ReadJSONfileUI();
+                    ui9.run();
+                    break;
             }
             option = Menu.adminGeoAreaMenu();
         }
