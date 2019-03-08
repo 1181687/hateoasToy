@@ -172,4 +172,17 @@ public class GeographicalAreaList {
     public int getSize() {
         return this.geoAreaList.size();
     }
+
+    /**
+     * Method that returns all the sensors present in the all the geo areas in the list.
+     *
+     * @return SensorList with all the sensors.
+     */
+    public SensorList getAllSensors() {
+        SensorList sensorList = new SensorList();
+        for (GeographicalArea geoArea : geoAreaList) {
+            sensorList.getListOfSensors().addAll(geoArea.getSensorListInTheGeographicArea().getListOfSensors());
+        }
+        return sensorList;
+    }
 }
