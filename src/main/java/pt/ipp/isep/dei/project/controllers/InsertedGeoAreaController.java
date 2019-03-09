@@ -23,6 +23,6 @@ public class InsertedGeoAreaController {
     }
 
     public boolean verificarSeAGEstaContidaDiretaOuIndiretamenteNoutraAG(int opcaoSelecionada1, int opcaoSelecionada2){
-        return geographicalAreaList.checkIfGeoAreaIsinsertedInAnother(opcaoSelecionada1, opcaoSelecionada2);
+        return geographicalAreaList.checkIfGeoAreaIsInsertedInAnother(opcaoSelecionada1, opcaoSelecionada2);
     }
 }

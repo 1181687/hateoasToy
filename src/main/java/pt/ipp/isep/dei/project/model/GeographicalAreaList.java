@@ -113,7 +113,7 @@ public class GeographicalAreaList {
      * @param selection2
      * @return true if a geo area is inserted in another. Return false if not.
      */
-    public boolean checkIfGeoAreaIsinsertedInAnother(int selection1, int selection2) {
+    public boolean checkIfGeoAreaIsInsertedInAnother(int selection1, int selection2) {
         GeographicalArea firstGeoArea = geoAreaList.get(selection1);
         GeographicalArea secondGeoArea = geoAreaList.get(selection2);
         while (firstGeoArea.getInsertedIn() != null) {
