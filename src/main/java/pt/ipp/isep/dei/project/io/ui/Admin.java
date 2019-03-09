@@ -62,7 +62,7 @@ public class Admin {
                     InsertedGeoArea ui8 = new InsertedGeoArea(geographicalAreaList);
                     ui8.run();
                     break;
-                case 9:
+                case 10:
                     ImportReadingsFromCSV ui10 = new ImportReadingsFromCSV(geographicalAreaList);
                     try {
                         ui10.run();
