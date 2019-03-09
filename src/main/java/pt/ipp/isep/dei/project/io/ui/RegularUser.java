@@ -39,7 +39,7 @@ public class RegularUser {
                     ui623.run();
                     break;
                 case 5:
-                    getDayWithHighestTemperatureAmplitude ui633 = new getDayWithHighestTemperatureAmplitude(house);
+                    GetDayWithHighestTemperatureAmplitude ui633 = new GetDayWithHighestTemperatureAmplitude(house);
                     ui633.run();
                     break;
                 case 4:
