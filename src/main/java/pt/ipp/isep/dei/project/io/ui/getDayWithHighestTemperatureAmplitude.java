@@ -14,10 +14,20 @@ public class getDayWithHighestTemperatureAmplitude {
 
     private GetDayWithHighestTemperatureAmplitudeController controller;
 
+    /**
+     * constructor that receives a House
+     *
+     * @param house House
+     */
     public getDayWithHighestTemperatureAmplitude(House house) {
         this.controller = new GetDayWithHighestTemperatureAmplitudeController(house);
     }
 
+    /**
+     * method that gets the highest temperature amplitude in the house area in a given period
+     * prints the highest temperature amplitude and the date(s)
+     * that registered that value. If the Map is empty, it prints that there's no registers for this period.
+     */
     public void run() {
 
         LocalDate firstDate;
@@ -42,21 +52,37 @@ public class getDayWithHighestTemperatureAmplitude {
 
         Map<LocalDate, Double> dailyAmplitudes = controller.getDailyAmplitudeInIntervalInHouseArea(firstDate, secondDate);
 
-        if (!((controller.getHighestDailyAmplitudeInHouseArea(dailyAmplitudes).isEmpty()))) {
+        Map<LocalDate, Double> dailyHighestAmplitude = controller.getHighestDailyAmplitudeInHouseArea(dailyAmplitudes);
 
-            Set<Map.Entry<LocalDate, Double>> set = controller.getHighestDailyAmplitudeInHouseArea(dailyAmplitudes).entrySet();
+        displayResults(dailyHighestAmplitude);
+        System.out.println("\n");
+    }
 
-            for (Map.Entry<LocalDate, Double> dailyAmplitude : set) {
+    /**
+     * receives a Map<LocalDate, Double> and prints the highest temperature amplitude and the date(s)
+     * that registered that value. If the Map is empty, it prints that there's no registers for this period.
+     *
+     * @param dailyHighestAmplitude Map<LocalDate, Double> highest temperature amplitude and date.
+     */
+    private void displayResults(Map<LocalDate, Double> dailyHighestAmplitude) {
 
-                if (dailyAmplitudes.size() < 1) {
-                    System.out.println("The highest daily temperature for the chosen period is: " +
-                            dailyAmplitude.getValue().toString() + " Celsius" + " and was registered on " +
-                            dailyAmplitude.getKey().toString());
-                } else {
-                    System.out.println("The highest daily temperature for the chosen period is: " +
-                            Utils.round(dailyAmplitude.getValue(), 2) + " Celsius, and was registered on these dates: " +
-                            dailyAmplitude.getKey().toString());
+        StringBuilder content = new StringBuilder();
+
+        if (!dailyHighestAmplitude.isEmpty()) {
+
+            Set<Map.Entry<LocalDate, Double>> set = dailyHighestAmplitude.entrySet();
+            boolean output = false;
+            for (Map.Entry<LocalDate, Double> highestAmplitude : set) {
+
+                if (!output) {
+                    output = true;
+                    content.append("The highest temperature amplitude for the chosen period is ");
+                    content.append(Utils.round(highestAmplitude.getValue(), 2));
+                    content.append(" Celsius");
+                    content.append(" and was registered on: ");
+                    System.out.println(content.toString());
                 }
+                System.out.println(highestAmplitude.getKey().toString());
             }
         } else {
             System.out.println("There's no registers for this period.");
