@@ -120,7 +120,8 @@ public class AddDeviceToRoomControllerTest {
                 "6- ElectricOven\n" +
                 "7- Freezer\n" +
                 "8- WineCooler\n" +
-                "9- Television\n";
+                "9- Television\n" +
+                "10- MicrowaveOven\n";
 
         // Act
         String result = controller.getDeviceTypeListToString();
@@ -374,7 +375,7 @@ public class AddDeviceToRoomControllerTest {
     @Test
     public void testGetNumberOfDeviceTypes() {
         // Arrange
-        int expectedResult = 9;
+        int expectedResult = 10;
 
         // Act
         int result = controller.getNumberOfDeviceTypes();

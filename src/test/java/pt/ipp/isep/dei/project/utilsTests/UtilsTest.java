@@ -136,6 +136,7 @@ class UtilsTest {
         expectedResult.add("Freezer");
         expectedResult.add("WineCooler");
         expectedResult.add("Television");
+        expectedResult.add("MicrowaveOven");
 
 
         List<String> result = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");

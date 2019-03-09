@@ -63,10 +63,6 @@ public class Admin {
                     ui8.run();
                     break;
                 case 9:
-                    ReadJSONfileUI ui9 = new ReadJSONfileUI();
-                    ui9.run();
-                    break;
-                case 10:
                     ImportReadingsFromCSV ui10 = new ImportReadingsFromCSV(geographicalAreaList);
                     try {
                         ui10.run();
