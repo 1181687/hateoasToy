@@ -467,7 +467,7 @@ public class FreezerTest {
         assertFalse(result);
     }
 
-    @Test
+    /*@Test
     void testIfDeviceIsProgrammableFalse() {
         //Arrange
         //Act
@@ -484,5 +484,5 @@ public class FreezerTest {
         boolean result = freezer.isProgrammable();
         //Assert
         assertFalse(result);
-    }
+    }*/
 }

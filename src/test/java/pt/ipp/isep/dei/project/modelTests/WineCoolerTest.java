@@ -468,7 +468,7 @@ public class WineCoolerTest {
         assertFalse(result);
     }
 
-    @Test
+    /*@Test
     void testIfDeviceIsProgrammableFalse() {
         //Arrange
         //Act
@@ -485,6 +485,6 @@ public class WineCoolerTest {
         boolean result = wineCooler.isProgrammable();
         //Assert
         assertFalse(result);
-    }
+    }*/
 
 }

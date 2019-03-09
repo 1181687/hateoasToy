@@ -1,13 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.devices.TimeConstantProgramSpecs;
-
-import java.util.Objects;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-class ProgramTest {
+/*class ProgramTest {
 
     @Test
     void testEqualsSameObject() {
@@ -96,4 +89,4 @@ class ProgramTest {
         assertEquals(expectedResult, result);
     }
 
-}
+}*/
