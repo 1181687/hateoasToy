@@ -38,4 +38,8 @@ public interface DeviceSpecs {
     boolean setAttributeValue(String attributeName, Object attributeValue);
 
     String getTypeName();
+
+    boolean isProgrammable();
+
+    Programmable asProgrammable();
 }

@@ -1,14 +1,13 @@
 package pt.ipp.isep.dei.project.model.devices.dishwasher;
 
-import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.Program;
+import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class DishWasherSpecs implements DeviceSpecs {
+public class DishWasherSpecs implements DeviceSpecs, Programmable {
     private static final String ATTRIBUTE_CAPACITY = "Capacity";
     private static final String ATTRIBUTE_DURATION = "Duration";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
@@ -24,6 +23,7 @@ public class DishWasherSpecs implements DeviceSpecs {
         this.programList = new ArrayList<>();
     }
 
+    @Override
     public String getTypeName() {
         return typeName;
     }
@@ -118,6 +118,7 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * get metod
+     *
      * @return list os specs of dishwasher
      */
     @Override
@@ -130,8 +131,9 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * get method
+     *
      * @param attributeName string name of the attribute
-     * @return  attribute
+     * @return attribute
      */
     @Override
     public Object getAttributeValue(String attributeName) {
@@ -149,7 +151,8 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * set method
-     * @param attributeName string name of the attribute
+     *
+     * @param attributeName  string name of the attribute
      * @param attributeValue value of the attribute
      * @return
      */
@@ -178,6 +181,7 @@ public class DishWasherSpecs implements DeviceSpecs {
 
     /**
      * get method
+     *
      * @param attributeName string name of attribute
      * @return type data of the attribute (ex.integer, double)
      */
@@ -185,11 +189,50 @@ public class DishWasherSpecs implements DeviceSpecs {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 
-    public boolean addProgram(Program program) {
+    /*public boolean addProgram(Program program) {
         if (!Objects.isNull(program) && !(programList.contains(program))) {
             this.programList.add(program);
             return true;
         }
         return false;
+    }*/
+
+    @Override
+    public boolean isProgrammable() {
+        return true;
+    }
+
+    @Override
+    public Programmable asProgrammable() {
+        return this;
+    }
+
+    @Override
+    public List<Program> getProgramList() {
+        return this.programList;
+    }
+
+    /*@Override
+    public boolean addNewProgram(String programName, ProgramSpecs specs) {
+        TimeConstantProgram program = new TimeConstantProgram(programName, specs);
+        if (!Objects.isNull(program) && !(getProgramList().contains(program))) {
+            getProgramList().add(program);
+            return true;
+        }
+        return false;
+    }*/
+
+    @Override
+    public boolean addProgram(Program program) {
+        if (!Objects.isNull(program) && !(getProgramList().contains(program))) {
+            getProgramList().add(program);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Program createNewProgram(String programName, ProgramSpecs specs) {
+        return new TimeConstantProgram(programName, specs);
     }
 }

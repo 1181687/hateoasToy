@@ -468,7 +468,7 @@ public class TelevisionTest {
         assertFalse(result);
     }
 
-    @Test
+    /*@Test
     void testIfDeviceIsProgrammableFalse() {
         //Arrange
         //Act
@@ -485,7 +485,7 @@ public class TelevisionTest {
         boolean result = television.isProgrammable();
         //Assert
         assertFalse(result);
-    }
+    }*/
 
 }
 

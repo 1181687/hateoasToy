@@ -66,9 +66,9 @@ public interface Device extends Measurable {
 
     LocalDateTime getDeactivationDate();
 
-    boolean isProgrammable();
+    //boolean isProgrammable();
 
-    Programmable asProgrammable();
+    //Programmable asProgrammable();
 
     boolean setDeactivateDevice();
 
