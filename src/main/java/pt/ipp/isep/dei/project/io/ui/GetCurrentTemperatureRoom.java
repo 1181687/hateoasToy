@@ -16,7 +16,7 @@ public class GetCurrentTemperatureRoom {
     private GetCurrentAndMaxTempRoomController controller;
 
     /**
-     * constructor that receives a House and a SensorTypeList
+     * constructor that receives a House and a SensorType
      *
      * @param house          House
      * @param sensorType   SensorType
@@ -32,7 +32,7 @@ public class GetCurrentTemperatureRoom {
      * @param temp     given double temperature
      * @param dateTime given string date and time
      */
-    private static void displayResults(String roomName, double temp, String dateTime) {
+    private void displayResults(String roomName, double temp, String dateTime) {
         StringBuilder content = new StringBuilder();
         content.append("The latest temperature of the room ");
         content.append(roomName);
