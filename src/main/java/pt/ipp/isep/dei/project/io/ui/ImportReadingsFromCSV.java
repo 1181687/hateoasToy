@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.project.utils.CSVReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Scanner;
 
@@ -21,14 +22,15 @@ public class ImportReadingsFromCSV {
     }
 
     public void run() throws FileNotFoundException {
-        String pathCSVFile = InputValidator.getString("Please specify the path of the CSV file to import.");
+        String pathCSVFile = InputValidator.getString("Please specify the name of the CSV file to import (including the \".csv\" part).");
         File file = new File(pathCSVFile);
         Scanner scanner = new Scanner(file);
         while (scanner.hasNext()) {
             List<String> line = CSVReader.parseLine((scanner.nextLine()));
             String sensorId = line.get(0);
             if (controller.checkIfSensorExistsById(sensorId)) {
-                LocalDateTime readingDateTime = LocalDateTime.parse(line.get(1));
+                ZonedDateTime zonedDateTime = ZonedDateTime.parse(line.get(1));
+                LocalDateTime readingDateTime = zonedDateTime.toLocalDateTime();
                 Double readingValue = Double.parseDouble(line.get(2));
                 readingDTO.setDateTime(readingDateTime);
                 readingDTO.setValue(readingValue);
