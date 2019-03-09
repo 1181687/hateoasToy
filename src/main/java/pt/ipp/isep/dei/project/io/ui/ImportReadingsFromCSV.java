@@ -37,6 +37,7 @@ public class ImportReadingsFromCSV {
                 controller.addReadingToSensor(readingDTO);
             }
         }
+        scanner.close();
         System.out.println();
     }
 }
