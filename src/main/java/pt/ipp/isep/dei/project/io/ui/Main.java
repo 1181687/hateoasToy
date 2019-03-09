@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.utils.ReadJSONfile;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -23,8 +22,6 @@ public class Main {
     private static final String DISHWASHER = "Dishwasher";
 
     public static void main(String[] args) {
-
-        ReadJSONfile.readJSONFileToList();
 
         String configFile = "Configuration.properties";
 

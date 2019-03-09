@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadJSONfile {
+public class JSONReader {
 
     @SuppressWarnings("unchecked")
     public static void readJSONFileToList() {

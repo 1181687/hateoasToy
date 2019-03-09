@@ -4,11 +4,11 @@ import pt.ipp.isep.dei.project.model.GeographicalArea;
 import pt.ipp.isep.dei.project.model.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.GeographicalAreaMapping;
 
-public class ReadJSONfileController {
+public class ImportReadingsFromJSONController {
 
     private GeographicalArea geographicalArea;
 
-    public ReadJSONfileController() {
+    public ImportReadingsFromJSONController() {
         // empty
     }
 /*

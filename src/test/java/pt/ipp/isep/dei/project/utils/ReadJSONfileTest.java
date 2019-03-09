@@ -8,7 +8,7 @@ class ReadJSONfileTest {
         String expectedResult = "";
 
         // act
-        String result = ReadJSONfile.readJSONFileToList();
+        String result = JSONReader.readJSONFileToList();
 
         // assert
         assertEquals(expectedResult, result);
