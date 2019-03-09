@@ -1,16 +1,17 @@
 package pt.ipp.isep.dei.project.utils;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
+import pt.ipp.isep.dei.project.model.GeographicalAreaDTO;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ReadJSONfile {
 
@@ -18,175 +19,16 @@ public class ReadJSONfile {
     public static void readJSONFileToList() {
 
         //JSON parser object to parse read file
-        JSONParser jsonParser = new JSONParser();
+        JsonParser jsonParser = new JsonParser();
 
-        JsonElement elem = new JsonParser().parse("{\"geographical_area\": [\n" +
-                "    {\n" +
-                "      \"id\": \"ISEP\",\n" +
-                "      \"description\": \"Campus do ISEP\",\n" +
-                "      \"type\": \"urban area\",\n" +
-                "      \"width\": 0.261,\n" +
-                "      \"length\": 0.249,\n" +
-                "      \"location\": {\n" +
-                "        \"latitude\": 41.178553,\n" +
-                "        \"longitude\": -8.608035,\n" +
-                "        \"altitude\": 111\n" +
-                "      },\n" +
-                "\n" +
-                "      \"area_sensor\": [\n" +
-                "        {\n" +
-                "          \"sensor\": {\n" +
-                "            \"name\": \"Meteo station ISEP - rainfall\",\n" +
-                "            \"start_date\": \"2016/11/15\",\n" +
-                "            \"type\": \"rainfall\",\n" +
-                "            \"units\": \"l/m2\",\n" +
-                "            \"readings\": [\n" +
-                "              {\n" +
-                "                \"date\": \"2018-12-29\",\n" +
-                "                \"value\": 0.5\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"date\": \"2018-12-30\",\n" +
-                "                \"value\": 1.2\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"date\": \"2018-12-31\",\n" +
-                "                \"value\": 1.5\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"date\": \"2019-01-01\",\n" +
-                "                \"value\": 0.3\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"date\": \"2019-01-02\",\n" +
-                "                \"value\": 0.0\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"date\": \"2019-01-02\",\n" +
-                "                \"value\": 0.0\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"date\": \"2019-01-03\",\n" +
-                "                \"value\": 0.0\n" +
-                "              }\n" +
-                "            ]\n" +
-                "          },\n" +
-                "          \"location\": {\n" +
-                "            \"latitude\": 41.179230,\n" +
-                "            \"longitude\": -8.606409,\n" +
-                "            \"altitude\": 125\n" +
-                "          }\n" +
-                "        },\n" +
-                "        {\n" +
-                "          \"sensor\": {\n" +
-                "            \"name\": \"Meteo station ISEP - temperature\",\n" +
-                "            \"start_date\": \"2016/11/15\",\n" +
-                "            \"type\": \"temperature\",\n" +
-                "            \"units\": \"C\",\n" +
-                "            \"readings\": [\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2018-12-30T02:00:00+00:00\",\n" +
-                "                \"value\": 8.0\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2018-12-30T08:00:00+00:00\",\n" +
-                "                \"value\": 6.9\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2018-12-30T14:00:00+00:00\",\n" +
-                "                \"value\": 16.5\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2018-12-30T20:00:00+00:00\",\n" +
-                "                \"value\": 11.2\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2018-12-31T02:00:00+00:00\",\n" +
-                "                \"value\": 7.2\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2018-12-31T08:00:00+00:00\",\n" +
-                "                \"value\": 5.3\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2018-12-31T14:00:00+00:00\",\n" +
-                "                \"value\": 15.1\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2018-12-31T20:00:00+00:00\",\n" +
-                "                \"value\": 9.2\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2019-01-01T02:00:00+00:00\",\n" +
-                "                \"value\": 6.5\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2019-01-01T08:00:00+00:00\",\n" +
-                "                \"value\": 4.3\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2019-01-01T14:00:00+00:00\",\n" +
-                "                \"value\": 14.8\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2019-01-01T20:00:00+00:00\",\n" +
-                "                \"value\": 8.9\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2019-01-02T02:00:00+00:00\",\n" +
-                "                \"value\": 6.1\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2019-01-02T08:00:00+00:00\",\n" +
-                "                \"value\": 3.2\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2019-01-02T14:00:00+00:00\",\n" +
-                "                \"value\": 14.1\n" +
-                "              },\n" +
-                "              {\n" +
-                "                \"timestamp\": \"2019-01-02T20:00:00+00:00\",\n" +
-                "                \"value\": 8.3\n" +
-                "              }\n" +
-                "            ]\n" +
-                "          },\n" +
-                "          \"location\": {\n" +
-                "            \"latitude\": 41.179230,\n" +
-                "            \"longitude\": -8.606409,\n" +
-                "            \"altitude\": 125\n" +
-                "          }\n" +
-                "        }\n" +
-                "      ]\n" +
-                "    },\n" +
-                "    {\n" +
-                "      \"id\": \"Porto\",\n" +
-                "      \"description\": \"City of Porto\",\n" +
-                "      \"type\": \"city\",\n" +
-                "      \"width\": 10.09,\n" +
-                "      \"length\": 3.30,\n" +
-                "      \"location\": {\n" +
-                "        \"latitude\": 41.164077,\n" +
-                "        \"longitude\": -8.620802,\n" +
-                "        \"altitude\": 118\n" +
-                "      }\n" +
-                "    }\n" +
-                "  ]\n" +
-                "}");
-
-        System.out.println(elem.getAsJsonObject().get("id"));
         try (FileReader reader = new FileReader("JSONfile.json")) {
             //Read JSON file
-            Object obj = jsonParser.parse(reader);
 
-            JSONArray geoAreaList = (JSONArray) obj;
-            System.out.println(geoAreaList);
+            JsonElement elem = jsonParser.parse(reader);
+            //System.out.println(elem);
 
-            //Iterate over employee array
-            geoAreaList.forEach(areaGeo -> parseAreaGeoObject((JSONObject) areaGeo));
-
+            parseAreaGeoObject(elem);
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -195,107 +37,117 @@ public class ReadJSONfile {
         }
     }
 
-    private static void parseAreaGeoObject(JSONObject areGeo) {
+    private static void parseAreaGeoObject(JsonElement areaGeo) {
 
         // Get area geo object within list
-        JSONObject areaGeoObject = (JSONObject) areGeo.get("geographical_area");
+        if (areaGeo.isJsonObject()) {
+            JsonObject jObject = areaGeo.getAsJsonObject();
+            JsonObject geoArea = jObject.get("geographical_area_list").getAsJsonObject();
+            JsonArray cenas = geoArea.get("geographical_area").getAsJsonArray();
+            List<JsonObject> lista = new ArrayList<>();
+            for (int i = 0; i < cenas.size(); i++) {
+                lista.add(cenas.get(i).getAsJsonObject());
+            }
 
-        // Get objects from geo area
-        String id = (String) areaGeoObject.get("id");
-        System.out.println("Id: " + id);
+            //Reads Geo Area attributes
+            for (JsonObject object : lista) {
 
-        String description = (String) areaGeoObject.get("description");
-        System.out.println("Description: " + description);
+                // Get objects from geo area
+                String id = object.get("id").getAsString();
+                System.out.println("Id: " + id);
 
-        String type = (String) areaGeoObject.get("type");
-        System.out.println("Type: " + type);
+                String description = object.get("description").getAsString();
+                System.out.println("Description: " + description);
 
-        double width = (double) areaGeoObject.get("width");
-        System.out.println("Width: " + width);
+                String type = object.get("type").getAsString();
+                System.out.println("Type: " + type);
 
-        double length = (double) areaGeoObject.get("length");
-        System.out.println("Length: " + length);
+                double width = object.get("width").getAsDouble();
+                System.out.println("Width: " + width);
 
-        JSONObject location = (JSONObject) areaGeoObject.get("location");
+                double length = object.get("length").getAsDouble();
+                System.out.println("Length: " + length);
 
-        double latitude = (double) location.get("latitude");
-        System.out.println("Latitude: " + latitude);
+                JsonObject location = object.get("location").getAsJsonObject();
 
-        double longitude = (double) location.get("longitude");
-        System.out.println("Longitude: " + longitude);
+                double latitude = location.get("latitude").getAsDouble();
+                System.out.println("Latitude: " + latitude);
 
-        double altitude = (double) location.get("altitude");
-        System.out.println("Altitude: " + altitude);
+                double longitude = location.get("longitude").getAsDouble();
+                System.out.println("Longitude: " + longitude);
 
-        // JSONArray sensors = areaGeoObject
-        JSONObject areaSensor = (JSONObject) areaGeoObject.get("area_sensor");
+                double altitude = location.get("altitude").getAsDouble();
+                System.out.println("Altitude: " + altitude);
 
-        // SENSOR 1
-        String nameSensor1 = (String) areaSensor.get("name");
-        System.out.println("Name: " + nameSensor1);
+                GeographicalAreaDTO newGeoArea = new GeographicalAreaDTO();
+                newGeoArea.setGeoAreaName(description);
+                newGeoArea.setGeographicalAreaType(type);
+                newGeoArea.setWidth(width);
+                newGeoArea.setLenght(length);
+                newGeoArea.setLatitude(latitude);
+                newGeoArea.setLongitude(longitude);
+                newGeoArea.setAltitude(altitude);
 
-        LocalDateTime startDateSensor1 = (LocalDateTime) areaSensor.get("start_date");
-        System.out.println("Start date: " + startDateSensor1);
-
-        String areaSensorType1 = (String) areaSensor.get("type");
-        System.out.println("Type: " + areaSensorType1);
-
-        String unitsSensor1 = (String) areaSensor.get("units");
-        System.out.println("Units: " + unitsSensor1);
-
-        // Readings sensor 1
-        JSONArray readingsSensor1 = (JSONArray) areaSensor.get("readings");
-
-        for (int i = 0; i < readingsSensor1.size(); i++) {
-            areaSensor = (JSONObject) readingsSensor1.get(i);
-
-            System.out.println(areaSensor.toString());
+            }
         }
 
-        JSONObject sensorLocation1 = (JSONObject) areaSensor.get("location");
+    }
 
-        double sensorLatitude1 = (double) sensorLocation1.get("latitude");
-        System.out.println("Latitude: " + sensorLatitude1);
+    private static void parseSensorObject(JsonElement areaGeo) {
 
-        double sensorLongitude1 = (double) sensorLocation1.get("longitude");
-        System.out.println("Longitude: " + sensorLongitude1);
+// Get area geo object within list
+        if (areaGeo.isJsonObject()) {
+            JsonObject jObject = areaGeo.getAsJsonObject();
+            JsonObject geoArea = jObject.get("geographical_area_list").getAsJsonObject();
+            JsonArray cenas = geoArea.get("geographical_area").getAsJsonArray();
+            List<JsonObject> lista = new ArrayList<>();
+            for (int i = 0; i < cenas.size(); i++) {
+                lista.add(cenas.get(i).getAsJsonObject());
+            }
 
-        double sensorAltitude1 = (double) sensorLocation1.get("altitude");
-        System.out.println("Altitude: " + sensorAltitude1);
+            //Reads Geo Area attributes
+            for (JsonObject object : lista) {
 
+                //Reads Sensor attributes
+                JsonArray areaSensor = object.get("area_sensor").getAsJsonArray();
 
-        // SENSOR 2
-        String nameSensor2 = (String) areaSensor.get("name");
-        System.out.println("Name: " + nameSensor2);
+                List<JsonObject> sensorList = new ArrayList<>();
+                for (JsonElement sensor : areaSensor) {
+                    sensorList.add(sensor.getAsJsonObject());
+                }
 
-        LocalDateTime startDateSensor2 = (LocalDateTime) areaSensor.get("start_date");
-        System.out.println("Start date: " + startDateSensor2);
+                for (JsonObject sensor1 : sensorList) {
+                    JsonObject sensor = sensor1.get("sensor").getAsJsonObject();
 
-        String areaSensorType2 = (String) areaSensor.get("type");
-        System.out.println("Type: " + areaSensorType2);
+                    String sensorId = sensor.get("id").getAsString();
+                    System.out.println("Id: " + sensorId);
 
-        String unitsSensor2 = (String) areaSensor.get("units");
-        System.out.println("Units: " + unitsSensor2);
+                    String sensorName = sensor.get("name").getAsString();
+                    System.out.println("Name: " + sensorName);
 
-        // Readings sensor 2
-        JSONArray readingsSensor2 = (JSONArray) areaSensor.get("readings");
+                    LocalDate startingDate = LocalDate.parse(sensor.get("start_date").getAsString());
+                    System.out.println("Start date: " + startingDate);
 
-        for (int i = 0; i < readingsSensor2.size(); i++) {
-            areaSensor = (JSONObject) readingsSensor2.get(i);
+                    String sensorType = sensor.get("type").getAsString();
+                    System.out.println("Type: " + sensorType);
 
-            System.out.println(areaSensor.toString());
+                    String sensorUnits = sensor.get("units").getAsString();
+                    System.out.println("Units: " + sensorUnits);
+
+                    //Reads sensor Location
+                    JsonObject sensorLocation = sensor1.get("location").getAsJsonObject();
+
+                    double sensorLatitude = sensorLocation.get("latitude").getAsDouble();
+                    System.out.println("Latitude: " + sensorLatitude);
+
+                    double sensorLongitude = sensorLocation.get("longitude").getAsDouble();
+                    System.out.println("Longitude: " + sensorLongitude);
+
+                    double sensorAltitude = sensorLocation.get("altitude").getAsDouble();
+                    System.out.println("Altitude: " + sensorAltitude);
+
+                }
+            }
         }
-
-        JSONObject sensorLocation2 = (JSONObject) areaSensor.get("location");
-
-        double sensorLatitude2 = (double) sensorLocation2.get("latitude");
-        System.out.println("Latitude: " + sensorLatitude2);
-
-        double sensorLongitude2 = (double) sensorLocation2.get("longitude");
-        System.out.println("Longitude: " + sensorLongitude2);
-
-        double sensorAltitude2 = (double) sensorLocation2.get("altitude");
-        System.out.println("Altitude: " + sensorAltitude2);
-
     }
 }

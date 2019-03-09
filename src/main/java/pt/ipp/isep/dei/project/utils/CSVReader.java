@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project;
+package pt.ipp.isep.dei.project.utils;
 
 import pt.ipp.isep.dei.project.model.Sensor;
 import pt.ipp.isep.dei.project.model.SensorType;

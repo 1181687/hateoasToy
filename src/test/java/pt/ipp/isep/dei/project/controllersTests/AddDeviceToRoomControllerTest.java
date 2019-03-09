@@ -308,7 +308,7 @@ public class AddDeviceToRoomControllerTest {
         kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.5);
 
         //house.getDeviceType("lamp").createDevice("lamp Bizkit 5000", kitchen);
-        house.createDevice("Lamp", "lamp Bizkit 5000", kitchen);
+        house.createDevice("lamp", "lamp Bizkit 5000", kitchen);
         kitchen.getDeviceByPosition(1).setAttributesDevType("Nominal Power", 1.0);
         kitchen.getDeviceByPosition(1).setAttributesDevType("Luminous Flux", 10.0);
 

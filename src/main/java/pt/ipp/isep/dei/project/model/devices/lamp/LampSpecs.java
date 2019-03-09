@@ -194,4 +194,5 @@ public class LampSpecs implements DeviceSpecs {
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
+
 }

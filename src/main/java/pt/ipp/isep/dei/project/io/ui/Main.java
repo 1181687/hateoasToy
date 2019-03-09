@@ -250,7 +250,7 @@ public class Main {
         // sensor 1
         SensorType sensorTypeTemperature = new SensorType("temperature");
         LocalDateTime startingDate = LocalDate.of(2018, 10, 15).atStartOfDay();
-        Sensor sensor = new Sensor("Temperature B109", startingDate, sensorTypeTemperature, houseLocation);
+        Sensor sensor = new Sensor("TT12346", startingDate, sensorTypeTemperature, houseLocation);
         sensor.addReadingsToList(temp);
         sensor.addReadingsToList(temp1);
         sensor.addReadingsToList(temp2);
