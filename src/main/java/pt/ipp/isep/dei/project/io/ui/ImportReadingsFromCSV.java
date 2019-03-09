@@ -25,6 +25,9 @@ public class ImportReadingsFromCSV {
         String pathCSVFile = InputValidator.getString("Please specify the name of the CSV file to import (including the \".csv\" part).");
         File file = new File(pathCSVFile);
         Scanner scanner = new Scanner(file);
+        if (scanner != null) {
+            scanner.close();
+        }
         while (scanner.hasNext()) {
             List<String> line = CSVReader.parseLine((scanner.nextLine()));
             String sensorId = line.get(0);
@@ -37,7 +40,6 @@ public class ImportReadingsFromCSV {
                 controller.addReadingToSensor(readingDTO);
             }
         }
-        scanner.close();
         System.out.println();
     }
 }
