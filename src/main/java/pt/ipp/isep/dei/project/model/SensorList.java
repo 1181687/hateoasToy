@@ -244,6 +244,36 @@ public class SensorList {
 
     }
 
+    /**
+     * Method that checks if a sensor exists in the list by its id.
+     *
+     * @param sensorId Id of the sensor.
+     * @return True or false.
+     */
+    public boolean checkIfSensorExistsById(String sensorId) {
+        for (Sensor sensor : listOfSensors) {
+            if (sensor.getSensorName().equals(sensorId)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Method that returns a sensor by searching for it by its id.
+     *
+     * @param sensorId Id of the sensor.
+     * @return Sensor corresponding to the id.
+     */
+    public Sensor getSensorById(String sensorId) {
+        for (Sensor sensor : listOfSensors) {
+            if (sensor.getSensorName().equals(sensorId)) {
+                return sensor;
+            }
+        }
+        return null;
+    }
+
     public Sensor getSensorWithMostRecentReading() {
         Sensor sensorWithMostRecentReading = this.getListOfSensors().get(0);
         for (Sensor sensor : this.getListOfSensors()) {

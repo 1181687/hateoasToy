@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -226,6 +227,7 @@ public final class InputValidator {
         Scanner in = new Scanner(System.in);
         String str = "";
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        LocalDate returnDate = null;
         format.setLenient(false);
 
         boolean flag;
@@ -236,14 +238,16 @@ public final class InputValidator {
                 str = in.nextLine();
                 str = str.trim();
                 format.parse(str);
-            } catch (ParseException e) {
+                returnDate = LocalDate.parse(str);
+
+            } catch (DateTimeParseException | ParseException e) {
                 System.out.println("Date " + str + " is not valid. Please insert a valid date according to (" +
                         ((SimpleDateFormat) format).toPattern() + ") pattern.");
                 flag = true;
             }
-        } while (flag);
 
-        return LocalDate.parse(str);
+        } while (flag);
+        return returnDate;
     }
 
     /**

@@ -1,6 +1,7 @@
-package pt.ipp.isep.dei.project.utils;
+package pt.ipp.isep.dei.project.utilsTests;
 
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -135,6 +136,7 @@ class UtilsTest {
         expectedResult.add("Freezer");
         expectedResult.add("WineCooler");
         expectedResult.add("Television");
+        expectedResult.add("MicrowaveOven");
 
 
         List<String> result = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");

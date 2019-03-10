@@ -2,21 +2,21 @@ package pt.ipp.isep.dei.project.model.devices.electricoven;
 
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.Program;
+import pt.ipp.isep.dei.project.model.devices.TimeConstantProgramSpecs;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
+public class ElectricOvenSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_TIME = "Time";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
     private String typeName;
     private double time;
     private double nominalPower;
-    private List<Program> programList;
+    private List<TimeConstantProgramSpecs> programList;
 
     public ElectricOvenSpecs() {
 
@@ -26,6 +26,16 @@ public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
 
     public String getTypeName() {
         return typeName;
+    }
+
+    @Override
+    public boolean isProgrammable() {
+        return false;
+    }
+
+    @Override
+    public Programmable asProgrammable() {
+        return null;
     }
 
     /**
@@ -165,7 +175,7 @@ public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 
-    public boolean addProgram(Program program) {
+    public boolean addProgram(TimeConstantProgramSpecs program) {
         if (!Objects.isNull(program) && !(programList.contains(program))) {
             this.programList.add(program);
             return true;

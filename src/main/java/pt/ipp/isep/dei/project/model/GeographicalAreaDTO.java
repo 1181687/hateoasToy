@@ -3,10 +3,12 @@ package pt.ipp.isep.dei.project.model;
 public class GeographicalAreaDTO {
 
     private String geoAreaName;
-    private GeographicalAreaType geographicalAreaType;
-    private GeographicalArea insertedIn;
-    private Location location;
-    private AreaShape areaShape;
+    private String geographicalAreaType;
+    private double width;
+    private double lenght;
+    private double latitude;
+    private double longitude;
+    private double altitude;
 
     public GeographicalAreaDTO() {
         // empty
@@ -20,35 +22,51 @@ public class GeographicalAreaDTO {
         this.geoAreaName = geoAreaName;
     }
 
-    public GeographicalAreaType getGeographicalAreaType() {
+    public String getGeographicalAreaType() {
         return geographicalAreaType;
     }
 
-    public void setGeographicalAreaType(GeographicalAreaType geographicalAreaType) {
+    public void setGeographicalAreaType(String geographicalAreaType) {
         this.geographicalAreaType = geographicalAreaType;
     }
 
-    public GeographicalArea getInsertedIn() {
-        return insertedIn;
+    public double getWidth() {
+        return width;
     }
 
-    public void setInsertedIn(GeographicalArea insertedIn) {
-        this.insertedIn = insertedIn;
+    public void setWidth(double width) {
+        this.width = width;
     }
 
-    public Location getLocation() {
-        return location;
+    public double getLenght() {
+        return lenght;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setLenght(double lenght) {
+        this.lenght = lenght;
     }
 
-    public AreaShape getAreaShape() {
-        return areaShape;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setAreaShape(AreaShape areaShape) {
-        this.areaShape = areaShape;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
+    }
+
+    public double getAltitude() {
+        return altitude;
+    }
+
+    public void setAltitude(double altitude) {
+        this.altitude = altitude;
     }
 }

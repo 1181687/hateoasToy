@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model.devices.electricwaterheater;
 
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
@@ -22,6 +23,16 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
 
     public ElectricWaterHeaterSpecs() {
         this.typeName = "Electric Water Heater";
+    }
+
+    @Override
+    public boolean isProgrammable() {
+        return false;
+    }
+
+    @Override
+    public Programmable asProgrammable() {
+        return null;
     }
 
     public String getTypeName() {

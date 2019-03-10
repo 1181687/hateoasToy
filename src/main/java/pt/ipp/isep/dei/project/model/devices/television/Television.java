@@ -4,7 +4,6 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -162,14 +161,5 @@ public class Television implements Device {
         return isActive;
     }
 
-    @Override
-    public boolean isProgrammable() {
-        return false;
-    }
-
-    @Override
-    public Programmable asProgrammable() {
-        return null;
-    }
 }
 

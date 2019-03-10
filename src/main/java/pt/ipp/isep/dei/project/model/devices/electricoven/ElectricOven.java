@@ -1,17 +1,17 @@
 package pt.ipp.isep.dei.project.model.devices.electricoven;
 
-import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.Program;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-public class ElectricOven implements Device, Programmable {
+public class ElectricOven implements Device {
     private String name;
     private Room location;
     private ElectricOvenSpecs specs;
@@ -211,7 +211,7 @@ public class ElectricOven implements Device, Programmable {
      *
      * @return True.
      */
-    @Override
+    /*@Override
     public boolean isProgrammable() {
         return true;
     }
@@ -220,7 +220,7 @@ public class ElectricOven implements Device, Programmable {
      * Method that turns an object into Programmable.
      * @return Programmable object.
      */
-    @Override
+    /*@Override
     public Programmable asProgrammable() {
         return this;
     }
@@ -231,8 +231,8 @@ public class ElectricOven implements Device, Programmable {
      * @param program Program to be added.
      * @return True or false.
      */
-    @Override
-    public boolean addProgram(Program program) {
+    /*@Override
+    public boolean addProgram(TimeConstantProgramSpecs program) {
         return this.specs.addProgram(program);
-    }
+    }*/
 }

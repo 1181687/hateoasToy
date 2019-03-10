@@ -113,7 +113,7 @@ public class GeographicalAreaList {
      * @param selection2
      * @return true if a geo area is inserted in another. Return false if not.
      */
-    public boolean checkIfGeoAreaIsinsertedInAnother(int selection1, int selection2) {
+    public boolean checkIfGeoAreaIsInsertedInAnother(int selection1, int selection2) {
         GeographicalArea firstGeoArea = geoAreaList.get(selection1);
         GeographicalArea secondGeoArea = geoAreaList.get(selection2);
         while (firstGeoArea.getInsertedIn() != null) {
@@ -171,5 +171,18 @@ public class GeographicalAreaList {
      */
     public int getSize() {
         return this.geoAreaList.size();
+    }
+
+    /**
+     * Method that returns all the sensors present in the all the geo areas in the list.
+     *
+     * @return SensorList with all the sensors.
+     */
+    public SensorList getAllSensors() {
+        SensorList sensorList = new SensorList();
+        for (GeographicalArea geoArea : geoAreaList) {
+            sensorList.getListOfSensors().addAll(geoArea.getSensorListInTheGeographicArea().getListOfSensors());
+        }
+        return sensorList;
     }
 }

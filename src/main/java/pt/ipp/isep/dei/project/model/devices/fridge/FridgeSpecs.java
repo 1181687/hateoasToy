@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model.devices.fridge;
 
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
@@ -20,6 +21,16 @@ public class FridgeSpecs implements DeviceSpecs {
 
     public FridgeSpecs() {
         this.typeName = "Fridge";
+    }
+
+    @Override
+    public boolean isProgrammable() {
+        return false;
+    }
+
+    @Override
+    public Programmable asProgrammable() {
+        return null;
     }
 
     public String getTypeName() {
