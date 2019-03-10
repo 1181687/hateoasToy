@@ -28,7 +28,7 @@ public class GetDayWithHighestTemperatureAmplitudeController {
     }
 
     public Map<LocalDate, Double> getHighestDailyAmplitudeInHouseArea(Map<LocalDate, Double> mapOfDailyAmplitude) {
-        return this.house.getInsertedGeoArea().getHighestDailyAmplitude(mapOfDailyAmplitude);
+        return this.house.getHighestDailyAmplitudeInHouseArea(mapOfDailyAmplitude);
     }
 }
 

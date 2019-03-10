@@ -161,14 +161,5 @@ public class Television implements Device {
         return isActive;
     }
 
-    /*@Override
-    public boolean isProgrammable() {
-        return false;
-    }
-
-    @Override
-    public Programmable asProgrammable() {
-        return null;
-    }*/
 }
 
