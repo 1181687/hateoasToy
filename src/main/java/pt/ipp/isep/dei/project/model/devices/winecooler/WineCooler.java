@@ -161,13 +161,4 @@ public class WineCooler implements Device {
         return isActive;
     }
 
-    /*@Override
-    public boolean isProgrammable() {
-        return false;
-    }
-
-    @Override
-    public Programmable asProgrammable() {
-        return null;
-    }*/
 }

@@ -468,24 +468,5 @@ public class TelevisionTest {
         assertFalse(result);
     }
 
-    /*@Test
-    void testIfDeviceIsProgrammableFalse() {
-        //Arrange
-        //Act
-        boolean result = television.isProgrammable();
-        //Assert
-        assertFalse(result);
-    }
-
-    @Test
-    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
-        //Arrange
-        television.asProgrammable();
-        //Act
-        boolean result = television.isProgrammable();
-        //Assert
-        assertFalse(result);
-    }*/
-
 }
 

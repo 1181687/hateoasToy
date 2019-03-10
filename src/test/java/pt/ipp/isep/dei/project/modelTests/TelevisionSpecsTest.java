@@ -290,5 +290,25 @@ public class TelevisionSpecsTest {
         // assert
         assertEquals(attributeDataType, result);
     }
+
+    @Test
+    void testIfDeviceIsProgrammableFalse() {
+        //Arrange
+        //Act
+        boolean result = television.getSpecs().isProgrammable();
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
+        //Arrange
+        television.getSpecs().asProgrammable();
+        //Act
+        boolean result = television.getSpecs().isProgrammable();
+        //Assert
+        assertFalse(result);
+    }
+
 }
 
