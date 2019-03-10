@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.model.devices.freezer;
+package pt.ipp.isep.dei.project.model.devices.microwaveoven;
 
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.Room;
@@ -11,57 +11,41 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Freezer implements Device {
+public class MicrowaveOven implements Device {
+
     private String name;
     private Room location;
-    private FreezerSpecs specs;
+    private MicrowaveOvenSpecs specs;
     private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public Freezer(String name, DeviceSpecs freezerSpecs) {
+    public MicrowaveOven (String name, DeviceSpecs microwaveOvenSpecs){
         this.name = name;
-        this.specs = (FreezerSpecs) freezerSpecs;
+        this.specs = (MicrowaveOvenSpecs) microwaveOvenSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
     }
 
-    /**
-     * method that get a location (room) of a device.
-     *
-     * @return the location.
-     */
-    @Override
-    public Room getLocation() {
-        return this.location;
-    }
-
-    /**
-     * get method
-     *
-     * @return name of device
-     */
     @Override
     public String getName() {
-        return this.name;
+        return name;
     }
 
-    /**
-     * get method
-     *
-     * @return device Specifications
-     */
     @Override
-    public DeviceSpecs getSpecs() {
-        return this.specs;
+    public boolean setName(String name) {
+        if (this.location.isDeviceNameExistant(name) || this.name == name) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
+        this.name = name;
+        return true;
     }
 
-    /**
-     * method that set the location (room) of a added device.
-     *
-     * @param location
-     * @return false if the location is equals to another device. True if not.
-     */
+    @Override
+    public Room getLocation() {
+        return location;
+    }
+
     @Override
     public boolean setLocation(Room location) {
         if (Objects.isNull(this.location)) {
@@ -78,36 +62,22 @@ public class Freezer implements Device {
         return true;
     }
 
-    /**
-     * method that get an active device.
-     *
-     * @return an active device.
-     */
     @Override
-    public boolean getIsActive() {
-        return this.isActive;
+    public DeviceSpecs getSpecs() {
+        return this.specs;
     }
 
+    public List<Reading> getReadings() {
+        return readingList;
+    }
+
+    public boolean getIsActive() {
+        return isActive;
+    }
 
     @Override
     public LocalDateTime getDeactivationDate() {
-        return this.deactivationDate;
-    }
-
-    /*@Override
-    public boolean isProgrammable() {
-        return false;
-    }
-
-    @Override
-    public Programmable asProgrammable() {
-        return null;
-    }*/
-
-
-    @Override
-    public List<Reading> getReadings() {
-        return this.readingList;
+        return deactivationDate;
     }
 
     /**
@@ -121,23 +91,6 @@ public class Freezer implements Device {
             return true;
         }
         return false;
-    }
-
-    /**
-     * -     * method that set the given name only if the name don't exists in DeviceList
-     * -     * and if it is different than the name that the Device1 has.
-     * -     *
-     * -     * @param name String given name
-     * -     * @return true if sets false if don't
-     * -
-     */
-    @Override
-    public boolean setName(String name) {
-        if (this.location.isDeviceNameExistant(name) || this.name == name) {
-            throw new RuntimeException("Name already exists. Please write a new one.");
-        }
-        this.name = name;
-        return true;
     }
 
     /**

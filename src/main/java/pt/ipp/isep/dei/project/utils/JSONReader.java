@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import pt.ipp.isep.dei.project.model.GeographicalAreaDTO;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -12,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ReadJSONfile {
+public class JSONReader {
 
     @SuppressWarnings("unchecked")
     public static void readJSONFileToList() {
@@ -77,6 +78,35 @@ public class ReadJSONfile {
 
                 double altitude = location.get("altitude").getAsDouble();
                 System.out.println("Altitude: " + altitude);
+
+                GeographicalAreaDTO newGeoArea = new GeographicalAreaDTO();
+                newGeoArea.setGeoAreaName(description);
+                newGeoArea.setGeographicalAreaType(type);
+                newGeoArea.setWidth(width);
+                newGeoArea.setLenght(length);
+                newGeoArea.setLatitude(latitude);
+                newGeoArea.setLongitude(longitude);
+                newGeoArea.setAltitude(altitude);
+
+            }
+        }
+
+    }
+
+    private static void parseSensorObject(JsonElement areaGeo) {
+
+// Get area geo object within list
+        if (areaGeo.isJsonObject()) {
+            JsonObject jObject = areaGeo.getAsJsonObject();
+            JsonObject geoArea = jObject.get("geographical_area_list").getAsJsonObject();
+            JsonArray cenas = geoArea.get("geographical_area").getAsJsonArray();
+            List<JsonObject> lista = new ArrayList<>();
+            for (int i = 0; i < cenas.size(); i++) {
+                lista.add(cenas.get(i).getAsJsonObject());
+            }
+
+            //Reads Geo Area attributes
+            for (JsonObject object : lista) {
 
                 //Reads Sensor attributes
                 JsonArray areaSensor = object.get("area_sensor").getAsJsonArray();

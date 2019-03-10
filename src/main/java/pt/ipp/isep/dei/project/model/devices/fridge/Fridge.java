@@ -1,14 +1,15 @@
 package pt.ipp.isep.dei.project.model.devices.fridge;
 
-import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Fridge implements Device {
     private String name;
@@ -161,7 +162,7 @@ public class Fridge implements Device {
         return isActive;
     }
 
-    @Override
+    /*@Override
     public boolean isProgrammable() {
         return false;
     }
@@ -169,5 +170,5 @@ public class Fridge implements Device {
     @Override
     public Programmable asProgrammable() {
         return null;
-    }
+    }*/
 }

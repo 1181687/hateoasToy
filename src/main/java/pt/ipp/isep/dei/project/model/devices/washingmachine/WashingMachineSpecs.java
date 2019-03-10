@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.model.devices.washingmachine;
 
-import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.Program;
+import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.List;
 import java.util.Objects;
 
 
-public class WashingMachineSpecs implements DeviceSpecs {
+public class WashingMachineSpecs implements DeviceSpecs, Programmable {
     private static final String ATTRIBUTE_CAPACITY = "Capacity";
     private static final String ATTRIBUTE_DURATION = "Duration";
     private static final String ATTRIBUTE_ENERGY_CONSUMPTION = "Energy Consumption";
@@ -26,6 +25,31 @@ public class WashingMachineSpecs implements DeviceSpecs {
         this.typeName = "Washing Machine";
         this.programList = new ArrayList<>();
     }
+
+    @Override
+    public boolean isProgrammable() {
+        return true;
+    }
+
+    @Override
+    public Programmable asProgrammable() {
+        return this;
+    }
+
+    @Override
+    public List<Program> getProgramList() {
+        return this.programList;
+    }
+
+    /*@Override
+    public boolean addNewProgram(String programName, ProgramSpecs specs) {
+        TimeConstantProgram program = new TimeConstantProgram(programName, specs);
+        if (!Objects.isNull(program) && !(getProgramList().contains(program))) {
+            getProgramList().add(program);
+            return true;
+        }
+        return false;
+    }*/
 
     public String getTypeName() {
         return typeName;
@@ -211,11 +235,25 @@ public class WashingMachineSpecs implements DeviceSpecs {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 
-    public boolean addProgram(Program program) {
+    /*public boolean addProgram(TimeConstantProgramSpecs program) {
         if (!Objects.isNull(program) && !(programList.contains(program))) {
             this.programList.add(program);
             return true;
         }
         return false;
+    }*/
+
+    @Override
+    public boolean addProgram(Program program) {
+        if (!Objects.isNull(program) && !(getProgramList().contains(program))) {
+            getProgramList().add(program);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Program createNewProgram(String programName, ProgramSpecs specs) {
+        return new TimeConstantProgram(programName, specs);
     }
 }
