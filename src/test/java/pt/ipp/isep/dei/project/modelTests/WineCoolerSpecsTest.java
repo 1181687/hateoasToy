@@ -289,4 +289,23 @@ public class WineCoolerSpecsTest {
         // assert
         assertEquals(attributeDataType, result);
     }
+
+    @Test
+    void testIfDeviceIsProgrammableFalse() {
+        //Arrange
+        //Act
+        boolean result = wineCooler.getSpecs().isProgrammable();
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
+        //Arrange
+        wineCooler.getSpecs().asProgrammable();
+        //Act
+        boolean result = wineCooler.getSpecs().isProgrammable();
+        //Assert
+        assertFalse(result);
+    }
 }

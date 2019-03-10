@@ -26,11 +26,22 @@ public class WineCoolerSpecs implements DeviceSpecs {
         return super.hashCode();
     }
 
+    /**
+     * boolean method "Is programmable"
+     *
+     * @return returns false because the winecooler is not a programmable device
+     */
     @Override
     public boolean isProgrammable() {
         return false;
     }
 
+    /**
+     *
+     * this class implements the Interface Device Specs which in turn has the signature of the method as programmable
+     * @return since the winecooler doesn't implement a program the return is null
+     *
+     */
     @Override
     public Programmable asProgrammable() {
         return null;
