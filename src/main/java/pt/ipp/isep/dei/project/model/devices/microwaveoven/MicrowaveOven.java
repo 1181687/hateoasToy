@@ -29,7 +29,7 @@ public class MicrowaveOven implements Device {
 
     @Override
     public String getName() {
-        return name;
+        return this.name;
     }
 
     @Override
