@@ -23,7 +23,7 @@ class EditConfigurationDeviceControllerTest {
     private EditConfigurationDeviceController controller;
     private House house;
     private static final String FRIDGE_TYPE = "Fridge";
-    private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
+    private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
 
 
     @BeforeEach

@@ -19,7 +19,7 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
     private List<Program> programList;
 
     public DishWasherSpecs() {
-        this.typeName = "Dishwasher";
+        this.typeName = "DishWasher";
         this.programList = new ArrayList<>();
     }
 

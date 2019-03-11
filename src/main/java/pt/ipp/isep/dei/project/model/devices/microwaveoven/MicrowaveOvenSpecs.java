@@ -17,7 +17,7 @@ public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
     private List<Program> programList;
 
     public MicrowaveOvenSpecs() {
-        this.typeName = "Microwave Oven";
+        this.typeName = "MicrowaveOven";
         this.programList = new ArrayList<>();
     }
 
