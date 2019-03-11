@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllersTests;
+package pt.ipp.isep.dei.project.controllersTests.importReadingsFromCSVControllerTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

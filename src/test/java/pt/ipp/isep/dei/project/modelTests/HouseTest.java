@@ -33,10 +33,10 @@ public class HouseTest {
     private Room kitchen;
     private Device electricWaterHeater;
     private static final String FRIDGE_TYPE = "Fridge";
-    private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
-    private static final String DISHWASHER_TYPE = "Dishwasher";
+    private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
+    private static final String DISHWASHER_TYPE = "DishWasher";
     private static final String LAMP_TYPE = "Lamp";
-    private static final String WASHING_MACHINE_TYPE = "Washing Machine";
+    private static final String WASHING_MACHINE_TYPE = "WashingMachine";
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
 
 
@@ -958,20 +958,19 @@ public class HouseTest {
         house.addRoom(room1);
         house.addRoom(room2);
 
-        String expectedResult = "Electric Water Heater\n" +
-                "- Device Name: ElectricWaterHeaterSpecs, Location: KitchenBasement.\n" +
+        String expectedResult = "WashingMachine\n" +
+                "- Device Name: WashingMachineBosh, Location: Kitchen.\n" +
                 "\n" +
-                "Dishwasher\n" +
+                "DishWasher\n" +
                 "- Device Name: DishWasherSpecs, Location: Kitchen.\n" +
                 "- Device Name: DishWasherTeka, Location: KitchenBasement.\n" +
                 "\n" +
-                "Washing Machine\n" +
-                "- Device Name: WashingMachineBosh, Location: Kitchen.\n" +
+                "ElectricWaterHeater\n" +
+                "- Device Name: ElectricWaterHeaterSpecs, Location: KitchenBasement.\n" +
                 "\n" +
                 "Fridge\n" +
                 "- Device Name: FridgeAriston, Location: Kitchen.\n" +
-                "- Device Name: FridgeSiemens, Location: KitchenBasement.\n" +
-                "\n";
+                "- Device Name: FridgeSiemens, Location: KitchenBasement.\n\n";
 
         String result = house.getDeviceListContentNameTypeLocationByGrid(0);
         //Assert
@@ -1005,7 +1004,7 @@ public class HouseTest {
         Room room = new Room("Room", 2, dim);
 
         // ElectricWaterHeaterSpecs Instantiation
-        Device device0 = housegrid.createDevice(ELECTRIC_W_H_TYPE, "Electric Water Heater", room);
+        Device device0 = housegrid.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeater", room);
         device0.setAttributesDevType("Hot-Water Temperature",50);
         device0.setAttributesDevType("Volume Of Water To Heat",150);
         device0.setAttributesDevType("Performance Ratio",0.9);
@@ -1015,13 +1014,13 @@ public class HouseTest {
 
         int coldWaterTempPosition = 5;
         int volumeOfWaterToHeatPosition = 6;
-        housegrid.setDeviceAttribute("Electric Water Heater", 0, coldWaterTempPosition, 30);
-        housegrid.setDeviceAttribute("Electric Water Heater", 0, volumeOfWaterToHeatPosition, 100);
+        housegrid.setDeviceAttribute("ElectricWaterHeater", 0, coldWaterTempPosition, 30);
+        housegrid.setDeviceAttribute("ElectricWaterHeater", 0, volumeOfWaterToHeatPosition, 100);
 
         double expectedResult = 2.09;
 
         // Act
-        double result = housegrid.getDailyEnergyConsumptionOfADevice("Electric Water Heater", 0);
+        double result = housegrid.getDailyEnergyConsumptionOfADevice("ElectricWaterHeater", 0);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -1322,7 +1321,7 @@ public class HouseTest {
         String expectedResult = "Bosch Tronic 3000";
 
         // Act
-        String result = house.getDeviceNameOfATypeByPosition("Electric Water Heater", 0);
+        String result = house.getDeviceNameOfATypeByPosition("ElectricWaterHeater", 0);
 
         assertEquals(expectedResult, result);
     }
@@ -1334,7 +1333,7 @@ public class HouseTest {
         String expectedResult = "There are no devices in the device list.";
 
         // Act
-        String result = house.getDeviceNameOfATypeByPosition("Electric Water Heater", 0);
+        String result = house.getDeviceNameOfATypeByPosition("ElectricWaterHeater", 0);
 
         assertEquals(expectedResult, result);
     }

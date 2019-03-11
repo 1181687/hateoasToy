@@ -22,7 +22,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     private double nominalPower;
 
     public ElectricWaterHeaterSpecs() {
-        this.typeName = "Electric Water Heater";
+        this.typeName = "ElectricWaterHeater";
     }
 
     @Override
