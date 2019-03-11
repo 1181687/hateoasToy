@@ -45,7 +45,7 @@ public class TelevisionTest {
         // devices
         house.createDevice("Television", "Flat Screen TV", bedroom);
 
-        // Freezer
+        // Television
         television = house.createDevice("Television", "Smart TV", bedroom);
         television.setAttributesDevType("Nominal Power", 90.0);
         television.setAttributesDevType("Standby Power", 30.0);
