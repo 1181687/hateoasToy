@@ -24,10 +24,10 @@ public class RoomListTest {
 
     private House house;
     private static final String FRIDGE_TYPE = "Fridge";
-    private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
-    private static final String DISHWASHER_TYPE = "Dishwasher";
+    private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
+    private static final String DISHWASHER_TYPE = "DishWasher";
     private static final String LAMP_TYPE = "Lamp";
-    private static final String WASHING_MACHINE_TYPE = "Washing Machine";
+    private static final String WASHING_MACHINE_TYPE = "WashingMachine";
 
 
     @BeforeEach

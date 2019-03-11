@@ -52,8 +52,8 @@ class ElectricOvenTest {
 
 
         // devices
-        house.createDevice("Electric Oven", "Kenmore Elite 95067", kitchen);
-        electricOven = house.createDevice("Electric Oven", "Kenmore Elite 95053", kitchen);
+        house.createDevice("ElectricOven", "Kenmore Elite 95067", kitchen);
+        electricOven = house.createDevice("ElectricOven", "Kenmore Elite 95053", kitchen);
         electricOven.setAttributesDevType("Time", 1);
         electricOven.setAttributesDevType("Nominal Power", 1200);
 
@@ -114,7 +114,7 @@ class ElectricOvenTest {
     @Test
     void getTypeTest() {
         // Arrange
-        String expectedResult = "Electric Oven";
+        String expectedResult = "ElectricOven";
 
         // act
         String result = electricOven.getType();

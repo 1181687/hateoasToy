@@ -28,7 +28,7 @@ class ElectricWaterHeaterTest {
     private Reading reading0;
     private Reading reading1;
     private Reading reading2;
-    private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
+    private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
 
 
     @BeforeEach
@@ -132,7 +132,7 @@ class ElectricWaterHeaterTest {
     @Test
     void getTypeTest() {
         // Arrange
-        String expectedResult = "Electric Water Heater";
+        String expectedResult = "ElectricWaterHeater";
 
         // act
         String result = electricWaterHeater.getType();

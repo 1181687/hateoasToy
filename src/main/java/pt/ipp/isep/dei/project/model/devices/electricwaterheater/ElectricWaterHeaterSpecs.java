@@ -22,7 +22,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     private double nominalPower;
 
     public ElectricWaterHeaterSpecs() {
-        this.typeName = "Electric Water Heater";
+        this.typeName = "ElectricWaterHeater";
     }
 
     @Override
@@ -76,8 +76,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     public double getEnergyConsumptionInADay() {
         double specificHeatOfWater = 1.163 / 1000;
         double differenceInTemperature = hotWaterTemperature - coldWaterTemperature;
-        return specificHeatOfWater * volumeOfWaterToHeat * differenceInTemperature
-                * performanceRatio;
+        return specificHeatOfWater * volumeOfWaterToHeat * differenceInTemperature * performanceRatio;
     }
 
     /**

@@ -22,7 +22,7 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
     private List<Program> programList;
 
     public WashingMachineSpecs() {
-        this.typeName = "Washing Machine";
+        this.typeName = "WashingMachine";
         this.programList = new ArrayList<>();
     }
 

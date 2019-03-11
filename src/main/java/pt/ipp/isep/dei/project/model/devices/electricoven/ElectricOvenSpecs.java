@@ -20,7 +20,7 @@ public class ElectricOvenSpecs implements DeviceSpecs {
 
     public ElectricOvenSpecs() {
 
-        this.typeName = "Electric Oven";
+        this.typeName = "ElectricOven";
         this.programList = new ArrayList<>();
     }
 

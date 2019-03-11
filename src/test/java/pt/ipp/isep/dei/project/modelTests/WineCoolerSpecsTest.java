@@ -79,6 +79,18 @@ public class WineCoolerSpecsTest {
 
 
     @Test
+    public void getNumberOfAttributes() {
+        // Arrange
+        int expectedResult = 3;
+
+        // Act
+        int result = wineCooler.getSpecs().getNumberOfAttributes();
+
+        // assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void getAttributesToString() {
 
         // Arrange
@@ -92,18 +104,6 @@ public class WineCoolerSpecsTest {
         String result = wineCooler.getSpecs().getAttributesToString();
 
         // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void getNumberOfAttributes() {
-        // Arrange
-        int expectedResult = 3;
-
-        // Act
-        int result = wineCooler.getSpecs().getNumberOfAttributes();
-
-        // assert
         assertEquals(expectedResult, result);
     }
 
