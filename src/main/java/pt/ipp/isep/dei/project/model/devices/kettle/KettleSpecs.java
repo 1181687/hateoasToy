@@ -12,6 +12,7 @@ public class KettleSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_MAXIMUM_VOLUME_WATER = "Maximum volume of Water";
     private static final String ATTRIBUTE_PERFORMANCE_RATIO = "Performance Ratio";
     private static final double BOILING_TEMPERATURE = 100;
+    private static final double SPECIFIC_HEAT_OF_WATER = 1.163 / 1000;
     private static final String ATTRIBUTE_COLD_WATER_TEMP = "Cold-Water Temperature";
     private static final String ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT = "Volume Of Water To Heat";
 
@@ -123,6 +124,17 @@ public class KettleSpecs implements DeviceSpecs {
     }
 
     /**
+     * Method that returns the energy consumption of an Electric Water Heater in a given day based on the cold-water
+     * temperature and the volume of water to be heated.
+     *
+     * @return Energy consumption of the device in a given day.
+     */
+    public double getEnergyConsumptionInADay() {
+        double differenceInTemperature = BOILING_TEMPERATURE - coldWaterTemperature;
+        return SPECIFIC_HEAT_OF_WATER * volumeOfWaterToHeat * differenceInTemperature * performanceRatio;
+    }
+
+    /**
      * method that get the attributes by strings.
      *
      * @return an attribute of the electricWater.
@@ -222,6 +234,14 @@ public class KettleSpecs implements DeviceSpecs {
         }
     }
 
+    /**
+     * get method
+     * @param attributeName string name of attribute
+     * @return type data of the attribute (ex.integer, double)
+     */
+    public String getAttributeDataType(String attributeName) {
+        return getAttributeValue(attributeName).getClass().getName().substring(10);
+    }
 
 
 
