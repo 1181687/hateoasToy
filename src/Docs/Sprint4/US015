@@ -20,5 +20,7 @@ INDICAR AQUI RESULTADOS ESPERADOS DOS TESTES
 ASSUMPTIONS:
 - Regarding sensors, only the geographical area sensors are imported.
 - There is User interaction: the application asks the user the location of the files to be imported.
+- For user convenience the data to be imported is in the form of two DTO (Geographical Area DTO and SensorDTO)
+thar are imported at the same time instead of importing the two referred DTO's one at a time.
 
 OTHER INFORMATION:

@@ -1,0 +1,44 @@
+@startuml
+
+House "1" -> "1" GeographicalArea
+GeographicalArea "1" -> "1" SensorList
+SensorList "1" --> "0*" Sensor
+Sensor "1" --> "0*" Reading
+
+
+Class House {
+-field1
+-field2
++method1()
++method2()
+}
+
+Class GeographicalArea {
+-field1
+-field2
++method1()
++method2()
+}
+
+Class SensorList {
+-field1
+-field2
++method1()
++method2()
+}
+
+Class Sensor {
+-field1
+-field2
++method1()
++method2()
+}
+
+Class Reading {
+-field1
+-field2
++method1()
++method2()
+}
+
+@enduml
