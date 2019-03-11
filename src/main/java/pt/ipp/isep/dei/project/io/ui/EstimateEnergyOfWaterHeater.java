@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.EstimateEnergyOfWaterHeaterController;
-import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.house.House;
 
 public class EstimateEnergyOfWaterHeater {
     private EstimateEnergyOfWaterHeaterController controller;
@@ -11,7 +11,7 @@ public class EstimateEnergyOfWaterHeater {
     }
 
     public void run() {
-        System.out.println("Currently, there are " + controller.getNumberOfWaterHeaters() + " electric water heaters in the house. " +
+        System.out.println("Currently, there are " + controller.getNumberOfWaterHeaters() + " electric water heaters in the housegrid. " +
                 "To estimate the energy used, you will now insert some required values for each one.\n");
         int devicePosition = 0;
         while (devicePosition != controller.getNumberOfWaterHeaters()) {
@@ -27,7 +27,7 @@ public class EstimateEnergyOfWaterHeater {
                     + controller.getEnergyConsumptionOfAWaterHeater(nameOfDevice) + " kWh.\n");
             devicePosition++;
         }
-        System.out.println("The total energy used by the electric water heaters in the house (based on the values " +
+        System.out.println("The total energy used by the electric water heaters in the housegrid (based on the values " +
                 "inserted) is " + controller.getTotalEnergyConsumptionOfAllElectricWaterHeaters() + " kWh.\n");
     }
 }

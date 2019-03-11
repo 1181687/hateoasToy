@@ -1,9 +1,9 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddSensorToRoomController;
-import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.RoomList;
-import pt.ipp.isep.dei.project.model.SensorTypeList;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.RoomList;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
 import java.util.Scanner;
 
@@ -23,7 +23,7 @@ public class AddSensorToRoom {
         Scanner read = new Scanner(System.in);
 
         if (controller.isRoomListEmpty()) {
-            System.out.println("There are no rooms in the house. Please create a room");
+            System.out.println("There are no rooms in the housegrid. Please create a room");
         } else if (controller.isSensorTypeListEmpty()) {
             System.out.println("There are no sensor types created. Please create one.");
         } else {

@@ -1,9 +1,9 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.HouseGrid;
 import pt.ipp.isep.dei.project.model.Measurable;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 
 import java.time.LocalDateTime;
 
@@ -23,7 +23,7 @@ public class GetEnergyConsumptionController {
 
     //DEVICE
     /**
-     * Method that returns the content of all the devices in the house.
+     * Method that returns the content of all the devices in the housegrid.
      *
      * @return String with the list of devices content.
      */
@@ -32,16 +32,16 @@ public class GetEnergyConsumptionController {
     }
 
     /**
-     * Method that returns all the devices in the house.
+     * Method that returns all the devices in the housegrid.
      *
-     * @return DeviceList with all the devices in the house.
+     * @return DeviceList with all the devices in the housegrid.
      */
     public int getNumberOfDevices() {
         return house.getNumberOfDevices();
     }
 
     /**
-     * Method that returns a device by its position in the list of all devices in the house.
+     * Method that returns a device by its position in the list of all devices in the housegrid.
      *
      * @param position Position of the device in the list of all devices.
      * @return Device1 chosen.
@@ -88,7 +88,7 @@ public class GetEnergyConsumptionController {
     }
 
     /**
-     * Method that gets the name of the house grid.
+     * Method that gets the name of the housegrid grid.
      * @return
      */
     public String getHouseGridName(){

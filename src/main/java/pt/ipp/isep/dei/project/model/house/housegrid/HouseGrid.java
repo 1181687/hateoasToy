@@ -1,6 +1,12 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.house.housegrid;
 
+import pt.ipp.isep.dei.project.model.Measurable;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomList;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceList;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -13,7 +19,7 @@ public class HouseGrid implements Measurable {
     private RoomList roomList;
 
     /**
-     * constructor of a house grid that receives a name, a room list, a list of power sources and a maximum contracted power.
+     * constructor of a housegrid grid that receives a name, a room list, a list of power sources and a maximum contracted power.
      *
      * @param houseGridName
      */
@@ -63,7 +69,7 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * method that gets the name of the house grid.
+     * method that gets the name of the housegrid grid.
      */
     public String getName() {
         return this.houseGridName;
@@ -77,7 +83,7 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * method that get the rooms connected to the house grid.
+     * method that get the rooms connected to the housegrid grid.
      */
     public RoomList getRoomList() {
         return roomList;
@@ -109,7 +115,7 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * Method that detaches a room from a house grid. It return a true in case of success
+     * Method that detaches a room from a housegrid grid. It return a true in case of success
      * and false in the case of a failure.
      *
      * @param roomToDetach
@@ -126,7 +132,7 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * Method that attaches a room in the house grid's room list.
+     * Method that attaches a room in the housegrid grid's room list.
      *
      * @param room Speficied room to attach.
      */
@@ -145,9 +151,9 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * Method that attaches a list of existing rooms to a house grid.
+     * Method that attaches a list of existing rooms to a housegrid grid.
      *
-     * @return a list of existing rooms attached to a house grid.
+     * @return a list of existing rooms attached to a housegrid grid.
      */
     public String getRoomListContent() {
         return this.roomList.getRoomListContent();
@@ -225,7 +231,7 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * method that returns the name of house grid
+     * method that returns the name of housegrid grid
      *
      * @return String
      */
@@ -237,7 +243,7 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * Method that calculates the total energy consumption of a house grid in a given interval.
+     * Method that calculates the total energy consumption of a housegrid grid in a given interval.
      *
      * @param startDate the initial date/hour of the period to be considered
      * @param endDate   the final date/hour of the period to be considered

@@ -1,8 +1,14 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.house;
 
 
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.MeasurableList;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceType;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -54,7 +60,7 @@ public class House {
 
     /**
      * creates a Device and returns true if type name exists and deviceName not exists in the
-     * rooms of the house
+     * rooms of the housegrid
      *
      * @param typeName   String type name of Device
      * @param deviceName String device name
@@ -108,7 +114,7 @@ public class House {
     }
 
     /**
-     * Method that adds a house grid to the list.
+     * Method that adds a housegrid grid to the list.
      *
      * @param houseGrid House grid used.
      */
@@ -175,7 +181,7 @@ public class House {
     }
 
     /**
-     * method that adds a room to the house's roomlist
+     * method that adds a room to the housegrid's roomlist
      *
      * @param room given room to be added
      * @return true if adds, false if doesn't
@@ -185,16 +191,16 @@ public class House {
     }
 
     /**
-     * Get the location of the house.
+     * Get the location of the housegrid.
      *
-     * @return the location of the house.
+     * @return the location of the housegrid.
      */
     public Location getLocation() {
         return this.address.getLocation();
     }
 
     /**
-     * method that get the last measurement of house area.
+     * method that get the last measurement of housegrid area.
      *
      * @param type
      * @return the last measurement with a location and a type of sensor.
@@ -204,7 +210,7 @@ public class House {
     }
 
     /**
-     * Method that get the average daily measurement of the house area.
+     * Method that get the average daily measurement of the housegrid area.
      *
      * @param measurementType
      * @param startDate
@@ -224,7 +230,7 @@ public class House {
     }
 
     /**
-     * method that get the total daily measurement of the house area.
+     * method that get the total daily measurement of the housegrid area.
      *
      * @param measurementType
      * @param day
@@ -361,7 +367,7 @@ public class House {
     }
 
     /**
-     * method that gets a List of all devices in a house grid, by it position in a HouseGridList
+     * method that gets a List of all devices in a housegrid grid, by it position in a HouseGridList
      *
      * @param position position of the grid in the houseGridList
      * @return List <Device>
@@ -411,7 +417,7 @@ public class House {
     }
 
     /**
-     * Method that checks if the house grid's list is empty.
+     * Method that checks if the housegrid grid's list is empty.
      *
      * @return True or false.
      */
@@ -420,7 +426,7 @@ public class House {
     }
 
     /**
-     * Method that creates a house grid.
+     * Method that creates a housegrid grid.
      *
      * @param grid Name of the grid.
      * @return New object of the class housegrid.
@@ -442,7 +448,7 @@ public class House {
     }
 
     /**
-     * Method that shows the content of the house grids in the list.
+     * Method that shows the content of the housegrid grids in the list.
      *
      * @return String with the required information.
      */
@@ -493,7 +499,7 @@ public class House {
      */
     public String getGridNameByPosition(int position) {
         if (listHouseGrids.isEmpty()) {
-            return "There are no Grids in the house";
+            return "There are no Grids in the housegrid";
         }
         return listHouseGrids.get(position).getName();
     }
@@ -501,7 +507,7 @@ public class House {
     /**
      * Method that checks if a room isn't already in a specific grid in the list.
      *
-     * @param chosenGrid Specified house grid in the list.
+     * @param chosenGrid Specified housegrid grid in the list.
      * @param room       Specified room.
      * @return True or false.
      */
@@ -526,10 +532,10 @@ public class House {
     }
 
     /**
-     * Method that displays the rooms in the house grid list
+     * Method that displays the rooms in the housegrid grid list
      *
      * @param position
-     * @return rooms in the house grid
+     * @return rooms in the housegrid grid
      */
     public String getRoomsInTheHouseGrid(int position) {
         return listHouseGrids.get(position).getRoomListContent();
@@ -539,7 +545,7 @@ public class House {
     /**
      * Method that calls the method in housegrid that detaches a selected room from the list of HouseGrids.
      *
-     * @param houseGridSelected Specified house grid in the list.
+     * @param houseGridSelected Specified housegrid grid in the list.
      * @param roomSelected      Specified room.
      */
     public boolean detachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
@@ -550,7 +556,7 @@ public class House {
     /**
      * Method that asks the class housegrid to add a room to it's list.
      *
-     * @param houseGridSelected Specified house grid in the list.
+     * @param houseGridSelected Specified housegrid grid in the list.
      * @param roomSelected      Specified room.
      */
     public void attachRoomInASpecificHouseGridInTheList(HouseGrid houseGridSelected, Room roomSelected) {
@@ -560,7 +566,7 @@ public class House {
 
 
     /**
-     * Method that gets all the devices of a certain type in the house.
+     * Method that gets all the devices of a certain type in the housegrid.
      *
      * @param type Required type.
      * @return DeviceList with all the devices of the required type.
@@ -570,7 +576,7 @@ public class House {
     }
 
     /**
-     * Method that returns the number of devices of a certain type in the house.
+     * Method that returns the number of devices of a certain type in the housegrid.
      *
      * @param type Required type.
      * @return Integer with the number of devices.
@@ -580,7 +586,7 @@ public class House {
     }
 
     /**
-     * Method that returns a device in the house by its name.
+     * Method that returns a device in the housegrid by its name.
      *
      * @param deviceName Device name.
      * @return Device with the specified name.
@@ -600,7 +606,7 @@ public class House {
     }
 
     /**
-     * Method that sets the value of an attribute of a device in the house.
+     * Method that sets the value of an attribute of a device in the housegrid.
      *
      * @param deviceName    Device name.
      * @param attributeName Name of the attribute to be set.
@@ -613,7 +619,7 @@ public class House {
     }
 
     /**
-     * Method that returns the daily energy consumption of a device in the house.
+     * Method that returns the daily energy consumption of a device in the housegrid.
      *
      * @param deviceName Device name.
      * @return Double with the energy consumption.
@@ -624,7 +630,7 @@ public class House {
     }
 
     /**
-     * Method that returns the combined energy consumption of all the devices of a certain type in the house.
+     * Method that returns the combined energy consumption of all the devices of a certain type in the housegrid.
      *
      * @param type Type of the devices.
      * @return Double with the combined energy consumption.
@@ -652,7 +658,7 @@ public class House {
     }
 
     /**
-     * Method that returns the content of all the devices in the house.
+     * Method that returns the content of all the devices in the housegrid.
      *
      * @return String with the list of devices content.
      */
@@ -661,25 +667,25 @@ public class House {
     }
 
     /**
-     * Method that returns all the devices in the house.
+     * Method that returns all the devices in the housegrid.
      *
-     * @return DeviceList with all the devices in the house.
+     * @return DeviceList with all the devices in the housegrid.
      */
     public List<Device> getAllDevices() {
         return roomList.getAllDevicesList();
     }
 
     /**
-     * Method that returns all the devices in the house.
+     * Method that returns all the devices in the housegrid.
      *
-     * @return DeviceList with all the devices in the house.
+     * @return DeviceList with all the devices in the housegrid.
      */
     public int getNumberOfDevices() {
         return getAllDevices().size();
     }
 
     /**
-     * Method that returns a device by its position in the list of all devices in the house.
+     * Method that returns a device by its position in the list of all devices in the housegrid.
      *
      * @param position Position of the device in the list of all devices.
      * @return Device chosen.

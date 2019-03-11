@@ -1,8 +1,5 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 class CreateHouseGridControllerTest {
 /*
     @Test
@@ -12,9 +9,9 @@ class CreateHouseGridControllerTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        House housegrid = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
-        CreateHouseGridController ctrl = new CreateHouseGridController(house);
+        CreateHouseGridController ctrl = new CreateHouseGridController(housegrid);
         String gridName = "Grid";
         housegrid grid = ctrl.createANewHouseGrid(gridName);
         ctrl.addHouseGridToTheListOfHouseGrids(grid);
@@ -33,9 +30,9 @@ class CreateHouseGridControllerTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        House housegrid = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
-        CreateHouseGridController ctrl = new CreateHouseGridController(house);
+        CreateHouseGridController ctrl = new CreateHouseGridController(housegrid);
         String gridName = "Grid";
         housegrid grid = ctrl.createANewHouseGrid(gridName);
         ctrl.addHouseGridToTheListOfHouseGrids(grid);

@@ -1,9 +1,9 @@
 package pt.ipp.isep.dei.project.model.devices.washingmachine;
 
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.house.Room;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;

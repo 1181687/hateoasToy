@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetFirstHottestDayHouseAreaController;
-import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -29,10 +29,10 @@ public class GetFirstHottestDayHouseArea {
             }
         } while (flag);
         if (Double.isNaN(ctrl.getHighestReadingOfASensor(initialDate, finalDate)) || (!(ctrl.checkMeasurementExistenceBetweenDates(ctrl.getHouseLocation(), initialDate, finalDate)))) {
-            System.out.println("There are no " + ctrl.getTypeTemperature() + " sensors with valid measurements in the house area.");
+            System.out.println("There are no " + ctrl.getTypeTemperature() + " sensors with valid measurements in the housegrid area.");
             return;
         } else {
-            System.out.println("The first hottest day in the house area in the chosen interval is " +
+            System.out.println("The first hottest day in the housegrid area in the chosen interval is " +
                     ctrl.getFirstHighestReadingDateHouseArea(ctrl.getHouseLocation(), ctrl.getTypeTemperature(), initialDate, finalDate) +
                     " (maximum temperature of " +
                     Utils.round(ctrl.getFirstHighestReadingValueHouseArea(ctrl.getHouseLocation(), ctrl.getTypeTemperature(), initialDate, finalDate), 2) + " Celsius).\n");

@@ -1,4 +1,6 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.house;
+
+import pt.ipp.isep.dei.project.model.Location;
 
 public class Address {
     private String zipCode;
@@ -46,7 +48,7 @@ public class Address {
     }
 
     /**
-     * Get the location on the address of the house.
+     * Get the location on the address of the housegrid.
      * @return a location
      */
     public Location getLocation() {

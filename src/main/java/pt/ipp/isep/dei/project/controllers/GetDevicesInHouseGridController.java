@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.house.House;
 
 /**
  * US160 As a Power User[or administrator], i want to get a list of all devices in a grid,
@@ -24,7 +24,7 @@ public class GetDevicesInHouseGridController {
     }
 
     /**
-     * Method that shows the content of the house grids in the list.
+     * Method that shows the content of the housegrid grids in the list.
      *
      * @return String
      */
@@ -33,7 +33,7 @@ public class GetDevicesInHouseGridController {
     }
 
     /**
-     * Method that checks if the house grid's list is empty.
+     * Method that checks if the housegrid grid's list is empty.
      * @return True or false.
      */
     public boolean isHouseGridListEmpty() {
@@ -57,7 +57,7 @@ public class GetDevicesInHouseGridController {
     }
 
     /**
-     * method that gets the name of House Grid by it's position in the list of house grids.
+     * method that gets the name of House Grid by it's position in the list of housegrid grids.
      * @param position position of the House Grid
      * @return String name
      */

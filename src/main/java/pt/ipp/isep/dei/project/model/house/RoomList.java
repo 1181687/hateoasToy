@@ -1,6 +1,7 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.house;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -106,7 +107,7 @@ public class RoomList {
     }
 
     /**
-     * Method that displays a choosen Room (in a specific position) with its characteristics (name, house floor, height, length and width)
+     * Method that displays a choosen Room (in a specific position) with its characteristics (name, housegrid floor, height, length and width)
      * @param position position of the Room in the Room List
      * @return Content of the Room
      */
@@ -135,9 +136,9 @@ public class RoomList {
     }
 
     /**
-     * Method that changes the house floor of a Room
+     * Method that changes the housegrid floor of a Room
      * @param chosenRoom       room that you want to change
-     * @param changeHouseFloor new house floor for the room
+     * @param changeHouseFloor new housegrid floor for the room
      */
     public void setRoomFloor(int chosenRoom, int changeHouseFloor) {
         listOfRooms.get(chosenRoom).setHouseFloor(changeHouseFloor);

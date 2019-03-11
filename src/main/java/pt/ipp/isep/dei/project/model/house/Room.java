@@ -1,6 +1,11 @@
-package pt.ipp.isep.dei.project.model;
+package pt.ipp.isep.dei.project.model.house;
 
+import pt.ipp.isep.dei.project.model.Measurable;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorList;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -98,7 +103,7 @@ public class Room implements Measurable {
     /**
      * Method that defines the House Floor number of the room
      *
-     * @param houseFloor house floor of the room (int number)
+     * @param houseFloor housegrid floor of the room (int number)
      */
     public void setHouseFloor(int houseFloor) {
         this.houseFloor = houseFloor;
@@ -114,7 +119,7 @@ public class Room implements Measurable {
     }
 
     /**
-     * method that displays a Room with its characteristics (name, house floor, height, length and width)
+     * method that displays a Room with its characteristics (name, housegrid floor, height, length and width)
      *
      * @return Rooms
      */
