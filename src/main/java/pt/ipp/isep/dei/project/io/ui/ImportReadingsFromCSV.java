@@ -58,7 +58,7 @@ public class ImportReadingsFromCSV {
             return;
         }
         System.out.println("\nAll readings were imported successfully.\n");
-        if (Objects.isNull(scanner)) {
+        if (!Objects.isNull(scanner)) {
             scanner.close();
         }
     }
