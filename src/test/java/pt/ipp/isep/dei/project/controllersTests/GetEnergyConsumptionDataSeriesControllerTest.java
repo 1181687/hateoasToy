@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 public class GetEnergyConsumptionDataSeriesControllerTest {
     /*private GetEnergyConsumptionDataSeriesController ctrl;
-    private House house;
+    private House housegrid;
     private housegrid houseGrid;
 
     @BeforeEach
@@ -19,14 +19,14 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        housegrid = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation);
-        house.setAddress(address);
-        house.setInsertedGeoArea(insertedGeoArea);
+        housegrid.setAddress(address);
+        housegrid.setInsertedGeoArea(insertedGeoArea);
 
-        this.ctrl = new GetEnergyConsumptionDataSeriesController(house);
+        this.ctrl = new GetEnergyConsumptionDataSeriesController(housegrid);
     }
 
     @Test
@@ -35,7 +35,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //grid
         String gridName = "Grid";
         houseGrid = new housegrid(gridName);
-        house.addGrid(houseGrid);
+        housegrid.addGrid(houseGrid);
 
         String expectedResult = "1 - Name: Grid\n";
 
@@ -59,8 +59,8 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        house.addRoom(room1);
-        house.addRoom(room2);
+        housegrid.addRoom(room1);
+        housegrid.addRoom(room2);
 
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
                 "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
@@ -92,8 +92,8 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         Device device0 = fridgeType.createDevice("Fridgeratah V14", room0);
         Device device1 = washingMachineType.createDevice("Bosch Tronic 3000", room1);
 
-        house.addRoom(room0);
-        house.addRoom(room1);
+        housegrid.addRoom(room0);
+        housegrid.addRoom(room1);
 
         String expectedResult =
                 "1 - Device: Fridgeratah V14, located in room: Kitchen\n" +
@@ -112,7 +112,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //grid
         String gridName = "Grid";
         houseGrid = new housegrid(gridName);
-        house.addGrid(houseGrid);
+        housegrid.addGrid(houseGrid);
 
         int expectedResult = 1;
 
@@ -156,8 +156,8 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        house.addRoom(room1);
-        house.addRoom(room2);
+        housegrid.addRoom(room1);
+        housegrid.addRoom(room2);
 
         int expectResult = 2;
 
@@ -193,7 +193,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         LampType lampType = new LampType();
         Device dev1 = lampType.createDevice("Lamp1", room1);
 
-        house.addRoom(room1);
+        housegrid.addRoom(room1);
 
         int expectResult = 2;
         //act
@@ -209,7 +209,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         int expectResult = 0;
         //act
@@ -225,7 +225,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         // FridgeType Instantiation
         FridgeType fridgeType = new FridgeType();
@@ -289,7 +289,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         // FridgeType Instantiation
         FridgeType fridgeType = new FridgeType();
@@ -341,7 +341,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         LampType lampType = new LampType();
         Device lamp = lampType.createDevice("LampSpecs", room);
@@ -394,7 +394,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         LampType lampType = new LampType();
         Device lamp = lampType.createDevice("LampSpecs", room);
@@ -448,11 +448,11 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //grid
         String gridName = "Grid";
         houseGrid = new housegrid(gridName);
-        house.addGrid(houseGrid);
+        housegrid.addGrid(houseGrid);
 
         houseGrid.addRoom(room);
 
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         LampType lampType = new LampType();
         Device lamp = lampType.createDevice("LampSpecs", room);
@@ -508,9 +508,9 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //grid
         String gridName = "Grid";
         houseGrid = new housegrid(gridName);
-        house.addGrid(houseGrid);
+        housegrid.addGrid(houseGrid);
 
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         houseGrid.addRoom(room);
 
@@ -564,11 +564,11 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        housegrid = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation);
-        house.setAddress(address);
+        housegrid.setAddress(address);
 
         // Act
         boolean result = ctrl.houseGridListIsEmpty();
@@ -583,7 +583,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //grid
         String gridName = "Grid";
         houseGrid = new housegrid(gridName);
-        house.addGrid(houseGrid);
+        housegrid.addGrid(houseGrid);
         // Act
         boolean result = ctrl.houseGridListIsEmpty();
 
@@ -609,7 +609,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         Dimension dimension1 = new Dimension(2, 2, 2);
         Room room1 = new Room(name1, houseFloor1, dimension1);
 
-        house.addRoom(room1);
+        housegrid.addRoom(room1);
 
         //act
         boolean result = ctrl.roomListIsEmpty();
@@ -637,8 +637,8 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         Device dev5 = dishWasherType.createDevice("DishWasherTeka", room2);
         Device dev6 = electricWaterHeaterType.createDevice("ElectricWaterHeaterSpecs", room2);
 
-        house.addRoom(room);
-        house.addRoom(room2);
+        housegrid.addRoom(room);
+        housegrid.addRoom(room2);
 
         // Act
         boolean result = ctrl.deviceListIsEmpty();

@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 class EstimateEnergyOfWaterHeaterControllerTest {
     /*private EstimateEnergyOfWaterHeaterController controller;
-    private House house;
+    private House housegrid;
     private Room kitchen;
     private Room laundry;
     private Device device1;
@@ -20,19 +20,19 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        this.housegrid = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation);
-        house.setAddress(address);
-        house.setInsertedGeoArea(insertedGeoArea);
+        housegrid.setAddress(address);
+        housegrid.setInsertedGeoArea(insertedGeoArea);
 
         // Room Instantiation
         Dimension dim = new Dimension(3, 3.5, 3.5);
         this.kitchen = new Room("Kitchen", 2, dim);
-        house.addRoom(kitchen);
+        housegrid.addRoom(kitchen);
         Dimension dim1 = new Dimension(3, 3.5, 5.5);
         this.laundry = new Room("Laundry", 1, dim1);
-        house.addRoom(laundry);
+        housegrid.addRoom(laundry);
 
         // ElectricWaterHeaters Instantiation
         ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
@@ -50,7 +50,7 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         device2.setAttributesDevType("Volume Of Water To Heat", 70);
 
         // Controller Instantiation
-        this.controller = new EstimateEnergyOfWaterHeaterController(house);
+        this.controller = new EstimateEnergyOfWaterHeaterController(housegrid);
     }
 
     @Test

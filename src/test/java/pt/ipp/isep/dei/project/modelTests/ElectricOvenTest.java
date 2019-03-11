@@ -2,8 +2,13 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.Address;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -47,8 +52,8 @@ class ElectricOvenTest {
 
 
         // devices
-        house.createDevice("Electric Oven", "Kenmore Elite 95067", kitchen);
-        electricOven = house.createDevice("Electric Oven", "Kenmore Elite 95053", kitchen);
+        house.createDevice("ElectricOven", "Kenmore Elite 95067", kitchen);
+        electricOven = house.createDevice("ElectricOven", "Kenmore Elite 95053", kitchen);
         electricOven.setAttributesDevType("Time", 1);
         electricOven.setAttributesDevType("Nominal Power", 1200);
 
@@ -109,7 +114,7 @@ class ElectricOvenTest {
     @Test
     void getTypeTest() {
         // Arrange
-        String expectedResult = "Electric Oven";
+        String expectedResult = "ElectricOven";
 
         // act
         String result = electricOven.getType();

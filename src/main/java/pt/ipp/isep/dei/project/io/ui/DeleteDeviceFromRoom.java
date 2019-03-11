@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.DeleteAndDeactivateDeviceFromRoomController;
-import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.house.House;
 
 public class DeleteDeviceFromRoom {
 
@@ -59,7 +59,7 @@ public class DeleteDeviceFromRoom {
         StringBuilder content = new StringBuilder();
 
         if (this.controller.roomListEmpty()) {
-            System.out.println("There are no rooms in the house. Please create a room.");
+            System.out.println("There are no rooms in the housegrid. Please create a room.");
 
         } else {
             boolean flag = true;

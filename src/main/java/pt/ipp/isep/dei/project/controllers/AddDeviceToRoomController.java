@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.devices.*;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 
 public class AddDeviceToRoomController {
     private House house;
@@ -35,7 +35,7 @@ public class AddDeviceToRoomController {
     /**
      * Method that asks for the list of rooms from the class RoomList.
      *
-     * @return List of house grids.
+     * @return List of housegrid grids.
      */
     public String getRoomListContent() {
         return house.getRoomListContent();
@@ -131,8 +131,8 @@ public class AddDeviceToRoomController {
      */
     public Device createNewDishWasher(String name, double nominalPower, int capacity) {
         device = house.createDevice("DishWasher", name, getSelectedRoom());
-        device.setAttributesDevType(CAPACITY, capacity);
-        device.setAttributesDevType(NOMINAL_POWER, nominalPower);
+        device.getSpecs().setAttributeValue(CAPACITY, capacity);
+        device.getSpecs().setAttributeValue(NOMINAL_POWER, nominalPower);
         return device;
     }
 
@@ -206,9 +206,13 @@ public class AddDeviceToRoomController {
         return devSpecs = device.getSpecs();
     }
 
+    public Programmable asProgrammable () {
+        return programmableDevice = devSpecs.asProgrammable();
+    }
+
     public boolean isProgrammable() {
-        if (devSpecs.isProgrammable()) {
-            programmableDevice = devSpecs.asProgrammable();
+        if (getDevSpecs().isProgrammable()) {
+            programmableDevice = asProgrammable();
             return true;
         }
         return false;

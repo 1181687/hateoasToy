@@ -2,11 +2,11 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -119,7 +119,13 @@ public class WineCoolerTest {
     }
 
     @Test
-    public void setNameWithSameNameTest() {
+    public void setNameWithSameNameTestAwesomeWineCooler() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> wineCooler.setName("Awesome Wine Cooler"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void setNameWithSameNameTestEvenMoreAwesomeWineCooler() {
         Throwable exception = assertThrows(RuntimeException.class, () -> wineCooler.setName("Even More Awesome Wine Cooler"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
@@ -133,12 +139,6 @@ public class WineCoolerTest {
     @Test
     public void setNameWithSameLocationTestWineCooler2() {
         Throwable exception = assertThrows(RuntimeException.class, () -> kitchen.getDeviceByPosition(0).setName("Awesome Wine Cooler"));
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
-
-    @Test
-    public void setNameAlreadyInListTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> wineCooler.setName("Awesome Wine Cooler"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
@@ -467,24 +467,5 @@ public class WineCoolerTest {
         //Assert
         assertFalse(result);
     }
-
-    /*@Test
-    void testIfDeviceIsProgrammableFalse() {
-        //Arrange
-        //Act
-        boolean result = wineCooler.isProgrammable();
-        //Assert
-        assertFalse(result);
-    }
-
-    @Test
-    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
-        //Arrange
-        wineCooler.asProgrammable();
-        //Act
-        boolean result = wineCooler.isProgrammable();
-        //Assert
-        assertFalse(result);
-    }*/
 
 }

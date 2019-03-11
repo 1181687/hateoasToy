@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionDataSeriesController;
-import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.house.House;
 
 import java.time.LocalDateTime;
 
@@ -15,15 +15,15 @@ public class GetEnergyConsumptionDataSeries {
 
     private String getDataSeriesGrid() {
         if (controller.houseGridListIsEmpty()) {
-            return ("Sorry! There are no house grids.");
+            return ("Sorry! There are no housegrid grids.");
         }
         else {
-            String label2 = "Please choose a house grid:\n" + controller.getHouseGridListToString();
+            String label2 = "Please choose a housegrid grid:\n" + controller.getHouseGridListToString();
             int chosenGrid = InputValidator.getIntRange(label2, 1, controller.getHouseGridListSize()) - 1;
             controller.getHouseGridByPosition(chosenGrid);
             while (controller.roomListIsEmpty()) {
-                System.out.println("\"There are no devices in this house grid, so it is not possible to \" " +
-                        "+\ncalculate its energy consumption. Please choose another house grid.\\n\");");
+                System.out.println("\"There are no devices in this housegrid grid, so it is not possible to \" " +
+                        "+\ncalculate its energy consumption. Please choose another housegrid grid.\\n\");");
                 continue;
             }
             LocalDateTime initialDate = Menu.getInitialDate();

@@ -2,8 +2,13 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.Address;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -23,7 +28,7 @@ class ElectricWaterHeaterTest {
     private Reading reading0;
     private Reading reading1;
     private Reading reading2;
-    private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
+    private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
 
 
     @BeforeEach
@@ -127,7 +132,7 @@ class ElectricWaterHeaterTest {
     @Test
     void getTypeTest() {
         // Arrange
-        String expectedResult = "Electric Water Heater";
+        String expectedResult = "ElectricWaterHeater";
 
         // act
         String result = electricWaterHeater.getType();

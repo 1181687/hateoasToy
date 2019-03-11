@@ -2,9 +2,9 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
@@ -25,7 +25,7 @@ public class ElectricWaterHeaterTypeTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        Device expectedResult = house.createDevice("Electric Water Heater", name, room);
+        Device expectedResult = house.createDevice("ElectricWaterHeater", name, room);
         //Act
         Device result = room.getDeviceByPosition(0);
         //Assert

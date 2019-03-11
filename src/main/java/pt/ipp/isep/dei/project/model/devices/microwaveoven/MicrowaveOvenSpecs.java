@@ -17,7 +17,7 @@ public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
     private List<Program> programList;
 
     public MicrowaveOvenSpecs() {
-        this.typeName = "Microwave Oven";
+        this.typeName = "MicrowaveOven";
         this.programList = new ArrayList<>();
     }
 
@@ -71,7 +71,7 @@ public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
     }
 
     /**
-     * set method to Nominal Power of an Electric Oven
+     * set method to Nominal Power of an microwave oven
      *
      * @param nominalPower
      * @return
@@ -185,6 +185,5 @@ public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
     public Program createNewProgram(String programName, ProgramSpecs specs) {
         return new TimeConstantProgram(programName, specs);
     }
-
 
 }

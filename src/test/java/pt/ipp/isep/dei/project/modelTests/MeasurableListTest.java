@@ -3,8 +3,13 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.MeasurableList;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.Address;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
@@ -20,10 +25,10 @@ class MeasurableListTest {
     private Room room2;
     private MeasurableList mList;
     private static final String FRIDGE_TYPE = "Fridge";
-    private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
-    private static final String DISHWASHER_TYPE = "Dishwasher";
+    private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
+    private static final String DISHWASHER_TYPE = "DishWasher";
     private static final String LAMP_TYPE = "Lamp";
-    private static final String WASHING_MACHINE_TYPE = "Washing Machine";
+    private static final String WASHING_MACHINE_TYPE = "WashingMachine";
 
 
     @BeforeEach
@@ -44,10 +49,10 @@ class MeasurableListTest {
         this.dev1 = house.createDevice(FRIDGE_TYPE, "FridgeAriston", room1);
         dev1.setAttributesDevType("Nominal Power",500);
 
-        this.dev2 = house.createDevice(WASHING_MACHINE_TYPE, "Washing Machine", room1);
+        this.dev2 = house.createDevice(WASHING_MACHINE_TYPE, "WashingMachine", room1);
         dev2.setAttributesDevType("Nominal Power",250);
 
-        this.dev3 = house.createDevice(DISHWASHER_TYPE, "Dishwasher", room2);
+        this.dev3 = house.createDevice(DISHWASHER_TYPE, "DishWasher", room2);
         dev3.setAttributesDevType("Nominal Power",250);
 
         this.mList = new MeasurableList();
