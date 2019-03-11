@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.ImportReadingsFromCSVController;
-import pt.ipp.isep.dei.project.model.GeographicalAreaList;
+import pt.ipp.isep.dei.project.controllers.importReadingsFromCSVController.ImportReadingsFromCSVController;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.utils.CSVReader;
 
 import java.io.File;

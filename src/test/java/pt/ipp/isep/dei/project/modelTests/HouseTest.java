@@ -2,8 +2,19 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.house.Address;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -22,10 +33,10 @@ public class HouseTest {
     private Room kitchen;
     private Device electricWaterHeater;
     private static final String FRIDGE_TYPE = "Fridge";
-    private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
-    private static final String DISHWASHER_TYPE = "Dishwasher";
+    private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
+    private static final String DISHWASHER_TYPE = "DishWasher";
     private static final String LAMP_TYPE = "Lamp";
-    private static final String WASHING_MACHINE_TYPE = "Washing Machine";
+    private static final String WASHING_MACHINE_TYPE = "WashingMachine";
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
 
 
@@ -947,20 +958,19 @@ public class HouseTest {
         house.addRoom(room1);
         house.addRoom(room2);
 
-        String expectedResult = "Electric Water Heater\n" +
-                "- Device Name: ElectricWaterHeaterSpecs, Location: KitchenBasement.\n" +
+        String expectedResult = "WashingMachine\n" +
+                "- Device Name: WashingMachineBosh, Location: Kitchen.\n" +
                 "\n" +
-                "Dishwasher\n" +
+                "DishWasher\n" +
                 "- Device Name: DishWasherSpecs, Location: Kitchen.\n" +
                 "- Device Name: DishWasherTeka, Location: KitchenBasement.\n" +
                 "\n" +
-                "Washing Machine\n" +
-                "- Device Name: WashingMachineBosh, Location: Kitchen.\n" +
+                "ElectricWaterHeater\n" +
+                "- Device Name: ElectricWaterHeaterSpecs, Location: KitchenBasement.\n" +
                 "\n" +
                 "Fridge\n" +
                 "- Device Name: FridgeAriston, Location: Kitchen.\n" +
-                "- Device Name: FridgeSiemens, Location: KitchenBasement.\n" +
-                "\n";
+                "- Device Name: FridgeSiemens, Location: KitchenBasement.\n\n";
 
         String result = house.getDeviceListContentNameTypeLocationByGrid(0);
         //Assert
@@ -994,23 +1004,23 @@ public class HouseTest {
         Room room = new Room("Room", 2, dim);
 
         // ElectricWaterHeaterSpecs Instantiation
-        Device device0 = house.createDevice(ELECTRIC_W_H_TYPE, "Electric Water Heater", room);
+        Device device0 = housegrid.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeater", room);
         device0.setAttributesDevType("Hot-Water Temperature",50);
         device0.setAttributesDevType("Volume Of Water To Heat",150);
         device0.setAttributesDevType("Performance Ratio",0.9);
         device0.setAttributesDevType("Nominal Power",100);
 
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         int coldWaterTempPosition = 5;
         int volumeOfWaterToHeatPosition = 6;
-        house.setDeviceAttribute("Electric Water Heater", 0, coldWaterTempPosition, 30);
-        house.setDeviceAttribute("Electric Water Heater", 0, volumeOfWaterToHeatPosition, 100);
+        housegrid.setDeviceAttribute("ElectricWaterHeater", 0, coldWaterTempPosition, 30);
+        housegrid.setDeviceAttribute("ElectricWaterHeater", 0, volumeOfWaterToHeatPosition, 100);
 
         double expectedResult = 2.09;
 
         // Act
-        double result = house.getDailyEnergyConsumptionOfADevice("Electric Water Heater", 0);
+        double result = housegrid.getDailyEnergyConsumptionOfADevice("ElectricWaterHeater", 0);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -1049,7 +1059,7 @@ public class HouseTest {
         // Arrange
 
         int position = 0;
-        String expectedResult = "There are no Grids in the house";
+        String expectedResult = "There are no Grids in the housegrid";
 
         // Act
         String result = house.getGridNameByPosition(position);
@@ -1090,11 +1100,11 @@ public class HouseTest {
         Dimension dimension1 = new Dimension(2, 2, 2);
         Room room = new Room(roomName, houseFloor1, dimension1);
         String gridName = "Grid";
-        housegrid grid = house.createHouseGrid(gridName);
-        house.addGrid(grid);
+        housegrid grid = housegrid.createHouseGrid(gridName);
+        housegrid.addGrid(grid);
 
         // Act
-        boolean result = house.checkIfRoomIsAlreadyInHouseGrid(grid, room);
+        boolean result = housegrid.checkIfRoomIsAlreadyInHouseGrid(grid, room);
 
         // Assert
         assertFalse(result);
@@ -1311,7 +1321,7 @@ public class HouseTest {
         String expectedResult = "Bosch Tronic 3000";
 
         // Act
-        String result = house.getDeviceNameOfATypeByPosition("Electric Water Heater", 0);
+        String result = house.getDeviceNameOfATypeByPosition("ElectricWaterHeater", 0);
 
         assertEquals(expectedResult, result);
     }
@@ -1323,7 +1333,7 @@ public class HouseTest {
         String expectedResult = "There are no devices in the device list.";
 
         // Act
-        String result = house.getDeviceNameOfATypeByPosition("Electric Water Heater", 0);
+        String result = house.getDeviceNameOfATypeByPosition("ElectricWaterHeater", 0);
 
         assertEquals(expectedResult, result);
     }
@@ -1759,10 +1769,10 @@ public class HouseTest {
             //Arrange
             String name = "Main Grid";
             housegrid grid = new housegrid(name);
-            this.house.addGrid(grid);
+            this.housegrid.addGrid(grid);
             //Act
             Throwable exception = assertThrows(RuntimeException.class, () ->
-                    this.house.createHouseGrid(name)
+                    this.housegrid.createHouseGrid(name)
             );
             //Assert
             assertEquals("Name already exists. Please, write a new one.", exception.getMessage());
@@ -1774,7 +1784,7 @@ public class HouseTest {
             String name = "Main Grid";
             housegrid expectedResult = new housegrid(name);
             //Act
-            housegrid result = this.house.createHouseGrid(name);
+            housegrid result = this.housegrid.createHouseGrid(name);
             //Assert
             assertEquals(expectedResult,result);
         }

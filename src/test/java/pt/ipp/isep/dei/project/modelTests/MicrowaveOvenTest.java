@@ -2,8 +2,13 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.Address;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
@@ -11,7 +16,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class MicrowaveOvenTest {
     private Room kitchen;
@@ -46,8 +52,8 @@ public class MicrowaveOvenTest {
 
 
         // devices
-        house.createDevice("Microwave Oven", "Becken BMW2329", kitchen);
-        microwaveOven = house.createDevice("Microwave Oven", "Becken BMW2328", kitchen);
+        house.createDevice("MicrowaveOven", "Becken BMW2329", kitchen);
+        microwaveOven = house.createDevice("MicrowaveOven", "Becken BMW2328", kitchen);
         microwaveOven.setAttributesDevType("Time", 1);
         microwaveOven.setAttributesDevType("Nominal Power", 1200);
 
@@ -81,19 +87,19 @@ public class MicrowaveOvenTest {
         assertEquals(expectedResult, result);
     }
 
+    /*
+        @Test
+        public void setNameWithSameNameTest() {
+            Throwable exception = assertThrows(RuntimeException.class, () -> microwaveOven.setName("Bosch 500 Series"));
+            assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+        }
 
-    @Test
-    public void setNameWithSameNameTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> microwaveOven.setName("Bosch 500 Series"));
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
-
-    @Test
-    public void setNameAlreadyInListTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> microwaveOven.setName("Bosch 600 Series"));
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
-
+        @Test
+        public void setNameAlreadyInListTest() {
+            Throwable exception = assertThrows(RuntimeException.class, () -> microwaveOven.setName("Bosch 600 Series"));
+            assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+        }
+    */
     @Test
     public void setNameFalseTest() {
         // Act

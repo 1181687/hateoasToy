@@ -2,8 +2,14 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
@@ -63,15 +69,15 @@ public class HouseGridTest {
         fridge.setAttributesDevType("Annual Energy Consumption", 100);
         fridge.setAttributesDevType("Nominal Power", 100);
 
-        washingMachine = house.createDevice("Washing Machine", "Maytag 3.6", kidsRoom);
+        washingMachine = house.createDevice("WashingMachine", "Maytag 3.6", kidsRoom);
         washingMachine.setAttributesDevType("Capacity", 100);
         washingMachine.setAttributesDevType("Nominal Power", 100);
 
-        dishwasher = house.createDevice("Dishwasher", "Bosch 500 Series", kidsRoom);
+        dishwasher = house.createDevice("DishWasher", "Bosch 500 Series", kidsRoom);
         dishwasher.setAttributesDevType("Capacity", 100);
         dishwasher.setAttributesDevType("Nominal Power", 100);
 
-        electricWaterHeater = house.createDevice("Electric Water Heater", "Bosch Tronic 3000", bathroom);
+        electricWaterHeater = house.createDevice("ElectricWaterHeater", "Bosch Tronic 3000", bathroom);
         electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 100);
         electricWaterHeater.setAttributesDevType("Volume Of Water To Heat", 100);
         electricWaterHeater.setAttributesDevType("Performance Ratio", 100);

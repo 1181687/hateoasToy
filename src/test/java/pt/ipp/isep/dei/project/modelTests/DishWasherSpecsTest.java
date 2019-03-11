@@ -2,12 +2,12 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.devices.dishwasher.DishWasherSpecs;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
@@ -33,7 +33,7 @@ public class DishWasherSpecsTest {
         Dimension dim = new Dimension(3, 5, 6);
         this.kitchen = new Room("Kitchen", 1, dim);
         this.house.addRoom(kitchen);
-        this.dishWasher = this.house.createDevice("Dishwasher", "dishwasher Bosch", kitchen);
+        this.dishWasher = this.house.createDevice("DishWasher", "dishwasher Bosch", kitchen);
         this.dishWasher.setAttributesDevType("Nominal Power", 30);
         this.dishWasher.setAttributesDevType("Capacity", 30);
 
@@ -42,7 +42,7 @@ public class DishWasherSpecsTest {
     @Test
     public void testGetTypeName() {
         //Arrange
-        String expectedResult = "Dishwasher";
+        String expectedResult = "DishWasher";
 
         //Act
         String result = dishWasher.getSpecs().getTypeName();
@@ -154,17 +154,6 @@ public class DishWasherSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void testGetAttributeValueDuration() {
-        // Arrange
-        dishWasher.setAttributesDevType("Duration", 30);
-
-        Object expectedResult = 30.0;
-        // Act
-        Object result = dishWasher.getSpecs().getAttributeValue("Duration");
-        // Assert
-        assertEquals(expectedResult, result);
-    }
 
     @Test
     public void testGetAttributeValueNotAValidSpec() {
@@ -186,15 +175,6 @@ public class DishWasherSpecsTest {
         assertFalse(result);
     }
 
-    @Test
-    public void testSetAttributeDurationValueNotAValidType() {
-        // Arrange
-        String attribute = "stuff";
-        // Act
-        boolean result = dishWasher.getSpecs().setAttributeValue("Duration", attribute);
-        // Assert
-        assertFalse(result);
-    }
 
     @Test
     public void testSetAttributeNominalPowerValueNotAValidType() {
@@ -232,32 +212,6 @@ public class DishWasherSpecsTest {
         assertFalse(result);
     }
 
-    @Test
-    public void testSetAttributeDurationValidValue() {
-        // Arrange
-        // Act
-        boolean result = dishWasher.getSpecs().setAttributeValue("Duration", 100.0);
-        // Assert
-        assertTrue(result);
-    }
-
-    @Test
-    public void testSetAttributeDurationSameValue() {
-        // Arrange
-        dishWasher.setAttributesDevType("Duration", 100.0);
-        // Act
-        boolean result = dishWasher.getSpecs().setAttributeValue("Duration", 100.0);
-        // Assert
-        assertFalse(result);
-    }
-
-    @Test
-    public void testSetAttributeDurationValueZero() {
-        // Act
-        boolean result = dishWasher.getSpecs().setAttributeValue("Duration", 0);
-        // Assert
-        assertFalse(result);
-    }
 
     @Test
     public void getAttributeDataTypeTest() {

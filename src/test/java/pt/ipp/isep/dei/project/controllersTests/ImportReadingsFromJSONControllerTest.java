@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Test;
-import pt.ipp.isep.dei.project.controllers.ImportReadingsFromJSONController;
-import pt.ipp.isep.dei.project.model.GeographicalAreaDTO;
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.importReadingsFromJSONController.ImportReadingsFromJSONController;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 
 import java.util.List;
 

@@ -2,10 +2,10 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
@@ -79,6 +79,18 @@ public class WineCoolerSpecsTest {
 
 
     @Test
+    public void getNumberOfAttributes() {
+        // Arrange
+        int expectedResult = 3;
+
+        // Act
+        int result = wineCooler.getSpecs().getNumberOfAttributes();
+
+        // assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void getAttributesToString() {
 
         // Arrange
@@ -92,18 +104,6 @@ public class WineCoolerSpecsTest {
         String result = wineCooler.getSpecs().getAttributesToString();
 
         // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void getNumberOfAttributes() {
-        // Arrange
-        int expectedResult = 3;
-
-        // Act
-        int result = wineCooler.getSpecs().getNumberOfAttributes();
-
-        // assert
         assertEquals(expectedResult, result);
     }
 

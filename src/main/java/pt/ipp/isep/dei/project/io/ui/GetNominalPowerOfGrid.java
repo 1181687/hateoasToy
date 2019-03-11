@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerController;
-import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.house.House;
 
 public class GetNominalPowerOfGrid {
 
@@ -14,7 +14,7 @@ public class GetNominalPowerOfGrid {
     public void run() {
         String exit = "0- Exit";
         if (controller.isGridListEmpty()) {
-            System.out.println("There are no house grids in the house. Please, add one");
+            System.out.println("There are no housegrid grids in the housegrid. Please, add one");
         } else {
             String label1 = "Please select a House Grid to see its total nominal power: \n" + controller.getHouseGridsListToString() + exit;
             int gridListLength = controller.getHouseGridListSize();
@@ -25,7 +25,7 @@ public class GetNominalPowerOfGrid {
             controller.getHouseGridByPosition(position);
 
             double nominalPower = controller.getHouseGridTotalNominalPower();
-            System.out.println("The total nominal power of the selected house grid is " + nominalPower + "kW.");
+            System.out.println("The total nominal power of the selected housegrid grid is " + nominalPower + "kW.");
 
         }
     }

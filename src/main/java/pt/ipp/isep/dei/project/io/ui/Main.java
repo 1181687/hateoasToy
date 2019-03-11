@@ -1,7 +1,19 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.house.Address;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -18,8 +30,8 @@ public class Main {
     private static final String GLASSES = "Glasses";
     private static final String DISHES = "Dishes";
 
-    private static final String ELECTRIC_WATER_HEATER = "Electric Water Heater";
-    private static final String DISHWASHER = "Dishwasher";
+    private static final String ELECTRIC_WATER_HEATER = "ElectricWaterHeater";
+    private static final String DISHWASHER = "DishWasher";
 
     public static void main(String[] args) {
 

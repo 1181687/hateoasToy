@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 class GetListOfSensorsAndDevicesRoomControllerTest {
 
     /*private GetListOfSensorsAndDevicesRoomController controller;
-    private House house;
+    private House housegrid;
     private RoomList roomList;
     private Room room;
 
@@ -27,15 +27,15 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
-        this.roomList = house.getRoomList();
+        this.housegrid = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        this.roomList = housegrid.getRoomList();
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation);
-        house.setAddress(address);
-        house.setInsertedGeoArea(insertedGeoArea);
+        housegrid.setAddress(address);
+        housegrid.setInsertedGeoArea(insertedGeoArea);
 
-        this.controller = new GetListOfSensorsAndDevicesRoomController(house);
+        this.controller = new GetListOfSensorsAndDevicesRoomController(housegrid);
     }
 
     @Test
@@ -53,7 +53,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
 
         this.room.addSensorToListOfSensorsInRoom(s0);
         this.room.addSensorToListOfSensorsInRoom(s1);
-        this.house.addRoom(this.room);
+        this.housegrid.addRoom(this.room);
         int position = 0;
         String expectedResult =
                 "1 - Name of the sensor: A123\n" +
@@ -69,7 +69,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     @Test
     public void checkIfSensorListIsEmptyTestTrue() {
         // Arrange
-        this.house.addRoom(room);
+        this.housegrid.addRoom(room);
         int position = 0;
 
         // Act
@@ -88,7 +88,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         sensor s0 = new sensor("A123", dataFuncionamento0, sensorType0, locS0);
 
         room.addSensorToListOfSensorsInRoom(s0);
-        house.addRoom(room);
+        housegrid.addRoom(room);
         int position = 0;
 
         // Act
@@ -107,7 +107,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         LampType lampType = new LampType();
         Device dev1 = lampType.createDevice("Lamp1", room);
 
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         int position = 0;
         String expectedResult =
@@ -121,7 +121,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     @Test
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
-        house.addRoom(room);
+        housegrid.addRoom(room);
         int position = 0;
         // Act
         boolean result = controller.isDeviceListEmpty(position);
@@ -135,7 +135,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         LampType lampType = new LampType();
         Device dev1 = lampType.createDevice("Lamp1", room);
 
-        house.addRoom(room);
+        housegrid.addRoom(room);
         int position = 0;
         // Act
         boolean result = controller.isDeviceListEmpty(position);
@@ -151,8 +151,8 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        house.addRoom(room);
-        house.addRoom(room2);
+        housegrid.addRoom(room);
+        housegrid.addRoom(room2);
         int expectResult = 2;
 
         //act
@@ -177,7 +177,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     @Test
     public void getRoomListTest() {
         // Arrange
-        house.addRoom(room);
+        housegrid.addRoom(room);
         RoomList expectedResult = this.roomList;
 
         // Act
@@ -243,8 +243,8 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        this.house.addRoom(room1);
-        this.house.addRoom(room2);
+        this.housegrid.addRoom(room1);
+        this.housegrid.addRoom(room2);
 
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
                 "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
