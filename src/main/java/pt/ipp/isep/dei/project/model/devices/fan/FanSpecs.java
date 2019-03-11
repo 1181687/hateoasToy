@@ -51,7 +51,7 @@ public class FanSpecs implements DeviceSpecs, Programmable {
      */
     @Override
     public int getNumberOfAttributes() {
-        return 2;
+        return 1;
     }
 
     /**
@@ -75,8 +75,6 @@ public class FanSpecs implements DeviceSpecs, Programmable {
     @Override
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
-            case ATTRIBUTE_TIME:
-                return time;
             case ATTRIBUTE_NOMINAL_POWER:
                 return nominalPower;
             default:
