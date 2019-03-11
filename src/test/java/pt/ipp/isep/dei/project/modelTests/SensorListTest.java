@@ -358,7 +358,7 @@ class SensorListTest {
         //arrange
         SensorList sensorList = new SensorList();
 
-        //Instanciar sensor
+        //Sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);

@@ -1815,4 +1815,42 @@ class GeographicalAreaTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void getNearestSensorWithMostRecentReading(){
+        //Arrange
+        Sensor expectedResult = temperatureSensor1;
+        //Act
+        Sensor result = portoCity.getNearestSensorWithMostRecentReading(this.temperature,this.location2);
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void getDateOfLastLowestMaximumReading(){
+        //Arrange
+        LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
+        Reading reading4 = new Reading(29, time0);
+        LocalDateTime time1 = LocalDateTime.of(2018, 12, 3, 13, 20, 00);
+        Reading reading5 = new Reading(31, time1);
+        temperatureSensor1.addReadingsToList(reading4);
+        temperatureSensor1.addReadingsToList(reading5);
+        LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
+        Reading reading6 = new Reading(17, time2);
+        LocalDateTime time3 = LocalDateTime.of(2018, 12, 4, 12, 20, 00);
+        Reading reading7 = new Reading(15, time3);
+        temperatureSensor1.addReadingsToList(reading6);
+        temperatureSensor1.addReadingsToList(reading7);
+
+        //interval LocalDate
+        LocalDate startDate = LocalDate.of(2018, 12, 2);
+        LocalDate endDate = LocalDate.of(2018, 12, 4);
+
+        LocalDate expectedResult = time3.toLocalDate();
+        //Act
+        LocalDate result = portoCity.getDateOfLastLowestMaximumReading(this.location2,this.temperature,startDate,endDate);
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
 }
