@@ -399,7 +399,7 @@ public class GeographicalArea {
             Double maximumValueOfInterval = (Collections.max(cleanList.values()));
             for (Map.Entry<LocalDate, Double> dailyAmplitude : set) {
 
-                if ((Utils.round(dailyAmplitude.getValue(), 4) == (Utils.round(maximumValueOfInterval, 4)))) {
+                if (dailyAmplitude.getValue().compareTo(maximumValueOfInterval) == 0) {
                     mapOfHighestDailyAmplitude.put(dailyAmplitude.getKey(), dailyAmplitude.getValue());
                 }
             }

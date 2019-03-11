@@ -48,7 +48,7 @@ public class FanSpecs implements DeviceSpecs, Programmable {
      */
     @Override
     public int getNumberOfAttributes() {
-        return 2;
+        return 1;
     }
 
     /**
@@ -131,11 +131,6 @@ public class FanSpecs implements DeviceSpecs, Programmable {
     @Override
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
-            /*case ATTRIBUTE_TIME:
-                if (attributeValue instanceof Number) {
-                    return setTime(((Number) attributeValue).doubleValue());
-                }
-                return false;*/
             case ATTRIBUTE_NOMINAL_POWER:
                 if (attributeValue instanceof Number) {
                     return setNominalPower(((Number) attributeValue).doubleValue());
