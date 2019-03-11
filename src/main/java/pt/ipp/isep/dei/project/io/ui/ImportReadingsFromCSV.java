@@ -58,7 +58,7 @@ public class ImportReadingsFromCSV {
             return;
         }
         System.out.println("\nAll readings were imported successfully.\n");
-        if (Objects.isNull(scanner)) {
+        if (!Objects.isNull(scanner)) {
             scanner.close();
         }
     }
@@ -90,8 +90,7 @@ public class ImportReadingsFromCSV {
             return null;
         }
         ZonedDateTime zonedDateTime = ZonedDateTime.parse(dateTime);
-        LocalDateTime readingDateTime = zonedDateTime.toLocalDateTime();
-        return readingDateTime;
+        return zonedDateTime.toLocalDateTime();
     }
 
     /**
