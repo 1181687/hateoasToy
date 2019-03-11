@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,6 +18,13 @@ public class WallTowelHeater implements Device {
     private List<Reading> readingList;
     private boolean isActive;
     private LocalDateTime deactivationDate;
+
+    public WallTowelHeater(String name, DeviceSpecs specs) {
+        this.name = name;
+        this.specs = (WallTowelHeaterSpecs) specs;
+        this.isActive = true;
+        this.readingList = new ArrayList<>();
+    }
 
     /**
      * method that get a location (room) of a device.
