@@ -8,6 +8,7 @@ import java.util.List;
 public class GeographicalAreaDTO {
 
     private String geoAreaName;
+    private String description;
     private String geographicalAreaType;
     private double width;
     private double lenght;
@@ -26,6 +27,14 @@ public class GeographicalAreaDTO {
 
     public void setGeoAreaName(String geoAreaName) {
         this.geoAreaName = geoAreaName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getGeographicalAreaType() {

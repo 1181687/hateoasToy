@@ -72,25 +72,16 @@ public class JSONReader {
 
                 // Get objects from geo area
                 String id = object.get("id").getAsString();
-                System.out.println("Id: " + id);
-
                 String description = object.get("description").getAsString();
-                System.out.println("Description: " + description);
-
                 String type = object.get("type").getAsString();
-                System.out.println("Type: " + type);
-
                 double width = object.get("width").getAsDouble();
-                System.out.println("Width: " + width);
-
                 double length = object.get("length").getAsDouble();
-                System.out.println("Length: " + length);
 
                 JsonObject location = object.get("location").getAsJsonObject();
 
                 LocationDTO areaLocation = locationParser(location);
 
-                GeographicalAreaDTO geoAreaDTO = GeographicalAreaMapping.mapToDTO(id, type, width, length, areaLocation.getLatitude(), areaLocation.getLongitude(), areaLocation.getElevation());
+                GeographicalAreaDTO geoAreaDTO = GeographicalAreaMapping.mapToDTO(id, description, type, width, length, areaLocation.getLatitude(), areaLocation.getLongitude(), areaLocation.getElevation());
 
                 //Reads Sensor attributes
                 JsonArray areaSensor = object.get("area_sensor").getAsJsonArray();
@@ -105,31 +96,17 @@ public class JSONReader {
                     JsonObject sensor = sensor1.get("sensor").getAsJsonObject();
 
                     String sensorId = sensor.get("id").getAsString();
-                    System.out.println("Id: " + sensorId);
-
                     String sensorName = sensor.get("name").getAsString();
-                    System.out.println("Name: " + sensorName);
-
                     LocalDate startingDate = LocalDate.parse(sensor.get("start_date").getAsString());
-                    System.out.println("Start date: " + startingDate);
-
                     String sensorType = sensor.get("type").getAsString();
-                    System.out.println("Type: " + sensorType);
-
                     String sensorUnits = sensor.get("units").getAsString();
-                    System.out.println("Units: " + sensorUnits);
 
                     //Reads sensor Location
                     JsonObject locationSensor = object.get("location").getAsJsonObject();
 
                     double latitude = locationSensor.get("latitude").getAsDouble();
-                    System.out.println("Latitude: " + latitude);
-
                     double longitude = locationSensor.get("longitude").getAsDouble();
-                    System.out.println("Longitude: " + longitude);
-
                     double altitude = locationSensor.get("altitude").getAsDouble();
-                    System.out.println("Altitude: " + altitude);
 
                     LocationDTO sensorLocation = locationParser(locationSensor);
 
