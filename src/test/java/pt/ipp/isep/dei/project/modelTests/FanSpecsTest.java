@@ -97,7 +97,7 @@ public class FanSpecsTest {
     public void testGetNumberOfAttributes() {
         //Arrange
 
-        int expectedResult = 2;
+        int expectedResult = 1;
 
         //Act
 
