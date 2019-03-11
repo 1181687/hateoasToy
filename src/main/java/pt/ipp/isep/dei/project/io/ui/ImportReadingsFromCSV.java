@@ -90,8 +90,7 @@ public class ImportReadingsFromCSV {
             return null;
         }
         ZonedDateTime zonedDateTime = ZonedDateTime.parse(dateTime);
-        LocalDateTime readingDateTime = zonedDateTime.toLocalDateTime();
-        return readingDateTime;
+        return zonedDateTime.toLocalDateTime();
     }
 
     /**
