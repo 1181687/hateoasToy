@@ -8,7 +8,7 @@ public class WallTowelHeaterType implements DeviceType {
     private String typeName;
 
     public WallTowelHeaterType() {
-        this.typeName = "Wall Towel Heater";
+        this.typeName = "WallTowelHeater";
     }
 
     @Override

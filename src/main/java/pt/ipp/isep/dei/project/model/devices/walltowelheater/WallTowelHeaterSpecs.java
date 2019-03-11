@@ -16,7 +16,7 @@ public class WallTowelHeaterSpecs implements DeviceSpecs {
     private double nominalPower;
 
     public WallTowelHeaterSpecs() {
-        this.typeName = "Wall Towel Heater";
+        this.typeName = "WallTowelHeater";
     }
 
     @Override
