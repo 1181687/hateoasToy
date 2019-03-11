@@ -5,6 +5,9 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import pt.ipp.isep.dei.project.model.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.model.GeographicalAreaMapping;
+import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.SensorDTO;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,18 +19,19 @@ import java.util.List;
 public class JSONReader {
 
     @SuppressWarnings("unchecked")
-    public static void readJSONFileToList() {
+    public static List<GeographicalAreaDTO> readJSONFileToList(String jsonPath) {
 
+        List<GeographicalAreaDTO> finallist = new ArrayList<>();
         //JSON parser object to parse read file
         JsonParser jsonParser = new JsonParser();
 
-        try (FileReader reader = new FileReader("JSONfile.json")) {
+        try (FileReader reader = new FileReader(jsonPath)) {
             //Read JSON file
 
             JsonElement elem = jsonParser.parse(reader);
             //System.out.println(elem);
 
-            parseAreaGeoObject(elem);
+            finallist = parseJsonObjects(elem);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -35,9 +39,23 @@ public class JSONReader {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return finallist;
     }
 
-    private static void parseAreaGeoObject(JsonElement areaGeo) {
+    private static LocationDTO locationParser(JsonObject object) {
+        //JsonObject location = object.get("location").getAsJsonObject();
+
+        double latitude = object.get("latitude").getAsDouble();
+
+        double longitude = object.get("longitude").getAsDouble();
+
+        double altitude = object.get("altitude").getAsDouble();
+
+        return new LocationDTO(latitude, longitude, altitude);
+    }
+
+    private static List<GeographicalAreaDTO> parseJsonObjects(JsonElement areaGeo) {
+        List<GeographicalAreaDTO> areaGeolist = new ArrayList<>();
 
         // Get area geo object within list
         if (areaGeo.isJsonObject()) {
@@ -70,48 +88,15 @@ public class JSONReader {
 
                 JsonObject location = object.get("location").getAsJsonObject();
 
-                double latitude = location.get("latitude").getAsDouble();
-                System.out.println("Latitude: " + latitude);
+                LocationDTO areaLocation = locationParser(location);
 
-                double longitude = location.get("longitude").getAsDouble();
-                System.out.println("Longitude: " + longitude);
-
-                double altitude = location.get("altitude").getAsDouble();
-                System.out.println("Altitude: " + altitude);
-
-                GeographicalAreaDTO newGeoArea = new GeographicalAreaDTO();
-                newGeoArea.setGeoAreaName(description);
-                newGeoArea.setGeographicalAreaType(type);
-                newGeoArea.setWidth(width);
-                newGeoArea.setLenght(length);
-                newGeoArea.setLatitude(latitude);
-                newGeoArea.setLongitude(longitude);
-                newGeoArea.setAltitude(altitude);
-
-            }
-        }
-
-    }
-
-    private static void parseSensorObject(JsonElement areaGeo) {
-
-// Get area geo object within list
-        if (areaGeo.isJsonObject()) {
-            JsonObject jObject = areaGeo.getAsJsonObject();
-            JsonObject geoArea = jObject.get("geographical_area_list").getAsJsonObject();
-            JsonArray cenas = geoArea.get("geographical_area").getAsJsonArray();
-            List<JsonObject> lista = new ArrayList<>();
-            for (int i = 0; i < cenas.size(); i++) {
-                lista.add(cenas.get(i).getAsJsonObject());
-            }
-
-            //Reads Geo Area attributes
-            for (JsonObject object : lista) {
+                GeographicalAreaDTO geoAreaDTO = GeographicalAreaMapping.mapToDTO(id, type, width, length, areaLocation.getLatitude(), areaLocation.getLongitude(), areaLocation.getElevation());
 
                 //Reads Sensor attributes
                 JsonArray areaSensor = object.get("area_sensor").getAsJsonArray();
 
                 List<JsonObject> sensorList = new ArrayList<>();
+
                 for (JsonElement sensor : areaSensor) {
                     sensorList.add(sensor.getAsJsonObject());
                 }
@@ -135,19 +120,32 @@ public class JSONReader {
                     System.out.println("Units: " + sensorUnits);
 
                     //Reads sensor Location
-                    JsonObject sensorLocation = sensor1.get("location").getAsJsonObject();
+                    JsonObject locationSensor = object.get("location").getAsJsonObject();
 
-                    double sensorLatitude = sensorLocation.get("latitude").getAsDouble();
-                    System.out.println("Latitude: " + sensorLatitude);
+                    double latitude = locationSensor.get("latitude").getAsDouble();
+                    System.out.println("Latitude: " + latitude);
 
-                    double sensorLongitude = sensorLocation.get("longitude").getAsDouble();
-                    System.out.println("Longitude: " + sensorLongitude);
+                    double longitude = locationSensor.get("longitude").getAsDouble();
+                    System.out.println("Longitude: " + longitude);
 
-                    double sensorAltitude = sensorLocation.get("altitude").getAsDouble();
-                    System.out.println("Altitude: " + sensorAltitude);
+                    double altitude = locationSensor.get("altitude").getAsDouble();
+                    System.out.println("Altitude: " + altitude);
+
+                    LocationDTO sensorLocation = locationParser(locationSensor);
+
+                    SensorDTO areaSensor1 = new SensorDTO();
+                    areaSensor1.setName(sensorName);
+                    areaSensor1.setSensorType(sensorType);
+                    areaSensor1.setLocation(sensorLocation);
+                    areaSensor1.setStartingDate(startingDate);
+
+                    geoAreaDTO.addSensor(areaSensor1);
 
                 }
+                areaGeolist.add(geoAreaDTO);
             }
+
         }
+        return areaGeolist;
     }
 }
