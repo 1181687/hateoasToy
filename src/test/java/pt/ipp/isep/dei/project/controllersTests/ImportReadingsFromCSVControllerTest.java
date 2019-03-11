@@ -47,7 +47,7 @@ class ImportReadingsFromCSVControllerTest {
         portoDistrict.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
 
         // Reading DTO
-        readingDTO = new ReadingDTO();
+        readingDTO = ReadingMapper.newReadingDTO();
         readingDTO.setValue(13);
         LocalDateTime dateTime = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         readingDTO.setDateTime(dateTime);
