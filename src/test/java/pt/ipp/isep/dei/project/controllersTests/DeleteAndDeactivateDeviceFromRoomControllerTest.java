@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 class DeleteAndDeactivateDeviceFromRoomControllerTest {
 
     /*private DeleteAndDeactivateDeviceFromRoomController controller;
-    private House house;
+    private House housegrid;
 
     private static final String ATTRIBUTE_FREEZER_CAPACITY = "freezer Capacity";
     private static final String ATTRIBUTE_REFRIGERATOR_CAPACITY = "Refrigerator Capacity";
@@ -23,14 +23,14 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        this.housegrid = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation);
-        house.setAddress(address);
-        house.setInsertedGeoArea(insertedGeoArea);
+        housegrid.setAddress(address);
+        housegrid.setInsertedGeoArea(insertedGeoArea);
 
-        this.controller = new DeleteAndDeactivateDeviceFromRoomController(house);
+        this.controller = new DeleteAndDeactivateDeviceFromRoomController(housegrid);
     }
 
     @Test
@@ -47,8 +47,8 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        house.addRoom(room1);
-        house.addRoom(room2);
+        housegrid.addRoom(room1);
+        housegrid.addRoom(room2);
 
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
                 "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
@@ -80,7 +80,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
         Room room = new Room(name, 2, dim);
 
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         int position = 0;
         controller.getRoomPosition(position);
@@ -107,7 +107,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         fridge.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, 100);
 
 
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         int position = 0;
         controller.getRoomPosition(position);
@@ -132,8 +132,8 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        house.addRoom(room1);
-        house.addRoom(room2);
+        housegrid.addRoom(room1);
+        housegrid.addRoom(room2);
 
         int expectResult = 2;
         //act
@@ -168,7 +168,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
 
 
         int position = 0;
-        house.addRoom(room);
+        housegrid.addRoom(room);
         controller.getRoomPosition(position);
 
         // act
@@ -186,7 +186,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         Room room = new Room(name, 2, dim);
 
         int position = 0;
-        house.addRoom(room);
+        housegrid.addRoom(room);
         controller.getRoomPosition(position);
         // act
         boolean result = controller.deleteDevice("Lamp1");
@@ -204,7 +204,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
 
         int position = 0;
 
-        house.addRoom(room);
+        housegrid.addRoom(room);
         controller.getRoomPosition(position);
         String expectedResult = "There are no devices in the device list.";
 
@@ -233,7 +233,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         int position = 0;
 
         String expectedResult = "FridgeAriston";
-        house.addRoom(room);
+        housegrid.addRoom(room);
         controller.getRoomPosition(position);
 
         // act
@@ -265,7 +265,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         fridge2.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, 100);
 
         int position = 0;
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         controller.getRoomPosition(position);
 
@@ -292,7 +292,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         Dimension dimension1 = new Dimension(2, 2, 2);
         Room room1 = new Room(name1, houseFloor1, dimension1);
 
-        house.addRoom(room1);
+        housegrid.addRoom(room1);
         //act
         boolean result = controller.roomListEmpty();
         //assert
@@ -331,11 +331,11 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
                         "2 - Name of the device: fridge Bosch\n";
 
         int position = 0;
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
-        house.addRoom(room);
-        house.addRoom(room);
-        house.addRoom(room);
+        housegrid.addRoom(room);
+        housegrid.addRoom(room);
+        housegrid.addRoom(room);
         controller.getRoomPosition(position);
         // Act
         String result = controller.getDeviceListToString();
@@ -364,7 +364,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         fridge1.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
 
         int position = 0;
-        this.house.addRoom(room);
+        this.housegrid.addRoom(room);
         this.controller.getRoomPosition(position);
 
         // act
@@ -383,7 +383,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         Room room = new Room(name, 2, dim);
 
         int position = 0;
-        this.house.addRoom(room);
+        this.housegrid.addRoom(room);
         this.controller.getRoomPosition(position);
         // act
         boolean result = this.controller.deactivateDevice("Lamp1");
@@ -416,7 +416,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         Device expectedResult = fridge1;
 
         int position = 0;
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         controller.getRoomPosition(position);
         // Act
@@ -452,7 +452,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         fridge2.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
         fridge2.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
 
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         int position = 0;
         String expectedResult =
@@ -491,7 +491,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         fridge2.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
         fridge2.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
         fridge1.setDeactivateDevice();
-        house.addRoom(room);
+        housegrid.addRoom(room);
         int position = 0;
 
         String expectedResult =
@@ -533,7 +533,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
 
         fridge1.setDeactivateDevice();
         fridge2.setDeactivateDevice();
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         String expectedResult =
                 "1 - Device name: fridge Ariston - DEACTIVATED at " + LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5) + "\n" +

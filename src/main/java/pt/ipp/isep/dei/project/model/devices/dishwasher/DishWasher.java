@@ -1,17 +1,17 @@
 package pt.ipp.isep.dei.project.model.devices.dishwasher;
 
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.Program;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.house.Room;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-public class DishWasher implements Device, Programmable {
+public class DishWasher implements Device {
 
     private String name;
     private Room location;
@@ -168,18 +168,18 @@ public class DishWasher implements Device, Programmable {
         return isActive;
     }
 
-    @Override
+    /*@Override
     public boolean isProgrammable() {
         return true;
-    }
+    }*/
 
-    @Override
+    /*@Override
     public Programmable asProgrammable() {
         return this;
-    }
+    }*/
 
-    @Override
+    /*@Override
     public boolean addProgram(Program program) {
         return this.specs.addProgram(program);
-    }
+    }*/
 }

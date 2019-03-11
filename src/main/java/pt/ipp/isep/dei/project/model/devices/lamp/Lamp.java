@@ -1,14 +1,15 @@
 package pt.ipp.isep.dei.project.model.devices.lamp;
 
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.house.Room;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 public class Lamp implements Device {
     private String name;
@@ -160,7 +161,7 @@ public class Lamp implements Device {
         return isActive;
     }
 
-    @Override
+    /*@Override
     public boolean isProgrammable() {
         return false;
     }
@@ -168,5 +169,5 @@ public class Lamp implements Device {
     @Override
     public Programmable asProgrammable() {
         return null;
-    }
+    }*/
 }

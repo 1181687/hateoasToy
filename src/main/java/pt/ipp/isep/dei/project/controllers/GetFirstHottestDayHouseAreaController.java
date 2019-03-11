@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.SensorType;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDate;
 

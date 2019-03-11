@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model.devices.television;
 
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
@@ -16,8 +17,28 @@ public class TelevisionSpecs implements DeviceSpecs {
     private double standbyPower;
     private double time;
 
+
     public TelevisionSpecs() {
         this.typeName = "Television";
+    }
+
+    /**
+     * boolean method "Is programmable"
+     * returns false because the television is not a programmable device
+     */
+    @Override
+    public boolean isProgrammable() {
+        return false;
+    }
+
+    /**
+     * this class implements the Interface Device Specs which in turn has the signature of the method as programmable
+     *
+     * @return since the television doesn't implement a program the return is null
+     */
+    @Override
+    public Programmable asProgrammable() {
+        return null;
     }
 
     @Override

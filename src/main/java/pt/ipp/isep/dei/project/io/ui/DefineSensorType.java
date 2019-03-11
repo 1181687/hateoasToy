@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.DefineSensorTypeController;
-import pt.ipp.isep.dei.project.model.SensorTypeList;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
 import java.util.Scanner;
 /** US005 As an Administrator, I want to define the sensor types. */

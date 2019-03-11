@@ -2,11 +2,11 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -464,25 +464,6 @@ public class WineCoolerTest {
         wineCooler.setDeactivateDevice();
         //Act
         boolean result = wineCooler.getIsActive();
-        //Assert
-        assertFalse(result);
-    }
-
-    @Test
-    void testIfDeviceIsProgrammableFalse() {
-        //Arrange
-        //Act
-        boolean result = wineCooler.isProgrammable();
-        //Assert
-        assertFalse(result);
-    }
-
-    @Test
-    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
-        //Arrange
-        wineCooler.asProgrammable();
-        //Act
-        boolean result = wineCooler.isProgrammable();
         //Assert
         assertFalse(result);
     }

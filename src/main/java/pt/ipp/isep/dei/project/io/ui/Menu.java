@@ -61,18 +61,20 @@ public final class Menu {
         content.append("\n");
         content.append("8-Verify if one geographical area is included in another one");
         content.append("\n");
+        content.append("10-Import readings from CSV file");
+        content.append("\n");
         content.append(RETURN_MENU);
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 9);
+        return InputValidator.getIntRange(label, 0, 10);
     }
 
     public static int adminHouseMenu() {
         StringBuilder content = new StringBuilder();
         content.append(CHOOSE_OPTIONS);
         content.append("\n");
-        content.append("1-Configure the location of the house");
+        content.append("1-Configure the location of the housegrid");
         content.append("\n");
-        content.append("2-Add a room to the house");
+        content.append("2-Add a room to the housegrid");
         content.append("\n");
         content.append("3-Manage House Grid");
         content.append("\n");
@@ -116,17 +118,19 @@ public final class Menu {
         StringBuilder content = new StringBuilder();
         content.append(CHOOSE_OPTIONS);
         content.append("\n");
-        content.append("1-Get current temperature in the house area");
+        content.append("1-Get current temperature in the housegrid area");
         content.append("\n");
-        content.append("2-Get total rainfall in the house area");
+        content.append("2-Get total rainfall in the housegrid area");
         content.append("\n");
-        content.append("3-Get average daily rainfall in the house area");
+        content.append("3-Get average daily rainfall in the housegrid area");
         content.append("\n");
-        content.append("4-Get the first hottest day in the house area in a given period");
+        content.append("5-Get day with highest temperature amplitude in the housegrid area");
+        content.append("\n");
+        content.append("4-Get the first hottest day in the housegrid area in a given period");
         content.append("\n");
         content.append(RETURN_MENU);
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 4);
+        return InputValidator.getIntRange(label, 0, 5);
     }
 
     public static int regularUserRoomsMenu() {
@@ -150,15 +154,15 @@ public final class Menu {
         content.append("\n");
         content.append("1-Create a House Grid");
         content.append("\n");
-        content.append("2-Add a power source to a house grid");
+        content.append("2-Add a power source to a housegrid grid");
         content.append("\n");
-        content.append("3-Attach a room to a house grid");
+        content.append("3-Attach a room to a housegrid grid");
         content.append("\n");
-        content.append("4-Detach a room from a house grid");
+        content.append("4-Detach a room from a housegrid grid");
         content.append("\n");
-        content.append("5-Get list of devices in a house grid");
+        content.append("5-Get list of devices in a housegrid grid");
         content.append("\n");
-        content.append("6-Get the energy consumption of a house grid in a given period.");
+        content.append("6-Get the energy consumption of a housegrid grid in a given period.");
         content.append("\n");
         content.append(RETURN_MENU);
         String label = content.toString();
@@ -196,7 +200,7 @@ public final class Menu {
         content.append("\n");
         content.append("1-List all devices connected to a grid.");
         content.append("\n");
-        content.append("2-Check nominal power of a house grid.");
+        content.append("2-Check nominal power of a housegrid grid.");
         content.append("\n");
         content.append("3-Check nominal power of a room");
         content.append("\n");
@@ -217,7 +221,7 @@ public final class Menu {
         content.append("\n");
         content.append("3-Get the energy consumption of a room in a given period.");
         content.append("\n");
-        content.append("4-Get the energy consumption of a house grid in a given period.");
+        content.append("4-Get the energy consumption of a housegrid grid in a given period.");
         content.append("\n");
         content.append("5-Get the energy consumption of a device in a given period.");
         content.append("\n");

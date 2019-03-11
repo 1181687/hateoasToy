@@ -1,17 +1,17 @@
 package pt.ipp.isep.dei.project.model.devices.washingmachine;
 
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.Program;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.house.Room;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-public class WashingMachine implements Device, Programmable {
+public class WashingMachine implements Device {
 
     private String name;
     private Room location;
@@ -166,7 +166,7 @@ public class WashingMachine implements Device, Programmable {
         return isActive;
     }
 
-    @Override
+    /*@Override
     public boolean isProgrammable() {
         return true;
     }
@@ -177,8 +177,8 @@ public class WashingMachine implements Device, Programmable {
     }
 
     @Override
-    public boolean addProgram(Program program) {
+    public boolean addProgram(TimeConstantProgramSpecs program) {
         return specs.addProgram(program);
-    }
+    }*/
 
 }

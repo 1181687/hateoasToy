@@ -212,7 +212,7 @@ public class GetDevicesInHouseGridControllerTest {
         GetDevicesInHouseGridController controller = new GetDevicesInHouseGridController(emptyHouse);
 
         int position = 0;
-        String expectedResult = "There are no Grids in the house";
+        String expectedResult = "There are no Grids in the housegrid";
 
         // Act
         String result = controller.getGridNameByPosition(position);

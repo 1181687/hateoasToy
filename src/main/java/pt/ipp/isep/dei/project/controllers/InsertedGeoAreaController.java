@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.GeographicalArea;
-import pt.ipp.isep.dei.project.model.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 
 public class InsertedGeoAreaController {
     private GeographicalAreaList geographicalAreaList;
@@ -23,6 +23,6 @@ public class InsertedGeoAreaController {
     }
 
     public boolean verificarSeAGEstaContidaDiretaOuIndiretamenteNoutraAG(int opcaoSelecionada1, int opcaoSelecionada2){
-        return geographicalAreaList.checkIfGeoAreaIsinsertedInAnother(opcaoSelecionada1, opcaoSelecionada2);
+        return geographicalAreaList.checkIfGeoAreaIsInsertedInAnother(opcaoSelecionada1, opcaoSelecionada2);
     }
 }

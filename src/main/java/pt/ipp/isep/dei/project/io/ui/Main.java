@@ -1,9 +1,19 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.utils.ReadJSONfile;
+import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.house.Address;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -24,8 +34,6 @@ public class Main {
     private static final String DISHWASHER = "Dishwasher";
 
     public static void main(String[] args) {
-
-        ReadJSONfile.readJSONFileToList();
 
         String configFile = "Configuration.properties";
 
@@ -251,7 +259,7 @@ public class Main {
         // sensor 1
         SensorType sensorTypeTemperature = new SensorType("temperature");
         LocalDateTime startingDate = LocalDate.of(2018, 10, 15).atStartOfDay();
-        Sensor sensor = new Sensor("Temperature B109", startingDate, sensorTypeTemperature, houseLocation);
+        Sensor sensor = new Sensor("TT12346", startingDate, sensorTypeTemperature, houseLocation);
         sensor.addReadingsToList(temp);
         sensor.addReadingsToList(temp1);
         sensor.addReadingsToList(temp2);
@@ -406,11 +414,11 @@ public class Main {
         dwB107.addReadingsToTheList(dwEC8);
         dwB107.addReadingsToTheList(dwEC9);
 
-        Programmable dwB107Programmable = dwB107.asProgrammable();
-        Program program = dwB107Programmable.newProgram(GLASSES, durationNotAsked, 0.9);
-        Program program1 = dwB107Programmable.newProgram("Eco", durationNotAsked, 1.3);
-        Program program2 = dwB107Programmable.newProgram("Eco turbo", durationNotAsked, 1.7);
-        Program program3 = dwB107Programmable.newProgram(DISHES, durationNotAsked, 2.1);
+        /*Programmable dwB107Programmable = dwB107.asProgrammable();
+        TimeConstantProgramSpecs program = dwB107Programmable.newProgram(GLASSES, durationNotAsked, 0.9);
+        TimeConstantProgramSpecs program1 = dwB107Programmable.newProgram("Eco", durationNotAsked, 1.3);
+        TimeConstantProgramSpecs program2 = dwB107Programmable.newProgram("Eco turbo", durationNotAsked, 1.7);
+        TimeConstantProgramSpecs program3 = dwB107Programmable.newProgram(DISHES, durationNotAsked, 2.1);
         dwB107Programmable.addProgram(program);
         dwB107Programmable.addProgram(program1);
         dwB107Programmable.addProgram(program2);
@@ -427,10 +435,10 @@ public class Main {
         wmB107.addReadingsToTheList(wmEC3);
 
         Programmable wmB107Programmable = wmB107.asProgrammable();
-        Program program4 = wmB107Programmable.newProgram("Wool", durationNotAsked, 1.1);
-        Program program5 = wmB107Programmable.newProgram("Fast", durationNotAsked, 1.8);
-        Program program6 = wmB107Programmable.newProgram("Fast plus", durationNotAsked, 2.7);
-        Program program7 = wmB107Programmable.newProgram("Synthetic 30º", durationNotAsked, 2.8);
+        TimeConstantProgramSpecs program4 = wmB107Programmable.newProgram("Wool", durationNotAsked, 1.1);
+        TimeConstantProgramSpecs program5 = wmB107Programmable.newProgram("Fast", durationNotAsked, 1.8);
+        TimeConstantProgramSpecs program6 = wmB107Programmable.newProgram("Fast plus", durationNotAsked, 2.7);
+        TimeConstantProgramSpecs program7 = wmB107Programmable.newProgram("Synthetic 30º", durationNotAsked, 2.8);
         wmB107Programmable.addProgram(program4);
         wmB107Programmable.addProgram(program5);
         wmB107Programmable.addProgram(program6);
@@ -469,10 +477,10 @@ public class Main {
         dwB109.setAttributesDevType(NOMINAL_POWER, 1.5);
 
         Programmable dwB109Programmable = dwB109.asProgrammable();
-        Program program16 = dwB109Programmable.newProgram(GLASSES, durationNotAsked, 0.9);
-        Program program17 = dwB109Programmable.newProgram("Eco", durationNotAsked, 1.3);
-        Program program18 = dwB109Programmable.newProgram("Eco turbo", durationNotAsked, 1.7);
-        Program program19 = dwB109Programmable.newProgram(DISHES, durationNotAsked, 2.1);
+        TimeConstantProgramSpecs program16 = dwB109Programmable.newProgram(GLASSES, durationNotAsked, 0.9);
+        TimeConstantProgramSpecs program17 = dwB109Programmable.newProgram("Eco", durationNotAsked, 1.3);
+        TimeConstantProgramSpecs program18 = dwB109Programmable.newProgram("Eco turbo", durationNotAsked, 1.7);
+        TimeConstantProgramSpecs program19 = dwB109Programmable.newProgram(DISHES, durationNotAsked, 2.1);
         dwB109Programmable.addProgram(program16);
         dwB109Programmable.addProgram(program17);
         dwB109Programmable.addProgram(program18);
@@ -491,10 +499,10 @@ public class Main {
         wmB109.addReadingsToTheList(wm1EC4);
 
         Programmable wmB109Programmable = wmB109.asProgrammable();
-        Program program8 = wmB109Programmable.newProgram("Wool", durationNotAsked, 0.9);
-        Program program9 = wmB109Programmable.newProgram("Fast", durationNotAsked, 1.3);
-        Program program10 = wmB109Programmable.newProgram("Fast plus", durationNotAsked, 1.7);
-        Program program11 = wmB109Programmable.newProgram("Synthetic 30º", durationNotAsked, 2.1);
+        TimeConstantProgramSpecs program8 = wmB109Programmable.newProgram("Wool", durationNotAsked, 0.9);
+        TimeConstantProgramSpecs program9 = wmB109Programmable.newProgram("Fast", durationNotAsked, 1.3);
+        TimeConstantProgramSpecs program10 = wmB109Programmable.newProgram("Fast plus", durationNotAsked, 1.7);
+        TimeConstantProgramSpecs program11 = wmB109Programmable.newProgram("Synthetic 30º", durationNotAsked, 2.1);
         wmB109Programmable.addProgram(program8);
         wmB109Programmable.addProgram(program9);
         wmB109Programmable.addProgram(program10);
@@ -514,14 +522,14 @@ public class Main {
         dwB106.setAttributesDevType(NOMINAL_POWER, 1.4);
 
         Programmable dwB106Programmable = dwB106.asProgrammable();
-        Program program12 = dwB106Programmable.newProgram(GLASSES, durationNotAsked, 0.8);
-        Program program13 = dwB106Programmable.newProgram("Light", durationNotAsked, 1.3);
-        Program program14 = dwB106Programmable.newProgram("Light turbo", durationNotAsked, 1.9);
-        Program program15 = dwB106Programmable.newProgram(DISHES, durationNotAsked, 2.3);
+        TimeConstantProgramSpecs program12 = dwB106Programmable.newProgram(GLASSES, durationNotAsked, 0.8);
+        TimeConstantProgramSpecs program13 = dwB106Programmable.newProgram("Light", durationNotAsked, 1.3);
+        TimeConstantProgramSpecs program14 = dwB106Programmable.newProgram("Light turbo", durationNotAsked, 1.9);
+        TimeConstantProgramSpecs program15 = dwB106Programmable.newProgram(DISHES, durationNotAsked, 2.3);
         dwB106Programmable.addProgram(program12);
         dwB106Programmable.addProgram(program13);
         dwB106Programmable.addProgram(program14);
-        dwB106Programmable.addProgram(program15);
+        dwB106Programmable.addProgram(program15);*/
 
         // ROOM LIST
         houseEdificioB.addRoom(room1);

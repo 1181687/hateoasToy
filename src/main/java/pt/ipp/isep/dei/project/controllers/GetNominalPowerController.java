@@ -1,7 +1,11 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Measurable;
+import pt.ipp.isep.dei.project.model.MeasurableList;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 
 public class GetNominalPowerController {
     private House house;
@@ -18,7 +22,7 @@ public class GetNominalPowerController {
     /**
      * method that returns the method isHouseGridListEmpty of the model class House
      *
-     * @return true if house grid list is empty or false if it is not empty
+     * @return true if housegrid grid list is empty or false if it is not empty
      */
     public boolean isGridListEmpty(){
         return this.house.isHouseGridListEmpty();
@@ -26,7 +30,7 @@ public class GetNominalPowerController {
 
     /**
      * method that returns the method getHouseGridListContent of the model class House
-     * @return house grid list content
+     * @return housegrid grid list content
      */
     public String getHouseGridsListToString(){
         return this.house.getHouseGridListToString();
@@ -34,15 +38,15 @@ public class GetNominalPowerController {
 
     /**
      * method that returns the method getHouseGridListSize of the model class House
-     * @return an integer that matches the house grid list size
+     * @return an integer that matches the housegrid grid list size
      */
     public int getHouseGridListSize(){
         return this.house.getHouseGridListSize();
     }
 
     /**
-     * method that stores the chosen house grid in Controller
-     * @param position integer that matches the position of house grid in house grid list of house
+     * method that stores the chosen housegrid grid in Controller
+     * @param position integer that matches the position of housegrid grid in housegrid grid list of housegrid
      */
     public void getHouseGridByPosition(int position){
         selectedHouseGrid = this.house.getHouseGridByPosition(position);
@@ -50,7 +54,7 @@ public class GetNominalPowerController {
 
     /**
      * method that returns the method getRoomPosition of the model class House Grid
-     * @param position integer that matches the position of room in room list of house grid
+     * @param position integer that matches the position of room in room list of housegrid grid
      * @return Room that matches the chosen position
      */
     public Room getRoomOfHouseGridByPosition(int position){
@@ -59,7 +63,7 @@ public class GetNominalPowerController {
 
     /**
      * method that returns the method getDeviceListToString of the model class House Grid
-     * @param position integer that matches the position of room in room list of house grid
+     * @param position integer that matches the position of room in room list of housegrid grid
      * @return device list content of the chosen room (position)
      */
     public String getDeviceListToString(int position){
@@ -68,7 +72,7 @@ public class GetNominalPowerController {
 
     /**
      * method that returns the method getDeviceListSizeByRoomPosition of the model class House Grid
-     * @param position integer that matches the position of room in room list of house grid
+     * @param position integer that matches the position of room in room list of housegrid grid
      * @return integer that matches the device list size
      */
     public int getDeviceListSize(int position){
@@ -85,7 +89,7 @@ public class GetNominalPowerController {
 
     /**
      * method that returns the method isEmpty of the model class House Grid
-     * @param position integer that matches the position of room in room list of house grid
+     * @param position integer that matches the position of room in room list of housegrid grid
      * @return true if device list of chosen room (position) is empty or false if it is not empty
      */
     public boolean deviceListIsEmpty(int position){
@@ -94,7 +98,7 @@ public class GetNominalPowerController {
 
     /**
      * method that returns the method getDeviceByRoomAndDevicePosition of the model class House Grid
-     * @param pos1 integer that matches the room in room list of house grid
+     * @param pos1 integer that matches the room in room list of housegrid grid
      * @param pos2 integer that matches the device in device list of chosen room
      * @return device that matches the chosen position
      */

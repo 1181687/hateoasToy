@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 
 public class AddRoomController {
     private House house;
@@ -9,9 +9,9 @@ public class AddRoomController {
 
 
     /**
-     * method constructor that receives a house
+     * method constructor that receives a housegrid
      *
-     * @param house house received
+     * @param house housegrid received
      */
     public AddRoomController(House house) {
         this.house = house;
@@ -31,7 +31,7 @@ public class AddRoomController {
     }
 
     /**
-     * method that adds a room to the house's roomlist. Invokes the method addRoom of the model
+     * method that adds a room to the housegrid's roomlist. Invokes the method addRoom of the model
      * who receives the new room stored in the private attribute room of this class
      * @return true if adds, false if don't
      */

@@ -1,17 +1,17 @@
 package pt.ipp.isep.dei.project.model.devices.electricwaterheater;
 
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.Measurable;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.house.Room;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
-public class ElectricWaterHeater implements Device, Measurable {
+public class ElectricWaterHeater implements Device {
     private String name;
     private Room location;
     private ElectricWaterHeaterSpecs specs;
@@ -160,7 +160,7 @@ public class ElectricWaterHeater implements Device, Measurable {
         return isActive;
     }
 
-    @Override
+    /*@Override
     public boolean isProgrammable() {
         return false;
     }
@@ -168,5 +168,5 @@ public class ElectricWaterHeater implements Device, Measurable {
     @Override
     public Programmable asProgrammable() {
         return null;
-    }
+    }*/
 }

@@ -1,16 +1,16 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.Program;
-import pt.ipp.isep.dei.project.model.Room;
+import pt.ipp.isep.dei.project.model.devices.*;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 
 public class AddDeviceToRoomController {
     private House house;
     private Device device;
     private Room room;
     private Programmable programmableDevice;
+    private DeviceSpecs devSpecs;
+    private Program program;
     private static final String NOMINAL_POWER = "Nominal Power";
     private static final String LUMINOUS_FLUX = "Luminous Flux";
     private static final String ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
@@ -35,7 +35,7 @@ public class AddDeviceToRoomController {
     /**
      * Method that asks for the list of rooms from the class RoomList.
      *
-     * @return List of house grids.
+     * @return List of housegrid grids.
      */
     public String getRoomListContent() {
         return house.getRoomListContent();
@@ -180,10 +180,9 @@ public class AddDeviceToRoomController {
     }
 
 
-    public boolean createAndAddProgram(String programName, double duration, double energyConsumption) {
-        Program newProgram = programmableDevice.newProgram(programName, duration, energyConsumption);
-        return programmableDevice.addProgram(newProgram);
-    }
+    /*public boolean createAndAddProgram(String programName, ProgramSpecs specs) {
+        return programmableDevice.addNewProgram(programName, specs);
+    }*/
 
     /**
      * method that get a Device by it's position
@@ -195,12 +194,41 @@ public class AddDeviceToRoomController {
         return room.getDeviceByPosition(position);
     }
 
-    public boolean isProgrammable() {
+    /*public boolean isProgrammable() {
         if (device.isProgrammable()) {
             programmableDevice = device.asProgrammable();
             return true;
         }
         return false;
+    }*/
+
+    public DeviceSpecs getDevSpecs() {
+        return devSpecs = device.getSpecs();
     }
+
+    public boolean isProgrammable() {
+        if (devSpecs.isProgrammable()) {
+            programmableDevice = devSpecs.asProgrammable();
+            return true;
+        }
+        return false;
+    }
+
+    public ProgramSpecs getProgramSpecs() {
+        return program.getProgramSpecs();
+    }
+
+    public boolean setProgramAttributes(String attributeName, Object attributeValue) {
+        return program.setProgramAttributes(attributeName, attributeValue);
+    }
+
+    public Program createNewProgram(String name, ProgramSpecs specs) {
+        return program = programmableDevice.createNewProgram(name, specs);
+    }
+
+    public boolean addProgram(Program program) {
+        return programmableDevice.addProgram(program);
+    }
+
 
 }

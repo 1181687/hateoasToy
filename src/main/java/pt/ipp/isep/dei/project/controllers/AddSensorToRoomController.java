@@ -1,6 +1,12 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomList;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
 
 public class AddSensorToRoomController {
@@ -19,7 +25,7 @@ public class AddSensorToRoomController {
     }
 
     /**
-     * This method display the rooms of the house
+     * This method display the rooms of the housegrid
      * @return the RoomList.
      */
     public String getRoomListContent() {
@@ -51,7 +57,7 @@ public class AddSensorToRoomController {
     }
 
     /**
-     * This method get the location of the house.
+     * This method get the location of the housegrid.
      */
     public void getLocationOfTheHouse () {
         locationOfTheHouse = house.getLocation();
