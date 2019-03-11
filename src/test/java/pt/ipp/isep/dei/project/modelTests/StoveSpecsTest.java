@@ -193,7 +193,7 @@ public class StoveSpecsTest {
 
 
     @Test
-    public void getAttributeDataTypeTest() {
+    public void getAttributeDataTypeTest_notValidAttributte() {
         // arrange
         String expectedResult = "not a valid attributte";
         // act
@@ -201,6 +201,17 @@ public class StoveSpecsTest {
         // assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void getAttributeDataTypeTest() {
+        // arrange
+        String expectedResult = "Double";
+        // act
+        String result = stove.getSpecs().getAttributeDataType("Nominal Power");
+        // assert
+        assertEquals(expectedResult, result);
+    }
+
 
     @Test
     public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
