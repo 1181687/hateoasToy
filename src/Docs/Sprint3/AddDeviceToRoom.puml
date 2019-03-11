@@ -18,33 +18,71 @@ skinparam sequence {
 }
 
 actor RegularUser
-RegularUser -> ":UI": addDeviceToRoom
-activate ":UI"
-":UI" -> ":Controller": geDeviceTypeList()
-activate ":Controller"
-":Controller" -> "House": geDeviceTypeList()
-activate "House"
-":Controller" <-- "House": listOfDeviceTypes
-deactivate "House"
-":UI" <-- ":Controller": listOfDeviceTypes
-deactivate ":Controller"
-RegularUser <-- ":UI": listOfDeviceTypes
-RegularUser -> ":UI": getDeviceType
-":UI" -> ":Controller": getDeviceType (p)
-activate ":Controller"
-":Controller" -> "House": getDeviceType (p)
-activate "House"
-":Controller" <-- "House": deviceType
-deactivate "House"
-":UI" <-- ":Controller": deviceType
-deactivate ":Controller"
-":UI" -> ":Controller": createDevice
-activate ":Controller"
-":Controller" -> ":DeviceType": createDevice
+RegularUser -> ":UI \nAddDeviceToRoom": 1 - addDeviceToRoom
+activate ":UI \nAddDeviceToRoom"
+":UI \nAddDeviceToRoom" -> ":Controller \nAddDeviceToRoom": 1.1- getRoomListContent()
+activate ":Controller \nAddDeviceToRoom"
+":Controller \nAddDeviceToRoom" -> ":House": 1.1.1- getRoomListContent()
+activate ":House"
+":Controller \nAddDeviceToRoom" <-- ":House": 1.1.2- roomListContent
+deactivate ":House"
+":UI \nAddDeviceToRoom" <-- ":Controller \nAddDeviceToRoom": 1.2- roomListContent
+deactivate ":Controller \nAddDeviceToRoom"
+RegularUser <-- ":UI \nAddDeviceToRoom" :  1.3- roomListContent
+deactivate ":UI \nAddDeviceToRoom"
+
+
+
+RegularUser -> ":UI \nAddDeviceToRoom": 2- int roomPosition
+activate ":UI \nAddDeviceToRoom"
+":UI \nAddDeviceToRoom" -> ":Controller \nAddDeviceToRoom": 2.1 - int r
+activate ":Controller \nAddDeviceToRoom"
+":Controller \nAddDeviceToRoom" -> ":House": 2.1.1 - getRoom(r)
+activate ":House"
+":Controller \nAddDeviceToRoom" <-- ":House": 2.1.2 - room
+deactivate ":House"
+":UI \nAddDeviceToRoom" <-- ":Controller \nAddDeviceToRoom": 2.2 - room
+deactivate ":Controller \nAddDeviceToRoom"
+deactivate ":UI \nAddDeviceToRoom"
+
+
+RegularUser -> ":UI \nAddDeviceToRoom": 3 - Choose the Device Type
+activate ":UI \nAddDeviceToRoom"
+":UI \nAddDeviceToRoom" -> ":Controller \nAddDeviceToRoom": 3.1 - getDeviceTypeList()
+activate ":Controller \nAddDeviceToRoom"
+":Controller \nAddDeviceToRoom" -> ":House": 3.1.1- getDeviceTypeList()
+activate ":House"
+":Controller \nAddDeviceToRoom" <-- ":House": 3.1.2 - listOfDeviceTypes
+deactivate ":House"
+":UI \nAddDeviceToRoom" <-- ":Controller \nAddDeviceToRoom": 3.2 - listOfDeviceTypes
+deactivate ":Controller \nAddDeviceToRoom"
+RegularUser <-- ":UI \nAddDeviceToRoom": 3.3 - listOfDeviceTypes
+
+
+deactivate ":UI \nAddDeviceToRoom"
+RegularUser -> ":UI \nAddDeviceToRoom": 4 - int dt
+activate ":UI \nAddDeviceToRoom"
+
+":UI \nAddDeviceToRoom" -> ":Controller \nAddDeviceToRoom": 4.1 - getDeviceType (dt)
+
+activate ":Controller \nAddDeviceToRoom"
+":Controller \nAddDeviceToRoom" -> ":House": 4.1.1 - getDeviceType (dt)
+activate ":House"
+":Controller \nAddDeviceToRoom" <-- ":House": 4.1.2 - deviceType
+deactivate ":House"
+":UI \nAddDeviceToRoom" <-- ":Controller \nAddDeviceToRoom": 4.2 - deviceType
+deactivate ":Controller \nAddDeviceToRoom"
+deactivate ":UI \nAddDeviceToRoom"
+
+
+":UI \nAddDeviceToRoom" -> ":Controller \nAddDeviceToRoom": createDevice
+activate ":UI \nAddDeviceToRoom"
+activate ":Controller \nAddDeviceToRoom"
+":Controller \nAddDeviceToRoom" -> ":DeviceType": createDevice
 activate ":DeviceType"
-":Controller" <-- ":DeviceType": device
+":Controller \nAddDeviceToRoom" <-- ":DeviceType": device
 deactivate ":DeviceType"
-":UI" <-- ":Controller": device
-deactivate ":Controller"
+":UI \nAddDeviceToRoom" <-- ":Controller \nAddDeviceToRoom": device
+deactivate ":Controller \nAddDeviceToRoom"
 
 @enduml

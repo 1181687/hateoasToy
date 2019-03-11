@@ -8,7 +8,7 @@ public class MicrowaveOvenType implements DeviceType {
     String typeName;
 
     public MicrowaveOvenType() {
-        this.typeName = "Microwave Oven";
+        this.typeName = "MicrowaveOven";
     }
 
     public String getTypeName() {

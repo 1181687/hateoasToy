@@ -1,8 +1,8 @@
-package pt.ipp.isep.dei.project.controllersTests;
+package pt.ipp.isep.dei.project.controllersTests.importReadingsFromCSVControllerTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.ImportReadingsFromCSVController;
+import pt.ipp.isep.dei.project.controllers.importReadingsFromCSVController.ImportReadingsFromCSVController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;

@@ -8,7 +8,7 @@ public class ElectricOvenType implements DeviceType {
     String typeName;
 
     public ElectricOvenType() {
-        this.typeName = "Electric Oven";
+        this.typeName = "ElectricOven";
     }
 
     @Override

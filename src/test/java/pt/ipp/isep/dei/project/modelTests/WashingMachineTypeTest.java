@@ -26,7 +26,7 @@ public class WashingMachineTypeTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);
 
-        Device expectedResult = house.createDevice("Washing Machine", name, room);
+        Device expectedResult = house.createDevice("WashingMachine", name, room);
         //Act
         Device result = room.getDeviceByPosition(0);
         //Assert

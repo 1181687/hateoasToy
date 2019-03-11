@@ -30,8 +30,8 @@ public class Main {
     private static final String GLASSES = "Glasses";
     private static final String DISHES = "Dishes";
 
-    private static final String ELECTRIC_WATER_HEATER = "Electric Water Heater";
-    private static final String DISHWASHER = "Dishwasher";
+    private static final String ELECTRIC_WATER_HEATER = "ElectricWaterHeater";
+    private static final String DISHWASHER = "DishWasher";
 
     public static void main(String[] args) {
 

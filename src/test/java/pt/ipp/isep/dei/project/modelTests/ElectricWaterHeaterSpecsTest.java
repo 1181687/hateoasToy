@@ -18,7 +18,7 @@ class ElectricWaterHeaterSpecsTest {
     private House house;
     private Room kitchen;
     private Device electricWaterHeater;
-    private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
+    private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
 
 
     @BeforeEach

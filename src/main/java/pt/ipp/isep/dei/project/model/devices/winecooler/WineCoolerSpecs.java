@@ -21,11 +21,6 @@ public class WineCoolerSpecs implements DeviceSpecs {
         this.typeName = "WineCooler";
     }
 
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
     /**
      * boolean method "Is programmable"
      *

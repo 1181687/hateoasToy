@@ -119,31 +119,31 @@ public class TelevisionTest {
     }
 
     @Test
-    public void setNameWithSameNameTest() {
+    public void setNameWithSameNameTestSmartTV() {
         Throwable exception = assertThrows(RuntimeException.class, () -> television.setName("Smart TV"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
-    public void setNameWithSameLocationTestWineCooler1() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> bedroom.getDeviceByPosition(0).setName("Smart TV"));
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
-
-    @Test
-    public void setNameWithSameLocationTestWineCooler2() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> bedroom.getDeviceByPosition(0).setName("Flat Screen TV"));
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
-
-    @Test
-    public void setNameAlreadyInListTest() {
+    public void setNameWithSameNameTestFlatScreenTV() {
         Throwable exception = assertThrows(RuntimeException.class, () -> television.setName("Flat Screen TV"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
-    public void setNameFalseTest() {
+    public void setNameWithSameLocationTestSmartTV() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> bedroom.getDeviceByPosition(0).setName("Smart TV"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void setNameWithSameLocationTestFlatScreenTV() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> bedroom.getDeviceByPosition(0).setName("Flat Screen TV"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void setNameTrueTest() {
         // Act
         boolean result = television.setName("");
 
@@ -152,7 +152,7 @@ public class TelevisionTest {
     }
 
     @Test
-    public void setNameTrueTest() {
+    public void setNameTrueSamsungTV() {
         // Act
         boolean result = television.setName("Samsung TV");
 
