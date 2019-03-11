@@ -168,10 +168,11 @@ public class AddDeviceToRoom {
             programDuration = InputValidator.getDoublePos(label46);
             String label47 = "What is the energy consumption of this program?";
             programEnergyConsumption = InputValidator.getDoublePos(label47);
-            controller.setProgramAttributes("duration", programDuration);
-            controller.setProgramAttributes("energyConsumption", programEnergyConsumption);
             ProgramSpecs specs = controller.getProgramSpecs();
             Program program = controller.createNewProgram(programName, specs);
+            controller.setProgramAttributes("duration", programDuration);
+            controller.setProgramAttributes("energyConsumption", programEnergyConsumption);
+
             if (controller.addProgram(program)) {
                 System.out.println("The program " + programName + " was added to the selected device.\n");
             }
