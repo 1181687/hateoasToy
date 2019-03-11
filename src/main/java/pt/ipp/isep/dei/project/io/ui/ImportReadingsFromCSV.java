@@ -28,6 +28,9 @@ public class ImportReadingsFromCSV {
         String pathCSVFile = InputValidator.getString("Please specify the name of the CSV file to import (including the \".csv\" part).");
         File file = new File(pathCSVFile);
         Scanner scanner = new Scanner(file);
+        if (Objects.isNull(scanner)) {
+            scanner.close();
+        }
         StringBuilder notImportedReadings = new StringBuilder();
         scanner.nextLine();
         while (scanner.hasNext()) {
@@ -58,9 +61,6 @@ public class ImportReadingsFromCSV {
             return;
         }
         System.out.println("\nAll readings were imported successfully.\n");
-        if (!Objects.isNull(scanner)) {
-            scanner.close();
-        }
     }
 
     /**
