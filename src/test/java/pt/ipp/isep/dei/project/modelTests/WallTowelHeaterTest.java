@@ -11,6 +11,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,6 +22,9 @@ class WallTowelHeaterTest {
     private Room kitchen;
     private Room bathroom;
     private Device wallTowerHeater;
+    private Reading reading0;
+    private Reading reading1;
+    private Reading reading2;
 
 
     @BeforeEach
@@ -47,11 +51,11 @@ class WallTowelHeaterTest {
 
         // Readings
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
-        Reading reading0 = new Reading(3, time0);
+        reading0 = new Reading(3, time0);
         LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
-        Reading reading1 = new Reading(5, time1);
+        reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
-        Reading reading2 = new Reading(7, time2);
+        reading2 = new Reading(7, time2);
         wallTowerHeater.addReadingsToTheList(reading0);
         wallTowerHeater.addReadingsToTheList(reading1);
         wallTowerHeater.addReadingsToTheList(reading2);
@@ -176,5 +180,14 @@ class WallTowelHeaterTest {
 
     @Test
     void getReadings() {
+        //Arrange
+        List<Reading> expectedResult = new ArrayList<>();
+        expectedResult.add(this.reading0);
+        expectedResult.add(this.reading1);
+        expectedResult.add(this.reading2);
+        //Act
+        List<Reading> result = this.wallTowerHeater.getReadings();
+        //Assert
+        assertEquals(expectedResult,result);
     }
 }
