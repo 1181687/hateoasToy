@@ -119,7 +119,13 @@ public class WineCoolerTest {
     }
 
     @Test
-    public void setNameWithSameNameTest() {
+    public void setNameWithSameNameTestAwesomeWineCooler() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> wineCooler.setName("Awesome Wine Cooler"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void setNameWithSameNameTestEvenMoreAwesomeWineCooler() {
         Throwable exception = assertThrows(RuntimeException.class, () -> wineCooler.setName("Even More Awesome Wine Cooler"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
@@ -133,12 +139,6 @@ public class WineCoolerTest {
     @Test
     public void setNameWithSameLocationTestWineCooler2() {
         Throwable exception = assertThrows(RuntimeException.class, () -> kitchen.getDeviceByPosition(0).setName("Awesome Wine Cooler"));
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
-
-    @Test
-    public void setNameAlreadyInListTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> wineCooler.setName("Awesome Wine Cooler"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
