@@ -463,12 +463,10 @@ public class GeographicalArea {
         return sensorList.checkMeasurementExistenceBetweenDates(location, startDate, endDate);
     }
 
-    public LocalDate getDateOfLastLowestMaximumReading(Location location, SensorType sensorType, LocalDate startDate, LocalDate endDate) {
+    public Reading getLastLowestMaximumReading(Location location, SensorType sensorType, LocalDate startDate, LocalDate endDate) {
         Sensor sensor = getNearestSensorWithMostRecentReading(sensorType, location);
         List<Reading> readings = sensor.getDailyMaxReadingsInAnInterval(startDate,endDate);
-        Reading lowestMaximumReading = sensor.getLastLowestReading(readings);
-        return lowestMaximumReading.getDateTime().toLocalDate();
-
+        return sensor.getLastLowestReading(readings);
     }
 
     public Sensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
