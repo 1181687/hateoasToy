@@ -16,8 +16,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MicrowaveOvenTest {
     private Room kitchen;
@@ -87,19 +86,18 @@ public class MicrowaveOvenTest {
         assertEquals(expectedResult, result);
     }
 
-    /*
-        @Test
-        public void setNameWithSameNameTest() {
-            Throwable exception = assertThrows(RuntimeException.class, () -> microwaveOven.setName("Bosch 500 Series"));
-            assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-        }
+    @Test
+    public void setNameWithSameNameTest() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> microwaveOven.setName("Becken BMW2328"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
 
-        @Test
-        public void setNameAlreadyInListTest() {
-            Throwable exception = assertThrows(RuntimeException.class, () -> microwaveOven.setName("Bosch 600 Series"));
-            assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-        }
-    */
+    @Test
+    public void setNameAlreadyInListTest() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> microwaveOven.setName("Becken BMW2329"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
     @Test
     public void setNameFalseTest() {
         // Act
