@@ -1,19 +1,17 @@
 package pt.ipp.isep.dei.project.model.devices.stove;
 
-import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.devices.Program;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
+import pt.ipp.isep.dei.project.model.devices.*;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class StoveSpecs implements DeviceSpecs, Programmable {
 
-    private static final String ATTRIBUTE_TIME = "Time";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
     private String typeName;
-    private double time;
     private double nominalPower;
     private List<Program> programList;
 
@@ -25,6 +23,11 @@ public class StoveSpecs implements DeviceSpecs, Programmable {
     @Override
     public double getEnergyConsumptionInADay() {
         return 0;
+    }
+
+    @Override
+    public String getTypeName() {
+        return typeName;
     }
 
     /**
@@ -50,7 +53,7 @@ public class StoveSpecs implements DeviceSpecs, Programmable {
     }
 
     /**
-     * method that gets the number of editable attributes of the StoveSpecs.
+     * method that gets the number of attributes of the StoveSpecs (Nominal power).
      *
      * @return the number of attributes integer.
      */
@@ -70,6 +73,12 @@ public class StoveSpecs implements DeviceSpecs, Programmable {
         result.add(ATTRIBUTE_NOMINAL_POWER);
         return result;
     }
+
+    @Override
+    public List<Program> getProgramList() {
+        return this.programList;
+    }
+
 
     /**
      * gets attribute Object when given attribute name as String
@@ -93,9 +102,70 @@ public class StoveSpecs implements DeviceSpecs, Programmable {
      *
      * @param attributeName string name of attribute
      * @return type data of the attribute (ex.integer, double)
+     *
      */
     @Override
     public String getAttributeDataType(String attributeName) {
         return getAttributeValue(attributeName).getClass().getName().substring(10);
+    }
+
+    /**
+     * set Nominal Power of a stove
+     *
+     * @param nominalPower given nominal power
+     * @return true if sets, false if not (if is the same time or zero
+     */
+    private boolean setNominalPower(Object nominalPower) {
+        double nomPower = (Double) nominalPower;
+        if (!Utils.isSameDouble(this.nominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
+            this.nominalPower = nomPower;
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * set attribute nominal Power
+     *
+     * @param attributeName  string name of the attribute
+     * @param attributeValue value of the attribute
+     * @return
+     */
+    @Override
+    public boolean setAttributeValue(String attributeName, Object attributeValue) {
+        switch (attributeName) {
+            case ATTRIBUTE_NOMINAL_POWER:
+                if (attributeValue instanceof Number) {
+                    return setNominalPower(((Number) attributeValue).doubleValue());
+                }
+                return false;
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public boolean isProgrammable() {
+        return true;
+    }
+
+    @Override
+    public Programmable asProgrammable() {
+        return this;
+    }
+
+    @Override
+    public boolean addProgram(Program program) {
+        if (!Objects.isNull(program) && !(programList.contains(program))) {
+            this.programList.add(program);
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public Program createNewProgram(String programName) {
+        ProgramSpecs specs = new TimeVariableProgramSpecs();
+        return new TimeVariableProgram(programName, specs);
     }
 }
