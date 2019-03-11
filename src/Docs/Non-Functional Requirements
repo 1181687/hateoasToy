@@ -10,5 +10,5 @@ included in this coverage requirements.)
 - A text console UI is available for local system management by the Administrator.
 - In the early stages of development, the other users use a text console to interact with the system.
 - The UI is in English.
-- All data exchange between controller and UI classes will use DTOs, in order to improve application's
-serviceability
+- All data exchange (beginning with Sprint 4) between controller and UI classes will use DTOs, in order to improve
+application's serviceability (previous US will only be altered if and when there is interaction with the new US's).

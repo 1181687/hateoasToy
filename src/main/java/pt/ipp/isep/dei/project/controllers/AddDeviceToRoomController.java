@@ -210,6 +210,7 @@ public class AddDeviceToRoomController {
         return programmableDevice = devSpecs.asProgrammable();
     }
 
+
     public boolean isProgrammable() {
         if (getDevSpecs().isProgrammable()) {
             programmableDevice = asProgrammable();

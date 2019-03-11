@@ -58,7 +58,9 @@ public class ImportReadingsFromCSV {
             return;
         }
         System.out.println("\nAll readings were imported successfully.\n");
-        scanner.close();
+        if (!Objects.isNull(scanner)) {
+            scanner.close();
+        }
     }
 
     /**
@@ -88,8 +90,7 @@ public class ImportReadingsFromCSV {
             return null;
         }
         ZonedDateTime zonedDateTime = ZonedDateTime.parse(dateTime);
-        LocalDateTime readingDateTime = zonedDateTime.toLocalDateTime();
-        return readingDateTime;
+        return zonedDateTime.toLocalDateTime();
     }
 
     /**
@@ -99,12 +100,12 @@ public class ImportReadingsFromCSV {
      * @return Double with the value.
      */
     public Double checkValueAndStoreIt(String value) {
+        Double readingValue;
         try {
-            Double.parseDouble(value);
+            readingValue = Double.parseDouble(value);
         } catch (NumberFormatException e) {
             return null;
         }
-        Double readingValue = Double.parseDouble(value);
         return readingValue;
     }
 }
