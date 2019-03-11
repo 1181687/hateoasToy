@@ -171,7 +171,7 @@ public class AddDeviceToRoom {
             controller.setProgramAttributes("duration", programDuration);
             controller.setProgramAttributes("energyConsumption", programEnergyConsumption);
             ProgramSpecs specs = controller.getProgramSpecs();
-            Program program = controller.createNewProgram(programName, specs);
+            Program program = controller.createNewProgram(programName);
             if (controller.addProgram(program)) {
                 System.out.println("The program " + programName + " was added to the selected device.\n");
             }

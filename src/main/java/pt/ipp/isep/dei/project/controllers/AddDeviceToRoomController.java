@@ -226,8 +226,8 @@ public class AddDeviceToRoomController {
         return program.setProgramAttributes(attributeName, attributeValue);
     }
 
-    public Program createNewProgram(String name, ProgramSpecs specs) {
-        return program = programmableDevice.createNewProgram(name, specs);
+    public Program createNewProgram(String name) {
+        return program = programmableDevice.createNewProgram(name);
     }
 
     public boolean addProgram(Program program) {

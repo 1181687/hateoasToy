@@ -181,7 +181,8 @@ public class FanSpecs implements DeviceSpecs, Programmable {
     }
 
     @Override
-    public Program createNewProgram(String programName, ProgramSpecs specs) {
+    public Program createNewProgram(String programName) {
+        ProgramSpecs specs = new TimeVariableProgramSpecs();
         return new TimeVariableProgram(programName, specs);
     }
 }

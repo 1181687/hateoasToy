@@ -182,8 +182,9 @@ public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
     }
 
     @Override
-    public Program createNewProgram(String programName, ProgramSpecs specs) {
-        return new TimeConstantProgram(programName, specs);
+    public Program createNewProgram(String programName) {
+        ProgramSpecs specs = new TimeVariableProgramSpecs();
+        return new TimeVariableProgram(programName, specs);
     }
 
 }
