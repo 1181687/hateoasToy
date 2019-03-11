@@ -796,4 +796,8 @@ public class House {
         return this.insertedGeoArea.getHighestDailyAmplitude(mapOfDailyAmplitude);
     }
 
+    public Reading getLastLowestMaximumReading(SensorType sensorType, LocalDate startDate, LocalDate endDate){
+        return this.insertedGeoArea.getLastLowestMaximumReading(this.getLocation(),sensorType,startDate,endDate);
+    }
+
 }
