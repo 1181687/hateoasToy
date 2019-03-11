@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Objects;
 
@@ -24,7 +25,7 @@ public class WallTowelHeater implements Device {
      */
     @Override
     public Room getLocation() {
-        return null;
+        return this.location;
     }
 
     /**
@@ -34,7 +35,7 @@ public class WallTowelHeater implements Device {
      */
     @Override
     public String getName() {
-        return null;
+        return this.name;
     }
 
     /**
@@ -44,7 +45,7 @@ public class WallTowelHeater implements Device {
      */
     @Override
     public DeviceSpecs getSpecs() {
-        return null;
+        return this.specs;
     }
 
     /**
@@ -76,16 +77,21 @@ public class WallTowelHeater implements Device {
      */
     @Override
     public boolean getIsActive() {
-        return false;
+        return this.isActive;
     }
 
     @Override
     public LocalDateTime getDeactivationDate() {
-        return null;
+        return this.deactivationDate;
     }
 
     @Override
     public boolean setDeactivateDevice() {
+        if (this.isActive) {
+            this.isActive = false;
+            this.deactivationDate = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+            return true;
+        }
         return false;
     }
 
@@ -98,11 +104,15 @@ public class WallTowelHeater implements Device {
      */
     @Override
     public boolean setName(String name) {
-        return false;
+        if (this.location.isDeviceNameExistant(name) || this.name.equalsIgnoreCase(name)) {
+            throw new RuntimeException("Name already exists. Please write a new one.");
+        }
+        this.name = name;
+        return true;
     }
 
     @Override
     public List<Reading> getReadings() {
-        return null;
+        return this.readingList;
     }
 }
