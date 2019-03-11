@@ -4,8 +4,12 @@ package pt.ipp.isep.dei.project.controllersTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.Address;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
@@ -121,7 +125,9 @@ public class AddDeviceToRoomControllerTest {
                 "7- Freezer\n" +
                 "8- WineCooler\n" +
                 "9- Television\n" +
-                "10- MicrowaveOven\n";
+                "10- MicrowaveOven\n" +
+                "11- Fan\n";
+
 
         // Act
         String result = controller.getDeviceTypeListToString();
@@ -150,7 +156,7 @@ public class AddDeviceToRoomControllerTest {
     @Test
     public void testNewFridgeNegative() {
         // Arrange
-        house.addRoom(kitchen);
+        housegrid.addRoom(kitchen);
         controller.getRoom(0);
         controller.createNewFridge("Fridge", 1000, 200,
                 20, 50);
@@ -167,7 +173,7 @@ public class AddDeviceToRoomControllerTest {
     @Test
     public void testNewLamp() {
         // Arrange
-        house.addRoom(kitchen);
+        housegrid.addRoom(kitchen);
         controller.getRoom(0);
         Device device = controller.createNewLamp("lamp", 200, 100);
 
@@ -183,7 +189,7 @@ public class AddDeviceToRoomControllerTest {
     @Test
     public void testNewLampNegative() {
         // Arrange
-        house.addRoom(kitchen);
+        housegrid.addRoom(kitchen);
         controller.getRoom(0);
         controller.createNewLamp("lamp", 200, 100);
 
@@ -199,7 +205,7 @@ public class AddDeviceToRoomControllerTest {
     @Test
     public void testNewWashingMachine() {
         // Arrange
-        house.addRoom(kitchen);
+        housegrid.addRoom(kitchen);
         controller.getRoom(0);
         Device device = controller.createNewWashingMachine("Washing Machine", 200, 100);
 
@@ -215,7 +221,7 @@ public class AddDeviceToRoomControllerTest {
     @Test
     public void testNewWashingMachineNegative() throws RuntimeException {
         // Arrange
-        house.addRoom(kitchen);
+        housegrid.addRoom(kitchen);
         controller.getRoom(0);
         controller.createNewWashingMachine("Washing Machine", 200, 100);
 
@@ -231,7 +237,7 @@ public class AddDeviceToRoomControllerTest {
     @Test
     public void newElectricWaterHeater() {
         // Arrange
-        house.addRoom(kitchen);
+        housegrid.addRoom(kitchen);
         controller.getRoom(0);
 
         Device device = controller.createNewElectricWaterHeater("Electric Water Heater", 50,
@@ -249,7 +255,7 @@ public class AddDeviceToRoomControllerTest {
     @Test
     public void newElectricWaterHeaterNegative() throws RuntimeException {
         // Arrange
-        house.addRoom(kitchen);
+        housegrid.addRoom(kitchen);
         controller.getRoom(0);
 
         controller.createNewElectricWaterHeater("Electric Water Heater", 50, 150,
@@ -268,7 +274,7 @@ public class AddDeviceToRoomControllerTest {
     @Test
     public void newDishWasher() {
         // Arrange
-        house.addRoom(kitchen);
+        housegrid.addRoom(kitchen);
         controller.getRoom(0);
 
         Device device = controller.createNewDishWasher("Dishwasher", 12, 50);
@@ -285,7 +291,7 @@ public class AddDeviceToRoomControllerTest {
     @Test
     public void newDishWasherNegative() throws RuntimeException {
         // Arrange
-        house.addRoom(kitchen);
+        housegrid.addRoom(kitchen);
         controller.getRoom(0);
         controller.createNewDishWasher("DW1", 12, 50);
 
@@ -300,16 +306,16 @@ public class AddDeviceToRoomControllerTest {
     @Test
     public void testGetDeviceListContentOfARoomTest() {
         // Arrange
-        house.addRoom(kitchen);
-        //house.getDeviceType("fridge").createDevice("Fridgeratah V14", kitchen);
-        house.createDevice("Fridge", "Fridgeratah V14", kitchen);
+        housegrid.addRoom(kitchen);
+        //housegrid.getDeviceType("fridge").createDevice("Fridgeratah V14", kitchen);
+        housegrid.createDevice("Fridge", "Fridgeratah V14", kitchen);
         kitchen.getDeviceByPosition(0).setAttributesDevType("freezer Capacity", 5.5);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 15.5);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 5000);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.5);
 
-        //house.getDeviceType("lamp").createDevice("lamp Bizkit 5000", kitchen);
-        house.createDevice("lamp", "lamp Bizkit 5000", kitchen);
+        //housegrid.getDeviceType("lamp").createDevice("lamp Bizkit 5000", kitchen);
+        housegrid.createDevice("lamp", "lamp Bizkit 5000", kitchen);
         kitchen.getDeviceByPosition(1).setAttributesDevType("Nominal Power", 1.0);
         kitchen.getDeviceByPosition(1).setAttributesDevType("Luminous Flux", 10.0);
 
@@ -327,8 +333,8 @@ public class AddDeviceToRoomControllerTest {
     @Test
     public void testCreateNewProgram() {
         // Arrange
-        Device device = house.createDevice("Electric Water Heater", "Electric Water Heater", kitchen);
-        //house.getDeviceType("Electric Water Heater").createDevice("Electric Water Heater", kitchen);
+        Device device = housegrid.createDevice("Electric Water Heater", "Electric Water Heater", kitchen);
+        //housegrid.getDeviceType("Electric Water Heater").createDevice("Electric Water Heater", kitchen);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Volume Of Water To Heat", 5.5);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 15.5);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 5000);
@@ -338,7 +344,7 @@ public class AddDeviceToRoomControllerTest {
 
         //Device electricWaterHeater = new Device("Electric Water Heater", kitchen, eWHSpecs);
         //kitchen.addDevice(electricWaterHeater);
-        house.addRoom(kitchen);
+        housegrid.addRoom(kitchen);
 
         // Act
         boolean result = controller.createAndAddProgram("Program1", 10.2, 50);
@@ -375,7 +381,7 @@ public class AddDeviceToRoomControllerTest {
     @Test
     public void testGetNumberOfDeviceTypes() {
         // Arrange
-        int expectedResult = 10;
+        int expectedResult = 11;
 
         // Act
         int result = controller.getNumberOfDeviceTypes();

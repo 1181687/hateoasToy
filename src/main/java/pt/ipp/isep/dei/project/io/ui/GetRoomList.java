@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetRoomListController;
-import pt.ipp.isep.dei.project.model.RoomList;
+import pt.ipp.isep.dei.project.model.house.RoomList;
 
 /** US108 As an Administrator, I want to have a list of existing rooms, so that I can choose
 one to edit it. */

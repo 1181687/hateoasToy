@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 /*class WashingMachineSpecsTest {
-    private House house;
+    private House housegrid;
     private Room kitchen;
     private Device washingMachine;
     private final String CAPACITY = "Capacity";
@@ -18,15 +18,15 @@ package pt.ipp.isep.dei.project.modelTests;
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        this.housegrid = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         // Room
         Dimension dimension = new Dimension(2, 2, 2);
         this.kitchen = new Room("Kitchen", 0, dimension);
-        house.addRoom(kitchen);
+        housegrid.addRoom(kitchen);
 
         // Device
-        this.washingMachine = house.createDevice(WASHING_MACHINE_TYPE, "Wm1", kitchen);
+        this.washingMachine = housegrid.createDevice(WASHING_MACHINE_TYPE, "Wm1", kitchen);
 
         // Reading
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);

@@ -1,6 +1,10 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
+import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 
 public class AddPowerSourceToHouseGridController {
 
@@ -10,7 +14,7 @@ public class AddPowerSourceToHouseGridController {
     private PowerSourceType selectedPowerSourceType;
 
     /**
-     * this is the construtor of the controller, with the house and the PowerSourceTypeList
+     * this is the construtor of the controller, with the housegrid and the PowerSourceTypeList
      * @param house
      * @param powerSourceTypeList
      */

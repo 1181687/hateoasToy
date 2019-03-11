@@ -3,8 +3,15 @@ package pt.ipp.isep.dei.project.controllersTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.EditConfigurationDeviceController;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.house.Address;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
@@ -215,7 +222,7 @@ class EditConfigurationDeviceControllerTest {
         String annualEnergyConsumption = "Annual Energy Consumption";
         String nominalPower = "Nominal Power";
 
-        Device device0 = house.createDevice(FRIDGE_TYPE, "Fridgeratah V14", room);
+        Device device0 = housegrid.createDevice(FRIDGE_TYPE, "Fridgeratah V14", room);
 
         device0.setAttributesDevType(freezerCapacity, 35);
         device0.setAttributesDevType(refrigeratorCapacity, 20);
@@ -227,15 +234,15 @@ class EditConfigurationDeviceControllerTest {
         String PERFORMANCE_RATIO = "Performance Ratio";
         String NOMINAL_POWER = "Nominal Power";
 
-        Device device1 = house.createDevice(ELECTRIC_W_H_TYPE, "Bosh Tronic 3000", room);
+        Device device1 = housegrid.createDevice(ELECTRIC_W_H_TYPE, "Bosh Tronic 3000", room);
         device1.setAttributesDevType(HOT_WATER_TEMP, 50);
         device1.setAttributesDevType(PERFORMANCE_RATIO, 0.9);
         device1.setAttributesDevType(NOMINAL_POWER, 100);
 
         int position = 0;
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
-        EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
+        EditConfigurationDeviceController controller = new EditConfigurationDeviceController(housegrid);
         controller.getRoomByPosition(position);
         controller.getDeviceByPosition(position);
 
@@ -606,10 +613,10 @@ class EditConfigurationDeviceControllerTest {
         device0.setAttributesDevType(annualEnergyConsumption,1000);
         device0.setAttributesDevType(nominalPower,10);
 
-        EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
+        EditConfigurationDeviceController controller = new EditConfigurationDeviceController(housegrid);
 
         int position = 0;
-        house.addRoom(room);
+        housegrid.addRoom(room);
         controller.getRoomByPosition(position);
         controller.getDeviceByPosition(position);
         controller.getNewRoom(0);
@@ -647,9 +654,9 @@ class EditConfigurationDeviceControllerTest {
         device0.setAttributesDevType(annualEnergyConsumption, 1000);
         device0.setAttributesDevType(nominalPower, 10);
 
-        EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
+        EditConfigurationDeviceController controller = new EditConfigurationDeviceController(housegrid);
         int position = 0;
-        house.addRoom(room);
+        housegrid.addRoom(room);
         controller.getRoomByPosition(position);
         controller.getDeviceByPosition(position);
         controller.getNewRoom(0);

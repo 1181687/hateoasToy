@@ -1,13 +1,15 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.ConfHouseLocationController;
-import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.house.House;
 
 import java.util.Scanner;
 
 public class ConfHouseLocation {
 
-    /** US101 As an Administrator, I want to configure the location of the house. */
+    /**
+     * US101 As an Administrator, I want to configure the location of the housegrid.
+     */
     private ConfHouseLocationController controller;
 
     public ConfHouseLocation(House house) {

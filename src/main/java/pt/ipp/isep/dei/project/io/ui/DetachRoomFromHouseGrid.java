@@ -1,11 +1,11 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.DetachRoomFromHouseGridController;
-import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.RoomList;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.RoomList;
 
 /**
- * US149 As an Administrator, I want to detach a room from a house grid, so that the room’s
+ * US149 As an Administrator, I want to detach a room from a housegrid grid, so that the room’s
  * power and energy consumption is not included in that grid. The room’s
  * characteristics are not changed.
  */
@@ -33,11 +33,11 @@ public class DetachRoomFromHouseGrid {
 
     public void run() {
         if (controller.getGridListSize() == 0) {
-            System.out.println("There are no house grids in your house. Please insert a new house grid.");
+            System.out.println("There are no housegrid grids in your housegrid. Please insert a new housegrid grid.");
             System.out.println();
         } else {
             System.out.println(controller.getListOfHouseGridsAttachedToHouseGrid());
-            String label1 = "Please choose the house grid where the room will be detached.";
+            String label1 = "Please choose the housegrid grid where the room will be detached.";
             int firstOption = InputValidator.getIntRange(label1, 0, controller.getGridListSize()) - 1;
 
             if (controller.getListOfRoomsInACertainHouseGrid(firstOption).isEmpty()) {
@@ -45,7 +45,7 @@ public class DetachRoomFromHouseGrid {
 
             } else {
                 System.out.println(controller.getListOfRoomsInACertainHouseGrid(firstOption));
-                String label2 = "Please choose the room to be detached from the chosen house grid.";
+                String label2 = "Please choose the room to be detached from the chosen housegrid grid.";
                 int secondOption = InputValidator.getIntRange(label2, 0, controller.getListOfRoomsInACertainHouseGrid(firstOption).length()) - 1;
                 if (controller.detachRoomFromGridList((controller.getHouseGridFromTheList(firstOption)), controller.getRoomFromTheListOfRoomByAPosition(secondOption))) {
                     System.out.println("The room has been detached from the grid.");

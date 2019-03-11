@@ -1,31 +1,34 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddRoomController;
-import pt.ipp.isep.dei.project.model.House;
-/**US105 As an Administrator, I want to add a new room to the house, in order to configure
-it (name, house floor and dimensions).*/
+import pt.ipp.isep.dei.project.model.house.House;
+
+/**
+ * US105 As an Administrator, I want to add a new room to the housegrid, in order to configure
+ * it (name, housegrid floor and dimensions).
+ */
 
 public class AddRoom {
 
     private AddRoomController controller;
 
     /**
-     * method constructor that receives a house
+     * method constructor that receives a housegrid
      *
-     * @param house house received
+     * @param house housegrid received
      */
     public AddRoom(House house) {
         this.controller = new AddRoomController(house);
     }
 
     /**
-     * method that creats and adds a new room to the house. First asks the user to give the valid parameters necessary
+     * method that creats and adds a new room to the housegrid. First asks the user to give the valid parameters necessary
      * to create the new room and then invokes the controller methods newroom and addRoom. Finally if the
      * addRoom returns true, a informative message of the sucess of it, is apresented to the user.
      */
     public void run() {
 
-        String label1 = "What is the name of the room you want to add to the house?";
+        String label1 = "What is the name of the room you want to add to the housegrid?";
         String name = InputValidator.getString(label1);
 
         while (controller.isNameExistant(name)) {

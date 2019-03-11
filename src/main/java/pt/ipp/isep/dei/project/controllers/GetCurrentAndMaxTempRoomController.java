@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.SensorType;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDate;
 
@@ -40,7 +40,7 @@ public class GetCurrentAndMaxTempRoomController {
     /**
      * gets a formatted string with information from the rooms that are available
      *
-     * @return a String with room's name, house floor, height, length and width:
+     * @return a String with room's name, housegrid floor, height, length and width:
      */
     public String getRoomListContent() {
         return this.house.getRoomListContent();

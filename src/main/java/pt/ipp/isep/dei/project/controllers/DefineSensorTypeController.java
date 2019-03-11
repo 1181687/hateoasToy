@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.SensorType;
-import pt.ipp.isep.dei.project.model.SensorTypeList;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
 public class DefineSensorTypeController {
     private SensorTypeList sensorTypeList;
