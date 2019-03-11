@@ -234,5 +234,17 @@ public class AddDeviceToRoomController {
         return programmableDevice.addProgram(program);
     }
 
+    /**
+     * Method that create a new Fan in a selected Room.
+     *
+     * @param name         of the Fan
+     * @param nominalPower the nominal power of the Fan (a specification of the Fan)
+     * @return the Device that has been created
+     */
+    public Device createFan(String name, double nominalPower) {
+        device = house.createDevice("Fan", name, getSelectedRoom());
+        device.getSpecs().setAttributeValue(NOMINAL_POWER, nominalPower);
+        return device;
+    }
 
 }

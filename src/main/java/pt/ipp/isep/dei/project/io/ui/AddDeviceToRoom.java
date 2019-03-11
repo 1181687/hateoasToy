@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
 import pt.ipp.isep.dei.project.model.devices.Program;
-import pt.ipp.isep.dei.project.model.devices.ProgramSpecs;
 import pt.ipp.isep.dei.project.model.house.House;
 
 
@@ -82,11 +81,33 @@ public class AddDeviceToRoom {
 
                     option = 0;
                     break;
+                case 11:
+                    //CREATION OF A FAN
+                    creationOfFan();
+
+                    option = 0;
+                    break;
                 default:
-                    System.out.println("Invalid option. Please choose a number between 1 and 5.");
+                    System.out.println("Invalid option. Please choose a number between 1 and 11.");
             }
         }
     }
+
+    public void creationOfFan() {
+        String label77 = "What is the name of the fan?";
+        String fanDeviceName = InputValidator.getString(label77);
+        String label78 = "What is the fan nominal power (kW)?";
+        double fanNominalPower = InputValidator.getDoublePos(label78);
+
+        controller.createFan(fanDeviceName, fanNominalPower);
+
+        if (controller.isProgrammable()) {
+            creationOfTimeVariablePrograms();
+        }
+
+        System.out.println("The Fan was successfully created and added to the selected room.");
+    }
+
 
 
     public void creationOfFridge() {
@@ -168,10 +189,28 @@ public class AddDeviceToRoom {
             programDuration = InputValidator.getDoublePos(label46);
             String label47 = "What is the energy consumption of this program?";
             programEnergyConsumption = InputValidator.getDoublePos(label47);
+            Program program = controller.createNewProgram(programName);
             controller.setProgramAttributes("duration", programDuration);
             controller.setProgramAttributes("energyConsumption", programEnergyConsumption);
-            ProgramSpecs specs = controller.getProgramSpecs();
+            if (controller.addProgram(program)) {
+                System.out.println("The program " + programName + " was added to the selected device.\n");
+            }
+        }
+    }
+
+    public void creationOfTimeVariablePrograms() {
+        String label34 = "How many programs has the selected device?";
+        int numberOfPrograms = InputValidator.getIntPos(label34);
+        String programName = "";
+        double programNominalPower = 0;
+        for (int i = 0; i < numberOfPrograms; i++) {
+            System.out.println("PROGRAM " + (i + 1));
+            String label45 = "What is the name of this program?";
+            programName = InputValidator.getString(label45);
+            String label47 = "What is the nominal power of this program?";
+            programNominalPower = InputValidator.getDoublePos(label47);
             Program program = controller.createNewProgram(programName);
+            controller.setProgramAttributes("programNominalPower", programNominalPower);
             if (controller.addProgram(program)) {
                 System.out.println("The program " + programName + " was added to the selected device.\n");
             }

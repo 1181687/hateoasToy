@@ -2,11 +2,11 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.fan.FanSpecs;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
@@ -145,18 +145,6 @@ public class FanSpecsTest {
     }
 
     @Test
-    public void testGetAttributeValueTime() {
-        // Arrange
-        fan.setAttributesDevType("Time", 30);
-
-        Object expectedResult = 30.0;
-        // Act
-        Object result = fan.getSpecs().getAttributeValue("Time");
-        // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
         Object expectedResult = -1;
@@ -208,25 +196,6 @@ public class FanSpecsTest {
         fan.setAttributesDevType("Nominal Power", 100.0);
         // Act
         boolean result = fan.getSpecs().setAttributeValue("Nominal Power", 100.0);
-        // Assert
-        assertFalse(result);
-    }
-
-    @Test
-    public void testSetAttributeTimeValidValue() {
-        // Arrange
-        // Act
-        boolean result = fan.getSpecs().setAttributeValue("Time", 100.0);
-        // Assert
-        assertTrue(result);
-    }
-
-    @Test
-    public void testSetAttributeTimeSameValue() {
-        // Arrange
-        fan.setAttributesDevType("Time", 100.0);
-        // Act
-        boolean result = fan.getSpecs().setAttributeValue("Time", 100.0);
         // Assert
         assertFalse(result);
     }
@@ -290,7 +259,7 @@ public class FanSpecsTest {
         TimeVariableProgramSpecs programASpecs = new TimeVariableProgramSpecs();
         programASpecs.setTime(30.0);
         programASpecs.setProgramNominalPower(50.0);
-        Program programA = programmable.createNewProgram(programName,programASpecs);
+        Program programA = programmable.createNewProgram(programName);
 
         DeviceSpecs fanSpecs = fan.getSpecs();
 
