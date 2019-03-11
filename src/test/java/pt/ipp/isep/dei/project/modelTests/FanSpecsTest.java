@@ -97,7 +97,7 @@ public class FanSpecsTest {
     public void testGetNumberOfAttributes() {
         //Arrange
 
-        int expectedResult = 2;
+        int expectedResult = 1;
 
         //Act
 
@@ -267,6 +267,50 @@ public class FanSpecsTest {
 
         //Act
         boolean result = ((FanSpecs) fanSpecs).addProgram(programA);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetProgramList() {
+        //Arrange
+        String programName = "fast";
+        Programmable programmable = this.fanSpecs.asProgrammable();
+        TimeVariableProgramSpecs programASpecs = new TimeVariableProgramSpecs();
+        programASpecs.setTime(30.0);
+        programASpecs.setProgramNominalPower(50.0);
+        Program programA = programmable.createNewProgram(programName);
+        DeviceSpecs fanSpecs = fan.getSpecs();
+        ((FanSpecs) fanSpecs).addProgram(programA);
+
+        List<Program> expectedResult = new ArrayList<>();
+        expectedResult.add(programA);
+
+        //Act
+        List<Program> result = ((FanSpecs) fanSpecs).getProgramList();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testIsProgrammable() {
+        //Act
+        boolean result = fanSpecs.isProgrammable();
+
+        //Assert
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void testAsProgrammable() {
+        //Arrange
+        Programmable expectedResult = (Programmable) fanSpecs;
+
+        //Act
+        Programmable result = fanSpecs.asProgrammable();
 
         //Assert
         assertEquals(expectedResult, result);
