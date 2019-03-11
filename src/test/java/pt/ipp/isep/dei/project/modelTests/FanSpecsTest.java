@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Dimension;
 import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Room;
-import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.fan.FanSpecs;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -37,6 +36,7 @@ public class FanSpecsTest {
         this.fan = this.house.createDevice("Fan", "Fan200", kitchen);
         this.fan.setAttributesDevType("Nominal Power", 30);
         this.fan.setAttributesDevType("Time", 30);
+        this.fanSpecs = fan.getSpecs();
 
     }
 
@@ -260,25 +260,23 @@ public class FanSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    /*@Test
+    @Test
     public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
         //Arrange
         String programName = "fast";
         Programmable programmable = this.fanSpecs.asProgrammable();
         TimeVariableProgramSpecs programASpecs = new TimeVariableProgramSpecs();
-        programASpecs.setTime(30);
-        programASpecs.setProgramNominalPower(50);
+        programASpecs.setTime(30.0);
+        programASpecs.setProgramNominalPower(50.0);
         Program programA = programmable.createNewProgram(programName,programASpecs);
         programmable.addProgram(programA);
-
-        Program programB = programmable.createNewProgram(programName,programASpecs);
 
         DeviceSpecs fanSpecs = fan.getSpecs();
 
         boolean expectedResult = false;
 
         //Act
-        boolean result = ((FanSpecs) fanSpecs).addProgram(programB);
+        boolean result = ((FanSpecs) fanSpecs).addProgram(programA);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -290,19 +288,18 @@ public class FanSpecsTest {
         String programName = "fast";
         Programmable programmable = this.fanSpecs.asProgrammable();
         TimeVariableProgramSpecs programASpecs = new TimeVariableProgramSpecs();
-        programASpecs.setTime(30);
-        programASpecs.setProgramNominalPower(50);
+        programASpecs.setTime(30.0);
+        programASpecs.setProgramNominalPower(50.0);
         Program programA = programmable.createNewProgram(programName,programASpecs);
-
 
         DeviceSpecs fanSpecs = fan.getSpecs();
 
-        boolean expectedResult = false;
+        boolean expectedResult = true;
 
         //Act
         boolean result = ((FanSpecs) fanSpecs).addProgram(programA);
 
         //Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 }
