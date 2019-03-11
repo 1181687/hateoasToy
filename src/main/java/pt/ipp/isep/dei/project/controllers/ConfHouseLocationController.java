@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.Address;
-import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.house.Address;
+import pt.ipp.isep.dei.project.model.house.House;
 
 public class ConfHouseLocationController {
     private House house;
@@ -14,7 +14,7 @@ public class ConfHouseLocationController {
     /**
      * Get method
      *
-     * @return house
+     * @return housegrid
      */
     public House getHouse() {
         return house;

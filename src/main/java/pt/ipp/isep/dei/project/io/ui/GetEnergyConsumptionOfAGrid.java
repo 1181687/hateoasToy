@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionController;
-import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.house.House;
 
 import java.time.LocalDateTime;
 
@@ -18,7 +18,7 @@ public class GetEnergyConsumptionOfAGrid {
         String exit = "0- Exit";
 
         if (controller.isHouseGridListEmpty()) {
-            System.out.println("There are no house grids in the house. Please, add one");
+            System.out.println("There are no housegrid grids in the housegrid. Please, add one");
         } else {
             String label1 = "Please select a House Grid to see its total energy consumption: \n" + controller.getHouseGridListToString() + exit;
             int gridListLength = controller.getHouseGridListSize();

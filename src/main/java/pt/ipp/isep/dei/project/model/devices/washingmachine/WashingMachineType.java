@@ -8,7 +8,7 @@ public class WashingMachineType implements DeviceType {
     String typeName;
 
     public WashingMachineType() {
-        this.typeName = "Washing Machine";
+        this.typeName = "WashingMachine";
     }
 
     @Override

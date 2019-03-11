@@ -2,8 +2,19 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.*;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.house.Address;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -994,23 +1005,23 @@ public class HouseTest {
         Room room = new Room("Room", 2, dim);
 
         // ElectricWaterHeaterSpecs Instantiation
-        Device device0 = house.createDevice(ELECTRIC_W_H_TYPE, "Electric Water Heater", room);
+        Device device0 = housegrid.createDevice(ELECTRIC_W_H_TYPE, "Electric Water Heater", room);
         device0.setAttributesDevType("Hot-Water Temperature",50);
         device0.setAttributesDevType("Volume Of Water To Heat",150);
         device0.setAttributesDevType("Performance Ratio",0.9);
         device0.setAttributesDevType("Nominal Power",100);
 
-        house.addRoom(room);
+        housegrid.addRoom(room);
 
         int coldWaterTempPosition = 5;
         int volumeOfWaterToHeatPosition = 6;
-        house.setDeviceAttribute("Electric Water Heater", 0, coldWaterTempPosition, 30);
-        house.setDeviceAttribute("Electric Water Heater", 0, volumeOfWaterToHeatPosition, 100);
+        housegrid.setDeviceAttribute("Electric Water Heater", 0, coldWaterTempPosition, 30);
+        housegrid.setDeviceAttribute("Electric Water Heater", 0, volumeOfWaterToHeatPosition, 100);
 
         double expectedResult = 2.09;
 
         // Act
-        double result = house.getDailyEnergyConsumptionOfADevice("Electric Water Heater", 0);
+        double result = housegrid.getDailyEnergyConsumptionOfADevice("Electric Water Heater", 0);
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
@@ -1049,7 +1060,7 @@ public class HouseTest {
         // Arrange
 
         int position = 0;
-        String expectedResult = "There are no Grids in the house";
+        String expectedResult = "There are no Grids in the housegrid";
 
         // Act
         String result = house.getGridNameByPosition(position);
@@ -1090,11 +1101,11 @@ public class HouseTest {
         Dimension dimension1 = new Dimension(2, 2, 2);
         Room room = new Room(roomName, houseFloor1, dimension1);
         String gridName = "Grid";
-        housegrid grid = house.createHouseGrid(gridName);
-        house.addGrid(grid);
+        housegrid grid = housegrid.createHouseGrid(gridName);
+        housegrid.addGrid(grid);
 
         // Act
-        boolean result = house.checkIfRoomIsAlreadyInHouseGrid(grid, room);
+        boolean result = housegrid.checkIfRoomIsAlreadyInHouseGrid(grid, room);
 
         // Assert
         assertFalse(result);
@@ -1759,10 +1770,10 @@ public class HouseTest {
             //Arrange
             String name = "Main Grid";
             housegrid grid = new housegrid(name);
-            this.house.addGrid(grid);
+            this.housegrid.addGrid(grid);
             //Act
             Throwable exception = assertThrows(RuntimeException.class, () ->
-                    this.house.createHouseGrid(name)
+                    this.housegrid.createHouseGrid(name)
             );
             //Assert
             assertEquals("Name already exists. Please, write a new one.", exception.getMessage());
@@ -1774,7 +1785,7 @@ public class HouseTest {
             String name = "Main Grid";
             housegrid expectedResult = new housegrid(name);
             //Act
-            housegrid result = this.house.createHouseGrid(name);
+            housegrid result = this.housegrid.createHouseGrid(name);
             //Assert
             assertEquals(expectedResult,result);
         }

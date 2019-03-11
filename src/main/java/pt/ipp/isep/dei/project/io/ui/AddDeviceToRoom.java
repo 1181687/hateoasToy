@@ -1,9 +1,9 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
-import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.devices.Program;
 import pt.ipp.isep.dei.project.model.devices.ProgramSpecs;
+import pt.ipp.isep.dei.project.model.house.House;
 
 
 public class AddDeviceToRoom {

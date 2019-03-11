@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 public class EstimateEnergyOfWaterHeaterController {
@@ -29,7 +29,7 @@ public class EstimateEnergyOfWaterHeaterController {
     /**
      * Method that returns the name of the water heater.
      *
-     * @param devicePosition Device1 position in the list of water heaters in the house.
+     * @param devicePosition Device1 position in the list of water heaters in the housegrid.
      * @return String with the name of the water heater.
      */
     public String getNameOfWaterHeater(int devicePosition) {
@@ -66,9 +66,9 @@ public class EstimateEnergyOfWaterHeaterController {
     }
 
     /**
-     * Method that gets the combined energy consumption of all the water heaters in the house.
+     * Method that gets the combined energy consumption of all the water heaters in the housegrid.
      *
-     * @return Double with the combined energy consumption of all the water heaters in the house.
+     * @return Double with the combined energy consumption of all the water heaters in the housegrid.
      */
     public double getTotalEnergyConsumptionOfAllElectricWaterHeaters() {
         return Utils.round(house.getTotalEnergyConsumptionOfDevicesOfCertainType("Electric Water Heater"), 2);

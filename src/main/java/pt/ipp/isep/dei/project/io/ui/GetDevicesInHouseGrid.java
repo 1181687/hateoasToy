@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetDevicesInHouseGridController;
-import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.house.House;
 
 /**
  * US160 As a Power User[or administrator], i want to get a list of all devices in a grid,
@@ -12,8 +12,8 @@ public class GetDevicesInHouseGrid {
     private GetDevicesInHouseGridController controller;
 
     /**
-     * method constructor that receives a house
-     * @param house house received
+     * method constructor that receives a housegrid
+     * @param house housegrid received
      */
     public GetDevicesInHouseGrid(House house) {
         this.controller = new GetDevicesInHouseGridController(house);

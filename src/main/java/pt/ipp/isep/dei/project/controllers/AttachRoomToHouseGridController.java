@@ -1,9 +1,9 @@
 package pt.ipp.isep.dei.project.controllers;
 
-import pt.ipp.isep.dei.project.model.House;
-import pt.ipp.isep.dei.project.model.HouseGrid;
-import pt.ipp.isep.dei.project.model.Room;
-import pt.ipp.isep.dei.project.model.RoomList;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.RoomList;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 
 public class AttachRoomToHouseGridController {
     private House house;
@@ -23,7 +23,7 @@ public class AttachRoomToHouseGridController {
     }
 
     /**
-     * Method that checks if the house grid's list is empty.
+     * Method that checks if the housegrid grid's list is empty.
      * @return True or false.
      */
     public boolean isHouseGridListEmpty() {
@@ -31,15 +31,15 @@ public class AttachRoomToHouseGridController {
     }
 
     /**
-     * Method that asks for the list of house grids.
-     * @return List of house grids.
+     * Method that asks for the list of housegrid grids.
+     * @return List of housegrid grids.
      */
     public String getHouseGridListToString() {
         return house.getHouseGridListToString();
     }
 
     /**
-     * Method that asks for the size of the list of house grids.
+     * Method that asks for the size of the list of housegrid grids.
      *
      * @return Size of the list.
      */
@@ -48,16 +48,16 @@ public class AttachRoomToHouseGridController {
     }
 
     /**
-     * Method that asks for the house grid in a specific position in the list.
-     * @param position Specifies the position of the house grid in the list.
-     * @return The respective house grid.
+     * Method that asks for the housegrid grid in a specific position in the list.
+     * @param position Specifies the position of the housegrid grid in the list.
+     * @return The respective housegrid grid.
      */
     public HouseGrid getHouseGridFromTheList(int position){
         return house.getHouseGridByPosition(position);
     }
 
     /**
-     * Method that checks if the house grid's list is empty.
+     * Method that checks if the housegrid grid's list is empty.
      *
      * @return True or false.
      */
@@ -67,7 +67,7 @@ public class AttachRoomToHouseGridController {
 
     /**
      * Method that asks for the list of rooms from the class RoomList.
-     * @return List of house grids.
+     * @return List of housegrid grids.
      */
     public String getRoomListContent() {
         return roomList.getRoomListContent();
@@ -92,7 +92,7 @@ public class AttachRoomToHouseGridController {
     }
 
     /**
-     * Method that sets the attribute gridToBeUsed as the house grid selected.
+     * Method that sets the attribute gridToBeUsed as the housegrid grid selected.
      *
      * @param gridSelected Grid to be used in the set.
      */
@@ -127,14 +127,14 @@ public class AttachRoomToHouseGridController {
     }
 
     /**
-     * Method that detach the specified room in the specified house grid via class housegrid.
+     * Method that detach the specified room in the specified housegrid grid via class housegrid.
      */
     public void detachRoomFromTheHouseGrid(HouseGrid grid) {
         house.detachRoomInASpecificHouseGridInTheList(grid, roomToBeAttached);
     }
 
     /**
-     * Method that attach the specified room in the specified house grid via class housegrid.
+     * Method that attach the specified room in the specified housegrid grid via class housegrid.
      */
     public void attachRoomInTheHouseGrid() {
         house.attachRoomInASpecificHouseGridInTheList(gridToBeUsed, roomToBeAttached);

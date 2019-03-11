@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionController;
-import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
@@ -15,7 +15,7 @@ public class GetEnergyConsumptionOfRoom {
 
     public void run() {
         if (controller.roomListIsEmpty()) {
-            System.out.println("There are no rooms in the house. Please add one.");
+            System.out.println("There are no rooms in the housegrid. Please add one.");
             return;
         }
         String label1 = "Please choose a number of the list below that matches the room you want to select:\n" + controller.getRoomListToString();

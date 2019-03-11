@@ -198,7 +198,7 @@ class GetNominalPowerControllerTest {
     @Test
     public void checkIfRoomListIsEmptyTrue() {
         //arrange
-        //house
+        //housegrid
         houseEdificioB.addGrid(grid);
 
         controller.getHouseGridByPosition(0);

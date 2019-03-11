@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerController;
-import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.house.House;
 
 public class GetNominalPowerRoomsDevices {
 
@@ -23,7 +23,7 @@ public class GetNominalPowerRoomsDevices {
             controller.getHouseGridByPosition(positionHG - 1);
             afterChoosingHouseGrid();
         } else {
-            System.out.println("There are no house grids in the house. Please, add one.\n");
+            System.out.println("There are no housegrid grids in the housegrid. Please, add one.\n");
             return;
         }
         System.out.println("You have selected the following rooms/devices:\n" + controller.getMeasurableListToString() + "The total nominal power for the selected subset of rooms and/or devices is " + controller.getNominalPowerOfMeasurableObjects() + " kW\n");
@@ -36,7 +36,7 @@ public class GetNominalPowerRoomsDevices {
                 selectDevicesAndRooms();
                 flag = false;
             } else {
-                System.out.println("There are no rooms in this house grid. Please, choose another grid or add rooms to the chosen grid.\n");
+                System.out.println("There are no rooms in this housegrid grid. Please, choose another grid or add rooms to the chosen grid.\n");
                 continue;
             }
         } while (flag);
