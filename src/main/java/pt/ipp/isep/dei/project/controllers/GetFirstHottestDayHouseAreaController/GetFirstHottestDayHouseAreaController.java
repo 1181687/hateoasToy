@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllers;
+package pt.ipp.isep.dei.project.controllers.GetFirstHottestDayHouseAreaController;
 
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.house.House;

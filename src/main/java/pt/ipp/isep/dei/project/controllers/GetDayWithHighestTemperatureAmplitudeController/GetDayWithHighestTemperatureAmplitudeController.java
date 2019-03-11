@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllers;
+package pt.ipp.isep.dei.project.controllers.GetDayWithHighestTemperatureAmplitudeController;
 
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
