@@ -204,7 +204,7 @@ public class KettleSpecs implements DeviceSpecs {
      * @return
      */
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
-        switch (attributeName) {
+       /* switch (attributeName) {
             case ATTRIBUTE_MAXIMUM_VOLUME_WATER:
                 if (attributeValue instanceof Number){
                     return setMaximumVolumeOfWater(((Number) attributeValue).doubleValue());
@@ -231,7 +231,8 @@ public class KettleSpecs implements DeviceSpecs {
                 return false;
             default:
                 return false;
-        }
+        }*/
+       return false; //apagar esta linha depois de descomentar
     }
 
     /**

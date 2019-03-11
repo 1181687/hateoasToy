@@ -19,5 +19,4 @@ public class KettleType implements DeviceType {
         DeviceSpecs kettleSpecs = new KettleSpecs();
         return new Kettle(name, kettleSpecs);
     }
-    
 }
