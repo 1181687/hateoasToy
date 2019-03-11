@@ -88,7 +88,7 @@ public class AddDeviceToRoom {
                     option = 0;
                     break;
                 default:
-                    System.out.println("Invalid option. Please choose a number between 1 and 11.");
+                    System.out.println("Invalid option. Please choose a number between 1 and 5.");
             }
         }
     }

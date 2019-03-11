@@ -17,9 +17,11 @@ public class AddGeoArea {
     }
 
     public void run() {
-        System.out.println("Introduce the name of the Geographical Area");
+        System.out.println("Introduce the id of the Geographical Area");
         Scanner ler = new Scanner(System.in);
-        String nome = ler.nextLine();
+        String id = ler.nextLine();
+        System.out.println("Introduce the description of the Geographical Area");
+        String description = ler.nextLine();
         System.out.println("Choose the Geographical Area type");
         for (int i = 1; i <= controller.getTGAList().size(); i++) {
             System.out.println(i + " - " +
@@ -42,7 +44,7 @@ public class AddGeoArea {
         String label5 = "Introduce the width of the Geographical Area(valid numbers greater than 0).";
         double largura = InputValidator.getDoublePos(label5);
 
-        GeographicalArea novaAG = controller.createNewGeoArea(nome, nomeTipoAG, latitude, longitude, altitude, comprimento, largura);
+        GeographicalArea novaAG = controller.createNewGeoArea(id, description, nomeTipoAG, latitude, longitude, altitude, comprimento, largura);
         if (controller.addNewGeoArea(novaAG)) {
             System.out.println("Success!");
         } else {
