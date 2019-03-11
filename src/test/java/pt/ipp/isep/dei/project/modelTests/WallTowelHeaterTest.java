@@ -64,11 +64,11 @@ class WallTowelHeaterTest {
     @Test
     void getLocation() {
         //Arrange
-        Room expectedResult= this.bathroom;
+        Room expectedResult = this.bathroom;
         //Act
         Room result = this.wallTowerHeater.getLocation();
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -76,9 +76,9 @@ class WallTowelHeaterTest {
         //Arrange
         String expectedResult = "Towel Warmer XPT0";
         //Act
-        String result= this.wallTowerHeater.getName();
+        String result = this.wallTowerHeater.getName();
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -123,7 +123,7 @@ class WallTowelHeaterTest {
         //Act
         LocalDateTime result = this.wallTowerHeater.getDeactivationDate();
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -188,6 +188,6 @@ class WallTowelHeaterTest {
         //Act
         List<Reading> result = this.wallTowerHeater.getReadings();
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 }
