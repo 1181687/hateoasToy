@@ -55,7 +55,7 @@ public class AddSensorToGeoAreaController {
         location = this.geographicalAreaList.getGeographicalArea(this.geographicalArea).newLocation(mAltitude, mLatitude, mLongitude);
     }
 
-    public Sensor criarNovoSensor(String nome) {
-        return this.geographicalAreaList.getGeographicalArea(this.geographicalArea).newSensor(nome, this.sensorType, this.location);
+    public Sensor criarNovoSensor(String id, String nome, String units) {
+        return this.geographicalAreaList.getGeographicalArea(this.geographicalArea).newSensor(id, nome, this.sensorType, this.location, units);
     }
 }

@@ -234,8 +234,8 @@ public class GeographicalArea {
      * @param newLocation
      * @return a new sensor.
      */
-    public Sensor newSensor(String name, SensorType newSensorType, Location newLocation) {
-        return new Sensor(name, newSensorType, newLocation);
+    public Sensor newSensor(String id, String name, SensorType newSensorType, Location newLocation, String units) {
+        return new Sensor(id, name, newSensorType, newLocation, units);
     }
 
     /**
@@ -480,5 +480,9 @@ public class GeographicalArea {
         return sensorListWithTheRequiredType
                 .getNearestSensorsToLocation(location)
                 .getSensorWithMostRecentReading();
+    }
+
+    public boolean addSensor(Sensor sensor) {
+        return this.sensorList.addSensor(sensor);
     }
 }

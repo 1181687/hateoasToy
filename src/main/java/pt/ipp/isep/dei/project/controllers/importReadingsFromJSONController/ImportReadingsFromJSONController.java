@@ -1,8 +1,11 @@
 package pt.ipp.isep.dei.project.controllers.importReadingsFromJSONController;
 
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapping;
+import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
 import pt.ipp.isep.dei.project.utils.JSONReader;
 
 import java.util.List;
@@ -18,9 +21,13 @@ public class ImportReadingsFromJSONController {
         return JSONReader.readJSONFileToList(path);
     }
 
-    public boolean importGeographicalArea(List<GeographicalAreaDTO> geoAreaObjects) {
+    public boolean importGeographicalAreaAndSensors(List<GeographicalAreaDTO> geoAreaObjects) {
         for (GeographicalAreaDTO geoObject : geoAreaObjects) {
-            geographicalAreaList.addGeoArea(GeographicalAreaMapping.mapToEntityGeoArea(geoObject));
+            GeographicalArea geoArea = GeographicalAreaMapping.mapToEntityGeoArea(geoObject);
+            for (SensorDTO sensorDTO : geoObject.getSensors()) {
+                geoArea.addSensor(SensorMapper.mapToEntity(sensorDTO));
+            }
+            geographicalAreaList.addGeoArea(geoArea);
         }
         return true;
     }

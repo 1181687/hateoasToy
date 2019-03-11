@@ -38,6 +38,6 @@ public class SensorMapper {
     public static Sensor mapToEntity(SensorDTO sensorDTO) {
         SensorType sensorType = new SensorType(sensorDTO.getSensorType());
         Location location = LocationMapper.mapToEntity(sensorDTO.getLocation());
-        return new Sensor(sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorType, location);
+        return new Sensor(sensorDTO.getId(), sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorType, location, sensorDTO.getUnits());
     }
 }

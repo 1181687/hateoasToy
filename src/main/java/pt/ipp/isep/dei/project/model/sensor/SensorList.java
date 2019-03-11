@@ -58,8 +58,8 @@ public class SensorList {
      * @param location   Location of the sensor.
      * @return sensor.
      */
-    public Sensor newSensor(String name, SensorType sensorType, Location location) {
-        return new Sensor(name, sensorType, location);
+    public Sensor newSensor(String id, String name, SensorType sensorType, Location location, String units) {
+        return new Sensor(id, name, sensorType, location, units);
     }
 
     /**

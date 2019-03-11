@@ -8,16 +8,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SensorDTO {
+    private String id;
     private String sensorName;
     private LocalDate startingDate;
     private List<ReadingDTO> listOfReadings = new ArrayList<>();
     private String sensorType;
     private LocationDTO location;
+    private String units;
 
     /**
      * Constructor.
      */
     public SensorDTO() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
@@ -108,5 +118,13 @@ public class SensorDTO {
      */
     public void setLocation(LocationDTO location) {
         this.location = location;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
     }
 }

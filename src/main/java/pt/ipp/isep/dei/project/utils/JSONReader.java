@@ -104,10 +104,6 @@ public class JSONReader {
                     //Reads sensor Location
                     JsonObject locationSensor = object.get("location").getAsJsonObject();
 
-                    double latitude = locationSensor.get("latitude").getAsDouble();
-                    double longitude = locationSensor.get("longitude").getAsDouble();
-                    double altitude = locationSensor.get("altitude").getAsDouble();
-
                     LocationDTO sensorLocation = locationParser(locationSensor);
 
                     SensorDTO areaSensor1 = new SensorDTO();

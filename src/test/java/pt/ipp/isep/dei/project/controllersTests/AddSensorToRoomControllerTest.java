@@ -114,7 +114,9 @@ class AddSensorToRoomControllerTest {
 
         // sensor
         SensorType sensorType = new SensorType("Temperatura");
+        String id = "123";
         String sensorName = "A123";
+        String units = "l/m2";
 
         // Room
         String name1 = "Kitchen";
@@ -137,7 +139,7 @@ class AddSensorToRoomControllerTest {
         addSensorToRoomController.getLocationOfTheHouse();
 
         // Act
-        boolean result = addSensorToRoomController.createAndAddSensorToTheList(sensorName);
+        boolean result = addSensorToRoomController.createAndAddSensorToTheList(id, sensorName, units);
 
         // Assert
         assertTrue(result);
