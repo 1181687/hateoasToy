@@ -7,16 +7,19 @@ TEAM MEMBERS: Developer - Gabriela Alves; QA - Joana Figueira;
 
 ACCEPTANCE CRITERIA:
 
-- All acceptance tests with "Process finished with exit code 0" message
-
-INDICAR AQUI RESULTADOS ESPERADOS DOS TESTES
-
+General Criteria:
+- All acceptance tests with "Process finished with exit code 0" message.
 - Correct Sequence and Class Diagrams.
 - JavaDoc documentation in both code and tests.
 - JUnit conventions in code and tests. (eg. tests should be named like this:
                                         testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
 - All code, comments and documentation are in proper English.
 
+Specific Criteria:
+- given - The user wants to get the day with the highest temperature amplitude in the house area in a given period.
+- when -
+- then -
+- but -
 
 ASSUMPTIONS:
 To calculate the day with the highest temperature, one must choose the sensor with the most recent readings if there are two
