@@ -27,7 +27,7 @@ public class GetListOfTypeOfGeoAreaControllerTest {
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         this.type = new GeographicalAreaType("Urban area");
-        this.ag = new GeographicalArea("Campus do ISEP", type, location, areaShape);
+        this.ag = new GeographicalArea("ISEP", "Campus do ISEP", type, location, areaShape);
 
         // Geo Area Type List & Geo Area List
         this.geographicalAreaTypeList = new GeographicalAreaTypeList();

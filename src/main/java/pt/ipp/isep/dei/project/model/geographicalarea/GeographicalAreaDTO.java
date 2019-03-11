@@ -2,7 +2,8 @@ package pt.ipp.isep.dei.project.model.geographicalarea;
 
 public class GeographicalAreaDTO {
 
-    private String geoAreaName;
+    private String id;
+    private String description;
     private String geographicalAreaType;
     private double width;
     private double lenght;
@@ -14,12 +15,20 @@ public class GeographicalAreaDTO {
         // empty
     }
 
-    public String getGeoAreaName() {
-        return geoAreaName;
+    public String getId() {
+        return id;
     }
 
-    public void setGeoAreaName(String geoAreaName) {
-        this.geoAreaName = geoAreaName;
+    public void setId(String geoAreaName) {
+        this.id = geoAreaName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getGeographicalAreaType() {

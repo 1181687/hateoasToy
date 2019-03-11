@@ -31,7 +31,7 @@ public class AddGeoAreaControllerTest {
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
-        cityOfPorto = new GeographicalArea("City of Porto", city, location, areaShape);
+        cityOfPorto = new GeographicalArea("Porto", "City of Porto", city, location, areaShape);
 
         // Controller
         controller = new AddGeoAreaController(geographicalAreaList, geographicalAreaTypeList);
@@ -91,7 +91,7 @@ public class AddGeoAreaControllerTest {
         GeographicalArea expectedResult = cityOfPorto;
 
         //Act
-        GeographicalArea result = controller.createNewGeoArea("City of Porto", "City",
+        GeographicalArea result = controller.createNewGeoArea("Porto", "City of Porto", "City",
                 41.178553, -8.608035, 111, 0.261, 0.249);
 
         //Assert

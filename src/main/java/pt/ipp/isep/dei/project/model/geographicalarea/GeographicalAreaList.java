@@ -58,7 +58,7 @@ public class GeographicalAreaList {
      * @return the name of a geoArea that is on the position selected on the list.
      */
     public String getGeographicalAreaNameByPosition(int position) {
-        return this.geoAreaList.get(position).getNameOfGeoArea();
+        return this.geoAreaList.get(position).getId();
     }
 
     /**
@@ -70,7 +70,7 @@ public class GeographicalAreaList {
         List<String> geoAreaListWithSameType = new ArrayList<>();
         for (GeographicalArea areaGeo : geoAreaList) {
             if (areaGeo.getGeoAreaType().checkIfOneTypeOfGeoAreaIsEqualToAnotherType(geoAreaType)) {
-                geoAreaListWithSameType.add(areaGeo.getNameOfGeoArea());
+                geoAreaListWithSameType.add(areaGeo.getDescription());
             }
         }
         return geoAreaListWithSameType;
@@ -137,13 +137,14 @@ public class GeographicalAreaList {
     public String getGeoAreaListToString(boolean useCriteria) {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= geoAreaList.size(); i++) {
-            content.append(i + " - Name: " + geoAreaList.get(i - 1).getNameOfGeoArea());
+            content.append(i + " - ID: " + geoAreaList.get(i - 1).getId());
+            content.append(i + " - Description: " + geoAreaList.get(i - 1).getDescription());
             content.append(", Type: " + geoAreaList.get(i - 1).getGeoAreaType().getStringOfTypeOfGeoArea());
             content.append(", Latitude: " + geoAreaList.get(i - 1).getLocation().getLatitude());
             content.append(", Longitude: " + geoAreaList.get(i - 1).getLocation().getLongitude());
             if (useCriteria && !checkIfGeoAreaDoesntHaveAnInsertedArea(geoAreaList.get(i - 1))) {
                 content.append(", Inserted in: " + geoAreaList.get(i - 1).getInsertedIn().getGeoAreaType().getStringOfTypeOfGeoArea());
-                content.append(" " + geoAreaList.get(i - 1).getInsertedIn().getNameOfGeoArea());
+                content.append(" " + geoAreaList.get(i - 1).getInsertedIn().getDescription());
             }
             content.append("\n");
         }
@@ -161,11 +162,11 @@ public class GeographicalAreaList {
      * @param length
      * @return a new geographical area.
      */
-    public GeographicalArea newGeographicalArea(String geoAreaName, String geoAreaTypeName, double latitude, double longitude, double altitude, double height, double length) {
+    public GeographicalArea newGeographicalArea(String geoID, String geoAreaName, String geoAreaTypeName, double latitude, double longitude, double altitude, double height, double length) {
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeName);
         Location location = new Location(latitude, longitude, altitude);
         AreaShape rectangleArea = new AreaShape(height, length, location);
-        return new GeographicalArea(geoAreaName, geographicalAreaType, location, rectangleArea);
+        return new GeographicalArea(geoID, geoAreaName, geographicalAreaType, location, rectangleArea);
     }
 
     /**
