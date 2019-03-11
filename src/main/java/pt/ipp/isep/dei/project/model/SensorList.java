@@ -273,4 +273,15 @@ public class SensorList {
         }
         return null;
     }
+
+    public Sensor getSensorWithMostRecentReading() {
+        Sensor sensorWithMostRecentReading = this.getListOfSensors().get(0);
+        for (Sensor sensor : this.getListOfSensors()) {
+            if (!(sensor.isMeasurementListEmpty()) &&
+                    sensor.getLastMeasurement().getDateTime().isAfter(sensorWithMostRecentReading.getLastMeasurement().getDateTime())) {
+                sensorWithMostRecentReading = sensor;
+            }
+        }
+        return sensorWithMostRecentReading;
+    }
 }

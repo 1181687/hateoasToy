@@ -357,7 +357,7 @@ public class GeographicalArea {
      * @param location   location of the area wanted to get the daily amplitude
      * @param startDate  initial Localdate of the interval
      * @param endDate    final Localdate of the interval
-     * @return Map<LocalDate   ,       Double> map Of Daily Amplitude
+     * @return Map<LocalDate       ,               Double> map Of Daily Amplitude
      */
     public Map<LocalDate, Double> getDailyAmplitudeInInterval(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
         Map<LocalDate, Double> mapOfDailyAmplitude = new HashMap<>();
@@ -380,7 +380,7 @@ public class GeographicalArea {
      * if there are two equal amplitudes, it gets both.
      *
      * @param mapOfDailyAmplitude given daily Amplitude Map<LocalDate, Double>
-     * @return Map<LocalDate   ,       Double> map Of Highest Daily Amplitude
+     * @return Map<LocalDate       ,               Double> map Of Highest Daily Amplitude
      */
     public Map<LocalDate, Double> getHighestDailyAmplitude(Map<LocalDate, Double> mapOfDailyAmplitude) {
 
@@ -456,5 +456,24 @@ public class GeographicalArea {
 
     public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
         return sensorList.checkMeasurementExistenceBetweenDates(location, startDate, endDate);
+    }
+
+    public LocalDate getDateOfLastLowestMaximumReading(Location location, SensorType sensorType, LocalDate startDate, LocalDate endDate) {
+        Sensor sensor = getNearestSensorWithMostRecentReading(sensorType, location);
+        List<Reading> readings = sensor.getDailyMaxReadingsInAnInterval(startDate,endDate);
+        Reading lowestMaximumReading = sensor.getLastLowestReading(readings);
+        return lowestMaximumReading.getDateTime().toLocalDate();
+
+    }
+
+    public Sensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
+        SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
+
+        if (sensorListWithTheRequiredType.isEmpty()) {
+            return null;
+        }
+        return sensorListWithTheRequiredType
+                .getNearestSensorsToLocation(location)
+                .getSensorWithMostRecentReading();
     }
 }

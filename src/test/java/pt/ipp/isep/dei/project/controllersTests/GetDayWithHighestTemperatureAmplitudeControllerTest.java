@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.GetDayWithHighestTemperatureAmplitudeController;
 import pt.ipp.isep.dei.project.model.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -24,6 +25,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
     private SensorType temperature;
     private Location location2;
     private House house;
+    private GetDayWithHighestTemperatureAmplitudeController controller;
 
     @BeforeEach
     public void StartUp() {
@@ -57,7 +59,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
 
 
         // Sensors
-        temperature = new SensorType("Temperature");
+        temperature = new SensorType("temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
         temperatureSensor = new Sensor("A123", startDate, temperature, sensorLocation);
@@ -84,15 +86,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
 
-    }
-
-    @Test
-    public void testGetDailyAmplitudeInIntervalInHouseArea() {
-
-    }
-
-    @Test
-    public void testGetHighestDailyAmplitudeInHouseArea() {
+        controller = new GetDayWithHighestTemperatureAmplitudeController(house);
 
     }
 
@@ -130,7 +124,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         expectedResult.put(time2.toLocalDate(), 20.0);
 
         //Act
-        Map<LocalDate, Double> result = this.house.getDailyAmplitudeInIntervalInHouseArea(temperature, location2, startDateTime.toLocalDate(), endDateTime.toLocalDate());
+        Map<LocalDate, Double> result = controller.getDailyAmplitudeInIntervalInHouseArea(startDateTime.toLocalDate(), endDateTime.toLocalDate());
 
         //Assert
         assertEquals(expectedResult, result);
@@ -171,7 +165,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         expectedResult.put(time2.toLocalDate(), value);
 
         //Act
-        Map<LocalDate, Double> result = this.house.getDailyAmplitudeInIntervalInHouseArea(temperature, location2, startDateTime.toLocalDate(), endDateTime.toLocalDate());
+        Map<LocalDate, Double> result = controller.getDailyAmplitudeInIntervalInHouseArea(startDateTime.toLocalDate(), endDateTime.toLocalDate());
 
         //Assert
         assertEquals(expectedResult, result);
@@ -188,7 +182,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         Map<LocalDate, Double> expectedResult = new HashMap<>();
 
         //Act
-        Map<LocalDate, Double> result = this.house.getDailyAmplitudeInIntervalInHouseArea(temperature, location2, startDateTime.toLocalDate(), endDateTime.toLocalDate());
+        Map<LocalDate, Double> result = controller.getDailyAmplitudeInIntervalInHouseArea(startDateTime.toLocalDate(), endDateTime.toLocalDate());
 
         //Assert
         assertEquals(expectedResult, result);
@@ -219,7 +213,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         expectedResult.put(time2.toLocalDate(), 20.0);
 
         //Act
-        Map<LocalDate, Double> result = this.house.getHighestDailyAmplitudeInHouseArea(dailyAmplitudes);
+        Map<LocalDate, Double> result = controller.getHighestDailyAmplitudeInHouseArea(dailyAmplitudes);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -252,7 +246,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         expectedResult.put(time0.toLocalDate(), 7.0);
 
         //Act
-        Map<LocalDate, Double> result = this.house.getHighestDailyAmplitudeInHouseArea(dailyAmplitudes);
+        Map<LocalDate, Double> result = controller.getHighestDailyAmplitudeInHouseArea(dailyAmplitudes);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -272,7 +266,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         Map<LocalDate, Double> expectedResult = new HashMap<>();
 
         //Act
-        Map<LocalDate, Double> result = this.house.getHighestDailyAmplitudeInHouseArea(dailyAmplitudesEmpty);
+        Map<LocalDate, Double> result = controller.getHighestDailyAmplitudeInHouseArea(dailyAmplitudesEmpty);
 
         //Assert
         assertEquals(expectedResult, result);
