@@ -38,7 +38,8 @@ class WallTowelHeaterTest {
 
         //Device
         String deviceName = "Towel Warmer XPT0";
-        wallTowerHeater = house.createDevice("Wall Towel Heater", deviceName, this.bathroom);
+
+        wallTowerHeater = house.createDevice("WallTowelHeater", deviceName, this.bathroom);
         wallTowerHeater.setAttributesDevType("Nominal Power", 90.0);
         wallTowerHeater.setAttributesDevType("Time", 120.0);
 
@@ -56,14 +57,29 @@ class WallTowelHeaterTest {
 
     @Test
     void getLocation() {
+        //Arrange
+        Room expectedResult= this.bathroom;
+        //Act
+        Room result = this.wallTowerHeater.getLocation();
+        //Assert
+        assertEquals(expectedResult,result);
     }
 
     @Test
     void getName() {
+        //Arrange
+        String expectedResult = "Towel Warmer XPT0";
+        //Act
+        String result= this.wallTowerHeater.getName();
+        //Assert
+        assertEquals(expectedResult,result);
     }
 
-    @Test
+ /*   @Test
     void getSpecs() {
+        //Arrange
+        //Act
+        //Assert
     }
 
     @Test
@@ -88,5 +104,5 @@ class WallTowelHeaterTest {
 
     @Test
     void getReadings() {
-    }
+    }*/
 }
