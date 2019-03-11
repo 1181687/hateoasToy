@@ -14,7 +14,7 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
 
     private String typeName;
     private int capacity;
-    private double duration;
+   // private double duration;
     private double nominalPower;
     private List<Program> programList;
 
@@ -69,14 +69,14 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
      * @param duration
      * @return
      */
-    private boolean setDuration(Object duration) {
+   /* private boolean setDuration(Object duration) {
         Double dWDuration = (Double) duration;
         if (!Utils.isSameDouble(this.duration, dWDuration) && !(Utils.isSameDouble(dWDuration, 0))) {
             this.duration = dWDuration;
             return true;
         }
         return false;
-    }
+    }*/
 
     /**
      * set method to Nominal Power of a dishwasher
@@ -140,8 +140,8 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
         switch (attributeName) {
             case ATTRIBUTE_CAPACITY:
                 return capacity;
-            case ATTRIBUTE_DURATION:
-                return duration;
+            //case ATTRIBUTE_DURATION:
+               // return duration;
             case ATTRIBUTE_NOMINAL_POWER:
                 return nominalPower;
             default:
@@ -164,11 +164,11 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
                     return setCapacity(((Number) attributeValue).intValue());
                 }
                 return false;
-            case ATTRIBUTE_DURATION:
+           /* case ATTRIBUTE_DURATION:
                 if (attributeValue instanceof Number) {
                     return setDuration(((Number) attributeValue).doubleValue());
                 }
-                return false;
+                return false;*/
             case ATTRIBUTE_NOMINAL_POWER:
                 if (attributeValue instanceof Number) {
                     return setNominalPower(((Number) attributeValue).doubleValue());

@@ -8,7 +8,7 @@ public class ElectricWaterHeaterType implements DeviceType {
     String typeName;
 
     public ElectricWaterHeaterType() {
-        this.typeName = "Electric Water Heater";
+        this.typeName = "ElectricWaterHeater";
     }
 
     public String getTypeName() {

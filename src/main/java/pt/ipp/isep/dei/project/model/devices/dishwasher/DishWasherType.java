@@ -8,7 +8,7 @@ public class DishWasherType implements DeviceType {
     String typeName;
 
     public DishWasherType() {
-        this.typeName = "Dishwasher";
+        this.typeName = "DishWasher";
     }
 
     public String getTypeName() {
