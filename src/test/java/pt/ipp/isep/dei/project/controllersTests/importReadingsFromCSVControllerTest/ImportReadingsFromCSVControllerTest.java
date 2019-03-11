@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.importReadingsFromCSVController.ImportReadingsFromCSVController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
@@ -54,7 +55,7 @@ class ImportReadingsFromCSVControllerTest {
         portoDistrict.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
 
         // Reading DTO
-        readingDTO = new ReadingDTO();
+        readingDTO = ReadingMapper.newReadingDTO();
         readingDTO.setValue(13);
         LocalDateTime dateTime = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         readingDTO.setDateTime(dateTime);

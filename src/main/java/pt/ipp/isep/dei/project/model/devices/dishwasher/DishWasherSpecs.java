@@ -232,7 +232,8 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
     }
 
     @Override
-    public Program createNewProgram(String programName, ProgramSpecs specs) {
+    public Program createNewProgram(String programName) {
+        ProgramSpecs specs = new TimeConstantProgramSpecs();
         return new TimeConstantProgram(programName, specs);
     }
 }

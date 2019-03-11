@@ -92,8 +92,7 @@ public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
      */
     public String getAttributesToString() {
         StringBuilder attributes = new StringBuilder();
-        attributes.append("1 - Time: " + time + "\n");
-        attributes.append("2 - Nominal Power: " + nominalPower + "\n");
+        attributes.append("1 - Nominal Power: " + nominalPower + "\n");
         return attributes.toString();
     }
 
@@ -116,7 +115,6 @@ public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
     @Override
     public List<String> getSpecsList() {
         List<String> result = new ArrayList<>();
-        result.add(ATTRIBUTE_TIME);
         result.add(ATTRIBUTE_NOMINAL_POWER);
         return result;
     }
@@ -184,7 +182,8 @@ public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
     }
 
     @Override
-    public Program createNewProgram(String programName, ProgramSpecs specs) {
+    public Program createNewProgram(String programName) {
+        ProgramSpecs specs = new TimeVariableProgramSpecs();
         return new TimeVariableProgram(programName, specs);
     }
 
