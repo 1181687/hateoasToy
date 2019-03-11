@@ -126,7 +126,8 @@ public class AddDeviceToRoomControllerTest {
                 "8- WineCooler\n" +
                 "9- Television\n" +
                 "10- MicrowaveOven\n" +
-                "11- Fan\n";
+                "11- Fan\n" +
+                "12- Stove\n";
 
 
         // Act
@@ -381,7 +382,7 @@ public class AddDeviceToRoomControllerTest {
     @Test
     public void testGetNumberOfDeviceTypes() {
         // Arrange
-        int expectedResult = 11;
+        int expectedResult = 12;
 
         // Act
         int result = controller.getNumberOfDeviceTypes();

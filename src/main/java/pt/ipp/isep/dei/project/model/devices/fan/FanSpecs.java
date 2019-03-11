@@ -48,7 +48,7 @@ public class FanSpecs implements DeviceSpecs, Programmable {
      */
     @Override
     public int getNumberOfAttributes() {
-        return 2;
+        return 1;
     }
 
     /**
