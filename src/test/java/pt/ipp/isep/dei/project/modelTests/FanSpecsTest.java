@@ -2,8 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.fan.FanSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -37,6 +36,7 @@ public class FanSpecsTest {
         this.fan = this.house.createDevice("Fan", "Fan200", kitchen);
         this.fan.setAttributesDevType("Nominal Power", 30);
         this.fan.setAttributesDevType("Time", 30);
+        this.fanSpecs = fan.getSpecs();
 
     }
 
@@ -145,18 +145,6 @@ public class FanSpecsTest {
     }
 
     @Test
-    public void testGetAttributeValueTime() {
-        // Arrange
-        fan.setAttributesDevType("Time", 30);
-
-        Object expectedResult = 30.0;
-        // Act
-        Object result = fan.getSpecs().getAttributeValue("Time");
-        // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
         Object expectedResult = -1;
@@ -213,25 +201,6 @@ public class FanSpecsTest {
     }
 
     @Test
-    public void testSetAttributeTimeValidValue() {
-        // Arrange
-        // Act
-        boolean result = fan.getSpecs().setAttributeValue("Time", 100.0);
-        // Assert
-        assertTrue(result);
-    }
-
-    @Test
-    public void testSetAttributeTimeSameValue() {
-        // Arrange
-        fan.setAttributesDevType("Time", 100.0);
-        // Act
-        boolean result = fan.getSpecs().setAttributeValue("Time", 100.0);
-        // Assert
-        assertFalse(result);
-    }
-
-    @Test
     public void testSetAttributeTimeValueZero() {
         // Act
         boolean result = fan.getSpecs().setAttributeValue("Time", 0);
@@ -260,25 +229,23 @@ public class FanSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    /*@Test
+    @Test
     public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
         //Arrange
         String programName = "fast";
         Programmable programmable = this.fanSpecs.asProgrammable();
         TimeVariableProgramSpecs programASpecs = new TimeVariableProgramSpecs();
-        programASpecs.setTime(30);
-        programASpecs.setProgramNominalPower(50);
-        Program programA = programmable.createNewProgram(programName,programASpecs);
+        programASpecs.setTime(30.0);
+        programASpecs.setProgramNominalPower(50.0);
+        Program programA = programmable.createNewProgram(programName);
         programmable.addProgram(programA);
-
-        Program programB = programmable.createNewProgram(programName,programASpecs);
 
         DeviceSpecs fanSpecs = fan.getSpecs();
 
         boolean expectedResult = false;
 
         //Act
-        boolean result = ((FanSpecs) fanSpecs).addProgram(programB);
+        boolean result = ((FanSpecs) fanSpecs).addProgram(programA);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -290,19 +257,18 @@ public class FanSpecsTest {
         String programName = "fast";
         Programmable programmable = this.fanSpecs.asProgrammable();
         TimeVariableProgramSpecs programASpecs = new TimeVariableProgramSpecs();
-        programASpecs.setTime(30);
-        programASpecs.setProgramNominalPower(50);
-        Program programA = programmable.createNewProgram(programName,programASpecs);
-
+        programASpecs.setTime(30.0);
+        programASpecs.setProgramNominalPower(50.0);
+        Program programA = programmable.createNewProgram(programName);
 
         DeviceSpecs fanSpecs = fan.getSpecs();
 
-        boolean expectedResult = false;
+        boolean expectedResult = true;
 
         //Act
         boolean result = ((FanSpecs) fanSpecs).addProgram(programA);
 
         //Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 }
