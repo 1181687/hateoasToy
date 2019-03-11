@@ -26,12 +26,12 @@ class InsertedGeoAreaControllerTest {
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(10, 10, local1);
-        this.CidadeDoPorto = new GeographicalArea("Cidade do Porto", geographicalAreaType, local1, area1);
+        this.CidadeDoPorto = new GeographicalArea("Porto", "Cidade do Porto", geographicalAreaType, local1, area1);
 
         GeographicalAreaType geographicalAreaType2 = new GeographicalAreaType("Rua");
         Location local2 = new Location(41.1496, -8.6109, 97);
         AreaShape area2 = new AreaShape(10, 10, local1);
-        this.RuaDoBonfim = new GeographicalArea("Rua do Bonfim", geographicalAreaType2, local2, area2);
+        this.RuaDoBonfim = new GeographicalArea("Rua do Bonfim", "Rua do Bonfim", geographicalAreaType2, local2, area2);
         RuaDoBonfim.setInsertedIn(CidadeDoPorto);
 
         this.geographicalAreaList = new GeographicalAreaList();
@@ -45,8 +45,8 @@ class InsertedGeoAreaControllerTest {
         geographicalAreaList.addGeoArea(CidadeDoPorto);
         geographicalAreaList.addGeoArea(RuaDoBonfim);
 
-        String expectResult = "1 - Name: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
-                "2 - Name: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109, Inserted in: Cidade Cidade do Porto\n";
+        String expectResult = "1 - ID: Porto1 - Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
+                "2 - ID: Rua do Bonfim2 - Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109, Inserted in: Cidade Cidade do Porto\n";
 
         //Act
         String result = controller.getConteudoLista(true);
@@ -61,8 +61,8 @@ class InsertedGeoAreaControllerTest {
         geographicalAreaList.addGeoArea(CidadeDoPorto);
         geographicalAreaList.addGeoArea(RuaDoBonfim);
 
-        String expectResult = "1 - Name: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
-                "2 - Name: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
+        String expectResult = "1 - ID: Porto1 - Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
+                "2 - ID: Rua do Bonfim2 - Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
         //Act
         String result = controller.getConteudoLista(false);
@@ -78,8 +78,8 @@ class InsertedGeoAreaControllerTest {
         geographicalAreaList.addGeoArea(CidadeDoPorto);
         geographicalAreaList.addGeoArea(RuaDoBonfim);
 
-        String expectResult = "1 - Name: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
-                "2 - Name: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
+        String expectResult = "1 - ID: Porto1 - Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
+                "2 - ID: Rua do Bonfim2 - Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
         //Act
         String result = controller.getConteudoLista(false);
@@ -94,8 +94,8 @@ class InsertedGeoAreaControllerTest {
         geographicalAreaList.addGeoArea(CidadeDoPorto);
         geographicalAreaList.addGeoArea(RuaDoBonfim);
 
-        String expectResult = "1 - Name: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
-                "2 - Name: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
+        String expectResult = "1 - ID: Porto1 - Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
+                "2 - ID: Rua do Bonfim2 - Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
         //Act
         String result = controller.getConteudoLista(false);
@@ -129,7 +129,7 @@ class InsertedGeoAreaControllerTest {
         GeographicalAreaType tipo3 = new GeographicalAreaType("Região");
         Location local3 = new Location(41.1496, -8.6109, 97);
         AreaShape area3 = new AreaShape(10, 10, local3);
-        GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
+        GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Região Sul", tipo3, local3, area3);
 
         RuaDoBonfim.setInsertedIn(CidadeDoPorto);
 
@@ -164,13 +164,13 @@ class InsertedGeoAreaControllerTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Distrito");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG, "Distrito do Porto", tipo, local, area);
 
         String nomeAG3 = "Sul";
         GeographicalAreaType tipo3 = new GeographicalAreaType("Região");
         Location local3 = new Location(41.1496, -8.6109, 97);
         AreaShape area3 = new AreaShape(10, 10, local);
-        GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
+        GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Região Sul", tipo3, local3, area3);
 
         ag2.setInsertedIn(CidadeDoPorto);
 
@@ -208,13 +208,13 @@ class InsertedGeoAreaControllerTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Distrito");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG, "Distrito do Porto", tipo, local, area);
 
         String nomeAG3 = "Sul";
         GeographicalAreaType tipo3 = new GeographicalAreaType("Região");
         Location local3 = new Location(41.1496, -8.6109, 97);
         AreaShape area3 = new AreaShape(10, 10, local);
-        GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
+        GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Região Sul", tipo3, local3, area3);
 
         geographicalAreaList.addGeoArea(CidadeDoPorto);
         geographicalAreaList.addGeoArea(ag2);
@@ -236,13 +236,13 @@ class InsertedGeoAreaControllerTest {
         GeographicalAreaType tipo2 = new GeographicalAreaType("Distrito");
         Location local2 = new Location(41.1496, -8.6109, 97);
         AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Distrito do Porto", tipo2, local2, area2);
 
         String nomeAG3 = "Norte";
         GeographicalAreaType tipo3 = new GeographicalAreaType("Região");
         Location local3 = new Location(41.1496, -8.6109, 97);
         AreaShape area3 = new AreaShape(10, 10, local3);
-        GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
+        GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Região do Norte", tipo3, local3, area3);
 
         CidadeDoPorto.setInsertedIn(ag2);
         ag2.setInsertedIn(ag3);

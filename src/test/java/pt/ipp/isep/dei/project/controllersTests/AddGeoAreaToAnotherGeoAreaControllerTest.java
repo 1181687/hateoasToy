@@ -30,16 +30,16 @@ class AddGeoAreaToAnotherGeoAreaControllerTest {
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
-        cityOfPorto = new GeographicalArea("City of Porto", city, location, areaShape);
+        cityOfPorto = new GeographicalArea("Porto", "City of Porto", city, location, areaShape);
         geographicalAreaList.addGeoArea(cityOfPorto);
         Location location1 = new Location(40.178553, -8.208035, 112);
         AreaShape areaShape1 = new AreaShape(0.161, 0.149, location1);
-        parishOfBonfim = new GeographicalArea("Parish of Bonfim", parish, location1, areaShape1);
+        parishOfBonfim = new GeographicalArea("Bonfim", "Parish of Bonfim", parish, location1, areaShape1);
         parishOfBonfim.setInsertedIn(cityOfPorto);
         geographicalAreaList.addGeoArea(parishOfBonfim);
         Location location2 = new Location(21.178553, -7.608035, 100);
         AreaShape areaShape2 = new AreaShape(0.191, 0.249, location2);
-        cityOfBraga = new GeographicalArea("City of Braga", city, location2, areaShape2);
+        cityOfBraga = new GeographicalArea("Braga", "City of Braga", city, location2, areaShape2);
 
         // Controller
         controller = new AddGeoAreaToAnotherGeoAreaController(geographicalAreaList);
@@ -48,8 +48,8 @@ class AddGeoAreaToAnotherGeoAreaControllerTest {
     @Test
     void getListToStringTest() {
         // Arrange
-        String expectResult = "1 - Name: City of Porto, Type: City, Latitude: 41.178553, Longitude: -8.608035\n" +
-                "2 - Name: Parish of Bonfim, Type: Parish, Latitude: 40.178553, Longitude: -8.208035, Inserted in: City City of Porto\n";
+        String expectResult = "1 - ID: Porto1 - Description: City of Porto, Type: City, Latitude: 41.178553, Longitude: -8.608035\n" +
+                "2 - ID: Bonfim2 - Description: Parish of Bonfim, Type: Parish, Latitude: 40.178553, Longitude: -8.208035, Inserted in: City City of Porto\n";
 
         // Act
         String result = controller.getListToString(true);

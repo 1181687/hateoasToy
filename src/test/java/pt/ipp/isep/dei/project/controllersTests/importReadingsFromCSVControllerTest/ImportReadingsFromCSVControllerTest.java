@@ -36,11 +36,11 @@ class ImportReadingsFromCSVControllerTest {
         GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
         Location location1 = new Location(41.1496, -6.6109, 100);
         AreaShape areaShape1 = new AreaShape(40, 40, location1);
-        portoDistrict = new GeographicalArea("Porto District", district, location1, areaShape1);
+        portoDistrict = new GeographicalArea("Porto", "Porto District", district, location1, areaShape1);
         geographicalAreaList.addGeoArea(portoDistrict);
         Location location2 = new Location(42.1496, -8.6109, 97);
         AreaShape areaShape2 = new AreaShape(10, 10, location2);
-        portoCity = new GeographicalArea("Porto City", city, location2, areaShape2);
+        portoCity = new GeographicalArea("Porto", "Porto City", city, location2, areaShape2);
         geographicalAreaList.addGeoArea(portoCity);
 
         // Sensors

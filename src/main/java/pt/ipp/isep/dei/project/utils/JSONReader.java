@@ -80,7 +80,8 @@ public class JSONReader {
                 System.out.println("Altitude: " + altitude);
 
                 GeographicalAreaDTO newGeoArea = new GeographicalAreaDTO();
-                newGeoArea.setGeoAreaName(description);
+                newGeoArea.setId(id);
+                newGeoArea.setDescription(description);
                 newGeoArea.setGeographicalAreaType(type);
                 newGeoArea.setWidth(width);
                 newGeoArea.setLenght(length);

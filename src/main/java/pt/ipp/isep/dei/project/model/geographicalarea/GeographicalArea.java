@@ -13,7 +13,7 @@ import java.util.*;
 
 public class GeographicalArea {
     private String id;
-    private String geoAreaName;
+    private String description;
     private GeographicalAreaType geographicalAreaType;
     private GeographicalArea insertedIn;
     private Location location;
@@ -23,21 +23,23 @@ public class GeographicalArea {
     /**
      * constructor of geographical area that receives a name, type, insertedIn, location, areaShape and a sensor list.
      *
-     * @param geoAreaName
+     * @param id
+     * @param description
      * @param geographicalAreaType
      * @param location
      * @param areaShape
      */
-    public GeographicalArea(String geoAreaName, GeographicalAreaType geographicalAreaType, Location location, AreaShape areaShape) {
-        this.geoAreaName = geoAreaName;
+    /*
+    public GeographicalArea(String description, GeographicalAreaType geographicalAreaType, Location location, AreaShape areaShape) {
+        this.description = description;
         this.geographicalAreaType = geographicalAreaType;
         this.location = location;
         this.areaShape = areaShape;
     }
-
-    public GeographicalArea(String id, String geoAreaName, GeographicalAreaType geographicalAreaType, Location location, AreaShape areaShape) {
+    */
+    public GeographicalArea(String id, String description, GeographicalAreaType geographicalAreaType, Location location, AreaShape areaShape) {
         this.id = id;
-        this.geoAreaName = geoAreaName;
+        this.description = description;
         this.geographicalAreaType = geographicalAreaType;
         this.location = location;
         this.areaShape = areaShape;
@@ -76,7 +78,7 @@ public class GeographicalArea {
             return false;
         }
         GeographicalArea ag = (GeographicalArea) obj;
-        return this.geoAreaName.equals(ag.geoAreaName) && this.geographicalAreaType.equals(ag.geographicalAreaType) && this.location.equals(ag.location);
+        return this.description.equals(ag.description) && this.geographicalAreaType.equals(ag.geographicalAreaType) && this.location.equals(ag.location);
     }
 
     public String getId() {
@@ -88,12 +90,12 @@ public class GeographicalArea {
      *
      * @return the name of geographical area.
      */
-    public String getNameOfGeoArea() {
-        return geoAreaName;
+    public String getDescription() {
+        return description;
     }
 
-    public void setGeoAreaName(String geoAreaName) {
-        this.geoAreaName = geoAreaName;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**
@@ -257,7 +259,7 @@ public class GeographicalArea {
      * @return sensor list.
      */
     public SensorList getTheSensorListOfAGivenType(SensorType type) {
-        GeographicalArea areaToBeUsed = new GeographicalArea(geoAreaName, geographicalAreaType, location, areaShape);
+        GeographicalArea areaToBeUsed = new GeographicalArea(id, description, geographicalAreaType, location, areaShape);
         areaToBeUsed.setInsertedIn(insertedIn);
         SensorList listOfSensors = new SensorList();
         listOfSensors.setListOfSensors(getSensorsInGeographicalAreaByType(type).getListOfSensors());
