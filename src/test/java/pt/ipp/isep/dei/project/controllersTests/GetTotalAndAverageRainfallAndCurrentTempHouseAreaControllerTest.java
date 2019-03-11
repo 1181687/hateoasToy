@@ -34,7 +34,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         Location location = new Location(42.1, -8.6, 100.0);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        this.geoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+        this.geoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         //House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));

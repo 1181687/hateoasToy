@@ -28,13 +28,6 @@ public class GeographicalArea {
      * @param location
      * @param areaShape
      */
-    public GeographicalArea(String id, GeographicalAreaType geographicalAreaType, Location location, AreaShape areaShape) {
-        this.id = id;
-        this.geographicalAreaType = geographicalAreaType;
-        this.location = location;
-        this.areaShape = areaShape;
-    }
-
     public GeographicalArea(String id, String description, GeographicalAreaType geographicalAreaType, Location location, AreaShape areaShape) {
         this.id = id;
         this.description = description;
@@ -88,12 +81,12 @@ public class GeographicalArea {
      *
      * @return the name of geographical area.
      */
-    public String getNameOfGeoArea() {
-        return id;
+    public String getDescription() {
+        return description;
     }
 
-    public void setGeoAreaName(String geoAreaName) {
-        this.id = geoAreaName;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     /**
@@ -257,7 +250,7 @@ public class GeographicalArea {
      * @return sensor list.
      */
     public SensorList getTheSensorListOfAGivenType(SensorType type) {
-        GeographicalArea areaToBeUsed = new GeographicalArea(id, geographicalAreaType, location, areaShape);
+        GeographicalArea areaToBeUsed = new GeographicalArea(id, description, geographicalAreaType, location, areaShape);
         areaToBeUsed.setInsertedIn(insertedIn);
         SensorList listOfSensors = new SensorList();
         listOfSensors.setListOfSensors(getSensorsInGeographicalAreaByType(type).getListOfSensors());

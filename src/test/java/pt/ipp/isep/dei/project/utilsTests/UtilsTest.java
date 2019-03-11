@@ -139,6 +139,9 @@ class UtilsTest {
         expectedResult.add("MicrowaveOven");
         expectedResult.add("Fan");
         expectedResult.add("Stove");
+        expectedResult.add("WallTowelHeater");
+        expectedResult.add("Kettle");
+
 
         List<String> result = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
         assertEquals(expectedResult, result);

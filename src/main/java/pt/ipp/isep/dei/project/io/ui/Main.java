@@ -29,7 +29,6 @@ public class Main {
     private static final String CAPACITY = "Capacity";
     private static final String GLASSES = "Glasses";
     private static final String DISHES = "Dishes";
-
     private static final String ELECTRIC_WATER_HEATER = "ElectricWaterHeater";
     private static final String DISHWASHER = "DishWasher";
 
@@ -59,7 +58,7 @@ public class Main {
         Location locationMainArea = new Location(41.164077, -8.620802, 118);
         AreaShape areaShapeMainArea = new AreaShape(10.09, 3.30, locationMainArea);
         GeographicalAreaType geographicalAreaTypeMainArea = new GeographicalAreaType("City");
-        GeographicalArea mainArea = new GeographicalArea("Porto", geographicalAreaTypeMainArea, locationMainArea, areaShapeMainArea);
+        GeographicalArea mainArea = new GeographicalArea("Porto", "Cidade do Porto", geographicalAreaTypeMainArea, locationMainArea, areaShapeMainArea);
         geographicalAreaList.addGeoArea(mainArea);
 
         // Inserted Geo Area (Campus do ISEP)
@@ -67,7 +66,7 @@ public class Main {
         SensorTypeList sensorTypeList = new SensorTypeList();
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+        GeographicalArea insertedGeoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
         geographicalAreaList.addGeoArea(insertedGeoArea);
         insertedGeoArea.setInsertedIn(mainArea);
 

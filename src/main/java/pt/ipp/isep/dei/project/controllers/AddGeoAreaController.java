@@ -46,7 +46,7 @@ public class AddGeoAreaController {
 
     /**
      * method that add a new geographical area with a name, a type, a latitude, a longitue, a altitude, a height, a length.
-     * @param name
+     * @param description
      * @param typeName
      * @param altitude
      * @param longitude
@@ -55,8 +55,8 @@ public class AddGeoAreaController {
      * @param height
      * @return a new geographical area.
      */
-    public GeographicalArea createNewGeoArea(String name, String typeName, double altitude, double longitude, double latitude, double width, double height) {
-        return geographicalAreaList.newGeographicalArea(name, typeName, altitude, longitude, latitude, width, height);
+    public GeographicalArea createNewGeoArea(String id, String description, String typeName, double altitude, double longitude, double latitude, double width, double height) {
+        return geographicalAreaList.newGeographicalArea(id, description, typeName, altitude, longitude, latitude, width, height);
 
     }
 }

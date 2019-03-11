@@ -10,7 +10,7 @@ public class GeographicalAreaMapping {
 
     public static GeographicalAreaDTO mapToDTO(String geoAreaName, String description, String geographicalAreaType, double width, double lenght, double latitude, double longitude, double altitude) {
         GeographicalAreaDTO geoDTO = new GeographicalAreaDTO();
-        geoDTO.setGeoAreaName(geoAreaName);
+        geoDTO.setId(geoAreaName);
         geoDTO.setDescription(description);
         geoDTO.setGeographicalAreaType(geographicalAreaType);
         geoDTO.setWidth(width);
@@ -25,7 +25,7 @@ public class GeographicalAreaMapping {
         GeographicalAreaType geoType = new GeographicalAreaType(geographicalAreaDTO.getGeographicalAreaType());
         Location loc = new Location(geographicalAreaDTO.getLatitude(),geographicalAreaDTO.getLongitude(),geographicalAreaDTO.getAltitude());
         AreaShape areaShape = new AreaShape(geographicalAreaDTO.getWidth(),geographicalAreaDTO.getLenght(),loc);
-        return new GeographicalArea(geographicalAreaDTO.getGeoAreaName(), geographicalAreaDTO.getDescription(), geoType, loc, areaShape);
+        return new GeographicalArea(geographicalAreaDTO.getId(), geographicalAreaDTO.getDescription(), geoType, loc, areaShape);
     }
 
 }

@@ -28,10 +28,10 @@ public class GeographicalAreaListTest {
         geoAreaList = new GeographicalAreaList();
 
         // Geographical Areas
-        portoCity = geoAreaList.newGeographicalArea("Porto", "City", 41.1496,
+        portoCity = geoAreaList.newGeographicalArea("Porto", "City of Porto", "City", 41.1496,
                 -8.6109, 97, 10, 10);
         geoAreaList.addGeoArea(portoCity);
-        bonfimStreet = geoAreaList.newGeographicalArea("Bonfim Street", "Street", 41.1496,
+        bonfimStreet = geoAreaList.newGeographicalArea("Bonfim", "Bonfim Street", "Street", 41.1496,
                 -8.6109, 97, 5, 5);
         geoAreaList.addGeoArea(bonfimStreet);
 
@@ -80,8 +80,8 @@ public class GeographicalAreaListTest {
         // Arrange
         bonfimStreet.setInsertedIn(portoCity);
 
-        String expectResult = "1 - Name: Porto, Type: City, Latitude: 41.1496, Longitude: -8.6109\n" +
-                "2 - Name: Bonfim Street, Type: Street, Latitude: 41.1496, Longitude: -8.6109, Inserted in: City Porto\n";
+        String expectResult = "1 - ID: Porto1 - Description: City of Porto, Type: City, Latitude: 41.1496, Longitude: -8.6109\n" +
+                "2 - ID: Bonfim2 - Description: Bonfim Street, Type: Street, Latitude: 41.1496, Longitude: -8.6109, Inserted in: City City of Porto\n";
 
         // Act
         String result = geoAreaList.getGeoAreaListToString(true);
@@ -93,8 +93,8 @@ public class GeographicalAreaListTest {
     @Test
     public void getGeoAreaListToStringTrueCriteriaWithNoInsertedAreaTest() {
         // Arrange
-        String expectResult = "1 - Name: Porto, Type: City, Latitude: 41.1496, Longitude: -8.6109\n" +
-                "2 - Name: Bonfim Street, Type: Street, Latitude: 41.1496, Longitude: -8.6109\n";
+        String expectResult = "1 - ID: Porto1 - Description: City of Porto, Type: City, Latitude: 41.1496, Longitude: -8.6109\n" +
+                "2 - ID: Bonfim2 - Description: Bonfim Street, Type: Street, Latitude: 41.1496, Longitude: -8.6109\n";
 
         // Act
         String result = geoAreaList.getGeoAreaListToString(true);
@@ -108,8 +108,8 @@ public class GeographicalAreaListTest {
         // Arrange
         bonfimStreet.setInsertedIn(portoCity);
 
-        String expectResult = "1 - Name: Porto, Type: City, Latitude: 41.1496, Longitude: -8.6109\n" +
-                "2 - Name: Bonfim Street, Type: Street, Latitude: 41.1496, Longitude: -8.6109\n";
+        String expectResult = "1 - ID: Porto1 - Description: City of Porto, Type: City, Latitude: 41.1496, Longitude: -8.6109\n" +
+                "2 - ID: Bonfim2 - Description: Bonfim Street, Type: Street, Latitude: 41.1496, Longitude: -8.6109\n";
 
         // Act
         String result = geoAreaList.getGeoAreaListToString(false);
@@ -179,7 +179,7 @@ public class GeographicalAreaListTest {
         GeographicalAreaType region = new GeographicalAreaType("Region");
         Location location = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, location);
-        GeographicalArea northernRegion = new GeographicalArea("Northern Region", region, location, area);
+        GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, area);
         geoAreaList.addGeoArea(northernRegion);
         portoCity.setInsertedIn(northernRegion);
         bonfimStreet.setInsertedIn(portoCity);
