@@ -1,12 +1,14 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetTotalAndAverageRainfallAndCurrentTempHouseAreaController;
-import pt.ipp.isep.dei.project.model.House;
+import pt.ipp.isep.dei.project.model.house.House;
 
 import java.time.LocalDate;
 
 
-/** US620 As a Regular User, I want to get the total rainfall in the house area for a given day. */
+/**
+ * US620 As a Regular User, I want to get the total rainfall in the housegrid area for a given day.
+ */
 public class GetTotalRainfall {
     private GetTotalAndAverageRainfallAndCurrentTempHouseAreaController controller;
 

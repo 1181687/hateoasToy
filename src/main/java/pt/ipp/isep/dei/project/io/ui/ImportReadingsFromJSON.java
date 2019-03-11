@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.ImportReadingsFromJSONController;
-import pt.ipp.isep.dei.project.model.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.controllers.importReadingsFromJSONController.ImportReadingsFromJSONController;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 
 public class ImportReadingsFromJSON {
 

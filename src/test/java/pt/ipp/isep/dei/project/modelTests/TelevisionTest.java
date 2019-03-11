@@ -2,11 +2,11 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Dimension;
-import pt.ipp.isep.dei.project.model.House;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.Room;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
@@ -45,7 +45,7 @@ public class TelevisionTest {
         // devices
         house.createDevice("Television", "Flat Screen TV", bedroom);
 
-        // Freezer
+        // Television
         television = house.createDevice("Television", "Smart TV", bedroom);
         television.setAttributesDevType("Nominal Power", 90.0);
         television.setAttributesDevType("Standby Power", 30.0);
@@ -119,31 +119,31 @@ public class TelevisionTest {
     }
 
     @Test
-    public void setNameWithSameNameTest() {
+    public void setNameWithSameNameTestSmartTV() {
         Throwable exception = assertThrows(RuntimeException.class, () -> television.setName("Smart TV"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
-    public void setNameWithSameLocationTestWineCooler1() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> bedroom.getDeviceByPosition(0).setName("Smart TV"));
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
-
-    @Test
-    public void setNameWithSameLocationTestWineCooler2() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> bedroom.getDeviceByPosition(0).setName("Flat Screen TV"));
-        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
-
-    @Test
-    public void setNameAlreadyInListTest() {
+    public void setNameWithSameNameTestFlatScreenTV() {
         Throwable exception = assertThrows(RuntimeException.class, () -> television.setName("Flat Screen TV"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
-    public void setNameFalseTest() {
+    public void setNameWithSameLocationTestSmartTV() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> bedroom.getDeviceByPosition(0).setName("Smart TV"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void setNameWithSameLocationTestFlatScreenTV() {
+        Throwable exception = assertThrows(RuntimeException.class, () -> bedroom.getDeviceByPosition(0).setName("Flat Screen TV"));
+        assertEquals("Name already exists. Please write a new one.", exception.getMessage());
+    }
+
+    @Test
+    public void setNameTrueTest() {
         // Act
         boolean result = television.setName("");
 
@@ -152,7 +152,7 @@ public class TelevisionTest {
     }
 
     @Test
-    public void setNameTrueTest() {
+    public void setNameTrueSamsungTV() {
         // Act
         boolean result = television.setName("Samsung TV");
 
