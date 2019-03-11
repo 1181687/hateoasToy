@@ -1,0 +1,8 @@
+@startuml
+
+Class1 <|-- Class2
+Class1 : equals()
+Class2 : Object[] elementData
+Class2 : size()
+
+@enduml

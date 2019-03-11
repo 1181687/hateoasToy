@@ -8,11 +8,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class FanSpecs implements DeviceSpecs, Programmable {
-    private static final String ATTRIBUTE_TIME = "Time";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
     private String typeName;
-    private double time;
     private double nominalPower;
     private List<Program> programList;
 
@@ -20,7 +18,6 @@ public class FanSpecs implements DeviceSpecs, Programmable {
         this.typeName = "Fan";
         this.programList = new ArrayList<>();
     }
-
 
     @Override
     public double getEnergyConsumptionInADay() {
@@ -100,14 +97,14 @@ public class FanSpecs implements DeviceSpecs, Programmable {
      * @param duration
      * @return
      */
-    private boolean setTime(Object duration) {
+    /*private boolean setTime(Object duration) {
         Double fanTime = (Double) duration;
         if (!Utils.isSameDouble(this.time, fanTime) && !(Utils.isSameDouble(fanTime, 0))) {
             this.time = fanTime;
             return true;
         }
         return false;
-    }
+    }*/
 
     /**
      * set method to Nominal Power of a dishwasher
@@ -134,11 +131,11 @@ public class FanSpecs implements DeviceSpecs, Programmable {
     @Override
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
-            case ATTRIBUTE_TIME:
+            /*case ATTRIBUTE_TIME:
                 if (attributeValue instanceof Number) {
                     return setTime(((Number) attributeValue).doubleValue());
                 }
-                return false;
+                return false;*/
             case ATTRIBUTE_NOMINAL_POWER:
                 if (attributeValue instanceof Number) {
                     return setNominalPower(((Number) attributeValue).doubleValue());
@@ -179,7 +176,8 @@ public class FanSpecs implements DeviceSpecs, Programmable {
     }
 
     @Override
-    public Program createNewProgram(String programName, ProgramSpecs specs) {
+    public Program createNewProgram(String programName) {
+        ProgramSpecs specs = new TimeVariableProgramSpecs();
         return new TimeVariableProgram(programName, specs);
     }
 }

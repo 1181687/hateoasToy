@@ -14,7 +14,7 @@ public interface Programmable {
 
     boolean addProgram(Program program);
 
-    Program createNewProgram(String programName, ProgramSpecs specs);
+    Program createNewProgram(String programName);
 
     //boolean addNewProgram(String programName, ProgramSpecs specs);
 

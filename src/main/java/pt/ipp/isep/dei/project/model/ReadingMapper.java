@@ -15,7 +15,7 @@ public class ReadingMapper {
      * @param readingDTO Reading to be used.
      * @return Reading with the required information.
      */
-    public static Reading mapToEntity(ReadingDTO readingDTO) {
+    public static Reading mapToDTO(ReadingDTO readingDTO) {
         return new Reading(readingDTO.getValue(), readingDTO.getDateTime());
     }
 }
