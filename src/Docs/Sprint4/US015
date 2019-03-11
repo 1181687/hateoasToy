@@ -6,19 +6,25 @@ TEAM MEMBERS: Developer - Sónia Silva; QA - Diana Ferreira;
 
 ACCEPTANCE CRITERIA:
 
-- All acceptance tests with "Process finished with exit code 0" message
-
-INDICAR AQUI RESULTADOS ESPERADOS DOS TESTES
-
+General Criteria:
+- All acceptance tests with "Process finished with exit code 0" message.
 - Correct Sequence and Class Diagrams.
 - JavaDoc documentation in both code and tests.
 - JUnit conventions in code and tests. (eg. tests should be named like this:
                                         testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
 - All code, comments and documentation are in proper English.
 
+Specific Criteria:
+- given - The user (Admin) imports geographical areas and sensors from a JSON file.
+- when - The user chooses option "1" from Menu (Administrator), then option "2" (Geographical Area) and then option "11"
+(Import Readings from JSON File). Then User inserts the path to the JSON file to be imported.
+- then - A success message is displayed if all the data was imported successfully ("All data was imported successfully").
+- but -
 
 ASSUMPTIONS:
 - Regarding sensors, only the geographical area sensors are imported.
 - There is User interaction: the application asks the user the location of the files to be imported.
+- For user convenience the data to be imported is in the form of two DTO (Geographical Area DTO and SensorDTO)
+thar are imported at the same time instead of importing the two referred DTO's one at a time.
 
 OTHER INFORMATION:
