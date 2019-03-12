@@ -1,22 +1,35 @@
 package pt.ipp.isep.dei.project.controllers.importReadingsFromJSONController;
 
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapping;
+import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
+import pt.ipp.isep.dei.project.utils.JSONReader;
+
+import java.util.List;
 
 public class ImportReadingsFromJSONController {
+    private GeographicalAreaList geographicalAreaList;
 
-    private GeographicalArea geographicalArea;
-
-    public ImportReadingsFromJSONController() {
-        // empty
-    }
-/*
-    public GeographicalArea getGeographicalArea(long id) {
-        this.geographicalArea = geographicalArea.
-        return geographicalArea;
+    public ImportReadingsFromJSONController(GeographicalAreaList geographicalAreaList) {
+        this.geographicalAreaList = geographicalAreaList;
     }
 
-    public void setGeographicalArea(GeographicalAreaDTO geographicalAreaDTO) {
-        GeographicalAreaMapping.mapToEntity(geographicalAreaDTO, this.geographicalArea);
+    public List<GeographicalAreaDTO> readGeoAreaJson(String path) {
+        return JSONReader.readJSONFileToList(path);
     }
-    */
+
+    public boolean importGeographicalAreaAndSensors(List<GeographicalAreaDTO> geoAreaObjects) {
+        for (GeographicalAreaDTO geoObject : geoAreaObjects) {
+            GeographicalArea geoArea = GeographicalAreaMapping.mapToEntityGeoArea(geoObject);
+            for (SensorDTO sensorDTO : geoObject.getSensors()) {
+                geoArea.addSensor(SensorMapper.mapToEntity(sensorDTO));
+            }
+            geographicalAreaList.addGeoArea(geoArea);
+        }
+        return true;
+    }
+
 }

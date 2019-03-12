@@ -37,17 +37,17 @@ class SensorListTest {
         // Sensors
         Location location = new Location(41.1496, -8.6109, 97);
         SensorType temperature = new SensorType("Temperature");
-        temperatureSensor1 = sensorList.newSensor("Sensor Temp 1", temperature, location);
+        temperatureSensor1 = sensorList.newSensor("s1", "Sensor Temp 1", temperature, location, "l/m2");
         sensorList.addSensor(temperatureSensor1);
-        temperatureSensor2 = sensorList.newSensor("Sensor Temp 2", temperature, location);
+        temperatureSensor2 = sensorList.newSensor("s2", "Sensor Temp 2", temperature, location, "l/m2");
         sensorList.addSensor(temperatureSensor2);
         SensorType rainfall = new SensorType("Rainfall");
-        rainfallSensor = sensorList.newSensor("Sensor Rain", rainfall, location);
+        rainfallSensor = sensorList.newSensor("s3", "Sensor Rain", rainfall, location, "l/m2");
         sensorList.addSensor(rainfallSensor);
         SensorType humidity = new SensorType("Humidity");
-        humiditySensor = sensorList.newSensor("Sensor Humidity", humidity, location);
+        humiditySensor = sensorList.newSensor("s4", "Sensor Humidity", humidity, location, "l/m2");
         sensorList.addSensor(humiditySensor);
-        dummySensor = sensorList.newSensor("Dummy", null, null);
+        dummySensor = sensorList.newSensor("s5", "Dummy", null, null, "l/m2");
 
         // Readings
         LocalDateTime dateTime0 = LocalDateTime.of(2018, 12, 3, 15, 20, 00);
@@ -366,13 +366,13 @@ class SensorListTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
-        Sensor s0 = new Sensor("Sensor0", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("S09", "Sensor0", dataFuncionamento0, sensorType0, locS0, "l/m2");
         sensorList.addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.1496, -8.6109, 97);
-        Sensor s1 = new Sensor("Sensor1", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("S02", "Sensor1", dataFuncionamento1, sensorType1, locS1, "l/m2");
         sensorList.addSensor(s1);
 
         // Sensor0

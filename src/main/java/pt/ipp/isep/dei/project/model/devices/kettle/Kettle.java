@@ -19,7 +19,7 @@ public class Kettle implements Device {
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public Kettle (String name, DeviceSpecs kettleSpecs){
+    public Kettle(String name, DeviceSpecs kettleSpecs) {
         this.name = name;
         this.specs = (KettleSpecs) kettleSpecs;
         this.isActive = true;
@@ -88,6 +88,7 @@ public class Kettle implements Device {
 
     /**
      * method that gets the Device Specifications
+     *
      * @return DeviceSpecs
      */
     @Override

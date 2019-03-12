@@ -7,7 +7,7 @@ public class GetLastColdestDayHouseArea {
 
     private GetLastColdestDayHouseAreaController controller;
 
-    public GetLastColdestDayHouseArea(House house){
+    public GetLastColdestDayHouseArea(House house) {
         this.controller = new GetLastColdestDayHouseAreaController(house);
     }
 }

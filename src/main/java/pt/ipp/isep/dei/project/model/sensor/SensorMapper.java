@@ -1,5 +1,8 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.LocationMapper;
+
 public class SensorMapper {
 
     /**
@@ -20,9 +23,9 @@ public class SensorMapper {
     public static SensorDTO entityToMap(Sensor sensor) {
         SensorDTO sensorDTO = newSensorDTO();
         sensorDTO.setName(sensor.getSensorName());
-        sensorDTO.setStartingDate(sensor.getStartingDate());
-        sensorDTO.setSensorType(sensor.getSensorType());
-        sensorDTO.setLocation(sensor.getLocation());
+        sensorDTO.setStartingDate(sensor.getStartingDate().toLocalDate());
+        sensorDTO.setSensorType(sensor.getSensorType().getType());
+        sensorDTO.setLocation(LocationMapper.mapToDTO(sensor.getLocation()));
         return sensorDTO;
     }
 
@@ -33,6 +36,8 @@ public class SensorMapper {
      * @return Sensor with the required information.
      */
     public static Sensor mapToEntity(SensorDTO sensorDTO) {
-        return new Sensor(sensorDTO.getName(), sensorDTO.getStartingDate(), sensorDTO.getSensorType(), sensorDTO.getLocation());
+        SensorType sensorType = new SensorType(sensorDTO.getSensorType());
+        Location location = LocationMapper.mapToEntity(sensorDTO.getLocation());
+        return new Sensor(sensorDTO.getId(), sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorType, location, sensorDTO.getUnits());
     }
 }

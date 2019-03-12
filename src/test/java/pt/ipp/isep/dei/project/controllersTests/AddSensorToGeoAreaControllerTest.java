@@ -248,7 +248,7 @@ class AddSensorToGeoAreaControllerTest {
         //Arrange
         SensorType sensorType = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
-        Sensor s1 = new Sensor("s1", sensorType, local);
+        Sensor s1 = new Sensor("123", "s1", sensorType, local, "l/m2");
 
 
         sensorTypeList.addSensorType(sensorType);
@@ -258,7 +258,7 @@ class AddSensorToGeoAreaControllerTest {
         controller.getAreaGeograficaNaListaPorPosicao(0);
         controller.getTipoSensorPorPosicao(0);
         controller.criarNovaLocalizacao(41.1496, -8.6109, 97);
-        controller.criarNovoSensor("s1");
+        controller.criarNovoSensor("s1", "sensor2", "l/m2");
         controller.adicionarSensorAAreaGeografica(s1);
 
         //Act
@@ -273,7 +273,7 @@ class AddSensorToGeoAreaControllerTest {
         //Arrange
         SensorType sensorType = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
-        Sensor s1 = new Sensor("s1", sensorType, local);
+        Sensor s1 = new Sensor("123", "s1", sensorType, local, "l/m2");
 
         sensorTypeList.addSensorType(sensorType);
         geographicalAreaList.getGeoAreaList().add(CampusDoIsep);
@@ -281,7 +281,7 @@ class AddSensorToGeoAreaControllerTest {
         controller.getAreaGeograficaNaListaPorPosicao(0);
         controller.getTipoSensorPorPosicao(0);
         controller.criarNovaLocalizacao(41.1496, -8.6109, 97);
-        controller.criarNovoSensor("s1");
+        controller.criarNovoSensor("s1", "sensor1", "l/m2");
 
         //Act
         boolean resultado = controller.adicionarSensorAAreaGeografica(s1);
@@ -293,10 +293,12 @@ class AddSensorToGeoAreaControllerTest {
     @Test
     void testarNovoSensor() {
         //Arrange
+        String id = "123";
         String name = "A123";
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(45, 45, 45);
-        Sensor s1 = new Sensor(name, sensorType, locS1);
+        String units = "l/m2";
+        Sensor s1 = new Sensor(id, name, sensorType, locS1, units);
 
         sensorTypeList.addSensorType(sensorType);
         geographicalAreaList.getGeoAreaList().add(CampusDoIsep);
@@ -307,7 +309,7 @@ class AddSensorToGeoAreaControllerTest {
         Sensor expectedResult = s1;
 
         //Act
-        Sensor result = controller.criarNovoSensor(name);
+        Sensor result = controller.criarNovoSensor(id, name, units);
 
         //Assert
         assertEquals(expectedResult, result);

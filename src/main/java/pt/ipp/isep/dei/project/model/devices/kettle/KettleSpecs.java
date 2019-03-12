@@ -17,14 +17,12 @@ public class KettleSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_VOLUME_OF_WATER_TO_HEAT = "Volume Of Water To Heat";
 
 
-
     private String typeName;
     private double nominalPower;
     private double performanceRatio;
     private double maxVolumeOfWater;
     private double coldWaterTemperature;
     private double volumeOfWaterToHeat;
-
 
 
     public KettleSpecs() {
@@ -61,7 +59,7 @@ public class KettleSpecs implements DeviceSpecs {
     }
 
 
-    public boolean setMaximumVolumeOfWater (Object maxVolumeOfWater){
+    public boolean setMaximumVolumeOfWater(Object maxVolumeOfWater) {
         double maxVolWater = (Double) maxVolumeOfWater;
         if (!Utils.isSameDouble(this.maxVolumeOfWater, maxVolWater) && !(Utils.isSameDouble(maxVolWater, 0))) {
             this.maxVolumeOfWater = maxVolWater;
@@ -92,7 +90,7 @@ public class KettleSpecs implements DeviceSpecs {
      */
     public boolean setVolumeOfWaterToHeat(Object volumeOfWaterToHeat) {
         double volumeWater = (Double) volumeOfWaterToHeat;
-        if (Double.compare(volumeWater, 0) == 1 && Double.compare(this.maxVolumeOfWater,volumeWater) == 1) {
+        if (Double.compare(volumeWater, 0) == 1 && Double.compare(this.maxVolumeOfWater, volumeWater) == 1) {
             this.volumeOfWaterToHeat = volumeWater;
             return true;
         }
@@ -161,6 +159,7 @@ public class KettleSpecs implements DeviceSpecs {
 
     /**
      * get method
+     *
      * @return list os specs of electric water heater
      */
     @Override
@@ -175,8 +174,9 @@ public class KettleSpecs implements DeviceSpecs {
 
     /**
      * get method
+     *
      * @param attributeName string name of the attribute
-     * @return  attribute
+     * @return attribute
      */
     @Override
     public Object getAttributeValue(String attributeName) {
@@ -199,7 +199,8 @@ public class KettleSpecs implements DeviceSpecs {
 
     /**
      * set method
-     * @param attributeName string name of the attribute
+     *
+     * @param attributeName  string name of the attribute
      * @param attributeValue value of the attribute
      * @return
      */
@@ -232,11 +233,12 @@ public class KettleSpecs implements DeviceSpecs {
             default:
                 return false;
         }*/
-       return false; //apagar esta linha depois de descomentar
+        return false; //apagar esta linha depois de descomentar
     }
 
     /**
      * get method
+     *
      * @param attributeName string name of attribute
      * @return type data of the attribute (ex.integer, double)
      */

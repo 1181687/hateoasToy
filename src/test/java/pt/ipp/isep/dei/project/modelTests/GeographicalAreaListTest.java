@@ -38,7 +38,7 @@ public class GeographicalAreaListTest {
         // Sensor
         Location location = new Location(41.1496, -8.6109, 97);
         SensorType temperature = new SensorType("Temperature");
-        sensor = new Sensor("TT123123", temperature, location);
+        sensor = new Sensor("s1", "TT123123", temperature, location, "l/m2");
         portoCity.getSensorListInTheGeographicArea().addSensor(sensor);
     }
 

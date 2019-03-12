@@ -73,7 +73,7 @@ class SensorTypeTest {
         LocalDateTime dataFuncionamento = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
+        Sensor s1 = new Sensor("123", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         //Act
         boolean result = tipo0.equals(s1);
         //Assert
