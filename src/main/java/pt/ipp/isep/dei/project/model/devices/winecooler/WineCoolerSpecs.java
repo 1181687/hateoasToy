@@ -11,6 +11,7 @@ public class WineCoolerSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
     private static final String ATTRIBUTE_NUMBER_OF_BOTTLES = "Number of Bottles";
     private static final String ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
+    private static final String NOT_VALID_ATTRIBUTE = "Not a valid attribute";
 
     private String typeName;
     private double nominalPower;
@@ -173,7 +174,7 @@ public class WineCoolerSpecs implements DeviceSpecs {
             case ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION:
                 return annualEnergyConsumption;
             default:
-                return "Not a valid attribute";
+                return NOT_VALID_ATTRIBUTE;
         }
     }
 
@@ -216,8 +217,8 @@ public class WineCoolerSpecs implements DeviceSpecs {
      */
     @Override
     public String getAttributeDataType(String attributeName) {
-        if ((getAttributeValue(attributeName).equals("Not a valid attribute"))) {
-            return "Not a valid attribute";
+        if ((NOT_VALID_ATTRIBUTE).equals(getAttributeValue(attributeName))) {
+            return NOT_VALID_ATTRIBUTE;
         }
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
