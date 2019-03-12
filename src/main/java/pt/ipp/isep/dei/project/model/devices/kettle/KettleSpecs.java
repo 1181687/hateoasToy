@@ -39,6 +39,7 @@ public class KettleSpecs implements DeviceSpecs {
         return null;
     }
 
+    @Override
     public String getTypeName() {
         return typeName;
     }
@@ -109,6 +110,45 @@ public class KettleSpecs implements DeviceSpecs {
             return true;
         }
         return false;
+    }
+    /**
+     * set method
+     *
+     * @param attributeName  string name of the attribute
+     * @param attributeValue value of the attribute
+     * @return
+     */
+    public boolean setAttributeValue(String attributeName, Object attributeValue) {
+        switch (attributeName) {
+            case ATTRIBUTE_NOMINAL_POWER:
+                if (attributeValue instanceof Number){
+                    return setNominalPower(((Number) attributeValue).doubleValue());
+                }
+                return false;
+            case ATTRIBUTE_MAXIMUM_VOLUME_WATER:
+                if (attributeValue instanceof Number){
+                    return setMaximumVolumeOfWater(((Number) attributeValue).doubleValue());
+                }
+                return false;
+            case ATTRIBUTE_PERFORMANCE_RATIO:
+                if (attributeValue instanceof Number) {
+                    return setPerformanceRatio(((Number) attributeValue).doubleValue());
+                }
+                return false;
+
+            case COLD_WATER_TEMPERATURE:
+                if (attributeValue instanceof Number) {
+                    return setColdWaterTemperature(((Number) attributeValue).doubleValue());
+                }
+                return false;
+            case VOLUME_OF_WATER_TO_HEAT:
+                if (attributeValue instanceof Number) {
+                    return setVolumeOfWaterToHeat(((Number) attributeValue).doubleValue());
+                }
+                return false;
+            default:
+                return false;
+        }
     }
 
     /**
@@ -197,44 +237,7 @@ public class KettleSpecs implements DeviceSpecs {
     }
 
 
-    /**
-     * set method
-     *
-     * @param attributeName  string name of the attribute
-     * @param attributeValue value of the attribute
-     * @return
-     */
-    public boolean setAttributeValue(String attributeName, Object attributeValue) {
-        switch (attributeName) {
-            case ATTRIBUTE_MAXIMUM_VOLUME_WATER:
-                if (attributeValue instanceof Number){
-                    return setMaximumVolumeOfWater(((Number) attributeValue).doubleValue());
-                }
-                return false;
-            case ATTRIBUTE_PERFORMANCE_RATIO:
-                if (attributeValue instanceof Number) {
-                    return setPerformanceRatio(((Number) attributeValue).doubleValue());
-                }
-                return false;
-            case ATTRIBUTE_NOMINAL_POWER:
-                if (attributeValue instanceof Number){
-                    return setNominalPower(((Number) attributeValue).doubleValue());
-                }
-                return false;
-            case COLD_WATER_TEMPERATURE:
-                if (attributeValue instanceof Number) {
-                    return setColdWaterTemperature(((Number) attributeValue).doubleValue());
-                }
-                return false;
-            case VOLUME_OF_WATER_TO_HEAT:
-                if (attributeValue instanceof Number) {
-                    return setVolumeOfWaterToHeat(((Number) attributeValue).doubleValue());
-                }
-                return false;
-            default:
-                return false;
-        }
-    }
+
 
     /**
      * get method
