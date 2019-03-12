@@ -22,10 +22,12 @@ public class SensorMapper {
      */
     public static SensorDTO entityToMap(Sensor sensor) {
         SensorDTO sensorDTO = newSensorDTO();
+        sensorDTO.setId(sensor.getId());
         sensorDTO.setName(sensor.getSensorName());
         sensorDTO.setStartingDate(sensor.getStartingDate().toLocalDate());
         sensorDTO.setSensorType(sensor.getSensorType().getType());
         sensorDTO.setLocation(LocationMapper.mapToDTO(sensor.getLocation()));
+        sensorDTO.setUnits(sensor.getUnits());
         return sensorDTO;
     }
 

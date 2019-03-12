@@ -18,83 +18,38 @@ skinparam sequence {
 }
 
 actor RegularUser
-RegularUser -> ":GetDayWithHighest\nTemperatureAmplitudeUI": getDayWithHighest\nTemperatureAmplitude
+RegularUser -> ":GetDayWithHighest\nTemperatureAmplitudeUI": 1- getDayWithHighest\nTemperatureAmplitude
 activate ":GetDayWithHighest\nTemperatureAmplitudeUI"
-":GetDayWithHighest\nTemperatureAmplitudeUI" --> RegularUser: insertFirstAndLastDate
-RegularUser -> ":GetDayWithHighest\nTemperatureAmplitudeUI": firstDate, lastDate
-":GetDayWithHighest\nTemperatureAmplitudeUI" -> ":GetDayWithHighest\nTemperatureAmplitude\nController": getDayWithHighest\nTemperatureAmplitude ()
+":GetDayWithHighest\nTemperatureAmplitudeUI" --> RegularUser: 2- insertFirstAndLastDate
+RegularUser -> ":GetDayWithHighest\nTemperatureAmplitudeUI": 3- firstDate, lastDate
+":GetDayWithHighest\nTemperatureAmplitudeUI" -> ":GetDayWithHighest\nTemperatureAmplitude\nController": 3.1- getDayWithHighest\nTemperatureAmplitude ()
 activate ":GetDayWithHighest\nTemperatureAmplitude\nController"
-":GetDayWithHighest\nTemperatureAmplitude\nController"-> ":House": getDailyAmplitudeInIntervalInHouseArea ()
+":GetDayWithHighest\nTemperatureAmplitude\nController"-> ":House": 3.1.1- getDailyAmplitudeInIntervalInHouseArea ()
 activate ":House"
-":House" -> ":GeographicalArea": getDailyAmplitudeInInterval ()
+":House" -> ":GeographicalArea": 3.1.1.1- getDailyAmplitudeInInterval ()
 activate ":GeographicalArea"
-":GeographicalArea" -> ":SensorList": getSensorListByTypeInAPeriod ()
-activate ":SensorList"
-":SensorList" -> ":Sensor": getSensorsInGeographicalAreaByType ()
-activate ":Sensor"
-":Sensor" -> ":Readings": checkMeasurementExistenceBetweenDates ()
-activate ":Readings"
-":Sensor" <-- ":Readings": boolean
-deactivate ":Readings"
-":SensorList" <-- ":Sensor": listOfSensors
+ref over ":GeographicalArea"
+getSensorListByTypeInAPeriod ()
+end
 deactivate ":Sensor"
-":GeographicalArea" <-- ":SensorList": listOfSensors
-deactivate ":SensorList"
-":GeographicalArea" -> ":SensorList": getNearestSensorsToLocation (location)
-activate ":SensorList"
-":SensorList" -> ":Sensor": getNearestSensorsToLocation (location)
-activate ":Sensor"
-":SensorList" <-- ":Sensor": listOfNearestSensors
-deactivate ":Sensor"
-":GeographicalArea" <-- ":SensorList": listOfNearestSensors
-deactivate ":SensorList"
-":GeographicalArea" -> ":SensorList": getSensorWithMostRecentReadings ()
-activate ":SensorList"
-":SensorList" -> ":Sensor": getSensorWithMostRecentReadings ()
-activate ":Sensor"
-":Sensor" -> ":Readings": getSensorWithMostRecentReadings ()
-activate ":Readings"
-":Sensor" <-- ":Readings": sensorWithMostRecentReadings
-deactivate ":Readings"
-":SensorList" <-- ":Sensor": sensorWithMostRecentReadings
-deactivate ":Sensor"
-":GeographicalArea" <-- ":SensorList": sensorWithMostRecentReadings
-deactivate ":SensorList"
-":GeographicalArea" -> ":Sensor": getMaximumValueOfDay ()
-activate ":Sensor"
-":Sensor" -> ":Readings": getMaximumValueOfDay ()
-activate ":Readings"
-":Sensor" <-- ":Readings": maximumValueOfDay
-deactivate ":Readings"
-":GeographicalArea" <-- ":Sensor": maximumValueOfDay
-deactivate ":Sensor"
-":GeographicalArea" -> ":Sensor": getLowestValueOfDay ()
-activate ":Sensor"
-":Sensor" -> ":Readings": getLowestValueOfDay ()
-activate ":Readings"
-":Sensor" <-- ":Readings": lowestValueOfDay
-deactivate ":Readings"
-":GeographicalArea" <-- ":Sensor": lowestValueOfDay
-deactivate ":Sensor"
-":House" <-- ":GeographicalArea": mapOfDailyAmplitude
+":House" <-- ":GeographicalArea": 3.1.1.2- mapOfDailyAmplitude
 deactivate ":GeographicalArea"
-":GetDayWithHighest\nTemperatureAmplitude\nController"<-- ":House": mapOfDailyAmplitude
+":GetDayWithHighest\nTemperatureAmplitude\nController"<-- ":House": 3.1.2- mapOfDailyAmplitude
 deactivate ":House"
-":GetDayWithHighest\nTemperatureAmplitudeUI" <-- ":GetDayWithHighest\nTemperatureAmplitude\nController": mapOfDailyAmplitude
+":GetDayWithHighest\nTemperatureAmplitude\nController" -> ":House": 3.1.3- getHighestDailyAmplitude ()
+activate ":House"
+":House" -> ":GeographicalArea": 3.1.3.1- getHighestDailyAmplitude ()
+activate ":GeographicalArea"
+":House" <-- ":GeographicalArea": 3.1.3.2- mapOfHighestDailyAmplitude
+deactivate ":GeographicalArea"
+":GetDayWithHighest\nTemperatureAmplitude\nController" <-- ":House": 3.1.4- mapOfHighestDailyAmplitude
+deactivate ":House"
 deactivate ":GetDayWithHighest\nTemperatureAmplitude\nController"
-":GetDayWithHighest\nTemperatureAmplitudeUI" -> ":GetDayWithHighest\nTemperatureAmplitude\nController": getHighestDailyAmplitude (mapOfDailyAmplitude)
+":GetDayWithHighest\nTemperatureAmplitudeUI" -> ":GetDayWithHighest\nTemperatureAmplitude\nController": 3.2- displayResults ()
 activate ":GetDayWithHighest\nTemperatureAmplitude\nController"
-":GetDayWithHighest\nTemperatureAmplitude\nController" -> ":House": getHighestDailyAmplitude (mapOfDailyAmplitude)
-activate ":House"
-":House" -> ":GeographicalArea": getHighestDailyAmplitude (mapOfDailyAmplitude)
-activate ":GeographicalArea"
-":House" <-- ":GeographicalArea": mapOfHighestDailyAmplitude
-deactivate ":GeographicalArea"
-":GetDayWithHighest\nTemperatureAmplitude\nController" <-- ":House": mapOfHighestDailyAmplitude
-deactivate ":House"
-":GetDayWithHighest\nTemperatureAmplitudeUI" <-- ":GetDayWithHighest\nTemperatureAmplitude\nController": mapOfHighestDailyAmplitude
+":GetDayWithHighest\nTemperatureAmplitudeUI" <-- ":GetDayWithHighest\nTemperatureAmplitude\nController": 3.3- displayResults
 deactivate ":GetDayWithHighest\nTemperatureAmplitude\nController"
-":GetDayWithHighest\nTemperatureAmplitudeUI" <-- ":GetDayWithHighest\nTemperatureAmplitudeUI": displayResults ()
-RegularUser <-- ":GetDayWithHighest\nTemperatureAmplitudeUI": String Result
+
+RegularUser <-- ":GetDayWithHighest\nTemperatureAmplitudeUI": 4- String Result
 deactivate ":GetDayWithHighest\nTemperatureAmplitudeUI"
 @enduml

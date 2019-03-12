@@ -1,14 +1,20 @@
 package pt.ipp.isep.dei.project.modelTests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.devices.*;
+import pt.ipp.isep.dei.project.model.devices.microwaveoven.MicrowaveOvenSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.testng.Assert.assertEquals;
 
 public class MicrowaveOvenSpecsTest {
     private Room kitchen;
@@ -34,18 +40,252 @@ public class MicrowaveOvenSpecsTest {
 
     }
 
-/*
+
     @Test
     public void testGetTypeName() {
         //Arrange
         String expectedResult = "MicrowaveOven";
 
-        MicrowaveOvenSpecs specs = (MicrowaveOvenSpecs) microwaveOvenSpecs;
         //Act
-        String result = specs.getTypeName();
+        String result = microwaveOven.getSpecs().getTypeName();
 
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetNominalPower() {
+        //Arrange
+
+        double expectedResult = 30;
+
+        //Act
+        double result = microwaveOven.getSpecs().getNominalPower();
+
+        //Assert
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testEmptyConstructor() {
+        //Arrange
+        microwaveOven.setAttributesDevType("Nominal Power", 30);
+
+        double expectedResult = 30;
+
+        //Act
+        double result = microwaveOven.getSpecs().getNominalPower();
+
+        //Assert
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+
+    @Test
+    public void testGetAttributesToString() {
+        //Arrange
+
+        String expectedResult = "1 - Nominal Power: 30.0\n";
+
+        //Act
+        String result = microwaveOven.getSpecs().getAttributesToString();
+        //Assert
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetNumberOfAttributes() {
+        //Arrange
+
+        int expectedResult = 1;
+
+        //Act
+
+        int result = microwaveOven.getSpecs().getNumberOfAttributes();
+
+        //Assert
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetEnergyConsumptionInADay() {
+
+        double expectedResult = 0;
+
+        //Act
+        double result = microwaveOven.getSpecs().getEnergyConsumptionInADay();
+
+        //Assert
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetSpecsInAListOfStrings() {
+        // Arrange
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("Nominal Power");
+
+        // Act
+        List<String> result = microwaveOven.getSpecs().getSpecsList();
+
+        // Assert
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueNominalPower() {
+        // Arrange
+        microwaveOven.setAttributesDevType("Nominal Power", 100.0);
+
+        Object expectedResult = 100.0;
+        // Act
+        Object result = microwaveOven.getSpecs().getAttributeValue("Nominal Power");
+        // Assert
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValue_notAValidSpec() {
+        // Arrange
+        Object expectedResult = "not a valid attribute";
+        // Act
+        Object result = microwaveOven.getSpecs().getAttributeValue("Not Valid");
+        // Assert
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerValue_NotAValidType() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = microwaveOven.getSpecs().setAttributeValue("Nominal Power", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPower_ValidValue() {
+        // Act
+        boolean result = microwaveOven.getSpecs().setAttributeValue("Nominal Power", 1.3);
+        // Assert
+        Assertions.assertTrue(result);
+    }
+
+    @Test
+    public void testSetAttribute_NotAValidAttribute() {
+        // Act
+        boolean result = microwaveOven.getSpecs().setAttributeValue("Wrong Attribute", 1.3);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPower_SameValue() {
+        // Arrange
+        microwaveOven.setAttributesDevType("Nominal Power", 100.0);
+        // Act
+        boolean result = microwaveOven.getSpecs().setAttributeValue("Nominal Power", 100.0);
+        // Assert
+        assertFalse(result);
+    }
+
+
+    @Test
+    public void getAttributeDataTypeTest_notValidAttributte() {
+        // arrange
+        String expectedResult = "not a valid attribute";
+        // act
+        String result = microwaveOven.getSpecs().getAttributeDataType("wrong attribute name");
+        // assert
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getAttributeDataTypeTest() {
+        // arrange
+        String expectedResult = "Double";
+        // act
+        String result = microwaveOven.getSpecs().getAttributeDataType("Nominal Power");
+        // assert
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+
+    @Test
+    public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
+        //Arrange
+        boolean expectedResult = false;
+        DeviceSpecs microwaveOvenSpecs = microwaveOven.getSpecs();
+        //Act
+        boolean result = ((MicrowaveOvenSpecs) microwaveOvenSpecs).addProgram(null);
+        //Assert
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
+        //Arrange
+        String programName = "fast";
+        Programmable programmable = this.microwaveOvenSpecs.asProgrammable();
+        TimeVariableProgramSpecs programASpecs = new TimeVariableProgramSpecs();
+        programASpecs.setTime(30.0);
+        programASpecs.setProgramNominalPower(50.0);
+        Program programA = programmable.createNewProgram(programName);
+        programmable.addProgram(programA);
+
+        DeviceSpecs microwaveOvenSpecs = microwaveOven.getSpecs();
+
+        boolean expectedResult = false;
+
+        //Act
+        boolean result = ((MicrowaveOvenSpecs) microwaveOvenSpecs).addProgram(programA);
+
+        //Assert
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
+        //Arrange
+        String programName = "fast";
+        Programmable programmable = this.microwaveOvenSpecs.asProgrammable();
+        TimeVariableProgramSpecs programASpecs = new TimeVariableProgramSpecs();
+        programASpecs.setTime(30.0);
+        programASpecs.setProgramNominalPower(50.0);
+        Program programA = programmable.createNewProgram(programName);
+
+        DeviceSpecs microwaveOvenSpecs = microwaveOven.getSpecs();
+
+        boolean expectedResult = true;
+
+        //Act
+        boolean result = ((MicrowaveOvenSpecs) microwaveOvenSpecs).addProgram(programA);
+
+        //Assert
+        Assertions.assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetProgramList() {
+        //Arrange
+        String programName = "fast";
+        Programmable programmable = this.microwaveOvenSpecs.asProgrammable();
+        TimeVariableProgramSpecs programASpecs = new TimeVariableProgramSpecs();
+        programASpecs.setTime(30.0);
+        programASpecs.setProgramNominalPower(50.0);
+        Program programA = programmable.createNewProgram(programName);
+        DeviceSpecs microwaveOvenSpecs = microwaveOven.getSpecs();
+        ((MicrowaveOvenSpecs) microwaveOvenSpecs).addProgram(programA);
+
+        List<Program> expectedResult = new ArrayList<>();
+        expectedResult.add(programA);
+
+        //Act
+        List<Program> result = ((MicrowaveOvenSpecs) microwaveOvenSpecs).getProgramList();
+
+        //Assert
+        Assertions.assertEquals(expectedResult, result);
     }
 
     @Test
@@ -54,59 +294,20 @@ public class MicrowaveOvenSpecsTest {
         boolean result = microwaveOvenSpecs.isProgrammable();
 
         //Assert
-        assertTrue(result);
+        Assertions.assertTrue(result);
     }
 
-    @Test
-    public void asProgrammable() {
-    }
 
     @Test
-    public void getProgramList() {
+    public void testAsProgrammable() {
+        //Arrange
+        Programmable expectedResult = (Programmable) microwaveOvenSpecs;
+
+        //Act
+        Programmable result = microwaveOvenSpecs.asProgrammable();
+
+        //Assert
+        Assertions.assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void getEnergyConsumptionInADay() {
-    }
-
-    @Test
-    public void getNominalPower() {
-    }
-
-    @Test
-    public void setTime() {
-    }
-
-    @Test
-    public void getAttributesToString() {
-    }
-
-    @Test
-    public void getNumberOfAttributes() {
-    }
-
-    @Test
-    public void getSpecsList() {
-    }
-
-    @Test
-    public void getAttributeValue() {
-    }
-
-    @Test
-    public void setAttributeValue() {
-    }
-
-    @Test
-    public void getAttributeDataType() {
-    }
-
-    @Test
-    public void addProgram() {
-    }
-
-    @Test
-    public void createNewProgram() {
-    }
-    */
 }
