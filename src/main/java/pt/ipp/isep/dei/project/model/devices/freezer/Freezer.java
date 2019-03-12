@@ -94,17 +94,6 @@ public class Freezer implements Device {
         return this.deactivationDate;
     }
 
-    /*@Override
-    public boolean isProgrammable() {
-        return false;
-    }
-
-    @Override
-    public Programmable asProgrammable() {
-        return null;
-    }*/
-
-
     @Override
     public List<Reading> getReadings() {
         return this.readingList;
