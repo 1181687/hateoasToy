@@ -11,10 +11,12 @@ public class MicrowaveOvenType implements DeviceType {
         this.typeName = "MicrowaveOven";
     }
 
+    @Override
     public String getTypeName() {
         return this.typeName;
     }
 
+    @Override
     public Device createDevice(String name) {
         DeviceSpecs microwaveOvenSpecs = new MicrowaveOvenSpecs();
         return new MicrowaveOven(name, microwaveOvenSpecs);
