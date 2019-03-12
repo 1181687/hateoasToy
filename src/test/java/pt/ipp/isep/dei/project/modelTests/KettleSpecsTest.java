@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
@@ -9,6 +10,7 @@ import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -372,10 +374,10 @@ public class KettleSpecsTest {
      * Test if the method getAttributesToString returns the String of the Attributes with the respective value.
      */
     @Test
-    public void testGetAttributesToString_ShowAttributes() {
+    public void testGetAttributesToString_ShowAttributesWithValue() {
         //Arrange
         String expectedResult =
-                        "1 - Maximum Volume of Water: " + 2.0 + "\n" +
+                "1 - Maximum Volume of Water: " + 2.0 + "\n" +
                         "2 - Performance Ratio: " + 0.9 + "\n" +
                         "3 - Nominal Power: " + 30.0 + "\n";
         //Act
@@ -385,13 +387,86 @@ public class KettleSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    
+    /**
+     * Test the method that shows the number of Attributes of this Device, in this case, there are 3.
+     */
+    @Test
+    public void testGetNumberOfAttributes_NumberOfAttributes() {
+        //Arrange
+        int expectedResult = 3;
+
+        //Act
+        int result = kettleSpecs.getNumberOfAttributes();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the method that gets a String List of the attibutes of this device.
+     */
+    @Test
+    public void testGetSpecsList_ListOfStringsOfAttibutes (){
+        //Arrange
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add(ATTRIBUTE_MAXIMUM_VOLUME_WATER);
+        expectedResult.add(ATTRIBUTE_PERFORMANCE_RATIO);
+        expectedResult.add(ATTRIBUTE_NOMINAL_POWER);
+
+        //Act
+        List<String> result = kettleSpecs.getSpecsList();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue.
+     * This method has already been tested with the "set" name of the respective attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NotAValidAttribute (){
+        //Arrange
+        String expectedResult = "not a valid attribute";
+        //Act
+        Object result = kettleSpecs.getAttributeValue("Atributo Qualquer");
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test if the method getAttributeDataType shows the Data type of a valid attribute, in this case, the nominal power.
+     */
+    @Test
+    public void testGetAttributeDataType_ValidAttribute (){
+        //Arrange
+        String expectedResult = "Double";
+
+        //Act
+        String result = kettleSpecs.getAttributeDataType(ATTRIBUTE_NOMINAL_POWER);
+
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    public void testGetAttributeDataType_InvalidAttribute (){
+        //Arrange
+        String expectedResult = "not a valid attribute";
+
+        //Act
+        String result = kettleSpecs.getAttributeDataType("Atributo qualquer");
+
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
 
 
 //Arrange
     //Act
     //Assert
-
+    //assertEquals(expectedResult, result);
 
 
 }

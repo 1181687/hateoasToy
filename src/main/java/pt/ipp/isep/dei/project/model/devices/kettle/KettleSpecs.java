@@ -162,7 +162,7 @@ public class KettleSpecs implements DeviceSpecs {
     }
 
     /**
-     * Method that returns the energy consumption of an Electric Water Heater in a given day based on the cold-water
+     * Method that returns the energy consumption of an Kettle in a given day based on the cold-water
      * temperature and the volume of water to be heated.
      *
      * @return Energy consumption of the device in a given day.
@@ -175,7 +175,7 @@ public class KettleSpecs implements DeviceSpecs {
     /**
      * method that get the attributes by strings.
      *
-     * @return an attribute of the electricWater.
+     * @return an attribute of the kettle.
      */
     @Override
     public String getAttributesToString() {
@@ -200,7 +200,7 @@ public class KettleSpecs implements DeviceSpecs {
     /**
      * get method
      *
-     * @return list os specs of electric water heater
+     * @return list os specs of Kettle
      */
     @Override
     public List<String> getSpecsList() {
@@ -232,7 +232,7 @@ public class KettleSpecs implements DeviceSpecs {
             case VOLUME_OF_WATER_TO_HEAT:
                 return volumeOfWaterToHeat;
             default:
-                return -1;
+                return "not a valid attribute";
         }
     }
 
@@ -246,6 +246,9 @@ public class KettleSpecs implements DeviceSpecs {
      * @return type data of the attribute (ex.integer, double)
      */
     public String getAttributeDataType(String attributeName) {
+        if ((getAttributeValue(attributeName).equals("not a valid attribute"))) {
+            return "not a valid attribute";
+        }
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 }
