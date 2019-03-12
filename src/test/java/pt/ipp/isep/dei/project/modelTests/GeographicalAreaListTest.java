@@ -241,6 +241,9 @@ public class GeographicalAreaListTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * Test that tries to get all the sensors in all the geo areas, which returns a list of Sensors.
+     */
     @Test
     public void getAllSensorsTest() {
         // Arrange
