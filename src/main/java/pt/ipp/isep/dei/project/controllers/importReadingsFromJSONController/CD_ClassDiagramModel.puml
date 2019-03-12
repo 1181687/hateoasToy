@@ -10,12 +10,13 @@ skinparam class {
 
 hide circle
 
-UI "1" -> "1" Controller
-Controller "1" --> "1" House
-House "1" -> "1" GeographicalArea : directly inserted in
-GeographicalArea "1" -> "1" SensorList
-SensorList "1" --> "0*" Sensor
-Sensor "1" --> "0*" Reading
+UI "1" --> "1" Controller
+Controller "1" --> "1" GeographicalAreaList
+Controller "1" --> "1" GeographicalAreaMapper
+Controller "1" --> "1" GeographicalAreaDTO
+Controller "1" --> "1" SensorDTO
+Controller "1" --> "1" SensorMapper
+Controller "1" --> "1" JSONReader
 
 Class UI {
 -field1
@@ -31,35 +32,42 @@ Class Controller {
 +method2()
 }
 
-Class House {
+Class GeographicalAreaMapper {
 -field1
 -field2
 +method1()
 +method2()
 }
 
-Class GeographicalArea {
+Class GeographicalAreaList {
 -field1
 -field2
 +method1()
 +method2()
 }
 
-Class SensorList {
+Class GeographicalAreaDTO {
 -field1
 -field2
 +method1()
 +method2()
 }
 
-Class Sensor {
+Class SensorDTO {
 -field1
 -field2
 +method1()
 +method2()
 }
 
-Class Reading {
+Class SensorMapper {
+-field1
+-field2
++method1()
++method2()
+}
+
+Class JSONReader {
 -field1
 -field2
 +method1()
