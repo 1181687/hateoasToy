@@ -458,6 +458,9 @@ public class GeographicalArea {
 
     public Reading getLastLowestMaximumReading(Location location, SensorType sensorType, LocalDate startDate, LocalDate endDate) {
         Sensor sensor = getNearestSensorWithMostRecentReading(sensorType, location);
+        if(Objects.isNull(sensor)){
+            return null;
+        }
         List<Reading> readings = sensor.getDailyMaxReadingsInAnInterval(startDate,endDate);
         return sensor.getLastLowestReading(readings);
     }
