@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -22,7 +21,7 @@ public class KettleSpecsTest {
     private DeviceSpecs kettleSpecs;
 
     /**
-     * This method pretends to initialize 
+     * This method pretends to initialize
      */
     @BeforeEach
     public void StartUp() {

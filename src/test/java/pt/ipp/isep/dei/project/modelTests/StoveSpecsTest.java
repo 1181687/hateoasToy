@@ -36,7 +36,6 @@ public class StoveSpecsTest {
         this.house.addRoom(kitchen);
         this.stove = this.house.createDevice("Stove", "Stove200", kitchen);
         this.stove.setAttributesDevType("Nominal Power", 30);
-        this.stove.setAttributesDevType("Time", 30);
         this.stoveSpecs = stove.getSpecs();
 
     }
