@@ -67,13 +67,18 @@ public class Admin {
                     InsertedGeoArea ui8 = new InsertedGeoArea(geographicalAreaList);
                     ui8.run();
                     break;
-                case 10:
-                    ImportReadingsFromCSV ui10 = new ImportReadingsFromCSV(geographicalAreaList);
+                case 9:
+                    ImportReadingsFromJSON ui9 = new ImportReadingsFromJSON(geographicalAreaList);
                     try {
-                        ui10.run();
+                        ui9.run();
                     } catch (FileNotFoundException e) {
                         System.out.println(e.getMessage() + "\n");
                     }
+                    break;
+                case 10:
+                    ImportReadingsFromCSV ui10 = new ImportReadingsFromCSV(geographicalAreaList);
+                    ui10.run();
+                    break;
             }
             option = Menu.adminGeoAreaMenu();
         }

@@ -68,7 +68,6 @@ class FridgeTest {
 
         // Maps
         map = new TreeMap<>();
-        map.put(time0, 3.0);
         map.put(time1, 5.0);
         map.put(time2, 7.0);
     }
