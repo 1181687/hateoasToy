@@ -629,7 +629,8 @@ public class KettleSpecsTest {
     }
 
     /**
-     * Test the return "not a valid attribute" of the method getAttributeValue.
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an invalid attribute.
      */
     @Test
     public void testGetAttributeValue_NotAValidAttribute() {
@@ -640,6 +641,77 @@ public class KettleSpecsTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NullCharacterMaxVolWater (){
+        //Arrange
+        String expectedResult = "not a valid attribute";
+        //Act
+        Object result = kettleSpecs.getAttributeValue("\0"+ATTRIBUTE_MAXIMUM_VOLUME_WATER);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NullCharacterPerfRatio (){
+        //Arrange
+        String expectedResult = "not a valid attribute";
+        //Act
+        Object result = kettleSpecs.getAttributeValue("\0"+ATTRIBUTE_PERFORMANCE_RATIO);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NullCharacterColdWaterTemp (){
+        //Arrange
+        String expectedResult = "not a valid attribute";
+        //Act
+        Object result = kettleSpecs.getAttributeValue("\0"+COLD_WATER_TEMPERATURE);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NullCharacterNomPower (){
+        //Arrange
+        String expectedResult = "not a valid attribute";
+        //Act
+        Object result = kettleSpecs.getAttributeValue("\0"+ATTRIBUTE_NOMINAL_POWER);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NullVolWaterHeat (){
+        //Arrange
+        String expectedResult = "not a valid attribute";
+        //Act
+        Object result = kettleSpecs.getAttributeValue("\0"+VOLUME_OF_WATER_TO_HEAT);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
 
     /**
      * Test the return "not a valid attribute" of the method getAttributeValue.
