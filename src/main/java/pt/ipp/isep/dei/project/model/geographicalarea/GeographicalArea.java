@@ -430,10 +430,6 @@ public class GeographicalArea {
         return totalDailyMeasurement;
     }
 
-    public Reading getHighestReadingOfASensor(Location location, LocalDate startDate, LocalDate endDate) {
-        return sensorList.getHighestReadingOfSensor(location, startDate, endDate);
-    }
-
     public Reading getFirstHighestReading(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
         Sensor chosenSensor = getNearestSensorWithMostRecentReading(type, location);
         Reading highestReading = chosenSensor.getHighestReading(startDate, endDate);
@@ -448,24 +444,6 @@ public class GeographicalArea {
             }
         }
         return highestReading;
-    }
-
-    public List<Reading> getReadingListWithoutNulls(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
-        Sensor chosenSensor = getNearestSensorWithMostRecentReading(type, location);
-        List<Reading> readingList = chosenSensor.getReadingsBetweenDates(startDate, endDate);
-        for (Reading reading : readingList) {
-            if (reading == null) {
-                readingList.remove(reading);
-            }
-        }
-        return readingList;
-    }
-
-
-    public double getHighestReadingInInterval(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
-        Sensor chosenSensor = getNearestSensorWithMostRecentReading(type, location);
-        Reading highestReading = chosenSensor.getHighestReading(startDate, endDate);
-        return highestReading.getValue();
     }
 
     public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
@@ -494,9 +472,5 @@ public class GeographicalArea {
 
     public boolean addSensor(Sensor sensor) {
         return this.sensorList.addSensor(sensor);
-    }
-
-    public boolean isReadingsListOfSensorEmpty(SensorType type, Location location, LocalDate startDate, LocalDate endDate) {
-        return getNearestSensorWithMostRecentReading(type, location) == null;
     }
 }

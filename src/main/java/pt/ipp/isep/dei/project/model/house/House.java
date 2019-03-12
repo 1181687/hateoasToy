@@ -758,10 +758,6 @@ public class House {
         return insertedGeoArea.getDateLastMeasurementByLocationType(address.getLocation(), type);
     }
 
-    public double getHighestReadingOfASensor(LocalDate startDate, LocalDate endDate) {
-        return insertedGeoArea.getHighestReadingOfASensor(insertedGeoArea.getLocation(), startDate, endDate).getValue();
-    }
-
     public LocalDate getFirstHighestReadingDateHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
         if (Objects.isNull(insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate))) {
             return null;
@@ -812,16 +808,8 @@ public class House {
         return !this.insertedGeoArea.getTheSensorListOfAGivenType(sensorType).isEmpty();
     }
 
-    public boolean isReadingsListOfSensorEmpty(SensorType type, Location location, LocalDate startDate, LocalDate endDate) {
-        return this.insertedGeoArea.isReadingsListOfSensorEmpty(type, location, startDate, endDate);
-    }
-
     public Sensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
         return this.insertedGeoArea.getNearestSensorWithMostRecentReading(type, location);
-    }
-
-    public double getHighestReadingInInterval(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
-        return this.insertedGeoArea.getHighestReadingInInterval(location, type, startDate, endDate);
     }
 
     public SensorList getTheSensorListOfAGivenType(SensorType type) {
