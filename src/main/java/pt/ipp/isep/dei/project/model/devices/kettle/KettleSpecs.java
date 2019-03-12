@@ -124,31 +124,29 @@ public class KettleSpecs implements DeviceSpecs {
                 if (attributeValue instanceof Number){
                     return setNominalPower(((Number) attributeValue).doubleValue());
                 }
-                return false;
+                break;
             case ATTRIBUTE_MAXIMUM_VOLUME_WATER:
                 if (attributeValue instanceof Number){
                     return setMaximumVolumeOfWater(((Number) attributeValue).doubleValue());
                 }
-                return false;
+                break;
             case ATTRIBUTE_PERFORMANCE_RATIO:
                 if (attributeValue instanceof Number) {
                     return setPerformanceRatio(((Number) attributeValue).doubleValue());
                 }
-                return false;
-
+                break;
             case COLD_WATER_TEMPERATURE:
                 if (attributeValue instanceof Number) {
                     return setColdWaterTemperature(((Number) attributeValue).doubleValue());
                 }
-                return false;
+                break;
             case VOLUME_OF_WATER_TO_HEAT:
                 if (attributeValue instanceof Number) {
                     return setVolumeOfWaterToHeat(((Number) attributeValue).doubleValue());
                 }
-                return false;
-            default:
-                return false;
+                break;
         }
+        return false;
     }
 
     /**

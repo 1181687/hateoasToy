@@ -337,6 +337,22 @@ public class KettleSpecsTest {
     }
 
     /**
+     * Test the setAttributeValue method in the case that there isn't a valid attribute name.
+     */
+    @Test
+    public void testSetAttributeValue_InvalidAttributeName_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double nominalPower = 0;
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue("Not valid name", nominalPower);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
      * Test if the getNominalPower method really returns the Nominal Power attribute value.
      */
     @Test
@@ -434,10 +450,11 @@ public class KettleSpecsTest {
     }
 
     /**
-     * Test if the method getAttributeDataType shows the Data type of a valid attribute, in this case, the nominal power.
+     * Test if the method getAttributeDataType shows the Data type of a valid attribute,
+     * in this case, the nominal power.
      */
     @Test
-    public void testGetAttributeDataType_ValidAttribute (){
+    public void testGetAttributeDataType_NominalPower (){
         //Arrange
         String expectedResult = "Double";
 
@@ -449,6 +466,76 @@ public class KettleSpecsTest {
 
     }
 
+    /**
+     * Test if the method getAttributeDataType shows the Data type of a valid attribute,
+     * in this case, the Maximum Volume of Water.
+     */
+    @Test
+    public void testGetAttributeDataType_MaxVolumeOfWater (){
+        //Arrange
+        String expectedResult = "Double";
+
+        //Act
+        String result = kettleSpecs.getAttributeDataType(ATTRIBUTE_MAXIMUM_VOLUME_WATER);
+
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
+
+    /**
+     * Test if the method getAttributeDataType shows the Data type of a valid attribute,
+     * in this case, the Performance Ratio.
+     */
+    @Test
+    public void testGetAttributeDataType_PerformanceRatio (){
+        //Arrange
+        String expectedResult = "Double";
+
+        //Act
+        String result = kettleSpecs.getAttributeDataType(ATTRIBUTE_PERFORMANCE_RATIO);
+
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
+
+    /**
+     * Test if the method getAttributeDataType shows the Data type of a valid attribute,
+     * in this case, the Cold Water Temperature.
+     */
+    @Test
+    public void testGetAttributeDataType_ColdWaterTemperature(){
+        //Arrange
+        String expectedResult = "Double";
+
+        //Act
+        String result = kettleSpecs.getAttributeDataType(COLD_WATER_TEMPERATURE);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test if the method getAttributeDataType shows the Data type of a valid attribute,
+     * in this case, the volume Of Water To Heat.
+     */
+    @Test
+    public void testGetAttributeDataType_volumeOfWaterToHeat(){
+        //Arrange
+        String expectedResult = "Double";
+
+        //Act
+        String result = kettleSpecs.getAttributeDataType(VOLUME_OF_WATER_TO_HEAT);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test if the method getAttributeDataType shows the String "not a valid attribute",
+     * in case of do not insert a valid name of attribute.
+     */
     @Test
     public void testGetAttributeDataType_InvalidAttribute (){
         //Arrange
