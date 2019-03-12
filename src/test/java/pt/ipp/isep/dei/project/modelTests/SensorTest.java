@@ -1860,7 +1860,7 @@ class SensorTest {
     }
 
     @Test
-    public void getHighestReadingOfADay_WithSeveralReadingsInOneDay(){
+    public void getHighestReadingOfADay_WithSeveralReadingsInOneDay_ShouldReturnHighestReading(){
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -1906,7 +1906,7 @@ class SensorTest {
     }
 
     @Test
-    public void getHighestReadingOfADay_WithSeveralReadingsInTwoDays(){
+    public void getHighestReadingOfADay_WithSeveralReadingsInTwoDays_ShouldReturnHighestReadingOfSelectedDay(){
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -1988,7 +1988,7 @@ class SensorTest {
 
         LocalDate day = LocalDate.of(2018,11,2);
 
-        Reading expectedResult = reading1;
+        Reading expectedResult = reading2;
 
         //Act
         Reading result = sensor1.getHighestReadingOfADay(day);
@@ -2029,7 +2029,79 @@ class SensorTest {
     }
 
     @Test
-    public void getDailyMaxReadingsInAnInterval_ShouldReturnListWith2Readings(){
+    public void getHighestReadingOfADay_WithDoubleNaNReadings_ShouldReturnHighestReading(){
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(11, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(Double.NaN, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 2, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 2, 17, 20, 00);
+        Reading reading4 = new Reading(5, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
+        Reading reading5 = new Reading(10, data5);
+
+        //Adding readings to sensor
+        sensor1.addReadingsToList(reading1);
+        sensor1.addReadingsToList(reading2);
+        sensor1.addReadingsToList(reading3);
+        sensor1.addReadingsToList(reading4);
+        sensor1.addReadingsToList(reading5);
+
+        LocalDate day = LocalDate.of(2018,11,2);
+
+        Reading expectedResult = reading1;
+
+        //Act
+        Reading result = sensor1.getHighestReadingOfADay(day);
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void getHighestReadingOfADay_WithOnlyOneDoubleNaNReading_ShouldReturnNull(){
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(Double.NaN, data2);
+
+        //Adding readings to sensor
+        sensor1.addReadingsToList(reading2);
+
+        LocalDate day = LocalDate.of(2018,11,2);
+
+        Reading expectedResult = null;
+
+        //Act
+        Reading result = sensor1.getHighestReadingOfADay(day);
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void getDailyMaxReadingsInAnInterval_With2DatesWithValidReadings_ShouldReturnListWith2Readings(){
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -2069,6 +2141,101 @@ class SensorTest {
         List<Reading> expectedResult = new ArrayList<>();
         expectedResult.add(reading2);
         expectedResult.add(reading4);
+
+        //Act
+        List<Reading> result = sensor1.getDailyMaxReadingsInAnInterval(startDate,endDate);
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void getDailyMaxReadingsInAnInterval_WithOneDateWithOnlyInvalidReadings_ShouldReturnListWith1Readings(){
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(Double.NaN, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(Double.NaN, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 3, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 3, 17, 20, 00);
+        Reading reading4 = new Reading(15, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 3, 17, 20, 10);
+        Reading reading5 = new Reading(10, data5);
+
+        //Adding readings to sensor
+        sensor1.addReadingsToList(reading1);
+        sensor1.addReadingsToList(reading2);
+        sensor1.addReadingsToList(reading3);
+        sensor1.addReadingsToList(reading4);
+        sensor1.addReadingsToList(reading5);
+
+        LocalDate startDate = LocalDate.of(2018,11,2);
+        LocalDate endDate = LocalDate.of(2018,11,3);
+
+        List<Reading> expectedResult = new ArrayList<>();
+        expectedResult.add(reading4);
+
+        //Act
+        List<Reading> result = sensor1.getDailyMaxReadingsInAnInterval(startDate,endDate);
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void getDailyMaxReadingsInAnInterval_WithDatesWithOnlyInvalidReadings_ShouldReturnEmptyList(){
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(Double.NaN, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(Double.NaN, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 3, 17, 15, 00);
+        Reading reading3 = new Reading(Double.NaN, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 3, 17, 20, 00);
+        Reading reading4 = new Reading(Double.NaN, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 3, 17, 20, 10);
+        Reading reading5 = new Reading(Double.NaN, data5);
+
+        //Adding readings to sensor
+        sensor1.addReadingsToList(reading1);
+        sensor1.addReadingsToList(reading2);
+        sensor1.addReadingsToList(reading3);
+        sensor1.addReadingsToList(reading4);
+        sensor1.addReadingsToList(reading5);
+
+        LocalDate startDate = LocalDate.of(2018,11,2);
+        LocalDate endDate = LocalDate.of(2018,11,3);
+
+        List<Reading> expectedResult = new ArrayList<>();
 
         //Act
         List<Reading> result = sensor1.getDailyMaxReadingsInAnInterval(startDate,endDate);
