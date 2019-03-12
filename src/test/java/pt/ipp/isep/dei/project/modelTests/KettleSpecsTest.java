@@ -116,6 +116,24 @@ public class KettleSpecsTest {
 
     /**
      * Test the setNominalPower method with the method setAttributeValue.
+     * This test checks if we can set the Nominal Power value with null character .
+     */
+    @Test
+    public void testSetNominalPower_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double nominalPower = 30;
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue("\0"+ATTRIBUTE_NOMINAL_POWER, nominalPower);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    /**
+     * Test the setNominalPower method with the method setAttributeValue.
      * This test checks if we can set the Nominal Power value with an invalid Data Type.
      */
     @Test
@@ -184,6 +202,25 @@ public class KettleSpecsTest {
 
     /**
      * Test the setMaximumVolumeOfWater method with the method setAttributeValue.
+     * This test checks if we can set the Maximum Volume of Water value with null character.
+     */
+    @Test
+    public void testSetMaximumVolumeOfWater_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double maxVolWater = 2;
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue("\0"+ATTRIBUTE_MAXIMUM_VOLUME_WATER, maxVolWater);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+
+    /**
+     * Test the setMaximumVolumeOfWater method with the method setAttributeValue.
      * This test checks if we can set the Maximum Volume of Water value with with an invalid Data Type.
      */
     @Test
@@ -249,6 +286,25 @@ public class KettleSpecsTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+
+    /**
+     * Test the setPerformanceRatio method with the method setAttributeValue.
+     * This test checks if we can set the Performance Ratio value with null character.
+     */
+    @Test
+    public void testSetPerformanceRatio_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double perfRatio = 0.9;
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue("\0"+ATTRIBUTE_PERFORMANCE_RATIO, perfRatio);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
 
     /**
      * Test the setPerformanceRatio method with the method setAttributeValue.
@@ -338,6 +394,24 @@ public class KettleSpecsTest {
 
     /**
      * Test the setVolumeOfWaterToHeat method with the method setAttributeValue.
+     * This test checks if we can set the Volume of Water to Heat value  with null character.
+     */
+    @Test
+    public void testSetVolumeOfWaterToHeat_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double volWater = -1;
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue("\0"+VOLUME_OF_WATER_TO_HEAT, volWater);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    /**
+     * Test the setVolumeOfWaterToHeat method with the method setAttributeValue.
      * This test checks if we can set the Volume of Water to Heat value with an invalid Data Type.
      */
     @Test
@@ -405,6 +479,22 @@ public class KettleSpecsTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * Test the setColdWaterTemperature method with the method setAttributeValue.
+     * This test checks if we can set the Cold Water Temperature value with null character.
+     */
+    @Test
+    public void testSetColdWaterTemperature_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        String  coldWaterTemp = "101";
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue("\0"+COLD_WATER_TEMPERATURE, coldWaterTemp);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 
     /**
      * Test the setColdWaterTemperature method with the method setAttributeValue.
