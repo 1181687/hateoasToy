@@ -30,7 +30,7 @@ public class KettleSpecsTest {
     private DeviceSpecs kettleSpecs;
 
     /**
-     * This method pretends to initialize
+     * This method pretends to initialize some attributes of this test class to simplifying all tests.
      */
     @BeforeEach
     public void StartUp() {
