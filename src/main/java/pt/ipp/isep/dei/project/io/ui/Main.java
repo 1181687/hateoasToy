@@ -29,8 +29,15 @@ public class Main {
     private static final String CAPACITY = "Capacity";
     private static final String GLASSES = "Glasses";
     private static final String DISHES = "Dishes";
+    private static final String WOOL = "Wool";
+    private static final String ECO = "Eco";
+    private static final String ECO_TURBO = "Eco Turbo";
+    private static final String FAST = "Fast";
+    private static final String FAST_PLUS = "Fast Plus";
+    private static final String SYNTHETIC_30º= "Synthetic 30º";
     private static final String ELECTRIC_WATER_HEATER = "ElectricWaterHeater";
     private static final String DISHWASHER = "DishWasher";
+    private static final String WASHING_MACHINE = "WashingMachine";
 
     public static void main(String[] args) {
 
@@ -409,19 +416,19 @@ public class Main {
         dwB107.addReadingsToTheList(dwEC9);
 
         Programmable dwB107Programmable = dwB107.getSpecs().asProgrammable();
-        Program program = dwB107Programmable.createNewProgram("Glasses");
+        Program program = dwB107Programmable.createNewProgram(GLASSES);
         program.setProgramAttributes("duration", durationNotAsked);
         program.setProgramAttributes("energyConsumption",0.9);
 
-        Program program1 = dwB107Programmable.createNewProgram("Eco");
+        Program program1 = dwB107Programmable.createNewProgram(ECO);
         program1.setProgramAttributes("duration", durationNotAsked);
         program1.setProgramAttributes("energyConsumption",1.3);
 
-        Program program2 = dwB107Programmable.createNewProgram("Eco turbo");
+        Program program2 = dwB107Programmable.createNewProgram(ECO_TURBO);
         program2.setProgramAttributes("duration", durationNotAsked);
         program2.setProgramAttributes("energyConsumption",1.7);
 
-        Program  program3 = dwB107Programmable.createNewProgram("Dishes");
+        Program  program3 = dwB107Programmable.createNewProgram(DISHES);
         program3.setProgramAttributes("duration", durationNotAsked);
         program3.setProgramAttributes("energyConsumption",2.1);
 
@@ -431,7 +438,7 @@ public class Main {
         dwB107Programmable.addProgram(program3);
 
         // Washing Machine B107
-        Device wmB107 = houseEdificioB.createDevice("Washing Machine", "Washing Machine B107", room1);
+        Device wmB107 = houseEdificioB.createDevice(WASHING_MACHINE, "Washing Machine B107", room1);
         wmB107.setAttributesDevType(CAPACITY, 10);
         wmB107.setAttributesDevType(NOMINAL_POWER, 3.5);
 
@@ -441,19 +448,19 @@ public class Main {
         wmB107.addReadingsToTheList(wmEC3);
 
         Programmable wmB107Programmable = wmB107.getSpecs().asProgrammable();
-        Program program4 = wmB107Programmable.createNewProgram("Wool");
+        Program program4 = wmB107Programmable.createNewProgram(WOOL);
         program4.setProgramAttributes("duration", durationNotAsked);
         program4.setProgramAttributes("energyConsumption",1.1);
 
-        Program program5 = wmB107Programmable.createNewProgram("Fast");
+        Program program5 = wmB107Programmable.createNewProgram(FAST);
         program5.setProgramAttributes("duration", durationNotAsked);
         program5.setProgramAttributes("energyConsumption",1.8);
 
-        Program program6 = wmB107Programmable.createNewProgram("Fast plus");
+        Program program6 = wmB107Programmable.createNewProgram(FAST_PLUS);
         program6.setProgramAttributes("duration", durationNotAsked);
         program6.setProgramAttributes("energyConsumption",2.7);
 
-        Program program7 = wmB107Programmable.createNewProgram("Synthetic 30º");
+        Program program7 = wmB107Programmable.createNewProgram(SYNTHETIC_30º);
         program7.setProgramAttributes("duration", durationNotAsked);
         program7.setProgramAttributes("energyConsumption",2.8);
 
@@ -495,19 +502,19 @@ public class Main {
         dwB109.setAttributesDevType(NOMINAL_POWER, 1.5);
 
         Programmable dwB109Programmable = dwB109.getSpecs().asProgrammable();
-        Program program16 = dwB109Programmable.createNewProgram("Glasses");
+        Program program16 = dwB109Programmable.createNewProgram(GLASSES);
         program16.setProgramAttributes("duration", durationNotAsked);
         program16.setProgramAttributes("energyConsumption",0.9);
 
-        Program program17 = dwB109Programmable.createNewProgram("Eco");
+        Program program17 = dwB109Programmable.createNewProgram(ECO);
         program17.setProgramAttributes("duration", durationNotAsked);
         program17.setProgramAttributes("energyConsumption",1.3);
 
-        Program program18 = dwB109Programmable.createNewProgram("Eco turbo");
+        Program program18 = dwB109Programmable.createNewProgram(ECO_TURBO);
         program18.setProgramAttributes("duration", durationNotAsked);
         program18.setProgramAttributes("energyConsumption",1.7);
 
-        Program program19 = dwB109Programmable.createNewProgram("Dishes");
+        Program program19 = dwB109Programmable.createNewProgram(DISHES);
         program19.setProgramAttributes("duration", durationNotAsked);
         program19.setProgramAttributes("energyConsumption",2.1);
 
@@ -518,7 +525,7 @@ public class Main {
 
 
         // Washing Machine B109
-        Device wmB109 = houseEdificioB.createDevice("Washing Machine", "Washing Machine B109", room2);
+        Device wmB109 = houseEdificioB.createDevice(WASHING_MACHINE, "Washing Machine B109", room2);
         wmB109.setAttributesDevType(CAPACITY, 10);
         wmB109.setAttributesDevType(NOMINAL_POWER, 2.5);
 
@@ -529,19 +536,19 @@ public class Main {
         wmB109.addReadingsToTheList(wm1EC4);
 
         Programmable wmB109Programmable = wmB109.getSpecs().asProgrammable();
-        Program program8 = wmB109Programmable.createNewProgram("Wool");
+        Program program8 = wmB109Programmable.createNewProgram(WOOL);
         program8.setProgramAttributes("duration", durationNotAsked);
         program8.setProgramAttributes("energyConsumption",0.9);
 
-        Program program9 = wmB109Programmable.createNewProgram("Fast");
+        Program program9 = wmB109Programmable.createNewProgram(FAST);
         program9.setProgramAttributes("duration", durationNotAsked);
         program9.setProgramAttributes("energyConsumption",1.3);
 
-        Program program10 = wmB109Programmable.createNewProgram("Fast plus");
+        Program program10 = wmB109Programmable.createNewProgram(FAST_PLUS);
         program10.setProgramAttributes("duration", durationNotAsked);
         program10.setProgramAttributes("energyConsumption",1.7);
 
-        Program program11 = wmB109Programmable.createNewProgram("Synthetic 30º");
+        Program program11 = wmB109Programmable.createNewProgram(SYNTHETIC_30º);
         program11.setProgramAttributes("duration", durationNotAsked);
         program11.setProgramAttributes("energyConsumption",2.1);
 
@@ -564,7 +571,7 @@ public class Main {
         dwB106.setAttributesDevType(NOMINAL_POWER, 1.4);
 
         Programmable dwB106Programmable = dwB106.getSpecs().asProgrammable();
-        Program program12 = dwB106Programmable.createNewProgram("Glasses");
+        Program program12 = dwB106Programmable.createNewProgram (GLASSES);
         program12.setProgramAttributes("duration", durationNotAsked);
         program12.setProgramAttributes("energyConsumption",0.8);
 
@@ -576,7 +583,7 @@ public class Main {
         program14.setProgramAttributes("duration", durationNotAsked);
         program14.setProgramAttributes("energyConsumption",1.9);
 
-        Program program15 = dwB106Programmable.createNewProgram("Dishes");
+        Program program15 = dwB106Programmable.createNewProgram(DISHES);
         program15.setProgramAttributes("duration", durationNotAsked);
         program15.setProgramAttributes("energyConsumption",2.3);
 
