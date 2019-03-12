@@ -15,6 +15,7 @@ public class StoveSpecs implements DeviceSpecs, Programmable {
     private double nominalPower;
     private List<Program> programList;
 
+
     public StoveSpecs() {
         this.typeName = "Stove";
         this.programList = new ArrayList<>();

@@ -42,7 +42,7 @@ public class RoomTest {
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        GeographicalArea insertedGeoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+        GeographicalArea insertedGeoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         //House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -145,7 +145,7 @@ public class RoomTest {
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
 
-        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
+        Sensor s1 = new Sensor("123", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
 
         Dimension dim = new Dimension(3, 3.5, 3.5);
 
@@ -164,7 +164,7 @@ public class RoomTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("421", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
         kitchen.addSensorToListOfSensorsInRoom(s0);
         sensorList.addSensor(s0);
@@ -211,12 +211,12 @@ public class RoomTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("123", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2010, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(123, 300, 50);
-        Sensor s1 = new Sensor("A456", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("321", "A456", dataFuncionamento1, sensorType1, locS1, "l/m2");
 
         kitchen.addSensorToListOfSensorsInRoom(s0);
         kitchen.addSensorToListOfSensorsInRoom(s1);
@@ -248,7 +248,7 @@ public class RoomTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("123", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
         kitchen.addSensorToListOfSensorsInRoom(s0);
 

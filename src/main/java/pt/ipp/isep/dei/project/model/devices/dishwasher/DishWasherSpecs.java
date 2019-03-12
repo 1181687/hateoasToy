@@ -14,7 +14,7 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
 
     private String typeName;
     private int capacity;
-   // private double duration;
+    // private double duration;
     private double nominalPower;
     private List<Program> programList;
 
@@ -141,7 +141,7 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
             case ATTRIBUTE_CAPACITY:
                 return capacity;
             //case ATTRIBUTE_DURATION:
-               // return duration;
+            // return duration;
             case ATTRIBUTE_NOMINAL_POWER:
                 return nominalPower;
             default:

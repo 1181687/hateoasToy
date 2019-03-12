@@ -68,8 +68,8 @@ public class AddSensorToRoomController {
      * @param name of the new sensor.
      * @return a new sensor added in the list of sensors in the room.
      */
-    public boolean createAndAddSensorToTheList (String name) {
-        Sensor newSensor = selectedRoom.getSensorList().newSensor(name, sensorType, locationOfTheHouse);
+    public boolean createAndAddSensorToTheList(String id, String name, String units) {
+        Sensor newSensor = selectedRoom.getSensorList().newSensor(id, name, sensorType, locationOfTheHouse, units);
         return selectedRoom.addSensorToListOfSensorsInRoom(newSensor);
     }
 

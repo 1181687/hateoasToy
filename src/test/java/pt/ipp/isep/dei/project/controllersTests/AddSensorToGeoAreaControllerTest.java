@@ -28,7 +28,7 @@ class AddSensorToGeoAreaControllerTest {
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        this.CampusDoIsep = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+        this.CampusDoIsep = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         this.geographicalAreaList = new GeographicalAreaList();
         this.sensorTypeList = new SensorTypeList();
@@ -46,13 +46,13 @@ class AddSensorToGeoAreaControllerTest {
         GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
         AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade de Espinho", tipo2, local2, area2);
 
         String nomeAG3 = "Ancora";
         GeographicalAreaType tipo3 = new GeographicalAreaType("Cidade");
         Location local3 = new Location(41.1496, -8.6109, 97);
         AreaShape area3 = new AreaShape(10, 10, local3);
-        GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
+        GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Cidade de Ancora", tipo3, local3, area3);
 
 
         geographicalAreaList.addGeoArea(CampusDoIsep);
@@ -60,7 +60,7 @@ class AddSensorToGeoAreaControllerTest {
         geographicalAreaList.addGeoArea(ag3);
 
         int posicao = 0;
-        String expectedResult = "Campus do ISEP";
+        String expectedResult = "ISEP";
         controller.getAreaGeograficaNaListaPorPosicao(posicao);
 
         // Act
@@ -77,13 +77,13 @@ class AddSensorToGeoAreaControllerTest {
         GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
         AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade de Espinho", tipo2, local2, area2);
 
         String nomeAG3 = "Ancora";
         GeographicalAreaType tipo3 = new GeographicalAreaType("Cidade");
         Location local3 = new Location(41.1496, -8.6109, 97);
         AreaShape area3 = new AreaShape(10, 10, local3);
-        GeographicalArea ag3 = new GeographicalArea(nomeAG3, tipo3, local3, area3);
+        GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Cidade de Ancora", tipo3, local3, area3);
 
         geographicalAreaList.addGeoArea(CampusDoIsep);
         geographicalAreaList.addGeoArea(ag2);
@@ -107,7 +107,7 @@ class AddSensorToGeoAreaControllerTest {
         geographicalAreaList.addGeoArea(CampusDoIsep);
 
         int posicao = 0;
-        String expectedResult = "Campus do ISEP";
+        String expectedResult = "ISEP";
         controller.getAreaGeograficaNaListaPorPosicao(posicao);
 
         // Act
@@ -125,7 +125,7 @@ class AddSensorToGeoAreaControllerTest {
         GeographicalAreaType tipo2 = new GeographicalAreaType("Cidade");
         Location local2 = new Location(41.1496, -8.6109, 97);
         AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade de Ancora", tipo2, local2, area2);
 
 
         geographicalAreaList.addGeoArea(CampusDoIsep);
@@ -248,7 +248,7 @@ class AddSensorToGeoAreaControllerTest {
         //Arrange
         SensorType sensorType = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
-        Sensor s1 = new Sensor("s1", sensorType, local);
+        Sensor s1 = new Sensor("123", "s1", sensorType, local, "l/m2");
 
 
         sensorTypeList.addSensorType(sensorType);
@@ -258,7 +258,7 @@ class AddSensorToGeoAreaControllerTest {
         controller.getAreaGeograficaNaListaPorPosicao(0);
         controller.getTipoSensorPorPosicao(0);
         controller.criarNovaLocalizacao(41.1496, -8.6109, 97);
-        controller.criarNovoSensor("s1");
+        controller.criarNovoSensor("s1", "sensor2", "l/m2");
         controller.adicionarSensorAAreaGeografica(s1);
 
         //Act
@@ -273,7 +273,7 @@ class AddSensorToGeoAreaControllerTest {
         //Arrange
         SensorType sensorType = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
-        Sensor s1 = new Sensor("s1", sensorType, local);
+        Sensor s1 = new Sensor("123", "s1", sensorType, local, "l/m2");
 
         sensorTypeList.addSensorType(sensorType);
         geographicalAreaList.getGeoAreaList().add(CampusDoIsep);
@@ -281,7 +281,7 @@ class AddSensorToGeoAreaControllerTest {
         controller.getAreaGeograficaNaListaPorPosicao(0);
         controller.getTipoSensorPorPosicao(0);
         controller.criarNovaLocalizacao(41.1496, -8.6109, 97);
-        controller.criarNovoSensor("s1");
+        controller.criarNovoSensor("s1", "sensor1", "l/m2");
 
         //Act
         boolean resultado = controller.adicionarSensorAAreaGeografica(s1);
@@ -293,10 +293,12 @@ class AddSensorToGeoAreaControllerTest {
     @Test
     void testarNovoSensor() {
         //Arrange
+        String id = "123";
         String name = "A123";
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(45, 45, 45);
-        Sensor s1 = new Sensor(name, sensorType, locS1);
+        String units = "l/m2";
+        Sensor s1 = new Sensor(id, name, sensorType, locS1, units);
 
         sensorTypeList.addSensorType(sensorType);
         geographicalAreaList.getGeoAreaList().add(CampusDoIsep);
@@ -307,7 +309,7 @@ class AddSensorToGeoAreaControllerTest {
         Sensor expectedResult = s1;
 
         //Act
-        Sensor result = controller.criarNovoSensor(name);
+        Sensor result = controller.criarNovoSensor(id, name, units);
 
         //Assert
         assertEquals(expectedResult, result);

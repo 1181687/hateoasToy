@@ -45,14 +45,14 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
         AreaShape areaShape = new AreaShape(100, 100, location);
-        northernRegion = new GeographicalArea("Northern Region", region, location, areaShape);
+        northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
         AreaShape areaShape1 = new AreaShape(40, 40, location1);
-        portoDistrict = new GeographicalArea("Porto District", district, location1, areaShape1);
+        portoDistrict = new GeographicalArea("Distrito do Porto", "Porto District", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         this.location2 = new Location(42.1496, -8.6109, 97);
         AreaShape areaShape2 = new AreaShape(10, 10, location2);
-        portoCity = new GeographicalArea("Porto City", city, location2, areaShape2);
+        portoCity = new GeographicalArea("Porto", "Porto City", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
         // House
@@ -70,10 +70,10 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         temperature = new SensorType("temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        temperatureSensor = new Sensor("A123", startDate, temperature, sensorLocation);
+        temperatureSensor = new Sensor("S01", "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        temperatureSensor1 = new Sensor("B123", startDate1, temperature, sensorLocation1);
+        temperatureSensor1 = new Sensor("S01", "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);

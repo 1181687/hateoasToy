@@ -12,7 +12,7 @@ public class GetLastColdestDayHouseArea {
     private GetLastColdestDayHouseAreaController controller;
     private ReadingDTO readingDTO;
 
-    public GetLastColdestDayHouseArea(House house){
+    public GetLastColdestDayHouseArea(House house) {
         this.controller = new GetLastColdestDayHouseAreaController(house);
     }
 

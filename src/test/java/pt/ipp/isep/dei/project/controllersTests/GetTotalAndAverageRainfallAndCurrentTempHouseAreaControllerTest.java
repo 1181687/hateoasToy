@@ -34,7 +34,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         Location location = new Location(42.1, -8.6, 100.0);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        this.geoArea = new GeographicalArea("Campus do ISEP", geographicalAreaType, location, areaShape);
+        this.geoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         //House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -59,13 +59,13 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.15, -8.610, 97);
-        Sensor s0 = new Sensor("A122", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("S01", "A122", dataFuncionamento0, sensorType0, locS0, "l/m2");
         house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.15, -8.610, 97);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("S02", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
 
         // Sensor0 - Register 1
@@ -105,13 +105,13 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
-        Sensor s0 = new Sensor("Sensor0", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("S01", "Sensor0", dataFuncionamento0, sensorType0, locS0, "l/m2");
         house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
-        Sensor s1 = new Sensor("Sensor1", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("S09", "Sensor1", dataFuncionamento1, sensorType1, locS1, "l/m2");
         house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
 
         // Sensor0
@@ -169,10 +169,10 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("temperature");
         Location locS0 = new Location(42.1, -8.6, 100.0);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("S01", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         this.geoArea.getSensorListInTheGeographicArea().addSensor(s0);
 
-        Sensor s1 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s1 = new Sensor("S01", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         this.geoArea.getSensorListInTheGeographicArea().addSensor(s1);
 
         //Instantiate MeasurementS
@@ -225,13 +225,13 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("temperature");
         Location locS0 = new Location(-1, 30, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("S01", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         this.geoArea.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("temperature");
         Location locS1 = new Location(32.1576, 7.6199, 100);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("S02", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         this.geoArea.getSensorListInTheGeographicArea().addSensor(s1);
 
         double expectedResult = Double.NaN;
@@ -299,10 +299,10 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("temperature");
         Location locS0 = new Location(42.1, -8.6, 100.0);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("S09", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         this.geoArea.getSensorListInTheGeographicArea().addSensor(s0);
 
-        Sensor s1 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s1 = new Sensor("S09", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         this.geoArea.getSensorListInTheGeographicArea().addSensor(s1);
 
         //Instantiate MeasurementS
@@ -355,13 +355,13 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("temperature");
         Location locS0 = new Location(-1, 30, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("S09", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         this.geoArea.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("temperature");
         Location locS1 = new Location(32.1576, 7.6199, 100);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("S01", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         this.geoArea.getSensorListInTheGeographicArea().addSensor(s1);
 
         LocalDateTime expectedResult = null;

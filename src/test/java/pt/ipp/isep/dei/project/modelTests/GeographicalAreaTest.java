@@ -41,24 +41,24 @@ class GeographicalAreaTest {
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
         AreaShape areaShape = new AreaShape(100, 100, location);
-        northernRegion = new GeographicalArea("Northern Region", region, location, areaShape);
+        northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
         AreaShape areaShape1 = new AreaShape(40, 40, location1);
-        portoDistrict = new GeographicalArea("Porto District", district, location1, areaShape1);
+        portoDistrict = new GeographicalArea("Distrito do Porto", "Porto District", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         this.location2 = new Location(42.1496, -8.6109, 97);
         AreaShape areaShape2 = new AreaShape(10, 10, location2);
-        portoCity = new GeographicalArea("Porto City", city, location2, areaShape2);
+        portoCity = new GeographicalArea("Porto", "Porto City", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
         // Sensors
         temperature = new SensorType("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(42.1596, -8.6109, 97);
-        temperatureSensor = new Sensor("A123", startDate, temperature, sensorLocation);
+        temperatureSensor = new Sensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        temperatureSensor1 = new Sensor("B123", startDate1, temperature, sensorLocation1);
+        temperatureSensor1 = new Sensor("321", "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
@@ -88,7 +88,7 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         boolean expectedResult = true;
 
         //act
@@ -105,8 +105,8 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //act
         boolean result = ag1.equals(ag2);
@@ -123,8 +123,8 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo2 = new GeographicalAreaType("Aldeia");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo1, local, area);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo2, local, area);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo1, local, area);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG, "Aldeia do Porto", tipo2, local, area);
 
         //act
         boolean result = ag1.equals(ag2);
@@ -141,8 +141,8 @@ class GeographicalAreaTest {
         Location local = new Location(41.1496, -8.6109, 97);
         Location local2 = new Location(41.15, -8.62, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo1, local, area);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo1, local2, area);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo1, local, area);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo1, local2, area);
 
         //act
         boolean result = ag1.equals(ag2);
@@ -158,7 +158,7 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         boolean expectedResult = false;
 
         //act
@@ -179,8 +179,8 @@ class GeographicalAreaTest {
         Location local2 = new Location(32.6333, 16.9, 20);
         AreaShape area1 = new AreaShape(10, 10, local1);
         AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Cidade do Porto", tipo1, local1, area1);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade do Funchal", tipo2, local2, area2);
         double expectedResult = 1099043.7203;
 
         // act
@@ -197,7 +197,7 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         int expectedResult = 1;
 
         //Act
@@ -215,11 +215,11 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(45, -5, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("123", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
         //Act
         boolean result = ag1.checkIfSensorInInsideOfGeoArea(s0);
@@ -235,12 +235,12 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(45, -20, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("123", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
         //Act
         boolean result = ag1.checkIfSensorInInsideOfGeoArea(s0);
@@ -256,11 +256,11 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(46.1496, -13.6109, 65);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("123", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
         //Act
         boolean result = ag1.checkIfSensorInInsideOfGeoArea(s0);
@@ -276,31 +276,31 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         // Instanciar S0
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(43, -10, 65);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("123", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
         //Instanciar S1
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(43, -10, 65);
-        Sensor s1 = new Sensor("A121", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("321", "A121", dataFuncionamento1, sensorType1, locS1, "l/m2");
 
         //Instanciar S2
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Humidade");
         Location locS2 = new Location(50, -10, 65);
-        Sensor s2 = new Sensor("A130", dataFuncionamento2, sensorType2, locS2);
+        Sensor s2 = new Sensor("123", "A130", dataFuncionamento2, sensorType2, locS2, "l/m2");
 
         //Instanciar S3
         LocalDateTime dataFuncionamento3 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType3 = new SensorType("Temperatura");
         Location locS3 = new Location(-4, -10, 65);
-        Sensor s3 = new Sensor("A120", dataFuncionamento3, sensorType3, locS3);
+        Sensor s3 = new Sensor("321", "A120", dataFuncionamento3, sensorType3, locS3, "l/m2");
 
         ag1.getSensorListInTheGeographicArea().addSensor(s0);
         ag1.getSensorListInTheGeographicArea().addSensor(s1);
@@ -327,31 +327,31 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         // Instanciar S0
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(50, -10, 65);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("123", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
         //Instanciar S1
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(50, -10, 65);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("321", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
 
         //Instanciar S2
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Humidade");
         Location locS2 = new Location(50, -10, 65);
-        Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
+        Sensor s2 = new Sensor("5432", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
 
         //Instanciar S3
         LocalDateTime dataFuncionamento3 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType3 = new SensorType("Temperatura");
         Location locS3 = new Location(-4, -10, 65);
-        Sensor s3 = new Sensor("A123", dataFuncionamento3, sensorType3, locS3);
+        Sensor s3 = new Sensor("7654", "A123", dataFuncionamento3, sensorType3, locS3, "l/m2");
 
         SensorList expectedResult = new SensorList();
 
@@ -377,25 +377,25 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(40, -5, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("98765", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         ag1.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(41, -6, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("7654", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         ag1.getSensorListInTheGeographicArea().addSensor(s1);
 
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Temperatura");
         Location locS2 = new Location(42, -7, 55);
-        Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
+        Sensor s2 = new Sensor("53242", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
         ag1.getSensorListInTheGeographicArea().addSensor(s2);
 
         //Instanciar Reading
@@ -457,25 +457,25 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(40, -5, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("654", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         ag1.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(41, -6, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("987", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         ag1.getSensorListInTheGeographicArea().addSensor(s1);
 
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Temperatura");
         Location locS2 = new Location(42, -7, 55);
-        Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
+        Sensor s2 = new Sensor("75474", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
         ag1.getSensorListInTheGeographicArea().addSensor(s2);
 
         //Instanciar Reading
@@ -537,11 +537,11 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
-        String expectedResult = "Porto";
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
+        String expectedResult = "Cidade do Porto";
 
         //act
-        String result = ag1.getNameOfGeoArea();
+        String result = ag1.getDescription();
 
         //assert
         assertEquals(expectedResult, result);
@@ -554,7 +554,7 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         GeographicalAreaType expectedResult = tipo;
 
@@ -572,12 +572,12 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Cidade do Porto", tipo1, local1, area1);
 
         LocalDateTime data = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
         SensorType tipo = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
-        Sensor s1 = new Sensor("s1", data, tipo, local);
+        Sensor s1 = new Sensor("421", "s1", data, tipo, local, "l/m2");
 
         //Act
         boolean resultado = ag1.getSensorListInTheGeographicArea().addSensor(s1);
@@ -593,13 +593,13 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Cidade do Porto", tipo1, local1, area1);
 
         LocalDateTime data = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
         SensorType tipo = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
-        Sensor s1 = new Sensor("s1", data, tipo, local);
-        Sensor s2 = new Sensor("s2", data, tipo, local);
+        Sensor s1 = new Sensor("54", "s1", data, tipo, local, "l/m2");
+        Sensor s2 = new Sensor("876", "s2", data, tipo, local, "l/m2");
         ag1.getSensorListInTheGeographicArea().getListOfSensors().add(s1);
 
         //Act
@@ -616,13 +616,13 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Cidade do Porto", tipo1, local1, area1);
 
         LocalDateTime data = LocalDateTime.of(2015, 1, 1, 0, 0, 0);
         SensorType tipo = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
-        Sensor s1 = new Sensor("s1", data, tipo, local);
-        Sensor s2 = new Sensor("s1", data, tipo, local);
+        Sensor s1 = new Sensor("8765", "s1", data, tipo, local, "l/m2");
+        Sensor s2 = new Sensor("8765", "s1", data, tipo, local, "l/m2");
         ag1.getSensorListInTheGeographicArea().addSensor(s1);
 
         //Act
@@ -639,13 +639,13 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Cidade do Porto", tipo1, local1, area1);
 
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Distrito");
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG, "Distrito do Porto", tipo, local, area);
 
         ag1.setInsertedIn(ag1);
 
@@ -665,7 +665,7 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Cidade do Porto", tipo1, local1, area1);
 
         double mLatitude = 40.487;
         double mLongitude = -9;
@@ -687,23 +687,25 @@ class GeographicalAreaTest {
         LocalDateTime dataFuncionamento = LocalDateTime.of(1991, 12, 2, 12, 15, 55);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento, sensorType, locS1);
+        Sensor s1 = new Sensor("43", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
 
         String nomeAG1 = "Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Cidade do Porto", tipo1, local1, area1);
 
         String nomeSensor = "A456";
+        String id = "s1";
         SensorType sensorType2 = new SensorType("Temperatura");
         Location locS2 = new Location(123, 345, 50);
-        Sensor s2 = new Sensor(nomeSensor, sensorType2, locS2);
+        String units = "l/m2";
+        Sensor s2 = new Sensor(id, nomeSensor, sensorType2, locS2, units);
 
         Sensor expectedResult = s2;
 
         //Act
-        Sensor result = ag1.newSensor(nomeSensor, sensorType2, locS2);
+        Sensor result = ag1.newSensor(id, nomeSensor, sensorType2, locS2, units);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -742,7 +744,7 @@ class GeographicalAreaTest {
         Location locationNoSensor = new Location(12.1496, 7.6109, 98);
         AreaShape areaShape2 = new AreaShape(100, 100, locationNoSensor);
 
-        GeographicalArea coimbraCity = new GeographicalArea("Coimbra City", city, locationNoSensor, areaShape2);
+        GeographicalArea coimbraCity = new GeographicalArea("Coimbra", "Cidade de Coimbra", city, locationNoSensor, areaShape2);
 
         // Act
         Boolean result = coimbraCity.getTheSensorListOfAGivenType(temperature).getListOfSensors().isEmpty();
@@ -759,20 +761,20 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
         AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Região do Norte", tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
         AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Distrito do Porto", tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         ag.setInsertedIn(ag1);
 
 
@@ -780,13 +782,13 @@ class GeographicalAreaTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(-1, 30, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("7654", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         ag2.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(0, 30, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("43214", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         ag2.getSensorListInTheGeographicArea().addSensor(s1);
 
         // Instantiate Measurements
@@ -830,20 +832,20 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
         AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Região do Norte", tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
         AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Distrito do Porto", tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         ag.setInsertedIn(ag1);
 
         Location location = new Location(0, 30, 50);
@@ -865,33 +867,33 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
         AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Região Norte", tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
         AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Distrito do Porto", tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         ag.setInsertedIn(ag1);
 
         // Instantiate Sensors
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(-1, 30, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("5432", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         ag2.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(0, 30, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("9876#", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         ag2.getSensorListInTheGeographicArea().addSensor(s1);
         Location location = new Location(0, 30, 50);
         double expectedResult = Double.NaN;
@@ -912,33 +914,33 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
         AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Região Norte", tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
         AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Distrito do Porto", tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         ag.setInsertedIn(ag1);
 
         // Instantiate Sensors
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(-1, 30, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("1231", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         ag2.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(-1, 30, 50);
-        Sensor s1 = new Sensor("A12555", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("765", "A12555", dataFuncionamento1, sensorType1, locS1, "l/m2");
         ag2.getSensorListInTheGeographicArea().addSensor(s1);
 
         // Instantiate Measurements
@@ -981,19 +983,19 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
-        Sensor s0 = new Sensor("Sensor0", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("3214", "Sensor0", dataFuncionamento0, sensorType0, locS0, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.1496, -8.6109, 97);
-        Sensor s1 = new Sensor("Sensor1", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("7554", "Sensor1", dataFuncionamento1, sensorType1, locS1, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s1);
 
         // Sensor0
@@ -1042,19 +1044,19 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
-        Sensor s0 = new Sensor("Sensor0", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("878", "Sensor0", dataFuncionamento0, sensorType0, locS0, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.1496, -8.6109, 97);
-        Sensor s1 = new Sensor("Sensor1", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("87", "Sensor1", dataFuncionamento1, sensorType1, locS1, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s1);
 
         //Sensor1
@@ -1093,19 +1095,19 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("7654", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("765", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s1);
 
         LocalDate startDate = LocalDate.of(2018, 12, 1);
@@ -1129,19 +1131,19 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("643", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("i78", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s1);
 
         //Sensor1
@@ -1171,19 +1173,19 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("78", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.149, -8.610, 97);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("6546", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         ag.getSensorListInTheGeographicArea().addSensor(s1);
 
         //Sensor1
@@ -1215,13 +1217,13 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Sensor1
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.1496, -8.6109, 97);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("643", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         //  add sensor to the List of Sensors in the GeoArea
         ag.getSensorListInTheGeographicArea().addSensor(s1);
         //  add measurements to sensor 1
@@ -1239,7 +1241,7 @@ class GeographicalAreaTest {
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Rainfall");
         Location locS2 = new Location(45.1496, -8.6109, 97);
-        Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
+        Sensor s2 = new Sensor("463", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
         //  add sensor to the List of Sensors in the GeoArea
         ag.getSensorListInTheGeographicArea().addSensor(s2);
         //  add measurements to sensor 2
@@ -1280,13 +1282,13 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Sensor1
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.1496, -8.6109, 97);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("235", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         //  add sensor to the List of Sensors in the GeoArea
         ag.getSensorListInTheGeographicArea().addSensor(s1);
         //  add measurements to sensor 1
@@ -1303,7 +1305,7 @@ class GeographicalAreaTest {
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Rainfall");
         Location locS2 = new Location(45.1496, -8.6109, 97);
-        Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
+        Sensor s2 = new Sensor("6435", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
         //  add sensor to the List of Sensors in the GeoArea
         ag.getSensorListInTheGeographicArea().addSensor(s2);
         //  add measurements to sensor 2
@@ -1345,13 +1347,13 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Sensor1
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.1496, -8.6109, 97);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("7654", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         //  add sensor to the List of Sensors in the GeoArea
         ag.getSensorListInTheGeographicArea().addSensor(s1);
         //  add measurements to sensor 1
@@ -1368,7 +1370,7 @@ class GeographicalAreaTest {
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Temp");
         Location locS2 = new Location(45.1496, -8.6109, 97);
-        Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
+        Sensor s2 = new Sensor("6543", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
 
         //  add sensor to the List of Sensors in the GeoArea
         ag.getSensorListInTheGeographicArea().addSensor(s2);
@@ -1412,13 +1414,13 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.15, -8.6, 97);
         AreaShape area = new AreaShape(40, 40, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Sensor1
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.10, -8.6, 97);
-        Sensor s1 = new Sensor("A124", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("7654", "A124", dataFuncionamento1, sensorType1, locS1, "l/m2");
 
         //  add sensor to the List of Sensors in the GeoArea
         ag.getSensorListInTheGeographicArea().addSensor(s1);
@@ -1436,7 +1438,7 @@ class GeographicalAreaTest {
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(2016, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Rainfall");
         Location locS2 = new Location(42.20, -8.6, 97);
-        Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
+        Sensor s2 = new Sensor("7654", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
         //  add sensor to the List of Sensors in the GeoArea
         ag.getSensorListInTheGeographicArea().addSensor(s2);
         //  add measurements to sensor 2
@@ -1474,7 +1476,7 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(40, 40, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Instance of SensorType
         SensorType typeOfSensorTested = new SensorType("Rainfall");
@@ -1499,13 +1501,13 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.15, -8.6, 97);
         AreaShape area = new AreaShape(40, 40, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
 
         //Sensor1
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.10, -8.6, 97);
-        Sensor s1 = new Sensor("A124", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("87654", "A124", dataFuncionamento1, sensorType1, locS1, "l/m2");
 
         //  add sensor to the List of Sensors in the GeoArea
         ag.getSensorListInTheGeographicArea().addSensor(s1);
@@ -1514,7 +1516,7 @@ class GeographicalAreaTest {
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(2016, 12, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Rainfall");
         Location locS2 = new Location(42.20, -8.6, 97);
-        Sensor s2 = new Sensor("A123", dataFuncionamento2, sensorType2, locS2);
+        Sensor s2 = new Sensor("7654", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
         //  add sensor to the List of Sensors in the GeoArea
         ag.getSensorListInTheGeographicArea().addSensor(s2);
 
@@ -1543,20 +1545,20 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
         AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Região Norte", tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
         AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Distrito do Porto", tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         ag.setInsertedIn(ag1);
 
 
@@ -1564,13 +1566,13 @@ class GeographicalAreaTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(-1, 30, 50);
-        Sensor s0 = new Sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("6543", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
         ag2.getSensorListInTheGeographicArea().addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(0, 30, 50);
-        Sensor s1 = new Sensor("A123", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("87654", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
         ag2.getSensorListInTheGeographicArea().addSensor(s1);
 
         // Instantiate Measurements
@@ -1614,20 +1616,20 @@ class GeographicalAreaTest {
         GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
         Location local2 = new Location(32.1496, 7.6109, 98);
         AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, tipo2, local2, area2);
+        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Região Norte", tipo2, local2, area2);
 
         String nomeAG1 = "Distrito Porto";
         GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
         Location local1 = new Location(41.1496, -6.6109, 100);
         AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, tipo1, local1, area1);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Distrito do Porto", tipo1, local1, area1);
         ag1.setInsertedIn(ag2);
 
         String nomeAG = "Porto";
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         Location local = new Location(42.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, tipo, local, area);
+        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
         ag.setInsertedIn(ag1);
 
         Location location = new Location(0, 30, 50);

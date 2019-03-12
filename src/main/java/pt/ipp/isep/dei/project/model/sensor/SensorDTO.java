@@ -1,23 +1,33 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SensorDTO {
+    private String id;
     private String sensorName;
-    private LocalDateTime startingDate;
+    private LocalDate startingDate;
     private List<ReadingDTO> listOfReadings = new ArrayList<>();
-    private SensorType sensorType;
-    private Location location;
+    private String sensorType;
+    private LocationDTO location;
+    private String units;
 
     /**
      * Constructor.
      */
     public SensorDTO() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
@@ -43,7 +53,7 @@ public class SensorDTO {
      *
      * @return LocalDateTime corresponding to the starting date.
      */
-    public LocalDateTime getStartingDate() {
+    public LocalDate getStartingDate() {
         return startingDate;
     }
 
@@ -52,7 +62,7 @@ public class SensorDTO {
      *
      * @param startingDate Starting date do be used.
      */
-    public void setStartingDate(LocalDateTime startingDate) {
+    public void setStartingDate(LocalDate startingDate) {
         this.startingDate = startingDate;
     }
 
@@ -79,7 +89,7 @@ public class SensorDTO {
      *
      * @return SensorType.
      */
-    public SensorType getSensorType() {
+    public String getSensorType() {
         return sensorType;
     }
 
@@ -88,7 +98,7 @@ public class SensorDTO {
      *
      * @param sensorType Type to be used.
      */
-    public void setSensorType(SensorType sensorType) {
+    public void setSensorType(String sensorType) {
         this.sensorType = sensorType;
     }
 
@@ -97,7 +107,7 @@ public class SensorDTO {
      *
      * @return Location.
      */
-    public Location getLocation() {
+    public LocationDTO getLocation() {
         return location;
     }
 
@@ -106,7 +116,15 @@ public class SensorDTO {
      *
      * @param location Location to be used.
      */
-    public void setLocation(Location location) {
+    public void setLocation(LocationDTO location) {
         this.location = location;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
     }
 }

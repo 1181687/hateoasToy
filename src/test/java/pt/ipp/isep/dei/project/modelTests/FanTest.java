@@ -9,8 +9,9 @@ import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+import java.time.LocalTime;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -155,14 +156,21 @@ public class FanTest {
     }
 
     @Test
-    public void testGetSetDeactivationDate() {
+    public void testSetDeactivationDate_True() {
+        // act
+        boolean result = fan.setDeactivateDevice();
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testGetDeactivationDate_False() {
         // arrange
-        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         fan.setDeactivateDevice();
         // act
-        LocalDateTime result = fan.getDeactivationDate();
+        boolean result = fan.setDeactivateDevice();
         // assert
-        assertEquals(date, result);
+        assertFalse(result);
     }
 
     @Test
@@ -235,46 +243,134 @@ public class FanTest {
         assertEquals(expectedResult, result);
     }
 
-    /*@Test
+    @Test
+    void getDevSpecsAttributesToStringTest() {
+        // Arrange
+        String expectedResult = "1 - Nominal Power: 1200.0\n";
+        // Act
+        String result = fan.getDevSpecsAttributesToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getAttributesToStringTest() {
+        // Arrange
+        String expectedResult = "1 - Name: Fan300\n" +
+                "2 - Device Specifications \n" +
+                "3 - Location: Kitchen\n";
+        // Act
+        String result = fan.getAttributesToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    public void setSetAttributesDevTypeTrue() {
+        //Act
+        boolean result = fan.setAttributesDevType("Nominal Power", 15);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void setSetAttributesDevTypeFalse() {
+        //Act
+        boolean result = fan.setAttributesDevType("Nominal Power", "fh");
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void getNumberOfSpecsAttributesTest() {
+        // Arrange
+        int expectedResult = 1;
+
+        // Act
+        int result = fan.getNumberOfSpecsAttributes();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getNameToStringTest() {
+        // Arrange
+        String expectedResult = "Device: Fan300, located in room: Kitchen\n";
+
+        // Act
+        String result = fan.getNameToString();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getDateDeactivateDeviceToString() {
+        // arrange
+        String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
+        fan.setDeactivateDevice();
+        // act
+        String result = fan.getDateDeactivateDeviceToString();
+        // assert
+        assertEquals(date, result);
+    }
+
+    @Test
+    void getDataSeriesTest() {
+        // Assert
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+
+        Map<LocalDateTime, Double> expectedResult = map;
+
+        // Act
+        Map<LocalDateTime, Double> result = fan.getDataSeries(time0, time2);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getSpecsListTest() {
+        // Assert
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("Nominal Power");
+
+        // Act
+        List<String> result = fan.getSpecsList();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    @Test
+    void getAttributeValueTest() {
+        // Assert
+        double expectedResult = 1200.0;
+
+        // Act
+        Object result = fan.getAttributeValue("Nominal Power");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+        /*@Test
     public void testGetSpecs(){
     }
 
     @Test
     public void getEnergyConsumptionInADayTest() {
 
-    }
+    }*/
 
-    @Test
-    void getDevSpecsAttributesToStringTest() {
 
-    }
-
-    @Test
-    void getAttributesToStringTest() {
-
-    }
-
-    @Test
-    public void setSetAttributesDevTypeTrue() {
-
-    }
-
-    @Test
-    public void setSetAttributesDevTypeFalse() {
-
-    }
-
-    @Test
-    void getNumberOfSpecsAttributesTest() {
-
-    }
-
-    @Test
-    void getNameToStringTest() {
-
-    }
-
-    @Test
+    /*@Test
     void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
 
     }
@@ -292,26 +388,7 @@ public class FanTest {
     @Test
     void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
 
-    }
-
-    @Test
-    void getDateDeactivateDeviceToString() {
-
-    }
-
-    @Test
-    void getDataSeriesTest() {
-
-    }
-
-    @Test
-    void getSpecsListTest() {
-
-    }
-
-    @Test
-    void getAttributeValueTest() {
-
     }*/
+
 
 }
