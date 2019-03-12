@@ -161,7 +161,7 @@ public class TelevisionSpecsTest {
     @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
-        Object expectedResult = -1;
+        Object expectedResult = "Not a valid attribute";
 
         // Act
         Object result = television.getSpecs().getAttributeValue("Not Valid");
@@ -282,7 +282,7 @@ public class TelevisionSpecsTest {
     @Test
     public void getAttributeDataTypeTest() {
         // arrange
-        String attributeDataType = "Integer";
+        String attributeDataType = "Not a valid attribute";
 
         // act
         String result = television.getSpecs().getAttributeDataType("Integer");
