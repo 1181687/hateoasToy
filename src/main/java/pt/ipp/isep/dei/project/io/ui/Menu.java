@@ -61,6 +61,8 @@ public final class Menu {
         content.append("\n");
         content.append("8-Verify if one geographical area is included in another one");
         content.append("\n");
+        content.append("9-Import geographical areas and sensors from JSON file");
+        content.append("\n");
         content.append("10-Import readings from CSV file");
         content.append("\n");
         content.append(RETURN_MENU);
@@ -124,13 +126,15 @@ public final class Menu {
         content.append("\n");
         content.append("3-Get average daily rainfall in the housegrid area");
         content.append("\n");
-        content.append("5-Get day with highest temperature amplitude in the housegrid area");
+        content.append("4-Get day with highest temperature amplitude in the housegrid area");
         content.append("\n");
-        content.append("4-Get the first hottest day in the housegrid area in a given period");
+        content.append("5-Get the first hottest day in the housegrid area in a given period");
+        content.append("\n");
+        content.append("6-Get the last coldest day in the house area in a given period");
         content.append("\n");
         content.append(RETURN_MENU);
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 5);
+        return InputValidator.getIntRange(label, 0, 6);
     }
 
     public static int regularUserRoomsMenu() {

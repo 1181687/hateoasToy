@@ -42,13 +42,17 @@ public class RegularUser {
                     GetTotalRainfall ui623 = new GetTotalRainfall(house);
                     ui623.run();
                     break;
-                case 5:
+                case 4:
                     GetDayWithHighestTemperatureAmplitude ui633 = new GetDayWithHighestTemperatureAmplitude(house);
                     ui633.run();
                     break;
-                case 4:
+                case 5:
                     GetFirstHottestDayHouseArea ui631 = new GetFirstHottestDayHouseArea(house);
                     ui631.run();
+                    break;
+                case 6:
+                    GetLastColdestDayHouseArea ui630 = new GetLastColdestDayHouseArea(house);
+                    ui630.run();
                     break;
             }
             option = Menu.regularUserHouseAreaMenu();
