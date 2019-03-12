@@ -32,10 +32,9 @@ public class WineCoolerSpecs implements DeviceSpecs {
     }
 
     /**
-     *
      * this class implements the Interface Device Specs which in turn has the signature of the method as programmable
-     * @return since the winecooler doesn't implement a program the return is null
      *
+     * @return since the winecooler doesn't implement a program the return is null
      */
     @Override
     public Programmable asProgrammable() {
@@ -174,7 +173,7 @@ public class WineCoolerSpecs implements DeviceSpecs {
             case ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION:
                 return annualEnergyConsumption;
             default:
-                return -1;
+                return "Not a valid attribute";
         }
     }
 
@@ -209,13 +208,19 @@ public class WineCoolerSpecs implements DeviceSpecs {
     }
 
     /**
-     * get method
+     * get string of the type of attribute
      *
      * @param attributeName string name of attribute
      * @return type data of the attribute (ex.integer, double)
+     * if not a valid attribute, returns a String "not a valid attribute"
      */
+    @Override
     public String getAttributeDataType(String attributeName) {
+        if ((getAttributeValue(attributeName).equals("Not a valid attribute"))) {
+            return "Not a valid attribute";
+        }
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 }
+
 

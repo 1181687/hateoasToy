@@ -61,6 +61,8 @@ public final class Menu {
         content.append("\n");
         content.append("8-Verify if one geographical area is included in another one");
         content.append("\n");
+        content.append("9-Import geographical areas and sensors from JSON file");
+        content.append("\n");
         content.append("10-Import readings from CSV file");
         content.append("\n");
         content.append(RETURN_MENU);

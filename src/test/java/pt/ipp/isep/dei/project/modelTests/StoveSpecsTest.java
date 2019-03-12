@@ -36,7 +36,6 @@ public class StoveSpecsTest {
         this.house.addRoom(kitchen);
         this.stove = this.house.createDevice("Stove", "Stove200", kitchen);
         this.stove.setAttributesDevType("Nominal Power", 30);
-        this.stove.setAttributesDevType("Time", 30);
         this.stoveSpecs = stove.getSpecs();
 
     }
@@ -148,7 +147,7 @@ public class StoveSpecsTest {
     @Test
     public void testGetAttributeValue_notAValidSpec() {
         // Arrange
-        Object expectedResult = null;
+        Object expectedResult = "not a valid attribute";
         // Act
         Object result = stove.getSpecs().getAttributeValue("Not Valid");
         // Assert
@@ -195,7 +194,7 @@ public class StoveSpecsTest {
     @Test
     public void getAttributeDataTypeTest_notValidAttributte() {
         // arrange
-        String expectedResult = "not a valid attributte";
+        String expectedResult = "not a valid attribute";
         // act
         String result = stove.getSpecs().getAttributeDataType("wrong attribute name");
         // assert
