@@ -17,7 +17,7 @@ public class GetLastColdestDayHouseAreaController {
         this.sensorTypeTemperature = new SensorType("temperature");
     }
 
-    public boolean checkMeasurementExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
+    public boolean hasReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
         return house.checkMeasurementExistenceBetweenDates(this.house.getLocation(), startDate, endDate);
     }
 

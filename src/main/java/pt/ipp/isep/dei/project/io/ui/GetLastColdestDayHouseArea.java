@@ -37,7 +37,7 @@ public class GetLastColdestDayHouseArea {
         }
         while (flag);
 
-        if (!controller.checkMeasurementExistenceBetweenDates(firstDate, lastDate)) {
+        if (!controller.hasReadingsBetweenDates(firstDate, lastDate)) {
             System.out.println("There are no valid readings for that period.\n");
         } else {
             this.readingDTO = controller.getLastLowestMaximumReading(firstDate, lastDate);
