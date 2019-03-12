@@ -94,7 +94,7 @@ public class StoveSpecs implements DeviceSpecs, Programmable {
             case ATTRIBUTE_NOMINAL_POWER:
                 return nominalPower;
             default:
-                return -1;
+                return null;
         }
     }
 
@@ -107,6 +107,9 @@ public class StoveSpecs implements DeviceSpecs, Programmable {
      */
     @Override
     public String getAttributeDataType(String attributeName) {
+        if (Objects.isNull(getAttributeValue(attributeName))) {
+            return "not a valid attributte";
+        }
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 
