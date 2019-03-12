@@ -800,4 +800,8 @@ public class House {
         return this.insertedGeoArea.getLastLowestMaximumReading(this.getLocation(),sensorType,startDate,endDate);
     }
 
+    public boolean hasSensorsOfCertainTypeInInsertedGeoArea(SensorType sensorType){
+        return !this.insertedGeoArea.getTheSensorListOfAGivenType(sensorType).isEmpty();
+    }
+
 }
