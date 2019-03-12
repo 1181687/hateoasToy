@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -17,6 +18,26 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 class SensorTest {
+    private Sensor temperatureSensor;
+    private Reading reading;
+    private Reading reading1;
+
+    @BeforeEach
+    void StartUp() {
+        // Sensor
+        LocalDateTime startingDate = LocalDateTime.of(1991, 11, 2, 21, 10, 25);
+        SensorType temperature = new SensorType("Temperature");
+        Location location = new Location(123, 345, 50);
+        temperatureSensor = new Sensor("R003", "A123", startingDate, temperature, location, "l/m2");
+
+        // Readings
+        LocalDateTime dateTime = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        reading = new Reading(11, dateTime);
+        temperatureSensor.addReadingsToList(reading);
+        LocalDateTime dateTime1 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        reading1 = new Reading(14, dateTime1);
+        temperatureSensor.addReadingsToList(reading1);
+    }
 
     @Test
     void testaConstrutor() {
@@ -2123,5 +2144,22 @@ class SensorTest {
 
         //Assert
         assertEquals(expectedResult,result);
+    }
+
+    /**
+     * Test that tries to get an existing list of Readings from the Sensor.
+     */
+    @Test
+    void testGetListOfReadings_tryingToGetAnExistingList_ShouldReturnTheCorrespondingList() {
+        // Arrange
+        List<Reading> expectedResult = new ArrayList<>();
+        expectedResult.add(reading);
+        expectedResult.add(reading1);
+
+        // Act
+        List<Reading> result = temperatureSensor.getListOfReadings();
+
+        // Arrange
+        assertEquals(expectedResult, result);
     }
 }

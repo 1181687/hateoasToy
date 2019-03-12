@@ -545,4 +545,12 @@ public class Sensor {
         return lowestReading;
     }
 
+    /**
+     * Method that returns the list of Readings of a Sensor.
+     *
+     * @return List with Readings.
+     */
+    public List<Reading> getListOfReadings() {
+        return listOfReadings;
+    }
 }
