@@ -6,10 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
+import java.util.*;
 
 public final class Utils {
 
@@ -125,14 +122,11 @@ public final class Utils {
     }
 
     public static boolean isFirstDoubleSmallerThanOrEqualToSecondOne(Double value1, Double value2) {
-        if(value1.compareTo(value2)<=0){
-            return true;
-        }
-        return false;
+        return value1.compareTo(value2) <= 0;
     }
 
     public static boolean isFirstDoubleBiggerOrEqualThanSecondOne(Double value1, Double value2) {
-        return value1.compareTo(value2)>=0;
+        return value1.compareTo(value2) >= 0;
 
     }
     /**
@@ -147,4 +141,9 @@ public final class Utils {
 
         return mapOfDailyValues;
     }
+
+    public boolean isObjectNull(Object object) {
+        return Objects.isNull(object);
+    }
+
 }

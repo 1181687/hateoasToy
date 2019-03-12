@@ -28,15 +28,19 @@ public class GetFirstHottestDayHouseArea {
                 flag = true;
             }
         } while (flag);
-        if (Double.isNaN(ctrl.getHighestReadingOfASensor(initialDate, finalDate)) || (!(ctrl.checkMeasurementExistenceBetweenDates(ctrl.getHouseLocation(), initialDate, finalDate)))) {
-            System.out.println("There are no " + ctrl.getTypeTemperature() + " sensors with valid measurements in the housegrid area.");
+        if (ctrl.sensorListOfATypeIfEmpty(ctrl.getTypeTemperature())) {
+            System.out.println("There are no temperature sensors in the house area.\n");
             return;
-        } else {
-            System.out.println("The first hottest day in the housegrid area in the chosen interval is " +
-                    ctrl.getFirstHighestReadingDateHouseArea(ctrl.getHouseLocation(), ctrl.getTypeTemperature(), initialDate, finalDate) +
-                    " (maximum temperature of " +
-                    Utils.round(ctrl.getFirstHighestReadingValueHouseArea(ctrl.getHouseLocation(), ctrl.getTypeTemperature(), initialDate, finalDate), 2) + " Celsius).\n");
         }
+        ctrl.getChosenSensor();
+        if (!ctrl.checkSensorReadingsExistenceBetweenDates(initialDate, finalDate) ||
+                Double.isNaN(ctrl.getFirstHighestReadingValueHouseArea(initialDate, finalDate))) {
+            System.out.println("It is not possible to present valid readings in the house area.\n");
+            return;
+        }
+        System.out.println("The first hottest day in the house area in the chosen interval is " +
+                ctrl.getFirstHighestReadingDateHouseArea(initialDate, finalDate) +
+                " (maximum temperature of " +
+                Utils.round(ctrl.getFirstHighestReadingValueHouseArea(initialDate, finalDate), 2) + " Celsius).\n");
     }
 }
-

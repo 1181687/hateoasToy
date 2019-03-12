@@ -4,7 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -14,7 +13,8 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class KettleTest {
 
@@ -76,7 +76,7 @@ public class KettleTest {
      * so the result should be false, as the method doesn't allow that.
      */
     @Test
-    public void testSetLocation_SameLocation_False (){
+    public void testSetLocation_SameLocation_False() {
         //Arrange
         Room location = kitchen;
         boolean expectedResult = false;
@@ -94,7 +94,7 @@ public class KettleTest {
      * so the result should be true.
      */
     @Test
-    public void testSetLocation_AnotherLocation_True (){
+    public void testSetLocation_AnotherLocation_True() {
         //Arrange
         Room location = laundry;
         boolean expectedResult = true;
@@ -111,7 +111,7 @@ public class KettleTest {
      * so the result should be true.
      */
     @Test
-    public void testSetName_NewName_True (){
+    public void testSetName_NewName_True() {
         //Arrange
         String name = "Nome novo";
         boolean expectedResult = true;
@@ -128,7 +128,7 @@ public class KettleTest {
      * so the result should be false, as the method doesn't allow that.
      */
     @Test
-    public void testSetName_SameName_False (){
+    public void testSetName_SameName_False() {
         //Arrange
         //Act
         Throwable exception = assertThrows(RuntimeException.class, () -> kettle1.setName("Kettle 1"));
@@ -142,7 +142,7 @@ public class KettleTest {
      * so the result should be false, as the method doesn't allow that.
      */
     @Test
-    public void testSetName_ExistentName_False (){
+    public void testSetName_ExistentName_False() {
         //Arrange
         //Act
         Throwable exception = assertThrows(RuntimeException.class, () -> kettle1.setName("Kettle 2"));
@@ -156,7 +156,7 @@ public class KettleTest {
      * The location should be the kitchen.
      */
     @Test
-    public void testGetLocation_DeviceLocation (){
+    public void testGetLocation_DeviceLocation() {
         //Arrange
         Room expectedResult = kitchen;
         //Act
@@ -170,7 +170,7 @@ public class KettleTest {
      * The location should be the "Kettle 1".
      */
     @Test
-    public void testGetName_DeviceName (){
+    public void testGetName_DeviceName() {
         //Arrange
         String expectedResult = "Kettle 1";
         //Act
@@ -180,7 +180,7 @@ public class KettleTest {
     }
 
     @Test
-    public void testGetReadings_ListOfReadingsFromKettle2 (){
+    public void testGetReadings_ListOfReadingsFromKettle2() {
         //Arrange
         List<Reading> expectedResult = new ArrayList<>();
         expectedResult.add(reading0);
@@ -233,7 +233,7 @@ public class KettleTest {
     void testEquals_SameNameWithDifferentCase_False() {
         // Arrange
         boolean expectedResult = false;
-        String name ="kettle 1";
+        String name = "kettle 1";
         Device kettle = house.createDevice("Kettle", name, kitchen);
 
         // Act
@@ -261,7 +261,7 @@ public class KettleTest {
     }
 
     @Test
-    public void testGetDeactivationDate_DateOfDeactivation (){
+    public void testGetDeactivationDate_DateOfDeactivation() {
         //Arrange
         LocalDateTime expectedResult = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         kettle1.setDeactivateDevice();
@@ -284,6 +284,7 @@ public class KettleTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
     /**
      * Test the setDeactivateDevice as to know if the device is deactive.
      */
@@ -330,9 +331,6 @@ public class KettleTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-
-
-
 
 
     //Arrange

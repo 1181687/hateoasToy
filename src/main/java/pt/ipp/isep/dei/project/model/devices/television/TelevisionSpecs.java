@@ -11,6 +11,7 @@ public class TelevisionSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
     private static final String ATTRIBUTE_STANDBY_POWER = "Standby Power";
     private static final String ATTRIBUTE_TIME = "Time";
+    private static final String NOT_VALID_ATTRIBUTE = "Not a valid attribute";
 
     private String typeName;
     private double nominalPower;
@@ -168,7 +169,7 @@ public class TelevisionSpecs implements DeviceSpecs {
             case ATTRIBUTE_TIME:
                 return time;
             default:
-                return "Not a valid attribute";
+                return NOT_VALID_ATTRIBUTE;
         }
     }
 
@@ -211,8 +212,8 @@ public class TelevisionSpecs implements DeviceSpecs {
      */
     @Override
     public String getAttributeDataType(String attributeName) {
-        if ((getAttributeValue(attributeName).equals("Not a valid attribute"))) {
-            return "Not a valid attribute";
+        if (NOT_VALID_ATTRIBUTE.equals(getAttributeValue(attributeName))) {
+            return NOT_VALID_ATTRIBUTE;
         }
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }

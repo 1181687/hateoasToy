@@ -19,7 +19,7 @@ public class ReadingMapper {
         return new Reading(readingDTO.getValue(), readingDTO.getDateTime());
     }
 
-    public static ReadingDTO mapToDTO(Reading reading){
+    public static ReadingDTO mapToDTO(Reading reading) {
         ReadingDTO dto = newReadingDTO();
         dto.setDateTime(reading.getDateTime());
         dto.setValue(reading.getValue());

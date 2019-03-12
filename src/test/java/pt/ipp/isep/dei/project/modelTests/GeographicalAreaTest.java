@@ -1836,7 +1836,7 @@ class GeographicalAreaTest {
     }
 
     @Test
-    public void getLastLowestMaximumReading(){
+    public void getLastLowestMaximumReading() {
         //Arrange
         LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
         Reading reading4 = new Reading(29, time0);
@@ -1857,7 +1857,7 @@ class GeographicalAreaTest {
 
         Reading expectedResult = reading6;
         //Act
-        Reading result = portoCity.getLastLowestMaximumReading(this.location2,this.temperature,startDate,endDate);
+        Reading result = portoCity.getLastLowestMaximumReading(this.location2, this.temperature, startDate, endDate);
         //Assert
         assertEquals(expectedResult,result);
     }

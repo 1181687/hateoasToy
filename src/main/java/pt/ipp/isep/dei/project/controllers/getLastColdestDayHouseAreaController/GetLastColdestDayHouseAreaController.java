@@ -22,11 +22,11 @@ public class GetLastColdestDayHouseAreaController {
     }
 
     public ReadingDTO getLastLowestMaximumReading(LocalDate startDate, LocalDate endDate) {
-        Reading reading=this.house.getLastLowestMaximumReading(this.sensorTypeTemperature, startDate,endDate);
+        Reading reading = this.house.getLastLowestMaximumReading(this.sensorTypeTemperature, startDate, endDate);
         return ReadingMapper.mapToDTO(reading);
     }
 
-    public boolean hasSensorsOfCertainTypeInInsertedGeoArea(){
+    public boolean hasSensorsOfCertainTypeInInsertedGeoArea() {
         return this.house.hasSensorsOfCertainTypeInInsertedGeoArea(this.sensorTypeTemperature);
     }
 }
