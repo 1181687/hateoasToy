@@ -25,6 +25,7 @@ Specific Criteria:
 - but - The following messages are displayed:
 
 "That is not a valid period. Please try again." - when final date inserted is before start date
+"There's no registers for this period." - when there are no valid readings for this selected period
 
 ASSUMPTIONS:
 To calculate the first day with the highest temperature, one must choose the sensor with the most recent readings if there are two

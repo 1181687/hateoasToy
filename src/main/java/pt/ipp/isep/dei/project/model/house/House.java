@@ -8,6 +8,8 @@ import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceType;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -756,15 +758,17 @@ public class House {
         return insertedGeoArea.getDateLastMeasurementByLocationType(address.getLocation(), type);
     }
 
-    public double getHighestReadingOfASensor(LocalDate startDate, LocalDate endDate) {
-        return insertedGeoArea.getHighestReadingOfASensor(startDate, endDate).getValue();
-    }
-
     public LocalDate getFirstHighestReadingDateHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
+        if (Objects.isNull(insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate))) {
+            return null;
+        }
         return insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate).getDateTime().toLocalDate();
     }
 
     public Double getFirstHighestReadingValueHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
+        if (Objects.isNull(insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate))) {
+            return null;
+        }
         return insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate).getValue();
     }
 
@@ -796,4 +800,19 @@ public class House {
         return this.insertedGeoArea.getHighestDailyAmplitude(mapOfDailyAmplitude);
     }
 
+    public Reading getLastLowestMaximumReading(SensorType sensorType, LocalDate startDate, LocalDate endDate) {
+        return this.insertedGeoArea.getLastLowestMaximumReading(this.getLocation(), sensorType, startDate, endDate);
+    }
+
+    public boolean hasSensorsOfCertainTypeInInsertedGeoArea(SensorType sensorType) {
+        return !this.insertedGeoArea.getTheSensorListOfAGivenType(sensorType).isEmpty();
+    }
+
+    public Sensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
+        return this.insertedGeoArea.getNearestSensorWithMostRecentReading(type, location);
+    }
+
+    public SensorList getTheSensorListOfAGivenType(SensorType type) {
+        return this.insertedGeoArea.getTheSensorListOfAGivenType(type);
+    }
 }

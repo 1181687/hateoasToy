@@ -1,17 +1,13 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.LocationDTO;
-import pt.ipp.isep.dei.project.model.ReadingDTO;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SensorDTO {
     private String id;
     private String sensorName;
     private LocalDate startingDate;
-    private List<ReadingDTO> listOfReadings = new ArrayList<>();
     private String sensorType;
     private LocationDTO location;
     private String units;
@@ -64,24 +60,6 @@ public class SensorDTO {
      */
     public void setStartingDate(LocalDate startingDate) {
         this.startingDate = startingDate;
-    }
-
-    /**
-     * Method that returns the list of readings in a sensor.
-     *
-     * @return List of readings.
-     */
-    public List<ReadingDTO> getListOfReadings() {
-        return listOfReadings;
-    }
-
-    /**
-     * Method that adds a reading to a sensor.
-     *
-     * @param readingDTO Reading to be used.
-     */
-    public void addReadingDTO(ReadingDTO readingDTO) {
-        this.listOfReadings.add(readingDTO);
     }
 
     /**

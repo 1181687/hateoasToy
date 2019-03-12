@@ -15,6 +15,7 @@ public class KettleSpecs implements DeviceSpecs {
     private static final double SPECIFIC_HEAT_OF_WATER = 1.163 / 1000;
     private static final String COLD_WATER_TEMPERATURE = "Cold-Water Temperature";
     private static final String VOLUME_OF_WATER_TO_HEAT = "Volume Of Water To Heat";
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
 
     private String typeName;
@@ -39,6 +40,7 @@ public class KettleSpecs implements DeviceSpecs {
         return null;
     }
 
+    @Override
     public String getTypeName() {
         return typeName;
     }
@@ -112,6 +114,46 @@ public class KettleSpecs implements DeviceSpecs {
     }
 
     /**
+     * set method
+     *
+     * @param attributeName  string name of the attribute
+     * @param attributeValue value of the attribute
+     * @return
+     */
+    public boolean setAttributeValue(String attributeName, Object attributeValue) {
+        switch (attributeName) {
+            case ATTRIBUTE_NOMINAL_POWER:
+                if (attributeValue instanceof Number) {
+                    return setNominalPower(((Number) attributeValue).doubleValue());
+                }
+                break;
+            case ATTRIBUTE_MAXIMUM_VOLUME_WATER:
+                if (attributeValue instanceof Number) {
+                    return setMaximumVolumeOfWater(((Number) attributeValue).doubleValue());
+                }
+                break;
+            case ATTRIBUTE_PERFORMANCE_RATIO:
+                if (attributeValue instanceof Number) {
+                    return setPerformanceRatio(((Number) attributeValue).doubleValue());
+                }
+                break;
+            case COLD_WATER_TEMPERATURE:
+                if (attributeValue instanceof Number) {
+                    return setColdWaterTemperature(((Number) attributeValue).doubleValue());
+                }
+                break;
+            case VOLUME_OF_WATER_TO_HEAT:
+                if (attributeValue instanceof Number) {
+                    return setVolumeOfWaterToHeat(((Number) attributeValue).doubleValue());
+                }
+                break;
+            default:
+                return false;
+        }
+        return false;
+    }
+
+    /**
      * Method that returns the nominal power.
      *
      * @return Nominal power.
@@ -122,7 +164,7 @@ public class KettleSpecs implements DeviceSpecs {
     }
 
     /**
-     * Method that returns the energy consumption of an Electric Water Heater in a given day based on the cold-water
+     * Method that returns the energy consumption of an Kettle in a given day based on the cold-water
      * temperature and the volume of water to be heated.
      *
      * @return Energy consumption of the device in a given day.
@@ -135,7 +177,7 @@ public class KettleSpecs implements DeviceSpecs {
     /**
      * method that get the attributes by strings.
      *
-     * @return an attribute of the electricWater.
+     * @return an attribute of the kettle.
      */
     @Override
     public String getAttributesToString() {
@@ -160,7 +202,7 @@ public class KettleSpecs implements DeviceSpecs {
     /**
      * get method
      *
-     * @return list os specs of electric water heater
+     * @return list os specs of Kettle
      */
     @Override
     public List<String> getSpecsList() {
@@ -192,49 +234,12 @@ public class KettleSpecs implements DeviceSpecs {
             case VOLUME_OF_WATER_TO_HEAT:
                 return volumeOfWaterToHeat;
             default:
-                return -1;
+                return NOT_VALID_ATTRIBUTE;
         }
     }
 
 
-    /**
-     * set method
-     *
-     * @param attributeName  string name of the attribute
-     * @param attributeValue value of the attribute
-     * @return
-     */
-    public boolean setAttributeValue(String attributeName, Object attributeValue) {
-        switch (attributeName) {
-            case ATTRIBUTE_MAXIMUM_VOLUME_WATER:
-                if (attributeValue instanceof Number){
-                    return setMaximumVolumeOfWater(((Number) attributeValue).doubleValue());
-                }
-                return false;
-            case ATTRIBUTE_PERFORMANCE_RATIO:
-                if (attributeValue instanceof Number) {
-                    return setPerformanceRatio(((Number) attributeValue).doubleValue());
-                }
-                return false;
-            case ATTRIBUTE_NOMINAL_POWER:
-                if (attributeValue instanceof Number){
-                    return setNominalPower(((Number) attributeValue).doubleValue());
-                }
-                return false;
-            case COLD_WATER_TEMPERATURE:
-                if (attributeValue instanceof Number) {
-                    return setColdWaterTemperature(((Number) attributeValue).doubleValue());
-                }
-                return false;
-            case VOLUME_OF_WATER_TO_HEAT:
-                if (attributeValue instanceof Number) {
-                    return setVolumeOfWaterToHeat(((Number) attributeValue).doubleValue());
-                }
-                return false;
-            default:
-                return false;
-        }
-    }
+
 
     /**
      * get method
@@ -243,6 +248,9 @@ public class KettleSpecs implements DeviceSpecs {
      * @return type data of the attribute (ex.integer, double)
      */
     public String getAttributeDataType(String attributeName) {
+        if ((getAttributeValue(attributeName).equals(NOT_VALID_ATTRIBUTE))) {
+            return NOT_VALID_ATTRIBUTE;
+        }
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 }

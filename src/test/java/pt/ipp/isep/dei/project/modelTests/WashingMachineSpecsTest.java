@@ -1,7 +1,23 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-/*class WashingMachineSpecsTest {
-    private House housegrid;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.washingmachine.WashingMachineSpecs;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+class WashingMachineSpecsTest {
+    private static final String WASHING_MACHINE_TYPE = "WashingMachine";
     private Room kitchen;
     private Device washingMachine;
     private final String CAPACITY = "Capacity";
@@ -9,8 +25,7 @@ package pt.ipp.isep.dei.project.modelTests;
     private Reading reading0;
     private Reading reading1;
     private Reading reading2;
-    private static final String WASHING_MACHINE_TYPE = "Washing Machine";
-
+    private House house;
 
     @BeforeEach
     public void StartUp() {
@@ -18,15 +33,15 @@ package pt.ipp.isep.dei.project.modelTests;
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        this.housegrid = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         // Room
         Dimension dimension = new Dimension(2, 2, 2);
         this.kitchen = new Room("Kitchen", 0, dimension);
-        housegrid.addRoom(kitchen);
+        house.addRoom(kitchen);
 
         // Device
-        this.washingMachine = housegrid.createDevice(WASHING_MACHINE_TYPE, "Wm1", kitchen);
+        this.washingMachine = house.createDevice(WASHING_MACHINE_TYPE, "Wm1", kitchen);
 
         // Reading
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -62,7 +77,7 @@ package pt.ipp.isep.dei.project.modelTests;
         //Arrange
         WashingMachineSpecs washingMachineSpecs = new WashingMachineSpecs();
 
-        String expectedResult = "Washing Machine";
+        String expectedResult = "WashingMachine";
 
         //Act
         String result = washingMachineSpecs.getTypeName();
@@ -455,7 +470,7 @@ package pt.ipp.isep.dei.project.modelTests;
         // assert
         assertEquals(attributeDataType, result);
     }
-
+/*
     @Test
     public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
         //Arrange
@@ -508,4 +523,5 @@ package pt.ipp.isep.dei.project.modelTests;
         //Assert
         assertEquals(expectedResult, result);
     }
-}*/
+    */
+}
