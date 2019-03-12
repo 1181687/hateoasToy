@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.getLastColdestDayHouseAreaController.GetLastColdestDayHouseAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
@@ -43,10 +45,10 @@ public class GetLastColdestDayHouseAreaControllerTest {
         // Geographical Areas
         Location location = new Location(32.1496, 7.6109, 98);
         AreaShape areaShape = new AreaShape(100, 100, location);
-        northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
+        northernRegion = new GeographicalArea("North", "Northern Region", region, location, areaShape);
         Location location1 = new Location(41.1496, -6.6109, 100);
         AreaShape areaShape1 = new AreaShape(40, 40, location1);
-        portoDistrict = new GeographicalArea("Distrito do Porto", "Porto District", district, location1, areaShape1);
+        portoDistrict = new GeographicalArea("Porto District", "Porto District", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         this.location2 = new Location(42.1496, -8.6109, 97);
         AreaShape areaShape2 = new AreaShape(10, 10, location2);
@@ -75,17 +77,26 @@ public class GetLastColdestDayHouseAreaControllerTest {
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
-        LocalDateTime readingDate1 = LocalDateTime.of(2018, 12, 3, 13, 24, 00);
+        LocalDateTime readingDate1 = LocalDateTime.of(2018, 12, 2, 13, 24, 00);
         Reading reading = new Reading(23, readingDate);
         Reading reading1 = new Reading(30, readingDate1);
         temperatureSensor.addReadingsToList(reading);
         temperatureSensor.addReadingsToList(reading1);
-        LocalDateTime readingDate2 = LocalDateTime.of(2018, 12, 2, 05, 20, 00);
+        LocalDateTime readingDate2 = LocalDateTime.of(2018, 12, 3, 05, 20, 00);
         LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 05, 24, 00);
+        LocalDateTime readingDate4 = LocalDateTime.of(2018, 12, 4, 05, 24, 00);
+        LocalDateTime readingDate5 = LocalDateTime.of(2018, 12, 5, 05, 24, 00);
+        LocalDateTime readingDate6 = LocalDateTime.of(2018, 12, 4, 04, 24, 00);
         Reading reading2 = new Reading(22, readingDate2);
         Reading reading3 = new Reading(25, readingDate3);
+        Reading reading4 = new Reading(20, readingDate4);
+        Reading reading5 = new Reading(23, readingDate5);
+        Reading reading6 = new Reading(19, readingDate6);
         temperatureSensor1.addReadingsToList(reading2);
         temperatureSensor1.addReadingsToList(reading3);
+        temperatureSensor1.addReadingsToList(reading4);
+        temperatureSensor1.addReadingsToList(reading5);
+        temperatureSensor1.addReadingsToList(reading6);
 
         //Add sensors to SensorList
 
@@ -96,25 +107,67 @@ public class GetLastColdestDayHouseAreaControllerTest {
     }
 
     @Test
-    public void hasReadingsBetweenDates_WithNoReadingsInInterval_ShouldReturnFalse(){
+    public void hasReadingsBetweenDates_WithNoReadingsInInterval_ShouldReturnFalse() {
         //Arrange
-        LocalDate startDate = LocalDate.of(2017,12,3);
-        LocalDate endDate = LocalDate.of(2017,12,5);
+        LocalDate startDate = LocalDate.of(2018, 12, 1);
+        LocalDate endDate = LocalDate.of(2018, 12, 2);
         //Act
-        boolean result = controller.hasReadingsBetweenDates(startDate,endDate);
+        boolean result = controller.hasReadingsBetweenDates(startDate, endDate);
         //Assert
         assertFalse(result);
     }
 
     @Test
-    public void hasReadingsBetweenDates_WithReadingsInInterval_ShouldReturnTrue(){
+    public void hasReadingsBetweenDates_WithReadingsInInterval_ShouldReturnTrue() {
         //Arrange
-        LocalDate startDate = LocalDate.of(2017,12,3);
-        LocalDate endDate = LocalDate.of(2017,12,5);
+        LocalDate startDate = LocalDate.of(2018, 12, 2);
+        LocalDate endDate = LocalDate.of(2018, 12, 5);
         //Act
-        boolean result = controller.hasReadingsBetweenDates(startDate,endDate);
+        boolean result = controller.hasReadingsBetweenDates(startDate, endDate);
         //Assert
-        assertFalse(result);
+        assertTrue(result);
     }
 
+    @Test
+    public void getLastLowestMaximumReading_WithOneLowestMaxReadingInInterval_ShouldReturnLastLowestMaxReadingDTO() {
+        //Arrange
+        LocalDate startDate = LocalDate.of(2018, 12, 2);
+        LocalDate endDate = LocalDate.of(2018, 12, 6);
+
+        LocalDateTime readingDate4 = LocalDateTime.of(2018, 12, 4, 05, 24, 00);
+        double value = 20;
+        ReadingDTO expectedResultDTO = ReadingMapper.newReadingDTO();
+        expectedResultDTO.setValue(value);
+        expectedResultDTO.setDateTime(readingDate4);
+        Reading expectedResult = ReadingMapper.mapToEntity(expectedResultDTO);
+
+        //Act
+        ReadingDTO resultDTO = controller.getLastLowestMaximumReading(startDate, endDate);
+        Reading result = ReadingMapper.mapToEntity(resultDTO);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getLastLowestMaximumReading_WithTwoEqualLowestMaxReadingInInterval_ShouldReturnLastOne() {
+        //Arrange
+        LocalDate startDate = LocalDate.of(2018, 12, 2);
+        LocalDate endDate = LocalDate.of(2018, 12, 6);
+
+        LocalDateTime readingDate = LocalDateTime.of(2018, 12, 6, 04, 24, 00);
+        Reading reading = new Reading(20, readingDate);
+        temperatureSensor1.addReadingsToList(reading);
+
+        double value = 20;
+        ReadingDTO expectedResultDTO = ReadingMapper.newReadingDTO();
+        expectedResultDTO.setValue(value);
+        expectedResultDTO.setDateTime(readingDate);
+        Reading expectedResult = ReadingMapper.mapToEntity(expectedResultDTO);
+
+        //Act
+        ReadingDTO resultDTO = controller.getLastLowestMaximumReading(startDate, endDate);
+        Reading result = ReadingMapper.mapToEntity(resultDTO);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 }
