@@ -442,6 +442,22 @@ public class KettleSpecsTest {
     }
 
     /**
+     * Test the setAttributeValue method in the case that there isn't a valid attribute name.
+     */
+    @Test
+    public void testSetAttributeValue_NullAttributeName_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double nominalPower = 0;
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue("", nominalPower);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
      * Test if the getNominalPower method really returns the Nominal Power attribute value.
      */
     @Test
@@ -526,7 +542,6 @@ public class KettleSpecsTest {
 
     /**
      * Test the return "not a valid attribute" of the method getAttributeValue.
-     * This method has already been tested with the "set" name of the respective attribute.
      */
     @Test
     public void testGetAttributeValue_NotAValidAttribute (){
@@ -534,6 +549,20 @@ public class KettleSpecsTest {
         String expectedResult = "not a valid attribute";
         //Act
         Object result = kettleSpecs.getAttributeValue("Atributo Qualquer");
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue.
+     *
+     */
+    @Test
+    public void testGetAttributeValue_NullAttribute (){
+        //Arrange
+        String expectedResult = "not a valid attribute";
+        //Act
+        Object result = kettleSpecs.getAttributeValue("");
         //Assert
         assertEquals(expectedResult, result);
     }
