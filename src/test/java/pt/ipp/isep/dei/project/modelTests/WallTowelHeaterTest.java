@@ -219,8 +219,38 @@ class WallTowelHeaterTest {
         //Arrange
         double newValue = 20.0;
         //Act
-        boolean result = this.wallTowerHeater.setAttributesDevType(NOMINAL_POWER,newValue);
+        boolean result = this.wallTowerHeater.setAttributesDevType(NOMINAL_POWER, newValue);
         //Assert
         assertTrue(result);
+    }
+
+    @Test
+    void setAttributesDevType_WithNewValueEqualToOldOne_ShouldReturnFalse() {
+        //Arrange
+        double newValue = 90.0;
+        //Act
+        boolean result = this.wallTowerHeater.setAttributesDevType(NOMINAL_POWER, newValue);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void getNumberOfSpecsAttributes() {
+        //Arrange
+        int expectedResult = 1;
+        //Act
+        int result = this.wallTowerHeater.getNumberOfSpecsAttributes();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getNameToString() {
+        //Arrange
+        String expectedResult = "Device: Towel Warmer XPT0, located in room: Bathroom\n";
+        //Act
+        String result = this.wallTowerHeater.getNameToString();
+        //Assert
+        assertEquals(expectedResult, result);
     }
 }
