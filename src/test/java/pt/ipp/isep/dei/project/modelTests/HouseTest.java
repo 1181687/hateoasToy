@@ -833,13 +833,13 @@ public class HouseTest {
     }
 
 
-   @Test
+    @Test
     public void getDeviceListContentOfARoomTest() {
         // Arrange
-       String expectedResult = "1 - Name of the device: Bosch Tronic 3000\n";
+        String expectedResult = "1 - Name of the device: Bosch Tronic 3000\n";
 
         // Act
-       String result = house.getDeviceListContentRoom(0);
+        String result = house.getDeviceListContentRoom(0);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -884,12 +884,11 @@ public class HouseTest {
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, 2, dim);
 
-        Device dev1 = house.createDevice(FRIDGE_TYPE,"FridgeAriston", room1);
+        Device dev1 = house.createDevice(FRIDGE_TYPE, "FridgeAriston", room1);
 
         Device dev2 = house.createDevice(WASHING_MACHINE_TYPE, "WashingMachineBosh", room1);
 
         Device dev3 = house.createDevice(DISHWASHER_TYPE, "DishWasherSpecs", room1);
-
 
 
         //Room TWO
@@ -936,7 +935,6 @@ public class HouseTest {
         Device dev2 = house.createDevice(WASHING_MACHINE_TYPE, "WashingMachineBosh", room1);
 
         Device dev3 = house.createDevice(DISHWASHER_TYPE, "DishWasherSpecs", room1);
-
 
 
         //Room TWO
@@ -1289,7 +1287,6 @@ public class HouseTest {
         Room room1 = new Room(name, 2, dim);
 
 
-
         house.createDevice(FRIDGE_TYPE, "FridgeAriston", room1);
         house.createDevice(WASHING_MACHINE_TYPE, "WashingMachineBosh", room1);
         house.createDevice(DISHWASHER_TYPE, "DishWasher", room1);
@@ -1628,7 +1625,7 @@ public class HouseTest {
         s1.addReadingsToList(reading11);
         s1.addReadingsToList(reading12);
 
-        LocalDateTime expectedResult = LocalDateTime.of(2018,12,4,17,24);
+        LocalDateTime expectedResult = LocalDateTime.of(2018, 12, 4, 17, 24);
 
         SensorType type = new SensorType("Temperature");
 
@@ -1707,7 +1704,7 @@ public class HouseTest {
     }
 
     @Test
-    public void testAddGridTrue(){
+    public void testAddGridTrue() {
         //Arrange
         String gridName = "main grid";
         HouseGrid houseGrid = new HouseGrid(gridName);
@@ -1718,7 +1715,7 @@ public class HouseTest {
     }
 
     @Test
-    public void testAddGridFalse(){
+    public void testAddGridFalse() {
         //Arrange
         String gridName = "main grid";
         HouseGrid houseGrid = new HouseGrid(gridName);
@@ -1730,7 +1727,7 @@ public class HouseTest {
     }
 
     @Test
-    public void testGridNameAlreadyExistsTrue(){
+    public void testGridNameAlreadyExistsTrue() {
         //Arrange
         String gridName = "main grid";
         HouseGrid grid = new HouseGrid(gridName);
@@ -1742,7 +1739,7 @@ public class HouseTest {
     }
 
     @Test
-    public void testGridNameAlreadyExistsFalse(){
+    public void testGridNameAlreadyExistsFalse() {
         //Arrange
         String gridName = "main grid";
         HouseGrid grid = new HouseGrid(gridName);
@@ -1755,7 +1752,7 @@ public class HouseTest {
     }
 
     @Test
-    public void testGridNameAlreadyExists_WithNoHouseGrids_ShouldReturnFalse(){
+    public void testGridNameAlreadyExists_WithNoHouseGrids_ShouldReturnFalse() {
         //Arrange
         String gridName2 = "grid 1";
         //Act
@@ -1763,6 +1760,7 @@ public class HouseTest {
         //Assert
         assertFalse(result);
     }
+
     /*
         @Test
         public void testNewHouseGrid_ThrowsException(){
@@ -2284,6 +2282,140 @@ public class HouseTest {
         //Act
         Map<LocalDate, Double> result = this.house.getHighestDailyAmplitudeInHouseArea(dailyAmplitudesEmpty);
 
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getNearestSensorWithMostRecentReading_ValidReading() {
+        //Arrange
+        // Geographical Area Types
+        GeographicalAreaType region = new GeographicalAreaType("Region");
+        GeographicalAreaType district = new GeographicalAreaType("District");
+        GeographicalAreaType city = new GeographicalAreaType("City");
+
+        // Geographical Areas
+        Location location = new Location(32.1496, 7.6109, 98);
+        AreaShape areaShape = new AreaShape(100, 100, location);
+        GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
+        Location location1 = new Location(41.1496, -6.6109, 100);
+        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
+        portoDistrict.setInsertedIn(northernRegion);
+        Location location2 = new Location(42.1496, -8.6109, 97);
+        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
+        portoCity.setInsertedIn(portoDistrict);
+
+        // House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Location houseLocation = new Location(41.178553, -8.608035, 111);
+        Address address = new Address("4200-072", houseLocation);
+        this.house.setAddress(address);
+        this.house.setInsertedGeoArea(portoCity);
+
+
+        // Sensors
+        SensorType temperature = new SensorType("Temperature");
+        LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        Location sensorLocation = new Location(38.1596, -8.6109, 97);
+        Sensor temperatureSensor = new Sensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
+        Sensor temperatureSensor1 = new Sensor("543", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+
+        // Reading
+        LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
+        LocalDateTime readingDate1 = LocalDateTime.of(2018, 12, 3, 13, 24, 00);
+        Reading reading = new Reading(23, readingDate);
+        Reading reading1 = new Reading(30, readingDate1);
+        temperatureSensor.addReadingsToList(reading);
+        temperatureSensor.addReadingsToList(reading1);
+        LocalDateTime readingDate2 = LocalDateTime.of(2018, 12, 2, 05, 20, 00);
+        LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 05, 24, 00);
+        Reading reading2 = new Reading(22, readingDate2);
+        Reading reading3 = new Reading(25, readingDate3);
+        temperatureSensor1.addReadingsToList(reading2);
+        temperatureSensor1.addReadingsToList(reading3);
+
+        //Add sensors to Sensorlist
+
+        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
+        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
+
+        Sensor expectedResult = temperatureSensor1;
+        //Act
+        Sensor result = portoCity.getNearestSensorWithMostRecentReading(temperature, houseLocation);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getNearestSensorWithMostRecentReading_isNull() {
+        //Arrange
+        // Geographical Area Types
+        GeographicalAreaType region = new GeographicalAreaType("Region");
+        GeographicalAreaType district = new GeographicalAreaType("District");
+        GeographicalAreaType city = new GeographicalAreaType("City");
+
+        // Geographical Areas
+        Location location = new Location(32.1496, 7.6109, 98);
+        AreaShape areaShape = new AreaShape(100, 100, location);
+        GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
+        Location location1 = new Location(41.1496, -6.6109, 100);
+        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
+        portoDistrict.setInsertedIn(northernRegion);
+        Location location2 = new Location(42.1496, -8.6109, 97);
+        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
+        portoCity.setInsertedIn(portoDistrict);
+
+        // House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Location houseLocation = new Location(41.178553, -8.608035, 111);
+        Address address = new Address("4200-072", houseLocation);
+        this.house.setAddress(address);
+        this.house.setInsertedGeoArea(portoCity);
+
+
+        // Sensors
+        SensorType temperature = new SensorType("Temperature");
+        LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        Location sensorLocation = new Location(38.1596, -8.6109, 97);
+        Sensor temperatureSensor = new Sensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
+        Sensor temperatureSensor1 = new Sensor("543", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+
+        // Reading
+        LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
+        LocalDateTime readingDate1 = LocalDateTime.of(2018, 12, 3, 13, 24, 00);
+        Reading reading = new Reading(23, readingDate);
+        Reading reading1 = new Reading(30, readingDate1);
+        temperatureSensor.addReadingsToList(reading);
+        temperatureSensor.addReadingsToList(reading1);
+        LocalDateTime readingDate2 = LocalDateTime.of(2018, 12, 2, 05, 20, 00);
+        LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 05, 24, 00);
+        Reading reading2 = new Reading(22, readingDate2);
+        Reading reading3 = new Reading(25, readingDate3);
+        temperatureSensor1.addReadingsToList(reading2);
+        temperatureSensor1.addReadingsToList(reading3);
+
+        //Add sensors to Sensorlist
+
+        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
+        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
+        SensorType rainfall = new SensorType("rainfall");
+        Sensor expectedResult = null;
+        //Act
+        Sensor result = portoCity.getNearestSensorWithMostRecentReading(rainfall, houseLocation);
         //Assert
         assertEquals(expectedResult, result);
     }
