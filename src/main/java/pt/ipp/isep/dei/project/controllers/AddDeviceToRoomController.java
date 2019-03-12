@@ -206,7 +206,7 @@ public class AddDeviceToRoomController {
         return devSpecs = device.getSpecs();
     }
 
-    public Programmable asProgrammable () {
+    public Programmable asProgrammable() {
         return programmableDevice = devSpecs.asProgrammable();
     }
 

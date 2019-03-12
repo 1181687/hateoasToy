@@ -16,10 +16,12 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class FanTest {
+public class StoveTest {
+
     private Room kitchen;
     private Room laundry;
-    private Device fan;
+    private Device stove2000;
+    private Device stove3000;
     private House house;
     private Map<LocalDateTime, Double> map;
     private Reading reading0;
@@ -45,10 +47,10 @@ public class FanTest {
 
 
         // devices
-        house.createDevice("Fan", "Fan200", kitchen);
-        fan = house.createDevice("Fan", "Fan300", kitchen);
-        fan.setAttributesDevType("Time", 2);
-        fan.setAttributesDevType("Nominal Power", 1200);
+        stove2000 = house.createDevice("Stove", "Stove2000", kitchen);
+        stove2000.setAttributesDevType("Nominal Power", 2000);
+        stove3000 = house.createDevice("Stove", "Stove3000", kitchen);
+        stove3000.setAttributesDevType("Nominal Power", 3000);
 
         // Reading
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -57,9 +59,9 @@ public class FanTest {
         reading1 = new Reading(5, time1);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
         reading2 = new Reading(7, time2);
-        fan.addReadingsToTheList(reading0);
-        fan.addReadingsToTheList(reading1);
-        fan.addReadingsToTheList(reading2);
+        stove2000.addReadingsToTheList(reading0);
+        stove2000.addReadingsToTheList(reading1);
+        stove2000.addReadingsToTheList(reading2);
 
         // Maps
         map = new TreeMap<>();
@@ -70,10 +72,10 @@ public class FanTest {
     @Test
     void getNominalPowerTest() {
         //Arrange
-        double expectedResult = 1200.0;
+        double expectedResult = 2000.0;
 
         //Act
-        double result = fan.getNominalPower();
+        double result = stove2000.getNominalPower();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -85,7 +87,7 @@ public class FanTest {
         Room expectedResult = kitchen;
 
         // Act
-        Room result = fan.getLocation();
+        Room result = stove2000.getLocation();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -94,10 +96,10 @@ public class FanTest {
     @Test
     public void testGetName() {
         // Arrange
-        String expectedResult = "Fan300";
+        String expectedResult = "Stove2000";
 
         // Act
-        String result = fan.getName();
+        String result = stove2000.getName();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -106,10 +108,10 @@ public class FanTest {
     @Test
     void getTypeTest() {
         // Arrange
-        String expectedResult = "Fan";
+        String expectedResult = "Stove";
 
         // act
-        String result = fan.getType();
+        String result = stove2000.getType();
 
         // assert
         assertEquals(expectedResult, result);
@@ -118,7 +120,7 @@ public class FanTest {
     @Test
     void setLocationFalseTest() {
         // Act
-        boolean result = fan.setLocation(kitchen);
+        boolean result = stove2000.setLocation(kitchen);
 
         // Assert
         assertFalse(result);
@@ -127,7 +129,7 @@ public class FanTest {
     @Test
     void setLocationTrueTest() {
         // Act
-        boolean result = fan.setLocation(laundry);
+        boolean result = stove2000.setLocation(laundry);
 
         // Assert
         assertTrue(result);
@@ -136,7 +138,7 @@ public class FanTest {
     @Test
     void getIsActiveTrueTest() {
         // Act
-        boolean result = fan.getIsActive();
+        boolean result = stove2000.getIsActive();
 
         // Assert
         assertTrue(result);
@@ -145,10 +147,10 @@ public class FanTest {
     @Test
     void getIsActiveFalseTest() {
         // arrange
-        fan.setDeactivateDevice();
+        stove2000.setDeactivateDevice();
 
         // Act
-        boolean result = fan.getIsActive();
+        boolean result = stove2000.getIsActive();
 
         // Assert
         assertFalse(result);
@@ -157,7 +159,7 @@ public class FanTest {
     @Test
     public void testSetDeactivationDate_True() {
         // act
-        boolean result = fan.setDeactivateDevice();
+        boolean result = stove2000.setDeactivateDevice();
         // assert
         assertTrue(result);
     }
@@ -165,29 +167,29 @@ public class FanTest {
     @Test
     public void testGetDeactivationDate_False() {
         // arrange
-        fan.setDeactivateDevice();
+        stove2000.setDeactivateDevice();
         // act
-        boolean result = fan.setDeactivateDevice();
+        boolean result = stove2000.setDeactivateDevice();
         // assert
         assertFalse(result);
     }
 
     @Test
     public void setNameWithSameNameTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> fan.setName("Fan300"));
+        Throwable exception = assertThrows(RuntimeException.class, () -> stove2000.setName("stove2000"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
     public void setNameAlreadyInListTest() {
-        Throwable exception = assertThrows(RuntimeException.class, () -> fan.setName("Fan200"));
+        Throwable exception = assertThrows(RuntimeException.class, () -> stove2000.setName("stove3000"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
 
     @Test
     public void setNameFalseTest() {
         // Act
-        boolean result = fan.setName("");
+        boolean result = stove2000.setName("");
 
         // Assert
         assertTrue(result);
@@ -196,7 +198,7 @@ public class FanTest {
     @Test
     public void setNameTrueTest() {
         // Act
-        boolean result = fan.setName("Fan400");
+        boolean result = stove2000.setName("stove4000");
 
         // Assert
         assertTrue(result);
@@ -208,7 +210,7 @@ public class FanTest {
         Object object = new Object();
 
         // Act
-        boolean result = fan.equals(object);
+        boolean result = stove2000.equals(object);
 
         // Assert
         assertFalse(result);
@@ -217,10 +219,10 @@ public class FanTest {
     @Test
     public void testHashCode() {
         // Arrange
-        int expectedResult = Objects.hash(fan.getName());
+        int expectedResult = Objects.hash(stove2000.getName());
 
         // Act
-        int result = fan.hashCode();
+        int result = stove2000.hashCode();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -236,7 +238,7 @@ public class FanTest {
         expectedResult.add(reading2);
 
         //Act
-        List<Reading> result = fan.getReadings();
+        List<Reading> result = stove2000.getReadings();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -245,9 +247,9 @@ public class FanTest {
     @Test
     void getDevSpecsAttributesToStringTest() {
         // Arrange
-        String expectedResult = "1 - Nominal Power: 1200.0\n";
+        String expectedResult = "1 - Nominal Power: 2000.0\n";
         // Act
-        String result = fan.getDevSpecsAttributesToString();
+        String result = stove2000.getDevSpecsAttributesToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -256,11 +258,11 @@ public class FanTest {
     @Test
     void getAttributesToStringTest() {
         // Arrange
-        String expectedResult = "1 - Name: Fan300\n" +
+        String expectedResult = "1 - Name: Stove2000\n" +
                 "2 - Device Specifications \n" +
                 "3 - Location: Kitchen\n";
         // Act
-        String result = fan.getAttributesToString();
+        String result = stove2000.getAttributesToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -270,7 +272,7 @@ public class FanTest {
     @Test
     public void setSetAttributesDevTypeTrue() {
         //Act
-        boolean result = fan.setAttributesDevType("Nominal Power", 15);
+        boolean result = stove2000.setAttributesDevType("Nominal Power", 1500);
         //Assert
         assertTrue(result);
     }
@@ -278,7 +280,7 @@ public class FanTest {
     @Test
     public void setSetAttributesDevTypeFalse() {
         //Act
-        boolean result = fan.setAttributesDevType("Nominal Power", "fh");
+        boolean result = stove2000.setAttributesDevType("Nominal Power", "fh");
         //Assert
         assertFalse(result);
     }
@@ -289,7 +291,7 @@ public class FanTest {
         int expectedResult = 1;
 
         // Act
-        int result = fan.getNumberOfSpecsAttributes();
+        int result = stove2000.getNumberOfSpecsAttributes();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -298,10 +300,10 @@ public class FanTest {
     @Test
     void getNameToStringTest() {
         // Arrange
-        String expectedResult = "Device: Fan300, located in room: Kitchen\n";
+        String expectedResult = "Device: Stove2000, located in room: Kitchen\n";
 
         // Act
-        String result = fan.getNameToString();
+        String result = stove2000.getNameToString();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -311,9 +313,9 @@ public class FanTest {
     void getDateDeactivateDeviceToString() {
         // arrange
         String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
-        fan.setDeactivateDevice();
+        stove2000.setDeactivateDevice();
         // act
-        String result = fan.getDateDeactivateDeviceToString();
+        String result = stove2000.getDateDeactivateDeviceToString();
         // assert
         assertEquals(date, result);
     }
@@ -327,7 +329,7 @@ public class FanTest {
         Map<LocalDateTime, Double> expectedResult = map;
 
         // Act
-        Map<LocalDateTime, Double> result = fan.getDataSeries(time0, time2);
+        Map<LocalDateTime, Double> result = stove2000.getDataSeries(time0, time2);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -340,7 +342,7 @@ public class FanTest {
         expectedResult.add("Nominal Power");
 
         // Act
-        List<String> result = fan.getSpecsList();
+        List<String> result = stove2000.getSpecsList();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -350,44 +352,12 @@ public class FanTest {
     @Test
     void getAttributeValueTest() {
         // Assert
-        double expectedResult = 1200.0;
+        double expectedResult = 2000.0;
 
         // Act
-        Object result = fan.getAttributeValue("Nominal Power");
+        Object result = stove2000.getAttributeValue("Nominal Power");
 
         // Assert
         assertEquals(expectedResult, result);
     }
-
-        /*@Test
-    public void testGetSpecs(){
-    }
-
-    @Test
-    public void getEnergyConsumptionInADayTest() {
-
-    }*/
-
-
-    /*@Test
-    void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
-
-    }
-
-    @Test
-    void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
-
-    }
-
-    @Test
-    void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest2() {
-
-    }
-
-    @Test
-    void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
-
-    }*/
-
-
 }

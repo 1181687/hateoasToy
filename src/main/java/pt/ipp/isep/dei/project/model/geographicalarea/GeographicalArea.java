@@ -24,19 +24,10 @@ public class GeographicalArea {
      * constructor of geographical area that receives a name, type, insertedIn, location, areaShape and a sensor list.
      *
      * @param id
-     * @param description
      * @param geographicalAreaType
      * @param location
      * @param areaShape
      */
-    /*
-    public GeographicalArea(String description, GeographicalAreaType geographicalAreaType, Location location, AreaShape areaShape) {
-        this.description = description;
-        this.geographicalAreaType = geographicalAreaType;
-        this.location = location;
-        this.areaShape = areaShape;
-    }
-    */
     public GeographicalArea(String id, String description, GeographicalAreaType geographicalAreaType, Location location, AreaShape areaShape) {
         this.id = id;
         this.description = description;
@@ -78,7 +69,7 @@ public class GeographicalArea {
             return false;
         }
         GeographicalArea ag = (GeographicalArea) obj;
-        return this.description.equals(ag.description) && this.geographicalAreaType.equals(ag.geographicalAreaType) && this.location.equals(ag.location);
+        return this.id.equals(ag.id) && this.geographicalAreaType.equals(ag.geographicalAreaType) && this.location.equals(ag.location);
     }
 
     public String getId() {
@@ -236,8 +227,8 @@ public class GeographicalArea {
      * @param newLocation
      * @return a new sensor.
      */
-    public Sensor newSensor(String name, SensorType newSensorType, Location newLocation) {
-        return new Sensor(name, newSensorType, newLocation);
+    public Sensor newSensor(String id, String name, SensorType newSensorType, Location newLocation, String units) {
+        return new Sensor(id, name, newSensorType, newLocation, units);
     }
 
     /**
@@ -482,5 +473,9 @@ public class GeographicalArea {
         return sensorListWithTheRequiredType
                 .getNearestSensorsToLocation(location)
                 .getSensorWithMostRecentReading();
+    }
+
+    public boolean addSensor(Sensor sensor) {
+        return this.sensorList.addSensor(sensor);
     }
 }

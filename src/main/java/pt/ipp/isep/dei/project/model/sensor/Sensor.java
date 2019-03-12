@@ -13,11 +13,13 @@ import java.util.List;
 
 
 public class Sensor {
+    private String id;
     private String sensorName;
     private LocalDateTime startingDate;
     private List<Reading> listOfReadings = new ArrayList<>();
     private SensorType sensorType;
     private Location location;
+    private String units;
 
 
     /**
@@ -28,11 +30,13 @@ public class Sensor {
      * @param sensorType   Type of sensor
      * @param location     Location of the sensor
      */
-    public Sensor(String sensorName, LocalDateTime startingDate, SensorType sensorType, Location location) {
+    public Sensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, Location location, String units) {
+        this.id = id;
         this.sensorName = sensorName;
         this.startingDate = startingDate;
         this.sensorType = sensorType;
         this.location = location;
+        this.units = units;
     }
 
     /**
@@ -42,11 +46,13 @@ public class Sensor {
      * @param sensorType Type of sensor
      * @param location   Location of the sensor
      */
-    public Sensor(String sensorName, SensorType sensorType, Location location) {
+    public Sensor(String id, String sensorName, SensorType sensorType, Location location, String units) {
+        this.id = id;
         this.sensorName = sensorName;
         this.startingDate = LocalDateTime.now();
         this.sensorType = sensorType;
         this.location = location;
+        this.units = units;
     }
 
     /**
@@ -85,6 +91,14 @@ public class Sensor {
         return location;
     }
 
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
+    }
+
     /**
      * Equals method to determine if two Sensors are equal. They are equals if all atributtes are equal
      *
@@ -99,7 +113,7 @@ public class Sensor {
             return false;
         }
         Sensor sensor = (Sensor) objeto;
-        return (this.sensorName.equals(sensor.sensorName) && this.sensorType.equals(sensor.sensorType) && this.location.equals(sensor.location));
+        return (this.id.equals(sensor.id) && this.sensorType.equals(sensor.sensorType) && this.location.equals(sensor.location));
     }
 
     /**

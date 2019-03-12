@@ -127,8 +127,8 @@ public class AddDeviceToRoomControllerTest {
                 "9- Television\n" +
                 "10- MicrowaveOven\n" +
                 "11- Fan\n" +
-                "12- Stove\n"+
-                "13- WallTowelHeater\n"+
+                "12- Stove\n" +
+                "13- WallTowelHeater\n" +
                 "14- Kettle\n";
 
 

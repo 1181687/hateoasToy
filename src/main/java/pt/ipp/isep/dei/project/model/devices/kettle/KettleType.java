@@ -7,7 +7,7 @@ import pt.ipp.isep.dei.project.model.devices.DeviceType;
 public class KettleType implements DeviceType {
     String typeName;
 
-    public KettleType (){
+    public KettleType() {
         this.typeName = "Kettle";
     }
 
@@ -15,7 +15,7 @@ public class KettleType implements DeviceType {
         return typeName;
     }
 
-    public Device createDevice (String name){
+    public Device createDevice(String name) {
         DeviceSpecs kettleSpecs = new KettleSpecs();
         return new Kettle(name, kettleSpecs);
     }

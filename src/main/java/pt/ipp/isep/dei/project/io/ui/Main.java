@@ -258,7 +258,7 @@ public class Main {
         // sensor 1
         SensorType sensorTypeTemperature = new SensorType("temperature");
         LocalDateTime startingDate = LocalDate.of(2018, 10, 15).atStartOfDay();
-        Sensor sensor = new Sensor("TT12346", startingDate, sensorTypeTemperature, houseLocation);
+        Sensor sensor = new Sensor("R003", "TT12346", startingDate, sensorTypeTemperature, houseLocation, "l/m2");
         sensor.addReadingsToList(temp);
         sensor.addReadingsToList(temp1);
         sensor.addReadingsToList(temp2);
@@ -281,7 +281,7 @@ public class Main {
         // sensor 2
         SensorType sensorTypeHumidity = new SensorType("humidity");
         LocalDateTime startingDate2 = LocalDate.of(2018, 11, 22).atStartOfDay();
-        Sensor sensor2 = new Sensor("Humidity B109", startingDate2, sensorTypeHumidity, houseLocation);
+        Sensor sensor2 = new Sensor("S001", "Humidity B109", startingDate2, sensorTypeHumidity, houseLocation, "l/m2");
         sensor2.addReadingsToList(temp16);
         sensor2.addReadingsToList(temp17);
         sensor2.addReadingsToList(temp18);
@@ -303,7 +303,7 @@ public class Main {
         Location locationOfAreaSensors = new Location(41.179230, -8.606409, 125);
         SensorType sensorTypeRainfall = new SensorType("Rainfall");
         LocalDateTime startingDate3 = LocalDate.of(2016, 11, 15).atStartOfDay();
-        Sensor sensor3 = new Sensor("Meteo station ISEP - Rainfall", startingDate3, sensorTypeRainfall, locationOfAreaSensors);
+        Sensor sensor3 = new Sensor("S004", "Meteo station ISEP - Rainfall", startingDate3, sensorTypeRainfall, locationOfAreaSensors, "l/m2");
         sensor3.addReadingsToList(temp32);
         sensor3.addReadingsToList(temp33);
         sensor3.addReadingsToList(temp34);
@@ -316,7 +316,7 @@ public class Main {
         // sensor 4
         SensorType sensorTypeTemp = new SensorType("temperature");
         LocalDateTime startingDate4 = LocalDate.of(2016, 11, 15).atStartOfDay();
-        Sensor sensor4 = new Sensor("Meteo station ISEP - rainfall", startingDate4, sensorTypeTemp, locationOfAreaSensors);
+        Sensor sensor4 = new Sensor("S009", "Meteo station ISEP - rainfall", startingDate4, sensorTypeTemp, locationOfAreaSensors, "l/m2");
         sensor4.addReadingsToList(temp39);
         sensor4.addReadingsToList(temp40);
         sensor4.addReadingsToList(temp41);

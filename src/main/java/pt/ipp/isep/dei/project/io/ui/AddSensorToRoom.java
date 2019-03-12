@@ -35,6 +35,8 @@ public class AddSensorToRoom {
 
             System.out.println("What's the name of the new sensor?");
             String nameOfSensor = read.nextLine();
+            String idOfSensor = read.nextLine();
+            String units = read.nextLine();
 
             System.out.println("Please, select a sensor type");
             System.out.println(controller.displayListOfSensorsType());
@@ -44,7 +46,7 @@ public class AddSensorToRoom {
 
             controller.getLocationOfTheHouse();
 
-            if (controller.createAndAddSensorToTheList(nameOfSensor)) {
+            if (controller.createAndAddSensorToTheList(idOfSensor, nameOfSensor, units)) {
                 System.out.println("A sensor was added to the room.");
             } else {
                 System.out.println("sensor was not created.");
