@@ -536,6 +536,9 @@ public class Sensor {
     }
 
     public Reading getLastLowestReading(List<Reading> readings){
+        if(readings.isEmpty()){
+            return null;
+        }
         Reading lowestReading = readings.get(0);
         for (Reading reading : readings) {
             if(Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(reading.getValue(),lowestReading.getValue())){
