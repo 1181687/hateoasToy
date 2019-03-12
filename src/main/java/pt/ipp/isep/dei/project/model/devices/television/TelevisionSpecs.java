@@ -168,7 +168,7 @@ public class TelevisionSpecs implements DeviceSpecs {
             case ATTRIBUTE_TIME:
                 return time;
             default:
-                return -1;
+                return "Not a valid attribute";
         }
     }
 
@@ -203,13 +203,17 @@ public class TelevisionSpecs implements DeviceSpecs {
     }
 
     /**
-     * get method
+     * get string of the type of attribute
      *
      * @param attributeName string name of attribute
      * @return type data of the attribute (ex.integer, double)
+     * if not a valid attribute, returns a String "not a valid attribute"
      */
     @Override
     public String getAttributeDataType(String attributeName) {
+        if ((getAttributeValue(attributeName).equals("Not a valid attribute"))) {
+            return "Not a valid attribute";
+        }
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 }
