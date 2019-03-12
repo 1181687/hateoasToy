@@ -404,4 +404,55 @@ class SensorListTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    /**
+     * Test that tries to use a valid/existing Id to search for a Sensor, which results in True.
+     **/
+    @Test
+    void testCheckIfSensorExistsById_tryingToTestAnExistingId_ShouldReturnTrue() {
+        // Act
+        boolean result = sensorList.checkIfSensorExistsById("Sensor Temp 1");
+
+        //
+        assertTrue(result);
+    }
+
+    /**
+     * Test that tries to use an invalid/non-existing Id to search for a Sensor, which results in False.
+     **/
+    @Test
+    void testCheckIfSensorExistsById_tryingToTestANonExistingId_ShouldReturnFalse() {
+        // Act
+        boolean result = sensorList.checkIfSensorExistsById("FUKU");
+
+        //
+        assertFalse(result);
+    }
+
+    /**
+     * Test that tries to use a valid/existing Id to get a Sensor, which results in returning the corresponding Sensor.
+     **/
+    @Test
+    void testGetSensorById_tryingToTestAnExistingId_ShouldReturnTheCorrespondingSensor() {
+        // Arrange
+        Sensor expectedResult = temperatureSensor1;
+
+        // Act
+        Sensor result = sensorList.getSensorById("Sensor Temp 1");
+
+        //
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test that tries to use an invalid/non-existing Id to get a Sensor, which results in returning a null Object.
+     **/
+    @Test
+    void testGetSensorById_tryingToTestANonExistingId_ShouldReturnNull() {
+        // Act
+        Sensor result = sensorList.getSensorById("FUKU");
+
+        //
+        assertEquals(null, result);
+    }
 }
