@@ -148,7 +148,7 @@ public class StoveSpecsTest {
     @Test
     public void testGetAttributeValue_notAValidSpec() {
         // Arrange
-        Object expectedResult = null;
+        Object expectedResult = "not a valid attribute";
         // Act
         Object result = stove.getSpecs().getAttributeValue("Not Valid");
         // Assert
