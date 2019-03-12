@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllers.getFirstHottestDayHouseAreaController;
 
-import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDate;
@@ -9,33 +9,35 @@ import java.time.LocalDate;
 public class GetFirstHottestDayHouseAreaController {
     private House house;
     private SensorType sensorTypeTemperature;
+    private Sensor chosenSensor;
+
 
     public GetFirstHottestDayHouseAreaController(House house) {
         this.house = house;
         this.sensorTypeTemperature = new SensorType("temperature");
     }
 
-    public double getHighestReadingOfASensor(LocalDate startDate, LocalDate endDate) {
-        return house.getHighestReadingOfASensor(startDate, endDate);
+    public boolean sensorListOfATypeIfEmpty(SensorType type) {
+        return house.getTheSensorListOfAGivenType(type).isEmpty();
     }
 
-    public LocalDate getFirstHighestReadingDateHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
-        return house.getFirstHighestReadingDateHouseArea(location, type, startDate, endDate);
+    public void getChosenSensor() {
+        chosenSensor = house.getNearestSensorWithMostRecentReading(sensorTypeTemperature, house.getLocation());
     }
 
-    public Double getFirstHighestReadingValueHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
-        return house.getFirstHighestReadingValueHouseArea(location, type, startDate, endDate);
+    public boolean checkSensorReadingsExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
+        return chosenSensor.checkMeasurementExistenceBetweenDates(startDate, endDate);
     }
 
-    public Location getHouseLocation() {
-        return house.getLocation();
+    public LocalDate getFirstHighestReadingDateHouseArea(LocalDate startDate, LocalDate endDate) {
+        return house.getFirstHighestReadingDateHouseArea(house.getLocation(), sensorTypeTemperature, startDate, endDate);
+    }
+
+    public Double getFirstHighestReadingValueHouseArea(LocalDate startDate, LocalDate endDate) {
+        return house.getFirstHighestReadingValueHouseArea(house.getLocation(), sensorTypeTemperature, startDate, endDate);
     }
 
     public SensorType getTypeTemperature() {
         return sensorTypeTemperature;
-    }
-
-    public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
-        return house.checkMeasurementExistenceBetweenDates(location, startDate, endDate);
     }
 }

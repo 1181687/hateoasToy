@@ -355,7 +355,7 @@ public class GeographicalArea {
      * @param location   location of the area wanted to get the daily amplitude
      * @param startDate  initial Localdate of the interval
      * @param endDate    final Localdate of the interval
-     * @return Map<LocalDate       ,               Double> map Of Daily Amplitude
+     * @return Map<LocalDate                               ,                                                               Double> map Of Daily Amplitude
      */
     public Map<LocalDate, Double> getDailyAmplitudeInInterval(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
         Map<LocalDate, Double> mapOfDailyAmplitude = new HashMap<>();
@@ -378,7 +378,7 @@ public class GeographicalArea {
      * if there are two equal amplitudes, it gets both.
      *
      * @param mapOfDailyAmplitude given daily Amplitude Map<LocalDate, Double>
-     * @return Map<LocalDate       ,               Double> map Of Highest Daily Amplitude
+     * @return Map<LocalDate                               ,                                                               Double> map Of Highest Daily Amplitude
      */
     public Map<LocalDate, Double> getHighestDailyAmplitude(Map<LocalDate, Double> mapOfDailyAmplitude) {
 
@@ -430,26 +430,42 @@ public class GeographicalArea {
         return totalDailyMeasurement;
     }
 
-    public Reading getHighestReadingOfASensor(LocalDate startDate, LocalDate endDate) {
-        return sensorList.getHighestReadingOfSensor(startDate, endDate);
+    public Reading getHighestReadingOfASensor(Location location, LocalDate startDate, LocalDate endDate) {
+        return sensorList.getHighestReadingOfSensor(location, startDate, endDate);
     }
 
     public Reading getFirstHighestReading(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
-        SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
-        Sensor chosenSensor = sensorList.getSensorWithMostRecentReading(sensorListWithTheRequiredType);
-        if (!sensorListWithTheRequiredType.getListOfSensors().isEmpty()) {
-            SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
-            chosenSensor = sensorList.getSensorWithMostRecentReading(nearestSensors);
-        }
+        Sensor chosenSensor = getNearestSensorWithMostRecentReading(type, location);
         Reading highestReading = chosenSensor.getHighestReading(startDate, endDate);
-        for (Reading reading : chosenSensor.getReadingsBetweenDates(startDate, endDate)) {
-            Number readingValue = reading.getValue();
-            Number highestReadingValue = highestReading.getValue();
-            if (readingValue == highestReadingValue) {
-                highestReading = reading;
+        if (highestReading != null) {
+            for (Reading reading : chosenSensor.getReadingsBetweenDates(startDate, endDate)) {
+                Number readingValue = reading.getValue();
+                Number highestReadingValue = highestReading.getValue();
+                if (readingValue == highestReadingValue) {
+                    highestReading = reading;
+                    break;
+                }
             }
         }
         return highestReading;
+    }
+
+    public List<Reading> getReadingListWithoutNulls(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
+        Sensor chosenSensor = getNearestSensorWithMostRecentReading(type, location);
+        List<Reading> readingList = chosenSensor.getReadingsBetweenDates(startDate, endDate);
+        for (Reading reading : readingList) {
+            if (reading == null) {
+                readingList.remove(reading);
+            }
+        }
+        return readingList;
+    }
+
+
+    public double getHighestReadingInInterval(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
+        Sensor chosenSensor = getNearestSensorWithMostRecentReading(type, location);
+        Reading highestReading = chosenSensor.getHighestReading(startDate, endDate);
+        return highestReading.getValue();
     }
 
     public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
@@ -458,10 +474,9 @@ public class GeographicalArea {
 
     public LocalDate getDateOfLastLowestMaximumReading(Location location, SensorType sensorType, LocalDate startDate, LocalDate endDate) {
         Sensor sensor = getNearestSensorWithMostRecentReading(sensorType, location);
-        List<Reading> readings = sensor.getDailyMaxReadingsInAnInterval(startDate,endDate);
+        List<Reading> readings = sensor.getDailyMaxReadingsInAnInterval(startDate, endDate);
         Reading lowestMaximumReading = sensor.getLastLowestReading(readings);
         return lowestMaximumReading.getDateTime().toLocalDate();
-
     }
 
     public Sensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
@@ -477,5 +492,9 @@ public class GeographicalArea {
 
     public boolean addSensor(Sensor sensor) {
         return this.sensorList.addSensor(sensor);
+    }
+
+    public boolean isReadingsListOfSensorEmpty(SensorType type, Location location, LocalDate startDate, LocalDate endDate) {
+        return getNearestSensorWithMostRecentReading(type, location) == null;
     }
 }
