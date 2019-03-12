@@ -2,11 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.getDayWithHighestTemperatureAmplitudeController.GetDayWithHighestTemperatureAmplitudeController;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
-import java.util.Map;
-import java.util.Set;
 
 /*US633: As a Regular User, I want to get the day with the highest temperature amplitude in the housegrid area in a given period.*/
 
@@ -50,42 +47,8 @@ public class GetDayWithHighestTemperatureAmplitude {
         }
         while (flag);
 
-        Map<LocalDate, Double> dailyAmplitudes = controller.getDailyAmplitudeInIntervalInHouseArea(firstDate, secondDate);
+        controller.getDayWithHighestTemperatureAmplitude(firstDate, secondDate);
 
-        Map<LocalDate, Double> dailyHighestAmplitude = controller.getHighestDailyAmplitudeInHouseArea(dailyAmplitudes);
-
-        displayResults(dailyHighestAmplitude);
-        System.out.println("\n");
-    }
-
-    /**
-     * receives a Map<LocalDate, Double> and prints the highest temperature amplitude and the date(s)
-     * that registered that value. If the Map is empty, it prints that there's no registers for this period.
-     *
-     * @param dailyHighestAmplitude Map<LocalDate, Double> highest temperature amplitude and date.
-     */
-    private void displayResults(Map<LocalDate, Double> dailyHighestAmplitude) {
-
-        StringBuilder content = new StringBuilder();
-
-        if (!dailyHighestAmplitude.isEmpty()) {
-
-            Set<Map.Entry<LocalDate, Double>> set = dailyHighestAmplitude.entrySet();
-            boolean output = false;
-            for (Map.Entry<LocalDate, Double> highestAmplitude : set) {
-
-                if (!output) {
-                    output = true;
-                    content.append("The highest temperature amplitude for the chosen period is ");
-                    content.append(Utils.round(highestAmplitude.getValue(), 2));
-                    content.append(" Celsius");
-                    content.append(" and was registered on: ");
-                    System.out.println(content.toString());
-                }
-                System.out.println(highestAmplitude.getKey().toString());
-            }
-        } else {
-            System.out.println("There's no registers for this period.");
-        }
+        System.out.println(controller.displayResults() + "\n");
     }
 }

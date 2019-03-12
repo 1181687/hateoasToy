@@ -804,6 +804,14 @@ public class House {
         return this.insertedGeoArea.getHighestDailyAmplitude(mapOfDailyAmplitude);
     }
 
+    public Reading getLastLowestMaximumReading(SensorType sensorType, LocalDate startDate, LocalDate endDate) {
+        return this.insertedGeoArea.getLastLowestMaximumReading(this.getLocation(), sensorType, startDate, endDate);
+    }
+
+    public boolean hasSensorsOfCertainTypeInInsertedGeoArea(SensorType sensorType) {
+        return !this.insertedGeoArea.getTheSensorListOfAGivenType(sensorType).isEmpty();
+    }
+
     public boolean isReadingsListOfSensorEmpty(SensorType type, Location location, LocalDate startDate, LocalDate endDate) {
         return this.insertedGeoArea.isReadingsListOfSensorEmpty(type, location, startDate, endDate);
     }

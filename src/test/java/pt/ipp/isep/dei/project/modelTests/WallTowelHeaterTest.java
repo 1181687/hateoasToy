@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class WallTowelHeaterTest {
     private static final String WALL_TOWEL_HEATER_TYPE = "WallTowelHeater";
+    private static final String NOMINAL_POWER = "Nominal Power";
     private House house;
     private Room kitchen;
     private Room bathroom;
@@ -46,7 +47,7 @@ class WallTowelHeaterTest {
         String deviceName = "Towel Warmer XPT0";
 
         wallTowerHeater = house.createDevice(WALL_TOWEL_HEATER_TYPE, deviceName, this.bathroom);
-        wallTowerHeater.setAttributesDevType("Nominal Power", 90.0);
+        wallTowerHeater.setAttributesDevType(NOMINAL_POWER, 90.0);
         wallTowerHeater.setAttributesDevType("Time", 120.0);
 
         // Readings
@@ -62,7 +63,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void getLocation() {
+    public void getLocation() {
         //Arrange
         Room expectedResult = this.bathroom;
         //Act
@@ -187,6 +188,68 @@ class WallTowelHeaterTest {
         expectedResult.add(this.reading2);
         //Act
         List<Reading> result = this.wallTowerHeater.getReadings();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getDevSpecsAttributesToString() {
+        //Arrange
+        String expectedResult = "1 - Nominal Power: 90.0\n";
+        //Act
+        String result = this.wallTowerHeater.getDevSpecsAttributesToString();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getAttributesToString() {
+        //Arrange
+        String expectedResult = "1 - Name: Towel Warmer XPT0\n" +
+                "2 - Device Specifications \n" +
+                "3 - Location: Bathroom\n";
+        //Act
+        String result = this.wallTowerHeater.getAttributesToString();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void setAttributesDevType_WithNewValueDifferentFromOldOne_ShouldReturnTrue() {
+        //Arrange
+        double newValue = 20.0;
+        //Act
+        boolean result = this.wallTowerHeater.setAttributesDevType(NOMINAL_POWER, newValue);
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void setAttributesDevType_WithNewValueEqualToOldOne_ShouldReturnFalse() {
+        //Arrange
+        double newValue = 90.0;
+        //Act
+        boolean result = this.wallTowerHeater.setAttributesDevType(NOMINAL_POWER, newValue);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void getNumberOfSpecsAttributes() {
+        //Arrange
+        int expectedResult = 1;
+        //Act
+        int result = this.wallTowerHeater.getNumberOfSpecsAttributes();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void getNameToString() {
+        //Arrange
+        String expectedResult = "Device: Towel Warmer XPT0, located in room: Bathroom\n";
+        //Act
+        String result = this.wallTowerHeater.getNameToString();
         //Assert
         assertEquals(expectedResult, result);
     }

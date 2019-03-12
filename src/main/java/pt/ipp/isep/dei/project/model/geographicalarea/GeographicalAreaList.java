@@ -189,4 +189,13 @@ public class GeographicalAreaList {
         }
         return sensorList;
     }
+
+    public boolean checkIfGeoAreaExistsById(String geoAreaId) {
+        for (GeographicalArea geoArea : geoAreaList) {
+            if (geoArea.getId().equals(geoAreaId)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

@@ -1,0 +1,70 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+activate ":GeographicalArea"
+":GeographicalArea" -> ":SensorList": getSensorListByTypeInAPeriod ()
+activate ":SensorList"
+":SensorList" -> ":Sensor": getSensorsInGeographicalAreaByType ()
+activate ":Sensor"
+":Sensor" -> ":Reading": checkMeasurementExistenceBetweenDates ()
+activate ":Reading"
+":Sensor" <-- ":Reading": boolean
+deactivate ":Reading"
+":SensorList" <-- ":Sensor": listOfSensors
+deactivate ":Sensor"
+":GeographicalArea" <-- ":SensorList": listOfSensors
+deactivate ":SensorList"
+":GeographicalArea" -> ":SensorList": getNearestSensorsToLocation (location)
+activate ":SensorList"
+":SensorList" -> ":Sensor": getNearestSensorsToLocation (location)
+activate ":Sensor"
+":SensorList" <-- ":Sensor": listOfNearestSensors
+deactivate ":Sensor"
+":GeographicalArea" <-- ":SensorList": listOfNearestSensors
+deactivate ":SensorList"
+":GeographicalArea" -> ":SensorList": getSensorWithMostRecentReading ()
+activate ":SensorList"
+":SensorList" -> ":Sensor": getSensorWithMostRecentReading ()
+activate ":Sensor"
+":Sensor" -> ":Reading": getSensorWithMostRecentReading ()
+activate ":Reading"
+":Sensor" <-- ":Reading": sensorWithMostRecentReading
+deactivate ":Reading"
+":SensorList" <-- ":Sensor": sensorWithMostRecentReading
+deactivate ":Sensor"
+":GeographicalArea" <-- ":SensorList": sensorWithMostRecentReading
+deactivate ":SensorList"
+":GeographicalArea" -> ":Sensor": getMaximumValueOfDay ()
+activate ":Sensor"
+":Sensor" -> ":Reading": getMaximumValueOfDay ()
+activate ":Reading"
+":Sensor" <-- ":Reading": maximumValueOfDay
+deactivate ":Reading"
+":GeographicalArea" <-- ":Sensor": maximumValueOfDay
+deactivate ":Sensor"
+":GeographicalArea" -> ":Sensor": getLowestValueOfDay ()
+activate ":Sensor"
+":Sensor" -> ":Reading": getLowestValueOfDay ()
+activate ":Reading"
+":Sensor" <-- ":Reading": lowestValueOfDay
+deactivate ":Reading"
+":GeographicalArea" <-- ":Sensor": lowestValueOfDay
+
+
+
+@enduml

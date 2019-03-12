@@ -8,6 +8,10 @@ public class GeographicalAreaMapping {
         // empty
     }
 
+    public static GeographicalAreaDTO newGeoAreaDTO() {
+        return new GeographicalAreaDTO();
+    }
+
     public static GeographicalAreaDTO mapToDTO(String geoAreaName, String description, String geographicalAreaType, double width, double lenght, double latitude, double longitude, double altitude) {
         GeographicalAreaDTO geoDTO = new GeographicalAreaDTO();
         geoDTO.setId(geoAreaName);

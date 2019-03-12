@@ -11,7 +11,6 @@ import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,26 +18,15 @@ import java.util.List;
 public class JSONReader {
 
     @SuppressWarnings("unchecked")
-    public static List<GeographicalAreaDTO> readJSONFileToList(String jsonPath) {
-
-        List<GeographicalAreaDTO> finallist = new ArrayList<>();
+    public static List<GeographicalAreaDTO> readJSONFileToList(String jsonPath) throws FileNotFoundException {
+        List<GeographicalAreaDTO> finallist;
         //JSON parser object to parse read file
         JsonParser jsonParser = new JsonParser();
-
-        try (FileReader reader = new FileReader(jsonPath)) {
+        FileReader reader = new FileReader(jsonPath);
             //Read JSON file
-
             JsonElement elem = jsonParser.parse(reader);
             //System.out.println(elem);
-
             finallist = parseJsonObjects(elem);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return finallist;
     }
 
@@ -97,8 +85,8 @@ public class JSONReader {
 
                     String sensorId = sensor.get("id").getAsString();
                     String sensorName = sensor.get("name").getAsString();
-                    LocalDate startingDate = LocalDate.parse(sensor.get("start_date").getAsString());
                     String sensorType = sensor.get("type").getAsString();
+                    LocalDate startingDate = LocalDate.parse(sensor.get("start_date").getAsString());
                     String sensorUnits = sensor.get("units").getAsString();
 
                     //Reads sensor Location
@@ -107,10 +95,12 @@ public class JSONReader {
                     LocationDTO sensorLocation = locationParser(locationSensor);
 
                     SensorDTO areaSensor1 = new SensorDTO();
+                    areaSensor1.setId(sensorId);
                     areaSensor1.setName(sensorName);
                     areaSensor1.setSensorType(sensorType);
                     areaSensor1.setLocation(sensorLocation);
                     areaSensor1.setStartingDate(startingDate);
+                    areaSensor1.setUnits(sensorUnits);
 
                     geoAreaDTO.addSensor(areaSensor1);
 
