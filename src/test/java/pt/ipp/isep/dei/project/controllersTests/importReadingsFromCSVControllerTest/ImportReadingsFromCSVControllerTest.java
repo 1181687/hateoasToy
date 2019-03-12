@@ -89,7 +89,7 @@ class ImportReadingsFromCSVControllerTest {
         // Arrange
         controller.checkIfSensorExistsById("A123");
         controller.addReadingToSensor(readingDTO);
-        Reading reading = ReadingMapper.mapToDTO(readingDTO);
+        Reading reading = ReadingMapper.mapToEntity(readingDTO);
         LocalDate startTime = LocalDate.of(2018, 12, 2);
         LocalDate endTime = LocalDate.of(2018, 12, 3);
 

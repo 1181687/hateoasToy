@@ -42,7 +42,7 @@ public class ImportReadingsFromCSVController {
      * @param readingDTO ReadingDTO to be transformed into a Reading and to be used.
      */
     public void addReadingToSensor(ReadingDTO readingDTO) {
-        Reading reading = ReadingMapper.mapToDTO(readingDTO);
+        Reading reading = ReadingMapper.mapToEntity(readingDTO);
         sensor.addReadingsToList(reading);
     }
 }

@@ -1,4 +1,14 @@
 @startuml
+skinparam linetype ortho
+
+skinparam class {
+	BackgroundColor PaleTurquoise
+	ArrowColor Black
+	BorderColor Black
+	FontStyle Bold
+}
+
+hide circle
 
 UI "1" -> "1" Controller
 UI "1" --> "1" ReadingDTO
