@@ -24,7 +24,7 @@ class ReadingMapperTest {
     @Test
     void mapToDTOTest() {
         // Act
-        boolean result = ReadingMapper.mapToDTO(readingDTO).equals(new Reading(readingDTO.getValue(), readingDTO.getDateTime()));
+        boolean result = ReadingMapper.mapToEntity(readingDTO).equals(new Reading(readingDTO.getValue(), readingDTO.getDateTime()));
 
         // Assert
         assertTrue(result);

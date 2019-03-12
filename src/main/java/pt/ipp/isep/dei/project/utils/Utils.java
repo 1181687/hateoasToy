@@ -130,6 +130,11 @@ public final class Utils {
         }
         return false;
     }
+
+    public static boolean isFirstDoubleBiggerOrEqualThanSecondOne(Double value1, Double value2) {
+        return value1.compareTo(value2)>=0;
+
+    }
     /**
      * receives a Map and cleans the entries key-value that have a doubleNan value
      *

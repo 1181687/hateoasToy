@@ -97,7 +97,7 @@ public class Main {
         // sensor 1
         Reading temp = new Reading(14.0, sensorDate1);
         Reading temp1 = new Reading(13.7, sensorDate1);
-        Reading temp2 = new Reading(16.5, sensorDate1);
+        Reading temp2 = new Reading(16.0, sensorDate1);
         Reading temp3 = new Reading(15.1, sensorDate1);
         Reading temp4 = new Reading(13.8, sensorDate2);
         Reading temp5 = new Reading(13.3, sensorDate2);

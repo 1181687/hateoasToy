@@ -55,6 +55,14 @@ public class Sensor {
         this.units = units;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     /**
      * Get method
      *
@@ -517,7 +525,7 @@ public class Sensor {
         }
         Reading highestReading = getDailyMeasurement(day).get(0);
         for (Reading reading : getDailyMeasurement(day)) {
-            if (!Double.isNaN(reading.getValue()) && Utils.isFirstDoubleBiggerThanSecondOne(reading.getValue(), highestReading.getValue())) {
+            if (!Double.isNaN(reading.getValue()) && Utils.isFirstDoubleBiggerOrEqualThanSecondOne(reading.getValue(), highestReading.getValue())) {
                 highestReading = reading;
             }
         }
@@ -536,6 +544,9 @@ public class Sensor {
     }
 
     public Reading getLastLowestReading(List<Reading> readings){
+        if(readings.isEmpty()){
+            return null;
+        }
         Reading lowestReading = readings.get(0);
         for (Reading reading : readings) {
             if(Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(reading.getValue(),lowestReading.getValue())){
