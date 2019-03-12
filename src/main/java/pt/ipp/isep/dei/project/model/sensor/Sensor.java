@@ -55,6 +55,14 @@ public class Sensor {
         this.units = units;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     /**
      * Get method
      *
