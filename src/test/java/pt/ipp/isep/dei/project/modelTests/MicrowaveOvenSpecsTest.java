@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
@@ -25,40 +24,39 @@ public class MicrowaveOvenSpecsTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
-
         //Room
         Dimension dim = new Dimension(3, 5, 6);
         this.kitchen = new Room("Kitchen", 1, dim);
         this.house.addRoom(kitchen);
-        this.microwaveOven = this.house.createDevice("MicrowaveOven", "MicrowaveOven 2000", kitchen);
+        this.microwaveOven = this.house.createDevice("MicrowaveOven", "MicrowaveOven teka", kitchen);
         this.microwaveOven.setAttributesDevType("Nominal Power", 30);
-        //this.microwaveOven.setAttributesDevType("Time", 30);
         this.microwaveOvenSpecs = microwaveOven.getSpecs();
 
     }
 
-    /*
-        @Test
-        public void testGetTypeName() {
-            //Arrange
-            String expectedResult = "MicrowaveOven";
+/*
+    @Test
+    public void testGetTypeName() {
+        //Arrange
+        String expectedResult = "MicrowaveOven";
 
-            //Act
-            String result = microwaveOven.getSpecs().getTypeName();
+        MicrowaveOvenSpecs specs = (MicrowaveOvenSpecs) microwaveOvenSpecs;
+        //Act
+        String result = specs.getTypeName();
 
-            //Assert
-            assertEquals(expectedResult, result);
-        }
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 
-        @Test
-        public void testIsProgrammable() {
-            //Act
-            boolean result = microwaveOvenSpecs.isProgrammable();
+    @Test
+    public void testIsProgrammable() {
+        //Act
+        boolean result = microwaveOvenSpecs.isProgrammable();
 
-            //Assert
-            assertTrue(result);
-        }
-    */
+        //Assert
+        assertTrue(result);
+    }
+
     @Test
     public void asProgrammable() {
     }
@@ -110,4 +108,5 @@ public class MicrowaveOvenSpecsTest {
     @Test
     public void createNewProgram() {
     }
+    */
 }
