@@ -77,11 +77,7 @@ public class Admin {
                     break;
                 case 10:
                     ImportReadingsFromCSV ui10 = new ImportReadingsFromCSV(geographicalAreaList);
-                    try {
-                        ui10.run();
-                    } catch (FileNotFoundException e) {
-                        System.out.println(e.getMessage() + "\n");
-                    }
+                    ui10.run();
                     break;
             }
             option = Menu.adminGeoAreaMenu();
