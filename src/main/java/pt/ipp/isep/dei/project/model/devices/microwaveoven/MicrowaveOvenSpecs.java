@@ -8,11 +8,9 @@ import java.util.List;
 import java.util.Objects;
 
 public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
-    private static final String ATTRIBUTE_TIME = "Time";
-    private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
+    private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
     private String typeName;
-    private double time;
     private double nominalPower;
     private List<Program> programList;
 
@@ -24,16 +22,6 @@ public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
     @Override
     public String getTypeName() {
         return this.typeName;
-    }
-
-    @Override
-    public boolean isProgrammable() {
-        return true;
-    }
-
-    @Override
-    public Programmable asProgrammable() {
-        return this;
     }
 
     @Override
@@ -55,20 +43,6 @@ public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
         return this.nominalPower;
     }
 
-    /**
-     * set method
-     *
-     * @param time
-     * @return
-     */
-    public boolean setTime(Object time) {
-        double microwaveOvenTime = (Double) time;
-        if (Utils.isSameDouble(this.time, microwaveOvenTime)) {
-            return false;
-        }
-        this.time = microwaveOvenTime;
-        return true;
-    }
 
     /**
      * set method to Nominal Power of an microwave oven
@@ -104,7 +78,7 @@ public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
      */
     @Override
     public int getNumberOfAttributes() {
-        return 2;
+        return 1;
     }
 
     /**
@@ -128,8 +102,6 @@ public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
     @Override
     public Object getAttributeValue(String attributeName) {
         switch (attributeName) {
-            case ATTRIBUTE_TIME:
-                return time;
             case ATTRIBUTE_NOMINAL_POWER:
                 return nominalPower;
             default:
@@ -147,11 +119,6 @@ public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
     @Override
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
-            case ATTRIBUTE_TIME:
-                if (attributeValue instanceof Number) {
-                    return setTime(((Number) attributeValue).doubleValue());
-                }
-                return false;
             case ATTRIBUTE_NOMINAL_POWER:
                 if (attributeValue instanceof Number) {
                     return setNominalPower(((Number) attributeValue).doubleValue());
@@ -173,9 +140,19 @@ public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
     }
 
     @Override
+    public boolean isProgrammable() {
+        return true;
+    }
+
+    @Override
+    public Programmable asProgrammable() {
+        return this;
+    }
+
+    @Override
     public boolean addProgram(Program program) {
-        if (!Objects.isNull(program) && !(getProgramList().contains(program))) {
-            getProgramList().add(program);
+        if (!Objects.isNull(program) && !(programList.contains(program))) {
+            this.programList.add(program);
             return true;
         }
         return false;
