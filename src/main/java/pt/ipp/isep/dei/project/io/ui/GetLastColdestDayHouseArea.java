@@ -38,7 +38,7 @@ public class GetLastColdestDayHouseArea {
         while (flag);
 
         if(!controller.checkMeasurementExistenceBetweenDates(firstDate,lastDate)){
-            System.out.println("There are no valid readings for that period.");
+            System.out.println("There are no valid readings for that period.\n");
         }
         else{
             this.readingDTO = controller.getLastLowestMaximumReading(firstDate,lastDate);
@@ -48,11 +48,11 @@ public class GetLastColdestDayHouseArea {
 
     private void displayResults(LocalDate startDate, LocalDate finalDate){
 
-        String lastColdestDay = this.readingDTO.getDateTime().toString();
+        String lastColdestDay = this.readingDTO.getDateTime().toLocalDate().toString();
         double temperature = Utils.round(this.readingDTO.getValue(),2);
 
         StringBuilder content = new StringBuilder();
-        content.append("The last coldest day (lower maximum temperature) in the house area in the period between");
+        content.append("The last coldest day (lower maximum temperature) in the house area in the period between ");
         content.append(startDate.toString());
         content.append(" and ");
         content.append(finalDate.toString());
@@ -60,7 +60,7 @@ public class GetLastColdestDayHouseArea {
         content.append(lastColdestDay);
         content.append(" with ");
         content.append(temperature);
-        content.append("Celsius");
+        content.append(" Celsius.\n");
 
         System.out.println(content.toString());
     }
