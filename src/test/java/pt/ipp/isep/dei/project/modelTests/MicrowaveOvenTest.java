@@ -12,9 +12,8 @@ import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -116,41 +115,117 @@ public class MicrowaveOvenTest {
         assertTrue(result);
     }
 
-
     @Test
-    public void testGetLocation() {
+    void getLocationTest() {
+        // Arrange
+        Room expectedResult = kitchen;
+
+        // Act
+        Room result = microwaveOven.getLocation();
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testSetLocation() {
+    void setLocationFalseTest() {
+        // Act
+        boolean result = microwaveOven.setLocation(kitchen);
+
+        // Assert
+        assertFalse(result);
     }
 
     @Test
-    public void testGetSpecs() {
+    void setLocationTrueTest() {
+        // Act
+        boolean result = microwaveOven.setLocation(laundry);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void getNominalPowerTest() {
+        //Arrange
+        double expectedResult = 1200.0;
+
+        //Act
+        double result = microwaveOven.getSpecs().getNominalPower();
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
     public void testGetReadings() {
+        //Arrange
+        List<Reading> expectedResult = new ArrayList<>();
+        expectedResult.add(reading0);
+        expectedResult.add(reading1);
+        expectedResult.add(reading2);
+
+        //Act
+        List<Reading> result = microwaveOven.getReadings();
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testGetIsActive() {
+    void getIsActiveTrueTest() {
+        // Act
+        boolean result = microwaveOven.getIsActive();
+
+        // Assert
+        assertTrue(result);
     }
 
     @Test
-    public void testGetDeactivationDate() {
+    void getIsActiveFalseTest() {
+        // arrange
+        microwaveOven.setDeactivateDevice();
+
+        // Act
+        boolean result = microwaveOven.getIsActive();
+
+        // Assert
+        assertFalse(result);
     }
 
     @Test
-    public void testSetDeactivateDevice() {
+    void getDeactivationDate() {
+        // arrange
+        LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
+        microwaveOven.setDeactivateDevice();
+        // act
+        LocalDateTime result = microwaveOven.getDeactivationDate();
+        // assert
+        assertEquals(date, result);
     }
 
     @Test
-    public void testHashCode() {
+    void hashCodeTest() {
+        // Arrange
+        int expectedResult = Objects.hash(microwaveOven.getName());
+
+        // Act
+        int result = microwaveOven.hashCode();
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testEquals() {
+    void equalsDifferentObjectTest() {
+        // Arrange
+        Object object = new Object();
+
+        // Act
+        boolean result = microwaveOven.equals(object);
+
+        // Assert
+        assertFalse(result);
     }
 
 }
