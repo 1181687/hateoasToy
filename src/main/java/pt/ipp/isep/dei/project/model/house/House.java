@@ -758,18 +758,18 @@ public class House {
         return insertedGeoArea.getDateLastMeasurementByLocationType(address.getLocation(), type);
     }
 
-    public LocalDate getFirstHighestReadingDateHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
-        if (Objects.isNull(insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate))) {
+    public LocalDate getFirstHighestReadingDateHouseArea(SensorType type, LocalDate startDate, LocalDate endDate) {
+        if (Objects.isNull(insertedGeoArea.getFirstHighestReading(type, startDate, endDate))) {
             return null;
         }
-        return insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate).getDateTime().toLocalDate();
+        return insertedGeoArea.getFirstHighestReading(type, startDate, endDate).getDateTime().toLocalDate();
     }
 
-    public Double getFirstHighestReadingValueHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
-        if (Objects.isNull(insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate))) {
+    public Double getFirstHighestReadingValueHouseArea(SensorType type, LocalDate startDate, LocalDate endDate) {
+        if (Objects.isNull(insertedGeoArea.getFirstHighestReading(type, startDate, endDate))) {
             return null;
         }
-        return insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate).getValue();
+        return insertedGeoArea.getFirstHighestReading(type, startDate, endDate).getValue();
     }
 
     public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
