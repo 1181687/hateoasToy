@@ -16,6 +16,8 @@ House "1" -> "1" GeographicalArea : directly inserted in
 GeographicalArea "1" -> "1" SensorList
 SensorList "1" --> "0*" Sensor
 Sensor "1" --> "0*" Reading
+ReadingMapper --> Reading
+GetLastColdestDayHouseArea\nController --> ReadingMapper
 
 Class UI {
 -GetLastColdestDayHouseAreaController\n controller
@@ -73,10 +75,15 @@ Class Sensor {
 }
 
 Class Reading {
--field1
--field2
-+method1()
-+method2()
+-double value
+-LocalDateTime dateTime
++getValue()
++getDateTime()
+}
+
+Class ReadingMapper{
++newReadingDTO()
++mapToDTO()
 }
 
 @enduml
