@@ -45,7 +45,7 @@ activate ":House"
 ":House" ->":GeographicalArea": getLastLowestMaximumReading(startDate,endDate)
 activate ":GeographicalArea"
 ref over ":GeographicalArea"
-getLatestReadingFromNearestSensor
+getLastLowestMaximumReading
 end
 
 ":GeographicalArea" --> ":GetLastColdestDay\nHouseAreaController" :Reading
