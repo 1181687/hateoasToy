@@ -1,11 +1,25 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.getDayWithHighestTemperatureAmplitudeController.GetDayWithHighestTemperatureAmplitudeController;
 import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Map;
+
+import static org.testng.Assert.assertEquals;
 
 public class GetDayWithHighestTemperatureAmplitudeControllerTest {
 
@@ -20,7 +34,10 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
     private House house;
     private GetDayWithHighestTemperatureAmplitudeController controller;
 
-/*    @BeforeEach
+    private Map<LocalDate, Double> mapOfDailyAmplitude;
+    private Map<LocalDate, Double> mapResult;
+
+    @BeforeEach
     public void StartUp() {
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -83,14 +100,19 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
 
     }
 
-    *//**
+    /**
      * temperatureSensor1 is the nearest sensor in Geographical area portocity
-     * beforeach has some readings, extra ones where added, included a negative value
-     * expected result {2018-12-04=20, 2018-12-03=6.0, 2018-12-02=7.0}
-     *//*
-     *//*
+     * beforeach has some readings, extra ones where added
+     * dailyAmplitudes_2/12/2018 = 7.0;
+     * dailyAmplitudes_3/12/2018 = 6.0;
+     * dailyAmplitudes_4/12/2018 = 20.0;
+     * 4/12/2018 is the expected date with the daily highest amplitude
+     * expected highest amplipude is 20.
+     * expected result: "The highest temperature amplitude for the chosen period is 20.0 Celsius and was registered on:\n" +
+     *                 "2018-12-04\n"
+     */
     @Test
-    void getDailyAmplitudeInterval() {
+    void getHighestDailyAmplitude_4_12_2018_amplitude20() {
 
         // Extra Reading
         LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
@@ -110,15 +132,11 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         LocalDateTime startDateTime = LocalDateTime.of(2018, 12, 2, 00, 00, 01);
         LocalDateTime endDateTime = LocalDateTime.of(2018, 12, 4, 23, 59, 00);
 
-
-        // Map
-        Map<LocalDate, Double> expectedResult = new HashMap<>();
-        expectedResult.put(time0.toLocalDate(), 7.0);
-        expectedResult.put(time1.toLocalDate(), 6.0);
-        expectedResult.put(time2.toLocalDate(), 20.0);
-
         //Act
-        Map<LocalDate, Double> result = controller.getDailyAmplitudeInIntervalInHouseArea(startDateTime.toLocalDate(), endDateTime.toLocalDate());
+        controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
+        String result = controller.displayResults();
+        String expectedResult = "The highest temperature amplitude for the chosen period is 20.0 Celsius and was registered on:\n" +
+                "2018-12-04\n";
 
         //Assert
         assertEquals(expectedResult, result);
@@ -127,11 +145,15 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
     /**
      * temperatureSensor1 is the nearest sensor in Geographical area portocity
      * beforeach has some readings, extra ones where added
-     * 12/04/2018 has only a DoubleNan values, so the amplitude in that day will be DoubleNan.
-     * expected result {2018-12-04=NaN, 2018-12-03=6.0, 2018-12-02=7.0}
-     *//*
+     * dailyAmplitudes_2/12/2018 = 7.0;
+     * dailyAmplitudes_3/12/2018 = 6.0;
+     * dailyAmplitudes_4/12/2018 = doubleNan;
+     * there is a doubleNan value for the amplitude in 4/12/2018
+     * 02/12/2018 is the expected date with the daily highest amplitude
+     * expected highest amplipude is 7.
+     */
     @Test
-    void getDailyAmplitudeInterval_doubleNanValuesFor4_12_2018() {
+    void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7_2_12_2018() {
 
         // Extra Reading
         double value = Double.NaN;
@@ -144,7 +166,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
         Reading reading6 = new Reading(value, time2);
         LocalDateTime time3 = LocalDateTime.of(2018, 12, 4, 12, 20, 00);
-        Reading reading7 = new Reading(value, time3);
+        Reading reading7 = new Reading(15, time3);
         temperatureSensor1.addReadingsToList(reading6);
         temperatureSensor1.addReadingsToList(reading7);
 
@@ -152,119 +174,55 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         LocalDateTime startDateTime = LocalDateTime.of(2018, 12, 2, 00, 00, 01);
         LocalDateTime endDateTime = LocalDateTime.of(2018, 12, 4, 23, 59, 00);
 
-        // Map expected
-        Map<LocalDate, Double> expectedResult = new HashMap<>();
-        expectedResult.put(time0.toLocalDate(), 7.0);
-        expectedResult.put(time1.toLocalDate(), 6.0);
-        expectedResult.put(time2.toLocalDate(), value);
-
         //Act
-        Map<LocalDate, Double> result = controller.getDailyAmplitudeInIntervalInHouseArea(startDateTime.toLocalDate(), endDateTime.toLocalDate());
+        controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
+        String result = controller.displayResults();
+        String expectedResult = "The highest temperature amplitude for the chosen period is 7.0 Celsius and was registered on:\n" +
+                "2018-12-02\n";
 
         //Assert
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * temperatureSensor1 is the nearest sensor in Geographical area portocity
+     * there aren't measurements in that period
+     * expected a message "There's no registers for this period.\n"
+     **/
     @Test
-    void getDailyAmplitudeInterval_emptySensor_emptyMap() {
+    void getHighestDailyAmplitude_noMeasurements() {
 
         //interval LocalDate
-        LocalDateTime startDateTime = LocalDateTime.of(2018, 12, 12, 00, 00, 01);
-        LocalDateTime endDateTime = LocalDateTime.of(2018, 12, 14, 23, 59, 00);
-
-        // Map expected
-        Map<LocalDate, Double> expectedResult = new HashMap<>();
+        LocalDateTime startDateTime = LocalDateTime.of(2018, 01, 2, 00, 00, 01);
+        LocalDateTime endDateTime = LocalDateTime.of(2018, 02, 4, 23, 59, 00);
 
         //Act
-        Map<LocalDate, Double> result = controller.getDailyAmplitudeInIntervalInHouseArea(startDateTime.toLocalDate(), endDateTime.toLocalDate());
+        controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
+        String result = controller.displayResults();
+        String expectedResult = "There's no registers for this period.\n";
 
         //Assert
         assertEquals(expectedResult, result);
     }
 
-    *//**
-     * temperatureSensor1 is the nearest sensor in Geographical area portocity
-     * beforeach has some readings, extra ones where added
-     * 4/12/2018 is the expected date with the daily highest amplitude
-     * expected highest amplipude is 20.
-     *//*
+    /**
+     * there aren't sensors in that period
+     * expected a message "There's no registers for this period.\n"
+     **/
     @Test
-    void getHighestDailyAmplitude_4_12_2018_amplitude20() {
+    void getHighestDailyAmplitude_noSensor() {
 
-        // LocalDate
-        LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
-        LocalDateTime time1 = LocalDateTime.of(2018, 12, 3, 13, 20, 00);
-        LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
-
-        // Maps
-        Map<LocalDate, Double> dailyAmplitudes = new HashMap<>();
-
-        dailyAmplitudes.put(time0.toLocalDate(), 7.0);
-        dailyAmplitudes.put(time1.toLocalDate(), 6.0);
-        dailyAmplitudes.put(time2.toLocalDate(), 20.0);
-
-        Map<LocalDate, Double> expectedResult = new HashMap<>();
-        expectedResult.put(time2.toLocalDate(), 20.0);
+        //interval LocalDate
+        LocalDateTime startDateTime = LocalDateTime.of(2010, 01, 2, 00, 00, 01);
+        LocalDateTime endDateTime = LocalDateTime.of(2010, 02, 4, 23, 59, 00);
 
         //Act
-        Map<LocalDate, Double> result = controller.getHighestDailyAmplitudeInHouseArea(dailyAmplitudes);
+        controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
+        String result = controller.displayResults();
+        String expectedResult = "There's no registers for this period.\n";
 
         //Assert
         assertEquals(expectedResult, result);
     }
 
-    *//**
-     * temperatureSensor1 is the nearest sensor in Geographical area portocity
-     * beforeach has some readings, extra ones where added
-     * there is a doubleNan value for the amplitude in 4/12/2018
-     * 2/12/2018 is the expected date with the daily highest amplitude
-     * expected highest amplipude is 7.
-     *//*
-    @Test
-    void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7() {
-
-        // LocalDate
-        LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
-        LocalDateTime time1 = LocalDateTime.of(2018, 12, 3, 13, 20, 00);
-        LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
-
-        // Maps
-        Map<LocalDate, Double> dailyAmplitudes = new HashMap<>();
-
-        double value = Double.NaN;
-        dailyAmplitudes.put(time0.toLocalDate(), 7.0);
-        dailyAmplitudes.put(time1.toLocalDate(), 6.0);
-        dailyAmplitudes.put(time2.toLocalDate(), value);
-
-        Map<LocalDate, Double> expectedResult = new HashMap<>();
-        expectedResult.put(time0.toLocalDate(), 7.0);
-
-        //Act
-        Map<LocalDate, Double> result = controller.getHighestDailyAmplitudeInHouseArea(dailyAmplitudes);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    *//**
-     * temperatureSensor1 is the nearest sensor in Geographical area portocity
-     * the Map is empty
-     * expected a empty Map.
-     *//*
-    @Test
-    void getHighestDailyAmplitude_emptyMap_emptyMap() {
-
-        // Maps
-        Map<LocalDate, Double> dailyAmplitudesEmpty = new HashMap<>();
-
-        Map<LocalDate, Double> expectedResult = new HashMap<>();
-
-        //Act
-        Map<LocalDate, Double> result = controller.getHighestDailyAmplitudeInHouseArea(dailyAmplitudesEmpty);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    */
 }

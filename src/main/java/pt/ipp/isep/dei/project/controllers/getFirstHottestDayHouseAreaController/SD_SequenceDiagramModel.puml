@@ -1,57 +1,71 @@
 @startuml
 skinparam sequenceMessageAlign center
 skinparam sequence {
-	ArrowColor Black
-	ActorBorderColor DarkBlue
-	LifeLineBorderColor black
-	LifeLineBackgroundColor LightGrey
+    ArrowColor Black
+    ActorBorderColor DarkBlue
+    LifeLineBorderColor black
+    LifeLineBackgroundColor LightGrey
 
-	ParticipantBorderColor Black
-	ParticipantBackgroundColor LightGrey
-	ParticipantFontStyle Bold
+    ParticipantBorderColor Black
+    ParticipantBackgroundColor LightGrey
+    ParticipantFontStyle Bold
 
-	ActorBackgroundColor DimGrey
-	ActorFontColor DeepSkyBlue
-	ActorFontStyle Bold
-	ActorFontSize 17
-	ActorFontName Aapex
+    ActorBackgroundColor DimGrey
+    ActorFontColor DeepSkyBlue
+    ActorFontStyle Bold
+    ActorFontSize 17
+    ActorFontName Aapex
 }
 
 actor RegularUser
-RegularUser -> ":UI":
-activate ":UI"
-":UI" -> ":Controller":
-activate ":Controller"
-":Controller" -> ":House":
-activate ":House"
-":Controller" <-- ":House":
-deactivate ":House"
-":UI" <-- ":Controller":
-deactivate ":Controller"
-RegularUser <-- ":UI":
-deactivate ":UI"
+activate RegularUser
+RegularUser -> ":GetFirst\nHottestDay\nHouseAreaUI": 1- getDayWithHighest\nTemperature
+ref over ":GetFirst\nHottestDay\nHouseAreaUI"
+checkIfThereAreTemperatureSensors
+end
+activate ":GetFirst\nHottestDay\nHouseAreaUI"
 
-RegularUser -> ":UI":
-activate ":UI"
-":UI" -> ":Controller":
-activate ":Controller"
-":Controller" -> ":House":
-activate ":House"
-":Controller" <-- ":House":
-deactivate ":House"
-deactivate ":Controller"
 
-PowerUser -> ":UI":
-PowerUser -> ":UI":
-":UI" -> ":Controller":
-activate ":Controller"
-":Controller" -> ":Device":
-activate ":Device"
-":Controller" <-- ":Device":
-deactivate ":Device"
-":UI" <-- ":Controller":
-deactivate ":Controller"
-PowerUser <-- ":UI":
-deactivate ":UI"
+
+":GetFirst\nHottestDay\nHouseAreaUI" --> "RegularUser": 6-Insert Initial Date
+deactivate ":GetFirst\nHottestDay\nHouseAreaUI"
+":GetFirst\nHottestDay\nHouseAreaUI" <- "RegularUser": 6-Initial Date
+activate ":GetFirst\nHottestDay\nHouseAreaUI"
+":GetFirst\nHottestDay\nHouseAreaUI" --> "RegularUser": 6-Insert Final Date
+deactivate ":GetFirst\nHottestDay\nHouseAreaUI"
+":GetFirst\nHottestDay\nHouseAreaUI" <- "RegularUser": 6-Final Date
+activate ":GetFirst\nHottestDay\nHouseAreaUI"
+ref over ":GetFirst\nHottestDay\nHouseAreaUI"
+checkIfThereAreReadings
+end
+":GetFirst\nHottestDay\nHouseAreaUI" -> ":GetFirst\nHottestDay\nHouseArea\nController": getFirstHighestReadingHouseArea
+activate ":GetFirst\nHottestDay\nHouseArea\nController"
+":GetFirst\nHottestDay\nHouseArea\nController" -> ":House": getFirstHighestReadingHouseArea
+activate ":House"
+":House" ->":GeographicalArea": getFirstHighestReadingHouseArea
+activate ":GeographicalArea"
+ref over ":GeographicalArea"
+getLatestReadingFromNearestSensor
+end
+
+":GeographicalArea" --> ":GetFirst\nHottestDay\nHouseArea\nController" :Reading
+deactivate ":GeographicalArea"
+deactivate ":House"
+":GetFirst\nHottestDay\nHouseArea\nController" ->"ReadingMapper": mapToDTO(reading)
+activate "ReadingMapper"
+"ReadingMapper" -> ":ReadingDTO": create ReadingDTO
+activate ":ReadingDTO"
+":ReadingDTO" --> ":GetFirst\nHottestDay\nHouseAreaUI": ReadingDTO
+deactivate ":ReadingDTO"
+
+deactivate "ReadingMapper"
+deactivate ":GetFirst\nHottestDay\nHouseArea\nController"
+
+
+":GetFirst\nHottestDay\nHouseAreaUI" --> ":GetFirst\nHottestDay\nHouseAreaUI" : getDTOValue
+":GetFirst\nHottestDay\nHouseAreaUI" --> ":GetFirst\nHottestDay\nHouseAreaUI" : getDTODateTime
+
+":GetFirst\nHottestDay\nHouseAreaUI" --> RegularUser : display first hottest \n day and it's value
+deactivate ":GetFirst\nHottestDay\nHouseAreaUI"
 
 @enduml

@@ -276,12 +276,16 @@ public class Sensor {
      * @return last measurement
      */
     public Reading getLastMeasurement() {
+        if (listOfReadings.isEmpty()) {
+            return null;
+        }
+        Reading reading = listOfReadings.get(0);
         for (int i = (listOfReadings.size() - 1); i >= 0; i--) {
             if (!(Double.isNaN(listOfReadings.get(i).getValue()))) {
                 return listOfReadings.get(i);
             }
         }
-        return null;
+        return reading;
     }
 
     /**
@@ -507,7 +511,7 @@ public class Sensor {
         return measurementsBetweenDates;
     }
 
-    public Reading getHighestReading(LocalDate startDate, LocalDate endDate) {
+    public Reading getFirstHighestReading(LocalDate startDate, LocalDate endDate) {
         if (getReadingsBetweenDates(startDate, endDate).isEmpty()) {
             return null;
         }
@@ -523,10 +527,10 @@ public class Sensor {
     }
 
     public Reading getHighestReadingOfADay(LocalDate day) {
-        if (getDailyMeasurement(day).isEmpty()) {
+        if (getDailyMeasurementWithDoubleNaN(day).isEmpty()) {
             return null;
         }
-        Reading highestReading = getDailyMeasurement(day).get(0);
+        Reading highestReading = getDailyMeasurementWithDoubleNaN(day).get(0);
         for (Reading reading : getDailyMeasurement(day)) {
             if (!Double.isNaN(reading.getValue()) && Utils.isFirstDoubleBiggerOrEqualThanSecondOne(reading.getValue(), highestReading.getValue())) {
                 highestReading = reading;
@@ -566,5 +570,18 @@ public class Sensor {
      */
     public List<Reading> getListOfReadings() {
         return listOfReadings;
+    }
+
+    public List<Reading> getDailyMeasurementWithDoubleNaN(LocalDate date) {
+        List<Reading> registosDoDia = new ArrayList<>();
+        for (Reading registo : listOfReadings) {
+            LocalDate secondDate = registo.getDateTime().toLocalDate();
+
+            if (checkIfDaysAreEqual(date, secondDate)) {
+                registosDoDia.add(registo);
+            }
+        }
+        return registosDoDia;
+
     }
 }

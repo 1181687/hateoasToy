@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.devices.electricoven.ElectricOvenType;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -31,6 +32,8 @@ class ElectricOvenTest {
     private Reading reading0;
     private Reading reading1;
     private Reading reading2;
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
+
 
 
     @BeforeEach
@@ -186,6 +189,19 @@ class ElectricOvenTest {
     void setLocationTrueTest() {
         // Act
         boolean result = electricOven.setLocation(laundry);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void setLocationTrueTestNullValue() {
+        // Act
+        ElectricOvenType electricOvenType = new ElectricOvenType();
+        Device maquina = electricOvenType.createDevice("nome");
+
+        boolean result = maquina.setLocation(laundry);
+
 
         // Assert
         assertTrue(result);
@@ -455,7 +471,7 @@ class ElectricOvenTest {
     @Test
     public void getAttributeValueNotValidTest() {
         // Arrange
-        Object expectedResult = -1;
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
 
         // Act
         Object result = electricOven.getAttributeValue("Not Valid");

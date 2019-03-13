@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.kettle.KettleType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -13,8 +14,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class KettleTest {
 
@@ -104,6 +104,19 @@ public class KettleTest {
 
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    void setLocationTrueTestNullValue() {
+        // Act
+        KettleType type = new KettleType();
+        Device maquina = type.createDevice("nome");
+
+        boolean result = maquina.setLocation(laundry);
+
+
+        // Assert
+        assertTrue(result);
     }
 
     /**
@@ -331,13 +344,4 @@ public class KettleTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-
-
-    //Arrange
-    //Act
-    //Assert
-    //assertEquals(expectedResult, result);
-
-
-
 }

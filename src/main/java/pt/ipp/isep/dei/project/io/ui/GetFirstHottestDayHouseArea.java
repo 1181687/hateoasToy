@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.getFirstHottestDayHouseAreaController.GetFirstHottestDayHouseAreaController;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -8,12 +9,17 @@ import java.time.LocalDate;
 
 public class GetFirstHottestDayHouseArea {
     private GetFirstHottestDayHouseAreaController ctrl;
+    private ReadingDTO readingDTO;
 
     public GetFirstHottestDayHouseArea(House house) {
         this.ctrl = new GetFirstHottestDayHouseAreaController(house);
     }
 
     public void run() {
+        if (ctrl.isSensorListOfATypeEmpty()) {
+            System.out.println("There are no temperature sensors in the house area.\n");
+            return;
+        }
         boolean flag;
         LocalDate initialDate;
         LocalDate finalDate;
@@ -28,19 +34,18 @@ public class GetFirstHottestDayHouseArea {
                 flag = true;
             }
         } while (flag);
-        if (ctrl.sensorListOfATypeIfEmpty(ctrl.getTypeTemperature())) {
-            System.out.println("There are no temperature sensors in the house area.\n");
-            return;
-        }
-        ctrl.getChosenSensor();
-        if (!ctrl.checkSensorReadingsExistenceBetweenDates(initialDate, finalDate) ||
-                Double.isNaN(ctrl.getFirstHighestReadingValueHouseArea(initialDate, finalDate))) {
+        if (!ctrl.checkNearestSensorReadingsExistenceBetweenDates(initialDate, finalDate)) {
             System.out.println("It is not possible to present valid readings in the house area.\n");
             return;
         }
+        readingDTO = ctrl.getFirstHighestReadingHouseArea(initialDate, finalDate);
+        if (Double.isNaN(readingDTO.getValue())) {
+            System.out.println("Last reading in the house area is not valid.\n");
+            return;
+        }
         System.out.println("The first hottest day in the house area in the chosen interval is " +
-                ctrl.getFirstHighestReadingDateHouseArea(initialDate, finalDate) +
+                readingDTO.getDateTime().toLocalDate() +
                 " (maximum temperature of " +
-                Utils.round(ctrl.getFirstHighestReadingValueHouseArea(initialDate, finalDate), 2) + " Celsius).\n");
+                Utils.round(readingDTO.getValue(), 2) + " Celsius).\n");
     }
 }

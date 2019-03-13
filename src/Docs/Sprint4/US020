@@ -8,7 +8,6 @@ TEAM MEMBERS: Developer - Luis de Almeida; QA - Gabriela Alves;
 ACCEPTANCE CRITERIA:
 
 General Criteria:
-- All acceptance tests with "Process finished with exit code 0" message.
 - Correct Sequence and Class Diagrams.
 - JavaDoc documentation in both code and tests.
 - JUnit conventions in code and tests. (eg. tests should be named like this:
@@ -22,14 +21,20 @@ Specific Criteria:
 - then - A success message is displayed if all the sensors readings are inserted ("All readings were imported successfully").
 - but - The following messages are displayed:
 
-"No such file or directory" - when no file or directory is found when the user inputs the name of the file from where to
+"ERROR: There's no such file with that name." - when no file or directory is found when the user inputs the name of the
+file from where to
 import the readings.
-"Some readings weren't imported. Do you wish to see them." - when at least more than 80% of the readings were
-successfully imported and the rest (20%) are displayed to the user if he/she chooses to see them.
-"The content of the file could not be imported, because it does not meet the minimum criteria (80%) of valid readings."
-- when at least more than 20% of the readings could not be successfully imported.
+"Some readings weren't imported. Do you want to see them? (Y/N)" - when some readings weren't
+successfully imported. If the user chooses "Y", it´s displayed the message "The following readings weren't imported:"
+ and shows the readings.
+
+
+Test Criteria:
+- All acceptance tests with "Process finished with exit code 0" message.
+- Test1
+
+
+
 
 ASSUMPTIONS:
 There is User interaction: the application asks the user the location of the files to be imported.
-
-OTHER INFORMATION:

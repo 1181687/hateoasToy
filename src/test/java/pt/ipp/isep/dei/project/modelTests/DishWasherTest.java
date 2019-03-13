@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.devices.dishwasher.DishWasherType;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -187,6 +188,19 @@ class DishWasherTest {
     void setLocationTrueTest() {
         // Act
         boolean result = dishWasher.setLocation(laundry);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void setLocationTrueTestNullValue() {
+        // Act
+        DishWasherType dishWasherType = new DishWasherType();
+        Device maquina = dishWasherType.createDevice("nome");
+
+        boolean result = maquina.setLocation(laundry);
+
 
         // Assert
         assertTrue(result);
@@ -424,70 +438,6 @@ class DishWasherTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-
-    /*@Test
-    public void newProgram() {
-        //Arrange
-        String programName = "Economic";
-        double duration = 0.5;
-        double energyConsumption = 12.0;
-        Programmable dishwasher = this.dishwasher.asProgrammable();
-        TimeConstantProgramSpecs expectedResult = new TimeConstantProgramSpecs(programName, duration, energyConsumption);
-        //Act
-        TimeConstantProgramSpecs result = dishwasher.newProgram(programName, duration, energyConsumption);
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
-        //Arrange
-        TimeConstantProgramSpecs program = null;
-        boolean expectedResult = false;
-        Programmable programmable = this.dishwasher.asProgrammable();
-        //Act
-        boolean result = programmable.addProgram(program);
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
-        //Arrange
-        String programName = "fast";
-        double duration = 15;
-        double energyConsumption = 1;
-        Programmable programmable = this.dishwasher.asProgrammable();
-        TimeConstantProgramSpecs programA = programmable.newProgram(programName, duration, energyConsumption);
-        TimeConstantProgramSpecs programB = programmable.newProgram(programName, duration, energyConsumption);
-        programmable.addProgram(programA);
-        boolean expectedResult = false;
-
-        //Act
-        boolean result = programmable.addProgram(programB);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
-        //Arrange
-        String programName = "fast";
-        double duration = 15;
-        double energyConsumption = 1;
-        Programmable programmable = this.dishwasher.asProgrammable();
-        TimeConstantProgramSpecs programA = programmable.newProgram(programName, duration, energyConsumption);
-
-        boolean expectedResult = true;
-
-        //Act
-        boolean result = programmable.addProgram(programA);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
     @Test
     public void testGetReadings() {
         //Arrange
@@ -497,10 +447,10 @@ class DishWasherTest {
         expectedResult.add(reading2);
 
         //Act
-        List<Reading> result = dishwasher.getReadings();
+        List<Reading> result = dishWasher.getReadings();
 
         //Assert
         assertEquals(expectedResult, result);
 
-    }*/
+    }
 }

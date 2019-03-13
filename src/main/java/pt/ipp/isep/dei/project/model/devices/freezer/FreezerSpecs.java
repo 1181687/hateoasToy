@@ -123,13 +123,8 @@ public class FreezerSpecs implements DeviceSpecs {
             case ATTRIBUTE_NOMINAL_POWER:
                 return nominalPower;
             default:
-                return -1;
+                return NOT_VALID_ATTRIBUTE;
         }
-    }
-
-    @Override
-    public String getAttributeDataType(String attributeName) {
-        return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 
     @Override

@@ -1,0 +1,33 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+    ArrowColor Black
+    ActorBorderColor DarkBlue
+    LifeLineBorderColor black
+    LifeLineBackgroundColor LightGrey
+
+    ParticipantBorderColor Black
+    ParticipantBackgroundColor LightGrey
+    ParticipantFontStyle Bold
+
+    ActorBackgroundColor DimGrey
+    ActorFontColor DeepSkyBlue
+    ActorFontStyle Bold
+    ActorFontSize 17
+    ActorFontName Aapex
+}
+
+":GetFirst\nHottestDay\nHouseAreaUI" -> ":GetFirst\nHottestDay\nHouseArea\nController": 2-isSensorListOfATypeEmpty()
+activate ":GetFirst\nHottestDay\nHouseAreaUI"
+activate ":GetFirst\nHottestDay\nHouseArea\nController"
+":GetFirst\nHottestDay\nHouseArea\nController" -> ":House": 3-isSensorListOfATypeEmpty()
+activate ":House"
+":House" -> ":GeographicalArea": 4-isSensorListOfAGiven\nTypeEmpty(SensorType)
+activate ":GeographicalArea"
+":GetFirst\nHottestDay\nHouseAreaUI" <-- ":GeographicalArea": 5-boolean
+deactivate ":GeographicalArea"
+deactivate ":House"
+deactivate ":GetFirst\nHottestDay\nHouseArea\nController"
+deactivate ":GetFirst\nHottestDay\nHouseAreaUI"
+
+@enduml

@@ -17,41 +17,14 @@ skinparam sequence {
 	ActorFontName Aapex
 }
 
-actor RegularUser
-RegularUser -> ":UI":
-activate ":UI"
-":UI" -> ":Controller":
-activate ":Controller"
-":Controller" -> ":House":
-activate ":House"
-":Controller" <-- ":House":
-deactivate ":House"
-":UI" <-- ":Controller":
-deactivate ":Controller"
-RegularUser <-- ":UI":
-deactivate ":UI"
+activate AdminUser
+actor AdminUser
 
-RegularUser -> ":UI":
-activate ":UI"
-":UI" -> ":Controller":
-activate ":Controller"
-":Controller" -> ":House":
-activate ":House"
-":Controller" <-- ":House":
-deactivate ":House"
-deactivate ":Controller"
+AdminUser -> ":ImportReadings\nFromCSVReaderUI":
+activate ":ImportReadings\nFromCSVReaderUI"
+":ImportReadings\nFromCSVReaderUI" ->
+activate ":JSONReader"
 
-PowerUser -> ":UI":
-PowerUser -> ":UI":
-":UI" -> ":Controller":
-activate ":Controller"
-":Controller" -> ":Device":
-activate ":Device"
-":Controller" <-- ":Device":
-deactivate ":Device"
-":UI" <-- ":Controller":
-deactivate ":Controller"
-PowerUser <-- ":UI":
-deactivate ":UI"
+deactivate AdminUser
 
 @enduml

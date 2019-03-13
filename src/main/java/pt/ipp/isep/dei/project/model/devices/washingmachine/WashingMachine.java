@@ -62,9 +62,10 @@ public class WashingMachine implements Device {
      */
     @Override
     public boolean setName(String name) {
-        if (this.location.isDeviceNameExistant(name) || this.name == name) {
+        if (this.location.isDeviceNameExistant(name)) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
+        if (this.name == name) throw new RuntimeException("Name already exists. Please write a new one.");
         this.name = name;
         return true;
     }
@@ -165,20 +166,5 @@ public class WashingMachine implements Device {
     public boolean getIsActive() {
         return isActive;
     }
-
-    /*@Override
-    public boolean isProgrammable() {
-        return true;
-    }
-
-    @Override
-    public Programmable asProgrammable(){
-        return this;
-    }
-
-    @Override
-    public boolean addProgram(TimeConstantProgramSpecs program) {
-        return specs.addProgram(program);
-    }*/
 
 }

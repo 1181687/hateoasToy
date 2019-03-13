@@ -20,22 +20,17 @@ public class GetLastColdestDayHouseArea {
 
     public void run() {
 
-        if (!controller.hasSensorsOfCertainTypeInInsertedGeoArea()) {
-            System.out.println("There are no temperature sensors in the House Area.\n");
+        if (!controller.hasSensorsOfGivenTypeInGeoArea()) {
+            System.out.println("There are no temperature sensors in the house area.\n");
         } else {
 
-            getFirstAndLastDate();
+            askAndValidateFirstAndLastDate();
 
-            if (!controller.hasReadingsBetweenDates(this.firstDate, this.lastDate)) {
-                System.out.println("There are no valid readings for that period.\n");
-            } else {
-                this.readingDTO = controller.getLastLowestMaximumReading(this.firstDate, this.lastDate);
-                displayResults();
-            }
+            getLastColdestDayReadingAndDisplayResults();
         }
     }
 
-    private void getFirstAndLastDate() {
+    private void askAndValidateFirstAndLastDate() {
         boolean flag;
         do {
             flag = false;
@@ -54,7 +49,21 @@ public class GetLastColdestDayHouseArea {
         while (flag);
     }
 
-    private void displayResults() {
+    private void getLastColdestDayReadingAndDisplayResults() {
+        if (!controller.hasReadingsBetweenDates(this.firstDate, this.lastDate)) {
+            System.out.println("There are no valid readings in the nearest sensor for that period.\n");
+        } else {
+            this.readingDTO = controller.getLastLowestMaximumReading(this.firstDate, this.lastDate);
+
+            if (Double.isNaN(this.readingDTO.getValue())) {
+                System.out.println("The last reading of the nearest sensor is not valid.");
+            } else {
+                resultToString();
+            }
+        }
+    }
+
+    private void resultToString() {
 
         String lastColdestDay = this.readingDTO.getDateTime().toLocalDate().toString();
         double temperature = Utils.round(this.readingDTO.getValue(), 2);

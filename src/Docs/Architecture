@@ -2,3 +2,4 @@ ARCHITECTURE
 
 - The architecture of our software is based on three layers: UI, Controller and Model.
 - The UI Layer communicates with the Controller, which, in turn, communicates with the Model layer.
+All data exchange between controller and UI classes will use DTOs, in order to improve application's serviceability

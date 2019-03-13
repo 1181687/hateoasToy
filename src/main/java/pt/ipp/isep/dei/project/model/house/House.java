@@ -9,7 +9,6 @@ import pt.ipp.isep.dei.project.model.devices.DeviceType;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -761,12 +760,13 @@ public class House {
         return insertedGeoArea.getDateLastMeasurementByLocationType(address.getLocation(), type);
     }
 
-    public LocalDate getFirstHighestReadingDateHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
+
+    public Reading getFirstHighestReadingHouseArea(SensorType type, LocalDate startDate, LocalDate endDate) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        if (Objects.isNull(insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate))) {
+        if (Objects.isNull(insertedGeoArea.getFirstHighestReading(type, startDate, endDate))) {
             return null;
         }
-        return insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate).getDateTime().toLocalDate();
+        return insertedGeoArea.getFirstHighestReading(type, startDate, endDate).getDateTime().toLocalDate();
     }
 
     public Double getFirstHighestReadingValueHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
@@ -826,5 +826,14 @@ public class House {
     public SensorList getTheSensorListOfAGivenType(SensorType type) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
         return insertedGeoArea.getTheSensorListOfAGivenType(type);
+    }
+
+    public boolean isSensorListOfAGivenTypeEmpty(SensorType type) {
+        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
+        return insertedGeoArea.isSensorListOfAGivenTypeEmpty(type);
+    }
+
+    public boolean checkNearestSensorReadingsExistenceBetweenDates(SensorType type, LocalDate startDate, LocalDate endDate) {
+        return getNearestSensorWithMostRecentReading(type, this.getLocation()).checkMeasurementExistenceBetweenDates(startDate, endDate);
     }
 }

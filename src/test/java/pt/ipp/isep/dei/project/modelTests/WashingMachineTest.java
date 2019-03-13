@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.washingmachine.WashingMachineType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -174,9 +175,22 @@ class WashingMachineTest {
     }
 
     @Test
+    void setLocationTrueTestNullValue() {
+        // Act
+        WashingMachineType type = new WashingMachineType();
+        Device maquina = type.createDevice("nome");
+
+        boolean result = maquina.setLocation(kitchen);
+
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
     void getDevSpecsAttributesToStringTest() {
         // Arrange
-        String expectedResult = "1 - Capacity: 40\n" +
+        String expectedResult = "1 - Capacity: 40.0\n" +
                 "2 - Nominal Power: 1000.0\n";
         // Act
         String result = washingMachine.getDevSpecsAttributesToString();
@@ -391,67 +405,4 @@ class WashingMachineTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-
-    /*@Test
-    public void newProgram() {
-        //Arrange
-        String programName = "Economic";
-        double duration = 0.5;
-        double energyConsumption = 12.0;
-        Programmable programmable = this.washingMachine.asProgrammable();
-        TimeConstantProgramSpecs expectedResult = new TimeConstantProgramSpecs(programName, duration, energyConsumption);
-        //Act
-        TimeConstantProgramSpecs result = programmable.newProgram(programName, duration, energyConsumption);
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
-        //Arrange
-        TimeConstantProgramSpecs program = null;
-        boolean expectedResult = false;
-        Programmable programmable = this.washingMachine.asProgrammable();
-        //Act
-        boolean result = programmable.addProgram(program);
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
-        //Arrange
-        String programName = "fast";
-        double duration = 15;
-        double energyConsumption = 1;
-        Programmable programmable = this.washingMachine.asProgrammable();
-        TimeConstantProgramSpecs programA = programmable.newProgram(programName, duration, energyConsumption);
-        TimeConstantProgramSpecs programB = programmable.newProgram(programName, duration, energyConsumption);
-        programmable.addProgram(programA);
-        boolean expectedResult = false;
-
-        //Act
-        boolean result = programmable.addProgram(programB);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
-        //Arrange
-        String programName = "fast";
-        double duration = 15;
-        double energyConsumption = 1;
-        Programmable programmable = this.washingMachine.asProgrammable();
-        TimeConstantProgramSpecs programA = programmable.newProgram(programName, duration, energyConsumption);
-
-        boolean expectedResult = true;
-
-        //Act
-        boolean result = programmable.addProgram(programA);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }*/
 }
