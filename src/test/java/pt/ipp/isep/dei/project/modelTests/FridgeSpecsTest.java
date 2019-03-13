@@ -140,12 +140,36 @@ public class FridgeSpecsTest {
     }
 
     @Test
+    public void testGetAttributeValueNominalPowerNullChar() {
+        // Arrange
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+
+        // Act
+        Object result = fridge.getSpecs().getAttributeValue("\0Nominal Power");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void testGetAttributeValueFreezerCapacity() {
         // Arrange
         Object expectedResult = 20.0;
 
         // Act
         Object result = fridge.getSpecs().getAttributeValue("Freezer Capacity");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueFreezerCapacityNullChar() {
+        // Arrange
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+
+        // Act
+        Object result = fridge.getSpecs().getAttributeValue("\0Freezer Capacity");
 
         // Assert
         assertEquals(expectedResult, result);
@@ -164,12 +188,36 @@ public class FridgeSpecsTest {
     }
 
     @Test
+    public void testGetAttributeValueRefrigeratorCapacityNullChar() {
+        // Arrange
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+
+        // Act
+        Object result = fridge.getSpecs().getAttributeValue("\0Refrigerator Capacity");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void testGetAttributeValueAnnualEnergyConsumption() {
         // Arrange
         Object expectedResult = 10000.0;
 
         // Act
         Object result = fridge.getSpecs().getAttributeValue("Annual Energy Consumption");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueAnnualEnergyConsumptionNullChar() {
+        // Arrange
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+
+        // Act
+        Object result = fridge.getSpecs().getAttributeValue("\0Annual Energy Consumption");
 
         // Assert
         assertEquals(expectedResult, result);
@@ -212,6 +260,17 @@ public class FridgeSpecsTest {
     }
 
     @Test
+    public void testSetAttributeFreezerCapacityValueNullChar() {
+        // Arrange
+        String stuff = "stuff";
+
+        // Act
+        boolean result = fridge.getSpecs().setAttributeValue("\0Freezer Capacity", stuff);
+
+        // Assert
+        assertFalse(result);
+    }
+    @Test
     public void testSetAttributeRefrigeratorCapacityValueValidType() {
         // Arrange
         double refrigeratorCapacity = 20;
@@ -230,6 +289,18 @@ public class FridgeSpecsTest {
 
         // Act
         boolean result = fridge.getSpecs().setAttributeValue("Refrigerator Capacity", stuff);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeRefrigeratorCapacityValueNullChar() {
+        // Arrange
+        String stuff = "stuff";
+
+        // Act
+        boolean result = fridge.getSpecs().setAttributeValue("\0Refrigerator Capacity", stuff);
 
         // Assert
         assertFalse(result);
@@ -260,7 +331,19 @@ public class FridgeSpecsTest {
     }
 
     @Test
-    public void testSetAttributeNominalPowerValueNotAValidType() {
+    public void testSetAttributeAnnualPowerConsumptionValueNullChar() {
+        // Arrange
+        String stuff = "stuff";
+
+        // Act
+        boolean result = fridge.getSpecs().setAttributeValue("\0Annual Energy Consumption", stuff);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerValueValueValidType() {
         // Arrange
         double nominalPower = 1.5;
 
@@ -269,6 +352,30 @@ public class FridgeSpecsTest {
 
         // Assert
         assertTrue(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerValueValueNotValidType() {
+        // Arrange
+        String stuff = "stuff";
+
+        // Act
+        boolean result = fridge.getSpecs().setAttributeValue("Nominal Power", stuff);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerValueNullChar() {
+        // Arrange
+        String stuff = "stuff";
+
+        // Act
+        boolean result = fridge.getSpecs().setAttributeValue("\0Nominal Power", stuff);
+
+        // Assert
+        assertFalse(result);
     }
 
     @Test
