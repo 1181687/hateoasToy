@@ -38,9 +38,8 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
-        Address address = new Address("4200-072", houseLocation);
+        Address address = new Address("4200-072", houseLocation, insertedGeoArea);
         house.setAddress(address);
-        house.setInsertedGeoArea(insertedGeoArea);
 
         SensorType sensorType = new SensorType("Temperature");
 

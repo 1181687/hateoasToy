@@ -87,7 +87,7 @@ public class Admin {
 
             switch (option) {
                 case 1:
-                    ConfHouseLocation ui101 = new ConfHouseLocation(house);
+                    ConfHouseLocation ui101 = new ConfHouseLocation(geographicalAreaList, house);
                     ui101.run();
                     break;
                 case 2:

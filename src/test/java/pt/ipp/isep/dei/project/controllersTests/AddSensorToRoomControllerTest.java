@@ -38,10 +38,8 @@ class AddSensorToRoomControllerTest {
         this.houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         Location houseLocation = new Location(41.177748, -8.607745, 112);
 
-        Address address = new Address("4200-072", houseLocation);
+        Address address = new Address("4200-072", houseLocation, CampusDoIsep);
         houseEdificioB.setAddress(address);
-        houseEdificioB.setInsertedGeoArea(CampusDoIsep);
-
     }
 
     @Test

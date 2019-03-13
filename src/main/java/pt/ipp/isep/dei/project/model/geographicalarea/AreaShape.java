@@ -20,6 +20,24 @@ public class AreaShape {
     }
 
     /**
+     * Get method for Width.
+     *
+     * @return
+     */
+    public double getWidth() {
+        return width;
+    }
+
+    /**
+     * Get method for Length.
+     *
+     * @return
+     */
+    public double getLength() {
+        return length;
+    }
+
+    /**
      * method that check if a location is inserted in an area
      * @param location
      * @return a location with their geographical coordinates
