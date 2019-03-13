@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.utils.JSONReader;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
@@ -23,7 +24,8 @@ public class ImportReadingsFromJSON {
 
         // Write the path
         String pathJSONFile = InputValidator.getString("Please specify the name of the JSON file to import.");
-        FileReader reader = checkIfFileExistsAndCreateFileReader(pathJSONFile);
+        File file = new File(pathJSONFile);
+        FileReader reader = checkIfFileExistsAndCreateFileReader(file);
         if (Objects.isNull(reader)) {
             System.out.println("\nERROR: There's no such file with that name.\n");
             return;
@@ -42,31 +44,33 @@ public class ImportReadingsFromJSON {
 
         System.out.println(confirmOptions + "\n" + areaGeo1 + "\n" + areaGeo2 + "\n");
 
-
         // Import confirmation
         String importConfirmation = InputValidator.confirmValidation("Do you want to import these geographic areas and their sensors? (Y/N)");
         if ("Y".equals(importConfirmation) || "y".equals(importConfirmation)) {
-            controller.importGeographicalAreaAndSensors(dtoList);
-            System.out.println("\n The JSON file was imported with success.\n");
-            return;
+            if (controller.importGeographicalAreaAndSensors(dtoList)) {
+                System.out.println("\n The JSON file was imported with success.\n");
+                return;
+            } else {
+                System.out.println("The file is already imported.\n");
+                return;
+            }
         } else {
             System.out.println("The JSON file was not imported. \n");
             return;
         }
-
-
     }
+
 
     /**
      * Method that checks if a file is valid (if it exists) and creates a scanner based on it.
      *
-     * @param pathCSVFile Path of the CSV file.
+     * @param fileJSON Path of the CSV file.
      * @return Null scanner if there's no such file with the specified name; or a valid scanner if the file exists.
      */
-    public FileReader checkIfFileExistsAndCreateFileReader(String pathCSVFile) {
+    public FileReader checkIfFileExistsAndCreateFileReader(File fileJSON) {
         FileReader file;
         try {
-            file = new FileReader(pathCSVFile);
+            file = new FileReader(fileJSON);
         } catch (FileNotFoundException e) {
             file = null;
         }

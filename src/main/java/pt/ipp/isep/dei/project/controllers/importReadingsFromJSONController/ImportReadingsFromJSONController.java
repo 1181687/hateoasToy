@@ -17,14 +17,18 @@ public class ImportReadingsFromJSONController {
     }
 
     public boolean importGeographicalAreaAndSensors(List<GeographicalAreaDTO> geoAreaObjects) {
+        boolean imported = false;
         for (GeographicalAreaDTO geoObject : geoAreaObjects) {
             GeographicalArea geoArea = GeographicalAreaMapping.mapToEntityGeoArea(geoObject);
             for (SensorDTO sensorDTO : geoObject.getSensors()) {
                 geoArea.addSensor(SensorMapper.mapToEntity(sensorDTO));
             }
-            geographicalAreaList.addGeoArea(geoArea);
+            if (geographicalAreaList.addGeoArea(geoArea)) {
+                imported = true;
+            }
         }
-        return true;
+        return imported;
+
     }
 
 
