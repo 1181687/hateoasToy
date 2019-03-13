@@ -6,21 +6,24 @@ import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GeographicalAreaDTOTest {
 
     private GeographicalAreaDTO portoCity;
-    private Sensor temperatureSensor;
+    private SensorDTO temperatureSensor;
     private SensorType temperature;
 
     @BeforeEach
     public void StartUp() {
-
         // Geographical Areas
         portoCity = new GeographicalAreaDTO();
         portoCity.setId("S001");
@@ -31,7 +34,9 @@ public class GeographicalAreaDTOTest {
         temperature = new SensorType("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(42.1596, -8.6109, 97);
-        temperatureSensor = new Sensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        Sensor sensor = new Sensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        temperatureSensor = SensorMapper.entityToMap(sensor);
+        portoCity.addSensor(temperatureSensor);
     }
 
     @Test
@@ -109,7 +114,7 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
-    /*
+
     @Test
     public void setAndGetLengthTest_getLengthAndChangeLength_15 () {
         // arrange
@@ -122,7 +127,7 @@ public class GeographicalAreaDTOTest {
         // assert
         assertEquals(expectedResult, result);
     }
-*/
+
     @Test
     public void setAndGetLatitudeTest_getLatitudeAndChangeLatitude_20() {
         // arrange
@@ -159,6 +164,20 @@ public class GeographicalAreaDTOTest {
         double result = portoCity.getAltitude();
 
         // assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getSensors() {
+        //arrange
+        List<SensorDTO> expectedResult = new ArrayList<>();
+        expectedResult.add(temperatureSensor);
+
+        //act
+        List <SensorDTO> result = portoCity.getSensors();
+
+
+        //assert
         assertEquals(expectedResult, result);
     }
 }

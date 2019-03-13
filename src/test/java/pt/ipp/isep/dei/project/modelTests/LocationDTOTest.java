@@ -21,8 +21,6 @@ public class LocationDTOTest {
         double elevation=150;
 
 
-
-
     }
 
     @Test
