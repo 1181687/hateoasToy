@@ -8,7 +8,6 @@ TEAM MEMBERS: Developer - Gabriela Alves; QA - Joana Figueira;
 ACCEPTANCE CRITERIA:
 
 General Criteria:
-- All acceptance tests with "Process finished with exit code 0" message.
 - Correct Sequence and Class Diagrams.
 - JavaDoc documentation in both code and tests.
 - JUnit conventions in code and tests. (eg. tests should be named like this:
@@ -27,8 +26,11 @@ Specific Criteria:
 "That is not a valid period. Please try again." - when final date inserted is before start date
 "There's no registers for this period." - when there are no valid readings for this selected period
 
+
+Test Criteria:
+- All acceptance tests with "Process finished with exit code 0" message:
+
+
 ASSUMPTIONS:
 To calculate the first day with the highest temperature, one must choose the sensor with the most recent readings if there are two
 temperature sensors at the same distance from the house area.
-
-OTHER INFORMATION:
