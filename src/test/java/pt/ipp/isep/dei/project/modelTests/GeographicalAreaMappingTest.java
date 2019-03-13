@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GeographicalAreaMappingTest {
 
     @Test
-    public void testMapToDTOGeoAreaDTO() {
+    public void testMapToDTO_GeoAreaDTO() {
         //Arrange
         String geoAreaName = "Nação";
         String description = "Porto";
