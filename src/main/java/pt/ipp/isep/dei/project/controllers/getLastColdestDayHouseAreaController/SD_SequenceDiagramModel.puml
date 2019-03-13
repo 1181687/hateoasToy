@@ -19,41 +19,41 @@ skinparam sequence {
 
 activate RegularUser
 actor RegularUser
-RegularUser -> ":UI":
-activate ":UI"
-":UI" -> ":Controller":
-activate ":Controller"
+RegularUser -> ":GetLastColdestDay\nHouseAreaUI":
+activate ":GetLastColdestDay\nHouseAreaUI"
+":GetLastColdestDay\nHouseAreaUI" -> ":GetLastColdestDay\nHouseAreaController":
+activate ":GetLastColdestDay\nHouseAreaController"
+":GetLastColdestDay\nHouseAreaController" -> ":House":
+activate ":House"
+":GetLastColdestDay\nHouseAreaController" <-- ":House":
+deactivate ":House"
+":GetLastColdestDay\nHouseAreaUI" <-- ":GetLastColdestDay\nHouseAreaController":
+deactivate ":GetLastColdestDay\nHouseAreaController"
+RegularUser <-- ":GetLastColdestDay\nHouseAreaUI":
+deactivate ":GetLastColdestDay\nHouseAreaUI"
+
+RegularUser -> ":GetLastColdestDay\nHouseAreaUI":
+activate ":GetLastColdestDay\nHouseAreaUI"
+":GetLastColdestDay\nHouseAreaUI" -> ":GetLastColdestDay\nHouseAreaController":
+activate ":GetLastColdestDay\nHouseAreaController"
 ":Controller" -> ":House":
 activate ":House"
 ":Controller" <-- ":House":
 deactivate ":House"
-":UI" <-- ":Controller":
-deactivate ":Controller"
-RegularUser <-- ":UI":
-deactivate ":UI"
+deactivate ":GetLastColdestDay\nHouseAreaController"
 
-RegularUser -> ":UI":
-activate ":UI"
-":UI" -> ":Controller":
-activate ":Controller"
-":Controller" -> ":House":
-activate ":House"
-":Controller" <-- ":House":
-deactivate ":House"
-deactivate ":Controller"
-
-PowerUser -> ":UI":
-PowerUser -> ":UI":
-":UI" -> ":Controller":
-activate ":Controller"
-":Controller" -> ":Device":
+PowerUser -> ":GetLastColdestDay\nHouseAreaUI":
+PowerUser -> ":GetLastColdestDay\nHouseAreaUI":
+":GetLastColdestDay\nHouseAreaUI" -> ":GetLastColdestDay\nHouseAreaController":
+activate ":GetLastColdestDay\nHouseAreaController"
+":GetLastColdestDay\nHouseAreaController" -> ":Device":
 activate ":Device"
-":Controller" <-- ":Device":
+":GetLastColdestDay\nHouseAreaController" <-- ":Device":
 deactivate ":Device"
-":UI" <-- ":Controller":
-deactivate ":Controller"
-PowerUser <-- ":UI":
-deactivate ":UI"
+":GetLastColdestDay\nHouseAreaUI" <-- ":GetLastColdestDay\nHouseAreaController":
+deactivate ":GetLastColdestDay\nHouseAreaController"
+PowerUser <-- ":GetLastColdestDay\nHouseAreaUI":
+deactivate ":GetLastColdestDay\nHouseAreaUI"
 
 deactivate RegularUser
 
