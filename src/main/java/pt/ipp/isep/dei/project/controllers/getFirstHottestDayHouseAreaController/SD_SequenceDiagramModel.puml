@@ -27,45 +27,45 @@ activate ":GetFirst\nHottestDay\nHouseAreaUI"
 
 
 
-":GetFirst\nHottestDay\nHouseAreaUI" --> "RegularUser": 6-Insert Initial Date
+":GetFirst\nHottestDay\nHouseAreaUI" --> "RegularUser": 2- Insert Initial Date
 deactivate ":GetFirst\nHottestDay\nHouseAreaUI"
-":GetFirst\nHottestDay\nHouseAreaUI" <- "RegularUser": 6-Initial Date
+":GetFirst\nHottestDay\nHouseAreaUI" <- "RegularUser": 3- Initial Date
 activate ":GetFirst\nHottestDay\nHouseAreaUI"
-":GetFirst\nHottestDay\nHouseAreaUI" --> "RegularUser": 6-Insert Final Date
+":GetFirst\nHottestDay\nHouseAreaUI" --> "RegularUser": 4- Insert Final Date
 deactivate ":GetFirst\nHottestDay\nHouseAreaUI"
-":GetFirst\nHottestDay\nHouseAreaUI" <- "RegularUser": 6-Final Date
+":GetFirst\nHottestDay\nHouseAreaUI" <- "RegularUser": 5- Final Date
 activate ":GetFirst\nHottestDay\nHouseAreaUI"
 ref over ":GetFirst\nHottestDay\nHouseAreaUI"
 checkIfThereAreReadings
 end
-":GetFirst\nHottestDay\nHouseAreaUI" -> ":GetFirst\nHottestDay\nHouseArea\nController": getFirstHighestReadingHouseArea
+":GetFirst\nHottestDay\nHouseAreaUI" -> ":GetFirst\nHottestDay\nHouseArea\nController": 5.1- getFirstHighestReadingHouseArea
 activate ":GetFirst\nHottestDay\nHouseArea\nController"
-":GetFirst\nHottestDay\nHouseArea\nController" -> ":House": getFirstHighestReadingHouseArea
+":GetFirst\nHottestDay\nHouseArea\nController" -> ":House": 5.1.1- getFirstHighestReadingHouseArea
 activate ":House"
-":House" ->":GeographicalArea": getFirstHighestReadingHouseArea
+":House" ->":GeographicalArea": 5.1.1.1- getFirstHighestReadingHouseArea
 activate ":GeographicalArea"
 ref over ":GeographicalArea"
 getLatestReadingFromNearestSensor
 end
 
-":GeographicalArea" --> ":GetFirst\nHottestDay\nHouseArea\nController" :Reading
+":GeographicalArea" --> ":GetFirst\nHottestDay\nHouseArea\nController" :5.1.1.2- Reading
 deactivate ":GeographicalArea"
 deactivate ":House"
-":GetFirst\nHottestDay\nHouseArea\nController" ->"ReadingMapper": mapToDTO(reading)
+":GetFirst\nHottestDay\nHouseArea\nController" ->"ReadingMapper": 5.1.2- mapToDTO(reading)
 activate "ReadingMapper"
-"ReadingMapper" -> ":ReadingDTO": create ReadingDTO
+"ReadingMapper" -> ":ReadingDTO": create 5.2.1- ReadingDTO
 activate ":ReadingDTO"
-":ReadingDTO" --> ":GetFirst\nHottestDay\nHouseAreaUI": ReadingDTO
+":ReadingDTO" --> ":GetFirst\nHottestDay\nHouseAreaUI": 5.2.2- ReadingDTO
 deactivate ":ReadingDTO"
 
 deactivate "ReadingMapper"
 deactivate ":GetFirst\nHottestDay\nHouseArea\nController"
 
 
-":GetFirst\nHottestDay\nHouseAreaUI" --> ":GetFirst\nHottestDay\nHouseAreaUI" : getDTOValue
-":GetFirst\nHottestDay\nHouseAreaUI" --> ":GetFirst\nHottestDay\nHouseAreaUI" : getDTODateTime
+":GetFirst\nHottestDay\nHouseAreaUI" --> ":GetFirst\nHottestDay\nHouseAreaUI" : 5.2- getDTOValue
+":GetFirst\nHottestDay\nHouseAreaUI" --> ":GetFirst\nHottestDay\nHouseAreaUI" : 5.3- getDTODateTime
 
-":GetFirst\nHottestDay\nHouseAreaUI" --> RegularUser : display first hottest \n day and it's value
+":GetFirst\nHottestDay\nHouseAreaUI" --> RegularUser : 6- display first hottest \n day and it's value
 deactivate ":GetFirst\nHottestDay\nHouseAreaUI"
 
 @enduml
