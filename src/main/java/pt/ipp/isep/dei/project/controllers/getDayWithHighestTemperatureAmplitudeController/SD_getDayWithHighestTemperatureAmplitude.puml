@@ -16,7 +16,7 @@ skinparam sequence {
 	ActorFontSize 17
 	ActorFontName Aapex
 }
-
+activate RegularUser
 actor RegularUser
 RegularUser -> ":GetDayWithHighest\nTemperatureAmplitudeUI": 1- getDayWithHighest\nTemperatureAmplitude
 activate ":GetDayWithHighest\nTemperatureAmplitudeUI"
@@ -52,4 +52,5 @@ deactivate ":GetDayWithHighest\nTemperatureAmplitude\nController"
 
 RegularUser <-- ":GetDayWithHighest\nTemperatureAmplitudeUI": 4- String Result
 deactivate ":GetDayWithHighest\nTemperatureAmplitudeUI"
+deactivate RegularUser
 @enduml

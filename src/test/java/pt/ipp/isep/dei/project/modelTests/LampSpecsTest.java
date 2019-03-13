@@ -18,6 +18,8 @@ public class LampSpecsTest {
     private Room livingRoom;
     private Device lamp;
     private House house;
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
+
 
     @BeforeEach
     public void StartUp() {
@@ -137,6 +139,19 @@ public class LampSpecsTest {
     }
 
     @Test
+    public void testGetAttributeValueNominalPowerNullChar() {
+        // Arrange
+
+        lamp.setAttributesDevType("Nominal Power", 30);
+
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+        // Act
+        Object result = lamp.getSpecs().getAttributeValue("\0Nominal Power");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void testGetAttributeValueLuminousFlux() {
         // Arrange
         lamp.setAttributesDevType("Nominal Power", 30);
@@ -147,13 +162,24 @@ public class LampSpecsTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+    @Test
+    public void testGetAttributeValueLuminousFluxNullChar() {
+        // Arrange
+        lamp.setAttributesDevType("Nominal Power", 30);
+
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+        // Act
+        Object result = lamp.getSpecs().getAttributeValue("\0Luminous Flux");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 
     @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
         lamp.setAttributesDevType("Nominal Power", 30);
 
-        Object expectedResult = -1;
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
         // Act
         Object result = lamp.getSpecs().getAttributeValue("Not Valid");
         // Assert
@@ -168,6 +194,18 @@ public class LampSpecsTest {
         Object expectedResult = 50.0;
         // Act
         Object result = lamp.getSpecs().getAttributeValue("Time");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeTimeValueNullChar() {
+        // Arrange
+        lamp.setAttributesDevType("Time", 50);
+
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+        // Act
+        Object result = lamp.getSpecs().getAttributeValue("\0Time");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -195,9 +233,19 @@ public class LampSpecsTest {
     }
 
     @Test
+    public void testSetAttributeLuminousFluxNullChar() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = lamp.getSpecs().setAttributeValue("Luminous Flux", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
     public void testSetAttributeLuminousFluxSameValue() {
         // Act
-        boolean result = lamp.getSpecs().setAttributeValue("Luminous Flux", 50);
+        boolean result = lamp.getSpecs().setAttributeValue("\0Luminous Flux", 50);
         // Assert
         assertFalse(result);
     }
@@ -208,6 +256,16 @@ public class LampSpecsTest {
         String attribute = "stuff";
         // Act
         boolean result = lamp.getSpecs().setAttributeValue("Time", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeTimeNullChar() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = lamp.getSpecs().setAttributeValue("\0Time", attribute);
         // Assert
         assertFalse(result);
     }
@@ -252,6 +310,16 @@ public class LampSpecsTest {
     }
 
     @Test
+    public void testSetAttributeNominalPowerNullChar() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = lamp.getSpecs().setAttributeValue("\0Nominal Power", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
     public void testSetAttributeNominalPowerSameValue() {
         // Arrange
         lamp.setAttributesDevType("Nominal Power", 1.5);
@@ -289,13 +357,4 @@ public class LampSpecsTest {
         assertFalse(result);
     }
 
-    @Test
-    public void getAttributeDataTypeTest() {
-        // arrange
-        String attributeDataType = "Integer";
-        // act
-        String result = lamp.getSpecs().getAttributeDataType("Integer");
-        // assert
-        assertEquals(attributeDataType, result);
-    }
 }

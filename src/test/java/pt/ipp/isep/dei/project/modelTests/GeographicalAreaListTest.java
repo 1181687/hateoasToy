@@ -28,11 +28,11 @@ public class GeographicalAreaListTest {
         geoAreaList = new GeographicalAreaList();
 
         // Geographical Areas
-        portoCity = geoAreaList.newGeographicalArea("Porto", "City of Porto", "City", 41.1496,
-                -8.6109, 97, 10, 10);
+        Location portoLocation = new Location(41.1496,
+                -8.6109, 97);
+        portoCity = geoAreaList.newGeographicalArea("Porto", "City of Porto", "City", portoLocation, 10, 10);
         geoAreaList.addGeoArea(portoCity);
-        bonfimStreet = geoAreaList.newGeographicalArea("Bonfim", "Bonfim Street", "Street", 41.1496,
-                -8.6109, 97, 5, 5);
+        bonfimStreet = geoAreaList.newGeographicalArea("Bonfim", "Bonfim Street", "Street", portoLocation, 5, 5);
         geoAreaList.addGeoArea(bonfimStreet);
 
         // Sensor
@@ -241,6 +241,9 @@ public class GeographicalAreaListTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * Test that tries to get all the sensors in all the geo areas, which returns a list of Sensors.
+     */
     @Test
     public void getAllSensorsTest() {
         // Arrange

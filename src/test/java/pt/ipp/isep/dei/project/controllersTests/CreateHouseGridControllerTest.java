@@ -1,7 +1,18 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.CreateHouseGridController;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 class CreateHouseGridControllerTest {
-/*
+
     @Test
     public void createAGridAndAddItToTheListTest() {
         // Arrange
@@ -9,15 +20,16 @@ class CreateHouseGridControllerTest {
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        House housegrid = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
-        CreateHouseGridController ctrl = new CreateHouseGridController(housegrid);
+        CreateHouseGridController ctrl = new CreateHouseGridController(house);
+        HouseGridDTO grid = HouseGridMapper.newHouseGridDTO();
         String gridName = "Grid";
-        housegrid grid = ctrl.createANewHouseGrid(gridName);
-        ctrl.addHouseGridToTheListOfHouseGrids(grid);
+        grid.setName(gridName);
+        ctrl.createANewHouseGrid(grid);
 
         // Act
-        boolean result = ctrl.getHouseGridList().contains(grid);
+        boolean result = ctrl.getHouseGridList().contains(HouseGridMapper.mapToEntity(grid));
 
         // Assert
         assertTrue(result);
@@ -34,16 +46,14 @@ class CreateHouseGridControllerTest {
 
         CreateHouseGridController ctrl = new CreateHouseGridController(housegrid);
         String gridName = "Grid";
-        housegrid grid = ctrl.createANewHouseGrid(gridName);
-        ctrl.addHouseGridToTheListOfHouseGrids(grid);
-        List<housegrid> expectedResult = new ArrayList<>();
-        expectedResult.add(grid);
+        HouseGridDTO grid = HouseGridMapper.newHouseGridDTO();
+        grid.setName(gridName);
 
         // Act
-        List<housegrid> result = ctrl.getHouseGridList();
+        boolean result = ctrl.createANewHouseGrid(grid);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertTrue(result);
     }
-    */
+
 }

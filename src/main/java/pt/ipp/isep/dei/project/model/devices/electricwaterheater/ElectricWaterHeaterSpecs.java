@@ -13,6 +13,8 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_PERFORMANCE_RATIO = "Performance Ratio";
     private static final String ATTRIBUTE_COLD_WATER_TEMP = "Cold-Water Temperature";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
+
 
     private String typeName;
     private double volumeOfWaterToHeat;
@@ -193,7 +195,7 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
             case ATTRIBUTE_NOMINAL_POWER:
                 return nominalPower;
             default:
-                return -1;
+                return NOT_VALID_ATTRIBUTE;
         }
     }
 
@@ -233,15 +235,5 @@ public class ElectricWaterHeaterSpecs implements DeviceSpecs {
             default:
                 return false;
         }
-    }
-
-
-    /**
-     * get method
-     * @param attributeName string name of attribute
-     * @return type data of the attribute (ex.integer, double)
-     */
-    public String getAttributeDataType(String attributeName) {
-        return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 }

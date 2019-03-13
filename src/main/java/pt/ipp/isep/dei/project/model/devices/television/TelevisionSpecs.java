@@ -11,7 +11,6 @@ public class TelevisionSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
     private static final String ATTRIBUTE_STANDBY_POWER = "Standby Power";
     private static final String ATTRIBUTE_TIME = "Time";
-    private static final String NOT_VALID_ATTRIBUTE = "Not a valid attribute";
 
     private String typeName;
     private double nominalPower;
@@ -64,12 +63,12 @@ public class TelevisionSpecs implements DeviceSpecs {
      * @return
      */
     public boolean setNominalPower(Object nominalPower) {
-        double televisionNomPower = (Double) nominalPower;
-        if (Utils.isSameDouble(this.nominalPower, televisionNomPower)) {
-            return false;
+        double nomPower = (Double) nominalPower;
+        if (!Utils.isSameDouble(this.nominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
+            this.nominalPower = nomPower;
+            return true;
         }
-        this.nominalPower = televisionNomPower;
-        return true;
+        return false;
     }
 
     /**
@@ -89,12 +88,12 @@ public class TelevisionSpecs implements DeviceSpecs {
      * @return
      */
     public boolean setStandbyPower(Object standbyPower) {
-        double standbyPowa = (Double) standbyPower;
-        if (Utils.isSameDouble(this.standbyPower, standbyPowa)) {
-            return false;
+        double standPower = (Double) standbyPower;
+        if (!Utils.isSameDouble(this.standbyPower, standPower) && !(Utils.isSameDouble(standPower, 0))) {
+            this.standbyPower = standPower;
+            return true;
         }
-        this.standbyPower = standbyPowa;
-        return true;
+        return false;
     }
 
     /**
@@ -104,11 +103,11 @@ public class TelevisionSpecs implements DeviceSpecs {
      * @return
      */
     public boolean setTime(Object time) {
-        double televisionTime = (Double) time;
-        if (Utils.isSameDouble(this.time, televisionTime)) {
+        double lampTime = (Double) time;
+        if (Utils.isSameDouble(this.time, lampTime)) {
             return false;
         }
-        this.time = televisionTime;
+        this.time = lampTime;
         return true;
     }
 
@@ -201,21 +200,6 @@ public class TelevisionSpecs implements DeviceSpecs {
             default:
                 return false;
         }
-    }
-
-    /**
-     * get string of the type of attribute
-     *
-     * @param attributeName string name of attribute
-     * @return type data of the attribute (ex.integer, double)
-     * if not a valid attribute, returns a String "not a valid attribute"
-     */
-    @Override
-    public String getAttributeDataType(String attributeName) {
-        if (NOT_VALID_ATTRIBUTE.equals(getAttributeValue(attributeName))) {
-            return NOT_VALID_ATTRIBUTE;
-        }
-        return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 }
 

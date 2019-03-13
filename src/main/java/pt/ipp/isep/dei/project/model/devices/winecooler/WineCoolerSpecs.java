@@ -11,7 +11,6 @@ public class WineCoolerSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
     private static final String ATTRIBUTE_NUMBER_OF_BOTTLES = "Number of Bottles";
     private static final String ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
-    private static final String NOT_VALID_ATTRIBUTE = "Not a valid attribute";
 
     private String typeName;
     private double nominalPower;
@@ -69,12 +68,12 @@ public class WineCoolerSpecs implements DeviceSpecs {
      * @return
      */
     public boolean setNominalPower(Object nominalPower) {
-        double wineCoolerNomPower = (Double) nominalPower;
-        if (Utils.isSameDouble(this.nominalPower, wineCoolerNomPower)) {
-            return false;
+        double nomPower = (Double) nominalPower;
+        if (!Utils.isSameDouble(this.nominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
+            this.nominalPower = nomPower;
+            return true;
         }
-        this.nominalPower = wineCoolerNomPower;
-        return true;
+        return false;
     }
 
     /**
@@ -206,21 +205,6 @@ public class WineCoolerSpecs implements DeviceSpecs {
             default:
                 return false;
         }
-    }
-
-    /**
-     * get string of the type of attribute
-     *
-     * @param attributeName string name of attribute
-     * @return type data of the attribute (ex.integer, double)
-     * if not a valid attribute, returns a String "not a valid attribute"
-     */
-    @Override
-    public String getAttributeDataType(String attributeName) {
-        if ((NOT_VALID_ATTRIBUTE).equals(getAttributeValue(attributeName))) {
-            return NOT_VALID_ATTRIBUTE;
-        }
-        return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 }
 

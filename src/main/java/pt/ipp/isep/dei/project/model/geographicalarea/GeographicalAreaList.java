@@ -152,19 +152,16 @@ public class GeographicalAreaList {
     }
 
     /**
-     * method that add a new geographical area with a name, a type, a latitude, a longitue, a altitude, a height, a length.
+     * method that add a new geographical area with a name, a type, a location, a height, a length.
      * @param geoAreaName
      * @param geoAreaTypeName
-     * @param latitude
-     * @param longitude
-     * @param altitude
+     * @param location
      * @param height
      * @param length
      * @return a new geographical area.
      */
-    public GeographicalArea newGeographicalArea(String geoID, String geoAreaName, String geoAreaTypeName, double latitude, double longitude, double altitude, double height, double length) {
+    public GeographicalArea newGeographicalArea(String geoID, String geoAreaName, String geoAreaTypeName, Location location, double height, double length) {
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType(geoAreaTypeName);
-        Location location = new Location(latitude, longitude, altitude);
         AreaShape rectangleArea = new AreaShape(height, length, location);
         return new GeographicalArea(geoID, geoAreaName, geographicalAreaType, location, rectangleArea);
     }

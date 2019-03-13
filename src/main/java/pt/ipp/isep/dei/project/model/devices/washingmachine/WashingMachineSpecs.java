@@ -10,14 +10,10 @@ import java.util.Objects;
 
 public class WashingMachineSpecs implements DeviceSpecs, Programmable {
     private static final String ATTRIBUTE_CAPACITY = "Capacity";
-    private static final String ATTRIBUTE_DURATION = "Duration";
-    private static final String ATTRIBUTE_ENERGY_CONSUMPTION = "Energy Consumption";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
     private String typeName;
-    private int capacity;
-    private double duration;
-    private double energyConsumption;
+    private double capacity;
     private double nominalPower;
     private List<Program> programList;
 
@@ -40,16 +36,6 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
     public List<Program> getProgramList() {
         return this.programList;
     }
-
-    /*@Override
-    public boolean addNewProgram(String programName, ProgramSpecs specs) {
-        TimeConstantProgram program = new TimeConstantProgram(programName, specs);
-        if (!Objects.isNull(program) && !(getProgramList().contains(program))) {
-            getProgramList().add(program);
-            return true;
-        }
-        return false;
-    }*/
 
     public String getTypeName() {
         return typeName;
@@ -92,20 +78,6 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
     /**
      * set method
      *
-     * @param duration
-     */
-    private boolean setDuration(Object duration) {
-        double wmduration = (Double) duration;
-        if (!(Utils.isSameDouble(this.duration, wmduration) && !(Utils.isSameDouble(wmduration, 0)))) {
-            this.duration = wmduration;
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * set method
-     *
      * @param wmNominalPower
      */
     private boolean setNominalPower(Object wmNominalPower) {
@@ -114,21 +86,6 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
             this.nominalPower = nomPower;
             return true;
         }
-        return false;
-    }
-
-    /**
-     * set method
-     * 
-     * @param wmEnergyConsumption
-     */
-    private boolean setEnergyConsumption(Object wmEnergyConsumption) {
-        double eConsumption = (Double) wmEnergyConsumption;
-        if (!Utils.isSameDouble(this.energyConsumption, eConsumption) && !(Utils.isSameDouble(eConsumption, 0))) {
-            this.energyConsumption = eConsumption;
-            return true;
-        }
-
         return false;
     }
 
@@ -180,14 +137,10 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
         switch (attributeName) {
             case ATTRIBUTE_CAPACITY:
                 return capacity;
-            case ATTRIBUTE_DURATION:
-                return duration;
-            case ATTRIBUTE_ENERGY_CONSUMPTION:
-                return energyConsumption;
             case ATTRIBUTE_NOMINAL_POWER:
                 return nominalPower;
             default:
-                return -1;
+                return NOT_VALID_ATTRIBUTE;
         }
     }
 
@@ -205,16 +158,6 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
                     return setCapacity(((Number) attributeValue).intValue());
                 }
                 return false;
-            case ATTRIBUTE_DURATION:
-                if (attributeValue instanceof Number) {
-                    return setDuration(((Number) attributeValue).doubleValue());
-                }
-                return false;
-            case ATTRIBUTE_ENERGY_CONSUMPTION:
-                if (attributeValue instanceof Number) {
-                    return setEnergyConsumption(((Number) attributeValue).doubleValue());
-                }
-                return false;
             case ATTRIBUTE_NOMINAL_POWER:
                 if (attributeValue instanceof Number) {
                     return setNominalPower(((Number) attributeValue).doubleValue());
@@ -225,23 +168,6 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
         }
     }
 
-
-    /**
-     * get method
-     * @param attributeName string name of attribute
-     * @return type data of the attribute (ex.integer, double)
-     */
-    public String getAttributeDataType(String attributeName) {
-        return getAttributeValue(attributeName).getClass().getName().substring(10);
-    }
-
-    /*public boolean addProgram(TimeConstantProgramSpecs program) {
-        if (!Objects.isNull(program) && !(programList.contains(program))) {
-            this.programList.add(program);
-            return true;
-        }
-        return false;
-    }*/
 
     @Override
     public boolean addProgram(Program program) {

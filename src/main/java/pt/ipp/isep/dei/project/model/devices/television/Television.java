@@ -19,9 +19,9 @@ public class Television implements Device {
     private boolean isActive;
     private LocalDateTime deactivationDate;
 
-    public Television(String name, DeviceSpecs TelevisionSpecs) {
+    public Television(String name, DeviceSpecs televisionSpecs) {
         this.name = name;
-        this.specs = (TelevisionSpecs) TelevisionSpecs;
+        this.specs = (TelevisionSpecs) televisionSpecs;
         this.isActive = true;
         this.readingList = new ArrayList<>();
     }

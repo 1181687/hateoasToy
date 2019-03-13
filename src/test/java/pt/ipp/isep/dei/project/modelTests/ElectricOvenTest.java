@@ -28,6 +28,8 @@ class ElectricOvenTest {
     private Reading reading0;
     private Reading reading1;
     private Reading reading2;
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
+
 
 
     @BeforeEach
@@ -446,7 +448,7 @@ class ElectricOvenTest {
     @Test
     public void getAttributeValueNotValidTest() {
         // Arrange
-        Object expectedResult = -1;
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
 
         // Act
         Object result = electricOven.getAttributeValue("Not Valid");

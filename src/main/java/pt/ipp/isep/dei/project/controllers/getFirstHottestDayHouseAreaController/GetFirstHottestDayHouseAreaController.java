@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.controllers.getFirstHottestDayHouseAreaController;
 
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
@@ -17,27 +19,16 @@ public class GetFirstHottestDayHouseAreaController {
         this.sensorTypeTemperature = new SensorType("temperature");
     }
 
-    public boolean sensorListOfATypeIfEmpty(SensorType type) {
-        return house.getTheSensorListOfAGivenType(type).isEmpty();
-    }
-
-    public void getChosenSensor() {
-        chosenSensor = house.getNearestSensorWithMostRecentReading(sensorTypeTemperature, house.getLocation());
+    public boolean isSensorListOfATypeEmpty() {
+        return house.isSensorListOfAGivenTypeEmpty(sensorTypeTemperature);
     }
 
     public boolean checkSensorReadingsExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
+        chosenSensor = house.getNearestSensorWithMostRecentReading(sensorTypeTemperature, house.getLocation());
         return chosenSensor.checkMeasurementExistenceBetweenDates(startDate, endDate);
     }
 
-    public LocalDate getFirstHighestReadingDateHouseArea(LocalDate startDate, LocalDate endDate) {
-        return house.getFirstHighestReadingDateHouseArea(house.getLocation(), sensorTypeTemperature, startDate, endDate);
-    }
-
-    public Double getFirstHighestReadingValueHouseArea(LocalDate startDate, LocalDate endDate) {
-        return house.getFirstHighestReadingValueHouseArea(house.getLocation(), sensorTypeTemperature, startDate, endDate);
-    }
-
-    public SensorType getTypeTemperature() {
-        return sensorTypeTemperature;
+    public ReadingDTO getFirstHighestReadingHouseArea(LocalDate startDate, LocalDate endDate) {
+        return ReadingMapper.mapToDTO(house.getFirstHighestReadingHouseArea(sensorTypeTemperature, startDate, endDate));
     }
 }
