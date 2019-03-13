@@ -17,7 +17,7 @@
             "sensor": {
               "id": "RF12345",
               "name": "Meteo station ISEP - rainfall",
-              "start_date": "2016-11-15",
+              "start_date": 7,
               "type": "rainfall",
               "units": "l/m2"
             },

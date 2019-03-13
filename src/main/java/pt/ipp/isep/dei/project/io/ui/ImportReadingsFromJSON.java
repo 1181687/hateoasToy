@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 
 import java.io.FileNotFoundException;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Objects;
 
@@ -21,10 +22,17 @@ public class ImportReadingsFromJSON {
 
         // Write the path
         String pathJSONFile = InputValidator.getString("Please specify the name of the JSON file to import.");
-        List<GeographicalAreaDTO> dtoList = checkIfItCanReadGeoAreaJson(pathJSONFile);
-
-        if (Objects.isNull(dtoList)) {
+        if (!checkIfItFileExists(pathJSONFile)) {
             System.out.println("\nERROR: There's no such file with that name.\n");
+            return;
+        }
+        List<GeographicalAreaDTO> dtoList = readGeoAreaJson(pathJSONFile);
+        if (Objects.isNull(dtoList)) {
+            System.out.println("The information on the file is not valid to be imported.");
+            return;
+        }
+        if (dtoList.isEmpty()) {
+            System.out.println("There is nothing in this file to be read.");
             return;
         }
 
@@ -51,11 +59,20 @@ public class ImportReadingsFromJSON {
 
     }
 
-    public List<GeographicalAreaDTO> checkIfItCanReadGeoAreaJson(String path) {
+    public boolean checkIfItFileExists(String path) {
+        try {
+            controller.readGeoAreaJson(path);
+        } catch (FileNotFoundException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public List<GeographicalAreaDTO> readGeoAreaJson(String path) {
         List<GeographicalAreaDTO> dtoList;
         try {
             dtoList = controller.readGeoAreaJson(path);
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException | NumberFormatException | DateTimeParseException e) {
             dtoList = null;
         }
         return dtoList;

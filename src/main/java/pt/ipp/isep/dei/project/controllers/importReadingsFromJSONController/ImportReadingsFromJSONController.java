@@ -9,6 +9,7 @@ import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
 import pt.ipp.isep.dei.project.utils.JSONReader;
 
 import java.io.FileNotFoundException;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 public class ImportReadingsFromJSONController {
@@ -18,7 +19,7 @@ public class ImportReadingsFromJSONController {
         this.geographicalAreaList = geographicalAreaList;
     }
 
-    public List<GeographicalAreaDTO> readGeoAreaJson(String path) throws FileNotFoundException {
+    public List<GeographicalAreaDTO> readGeoAreaJson(String path) throws FileNotFoundException, NumberFormatException, DateTimeParseException {
         return JSONReader.readJSONFileToList(path);
     }
 

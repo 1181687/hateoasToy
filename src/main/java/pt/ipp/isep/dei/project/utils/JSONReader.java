@@ -12,13 +12,14 @@ import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class JSONReader {
 
     @SuppressWarnings("unchecked")
-    public static List<GeographicalAreaDTO> readJSONFileToList(String jsonPath) throws FileNotFoundException {
+    public static List<GeographicalAreaDTO> readJSONFileToList(String jsonPath) throws FileNotFoundException, NumberFormatException, DateTimeParseException {
         List<GeographicalAreaDTO> finallist;
         //JSON parser object to parse read file
         JsonParser jsonParser = new JsonParser();
@@ -30,7 +31,7 @@ public class JSONReader {
         return finallist;
     }
 
-    private static LocationDTO locationParser(JsonObject object) {
+    private static LocationDTO locationParser(JsonObject object) throws NumberFormatException {
         //JsonObject location = object.get("location").getAsJsonObject();
 
         double latitude = object.get("latitude").getAsDouble();
@@ -42,7 +43,7 @@ public class JSONReader {
         return new LocationDTO(latitude, longitude, altitude);
     }
 
-    private static List<GeographicalAreaDTO> parseJsonObjects(JsonElement areaGeo) {
+    private static List<GeographicalAreaDTO> parseJsonObjects(JsonElement areaGeo) throws NumberFormatException, DateTimeParseException {
         List<GeographicalAreaDTO> areaGeolist = new ArrayList<>();
 
         // Get area geo object within list
