@@ -21,7 +21,7 @@ actor RegularUser
 activate RegularUser
 RegularUser -> ":GetFirst\nHottestDay\nHouseAreaUI": 1- getDayWithHighest\nTemperature
 activate ":GetFirst\nHottestDay\nHouseAreaUI"
-":GetFirst\nHottestDay\nHouseAreaUI" -> ":GetFirst\nHottestDay\nHouseArea\nController":
+":GetFirst\nHottestDay\nHouseAreaUI" -> ":GetFirst\nHottestDay\nHouseArea\nController": 2- checkIfSensorListOfTemperatureIsEmpty
 activate ":GetFirst\nHottestDay\nHouseArea\nController"
 ":GetFirst\nHottestDay\nHouseArea\nController" -> ":House":
 activate ":House"

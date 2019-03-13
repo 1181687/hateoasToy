@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.getFirstHottestDayHouseAreaController.GetFirstHottestDayHouseAreaController;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -8,6 +9,7 @@ import java.time.LocalDate;
 
 public class GetFirstHottestDayHouseArea {
     private GetFirstHottestDayHouseAreaController ctrl;
+    private ReadingDTO readingDTO;
 
     public GetFirstHottestDayHouseArea(House house) {
         this.ctrl = new GetFirstHottestDayHouseAreaController(house);
@@ -32,14 +34,16 @@ public class GetFirstHottestDayHouseArea {
                 flag = true;
             }
         } while (flag);
+        readingDTO = ctrl.getFirstHighestReadingHouseArea(initialDate, finalDate);
         if (!ctrl.checkNearestSensorReadingsExistenceBetweenDates(initialDate, finalDate) ||
-                Double.isNaN(ctrl.getFirstHighestReadingHouseArea(initialDate, finalDate).getValue())) {
+                Double.isNaN(readingDTO.getValue())) {
+            //Double.isNaN(ctrl.getFirstHighestReadingHouseArea(initialDate, finalDate).getValue())) {
             System.out.println("It is not possible to present valid readings in the house area.\n");
             return;
         }
         System.out.println("The first hottest day in the house area in the chosen interval is " +
-                ctrl.getFirstHighestReadingHouseArea(initialDate, finalDate).getDateTime().toLocalDate() +
+                readingDTO.getDateTime().toLocalDate() +
                 " (maximum temperature of " +
-                Utils.round(ctrl.getFirstHighestReadingHouseArea(initialDate, finalDate).getValue(), 2) + " Celsius).\n");
+                Utils.round(readingDTO.getValue(), 2) + " Celsius).\n");
     }
 }
