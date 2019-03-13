@@ -18,8 +18,8 @@ public class GetLastColdestDayHouseAreaController {
         this.sensorTypeTemperature = new SensorType("temperature");
     }
 
-    public boolean hasSensorsOfCertainTypeInInsertedGeoArea() {
-        return this.house.hasSensorsOfCertainTypeInInsertedGeoArea(this.sensorTypeTemperature);
+    public boolean hasSensorsOfGivenTypeInGeoArea() {
+        return this.house.hasSensorsOfGivenTypeInGeoArea(this.sensorTypeTemperature);
     }
 
     public boolean hasReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
