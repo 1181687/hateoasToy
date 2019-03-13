@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.dishwasher.DishWasherType;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -178,6 +179,19 @@ class DishWasherTest {
     void setLocationTrueTest() {
         // Act
         boolean result = dishWasher.setLocation(laundry);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void setLocationTrueTestNullValue() {
+        // Act
+        DishWasherType dishWasherType = new DishWasherType();
+        Device maquina = dishWasherType.createDevice("nome");
+
+        boolean result = maquina.setLocation(laundry);
+
 
         // Assert
         assertTrue(result);
