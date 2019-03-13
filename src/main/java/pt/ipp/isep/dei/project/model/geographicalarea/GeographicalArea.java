@@ -252,8 +252,7 @@ public class GeographicalArea {
     public SensorList getTheSensorListOfAGivenType(SensorType type) {
         GeographicalArea areaToBeUsed = this;
         areaToBeUsed.setInsertedIn(insertedIn);
-        SensorList listOfSensors = new SensorList();
-        listOfSensors.setListOfSensors(getSensorsInGeographicalAreaByType(type).getListOfSensors());
+        SensorList listOfSensors = getSensorsInGeographicalAreaByType(type);
         while (listOfSensors.getListOfSensors().isEmpty()) {
             if (areaToBeUsed.getInsertedIn() != null) {
                 areaToBeUsed.getSensorListInTheGeographicArea().setListOfSensors(areaToBeUsed.getInsertedIn().getSensorListInTheGeographicArea().getListOfSensors());
