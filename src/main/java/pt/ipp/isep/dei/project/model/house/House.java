@@ -9,7 +9,6 @@ import pt.ipp.isep.dei.project.model.devices.DeviceType;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -758,18 +757,12 @@ public class House {
         return insertedGeoArea.getDateLastMeasurementByLocationType(address.getLocation(), type);
     }
 
-    public LocalDate getFirstHighestReadingDateHouseArea(SensorType type, LocalDate startDate, LocalDate endDate) {
-        if (Objects.isNull(insertedGeoArea.getFirstHighestReading(type, startDate, endDate))) {
-            return null;
-        }
-        return insertedGeoArea.getFirstHighestReading(type, startDate, endDate).getDateTime().toLocalDate();
-    }
 
-    public Double getFirstHighestReadingValueHouseArea(SensorType type, LocalDate startDate, LocalDate endDate) {
+    public Reading getFirstHighestReadingHouseArea(SensorType type, LocalDate startDate, LocalDate endDate) {
         if (Objects.isNull(insertedGeoArea.getFirstHighestReading(type, startDate, endDate))) {
             return null;
         }
-        return insertedGeoArea.getFirstHighestReading(type, startDate, endDate).getValue();
+        return insertedGeoArea.getFirstHighestReading(type, startDate, endDate);
     }
 
     public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
@@ -812,7 +805,7 @@ public class House {
         return this.insertedGeoArea.getNearestSensorWithMostRecentReading(type, location);
     }
 
-    public SensorList getTheSensorListOfAGivenType(SensorType type) {
-        return this.insertedGeoArea.getTheSensorListOfAGivenType(type);
+    public boolean isSensorListOfAGivenTypeEmpty(SensorType type) {
+        return this.insertedGeoArea.getTheSensorListOfAGivenType(type).isEmpty();
     }
 }

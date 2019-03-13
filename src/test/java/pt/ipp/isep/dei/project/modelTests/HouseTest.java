@@ -14,7 +14,6 @@ import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -2423,7 +2422,7 @@ public class HouseTest {
     }
 
     @Test
-    public void getTheSensorListTest_NotEmptyList() {
+    public void isSensorListEmpty_False() {
         // Arrange
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -2479,21 +2478,16 @@ public class HouseTest {
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
 
-        //Add sensors to Sensorlist
-
-        SensorList expectedResult = new SensorList();
-        expectedResult.addSensor(temperatureSensor);
-        expectedResult.addSensor(temperatureSensor1);
 
         // Act
-        SensorList result = this.house.getTheSensorListOfAGivenType(temperature);
+        boolean result = this.house.isSensorListOfAGivenTypeEmpty(temperature);
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertFalse(result);
     }
 
     @Test
-    public void getTheSensorListTest_emptyList() {
+    public void isSensorListEmptyTest_True() {
         // Arrange
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -2547,18 +2541,14 @@ public class HouseTest {
         temperatureSensor1.addReadingsToList(reading2);
         temperatureSensor1.addReadingsToList(reading3);
 
-        //Add sensors to Sensorlist
-
-        SensorList expectedResult = new SensorList();
-
-
         // Act
-        SensorList result = this.house.getTheSensorListOfAGivenType(temperature);
+        boolean result = this.house.isSensorListOfAGivenTypeEmpty(temperature);
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertTrue(result);
     }
 
+    /*
     @Test
     public void getFirstHighestReadingDate_ValidReading() {
         //Arrange
@@ -3020,6 +3010,6 @@ public class HouseTest {
         Double result = this.house.getFirstHighestReadingValueHouseArea(temperature, startDate, endDate);
         //Assert
         assertEquals(expectedResult, result);
-    }
+    }*/
 }
 
