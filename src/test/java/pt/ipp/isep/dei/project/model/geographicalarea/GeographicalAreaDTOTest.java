@@ -109,7 +109,7 @@ public class GeographicalAreaDTOTest {
     }
 
     @Test
-    public void setLenght() {
+    public void setLength() {
     }
 
     @Test

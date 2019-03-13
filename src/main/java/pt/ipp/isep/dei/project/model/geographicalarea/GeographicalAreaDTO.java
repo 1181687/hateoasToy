@@ -57,7 +57,7 @@ public class GeographicalAreaDTO {
         return lenght;
     }
 
-    public void setLenght(double lenght) {
+    public void setLength(double lenght) {
         this.lenght = lenght;
     }
 

@@ -39,7 +39,12 @@ public class JSONReader {
 
         double altitude = object.get("altitude").getAsDouble();
 
-        return new LocationDTO(latitude, longitude, altitude);
+        LocationDTO locationDTO = new LocationDTO();
+        locationDTO.setLatitude(latitude);
+        locationDTO.setLongitude(longitude);
+        locationDTO.setElevation(altitude);
+
+        return locationDTO;
     }
 
     private static List<GeographicalAreaDTO> parseJsonObjects(JsonElement areaGeo) {

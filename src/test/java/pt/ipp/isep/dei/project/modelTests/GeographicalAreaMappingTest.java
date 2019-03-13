@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
@@ -26,7 +25,7 @@ public class GeographicalAreaMappingTest {
         geographicalAreaDTO.setSensorName(description);
         geographicalAreaDTO.setGeographicalAreaType(geographicalAreaType);
         geographicalAreaDTO.setWidth(width);
-        geographicalAreaDTO.setLenght(lenght);
+        geographicalAreaDTO.setLength(lenght);
         geographicalAreaDTO.setLatitude(latitude);
         geographicalAreaDTO.setLongitude(longitude);
         geographicalAreaDTO.setAltitude(altitude);
