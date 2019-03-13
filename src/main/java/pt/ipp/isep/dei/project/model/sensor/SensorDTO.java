@@ -6,7 +6,7 @@ import java.time.LocalDate;
 
 public class SensorDTO {
     private String id;
-    private String sensorName;
+    private String name;
     private LocalDate startingDate;
     private String sensorType;
     private LocationDTO location;
@@ -32,7 +32,7 @@ public class SensorDTO {
      * @return String corresponding to the name of the sensor.
      */
     public String getName() {
-        return sensorName;
+        return name;
     }
 
     /**
@@ -41,7 +41,7 @@ public class SensorDTO {
      * @param name Name to be used.
      */
     public void setName(String name) {
-        this.sensorName = name;
+        this.name = name;
     }
 
     /**
