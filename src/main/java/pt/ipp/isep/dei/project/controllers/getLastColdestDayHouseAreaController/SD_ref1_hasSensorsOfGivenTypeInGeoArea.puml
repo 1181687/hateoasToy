@@ -24,7 +24,7 @@ activate ":GetLastColdestDay\nHouseAreaController"
 activate ":House"
 ":House" -> ":GeographicalArea": 1.1.1-isSensorListOfAGiven\nTypeEmpty(SensorType)
 activate ":GeographicalArea"
-":GetLastColdestDay\nHouseAreaUI" <-- ":GeographicalArea": 2-boolean
+":GetLastColdestDay\nHouseAreaUI" <-- ":GeographicalArea": 1.1.2-boolean
 deactivate ":GeographicalArea"
 deactivate ":House"
 deactivate ":GetLastColdestDay\nHouseAreaController"
