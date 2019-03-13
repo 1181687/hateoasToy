@@ -18,40 +18,19 @@ skinparam sequence {
 }
 
 actor RegularUser
-RegularUser -> ":UI":
-activate ":UI"
-":UI" -> ":Controller":
-activate ":Controller"
-":Controller" -> ":House":
+activate RegularUser
+RegularUser -> ":GetFirst\nHottestDay\nHouseAreaUI": 1- getDayWithHighest\nTemperature
+activate ":GetFirst\nHottestDay\nHouseAreaUI"
+":GetFirst\nHottestDay\nHouseAreaUI" -> ":GetFirst\nHottestDay\nHouseArea\nController": 2- checkIfSensorListOfTemperatureIsEmpty
+activate ":GetFirst\nHottestDay\nHouseArea\nController"
+":GetFirst\nHottestDay\nHouseArea\nController" -> ":House":
 activate ":House"
-":Controller" <-- ":House":
+":GetFirst\nHottestDay\nHouseArea\nController" <-- ":House":
 deactivate ":House"
-":UI" <-- ":Controller":
-deactivate ":Controller"
-RegularUser <-- ":UI":
-deactivate ":UI"
+":GetFirst\nHottestDay\nHouseAreaUI" <-- ":GetFirst\nHottestDay\nHouseArea\nController":
+deactivate ":GetFirst\nHottestDay\nHouseArea\nController"
+RegularUser <-- ":GetFirst\nHottestDay\nHouseArea\nController":
+deactivate ":GetFirst\nHottestDay\nHouseArea\nController"
 
-RegularUser -> ":UI":
-activate ":UI"
-":UI" -> ":Controller":
-activate ":Controller"
-":Controller" -> ":House":
-activate ":House"
-":Controller" <-- ":House":
-deactivate ":House"
-deactivate ":Controller"
-
-PowerUser -> ":UI":
-PowerUser -> ":UI":
-":UI" -> ":Controller":
-activate ":Controller"
-":Controller" -> ":Device":
-activate ":Device"
-":Controller" <-- ":Device":
-deactivate ":Device"
-":UI" <-- ":Controller":
-deactivate ":Controller"
-PowerUser <-- ":UI":
-deactivate ":UI"
 
 @enduml

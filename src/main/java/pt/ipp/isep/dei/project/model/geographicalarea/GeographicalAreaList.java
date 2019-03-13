@@ -138,7 +138,7 @@ public class GeographicalAreaList {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= geoAreaList.size(); i++) {
             content.append(i + " - ID: " + geoAreaList.get(i - 1).getId());
-            content.append(i + " - Description: " + geoAreaList.get(i - 1).getDescription());
+            content.append(", Description: " + geoAreaList.get(i - 1).getDescription());
             content.append(", Type: " + geoAreaList.get(i - 1).getGeoAreaType().getStringOfTypeOfGeoArea());
             content.append(", Latitude: " + geoAreaList.get(i - 1).getLocation().getLatitude());
             content.append(", Longitude: " + geoAreaList.get(i - 1).getLocation().getLongitude());
