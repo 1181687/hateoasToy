@@ -31,5 +31,3 @@ successfully imported and the rest (20%) are displayed to the user if he/she cho
 
 ASSUMPTIONS:
 There is User interaction: the application asks the user the location of the files to be imported.
-
-OTHER INFORMATION:

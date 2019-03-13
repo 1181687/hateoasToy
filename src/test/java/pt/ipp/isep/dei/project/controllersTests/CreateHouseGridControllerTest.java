@@ -1,8 +1,15 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-class CreateHouseGridControllerTest {
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.CreateHouseGridController;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 /*
-    @Test
+class CreateHouseGridControllerTest {
+@Test
     public void createAGridAndAddItToTheListTest() {
         // Arrange
         //House Instantiation
@@ -45,5 +52,5 @@ class CreateHouseGridControllerTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-    */
-}
+  }
+  */
