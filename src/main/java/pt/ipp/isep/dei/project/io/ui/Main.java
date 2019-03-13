@@ -82,10 +82,9 @@ public class Main {
 
         // HOUSE
         Location houseLocation = new Location(41.177748, -8.607745, 112);
-        Address address = new Address("4200-072", houseLocation);
+        Address address = new Address("4200-072", houseLocation, insertedGeoArea);
         House houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         houseEdificioB.setAddress(address);
-        houseEdificioB.setInsertedGeoArea(insertedGeoArea);
 
         // READINGS
         // Dates for the Sensors

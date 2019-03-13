@@ -48,7 +48,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
-        Address address = new Address("4200-072", houseLocation);
+        Address address = new Address("4200-072", houseLocation, insertedGeoArea);
         house.setAddress(address);
         house.setInsertedGeoArea(insertedGeoArea);
 
@@ -565,6 +565,12 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     @Test
     public void checkIfHouseGridListIsEmptyWithPositiveTest() {
         // Arrange
+        // Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeographicalArea insertedGeoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
+
         //House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
@@ -573,7 +579,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
-        Address address = new Address("4200-072", houseLocation);
+        Address address = new Address("4200-072", houseLocation, insertedGeoArea);
         house.setAddress(address);
 
         // Act

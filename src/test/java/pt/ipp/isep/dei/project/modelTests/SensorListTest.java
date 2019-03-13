@@ -321,7 +321,7 @@ class SensorListTest {
     @Test
     public void checkIfSensorExistsByIdTrueTest() {
         // Act
-        boolean result = sensorList.checkIfSensorExistsById("Sensor Temp 1");
+        boolean result = sensorList.checkIfSensorExistsById("s1");
 
         // Assert
         assertTrue(result);
@@ -330,7 +330,7 @@ class SensorListTest {
     @Test
     public void checkIfSensorExistsByIdFalseTest() {
         // Act
-        boolean result = sensorList.checkIfSensorExistsById("Sensor Temp 14123");
+        boolean result = sensorList.checkIfSensorExistsById("s14123");
 
         // Assert
         assertFalse(result);
@@ -342,7 +342,7 @@ class SensorListTest {
         Sensor expectedResult = temperatureSensor1;
 
         // Act
-        Sensor result = sensorList.getSensorById("Sensor Temp 1");
+        Sensor result = sensorList.getSensorById("s1");
 
         // Assert
         assertEquals(expectedResult, result);
@@ -351,7 +351,7 @@ class SensorListTest {
     @Test
     public void getSensorByIdNullTest() {
         // Act
-        Sensor result = sensorList.getSensorById("Sensor Temp 14123");
+        Sensor result = sensorList.getSensorById("s14123");
 
         // Assert
         assertEquals(null, result);
@@ -411,7 +411,7 @@ class SensorListTest {
     @Test
     void testCheckIfSensorExistsById_tryingToTestAnExistingId_ShouldReturnTrue() {
         // Act
-        boolean result = sensorList.checkIfSensorExistsById("Sensor Temp 1");
+        boolean result = sensorList.checkIfSensorExistsById("s1");
 
         //
         assertTrue(result);
@@ -438,7 +438,7 @@ class SensorListTest {
         Sensor expectedResult = temperatureSensor1;
 
         // Act
-        Sensor result = sensorList.getSensorById("Sensor Temp 1");
+        Sensor result = sensorList.getSensorById("s1");
 
         //
         assertEquals(expectedResult, result);

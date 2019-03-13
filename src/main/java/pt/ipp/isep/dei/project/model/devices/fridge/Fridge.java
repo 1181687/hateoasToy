@@ -148,7 +148,6 @@ public class Fridge implements Device {
         if (this.location.isDeviceNameExistant(name)) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
-        if (this.name == name) throw new RuntimeException("Name already exists. Please write a new one.");
         this.name = name;
         return true;
     }
