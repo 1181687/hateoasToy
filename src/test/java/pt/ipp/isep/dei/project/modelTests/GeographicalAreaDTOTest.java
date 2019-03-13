@@ -31,12 +31,11 @@ public class GeographicalAreaDTOTest {
         temperature = new SensorType("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(42.1596, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, sensorLocation);
         temperatureSensor = new Sensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
     }
 
     @Test
-    public void getId() {
+    public void getIdTest_getId_S001() {
         // arrange
         String expectedResult = "S001";
         // act
@@ -46,7 +45,7 @@ public class GeographicalAreaDTOTest {
     }
 
     @Test
-    public void setId() {
+    public void setId_changeId_S002() {
         // arrange
         portoCity.setId("S002");
         String expectedResult = "S002";
@@ -57,7 +56,7 @@ public class GeographicalAreaDTOTest {
     }
 
     @Test
-    public void getSensorName() {
+    public void getSensorNameTest_getSensorName_Sensor1() {
         // arrange
         String expectedResult = "Sensor1";
         // act
@@ -67,7 +66,7 @@ public class GeographicalAreaDTOTest {
     }
 
     @Test
-    public void setSensorName() {
+    public void setSensorNameTest_changeSensorName_Sensor2() {
         // arrange
         portoCity.setSensorName("Sensor2");
         String expectedResult = "Sensor2";
@@ -78,7 +77,7 @@ public class GeographicalAreaDTOTest {
     }
 
     @Test
-    public void getGeographicalAreaType() {
+    public void getGeographicalAreaTypeTest_getGeoAreaType_Temperature() {
         // arrange
         String expectedResult = "Temperature";
         // act
@@ -89,7 +88,7 @@ public class GeographicalAreaDTOTest {
     }
 
     @Test
-    public void setGeographicalAreaType() {
+    public void setGeographicalAreaTypeTest_newGeoAreaType_NewGeoArea() {
         // arrange
         portoCity.setGeographicalAreaType("New Geo Area");
         String expectedResult = "New Geo Area";
@@ -99,14 +98,68 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void setAndGetWidthTest_getWidthAndChangeWidth_10 () {
+        // arrange
+        double expectedResult = 10.0;
+        // act
+       portoCity.setWidth(10.0);
+       double result = portoCity.getWidth();
+        // assert
+        assertEquals(expectedResult, result);
+    }
+
+    /*
+    @Test
+    public void setAndGetLengthTest_getLengthAndChangeLength_15 () {
+        // arrange
+        double expectedResult = 15.0;
+
+        // act
+        portoCity.setLength(15.0);
+        double result = portoCity.getLength();
+
+        // assert
+        assertEquals(expectedResult, result);
+    }
+*/
+    @Test
+    public void setAndGetLatitudeTest_getLatitudeAndChangeLatitude_20() {
+        // arrange
+        double expectedResult = 20.0;
+
+        // act
+        portoCity.setLatitude(20.0);
+        double result = portoCity.getLatitude();
+
+        // assert
+        assertEquals(expectedResult, result);
+    }
 
     @Test
-    public void setWidth() {
-        portoCity.setWidth(14.0);
-        double expectedResult = 14.0;
+    public void setAndGetLongitudeTest_getLongitudeAndChangeLongitude_25() {
+        // arrange
+        double expectedResult = 25.0;
+
         // act
-        double result = portoCity.getWidth();
+        portoCity.setLongitude(25.0);
+        double result = portoCity.getLongitude();
+
+        // assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void setAndGetAltitudeTest_getAltitudeAndChangeAltitude_30() {
+        // arrange
+        double expectedResult = 30.0;
+
+        // act
+        portoCity.setAltitude(30.0);
+        double result = portoCity.getAltitude();
+
         // assert
         assertEquals(expectedResult, result);
     }
 }
+
