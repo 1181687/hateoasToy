@@ -2803,7 +2803,7 @@ public class HouseTest {
     }
 
     @Test
-    public void getFirstHighestReadingValue_Null() {
+    public void getFirstHighestReadingValue_noReadingsInGivenInterval_Null() {
         //Arrange
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -2883,6 +2883,143 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void getFirstHighestReadingValue_WithValidValueAndDoubleNaN_reading5() {
+        //Arrange
+        //Arrange
+        // Geographical Area Types
+        GeographicalAreaType region = new GeographicalAreaType("Region");
+        GeographicalAreaType district = new GeographicalAreaType("District");
+        GeographicalAreaType city = new GeographicalAreaType("City");
 
+        // Geographical Areas
+        Location location = new Location(32.1496, 7.6109, 98);
+        AreaShape areaShape = new AreaShape(100, 100, location);
+        GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
+        Location location1 = new Location(41.1496, -6.6109, 100);
+        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
+        portoDistrict.setInsertedIn(northernRegion);
+        Location location2 = new Location(42.1496, -8.6109, 97);
+        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
+        portoCity.setInsertedIn(portoDistrict);
+
+        // House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Location houseLocation = new Location(41.178553, -8.608035, 111);
+        Address address = new Address("4200-072", houseLocation);
+        this.house.setAddress(address);
+        this.house.setInsertedGeoArea(portoCity);
+
+
+        // Sensors
+        SensorType temperature = new SensorType("Temperature");
+        LocalDateTime startDate0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        Location sensorLocation = new Location(38.1596, -8.6109, 97);
+        Sensor temperatureSensor = new Sensor("123", "A123", startDate0, temperature, sensorLocation, "l/m2");
+        LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
+        Sensor temperatureSensor1 = new Sensor("543", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+
+        // Reading
+        LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
+        LocalDateTime readingDate1 = LocalDateTime.of(2018, 12, 3, 13, 24, 00);
+        Reading reading = new Reading(23, readingDate);
+        Reading reading1 = new Reading(30, readingDate1);
+        temperatureSensor.addReadingsToList(reading);
+        temperatureSensor.addReadingsToList(reading1);
+        LocalDateTime readingDate2 = LocalDateTime.of(2018, 12, 2, 05, 20, 00);
+        LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 05, 24, 00);
+        Reading reading2 = new Reading(22, readingDate2);
+        Reading reading3 = new Reading(25, readingDate3);
+        temperatureSensor1.addReadingsToList(reading2);
+        temperatureSensor1.addReadingsToList(reading3);
+        LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
+        Reading reading4 = new Reading(Double.NaN, time0);
+        LocalDateTime time1 = LocalDateTime.of(2018, 12, 3, 13, 20, 00);
+        Reading reading5 = new Reading(31, time1);
+        LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
+        Reading reading6 = new Reading(31, time2);
+        LocalDateTime time3 = LocalDateTime.of(2018, 12, 4, 12, 20, 00);
+        Reading reading7 = new Reading(31, time3);
+        temperatureSensor1.addReadingsToList(reading4);
+        temperatureSensor1.addReadingsToList(reading5);
+        temperatureSensor1.addReadingsToList(reading6);
+        temperatureSensor1.addReadingsToList(reading7);
+        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
+        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
+
+        //interval LocalDate
+        LocalDate startDate = LocalDate.of(2018, 12, 2);
+        LocalDate endDate = LocalDate.of(2018, 12, 4);
+
+        Double expectedResult = reading5.getValue();
+
+        //Act
+        Double result = this.house.getFirstHighestReadingValueHouseArea(temperature, startDate, endDate);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void getFirstHighestReadingValue_WithOnlyOneDoubleNaNValue() {
+        //Arrange
+        // Geographical Area Types
+        GeographicalAreaType region = new GeographicalAreaType("Region");
+        GeographicalAreaType district = new GeographicalAreaType("District");
+        GeographicalAreaType city = new GeographicalAreaType("City");
+
+        // Geographical Areas
+        Location location = new Location(32.1496, 7.6109, 98);
+        AreaShape areaShape = new AreaShape(100, 100, location);
+        GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
+        Location location1 = new Location(41.1496, -6.6109, 100);
+        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
+        portoDistrict.setInsertedIn(northernRegion);
+        Location location2 = new Location(42.1496, -8.6109, 97);
+        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
+        portoCity.setInsertedIn(portoDistrict);
+
+        // House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Location houseLocation = new Location(41.178553, -8.608035, 111);
+        Address address = new Address("4200-072", houseLocation);
+        this.house.setAddress(address);
+        this.house.setInsertedGeoArea(portoCity);
+
+
+        // Sensors
+        SensorType temperature = new SensorType("Temperature");
+        LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
+        Sensor temperatureSensor1 = new Sensor("543", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+
+        // Reading
+        LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
+        Reading reading = new Reading(Double.NaN, readingDate);
+        temperatureSensor1.addReadingsToList(reading);
+
+        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
+
+        //interval LocalDate
+        LocalDate startDate = LocalDate.of(2018, 12, 2);
+        LocalDate endDate = LocalDate.of(2018, 12, 4);
+
+        Double expectedResult = Double.NaN;
+
+        //Act
+        Double result = this.house.getFirstHighestReadingValueHouseArea(temperature, startDate, endDate);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 }
 
