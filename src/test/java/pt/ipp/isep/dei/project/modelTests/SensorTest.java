@@ -2096,7 +2096,7 @@ class SensorTest {
     }
 
     @Test
-    public void getHighestReadingOfADay_WithOnlyOneDoubleNaNReading_ShouldReturnNull() {
+    public void getHighestReadingOfADay_WithOnlyOneDoubleNaNReadings_ShouldReturnDoubleNaN() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -2106,13 +2106,16 @@ class SensorTest {
         //Reading 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
         Reading reading2 = new Reading(Double.NaN, data2);
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 2, 16, 59, 59);
+        Reading reading3 = new Reading(Double.NaN, data3);
 
         //Adding readings to sensor
         sensor1.addReadingsToList(reading2);
+        sensor1.addReadingsToList(reading3);
 
         LocalDate day = LocalDate.of(2018, 11, 2);
 
-        Reading expectedResult = null;
+        Reading expectedResult = reading2;
 
         //Act
         Reading result = sensor1.getHighestReadingOfADay(day);

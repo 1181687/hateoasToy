@@ -527,10 +527,10 @@ public class Sensor {
     }
 
     public Reading getHighestReadingOfADay(LocalDate day) {
-        if (getDailyMeasurement(day).isEmpty()) {
+        if (getDailyMeasurementWithDoubleNaN(day).isEmpty()) {
             return null;
         }
-        Reading highestReading = getDailyMeasurement(day).get(0);
+        Reading highestReading = getDailyMeasurementWithDoubleNaN(day).get(0);
         for (Reading reading : getDailyMeasurement(day)) {
             if (!Double.isNaN(reading.getValue()) && Utils.isFirstDoubleBiggerOrEqualThanSecondOne(reading.getValue(), highestReading.getValue())) {
                 highestReading = reading;
@@ -570,5 +570,18 @@ public class Sensor {
      */
     public List<Reading> getListOfReadings() {
         return listOfReadings;
+    }
+
+    public List<Reading> getDailyMeasurementWithDoubleNaN(LocalDate date) {
+        List<Reading> registosDoDia = new ArrayList<>();
+        for (Reading registo : listOfReadings) {
+            LocalDate secondDate = registo.getDateTime().toLocalDate();
+
+            if (checkIfDaysAreEqual(date, secondDate)) {
+                registosDoDia.add(registo);
+            }
+        }
+        return registosDoDia;
+
     }
 }
