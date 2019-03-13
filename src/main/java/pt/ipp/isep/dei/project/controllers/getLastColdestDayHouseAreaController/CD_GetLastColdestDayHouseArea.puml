@@ -10,53 +10,66 @@ skinparam class {
 
 hide circle
 
-UI "1" -> "1" Controller
-Controller "1" --> "1" House
+UI "1" -> "1" GetLastColdestDayHouseArea\nController
+GetLastColdestDayHouseArea\nController "1" --> "1" House
 House "1" -> "1" GeographicalArea : directly inserted in
 GeographicalArea "1" -> "1" SensorList
 SensorList "1" --> "0*" Sensor
 Sensor "1" --> "0*" Reading
 
 Class UI {
--field1
--field2
-+method1()
-+method2()
+-GetLastColdestDayHouseAreaController\n controller
+-ReadingDTO readingDTO
+-LocalDate firstDate
+-LocalDate lastDate
++run()
++getFirstAndLastDate()
++displayResults()
 }
 
-Class Controller {
--field1
--field2
-+method1()
-+method2()
+Class GetLastColdestDayHouseArea\nController {
+- House house;
+- SensorType sensorTypeTemperature;
++hasSensorsOfCertainTypeInInsertedGeoArea()
++hasReadingsBetweenDates()
++getLastLowestMaximumReading()
 }
 
 Class House {
--field1
--field2
-+method1()
-+method2()
+-GeographicalArea insertedGeoArea
+-Address address
++hasSensorsOfCertainTypeInInsertedGeoArea(
++getNearestSensorWithMostRecentReading()
++getLastLowestMaximumReading()
 }
 
 Class GeographicalArea {
--field1
--field2
-+method1()
-+method2()
+-SensorList sensorList
+-Location location
++getTheSensorListOfAGivenType()
++getSensorsInGeographicalAreaByType()
++getNearestSensorWithMostRecentReading()
++getLastLowestMaximumReading()
 }
 
 Class SensorList {
--field1
--field2
-+method1()
-+method2()
+-List<Sensor> listOfSensors
++getNearestSensorsToLocation()
++getSensorWithMostRecentReading()
 }
 
 Class Sensor {
--field1
--field2
-+method1()
-+method2()
+-List<Reading> listOfReadings
+-SensorType sensorType
+-Location location
++checkMeasurementExistenceBetweenDates()
++getSensorType()
++getSensorWithMostRecentReading()
++distanceBetweenSensorAndLocation()
++getMeasurementValueBetweenDates()
++getHighestReadingOfADay()
++getDailyMaxReadingsInAnInterval()
++getLastLowestReading()
 }
 
 Class Reading {
