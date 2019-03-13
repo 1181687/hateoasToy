@@ -186,13 +186,4 @@ public class LampSpecs implements DeviceSpecs {
         }
     }
 
-    /**
-     * get method
-     * @param attributeName string name of attribute
-     * @return type data of the attribute (ex.integer, double)
-     */
-    public String getAttributeDataType(String attributeName) {
-        return getAttributeValue(attributeName).getClass().getName().substring(10);
-    }
-
 }

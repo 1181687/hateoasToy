@@ -92,11 +92,6 @@ public class WallTowelHeaterSpecs implements DeviceSpecs {
     }
 
     @Override
-    public String getAttributeDataType(String attributeName) {
-        return getAttributeValue(attributeName).getClass().getName().substring(10);
-    }
-
-    @Override
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
         switch (attributeName) {
             case ATTRIBUTE_TIME:

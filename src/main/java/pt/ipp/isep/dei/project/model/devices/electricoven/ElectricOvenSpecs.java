@@ -165,16 +165,6 @@ public class ElectricOvenSpecs implements DeviceSpecs {
         }
     }
 
-    /**
-     * get method
-     *
-     * @param attributeName string name of attribute
-     * @return type data of the attribute (ex.integer, double)
-     */
-    public String getAttributeDataType(String attributeName) {
-        return getAttributeValue(attributeName).getClass().getName().substring(10);
-    }
-
     public boolean addProgram(TimeConstantProgramSpecs program) {
         if (!Objects.isNull(program) && !(programList.contains(program))) {
             this.programList.add(program);

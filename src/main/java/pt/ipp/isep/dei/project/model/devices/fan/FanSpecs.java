@@ -79,17 +79,6 @@ public class FanSpecs implements DeviceSpecs, Programmable {
         }
     }
 
-    /**
-     * get method
-     *
-     * @param attributeName string name of attribute
-     * @return type data of the attribute (ex.integer, double)
-     */
-    @Override
-    public String getAttributeDataType(String attributeName) {
-        return getAttributeValue(attributeName).getClass().getName().substring(10);
-    }
-
 
     /**
      * set method

@@ -216,15 +216,6 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
     }
 
 
-    /**
-     * get method
-     * @param attributeName string name of attribute
-     * @return type data of the attribute (ex.integer, double)
-     */
-    public String getAttributeDataType(String attributeName) {
-        return getAttributeValue(attributeName).getClass().getName().substring(10);
-    }
-
     @Override
     public boolean addProgram(Program program) {
         if (!Objects.isNull(program) && !(getProgramList().contains(program))) {

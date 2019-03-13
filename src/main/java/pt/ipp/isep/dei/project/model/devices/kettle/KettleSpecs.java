@@ -237,18 +237,4 @@ public class KettleSpecs implements DeviceSpecs {
                 return NOT_VALID_ATTRIBUTE;
         }
     }
-
-
-    /**
-     * get method
-     *
-     * @param attributeName string name of attribute
-     * @return type data of the attribute (ex.integer, double)
-     */
-    public String getAttributeDataType(String attributeName) {
-        if ((getAttributeValue(attributeName).equals(NOT_VALID_ATTRIBUTE))) {
-            return NOT_VALID_ATTRIBUTE;
-        }
-        return getAttributeValue(attributeName).getClass().getName().substring(10);
-    }
 }
