@@ -4,12 +4,8 @@ import pt.ipp.isep.dei.project.model.Location;
 
 public class GeographicalAreaMapping {
 
-    public GeographicalAreaMapping() {
+    private GeographicalAreaMapping() {
         // empty
-    }
-
-    public static GeographicalAreaDTO newGeoAreaDTO() {
-        return new GeographicalAreaDTO();
     }
 
     public static GeographicalAreaDTO mapToDTO(String geoAreaName, String description, String geographicalAreaType, double width, double length, double latitude, double longitude, double altitude) {
@@ -25,11 +21,13 @@ public class GeographicalAreaMapping {
         return geoDTO;
     }
 
-    public static GeographicalArea mapToEntityGeoArea(GeographicalAreaDTO geographicalAreaDTO) {
+    public static GeographicalArea mapToEntity(GeographicalAreaDTO geographicalAreaDTO) {
         GeographicalAreaType geoType = new GeographicalAreaType(geographicalAreaDTO.getGeographicalAreaType());
         Location loc = new Location(geographicalAreaDTO.getLatitude(),geographicalAreaDTO.getLongitude(),geographicalAreaDTO.getAltitude());
         AreaShape areaShape = new AreaShape(geographicalAreaDTO.getWidth(),geographicalAreaDTO.getLength(),loc);
         return new GeographicalArea(geographicalAreaDTO.getId(), geographicalAreaDTO.getSensorName(), geoType, loc, areaShape);
     }
+
+
 
 }

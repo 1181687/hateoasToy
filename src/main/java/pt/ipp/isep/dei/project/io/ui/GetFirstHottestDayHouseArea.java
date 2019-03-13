@@ -34,11 +34,13 @@ public class GetFirstHottestDayHouseArea {
                 flag = true;
             }
         } while (flag);
-        readingDTO = ctrl.getFirstHighestReadingHouseArea(initialDate, finalDate);
-        if (!ctrl.checkNearestSensorReadingsExistenceBetweenDates(initialDate, finalDate) ||
-                Double.isNaN(readingDTO.getValue())) {
-            //Double.isNaN(ctrl.getFirstHighestReadingHouseArea(initialDate, finalDate).getValue())) {
+        if (!ctrl.checkNearestSensorReadingsExistenceBetweenDates(initialDate, finalDate)) {
             System.out.println("It is not possible to present valid readings in the house area.\n");
+            return;
+        }
+        readingDTO = ctrl.getFirstHighestReadingHouseArea(initialDate, finalDate);
+        if (Double.isNaN(readingDTO.getValue())) {
+            System.out.println("Last reading in the house area is not valid.\n");
             return;
         }
         System.out.println("The first hottest day in the house area in the chosen interval is " +

@@ -806,7 +806,7 @@ public class House {
     }
 
     public boolean isSensorListOfAGivenTypeEmpty(SensorType type) {
-        return this.insertedGeoArea.getTheSensorListOfAGivenType(type).isEmpty();
+        return this.insertedGeoArea.isSensorListOfAGivenTypeEmpty(type);
     }
 
     public boolean checkNearestSensorReadingsExistenceBetweenDates(SensorType type, LocalDate startDate, LocalDate endDate) {

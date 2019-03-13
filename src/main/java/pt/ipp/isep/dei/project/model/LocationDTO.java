@@ -8,14 +8,9 @@ public class LocationDTO {
     /**
      * constructor of Location that receives a latitude, a longitude and an elevation.
      *
-     * @param latitude
-     * @param longitude
-     * @param elevation
      */
-    public LocationDTO(double latitude, double longitude, double elevation) {
-        setLatitude(latitude);
-        setLongitude(longitude);
-        this.elevation = elevation;
+    public LocationDTO() {
+
     }
 
     public double getLatitude() {
