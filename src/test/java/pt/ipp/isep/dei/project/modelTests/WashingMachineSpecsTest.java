@@ -24,7 +24,7 @@ class WashingMachineSpecsTest {
     private DeviceSpecs washingMachineSpecs;
 
     private static final String ATTRIBUTE_CAPACITY = "Capacity";
-    private static final String ATTRIBUTE_ENERGY_CONSUMPTION = "Energy Consumption";
+    private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
     private static final String WASHING_MACHINE_TYPE = "WashingMachine";
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
@@ -46,7 +46,7 @@ class WashingMachineSpecsTest {
         // Device
         this.washingMachine = house.createDevice(WASHING_MACHINE_TYPE, "Wm1", kitchen);
         this.washingMachine.setAttributesDevType(ATTRIBUTE_CAPACITY, 3);
-        this.washingMachine.setAttributesDevType(ATTRIBUTE_ENERGY_CONSUMPTION, 200);
+        this.washingMachine.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, 200);
         //DeviceSpecs
         this.washingMachineSpecs = washingMachine.getSpecs();
     }
@@ -68,7 +68,7 @@ class WashingMachineSpecsTest {
     @Test
     public void testGetNominalPower() {
         //Arrange
-        double expectedResult = 30;
+        double expectedResult = 200;
 
         //Act
         double result = washingMachineSpecs.getNominalPower();
@@ -158,7 +158,7 @@ class WashingMachineSpecsTest {
     @Test
     public void testGetAttributeValueCapacity() {
         // Arrange
-        Object expectedResult = 30;
+        Object expectedResult = 3.0;
         // Act
         Object result = washingMachineSpecs.getAttributeValue("Capacity");
         // Assert

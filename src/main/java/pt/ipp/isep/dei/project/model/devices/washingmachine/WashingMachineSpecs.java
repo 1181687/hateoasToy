@@ -13,7 +13,7 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
     private String typeName;
-    private int capacity;
+    private double capacity;
     private double nominalPower;
     private List<Program> programList;
 
