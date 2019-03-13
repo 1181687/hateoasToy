@@ -94,24 +94,10 @@ public class StoveSpecs implements DeviceSpecs, Programmable {
             case ATTRIBUTE_NOMINAL_POWER:
                 return nominalPower;
             default:
-                return "not a valid attribute";
+                return NOT_VALID_ATTRIBUTE;
         }
     }
 
-    /**
-     * get string of the type of attribute
-     *
-     * @param attributeName string name of attribute
-     * @return type data of the attribute (ex.integer, double)
-     * if not a valid attribute, returns a String "not a valid attribute"
-     */
-    @Override
-    public String getAttributeDataType(String attributeName) {
-        if ((getAttributeValue(attributeName).equals("not a valid attribute"))) {
-            return "not a valid attribute";
-        }
-        return getAttributeValue(attributeName).getClass().getName().substring(10);
-    }
 
     /**
      * set Nominal Power of a stove

@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllersTests.importReadingsFromCSVControllerTest;
+package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -14,7 +14,6 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -28,6 +27,9 @@ class ImportReadingsFromCSVControllerTest {
     private Sensor temperatureSensor1;
     private ReadingDTO readingDTO;
 
+    /**
+     * This method pretends to initialize some attributes of this test class to simplifying all tests.
+     */
     @BeforeEach
     public void StartUp() {
         // Geographical Area Types
@@ -66,8 +68,11 @@ class ImportReadingsFromCSVControllerTest {
         controller = new ImportReadingsFromCSVController(geographicalAreaList);
     }
 
+    /**
+     * Test that tries to use an valid Id to verify if a Sensor exists, which works and returns true.
+     */
     @Test
-    public void checkIfSensorExistsByIdTrueTest() {
+    public void testCheckIfSensorExistsById_tryingToUseAValidId_ShouldReturnTrue() {
         // Act
         boolean result = controller.checkIfSensorExistsById("A123");
 
@@ -75,8 +80,11 @@ class ImportReadingsFromCSVControllerTest {
         assertTrue(result);
     }
 
+    /**
+     * Test that tries to use an invalid Id to verify if a Sensor exists, which doesn't work and returns false.
+     */
     @Test
-    public void checkIfSensorExistsByIdFalseTest() {
+    public void testCheckIfSensorExistsById_tryingToUseAnInvalidId_ShouldReturnFalse() {
         // Act
         boolean result = controller.checkIfSensorExistsById("A123fasdasd");
 
@@ -84,17 +92,34 @@ class ImportReadingsFromCSVControllerTest {
         assertFalse(result);
     }
 
+    /**
+     * Test that tries to add a Reading to a Sensor, using a valid ReadingDTO, which results in a successful attempt.
+     */
     @Test
-    public void addReadingToSensorTest() {
+    public void testAddReadingToSensor_tryingToAddAValidReading_ShouldReturnTrue() {
         // Arrange
         controller.checkIfSensorExistsById("A123");
         controller.addReadingToSensor(readingDTO);
         Reading reading = ReadingMapper.mapToEntity(readingDTO);
-        LocalDate startTime = LocalDate.of(2018, 12, 2);
-        LocalDate endTime = LocalDate.of(2018, 12, 3);
 
         // Act
-        boolean result = temperatureSensor.getReadingsBetweenDates(startTime, endTime).equals(reading);
+        boolean result = temperatureSensor.getListOfReadings().contains(reading);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    /**
+     * Test that tries to add a null Object to a Sensor, which results in a non addition.
+     */
+    @Test
+    public void testAddReadingToSensor_tryingToAddNullReading_ShouldReturnFalse() {
+        // Arrange
+        controller.checkIfSensorExistsById("A123");
+        controller.addReadingToSensor(null);
+
+        // Act
+        boolean result = temperatureSensor.isMeasurementListEmpty();
 
         // Assert
         assertFalse(result);

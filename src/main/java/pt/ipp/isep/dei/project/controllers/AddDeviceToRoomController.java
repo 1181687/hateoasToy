@@ -179,11 +179,11 @@ public class AddDeviceToRoomController {
         return house.getDeviceListContentRoom(selectedRoom);
     }
 
-
-    /*public boolean createAndAddProgram(String programName, ProgramSpecs specs) {
+/*
+    public boolean createAndAddProgram(String programName, ProgramSpecs specs) {
         return programmableDevice.addNewProgram(programName, specs);
-    }*/
-
+    }
+*/
     /**
      * method that get a Device by it's position
      *
@@ -194,13 +194,6 @@ public class AddDeviceToRoomController {
         return room.getDeviceByPosition(position);
     }
 
-    /*public boolean isProgrammable() {
-        if (device.isProgrammable()) {
-            programmableDevice = device.asProgrammable();
-            return true;
-        }
-        return false;
-    }*/
 
     public DeviceSpecs getDevSpecs() {
         return devSpecs = device.getSpecs();

@@ -18,6 +18,8 @@ public class WineCoolerSpecsTest {
     private Room kitchen;
     private Device wineCooler;
     private House house;
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
+
 
     @BeforeEach
     public void StartUp() {
@@ -134,6 +136,7 @@ public class WineCoolerSpecsTest {
         assertEquals(expectedResult, result);
     }
 
+
     @Test
     public void testGetAttributeValueNumberOfBottles() {
         // Arrange
@@ -161,12 +164,57 @@ public class WineCoolerSpecsTest {
     @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
-        Object expectedResult = "Not a valid attribute";
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
 
         // Act
         Object result = wineCooler.getSpecs().getAttributeValue("Not Valid");
 
         // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NullNominalPower (){
+        //Arrange
+        String expectedResult = NOT_VALID_ATTRIBUTE;
+        //Act
+        Object result = wineCooler.getSpecs().getAttributeValue("\0"+ "Nominal Power");
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NullNumberOfBottles (){
+        //Arrange
+        String expectedResult = NOT_VALID_ATTRIBUTE;
+        //Act
+        Object result = wineCooler.getSpecs().getAttributeValue("\0"+ "Number of Bottles");
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_Null_AnnualEnergyConsumption (){
+        //Arrange
+        String expectedResult = NOT_VALID_ATTRIBUTE;
+        //Act
+        Object result = wineCooler.getSpecs().getAttributeValue("\0"+ "Annual Energy Consumption");
+
+        //Assert
         assertEquals(expectedResult, result);
     }
 
@@ -207,6 +255,33 @@ public class WineCoolerSpecsTest {
     }
 
     @Test
+    public void testSetNumberOfBottles_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double numberOfBottles = 30;
+
+        //Act
+        boolean result = wineCooler.getSpecs().setAttributeValue("\0"+ "Number of Bottles", numberOfBottles);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetNumberOfBottles_ZeroValue_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double numberOfBottles = 0;
+
+        //Act
+        boolean result = wineCooler.getSpecs().setAttributeValue("Number of Bottles",numberOfBottles);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    @Test
     public void testSetAttributeAnnualEnergyConsumptionValueValidType() {
         // Arrange
         double annualPowerConsumption = 20.4;
@@ -241,6 +316,33 @@ public class WineCoolerSpecsTest {
         // Assert
         assertFalse(result);
     }
+
+    @Test
+    public void testSetEnergyConsumption_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double energyConsumption= 30;
+
+        //Act
+        boolean result = wineCooler.getSpecs().setAttributeValue("\0"+ "Energy Consumption", energyConsumption);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetEnergyConsumption_ZeroValue_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double energyConsumption = 0;
+
+        //Act
+        boolean result = wineCooler.getSpecs().setAttributeValue("Energy Consumption",energyConsumption);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
 
     @Test
     public void testSetAttributeNominalPowerValueNotAValidType() {
@@ -279,9 +381,34 @@ public class WineCoolerSpecsTest {
     }
 
     @Test
+    public void testSetNominalPower_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double nominalPower= 30;
+
+        //Act
+        boolean result = wineCooler.getSpecs().setAttributeValue("\0"+ "Nominal Power", nominalPower);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetNominalPower_ZeroValue_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double nominalPower = 0;
+
+        //Act
+        boolean result = wineCooler.getSpecs().setAttributeValue("Nominal Power",nominalPower);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+    @Test
     public void getAttributeDataTypeTest() {
         // arrange
-        String attributeDataType = "Not a valid attribute";
+        String attributeDataType = NOT_VALID_ATTRIBUTE;
 
         // act
         String result = wineCooler.getSpecs().getAttributeDataType("Integer");

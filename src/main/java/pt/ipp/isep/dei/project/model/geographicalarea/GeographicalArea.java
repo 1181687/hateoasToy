@@ -250,10 +250,9 @@ public class GeographicalArea {
      * @return sensor list.
      */
     public SensorList getTheSensorListOfAGivenType(SensorType type) {
-        GeographicalArea areaToBeUsed = new GeographicalArea(id, description, geographicalAreaType, location, areaShape);
+        GeographicalArea areaToBeUsed = this;
         areaToBeUsed.setInsertedIn(insertedIn);
-        SensorList listOfSensors = new SensorList();
-        listOfSensors.setListOfSensors(getSensorsInGeographicalAreaByType(type).getListOfSensors());
+        SensorList listOfSensors = getSensorsInGeographicalAreaByType(type);
         while (listOfSensors.getListOfSensors().isEmpty()) {
             if (areaToBeUsed.getInsertedIn() != null) {
                 areaToBeUsed.getSensorListInTheGeographicArea().setListOfSensors(areaToBeUsed.getInsertedIn().getSensorListInTheGeographicArea().getListOfSensors());
@@ -355,7 +354,7 @@ public class GeographicalArea {
      * @param location   location of the area wanted to get the daily amplitude
      * @param startDate  initial Localdate of the interval
      * @param endDate    final Localdate of the interval
-     * @return Map<LocalDate       ,               Double> map Of Daily Amplitude
+     * @return Map<LocalDate                               ,                                                               Double> map Of Daily Amplitude
      */
     public Map<LocalDate, Double> getDailyAmplitudeInInterval(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
         Map<LocalDate, Double> mapOfDailyAmplitude = new HashMap<>();
@@ -378,7 +377,7 @@ public class GeographicalArea {
      * if there are two equal amplitudes, it gets both.
      *
      * @param mapOfDailyAmplitude given daily Amplitude Map<LocalDate, Double>
-     * @return Map<LocalDate       ,               Double> map Of Highest Daily Amplitude
+     * @return Map<LocalDate                               ,                                                               Double> map Of Highest Daily Amplitude
      */
     public Map<LocalDate, Double> getHighestDailyAmplitude(Map<LocalDate, Double> mapOfDailyAmplitude) {
 
@@ -430,25 +429,9 @@ public class GeographicalArea {
         return totalDailyMeasurement;
     }
 
-    public Reading getHighestReadingOfASensor(LocalDate startDate, LocalDate endDate) {
-        return sensorList.getHighestReadingOfSensor(startDate, endDate);
-    }
-
-    public Reading getFirstHighestReading(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
-        SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
-        Sensor chosenSensor = sensorList.getSensorWithMostRecentReading(sensorListWithTheRequiredType);
-        if (!sensorListWithTheRequiredType.getListOfSensors().isEmpty()) {
-            SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
-            chosenSensor = sensorList.getSensorWithMostRecentReading(nearestSensors);
-        }
-        Reading highestReading = chosenSensor.getHighestReading(startDate, endDate);
-        for (Reading reading : chosenSensor.getReadingsBetweenDates(startDate, endDate)) {
-            Number readingValue = reading.getValue();
-            Number highestReadingValue = highestReading.getValue();
-            if (readingValue == highestReadingValue) {
-                highestReading = reading;
-            }
-        }
+    public Reading getFirstHighestReading(SensorType type, LocalDate startDate, LocalDate endDate) {
+        Sensor chosenSensor = getNearestSensorWithMostRecentReading(type, this.location);
+        Reading highestReading = chosenSensor.getFirstHighestReading(startDate, endDate);
         return highestReading;
     }
 
@@ -458,16 +441,15 @@ public class GeographicalArea {
 
     public Reading getLastLowestMaximumReading(Location location, SensorType sensorType, LocalDate startDate, LocalDate endDate) {
         Sensor sensor = getNearestSensorWithMostRecentReading(sensorType, location);
-        if(Objects.isNull(sensor)){
+        if (Objects.isNull(sensor)) {
             return null;
         }
-        List<Reading> readings = sensor.getDailyMaxReadingsInAnInterval(startDate,endDate);
+        List<Reading> readings = sensor.getDailyMaxReadingsInAnInterval(startDate, endDate);
         return sensor.getLastLowestReading(readings);
     }
 
     public Sensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
         SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
-
         if (sensorListWithTheRequiredType.isEmpty()) {
             return null;
         }

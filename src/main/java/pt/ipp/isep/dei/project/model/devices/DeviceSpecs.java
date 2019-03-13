@@ -3,6 +3,10 @@ package pt.ipp.isep.dei.project.model.devices;
 import java.util.List;
 
 public interface DeviceSpecs {
+
+    static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
+
+
     /**
      * get method
      *
@@ -33,8 +37,6 @@ public interface DeviceSpecs {
 
     Object getAttributeValue(String attributeName);
 
-    String getAttributeDataType(String attributeName);
-
     boolean setAttributeValue(String attributeName, Object attributeValue);
 
     String getTypeName();
@@ -42,4 +44,19 @@ public interface DeviceSpecs {
     boolean isProgrammable();
 
     Programmable asProgrammable();
+
+    //DEFAULT METHODS
+
+
+    /**
+     * get method
+     * @param attributeName string name of attribute
+     * @return type data of the attribute (ex.integer, double)
+     */
+    default String getAttributeDataType(String attributeName) {
+        if ((getAttributeValue(attributeName).equals(NOT_VALID_ATTRIBUTE))) {
+            return NOT_VALID_ATTRIBUTE;
+        }
+        return getAttributeValue(attributeName).getClass().getName().substring(10);
+    }
 }

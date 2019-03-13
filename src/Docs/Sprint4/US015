@@ -7,7 +7,6 @@ TEAM MEMBERS: Developer - Sónia Silva; QA - Diana Ferreira;
 ACCEPTANCE CRITERIA:
 
 General Criteria:
-- All acceptance tests with "Process finished with exit code 0" message.
 - Correct Sequence and Class Diagrams.
 - JavaDoc documentation in both code and tests.
 - JUnit conventions in code and tests. (eg. tests should be named like this:
@@ -16,10 +15,23 @@ General Criteria:
 
 Specific Criteria:
 - given - The user (Admin) imports geographical areas and sensors from a JSON file.
-- when - The user chooses option "1" from Menu (Administrator), then option "2" (Geographical Area) and then option "11"
-(Import Readings from JSON File). Then User inserts the path to the JSON file to be imported.
-- then - A success message is displayed if all the data was imported successfully ("All data was imported successfully").
-- but -
+- when - The user chooses option "1" from Menu (Administrator), then option "2" (Geographical Area) and then option "9"
+(Import geographical areas and sensors from JSON File). Then User inserts the name of the JSON file to be imported
+(JSONfile.json). He/She then chooses the option "YES" in "Do you want to import these geographic areas and their
+sensors? (Y/N)"
+- then:
+   * When the user inserts the name of the file the following message appears ("This is the content of the chosen file.")
+with the contents of the file.
+   * When he/she chooses the "Yes" option the following message appears ("The JSON file was imported with success.")
+- but - The following messages are displayed:
+
+"ERROR: There's no such file with that name." - when no file or directory is found when the user inputs the name of the
+file to be imported.
+
+
+Test Criteria:
+- All acceptance tests with "Process finished with exit code 0" message:
+
 
 ASSUMPTIONS:
 - Regarding sensors, only the geographical area sensors are imported.
@@ -27,4 +39,3 @@ ASSUMPTIONS:
 - For user convenience the data to be imported is in the form of two DTO (Geographical Area DTO and SensorDTO)
 thar are imported at the same time instead of importing the two referred DTO's one at a time.
 
-OTHER INFORMATION:

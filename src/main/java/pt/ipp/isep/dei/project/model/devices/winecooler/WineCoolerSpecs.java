@@ -68,12 +68,12 @@ public class WineCoolerSpecs implements DeviceSpecs {
      * @return
      */
     public boolean setNominalPower(Object nominalPower) {
-        double wineCoolerNomPower = (Double) nominalPower;
-        if (Utils.isSameDouble(this.nominalPower, wineCoolerNomPower)) {
-            return false;
+        double nomPower = (Double) nominalPower;
+        if (!Utils.isSameDouble(this.nominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
+            this.nominalPower = nomPower;
+            return true;
         }
-        this.nominalPower = wineCoolerNomPower;
-        return true;
+        return false;
     }
 
     /**
@@ -173,7 +173,7 @@ public class WineCoolerSpecs implements DeviceSpecs {
             case ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION:
                 return annualEnergyConsumption;
             default:
-                return "Not a valid attribute";
+                return NOT_VALID_ATTRIBUTE;
         }
     }
 
@@ -205,21 +205,6 @@ public class WineCoolerSpecs implements DeviceSpecs {
             default:
                 return false;
         }
-    }
-
-    /**
-     * get string of the type of attribute
-     *
-     * @param attributeName string name of attribute
-     * @return type data of the attribute (ex.integer, double)
-     * if not a valid attribute, returns a String "not a valid attribute"
-     */
-    @Override
-    public String getAttributeDataType(String attributeName) {
-        if ((getAttributeValue(attributeName).equals("Not a valid attribute"))) {
-            return "Not a valid attribute";
-        }
-        return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 }
 

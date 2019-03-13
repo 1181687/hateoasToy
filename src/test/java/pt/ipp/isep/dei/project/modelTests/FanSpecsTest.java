@@ -19,6 +19,8 @@ public class FanSpecsTest {
     private Device fan;
     private House house;
     private DeviceSpecs fanSpecs;
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
+
 
     @BeforeEach
     public void StartUp() {
@@ -147,7 +149,7 @@ public class FanSpecsTest {
     @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
-        Object expectedResult = -1;
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
         // Act
         Object result = fan.getSpecs().getAttributeValue("Not Valid");
         // Assert
@@ -206,16 +208,6 @@ public class FanSpecsTest {
         boolean result = fan.getSpecs().setAttributeValue("Time", 0);
         // Assert
         assertFalse(result);
-    }
-
-    @Test
-    public void getAttributeDataTypeTest() {
-        // arrange
-        String attributeDataType = "Integer";
-        // act
-        String result = fan.getSpecs().getAttributeDataType("Integer");
-        // assert
-        assertEquals(attributeDataType, result);
     }
 
     @Test

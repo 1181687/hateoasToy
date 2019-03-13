@@ -55,6 +55,14 @@ public class Sensor {
         this.units = units;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     /**
      * Get method
      *
@@ -268,12 +276,16 @@ public class Sensor {
      * @return last measurement
      */
     public Reading getLastMeasurement() {
+        if (listOfReadings.isEmpty()) {
+            return null;
+        }
+        Reading reading = listOfReadings.get(0);
         for (int i = (listOfReadings.size() - 1); i >= 0; i--) {
             if (!(Double.isNaN(listOfReadings.get(i).getValue()))) {
                 return listOfReadings.get(i);
             }
         }
-        return null;
+        return reading;
     }
 
     /**
@@ -499,7 +511,10 @@ public class Sensor {
         return measurementsBetweenDates;
     }
 
-    public Reading getHighestReading(LocalDate startDate, LocalDate endDate) {
+    public Reading getFirstHighestReading(LocalDate startDate, LocalDate endDate) {
+        if (getReadingsBetweenDates(startDate, endDate).isEmpty()) {
+            return null;
+        }
         Reading highestReading = getReadingsBetweenDates(startDate, endDate).get(0);
         for (Reading reading : getReadingsBetweenDates(startDate, endDate)) {
             if (!Double.isNaN(reading.getValue())) {
@@ -512,10 +527,10 @@ public class Sensor {
     }
 
     public Reading getHighestReadingOfADay(LocalDate day) {
-        if(getDailyMeasurement(day).isEmpty()){
+        if (getDailyMeasurementWithDoubleNaN(day).isEmpty()) {
             return null;
         }
-        Reading highestReading = getDailyMeasurement(day).get(0);
+        Reading highestReading = getDailyMeasurementWithDoubleNaN(day).get(0);
         for (Reading reading : getDailyMeasurement(day)) {
             if (!Double.isNaN(reading.getValue()) && Utils.isFirstDoubleBiggerOrEqualThanSecondOne(reading.getValue(), highestReading.getValue())) {
                 highestReading = reading;
@@ -528,24 +543,45 @@ public class Sensor {
         List<Reading> maximumReadings = new ArrayList<>();
 
         for (LocalDate dateIterator = startDate; dateIterator.isBefore(endDate.plusDays(1)); dateIterator = dateIterator.plusDays(1)) {
-            if(getHighestReadingOfADay(dateIterator)!=null){
+            if (getHighestReadingOfADay(dateIterator) != null) {
                 maximumReadings.add(getHighestReadingOfADay(dateIterator));
             }
         }
         return maximumReadings;
     }
 
-    public Reading getLastLowestReading(List<Reading> readings){
-        if(readings.isEmpty()){
+    public Reading getLastLowestReading(List<Reading> readings) {
+        if (readings.isEmpty()) {
             return null;
         }
         Reading lowestReading = readings.get(0);
         for (Reading reading : readings) {
-            if(Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(reading.getValue(),lowestReading.getValue())){
-                lowestReading=reading;
+            if (Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(reading.getValue(), lowestReading.getValue())) {
+                lowestReading = reading;
             }
         }
         return lowestReading;
     }
 
+    /**
+     * Method that returns the list of Readings of a Sensor.
+     *
+     * @return List with Readings.
+     */
+    public List<Reading> getListOfReadings() {
+        return listOfReadings;
+    }
+
+    public List<Reading> getDailyMeasurementWithDoubleNaN(LocalDate date) {
+        List<Reading> registosDoDia = new ArrayList<>();
+        for (Reading registo : listOfReadings) {
+            LocalDate secondDate = registo.getDateTime().toLocalDate();
+
+            if (checkIfDaysAreEqual(date, secondDate)) {
+                registosDoDia.add(registo);
+            }
+        }
+        return registosDoDia;
+
+    }
 }

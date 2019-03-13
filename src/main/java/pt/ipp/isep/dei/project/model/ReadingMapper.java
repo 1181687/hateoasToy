@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.util.Objects;
+
 public class ReadingMapper {
 
     /**
@@ -16,10 +18,13 @@ public class ReadingMapper {
      * @return Reading with the required information.
      */
     public static Reading mapToEntity(ReadingDTO readingDTO) {
+        if (Objects.isNull(readingDTO)) {
+            return null;
+        }
         return new Reading(readingDTO.getValue(), readingDTO.getDateTime());
     }
 
-    public static ReadingDTO mapToDTO(Reading reading){
+    public static ReadingDTO mapToDTO(Reading reading) {
         ReadingDTO dto = newReadingDTO();
         dto.setDateTime(reading.getDateTime());
         dto.setValue(reading.getValue());

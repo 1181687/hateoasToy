@@ -16,54 +16,55 @@ skinparam sequence {
 	ActorFontSize 17
 	ActorFontName Aapex
 }
+
 activate ":GeographicalArea"
-":GeographicalArea" -> ":SensorList": getSensorListByTypeInAPeriod ()
+":GeographicalArea" -> ":SensorList": 1- getSensorListByTypeInAPeriod ()
 activate ":SensorList"
-":SensorList" -> ":Sensor": getSensorsInGeographicalAreaByType ()
+":SensorList" -> ":Sensor": 1.1- getSensorsInGeographicalAreaByType ()
 activate ":Sensor"
-":Sensor" -> ":Reading": checkMeasurementExistenceBetweenDates ()
+":Sensor" -> ":Reading": 1.1.1- checkMeasurementExistenceBetweenDates ()
 activate ":Reading"
-":Sensor" <-- ":Reading": boolean
+":Sensor" <-- ":Reading": 1.1.2- boolean
 deactivate ":Reading"
-":SensorList" <-- ":Sensor": listOfSensors
+":SensorList" <-- ":Sensor": 1.2- listOfSensors
 deactivate ":Sensor"
-":GeographicalArea" <-- ":SensorList": listOfSensors
+":GeographicalArea" <-- ":SensorList": 2- listOfSensors
 deactivate ":SensorList"
-":GeographicalArea" -> ":SensorList": getNearestSensorsToLocation (location)
+":GeographicalArea" -> ":SensorList": 3- getNearestSensorsToLocation (location)
 activate ":SensorList"
-":SensorList" -> ":Sensor": getNearestSensorsToLocation (location)
+":SensorList" -> ":Sensor": 3.1- getNearestSensorsToLocation (location)
 activate ":Sensor"
-":SensorList" <-- ":Sensor": listOfNearestSensors
+":SensorList" <-- ":Sensor": 3.2- listOfNearestSensors
 deactivate ":Sensor"
-":GeographicalArea" <-- ":SensorList": listOfNearestSensors
+":GeographicalArea" <-- ":SensorList": 4- listOfNearestSensors
 deactivate ":SensorList"
-":GeographicalArea" -> ":SensorList": getSensorWithMostRecentReading ()
+":GeographicalArea" -> ":SensorList": 5- getSensorWithMostRecentReading ()
 activate ":SensorList"
-":SensorList" -> ":Sensor": getSensorWithMostRecentReading ()
+":SensorList" -> ":Sensor": 5.1- getSensorWithMostRecentReading ()
 activate ":Sensor"
-":Sensor" -> ":Reading": getSensorWithMostRecentReading ()
+":Sensor" -> ":Reading": 5.1.1- getSensorWithMostRecentReading ()
 activate ":Reading"
-":Sensor" <-- ":Reading": sensorWithMostRecentReading
+":Sensor" <-- ":Reading": 5.1.2- sensorWithMostRecentReading
 deactivate ":Reading"
-":SensorList" <-- ":Sensor": sensorWithMostRecentReading
+":SensorList" <-- ":Sensor": 5.2- sensorWithMostRecentReading
 deactivate ":Sensor"
-":GeographicalArea" <-- ":SensorList": sensorWithMostRecentReading
+":GeographicalArea" <-- ":SensorList": 6- sensorWithMostRecentReading
 deactivate ":SensorList"
-":GeographicalArea" -> ":Sensor": getMaximumValueOfDay ()
+":GeographicalArea" -> ":Sensor": 7- getMaximumValueOfDay ()
 activate ":Sensor"
-":Sensor" -> ":Reading": getMaximumValueOfDay ()
+":Sensor" -> ":Reading": 7.1- getMaximumValueOfDay ()
 activate ":Reading"
-":Sensor" <-- ":Reading": maximumValueOfDay
+":Sensor" <-- ":Reading": 7.2- maximumValueOfDay
 deactivate ":Reading"
-":GeographicalArea" <-- ":Sensor": maximumValueOfDay
+":GeographicalArea" <-- ":Sensor": 8- maximumValueOfDay
 deactivate ":Sensor"
-":GeographicalArea" -> ":Sensor": getLowestValueOfDay ()
+":GeographicalArea" -> ":Sensor": 9- getLowestValueOfDay ()
 activate ":Sensor"
-":Sensor" -> ":Reading": getLowestValueOfDay ()
+":Sensor" -> ":Reading": 9.1- getLowestValueOfDay ()
 activate ":Reading"
-":Sensor" <-- ":Reading": lowestValueOfDay
+":Sensor" <-- ":Reading": 9.2- lowestValueOfDay
 deactivate ":Reading"
-":GeographicalArea" <-- ":Sensor": lowestValueOfDay
+":GeographicalArea" <-- ":Sensor": 10- lowestValueOfDay
 
 
 

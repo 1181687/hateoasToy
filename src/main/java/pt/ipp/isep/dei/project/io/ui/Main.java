@@ -2,7 +2,9 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.devices.*;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Program;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -34,10 +36,12 @@ public class Main {
     private static final String ECO_TURBO = "Eco Turbo";
     private static final String FAST = "Fast";
     private static final String FAST_PLUS = "Fast Plus";
-    private static final String SYNTHETIC_30º= "Synthetic 30º";
+    private static final String SYNTHETIC_30º = "Synthetic 30º";
     private static final String ELECTRIC_WATER_HEATER = "ElectricWaterHeater";
     private static final String DISHWASHER = "DishWasher";
     private static final String WASHING_MACHINE = "WashingMachine";
+    private static final String DURATION = "Duration";
+    private static final String ENERGY_CONSUMPTION = "Energy Consumption";
 
     public static void main(String[] args) {
 
@@ -417,20 +421,20 @@ public class Main {
 
         Programmable dwB107Programmable = dwB107.getSpecs().asProgrammable();
         Program program = dwB107Programmable.createNewProgram(GLASSES);
-        program.setProgramAttributes("duration", durationNotAsked);
-        program.setProgramAttributes("energyConsumption",0.9);
+        program.setProgramAttributes(DURATION, durationNotAsked);
+        program.setProgramAttributes(ENERGY_CONSUMPTION, 0.9);
 
         Program program1 = dwB107Programmable.createNewProgram(ECO);
-        program1.setProgramAttributes("duration", durationNotAsked);
-        program1.setProgramAttributes("energyConsumption",1.3);
+        program1.setProgramAttributes(DURATION, durationNotAsked);
+        program1.setProgramAttributes(ENERGY_CONSUMPTION, 1.3);
 
         Program program2 = dwB107Programmable.createNewProgram(ECO_TURBO);
-        program2.setProgramAttributes("duration", durationNotAsked);
-        program2.setProgramAttributes("energyConsumption",1.7);
+        program2.setProgramAttributes(DURATION, durationNotAsked);
+        program2.setProgramAttributes(ENERGY_CONSUMPTION, 1.7);
 
-        Program  program3 = dwB107Programmable.createNewProgram(DISHES);
-        program3.setProgramAttributes("duration", durationNotAsked);
-        program3.setProgramAttributes("energyConsumption",2.1);
+        Program program3 = dwB107Programmable.createNewProgram(DISHES);
+        program3.setProgramAttributes(DURATION, durationNotAsked);
+        program3.setProgramAttributes(ENERGY_CONSUMPTION, 2.1);
 
         dwB107Programmable.addProgram(program);
         dwB107Programmable.addProgram(program1);
@@ -449,20 +453,20 @@ public class Main {
 
         Programmable wmB107Programmable = wmB107.getSpecs().asProgrammable();
         Program program4 = wmB107Programmable.createNewProgram(WOOL);
-        program4.setProgramAttributes("duration", durationNotAsked);
-        program4.setProgramAttributes("energyConsumption",1.1);
+        program4.setProgramAttributes(DURATION, durationNotAsked);
+        program4.setProgramAttributes(ENERGY_CONSUMPTION, 1.1);
 
         Program program5 = wmB107Programmable.createNewProgram(FAST);
-        program5.setProgramAttributes("duration", durationNotAsked);
-        program5.setProgramAttributes("energyConsumption",1.8);
+        program5.setProgramAttributes(DURATION, durationNotAsked);
+        program5.setProgramAttributes(ENERGY_CONSUMPTION, 1.8);
 
         Program program6 = wmB107Programmable.createNewProgram(FAST_PLUS);
-        program6.setProgramAttributes("duration", durationNotAsked);
-        program6.setProgramAttributes("energyConsumption",2.7);
+        program6.setProgramAttributes(DURATION, durationNotAsked);
+        program6.setProgramAttributes(ENERGY_CONSUMPTION, 2.7);
 
         Program program7 = wmB107Programmable.createNewProgram(SYNTHETIC_30º);
-        program7.setProgramAttributes("duration", durationNotAsked);
-        program7.setProgramAttributes("energyConsumption",2.8);
+        program7.setProgramAttributes(DURATION, durationNotAsked);
+        program7.setProgramAttributes(ENERGY_CONSUMPTION, 2.8);
 
         wmB107Programmable.addProgram(program4);
         wmB107Programmable.addProgram(program5);
@@ -503,20 +507,20 @@ public class Main {
 
         Programmable dwB109Programmable = dwB109.getSpecs().asProgrammable();
         Program program16 = dwB109Programmable.createNewProgram(GLASSES);
-        program16.setProgramAttributes("duration", durationNotAsked);
-        program16.setProgramAttributes("energyConsumption",0.9);
+        program16.setProgramAttributes(DURATION, durationNotAsked);
+        program16.setProgramAttributes(ENERGY_CONSUMPTION, 0.9);
 
         Program program17 = dwB109Programmable.createNewProgram(ECO);
-        program17.setProgramAttributes("duration", durationNotAsked);
-        program17.setProgramAttributes("energyConsumption",1.3);
+        program17.setProgramAttributes(DURATION, durationNotAsked);
+        program17.setProgramAttributes(ENERGY_CONSUMPTION, 1.3);
 
         Program program18 = dwB109Programmable.createNewProgram(ECO_TURBO);
-        program18.setProgramAttributes("duration", durationNotAsked);
-        program18.setProgramAttributes("energyConsumption",1.7);
+        program18.setProgramAttributes(DURATION, durationNotAsked);
+        program18.setProgramAttributes(ENERGY_CONSUMPTION, 1.7);
 
         Program program19 = dwB109Programmable.createNewProgram(DISHES);
-        program19.setProgramAttributes("duration", durationNotAsked);
-        program19.setProgramAttributes("energyConsumption",2.1);
+        program19.setProgramAttributes(DURATION, durationNotAsked);
+        program19.setProgramAttributes(ENERGY_CONSUMPTION, 2.1);
 
         dwB109Programmable.addProgram(program16);
         dwB109Programmable.addProgram(program17);
@@ -537,20 +541,20 @@ public class Main {
 
         Programmable wmB109Programmable = wmB109.getSpecs().asProgrammable();
         Program program8 = wmB109Programmable.createNewProgram(WOOL);
-        program8.setProgramAttributes("duration", durationNotAsked);
-        program8.setProgramAttributes("energyConsumption",0.9);
+        program8.setProgramAttributes(DURATION, durationNotAsked);
+        program8.setProgramAttributes(ENERGY_CONSUMPTION, 0.9);
 
         Program program9 = wmB109Programmable.createNewProgram(FAST);
-        program9.setProgramAttributes("duration", durationNotAsked);
-        program9.setProgramAttributes("energyConsumption",1.3);
+        program9.setProgramAttributes(DURATION, durationNotAsked);
+        program9.setProgramAttributes(ENERGY_CONSUMPTION, 1.3);
 
         Program program10 = wmB109Programmable.createNewProgram(FAST_PLUS);
-        program10.setProgramAttributes("duration", durationNotAsked);
-        program10.setProgramAttributes("energyConsumption",1.7);
+        program10.setProgramAttributes(DURATION, durationNotAsked);
+        program10.setProgramAttributes(ENERGY_CONSUMPTION, 1.7);
 
         Program program11 = wmB109Programmable.createNewProgram(SYNTHETIC_30º);
-        program11.setProgramAttributes("duration", durationNotAsked);
-        program11.setProgramAttributes("energyConsumption",2.1);
+        program11.setProgramAttributes(DURATION, durationNotAsked);
+        program11.setProgramAttributes(ENERGY_CONSUMPTION, 2.1);
 
         wmB109Programmable.addProgram(program8);
         wmB109Programmable.addProgram(program9);
@@ -571,21 +575,21 @@ public class Main {
         dwB106.setAttributesDevType(NOMINAL_POWER, 1.4);
 
         Programmable dwB106Programmable = dwB106.getSpecs().asProgrammable();
-        Program program12 = dwB106Programmable.createNewProgram (GLASSES);
-        program12.setProgramAttributes("duration", durationNotAsked);
-        program12.setProgramAttributes("energyConsumption",0.8);
+        Program program12 = dwB106Programmable.createNewProgram(GLASSES);
+        program12.setProgramAttributes(DURATION, durationNotAsked);
+        program12.setProgramAttributes(ENERGY_CONSUMPTION, 0.8);
 
         Program program13 = dwB106Programmable.createNewProgram("Light");
-        program13.setProgramAttributes("duration", durationNotAsked);
-        program13.setProgramAttributes("energyConsumption",1.3);
+        program13.setProgramAttributes(DURATION, durationNotAsked);
+        program13.setProgramAttributes(ENERGY_CONSUMPTION, 1.3);
 
         Program program14 = dwB106Programmable.createNewProgram("Light turbo");
-        program14.setProgramAttributes("duration", durationNotAsked);
-        program14.setProgramAttributes("energyConsumption",1.9);
+        program14.setProgramAttributes(DURATION, durationNotAsked);
+        program14.setProgramAttributes(ENERGY_CONSUMPTION, 1.9);
 
         Program program15 = dwB106Programmable.createNewProgram(DISHES);
-        program15.setProgramAttributes("duration", durationNotAsked);
-        program15.setProgramAttributes("energyConsumption",2.3);
+        program15.setProgramAttributes(DURATION, durationNotAsked);
+        program15.setProgramAttributes(ENERGY_CONSUMPTION, 2.3);
 
         dwB106Programmable.addProgram(program12);
         dwB106Programmable.addProgram(program13);

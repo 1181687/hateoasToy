@@ -16,9 +16,10 @@ skinparam sequence {
 	ActorFontSize 17
 	ActorFontName Aapex
 }
+activate AdminUser
+actor AdminUser
 
-actor RegularUser
-RegularUser -> ":UI":
+AdminUser -> ":UI":
 activate ":UI"
 ":UI" -> ":Controller":
 activate ":Controller"
@@ -28,10 +29,10 @@ activate ":House"
 deactivate ":House"
 ":UI" <-- ":Controller":
 deactivate ":Controller"
-RegularUser <-- ":UI":
+AdminUser <-- ":UI":
 deactivate ":UI"
 
-RegularUser -> ":UI":
+AdminUser -> ":UI":
 activate ":UI"
 ":UI" -> ":Controller":
 activate ":Controller"
@@ -41,8 +42,8 @@ activate ":House"
 deactivate ":House"
 deactivate ":Controller"
 
-PowerUser -> ":UI":
-PowerUser -> ":UI":
+AdminUser -> ":UI":
+AdminUser -> ":UI":
 ":UI" -> ":Controller":
 activate ":Controller"
 ":Controller" -> ":Device":
@@ -51,7 +52,9 @@ activate ":Device"
 deactivate ":Device"
 ":UI" <-- ":Controller":
 deactivate ":Controller"
-PowerUser <-- ":UI":
+AdminUser<-- ":UI":
 deactivate ":UI"
+
+deactivate AdminUser
 
 @enduml

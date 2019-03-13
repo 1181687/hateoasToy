@@ -7,8 +7,6 @@ import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
-import java.io.FileNotFoundException;
-
 public class Admin {
     private GeographicalAreaTypeList geographicalAreaTypeList;
     private GeographicalAreaList geographicalAreaList;
@@ -69,11 +67,7 @@ public class Admin {
                     break;
                 case 9:
                     ImportReadingsFromJSON ui9 = new ImportReadingsFromJSON(geographicalAreaList);
-                    try {
-                        ui9.run();
-                    } catch (FileNotFoundException e) {
-                        System.out.println(e.getMessage() + "\n");
-                    }
+                    ui9.run();
                     break;
                 case 10:
                     ImportReadingsFromCSV ui10 = new ImportReadingsFromCSV(geographicalAreaList);

@@ -136,7 +136,7 @@ public class ElectricOvenSpecs implements DeviceSpecs {
             case ATTRIBUTE_NOMINAL_POWER:
                 return nominalPower;
             default:
-                return -1;
+                return NOT_VALID_ATTRIBUTE;
         }
     }
 
@@ -163,16 +163,6 @@ public class ElectricOvenSpecs implements DeviceSpecs {
             default:
                 return false;
         }
-    }
-
-    /**
-     * get method
-     *
-     * @param attributeName string name of attribute
-     * @return type data of the attribute (ex.integer, double)
-     */
-    public String getAttributeDataType(String attributeName) {
-        return getAttributeValue(attributeName).getClass().getName().substring(10);
     }
 
     public boolean addProgram(TimeConstantProgramSpecs program) {

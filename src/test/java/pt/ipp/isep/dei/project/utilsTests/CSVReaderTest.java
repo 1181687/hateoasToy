@@ -9,8 +9,11 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class CSVReaderTest {
 
+    /**
+     * Test that tries to parse a valid String, which results in a list with the required information.
+     */
     @Test
-    public void parseLineTest() {
+    void testParseLine_tryingToParseAValidString_ShouldReturnSuccessfulResults() {
         // Arrange
         String line = "TT12346,2018-12-30T02:00:00+00:00,14.0";
 
@@ -24,8 +27,11 @@ class CSVReaderTest {
         assertEquals("14.0", result.get(2));
     }
 
+    /**
+     * Test that tries to parse an empty String, which results in a null Object.
+     */
     @Test
-    public void parseLineEmptyTest() {
+    void testParseLine_tryingToParseAnEmptyString_ShouldReturnWithASizeOfZero() {
         // Arrange
         String line = "";
 
@@ -36,8 +42,11 @@ class CSVReaderTest {
         assertEquals(0, result.size());
     }
 
+    /**
+     * Test that tries to parse a null String, which results in a null Object.
+     */
     @Test
-    public void parseLineNullTest() {
+    void testParseLine_tryingToParseANullString_ShouldReturnWithASizeOfZero() {
         // Arrange
         String line = null;
 

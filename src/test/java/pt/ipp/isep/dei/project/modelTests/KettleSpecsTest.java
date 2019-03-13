@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class KettleSpecsTest {
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
@@ -117,6 +116,41 @@ public class KettleSpecsTest {
 
     /**
      * Test the setNominalPower method with the method setAttributeValue.
+     * This test checks if we can set the Nominal Power value with null character .
+     */
+    @Test
+    public void testSetNominalPower_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double nominalPower = 30;
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue("\0"+ATTRIBUTE_NOMINAL_POWER, nominalPower);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    /**
+     * Test the setNominalPower method with the method setAttributeValue.
+     * This test checks if we can set the Nominal Power value with an invalid Data Type.
+     */
+    @Test
+    public void testSetNominalPower_InvalidDataType_False() {
+        //Arrange
+        boolean expectedResult = false;
+        String nominalPower = "30";
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue(ATTRIBUTE_NOMINAL_POWER, nominalPower);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the setNominalPower method with the method setAttributeValue.
      * This test checks if we can set the Nominal Power value with zero value.
      */
     @Test
@@ -158,6 +192,42 @@ public class KettleSpecsTest {
         //Arrange
         boolean expectedResult = false;
         double maxVolWater = 2;
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue(ATTRIBUTE_MAXIMUM_VOLUME_WATER, maxVolWater);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the setMaximumVolumeOfWater method with the method setAttributeValue.
+     * This test checks if we can set the Maximum Volume of Water value with null character.
+     */
+    @Test
+    public void testSetMaximumVolumeOfWater_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double maxVolWater = 2;
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue("\0"+ATTRIBUTE_MAXIMUM_VOLUME_WATER, maxVolWater);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+
+    /**
+     * Test the setMaximumVolumeOfWater method with the method setAttributeValue.
+     * This test checks if we can set the Maximum Volume of Water value with with an invalid Data Type.
+     */
+    @Test
+    public void testSetMaximumVolumeOfWater_InvalidDataType_False() {
+        //Arrange
+        boolean expectedResult = false;
+        String maxVolWater = "2";
 
         //Act
         boolean result = kettleSpecs.setAttributeValue(ATTRIBUTE_MAXIMUM_VOLUME_WATER, maxVolWater);
@@ -216,6 +286,43 @@ public class KettleSpecsTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+
+    /**
+     * Test the setPerformanceRatio method with the method setAttributeValue.
+     * This test checks if we can set the Performance Ratio value with null character.
+     */
+    @Test
+    public void testSetPerformanceRatio_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double perfRatio = 0.9;
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue("\0"+ATTRIBUTE_PERFORMANCE_RATIO, perfRatio);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    /**
+     * Test the setPerformanceRatio method with the method setAttributeValue.
+     * This test checks if we can set the Performance Ratio value with an invalid Data Type.
+     */
+    @Test
+    public void testSetPerformanceRatio_InvalidDataType_False() {
+        //Arrange
+        boolean expectedResult = false;
+        String perfRatio = "0.9";
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue(ATTRIBUTE_PERFORMANCE_RATIO, perfRatio);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
 
     /**
      * Test the setPerformanceRatio method with the method setAttributeValue.
@@ -287,6 +394,42 @@ public class KettleSpecsTest {
 
     /**
      * Test the setVolumeOfWaterToHeat method with the method setAttributeValue.
+     * This test checks if we can set the Volume of Water to Heat value  with null character.
+     */
+    @Test
+    public void testSetVolumeOfWaterToHeat_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double volWater = -1;
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue("\0"+VOLUME_OF_WATER_TO_HEAT, volWater);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    /**
+     * Test the setVolumeOfWaterToHeat method with the method setAttributeValue.
+     * This test checks if we can set the Volume of Water to Heat value with an invalid Data Type.
+     */
+    @Test
+    public void testSetVolumeOfWaterToHeat_InvalidDataType_False() {
+        //Arrange
+        boolean expectedResult = false;
+        String volWater = "-1";
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue(VOLUME_OF_WATER_TO_HEAT, volWater);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    /**
+     * Test the setVolumeOfWaterToHeat method with the method setAttributeValue.
      * This test checks if we can set the Volume of Water to Heat value with a value larger than the maximum volume of water.
      */
     @Test
@@ -321,6 +464,40 @@ public class KettleSpecsTest {
 
     /**
      * Test the setColdWaterTemperature method with the method setAttributeValue.
+     * This test checks if we can set the Cold Water Temperature value with an invalid Data Type.
+     */
+    @Test
+    public void testSetColdWaterTemperature_InvalidDataType_False() {
+        //Arrange
+        boolean expectedResult = false;
+        String coldWaterTemp = "101";
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue(COLD_WATER_TEMPERATURE, coldWaterTemp);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the setColdWaterTemperature method with the method setAttributeValue.
+     * This test checks if we can set the Cold Water Temperature value with null character.
+     */
+    @Test
+    public void testSetColdWaterTemperature_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        String  coldWaterTemp = "101";
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue("\0"+COLD_WATER_TEMPERATURE, coldWaterTemp);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the setColdWaterTemperature method with the method setAttributeValue.
      * This test checks if we can set the Cold Water Temperature value with a valid value.
      */
     @Test
@@ -347,6 +524,22 @@ public class KettleSpecsTest {
 
         //Act
         boolean result = kettleSpecs.setAttributeValue("Not valid name", nominalPower);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the setAttributeValue method in the case that there isn't a valid attribute name.
+     */
+    @Test
+    public void testSetAttributeValue_NullAttributeName_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double nominalPower = 0;
+
+        //Act
+        boolean result = kettleSpecs.setAttributeValue("", nominalPower);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -422,7 +615,7 @@ public class KettleSpecsTest {
      * Test the method that gets a String List of the attibutes of this device.
      */
     @Test
-    public void testGetSpecsList_ListOfStringsOfAttibutes (){
+    public void testGetSpecsList_ListOfStringsOfAttibutes() {
         //Arrange
         List<String> expectedResult = new ArrayList<>();
         expectedResult.add(ATTRIBUTE_MAXIMUM_VOLUME_WATER);
@@ -436,11 +629,11 @@ public class KettleSpecsTest {
     }
 
     /**
-     * Test the return "not a valid attribute" of the method getAttributeValue.
-     * This method has already been tested with the "set" name of the respective attribute.
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an invalid attribute.
      */
     @Test
-    public void testGetAttributeValue_NotAValidAttribute (){
+    public void testGetAttributeValue_NotAValidAttribute() {
         //Arrange
         String expectedResult = "not a valid attribute";
         //Act
@@ -450,11 +643,95 @@ public class KettleSpecsTest {
     }
 
     /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NullCharacterMaxVolWater (){
+        //Arrange
+        String expectedResult = "not a valid attribute";
+        //Act
+        Object result = kettleSpecs.getAttributeValue("\0"+ATTRIBUTE_MAXIMUM_VOLUME_WATER);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NullCharacterPerfRatio (){
+        //Arrange
+        String expectedResult = "not a valid attribute";
+        //Act
+        Object result = kettleSpecs.getAttributeValue("\0"+ATTRIBUTE_PERFORMANCE_RATIO);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NullCharacterColdWaterTemp (){
+        //Arrange
+        String expectedResult = "not a valid attribute";
+        //Act
+        Object result = kettleSpecs.getAttributeValue("\0"+COLD_WATER_TEMPERATURE);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NullCharacterNomPower (){
+        //Arrange
+        String expectedResult = "not a valid attribute";
+        //Act
+        Object result = kettleSpecs.getAttributeValue("\0"+ATTRIBUTE_NOMINAL_POWER);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NullVolWaterHeat (){
+        //Arrange
+        String expectedResult = "not a valid attribute";
+        //Act
+        Object result = kettleSpecs.getAttributeValue("\0"+VOLUME_OF_WATER_TO_HEAT);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue.
+     */
+    @Test
+    public void testGetAttributeValue_NullAttribute() {
+        //Arrange
+        String expectedResult = "not a valid attribute";
+        //Act
+        Object result = kettleSpecs.getAttributeValue("");
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
      * Test if the method getAttributeDataType shows the Data type of a valid attribute,
      * in this case, the nominal power.
      */
     @Test
-    public void testGetAttributeDataType_NominalPower (){
+    public void testGetAttributeDataType_NominalPower() {
         //Arrange
         String expectedResult = "Double";
 
@@ -471,7 +748,7 @@ public class KettleSpecsTest {
      * in this case, the Maximum Volume of Water.
      */
     @Test
-    public void testGetAttributeDataType_MaxVolumeOfWater (){
+    public void testGetAttributeDataType_MaxVolumeOfWater() {
         //Arrange
         String expectedResult = "Double";
 
@@ -488,7 +765,7 @@ public class KettleSpecsTest {
      * in this case, the Performance Ratio.
      */
     @Test
-    public void testGetAttributeDataType_PerformanceRatio (){
+    public void testGetAttributeDataType_PerformanceRatio() {
         //Arrange
         String expectedResult = "Double";
 
@@ -505,7 +782,7 @@ public class KettleSpecsTest {
      * in this case, the Cold Water Temperature.
      */
     @Test
-    public void testGetAttributeDataType_ColdWaterTemperature(){
+    public void testGetAttributeDataType_ColdWaterTemperature() {
         //Arrange
         String expectedResult = "Double";
 
@@ -521,7 +798,7 @@ public class KettleSpecsTest {
      * in this case, the volume Of Water To Heat.
      */
     @Test
-    public void testGetAttributeDataType_volumeOfWaterToHeat(){
+    public void testGetAttributeDataType_volumeOfWaterToHeat() {
         //Arrange
         String expectedResult = "Double";
 
@@ -537,7 +814,7 @@ public class KettleSpecsTest {
      * in case of do not insert a valid name of attribute.
      */
     @Test
-    public void testGetAttributeDataType_InvalidAttribute (){
+    public void testGetAttributeDataType_InvalidAttribute() {
         //Arrange
         String expectedResult = "not a valid attribute";
 
