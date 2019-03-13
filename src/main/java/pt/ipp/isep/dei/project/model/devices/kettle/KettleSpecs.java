@@ -239,8 +239,6 @@ public class KettleSpecs implements DeviceSpecs {
     }
 
 
-
-
     /**
      * get method
      *
