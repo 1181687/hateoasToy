@@ -11,7 +11,6 @@ public class WineCoolerSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
     private static final String ATTRIBUTE_NUMBER_OF_BOTTLES = "Number of Bottles";
     private static final String ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
-    private static final String NOT_VALID_ATTRIBUTE = "Not a valid attribute";
 
     private String typeName;
     private double nominalPower;

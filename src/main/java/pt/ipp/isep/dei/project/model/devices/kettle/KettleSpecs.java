@@ -15,7 +15,6 @@ public class KettleSpecs implements DeviceSpecs {
     private static final double SPECIFIC_HEAT_OF_WATER = 1.163 / 1000;
     private static final String COLD_WATER_TEMPERATURE = "Cold-Water Temperature";
     private static final String VOLUME_OF_WATER_TO_HEAT = "Volume Of Water To Heat";
-    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
 
     private String typeName;

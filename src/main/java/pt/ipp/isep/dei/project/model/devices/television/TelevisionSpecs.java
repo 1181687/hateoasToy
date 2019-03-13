@@ -11,7 +11,6 @@ public class TelevisionSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
     private static final String ATTRIBUTE_STANDBY_POWER = "Standby Power";
     private static final String ATTRIBUTE_TIME = "Time";
-    private static final String NOT_VALID_ATTRIBUTE = "Not a valid attribute";
 
     private String typeName;
     private double nominalPower;

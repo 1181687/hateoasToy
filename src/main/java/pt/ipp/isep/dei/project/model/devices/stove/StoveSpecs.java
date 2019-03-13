@@ -94,7 +94,7 @@ public class StoveSpecs implements DeviceSpecs, Programmable {
             case ATTRIBUTE_NOMINAL_POWER:
                 return nominalPower;
             default:
-                return "not a valid attribute";
+                return NOT_VALID_ATTRIBUTE;
         }
     }
 
