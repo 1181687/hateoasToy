@@ -166,19 +166,4 @@ public class WashingMachine implements Device {
         return isActive;
     }
 
-    /*@Override
-    public boolean isProgrammable() {
-        return true;
-    }
-
-    @Override
-    public Programmable asProgrammable(){
-        return this;
-    }
-
-    @Override
-    public boolean addProgram(TimeConstantProgramSpecs program) {
-        return specs.addProgram(program);
-    }*/
-
 }

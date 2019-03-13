@@ -12,8 +12,8 @@ public class AddGeoArea {
 
     private AddGeoAreaController controller;
 
-    public AddGeoArea(GeographicalAreaList list, GeographicalAreaTypeList GeoAreaList) {
-        this.controller = new AddGeoAreaController(list, GeoAreaList);
+    public AddGeoArea(GeographicalAreaList list, GeographicalAreaTypeList geoAreaList) {
+        this.controller = new AddGeoAreaController(list, geoAreaList);
     }
 
     public void run() {

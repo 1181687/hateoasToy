@@ -14,7 +14,6 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
 
     private String typeName;
     private int capacity;
-    // private double duration;
     private double nominalPower;
     private List<Program> programList;
 
@@ -63,20 +62,6 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
         return false;
     }
 
-    /**
-     * set method
-     *
-     * @param duration
-     * @return
-     */
-   /* private boolean setDuration(Object duration) {
-        Double dWDuration = (Double) duration;
-        if (!Utils.isSameDouble(this.duration, dWDuration) && !(Utils.isSameDouble(dWDuration, 0))) {
-            this.duration = dWDuration;
-            return true;
-        }
-        return false;
-    }*/
 
     /**
      * set method to Nominal Power of a dishwasher
@@ -145,7 +130,7 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
             case ATTRIBUTE_NOMINAL_POWER:
                 return nominalPower;
             default:
-                return -1;
+                return NOT_VALID_ATTRIBUTE;
         }
     }
 
@@ -164,11 +149,6 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
                     return setCapacity(((Number) attributeValue).intValue());
                 }
                 return false;
-           /* case ATTRIBUTE_DURATION:
-                if (attributeValue instanceof Number) {
-                    return setDuration(((Number) attributeValue).doubleValue());
-                }
-                return false;*/
             case ATTRIBUTE_NOMINAL_POWER:
                 if (attributeValue instanceof Number) {
                     return setNominalPower(((Number) attributeValue).doubleValue());
@@ -178,24 +158,6 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
                 return false;
         }
     }
-
-    /**
-     * get method
-     *
-     * @param attributeName string name of attribute
-     * @return type data of the attribute (ex.integer, double)
-     */
-    public String getAttributeDataType(String attributeName) {
-        return getAttributeValue(attributeName).getClass().getName().substring(10);
-    }
-
-    /*public boolean addProgram(Program program) {
-        if (!Objects.isNull(program) && !(programList.contains(program))) {
-            this.programList.add(program);
-            return true;
-        }
-        return false;
-    }*/
 
     @Override
     public boolean isProgrammable() {
@@ -211,16 +173,6 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
     public List<Program> getProgramList() {
         return this.programList;
     }
-
-    /*@Override
-    public boolean addNewProgram(String programName, ProgramSpecs specs) {
-        TimeConstantProgram program = new TimeConstantProgram(programName, specs);
-        if (!Objects.isNull(program) && !(getProgramList().contains(program))) {
-            getProgramList().add(program);
-            return true;
-        }
-        return false;
-    }*/
 
     @Override
     public boolean addProgram(Program program) {

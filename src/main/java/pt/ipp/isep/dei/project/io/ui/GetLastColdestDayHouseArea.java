@@ -21,13 +21,14 @@ public class GetLastColdestDayHouseArea {
     public void run() {
 
         if (!controller.hasSensorsOfCertainTypeInInsertedGeoArea()) {
-            System.out.println("There are no temperature sensors in the House Area.\n");
+            System.out.println("There are no temperature sensors in the house area.\n");
         } else {
 
             getFirstAndLastDate();
 
-            if (!controller.hasReadingsBetweenDates(this.firstDate, this.lastDate)) {
-                System.out.println("There are no valid readings for that period.\n");
+            if (!controller.hasReadingsBetweenDates(this.firstDate, this.lastDate)
+                    || Double.isNaN(controller.getLastLowestMaximumReading(this.firstDate, this.lastDate).getValue())) {
+                System.out.println("There are no valid readings in the nearest sensor for that period.\n");
             } else {
                 this.readingDTO = controller.getLastLowestMaximumReading(this.firstDate, this.lastDate);
                 displayResults();

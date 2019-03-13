@@ -167,19 +167,4 @@ public class DishWasher implements Device {
     public boolean getIsActive() {
         return isActive;
     }
-
-    /*@Override
-    public boolean isProgrammable() {
-        return true;
-    }*/
-
-    /*@Override
-    public Programmable asProgrammable() {
-        return this;
-    }*/
-
-    /*@Override
-    public boolean addProgram(Program program) {
-        return this.specs.addProgram(program);
-    }*/
 }

@@ -18,6 +18,8 @@ public class TelevisionSpecsTest {
     private Room livingRoom;
     private Device television;
     private House house;
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
+
 
     @BeforeEach
     public void StartUp() {
@@ -141,7 +143,7 @@ public class TelevisionSpecsTest {
     @Test
     public void testGetAttributeValue_NullNominalPower (){
         //Arrange
-        String expectedResult = "Not a valid attribute";
+        String expectedResult = NOT_VALID_ATTRIBUTE;
         //Act
         Object result = television.getSpecs().getAttributeValue("\0"+ "Nominal Power");
 
@@ -168,7 +170,7 @@ public class TelevisionSpecsTest {
     @Test
     public void testGetAttributeValue_NullStandbyPower (){
         //Arrange
-        String expectedResult = "Not a valid attribute";
+        String expectedResult = NOT_VALID_ATTRIBUTE;
         //Act
         Object result = television.getSpecs().getAttributeValue("\0"+ "Stanby Power");
 
@@ -183,7 +185,7 @@ public class TelevisionSpecsTest {
     @Test
     public void testGetAttributeValue_NullTime (){
         //Arrange
-        String expectedResult = "Not a valid attribute";
+        String expectedResult = NOT_VALID_ATTRIBUTE;
         //Act
         Object result = television.getSpecs().getAttributeValue("\0"+ "Time");
 
@@ -206,7 +208,7 @@ public class TelevisionSpecsTest {
     @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
-        Object expectedResult = "Not a valid attribute";
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
 
         // Act
         Object result = television.getSpecs().getAttributeValue("Not Valid");
@@ -393,7 +395,7 @@ public class TelevisionSpecsTest {
     @Test
     public void getAttributeDataTypeTest() {
         // arrange
-        String attributeDataType = "Not a valid attribute";
+        String attributeDataType = NOT_VALID_ATTRIBUTE;
 
         // act
         String result = television.getSpecs().getAttributeDataType("Integer");
