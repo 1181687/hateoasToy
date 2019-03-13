@@ -36,7 +36,7 @@ public class WallTowelHeaterSpecsTest {
 
         Dimension dim = new Dimension(3, 5, 6);
         kitchen = new Room("Kitchen", 1, dim);
-        wallTowelHeater = house.createDevice("Freezer", "Freezer Ariston", kitchen);
+        wallTowelHeater = house.createDevice("WallTowelHeater", "Aquecedor", kitchen);
         this.house.addRoom(kitchen);
 
         // FridgeSpecs Set
@@ -144,22 +144,6 @@ public class WallTowelHeaterSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    /**
-     * Test the setNominalPower method with the method setAttributeValue.
-     * This test checks if we can set the Nominal Power value with zero value.
-     */
-    @Test
-    public void testSetNominalPower_ZeroValue_False() {
-        //Arrange
-        boolean expectedResult = false;
-        double nominalPower = 0;
-
-        //Act
-        boolean result = specs.setAttributeValue(ATTRIBUTE_NOMINAL_POWER, nominalPower);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
 
     /**
      * Test the setNominalPower method with the method setAttributeValue.
@@ -170,7 +154,7 @@ public class WallTowelHeaterSpecsTest {
     public void testSetNominalPower_ValidValue_True() {
         //Arrange
         boolean expectedResult = true;
-        double nominalPower = 100;
+        double nominalPower = 200;
 
         //Act
         boolean result = specs.setAttributeValue(ATTRIBUTE_NOMINAL_POWER, nominalPower);
@@ -232,22 +216,6 @@ public class WallTowelHeaterSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    /**
-     * Test the setMaximumVolumeOfWater method with the method setAttributeValue.
-     * This test checks if we can set the Maximum Volume of Water value with zero value.
-     */
-    @Test
-    public void testSetMaximumVolumeOfWater_ZeroValue_False() {
-        //Arrange
-        boolean expectedResult = false;
-        double time = 0;
-
-        //Act
-        boolean result = specs.setAttributeValue(ATTRIBUTE_TIME, time);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
 
     /**
      * Test the setMaximumVolumeOfWater method with the method setAttributeValue.
@@ -336,7 +304,7 @@ public class WallTowelHeaterSpecsTest {
     public void testGetAttributesToString_ShowAttributesWithValue() {
         //Arrange
         String expectedResult =
-                "1 - Nominal Power: " + 100 + "\n";
+                "1 - Nominal Power: " + 100.0 + "\n";
         //Act
         String result = specs.getAttributesToString();
 
