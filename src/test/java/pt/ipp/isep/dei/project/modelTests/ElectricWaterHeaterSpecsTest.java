@@ -514,4 +514,23 @@ class ElectricWaterHeaterSpecsTest {
         // assert
         assertEquals(attributeDataType, result);
     }
+
+    @Test
+    void testIfDeviceIsProgrammableFalse() {
+        //Arrange
+        //Act
+        boolean result = electricWaterHeater.getSpecs().isProgrammable();
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
+        //Arrange
+        electricWaterHeater.getSpecs().asProgrammable();
+        //Act
+        boolean result = electricWaterHeater.getSpecs().isProgrammable();
+        //Assert
+        assertFalse(result);
+    }
 }

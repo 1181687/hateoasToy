@@ -18,17 +18,19 @@ SensorList "1" --> "0*" Sensor
 Sensor "1" --> "0*" Reading
 
 Class UI {
--field1
--field2
-+method1()
-+method2()
+- GetDayWithHighestTemperatureAmplitudeController controller
++run()
 }
 
 Class Controller {
--field1
--field2
-+method1()
-+method2()
+- House house;
+- SensorType sensorTypeTemperature
+- Map<LocalDate, Double> mapOfDailyAmplitude;
+- Map<LocalDate, Double> mapResult;
++getDailyAmplitudeInIntervalInHouseArea()
++getHighestDailyAmplitudeInHouseArea()
++getDayWithHighestTemperatureAmplitude()
++displayResults()
 }
 
 Class House {

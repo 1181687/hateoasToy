@@ -45,8 +45,8 @@ class InsertedGeoAreaControllerTest {
         geographicalAreaList.addGeoArea(CidadeDoPorto);
         geographicalAreaList.addGeoArea(RuaDoBonfim);
 
-        String expectResult = "1 - ID: Porto1 - Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
-                "2 - ID: Rua do Bonfim2 - Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109, Inserted in: Cidade Cidade do Porto\n";
+        String expectResult = "1 - ID: Porto, Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
+                "2 - ID: Rua do Bonfim, Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109, Inserted in: Cidade Cidade do Porto\n";
 
         //Act
         String result = controller.getConteudoLista(true);
@@ -61,8 +61,8 @@ class InsertedGeoAreaControllerTest {
         geographicalAreaList.addGeoArea(CidadeDoPorto);
         geographicalAreaList.addGeoArea(RuaDoBonfim);
 
-        String expectResult = "1 - ID: Porto1 - Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
-                "2 - ID: Rua do Bonfim2 - Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
+        String expectResult = "1 - ID: Porto, Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
+                "2 - ID: Rua do Bonfim, Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
         //Act
         String result = controller.getConteudoLista(false);
@@ -78,8 +78,8 @@ class InsertedGeoAreaControllerTest {
         geographicalAreaList.addGeoArea(CidadeDoPorto);
         geographicalAreaList.addGeoArea(RuaDoBonfim);
 
-        String expectResult = "1 - ID: Porto1 - Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
-                "2 - ID: Rua do Bonfim2 - Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
+        String expectResult = "1 - ID: Porto, Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
+                "2 - ID: Rua do Bonfim, Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
         //Act
         String result = controller.getConteudoLista(false);
@@ -94,8 +94,8 @@ class InsertedGeoAreaControllerTest {
         geographicalAreaList.addGeoArea(CidadeDoPorto);
         geographicalAreaList.addGeoArea(RuaDoBonfim);
 
-        String expectResult = "1 - ID: Porto1 - Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
-                "2 - ID: Rua do Bonfim2 - Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
+        String expectResult = "1 - ID: Porto, Description: Cidade do Porto, Type: Cidade, Latitude: 41.1496, Longitude: -8.6109\n" +
+                "2 - ID: Rua do Bonfim, Description: Rua do Bonfim, Type: Rua, Latitude: 41.1496, Longitude: -8.6109\n";
 
         //Act
         String result = controller.getConteudoLista(false);

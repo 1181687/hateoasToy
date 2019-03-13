@@ -2096,7 +2096,7 @@ class SensorTest {
     }
 
     @Test
-    public void getHighestReadingOfADay_WithOnlyOneDoubleNaNReading_ShouldReturnNull() {
+    public void getHighestReadingOfADay_WithOnlyOneDoubleNaNReadings_ShouldReturnDoubleNaN() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -2106,13 +2106,16 @@ class SensorTest {
         //Reading 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
         Reading reading2 = new Reading(Double.NaN, data2);
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 2, 16, 59, 59);
+        Reading reading3 = new Reading(Double.NaN, data3);
 
         //Adding readings to sensor
         sensor1.addReadingsToList(reading2);
+        sensor1.addReadingsToList(reading3);
 
         LocalDate day = LocalDate.of(2018, 11, 2);
 
-        Reading expectedResult = null;
+        Reading expectedResult = reading2;
 
         //Act
         Reading result = sensor1.getHighestReadingOfADay(day);
@@ -2171,7 +2174,7 @@ class SensorTest {
     }
 
     @Test
-    public void getDailyMaxReadingsInAnInterval_WithOneDateWithOnlyInvalidReadings_ShouldReturnListWith1Readings() {
+    public void getDailyMaxReadingsInAnInterval_WithOneDateWithOnlyInvalidReadings_ShouldReturnListWith1ValidReadingAnd1DoubleNaN() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -2209,6 +2212,7 @@ class SensorTest {
         LocalDate endDate = LocalDate.of(2018, 11, 3);
 
         List<Reading> expectedResult = new ArrayList<>();
+        expectedResult.add(reading1);
         expectedResult.add(reading4);
 
         //Act
@@ -2219,7 +2223,7 @@ class SensorTest {
     }
 
     @Test
-    public void getDailyMaxReadingsInAnInterval_WithDatesWithOnlyInvalidReadings_ShouldReturnEmptyList() {
+    public void getDailyMaxReadingsInAnInterval_WithDatesWithOnlyDoubleNaNReadings_ShouldReturnListWithDoubleNaNReadings() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -2257,6 +2261,8 @@ class SensorTest {
         LocalDate endDate = LocalDate.of(2018, 11, 3);
 
         List<Reading> expectedResult = new ArrayList<>();
+        expectedResult.add(reading1);
+        expectedResult.add(reading3);
 
         //Act
         List<Reading> result = sensor1.getDailyMaxReadingsInAnInterval(startDate,endDate);
@@ -2266,7 +2272,7 @@ class SensorTest {
     }
 
     @Test
-    public void getLastLowestReading(){
+    public void getLastLowestReading_SensorWithValidReadings_ShouldReturnLastLowestReading(){
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -2299,6 +2305,98 @@ class SensorTest {
         sensor1.addReadingsToList(reading3);
         sensor1.addReadingsToList(reading4);
         sensor1.addReadingsToList(reading5);
+
+        LocalDate startDate = LocalDate.of(2018,11,2);
+        LocalDate endDate = LocalDate.of(2018,11,3);
+
+        Reading expectedResult = reading4;
+        List<Reading> readings = sensor1.getReadingsBetweenDates(startDate,endDate);
+
+        //Act
+        Reading result = sensor1.getLastLowestReading(readings);
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void getLastLowestReading_SensorWithDayWithDoubleNaNReadings_ShouldReturnLastLowestReading(){
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(11, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(Double.NaN, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 3, 17, 15, 00);
+        Reading reading3 = new Reading(5, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 3, 17, 20, 00);
+        Reading reading4 = new Reading(5, data4);
+
+        //Reading 5
+        LocalDateTime data5 = LocalDateTime.of(2018, 11, 3, 17, 20, 10);
+        Reading reading5 = new Reading(10, data5);
+
+        //Adding readings to sensor
+        sensor1.addReadingsToList(reading1);
+        sensor1.addReadingsToList(reading2);
+        sensor1.addReadingsToList(reading3);
+        sensor1.addReadingsToList(reading4);
+        sensor1.addReadingsToList(reading5);
+
+        LocalDate startDate = LocalDate.of(2018,11,2);
+        LocalDate endDate = LocalDate.of(2018,11,3);
+
+        Reading expectedResult = reading4;
+        List<Reading> readings = sensor1.getReadingsBetweenDates(startDate,endDate);
+
+        //Act
+        Reading result = sensor1.getLastLowestReading(readings);
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void getLastLowestReading_SensorWithOnlyDoubleNaNReadings_ShouldReturnReadingWithDoubleNaN(){
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+
+        //Reading 1
+        LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
+        Reading reading1 = new Reading(Double.NaN, data1);
+
+        //Reading 2
+        LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
+        Reading reading2 = new Reading(Double.NaN, data2);
+
+        //Reading 3
+        LocalDateTime data3 = LocalDateTime.of(2018, 11, 3, 17, 15, 00);
+        Reading reading3 = new Reading(Double.NaN, data3);
+
+        //Reading 4
+        LocalDateTime data4 = LocalDateTime.of(2018, 11, 3, 17, 20, 00);
+        Reading reading4 = new Reading(Double.NaN, data4);
+
+
+        //Adding readings to sensor
+        sensor1.addReadingsToList(reading1);
+        sensor1.addReadingsToList(reading2);
+        sensor1.addReadingsToList(reading3);
+        sensor1.addReadingsToList(reading4);
 
         LocalDate startDate = LocalDate.of(2018,11,2);
         LocalDate endDate = LocalDate.of(2018,11,3);
