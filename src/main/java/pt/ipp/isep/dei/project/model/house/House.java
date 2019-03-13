@@ -808,4 +808,8 @@ public class House {
     public boolean isSensorListOfAGivenTypeEmpty(SensorType type) {
         return this.insertedGeoArea.getTheSensorListOfAGivenType(type).isEmpty();
     }
+
+    public boolean checkNearestSensorReadingsExistenceBetweenDates(SensorType type, LocalDate startDate, LocalDate endDate) {
+        return getNearestSensorWithMostRecentReading(type, this.getLocation()).checkMeasurementExistenceBetweenDates(startDate, endDate);
+    }
 }

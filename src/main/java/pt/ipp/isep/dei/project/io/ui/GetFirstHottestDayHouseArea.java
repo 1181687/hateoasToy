@@ -14,6 +14,10 @@ public class GetFirstHottestDayHouseArea {
     }
 
     public void run() {
+        if (ctrl.isSensorListOfATypeEmpty()) {
+            System.out.println("There are no temperature sensors in the house area.\n");
+            return;
+        }
         boolean flag;
         LocalDate initialDate;
         LocalDate finalDate;
@@ -28,11 +32,7 @@ public class GetFirstHottestDayHouseArea {
                 flag = true;
             }
         } while (flag);
-        if (ctrl.isSensorListOfATypeEmpty()) {
-            System.out.println("There are no temperature sensors in the house area.\n");
-            return;
-        }
-        if (!ctrl.checkSensorReadingsExistenceBetweenDates(initialDate, finalDate) ||
+        if (!ctrl.checkNearestSensorReadingsExistenceBetweenDates(initialDate, finalDate) ||
                 Double.isNaN(ctrl.getFirstHighestReadingHouseArea(initialDate, finalDate).getValue())) {
             System.out.println("It is not possible to present valid readings in the house area.\n");
             return;
