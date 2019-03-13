@@ -3,9 +3,10 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.importReadingsFromJSONController.ImportReadingsFromJSONController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.utils.JSONReader;
 
 import java.io.FileNotFoundException;
-import java.time.format.DateTimeParseException;
+import java.io.FileReader;
 import java.util.List;
 import java.util.Objects;
 
@@ -22,17 +23,14 @@ public class ImportReadingsFromJSON {
 
         // Write the path
         String pathJSONFile = InputValidator.getString("Please specify the name of the JSON file to import.");
-        if (!checkIfItFileExists(pathJSONFile)) {
+        FileReader reader = checkIfFileExistsAndCreateFileReader(pathJSONFile);
+        if (Objects.isNull(reader)) {
             System.out.println("\nERROR: There's no such file with that name.\n");
             return;
         }
-        List<GeographicalAreaDTO> dtoList = readGeoAreaJson(pathJSONFile);
-        if (Objects.isNull(dtoList)) {
-            System.out.println("The information on the file is not valid to be imported.");
-            return;
-        }
-        if (dtoList.isEmpty()) {
-            System.out.println("There is nothing in this file to be read.");
+        List<GeographicalAreaDTO> dtoList = JSONReader.readJSONFileToList(reader);
+        if (Objects.isNull(dtoList) || dtoList.isEmpty()) {
+            System.out.println("\nThe information on the file is not valid to be imported.\n");
             return;
         }
 
@@ -59,23 +57,20 @@ public class ImportReadingsFromJSON {
 
     }
 
-    public boolean checkIfItFileExists(String path) {
+    /**
+     * Method that checks if a file is valid (if it exists) and creates a scanner based on it.
+     *
+     * @param pathCSVFile Path of the CSV file.
+     * @return Null scanner if there's no such file with the specified name; or a valid scanner if the file exists.
+     */
+    public FileReader checkIfFileExistsAndCreateFileReader(String pathCSVFile) {
+        FileReader file;
         try {
-            controller.readGeoAreaJson(path);
+            file = new FileReader(pathCSVFile);
         } catch (FileNotFoundException e) {
-            return false;
+            file = null;
         }
-        return true;
-    }
-
-    public List<GeographicalAreaDTO> readGeoAreaJson(String path) {
-        List<GeographicalAreaDTO> dtoList;
-        try {
-            dtoList = controller.readGeoAreaJson(path);
-        } catch (FileNotFoundException | NumberFormatException | DateTimeParseException e) {
-            dtoList = null;
-        }
-        return dtoList;
+        return file;
     }
 }
 
