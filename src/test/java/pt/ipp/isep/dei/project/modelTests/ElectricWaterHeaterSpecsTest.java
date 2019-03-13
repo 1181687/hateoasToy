@@ -19,6 +19,7 @@ class ElectricWaterHeaterSpecsTest {
     private Room kitchen;
     private Device electricWaterHeater;
     private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
 
     @BeforeEach
@@ -138,6 +139,18 @@ class ElectricWaterHeaterSpecsTest {
     }
 
     @Test
+    public void testGetAttributeValueNominalPowerNullChar() {
+        // Arrange
+        electricWaterHeater.setAttributesDevType("Nominal Power", 100.0);
+
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+        // Act
+        Object result = electricWaterHeater.getSpecs().getAttributeValue("\0Nominal Power");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void testGetAttributeValueVolumeOfWaterToHeat() {
         // Arrange
         electricWaterHeater.setAttributesDevType("Volume Of Water To Heat", 100);
@@ -145,6 +158,18 @@ class ElectricWaterHeaterSpecsTest {
         Object expectedResult = 100.0;
         // Act
         Object result = electricWaterHeater.getSpecs().getAttributeValue("Volume Of Water To Heat");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueVolumeOfWaterToHeatNullChar() {
+        // Arrange
+        electricWaterHeater.setAttributesDevType("Volume Of Water To Heat", 100);
+
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+        // Act
+        Object result = electricWaterHeater.getSpecs().getAttributeValue("\0Volume Of Water To Heat");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -162,6 +187,18 @@ class ElectricWaterHeaterSpecsTest {
     }
 
     @Test
+    public void testGetAttributeValuePerformanceRatioNullChar() {
+        // Arrange
+        electricWaterHeater.setAttributesDevType("Performance Ratio", 0.9);
+
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+        // Act
+        Object result = electricWaterHeater.getSpecs().getAttributeValue("\0Performance Ratio");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void testGetAttributeValueHotWaterTemperature() {
         // Arrange
         // FridgeSpecs Instantiation
@@ -170,6 +207,20 @@ class ElectricWaterHeaterSpecsTest {
         Object expectedResult = 50.0;
         // Act
         Object result = electricWaterHeater.getSpecs().getAttributeValue("Hot-Water Temperature");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    @Test
+    public void testGetAttributeValueHotWaterTemperatureNullChar() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 50);
+
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+        // Act
+        Object result = electricWaterHeater.getSpecs().getAttributeValue("\0Hot-Water Temperature");
         // Assert
         assertEquals(expectedResult, result);
     }
@@ -189,13 +240,27 @@ class ElectricWaterHeaterSpecsTest {
     }
 
     @Test
+    public void testGetAttributeValueColdWaterTemperatureNullChar() {
+        // Arrange
+        // FridgeSpecs Instantiation
+        electricWaterHeater.setAttributesDevType("Hot-Water Temperature", 80);
+        electricWaterHeater.setAttributesDevType("Cold-Water Temperature", 30);
+
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+        // Act
+        Object result = electricWaterHeater.getSpecs().getAttributeValue("\0Cold-Water Temperature");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
         // FridgeSpecs Instantiation
         electricWaterHeater.setAttributesDevType("Nominal Power", 100.0);
         electricWaterHeater.setAttributesDevType("Cold-Water Temperature", 20.0);
 
-        Object expectedResult = -1;
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
         // Act
         Object result = electricWaterHeater.getSpecs().getAttributeValue("Not Valid");
         // Assert
@@ -223,6 +288,16 @@ class ElectricWaterHeaterSpecsTest {
     }
 
     @Test
+    public void testSetAttributeVolumeOfWaterToHeatValueNullCharacter() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = electricWaterHeater.getSpecs().setAttributeValue("\0Volume Of Water To Heat", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
     public void testSetAttributeHotWaterTemperatureValueNotAValidType() {
         // Arrange
         String attribute = "stuff";
@@ -231,6 +306,38 @@ class ElectricWaterHeaterSpecsTest {
         // Assert
         assertFalse(result);
     }
+
+    @Test
+    public void testSetAttributeHotWaterTemperatureValueNullCharacter() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = electricWaterHeater.getSpecs().setAttributeValue("\0Hot-Water Temperature", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributePerformanceRatioValueNotAValidType() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = electricWaterHeater.getSpecs().setAttributeValue("Performance Ratio", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributePerformanceRatioValueNullCharacter() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = electricWaterHeater.getSpecs().setAttributeValue("\0Performance Ratio", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
+
 
 
     @Test
@@ -283,15 +390,6 @@ class ElectricWaterHeaterSpecsTest {
         assertFalse(result);
     }
 
-    @Test
-    public void testSetAttributePerformanceRatioValueNotAValidType() {
-        // Arrange
-        String attribute = "stuff";
-        // Act
-        boolean result = electricWaterHeater.getSpecs().setAttributeValue("Performance Ratio", attribute);
-        // Assert
-        assertFalse(result);
-    }
 
     @Test
     public void testSetAttributeColdWaterTemperatureValueNotAValidType() {
@@ -299,6 +397,16 @@ class ElectricWaterHeaterSpecsTest {
         String attribute = "stuff";
         // Act
         boolean result = electricWaterHeater.getSpecs().setAttributeValue("Cold-Water Temperature", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeColdWaterTemperatureValueNullCharacter() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = electricWaterHeater.getSpecs().setAttributeValue("\0Cold-Water Temperature", attribute);
         // Assert
         assertFalse(result);
     }
@@ -341,6 +449,17 @@ class ElectricWaterHeaterSpecsTest {
         // Assert
         assertFalse(result);
     }
+
+    @Test
+    public void testSetAttributeNominalPowerNullCharacter() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = electricWaterHeater.getSpecs().setAttributeValue("\0Nominal Power", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
 
     @Test
     public void testSetAttributeNominalPowerTrue() {
@@ -389,10 +508,29 @@ class ElectricWaterHeaterSpecsTest {
     @Test
     public void getAttributeDataTypeTest() {
         // arrange
-        String attributeDataType = "Integer";
+        String attributeDataType = NOT_VALID_ATTRIBUTE;
         // act
         String result = electricWaterHeater.getSpecs().getAttributeDataType("Integer");
         // assert
         assertEquals(attributeDataType, result);
+    }
+
+    @Test
+    void testIfDeviceIsProgrammableFalse() {
+        //Arrange
+        //Act
+        boolean result = electricWaterHeater.getSpecs().isProgrammable();
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
+        //Arrange
+        electricWaterHeater.getSpecs().asProgrammable();
+        //Act
+        boolean result = electricWaterHeater.getSpecs().isProgrammable();
+        //Assert
+        assertFalse(result);
     }
 }

@@ -18,6 +18,8 @@ public class WineCoolerSpecsTest {
     private Room kitchen;
     private Device wineCooler;
     private House house;
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
+
 
     @BeforeEach
     public void StartUp() {
@@ -162,7 +164,7 @@ public class WineCoolerSpecsTest {
     @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
-        Object expectedResult = "Not a valid attribute";
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
 
         // Act
         Object result = wineCooler.getSpecs().getAttributeValue("Not Valid");
@@ -178,7 +180,7 @@ public class WineCoolerSpecsTest {
     @Test
     public void testGetAttributeValue_NullNominalPower (){
         //Arrange
-        String expectedResult = "Not a valid attribute";
+        String expectedResult = NOT_VALID_ATTRIBUTE;
         //Act
         Object result = wineCooler.getSpecs().getAttributeValue("\0"+ "Nominal Power");
 
@@ -193,7 +195,7 @@ public class WineCoolerSpecsTest {
     @Test
     public void testGetAttributeValue_NullNumberOfBottles (){
         //Arrange
-        String expectedResult = "Not a valid attribute";
+        String expectedResult = NOT_VALID_ATTRIBUTE;
         //Act
         Object result = wineCooler.getSpecs().getAttributeValue("\0"+ "Number of Bottles");
 
@@ -208,7 +210,7 @@ public class WineCoolerSpecsTest {
     @Test
     public void testGetAttributeValue_Null_AnnualEnergyConsumption (){
         //Arrange
-        String expectedResult = "Not a valid attribute";
+        String expectedResult = NOT_VALID_ATTRIBUTE;
         //Act
         Object result = wineCooler.getSpecs().getAttributeValue("\0"+ "Annual Energy Consumption");
 
@@ -406,7 +408,7 @@ public class WineCoolerSpecsTest {
     @Test
     public void getAttributeDataTypeTest() {
         // arrange
-        String attributeDataType = "Not a valid attribute";
+        String attributeDataType = NOT_VALID_ATTRIBUTE;
 
         // act
         String result = wineCooler.getSpecs().getAttributeDataType("Integer");

@@ -19,6 +19,7 @@ public class DishWasherSpecsTest {
     private Room kitchen;
     private Device dishWasher;
     private House house;
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
     @BeforeEach
     public void StartUp() {
@@ -54,20 +55,6 @@ public class DishWasherSpecsTest {
     @Test
     public void testGetNominalPower() {
         //Arrange
-
-        double expectedResult = 30;
-
-        //Act
-        double result = dishWasher.getSpecs().getNominalPower();
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void testEmptyConstructor() {
-        //Arrange
-        dishWasher.setAttributesDevType("Nominal Power", 30);
 
         double expectedResult = 30;
 
@@ -145,6 +132,18 @@ public class DishWasherSpecsTest {
     }
 
     @Test
+    public void testGetAttributeValueNullChar() {
+        // Arrange
+        dishWasher.setAttributesDevType("Nominal Power", 100.0);
+
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+        // Act
+        Object result = dishWasher.getSpecs().getAttributeValue("\0Nominal Power");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void testGetAttributeValueCapacity() {
         // Arrange
         Object expectedResult = 30;
@@ -154,11 +153,22 @@ public class DishWasherSpecsTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void testGetAttributeValueCapacityNullChar() {
+        // Arrange
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+        // Act
+        Object result = dishWasher.getSpecs().getAttributeValue("\0Capacity");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+
 
     @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
-        Object expectedResult = -1;
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
         // Act
         Object result = dishWasher.getSpecs().getAttributeValue("Not Valid");
         // Assert
@@ -175,6 +185,16 @@ public class DishWasherSpecsTest {
         assertFalse(result);
     }
 
+    @Test
+    public void testSetAttributeCapacityValueNullChar() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = dishWasher.getSpecs().setAttributeValue("\0Capacity", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
 
     @Test
     public void testSetAttributeNominalPowerValueNotAValidType() {
@@ -185,6 +205,17 @@ public class DishWasherSpecsTest {
         // Assert
         assertFalse(result);
     }
+
+    @Test
+    public void testSetAttributeNominalPowerValueNullChar() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = dishWasher.getSpecs().setAttributeValue("\0Nominal Power", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
 
     @Test
     public void testSetAttributeNominalPowerValidValue() {
@@ -216,61 +247,10 @@ public class DishWasherSpecsTest {
     @Test
     public void getAttributeDataTypeTest() {
         // arrange
-        String attributeDataType = "Integer";
+        String attributeDataType = NOT_VALID_ATTRIBUTE;
         // act
         String result = dishWasher.getSpecs().getAttributeDataType("Integer");
         // assert
         assertEquals(attributeDataType, result);
     }
-
-    @Test
-    public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
-        //Arrange
-        boolean expectedResult = false;
-        DeviceSpecs dishSpecs = dishWasher.getSpecs();
-        //Act
-        boolean result = ((DishWasherSpecs) dishSpecs).addProgram(null);
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    /*@Test
-    public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
-        //Arrange
-        String programName = "fast";
-        double duration = 15;
-        double energyConsumption = 1;
-        Programmable programmable = this.dishWasher.asProgrammable();
-        TimeConstantProgramSpecs programA = programmable.newProgram(programName, duration, energyConsumption);
-        TimeConstantProgramSpecs programB = programmable.newProgram(programName, duration, energyConsumption);
-        programmable.addProgram(programA);
-        DeviceSpecs dishSpecs = dishWasher.getSpecs();
-
-        boolean expectedResult = false;
-
-        //Act
-        boolean result = ((DishWasherSpecs) dishSpecs).addProgram(programB);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
-        //Arrange
-        String programName = "fast";
-        double duration = 15;
-        double energyConsumption = 1;
-        Programmable programmable = this.dishWasher.asProgrammable();
-        TimeConstantProgramSpecs programA = programmable.newProgram(programName, duration, energyConsumption);
-        DeviceSpecs dishSpecs = dishWasher.getSpecs();
-
-        boolean expectedResult = true;
-
-        //Act
-        boolean result = ((DishWasherSpecs) dishSpecs).addProgram(programA);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }*/
 }

@@ -6,9 +6,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapping;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
-import pt.ipp.isep.dei.project.utils.JSONReader;
 
-import java.io.FileNotFoundException;
 import java.util.List;
 
 public class ImportReadingsFromJSONController {
@@ -18,19 +16,19 @@ public class ImportReadingsFromJSONController {
         this.geographicalAreaList = geographicalAreaList;
     }
 
-    public List<GeographicalAreaDTO> readGeoAreaJson(String path) throws FileNotFoundException {
-        return JSONReader.readJSONFileToList(path);
-    }
-
     public boolean importGeographicalAreaAndSensors(List<GeographicalAreaDTO> geoAreaObjects) {
+        boolean imported = false;
         for (GeographicalAreaDTO geoObject : geoAreaObjects) {
             GeographicalArea geoArea = GeographicalAreaMapping.mapToEntityGeoArea(geoObject);
             for (SensorDTO sensorDTO : geoObject.getSensors()) {
                 geoArea.addSensor(SensorMapper.mapToEntity(sensorDTO));
             }
-            geographicalAreaList.addGeoArea(geoArea);
+            if (geographicalAreaList.addGeoArea(geoArea)) {
+                imported = true;
+            }
         }
-        return true;
+        return imported;
+
     }
 
 
