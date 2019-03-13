@@ -17,6 +17,7 @@ skinparam sequence {
 	ActorFontName Aapex
 }
 
+activate RegularUser
 actor RegularUser
 RegularUser -> ":UI":
 activate ":UI"
@@ -53,5 +54,8 @@ deactivate ":Device"
 deactivate ":Controller"
 PowerUser <-- ":UI":
 deactivate ":UI"
+
+deactivate RegularUser
+
 
 @enduml
