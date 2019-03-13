@@ -1,8 +1,10 @@
-package pt.ipp.isep.dei.project.model.geographicalarea;
+package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
@@ -29,6 +31,7 @@ public class GeographicalAreaDTOTest {
         temperature = new SensorType("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(42.1596, -8.6109, 97);
+        AreaShape areaShape2 = new AreaShape(10, 10, sensorLocation);
         temperatureSensor = new Sensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
     }
 
@@ -85,79 +88,25 @@ public class GeographicalAreaDTOTest {
 
     }
 
-    /*
     @Test
     public void setGeographicalAreaType() {
-
-
+        // arrange
+        portoCity.setGeographicalAreaType("New Geo Area");
+        String expectedResult = "New Geo Area";
+        // act
+        String result = portoCity.getGeographicalAreaType();
+        // assert
+        assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void getWidth() {
-
-
-    }
 
     @Test
     public void setWidth() {
+        portoCity.setWidth(14.0);
+        double expectedResult = 14.0;
+        // act
+        double result = portoCity.getWidth();
+        // assert
+        assertEquals(expectedResult, result);
     }
-
-    @Test
-    public void getLenght() {
-
-
-    }
-
-    @Test
-    public void setLenght() {
-    }
-
-    @Test
-    public void getLatitude() {
-
-
-    }
-
-    @Test
-    public void setLatitude() {
-
-
-    }
-
-    @Test
-    public void getLongitude() {
-
-
-    }
-
-    @Test
-    public void setLongitude() {
-
-
-    }
-
-    @Test
-    public void getAltitude() {
-
-
-    }
-
-    @Test
-    public void setAltitude() {
-
-
-    }
-
-    @Test
-    public void getSensors() {
-
-
-    }
-
-    @Test
-    public void addSensor() {
-
-
-    }
-    */
 }
