@@ -14,7 +14,6 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
 
     private String typeName;
     private int capacity;
-    // private double duration;
     private double nominalPower;
     private List<Program> programList;
 

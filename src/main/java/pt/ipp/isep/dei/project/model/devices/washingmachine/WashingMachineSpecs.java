@@ -10,14 +10,10 @@ import java.util.Objects;
 
 public class WashingMachineSpecs implements DeviceSpecs, Programmable {
     private static final String ATTRIBUTE_CAPACITY = "Capacity";
-    private static final String ATTRIBUTE_DURATION = "Duration";
-    private static final String ATTRIBUTE_ENERGY_CONSUMPTION = "Energy Consumption";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
     private String typeName;
     private int capacity;
-    private double duration;
-    private double energyConsumption;
     private double nominalPower;
     private List<Program> programList;
 
@@ -82,20 +78,6 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
     /**
      * set method
      *
-     * @param duration
-     */
-    private boolean setDuration(Object duration) {
-        double wmduration = (Double) duration;
-        if (!(Utils.isSameDouble(this.duration, wmduration) && !(Utils.isSameDouble(wmduration, 0)))) {
-            this.duration = wmduration;
-            return true;
-        }
-        return false;
-    }
-
-    /**
-     * set method
-     *
      * @param wmNominalPower
      */
     private boolean setNominalPower(Object wmNominalPower) {
@@ -104,21 +86,6 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
             this.nominalPower = nomPower;
             return true;
         }
-        return false;
-    }
-
-    /**
-     * set method
-     * 
-     * @param wmEnergyConsumption
-     */
-    private boolean setEnergyConsumption(Object wmEnergyConsumption) {
-        double eConsumption = (Double) wmEnergyConsumption;
-        if (!Utils.isSameDouble(this.energyConsumption, eConsumption) && !(Utils.isSameDouble(eConsumption, 0))) {
-            this.energyConsumption = eConsumption;
-            return true;
-        }
-
         return false;
     }
 
@@ -170,10 +137,6 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
         switch (attributeName) {
             case ATTRIBUTE_CAPACITY:
                 return capacity;
-            case ATTRIBUTE_DURATION:
-                return duration;
-            case ATTRIBUTE_ENERGY_CONSUMPTION:
-                return energyConsumption;
             case ATTRIBUTE_NOMINAL_POWER:
                 return nominalPower;
             default:
@@ -193,16 +156,6 @@ public class WashingMachineSpecs implements DeviceSpecs, Programmable {
             case ATTRIBUTE_CAPACITY:
                 if (attributeValue instanceof Number) {
                     return setCapacity(((Number) attributeValue).intValue());
-                }
-                return false;
-            case ATTRIBUTE_DURATION:
-                if (attributeValue instanceof Number) {
-                    return setDuration(((Number) attributeValue).doubleValue());
-                }
-                return false;
-            case ATTRIBUTE_ENERGY_CONSUMPTION:
-                if (attributeValue instanceof Number) {
-                    return setEnergyConsumption(((Number) attributeValue).doubleValue());
                 }
                 return false;
             case ATTRIBUTE_NOMINAL_POWER:

@@ -65,20 +65,6 @@ public class DishWasherSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void testEmptyConstructor() {
-        //Arrange
-        dishWasher.setAttributesDevType("Nominal Power", 30);
-
-        double expectedResult = 30;
-
-        //Act
-        double result = dishWasher.getSpecs().getNominalPower();
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
 
     @Test
     public void testGetAttributesToString() {
