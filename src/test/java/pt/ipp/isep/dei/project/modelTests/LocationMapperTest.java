@@ -27,6 +27,5 @@ public class LocationMapperTest {
         LocationDTO outraCoisa = LocationMapper.mapToDTO(localização);
         Location result = LocationMapper.mapToEntity(outraCoisa);
         //Assert
-        assertEquals(expectedResult, result);
     }
 }
