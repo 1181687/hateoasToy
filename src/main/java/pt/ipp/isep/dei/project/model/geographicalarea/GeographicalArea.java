@@ -265,6 +265,10 @@ public class GeographicalArea {
         return listOfSensors;
     }
 
+    public boolean isSensorListOfAGivenTypeEmpty(SensorType type) {
+        return this.getTheSensorListOfAGivenType(type).isEmpty();
+    }
+
     /**
      * Method that returns the last measurement of a given type in the area.
      *

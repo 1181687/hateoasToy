@@ -27,16 +27,35 @@ public class GetDayWithHighestTemperatureAmplitudeController {
         this.sensorTypeTemperature = new SensorType("temperature");
     }
 
+    /**
+     * get Daily Amplitude Map <localdate, Double> in a given interval of Localdate,
+     * by given sensortype and location of the house
+     *
+     * @param startDate initial Localdate of the interval
+     * @param endDate   final Localdate of the interval
+     *                  save the results in Map<LocalDate,Double> mapOfDailyAmplitude
+     */
     public void getDailyAmplitudeInIntervalInHouseArea(LocalDate startDate, LocalDate endDate) {
         this.mapOfDailyAmplitude = this.house
                 .getDailyAmplitudeInIntervalInHouseArea(this.sensorTypeTemperature, this.house.getLocation(), startDate, endDate);
     }
 
+    /**
+     * uses the map Of Daily Amplitude and gets the Highest Daily Amplitude (localdate-Double)
+     * if there are two Dates with equal amplitudes, it gets both.
+     *
+     * save the results in the Map<LocalDate, Double> map Of Highest Daily Amplitude
+     */
     public void getHighestDailyAmplitudeInHouseArea() {
         this.mapResult = this.house
                 .getHighestDailyAmplitudeInHouseArea(this.mapOfDailyAmplitude);
     }
 
+    /**
+     * invokes getDailyAmplitudeInIntervalInHouseArea and getHighestDailyAmplitudeInHouseArea method
+     * @param startDate initial Localdate of the interval
+     * @param endDate final Localdate of the interval
+     */
     public void getDayWithHighestTemperatureAmplitude(LocalDate startDate, LocalDate endDate) {
         this.getDailyAmplitudeInIntervalInHouseArea(startDate, endDate);
         this.getHighestDailyAmplitudeInHouseArea();
@@ -71,6 +90,6 @@ public class GetDayWithHighestTemperatureAmplitudeController {
             }
             return content.toString();
         }
-        return "There's no registers for this period.";
+        return "There's no registers for this period.\n";
     }
 }
