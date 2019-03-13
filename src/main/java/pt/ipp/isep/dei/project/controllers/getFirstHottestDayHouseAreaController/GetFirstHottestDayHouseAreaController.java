@@ -3,7 +3,6 @@ package pt.ipp.isep.dei.project.controllers.getFirstHottestDayHouseAreaControlle
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDate;
@@ -11,7 +10,6 @@ import java.time.LocalDate;
 public class GetFirstHottestDayHouseAreaController {
     private House house;
     private SensorType sensorTypeTemperature;
-    private Sensor chosenSensor;
 
 
     public GetFirstHottestDayHouseAreaController(House house) {
@@ -23,9 +21,8 @@ public class GetFirstHottestDayHouseAreaController {
         return house.isSensorListOfAGivenTypeEmpty(sensorTypeTemperature);
     }
 
-    public boolean checkSensorReadingsExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
-        chosenSensor = house.getNearestSensorWithMostRecentReading(sensorTypeTemperature, house.getLocation());
-        return chosenSensor.checkMeasurementExistenceBetweenDates(startDate, endDate);
+    public boolean checkNearestSensorReadingsExistenceBetweenDates(LocalDate startDate, LocalDate endDate) {
+        return house.checkNearestSensorReadingsExistenceBetweenDates(sensorTypeTemperature, startDate, endDate);
     }
 
     public ReadingDTO getFirstHighestReadingHouseArea(LocalDate startDate, LocalDate endDate) {
