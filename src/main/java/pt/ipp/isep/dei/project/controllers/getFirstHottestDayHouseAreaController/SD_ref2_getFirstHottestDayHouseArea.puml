@@ -1,0 +1,38 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+    ArrowColor Black
+    ActorBorderColor DarkBlue
+    LifeLineBorderColor black
+    LifeLineBackgroundColor LightGrey
+
+    ParticipantBorderColor Black
+    ParticipantBackgroundColor LightGrey
+    ParticipantFontStyle Bold
+
+    ActorBackgroundColor DimGrey
+    ActorFontColor DeepSkyBlue
+    ActorFontStyle Bold
+    ActorFontSize 17
+    ActorFontName Aapex
+}
+
+activate ":GetFirst\nHottestDay\nHouseAreaUI"
+":GetFirst\nHottestDay\nHouseAreaUI" -> ":GetFirst\nHottestDay\nHouseArea\nController": 7-checkNearestSensor\nReadingExistence\nBetweenDates
+activate ":GetFirst\nHottestDay\nHouseArea\nController"
+":GetFirst\nHottestDay\nHouseArea\nController" -> ":House": 7-checkNearestSensor\nReadingExistence\nBetweenDates
+activate ":House"
+":House" -> ":GeographicalArea": 8-getNearestSensor\nWithTheMost\nRecentReading
+activate ":GeographicalArea"
+":GeographicalArea" --> ":House": Sensor
+deactivate ":GeographicalArea"
+":House" -> ":Sensor": 9-checkMeasurement\nExistanceBetweenDates
+activate ":Sensor"
+":Sensor" --> ":GetFirst\nHottestDay\nHouseAreaUI":boolean
+deactivate ":Sensor"
+
+deactivate ":House"
+deactivate ":GetFirst\nHottestDay\nHouseArea\nController"
+deactivate ":GetFirst\nHottestDay\nHouseAreaUI"
+
+@enduml
