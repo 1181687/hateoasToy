@@ -63,12 +63,12 @@ public class TelevisionSpecs implements DeviceSpecs {
      * @return
      */
     public boolean setNominalPower(Object nominalPower) {
-        double televisionNomPower = (Double) nominalPower;
-        if (Utils.isSameDouble(this.nominalPower, televisionNomPower)) {
-            return false;
+        double nomPower = (Double) nominalPower;
+        if (!Utils.isSameDouble(this.nominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
+            this.nominalPower = nomPower;
+            return true;
         }
-        this.nominalPower = televisionNomPower;
-        return true;
+        return false;
     }
 
     /**
@@ -88,12 +88,12 @@ public class TelevisionSpecs implements DeviceSpecs {
      * @return
      */
     public boolean setStandbyPower(Object standbyPower) {
-        double standbyPowa = (Double) standbyPower;
-        if (Utils.isSameDouble(this.standbyPower, standbyPowa)) {
-            return false;
+        double standPower = (Double) standbyPower;
+        if (!Utils.isSameDouble(this.standbyPower, standPower) && !(Utils.isSameDouble(standPower, 0))) {
+            this.standbyPower = standPower;
+            return true;
         }
-        this.standbyPower = standbyPowa;
-        return true;
+        return false;
     }
 
     /**
@@ -103,11 +103,11 @@ public class TelevisionSpecs implements DeviceSpecs {
      * @return
      */
     public boolean setTime(Object time) {
-        double televisionTime = (Double) time;
-        if (Utils.isSameDouble(this.time, televisionTime)) {
+        double lampTime = (Double) time;
+        if (Utils.isSameDouble(this.time, lampTime)) {
             return false;
         }
-        this.time = televisionTime;
+        this.time = lampTime;
         return true;
     }
 

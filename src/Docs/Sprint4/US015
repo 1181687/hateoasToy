@@ -7,7 +7,6 @@ TEAM MEMBERS: Developer - Sónia Silva; QA - Diana Ferreira;
 ACCEPTANCE CRITERIA:
 
 General Criteria:
-- All acceptance tests with "Process finished with exit code 0" message.
 - Correct Sequence and Class Diagrams.
 - JavaDoc documentation in both code and tests.
 - JUnit conventions in code and tests. (eg. tests should be named like this:
@@ -29,10 +28,14 @@ with the contents of the file.
 "ERROR: There's no such file with that name." - when no file or directory is found when the user inputs the name of the
 file to be imported.
 
+
+Test Criteria:
+- All acceptance tests with "Process finished with exit code 0" message:
+
+
 ASSUMPTIONS:
 - Regarding sensors, only the geographical area sensors are imported.
 - There is User interaction: the application asks the user the location of the files to be imported.
 - For user convenience the data to be imported is in the form of two DTO (Geographical Area DTO and SensorDTO)
 thar are imported at the same time instead of importing the two referred DTO's one at a time.
 
-OTHER INFORMATION:

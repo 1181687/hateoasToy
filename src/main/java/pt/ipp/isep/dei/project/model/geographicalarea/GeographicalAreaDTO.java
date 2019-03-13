@@ -8,7 +8,7 @@ import java.util.List;
 public class GeographicalAreaDTO {
 
     private String id;
-    private String description;
+    private String sensorName;
     private String geographicalAreaType;
     private double width;
     private double lenght;
@@ -29,12 +29,12 @@ public class GeographicalAreaDTO {
         this.id = geoAreaName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getSensorName() {
+        return sensorName;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setSensorName(String sensorName) {
+        this.sensorName = sensorName;
     }
 
     public String getGeographicalAreaType() {

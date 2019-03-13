@@ -160,7 +160,7 @@ public class TelevisionTest {
     }
 
     @Test
-    void setLocationFalseTest() {
+    void setLocationFalseTest1() {
         // Act
         boolean result = television.setLocation(bedroom);
 
@@ -169,12 +169,38 @@ public class TelevisionTest {
     }
 
     @Test
+    void setLocationFalseTest2() {
+        // Act
+        Room location = bedroom;
+        boolean expectedResult = false;
+
+        //Act
+        boolean result = television.setLocation(location);
+
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
+    @Test
     void setLocationTrueTest() {
         // Act
         boolean result = television.setLocation(livingRoom);
 
         // Assert
         assertTrue(result);
+    }
+
+    @Test
+    void testSetLocation_AnotherLocation_True() {
+        //Arrange
+        Room location = livingRoom;
+        boolean expectedResult = true;
+
+        //Act
+        boolean result = television.setLocation(location);
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test

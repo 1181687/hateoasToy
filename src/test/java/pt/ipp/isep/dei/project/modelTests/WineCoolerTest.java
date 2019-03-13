@@ -178,6 +178,33 @@ public class WineCoolerTest {
     }
 
     @Test
+    void setLocationFalseTest2() {
+        // Act
+        Room location = kitchen;
+        boolean expectedResult = false;
+
+        //Act
+        boolean result = wineCooler.setLocation(location);
+
+        //Assert
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    void testSetLocation_AnotherLocation_True() {
+        //Arrange
+        Room location = livingRoom;
+        boolean expectedResult = true;
+
+        //Act
+        boolean result = wineCooler.setLocation(location);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     void getDevSpecsAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Nominal Power: 90.0\n" +

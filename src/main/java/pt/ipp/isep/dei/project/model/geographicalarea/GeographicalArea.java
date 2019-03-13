@@ -430,8 +430,8 @@ public class GeographicalArea {
         return totalDailyMeasurement;
     }
 
-    public Reading getFirstHighestReading(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
-        Sensor chosenSensor = getNearestSensorWithMostRecentReading(type, location);
+    public Reading getFirstHighestReading(SensorType type, LocalDate startDate, LocalDate endDate) {
+        Sensor chosenSensor = getNearestSensorWithMostRecentReading(type, this.location);
         Reading highestReading = chosenSensor.getHighestReading(startDate, endDate);
         if (highestReading != null) {
             for (Reading reading : chosenSensor.getReadingsBetweenDates(startDate, endDate)) {
@@ -461,7 +461,6 @@ public class GeographicalArea {
 
     public Sensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
         SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
-
         if (sensorListWithTheRequiredType.isEmpty()) {
             return null;
         }

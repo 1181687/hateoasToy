@@ -78,7 +78,7 @@ public class AddGeoAreaControllerTest {
         List<String> expectedResult = Arrays.asList("City");
 
         //Act
-        List<String> result = controller.getTGAList();
+        List<String> result = controller.getGeoAreaList();
 
         //Assert
         assertEquals(expectedResult, result);
@@ -91,10 +91,25 @@ public class AddGeoAreaControllerTest {
         GeographicalArea expectedResult = cityOfPorto;
 
         //Act
+        Location location = new Location(41.178553, -8.608035, 111);
         GeographicalArea result = controller.createNewGeoArea("Porto", "City of Porto", "City",
-                41.178553, -8.608035, 111, 0.261, 0.249);
+                location, 0.261, 0.249);
 
         //Assert
         assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void createNewLocationTest_ValidLocation() {
+        //Arrange
+        Location testLocation = new Location(45.234, 23.453, 250);
+
+        Location expectedResult = testLocation;
+
+        //Act
+        Location result = controller.createLocation(45.234, 23.453, 250);
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 }

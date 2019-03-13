@@ -276,12 +276,16 @@ public class Sensor {
      * @return last measurement
      */
     public Reading getLastMeasurement() {
+        if (listOfReadings.isEmpty()) {
+            return null;
+        }
+        Reading reading = listOfReadings.get(0);
         for (int i = (listOfReadings.size() - 1); i >= 0; i--) {
             if (!(Double.isNaN(listOfReadings.get(i).getValue()))) {
                 return listOfReadings.get(i);
             }
         }
-        return null;
+        return reading;
     }
 
     /**
@@ -559,4 +563,12 @@ public class Sensor {
         return lowestReading;
     }
 
+    /**
+     * Method that returns the list of Readings of a Sensor.
+     *
+     * @return List with Readings.
+     */
+    public List<Reading> getListOfReadings() {
+        return listOfReadings;
+    }
 }

@@ -68,12 +68,12 @@ public class WineCoolerSpecs implements DeviceSpecs {
      * @return
      */
     public boolean setNominalPower(Object nominalPower) {
-        double wineCoolerNomPower = (Double) nominalPower;
-        if (Utils.isSameDouble(this.nominalPower, wineCoolerNomPower)) {
-            return false;
+        double nomPower = (Double) nominalPower;
+        if (!Utils.isSameDouble(this.nominalPower, nomPower) && !(Utils.isSameDouble(nomPower, 0))) {
+            this.nominalPower = nomPower;
+            return true;
         }
-        this.nominalPower = wineCoolerNomPower;
-        return true;
+        return false;
     }
 
     /**
