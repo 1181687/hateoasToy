@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.ConfHouseLocationController;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.house.House;
 
 import java.util.Scanner;
@@ -11,9 +13,10 @@ public class ConfHouseLocation {
      * US101 As an Administrator, I want to configure the location of the housegrid.
      */
     private ConfHouseLocationController controller;
+    private GeographicalAreaDTO geographicalAreaDTO;
 
-    public ConfHouseLocation(House house) {
-        this.controller = new ConfHouseLocationController(house);
+    public ConfHouseLocation(GeographicalAreaList geographicalAreaList, House house) {
+        this.controller = new ConfHouseLocationController(geographicalAreaList, house);
     }
 
 
@@ -30,8 +33,13 @@ public class ConfHouseLocation {
         String label3 = "Introduce the altitude of the new location.";
         double altitude = InputValidator.getInt(label3);
 
+        String label4 = "Choose the number that corresponds to the geographical area you wish to include in another geographical area.";
+        int positionChosenGeoArea = InputValidator.getIntRange(label4
+                + "\n" + controller.getGeoAreaListToString(true), 1, controller.getNumberOfGeoAreas());
+        controller.setGeographicalArea(positionChosenGeoArea);
+
         controller.defineNewAddress(zipCode, latitude, longitude, altitude);
         controller.setAddress();
-        System.out.println("Success!");
+        System.out.println("\nSuccess!\n");
     }
 }

@@ -25,7 +25,6 @@ public class House {
     private RoomList roomList;
     private List<HouseGrid> listHouseGrids;
     private Address address;
-    private GeographicalArea insertedGeoArea;
     private List<DeviceType> deviceTypeList;
     private int meteringPeriodGrid;
     private int meteringPeriodDevice;
@@ -159,9 +158,9 @@ public class House {
      * @param altitude  attribute of Location. Double
      * @return method for the creation of a new Address
      */
-    public Address newAddresses(String zipCode, double latitude, double longitude, double altitude) {
+    public Address newAddresses(String zipCode, double latitude, double longitude, double altitude, GeographicalArea geographicalArea) {
         Location location = new Location(latitude, longitude, altitude);
-        return new Address(zipCode, location);
+        return new Address(zipCode, location, geographicalArea);
     }
 
     /**
@@ -170,7 +169,7 @@ public class House {
      * @return inserted geo area.
      */
     public GeographicalArea getInsertedGeoArea() {
-        return insertedGeoArea;
+        return address.getInsertedGeoArea();
     }
 
     /**
@@ -179,7 +178,7 @@ public class House {
      * @param geoArea House area.
      */
     public void setInsertedGeoArea(GeographicalArea geoArea) {
-        insertedGeoArea = geoArea;
+        address.setInsertedGeoArea(geoArea);
     }
 
     /**
@@ -208,6 +207,7 @@ public class House {
      * @return the last measurement with a location and a type of sensor.
      */
     public double getLastMeasurementByTypeInHouseArea(SensorType type) {
+        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
         return insertedGeoArea.getLastMeasurementByLocationType(address.getLocation(), type);
     }
 
@@ -220,6 +220,7 @@ public class House {
      * @return the average daily measurement.
      */
     public double getAverageDailyMeasurementInHouseArea(SensorType measurementType, LocalDate startDate, LocalDate endDate) {
+        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
         List<Double> listOfDailyAverages = insertedGeoArea.getDailyAverageMeasurement(measurementType, address.getLocation(), startDate, endDate);
         double sum = 0;
         if (listOfDailyAverages.isEmpty()) {
@@ -239,6 +240,7 @@ public class House {
      * @return total daily measurement.
      */
     public double getTotalDailyMeasurementInHouseArea(SensorType measurementType, LocalDate day) {
+        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
         return insertedGeoArea.getTotalDailyMeasurement(measurementType, day, this.address.getLocation());
     }
 
@@ -755,10 +757,12 @@ public class House {
     }
 
     public LocalDateTime getDateOfLastMeasurementByType(SensorType type) {
+        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
         return insertedGeoArea.getDateLastMeasurementByLocationType(address.getLocation(), type);
     }
 
     public LocalDate getFirstHighestReadingDateHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
+        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
         if (Objects.isNull(insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate))) {
             return null;
         }
@@ -766,6 +770,7 @@ public class House {
     }
 
     public Double getFirstHighestReadingValueHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
+        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
         if (Objects.isNull(insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate))) {
             return null;
         }
@@ -773,6 +778,7 @@ public class House {
     }
 
     public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
+        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
         return insertedGeoArea.checkMeasurementExistenceBetweenDates(location, startDate, endDate);
     }
 
@@ -786,7 +792,8 @@ public class House {
      * @return Map<LocalDate   ,       Double> map Of Daily Amplitude
      */
     public Map<LocalDate, Double> getDailyAmplitudeInIntervalInHouseArea(SensorType sensorType, Location location, LocalDate startDate, LocalDate endDate) {
-        return this.insertedGeoArea.getDailyAmplitudeInInterval(sensorType, location, startDate, endDate);
+        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
+        return insertedGeoArea.getDailyAmplitudeInInterval(sensorType, location, startDate, endDate);
     }
 
     /**
@@ -797,22 +804,27 @@ public class House {
      * @return Map<LocalDate   ,       Double> map Of Highest Daily Amplitude
      */
     public Map<LocalDate, Double> getHighestDailyAmplitudeInHouseArea(Map<LocalDate, Double> mapOfDailyAmplitude) {
-        return this.insertedGeoArea.getHighestDailyAmplitude(mapOfDailyAmplitude);
+        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
+        return insertedGeoArea.getHighestDailyAmplitude(mapOfDailyAmplitude);
     }
 
     public Reading getLastLowestMaximumReading(SensorType sensorType, LocalDate startDate, LocalDate endDate) {
-        return this.insertedGeoArea.getLastLowestMaximumReading(this.getLocation(), sensorType, startDate, endDate);
+        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
+        return insertedGeoArea.getLastLowestMaximumReading(this.getLocation(), sensorType, startDate, endDate);
     }
 
     public boolean hasSensorsOfCertainTypeInInsertedGeoArea(SensorType sensorType) {
-        return !this.insertedGeoArea.getTheSensorListOfAGivenType(sensorType).isEmpty();
+        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
+        return !insertedGeoArea.getTheSensorListOfAGivenType(sensorType).isEmpty();
     }
 
     public Sensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
-        return this.insertedGeoArea.getNearestSensorWithMostRecentReading(type, location);
+        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
+        return insertedGeoArea.getNearestSensorWithMostRecentReading(type, location);
     }
 
     public SensorList getTheSensorListOfAGivenType(SensorType type) {
-        return this.insertedGeoArea.getTheSensorListOfAGivenType(type);
+        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
+        return insertedGeoArea.getTheSensorListOfAGivenType(type);
     }
 }

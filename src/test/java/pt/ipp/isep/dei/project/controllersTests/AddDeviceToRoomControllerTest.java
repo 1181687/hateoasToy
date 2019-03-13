@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -24,12 +27,17 @@ public class AddDeviceToRoomControllerTest {
 
     @BeforeEach
     public void StartUp() {
+        //Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeographicalArea insertedGeoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
+
         // Rooms
         Dimension dimension1 = new Dimension(2, 2, 2);
         kitchen = new Room("Kitchen", 0, dimension1);
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         livingRoom = new Room("Living Room", 1, dimension2);
-
 
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -37,7 +45,7 @@ public class AddDeviceToRoomControllerTest {
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
         house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         Location houseLocation = new Location(41.177748, -8.607745, 112);
-        Address address = new Address("4200-072", houseLocation);
+        Address address = new Address("4200-072", houseLocation, insertedGeoArea);
         house.setAddress(address);
 
         // Controller
