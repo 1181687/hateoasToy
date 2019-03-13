@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.microwaveoven.MicrowaveOvenType;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -140,6 +141,19 @@ public class MicrowaveOvenTest {
     void setLocationTrueTest() {
         // Act
         boolean result = microwaveOven.setLocation(laundry);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void setLocationTrueTestNullValue() {
+        // Act
+        MicrowaveOvenType type = new MicrowaveOvenType();
+        Device maquina = type.createDevice("nome");
+
+        boolean result = maquina.setLocation(laundry);
+
 
         // Assert
         assertTrue(result);

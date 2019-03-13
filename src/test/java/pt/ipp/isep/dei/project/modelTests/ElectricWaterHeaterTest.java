@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.electricwaterheater.ElectricWaterHeaterType;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -195,6 +196,19 @@ class ElectricWaterHeaterTest {
     void setLocationTrueTest() {
         // Act
         boolean result = electricWaterHeater.setLocation(laundry);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void setLocationTrueTestNullValue() {
+        // Act
+        ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
+        Device maquina = electricWaterHeaterType.createDevice("nome");
+
+        boolean result = maquina.setLocation(laundry);
+
 
         // Assert
         assertTrue(result);
