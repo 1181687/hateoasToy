@@ -30,7 +30,7 @@ deactivate ":Reading"
 deactivate ":Sensor"
 ":GeographicalArea" <-- ":SensorList": 2- listOfSensors
 deactivate ":SensorList"
-":GeographicalArea" -> ":SensorList": 3- getNearestSensorsToLocation (location)
+":GeographicalArea" -> ":SensorList": 3- getNearestSensorToLocation (location)
 activate ":SensorList"
 ":SensorList" -> ":Sensor": 3.1- getNearestSensorsToLocation (location)
 activate ":Sensor"
@@ -50,22 +50,30 @@ deactivate ":Reading"
 deactivate ":Sensor"
 ":GeographicalArea" <-- ":SensorList": 6- sensorWithMostRecentReading
 deactivate ":SensorList"
-":GeographicalArea" -> ":Sensor": 7- getMaximumValueOfDay ()
+":GeographicalArea" -> ":SensorList": 7- getMaximumValueOfDay ()
+activate ":SensorList"
+":SensorList" -> ":Sensor": 7.1- getMaximumValueOfDay ()
 activate ":Sensor"
-":Sensor" -> ":Reading": 7.1- getMaximumValueOfDay ()
+
+":Sensor" -> ":Reading": 7.1.1- getMaximumValueOfDay ()
 activate ":Reading"
-":Sensor" <-- ":Reading": 7.2- maximumValueOfDay
+":Sensor" <-- ":Reading": 7.1.2- maximumValueOfDay
 deactivate ":Reading"
-":GeographicalArea" <-- ":Sensor": 8- maximumValueOfDay
+":SensorList" <-- ":Sensor": 7.2- maximumValueOfDay
 deactivate ":Sensor"
-":GeographicalArea" -> ":Sensor": 9- getLowestValueOfDay ()
+":GeographicalArea" <-- ":SensorList": 8- maximumValueOfDay
+deactivate ":SensorList"
+":GeographicalArea" -> ":SensorList": 9- getLowestValueOfDay ()
+activate ":SensorList"
+":SensorList" -> ":Sensor": 9.1- getLowestValueOfDay ()
 activate ":Sensor"
-":Sensor" -> ":Reading": 9.1- getLowestValueOfDay ()
+":Sensor" -> ":Reading": 9.1.1- getLowestValueOfDay ()
 activate ":Reading"
-":Sensor" <-- ":Reading": 9.2- lowestValueOfDay
+":Sensor" <-- ":Reading": 9.1.2- lowestValueOfDay
 deactivate ":Reading"
-":GeographicalArea" <-- ":Sensor": 10- lowestValueOfDay
-
-
+":SensorList" <-- ":Sensor": 9.2- lowestValueOfDay
+deactivate ":Sensor"
+":GeographicalArea" <-- ":SensorList": 10- lowestValueOfDay
+deactivate ":SensorList"
 
 @enduml
