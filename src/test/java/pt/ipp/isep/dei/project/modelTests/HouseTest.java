@@ -2302,10 +2302,8 @@ public class HouseTest {
         List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         Location houseLocation = new Location(41.178553, -8.608035, 111);
-        Address address = new Address("4200-072", houseLocation);
+        Address address = new Address("4200-072", houseLocation, portoCity);
         this.house.setAddress(address);
-        this.house.setInsertedGeoArea(portoCity);
-
 
         // Sensors
         SensorType temperature = new SensorType("Temperature");
@@ -2369,10 +2367,8 @@ public class HouseTest {
         List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         Location houseLocation = new Location(41.178553, -8.608035, 111);
-        Address address = new Address("4200-072", houseLocation);
+        Address address = new Address("4200-072", houseLocation, portoCity);
         this.house.setAddress(address);
-        this.house.setInsertedGeoArea(portoCity);
-
 
         // Sensors
         SensorType temperature = new SensorType("Temperature");
@@ -2437,10 +2433,8 @@ public class HouseTest {
         List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         Location houseLocation = new Location(41.178553, -8.608035, 111);
-        Address address = new Address("4200-072", houseLocation);
+        Address address = new Address("4200-072", houseLocation, portoCity);
         this.house.setAddress(address);
-        this.house.setInsertedGeoArea(portoCity);
-
 
         // Sensors
         SensorType temperature = new SensorType("Temperature");
@@ -2502,10 +2496,8 @@ public class HouseTest {
         List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         Location houseLocation = new Location(41.178553, -8.608035, 111);
-        Address address = new Address("4200-072", houseLocation);
+        Address address = new Address("4200-072", houseLocation, portoCity);
         this.house.setAddress(address);
-        this.house.setInsertedGeoArea(portoCity);
-
 
         // Sensors
         SensorType temperature = new SensorType("Temperature");

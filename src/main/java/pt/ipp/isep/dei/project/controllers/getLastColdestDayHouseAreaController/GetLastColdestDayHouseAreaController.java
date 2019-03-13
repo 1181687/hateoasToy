@@ -19,7 +19,7 @@ public class GetLastColdestDayHouseAreaController {
     }
 
     public boolean hasSensorsOfGivenTypeInGeoArea() {
-        return this.house.hasSensorsOfGivenTypeInGeoArea(this.sensorTypeTemperature);
+        return this.house.hasSensorsOfCertainTypeInInsertedGeoArea(this.sensorTypeTemperature);
     }
 
     public boolean hasReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {

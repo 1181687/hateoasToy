@@ -766,15 +766,15 @@ public class House {
         if (Objects.isNull(insertedGeoArea.getFirstHighestReading(type, startDate, endDate))) {
             return null;
         }
-        return insertedGeoArea.getFirstHighestReading(type, startDate, endDate).getDateTime().toLocalDate();
+        return insertedGeoArea.getFirstHighestReading(type, startDate, endDate);
     }
 
     public Double getFirstHighestReadingValueHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        if (Objects.isNull(insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate))) {
+        if (Objects.isNull(insertedGeoArea.getFirstHighestReading(type, startDate, endDate))) {
             return null;
         }
-        return insertedGeoArea.getFirstHighestReading(location, type, startDate, endDate).getValue();
+        return insertedGeoArea.getFirstHighestReading(type, startDate, endDate).getValue();
     }
 
     public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
@@ -821,11 +821,6 @@ public class House {
     public Sensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
         return insertedGeoArea.getNearestSensorWithMostRecentReading(type, location);
-    }
-
-    public SensorList getTheSensorListOfAGivenType(SensorType type) {
-        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        return insertedGeoArea.getTheSensorListOfAGivenType(type);
     }
 
     public boolean isSensorListOfAGivenTypeEmpty(SensorType type) {
