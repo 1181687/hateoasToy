@@ -1893,22 +1893,22 @@ class GeographicalAreaTest {
     @Test
     public void getFirstHighestReading_allSameValueReadings_reading4() {
         //Arrange
-        LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
-        Reading reading4 = new Reading(31, time0);
-        LocalDateTime time1 = LocalDateTime.of(2018, 12, 3, 13, 20, 00);
-        Reading reading5 = new Reading(31, time1);
-        LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
-        Reading reading6 = new Reading(31, time2);
-        LocalDateTime time3 = LocalDateTime.of(2018, 12, 4, 12, 20, 00);
-        Reading reading7 = new Reading(31, time3);
+        LocalDateTime time0 = LocalDateTime.of(2018, 12, 18, 12, 20, 00);
+        Reading reading4 = new Reading(30, time0);
+        LocalDateTime time1 = LocalDateTime.of(2018, 12, 19, 13, 20, 00);
+        Reading reading5 = new Reading(29, time1);
+        LocalDateTime time2 = LocalDateTime.of(2018, 12, 20, 06, 20, 00);
+        Reading reading6 = new Reading(28, time2);
+        LocalDateTime time3 = LocalDateTime.of(2018, 12, 21, 12, 20, 00);
+        Reading reading7 = new Reading(30, time3);
         temperatureSensor1.addReadingsToList(reading4);
         temperatureSensor1.addReadingsToList(reading5);
         temperatureSensor1.addReadingsToList(reading6);
         temperatureSensor1.addReadingsToList(reading7);
 
         //interval LocalDate
-        LocalDate startDate = LocalDate.of(2018, 12, 2);
-        LocalDate endDate = LocalDate.of(2018, 12, 4);
+        LocalDate startDate = LocalDate.of(2018, 12, 18);
+        LocalDate endDate = LocalDate.of(2018, 12, 22);
 
         Reading expectedResult = reading4;
 
