@@ -18,6 +18,8 @@ public class LampSpecsTest {
     private Room livingRoom;
     private Device lamp;
     private House house;
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
+
 
     @BeforeEach
     public void StartUp() {
@@ -153,7 +155,7 @@ public class LampSpecsTest {
         // Arrange
         lamp.setAttributesDevType("Nominal Power", 30);
 
-        Object expectedResult = -1;
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
         // Act
         Object result = lamp.getSpecs().getAttributeValue("Not Valid");
         // Assert
@@ -289,13 +291,4 @@ public class LampSpecsTest {
         assertFalse(result);
     }
 
-    @Test
-    public void getAttributeDataTypeTest() {
-        // arrange
-        String attributeDataType = "Integer";
-        // act
-        String result = lamp.getSpecs().getAttributeDataType("Integer");
-        // assert
-        assertEquals(attributeDataType, result);
-    }
 }

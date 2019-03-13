@@ -19,6 +19,8 @@ public class FridgeSpecsTest {
     private Room kitchen;
     private Device fridge;
     private House house;
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
+
 
     @BeforeEach
     public void StartUp() {
@@ -176,7 +178,7 @@ public class FridgeSpecsTest {
     @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
-        Object expectedResult = -1;
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
 
         // Act
         Object result = fridge.getSpecs().getAttributeValue("Not Valid");
@@ -315,17 +317,5 @@ public class FridgeSpecsTest {
 
         // Assert
         assertFalse(result);
-    }
-
-    @Test
-    public void getAttributeDataTypeTest() {
-        // arrange
-        String attributeDataType = "Integer";
-
-        // act
-        String result = fridge.getSpecs().getAttributeDataType("Integer");
-
-        // assert
-        assertEquals(attributeDataType, result);
     }
 }

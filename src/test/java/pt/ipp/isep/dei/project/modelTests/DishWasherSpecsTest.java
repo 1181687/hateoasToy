@@ -19,6 +19,7 @@ public class DishWasherSpecsTest {
     private Room kitchen;
     private Device dishWasher;
     private House house;
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
     @BeforeEach
     public void StartUp() {
@@ -145,6 +146,18 @@ public class DishWasherSpecsTest {
     }
 
     @Test
+    public void testGetAttributeValueNullChar() {
+        // Arrange
+        dishWasher.setAttributesDevType("Nominal Power", 100.0);
+
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+        // Act
+        Object result = dishWasher.getSpecs().getAttributeValue("\0Nominal Power");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void testGetAttributeValueCapacity() {
         // Arrange
         Object expectedResult = 30;
@@ -154,11 +167,22 @@ public class DishWasherSpecsTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void testGetAttributeValueCapacityNullChar() {
+        // Arrange
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
+        // Act
+        Object result = dishWasher.getSpecs().getAttributeValue("\0Capacity");
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+
 
     @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
-        Object expectedResult = -1;
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
         // Act
         Object result = dishWasher.getSpecs().getAttributeValue("Not Valid");
         // Assert
@@ -175,6 +199,16 @@ public class DishWasherSpecsTest {
         assertFalse(result);
     }
 
+    @Test
+    public void testSetAttributeCapacityValueNullChar() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = dishWasher.getSpecs().setAttributeValue("\0Capacity", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
 
     @Test
     public void testSetAttributeNominalPowerValueNotAValidType() {
@@ -185,6 +219,17 @@ public class DishWasherSpecsTest {
         // Assert
         assertFalse(result);
     }
+
+    @Test
+    public void testSetAttributeNominalPowerValueNullChar() {
+        // Arrange
+        String attribute = "stuff";
+        // Act
+        boolean result = dishWasher.getSpecs().setAttributeValue("\0Nominal Power", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
 
     @Test
     public void testSetAttributeNominalPowerValidValue() {
@@ -216,7 +261,7 @@ public class DishWasherSpecsTest {
     @Test
     public void getAttributeDataTypeTest() {
         // arrange
-        String attributeDataType = "Integer";
+        String attributeDataType = NOT_VALID_ATTRIBUTE;
         // act
         String result = dishWasher.getSpecs().getAttributeDataType("Integer");
         // assert

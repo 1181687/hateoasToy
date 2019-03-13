@@ -19,6 +19,7 @@ class ElectricWaterHeaterSpecsTest {
     private Room kitchen;
     private Device electricWaterHeater;
     private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
 
     @BeforeEach
@@ -195,7 +196,7 @@ class ElectricWaterHeaterSpecsTest {
         electricWaterHeater.setAttributesDevType("Nominal Power", 100.0);
         electricWaterHeater.setAttributesDevType("Cold-Water Temperature", 20.0);
 
-        Object expectedResult = -1;
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
         // Act
         Object result = electricWaterHeater.getSpecs().getAttributeValue("Not Valid");
         // Assert
@@ -443,7 +444,7 @@ class ElectricWaterHeaterSpecsTest {
     @Test
     public void getAttributeDataTypeTest() {
         // arrange
-        String attributeDataType = "Integer";
+        String attributeDataType = NOT_VALID_ATTRIBUTE;
         // act
         String result = electricWaterHeater.getSpecs().getAttributeDataType("Integer");
         // assert

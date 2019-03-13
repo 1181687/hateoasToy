@@ -150,11 +150,6 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
                     return setCapacity(((Number) attributeValue).intValue());
                 }
                 return false;
-           /* case ATTRIBUTE_DURATION:
-                if (attributeValue instanceof Number) {
-                    return setDuration(((Number) attributeValue).doubleValue());
-                }
-                return false;*/
             case ATTRIBUTE_NOMINAL_POWER:
                 if (attributeValue instanceof Number) {
                     return setNominalPower(((Number) attributeValue).doubleValue());

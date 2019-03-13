@@ -26,6 +26,8 @@ class WashingMachineSpecsTest {
     private Reading reading1;
     private Reading reading2;
     private House house;
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
+
 
     @BeforeEach
     public void StartUp() {
@@ -357,7 +359,7 @@ class WashingMachineSpecsTest {
         kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.0);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Capacity", 20.0);
 
-        Object expectedResult = -1;
+        Object expectedResult = NOT_VALID_ATTRIBUTE;
         // Act
         Object result = kitchen.getDeviceByPosition(0).getAttributeValue("Not Valid");
         // Assert
@@ -459,15 +461,5 @@ class WashingMachineSpecsTest {
         boolean result = kitchen.getDeviceByPosition(0).setAttributesDevType("Energy Consumption", 100.0);
         // Assert
         assertTrue(result);
-    }
-
-    @Test
-    public void getAttributeDataTypeTest() {
-        // arrange
-        String attributeDataType = "Integer";
-        // act
-        String result = washingMachine.getAttributeDataType("Integer");
-        // assert
-        assertEquals(attributeDataType, result);
     }
 }
