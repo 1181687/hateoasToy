@@ -1,0 +1,64 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+activate AdminUser
+actor AdminUser
+
+AdminUser -> ":ImportReadings\nFromJSONUI": 1- importReadingsFromJSON
+activate ":ImportReadings\nFromJSONUI"
+AdminUser <-- ":ImportReadings\nFromJSONUI": pathOfJsonFileRequest
+deactivate ":ImportReadings\nFromJSONUI"
+AdminUser -> ":ImportReadings\nFromJSONUI": pathOfJSONFile
+activate ":ImportReadings\nFromJSONUI"
+":ImportReadings\nFromJSONUI" -> ":JSONReader" : 1.1- readJSONFileToList (reader)
+activate ":JSONReader"
+":ImportReadings\nFromJSONUI" <-- ":JSONReader" : 1.2- ListOfGeographicalAreasDTO
+deactivate ":JSONReader"
+AdminUser <-- ":ImportReadings\nFromJSONUI": contentOfFile + confirmationMessage (Y/N)
+deactivate ":ImportReadings\nFromJSONUI"
+AdminUser -> ":ImportReadings\nFromJSONUI": confirmationMessage
+activate ":ImportReadings\nFromJSONUI"
+":ImportReadings\nFromJSONUI" -> ":ImportReadings\nFromJSONController": importGeographicalAreasAndSensors\n(listOfGeoAreasDTO)
+activate ":ImportReadings\nFromJSONController"
+":ImportReadings\nFromJSONController" -> "GeographicalAreaMapper" : mapToEntity(geographicalAreaDTO)
+activate "GeographicalAreaMapper"
+"GeographicalAreaMapper" -> ":GeographicalArea" : createGeographicalArea()
+activate ":GeographicalArea"
+"GeographicalAreaMapper" <-- ":GeographicalArea" : geographicalArea
+deactivate ":GeographicalArea"
+":ImportReadings\nFromJSONController" <-- "GeographicalAreaMapper" : geographicalArea
+deactivate "GeographicalAreaMapper"
+":ImportReadings\nFromJSONController" -> "SensorMapper" : mapToEntity(sensor)
+activate "SensorMapper"
+"SensorMapper" -> ":Sensor" : createSensor()
+activate ":Sensor"
+"SensorMapper" <-- ":Sensor" : sensor
+deactivate ":Sensor"
+":ImportReadings\nFromJSONController" <-- "SensorMapper" : sensor
+ deactivate "SensorMapper"
+":ImportReadings\nFromJSONController"  -> ":GeographicalAreaList" : AddGeographicalArea(geographicalArea)
+activate ":GeographicalAreaList"
+":ImportReadings\nFromJSONController" <-- ":GeographicalAreaList" : boolean
+deactivate ":GeographicalAreaList"
+":ImportReadings\nFromJSONUI" <-- ":ImportReadings\nFromJSONController": boolean
+deactivate ":ImportReadings\nFromJSONController"
+AdminUser <-- ":ImportReadings\nFromJSONUI": confirmationMessage
+deactivate ":ImportReadings\nFromJSONUI"
+deactivate AdminUser
+
+@enduml
