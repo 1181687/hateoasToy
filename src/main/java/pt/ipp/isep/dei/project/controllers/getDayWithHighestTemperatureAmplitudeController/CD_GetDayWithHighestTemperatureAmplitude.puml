@@ -10,19 +10,19 @@ skinparam class {
 
 hide circle
 
-UI "1" -> "1" Controller
-Controller "1" --> "1" House
-House "1" -> "1" GeographicalArea : directly inserted in
-GeographicalArea "1" -> "1" SensorList
-SensorList "1" --> "0*" Sensor
-Sensor "1" --> "0*" Reading
+GetDayWithHighest\nTemperatureAmplitude\nUI "1" -> "1" GetDayWithHighestTemperatureAmplitude\nController
+GetDayWithHighestTemperatureAmplitude\nController "1" -right-> "1" House
+House "1" --> "1" GeographicalArea : directly inserted in
+GeographicalArea "1" -left-> "1" SensorList
+SensorList "1" -left-> "0*" Sensor
+Sensor "1" -down-> "0*" Reading
 
-Class UI {
-- GetDayWithHighestTemperatureAmplitudeController controller
+Class GetDayWithHighest\nTemperatureAmplitude\nUI {
+- GetDayWithHighestTemperature\nAmplitudeController controller
 +run()
 }
 
-Class Controller {
+Class GetDayWithHighestTemperatureAmplitude\nController {
 - House house;
 - SensorType sensorTypeTemperature
 - Map<LocalDate, Double> mapOfDailyAmplitude;
@@ -34,38 +34,50 @@ Class Controller {
 }
 
 Class House {
--field1
--field2
-+method1()
-+method2()
+-GeographicalArea insertedGeoArea
+-Address address
++getDailyAmplitudeInIntervalInHouseArea()
++getHighestDailyAmplitudeInHouseArea()
 }
 
 Class GeographicalArea {
--field1
--field2
-+method1()
-+method2()
+-SensorList sensorList
+-Location location
++getSensorListByTypeInAPeriod()
++getNearestSensorsToLocation()
++getSensorWithMostRecentReading()
++getMaximumValueOfDay()
++getLowestValueOfDay()
 }
 
 Class SensorList {
--field1
--field2
-+method1()
-+method2()
+-List<Sensor> listOfSensors
++getSensorWithMostRecentReading()
++getSensorsInGeographicalAreaByType()
++getNearestSensorsToLocation()
++getSensorWithMostRecentReading()
++getMaximumValueOfDay()
++getLowestValueOfDay()
 }
 
 Class Sensor {
--field1
--field2
-+method1()
-+method2()
+-List<Reading> listOfReadings
+-SensorType sensorType
+-Location location
++getSensorType()
++checkMeasurementExistenceBetweenDates()
++getSensorWithMostRecentReading()
++distanceBetweenSensorAndLocation()
++getMeasurementValueBetweenDates()
++getMaximumValueOfDay()
++getLowestValueOfDay()
 }
 
 Class Reading {
--field1
--field2
-+method1()
-+method2()
+-double value
+-LocalDateTime dateTime
++getValue()
++getDateTime()
 }
 
 @enduml
