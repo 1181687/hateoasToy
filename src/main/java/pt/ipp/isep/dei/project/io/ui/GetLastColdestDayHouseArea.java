@@ -20,7 +20,7 @@ public class GetLastColdestDayHouseArea {
 
     public void run() {
 
-        if (!controller.hasSensorsOfCertainTypeInInsertedGeoArea()) {
+        if (!controller.hasSensorsOfGivenTypeInGeoArea()) {
             System.out.println("There are no temperature sensors in the house area.\n");
         } else {
 
