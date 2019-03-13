@@ -12,8 +12,8 @@ public class AddGeoArea {
 
     private AddGeoAreaController controller;
 
-    public AddGeoArea(GeographicalAreaList lista, GeographicalAreaTypeList listaTAG) {
-        this.controller = new AddGeoAreaController(lista, listaTAG);
+    public AddGeoArea(GeographicalAreaList list, GeographicalAreaTypeList GeoAreaList) {
+        this.controller = new AddGeoAreaController(list, GeoAreaList);
     }
 
     public void run() {
@@ -23,12 +23,12 @@ public class AddGeoArea {
         System.out.println("Introduce the description of the Geographical Area");
         String description = ler.nextLine();
         System.out.println("Choose the Geographical Area type");
-        for (int i = 1; i <= controller.getTGAList().size(); i++) {
+        for (int i = 1; i <= controller.getGeoAreaList().size(); i++) {
             System.out.println(i + " - " +
-                    "Type: " + controller.getTGAList().get(i - 1));
+                    "Type: " + controller.getGeoAreaList().get(i - 1));
         }
         int opcao = ler.nextInt();
-        String nomeTipoAG = controller.getTGAList().get(opcao - 1);
+        String nomeTipoAG = controller.getGeoAreaList().get(opcao - 1);
         String label1 = "Introduce the latitude of the Geographical Area(valid numbers between -90 and 90).";
         double latitude = InputValidator.getDoubleRange(label1, -90, 90);
 
@@ -36,16 +36,17 @@ public class AddGeoArea {
         double longitude = InputValidator.getDoubleRange(label2, -180, 180);
 
         String label3 = "Introduce the altitude of the Geographical Area.";
-        double altitude = InputValidator.getInt(label3);
+        double elevation = InputValidator.getInt(label3);
 
         String label4 = "Introduce the length of the Geographical Area(valid numbers greater than 0).";
-        double comprimento = InputValidator.getDoublePos(label4);
+        double length = InputValidator.getDoublePos(label4);
 
         String label5 = "Introduce the width of the Geographical Area(valid numbers greater than 0).";
-        double largura = InputValidator.getDoublePos(label5);
+        double width = InputValidator.getDoublePos(label5);
 
-        GeographicalArea novaAG = controller.createNewGeoArea(id, description, nomeTipoAG, latitude, longitude, altitude, comprimento, largura);
-        if (controller.addNewGeoArea(novaAG)) {
+
+        GeographicalArea newGeoArea = controller.createNewGeoArea(id, description, nomeTipoAG, controller.createLocation(latitude, longitude, elevation), length, width);
+        if (controller.addNewGeoArea(newGeoArea)) {
             System.out.println("Success!");
         } else {
             System.out.println("That Geographical Area already exists!");

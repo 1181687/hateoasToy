@@ -134,6 +134,21 @@ public class TelevisionSpecsTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NullNominalPower (){
+        //Arrange
+        String expectedResult = "Not a valid attribute";
+        //Act
+        Object result = television.getSpecs().getAttributeValue("\0"+ "Nominal Power");
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
     @Test
     public void testGetAttributeValueStandbyPower() {
         // Arrange
@@ -143,6 +158,36 @@ public class TelevisionSpecsTest {
         Object result = television.getSpecs().getAttributeValue("Standby Power");
 
         // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NullStandbyPower (){
+        //Arrange
+        String expectedResult = "Not a valid attribute";
+        //Act
+        Object result = television.getSpecs().getAttributeValue("\0"+ "Stanby Power");
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @Test
+    public void testGetAttributeValue_NullTime (){
+        //Arrange
+        String expectedResult = "Not a valid attribute";
+        //Act
+        Object result = television.getSpecs().getAttributeValue("\0"+ "Time");
+
+        //Assert
         assertEquals(expectedResult, result);
     }
 
@@ -208,6 +253,32 @@ public class TelevisionSpecsTest {
     }
 
     @Test
+    public void testSetNominalPower_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double nominalPower = 30;
+
+        //Act
+        boolean result = television.getSpecs().setAttributeValue("\0"+ "Nominal Power", nominalPower);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetNominalPower_ZeroValue_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double nominalPower = 0;
+
+        //Act
+        boolean result = television.getSpecs().setAttributeValue("Nominal Power", nominalPower);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+        @Test
     public void testSetAttributeStandbyPowerValueValidType() {
         // Arrange
         double standbyPower = 20.4;
@@ -244,9 +315,35 @@ public class TelevisionSpecsTest {
     }
 
     @Test
+    public void testSetStandbyPower_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double standbyPower = 30;
+
+        //Act
+        boolean result = television.getSpecs().setAttributeValue("\0"+ "Standby Power", standbyPower);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetStandbyPower_ZeroValue_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double standbyPower = 0;
+
+        //Act
+        boolean result = television.getSpecs().setAttributeValue("Standby Power", standbyPower);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void testSetAttributeTimeValueValidType() {
         // Arrange
-        double time = 100.0;
+        double time = 90.0;
 
         // Act
         boolean result = television.getSpecs().setAttributeValue("Time", time);
@@ -278,6 +375,20 @@ public class TelevisionSpecsTest {
         // Assert
         assertFalse(result);
     }
+
+    @Test
+    public void testSetTime_NullCharacter_False() {
+        //Arrange
+        boolean expectedResult = false;
+        double time = 30;
+
+        //Act
+        boolean result = television.getSpecs().setAttributeValue("\0"+ "Time", time);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
 
     @Test
     public void getAttributeDataTypeTest() {
