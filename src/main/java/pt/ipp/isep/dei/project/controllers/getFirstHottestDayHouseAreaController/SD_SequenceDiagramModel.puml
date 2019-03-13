@@ -42,7 +42,7 @@ end
 activate ":GetFirst\nHottestDay\nHouseArea\nController"
 ":GetFirst\nHottestDay\nHouseArea\nController" -> ":House": getFirstHighestReadingHouseArea
 activate ":House"
-":House" ->":GeographicalArea": getFirstHighestReading
+":House" ->":GeographicalArea": getFirstHighestReadingHouseArea
 activate ":GeographicalArea"
 ref over ":GeographicalArea"
 getLatestReadingFromNearestSensor
@@ -51,7 +51,7 @@ end
 ":GeographicalArea" --> ":GetFirst\nHottestDay\nHouseArea\nController" :Reading
 deactivate ":GeographicalArea"
 deactivate ":House"
-":GetFirst\nHottestDay\nHouseArea\nController" ->"ReadingMapper": mapToDTO(sensor)
+":GetFirst\nHottestDay\nHouseArea\nController" ->"ReadingMapper": mapToDTO(reading)
 activate "ReadingMapper"
 "ReadingMapper" -> ":ReadingDTO": create ReadingDTO
 activate ":ReadingDTO"

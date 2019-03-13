@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.winecooler.WineCoolerType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -172,6 +173,19 @@ public class WineCoolerTest {
     void setLocationTrueTest() {
         // Act
         boolean result = wineCooler.setLocation(livingRoom);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void setLocationTrueTestNullValue() {
+        // Act
+        WineCoolerType type = new WineCoolerType();
+        Device maquina = type.createDevice("nome");
+
+        boolean result = maquina.setLocation(kitchen);
+
 
         // Assert
         assertTrue(result);
