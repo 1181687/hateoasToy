@@ -28,19 +28,18 @@ public class GetFirstHottestDayHouseArea {
                 flag = true;
             }
         } while (flag);
-        if (ctrl.sensorListOfATypeIfEmpty(ctrl.getTypeTemperature())) {
+        if (ctrl.isSensorListOfATypeEmpty()) {
             System.out.println("There are no temperature sensors in the house area.\n");
             return;
         }
-        ctrl.getChosenSensor();
         if (!ctrl.checkSensorReadingsExistenceBetweenDates(initialDate, finalDate) ||
-                Double.isNaN(ctrl.getFirstHighestReadingValueHouseArea(initialDate, finalDate))) {
+                Double.isNaN(ctrl.getFirstHighestReadingHouseArea(initialDate, finalDate).getValue())) {
             System.out.println("It is not possible to present valid readings in the house area.\n");
             return;
         }
         System.out.println("The first hottest day in the house area in the chosen interval is " +
-                ctrl.getFirstHighestReadingDateHouseArea(initialDate, finalDate) +
+                ctrl.getFirstHighestReadingHouseArea(initialDate, finalDate).getDateTime().toLocalDate() +
                 " (maximum temperature of " +
-                Utils.round(ctrl.getFirstHighestReadingValueHouseArea(initialDate, finalDate), 2) + " Celsius).\n");
+                Utils.round(ctrl.getFirstHighestReadingHouseArea(initialDate, finalDate).getValue(), 2) + " Celsius).\n");
     }
 }

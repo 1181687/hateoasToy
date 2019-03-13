@@ -511,7 +511,7 @@ public class Sensor {
         return measurementsBetweenDates;
     }
 
-    public Reading getHighestReading(LocalDate startDate, LocalDate endDate) {
+    public Reading getFirstHighestReading(LocalDate startDate, LocalDate endDate) {
         if (getReadingsBetweenDates(startDate, endDate).isEmpty()) {
             return null;
         }

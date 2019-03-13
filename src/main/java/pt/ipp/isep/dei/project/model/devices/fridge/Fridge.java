@@ -161,14 +161,4 @@ public class Fridge implements Device {
     public boolean getIsActive() {
         return isActive;
     }
-
-    /*@Override
-    public boolean isProgrammable() {
-        return false;
-    }
-
-    @Override
-    public Programmable asProgrammable() {
-        return null;
-    }*/
 }

@@ -331,13 +331,4 @@ public class KettleTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-
-
-    //Arrange
-    //Act
-    //Assert
-    //assertEquals(expectedResult, result);
-
-
-
 }

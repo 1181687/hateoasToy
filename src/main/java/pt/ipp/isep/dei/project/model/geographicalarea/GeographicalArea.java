@@ -250,10 +250,9 @@ public class GeographicalArea {
      * @return sensor list.
      */
     public SensorList getTheSensorListOfAGivenType(SensorType type) {
-        GeographicalArea areaToBeUsed = new GeographicalArea(id, description, geographicalAreaType, location, areaShape);
+        GeographicalArea areaToBeUsed = this;
         areaToBeUsed.setInsertedIn(insertedIn);
-        SensorList listOfSensors = new SensorList();
-        listOfSensors.setListOfSensors(getSensorsInGeographicalAreaByType(type).getListOfSensors());
+        SensorList listOfSensors = getSensorsInGeographicalAreaByType(type);
         while (listOfSensors.getListOfSensors().isEmpty()) {
             if (areaToBeUsed.getInsertedIn() != null) {
                 areaToBeUsed.getSensorListInTheGeographicArea().setListOfSensors(areaToBeUsed.getInsertedIn().getSensorListInTheGeographicArea().getListOfSensors());
@@ -432,17 +431,7 @@ public class GeographicalArea {
 
     public Reading getFirstHighestReading(SensorType type, LocalDate startDate, LocalDate endDate) {
         Sensor chosenSensor = getNearestSensorWithMostRecentReading(type, this.location);
-        Reading highestReading = chosenSensor.getHighestReading(startDate, endDate);
-        if (highestReading != null) {
-            for (Reading reading : chosenSensor.getReadingsBetweenDates(startDate, endDate)) {
-                Number readingValue = reading.getValue();
-                Number highestReadingValue = highestReading.getValue();
-                if (readingValue == highestReadingValue) {
-                    highestReading = reading;
-                    break;
-                }
-            }
-        }
+        Reading highestReading = chosenSensor.getFirstHighestReading(startDate, endDate);
         return highestReading;
     }
 
