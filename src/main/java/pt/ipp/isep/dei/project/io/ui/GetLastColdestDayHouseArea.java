@@ -24,13 +24,13 @@ public class GetLastColdestDayHouseArea {
             System.out.println("There are no temperature sensors in the house area.\n");
         } else {
 
-            askFirstAndLastDate();
+            askAndValidateFirstAndLastDate();
 
             getLastColdestDayReadingAndDisplayResults();
         }
     }
 
-    private void askFirstAndLastDate() {
+    private void askAndValidateFirstAndLastDate() {
         boolean flag;
         do {
             flag = false;
