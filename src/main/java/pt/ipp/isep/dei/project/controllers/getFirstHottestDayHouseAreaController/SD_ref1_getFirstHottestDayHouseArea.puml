@@ -17,14 +17,14 @@ skinparam sequence {
     ActorFontName Aapex
 }
 
-":GetFirst\nHottestDay\nHouseAreaUI" -> ":GetFirst\nHottestDay\nHouseArea\nController": 2-isSensorListOfATypeEmpty()
+":GetFirst\nHottestDay\nHouseAreaUI" -> ":GetFirst\nHottestDay\nHouseArea\nController": 1- isSensorListOfATypeEmpty()
 activate ":GetFirst\nHottestDay\nHouseAreaUI"
 activate ":GetFirst\nHottestDay\nHouseArea\nController"
-":GetFirst\nHottestDay\nHouseArea\nController" -> ":House": 3-isSensorListOfATypeEmpty()
+":GetFirst\nHottestDay\nHouseArea\nController" -> ":House": 1.1- isSensorListOfATypeEmpty(type)
 activate ":House"
-":House" -> ":GeographicalArea": 4-isSensorListOfAGiven\nTypeEmpty(SensorType)
+":House" -> ":GeographicalArea": 1.1.1- isSensorListOfAGiven\nTypeEmpty(type)
 activate ":GeographicalArea"
-":GetFirst\nHottestDay\nHouseAreaUI" <-- ":GeographicalArea": 5-boolean
+":GetFirst\nHottestDay\nHouseAreaUI" <-- ":GeographicalArea": 1.1.2- boolean
 deactivate ":GeographicalArea"
 deactivate ":House"
 deactivate ":GetFirst\nHottestDay\nHouseArea\nController"

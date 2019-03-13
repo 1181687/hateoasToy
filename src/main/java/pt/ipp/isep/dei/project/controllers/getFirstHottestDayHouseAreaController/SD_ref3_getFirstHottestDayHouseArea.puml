@@ -16,22 +16,22 @@ skinparam sequence {
    ActorFontSize 17
    ActorFontName Aapex
 }
-
-":GeographicalArea" ->":SensorList": getNearestSensorsWithTheMostRecentReading(type,location)
-
-
-":SensorList" --> ":GeographicalArea": sensor
-
-":GeographicalArea" -> ":Sensor":getFirstHighestReading(startDate,endDate)
-
+activate ":GeographicalArea"
+":GeographicalArea" ->":SensorList": 1- getNearestSensorsWithTheMostRecentReading(type,location)
+activate ":SensorList"
+":SensorList" --> ":GeographicalArea": 2- sensor
+deactivate ":SensorList"
+":GeographicalArea" -> ":Sensor":3- getFirstHighestReading(startDate,endDate)
+activate ":Sensor"
 loop getHighestReading
-":Sensor" -> ":Readings": getReadingsBetweenDates
-
+":Sensor" -> ":Readings": 3.1- getReadingsBetweenDates
+activate ":Readings"
 end
-":Readings" --> ":Sensor" :highestReading
+":Readings" --> ":Sensor" :3.2- highestReading
+deactivate ":Readings"
 
-":Sensor" --> ":GeographicalArea": highestReading
-
-
+":Sensor" --> ":GeographicalArea": 4- highestReading
+deactivate ":Sensor"
+deactivate ":GeographicalArea"
 
 @enduml

@@ -74,7 +74,7 @@ class ImportReadingsFromCSVControllerTest {
     @Test
     public void testCheckIfSensorExistsById_tryingToUseAValidId_ShouldReturnTrue() {
         // Act
-        boolean result = controller.checkIfSensorExistsById("A123");
+        boolean result = controller.checkIfSensorExistsById("432");
 
         // Assert
         assertTrue(result);
@@ -98,7 +98,7 @@ class ImportReadingsFromCSVControllerTest {
     @Test
     public void testAddReadingToSensor_tryingToAddAValidReading_ShouldReturnTrue() {
         // Arrange
-        controller.checkIfSensorExistsById("A123");
+        controller.checkIfSensorExistsById("432");
         controller.addReadingToSensor(readingDTO);
         Reading reading = ReadingMapper.mapToEntity(readingDTO);
 
@@ -115,7 +115,7 @@ class ImportReadingsFromCSVControllerTest {
     @Test
     public void testAddReadingToSensor_tryingToAddNullReading_ShouldReturnFalse() {
         // Arrange
-        controller.checkIfSensorExistsById("A123");
+        controller.checkIfSensorExistsById("432");
         controller.addReadingToSensor(null);
 
         // Act
