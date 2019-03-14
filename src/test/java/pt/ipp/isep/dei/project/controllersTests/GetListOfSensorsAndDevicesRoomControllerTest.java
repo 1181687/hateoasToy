@@ -1,9 +1,27 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.GetListOfSensorsAndDevicesRoomController;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 class GetListOfSensorsAndDevicesRoomControllerTest {
 
-    /*private GetListOfSensorsAndDevicesRoomController controller;
-    private House housegrid;
+    private GetListOfSensorsAndDevicesRoomController controller;
+    private House house;
     private RoomList roomList;
     private Room room;
 
@@ -14,7 +32,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        geographicalarea insertedGeoArea = new geographicalarea("Campus do ISEP", geographicalAreaType, location, areaShape);
+        GeographicalArea insertedGeoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         // Room 1
         String name = "room1";
@@ -27,15 +45,15 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        this.housegrid = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
-        this.roomList = housegrid.getRoomList();
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        this.roomList = house.getRoomList();
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
-        Address address = new Address("4200-072", houseLocation);
-        housegrid.setAddress(address);
-        housegrid.setInsertedGeoArea(insertedGeoArea);
+        Address address = new Address("4200-072", houseLocation, insertedGeoArea);
+        house.setAddress(address);
+        house.setInsertedGeoArea(insertedGeoArea);
 
-        this.controller = new GetListOfSensorsAndDevicesRoomController(housegrid);
+        this.controller = new GetListOfSensorsAndDevicesRoomController(house);
     }
 
     @Test
@@ -44,20 +62,20 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
-        sensor s0 = new sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("A123", "sensor1", dataFuncionamento0, sensorType0, locS0, "C");
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2010, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(123, 300, 50);
-        sensor s1 = new sensor("A456", dataFuncionamento1, sensorType1, locS1);
+        Sensor s1 = new Sensor("A456", "sensor2", dataFuncionamento1, sensorType1, locS1, "C");
 
         this.room.addSensorToListOfSensorsInRoom(s0);
         this.room.addSensorToListOfSensorsInRoom(s1);
-        this.housegrid.addRoom(this.room);
+        this.house.addRoom(this.room);
         int position = 0;
         String expectedResult =
-                "1 - Name of the sensor: A123\n" +
-                        "2 - Name of the sensor: A456\n";
+                "1 - Name of the sensor: sensor1\n" +
+                        "2 - Name of the sensor: sensor2\n";
 
         // Act
         String result = this.controller.getSensorsListContent(position);
@@ -69,7 +87,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     @Test
     public void checkIfSensorListIsEmptyTestTrue() {
         // Arrange
-        this.housegrid.addRoom(room);
+        this.house.addRoom(room);
         int position = 0;
 
         // Act
@@ -85,10 +103,10 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
-        sensor s0 = new sensor("A123", dataFuncionamento0, sensorType0, locS0);
+        Sensor s0 = new Sensor("A123", "sensor1", dataFuncionamento0, sensorType0, locS0, "C");
 
         room.addSensorToListOfSensorsInRoom(s0);
-        housegrid.addRoom(room);
+        house.addRoom(room);
         int position = 0;
 
         // Act
@@ -101,13 +119,11 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     @Test
     public void getDeviceListContentTest() {
         // Arrange
-        FridgeType fridgeType = new FridgeType();
-        Device dev = fridgeType.createDevice("Fridge1", room);
+        house.createDevice("Fridge", "Fridge1", room);
 
-        LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room);
+        house.createDevice("Lamp", "Lamp1", room);
 
-        housegrid.addRoom(room);
+        house.addRoom(room);
 
         int position = 0;
         String expectedResult =
@@ -121,7 +137,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     @Test
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
-        housegrid.addRoom(room);
+        house.addRoom(room);
         int position = 0;
         // Act
         boolean result = controller.isDeviceListEmpty(position);
@@ -132,10 +148,9 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     @Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
-        LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", room);
+        Device dev1 = house.createDevice("Lamp", "Lamp1", room);
 
-        housegrid.addRoom(room);
+        house.addRoom(room);
         int position = 0;
         // Act
         boolean result = controller.isDeviceListEmpty(position);
@@ -151,8 +166,8 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        housegrid.addRoom(room);
-        housegrid.addRoom(room2);
+        house.addRoom(room);
+        house.addRoom(room2);
         int expectResult = 2;
 
         //act
@@ -177,7 +192,7 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
     @Test
     public void getRoomListTest() {
         // Arrange
-        housegrid.addRoom(room);
+        house.addRoom(room);
         RoomList expectedResult = this.roomList;
 
         // Act
@@ -243,8 +258,8 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        this.housegrid.addRoom(room1);
-        this.housegrid.addRoom(room2);
+        this.house.addRoom(room1);
+        this.house.addRoom(room2);
 
         String expectResult = "1- Name: Kitchen, House Floor: 0, Dimension - Height: 2.0, Length: 2.0, Width: 2.0\n" +
                 "2- Name: Living Room, House Floor: 1, Dimension - Height: 2.0, Length: 1.5, Width: 1.3\n";
@@ -266,5 +281,5 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
 
         //assert
         assertEquals(expectResult, result);
-    }*/
+    }
 }
