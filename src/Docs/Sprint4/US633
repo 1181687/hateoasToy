@@ -31,9 +31,9 @@ Test Criteria:
 - All acceptance tests with "Process finished with exit code 0" message;
 - If there are no temperature sensors in the house area: "There's no registers for this period."
 - If there are no readings in the selected period: "There's no registers for this period."
-- If there is only one reading within the selected period:
 - If all readings within the selected period are Double.NaN: "There's no registers for this period."
-
+- If there is only one valid reading within the selected period (others don't exist or are Double.NaN): "There are not enough readings to calculate the amplitude."
+- If there is are days in the selected period with only one valid value: These days should be ignored for calculations.
 
 ASSUMPTIONS:
 - To calculate the day with the highest temperature amplitude, one must choose the sensor with the most recent readings if there are two
