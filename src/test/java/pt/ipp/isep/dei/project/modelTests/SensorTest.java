@@ -2411,6 +2411,27 @@ class SensorTest {
         assertEquals(expectedResult,result);
     }
 
+    @Test
+    public void getLastLowestReading_SensorWithNoReadings_ShouldReturnNull(){
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+
+        LocalDate startDate = LocalDate.of(2018,11,2);
+        LocalDate endDate = LocalDate.of(2018,11,3);
+
+        Reading expectedResult = null;
+        List<Reading> readings = sensor1.getReadingsBetweenDates(startDate,endDate);
+
+        //Act
+        Reading result = sensor1.getLastLowestReading(readings);
+
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
     /**
      * Test that tries to get an existing list of Readings from the Sensor.
      */

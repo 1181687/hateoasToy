@@ -1,10 +1,13 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.getFirstHottestDayHouseAreaController.GetFirstHottestDayHouseAreaController;
+import pt.ipp.isep.dei.project.controllers.getfirsthottestdayhouseareacontroller.GetFirstHottestDayHouseAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
@@ -14,10 +17,12 @@ import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.testng.Assert.assertTrue;
 
 public class GetFirstHottestDayHouseAreaControllerTest {
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
@@ -111,15 +116,71 @@ public class GetFirstHottestDayHouseAreaControllerTest {
         assertFalse(result);
     }
 
-    /*@Test
+    @Test
     public void isSensorListEmptyTest_True() {
         // Arrange
-        SensorType rainfall = new SensorType("Rainfall");
+        GeographicalAreaType street = new GeographicalAreaType("Street");
+
+        // Geographical Area
+
+        Location location = new Location(32.1496, 7.6109, 98);
+        AreaShape areaShape = new AreaShape(10, 10, location);
+        GeographicalArea newGeoArea = new GeographicalArea("PortoStreet", "Porto Street", street, location, areaShape);
+        // House
+
+        house.setInsertedGeoArea(newGeoArea);
+
         // Act
         boolean result = this.controller.isSensorListOfATypeEmpty();
 
         // Assert
         assertTrue(result);
-    }*/
+    }
 
+    @Test
+    public void checkNearestSensorReadingsExistenceBetweenDates_True() {
+        // Arrange
+        LocalDate initialDate = LocalDate.of(2018, 12, 2);
+        LocalDate finalDate = LocalDate.of(2018, 12, 6);
+
+        // Act
+        boolean result = this.controller.checkNearestSensorReadingsExistenceBetweenDates(initialDate, finalDate);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void checkNearestSensorReadingsExistenceBetweenDates_False() {
+        // Arrange
+        LocalDate initialDate = LocalDate.of(2018, 12, 7);
+        LocalDate finalDate = LocalDate.of(2018, 12, 10);
+
+        // Act
+        boolean result = this.controller.checkNearestSensorReadingsExistenceBetweenDates(initialDate, finalDate);
+
+        // Assert
+        assertFalse(result);
+    }
+
+
+    @Test
+    public void getFirstHighestReadingHouseArea_ReadingDTO() {
+        //Arrange
+        LocalDate startDate = LocalDate.of(2018, 12, 2);
+        LocalDate endDate = LocalDate.of(2018, 12, 6);
+
+        LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 05, 24, 00);
+        double valueReading3 = 25;
+        ReadingDTO expectedResultDTO = ReadingMapper.newReadingDTO();
+        expectedResultDTO.setValue(valueReading3);
+        expectedResultDTO.setDateTime(readingDate3);
+        Reading expectedResult = ReadingMapper.mapToEntity(expectedResultDTO);
+
+        //Act
+        ReadingDTO resultDTO = controller.getFirstHighestReadingHouseArea(startDate, endDate);
+        Reading result = ReadingMapper.mapToEntity(resultDTO);
+        //Assert
+        Assertions.assertEquals(expectedResult, result);
+    }
 }

@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllers.getLastColdestDayHouseAreaController;
+package pt.ipp.isep.dei.project.controllers.getlastcoldestdayhouseareacontroller;
 
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
