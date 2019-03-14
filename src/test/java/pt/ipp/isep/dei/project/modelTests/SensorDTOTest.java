@@ -31,6 +31,9 @@ class SensorDTOTest {
         sensorDTO.setUnits("ºC");
     }
 
+    /**
+     * get method for sensor Id. gets id ISEP-Temperature
+     */
     @Test
     void testGetId_get_isepTemperature() {
         //Arrange
@@ -41,8 +44,11 @@ class SensorDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * set method for sensor Id. changes ID to ISEP
+     */
     @Test
-    void testSetId_set_id() {
+    void testSetId_set_ISEP() {
         //Arrange
         String expectedResult = "ISEP";
         sensorDTO.setId("ISEP");
@@ -52,6 +58,9 @@ class SensorDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * get method for sensor name. gets Temperature sensor
+     */
     @Test
     void testGetName_get_temperatureSensor() {
         //Arrange
@@ -62,6 +71,9 @@ class SensorDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * set method for sensor name. changes to new name
+     */
     @Test
     void testSetName_set_newName() {
         //Arrange
@@ -73,6 +85,9 @@ class SensorDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * get method for starting date. gets local date now
+     */
     @Test
     void testGetStartingDate_get() {
         //Arrange
@@ -83,6 +98,9 @@ class SensorDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * set method for starting date. changes to local date -1 day
+     */
     @Test
     void testSetStartingDate_set() {
         //Arrange
@@ -94,6 +112,9 @@ class SensorDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * get method for sensor type. gets Temperature
+     */
     @Test
     void testGetSensorType_get_temperature() {
         //Arrange
@@ -105,6 +126,9 @@ class SensorDTOTest {
 
     }
 
+    /**
+     * set method for sensor type. changes sensor type to Rainfall
+     */
     @Test
     void testSetSensorType_set_rainfall() {
         //Arrange
@@ -116,6 +140,9 @@ class SensorDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * get method for sensor location. gets location (comprised of latitude, longitude and elevation)
+     */
     @Test
     void testGetLocation_get() {
         //Arrange
@@ -132,6 +159,9 @@ class SensorDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * set method for sensor location. changes to a new location (comprised of latitude, longitude and elevation)
+     */
     @Test
     void testSetLocation_set() {
         //Arrange
@@ -148,6 +178,9 @@ class SensorDTOTest {
 
     }
 
+    /**
+     * get method for sensor units. gets units in ºC
+     */
     @Test
     void testGetUnits_get_C() {
         //Arrange
@@ -158,6 +191,9 @@ class SensorDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * set method for sensor units. changes units to ºF
+     */
     @Test
     void testSetUnits_set_F() {
         //Arrange
