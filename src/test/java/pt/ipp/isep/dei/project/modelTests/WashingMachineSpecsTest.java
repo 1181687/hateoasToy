@@ -3,8 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
+import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.washingmachine.WashingMachineSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -22,6 +21,8 @@ class WashingMachineSpecsTest {
     private Device washingMachine;
     private House house;
     private DeviceSpecs washingMachineSpecs;
+    private Programmable washingMachineProgrammable;
+    private List<Program> programList;
 
     private static final String ATTRIBUTE_CAPACITY = "Capacity";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
@@ -49,6 +50,12 @@ class WashingMachineSpecsTest {
         this.washingMachine.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, 200);
         //DeviceSpecs
         this.washingMachineSpecs = washingMachine.getSpecs();
+        washingMachineProgrammable = new WashingMachineSpecs();
+
+        TimeConstantProgramSpecs specs = new TimeConstantProgramSpecs();
+        TimeConstantProgram prog1 = new TimeConstantProgram("aaa", specs);
+        programList = new ArrayList<>();
+        programList.add(prog1);
     }
 
 
@@ -117,6 +124,7 @@ class WashingMachineSpecsTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
     @Test
     public void testgetSpecsInAListOfStrings() {
         // Arrange
@@ -176,7 +184,6 @@ class WashingMachineSpecsTest {
     }
 
 
-
     @Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
@@ -200,11 +207,30 @@ class WashingMachineSpecsTest {
     @Test
     public void testSetAttributeCapacityValueNullChar() {
         // Arrange
-        String attribute = "stuff";
+        double attribute = 250;
         // Act
         boolean result = washingMachineSpecs.setAttributeValue("\0Capacity", attribute);
         // Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeCapacitySameValue() {
+        // Arrange
+        double attribute = 3;
+        // Act
+        boolean result = washingMachineSpecs.setAttributeValue("\0Capacity", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
+
+    @Test
+    public void testSetAttributeCapacityValidValue() {
+        // Act
+        boolean result = washingMachineSpecs.setAttributeValue("Capacity", 1.3);
+        // Assert
+        assertTrue(result);
     }
 
 
@@ -259,10 +285,46 @@ class WashingMachineSpecsTest {
     @Test
     public void getAttributeDataTypeTest() {
         // arrange
-        String attributeDataType = NOT_VALID_ATTRIBUTE;
+        String expectedResult = NOT_VALID_ATTRIBUTE;
         // act
         String result = washingMachineSpecs.getAttributeDataType("Integer");
         // assert
-        assertEquals(attributeDataType, result);
+        assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void testIsProgrammable() {
+        //arrange
+        boolean expectedResult = true;
+
+        //act
+        boolean result = washingMachineSpecs.isProgrammable();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetNominalPowerZeroSameValue_False() {
+        boolean expectedResult = false;
+        washingMachineSpecs.setAttributeValue(ATTRIBUTE_NOMINAL_POWER,0);
+
+        boolean result = washingMachineSpecs.setAttributeValue(ATTRIBUTE_NOMINAL_POWER,0);
+        //Assert
+        assertEquals(expectedResult, result);
+
+
+    }
+
+    @Test
+    public void testSetCapacityZeroSameValue_False() {
+        boolean expectedResult = false;
+        washingMachineSpecs.setAttributeValue(ATTRIBUTE_CAPACITY,0);
+
+        boolean result = washingMachineSpecs.setAttributeValue(ATTRIBUTE_CAPACITY,0);
+        //Assert
+        assertEquals(expectedResult, result);
+
+
+    }
+
 }
