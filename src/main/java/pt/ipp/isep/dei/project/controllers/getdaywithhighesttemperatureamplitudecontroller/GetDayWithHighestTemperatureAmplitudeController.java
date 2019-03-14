@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllers.getdaywithhighesttemperatureamplitudecontroller;
+package pt.ipp.isep.dei.project.controllers.getDayWithHighestTemperatureAmplitudeController;
 
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
@@ -64,7 +64,8 @@ public class GetDayWithHighestTemperatureAmplitudeController {
     /**
      * uses the Map<LocalDate, Double> map Result and prints the highest temperature amplitude and the date(s)
      * that registered that value. If the Map is empty, it prints that there's no registers for this period.
-     *
+     * If the map has a value Amplitude 0, it is because there weren't enough measuremnts to calculate the amplitude
+     * so it prints that There are not enough values to calculate the amplitude.
      * @return String with results
      */
     public String displayResults() {
@@ -76,6 +77,11 @@ public class GetDayWithHighestTemperatureAmplitudeController {
             Set<Map.Entry<LocalDate, Double>> set = mapResult.entrySet();
             boolean output = false;
             for (Map.Entry<LocalDate, Double> highestAmplitude : set) {
+
+                if (Double.compare(highestAmplitude.getValue(), 0) == 0) {
+
+                    return "There are not enough values to calculate the amplitude.";
+                }
 
                 if (!output) {
                     output = true;
@@ -93,3 +99,6 @@ public class GetDayWithHighestTemperatureAmplitudeController {
         return "There's no registers for this period.\n";
     }
 }
+
+
+
