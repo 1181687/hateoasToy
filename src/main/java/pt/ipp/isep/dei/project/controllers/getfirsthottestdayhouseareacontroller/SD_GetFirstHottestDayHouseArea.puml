@@ -38,11 +38,11 @@ activate ":GetFirst\nHottestDay\nHouseAreaUI"
 ref over ":GetFirst\nHottestDay\nHouseAreaUI"
 checkIfThereAreReadings
 end
-":GetFirst\nHottestDay\nHouseAreaUI" -> ":GetFirst\nHottestDay\nHouseArea\nController": 5.1- getFirstHighestReadingHouseArea
+":GetFirst\nHottestDay\nHouseAreaUI" -> ":GetFirst\nHottestDay\nHouseArea\nController": 5.1- getFirstHighestReadingHouseArea\n(initialDate, finalDate)
 activate ":GetFirst\nHottestDay\nHouseArea\nController"
-":GetFirst\nHottestDay\nHouseArea\nController" -> ":House": 5.1.1- getFirstHighestReadingHouseArea
+":GetFirst\nHottestDay\nHouseArea\nController" -> ":House": 5.1.1- getFirstHighestReadingHouseArea\n(initialDate, finalDate)
 activate ":House"
-":House" ->":GeographicalArea": 5.1.1.1- getFirstHighestReadingHouseArea
+":House" ->":GeographicalArea": 5.1.1.1- getFirstHighestReadingHouseArea\n(sensorType, initialDate, finalDate)
 activate ":GeographicalArea"
 ref over ":GeographicalArea"
 getLatestReadingFromNearestSensor
