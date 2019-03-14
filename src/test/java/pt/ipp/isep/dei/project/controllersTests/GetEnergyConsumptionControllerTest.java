@@ -26,9 +26,7 @@ class GetEnergyConsumptionControllerTest {
     private Room room;
     private static final String FRIDGE_TYPE = "Fridge";
     private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
-    private static final String DISHWASHER_TYPE = "DishWasher";
-    private static final String LAMP_TYPE = "Lamp";
-    private static final String WASHING_MACHINE_TYPE = "WashingMachine";
+
 
 
 
