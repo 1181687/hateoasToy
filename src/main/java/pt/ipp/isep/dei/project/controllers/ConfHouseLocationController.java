@@ -27,6 +27,7 @@ public class ConfHouseLocationController {
 
     /**
      * Method that list the content of the list of geo areas.
+     *
      * @param useCriterion
      * @return the content of the list.
      */

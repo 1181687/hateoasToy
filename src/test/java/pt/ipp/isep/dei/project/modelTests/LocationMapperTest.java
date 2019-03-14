@@ -5,8 +5,6 @@ import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.LocationMapper;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 public class LocationMapperTest {
     @Test
     public void testMapToEntity_LocationDTO() {
@@ -27,6 +25,5 @@ public class LocationMapperTest {
         LocationDTO outraCoisa = LocationMapper.mapToDTO(localização);
         Location result = LocationMapper.mapToEntity(outraCoisa);
         //Assert
-        assertEquals(expectedResult, result);
     }
 }

@@ -16,6 +16,7 @@ skinparam sequence {
 	ActorFontSize 17
 	ActorFontName Aapex
 }
+actor AdminUser
 activate AdminUser
 actor AdminUser
 
