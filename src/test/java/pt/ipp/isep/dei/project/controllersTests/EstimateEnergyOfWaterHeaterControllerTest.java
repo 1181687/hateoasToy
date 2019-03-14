@@ -1,8 +1,25 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.EstimateEnergyOfWaterHeaterController;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 class EstimateEnergyOfWaterHeaterControllerTest {
-    /*private EstimateEnergyOfWaterHeaterController controller;
-    private House housegrid;
+    private EstimateEnergyOfWaterHeaterController controller;
+    private House house;
     private Room kitchen;
     private Room laundry;
     private Device device1;
@@ -14,35 +31,29 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        geographicalarea insertedGeoArea = new geographicalarea("Campus do ISEP", geographicalAreaType, location, areaShape);
+        GeographicalArea insertedGeoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
-        this.housegrid = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
-        Location houseLocation = new Location(41.177748, -8.607745, 112);
-        Address address = new Address("4200-072", houseLocation);
-        housegrid.setAddress(address);
-        housegrid.setInsertedGeoArea(insertedGeoArea);
-
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         // Room Instantiation
         Dimension dim = new Dimension(3, 3.5, 3.5);
         this.kitchen = new Room("Kitchen", 2, dim);
-        housegrid.addRoom(kitchen);
+        house.addRoom(kitchen);
         Dimension dim1 = new Dimension(3, 3.5, 5.5);
         this.laundry = new Room("Laundry", 1, dim1);
-        housegrid.addRoom(laundry);
+        house.addRoom(laundry);
 
         // ElectricWaterHeaters Instantiation
-        ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
-        device1 = electricWaterHeaterType.createDevice("Bosch Tronic 3000", kitchen);
+        device1 = house.createDevice("ElectricWaterHeater", "Bosch Tronic 3000", kitchen);
         device1.setAttributesDevType("Nominal Power", 0.5);
         device1.setAttributesDevType("Performance Ratio", 0.8);
         device1.setAttributesDevType("Hot-Water Temperature", 70);
         device1.setAttributesDevType("Cold-Water Temperature", 30);
         device1.setAttributesDevType("Volume Of Water To Heat", 70);
-        device2 = electricWaterHeaterType.createDevice("Bosch Tronic 4000", laundry);
+        device2 = house.createDevice("ElectricWaterHeater", "Bosch Tronic 4000", laundry);
         device2.setAttributesDevType("Nominal Power", 1.1);
         device2.setAttributesDevType("Performance Ratio", 0.9);
         device2.setAttributesDevType("Hot-Water Temperature", 70);
@@ -50,7 +61,7 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         device2.setAttributesDevType("Volume Of Water To Heat", 70);
 
         // Controller Instantiation
-        this.controller = new EstimateEnergyOfWaterHeaterController(housegrid);
+        this.controller = new EstimateEnergyOfWaterHeaterController(house);
     }
 
     @Test
@@ -97,5 +108,5 @@ class EstimateEnergyOfWaterHeaterControllerTest {
 
         // Assert
         assertEquals(expectedResult, result, 0.0001);
-    }*/
+    }
 }

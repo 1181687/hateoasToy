@@ -18,15 +18,15 @@ skinparam sequence {
 }
 
 activate ":GetFirst\nHottestDay\nHouseAreaUI"
-":GetFirst\nHottestDay\nHouseAreaUI" -> ":GetFirst\nHottestDay\nHouseArea\nController": 1- checkNearestSensor\nReadingExistence\nBetweenDates
+":GetFirst\nHottestDay\nHouseAreaUI" -> ":GetFirst\nHottestDay\nHouseArea\nController": 1- checkNearestSensor\nReadingExistence\nBetweenDates\n(initialDate, finalDate)
 activate ":GetFirst\nHottestDay\nHouseArea\nController"
-":GetFirst\nHottestDay\nHouseArea\nController" -> ":House": 1.1- checkNearestSensor\nReadingExistence\nBetweenDates
+":GetFirst\nHottestDay\nHouseArea\nController" -> ":House": 1.1- checkNearestSensor\nReadingExistence\nBetweenDates\n(initialDate, finalDate)
 activate ":House"
 ":House" -> ":GeographicalArea": 1.1.1- getNearestSensor\nWithTheMost\nRecentReading
 activate ":GeographicalArea"
 ":GeographicalArea" --> ":House": 1.1.2- Sensor
 deactivate ":GeographicalArea"
-":House" -> ":Sensor": 1.2.1- checkMeasurement\nExistanceBetweenDates
+":House" -> ":Sensor": 1.2.1- checkMeasurement\nExistanceBetweenDates\n(initialDate, finalDate)
 activate ":Sensor"
 ":Sensor" --> ":GetFirst\nHottestDay\nHouseAreaUI": 1.2.2- boolean
 deactivate ":Sensor"
