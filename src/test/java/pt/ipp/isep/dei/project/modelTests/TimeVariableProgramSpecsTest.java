@@ -20,8 +20,8 @@ public class TimeVariableProgramSpecsTest {
         specs = new TimeVariableProgramSpecs();
     }
 
-       @Test
-    public void testGetTime (){
+    @Test
+    public void testGetTime() {
         //Arrange
         specs.setAttributes(TIME, 100);
         double expectedResult = 100;
@@ -32,7 +32,7 @@ public class TimeVariableProgramSpecsTest {
     }
 
     @Test
-    public void testGetProgramNominalPower (){
+    public void testGetProgramNominalPower() {
         //Arrange
         specs.setAttributes(NOMINAL_POWER, 100);
         double expectedResult = 100;
@@ -57,7 +57,7 @@ public class TimeVariableProgramSpecsTest {
         // Arrange
         String attribute = "stuff";
         // Act
-        boolean result = specs.setAttributes("\0"+TIME, attribute);
+        boolean result = specs.setAttributes("\0" + TIME, attribute);
         // Assert
         assertFalse(result);
     }
@@ -107,7 +107,7 @@ public class TimeVariableProgramSpecsTest {
         // Arrange
         String attribute = "stuff";
         // Act
-        boolean result = specs.setAttributes("\0"+NOMINAL_POWER, attribute);
+        boolean result = specs.setAttributes("\0" + NOMINAL_POWER, attribute);
         // Assert
         assertFalse(result);
     }
@@ -140,7 +140,24 @@ public class TimeVariableProgramSpecsTest {
         assertFalse(result);
     }
 
+    @Test
+    public void testGetEnergyConsumption() {
+        //Arrange
 
+        double nomPower = 100;
+        specs.setAttributes(NOMINAL_POWER, nomPower);
+        double time = 20;
+        specs.setAttributes(TIME, time);
+
+
+        double expectedResult = 2000;
+
+        //Act
+        double result = specs.getEnergyConsumption();
+
+        //Assert
+        assertEquals(expectedResult, result,0.0001);
+    }
 
 
 }
