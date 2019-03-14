@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.importreadingsfromjsoncontroller.ImportReadingsFromJSONController;
 import pt.ipp.isep.dei.project.model.LocationDTO;
@@ -17,8 +15,14 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class ImportReadingsFromJSONControllerTest {
 
+    /**
+     * Test that imports imports geo areas and sensors
+     */
     @Test
     public void testImportGeographicalAreaAndSensors_True() {
         // arrange
@@ -77,6 +81,9 @@ public class ImportReadingsFromJSONControllerTest {
         assertTrue(result);
     }
 
+    /**
+     * test that doesn't import geo areas and sensors
+     */
     @Test
     public void testImportGeographicalAreaAndSensors_False() {
         // arrange
