@@ -826,11 +826,4 @@ public class KettleSpecsTest {
 
     }
 
-
-//Arrange
-    //Act
-    //Assert
-    //assertEquals(expectedResult, result);
-
-
 }

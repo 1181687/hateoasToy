@@ -4,7 +4,6 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDate;
@@ -23,8 +22,7 @@ public class GetLastColdestDayHouseAreaController {
     }
 
     public boolean hasReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
-        Sensor nearestSensor = house.getNearestSensorWithMostRecentReading(this.sensorTypeTemperature, house.getLocation());
-        return nearestSensor.checkMeasurementExistenceBetweenDates(startDate, endDate);
+        return house.checkNearestSensorReadingsExistenceBetweenDates(this.sensorTypeTemperature,startDate, endDate);
     }
 
     public ReadingDTO getLastLowestMaximumReading(LocalDate startDate, LocalDate endDate) {
