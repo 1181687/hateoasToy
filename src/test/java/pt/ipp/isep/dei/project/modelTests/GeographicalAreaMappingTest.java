@@ -32,10 +32,9 @@ public class GeographicalAreaMappingTest {
         GeographicalArea expectedResult = GeographicalAreaMapping.mapToEntity(geographicalAreaDTO);
 
         //Act
-        GeographicalAreaDTO outraCoisa = GeographicalAreaMapping.mapToDTO(geoAreaName, description, geographicalAreaType, width, lenght, latitude, longitude, altitude);
-        GeographicalArea result = GeographicalAreaMapping.mapToEntity(outraCoisa);
+        GeographicalAreaDTO dto = GeographicalAreaMapping.mapToDTO(geoAreaName, description, geographicalAreaType, width, lenght, latitude, longitude, altitude);
+        GeographicalArea result = GeographicalAreaMapping.mapToEntity(dto);
         //Assert
         assertEquals(expectedResult, result);
-
     }
 }
