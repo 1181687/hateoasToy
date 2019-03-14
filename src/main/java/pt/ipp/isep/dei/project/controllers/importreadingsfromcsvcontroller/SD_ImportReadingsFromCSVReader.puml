@@ -44,7 +44,9 @@ deactivate ":ReadingDTO"
 ReadingMapper --> ":ImportReadings\nFromCSVReaderUI": 1.4 - readingDTO
 deactivate ReadingMapper
 ":ImportReadings\nFromCSVReaderUI" --> AdminUser: 2 - Ask for the file name/path.
+deactivate ":ImportReadings\nFromCSVReaderUI"
 AdminUser -> ":ImportReadings\nFromCSVReaderUI": 3 - File name/path
+activate ":ImportReadings\nFromCSVReaderUI"
 ":ImportReadings\nFromCSVReaderUI" -> ":ImportReadings\nFromCSVReaderUI": 3.1 - checkIfFileExistsAndCreateScanner(path)
 loop readLinesAndImportReadings
 end loop
