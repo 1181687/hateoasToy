@@ -67,37 +67,48 @@ Test_scenario5:
 - Expected result: "Error - readings weren't imported"
 
 Test_scenario6:
-- Input data: the csv file has some readings that don't have LocalDateTime format.
-- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
-- Input Y: expected result: list of the readings.
+- Input data: the csv file has only readings with Sensor Id's that don´t correspond to the existing sensors.
+- Expected result: "Error - readings weren't imported"
 
 Test_scenario7:
+- Input data: the csv file has some readings with Sensor Id that don´t correspond to the existing sensors.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input Y: expected result: list of the readings.
+
+Test_scenario8:
+- Input data: the csv file has some readings with Sensor Id that don´t correspond to the existing sensors.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input N: expected result: ends that functionality and show the menu again.
+
+Test_scenario9:
+- Input data: the csv file has some readings that don't have LocalDateTime format.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input Y: expected result: list of the readings.
+
+Test_scenario10:
 - Input data: the csv file has some readings that don't have LocalDateTime format.
 - Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
 - Input N: expected result: ends that functionality and show the menu again.
 
-Test_scenario8:
-- Input data: the csv file has some readings that don't have double format measurements.
-- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
-- Input Y: expected result: list of the readings.
-
-Test_scenario9:
-- Input data: the csv file has some readings that don't have double format measurements.
-- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
-- Input N: expected result: ends that functionality and show the menu again.
-
-Test_scenario10:
-- Input data: the csv file have some Data outside the valid sensor operation period.
-- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
-- Input Y: expected result: list of the readings.
-
 Test_scenario11:
-- Input data: the csv file have some Data outside the valid sensor operation period.
+- Input data: the csv file has some readings that don't have double format measurements.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input Y: expected result: list of the readings.
+
+Test_scenario12:
+- Input data: the csv file has some readings that don't have double format measurements.
 - Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
 - Input N: expected result: ends that functionality and show the menu again.
 
+Test_scenario13:
+- Input data: the csv file have some Data outside the valid sensor operation period.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input Y: expected result: list of the readings.
 
-
+Test_scenario14:
+- Input data: the csv file have some Data outside the valid sensor operation period.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input N: expected result: ends that functionality and show the menu again.
 
 
 ASSUMPTIONS:
