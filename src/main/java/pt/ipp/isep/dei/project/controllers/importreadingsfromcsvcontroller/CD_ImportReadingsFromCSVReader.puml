@@ -10,68 +10,71 @@ skinparam class {
 
 hide circle
 
-UI "1" -> "1" Controller
-UI "1" --> "1" ReadingDTO
-ReadingDTO "1" --> "1" ReadingMapper
-ReadingMapper "1" --> "1" CSVReader
-Controller "1" --> "1" ReadingMapper
-ReadingMapper "1" -> "1" GeographicalAreaList
+ImportReadingsFromCSVUI "1" -down-> "1" ImportReadingsFromCSVController
+ImportReadingsFromCSVUI "1" -> "1" ReadingDTO
+ImportReadingsFromCSVUI "1" -> "1" ReadingMapper : uses
+ImportReadingsFromCSVUI "1" -> "1" CSVReader : uses
+ImportReadingsFromCSVController "1" -> "1" ReadingMapper :uses
+ReadingMapper "1" -> "1" ReadingDTO : creates
+ImportReadingsFromCSVController "1" -down-> "1" GeographicalAreaList
+ImportReadingsFromCSVController "1" -> "1" SensorList
+ImportReadingsFromCSVController "1" -> "1" Sensor
 GeographicalAreaList "1" --> "0*" SensorList
-SensorList "1" --> "0*" Sensor
+SensorList "1" -left-> "0*" Sensor
 
-Class UI {
--field1
--field2
-+method1()
-+method2()
+Class ImportReadingsFromCSVUI {
+-controller: ImportReadingsFromCSVController
+-readingDTO: ReadingDTO
++run()
++checkIfFileExistsAndCreateScanner()
++checkDateTimeAndStoreIt()
++checkValueAndStoreIt()
++storeNotImportedReadings()
++readLinesAndImportReadings()
 }
 
-Class Controller {
--field1
--field2
-+method1()
-+method2()
+Class ImportReadingsFromCSVController {
+-geographicalAreaList: GeographicalAreaList
+-allSensorInTheGeoAreas: SensorList
+-sensor: Sensor
++checkIfSensorExistsById()
++addReadingToSensor()
 }
 
 Class ReadingMapper {
--field1
--field2
-+method1()
-+method2()
++newReadingDTO()
++mapToEntity()
++mapToDTO()
 }
 
 Class CSVReader {
--field1
--field2
-+method1()
-+method2()
++parseLine()
 }
 
 Class GeographicalAreaList {
--field1
--field2
-+method1()
-+method2()
+-geoAreaList: GeographicalAreaList
++getAllSensors()
 }
 
 Class SensorList {
--field1
--field2
-+method1()
-+method2()
+-listOfSensors: List<Sensor>
++checkIfSensorExistsById()
++getSensorById()
 }
 
 Class Sensor {
--field1
--field2
-+method1()
-+method2()
+-id: String;
+-startingDate LocalDateTime
+-listOfReadings: List<Reading>
++addReadingsToList()
 }
 
 Class ReadingDTO {
--field1
--field2
-+method1()
-+method2()
+-value: double
+-dateTime: LocalDateTime
++getValue()
++setValue()
++getDateTime()
++setDateTime()
 }
 @enduml

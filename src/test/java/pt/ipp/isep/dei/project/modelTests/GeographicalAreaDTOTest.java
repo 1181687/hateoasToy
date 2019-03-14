@@ -39,7 +39,7 @@ public class GeographicalAreaDTOTest {
     }
 
     @Test
-    public void getIdTest_getId_S001() {
+    public void testGetIdTest_getId_S001() {
         // arrange
         String expectedResult = "S001";
         // act
@@ -49,7 +49,7 @@ public class GeographicalAreaDTOTest {
     }
 
     @Test
-    public void setId_changeId_S002() {
+    public void testsetId_changeId_S002() {
         // arrange
         portoCity.setId("S002");
         String expectedResult = "S002";
@@ -167,7 +167,7 @@ public class GeographicalAreaDTOTest {
     }
 
     @Test
-    public void getSensors() {
+    public void getSensors_get_temperatureSensor() {
         //arrange
         List<SensorDTO> expectedResult = new ArrayList<>();
         expectedResult.add(temperatureSensor);

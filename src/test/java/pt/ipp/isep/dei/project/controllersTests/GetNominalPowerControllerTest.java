@@ -1,15 +1,32 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.GetNominalPowerController;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.MeasurableList;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.house.Address;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 class GetNominalPowerControllerTest {
-    /*private GetNominalPowerController controller;
+    private GetNominalPowerController controller;
     private House houseEdificioB;
-    private housegrid grid;
-    private housegrid gridTwo;
+    private HouseGrid grid;
+    private HouseGrid gridTwo;
     private Room roomOne;
     private Room roomTwo;
-    //private Device fridge;
-    //private Device lamp;
-
 
     @BeforeEach
     public void StartUp() {
@@ -17,7 +34,7 @@ class GetNominalPowerControllerTest {
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        geographicalarea insertedGeoArea = new geographicalarea("Campus do ISEP", geographicalAreaType, location, areaShape);
+        GeographicalArea insertedGeoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         //House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -27,7 +44,7 @@ class GetNominalPowerControllerTest {
         houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
-        Address address = new Address("4200-072", houseLocation);
+        Address address = new Address("4200-072", houseLocation, insertedGeoArea);
         houseEdificioB.setAddress(address);
         houseEdificioB.setInsertedGeoArea(insertedGeoArea);
 
@@ -41,8 +58,8 @@ class GetNominalPowerControllerTest {
         houseEdificioB.addRoom(roomTwo);
 
         //grids
-        grid = new housegrid("Grid");
-        gridTwo = new housegrid("Grid2");
+        grid = new HouseGrid("Grid");
+        gridTwo = new HouseGrid("Grid2");
 
         this.controller = new GetNominalPowerController(houseEdificioB);
 
@@ -147,20 +164,16 @@ class GetNominalPowerControllerTest {
         grid.addRoom(roomOne);
 
         //Device - fridge
-        FridgeType fridgeType = new FridgeType();
-        Device fridge = fridgeType.createDevice("Fridge1", roomOne);
+        houseEdificioB.createDevice("Fridge", "Fridge", roomOne);
 
         //Device - lamp
-        LampType lampType = new LampType();
-        Device lamp = lampType.createDevice("Lamp1", roomOne);
-
+        houseEdificioB.createDevice("Lamp", "Lamp", roomOne);
 
         controller.getHouseGridByPosition(0);
 
         String expectedResult =
-                "1 - Name of the device: Fridge1\n" +
-                        "2 - Name of the device: Lamp1\n";
-
+                "1 - Name of the device: Fridge\n" +
+                        "2 - Name of the device: Lamp\n";
 
         //Act
         String result = controller.getDeviceListToString(0);
@@ -178,12 +191,10 @@ class GetNominalPowerControllerTest {
         grid.addRoom(roomOne);
 
         //Device - lamp
-        LampType lampType = new LampType();
-        Device lamp = lampType.createDevice("Lamp1", roomOne);
+        houseEdificioB.createDevice("Lamp", "Lamp", roomOne);
 
         //Device - fridge
-        FridgeType fridgeType = new FridgeType();
-        Device fridge = fridgeType.createDevice("Fridge1", roomOne);
+        houseEdificioB.createDevice("Fridge", "Fridge", roomOne);
 
 
         controller.getHouseGridByPosition(0);
@@ -239,7 +250,6 @@ class GetNominalPowerControllerTest {
         assertTrue(result);
     }
 
-
     @Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
@@ -247,8 +257,7 @@ class GetNominalPowerControllerTest {
         grid.addRoom(roomOne);
 
         //Device - fridge
-        FridgeType fridgeType = new FridgeType();
-        Device fridge = fridgeType.createDevice("Fridge1", roomOne);
+        houseEdificioB.createDevice("Fridge", "Fridge", roomOne);
 
         controller.getHouseGridByPosition(0);
 
@@ -266,13 +275,12 @@ class GetNominalPowerControllerTest {
         grid.addRoom(roomOne);
 
         //Device - fridge
-        FridgeType fridgeType = new FridgeType();
-        Device fridge = fridgeType.createDevice("Fridge1", roomOne);
+        Device device = houseEdificioB.createDevice("Fridge", "Fridge", roomOne);
 
         controller.getHouseGridByPosition(0);
 
 
-        Device expectedResult = fridge;
+        Device expectedResult = device;
 
         // Act
         Device result = controller.getDeviceListByPosition(0, 0);
@@ -337,21 +345,15 @@ class GetNominalPowerControllerTest {
         houseEdificioB.addGrid(grid);
         grid.addRoom(roomOne);
 
-
         //Device - fridge
-        FridgeType fridgeType = new FridgeType();
-        Device fridge = fridgeType.createDevice("Fridge1", roomOne);
+        Device fridge = houseEdificioB.createDevice("Fridge", "Fridge", roomOne);
         fridge.setAttributesDevType("Nominal Power", 1);
 
-
         controller.getHouseGridByPosition(0);
-
         controller.addMeasurable(fridge);
-
         double expectedResult = 1;
 
         //Act
-
         double result = controller.getNominalPowerOfMeasurableObjects();
 
         //Assert
@@ -365,18 +367,13 @@ class GetNominalPowerControllerTest {
         grid.addRoom(roomOne);
 
         //Device - fridge
-        FridgeType fridgeType = new FridgeType();
-        Device fridge = fridgeType.createDevice("Fridge1", roomOne);
-
-
+        Device fridge = houseEdificioB.createDevice("Fridge", "Fridge", roomOne);
         controller.getHouseGridByPosition(0);
-
         controller.addMeasurable(fridge);
 
         boolean result = controller.isMeasurableInList(fridge);
 
         //Assert
-
         assertTrue(result);
     }
 
@@ -387,21 +384,16 @@ class GetNominalPowerControllerTest {
         grid.addRoom(roomOne);
 
         //initiate Device
-        LampType lampType = new LampType();
-        Device dev1 = lampType.createDevice("Lamp1", roomOne);
+        Device dev1 = houseEdificioB.createDevice("Fridge", "Fridge", roomOne);
 
         //initiate Device2
-        Device dev2 = lampType.createDevice("Lamp2", roomOne);
-
+        Device dev2 = houseEdificioB.createDevice("Lamp", "Lamp", roomOne);
 
         controller.getHouseGridByPosition(0);
-
         controller.addMeasurable(dev1);
-
         boolean result = controller.isMeasurableInList(dev2);
 
         //Assert
-
         assertFalse(result);
     }
 
@@ -412,9 +404,7 @@ class GetNominalPowerControllerTest {
         grid.addRoom(roomOne);
 
         //initiate devices
-        FridgeType fridgeType = new FridgeType();
-        Device dev1 = fridgeType.createDevice("FridgeAriston", roomOne);
-
+        Device dev1 = houseEdificioB.createDevice("Fridge", "FridgeAriston", roomOne);
 
         MeasurableList mList = new MeasurableList();
         mList.addMeasurable(dev1);
@@ -438,24 +428,18 @@ class GetNominalPowerControllerTest {
     @Test
     public void getHouseGridTotalNominalPower_CalculatesTotalNominalPowerOfHGWithTwoDevices_ShouldReturn15() {
         //Arrange
-        housegrid grid1 = new housegrid("Grid 1");
-        houseEdificioB.addGrid(grid1);
+        houseEdificioB.addGrid(grid);
 
-        Dimension dimension = new Dimension(2, 5, 10);
-        Room room1 = new Room("Quarto", 1, dimension);
-        FridgeType fridgeType = new FridgeType();
-        String name = "fridge Teka";
-        Device Fridge1 = fridgeType.createDevice(name, room1);
+        Device fridge = houseEdificioB.createDevice("Fridge", "FridgeAriston", roomOne);
+        Device lamp = houseEdificioB.createDevice("Lamp", "LampBosh", roomOne);
 
-        String name1 = "fridge Bosch";
-        Device Fridge2 = fridgeType.createDevice(name1, room1);
+        fridge.setAttributesDevType("Nominal Power", 7.5);
+        lamp.setAttributesDevType("Nominal Power", 7.5);
 
-        Fridge1.setAttributesDevType("Nominal Power", 7.5);
-        Fridge2.setAttributesDevType("Nominal Power", 7.5);
-
-        grid1.addRoom(room1);
         controller.getHouseGridByPosition(0);
         double expectedResult = 15;
+
+        grid.addRoom(roomOne);
 
         //Act
         double result = controller.getHouseGridTotalNominalPower();
@@ -495,15 +479,11 @@ class GetNominalPowerControllerTest {
 
         this.controller.getRoom(0);
 
+        Device fridge = houseEdificioB.createDevice("Fridge", "FridgeAriston", roomOne);
+        fridge.setAttributesDevType("Nominal Power", 110);
 
-        FridgeType fridgeType = new FridgeType();
-        Device d1 = fridgeType.createDevice("Fridge1", this.roomOne);
-        d1.setAttributesDevType("Nominal Power", 110);
-
-        DishWasherType dishWasher = new DishWasherType();
-        Device d2 = dishWasher.createDevice("Dish Washer1", this.roomTwo);
-        d2.setAttributesDevType("Nominal Power", 110);
-
+        Device lamp = houseEdificioB.createDevice("Lamp", "Lamp Bolt", roomTwo);
+        lamp.setAttributesDevType("Nominal Power", 110);
 
         double expectedResult = 110;
 
@@ -562,20 +542,18 @@ class GetNominalPowerControllerTest {
     @Test
     public void testifDeviceListIsEmptyWithDevices() {
 
-        FridgeType fridgeType = new FridgeType();
-        Device d1 = fridgeType.createDevice("Fridge1", roomOne);
+        Device fridge = houseEdificioB.createDevice("Fridge", "FridgeAriston", roomOne);
 
-        DishWasherType dishWasher = new DishWasherType();
-        Device d2 = dishWasher.createDevice("Dish Washer1", roomTwo);
+        Device lamp = houseEdificioB.createDevice("Lamp", "FridgeAriston", roomTwo);
 
-        roomOne.getDeviceList().add(d1);
+        roomOne.getDeviceList().add(fridge);
 
-        roomTwo.getDeviceList().add(d2);
+        roomTwo.getDeviceList().add(lamp);
 
         //Act
         boolean result = this.controller.isDeviceListEmpty(1);
 
         //Assert
         assertFalse(result);
-    }*/
+    }
 }

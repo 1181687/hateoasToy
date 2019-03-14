@@ -32,7 +32,7 @@ class SensorDTOTest {
     }
 
     @Test
-    void getId() {
+    void testGetId_get_isepTemperature() {
         //Arrange
         String expectedResult = "ISEP-Temperature";
         //Act
@@ -42,7 +42,7 @@ class SensorDTOTest {
     }
 
     @Test
-    void setId() {
+    void testSetId_set_id() {
         //Arrange
         String expectedResult = "ISEP";
         sensorDTO.setId("ISEP");
@@ -53,7 +53,7 @@ class SensorDTOTest {
     }
 
     @Test
-    void getName() {
+    void testGetName_get_temperatureSensor() {
         //Arrange
         String expectedResult = "Temperature sensor";
         //Act
@@ -63,7 +63,7 @@ class SensorDTOTest {
     }
 
     @Test
-    void setName() {
+    void testSetName_set_newName() {
         //Arrange
         String expectedResult = "New name";
         sensorDTO.setName("New name");
@@ -74,7 +74,7 @@ class SensorDTOTest {
     }
 
     @Test
-    void getStartingDate() {
+    void testGetStartingDate_get() {
         //Arrange
         LocalDate expectedResult = LocalDate.now();
         //Act
@@ -84,7 +84,7 @@ class SensorDTOTest {
     }
 
     @Test
-    void setStartingDate() {
+    void testSetStartingDate_set() {
         //Arrange
         LocalDate expectedResult = LocalDate.now().minusDays(1);
         sensorDTO.setStartingDate(LocalDate.now().minusDays(1));
@@ -95,7 +95,7 @@ class SensorDTOTest {
     }
 
     @Test
-    void getSensorType() {
+    void testGetSensorType_get_temperature() {
         //Arrange
         String expectedResult = "Temperature";
         //Act
@@ -106,7 +106,7 @@ class SensorDTOTest {
     }
 
     @Test
-    void setSensorType() {
+    void testSetSensorType_set_rainfall() {
         //Arrange
         String expectedResult = "Rainfall";
         sensorDTO.setSensorType("Rainfall");
@@ -117,7 +117,7 @@ class SensorDTOTest {
     }
 
     @Test
-    void getLocation() {
+    void testGetLocation_get() {
         //Arrange
         List<Double> expectedResult = new ArrayList<>();
         expectedResult.add(45.0);
@@ -133,7 +133,7 @@ class SensorDTOTest {
     }
 
     @Test
-    void setLocation() {
+    void testSetLocation_set() {
         //Arrange
         LocationDTO newLocation = new LocationDTO();
         newLocation.setLatitude(45);
@@ -149,7 +149,7 @@ class SensorDTOTest {
     }
 
     @Test
-    void getUnits() {
+    void testGetUnits_get_C() {
         //Arrange
         String expectedResult = "ºC";
         //Act
@@ -159,7 +159,7 @@ class SensorDTOTest {
     }
 
     @Test
-    void setUnits() {
+    void testSetUnits_set_F() {
         //Arrange
         String expectedResult = "ºF";
         sensorDTO.setUnits("ºF");

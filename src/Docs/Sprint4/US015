@@ -32,10 +32,57 @@ file to be imported.
 Test Criteria:
 - All acceptance tests with "Process finished with exit code 0" message:
 
+Controller Test Class
+- testImportGeographicalAreaAndSensors_True
+- testImportGeographicalAreaAndSensors_False
+
+GeographicalAreaList Test Class
+- addGeoArea
+
+GeographicalAreaMapper Test Class
+- testMapToDTO_GeoAreaDTO
+
+
+GeographicalAreaDTO Test Class
+- testGetIdTest_getId_S001
+- testsetId_changeId_S002
+- getSensorNameTest_getSensorName_Sensor1
+- setSensorNameTest_changeSensorName_Sensor2
+- getGeographicalAreaTypeTest_getGeoAreaType_Temperature
+- setGeographicalAreaTypeTest_newGeoAreaType_NewGeoArea
+- setAndGetWidthTest_getWidthAndChangeWidth_10
+- setAndGetLengthTest_getLengthAndChangeLength_15
+- setAndGetLatitudeTest_getLatitudeAndChangeLatitude_20
+- setAndGetLongitudeTest_getLongitudeAndChangeLongitude_25
+- setAndGetAltitudeTest_getAltitudeAndChangeAltitude_30
+- getSensors_get_temperatureSensor
+
+
+JSONReader Test Class
+-
+
+
+SensorMapper Test Class
+-
+
+
+SensorDTO Test Class
+- testGetId_get_isepTemperature
+- testSetId_set_id
+- testGetName_get_temperatureSensor
+- testSetName_set_newName
+- testGetStartingDate_get
+- testSetStartingDate_set
+- testGetSensorType_get_temperature
+- testSetSensorType_set_rainfall
+- testGetLocation_get
+- testSetLocation_set
+- testGetUnits_get_C
+- testSetUnits_set_F
 
 ASSUMPTIONS:
-- Regarding sensors, only the geographical area sensors are imported.
+- Regarding sensors, only the geographical area sensors are imported (not the House sensors).
 - There is User interaction: the application asks the user the location of the files to be imported.
 - For user convenience the data to be imported is in the form of two DTO (Geographical Area DTO and SensorDTO)
-thar are imported at the same time instead of importing the two referred DTO's one at a time.
+thar are imported at the same time (in a single method) instead of importing the two referred DTO's one at a time.
 
