@@ -16,10 +16,19 @@ General Criteria:
 
 Specific Criteria:
 - given - The user wants to get the first hottest day (higher maximum temperature) in the house area in a given period.
-- when -
-- then -
-- but -
+- when - The user chooses option "2" from Menu (Regular User), then option "1" (House Area) and then option "5"
+        (Get the first hottest day in the house area in a given period). Then User inserts the first date and then final
+        date of the period he/she wants to consider.
+- then - It is shown to the User the day with the first highest temperature and its value: eg. "The first hottest day
+ in the house area in the chosen interval is 2018-12-30 (maximum temperature of 16 Celsius)".
+- but - The following messages are displayed:
 
+"That is not a valid period (final date should be after initial date). Please try again." - If the user inputs a final date
+that is before the initial one and vice versa.
+"There are no temperature sensors in the house area." - When there are no temperature sensors in the area.
+"There's no registers for this period." - when there are no valid readings for this selected period
+"It is not possible to present valid readings in the house area." - When no reading exist during the period.
+"Last reading in the house area is not valid." - If the reading from the nearest sensor
 
 Test Criteria:
 - All acceptance tests with "Process finished with exit code 0" message:

@@ -24,7 +24,7 @@ deactivate ":SensorList"
 ":GeographicalArea" -> ":Sensor":3- getFirstHighestReading(startDate,endDate)
 activate ":Sensor"
 loop getHighestReading
-":Sensor" -> ":Readings": 3.1- getReadingsBetweenDates
+":Sensor" -> ":Readings": 3.1- getReadingsBetweenDates(startDate, endDate)
 activate ":Readings"
 end
 ":Readings" --> ":Sensor" :3.2- highestReading
