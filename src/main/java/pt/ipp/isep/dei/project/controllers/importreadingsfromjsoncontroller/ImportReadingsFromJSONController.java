@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllers.importReadingsFromJSONController;
+package pt.ipp.isep.dei.project.controllers.importreadingsfromjsoncontroller;
 
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
