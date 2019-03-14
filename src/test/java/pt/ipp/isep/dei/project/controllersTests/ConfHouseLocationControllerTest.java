@@ -19,6 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ConfHouseLocationControllerTest {
     private ConfHouseLocationController ctrl;
     private GeographicalArea isep;
+    private House mainHouse;
 
     @BeforeEach
     public void StartUp() {
@@ -29,7 +30,7 @@ public class ConfHouseLocationControllerTest {
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        isep = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
+        isep = new GeographicalArea("ISEP", "Campus ISEP", geographicalAreaType, location, areaShape);
         geographicalAreaList.addGeoArea(isep);
 
         //House
@@ -37,13 +38,13 @@ public class ConfHouseLocationControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        mainHouse = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation, isep);
-        house.setAddress(address);
+        mainHouse.setAddress(address);
 
-        ctrl = new ConfHouseLocationController(geographicalAreaList, house);
+        ctrl = new ConfHouseLocationController(geographicalAreaList, mainHouse);
     }
 
     @Test

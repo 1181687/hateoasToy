@@ -7,6 +7,7 @@ public class TimeConstantProgramSpecs implements ProgramSpecs {
     private double energyConsumption;
 
     public TimeConstantProgramSpecs() {
+        //intentionally empty
     }
 
     public double getDuration() {
