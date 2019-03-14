@@ -10,23 +10,23 @@ skinparam class {
 
 hide circle
 
-UI "1" -> "1" GetLastColdestDayHouseArea\nController
+GetLastColdestDayHouseAreaUI "1" -> "1" GetLastColdestDayHouseArea\nController
 GetLastColdestDayHouseArea\nController "1" --> "1" House
 House "1" -> "1" GeographicalArea : directly inserted in
 GeographicalArea "1" -> "1" SensorList
 SensorList "1" --> "0*" Sensor
-Sensor "1" --> "0*" Reading
+Sensor "1" -up-> "0*" Reading
 ReadingMapper "1" --> "1" Reading : MapsToDTO
 GetLastColdestDayHouseArea\nController  "1" -> "1" ReadingMapper  : uses
-ReadingMapper "1" --> "1" ReadingDTO
+ReadingMapper "1" -right-> "1" ReadingDTO
 
-Class UI {
+Class GetLastColdestDayHouseAreaUI {
 -GetLastColdestDayHouseAreaController\n controller
 -ReadingDTO readingDTO
 -LocalDate firstDate
 -LocalDate lastDate
 +run()
-+askAndValidateFirstAndLastDate
++askAndValidateFirstAndLastDate()
 +getLastColdestDayReadingAndDisplayResults()
 +displayResults()
 }

@@ -24,48 +24,41 @@ ref over ":GetLastColdestDay\nHouseAreaUI"
 hasSensorsOfGivenTypeInGeoArea
 end
 activate ":GetLastColdestDay\nHouseAreaUI"
-
-
-
-":GetLastColdestDay\nHouseAreaUI" --> "RegularUser": 6-Ask for initial date
+":GetLastColdestDay\nHouseAreaUI" --> "RegularUser": 2-Ask for initial date
 deactivate ":GetLastColdestDay\nHouseAreaUI"
-":GetLastColdestDay\nHouseAreaUI" <- "RegularUser": 6-Insert initial date
+":GetLastColdestDay\nHouseAreaUI" <- "RegularUser": 3-Insert initial date
 activate ":GetLastColdestDay\nHouseAreaUI"
-":GetLastColdestDay\nHouseAreaUI" --> "RegularUser": 6-Ask for final date
+":GetLastColdestDay\nHouseAreaUI" --> "RegularUser": 4-Ask for final date
 deactivate ":GetLastColdestDay\nHouseAreaUI"
-":GetLastColdestDay\nHouseAreaUI" <- "RegularUser": 6-Insert final date
+":GetLastColdestDay\nHouseAreaUI" <- "RegularUser": 5-Insert final date
 activate ":GetLastColdestDay\nHouseAreaUI"
 ref over ":GetLastColdestDay\nHouseAreaUI"
 checkIfThereAreReadings
 end
-":GetLastColdestDay\nHouseAreaUI" -> ":GetLastColdestDay\nHouseAreaController": getLastLowestMaximumReading(startDate,endDate)
+":GetLastColdestDay\nHouseAreaUI" -> ":GetLastColdestDay\nHouseAreaController": 5.1- getLastLowestMaximumReading(startDate,endDate)
 activate ":GetLastColdestDay\nHouseAreaController"
-":GetLastColdestDay\nHouseAreaController" -> ":House": getLastLowestMaximumReading(startDate,endDate)
+":GetLastColdestDay\nHouseAreaController" -> ":House": 5.1.1- getLastLowestMaximumReading(startDate,endDate)
 activate ":House"
-":House" ->":GeographicalArea": getLastLowestMaximumReading(startDate,endDate)
+":House" ->":GeographicalArea": 5.1.1.1.- getLastLowestMaximumReading(startDate,endDate)
 activate ":GeographicalArea"
 ref over ":GeographicalArea"
 getLatestReadingFromNearestSensor
 end
-
-":GeographicalArea" --> ":GetLastColdestDay\nHouseAreaController" :Reading
+":GeographicalArea" --> ":GetLastColdestDay\nHouseAreaController" :5.1.1.2- Reading
 deactivate ":GeographicalArea"
 deactivate ":House"
-":GetLastColdestDay\nHouseAreaController" ->"ReadingMapper": mapToDTO(Reading)
+":GetLastColdestDay\nHouseAreaController" ->"ReadingMapper": 5.1.2-  mapToDTO(Reading)
 activate "ReadingMapper"
-"ReadingMapper" -> ":ReadingDTO": create ReadingDTO
+"ReadingMapper" -> ":ReadingDTO": 5.2.1- create ReadingDTO
 activate ":ReadingDTO"
-":ReadingDTO" --> ":GetLastColdestDay\nHouseAreaUI": ReadingDTO
+":ReadingDTO" --> ":GetLastColdestDay\nHouseAreaUI": 5.2.2- ReadingDTO
 deactivate ":ReadingDTO"
-
 deactivate "ReadingMapper"
 deactivate ":GetLastColdestDay\nHouseAreaController"
+":GetLastColdestDay\nHouseAreaUI" --> ":GetLastColdestDay\nHouseAreaUI" : 5.2- getDTOValue
+":GetLastColdestDay\nHouseAreaUI" --> ":GetLastColdestDay\nHouseAreaUI" : 5.3- getDTODateTime
 
-
-":GetLastColdestDay\nHouseAreaUI" --> ":GetLastColdestDay\nHouseAreaUI" : getDTOValue
-":GetLastColdestDay\nHouseAreaUI" --> ":GetLastColdestDay\nHouseAreaUI" : getDTODateTime
-
-":GetLastColdestDay\nHouseAreaUI" --> RegularUser : display last coldest \n day and it's value
+":GetLastColdestDay\nHouseAreaUI" --> RegularUser : 6- display last coldest \n day and it's value
 deactivate ":GetLastColdestDay\nHouseAreaUI"
 
 @enduml
