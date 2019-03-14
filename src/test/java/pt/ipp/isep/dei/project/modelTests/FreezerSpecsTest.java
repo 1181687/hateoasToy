@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -233,7 +234,7 @@ public class FreezerSpecsTest {
     }
 
     @Test
-    public void testSetAttributeNominalPowerValueNotAValidType() {
+    public void setAttributeNominalPowerValueTest_NotAValidType() {
         // Arrange
         double nominalPower = 1.5;
 
@@ -245,7 +246,7 @@ public class FreezerSpecsTest {
     }
 
     @Test
-    public void testSetAttributeNominalPowerSameValue() {
+    public void setAttributeNominalPowerTest_SameValue() {
         // Arrange
         freezer.getSpecs().setAttributeValue("Nominal Power", 1.5);
 
@@ -257,7 +258,7 @@ public class FreezerSpecsTest {
     }
 
     @Test
-    public void testSetAttributeFreezerCapacitySameValue() {
+    public void setAttributeFreezerCapacityTest_SameValue() {
         // Arrange
         freezer.getSpecs().setAttributeValue("Freezer Capacity", 20);
 
@@ -269,7 +270,7 @@ public class FreezerSpecsTest {
     }
 
     @Test
-    public void testSetAttributeAnnualEnergyConsumptionSameValue() {
+    public void setAttributeAnnualEnergyConsumptionTest_SameValue() {
         // Arrange
         freezer.getSpecs().setAttributeValue("Annual Energy Consumption", 100);
 
@@ -278,5 +279,95 @@ public class FreezerSpecsTest {
 
         // Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void testCheckIfFreezerIsProgrammable() {
+        //Act
+        boolean result = freezer.getSpecs().isProgrammable();
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testGetFreezerAsProgrammable_ReturnsNull() {
+        //Arrange
+        Programmable expectedResult = null;
+        //Act
+        Programmable result = freezer.getSpecs().asProgrammable();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetAttributeAnnualPowerConsumptionValue_NullChar() {
+        // Arrange
+        String stuff = "stuff";
+
+        // Act
+        boolean result = freezer.getSpecs().setAttributeValue("\0Annual Energy Consumption", stuff);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeFreezerCapacityValue_NullChar() {
+        // Arrange
+        int capacity = 15;
+
+        // Act
+        boolean result = freezer.getSpecs().setAttributeValue("\0Freezer Capacity", capacity);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerValue_NullChar() {
+        // Arrange
+        int nominalPower = 15;
+
+        // Act
+        boolean result = freezer.getSpecs().setAttributeValue("\0Nominal Power", nominalPower);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testGetAttributeValueNominalPower_NullChar() {
+        // Arrange
+        Object expectedResult = "not a valid attribute";
+
+        // Act
+        Object result = freezer.getSpecs().getAttributeValue("\0Nominal Power");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueFreezerCapacity_NullChar() {
+        // Arrange
+        Object expectedResult = "not a valid attribute";
+
+        // Act
+        Object result = freezer.getSpecs().getAttributeValue("\0Freezer Capacity");
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetAttributeValueAnnualEnergyConsumption_NullChar() {
+        // Arrange
+        Object expectedResult = "not a valid attribute";
+
+        // Act
+        Object result = freezer.getSpecs().getAttributeValue("\0Annual Energy Consumption");
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 }

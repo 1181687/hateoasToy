@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllers.getFirstHottestDayHouseAreaController;
+package pt.ipp.isep.dei.project.controllers.getfirsthottestdayhouseareacontroller;
 
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
