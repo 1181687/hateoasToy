@@ -16,17 +16,24 @@ General Criteria:
 
 Specific Criteria:
 - given - The user (Admin) imports geographical areas sensors’ readings into the application from a CSV file.
+
 - when - The user chooses option "10" from Menu (Administrator), then option "2" (Geographical Area) and then option "10"
 (Import Readings from CSV File). Then User inserts the path to the CSV file to be imported.
-- then - A success message is displayed if all the sensors readings are inserted ("All readings were imported successfully").
-- but - The following messages are displayed:
 
-"ERROR: There's no such file with that name." - when no file or directory is found when the user inputs the name of the
-file from where to
-import the readings.
-"Some readings weren't imported. Do you want to see them? (Y/N)" - when some readings weren't
-successfully imported. If the user chooses "Y", it´s displayed the message "The following readings weren't imported:"
- and shows the readings.
+- then - A success message is displayed if all the sensors readings are inserted:
+Output_1: "All readings were imported successfully".
+
+
+- but - Depending on the result, one of the following messages are displayed:
+
+Output_2: "ERROR: There's no such file with that name." - if no file or directory is found when the user inputs the name of the
+file from where he wants to import the readings;
+
+Output_3: "Some readings weren't imported. Do you want to see them? (Y/N)" - if some readings weren't
+successfully imported.
+
+Output_4: "The following readings weren't imported:" and shows the respective readings.- If the user chooses "Y",
+ in the previous message.
 
 
 Test Criteria:
