@@ -42,14 +42,18 @@ public class GeographicalAreaListTest {
         portoCity.getSensorListInTheGeographicArea().addSensor(sensor);
     }
 
+    /**
+     * test that doesn't add a new geo area because it already exists
+     */
     @Test
-    void addGeoAreaAlreadyThereTest() {
+    void testAddGeoAreaAlreadyThere_boolean_False() {
         // Act
         boolean result = geoAreaList.addGeoArea(portoCity);
 
         // Assert
         assertFalse(result);
     }
+
 
     @Test
     public void getGeoAreaList() {

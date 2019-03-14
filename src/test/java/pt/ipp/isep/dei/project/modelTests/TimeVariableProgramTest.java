@@ -48,4 +48,28 @@ public class TimeVariableProgramTest {
         assertFalse(result);
     }
 
+    @Test
+    void testSetProgramAttributeprogramNominalPower_NullChar() {
+        //Arrange
+        String name = "Program 1";
+        ProgramSpecs programSpecs = new TimeVariableProgramSpecs();
+        TimeVariableProgram program = new TimeVariableProgram(name, programSpecs);
+        //Act
+        boolean result = program.setProgramAttributes("\0programNominalPower", 200.0);
+        //Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void testSetProgramAttributeTime_NullChar() {
+        //Arrange
+        String name = "Program 1";
+        ProgramSpecs programSpecs = new TimeVariableProgramSpecs();
+        TimeVariableProgram program = new TimeVariableProgram(name, programSpecs);
+        //Act
+        boolean result = program.setProgramAttributes("\0time", 200.0);
+        //Assert
+        assertFalse(result);
+    }
+
 }

@@ -355,10 +355,11 @@ class GetEnergyConsumptionControllerTest {
     void getRoomName_HouseHas2Rooms_ShouldReturnKitchen(){
         //Arrange
         ctrl.getRoomByPosition(0);
+        String expectedResult = "Kitchen";
         //Act
-        boolean result = ctrl.isDeviceListEmpty();
+        String result = ctrl.getRoomName();
         //Assert
-        assertFalse(result);
+        assertEquals(expectedResult,result);
     }
 
 }
