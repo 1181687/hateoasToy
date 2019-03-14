@@ -29,11 +29,16 @@ Output_1: "All readings were imported successfully".
 Output_2: "ERROR: There's no such file with that name." - if no file or directory is found when the user inputs the name of the
 file from where he wants to import the readings;
 
+
+
+//
 Output_3: "Some readings weren't imported. Do you want to see them? (Y/N)" - if some readings weren't
 successfully imported.
 
 Output_4: "The following readings weren't imported:" and shows the respective readings.- If the user chooses "Y",
  in the previous message.
+//
+
 
 
 Test Criteria:
@@ -45,3 +50,5 @@ Test Criteria:
 
 ASSUMPTIONS:
 There is User interaction: the application asks the user the location of the files to be imported.
+When the systems tries to parse the String to LocalDatetTime, and is a LocalDate, the CSV line is discarded and sent
+to the application log.
