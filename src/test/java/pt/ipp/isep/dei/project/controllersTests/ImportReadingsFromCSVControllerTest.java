@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsFromCSVController;
+import pt.ipp.isep.dei.project.controllers.importReadingsFromCSVController.ImportReadingsFromCSVController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
@@ -87,6 +87,38 @@ class ImportReadingsFromCSVControllerTest {
     public void testCheckIfSensorExistsById_tryingToUseAnInvalidId_ShouldReturnFalse() {
         // Act
         boolean result = controller.checkIfSensorExistsById("A123fasdasd");
+
+        // Assert
+        assertFalse(result);
+    }
+
+    /**
+     * Test that tries to check if a date time is before the starting date of a sensor, when it is, which should return true.
+     */
+    @Test
+    public void testIsDateTimeBeforeSensorStartingDate_whenItIs_ShouldReturnTrue() {
+        // Arrange
+        LocalDateTime localDateTime = LocalDateTime.of(2014, 12, 2, 15, 20, 00);
+        controller.checkIfSensorExistsById("432");
+
+        // Act
+        boolean result = controller.isDateTimeBeforeSensorStartingDate(localDateTime);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    /**
+     * Test that tries to check if a date time is before the starting date of a sensor, when it isn't, which should return false.
+     */
+    @Test
+    public void testIsDateTimeBeforeSensorStartingDate_whenItIsnt_ShouldReturnFalse() {
+        // Arrange
+        LocalDateTime localDateTime = LocalDateTime.of(2019, 12, 2, 15, 20, 00);
+        controller.checkIfSensorExistsById("432");
+
+        // Act
+        boolean result = controller.isDateTimeBeforeSensorStartingDate(localDateTime);
 
         // Assert
         assertFalse(result);

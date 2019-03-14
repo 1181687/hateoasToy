@@ -27,7 +27,7 @@ public class GeographicalAreaDTOTest {
         portoCity = new GeographicalAreaDTO();
         portoCity.setId("S001");
         portoCity.setName("Sensor1");
-        portoCity.setType("Temperature");
+        portoCity.setType("City");
 
         // Sensors
         temperature = new SensorType("Temperature");
@@ -38,8 +38,11 @@ public class GeographicalAreaDTOTest {
         portoCity.addSensor(temperatureSensor);
     }
 
+    /**
+     * get method for ID, ID S001
+     */
     @Test
-    public void getIdTest_getId_S001() {
+    public void testGetIdTest_getId_S001() {
         // arrange
         String expectedResult = "S001";
         // act
@@ -48,8 +51,11 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * set method for ID, changes ID to S002
+     */
     @Test
-    public void setId_changeId_S002() {
+    public void testsetId_changeId_S002() {
         // arrange
         portoCity.setId("S002");
         String expectedResult = "S002";
@@ -59,6 +65,9 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * get method for Sensor, Sensor1
+     */
     @Test
     public void getSensorNameTest_getSensorName_Sensor1() {
         // arrange
@@ -69,6 +78,9 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * set method for sensor, changes name to Sensor2
+     */
     @Test
     public void setSensorNameTest_changeSensorName_Sensor2() {
         // arrange
@@ -80,10 +92,13 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * get method for I, ID S001
+     */
     @Test
-    public void getGeographicalAreaTypeTest_getGeoAreaType_Temperature() {
+    public void getGeographicalAreaTypeTest_getGeoAreaType_City() {
         // arrange
-        String expectedResult = "Temperature";
+        String expectedResult = "City";
         // act
         String result = portoCity.getType();
         // assert
@@ -91,6 +106,9 @@ public class GeographicalAreaDTOTest {
 
     }
 
+    /**
+     * set method for geographicalareatype, changes type to newGeoArea
+     */
     @Test
     public void setGeographicalAreaTypeTest_newGeoAreaType_NewGeoArea() {
         // arrange
@@ -102,6 +120,9 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * set and get methods for width changes width to 10.0
+     */
     @Test
     public void setAndGetWidthTest_getWidthAndChangeWidth_10() {
         // arrange
@@ -113,7 +134,9 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
-
+    /**
+     * set and get methods for length changes length to 15.0
+     */
     @Test
     public void setAndGetLengthTest_getLengthAndChangeLength_15() {
         // arrange
@@ -127,6 +150,9 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * set and get methods for latitude changes latitude to 20.0
+     */
     @Test
     public void setAndGetLatitudeTest_getLatitudeAndChangeLatitude_20() {
         // arrange
@@ -140,6 +166,9 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * set and get methods for longitude changes longitude to 25.0
+     */
     @Test
     public void setAndGetLongitudeTest_getLongitudeAndChangeLongitude_25() {
         // arrange
@@ -153,6 +182,9 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * set and get methods for altitude changes altitude to 30.0
+     */
     @Test
     public void setAndGetAltitudeTest_getAltitudeAndChangeAltitude_30() {
         // arrange
@@ -166,8 +198,11 @@ public class GeographicalAreaDTOTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * get methods for sensor, returns temperature Sensor
+     */
     @Test
-    public void getSensors() {
+    public void getSensors_get_temperatureSensor() {
         //arrange
         List<SensorDTO> expectedResult = new ArrayList<>();
         expectedResult.add(temperatureSensor);

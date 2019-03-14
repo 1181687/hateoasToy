@@ -51,6 +51,7 @@ end
 ":GeographicalArea" --> ":GetFirst\nHottestDay\nHouseArea\nController" :5.1.1.2- Reading
 deactivate ":GeographicalArea"
 deactivate ":House"
+
 ":GetFirst\nHottestDay\nHouseArea\nController" ->"ReadingMapper": 5.1.2- mapToDTO(reading)
 activate "ReadingMapper"
 "ReadingMapper" -> ":ReadingDTO": create 5.2.1- ReadingDTO
