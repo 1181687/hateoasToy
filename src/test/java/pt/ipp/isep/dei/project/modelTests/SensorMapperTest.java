@@ -15,7 +15,7 @@ import java.time.temporal.ChronoUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SensorMapperTest {
-
+    
     /**
      * this method map to DTO a GeographicalArea
      */
@@ -37,7 +37,7 @@ public class SensorMapperTest {
         SensorType temperature = new SensorType("Temperature");
         Location locationSensor = new Location(123, 345, 50);
         Sensor sensor = new Sensor(id, name, startingDateSensor, temperature, locationSensor, units);
-        SensorDTO sensorDTO = new SensorDTO();
+        SensorDTO sensorDTO = SensorMapper.newSensorDTO();
 
         sensorDTO.setId(id);
         sensorDTO.setName(name);
