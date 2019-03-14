@@ -1,0 +1,52 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+activate ":ImportReadings\nFromCSVReaderUI"
+loop readLinesAndImportReadings
+":ImportReadings\nFromCSVReaderUI" -> CSVReader: 3.2 - parseLine(line)
+activate CSVReader
+CSVReader --> ":ImportReadings\nFromCSVReaderUI": 3.3 - sensorId, dateTime, value
+deactivate ":ImportReadings\nFromCSVReaderUI"
+deactivate CSVReader
+":ImportReadings\nFromCSVReaderUI" -> ":ImportReadings\nFromCSVController": 3.4 - checkIfSensorExistsById(sensorId)
+activate ":ImportReadings\nFromCSVController"
+":ImportReadings\nFromCSVController" -> ":SensorList": 3.4.1 - checkIfSensorExistsById(sensorId)
+activate ":SensorList"
+":SensorList" --> ":ImportReadings\nFromCSVController": 3.4.2 - sensor
+deactivate ":SensorList"
+activate ":ImportReadings\nFromCSVReaderUI"
+":ImportReadings\nFromCSVReaderUI" -> ":ImportReadings\nFromCSVReaderUI": 3.5 - checkDateTimeAndStoreIt(dateTime)
+":ImportReadings\nFromCSVReaderUI" -> ":ImportReadings\nFromCSVReaderUI": 3.6 - checkValueAndStoreIt(value)
+deactivate ":ImportReadings\nFromCSVReaderUI"
+":ImportReadings\nFromCSVReaderUI" -> ":ReadingDTO": 3.7 - setDateTime(validDateTime)
+activate ":ReadingDTO"
+":ImportReadings\nFromCSVReaderUI" -> ":ReadingDTO": 3.8 - setValue(validValue)
+deactivate ":ReadingDTO"
+activate ":ImportReadings\nFromCSVReaderUI"
+":ImportReadings\nFromCSVReaderUI" -> ":ImportReadings\nFromCSVController": 3.9 - addReadingToTheSensor(readingDTO)
+":ImportReadings\nFromCSVController" -> ReadingMapper: 3.9.1 - mapToEntity(readingDTO)
+activate ReadingMapper
+ReadingMapper --> ":ImportReadings\nFromCSVController": 3.9.2 - reading
+deactivate ReadingMapper
+":ImportReadings\nFromCSVController" -> ":Sensor": 3.9.3 - addReadingToTheSensor(reading)
+activate ":Sensor"
+deactivate ":ImportReadings\nFromCSVController"
+end loop
+
+@enduml

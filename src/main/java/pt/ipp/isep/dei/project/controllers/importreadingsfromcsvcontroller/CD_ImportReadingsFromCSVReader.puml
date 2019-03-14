@@ -10,17 +10,17 @@ skinparam class {
 
 hide circle
 
-ImportReadingsFromCSVUI "1" -> "1" ImportReadingsFromCSVController
+ImportReadingsFromCSVUI "1" -down-> "1" ImportReadingsFromCSVController
 ImportReadingsFromCSVUI "1" -> "1" ReadingDTO
-ImportReadingsFromCSVUI "1" -> "1" ReadingMapper
-ImportReadingsFromCSVUI "1" -> "1" CSVReader
-ImportReadingsFromCSVController "1" -> "1" ReadingMapper
-ReadingMapper "1" -> "1" ReadingDTO
-ImportReadingsFromCSVController "1" -> "1" GeographicalAreaList
+ImportReadingsFromCSVUI "1" -> "1" ReadingMapper : uses
+ImportReadingsFromCSVUI "1" -> "1" CSVReader : uses
+ImportReadingsFromCSVController "1" -> "1" ReadingMapper :uses
+ReadingMapper "1" -> "1" ReadingDTO : creates
+ImportReadingsFromCSVController "1" -down-> "1" GeographicalAreaList
 ImportReadingsFromCSVController "1" -> "1" SensorList
 ImportReadingsFromCSVController "1" -> "1" Sensor
-GeographicalAreaList "1" -> "0*" SensorList
-SensorList "1" -> "0*" Sensor
+GeographicalAreaList "1" --> "0*" SensorList
+SensorList "1" -left-> "0*" Sensor
 
 Class ImportReadingsFromCSVUI {
 -controller: ImportReadingsFromCSVController

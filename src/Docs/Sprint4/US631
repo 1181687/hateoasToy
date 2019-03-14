@@ -18,8 +18,8 @@ Specific Criteria:
 - given - The user wants to get the first hottest day (higher maximum temperature) in the house area in a given period.
 - when - The user chooses option "2" from Menu (Regular User), then option "1" (House Area) and then option "5"
         (Get the first hottest day in the house area in a given period). Then User inserts the first date and then final
-        date of the period he wants to consider.
-- then - It is shown to the User the day with the first highest temperature and its value: eg. "TThe first hottest day
+        date of the period he/she wants to consider.
+- then - It is shown to the User the day with the first highest temperature and its value: eg. "The first hottest day
  in the house area in the chosen interval is 2018-12-30 (maximum temperature of 16 Celsius)".
 - but - The following messages are displayed:
 
