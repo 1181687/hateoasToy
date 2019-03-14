@@ -1,7 +1,22 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.GetDevicesInHouseGridController;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class GetDevicesInHouseGridControllerTest {
-    /*private GetDevicesInHouseGridController ctrl;
+    private GetDevicesInHouseGridController ctrl;
     private House houseEdificioB;
 
     private static final String ATTRIBUTE_FREEZER_CAPACITY = "freezer Capacity";
@@ -42,14 +57,14 @@ public class GetDevicesInHouseGridControllerTest {
         double refrigeratorCapacity = 15.5;
         double annualEnergyConsumption = 3000.0;
         double nominalPower = 100.5;
-        FridgeType fridgeType = new FridgeType();
-        Device fridge1 = fridgeType.createDevice("fridge Ariston", room1);
+
+        Device fridge1 = houseEdificioB.createDevice("Fridge","fridge Ariston", room1);
         fridge1.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge1.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
         fridge1.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
 
-        Device fridge2 = fridgeType.createDevice("fridge Bosch", room1);
+        Device fridge2 = houseEdificioB.createDevice("Fridge","fridge Bosch", room1);
         fridge2.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge2.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge2.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
@@ -59,37 +74,36 @@ public class GetDevicesInHouseGridControllerTest {
         int dishwasherCapacity = 100;
         double duration = 5;
         double nominalPowerWash = 100;
-        DishWasherType dishwasherType = new DishWasherType();
-        Device washingMachine1 = dishwasherType.createDevice("Washing Machine Bosh", room1);
+        Device washingMachine1 = houseEdificioB.createDevice("WashingMachine","Washing Machine Bosh", room1);
         washingMachine1.setAttributesDevType(ATTRIBUTE_CAPACITY, dishwasherCapacity);
         washingMachine1.setAttributesDevType(ATTRIBUTE_DURATION, duration);
         washingMachine1.setAttributesDevType(ATTRIBUTE_ENERGY_CONSUMPTION, energyConsumption);
         washingMachine1.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPowerWash);
 
-        Device fridge3 = fridgeType.createDevice("Fridge1100", room2);
+        Device fridge3 = houseEdificioB.createDevice("Fridge","Fridge1100", room2);
         fridge3.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge3.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge3.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
         fridge3.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
 
-        Device fridge4 = fridgeType.createDevice("Fridge5000", room2);
+        Device fridge4 = houseEdificioB.createDevice("Fridge","Fridge5000", room2);
         fridge4.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, freezerCapacity);
         fridge4.setAttributesDevType(ATTRIBUTE_REFRIGERATOR_CAPACITY, refrigeratorCapacity);
         fridge4.setAttributesDevType(ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION, annualEnergyConsumption);
         fridge4.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPower);
 
-        Device washingMachine2 = dishwasherType.createDevice("Washing Machine 625", room2);
+        Device washingMachine2 = houseEdificioB.createDevice("WashingMachine","Washing Machine 625", room2);
         washingMachine2.setAttributesDevType(ATTRIBUTE_CAPACITY, dishwasherCapacity);
         washingMachine2.setAttributesDevType(ATTRIBUTE_DURATION, duration);
         washingMachine2.setAttributesDevType(ATTRIBUTE_ENERGY_CONSUMPTION, energyConsumption);
         washingMachine2.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, nominalPowerWash);
 
         //add to Lists
-        housegrid houseGrid = new housegrid("grid1");
-        housegrid houseGridEmpty = new housegrid("grid2");
+        HouseGrid houseGrid = new HouseGrid("grid1");
+        HouseGrid houseGridEmpty = new HouseGrid("grid2");
         houseGrid.addRoom(room1);
         houseGrid.addRoom(room2);
-        List<housegrid> houseGridList1 = new ArrayList<>();
+        List<HouseGrid> houseGridList1 = new ArrayList<>();
         houseGridList1.add(houseGrid);
         houseGridList1.add(houseGridEmpty);
 
@@ -101,11 +115,11 @@ public class GetDevicesInHouseGridControllerTest {
     @Test
     public void testGetDeviceListContentNameTypeLocationByHG() {
         //Arrange
-        String expectedResult = "Dishwasher\n" +
+        String expectedResult = "WashingMachine\n" +
                 "- Device Name: Washing Machine Bosh, Location: Kitchen.\n" +
                 "- Device Name: Washing Machine 625, Location: KitchenBasement.\n" +
                 "\n" +
-                "fridge\n" +
+                "Fridge\n" +
                 "- Device Name: fridge Ariston, Location: Kitchen.\n" +
                 "- Device Name: fridge Bosch, Location: Kitchen.\n" +
                 "- Device Name: Fridge1100, Location: KitchenBasement.\n" +
@@ -219,5 +233,5 @@ public class GetDevicesInHouseGridControllerTest {
 
         // Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 }
