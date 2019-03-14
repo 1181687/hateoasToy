@@ -143,7 +143,7 @@ public class WineCooler implements Device {
      */
     @Override
     public boolean setName(String name) {
-        if (this.location.isDeviceNameExistant(name) || this.name == name) {
+        if (this.location.isDeviceNameExistant(name)) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
         this.name = name;

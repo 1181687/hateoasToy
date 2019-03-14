@@ -172,7 +172,7 @@ public class TelevisionSpecsTest {
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
         //Act
-        Object result = television.getSpecs().getAttributeValue("\0"+ "Stanby Power");
+        Object result = television.getSpecs().getAttributeValue("\0" + "Standby Power");
 
         //Assert
         assertEquals(expectedResult, result);

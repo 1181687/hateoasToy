@@ -1,0 +1,37 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+   ArrowColor Black
+   ActorBorderColor DarkBlue
+   LifeLineBorderColor black
+   LifeLineBackgroundColor LightGrey
+
+   ParticipantBorderColor Black
+   ParticipantBackgroundColor LightGrey
+   ParticipantFontStyle Bold
+
+   ActorBackgroundColor DimGrey
+   ActorFontColor DeepSkyBlue
+   ActorFontStyle Bold
+   ActorFontSize 17
+   ActorFontName Aapex
+}
+activate ":GeographicalArea"
+":GeographicalArea" ->":SensorList": 1- getNearestSensorsWithTheMostRecentReading(type,location)
+activate ":SensorList"
+":SensorList" --> ":GeographicalArea": 2- sensor
+deactivate ":SensorList"
+":GeographicalArea" -> ":Sensor":3- getFirstHighestReading(startDate,endDate)
+activate ":Sensor"
+loop getHighestReading
+":Sensor" -> ":Readings": 3.1- getReadingsBetweenDates
+activate ":Readings"
+end
+":Readings" --> ":Sensor" :3.2- highestReading
+deactivate ":Readings"
+
+":Sensor" --> ":GeographicalArea": 4- highestReading
+deactivate ":Sensor"
+deactivate ":GeographicalArea"
+
+@enduml

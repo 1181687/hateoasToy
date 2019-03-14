@@ -1,19 +1,24 @@
 package pt.ipp.isep.dei.project.model.house;
 
 import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 
 public class Address {
     private String zipCode;
     private Location location;
+    private GeographicalArea insertedGeoArea;
+
 
     /**
      * constructor of Address that receives a zipCode and a location
      * @param zipCode
      * @param location
+     * @param insertedGeoArea
      */
-    public Address(String zipCode, Location location) {
+    public Address(String zipCode, Location location, GeographicalArea insertedGeoArea) {
         this.zipCode = zipCode;
         this.location = location;
+        this.insertedGeoArea = insertedGeoArea;
     }
 
     /**
@@ -39,19 +44,34 @@ public class Address {
             return false;
         }
         Address address = (Address) obj;
-        String comparablemZipCode = zipCode;
-        Location comparablemLocation = location;
-        String comparableAddressZipCode = address.zipCode;
-        Location comparableAddressLocation = address.location;
-        return comparableAddressZipCode.equals(comparablemZipCode)
-                && comparableAddressLocation.equals(comparablemLocation);
+        return address.zipCode.equals(this.zipCode)
+                && address.location.equals(this.location)
+                && address.insertedGeoArea.equals(this.insertedGeoArea);
     }
 
     /**
-     * Get the location on the address of the housegrid.
+     * Get the Location on the Address.
      * @return a location
      */
     public Location getLocation() {
         return location;
+    }
+
+    /**
+     * Get the GeographicalArea of the Address.
+     *
+     * @return
+     */
+    public GeographicalArea getInsertedGeoArea() {
+        return insertedGeoArea;
+    }
+
+    /**
+     * Set method for the inserted geo area.
+     *
+     * @param geoArea House area.
+     */
+    public void setInsertedGeoArea(GeographicalArea geoArea) {
+        insertedGeoArea = geoArea;
     }
 }

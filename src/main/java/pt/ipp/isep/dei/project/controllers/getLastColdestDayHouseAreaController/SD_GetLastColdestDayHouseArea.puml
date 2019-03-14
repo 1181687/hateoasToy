@@ -1,0 +1,64 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+    ArrowColor Black
+    ActorBorderColor DarkBlue
+    LifeLineBorderColor black
+    LifeLineBackgroundColor LightGrey
+
+    ParticipantBorderColor Black
+    ParticipantBackgroundColor LightGrey
+    ParticipantFontStyle Bold
+
+    ActorBackgroundColor DimGrey
+    ActorFontColor DeepSkyBlue
+    ActorFontStyle Bold
+    ActorFontSize 17
+    ActorFontName Aapex
+}
+
+actor RegularUser
+activate RegularUser
+RegularUser -> ":GetLastColdestDay\nHouseAreaUI": 1- getLastColdestDay
+ref over ":GetLastColdestDay\nHouseAreaUI"
+hasSensorsOfGivenTypeInGeoArea
+end
+activate ":GetLastColdestDay\nHouseAreaUI"
+":GetLastColdestDay\nHouseAreaUI" --> "RegularUser": 2-Ask for initial date
+deactivate ":GetLastColdestDay\nHouseAreaUI"
+":GetLastColdestDay\nHouseAreaUI" <- "RegularUser": 3-Insert initial date
+activate ":GetLastColdestDay\nHouseAreaUI"
+":GetLastColdestDay\nHouseAreaUI" --> "RegularUser": 4-Ask for final date
+deactivate ":GetLastColdestDay\nHouseAreaUI"
+":GetLastColdestDay\nHouseAreaUI" <- "RegularUser": 5-Insert final date
+activate ":GetLastColdestDay\nHouseAreaUI"
+ref over ":GetLastColdestDay\nHouseAreaUI"
+checkIfThereAreReadings
+end
+":GetLastColdestDay\nHouseAreaUI" -> ":GetLastColdestDay\nHouseAreaController": 5.1- getLastLowestMaximumReading(startDate,endDate)
+activate ":GetLastColdestDay\nHouseAreaController"
+":GetLastColdestDay\nHouseAreaController" -> ":House": 5.1.1- getLastLowestMaximumReading(startDate,endDate)
+activate ":House"
+":House" ->":GeographicalArea": 5.1.1.1.- getLastLowestMaximumReading(startDate,endDate)
+activate ":GeographicalArea"
+ref over ":GeographicalArea"
+getLastLowestMaximumReading
+end
+":GeographicalArea" --> ":GetLastColdestDay\nHouseAreaController" :5.1.1.2- Reading
+deactivate ":GeographicalArea"
+deactivate ":House"
+":GetLastColdestDay\nHouseAreaController" ->"ReadingMapper": 5.1.2-  mapToDTO(Reading)
+activate "ReadingMapper"
+"ReadingMapper" -> ":ReadingDTO": 5.2.1- create ReadingDTO
+activate ":ReadingDTO"
+":ReadingDTO" --> ":GetLastColdestDay\nHouseAreaUI": 5.2.2- ReadingDTO
+deactivate ":ReadingDTO"
+deactivate "ReadingMapper"
+deactivate ":GetLastColdestDay\nHouseAreaController"
+":GetLastColdestDay\nHouseAreaUI" --> ":GetLastColdestDay\nHouseAreaUI" : 5.2- getDTOValue
+":GetLastColdestDay\nHouseAreaUI" --> ":GetLastColdestDay\nHouseAreaUI" : 5.3- getDTODateTime
+
+":GetLastColdestDay\nHouseAreaUI" --> RegularUser : 6- display last coldest \n day and it's value
+deactivate ":GetLastColdestDay\nHouseAreaUI"
+
+@enduml

@@ -11,7 +11,7 @@ public class GeographicalAreaDTO {
     private String name;
     private String type;
     private double width;
-    private double lenght;
+    private double length;
     private double latitude;
     private double longitude;
     private double altitude;
@@ -53,12 +53,12 @@ public class GeographicalAreaDTO {
         this.width = width;
     }
 
-    public double getLenght() {
-        return lenght;
+    public double getLength() {
+        return length;
     }
 
-    public void setLenght(double lenght) {
-        this.lenght = lenght;
+    public void setLength(double length) {
+        this.length = length;
     }
 
     public double getLatitude() {

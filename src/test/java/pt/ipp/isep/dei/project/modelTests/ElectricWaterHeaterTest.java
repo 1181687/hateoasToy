@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.electricwaterheater.ElectricWaterHeaterType;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -33,16 +37,20 @@ class ElectricWaterHeaterTest {
 
     @BeforeEach
     public void StartUp() {
+        //Geographical Area
+        Location location = new Location(41.178553, -8.608035, 111);
+        AreaShape areaShape = new AreaShape(0.261, 0.249, location);
+        GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
+        GeographicalArea insertedGeoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
+
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         Location houseLocation = new Location(41.178553, -8.608035, 111);
-        Address address = new Address("4200-072", houseLocation);
+        Address address = new Address("4200-072", houseLocation, insertedGeoArea);
         this.house.setAddress(address);
-
-
 
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
@@ -195,6 +203,19 @@ class ElectricWaterHeaterTest {
     void setLocationTrueTest() {
         // Act
         boolean result = electricWaterHeater.setLocation(laundry);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void setLocationTrueTestNullValue() {
+        // Act
+        ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
+        Device maquina = electricWaterHeaterType.createDevice("nome");
+
+        boolean result = maquina.setLocation(laundry);
+
 
         // Assert
         assertTrue(result);

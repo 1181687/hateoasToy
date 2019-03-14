@@ -4,11 +4,6 @@ import java.util.List;
 
 public interface Programmable {
 
-    //boolean addProgram(Program program);
-
-    /*default Program newProgram(String programName, double duration, double energyConsumption) {
-        return new Program(programName, duration, energyConsumption);
-    }*/
 
     List<Program> getProgramList();
 
@@ -16,7 +11,4 @@ public interface Programmable {
 
     Program createNewProgram(String programName);
 
-    //boolean addNewProgram(String programName, ProgramSpecs specs);
-
-    //Program getProgram();
 }

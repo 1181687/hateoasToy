@@ -112,7 +112,7 @@ public class WallTowelHeater implements Device {
      */
     @Override
     public boolean setName(String name) {
-        if (this.location.isDeviceNameExistant(name) || this.name.equalsIgnoreCase(name)) {
+        if (this.location.isDeviceNameExistant(name)) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
         this.name = name;

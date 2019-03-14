@@ -251,7 +251,7 @@ public class SensorList {
      */
     public boolean checkIfSensorExistsById(String sensorId) {
         for (Sensor sensor : listOfSensors) {
-            if (sensor.getSensorName().equals(sensorId)) {
+            if (sensor.getId().equals(sensorId)) {
                 return true;
             }
         }
@@ -266,7 +266,7 @@ public class SensorList {
      */
     public Sensor getSensorById(String sensorId) {
         for (Sensor sensor : listOfSensors) {
-            if (sensor.getSensorName().equals(sensorId)) {
+            if (sensor.getId().equals(sensorId)) {
                 return sensor;
             }
         }

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.walltowelheater.WallTowelHeaterType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -96,6 +97,19 @@ class WallTowelHeaterTest {
         boolean result = this.wallTowerHeater.setLocation(this.bathroom);
         //Assert
         assertFalse(result);
+    }
+
+    @Test
+    void setLocationTrueTestNullValue() {
+        // Act
+        WallTowelHeaterType type = new WallTowelHeaterType();
+        Device maquina = type.createDevice("nome");
+
+        boolean result = maquina.setLocation(kitchen);
+
+
+        // Assert
+        assertTrue(result);
     }
 
     @Test

@@ -10,68 +10,70 @@ skinparam class {
 
 hide circle
 
-UI "1" --> "1" Controller
-Controller "1" --> "1" GeographicalAreaList
-Controller "1" --> "1" GeographicalAreaMapper
-Controller "1" --> "1" GeographicalAreaDTO
-Controller "1" --> "1" SensorDTO
-Controller "1" --> "1" SensorMapper
-Controller "1" --> "1" JSONReader
+ImportReadingsFromJSONUI "1" --> "1" ImportReadingsFromJSONController
+ImportReadingsFromJSONController  "1" -left-> "1" GeographicalAreaList
+ImportReadingsFromJSONController  "1" --> "1" GeographicalAreaMapper
+ImportReadingsFromJSONController  "1" --> "1" GeographicalAreaDTO
+ImportReadingsFromJSONController  "1" --> "1" SensorDTO
+ImportReadingsFromJSONController  "1" --> "1" SensorMapper
+ImportReadingsFromJSONController  "1" -right-> "1" JSONReader
 
-Class UI {
--field1
--field2
-+method1()
-+method2()
+Class ImportReadingsFromJSONUI {
+-ImportReadingsFromJSONController controller
++run()
+
 }
 
-Class Controller {
--field1
--field2
-+method1()
-+method2()
+Class ImportReadingsFromJSONController {
+-geographicalAreaList
++importGeographicalAreasAndSensors()
 }
 
 Class GeographicalAreaMapper {
--field1
--field2
-+method1()
-+method2()
++mapToDTO()
++mapToEntity(geographicalAreaDTO)
 }
 
 Class GeographicalAreaList {
--field1
--field2
-+method1()
-+method2()
+-List <GeographicalArea> geoAreaList
++addGeoArea(geographicalArea)
 }
 
 Class GeographicalAreaDTO {
--field1
--field2
-+method1()
-+method2()
+- String id
+- String name
+- String type
+- double width
+- double length
+- double latitude
+- double altitude
+- double longitude
+- List <SensorDTO> sensor
++ get()
++ set()
++ addSensor()
 }
 
 Class SensorDTO {
--field1
--field2
-+method1()
-+method2()
+- String id
+- String name
+- String type
+- LocalDate startingDate
+- LocationDTO location
+- String units
++ get()
++ set()
 }
 
 Class SensorMapper {
--field1
--field2
-+method1()
-+method2()
+
++newSensorDTO()
++entityToMap()
++mapToEntity()
 }
 
 Class JSONReader {
--field1
--field2
-+method1()
-+method2()
++ readJSONFileToList()
 }
 
 @enduml

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.lamp.LampType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -191,6 +192,19 @@ class LampTest {
     void setLocationTrueTest() {
         // Act
         boolean result = lamp.setLocation(laundry);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void setLocationTrueTestNullValue() {
+        // Act
+        LampType type = new LampType();
+        Device maquina = type.createDevice("nome");
+
+        boolean result = maquina.setLocation(laundry);
+
 
         // Assert
         assertTrue(result);
