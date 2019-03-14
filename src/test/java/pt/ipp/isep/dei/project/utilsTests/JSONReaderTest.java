@@ -8,9 +8,11 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapping;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JSONReaderTest {
-
+    /**
+     * readJSON File receives a DTO and transforms it
+     */
     @Test
-    public void readJSONFileToList() {
+    public void testReadJSONFileToList_geoAreaDTO() {
         // arrange
         // geo area ISEP
         String id = "ISEP";
