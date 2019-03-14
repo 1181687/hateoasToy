@@ -14,7 +14,7 @@ public class EstimateEnergyOfWaterHeaterController {
      */
     public EstimateEnergyOfWaterHeaterController(House house) {
         this.house = house;
-        this.type = "Electric Water Heater";
+        this.type = "ElectricWaterHeater";
     }
 
     /**
@@ -71,6 +71,6 @@ public class EstimateEnergyOfWaterHeaterController {
      * @return Double with the combined energy consumption of all the water heaters in the housegrid.
      */
     public double getTotalEnergyConsumptionOfAllElectricWaterHeaters() {
-        return Utils.round(house.getTotalEnergyConsumptionOfDevicesOfCertainType("Electric Water Heater"), 2);
+        return Utils.round(house.getTotalEnergyConsumptionOfDevicesOfCertainType(type), 2);
     }
 }
