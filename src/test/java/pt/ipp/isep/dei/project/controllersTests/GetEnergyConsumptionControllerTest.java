@@ -22,12 +22,9 @@ import java.util.List;
 
 class GetEnergyConsumptionControllerTest {
     private GetEnergyConsumptionController ctrl;
-    private House house;
     private Room room;
     private static final String FRIDGE_TYPE = "Fridge";
     private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
-
-
 
 
     @BeforeEach
@@ -43,7 +40,7 @@ class GetEnergyConsumptionControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
