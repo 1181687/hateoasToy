@@ -16,6 +16,7 @@ skinparam sequence {
 	ActorFontSize 17
 	ActorFontName Aapex
 }
+actor RegularUser
 activate RegularUser
 actor RegularUser
 RegularUser -> ":GetDayWithHighest\nTemperatureAmplitudeUI": 1- getDayWithHighest\nTemperatureAmplitude

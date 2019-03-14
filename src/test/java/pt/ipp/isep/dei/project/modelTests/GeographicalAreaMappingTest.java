@@ -22,8 +22,8 @@ public class GeographicalAreaMappingTest {
         double altitude = 10;
         GeographicalAreaDTO geographicalAreaDTO = new GeographicalAreaDTO();
         geographicalAreaDTO.setId(geoAreaName);
-        geographicalAreaDTO.setSensorName(description);
-        geographicalAreaDTO.setGeographicalAreaType(geographicalAreaType);
+        geographicalAreaDTO.setName(description);
+        geographicalAreaDTO.setType(geographicalAreaType);
         geographicalAreaDTO.setWidth(width);
         geographicalAreaDTO.setLength(lenght);
         geographicalAreaDTO.setLatitude(latitude);

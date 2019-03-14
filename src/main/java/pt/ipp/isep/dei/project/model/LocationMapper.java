@@ -2,7 +2,12 @@ package pt.ipp.isep.dei.project.model;
 
 public class LocationMapper {
 
-    private LocationMapper(){}
+    private LocationMapper() {
+    }
+
+    public static LocationDTO newLocationDTO(){
+        return new LocationDTO();
+    }
 
     public static Location mapToEntity(LocationDTO locationDTO) {
         return new Location(locationDTO.getLatitude(), locationDTO.getLongitude(), locationDTO.getElevation());

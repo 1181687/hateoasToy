@@ -11,12 +11,12 @@ skinparam class {
 hide circle
 
 ImportReadingsFromJSONUI "1" --> "1" ImportReadingsFromJSONController
-ImportReadingsFromJSONController  "1" --> "1" GeographicalAreaList
+ImportReadingsFromJSONController  "1" -left-> "1" GeographicalAreaList
 ImportReadingsFromJSONController  "1" --> "1" GeographicalAreaMapper
 ImportReadingsFromJSONController  "1" --> "1" GeographicalAreaDTO
 ImportReadingsFromJSONController  "1" --> "1" SensorDTO
 ImportReadingsFromJSONController  "1" --> "1" SensorMapper
-ImportReadingsFromJSONController  "1" --> "1" JSONReader
+ImportReadingsFromJSONController  "1" -right-> "1" JSONReader
 
 Class ImportReadingsFromJSONUI {
 -ImportReadingsFromJSONController controller

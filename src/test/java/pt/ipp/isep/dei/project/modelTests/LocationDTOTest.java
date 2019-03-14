@@ -11,20 +11,20 @@ public class LocationDTOTest {
 
     @BeforeEach
     public void StartUp() {
-        this.locationDTO= new LocationDTO();
+        this.locationDTO = new LocationDTO();
 
         locationDTO.setLatitude(100);
         locationDTO.setLongitude(200);
         locationDTO.setElevation(150);
 
-        double longitude=200;
-        double elevation=150;
+        double longitude = 200;
+        double elevation = 150;
 
 
     }
 
     @Test
-    public void testGetLatitude_100 (){
+    public void testGetLatitude_100() {
         //Arrange
         double expectedResult = 100;
         //Act
@@ -35,7 +35,7 @@ public class LocationDTOTest {
     }
 
     @Test
-    public void testSetLatitude_200 (){
+    public void testSetLatitude_200() {
         //Arrange
         locationDTO.setLatitude(200);
         double expectedResult = 200;
@@ -45,8 +45,9 @@ public class LocationDTOTest {
         assertEquals(expectedResult, result);
 
     }
+
     @Test
-    public void testGetLongitude_200 (){
+    public void testGetLongitude_200() {
         //Arrange
         double expectedResult = 200;
         //Act
@@ -57,7 +58,7 @@ public class LocationDTOTest {
     }
 
     @Test
-    public void testSetLongitude_100 (){
+    public void testSetLongitude_100() {
         //Arrange
         locationDTO.setLongitude(100);
         double expectedResult = 100;
@@ -69,7 +70,7 @@ public class LocationDTOTest {
     }
 
     @Test
-    public void testGetElevation_150 (){
+    public void testGetElevation_150() {
         //Arrange
         double expectedResult = 150;
         //Act
@@ -80,7 +81,7 @@ public class LocationDTOTest {
     }
 
     @Test
-    public void testSetElevation_100 (){
+    public void testSetElevation_100() {
         //Arrange
         locationDTO.setElevation(100);
         double expectedResult = 100;
@@ -91,4 +92,4 @@ public class LocationDTOTest {
 
     }
 
-    }
+}

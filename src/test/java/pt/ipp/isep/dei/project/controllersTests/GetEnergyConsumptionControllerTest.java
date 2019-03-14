@@ -2,8 +2,10 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionController;
 import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
@@ -13,19 +15,16 @@ import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
+import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 class GetEnergyConsumptionControllerTest {
     private GetEnergyConsumptionController ctrl;
-    private House house;
     private Room room;
     private static final String FRIDGE_TYPE = "Fridge";
-    private static final String ELECTRIC_W_H_TYPE = "Electric Water Heater";
-    private static final String DISHWASHER_TYPE = "DishWasher";
-    private static final String LAMP_TYPE = "Lamp";
-    private static final String WASHING_MACHINE_TYPE = "Washing Machine";
-
+    private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
 
 
     @BeforeEach
@@ -41,7 +40,7 @@ class GetEnergyConsumptionControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation, insertedGeoArea);
@@ -104,7 +103,7 @@ class GetEnergyConsumptionControllerTest {
         room = house.getRoomOfTheRoomList(0);
     }
 
-   /* @Test
+ @Test
     public void getAllDevicesToStringTest() {
         // Arrange
         // Controller Instantiation
@@ -119,12 +118,8 @@ class GetEnergyConsumptionControllerTest {
         String result = ctrl.getAllDevicesToString();
 
         // Assert
-        assertEquals(expectedResult, result);
 
-        //assertEquals(expectedResult, result);
-    }
-
-    private void assertEquals(int expectedResult, int result) {
+        assertEquals(expectedResult,result);
     }
 
     @Test
@@ -140,7 +135,7 @@ class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    public void getTotalEnergyConsumptionInAnIntervalTestWithOneSolution() {
+    public void getTotalEnergyConsumptionInAnInterval_TestWithOneSolution() {
         // Arrange
         // Reading Instantiation
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -227,5 +222,5 @@ class GetEnergyConsumptionControllerTest {
 
         // Assert
         assertEquals(expectedResult, result, 0.000001);
-    } */
+    }
 }

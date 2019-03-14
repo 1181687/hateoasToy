@@ -16,7 +16,7 @@ General Criteria:
 
 Specific Criteria:
 - given - The user wants to get the first day with the highest temperature amplitude in the house area in a given period.
-- when - The user chooses option "2" from Menu (Regular User), then option "1" (House Area) and then option "5"
+- when - The user chooses option "2" from Menu (Regular User), then option "1" (House Area) and then option "4"
         (Get day with highest temperature amplitude in the housegrid area). Then User inserts the first date and then final
         date of the period he wants to consider.
 - then - It is shown to the User the day with the highest temperature amplitude and its amplitude value: eg. "The highest

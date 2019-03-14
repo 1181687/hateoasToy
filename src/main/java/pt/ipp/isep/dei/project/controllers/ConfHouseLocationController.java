@@ -5,6 +5,8 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.House;
 
+import java.util.Objects;
+
 public class ConfHouseLocationController {
     private GeographicalAreaList geographicalAreaList;
     private House house;
@@ -27,6 +29,7 @@ public class ConfHouseLocationController {
 
     /**
      * Method that list the content of the list of geo areas.
+     *
      * @param useCriterion
      * @return the content of the list.
      */
@@ -50,6 +53,15 @@ public class ConfHouseLocationController {
     }
 
     /**
+     * Method that checks if the Geographical Area List is empty.
+     *
+     * @return True or False.
+     */
+    public boolean isGeographicalAreaListEmpty() {
+        return geographicalAreaList.getGeoAreaList().isEmpty();
+    }
+
+    /**
      * @return
      */
     public int getNumberOfGeoAreas() {
@@ -63,6 +75,16 @@ public class ConfHouseLocationController {
      */
     public void setGeographicalArea(int position) {
         geographicalArea = geographicalAreaList.getGeographicalAreaInTheList(position);
+    }
+
+    /**
+     * Method that checks if the House is already in the specified Geographical Area.
+     *
+     * @return True or False.
+     */
+    public boolean isHouseAlreadyInGeoArea() {
+        Address houseAddress = house.getAddress();
+        return !Objects.isNull(houseAddress) && houseAddress.getInsertedGeoArea().equals(geographicalArea);
     }
 
     /**

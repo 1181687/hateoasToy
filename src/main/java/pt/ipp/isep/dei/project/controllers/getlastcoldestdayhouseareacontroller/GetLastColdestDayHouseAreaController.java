@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllers.getLastColdestDayHouseAreaController;
+package pt.ipp.isep.dei.project.controllers.getlastcoldestdayhouseareacontroller;
 
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
@@ -22,7 +22,7 @@ public class GetLastColdestDayHouseAreaController {
     }
 
     public boolean hasReadingsBetweenDates(LocalDate startDate, LocalDate endDate) {
-        return house.checkNearestSensorReadingsExistenceBetweenDates(this.sensorTypeTemperature,startDate, endDate);
+        return house.checkNearestSensorReadingsExistenceBetweenDates(this.sensorTypeTemperature, startDate, endDate);
     }
 
     public ReadingDTO getLastLowestMaximumReading(LocalDate startDate, LocalDate endDate) {

@@ -17,7 +17,7 @@ public class SensorListMapper {
      * @param sensorList SensorList to be used.
      * @return SensorDTOList.
      */
-    public static SensorDTOList entityToMap(SensorList sensorList) {
+    public static SensorDTOList mapToDTO(SensorList sensorList) {
         SensorDTOList sensorDTOList = newSensorDTOList();
         for (Sensor sensor : sensorList.getListOfSensors()) {
             sensorDTOList.addSensorDTO(SensorMapper.entityToMap(sensor));
