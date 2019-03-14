@@ -8,6 +8,9 @@ import pt.ipp.isep.dei.project.model.devices.TimeConstantProgramSpecs;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TimeConstantProgramTest {
+    private TimeConstantProgram timeConstantProgram;
+
+
 
     @Test
     public void testGetProgramSpecs() {
