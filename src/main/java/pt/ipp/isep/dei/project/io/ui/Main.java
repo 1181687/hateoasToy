@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.Program;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
+import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -72,7 +73,9 @@ public class Main {
 
         // HOUSE
         Location houseLocation = new Location(41.177748, -8.607745, 112);
+        Address address = new Address("4200-072", houseLocation, insertedGeoArea);
         House houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        houseEdificioB.setAddress(address);
 
         // READINGS
         // Dates for the Sensors
@@ -86,7 +89,7 @@ public class Main {
         // sensor 1
         Reading temp = new Reading(14.0, sensorDate1);
         Reading temp1 = new Reading(13.7, sensorDate1);
-        Reading temp2 = new Reading(16.0, sensorDate1);
+        Reading temp2 = new Reading(16.5, sensorDate1);
         Reading temp3 = new Reading(15.1, sensorDate1);
         Reading temp4 = new Reading(13.8, sensorDate2);
         Reading temp5 = new Reading(13.3, sensorDate2);
@@ -255,9 +258,9 @@ public class Main {
         LocalDateTime startingDate = LocalDate.of(2018, 10, 15).atStartOfDay();
         Sensor sensor = new Sensor("R003", "TT12346", startingDate, sensorTypeTemperature, houseLocation, "l/m2");
         sensor.addReadingsToList(temp);
-        sensor.addReadingsToList(temp1);
-        sensor.addReadingsToList(temp2);
-        sensor.addReadingsToList(temp3);
+        // sensor.addReadingsToList(temp1);
+        // sensor.addReadingsToList(temp2);
+        // sensor.addReadingsToList(temp3);
         sensor.addReadingsToList(temp4);
         sensor.addReadingsToList(temp5);
         sensor.addReadingsToList(temp6);
