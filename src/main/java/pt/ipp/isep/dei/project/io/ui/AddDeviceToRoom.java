@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
-import pt.ipp.isep.dei.project.model.devices.Program;
 import pt.ipp.isep.dei.project.model.house.House;
 
 
@@ -123,7 +122,7 @@ public class AddDeviceToRoom {
         double annualEnergyConsumption = InputValidator.getDoublePos(label15);
 
         controller.createNewFridge(fridgeDeviceName, annualEnergyConsumption, fridgeNominalPower, freezerCapacity, refrigeratorCapacity);
-        System.out.println("The FridgeSpecs was successfully created and added to the selected room.");
+        System.out.println("The Fridge was successfully created and added to the selected room.");
     }
 
     public void creationOfLamp() {
@@ -135,7 +134,7 @@ public class AddDeviceToRoom {
         double luminousFlux = InputValidator.getDoublePos(label23);
 
         controller.createNewLamp(lampDeviceName, lampNominalPower, luminousFlux);
-        System.out.println("The LampSpecs was successfully created and added to the selected room.");
+        System.out.println("The Lamp was successfully created and added to the selected room.");
     }
 
     public void creationOfDishWasher() {
@@ -189,10 +188,10 @@ public class AddDeviceToRoom {
             programDuration = InputValidator.getDoublePos(label46);
             String label47 = "What is the energy consumption of this program?";
             programEnergyConsumption = InputValidator.getDoublePos(label47);
-            Program program = controller.createNewProgram(programName);
+            controller.createNewProgram(programName);
             controller.setProgramAttributes("duration", programDuration);
             controller.setProgramAttributes("energyConsumption", programEnergyConsumption);
-            if (controller.addProgram(program)) {
+            if (controller.addProgram()) {
                 System.out.println("The program " + programName + " was added to the selected device.\n");
             }
         }
@@ -209,9 +208,9 @@ public class AddDeviceToRoom {
             programName = InputValidator.getString(label45);
             String label47 = "What is the nominal power of this program?";
             programNominalPower = InputValidator.getDoublePos(label47);
-            Program program = controller.createNewProgram(programName);
+            controller.createNewProgram(programName);
             controller.setProgramAttributes("programNominalPower", programNominalPower);
-            if (controller.addProgram(program)) {
+            if (controller.addProgram()) {
                 System.out.println("The program " + programName + " was added to the selected device.\n");
             }
         }

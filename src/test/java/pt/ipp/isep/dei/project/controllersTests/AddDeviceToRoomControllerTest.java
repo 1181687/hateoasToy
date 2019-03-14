@@ -521,40 +521,20 @@ public class AddDeviceToRoomControllerTest {
     }
 
     @Test
-    public void testCreateNewProgram_ValidDevice_ReturnsTrue() {
+    public void testAddProgram_ProgrammableDevice_ReturnsTrue() {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
         controller.createNewWashingMachine("Washimashi", 100.5, 8);
+        controller.isProgrammable();
 
-        controller.getDevSpecs();
-        controller.asProgrammable();
+        controller.createNewProgram("Program1");
 
         // Act
-        boolean result = controller.createAndAddProgram("Program1");
+        boolean result = controller.addProgram();
 
         // Assert
         assertTrue(result);
-    }
-
-
-    @Test
-    public void testCreateNewProgram_NotAProgrammableDevice_ReturnsFalse() {
-        // Arrange
-        house.addRoom(kitchen);
-        controller.getRoom(0);
-        controller.createNewWashingMachine("Washimashi", 100.5, 8);
-
-        kitchen.getDeviceByPosition(0).setAttributesDevType("Volume Of Water To Heat", 5.5);
-        kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 15.5);
-        kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 5000);
-        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.5);
-
-        // Act
-        boolean result = controller.createAndAddProgram("Program1");
-
-        // Assert
-        assertFalse(result);
     }
 
     @Test
@@ -582,22 +562,6 @@ public class AddDeviceToRoomControllerTest {
         boolean result = controller.isProgrammable();
 
         //Assert
-        assertFalse(result);
-    }
-
-    @Test
-    public void testAddProgramToFreezer_AddProgramToNonProgrammableDevice_False() {
-        // Arrange
-        house.addRoom(kitchen);
-        controller.getRoom(0);
-
-        controller.createNewFridge("Fridge", 1000, 200,
-                20, 50);
-
-        // Act
-        boolean result = controller.createAndAddProgram("Program");
-
-        // Assert
         assertFalse(result);
     }
 

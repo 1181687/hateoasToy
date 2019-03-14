@@ -351,15 +351,6 @@ public class AddDeviceToRoomController {
     }
 
 
-    public boolean createAndAddProgram(String programName) {
-        if (Objects.nonNull(programmableDevice)) {
-            Program program = programmableDevice.createNewProgram(programName);
-            return programmableDevice.addProgram(program);
-        }
-        return false;
-
-    }
-
     public DeviceSpecs getDevSpecs() {
         return devSpecs = device.getSpecs();
     }
@@ -381,11 +372,11 @@ public class AddDeviceToRoomController {
         return program.setProgramAttributes(attributeName, attributeValue);
     }
 
-    public Program createNewProgram(String name) {
-        return program = programmableDevice.createNewProgram(name);
+    public void createNewProgram(String name) {
+        program = programmableDevice.createNewProgram(name);
     }
 
-    public boolean addProgram(Program program) {
+    public boolean addProgram() {
         return programmableDevice.addProgram(program);
     }
 
