@@ -74,7 +74,7 @@ public final class Menu {
         StringBuilder content = new StringBuilder();
         content.append(CHOOSE_OPTIONS);
         content.append("\n");
-        content.append("1-Configure the location of the housegrid");
+        content.append("1-Configure the location of the house");
         content.append("\n");
         content.append("2-Add a room to the housegrid");
         content.append("\n");

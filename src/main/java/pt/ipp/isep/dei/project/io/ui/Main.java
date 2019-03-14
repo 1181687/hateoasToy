@@ -6,7 +6,6 @@ import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.Program;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
-import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -64,27 +63,16 @@ public class Main {
         GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
 
         // GEOGRAPHICAL AREAS
-        // Main Area
-        Location locationMainArea = new Location(41.164077, -8.620802, 118);
-        AreaShape areaShapeMainArea = new AreaShape(10.09, 3.30, locationMainArea);
-        GeographicalAreaType geographicalAreaTypeMainArea = new GeographicalAreaType("City");
-        GeographicalArea mainArea = new GeographicalArea("Porto", "Cidade do Porto", geographicalAreaTypeMainArea, locationMainArea, areaShapeMainArea);
-        geographicalAreaList.addGeoArea(mainArea);
-
         // Inserted Geo Area (Campus do ISEP)
         Location location = new Location(41.178553, -8.608035, 111);
         SensorTypeList sensorTypeList = new SensorTypeList();
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        GeographicalArea insertedGeoArea = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
-        geographicalAreaList.addGeoArea(insertedGeoArea);
-        insertedGeoArea.setInsertedIn(mainArea);
+        GeographicalArea insertedGeoArea = new GeographicalArea("DUMMY", "DUMMY", geographicalAreaType, location, areaShape);
 
         // HOUSE
         Location houseLocation = new Location(41.177748, -8.607745, 112);
-        Address address = new Address("4200-072", houseLocation, insertedGeoArea);
         House houseEdificioB = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
-        houseEdificioB.setAddress(address);
 
         // READINGS
         // Dates for the Sensors
