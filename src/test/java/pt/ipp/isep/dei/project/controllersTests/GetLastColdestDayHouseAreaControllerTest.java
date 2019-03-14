@@ -168,4 +168,40 @@ public class GetLastColdestDayHouseAreaControllerTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    void hasSensorsOfGivenTypeInGeoArea_withSensorsOfGivenTypeInArea_ShouldReturnTrue(){
+        //Act
+        boolean result = this.controller.hasSensorsOfGivenTypeInGeoArea();
+        //Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void hasSensorsOfGivenTypeInGeoArea_withoutSensorsOfGivenTypeInArea_ShouldReturnFalse(){
+        //Arrange
+        // Geographical Area Types
+        GeographicalAreaType city = new GeographicalAreaType("City");
+
+        // Geographical Areas
+
+        Location location = new Location(42.1496, -8.6109, 97);
+        AreaShape areaShape2 = new AreaShape(10, 10, location);
+        GeographicalArea porto = new GeographicalArea("Porto", "Porto City", city, location, areaShape2);
+
+        // New house in geographical area without sensors
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
+        House house2 = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Location houseLocation = new Location(41.178553, -8.608035, 111);
+        Address address = new Address("4200-072", houseLocation, porto);
+        house2.setAddress(address);
+
+        GetLastColdestDayHouseAreaController controller2 = new GetLastColdestDayHouseAreaController(house2);
+        //Act
+        boolean result = controller2.hasSensorsOfGivenTypeInGeoArea();
+        //Assert
+        assertFalse(result);
+    }
 }
