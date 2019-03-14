@@ -2009,6 +2009,108 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * temperatureSensor1 is the nearest sensor in Geographical area portocity
+     * beforeach has some readings, extra ones where added
+     * 12/04/2018 has one DoubleNan value and two valid values, so the amplitude in that day will be calculated
+     * with that two valid values
+     * expected result {2018-12-04=12, 2018-12-03=6.0, 2018-12-02=7.0}
+     */
+    @Test
+    void getDailyAmplitudeInterval_oneDayOneDoubleNanValueTwoValidValues_For4_12_2018() {
+
+        // Geographical Area Types
+        GeographicalAreaType region = new GeographicalAreaType("Region");
+        GeographicalAreaType district = new GeographicalAreaType("District");
+        GeographicalAreaType city = new GeographicalAreaType("City");
+
+        // Geographical Areas
+        Location location = new Location(32.1496, 7.6109, 98);
+        AreaShape areaShape = new AreaShape(100, 100, location);
+        GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
+        Location location1 = new Location(41.1496, -6.6109, 100);
+        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
+        portoDistrict.setInsertedIn(northernRegion);
+        Location location2 = new Location(42.1496, -8.6109, 97);
+        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
+        portoCity.setInsertedIn(portoDistrict);
+
+        // House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Location houseLocation = new Location(41.178553, -8.608035, 111);
+        Address address = new Address("4200-072", houseLocation, portoCity);
+        this.house.setAddress(address);
+
+        // Sensors
+        SensorType temperature = new SensorType("Temperature");
+        LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        Location sensorLocation = new Location(38.1596, -8.6109, 97);
+        Sensor temperatureSensor = new Sensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
+        Sensor temperatureSensor1 = new Sensor("12321", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+
+        // Reading
+        LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
+        LocalDateTime readingDate1 = LocalDateTime.of(2018, 12, 3, 13, 24, 00);
+        Reading reading = new Reading(23, readingDate);
+        Reading reading1 = new Reading(30, readingDate1);
+        temperatureSensor.addReadingsToList(reading);
+        temperatureSensor.addReadingsToList(reading1);
+        LocalDateTime readingDate2 = LocalDateTime.of(2018, 12, 2, 05, 20, 00);
+        LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 05, 24, 00);
+        Reading reading2 = new Reading(22, readingDate2);
+        Reading reading3 = new Reading(25, readingDate3);
+        temperatureSensor1.addReadingsToList(reading2);
+        temperatureSensor1.addReadingsToList(reading3);
+
+        //Add sensors to Sensorlist
+
+        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
+        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
+
+        // Extra Reading
+        double value = Double.NaN;
+        LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
+        Reading reading4 = new Reading(29, time0);
+        LocalDateTime time1 = LocalDateTime.of(2018, 12, 3, 13, 20, 00);
+        Reading reading5 = new Reading(31, time1);
+        temperatureSensor1.addReadingsToList(reading4);
+        temperatureSensor1.addReadingsToList(reading5);
+        LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
+        Reading reading6 = new Reading(value, time2);
+        LocalDateTime time3 = LocalDateTime.of(2018, 12, 4, 12, 20, 00);
+        Reading reading7 = new Reading(12, time3);
+        LocalDateTime time4 = LocalDateTime.of(2018, 12, 4, 13, 20, 00);
+        Reading reading8 = new Reading(24, time4);
+
+        temperatureSensor1.addReadingsToList(reading6);
+        temperatureSensor1.addReadingsToList(reading7);
+        temperatureSensor1.addReadingsToList(reading8);
+
+        //interval LocalDate
+        LocalDateTime startDateTime = LocalDateTime.of(2018, 12, 2, 00, 00, 01);
+        LocalDateTime endDateTime = LocalDateTime.of(2018, 12, 4, 23, 59, 00);
+
+        // Map expected
+        Map<LocalDate, Double> expectedResult = new HashMap<>();
+        expectedResult.put(time0.toLocalDate(), 7.0);
+        expectedResult.put(time1.toLocalDate(), 6.0);
+        expectedResult.put(time2.toLocalDate(), 12.0);
+
+        //Act
+        Map<LocalDate, Double> result = this.house.getDailyAmplitudeInIntervalInHouseArea(temperature, location2, startDateTime.toLocalDate(), endDateTime.toLocalDate());
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
     @Test
     void getDailyAmplitudeInterval_emptySensor_emptyMap() {
 

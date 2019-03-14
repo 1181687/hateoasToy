@@ -1724,6 +1724,59 @@ class GeographicalAreaTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * temperatureSensor1 is the nearest sensor in Geographical area portocity
+     * beforeach has some readings, extra ones where added
+     * 12/04/2018 has one DoubleNan value and two valid values, so the amplitude in that day will be calculated
+     * with that two valid values
+     * expected result {2018-12-04=12, 2018-12-03=6.0, 2018-12-02=7.0}
+     */
+    @Test
+    void getDailyAmplitudeInterval_oneDayOneDoubleNanValueTwoValidValues_For4_12_2018() {
+
+        // Extra Reading
+        double value = Double.NaN;
+        LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
+        Reading reading4 = new Reading(29, time0);
+        LocalDateTime time1 = LocalDateTime.of(2018, 12, 3, 13, 20, 00);
+        Reading reading5 = new Reading(31, time1);
+        temperatureSensor1.addReadingsToList(reading4);
+        temperatureSensor1.addReadingsToList(reading5);
+        LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
+        Reading reading6 = new Reading(value, time2);
+        LocalDateTime time3 = LocalDateTime.of(2018, 12, 4, 12, 20, 00);
+        Reading reading7 = new Reading(12, time3);
+        LocalDateTime time4 = LocalDateTime.of(2018, 12, 4, 13, 20, 00);
+        Reading reading8 = new Reading(24, time4);
+
+
+        temperatureSensor1.addReadingsToList(reading6);
+        temperatureSensor1.addReadingsToList(reading7);
+        temperatureSensor1.addReadingsToList(reading8);
+
+
+        //interval LocalDate
+        LocalDateTime startDateTime = LocalDateTime.of(2018, 12, 2, 00, 00, 01);
+        LocalDateTime endDateTime = LocalDateTime.of(2018, 12, 4, 23, 59, 00);
+
+        // Map expected
+        Map<LocalDate, Double> expectedResult = new HashMap<>();
+        expectedResult.put(time0.toLocalDate(), 7.0);
+        expectedResult.put(time1.toLocalDate(), 6.0);
+        expectedResult.put(time2.toLocalDate(), 12.0);
+
+        //Act
+        Map<LocalDate, Double> result = portoCity.getDailyAmplitudeInInterval(temperature, location2, startDateTime.toLocalDate(), endDateTime.toLocalDate());
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+
+
+
+
     @Test
     void getDailyAmplitudeInterval_emptySensor_emptyMap() {
 
