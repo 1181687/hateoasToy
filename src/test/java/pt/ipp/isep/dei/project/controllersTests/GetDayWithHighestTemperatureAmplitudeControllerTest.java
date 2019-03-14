@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.getdaywithhighesttemperatureamplitudecontroller.GetDayWithHighestTemperatureAmplitudeController;
+import pt.ipp.isep.dei.project.controllers.getDayWithHighestTemperatureAmplitudeController.GetDayWithHighestTemperatureAmplitudeController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
@@ -181,6 +181,107 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    /**
+     * temperatureSensor1 is the nearest sensor in Geographical area portocity
+     * beforeach has some readings, extra ones where added
+     * there is only one reading per day
+     * 2/12/2018 = 22.0;
+     * 3/12/2018 = 25.0;
+     * 4/12/2018 = 13.0;
+     * expected result is: "There are not enough values to calculate the amplitude."
+     */
+    @Test
+    void getHighestDailyAmplitude_onlyOneValuePerDay_ThereAreNotEnoughValuesToCalculateTheAmplitude() {
+
+        // Extra Reading
+        LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
+        Reading reading6 = new Reading(13, time2);
+        temperatureSensor1.addReadingsToList(reading6);
+
+        //interval LocalDate
+        LocalDateTime startDateTime = LocalDateTime.of(2018, 12, 2, 00, 00, 01);
+        LocalDateTime endDateTime = LocalDateTime.of(2018, 12, 4, 23, 59, 00);
+
+        //Act
+        controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
+        String result = controller.displayResults();
+        String expectedResult = "There are not enough values to calculate the amplitude.";
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
+    /**
+     * temperatureSensor1 is the nearest sensor in Geographical area portocity
+     * beforeach has some readings, extra ones where added
+     * there is only one reading per day, and in one day is doubleNan
+     * 2/12/2018 = 22.0;
+     * 3/12/2018 = 25.0;
+     * 4/12/2018 = DoubleNan;
+     * expected result is: "There are not enough values to calculate the amplitude."
+     */
+    @Test
+    void getHighestDailyAmplitude_onlyOneValuePerDayWithOneBeingDoubleNan_ThereAreNotEnoughValuesToCalculateTheAmplitude() {
+
+        double valueNan = Double.NaN;
+        // Extra Reading
+        LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
+        Reading reading6 = new Reading(valueNan, time2);
+        temperatureSensor1.addReadingsToList(reading6);
+
+        //interval LocalDate
+        LocalDateTime startDateTime = LocalDateTime.of(2018, 12, 2, 00, 00, 01);
+        LocalDateTime endDateTime = LocalDateTime.of(2018, 12, 4, 23, 59, 00);
+
+        //Act
+        controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
+        String result = controller.displayResults();
+        String expectedResult = "There are not enough values to calculate the amplitude.";
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * temperatureSensor1 is the nearest sensor in Geographical area portocity
+     * beforeach has some readings, extra ones where added
+     * there is only one reading per day, and in one day is doubleNan
+     * 4/12/2018 = DoubleNan;
+     * 12/12/2018 = DoubleNan;
+     * 13/12/2018 = DoubleNan;
+     * expected result is: "There's no registers for this period."
+     */
+    @Test
+    void getHighestDailyAmplitude_onlyValuesDoubleNan_TheresNoRegisterForThisPeriod() {
+
+        double valueNan = Double.NaN;
+        // Extra Reading
+        LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
+        Reading reading6 = new Reading(valueNan, time2);
+        temperatureSensor1.addReadingsToList(reading6);
+        LocalDateTime time3 = LocalDateTime.of(2018, 12, 12, 06, 20, 00);
+        Reading reading7 = new Reading(valueNan, time3);
+        temperatureSensor1.addReadingsToList(reading7);
+        LocalDateTime time4 = LocalDateTime.of(2018, 12, 13, 06, 20, 00);
+        Reading reading8 = new Reading(valueNan, time4);
+        temperatureSensor1.addReadingsToList(reading8);
+
+        //interval LocalDate
+        LocalDateTime startDateTime = LocalDateTime.of(2018, 12, 4, 00, 00, 01);
+        LocalDateTime endDateTime = LocalDateTime.of(2018, 12, 12, 23, 59, 00);
+
+        //Act
+        controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
+        String result = controller.displayResults();
+        String expectedResult = "There's no registers for this period.\n";
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+
 
     /**
      * temperatureSensor1 is the nearest sensor in Geographical area portocity

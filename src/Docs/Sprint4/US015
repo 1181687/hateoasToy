@@ -32,10 +32,57 @@ file to be imported.
 Test Criteria:
 - All acceptance tests with "Process finished with exit code 0" message:
 
+Controller Test Class
+- testImportGeographicalAreaAndSensors: returns True
+- testImportGeographicalAreaAndSensors: returns False
+
+GeographicalAreaList Test Class
+- testAddGeo_geoAreaAlreadyThere: returns False
+
+GeographicalAreaMapper Test Class
+-testMapToDTO_mapToDTO: returns a Geo Area DTO
+
+GeographicalAreaDTO Test Class
+- testGetIdTest_getId: returns ID S001
+- testsetId_changeId: retuns ID S002
+- getSensorNameTest_getSensorName: returns Sensor1
+- setSensorNameTest_changeSensorName: returns Sensor2
+- getGeographicalAreaTypeTest_getGeoAreaType: returns City
+- setGeographicalAreaTypeTest_newGeoAreaType: returns NewGeoArea
+- setAndGetWidthTest_getWidthAndChangeWidth: returns 10
+- setAndGetLengthTest_getLengthAndChangeLength: returns 15
+- setAndGetLatitudeTest_getLatitudeAndChangeLatitude: returns 20
+- setAndGetLongitudeTest_getLongitudeAndChangeLongitude: returns 25
+- setAndGetAltitudeTest_getAltitudeAndChangeAltitude: returns 30
+- getSensors_get: returns Temperature Sensor
+
+
+JSONReader Test Class
+-
+
+
+SensorMapper Test Class
+-
+
+
+SensorDTO Test Class
+- testGetId_get: returns isepTemperature
+- testSetId_set: returns ISEP
+- testGetName_get: returns temperatureSensor
+- testSetName_set: returns newName
+- testGetStartingDate_get: returns localdate
+- testSetStartingDate_set: returns localdate -1 day
+- testGetSensorType_get: returns temperature
+- testSetSensorType_set: returns rainfall
+- testGetLocation_get: returns location (comprised of latitude, longitude and elevation)
+- testSetLocation_set: returns new location (comprised of new latitude, longitude and elevation)
+- testGetUnits_get: returns ºC
+- testSetUnits_set: returns F
+
 
 ASSUMPTIONS:
-- Regarding sensors, only the geographical area sensors are imported.
+- Regarding sensors, only the geographical area sensors are imported (not the House sensors).
 - There is User interaction: the application asks the user the location of the files to be imported.
 - For user convenience the data to be imported is in the form of two DTO (Geographical Area DTO and SensorDTO)
-thar are imported at the same time instead of importing the two referred DTO's one at a time.
+thar are imported at the same time (in a single method) instead of importing the two referred DTO's one at a time.
 
