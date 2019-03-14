@@ -20,37 +20,43 @@ activate RegularUser
 actor RegularUser
 RegularUser -> ":GetDayWithHighest\nTemperatureAmplitudeUI": 1- getDayWithHighest\nTemperatureAmplitude
 activate ":GetDayWithHighest\nTemperatureAmplitudeUI"
-":GetDayWithHighest\nTemperatureAmplitudeUI" --> RegularUser: 2- insertFirstAndLastDate
-RegularUser -> ":GetDayWithHighest\nTemperatureAmplitudeUI": 3- firstDate, lastDate
-":GetDayWithHighest\nTemperatureAmplitudeUI" -> ":GetDayWithHighest\nTemperatureAmplitude\nController": 3.1- getDayWithHighest\nTemperatureAmplitude ()
+
+":GetDayWithHighest\nTemperatureAmplitudeUI" --> "RegularUser": 2-Ask for initial date
+deactivate ":GetDayWithHighest\nTemperatureAmplitudeUI"
+":GetDayWithHighest\nTemperatureAmplitudeUI" <- "RegularUser": 3-Insert initial date
+activate ":GetDayWithHighest\nTemperatureAmplitudeUI"
+":GetDayWithHighest\nTemperatureAmplitudeUI" --> "RegularUser": 4-Ask for final date
+deactivate ":GetDayWithHighest\nTemperatureAmplitudeUI"
+":GetDayWithHighest\nTemperatureAmplitudeUI" <- "RegularUser": 5-Insert final date
+activate ":GetDayWithHighest\nTemperatureAmplitudeUI"
+":GetDayWithHighest\nTemperatureAmplitudeUI" -> ":GetDayWithHighest\nTemperatureAmplitude\nController": 5.1- getDayWithHighest\nTemperatureAmplitude ()
 activate ":GetDayWithHighest\nTemperatureAmplitude\nController"
-":GetDayWithHighest\nTemperatureAmplitude\nController"-> ":House": 3.1.1- getDailyAmplitudeInIntervalInHouseArea ()
+":GetDayWithHighest\nTemperatureAmplitude\nController"-> ":House": 5.1.1- getDailyAmplitude\nInIntervalInHouseArea ()
 activate ":House"
-":House" -> ":GeographicalArea": 3.1.1.1- getDailyAmplitudeInInterval ()
+":House" -> ":GeographicalArea": 5.1.1.1- getDailyAmplitudeInInterval ()
 activate ":GeographicalArea"
 ref over ":GeographicalArea"
 getSensorListByTypeInAPeriod ()
 end
-deactivate ":Sensor"
-":House" <-- ":GeographicalArea": 3.1.1.2- mapOfDailyAmplitude
+":House" <-- ":GeographicalArea": 5.1.1.2- mapOfDailyAmplitude
 deactivate ":GeographicalArea"
-":GetDayWithHighest\nTemperatureAmplitude\nController"<-- ":House": 3.1.2- mapOfDailyAmplitude
+":GetDayWithHighest\nTemperatureAmplitude\nController"<-- ":House": 5.1.2- mapOfDailyAmplitude
 deactivate ":House"
-":GetDayWithHighest\nTemperatureAmplitude\nController" -> ":House": 3.1.3- getHighestDailyAmplitude ()
+":GetDayWithHighest\nTemperatureAmplitude\nController" -> ":House": 5.1.3- getHighestDailyAmplitude ()
 activate ":House"
-":House" -> ":GeographicalArea": 3.1.3.1- getHighestDailyAmplitude ()
+":House" -> ":GeographicalArea": 5.1.3.1- getHighestDailyAmplitude ()
 activate ":GeographicalArea"
-":House" <-- ":GeographicalArea": 3.1.3.2- mapOfHighestDailyAmplitude
+":House" <-- ":GeographicalArea": 5.1.3.2- mapOfHighestDailyAmplitude
 deactivate ":GeographicalArea"
-":GetDayWithHighest\nTemperatureAmplitude\nController" <-- ":House": 3.1.4- mapOfHighestDailyAmplitude
+":GetDayWithHighest\nTemperatureAmplitude\nController" <-- ":House": 5.1.4- mapOfHighestDailyAmplitude
 deactivate ":House"
 deactivate ":GetDayWithHighest\nTemperatureAmplitude\nController"
-":GetDayWithHighest\nTemperatureAmplitudeUI" -> ":GetDayWithHighest\nTemperatureAmplitude\nController": 3.2- displayResults ()
+":GetDayWithHighest\nTemperatureAmplitudeUI" -> ":GetDayWithHighest\nTemperatureAmplitude\nController": 5.2- displayResults ()
 activate ":GetDayWithHighest\nTemperatureAmplitude\nController"
-":GetDayWithHighest\nTemperatureAmplitudeUI" <-- ":GetDayWithHighest\nTemperatureAmplitude\nController": 3.3- displayResults
+":GetDayWithHighest\nTemperatureAmplitudeUI" <-- ":GetDayWithHighest\nTemperatureAmplitude\nController": 5.3- displayResults
 deactivate ":GetDayWithHighest\nTemperatureAmplitude\nController"
 
-RegularUser <-- ":GetDayWithHighest\nTemperatureAmplitudeUI": 4- String Result
+RegularUser <-- ":GetDayWithHighest\nTemperatureAmplitudeUI": 6- String Result
 deactivate ":GetDayWithHighest\nTemperatureAmplitudeUI"
 deactivate RegularUser
 @enduml
