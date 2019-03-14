@@ -64,7 +64,8 @@ public class GetDayWithHighestTemperatureAmplitudeController {
     /**
      * uses the Map<LocalDate, Double> map Result and prints the highest temperature amplitude and the date(s)
      * that registered that value. If the Map is empty, it prints that there's no registers for this period.
-     *
+     * If the map has a value Amplitude 0, it is because there weren't enough measuremnts to calculate the amplitude
+     * so it prints that There are not enough values to calculate the amplitude.
      * @return String with results
      */
     public String displayResults() {
