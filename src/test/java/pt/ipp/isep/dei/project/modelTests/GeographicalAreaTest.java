@@ -1836,26 +1836,67 @@ class GeographicalAreaTest {
     }
 
     @Test
-    public void getLastLowestMaximumReading() {
+    public void getLastLowestMaximumReading_WithValidReadings_ShouldReturnReadingWithValue17() {
         //Arrange
         LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
-        Reading reading4 = new Reading(29, time0);
+        Reading reading1 = new Reading(29, time0);
         LocalDateTime time1 = LocalDateTime.of(2018, 12, 3, 13, 20, 00);
-        Reading reading5 = new Reading(31, time1);
-        temperatureSensor1.addReadingsToList(reading4);
-        temperatureSensor1.addReadingsToList(reading5);
+        Reading reading2 = new Reading(31, time1);
+        temperatureSensor1.addReadingsToList(reading1);
+        temperatureSensor1.addReadingsToList(reading2);
         LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
-        Reading reading6 = new Reading(17, time2);
+        Reading reading3 = new Reading(17, time2);
         LocalDateTime time3 = LocalDateTime.of(2018, 12, 4, 12, 20, 00);
-        Reading reading7 = new Reading(10, time3);
-        temperatureSensor1.addReadingsToList(reading6);
-        temperatureSensor1.addReadingsToList(reading7);
+        Reading reading4 = new Reading(10, time3);
+        temperatureSensor1.addReadingsToList(reading3);
+        temperatureSensor1.addReadingsToList(reading4);
 
         //interval LocalDate
         LocalDate startDate = LocalDate.of(2018, 12, 2);
         LocalDate endDate = LocalDate.of(2018, 12, 4);
 
-        Reading expectedResult = reading6;
+        Reading expectedResult = reading3;
+        //Act
+        Reading result = portoCity.getLastLowestMaximumReading(this.location2, this.temperature, startDate, endDate);
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void getLastLowestMaximumReading_WithOnlyInvalidReadings_ShouldReturnReadingWithDoubleNaN() {
+        //Arrange
+        LocalDateTime time0 = LocalDateTime.of(2018, 12, 7, 12, 20, 00);
+        Reading reading1 = new Reading(Double.NaN, time0);
+        LocalDateTime time1 = LocalDateTime.of(2018, 12, 8, 13, 20, 00);
+        Reading reading2 = new Reading(Double.NaN, time1);
+        temperatureSensor1.addReadingsToList(reading1);
+        temperatureSensor1.addReadingsToList(reading2);
+        LocalDateTime time2 = LocalDateTime.of(2018, 12, 8, 06, 20, 00);
+        Reading reading3 = new Reading(Double.NaN, time2);
+        LocalDateTime time3 = LocalDateTime.of(2018, 12, 9, 12, 20, 00);
+        Reading reading4 = new Reading(Double.NaN, time3);
+        temperatureSensor1.addReadingsToList(reading3);
+        temperatureSensor1.addReadingsToList(reading4);
+
+        //interval LocalDate
+        LocalDate startDate = LocalDate.of(2018, 12, 7);
+        LocalDate endDate = LocalDate.of(2018, 12, 10);
+
+        Reading expectedResult = reading4;
+        //Act
+        Reading result = portoCity.getLastLowestMaximumReading(this.location2, this.temperature, startDate, endDate);
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    public void getLastLowestMaximumReading_WithNoReadingsInGivenInterval_ShouldReturnNull() {
+        //Arrange
+
+        LocalDate startDate = LocalDate.of(2018, 12, 7);
+        LocalDate endDate = LocalDate.of(2018, 12, 10);
+
+        Reading expectedResult = null;
         //Act
         Reading result = portoCity.getLastLowestMaximumReading(this.location2, this.temperature, startDate, endDate);
         //Assert
