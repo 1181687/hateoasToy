@@ -525,7 +525,7 @@ public class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.createNewWashingMachine("Washimashi", 100.5, 8);
+        controller.createNewWashingMachine("Washimashine", 100.5, 8);
         controller.isProgrammable();
 
         controller.createNewProgram("Program1");
@@ -542,7 +542,7 @@ public class AddDeviceToRoomControllerTest {
         //Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.createNewWashingMachine("Washimashi", 100.5, 8);
+        controller.createNewWashingMachine("Washimashine", 100.5, 8);
 
         //Act
         boolean result = controller.isProgrammable();
@@ -556,7 +556,7 @@ public class AddDeviceToRoomControllerTest {
         //Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.createNewLamp("Washimashi", 5, 8);
+        controller.createNewLamp("Lamp", 5, 8);
 
         //Act
         boolean result = controller.isProgrammable();
@@ -575,6 +575,36 @@ public class AddDeviceToRoomControllerTest {
 
         // Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetProgramAttributes_ValidAttribute_ReturnTrue() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createNewWashingMachine("Washimashine", 5, 8);
+        controller.isProgrammable();
+        controller.createNewProgram("Program xpto");
+
+        // Act
+        boolean result = controller.setProgramAttributes("duration", 10);
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testSetProgramAttributes_InvalidAttribute_ReturnFalse() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createNewWashingMachine("Washimashine", 5, 8);
+        controller.isProgrammable();
+        controller.createNewProgram("Program xpto");
+
+        // Act
+        boolean result = controller.setProgramAttributes("wrong attribute", 10);
+        // Assert
+        assertFalse(result);
     }
 
 }
