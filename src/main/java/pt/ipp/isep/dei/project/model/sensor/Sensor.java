@@ -511,6 +511,13 @@ public class Sensor {
         return measurementsBetweenDates;
     }
 
+    /**
+     * method to get the first highest reading within a given interval
+     *
+     * @param startDate initial date of the period the user wants to consider
+     * @param endDate   final date of the period the user wants to consider
+     * @return a Reading
+     */
     public Reading getFirstHighestReading(LocalDate startDate, LocalDate endDate) {
         if (getReadingsBetweenDates(startDate, endDate).isEmpty()) {
             return null;

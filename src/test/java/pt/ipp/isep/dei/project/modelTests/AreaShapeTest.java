@@ -349,4 +349,33 @@ class AreaShapeTest {
         // Assert
         assertFalse(result);
     }
+
+    @Test
+    void testGetWidth (){
+        // Arrange
+        Location location0 = new Location(29,20,65);
+        Location locationRectangleArea = new Location(40,20,65);
+        AreaShape area = new AreaShape(20, 40, locationRectangleArea);
+
+        double expectedResult= 20;
+
+        double result = area.getWidth();
+        assertEquals(expectedResult, result, 0.0001);
+
+    }
+
+
+    @Test
+    void testGetLength (){
+        // Arrange
+        Location location0 = new Location(29,20,65);
+        Location locationRectangleArea = new Location(40,20,65);
+        AreaShape area = new AreaShape(20, 40, locationRectangleArea);
+
+        double expectedResult= 40;
+
+        double result = area.getLength();
+        assertEquals(expectedResult, result, 0.0001);
+
+    }
 }
