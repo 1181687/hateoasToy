@@ -32,7 +32,7 @@ public class GetCurrentTemperatureRoom {
      * @param temp     given double temperature
      * @param dateTime given string date and time
      */
-    private void displayResults(String roomName, double temp, String dateTime) {
+    public void displayResults(String roomName, double temp, String dateTime) {
         StringBuilder content = new StringBuilder();
         content.append("The latest temperature of the room ");
         content.append(roomName);

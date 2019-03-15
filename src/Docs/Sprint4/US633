@@ -14,6 +14,7 @@ General Criteria:
                                         testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
 - All code, comments and documentation are in proper English.
 
+
 Specific Criteria:
 - given - The user wants to get the day with the highest temperature amplitude in the house area in a given period.
 
@@ -45,14 +46,20 @@ Test Criteria:
 h
 - If all readings within the selected period are Double.NaN: "There's no registers for this period."
 
-- If there is only one valid reading per day within the selected period (others don't exist or are Double.NaN): "There are not enough values to calculate the amplitude."
+- If there is only one valid reading per day within the selected period (others don't exist or are Double.NaN): "There
+are not enough values to calculate the amplitude."
 
-- If there is are some days in the selected period with only one valid value: The final result presented to the user only considers the days with more that one valid value.
+- If there is are some days in the selected period with only one valid value: The final result presented to the user
+only considers the days with more that one valid value.
 
-- If there is are some days in the selected period with only Double.NaN values: The final result presented to the user only considers the days with more that one valid value.
+- If there is are some days in the selected period with only Double.NaN values: The final result presented to the user
+only considers the days with more that one valid value.
+
 
 ASSUMPTIONS:
-- To calculate the day with the highest temperature amplitude, one must choose the sensor with the most recent readings if there are two
+- To calculate the day with the highest temperature amplitude, one must choose the sensor with the most recent readings
+if there are two
 temperature sensors at the same distance from the house area.
-- If there is more than one day with the highest amplitude, the message to the user should contain all dates with that value.
+- If there is more than one day with the highest amplitude, the message to the user should contain all dates with that
+value.
 - Functionality works with both positive and negative temperature values.

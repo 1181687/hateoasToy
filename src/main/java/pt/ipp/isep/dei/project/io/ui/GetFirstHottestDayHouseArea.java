@@ -9,7 +9,6 @@ import java.time.LocalDate;
 
 public class GetFirstHottestDayHouseArea {
     private GetFirstHottestDayHouseAreaController ctrl;
-    private ReadingDTO readingDTO;
 
     public GetFirstHottestDayHouseArea(House house) {
         this.ctrl = new GetFirstHottestDayHouseAreaController(house);
@@ -38,7 +37,7 @@ public class GetFirstHottestDayHouseArea {
             System.out.println("It is not possible to present valid readings in the house area.\n");
             return;
         }
-        readingDTO = ctrl.getFirstHighestReadingHouseArea(initialDate, finalDate);
+        ReadingDTO readingDTO = ctrl.getFirstHighestReadingHouseArea(initialDate, finalDate);
         if (Double.isNaN(readingDTO.getValue())) {
             System.out.println("Last reading in the house area is not valid.\n");
             return;

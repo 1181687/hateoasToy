@@ -22,11 +22,12 @@ in a given period.
 consider.
 - then - It is shown to the User the day with the last coldest day (lower maximum temperature) and the temperature value
 in that day. For instance:
-Output_1: "The last coldest day (lower maximum temperature) in the house area in the period between 2018-12-01 and 2018-12-31 is:
- 2018-12-31 with 15.5 Celsius."
+Output_1: "The last coldest day (lower maximum temperature) in the house area in the period between 2018-12-01 and
+2018-12-31 is: 2018-12-31 with 15.5 Celsius."
 - but - Depending on the result, one of the following messages are displayed:
 
-Output_2: "There are no valid readings in the nearest sensor for that period." - If there is no readings for the sensor in that period.
+Output_2: "There are no valid readings in the nearest sensor for that period." - If there is no readings for the sensor
+in that period.
 Output_3: "There are no temperature sensors in the house area." - If there's no sensors in the house area.
 Output_4: "That is not a valid period. Please try again." - If the first day is after the last day of the input.
 Output_5: "The last reading of the nearest sensor is not valid." - If the reading is not recognized as a reading.
@@ -34,7 +35,7 @@ Output_5: "The last reading of the nearest sensor is not valid." - If the readin
 
 
 Test Criteria:
-- All acceptance tests with "Process finished with exit code 0" message:
+- All unit tests with "Process finished with exit code 0" message.
 
 ACCEPTANCE TESTS
 
