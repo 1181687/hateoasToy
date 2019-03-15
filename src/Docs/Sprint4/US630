@@ -22,19 +22,39 @@ in a given period.
 consider.
 - then - It is shown to the User the day with the last coldest day (lower maximum temperature) and the temperature value
 in that day. For instance:
-"The last coldest day (lower maximum temperature) in the house area in the period between 2018-12-01 and 2018-12-31 is:
+Output_1: "The last coldest day (lower maximum temperature) in the house area in the period between 2018-12-01 and 2018-12-31 is:
  2018-12-31 with 15.5 Celsius."
-- but -
+- but - Depending on the result, one of the following messages are displayed:
 
-"There are no valid readings in the nearest sensor for that period." If there is no readings for the sensor in that period.
-"There are no temperature sensors in the house area." If there's no sensors in the house area.
-"That is not a valid period. Please try again." If the first day is after the last day of the input.
-"The last reading of the nearest sensor is not valid." If the reading is not recognized as a reading.
+Output_2: "There are no valid readings in the nearest sensor for that period." - If there is no readings for the sensor in that period.
+Output_3: "There are no temperature sensors in the house area." - If there's no sensors in the house area.
+Output_4: "That is not a valid period. Please try again." - If the first day is after the last day of the input.
+Output_5: "The last reading of the nearest sensor is not valid." - If the reading is not recognized as a reading.
 
 
 
 Test Criteria:
 - All acceptance tests with "Process finished with exit code 0" message:
+
+- Acceptance tests:
+
+Test_scenario1:
+- Input data: the sensors of the house area are nonexistent.
+- Expected result: "There are no valid readings in the nearest sensor for that period."
+
+Test_scenario2:
+- Input data: the last reading of the nearest sensor is not recognized as a valis reading.
+- Expected result: "The last reading of the nearest sensor is not valid."
+
+Test_scenario3:
+- Input data: the first day is after the last day of the input.
+- Expected result: "That is not a valid period. Please try again."
+
+Test_scenario4:
+- Input data: the sensors of the house area aren't temperature sensors.
+- Expected result: "There are no temperature sensors in the house area."
+
+
 
 
 ASSUMPTIONS:
