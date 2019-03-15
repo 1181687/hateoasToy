@@ -14,6 +14,7 @@ General Criteria:
                                         testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
 - All code, comments and documentation are in proper English.
 
+
 Specific Criteria:
 - given - The user (Admin) imports geographical areas sensors’ readings into the application from a CSV file.
 
@@ -23,15 +24,15 @@ Specific Criteria:
 - then - A success message is displayed if all the sensors readings are imported:
 Output_1: "All readings were imported successfully".
 
-
 - but - Depending on the result, one of the following messages are displayed:
 
-Output_2: "ERROR: There's no such file with that name." - if no file or directory is found when the user inputs the name/path
-of the file from where he wants to import the readings;
+Output_2: "ERROR: There's no such file with that name." - if no file or directory is found when the user inputs the
+name/path of the file from where he/she wants to import the readings;
 
 Output_3: "The file is empty, therefore nothing was imported." - if the file csv is empty.
 
-Output_4: Warnings regarding errors with the importation and the message "Some readings weren't imported." - if some readings weren't successfully imported because one of four reasons:
+Output_4: Warnings regarding errors with the importation and the message "Some readings weren't imported." - if some
+readings weren't successfully imported because one of four reasons:
 1- Sensor Id's don´t correspond to the existing sensors;
 2- Readings don't have LocalDateTime format;
 3- Readings have data outside the valid sensor operation period;
@@ -41,8 +42,9 @@ Output_4: Warnings regarding errors with the importation and the message "Some r
 
 Test Criteria:
 - All unit tests with "Process finished with exit code 0" message.
-- In the menu, when choosing the numbered options "1" from Menu (Administrator), then option "1" (Geographical Area) and then
-option "10"(Import Readings from CSV File), should not accept letters, symbols, or any number that's not displayed in the menu.
+- In the menu, when choosing the numbered options "1" from Menu (Administrator), then option "1" (Geographical Area)
+and then option "10"(Import Readings from CSV File), should not accept letters, symbols, or any number that's not
+displayed in the menu.
 
 - Acceptance tests:
 
