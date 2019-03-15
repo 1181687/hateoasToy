@@ -55,7 +55,7 @@ class DetachRoomFromHouseGridControllerTest {
         house.addRoom(r1);
 
         //housegrid
-        this.mainGrid = new HouseGrid("Main Grid");
+        mainGrid = new HouseGrid("Main Grid");
         house.addGrid(mainGrid);
         mainGrid.addRoom(r0);
         mainGrid.addRoom(r1);
@@ -109,16 +109,17 @@ class DetachRoomFromHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    /* @Test
+    @Test
      void getRoomFromTheListOfRoomByAPosition() {
          //Arrange
+        ctrl.getHouseGridFromTheList(0);
          Room expectedResult = r1;
          //Act
          Room result = ctrl.getRoomFromTheListOfRoomByAPosition(1);
          //Assert
          assertEquals(result, expectedResult);
      }
- */
+
     @Test
     void detachRoomFromGridList() {
         //Arrange

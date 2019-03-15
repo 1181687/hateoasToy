@@ -357,4 +357,13 @@ public class LampSpecsTest {
         assertFalse(result);
     }
 
+    @Test
+    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
+        //Arrange
+        lamp.getSpecs().asProgrammable();
+        //Act
+        boolean result = lamp.getSpecs().isProgrammable();
+        //Assert
+        assertFalse(result);
+    }
 }
