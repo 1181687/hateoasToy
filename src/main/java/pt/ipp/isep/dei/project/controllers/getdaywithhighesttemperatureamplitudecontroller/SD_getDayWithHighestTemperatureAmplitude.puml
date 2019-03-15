@@ -30,14 +30,15 @@ activate ":GetDayWithHighest\nTemperatureAmplitudeUI"
 deactivate ":GetDayWithHighest\nTemperatureAmplitudeUI"
 ":GetDayWithHighest\nTemperatureAmplitudeUI" <- "RegularUser": 5-Insert final date
 activate ":GetDayWithHighest\nTemperatureAmplitudeUI"
-":GetDayWithHighest\nTemperatureAmplitudeUI" -> ":GetDayWithHighest\nTemperatureAmplitude\nController": 5.1- getDayWithHighest\nTemperatureAmplitude ()
+":GetDayWithHighest\nTemperatureAmplitudeUI" -> ":GetDayWithHighest\nTemperatureAmplitude\nController": 5.1- getDayWithHighest\nTemperatureAmplitude (initial and final date)
 activate ":GetDayWithHighest\nTemperatureAmplitude\nController"
-":GetDayWithHighest\nTemperatureAmplitude\nController"-> ":House": 5.1.1- getDailyAmplitude\nInIntervalInHouseArea ()
+":GetDayWithHighest\nTemperatureAmplitude\nController"-> ":House": 5.1.1- getDailyAmplitude\nInIntervalInHouseArea (initial and final date)
 activate ":House"
-":House" -> ":GeographicalArea": 5.1.1.1- getDailyAmplitudeInInterval ()
+":House" -> ":GeographicalArea": 5.1.1.1- getDailyAmplitudeInInterval (initial and final date)
 activate ":GeographicalArea"
 ref over ":GeographicalArea"
-getSensorListByTypeInAPeriod ()
+getDailyAmplitudeInInterval
+(initial and final date)
 end
 ":House" <-- ":GeographicalArea": 5.1.1.2- mapOfDailyAmplitude
 deactivate ":GeographicalArea"
