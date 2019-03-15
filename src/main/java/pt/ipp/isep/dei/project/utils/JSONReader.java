@@ -15,7 +15,7 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JSONReader {
+public final class JSONReader {
 
     private JSONReader() {
         // empty
