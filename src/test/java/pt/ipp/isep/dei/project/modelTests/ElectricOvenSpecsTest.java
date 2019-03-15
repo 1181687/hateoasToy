@@ -2,9 +2,8 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
+import pt.ipp.isep.dei.project.model.devices.*;
+import pt.ipp.isep.dei.project.model.devices.electricoven.ElectricOvenSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -50,9 +49,9 @@ public class ElectricOvenSpecsTest {
      * The Kettle is not programmable, so it just has the false return.
      */
     @Test
-    public void testIsProgrammable_False() {
+    public void testIsProgrammable_True() {
         //Arrange
-        boolean expectedResult = false;
+        boolean expectedResult = true;
         //Act
         boolean result = specs.isProgrammable();
 
@@ -67,7 +66,7 @@ public class ElectricOvenSpecsTest {
     @Test
     public void testAsProgrammable_null() {
         //Arrange
-        Programmable expectedResult = null;
+        Programmable expectedResult = (Programmable) specs;
 
         //Act
         Programmable result = specs.asProgrammable();
@@ -458,6 +457,76 @@ public class ElectricOvenSpecsTest {
     }
 
 
+    @Test
+    public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
+        //Arrange
+        boolean expectedResult = false;
+        //Act
+        boolean result = ((ElectricOvenSpecs) specs).addProgram(null);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 
+    @Test
+    public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
+        //Arrange
+        String programName = "fast";
+        Programmable programmable = this.specs.asProgrammable();
+        TimeVariableProgramSpecs programASpecs = new TimeVariableProgramSpecs();
+        programASpecs.setTime(30.0);
+        programASpecs.setProgramNominalPower(50.0);
+        Program programA = programmable.createNewProgram(programName);
+        programmable.addProgram(programA);
+
+
+        boolean expectedResult = false;
+
+        //Act
+        boolean result = ((ElectricOvenSpecs) specs).addProgram(programA);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
+        //Arrange
+        String programName = "fast";
+        Programmable programmable = this.specs.asProgrammable();
+        TimeVariableProgramSpecs programASpecs = new TimeVariableProgramSpecs();
+        programASpecs.setTime(30.0);
+        programASpecs.setProgramNominalPower(50.0);
+        Program programA = programmable.createNewProgram(programName);
+
+
+        boolean expectedResult = true;
+
+        //Act
+        boolean result = ((ElectricOvenSpecs) specs).addProgram(programA);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetProgramList() {
+        //Arrange
+        String programName = "fast";
+        Programmable programmable = this.specs.asProgrammable();
+        TimeVariableProgramSpecs programASpecs = new TimeVariableProgramSpecs();
+        programASpecs.setTime(30.0);
+        programASpecs.setProgramNominalPower(50.0);
+        Program programA = programmable.createNewProgram(programName);
+        ((ElectricOvenSpecs) specs).addProgram(programA);
+
+        List<Program> expectedResult = new ArrayList<>();
+        expectedResult.add(programA);
+
+        //Act
+        List<Program> result = ((ElectricOvenSpecs) specs).getProgramList();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 
 }
