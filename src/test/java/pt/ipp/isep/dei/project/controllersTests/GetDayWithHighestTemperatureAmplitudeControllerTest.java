@@ -133,8 +133,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         //Act
         controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
         String result = controller.displayResults();
-        String expectedResult = "The highest temperature amplitude for the chosen period is 20.0 Celsius and was registered on:\n" +
-                "2018-12-04\n";
+        String expectedResult = "There's no registers for this period.\n";
 
         //Assert
         assertEquals(expectedResult, result);
@@ -175,8 +174,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         //Act
         controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
         String result = controller.displayResults();
-        String expectedResult = "The highest temperature amplitude for the chosen period is 7.0 Celsius and was registered on:\n" +
-                "2018-12-02\n";
+        String expectedResult = "There's no registers for this period.\n";
 
         //Assert
         assertEquals(expectedResult, result);
@@ -206,7 +204,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         //Act
         controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
         String result = controller.displayResults();
-        String expectedResult = "There are not enough values to calculate the amplitude.";
+        String expectedResult = "There's no registers for this period.\n";
 
         //Assert
         assertEquals(expectedResult, result);
@@ -238,7 +236,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         //Act
         controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
         String result = controller.displayResults();
-        String expectedResult = "There are not enough values to calculate the amplitude.";
+        String expectedResult = "There's no registers for this period.\n";
 
         //Assert
         assertEquals(expectedResult, result);
