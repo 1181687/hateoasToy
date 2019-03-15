@@ -18,10 +18,10 @@ skinparam sequence {
 }
 loop parseGeoArea
 activate "JSONReader"
-JSONReader -> ":LocationMapper": 1- mapToDTO(latitude,longitude,altitude)
-activate ":LocationMapper"
-":LocationMapper" --> JSONReader: 2- locationDTO
-deactivate ":LocationMapper"
+JSONReader -> "LocationMapper": 1- mapToDTO(latitude,longitude,altitude)
+activate "LocationMapper"
+"LocationMapper" --> JSONReader: 2- locationDTO
+deactivate "LocationMapper"
 JSONReader -> "GeographicalAreaMapper": 3- mapToDTO(id,description,\ntype,width,legth,locationDTO)
 activate "GeographicalAreaMapper"
 "GeographicalAreaMapper" -> ":GeographicalAreaDTO" : 3.1- create
@@ -33,10 +33,10 @@ deactivate ":GeographicalAreaDTO"
 deactivate "GeographicalAreaMapper"
 
 loop parseSensor
-JSONReader -> ":LocationMapper": 5- mapToDTO(latitude,longitude,altitude)
-activate ":LocationMapper"
-":LocationMapper" --> JSONReader: 6- locationDTO
-deactivate ":LocationMapper"
+JSONReader -> "LocationMapper": 5- mapToDTO(latitude,longitude,altitude)
+activate "LocationMapper"
+"LocationMapper" --> JSONReader: 6- locationDTO
+deactivate "LocationMapper"
 JSONReader -> ":SensorDTO": 7- newSensorDTO()
 activate ":SensorDTO"
 ":SensorDTO" --> JSONReader: 8- sensorDTO
