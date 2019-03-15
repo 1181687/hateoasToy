@@ -26,8 +26,8 @@ public class JSONReader {
         List<GeographicalAreaDTO> finallist;
         //JSON parser object to parse read file
         JsonParser jsonParser = new JsonParser();
-            //Read JSON file
-            JsonElement elem = jsonParser.parse(reader);
+        //Read JSON file
+        JsonElement elem = jsonParser.parse(reader);
         try {
             finallist = parseJsonObjects(elem);
         } catch (NumberFormatException | DateTimeParseException | NullPointerException e) {
@@ -43,9 +43,9 @@ public class JSONReader {
         double altitude = object.get("altitude").getAsDouble();
 
         LocationDTO locationDTO = new LocationDTO();
-        locationDTO.setLatitude(latitude);
+        /*locationDTO.setLatitude(latitude);
         locationDTO.setLongitude(longitude);
-        locationDTO.setElevation(altitude);
+        locationDTO.setElevation(altitude);*/
 
         return locationDTO;
     }
