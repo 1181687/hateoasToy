@@ -66,7 +66,7 @@ public class Admin {
                     ui8.run();
                     break;
                 case 9:
-                    ImportReadingsFromJSON ui9 = new ImportReadingsFromJSON(geographicalAreaList);
+                    ImportGeoAreasFromJSON ui9 = new ImportGeoAreasFromJSON(geographicalAreaList);
                     ui9.run();
                     break;
                 case 10:
