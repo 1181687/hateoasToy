@@ -12,7 +12,7 @@ import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 
 public class CreateHouseGrid {
     private CreateHouseGridController controller;
-    private HouseGridDTO gridDTO;
+    private HouseGridDTO gridDTO = HouseGridMapper.newHouseGridDTO();
 
     public CreateHouseGrid(House house) {
         this.controller = new CreateHouseGridController(house);
@@ -20,7 +20,6 @@ public class CreateHouseGrid {
 
     public void run() {
         boolean flag = true;
-        gridDTO = HouseGridMapper.newHouseGridDTO();
         String label1 = "Please insert the name of the House Grid you want to create.";
         String nameHG;
 
