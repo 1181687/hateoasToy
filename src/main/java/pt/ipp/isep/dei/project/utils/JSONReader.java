@@ -43,9 +43,9 @@ public final class JSONReader {
         double altitude = object.get("altitude").getAsDouble();
 
         LocationDTO locationDTO = new LocationDTO();
-        /*locationDTO.setLatitude(latitude);
+        locationDTO.setLatitude(latitude);
         locationDTO.setLongitude(longitude);
-        locationDTO.setElevation(altitude);*/
+        locationDTO.setElevation(altitude);
 
         return locationDTO;
     }
