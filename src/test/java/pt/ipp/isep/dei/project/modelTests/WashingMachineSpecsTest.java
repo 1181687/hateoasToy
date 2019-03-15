@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.washingmachine.WashingMachineSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -10,7 +9,6 @@ import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -207,7 +205,17 @@ class WashingMachineSpecsTest {
     @Test
     public void testSetAttributeCapacityValueNullChar() {
         // Arrange
-        String attribute = "stuff";
+        double attribute = 250;
+        // Act
+        boolean result = washingMachineSpecs.setAttributeValue("\0Capacity", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeCapacitySameValue() {
+        // Arrange
+        double attribute = 3;
         // Act
         boolean result = washingMachineSpecs.setAttributeValue("\0Capacity", attribute);
         // Assert
@@ -294,11 +302,23 @@ class WashingMachineSpecsTest {
     }
 
     @Test
-    public void testSetNominalPower_False() {
+    public void testSetNominalPowerZeroSameValue_False() {
         boolean expectedResult = false;
-        washingMachineSpecs.setAttributeValue(ATTRIBUTE_NOMINAL_POWER,0);
+        washingMachineSpecs.setAttributeValue(ATTRIBUTE_NOMINAL_POWER, 0);
 
-        boolean result = washingMachineSpecs.setAttributeValue(ATTRIBUTE_NOMINAL_POWER,0);
+        boolean result = washingMachineSpecs.setAttributeValue(ATTRIBUTE_NOMINAL_POWER, 0);
+        //Assert
+        assertEquals(expectedResult, result);
+
+
+    }
+
+    @Test
+    public void testSetCapacityZeroSameValue_False() {
+        boolean expectedResult = false;
+        washingMachineSpecs.setAttributeValue(ATTRIBUTE_CAPACITY, 0);
+
+        boolean result = washingMachineSpecs.setAttributeValue(ATTRIBUTE_CAPACITY, 0);
         //Assert
         assertEquals(expectedResult, result);
 

@@ -2,17 +2,15 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import pt.ipp.isep.dei.project.model.devices.TimeVariableProgramSpecs;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class TimeVariableProgramSpecsTest {
-    private TimeVariableProgramSpecs specs;
-
     private static final String TIME = "time";
     private static final String NOMINAL_POWER = "programNominalPower";
+    private TimeVariableProgramSpecs specs;
 
     @BeforeEach
     public void StartUp() {
@@ -156,7 +154,7 @@ public class TimeVariableProgramSpecsTest {
         double result = specs.getEnergyConsumption();
 
         //Assert
-        assertEquals(expectedResult, result,0.0001);
+        assertEquals(expectedResult, result, 0.0001);
     }
 
 
