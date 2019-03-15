@@ -1,12 +1,15 @@
 package pt.ipp.isep.dei.project.utilsTests;
 
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapping;
+import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
 import pt.ipp.isep.dei.project.utils.JSONReader;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +40,28 @@ public class JSONReaderTest {
         double altitude = 111;
 
         GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapping.mapToDTO(id, description, type, width, length, latitude, longitude, altitude);
+
+        // sensor
+        String idSensor = "S1";
+        String nameSensor = "sensor1";
+        String typeName = "Temperature";
+        String units = "1/ms";
+
+        LocationDTO locationDTO = new LocationDTO();
+        locationDTO.setLatitude(latitude);
+        locationDTO.setLongitude(longitude);
+        locationDTO.setElevation(altitude);
+        LocalDate dateDTO = LocalDate.now();
+
+        SensorDTO areaSensor1 = new SensorDTO();
+        areaSensor1.setId(idSensor);
+        areaSensor1.setName(nameSensor);
+        areaSensor1.setSensorType(typeName);
+        areaSensor1.setLocation(locationDTO);
+        areaSensor1.setStartingDate(dateDTO);
+        areaSensor1.setUnits(units);
+
+        geographicalAreaDTO.addSensor(areaSensor1);
 
 
         // geo area Porto

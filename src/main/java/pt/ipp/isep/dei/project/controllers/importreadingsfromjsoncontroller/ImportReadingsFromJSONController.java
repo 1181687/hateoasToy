@@ -16,6 +16,12 @@ public class ImportReadingsFromJSONController {
         this.geographicalAreaList = geographicalAreaList;
     }
 
+    /**
+     * This method import the GeographicalAreaDTO list to be imported
+     *
+     * @param geoAreaObjects
+     * @return boolean
+     */
     public boolean importGeographicalAreaAndSensors(List<GeographicalAreaDTO> geoAreaObjects) {
         boolean imported = false;
         for (GeographicalAreaDTO geoObject : geoAreaObjects) {

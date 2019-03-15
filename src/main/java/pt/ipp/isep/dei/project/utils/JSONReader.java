@@ -17,6 +17,10 @@ import java.util.List;
 
 public class JSONReader {
 
+    public JSONReader() {
+        // empty
+    }
+
     @SuppressWarnings("unchecked")
     public static List<GeographicalAreaDTO> readJSONFileToList(FileReader reader) {
         List<GeographicalAreaDTO> finallist;
@@ -24,7 +28,6 @@ public class JSONReader {
         JsonParser jsonParser = new JsonParser();
             //Read JSON file
             JsonElement elem = jsonParser.parse(reader);
-            //System.out.println(elem);
         try {
             finallist = parseJsonObjects(elem);
         } catch (NumberFormatException | DateTimeParseException | NullPointerException e) {
@@ -34,12 +37,9 @@ public class JSONReader {
     }
 
     private static LocationDTO locationParser(JsonObject object) throws NumberFormatException {
-        //JsonObject location = object.get("location").getAsJsonObject();
 
         double latitude = object.get("latitude").getAsDouble();
-
         double longitude = object.get("longitude").getAsDouble();
-
         double altitude = object.get("altitude").getAsDouble();
 
         LocationDTO locationDTO = new LocationDTO();
