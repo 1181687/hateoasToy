@@ -2170,29 +2170,15 @@ class GeographicalAreaTest {
     }
 
     @Test
-    public void testCheckMeasurementExistenceBetweenDates_false (){
-        LocalDate date1 = LocalDate.of(2017,12,3);
-        LocalDate date2 = LocalDate.of(2017,12,4);
-        boolean expectedResult = false;
-
-        boolean result= portoCity.checkMeasurementExistenceBetweenDates(location2, date1, date2);
-
-        assertEquals(expectedResult, result);
-
-
+    public void addSensor_SensorIsAdded_ShouldReturnTrue(){
+        //Arrange
+        SensorType humidity = new SensorType("Humidity");
+        LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        Location sensorLocation = new Location(42.1596, -8.6109, 97);
+        Sensor sensor = new Sensor("123", "A123", startDate, humidity, sensorLocation, "l/m2");
+        //Act
+        boolean result = this.portoCity.addSensor(sensor);
+        //Assert
+        assertTrue(result);
     }
-
-    @Test
-    public void testCheckMeasurementExistenceBetweenDates_true (){
-        LocalDate date1 = LocalDate.of(2018,12,3);
-        LocalDate date2 = LocalDate.of(2018,12,4);
-        boolean expectedResult = true;
-
-        boolean result= portoCity.checkMeasurementExistenceBetweenDates(location2, date1, date2);
-
-        assertEquals(expectedResult, result);
-
-
-    }
-
 }

@@ -190,6 +190,15 @@ public class MicrowaveOvenSpecsTest {
         assertFalse(result);
     }
 
+    @Test
+    public void testSetAttributeNominalPower_SameValueZero() {
+        // Arrange
+        microwaveOven.setAttributesDevType("Nominal Power", 0);
+        // Act
+        boolean result = microwaveOven.getSpecs().setAttributeValue("Nominal Power", 0);
+        // Assert
+        assertFalse(result);
+    }
 
     @Test
     public void getAttributeDataTypeTest_notValidAttributte() {

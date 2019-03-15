@@ -217,7 +217,18 @@ class WashingMachineSpecsTest {
         // Arrange
         double attribute = 3;
         // Act
-        boolean result = washingMachineSpecs.setAttributeValue("\0Capacity", attribute);
+        boolean result = washingMachineSpecs.setAttributeValue("Capacity", attribute);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeCapacitySameValueZero() {
+        // Arrange
+        double attribute = 0;
+        washingMachineSpecs.setAttributeValue("Capacity", attribute);
+        // Act
+        boolean result = washingMachineSpecs.setAttributeValue("Capacity", attribute);
         // Assert
         assertFalse(result);
     }
@@ -321,8 +332,97 @@ class WashingMachineSpecsTest {
         boolean result = washingMachineSpecs.setAttributeValue(ATTRIBUTE_CAPACITY, 0);
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAsProgrammable() {
+        //Arrange
+        Programmable expectedResult = (Programmable) washingMachineSpecs;
+
+        //Act
+        Programmable result = washingMachineSpecs.asProgrammable();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAsProgrammable_device(){
+        Programmable expectedResult = (Programmable) washingMachineSpecs;
+        Programmable result = washingMachineSpecs.asProgrammable();
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    public void testGetProgramList() {
+        //Arrange
+        String programName = "fast";
+        Programmable programmable = washingMachineSpecs.asProgrammable();
+        TimeConstantProgramSpecs programCSpecs = new TimeConstantProgramSpecs();
+        programCSpecs.setDuration(30.0);
+        programCSpecs.setEnergyConsumption(50.0);
+        Program programC = programmable.createNewProgram(programName);
+        ((WashingMachineSpecs) washingMachineSpecs).addProgram(programC);
+
+        List<Program> expectedResult = new ArrayList<>();
+        expectedResult.add(programC);
+
+        //Act
+        List<Program> result = ((WashingMachineSpecs) washingMachineSpecs).getProgramList();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
+        //Arrange
+        boolean expectedResult = false;
+        //Act
+        boolean result = ((WashingMachineSpecs) washingMachineSpecs).addProgram(null);
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
+        //Arrange
+        String programName = "fast";
+        Programmable programmable = this.washingMachineSpecs.asProgrammable();
+        TimeConstantProgramSpecs programSpecs = new TimeConstantProgramSpecs();
+        programSpecs.setDuration(50.0);
+        programSpecs.setEnergyConsumption(20.0);
+        Program program = programmable.createNewProgram(programName);
+        programmable.addProgram(program);
 
 
+        boolean expectedResult = false;
+
+        //Act
+        boolean result = ((WashingMachineSpecs) washingMachineSpecs).addProgram(program);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
+        //Arrange
+        String programName = "fast";
+        Programmable programmable = this.washingMachineSpecs.asProgrammable();
+        TimeConstantProgramSpecs programBSpecs = new TimeConstantProgramSpecs();
+        programBSpecs.setDuration(30.0);
+        programBSpecs.setEnergyConsumption(50.0);
+        Program programB = programmable.createNewProgram(programName);
+
+        boolean expectedResult = true;
+
+        //Act
+        boolean result = ((WashingMachineSpecs) washingMachineSpecs).addProgram(programB);
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 
 }

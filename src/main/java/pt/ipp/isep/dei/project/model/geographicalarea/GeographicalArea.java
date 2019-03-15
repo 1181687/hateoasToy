@@ -433,15 +433,30 @@ public class GeographicalArea {
         return totalDailyMeasurement;
     }
 
+    /**
+     * method to get the first highest reading of a sensor of a specific type (nearest one with most recent readings)
+     * in a given interval
+     *
+     * @param startDate initial date of the period the user wants to consider
+     * @param endDate   final date of the period the user wants to consider
+     * @return a Reading
+     */
     public Reading getFirstHighestReading(SensorType type, LocalDate startDate, LocalDate endDate) {
         Sensor chosenSensor = getNearestSensorWithMostRecentReading(type, this.location);
         return chosenSensor.getFirstHighestReading(startDate, endDate);
     }
 
-    public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
-        return sensorList.checkMeasurementExistenceBetweenDates(location, startDate, endDate);
-    }
 
+    /**
+     * Method that returns the last lowest maximum Reading in a given period. It takes in consideration the readings
+     * of the nearest sensor of a given type that has the most recent reading. If there are no sensors available
+     * in the geographical area, the method return a null.
+     * @param location location of the house area
+     * @param sensorType the type of the sensor
+     * @param startDate LocalDate of the beginning of the period
+     * @param endDate LocalDate of the ending of the period
+     * @return
+     */
     public Reading getLastLowestMaximumReading(Location location, SensorType sensorType, LocalDate startDate, LocalDate endDate) {
         Sensor sensor = getNearestSensorWithMostRecentReading(sensorType, location);
         if (Objects.isNull(sensor)) {
@@ -451,6 +466,13 @@ public class GeographicalArea {
         return sensor.getLastLowestReading(readings);
     }
 
+    /**
+     * Method that returns the sensor, of a given type, that is closest to the given location and has the most recent
+     * reading
+     * @param type sensor type
+     * @param location location of the house area
+     * @return
+     */
     public Sensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
         SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
         if (sensorListWithTheRequiredType.isEmpty()) {
@@ -460,6 +482,7 @@ public class GeographicalArea {
                 .getNearestSensorsToLocation(location)
                 .getSensorWithMostRecentReading();
     }
+
 
     public boolean addSensor(Sensor sensor) {
         return this.sensorList.addSensor(sensor);

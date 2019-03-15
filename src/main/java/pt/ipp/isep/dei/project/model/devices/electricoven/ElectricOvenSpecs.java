@@ -1,22 +1,21 @@
 package pt.ipp.isep.dei.project.model.devices.electricoven;
 
-import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
-import pt.ipp.isep.dei.project.model.devices.TimeConstantProgramSpecs;
+import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class ElectricOvenSpecs implements DeviceSpecs {
+public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
     private static final String ATTRIBUTE_TIME = "Time";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
     private String typeName;
     private double time;
     private double nominalPower;
-    private List<TimeConstantProgramSpecs> programList;
+    private List<Program> programList;
 
     public ElectricOvenSpecs() {
 
@@ -30,13 +29,20 @@ public class ElectricOvenSpecs implements DeviceSpecs {
 
     @Override
     public boolean isProgrammable() {
-        return false;
+        return true;
     }
 
     @Override
     public Programmable asProgrammable() {
-        return null;
+        return this;
     }
+
+
+    @Override
+    public List<Program> getProgramList() {
+        return this.programList;
+    }
+
 
     /**
      * get method of the energy consumption of an Electric Oven
@@ -165,11 +171,18 @@ public class ElectricOvenSpecs implements DeviceSpecs {
         }
     }
 
-    public boolean addProgram(TimeConstantProgramSpecs program) {
+    @Override
+    public boolean addProgram(Program program) {
         if (!Objects.isNull(program) && !(programList.contains(program))) {
             this.programList.add(program);
             return true;
         }
         return false;
+    }
+
+    @Override
+    public Program createNewProgram(String programName) {
+        ProgramSpecs specs = new TimeVariableProgramSpecs();
+        return new TimeVariableProgram(programName, specs);
     }
 }

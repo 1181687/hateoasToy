@@ -20,18 +20,23 @@ Specific Criteria:
 - when - The user chooses option "1" from Menu (Administrator), then option "1" (Geographical Area) and then option "10"
 (Import Readings from CSV File). Then User inserts the path to the CSV file to be imported.
 
-- then - A success message is displayed if all the sensors readings are inserted:
+- then - A success message is displayed if all the sensors readings are imported:
 Output_1: "All readings were imported successfully".
 
 
 - but - Depending on the result, one of the following messages are displayed:
 
-Output_2: "ERROR: There's no such file with that name." - if no file or directory is found when the user inputs the name
+Output_2: "ERROR: There's no such file with that name." - if no file or directory is found when the user inputs the name/path
 of the file from where he wants to import the readings;
 
-Output_3: "Some readings weren't imported." - if some readings weren't successfully imported.
+Output_3: "The file is empty, therefore nothing was imported." - if the file csv is empty.
 
-Output_4: "The file is empty, therefore nothing was imported." - if the file csv is empty.
+Output_4: Warnings regarding errors with the importation and the message "Some readings weren't imported." - if some readings weren't successfully imported because one of four reasons:
+1- Sensor Id's don´t correspond to the existing sensors;
+2- Readings don't have LocalDateTime format;
+3- Readings have data outside the valid sensor operation period;
+4- Readings don't have double format measurements.
+
 
 
 Test Criteria:
@@ -51,78 +56,68 @@ Test_scenario2:
 
 Test_scenario3:
 - Input data: the csv file has only readings that don't have LocalDateTime format.
-- Expected result: "Error - readings weren't imported"
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
 
 Test_scenario4:
 - Input data: the csv file has only readings that don't have double format measurements.
-- Expected result: "Error - readings weren't imported"
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
 
 Test_scenario5:
 - Input data: the csv file has only Data outside the valid sensor operation period.
-- Expected result: "Error - readings weren't imported"
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
 
 Test_scenario6:
 - Input data: the csv file has only readings with Sensor Id's that don´t correspond to the existing sensors.
-- Expected result: "Error - readings weren't imported"
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
 
 Test_scenario7:
 - Input data: the csv file has only readings without Sensor Id.
-- Expected result: "Error - readings weren't imported"
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
 
 Test_scenario8:
 - Input data: the csv file has some readings with Sensor Id that don´t correspond to the existing sensors.
-- Expected result: "Some readings weren't imported."
-- Input Y: expected result: list of the readings.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
 
 Test_scenario9:
-- Input data: the csv file has some readings with Sensor Id that don´t correspond to the existing sensors.
-- Expected result: "Some readings weren't imported."
-- Input N: expected result: ends that functionality and show the menu again.
+- Input data: the csv file has some readings that don't have LocalDateTime format.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
 
 Test_scenario10:
-- Input data: the csv file has some readings that don't have Id of the sensors.
-- Expected result: "Some readings weren't imported."
-- Input N: expected result: ends that functionality and show the menu again.
+- Input data: the csv file has some readings that don't have double format measurements.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
 
 Test_scenario11:
-- Input data: the csv file has some readings that don't have Id of the sensors.
-- Expected result: "Some readings weren't imported."
-- Input N: expected result: ends that functionality and show the menu again.
+- Input data: the csv file have some Data outside the valid sensor operation period.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
 
 Test_scenario12:
-- Input data: the csv file has some readings that don't have LocalDateTime format.
-- Expected result: "Some readings weren't imported."
-- Input Y: expected result: list of the readings.
-
-Test_scenario13:
-- Input data: the csv file has some readings that don't have LocalDateTime format.
-- Expected result: "Some readings weren't imported."
-- Input N: expected result: ends that functionality and show the menu again.
-
-Test_scenario14:
-- Input data: the csv file has some readings that don't have double format measurements.
-- Expected result: "Some readings weren't imported."
-- Input Y: expected result: list of the readings.
-
-Test_scenario15:
-- Input data: the csv file has some readings that don't have double format measurements.
-- Expected result: "Some readings weren't imported."
-- Input N: expected result: ends that functionality and show the menu again.
-
-Test_scenario16:
-- Input data: the csv file have some Data outside the valid sensor operation period.
-- Expected result: "Some readings weren't imported."
-- Input Y: expected result: list of the readings.
-
-Test_scenario17:
-- Input data: the csv file have some Data outside the valid sensor operation period.
-- Expected result: "Some readings weren't imported."
-- Input N: expected result: ends that functionality and show the menu again.
-
-Test_scenario18:
 - Input data: the path csv file is correct, and have the correct data and id of the existing sensors in
 a valid operation period.
 - Expected result: "All readings were imported successfully."
+
+Test_scenario13:
+- Input data: the path csv file has all the data in the wrong order.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+
+Test_scenario14:
+- Input data: the path csv file has some the data in the wrong order.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+
+Test_scenario15:
+- Input data: the path csv file has an extra field with data but all the order data are correct an in the correct order.
+- Expected result: "All readings were imported successfully."
+
+Test_scenario16:
+- Input data: the path csv file has several extra fields with data but all the order data are correct an in the correct order.
+- Expected result: "All readings were imported successfully."
+
+Test_scenario17:
+- Input data: the path csv file has a field less.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+
+Test_scenario18:
+- Input data: the path csv file has lesser fields.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
 
 
 ASSUMPTIONS:

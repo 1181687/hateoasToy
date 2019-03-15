@@ -16,6 +16,7 @@ public class SensorDTO {
      * Constructor.
      */
     public SensorDTO() {
+        //intentionally empty
     }
 
     public String getId() {

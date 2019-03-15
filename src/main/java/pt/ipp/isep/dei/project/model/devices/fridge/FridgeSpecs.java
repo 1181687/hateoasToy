@@ -12,6 +12,7 @@ public class FridgeSpecs implements DeviceSpecs {
     private static final String ATTRIBUTE_REFRIGERATOR_CAPACITY = "Refrigerator Capacity";
     private static final String ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
     private String typeName;
     private double freezerCapacity;

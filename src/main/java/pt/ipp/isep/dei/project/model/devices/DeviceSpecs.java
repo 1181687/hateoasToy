@@ -4,7 +4,6 @@ import java.util.List;
 
 public interface DeviceSpecs {
 
-    static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
 
     /**
@@ -54,8 +53,8 @@ public interface DeviceSpecs {
      * @return type data of the attribute (ex.integer, double)
      */
     default String getAttributeDataType(String attributeName) {
-        if ((getAttributeValue(attributeName).equals(NOT_VALID_ATTRIBUTE))) {
-            return NOT_VALID_ATTRIBUTE;
+        if ("not a valid attribute".equals(getAttributeValue(attributeName))) {
+            return "not a valid attribute";
         }
         return getAttributeValue(attributeName).getClass().getName().substring(10);
     }

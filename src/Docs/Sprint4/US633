@@ -15,22 +15,44 @@ General Criteria:
 - All code, comments and documentation are in proper English.
 
 Specific Criteria:
-- given - The user wants to get the first day with the highest temperature amplitude in the house area in a given period.
+- given - The user wants to get the day with the highest temperature amplitude in the house area in a given period.
+
 - when - The user chooses option "2" from Menu (Regular User), then option "1" (House Area) and then option "4"
         (Get day with highest temperature amplitude in the house area). Then User inserts the first date and then final
         date of the period he wants to consider.
+
 - then - It is shown to the User the day with the highest temperature amplitude and its amplitude value: eg. "The highest
         temperature amplitude for the chosen period is 2.8 Celsius and was registered on: 2018-12-30".
+
 - but - The following messages are displayed:
 
-"That is not a valid period. Please try again." - when final date inserted is before start date
-"There's no registers for this period." - when there are no valid readings for this selected period
+"Date is not valid. Please insert a valid date according to "yyyy-MM-dd"." - when date is not valid;
+"That is not a valid period. Please try again." - when final date inserted is before start date;
+"There are not enough values to calculate the amplitude." - when there is only one valid reading per day in the interval;
+"There's no registers for this period." - when there are no valid readings for the selected period.
 
 
 Test Criteria:
-- All acceptance tests with "Process finished with exit code 0" message:
+- All unit tests with "Process finished with exit code 0" message;
+- In the menu, when choosing the numbered options "2" from Menu (Regular User), then option "1" (House Area) and then
+  option "4"(Get day with highest temperature amplitude in the house area), should not accept letters, symbols, or any
+  number that's not displayed in the menu.
+- When the user inserts the dates, it should not accept anything different from the pattern "yyyy-MM-dd".
 
+- If there are no temperature sensors in the house area: "There's no registers for this period."
+
+- If there are no readings in the selected period: "There's no registers for this period."
+h
+- If all readings within the selected period are Double.NaN: "There's no registers for this period."
+
+- If there is only one valid reading per day within the selected period (others don't exist or are Double.NaN): "There are not enough values to calculate the amplitude."
+
+- If there is are some days in the selected period with only one valid value: The final result presented to the user only considers the days with more that one valid value.
+
+- If there is are some days in the selected period with only Double.NaN values: The final result presented to the user only considers the days with more that one valid value.
 
 ASSUMPTIONS:
-To calculate the first day with the highest temperature, one must choose the sensor with the most recent readings if there are two
+- To calculate the day with the highest temperature amplitude, one must choose the sensor with the most recent readings if there are two
 temperature sensors at the same distance from the house area.
+- If there is more than one day with the highest amplitude, the message to the user should contain all dates with that value.
+- Functionality works with both positive and negative temperature values.

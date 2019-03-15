@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
-public class LocationMapper {
+public final class LocationMapper {
 
     private LocationMapper() {
         // empty
