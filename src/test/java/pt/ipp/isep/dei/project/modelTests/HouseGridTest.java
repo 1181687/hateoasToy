@@ -504,4 +504,29 @@ public class HouseGridTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void getReadings(){
+        LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
+        Reading reading0 = new Reading(3, time0);
+        LocalDateTime time1 = LocalDateTime.of(2019, 01, 24, 8, 00, 00);
+        Reading reading1 = new Reading(5, time1);
+        LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
+        Reading reading2 = new Reading(7, time2);
+        List<Reading> expectedResult = new ArrayList<>();
+        expectedResult.add(reading0);
+        expectedResult.add(reading1);
+        expectedResult.add(reading2);
+        expectedResult.add(reading0);
+        expectedResult.add(reading1);
+        expectedResult.add(reading2);
+        expectedResult.add(reading0);
+        expectedResult.add(reading1);
+
+        //Act
+        List<Reading> result = mainGrid.getReadings();
+        //Assert
+        assertEquals(expectedResult,result);
+
+    }
 }
