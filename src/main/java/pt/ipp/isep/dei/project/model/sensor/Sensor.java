@@ -526,6 +526,13 @@ public class Sensor {
         return highestReading;
     }
 
+    /**
+     * Returns the Reading with the highest value for a given day.
+     * If there are two Readings with the same value, it returns the most recent one.
+     * If there are no Readings in the given day, this method returns null.
+     * @param day day to check
+     * @return Highest, most recent reading of the given day
+     */
     public Reading getHighestReadingOfADay(LocalDate day) {
         if (getDailyMeasurementWithDoubleNaN(day).isEmpty()) {
             return null;
@@ -539,6 +546,12 @@ public class Sensor {
         return highestReading;
     }
 
+    /**
+     * Sorts the maximum Readings in a given interval and returns them in a list.
+     * @param startDate first day of the interval
+     * @param endDate last day of the interval
+     * @return
+     */
     public List<Reading> getDailyMaxReadingsInAnInterval(LocalDate startDate, LocalDate endDate) {
         List<Reading> maximumReadings = new ArrayList<>();
 
@@ -550,6 +563,12 @@ public class Sensor {
         return maximumReadings;
     }
 
+    /**
+     * Method that receives a list of Readings and returns the most recent Reading that has the lowest value.
+     * If the given reading list is empty, the method returns null;
+     * @param readings list of readings
+     * @return the most recent lowest Reading
+     */
     public Reading getLastLowestReading(List<Reading> readings) {
         if (readings.isEmpty()) {
             return null;
