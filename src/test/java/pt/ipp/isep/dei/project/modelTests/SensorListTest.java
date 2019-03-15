@@ -27,6 +27,7 @@ class SensorListTest {
     private Reading reading1;
     private Reading nullReading;
     private SensorList emptySensorList = new SensorList();
+    private Location location;
 
 
     @BeforeEach
@@ -35,7 +36,7 @@ class SensorListTest {
         sensorList = new SensorList();
 
         // Sensors
-        Location location = new Location(41.1496, -8.6109, 97);
+        location = new Location(41.1496, -8.6109, 97);
         SensorType temperature = new SensorType("Temperature");
         temperatureSensor1 = sensorList.newSensor("s1", "Sensor Temp 1", temperature, location, "l/m2");
         sensorList.addSensor(temperatureSensor1);
@@ -454,5 +455,31 @@ class SensorListTest {
 
         //
         assertEquals(null, result);
+    }
+
+    @Test
+    public void testCheckMeasurementExistenceBetweenDates_false (){
+        LocalDate date1 = LocalDate.of(2017,12,3);
+        LocalDate date2 = LocalDate.of(2017,12,4);
+        boolean expectedResult = false;
+
+        boolean result= sensorList.checkMeasurementExistenceBetweenDates(location, date1, date2);
+
+        assertEquals(expectedResult, result);
+
+
+    }
+
+    @Test
+    public void testCheckMeasurementExistenceBetweenDates_true (){
+        LocalDate date1 = LocalDate.of(2018,12,3);
+        LocalDate date2 = LocalDate.of(2018,12,4);
+        boolean expectedResult = true;
+
+        boolean result= sensorList.checkMeasurementExistenceBetweenDates(location, date1, date2);
+
+        assertEquals(expectedResult, result);
+
+
     }
 }

@@ -21,7 +21,7 @@ public class ConfHouseLocationControllerTest {
     private GeographicalAreaList geographicalAreaList;
     private GeographicalArea porto;
     private GeographicalArea isep;
-    private House house;
+    private House mainHouse;
 
     @BeforeEach
     public void StartUp() {
@@ -44,13 +44,13 @@ public class ConfHouseLocationControllerTest {
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
         List<String> deviceTypeList = Utils.readConfigFileToList("Configuration.properties", "devicetype.count", "devicetype.name");
 
-        house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        mainHouse = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Location houseLocation = new Location(41.177748, -8.607745, 112);
         Address address = new Address("4200-072", houseLocation, isep);
-        house.setAddress(address);
+        mainHouse.setAddress(address);
 
-        ctrl = new ConfHouseLocationController(geographicalAreaList, house);
+        ctrl = new ConfHouseLocationController(geographicalAreaList, mainHouse);
     }
 
     @Test

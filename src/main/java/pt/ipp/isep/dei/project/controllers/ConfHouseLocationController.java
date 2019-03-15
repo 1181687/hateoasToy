@@ -21,7 +21,7 @@ public class ConfHouseLocationController {
     /**
      * Get method
      *
-     * @return housegrid
+     * @return house
      */
     public House getHouse() {
         return house;

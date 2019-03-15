@@ -17,10 +17,10 @@ import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 class GetEnergyConsumptionControllerTest {
     private GetEnergyConsumptionController ctrl;
@@ -355,10 +355,11 @@ class GetEnergyConsumptionControllerTest {
     void getRoomName_HouseHas2Rooms_ShouldReturnKitchen(){
         //Arrange
         ctrl.getRoomByPosition(0);
+        String expectedResult = "Kitchen";
         //Act
-        boolean result = ctrl.isDeviceListEmpty();
+        String result = ctrl.getRoomName();
         //Assert
-        assertFalse(result);
+        assertEquals(expectedResult, result);
     }
 
 }
