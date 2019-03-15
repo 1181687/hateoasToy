@@ -506,17 +506,6 @@ public class HouseGridTest {
     }
 
     @Test
-    public void getRoomFromTheListOfRoomByAPosition_RoomInPositionOne_ShouldReturnBathroom(){
-        //Arrange
-        int position = 1;
-        Room expectedResult = this.bathroom;
-        //Act
-        Room result = this.mainGrid.getRoomFromTheListOfRoomByAPosition(position);
-        //Assert
-        assertEquals(expectedResult,result);
-    }
-
-    @Test
     public void getReadings(){
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         Reading reading0 = new Reading(3, time0);
