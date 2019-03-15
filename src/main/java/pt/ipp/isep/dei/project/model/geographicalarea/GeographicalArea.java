@@ -442,6 +442,16 @@ public class GeographicalArea {
         return sensorList.checkMeasurementExistenceBetweenDates(location, startDate, endDate);
     }
 
+    /**
+     * Method that returns the last lowest maximum Reading in a given period. It takes in consideration the readings
+     * of the nearest sensor of a given type that has the most recent reading. If there are no sensors available
+     * in the geographical area, the method return a null.
+     * @param location location of the house area
+     * @param sensorType the type of the sensor
+     * @param startDate LocalDate of the beginning of the period
+     * @param endDate LocalDate of the ending of the period
+     * @return
+     */
     public Reading getLastLowestMaximumReading(Location location, SensorType sensorType, LocalDate startDate, LocalDate endDate) {
         Sensor sensor = getNearestSensorWithMostRecentReading(sensorType, location);
         if (Objects.isNull(sensor)) {
@@ -451,6 +461,13 @@ public class GeographicalArea {
         return sensor.getLastLowestReading(readings);
     }
 
+    /**
+     * Method that returns the sensor, of a given type, that is closest to the given location and has the most recent
+     * reading
+     * @param type sensor type
+     * @param location location of the house area
+     * @return
+     */
     public Sensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
         SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
         if (sensorListWithTheRequiredType.isEmpty()) {
@@ -460,6 +477,7 @@ public class GeographicalArea {
                 .getNearestSensorsToLocation(location)
                 .getSensorWithMostRecentReading();
     }
+
 
     public boolean addSensor(Sensor sensor) {
         return this.sensorList.addSensor(sensor);
