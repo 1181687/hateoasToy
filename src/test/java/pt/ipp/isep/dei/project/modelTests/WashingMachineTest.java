@@ -405,4 +405,18 @@ class WashingMachineTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+    @Test
+    public void testSetDeactivateDevice_true (){
+        boolean expectedResult = true;
+        boolean result = washingMachine.setDeactivateDevice();
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetDeactivateDevice_false (){
+        boolean expectedResult = false;
+        washingMachine.setDeactivateDevice();
+        boolean result = washingMachine.setDeactivateDevice();
+        assertEquals(expectedResult, result);
+    }
 }
