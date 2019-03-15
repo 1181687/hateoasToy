@@ -7,6 +7,8 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 
+import java.time.LocalDateTime;
+
 public class ImportReadingsFromCSVController {
     private GeographicalAreaList geographicalAreaList;
     private SensorList allSensorInTheGeoAreas;
@@ -34,6 +36,16 @@ public class ImportReadingsFromCSVController {
             return true;
         }
         return false;
+    }
+
+    /**
+     * Method that checks if a given date time is before the starting date of the sensor.
+     *
+     * @param localDateTime Given date time to be compared.
+     * @return True or False.
+     */
+    public boolean isDateTimeBeforeSensorStartingDate(LocalDateTime localDateTime) {
+        return localDateTime.isBefore(sensor.getStartingDate());
     }
 
     /**

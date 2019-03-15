@@ -17,7 +17,7 @@ General Criteria:
 Specific Criteria:
 - given - The user (Admin) imports geographical areas sensors’ readings into the application from a CSV file.
 
-- when - The user chooses option "10" from Menu (Administrator), then option "2" (Geographical Area) and then option "10"
+- when - The user chooses option "1" from Menu (Administrator), then option "1" (Geographical Area) and then option "10"
 (Import Readings from CSV File). Then User inserts the path to the CSV file to be imported.
 
 - then - A success message is displayed if all the sensors readings are inserted:
@@ -42,10 +42,89 @@ Output_4: "The following readings weren't imported:" and shows the respective re
 
 
 Test Criteria:
-- All acceptance tests with "Process finished with exit code 0" message.
-- Test1
+- All unit tests with "Process finished with exit code 0" message.
+- In the menu, when choosing the numbered options "1" from Menu (Administrator), then option "1" (Geographical Area) and then
+option "10"(Import Readings from CSV File), should not accept letters, symbols, or any number that's not displayed in the menu.
 
+- Acceptance tests:
 
+Test_scenario1:
+- Input data: the path csv file is not correct, so the file can not be found
+- Expected result: "ERROR: There's no such file with that name."
+
+Test_scenario2:
+- Input data: the path csv file is correct, but is empty.
+- Expected result: "Error - readings weren't imported"
+
+Test_scenario3:
+- Input data: the csv file has only readings that don't have LocalDateTime format.
+- Expected result: "Error - readings weren't imported"
+
+Test_scenario4:
+- Input data: the csv file has only readings that don't have double format measurements.
+- Expected result: "Error - readings weren't imported"
+
+Test_scenario5:
+- Input data: the csv file has only Data outside the valid sensor operation period.
+- Expected result: "Error - readings weren't imported"
+
+Test_scenario6:
+- Input data: the csv file has only readings with Sensor Id's that don´t correspond to the existing sensors.
+- Expected result: "Error - readings weren't imported"
+
+Test_scenario7:
+- Input data: the csv file has only readings without Sensor Id.
+- Expected result: "Error - readings weren't imported"
+
+Test_scenario8:
+- Input data: the csv file has some readings with Sensor Id that don´t correspond to the existing sensors.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input Y: expected result: list of the readings.
+
+Test_scenario9:
+- Input data: the csv file has some readings with Sensor Id that don´t correspond to the existing sensors.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input N: expected result: ends that functionality and show the menu again.
+
+Test_scenario10:
+- Input data: the csv file has some readings that don't have Id of the sensors.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input N: expected result: ends that functionality and show the menu again.
+
+Test_scenario11:
+- Input data: the csv file has some readings that don't have Id of the sensors.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input N: expected result: ends that functionality and show the menu again.
+
+Test_scenario12:
+- Input data: the csv file has some readings that don't have LocalDateTime format.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input Y: expected result: list of the readings.
+
+Test_scenario13:
+- Input data: the csv file has some readings that don't have LocalDateTime format.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input N: expected result: ends that functionality and show the menu again.
+
+Test_scenario14:
+- Input data: the csv file has some readings that don't have double format measurements.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input Y: expected result: list of the readings.
+
+Test_scenario15:
+- Input data: the csv file has some readings that don't have double format measurements.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input N: expected result: ends that functionality and show the menu again.
+
+Test_scenario16:
+- Input data: the csv file have some Data outside the valid sensor operation period.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input Y: expected result: list of the readings.
+
+Test_scenario17:
+- Input data: the csv file have some Data outside the valid sensor operation period.
+- Expected result: "Some readings weren't imported. Do you want to see them? (Y/N)"
+- Input N: expected result: ends that functionality and show the menu again.
 
 
 ASSUMPTIONS:

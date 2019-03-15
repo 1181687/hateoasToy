@@ -33,33 +33,32 @@ Test Criteria:
 - All acceptance tests with "Process finished with exit code 0" message:
 
 Controller Test Class
-- testImportGeographicalAreaAndSensors_True
-- testImportGeographicalAreaAndSensors_False
+- testImportGeographicalAreaAndSensors: returns True
+- testImportGeographicalAreaAndSensors: returns False
 
 GeographicalAreaList Test Class
-- addGeoArea
+- testAddGeo_geoAreaAlreadyThere: returns False
 
 GeographicalAreaMapper Test Class
-- testMapToDTO_GeoAreaDTO
-
+-testMapToDTO_mapToDTO: returns a Geo Area DTO
 
 GeographicalAreaDTO Test Class
-- testGetIdTest_getId_S001
-- testsetId_changeId_S002
-- getSensorNameTest_getSensorName_Sensor1
-- setSensorNameTest_changeSensorName_Sensor2
-- getGeographicalAreaTypeTest_getGeoAreaType_Temperature
-- setGeographicalAreaTypeTest_newGeoAreaType_NewGeoArea
-- setAndGetWidthTest_getWidthAndChangeWidth_10
-- setAndGetLengthTest_getLengthAndChangeLength_15
-- setAndGetLatitudeTest_getLatitudeAndChangeLatitude_20
-- setAndGetLongitudeTest_getLongitudeAndChangeLongitude_25
-- setAndGetAltitudeTest_getAltitudeAndChangeAltitude_30
-- getSensors_get_temperatureSensor
+- testGetIdTest_getId: returns ID S001
+- testsetId_changeId: retuns ID S002
+- getSensorNameTest_getSensorName: returns Sensor1
+- setSensorNameTest_changeSensorName: returns Sensor2
+- getGeographicalAreaTypeTest_getGeoAreaType: returns City
+- setGeographicalAreaTypeTest_newGeoAreaType: returns NewGeoArea
+- setAndGetWidthTest_getWidthAndChangeWidth: returns 10
+- setAndGetLengthTest_getLengthAndChangeLength: returns 15
+- setAndGetLatitudeTest_getLatitudeAndChangeLatitude: returns 20
+- setAndGetLongitudeTest_getLongitudeAndChangeLongitude: returns 25
+- setAndGetAltitudeTest_getAltitudeAndChangeAltitude: returns 30
+- getSensors_get: returns Temperature Sensor
 
 
 JSONReader Test Class
--
+- testReadJSONFileToList: returns geoAreaDTO
 
 
 SensorMapper Test Class
@@ -67,18 +66,19 @@ SensorMapper Test Class
 
 
 SensorDTO Test Class
-- testGetId_get_isepTemperature
-- testSetId_set_id
-- testGetName_get_temperatureSensor
-- testSetName_set_newName
-- testGetStartingDate_get
-- testSetStartingDate_set
-- testGetSensorType_get_temperature
-- testSetSensorType_set_rainfall
-- testGetLocation_get
-- testSetLocation_set
-- testGetUnits_get_C
-- testSetUnits_set_F
+- testGetId_get: returns isepTemperature
+- testSetId_set: returns ISEP
+- testGetName_get: returns temperatureSensor
+- testSetName_set: returns newName
+- testGetStartingDate_get: returns localdate
+- testSetStartingDate_set: returns localdate -1 day
+- testGetSensorType_get: returns temperature
+- testSetSensorType_set: returns rainfall
+- testGetLocation_get: returns location (comprised of latitude, longitude and elevation)
+- testSetLocation_set: returns new location (comprised of new latitude, longitude and elevation)
+- testGetUnits_get: returns ºC
+- testSetUnits_set: returns F
+
 
 ASSUMPTIONS:
 - Regarding sensors, only the geographical area sensors are imported (not the House sensors).

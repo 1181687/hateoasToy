@@ -93,6 +93,38 @@ class ImportReadingsFromCSVControllerTest {
     }
 
     /**
+     * Test that tries to check if a date time is before the starting date of a sensor, when it is, which should return true.
+     */
+    @Test
+    public void testIsDateTimeBeforeSensorStartingDate_whenItIs_ShouldReturnTrue() {
+        // Arrange
+        LocalDateTime localDateTime = LocalDateTime.of(2014, 12, 2, 15, 20, 00);
+        controller.checkIfSensorExistsById("432");
+
+        // Act
+        boolean result = controller.isDateTimeBeforeSensorStartingDate(localDateTime);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    /**
+     * Test that tries to check if a date time is before the starting date of a sensor, when it isn't, which should return false.
+     */
+    @Test
+    public void testIsDateTimeBeforeSensorStartingDate_whenItIsnt_ShouldReturnFalse() {
+        // Arrange
+        LocalDateTime localDateTime = LocalDateTime.of(2019, 12, 2, 15, 20, 00);
+        controller.checkIfSensorExistsById("432");
+
+        // Act
+        boolean result = controller.isDateTimeBeforeSensorStartingDate(localDateTime);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    /**
      * Test that tries to add a Reading to a Sensor, using a valid ReadingDTO, which results in a successful attempt.
      */
     @Test

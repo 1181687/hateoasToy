@@ -8,17 +8,21 @@ import pt.ipp.isep.dei.project.utils.CSVReader;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class ImportReadingsFromCSV {
     private ImportReadingsFromCSVController controller;
     private ReadingDTO readingDTO;
+    private final static Logger LOGGER = Logger.getLogger(ImportReadingsFromCSV.class.getName());
 
     public ImportReadingsFromCSV(GeographicalAreaList geographicalAreaList) {
         controller = new ImportReadingsFromCSVController(geographicalAreaList);
@@ -33,18 +37,14 @@ public class ImportReadingsFromCSV {
             return;
         }
         scanner.nextLine();
-        List<Object> readingResults = readLinesAndImportReadings(scanner);
-        int numberOfFailedImports = (int) readingResults.get(0);
-        StringBuilder notImportedReadings = (StringBuilder) readingResults.get(1);
+        if (!scanner.hasNext()) {
+            System.out.println("\nThe file is empty, therefore nothing was imported.\n");
+            return;
+        }
+        int numberOfFailedImports = readLinesAndImportReadings(scanner);
         if (numberOfFailedImports > 0) {
-            String answer = InputValidator.confirmValidation("\nSome readings weren't imported "
-                    + "(" + numberOfFailedImports + "). Do you want to see them? (Y/N)");
-            if ("Y".equals(answer) || "y".equals(answer)) {
-                System.out.println("\nThe following readings weren't imported:\n" + notImportedReadings);
-                return;
-            } else {
-                return;
-            }
+            System.out.println("Some readings weren't imported.\n");
+            return;
         }
         System.out.println("\nAll readings were imported successfully.\n");
     }
@@ -79,7 +79,11 @@ public class ImportReadingsFromCSV {
             return null;
         }
         ZonedDateTime zonedDateTime = ZonedDateTime.parse(dateTime);
-        return zonedDateTime.toLocalDateTime();
+        LocalDateTime localDateTime = zonedDateTime.toLocalDateTime();
+        if (controller.isDateTimeBeforeSensorStartingDate(localDateTime)) {
+            return null;
+        }
+        return localDateTime;
     }
 
     /**
@@ -101,29 +105,32 @@ public class ImportReadingsFromCSV {
     /**
      * Method that stores the information of not imported readings (corresponding to lines in the file).
      *
-     * @param line Line to be turned into a StringBuilder.
-     * @return StringBuilder with information about the not imported reading.
+     * @param line Line to be turned into a String.
+     * @return String with information about the not imported reading.
      */
-    public StringBuilder storeNotImportedReadings(List<String> line) {
+    public String storeNotImportedReadings(List<String> line) {
         StringBuilder notImportedReadings = new StringBuilder();
         notImportedReadings.append("Id: " + line.get(0) + "  ");
-        notImportedReadings.append("Timestamp/Date: " + line.get(1) + "  ");
+        notImportedReadings.append("Timestamp/Date: " + line.get(1).trim() + "  ");
         notImportedReadings.append("Value: " + line.get(2) + "\n");
-        return notImportedReadings;
+        return notImportedReadings.toString();
     }
 
     /**
      * Method that reads each line of the scanner, verifies the information (if it is possible to use that information
-     * to create a readingDTO or not) and, subsequently, outputs the number of failed imports and a StringBuilder that
-     * shows each failure.
+     * to create a readingDTO or not) and, subsequently, outputs the number of failed imports.
      *
      * @param scanner Information to be analysed.
-     * @return Integer corresponding to the number of failed imports and a StringBuilder with the information about
-     * each failed import.
+     * @return Integer corresponding to the number of failed imports.
      */
-    public List<Object> readLinesAndImportReadings(Scanner scanner) {
-        List<Object> objectList = new ArrayList<>();
-        StringBuilder notImportedReadings = new StringBuilder();
+    public int readLinesAndImportReadings(Scanner scanner) {
+        FileHandler fh;
+        try {
+            fh = new FileHandler("log/outputErrors.log");
+        } catch (IOException e) {
+            fh = null;
+        }
+        LOGGER.addHandler(fh);
         int numberOfFailedImports = 0;
         while (scanner.hasNext()) {
             List<String> line = CSVReader.parseLine((scanner.nextLine()));
@@ -134,7 +141,8 @@ public class ImportReadingsFromCSV {
                 LocalDateTime readingDateTime = checkDateTimeAndStoreIt(dateTime);
                 Double readingValue = checkValueAndStoreIt(value);
                 if (Objects.isNull(readingDateTime) || Objects.isNull(readingValue)) {
-                    notImportedReadings.append(storeNotImportedReadings(line));
+                    LOGGER.log(Level.WARNING, "Line not parsed due to invalid information: "
+                            + storeNotImportedReadings(line));
                     numberOfFailedImports += 1;
                     continue;
                 }
@@ -142,12 +150,11 @@ public class ImportReadingsFromCSV {
                 readingDTO.setValue(readingValue);
                 controller.addReadingToSensor(readingDTO);
             } else {
-                notImportedReadings.append(storeNotImportedReadings(line));
+                LOGGER.log(Level.WARNING, "There is no sensor in the system with the id " + sensorId + ".\n");
                 numberOfFailedImports += 1;
             }
         }
-        objectList.add(numberOfFailedImports);
-        objectList.add(notImportedReadings);
-        return objectList;
+        return numberOfFailedImports;
     }
 }
+

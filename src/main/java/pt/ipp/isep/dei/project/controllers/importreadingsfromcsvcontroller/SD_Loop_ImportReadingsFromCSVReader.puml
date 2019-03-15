@@ -17,35 +17,35 @@ skinparam sequence {
 	ActorFontName Aapex
 }
 
-activate ":ImportReadings\nFromCSVReaderUI"
+activate ":ImportReadings\nFromCSVUI"
 loop readLinesAndImportReadings
-":ImportReadings\nFromCSVReaderUI" -> CSVReader: 3.2 - parseLine(line)
+":ImportReadings\nFromCSVUI" -> CSVReader: 3.2 - parseLine(line)
 activate CSVReader
-CSVReader --> ":ImportReadings\nFromCSVReaderUI": 3.3 - sensorId, dateTime, value
-deactivate ":ImportReadings\nFromCSVReaderUI"
+CSVReader --> ":ImportReadings\nFromCSVUI": 3.3 - sensorId, dateTime, value
 deactivate CSVReader
-":ImportReadings\nFromCSVReaderUI" -> ":ImportReadings\nFromCSVController": 3.4 - checkIfSensorExistsById(sensorId)
+":ImportReadings\nFromCSVUI" -> ":ImportReadings\nFromCSVController": 3.4 - checkIfSensorExistsById(sensorId)
 activate ":ImportReadings\nFromCSVController"
 ":ImportReadings\nFromCSVController" -> ":SensorList": 3.4.1 - checkIfSensorExistsById(sensorId)
 activate ":SensorList"
 ":SensorList" --> ":ImportReadings\nFromCSVController": 3.4.2 - sensor
 deactivate ":SensorList"
-activate ":ImportReadings\nFromCSVReaderUI"
-":ImportReadings\nFromCSVReaderUI" -> ":ImportReadings\nFromCSVReaderUI": 3.5 - checkDateTimeAndStoreIt(dateTime)
-":ImportReadings\nFromCSVReaderUI" -> ":ImportReadings\nFromCSVReaderUI": 3.6 - checkValueAndStoreIt(value)
-deactivate ":ImportReadings\nFromCSVReaderUI"
-":ImportReadings\nFromCSVReaderUI" -> ":ReadingDTO": 3.7 - setDateTime(validDateTime)
-activate ":ReadingDTO"
-":ImportReadings\nFromCSVReaderUI" -> ":ReadingDTO": 3.8 - setValue(validValue)
-deactivate ":ReadingDTO"
-activate ":ImportReadings\nFromCSVReaderUI"
-":ImportReadings\nFromCSVReaderUI" -> ":ImportReadings\nFromCSVController": 3.9 - addReadingToTheSensor(readingDTO)
+":ImportReadings\nFromCSVUI" -> ":ImportReadings\nFromCSVController": 3.5 - checkDateTimeAndStoreIt(dateTime)
+":ImportReadings\nFromCSVController" -> ":Sensor": 3.5.1 - getStartingDate()
+activate ":Sensor"
+":Sensor" --> ":ImportReadings\nFromCSVController": 3.5.2 - startingDate
+deactivate ":Sensor"
+":ImportReadings\nFromCSVController" --> ":ImportReadings\nFromCSVUI": 3.6 - validDateTime
+deactivate ":ImportReadings\nFromCSVController"
+":ImportReadings\nFromCSVUI" --> ":ImportReadings\nFromCSVUI": 3.7 - checkValueAndStoreIt(value)
+":ImportReadings\nFromCSVUI" -> ":ReadingDTO": 3.7 - setDateTime(validDateTime)
+":ImportReadings\nFromCSVUI" -> ":ReadingDTO": 3.8 - setValue(validValue)
+":ImportReadings\nFromCSVUI" -> ":ImportReadings\nFromCSVController": 3.9 - addReadingToTheSensor(readingDTO)
+activate ":ImportReadings\nFromCSVController"
 ":ImportReadings\nFromCSVController" -> ReadingMapper: 3.9.1 - mapToEntity(readingDTO)
 activate ReadingMapper
 ReadingMapper --> ":ImportReadings\nFromCSVController": 3.9.2 - reading
 deactivate ReadingMapper
 ":ImportReadings\nFromCSVController" -> ":Sensor": 3.9.3 - addReadingToTheSensor(reading)
-activate ":Sensor"
 deactivate ":ImportReadings\nFromCSVController"
 end loop
 
