@@ -10,6 +10,11 @@ public class TimeVariableProgram implements Program {
     }
 
     @Override
+    public String getName() {
+        return this.name;
+    }
+
+    @Override
     public ProgramSpecs getProgramSpecs() {
         return this.specs;
     }

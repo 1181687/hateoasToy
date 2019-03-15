@@ -53,7 +53,7 @@ public interface DeviceSpecs {
      * @return type data of the attribute (ex.integer, double)
      */
     default String getAttributeDataType(String attributeName) {
-        if ((getAttributeValue(attributeName).equals("not a valid attribute"))) {
+        if ("not a valid attribute".equals(getAttributeValue(attributeName))) {
             return "not a valid attribute";
         }
         return getAttributeValue(attributeName).getClass().getName().substring(10);
