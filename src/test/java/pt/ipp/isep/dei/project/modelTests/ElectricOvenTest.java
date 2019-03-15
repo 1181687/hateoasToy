@@ -492,83 +492,19 @@ class ElectricOvenTest {
         assertEquals(expectedResult, result);
     }
 
-    /*@Test
-    public void newProgram() {
-        //Arrange
-        String programName = "Economic";
-        double duration = 0.5;
-        double energyConsumption = 12.0;
-        Programmable dishwasher = this.electricOven.asProgrammable();
-        TimeConstantProgramSpecs expectedResult = new TimeConstantProgramSpecs(programName, duration, energyConsumption);
-        //Act
-        TimeConstantProgramSpecs result = dishwasher.newProgram(programName, duration, energyConsumption);
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
     @Test
-    public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
-        //Arrange
-        TimeConstantProgramSpecs program = null;
-        boolean expectedResult = false;
-        Programmable programmable = this.electricOven.asProgrammable();
-        //Act
-        boolean result = programmable.addProgram(program);
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
-        //Arrange
-        String programName = "fast";
-        double duration = 15;
-        double energyConsumption = 1;
-        Programmable programmable = this.electricOven.asProgrammable();
-        TimeConstantProgramSpecs programA = programmable.newProgram(programName, duration, energyConsumption);
-        TimeConstantProgramSpecs programB = programmable.newProgram(programName, duration, energyConsumption);
-        programmable.addProgram(programA);
-        boolean expectedResult = false;
-
-        //Act
-        boolean result = programmable.addProgram(programB);
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
-        //Arrange
-        String programName = "fast";
-        double duration = 15;
-        double energyConsumption = 1;
-        Programmable programmable = this.electricOven.asProgrammable();
-        TimeConstantProgramSpecs programA = programmable.newProgram(programName, duration, energyConsumption);
-
+    public void testSetDeactivateDevice_true (){
         boolean expectedResult = true;
-
-        //Act
-        boolean result = programmable.addProgram(programA);
-
-        //Assert
+        boolean result = electricOven.setDeactivateDevice();
         assertEquals(expectedResult, result);
     }
 
     @Test
-    public void testGetReadings() {
-        //Arrange
-        List<Reading> expectedResult = new ArrayList<>();
-        expectedResult.add(reading0);
-        expectedResult.add(reading1);
-        expectedResult.add(reading2);
-
-        //Act
-        List<Reading> result = electricOven.getReadings();
-
-        //Assert
+    public void testSetDeactivateDevice_false (){
+        boolean expectedResult = false;
+        electricOven.setDeactivateDevice();
+        boolean result = electricOven.setDeactivateDevice();
         assertEquals(expectedResult, result);
-
-    }*/
+    }
 
 }

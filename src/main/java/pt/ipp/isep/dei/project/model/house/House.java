@@ -760,26 +760,20 @@ public class House {
         return insertedGeoArea.getDateLastMeasurementByLocationType(address.getLocation(), type);
     }
 
-
+    /**
+     * method to get the first highest reading of a sensor of a specific type in the house area
+     * (nearest one with most recent readings) in a given interval
+     *
+     * @param startDate initial date of the period the user wants to consider
+     * @param endDate   final date of the period the user wants to consider
+     * @return a Reading if there is a valid one; otherwise it returns null
+     */
     public Reading getFirstHighestReadingHouseArea(SensorType type, LocalDate startDate, LocalDate endDate) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
         if (Objects.isNull(insertedGeoArea.getFirstHighestReading(type, startDate, endDate))) {
             return null;
         }
         return insertedGeoArea.getFirstHighestReading(type, startDate, endDate);
-    }
-
-    public Double getFirstHighestReadingValueHouseArea(Location location, SensorType type, LocalDate startDate, LocalDate endDate) {
-        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        if (Objects.isNull(insertedGeoArea.getFirstHighestReading(type, startDate, endDate))) {
-            return null;
-        }
-        return insertedGeoArea.getFirstHighestReading(type, startDate, endDate).getValue();
-    }
-
-    public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
-        GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        return insertedGeoArea.checkMeasurementExistenceBetweenDates(location, startDate, endDate);
     }
 
     /**

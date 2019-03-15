@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -403,6 +404,54 @@ public class FridgeSpecsTest {
     }
 
     @Test
+    public void testSetAttributeFreezerCapacitySameValueZero() {
+        // Arrange
+        fridge.getSpecs().setAttributeValue("Freezer Capacity", 0);
+
+        // Act
+        boolean result = fridge.getSpecs().setAttributeValue("Freezer Capacity", 0);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeRefrigeratorCapacitySameValueZero() {
+        // Arrange
+        fridge.getSpecs().setAttributeValue("Freezer Capacity", 0);
+
+        // Act
+        boolean result = fridge.getSpecs().setAttributeValue("Refrigerator Capacity", 0);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeNominalPowerSameValueZero() {
+        // Arrange
+        fridge.getSpecs().setAttributeValue("Freezer Capacity", 0);
+
+        // Act
+        boolean result = fridge.getSpecs().setAttributeValue("Nominal Power", 0);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testSetAttributeAnnualEnergyConsumptionSameValueZero() {
+        // Arrange
+        fridge.getSpecs().setAttributeValue("Freezer Capacity", 0);
+
+        // Act
+        boolean result = fridge.getSpecs().setAttributeValue("Annual Energy Consumption", 0);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
     public void testSetAttributeRefrigeratorCapacitySameValue() {
         // Arrange
         fridge.getSpecs().setAttributeValue("Refrigerator Capacity", 50);
@@ -424,5 +473,35 @@ public class FridgeSpecsTest {
 
         // Assert
         assertFalse(result);
+    }
+    /**
+     * Test the method that gives the programmable property to the device.
+     * The Kettle is not programmable, so it just has the false return.
+     */
+    @Test
+    public void testIsProgrammable_False() {
+        //Arrange
+        boolean expectedResult = false;
+        //Act
+        boolean result = fridge.getSpecs().isProgrammable();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test the method that returns a Programmable if the device is Programmable.
+     * The Kettler is not programmable so the method only return "null" value.
+     */
+    @Test
+    public void testAsProgrammable_null() {
+        //Arrange
+        Programmable expectedResult = null;
+
+        //Act
+        Programmable result = fridge.getSpecs().asProgrammable();
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 }
