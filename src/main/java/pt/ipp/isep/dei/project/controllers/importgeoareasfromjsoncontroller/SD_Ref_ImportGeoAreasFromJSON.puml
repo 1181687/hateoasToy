@@ -16,6 +16,33 @@ skinparam sequence {
 	ActorFontSize 17
 	ActorFontName Aapex
 }
+loop parseGeoArea
+activate "JSONReader"
+JSONReader -> ":LocationMapper": 1- mapToDTO(latitude,longitude,altitude)
+activate ":LocationMapper"
+":LocationMapper" --> JSONReader: 2- locationDTO
+deactivate ":LocationMapper"
+JSONReader -> "GeographicalAreaMapper": 3- mapToDTO(id,description,\ntype,width,legth,locationDTO)
+activate "GeographicalAreaMapper"
+"GeographicalAreaMapper" -> ":GeographicalAreaDTO" : 3.1- create
+activate ":GeographicalAreaDTO"
+":GeographicalAreaDTO" --> "GeographicalAreaMapper": 3.2- geographicalAreaDTO
+deactivate ":GeographicalAreaDTO"
 
+"GeographicalAreaMapper" --> JSONReader: 4- geographicalAreaDTO
+deactivate "GeographicalAreaMapper"
 
+loop parseSensor
+JSONReader -> ":LocationMapper": 5- mapToDTO(latitude,longitude,altitude)
+activate ":LocationMapper"
+":LocationMapper" --> JSONReader: 6- locationDTO
+deactivate ":LocationMapper"
+JSONReader -> ":SensorDTO": 7- newSensorDTO()
+activate ":SensorDTO"
+":SensorDTO" --> JSONReader: 8- sensorDTO
+deactivate ":SensorDTO"
+"JSONReader" -> ":GeographicalAreaDTO" :9- addSensorDTO
+
+end
+end
 @enduml
