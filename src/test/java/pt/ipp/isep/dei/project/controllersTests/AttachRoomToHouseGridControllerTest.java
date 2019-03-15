@@ -147,13 +147,14 @@ class AttachRoomToHouseGridControllerTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-/*
+
     @Test
     void checkIfTheChosenRoomIsAlreadyInTheChosenGridPositiveTest() {
         // Arrange
         String gridName = "Grid";
-        housegrid grid = housegrid.createHouseGrid(gridName);
-        housegrid.addGrid(grid);
+        HouseGrid grid = new HouseGrid(gridName);
+        house.createHouseGrid(grid);
+        house.addGrid(grid);
         String roomName = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
@@ -176,8 +177,9 @@ class AttachRoomToHouseGridControllerTest {
         // Arrange
 
         String gridName = "Grid";
-        housegrid grid = housegrid.createHouseGrid(gridName);
-        housegrid.addGrid(grid);
+        HouseGrid grid = new HouseGrid(gridName);
+        house.createHouseGrid(grid);
+        house.addGrid(grid);
 
         String roomName = "Kitchen";
         int houseFloor1 = 0;
@@ -194,7 +196,7 @@ class AttachRoomToHouseGridControllerTest {
         // Assert
         assertFalse(result);
     }
-*/
+
     @Test
     void houseGridListLengthTest() {
         // Arrange

@@ -6,7 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapping;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
 
 import java.io.FileReader;
@@ -17,6 +17,10 @@ import java.util.List;
 
 public class JSONReader {
 
+    private JSONReader() {
+        // empty
+    }
+
     @SuppressWarnings("unchecked")
     public static List<GeographicalAreaDTO> readJSONFileToList(FileReader reader) {
         List<GeographicalAreaDTO> finallist;
@@ -24,7 +28,6 @@ public class JSONReader {
         JsonParser jsonParser = new JsonParser();
             //Read JSON file
             JsonElement elem = jsonParser.parse(reader);
-            //System.out.println(elem);
         try {
             finallist = parseJsonObjects(elem);
         } catch (NumberFormatException | DateTimeParseException | NullPointerException e) {
@@ -34,12 +37,9 @@ public class JSONReader {
     }
 
     private static LocationDTO locationParser(JsonObject object) throws NumberFormatException {
-        //JsonObject location = object.get("location").getAsJsonObject();
 
         double latitude = object.get("latitude").getAsDouble();
-
         double longitude = object.get("longitude").getAsDouble();
-
         double altitude = object.get("altitude").getAsDouble();
 
         LocationDTO locationDTO = new LocationDTO();
@@ -77,7 +77,7 @@ public class JSONReader {
 
                 LocationDTO areaLocation = locationParser(location);
 
-                GeographicalAreaDTO geoAreaDTO = GeographicalAreaMapping.mapToDTO(id, description, type, width, length, areaLocation.getLatitude(), areaLocation.getLongitude(), areaLocation.getElevation());
+                GeographicalAreaDTO geoAreaDTO = GeographicalAreaMapper.mapToDTO(id, description, type, width, length, areaLocation.getLatitude(), areaLocation.getLongitude(), areaLocation.getElevation());
 
                 //Reads Sensor attributes
                 JsonArray areaSensor = object.get("area_sensor").getAsJsonArray();

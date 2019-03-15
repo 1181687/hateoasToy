@@ -2169,4 +2169,30 @@ class GeographicalAreaTest {
 
     }
 
+    @Test
+    public void testCheckMeasurementExistenceBetweenDates_false (){
+        LocalDate date1 = LocalDate.of(2017,12,3);
+        LocalDate date2 = LocalDate.of(2017,12,4);
+        boolean expectedResult = false;
+
+        boolean result= portoCity.checkMeasurementExistenceBetweenDates(location2, date1, date2);
+
+        assertEquals(expectedResult, result);
+
+
+    }
+
+    @Test
+    public void testCheckMeasurementExistenceBetweenDates_true (){
+        LocalDate date1 = LocalDate.of(2018,12,3);
+        LocalDate date2 = LocalDate.of(2018,12,4);
+        boolean expectedResult = true;
+
+        boolean result= portoCity.checkMeasurementExistenceBetweenDates(location2, date1, date2);
+
+        assertEquals(expectedResult, result);
+
+
+    }
+
 }

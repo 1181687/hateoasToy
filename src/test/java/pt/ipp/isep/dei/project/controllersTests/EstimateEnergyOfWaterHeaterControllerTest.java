@@ -109,4 +109,32 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         // Assert
         assertEquals(expectedResult, result, 0.0001);
     }
+
+    @Test
+    public void setColdWaterTemperatureTest() {
+        // Arrange
+        controller.setColdWaterTemp("Bosch Tronic 3000", 20);
+        double expectedResult = 20;
+        // Act
+        Double result = (Double) device1.getSpecs().getAttributeValue("Cold-Water Temperature");
+
+        // Assert
+        assertEquals(expectedResult, result, 0.0001);
+    }
+
+    @Test
+    public void setVolumeOfWaterToHeatTest() {
+        // Arrange
+        controller.setVolumeOfWaterToHeat("Bosch Tronic 3000", 200);
+        double expectedResult = 200;
+        // Act
+        Double result = (Double) device1.getSpecs().getAttributeValue("Volume Of Water To Heat");
+
+        // Assert
+        assertEquals(expectedResult, result, 0.0001);
+    }
+
+
+
+
 }
