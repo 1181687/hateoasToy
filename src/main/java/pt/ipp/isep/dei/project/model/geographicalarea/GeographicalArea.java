@@ -433,14 +433,18 @@ public class GeographicalArea {
         return totalDailyMeasurement;
     }
 
+    /**
+     * method to get the first highest reading of a sensor of a specific type (nearest one with most recent readings)
+     * in a given interval
+     *
+     * @param startDate initial date of the period the user wants to consider
+     * @param endDate   final date of the period the user wants to consider
+     * @return a Reading
+     */
     public Reading getFirstHighestReading(SensorType type, LocalDate startDate, LocalDate endDate) {
         Sensor chosenSensor = getNearestSensorWithMostRecentReading(type, this.location);
         Reading highestReading = chosenSensor.getFirstHighestReading(startDate, endDate);
         return highestReading;
-    }
-
-    public boolean checkMeasurementExistenceBetweenDates(Location location, LocalDate startDate, LocalDate endDate) {
-        return sensorList.checkMeasurementExistenceBetweenDates(location, startDate, endDate);
     }
 
     public Reading getLastLowestMaximumReading(Location location, SensorType sensorType, LocalDate startDate, LocalDate endDate) {
