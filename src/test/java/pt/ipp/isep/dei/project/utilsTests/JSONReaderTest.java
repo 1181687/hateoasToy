@@ -63,6 +63,9 @@ public class JSONReaderTest {
 
         geographicalAreaDTO.addSensor(areaSensor1);
 
+        List<GeographicalAreaDTO> geoAreaDto = new ArrayList<>();
+        geoAreaDto.add(0, geographicalAreaDTO);
+
 
         // geo area Porto
         String id1 = "Porto";
