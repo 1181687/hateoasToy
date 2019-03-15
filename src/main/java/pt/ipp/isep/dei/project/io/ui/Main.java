@@ -258,9 +258,9 @@ public class Main {
         LocalDateTime startingDate = LocalDate.of(2018, 10, 15).atStartOfDay();
         Sensor sensor = new Sensor("R003", "TT12346", startingDate, sensorTypeTemperature, houseLocation, "l/m2");
         sensor.addReadingsToList(temp);
-        // sensor.addReadingsToList(temp1);
-        // sensor.addReadingsToList(temp2);
-        // sensor.addReadingsToList(temp3);
+        sensor.addReadingsToList(temp1);
+        sensor.addReadingsToList(temp2);
+        sensor.addReadingsToList(temp3);
         sensor.addReadingsToList(temp4);
         sensor.addReadingsToList(temp5);
         sensor.addReadingsToList(temp6);
