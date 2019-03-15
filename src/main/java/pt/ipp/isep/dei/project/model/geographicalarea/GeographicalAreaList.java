@@ -195,4 +195,5 @@ public class GeographicalAreaList {
         }
         return false;
     }
+
 }
