@@ -591,6 +591,11 @@ public class Sensor {
         return listOfReadings;
     }
 
+    /**
+     * Returns a list of the registered readings for a given day, including the invalid ones (Double.Nan).
+     * @param date given day
+     * @return list of readings registered in given day
+     */
     public List<Reading> getDailyMeasurementWithDoubleNaN(LocalDate date) {
         List<Reading> registosDoDia = new ArrayList<>();
         for (Reading registo : listOfReadings) {
