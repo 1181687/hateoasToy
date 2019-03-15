@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.model.sensor;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationMapper;
 
-public class SensorMapper {
+public final class SensorMapper {
 
     private SensorMapper() {
         // empty
@@ -24,7 +24,7 @@ public class SensorMapper {
      * @param sensor Sensor to be used.
      * @return SensorDTO.
      */
-    public static SensorDTO entityToMap(Sensor sensor) {
+    public static SensorDTO mapToDTO(Sensor sensor) {
         SensorDTO sensorDTO = newSensorDTO();
         sensorDTO.setId(sensor.getId());
         sensorDTO.setName(sensor.getSensorName());

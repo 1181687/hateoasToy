@@ -2448,4 +2448,28 @@ class SensorTest {
         // Arrange
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    void setAndGetId(){
+        //Arrange
+        String id = "sdfg22";
+        String expectedResult = "sdfg22";
+        //Act
+        this.temperatureSensor.setId(id);
+        String result = this.temperatureSensor.getId();
+        //Assert
+        assertEquals(expectedResult,result);
+    }
+
+    @Test
+    void setAndGetUnits(){
+        //Arrange
+        String units = "Fahrenheit";
+        String expectedResult = "Fahrenheit";
+        //Act
+        this.temperatureSensor.setUnits(units);
+        String result = this.temperatureSensor.getUnits();
+        //Assert
+        assertEquals(expectedResult,result);
+    }
 }

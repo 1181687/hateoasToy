@@ -142,8 +142,4 @@ public final class Utils {
         return mapOfDailyValues;
     }
 
-    public boolean isObjectNull(Object object) {
-        return Objects.isNull(object);
-    }
-
 }

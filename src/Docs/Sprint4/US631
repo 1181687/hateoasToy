@@ -14,6 +14,7 @@ General Criteria:
                                         testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
 - All code, comments and documentation are in proper English.
 
+
 Specific Criteria:
 - given - The user wants to get the first hottest day (higher maximum temperature) in the house area in a given period.
 - when - The user chooses option "2" from Menu (Regular User), then option "1" (House Area) and then option "5"
@@ -28,10 +29,13 @@ that is before the initial one and vice versa.
 "There are no temperature sensors in the house area." - When there are no temperature sensors in the area.
 "There's no registers for this period." - when there are no valid readings for this selected period
 "It is not possible to present valid readings in the house area." - When no reading exist during the period.
-"Last reading in the house area is not valid." - If the reading from the nearest sensor
+"Last reading in the house area is not valid." - If the last reading from the nearest sensor, has value that is not valid
+(DoubleNan).
 
 Test Criteria:
-- All acceptance tests with "Process finished with exit code 0" message:
+- All acceptance tests with "Process finished with exit code 0" message;
+- If the functionality works with positive and negative temperatures;
+
 
 
 ASSUMPTIONS:

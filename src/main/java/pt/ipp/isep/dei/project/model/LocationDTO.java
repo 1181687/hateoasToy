@@ -10,7 +10,7 @@ public class LocationDTO {
      *
      */
     public LocationDTO() {
-
+        //Intentionally empty
     }
 
     public double getLatitude() {

@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.ProgramSpecs;
 import pt.ipp.isep.dei.project.model.devices.TimeVariableProgram;
@@ -70,6 +71,19 @@ public class TimeVariableProgramTest {
         boolean result = program.setProgramAttributes("\0time", 200.0);
         //Assert
         assertFalse(result);
+    }
+
+    @Test
+    public void testGetProgramName() {
+        // Arrange
+        String name = "Program 1";
+        ProgramSpecs programSpecs = new TimeVariableProgramSpecs();
+        TimeVariableProgram program = new TimeVariableProgram(name, programSpecs);
+        String expectedResult = "Program 1";
+        // Act
+        String result = program.getName();
+        // Assert
+        Assertions.assertEquals(expectedResult, result);
     }
 
 }
