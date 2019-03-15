@@ -292,7 +292,7 @@ class ElectricOvenTest {
     @Test
     void getNumberOfSpecsAttributesTest() {
         // Arrange
-        int expectedResult = 2;
+        int expectedResult = 1;
 
         // Act
         int result = electricOven.getNumberOfSpecsAttributes();

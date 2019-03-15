@@ -321,8 +321,48 @@ class WashingMachineSpecsTest {
         boolean result = washingMachineSpecs.setAttributeValue(ATTRIBUTE_CAPACITY, 0);
         //Assert
         assertEquals(expectedResult, result);
+    }
 
+    @Test
+    public void testAsProgrammable() {
+        //Arrange
+        Programmable expectedResult = (Programmable) washingMachineSpecs;
 
+        //Act
+        Programmable result = washingMachineSpecs.asProgrammable();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testAsProgrammable_device(){
+        Programmable expectedResult = (Programmable) washingMachineSpecs;
+        Programmable result = washingMachineSpecs.asProgrammable();
+        assertEquals(expectedResult, result);
+
+    }
+
+    @Test
+    public void testGetProgramList() {
+        //Arrange
+        String programName = "fast";
+        Programmable programmable = washingMachineSpecs.asProgrammable();
+        TimeConstantProgramSpecs programCSpecs = new TimeConstantProgramSpecs();
+        programCSpecs.setDuration(30.0);
+        programCSpecs.setEnergyConsumption(50.0);
+        Program programC = programmable.createNewProgram(programName);
+        DeviceSpecs dWSpecs = washingMachine.getSpecs();
+        ((WashingMachineSpecs) dWSpecs).addProgram(programC);
+
+        List<Program> expectedResult = new ArrayList<>();
+        expectedResult.add(programC);
+
+        //Act
+        List<Program> result = ((WashingMachineSpecs) dWSpecs).getProgramList();
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 
 }

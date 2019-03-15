@@ -90,12 +90,10 @@ public class StoveSpecs implements DeviceSpecs, Programmable {
      */
     @Override
     public Object getAttributeValue(String attributeName) {
-        switch (attributeName) {
-            case ATTRIBUTE_NOMINAL_POWER:
-                return nominalPower;
-            default:
-                return NOT_VALID_ATTRIBUTE;
+        if (attributeName.equals(ATTRIBUTE_NOMINAL_POWER)) {
+            return nominalPower;
         }
+        return NOT_VALID_ATTRIBUTE;
     }
 
 
@@ -123,15 +121,10 @@ public class StoveSpecs implements DeviceSpecs, Programmable {
      */
     @Override
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
-        switch (attributeName) {
-            case ATTRIBUTE_NOMINAL_POWER:
-                if (attributeValue instanceof Number) {
-                    return setNominalPower(((Number) attributeValue).doubleValue());
-                }
-                return false;
-            default:
-                return false;
+        if (attributeName.equals(ATTRIBUTE_NOMINAL_POWER) && attributeValue instanceof Number) {
+            return setNominalPower(((Number) attributeValue).doubleValue());
         }
+        return false;
     }
 
     @Override

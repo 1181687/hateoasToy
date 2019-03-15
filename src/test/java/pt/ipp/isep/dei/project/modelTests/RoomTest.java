@@ -774,4 +774,30 @@ public class RoomTest {
         // assert
         assertTrue(result);
     }
+
+    @Test
+    public void testGetReadings() {
+        //Arrange
+        Device device = house.createDevice("Fridge", "fridge", kitchen);
+        Reading reading1 = new Reading(20, LocalDateTime.now());
+        Reading reading2 = new Reading(25, LocalDateTime.now());
+        device.addReadingsToTheList(reading1);
+        device.addReadingsToTheList(reading2);
+        List<Reading> expectedResult = new ArrayList<>();
+        expectedResult.add(reading1);
+        expectedResult.add(reading2);
+        //Act
+        List<Reading> result = kitchen.getReadings();
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testIsDeviceNameExistant_NoDevices_ReturnFalse() {
+        //Arrange
+        //Act
+        boolean result = kitchen.isDeviceNameExistant("Fridge");
+        //Assert
+        assertFalse(result);
+    }
 }

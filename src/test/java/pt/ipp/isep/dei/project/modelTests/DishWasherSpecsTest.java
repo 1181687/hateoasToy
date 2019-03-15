@@ -372,4 +372,13 @@ public class DishWasherSpecsTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void testAsProgrammable_device(){
+        Programmable expectedResult = (Programmable) dishWasherSpecs;
+        Programmable result = dishWasherSpecs.asProgrammable();
+        assertEquals(expectedResult, result);
+
+    }
+
 }

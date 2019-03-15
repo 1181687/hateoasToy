@@ -6,7 +6,7 @@ import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.LocationMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapping;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
 
@@ -63,7 +63,7 @@ public class ImportReadingsFromJSONControllerTest {
         double latitude = -516;
         double longitude = 12;
         double altitude = 156;
-        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapping.mapToDTO(id, description, type, width, length, latitude, longitude, altitude);
+        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTO(id, description, type, width, length, latitude, longitude, altitude);
 
         // Geographical Area List
         GeographicalAreaList geoList = new GeographicalAreaList();
@@ -124,7 +124,7 @@ public class ImportReadingsFromJSONControllerTest {
         double latitude = -516;
         double longitude = 12;
         double altitude = 156;
-        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapping.mapToDTO(id, description, type, width, length, latitude, longitude, altitude);
+        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTO(id, description, type, width, length, latitude, longitude, altitude);
 
         // Geographical Area List
         GeographicalAreaList geoList = new GeographicalAreaList();

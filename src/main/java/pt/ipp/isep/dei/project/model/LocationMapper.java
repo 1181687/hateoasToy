@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.model;
 public class LocationMapper {
 
     private LocationMapper() {
+        // empty
     }
 
     public static LocationDTO newLocationDTO(){

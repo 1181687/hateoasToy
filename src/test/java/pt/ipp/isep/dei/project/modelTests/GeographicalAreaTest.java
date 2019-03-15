@@ -2168,5 +2168,4 @@ class GeographicalAreaTest {
         assertEquals(expectedResult, result);
 
     }
-
 }
