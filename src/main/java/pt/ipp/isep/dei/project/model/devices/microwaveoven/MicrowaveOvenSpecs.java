@@ -123,15 +123,10 @@ public class MicrowaveOvenSpecs implements DeviceSpecs, Programmable {
      */
     @Override
     public boolean setAttributeValue(String attributeName, Object attributeValue) {
-        switch (attributeName) {
-            case ATTRIBUTE_NOMINAL_POWER:
-                if (attributeValue instanceof Number) {
-                    return setNominalPower(((Number) attributeValue).doubleValue());
-                }
-                return false;
-            default:
-                return false;
+        if (attributeName.equals(ATTRIBUTE_NOMINAL_POWER) && attributeValue instanceof Number) {
+            return setNominalPower(((Number) attributeValue).doubleValue());
         }
+        return false;
     }
 
     @Override
