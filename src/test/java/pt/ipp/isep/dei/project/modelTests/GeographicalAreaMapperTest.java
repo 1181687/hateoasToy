@@ -3,11 +3,11 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapping;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class GeographicalAreaMappingTest {
+public class GeographicalAreaMapperTest {
     /**
      * method that transforms a map to DTO
      */
@@ -31,11 +31,11 @@ public class GeographicalAreaMappingTest {
         geographicalAreaDTO.setLatitude(latitude);
         geographicalAreaDTO.setLongitude(longitude);
         geographicalAreaDTO.setAltitude(altitude);
-        GeographicalArea expectedResult = GeographicalAreaMapping.mapToEntity(geographicalAreaDTO);
+        GeographicalArea expectedResult = GeographicalAreaMapper.mapToEntity(geographicalAreaDTO);
 
         //Act
-        GeographicalAreaDTO anotherArea = GeographicalAreaMapping.mapToDTO(geoAreaName, description, geographicalAreaType, width, length, latitude, longitude, altitude);
-        GeographicalArea result = GeographicalAreaMapping.mapToEntity(anotherArea);
+        GeographicalAreaDTO anotherArea = GeographicalAreaMapper.mapToDTO(geoAreaName, description, geographicalAreaType, width, length, latitude, longitude, altitude);
+        GeographicalArea result = GeographicalAreaMapper.mapToEntity(anotherArea);
         //Assert
         assertEquals(expectedResult, result);
 

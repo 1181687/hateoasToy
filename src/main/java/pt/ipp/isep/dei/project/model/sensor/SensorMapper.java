@@ -5,6 +5,10 @@ import pt.ipp.isep.dei.project.model.LocationMapper;
 
 public class SensorMapper {
 
+    private SensorMapper() {
+        // empty
+    }
+
     /**
      * Method that creates a new SensorDTO.
      *
