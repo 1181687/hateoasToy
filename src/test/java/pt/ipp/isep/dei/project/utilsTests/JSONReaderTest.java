@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.utilsTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapping;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
 import pt.ipp.isep.dei.project.utils.JSONReader;
 
@@ -39,7 +39,7 @@ public class JSONReaderTest {
         double longitude = -8.608035;
         double altitude = 111;
 
-        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapping.mapToDTO(id, description, type, width, length, latitude, longitude, altitude);
+        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTO(id, description, type, width, length, latitude, longitude, altitude);
 
         // sensor
         String idSensor = "S1";
@@ -74,7 +74,7 @@ public class JSONReaderTest {
         double longitude1 = -8.610857;
         double altitude1 = 118;
 
-        GeographicalAreaDTO geographicalAreaDTO1 = GeographicalAreaMapping.mapToDTO(id1, description1, type1, width1, length1, latitude1, longitude1, altitude1);
+        GeographicalAreaDTO geographicalAreaDTO1 = GeographicalAreaMapper.mapToDTO(id1, description1, type1, width1, length1, latitude1, longitude1, altitude1);
 
         List<String> expectedResult = new ArrayList<>();
         String idGeoArea = geographicalAreaDTO.getId();

@@ -6,7 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapping;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
 
 import java.io.FileReader;
@@ -77,7 +77,7 @@ public class JSONReader {
 
                 LocationDTO areaLocation = locationParser(location);
 
-                GeographicalAreaDTO geoAreaDTO = GeographicalAreaMapping.mapToDTO(id, description, type, width, length, areaLocation.getLatitude(), areaLocation.getLongitude(), areaLocation.getElevation());
+                GeographicalAreaDTO geoAreaDTO = GeographicalAreaMapper.mapToDTO(id, description, type, width, length, areaLocation.getLatitude(), areaLocation.getLongitude(), areaLocation.getElevation());
 
                 //Reads Sensor attributes
                 JsonArray areaSensor = object.get("area_sensor").getAsJsonArray();
