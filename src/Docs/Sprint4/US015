@@ -62,7 +62,7 @@ JSONReader Test Class
 
 
 SensorMapper Test Class
--
+- testMapToDTO: returns GeoAreaDTO
 
 
 SensorDTO Test Class
