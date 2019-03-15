@@ -16,11 +16,6 @@ public class LocationDTOTest {
         locationDTO.setLatitude(100);
         locationDTO.setLongitude(200);
         locationDTO.setElevation(150);
-
-        double longitude = 200;
-        double elevation = 150;
-
-
     }
 
     @Test

@@ -260,4 +260,29 @@ public class GeographicalAreaListTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+
+    /**
+     * Test that tries to use a valid/existing Id to search for a Sensor, which results in True.
+     **/
+    @Test
+    void testCheckIfGeoAreaExistsById_tryingToTestAnExistingId_ShouldReturnTrue() {
+        // Act
+        boolean result = geoAreaList.checkIfGeoAreaExistsById("Porto");
+
+        //
+        assertTrue(result);
+    }
+
+    /**
+     * Test that tries to use an invalid/non-existing Id to search for a GeoArea, which results in False.
+     **/
+    @Test
+    void testCheckIfGeoExistsById_tryingToTestANonExistingId_ShouldReturnFalse() {
+        // Act
+        boolean result = geoAreaList.checkIfGeoAreaExistsById("BadId");
+
+        //
+        assertFalse(result);
+    }
+
 }

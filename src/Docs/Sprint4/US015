@@ -58,11 +58,11 @@ GeographicalAreaDTO Test Class
 
 
 JSONReader Test Class
--
+- testReadJSONFileToList: returns geoAreaDTO
 
 
 SensorMapper Test Class
--
+- testMapToDTO: returns GeoAreaDTO
 
 
 SensorDTO Test Class

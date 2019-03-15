@@ -4,6 +4,10 @@ import java.util.Objects;
 
 public class ReadingMapper {
 
+    private ReadingMapper() {
+        // empty
+    }
+
     /**
      * Method that creates a new ReadingDTO.
      * @return ReadingDTO.

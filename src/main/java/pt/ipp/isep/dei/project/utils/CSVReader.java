@@ -7,6 +7,10 @@ import java.util.Objects;
 public class CSVReader {
     private static final char DEFAULT_SEPARATOR = ',';
 
+    private CSVReader() {
+        // empty
+    }
+
     /**
      * Method that parses a CSV line into a list of strings.
      *
