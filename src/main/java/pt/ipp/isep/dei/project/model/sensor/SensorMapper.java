@@ -24,7 +24,7 @@ public final class SensorMapper {
      * @param sensor Sensor to be used.
      * @return SensorDTO.
      */
-    public static SensorDTO entityToMap(Sensor sensor) {
+    public static SensorDTO mapToDTO(Sensor sensor) {
         SensorDTO sensorDTO = newSensorDTO();
         sensorDTO.setId(sensor.getId());
         sensorDTO.setName(sensor.getSensorName());

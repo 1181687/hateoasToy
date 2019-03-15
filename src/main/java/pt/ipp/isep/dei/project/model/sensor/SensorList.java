@@ -273,6 +273,10 @@ public class SensorList {
         return null;
     }
 
+    /**
+     * Returns the Sensor with the most recent reading, of a list of sensors.
+     * @return Sensor
+     */
     public Sensor getSensorWithMostRecentReading() {
         Sensor sensorWithMostRecentReading = this.getListOfSensors().get(0);
         for (Sensor sensor : this.getListOfSensors()) {
