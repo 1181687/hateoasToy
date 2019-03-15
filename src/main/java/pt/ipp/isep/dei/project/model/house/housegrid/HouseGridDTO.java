@@ -5,6 +5,7 @@ public class HouseGridDTO {
     private String name;
 
     public HouseGridDTO() {
+        //Intentionally empty
     }
 
     public String getName() {
