@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class CSVReader {
+public final class CSVReader {
     private static final char DEFAULT_SEPARATOR = ',';
 
     private CSVReader() {
