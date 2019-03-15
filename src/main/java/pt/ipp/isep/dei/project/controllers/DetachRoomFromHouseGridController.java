@@ -33,7 +33,7 @@ public class DetachRoomFromHouseGridController {
     }
 
     public Room getRoomFromTheListOfRoomByAPosition(int position) {
-        return houseGrid.getRoomFromTheListOfRoomByAPosition(position);
+        return houseGrid.getRoomByPosition(position);
     }
 
     public boolean detachRoomFromGridList(HouseGrid houseGrid, Room roomSelected) {
