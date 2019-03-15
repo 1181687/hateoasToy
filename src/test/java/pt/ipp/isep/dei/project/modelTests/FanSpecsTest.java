@@ -203,6 +203,16 @@ public class FanSpecsTest {
     }
 
     @Test
+    public void testSetAttributeNominalPowerSameValueZero() {
+        // Arrange
+        fan.setAttributesDevType("Nominal Power", 0);
+        // Act
+        boolean result = fan.getSpecs().setAttributeValue("Nominal Power", 0);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
     public void testSetAttributeTimeValueZero() {
         // Act
         boolean result = fan.getSpecs().setAttributeValue("Time", 0);
