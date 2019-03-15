@@ -29,6 +29,7 @@ class GeographicalAreaTest {
     private SensorType temperature;
     private Location location2;
     private GeographicalAreaType city;
+    private AreaShape areaShape2;
 
 
     @BeforeEach
@@ -47,7 +48,7 @@ class GeographicalAreaTest {
         portoDistrict = new GeographicalArea("Distrito do Porto", "Porto District", district, location1, areaShape1);
         portoDistrict.setInsertedIn(northernRegion);
         this.location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        areaShape2 = new AreaShape(10, 10, location2);
         portoCity = new GeographicalArea("Porto", "Porto City", city, location2, areaShape2);
         portoCity.setInsertedIn(portoDistrict);
 
@@ -548,6 +549,24 @@ class GeographicalAreaTest {
     }
 
     @Test
+    public void testSetDescription() {
+        //arrange
+        String nomeAG = "Porto";
+        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
+        Location local = new Location(41.1496, -8.6109, 97);
+        AreaShape area = new AreaShape(10, 10, local);
+        GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
+        String expectedResult = "Puorto";
+        ag1.setDescription("Puorto");
+
+        //act
+        String result = ag1.getDescription();
+
+        //assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
     public void testarGetmTipoAreaGeo() {
         //arrange
         String nomeAG = "Porto";
@@ -555,7 +574,7 @@ class GeographicalAreaTest {
         Location local = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local);
         GeographicalArea ag1 = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
-
+        ag1.setGeographicalAreaType(tipo);
         GeographicalAreaType expectedResult = tipo;
 
         //act
@@ -1772,9 +1791,17 @@ class GeographicalAreaTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    public void testSetLocation() {
+        //arrange
+        portoCity.setLocation(location2);
+        Location expectedResult = location2;
+        //act
+        Location result = portoCity.getLocation();
+        //assert
+        assertEquals(expectedResult, result);
 
-
-
+    }
 
 
     @Test
@@ -1879,13 +1906,13 @@ class GeographicalAreaTest {
     }
 
     @Test
-    public void getNearestSensorWithMostRecentReading(){
+    public void getNearestSensorWithMostRecentReading() {
         //Arrange
         Sensor expectedResult = temperatureSensor1;
         //Act
-        Sensor result = portoCity.getNearestSensorWithMostRecentReading(this.temperature,this.location2);
+        Sensor result = portoCity.getNearestSensorWithMostRecentReading(this.temperature, this.location2);
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -1912,7 +1939,35 @@ class GeographicalAreaTest {
         //Act
         Reading result = portoCity.getLastLowestMaximumReading(this.location2, this.temperature, startDate, endDate);
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testGetLastLowestMaximumReading_WithNullSensor_Null() {
+        //Arrange
+        LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
+        Reading reading1 = new Reading(29, time0);
+        LocalDateTime time1 = LocalDateTime.of(2018, 12, 3, 13, 20, 00);
+        Reading reading2 = new Reading(31, time1);
+        temperatureSensor1.addReadingsToList(reading1);
+        temperatureSensor1.addReadingsToList(reading2);
+        LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
+        Reading reading3 = new Reading(17, time2);
+        LocalDateTime time3 = LocalDateTime.of(2018, 12, 4, 12, 20, 00);
+        Reading reading4 = new Reading(10, time3);
+        temperatureSensor1.addReadingsToList(reading3);
+        temperatureSensor1.addReadingsToList(reading4);
+
+        //interval LocalDate
+        LocalDate startDate = LocalDate.of(2018, 12, 2);
+        LocalDate endDate = LocalDate.of(2018, 12, 4);
+
+        SensorType sensorType = new SensorType("txuva");
+        Reading expectedResult = null;
+        //Act
+        Reading result = portoCity.getLastLowestMaximumReading(this.location2, sensorType, startDate, endDate);
+        //Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -1939,7 +1994,7 @@ class GeographicalAreaTest {
         //Act
         Reading result = portoCity.getLastLowestMaximumReading(this.location2, this.temperature, startDate, endDate);
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -1953,7 +2008,7 @@ class GeographicalAreaTest {
         //Act
         Reading result = portoCity.getLastLowestMaximumReading(this.location2, this.temperature, startDate, endDate);
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -2101,4 +2156,17 @@ class GeographicalAreaTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void testGetAreaShape() {
+        //arrange
+        AreaShape expectedResult = new AreaShape(10, 10, location2);
+        portoCity.setAreaShape(expectedResult);
+        //act
+        AreaShape result = portoCity.getAreaShape();
+        //assert
+        assertEquals(expectedResult, result);
+
+    }
+
 }

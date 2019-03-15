@@ -90,17 +90,6 @@ public class HouseGrid implements Measurable {
     }
 
     /**
-     * Method that returns a selected room through the use of an Integer.
-     * This method relies of the position of the room in the list.
-     *
-     * @param position
-     * @return
-     */
-    public Room getRoomFromTheListOfRoomByAPosition(int position) {
-        return getRoomList().getRoomFromPosition(position);
-    }
-
-    /**
      * Method that returns a list of readings from all of the rooms in the housegrid.
      *
      * @return
@@ -206,6 +195,12 @@ public class HouseGrid implements Measurable {
         return roomList.getLength();
     }
 
+    /**
+     * Method that returns a selected room by its position.
+     *
+     * @param position integer room position in the roomlist
+     * @return Room the room
+     */
     public Room getRoomByPosition(int position) {
         return roomList.getRoomFromPosition(position);
     }

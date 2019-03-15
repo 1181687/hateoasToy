@@ -36,15 +36,15 @@ public class ConfHouseLocationController {
     public String getGeoAreaListToString(boolean useCriterion) {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
-        for (GeographicalArea geographicalArea : geographicalAreaList.getGeoAreaList()) {
-            content.append(numberInTheList + " - ID: " + geographicalArea.getId());
-            content.append(", Description: " + geographicalArea.getDescription());
-            content.append(", Type: " + geographicalArea.getGeoAreaType().getStringOfTypeOfGeoArea());
-            content.append(", Latitude: " + geographicalArea.getLocation().getLatitude());
-            content.append(", Longitude: " + geographicalArea.getLocation().getLongitude());
-            if (useCriterion && !geographicalAreaList.checkIfGeoAreaDoesntHaveAnInsertedArea(geographicalArea)) {
-                content.append(", Inserted in: " + geographicalArea.getInsertedIn().getGeoAreaType().getStringOfTypeOfGeoArea());
-                content.append(" " + geographicalArea.getInsertedIn().getDescription());
+        for (GeographicalArea geoArea : geographicalAreaList.getGeoAreaList()) {
+            content.append(numberInTheList + " - ID: " + geoArea.getId());
+            content.append(", Description: " + geoArea.getDescription());
+            content.append(", Type: " + geoArea.getGeoAreaType().getStringOfTypeOfGeoArea());
+            content.append(", Latitude: " + geoArea.getLocation().getLatitude());
+            content.append(", Longitude: " + geoArea.getLocation().getLongitude());
+            if (useCriterion && !geographicalAreaList.checkIfGeoAreaDoesntHaveAnInsertedArea(geoArea)) {
+                content.append(", Inserted in: " + geoArea.getInsertedIn().getGeoAreaType().getStringOfTypeOfGeoArea());
+                content.append(" " + geoArea.getInsertedIn().getDescription());
             }
             content.append("\n");
             numberInTheList++;

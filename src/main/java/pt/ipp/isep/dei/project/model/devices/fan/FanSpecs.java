@@ -79,24 +79,8 @@ public class FanSpecs implements DeviceSpecs, Programmable {
         }
     }
 
-
     /**
-     * set method
-     *
-     * @param duration
-     * @return
-     */
-    /*private boolean setTime(Object duration) {
-        Double fanTime = (Double) duration;
-        if (!Utils.isSameDouble(this.time, fanTime) && !(Utils.isSameDouble(fanTime, 0))) {
-            this.time = fanTime;
-            return true;
-        }
-        return false;
-    }*/
-
-    /**
-     * set method to Nominal Power of a dishwasher
+     * set method to Nominal Power of a fan
      *
      * @param nominalPower
      * @return
