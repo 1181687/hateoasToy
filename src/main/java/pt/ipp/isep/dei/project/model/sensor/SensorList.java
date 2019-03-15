@@ -43,11 +43,11 @@ public class SensorList {
      * @return True or false.
      */
     public boolean addSensor(Sensor sensor) {
-        if (!(listOfSensors.contains(sensor))) {
-            listOfSensors.add(sensor);
-            return true;
+        if (listOfSensors.contains(sensor)) {
+            return false;
         }
-        return false;
+        listOfSensors.add(sensor);
+        return true;
     }
 
     /**
