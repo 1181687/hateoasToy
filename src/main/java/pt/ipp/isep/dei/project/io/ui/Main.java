@@ -78,77 +78,6 @@ public class Main {
         houseEdificioB.setAddress(address);
 
         // READINGS
-        // Dates for the Sensors
-        LocalDateTime sensorDate = LocalDate.of(2018, 12, 29).atStartOfDay();
-        LocalDateTime sensorDate1 = LocalDate.of(2018, 12, 30).atStartOfDay();
-        LocalDateTime sensorDate2 = LocalDate.of(2018, 12, 31).atStartOfDay();
-        LocalDateTime sensorDate3 = LocalDate.of(2019, 1, 1).atStartOfDay();
-        LocalDateTime sensorDate4 = LocalDate.of(2019, 1, 2).atStartOfDay();
-        LocalDateTime sensorDate5 = LocalDate.of(2019, 1, 3).atStartOfDay();
-
-        // sensor 1
-        Reading temp = new Reading(14.0, sensorDate1);
-        Reading temp1 = new Reading(13.7, sensorDate1);
-        Reading temp2 = new Reading(16.5, sensorDate1);
-        Reading temp3 = new Reading(15.1, sensorDate1);
-        Reading temp4 = new Reading(13.8, sensorDate2);
-        Reading temp5 = new Reading(13.3, sensorDate2);
-        Reading temp6 = new Reading(15.5, sensorDate2);
-        Reading temp7 = new Reading(14.2, sensorDate2);
-        Reading temp8 = new Reading(12.5, sensorDate3);
-        Reading temp9 = new Reading(12.4, sensorDate3);
-        Reading temp10 = new Reading(13.8, sensorDate3);
-        Reading temp11 = new Reading(12.9, sensorDate3);
-        Reading temp12 = new Reading(11.5, sensorDate4);
-        Reading temp13 = new Reading(11.2, sensorDate4);
-        Reading temp14 = new Reading(13.5, sensorDate4);
-        Reading temp15 = new Reading(12.8, sensorDate4);
-
-        // sensor 2
-        Reading temp16 = new Reading(84.0, sensorDate1);
-        Reading temp17 = new Reading(85.7, sensorDate1);
-        Reading temp18 = new Reading(76.5, sensorDate1);
-        Reading temp19 = new Reading(78.1, sensorDate1);
-        Reading temp20 = new Reading(83.8, sensorDate2);
-        Reading temp21 = new Reading(83.9, sensorDate2);
-        Reading temp22 = new Reading(75.5, sensorDate2);
-        Reading temp23 = new Reading(77.2, sensorDate2);
-        Reading temp24 = new Reading(82.5, sensorDate3);
-        Reading temp25 = new Reading(82.4, sensorDate3);
-        Reading temp26 = new Reading(73.8, sensorDate3);
-        Reading temp27 = new Reading(72.9, sensorDate3);
-        Reading temp28 = new Reading(80.5, sensorDate4);
-        Reading temp29 = new Reading(79.2, sensorDate4);
-        Reading temp30 = new Reading(71.5, sensorDate4);
-        Reading temp31 = new Reading(72.8, sensorDate4);
-
-        // sensor 3
-        Reading temp32 = new Reading(0.5, sensorDate);
-        Reading temp33 = new Reading(1.2, sensorDate1);
-        Reading temp34 = new Reading(1.5, sensorDate2);
-        Reading temp35 = new Reading(0.3, sensorDate3);
-        Reading temp36 = new Reading(0.0, sensorDate4);
-        Reading temp37 = new Reading(0.0, sensorDate4);
-        Reading temp38 = new Reading(0.0, sensorDate5);
-
-        // sensor 4
-        Reading temp39 = new Reading(8.0, sensorDate1);
-        Reading temp40 = new Reading(6.9, sensorDate1);
-        Reading temp41 = new Reading(16.5, sensorDate1);
-        Reading temp42 = new Reading(11.2, sensorDate1);
-        Reading temp43 = new Reading(7.2, sensorDate2);
-        Reading temp44 = new Reading(5.3, sensorDate2);
-        Reading temp45 = new Reading(15.1, sensorDate2);
-        Reading temp46 = new Reading(9.2, sensorDate2);
-        Reading temp47 = new Reading(6.5, sensorDate3);
-        Reading temp48 = new Reading(4.3, sensorDate3);
-        Reading temp49 = new Reading(14.8, sensorDate3);
-        Reading temp50 = new Reading(8.9, sensorDate3);
-        Reading temp51 = new Reading(6.1, sensorDate4);
-        Reading temp52 = new Reading(3.2, sensorDate4);
-        Reading temp53 = new Reading(14.1, sensorDate4);
-        Reading temp54 = new Reading(8.3, sensorDate4);
-
         // Electric Water Heater B107/B109
         LocalDateTime ewhDate = LocalDateTime.of(2018, 12, 31, 8, 00, 00);
         LocalDateTime ewhDate1 = LocalDateTime.of(2018, 12, 31, 8, 15, 00);
@@ -252,88 +181,6 @@ public class Main {
         Reading wm1EC4 = new Reading(0.25, wm1Date3);
 
 
-        // SENSORS
-        // sensor 1
-        SensorType sensorTypeTemperature = new SensorType("temperature");
-        LocalDateTime startingDate = LocalDate.of(2018, 10, 15).atStartOfDay();
-        Sensor sensor = new Sensor("R003", "TT12346", startingDate, sensorTypeTemperature, houseLocation, "l/m2");
-        sensor.addReadingsToList(temp);
-        sensor.addReadingsToList(temp1);
-        sensor.addReadingsToList(temp2);
-        sensor.addReadingsToList(temp3);
-        sensor.addReadingsToList(temp4);
-        sensor.addReadingsToList(temp5);
-        sensor.addReadingsToList(temp6);
-        sensor.addReadingsToList(temp7);
-        sensor.addReadingsToList(temp8);
-        sensor.addReadingsToList(temp9);
-        sensor.addReadingsToList(temp10);
-        sensor.addReadingsToList(temp11);
-        sensor.addReadingsToList(temp12);
-        sensor.addReadingsToList(temp13);
-        sensor.addReadingsToList(temp14);
-        sensor.addReadingsToList(temp15);
-        // Add sensor to the Inserted area
-        insertedGeoArea.getSensorListInTheGeographicArea().addSensor(sensor);
-
-        // sensor 2
-        SensorType sensorTypeHumidity = new SensorType("humidity");
-        LocalDateTime startingDate2 = LocalDate.of(2018, 11, 22).atStartOfDay();
-        Sensor sensor2 = new Sensor("S001", "Humidity B109", startingDate2, sensorTypeHumidity, houseLocation, "l/m2");
-        sensor2.addReadingsToList(temp16);
-        sensor2.addReadingsToList(temp17);
-        sensor2.addReadingsToList(temp18);
-        sensor2.addReadingsToList(temp19);
-        sensor2.addReadingsToList(temp20);
-        sensor2.addReadingsToList(temp21);
-        sensor2.addReadingsToList(temp22);
-        sensor2.addReadingsToList(temp23);
-        sensor2.addReadingsToList(temp24);
-        sensor2.addReadingsToList(temp25);
-        sensor2.addReadingsToList(temp26);
-        sensor2.addReadingsToList(temp27);
-        sensor2.addReadingsToList(temp28);
-        sensor2.addReadingsToList(temp29);
-        sensor2.addReadingsToList(temp30);
-        sensor2.addReadingsToList(temp31);
-
-        // sensor 3
-        Location locationOfAreaSensors = new Location(41.179230, -8.606409, 125);
-        SensorType sensorTypeRainfall = new SensorType("Rainfall");
-        LocalDateTime startingDate3 = LocalDate.of(2016, 11, 15).atStartOfDay();
-        Sensor sensor3 = new Sensor("S004", "Meteo station ISEP - Rainfall", startingDate3, sensorTypeRainfall, locationOfAreaSensors, "l/m2");
-        sensor3.addReadingsToList(temp32);
-        sensor3.addReadingsToList(temp33);
-        sensor3.addReadingsToList(temp34);
-        sensor3.addReadingsToList(temp35);
-        sensor3.addReadingsToList(temp36);
-        sensor3.addReadingsToList(temp37);
-        sensor3.addReadingsToList(temp38);
-        insertedGeoArea.getSensorListInTheGeographicArea().addSensor(sensor3);
-
-        // sensor 4
-        SensorType sensorTypeTemp = new SensorType("temperature");
-        LocalDateTime startingDate4 = LocalDate.of(2016, 11, 15).atStartOfDay();
-        Sensor sensor4 = new Sensor("S009", "Meteo station ISEP - rainfall", startingDate4, sensorTypeTemp, locationOfAreaSensors, "l/m2");
-        sensor4.addReadingsToList(temp39);
-        sensor4.addReadingsToList(temp40);
-        sensor4.addReadingsToList(temp41);
-        sensor4.addReadingsToList(temp42);
-        sensor4.addReadingsToList(temp43);
-        sensor4.addReadingsToList(temp44);
-        sensor4.addReadingsToList(temp45);
-        sensor4.addReadingsToList(temp46);
-        sensor4.addReadingsToList(temp47);
-        sensor4.addReadingsToList(temp48);
-        sensor4.addReadingsToList(temp49);
-        sensor4.addReadingsToList(temp50);
-        sensor4.addReadingsToList(temp51);
-        sensor4.addReadingsToList(temp52);
-        sensor4.addReadingsToList(temp53);
-        sensor4.addReadingsToList(temp54);
-        insertedGeoArea.getSensorListInTheGeographicArea().addSensor(sensor4);
-
-
         // ROOMS
         // Room 1
         String name = "B107";
@@ -349,8 +196,6 @@ public class Main {
         String name2 = "B109";
         Room room2 = new Room(name2, houseFloor, dimension);
         houseEdificioB.addRoom(room2);
-        room2.addSensorToListOfSensorsInRoom(sensor);
-        room2.addSensorToListOfSensorsInRoom(sensor2);
 
         // Room 3
         String name3 = "B106";
@@ -608,7 +453,7 @@ public class Main {
 
         //UI levels
         Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaList, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList());
-        RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaList, sensorTypeList, houseEdificioB, sensorTypeTemperature);
+        RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaList, sensorTypeList, houseEdificioB);
         PowerUser powerUser = new PowerUser(houseEdificioB);
         RoomOwner roomOwner = new RoomOwner(houseEdificioB);
 

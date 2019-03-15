@@ -24,7 +24,7 @@ public class GetDayWithHighestTemperatureAmplitudeController {
      */
     public GetDayWithHighestTemperatureAmplitudeController(House house) {
         this.house = house;
-        this.sensorTypeTemperature = new SensorType("temperature");
+        this.sensorTypeTemperature = new SensorType("Temperature");
     }
 
     /**

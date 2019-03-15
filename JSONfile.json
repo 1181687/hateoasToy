@@ -18,7 +18,7 @@
               "id": "RF12345",
               "name": "Meteo station ISEP - rainfall",
               "start_date": "2016-11-15",
-              "type": "rainfall",
+              "type": "Rainfall",
               "units": "l/m2"
             },
             "location": {
@@ -32,7 +32,7 @@
               "id": "TT12346",
               "name": "Meteo station ISEP - temperature",
               "start_date": "2016-11-15",
-              "type": "temperature",
+              "type": "Temperature",
               "units": "C"
             },
             "location": {
@@ -60,7 +60,7 @@
               "id": "RF12334",
               "name": "Meteo station CMP - rainfall",
               "start_date": "2017-11-15",
-              "type": "rainfall",
+              "type": "Rainfall",
               "units": "l/m2"
             },
             "location": {
@@ -74,7 +74,7 @@
               "id": "TT1236A",
               "name": "Meteo station CMP - temperature",
               "start_date": "2017-11-16",
-              "type": "temperature",
+              "type": "Temperature",
               "units": "C"
             },
             "location": {

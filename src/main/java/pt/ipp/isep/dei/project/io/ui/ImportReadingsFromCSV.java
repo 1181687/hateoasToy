@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 public class ImportReadingsFromCSV {
     private ImportReadingsFromCSVController controller;
     private ReadingDTO readingDTO;
-    private final static Logger LOGGER = Logger.getLogger(ImportReadingsFromCSV.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ImportReadingsFromCSV.class.getName());
 
     public ImportReadingsFromCSV(GeographicalAreaList geographicalAreaList) {
         controller = new ImportReadingsFromCSVController(geographicalAreaList);

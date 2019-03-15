@@ -12,14 +12,13 @@ public class RegularUser {
     GeographicalAreaList geographicalAreaList;
     SensorTypeList sensorTypeList;
     House house;
-    SensorType sensorTypeTemperature;
+    SensorType sensorTypeTemperature = new SensorType("Temperature");
 
-    public RegularUser(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, SensorType sensorTypeTemperature) {
+    public RegularUser(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
         this.geographicalAreaList = geographicalAreaList;
         this.sensorTypeList = sensorTypeList;
         this.house = house;
-        this.sensorTypeTemperature = sensorTypeTemperature;
     }
 
     public void runRegularUserHouseArea() {
