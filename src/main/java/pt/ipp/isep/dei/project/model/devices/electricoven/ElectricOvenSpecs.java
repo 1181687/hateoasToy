@@ -10,6 +10,7 @@ import java.util.Objects;
 public class ElectricOvenSpecs implements DeviceSpecs, Programmable {
     private static final String ATTRIBUTE_TIME = "Time";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
+    private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
     private String typeName;
     private double time;
