@@ -17,7 +17,7 @@ import java.util.List;
 
 public class JSONReader {
 
-    public JSONReader() {
+    private JSONReader() {
         // empty
     }
 
