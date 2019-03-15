@@ -137,7 +137,14 @@ public class TimeConstantProgramTest {
         assertFalse(result);
     }
 
-
-
+    @Test
+    public void testGetProgramName() {
+        // Arrange
+        String expectedResult = "prog1";
+        // Act
+        String result = timeConstantProgram.getName();
+        // Assert
+        assertEquals(expectedResult, result);
+    }
 
 }
