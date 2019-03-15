@@ -96,7 +96,7 @@ public class FanSpecs implements DeviceSpecs, Programmable {
     }*/
 
     /**
-     * set method to Nominal Power of a dishwasher
+     * set method to Nominal Power of a fan
      *
      * @param nominalPower
      * @return
