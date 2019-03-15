@@ -36,7 +36,7 @@ Output_5: "The last reading of the nearest sensor is not valid." - If the readin
 Test Criteria:
 - All acceptance tests with "Process finished with exit code 0" message:
 
-- Acceptance tests:
+ACCEPTANCE TESTS
 
 Test_scenario1:
 - Input data: the sensors of the house area are nonexistent.
@@ -53,8 +53,6 @@ Test_scenario3:
 Test_scenario4:
 - Input data: the sensors of the house area aren't temperature sensors.
 - Expected result: "There are no temperature sensors in the house area."
-
-
 
 
 ASSUMPTIONS:
