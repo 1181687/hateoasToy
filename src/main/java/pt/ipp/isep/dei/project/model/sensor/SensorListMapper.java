@@ -1,6 +1,10 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-public class SensorListMapper {
+public final class SensorListMapper {
+
+    private SensorListMapper() {
+        // empty
+    }
 
     /**
      * Method that creates a new SensorDTOList.

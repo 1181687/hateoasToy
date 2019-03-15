@@ -251,4 +251,19 @@ public class MicrowaveOvenTest {
         assertFalse(result);
     }
 
+    @Test
+    public void testSetDeactivateDevice_true (){
+        boolean expectedResult = true;
+        boolean result = microwaveOven.setDeactivateDevice();
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetDeactivateDevice_false (){
+        boolean expectedResult = false;
+        microwaveOven.setDeactivateDevice();
+        boolean result = microwaveOven.setDeactivateDevice();
+        assertEquals(expectedResult, result);
+    }
+
 }

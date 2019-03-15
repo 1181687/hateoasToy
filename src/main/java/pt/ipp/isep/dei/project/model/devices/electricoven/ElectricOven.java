@@ -205,34 +205,4 @@ public class ElectricOven implements Device {
         this.name = name;
         return true;
     }
-
-    /**
-     * Method that checks if this class is programmable.
-     *
-     * @return True.
-     */
-    /*@Override
-    public boolean isProgrammable() {
-        return true;
-    }
-
-    /**
-     * Method that turns an object into Programmable.
-     * @return Programmable object.
-     */
-    /*@Override
-    public Programmable asProgrammable() {
-        return this;
-    }
-
-    /**
-     * Method that adds a program to the device.
-     *
-     * @param program Program to be added.
-     * @return True or false.
-     */
-    /*@Override
-    public boolean addProgram(TimeConstantProgramSpecs program) {
-        return this.specs.addProgram(program);
-    }*/
 }

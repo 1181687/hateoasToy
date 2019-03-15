@@ -453,4 +453,19 @@ class DishWasherTest {
         assertEquals(expectedResult, result);
 
     }
+
+    @Test
+    public void testSetDeactivateDevice_true (){
+        boolean expectedResult = true;
+        boolean result = dishWasher.setDeactivateDevice();
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testSetDeactivateDevice_false (){
+        boolean expectedResult = false;
+        dishWasher.setDeactivateDevice();
+        boolean result = dishWasher.setDeactivateDevice();
+        assertEquals(expectedResult, result);
+    }
 }
