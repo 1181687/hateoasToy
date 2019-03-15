@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
@@ -17,7 +16,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AddDeviceToRoomControllerTest {
     private AddDeviceToRoomController controller;
@@ -148,25 +147,21 @@ public class AddDeviceToRoomControllerTest {
     }
 
     @Test
-    public void testNewFridge() {
+    public void testNewFridge_ValidDevice_ReturnsTrue() {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        Device d2 = controller.createNewFridge("Fridge", 1000,
-                200, 20, 50);
-        Device expectedResult = d2;
 
         // Act
-        Device result = controller.getDevice(0);
+        boolean result = controller.createNewFridge("Fridge", 1000,
+                200, 20, 50);
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertTrue(result);
     }
 
-    /*
-
     @Test
-    public void testNewFridgeNegative() {
+    public void testNewFridgeNegative_SameDeviceAlreadyExists_ReturnFalse() {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
@@ -174,31 +169,26 @@ public class AddDeviceToRoomControllerTest {
                 20, 50);
 
         // Act
-        Throwable exception =
-                assertThrows(RuntimeException.class, () -> controller.createNewFridge("Fridge",
-                        1000, 200, 20, 50));
-
+        boolean result = controller.createNewFridge("Fridge", 1000, 200,
+                20, 50);
         // Assert
-        assertEquals("Device with same name is already in the roomList", exception.getMessage());
+        assertFalse(result);
     }
 
     @Test
-    public void testNewLamp() {
+    public void testNewLamp_ValidDevice_ReturnTrue() {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        Device device = controller.createNewLamp("lamp", 200, 100);
-
-        Device expectedResult = device;
 
         // Act
-        Device result = controller.getDevice(0);
+        boolean result = controller.createNewLamp("lamp", 200, 100);
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertTrue(result);
     }
 
-    /*
+
     @Test
     public void testNewLampNegative() {
         // Arrange
@@ -207,119 +197,303 @@ public class AddDeviceToRoomControllerTest {
         controller.createNewLamp("lamp", 200, 100);
 
         // Act
-        Throwable exception =
-                assertThrows(RuntimeException.class, () -> controller.createNewLamp("lamp",
-                        200, 100));
+        boolean result = controller.createNewLamp("lamp", 200, 100);
 
         // Assert
-        assertEquals("Device with same name is already in the roomList", exception.getMessage());
+        assertFalse(result);
     }
 
-    /*
     @Test
     public void testNewWashingMachine() {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        Device device = controller.createNewWashingMachine("Washing Machine", 200, 100);
-
-        Device expectedResult = device;
 
         // Act
-        Device result = controller.getDevice(0);
+        boolean result = controller.createNewWashingMachine("Washing Machine", 200, 100);
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertTrue(result);
     }
 
-    /*
     @Test
-    public void testNewWashingMachineNegative() throws RuntimeException {
+    public void testNewWashingMachineNegative() {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
         controller.createNewWashingMachine("Washing Machine", 200, 100);
 
         // Act
-        Throwable exception =
-                assertThrows(RuntimeException.class, () ->
-                        controller.createNewWashingMachine("Washing Machine", 200, 100));
+        boolean result = controller.createNewWashingMachine("Washing Machine", 200, 100);
 
         // Assert
-        assertEquals("Device with same name is already in the roomList", exception.getMessage());
+        assertFalse(result);
     }
 
-    /*
+
     @Test
     public void newElectricWaterHeater() {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
 
-        Device device = controller.createNewElectricWaterHeater("Electric Water Heater", 50,
-                150, 100, 0.9);
-
-        Device expectedResult = device;
-
         // Act
-        Device result = controller.getDevice(0);
+        boolean result = controller.createNewElectricWaterHeater("Electric Water Heater", 80, 100, 1.5, 0.9);
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertTrue(result);
     }
 
-    /*
+
     @Test
-    public void newElectricWaterHeaterNegative() throws RuntimeException {
+    public void newElectricWaterHeaterNegative() {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-
-        controller.createNewElectricWaterHeater("Electric Water Heater", 50, 150,
+        controller.createNewElectricWaterHeater("ElectricWaterHeater", 50, 150,
                 100, 0.9);
 
         // Act
-        Throwable exception =
-                assertThrows(RuntimeException.class, () ->
-                        controller.createNewElectricWaterHeater("Electric Water Heater", 50,
-                                150, 100, 0.9));
-
+        boolean result = controller.createNewElectricWaterHeater("ElectricWaterHeater", 50, 150,
+                100, 0.9);
         // Assert
-        assertEquals("Device with same name is already in the roomList", exception.getMessage());
+        assertFalse(result);
     }
 
-    */
+
     @Test
     public void newDishWasher() {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
 
-        Device device = controller.createNewDishWasher("Dishwasher", 12, 50);
-
-        Device expectedResult = device;
-
         //Act
-        Device result = controller.getDevice(0);
+        boolean result = controller.createNewDishWasher("Dishwasher", 12, 50);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertTrue(result);
     }
 
-    /*
+
     @Test
-    public void newDishWasherNegative() throws RuntimeException {
+    public void newDishWasherNegative() {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
         controller.createNewDishWasher("DW1", 12, 50);
 
         // Act
-        Throwable exception = assertThrows(RuntimeException.class, () ->
-                controller.createNewDishWasher("DW1", 12, 50));
+        boolean result = controller.createNewDishWasher("DW1", 12, 50);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testNewKettle_ValidDevice_ReturnsTrue() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+
+        // Act
+        boolean result = controller.createNewKettle("Kettle", 1.5, 2, 13, 2, 0.7);
 
         // Assert
-        assertEquals("Device with same name is already in the roomList", exception.getMessage());
+        assertTrue(result);
+    }
+
+    @Test
+    public void testNewKettle_SameDeviceAlreadyExists_ReturnFalse() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createNewKettle("Kettle", 1.5, 2, 13, 2, 0.7);
+
+        // Act
+        boolean result = controller.createNewKettle("Kettle", 1.5, 2, 13, 2, 0.7);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testNewElectricOven_ValidDevice_ReturnsTrue() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+
+        // Act
+        boolean result = controller.createNewElectricOven("Oven", 1.5, 20);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testNewElectricOven_SameDeviceAlreadyExists_ReturnFalse() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createNewElectricOven("Oven", 1.5, 20);
+
+        // Act
+        boolean result = controller.createNewElectricOven("Oven", 1.5, 20);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testNewFan_ValidDevice_ReturnsTrue() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+
+        // Act
+        boolean result = controller.createFan("Fan", 1.5);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testNewFan_SameDeviceAlreadyExists_ReturnFalse() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createFan("Fan", 1.5);
+
+        // Act
+        boolean result = controller.createFan("Fan", 1.5);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testNewFreezer_ValidDevice_ReturnsTrue() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+
+        // Act
+        boolean result = controller.createFreezer("Freezer", 1.5, 20, 300);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testNewFreezer_SameDeviceAlreadyExists_ReturnFalse() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createFreezer("Freezer", 1.5, 20, 300);
+
+        // Act
+        boolean result = controller.createFreezer("Freezer", 1.5, 20, 300);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testNewMicroWaveOven_ValidDevice_ReturnsTrue() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+
+        // Act
+        boolean result = controller.createMicroWaveOven("Microwave", 1.5);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testNewMicroWaveOven_SameDeviceAlreadyExists_ReturnFalse() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createMicroWaveOven("Microwave", 1.5);
+
+        // Act
+        boolean result = controller.createMicroWaveOven("Microwave", 1.5);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testNewTelevision_ValidDevice_ReturnsTrue() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+
+        // Act
+        boolean result = controller.createTelevision("Television", 1.5, 0.01);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testNewTelevision_SameDeviceAlreadyExists_ReturnFalse() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createTelevision("Television", 1.5, 0.01);
+
+        // Act
+        boolean result = controller.createTelevision("Television", 1.5, 0.01);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testNewWallTowelHeater_ValidDevice_ReturnsTrue() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+
+        // Act
+        boolean result = controller.createWallTowelHeater("Wall Towel Heater", 1.5, 20);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testNewWallTowelHeater_SameDeviceAlreadyExists_ReturnFalse() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createWallTowelHeater("Wall Towel Heater", 1.5, 20);
+
+        // Act
+        boolean result = controller.createWallTowelHeater("Wall Towel Heater", 1.5, 20);
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testNewWineCooler_ValidDevice_ReturnsTrue() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+
+        // Act
+        boolean result = controller.createWineCooler("Wine coolah", 1.5, 20, 350);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testNewWineCooler_SameDeviceAlreadyExists_ReturnFalse() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createWineCooler("Wine coolah", 1.5, 20, 350);
+
+        // Act
+        boolean result = controller.createWineCooler("Wine coolah", 1.5, 20, 350);
+        // Assert
+        assertFalse(result);
     }
 
     @Test
@@ -327,17 +501,17 @@ public class AddDeviceToRoomControllerTest {
         // Arrange
         house.addRoom(kitchen);
         house.createDevice("Fridge", "Fridgeratah V14", kitchen);
-        kitchen.getDeviceByPosition(0).setAttributesDevType("freezer Capacity", 5.5);
+        kitchen.getDeviceByPosition(0).setAttributesDevType("Freezer Capacity", 5.5);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 15.5);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 5000);
         kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.5);
 
-        house.createDevice("lamp", "lamp Bizkit 5000", kitchen);
+        house.createDevice("Lamp", "Lamp Bizkit 5000", kitchen);
         kitchen.getDeviceByPosition(1).setAttributesDevType("Nominal Power", 1.0);
         kitchen.getDeviceByPosition(1).setAttributesDevType("Luminous Flux", 10.0);
 
         String expectedResult = "1 - Name of the device: Fridgeratah V14\n" +
-                "2 - Name of the device: lamp Bizkit 5000\n";
+                "2 - Name of the device: Lamp Bizkit 5000\n";
 
         // Act
         String result = controller.getDeviceListContentOfARoom(0);
@@ -346,55 +520,51 @@ public class AddDeviceToRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-/*
     @Test
-    public void testCreateNewProgram() {
+    public void testAddProgram_ProgrammableDevice_ReturnsTrue() {
         // Arrange
-        Device device = house.createDevice("Electric Water Heater", "Electric Water Heater", kitchen);
-
-        kitchen.getDeviceByPosition(0).setAttributesDevType("Volume Of Water To Heat", 5.5);
-        kitchen.getDeviceByPosition(0).setAttributesDevType("Refrigerator Capacity", 15.5);
-        kitchen.getDeviceByPosition(0).setAttributesDevType("Annual Energy Consumption", 5000);
-        kitchen.getDeviceByPosition(0).setAttributesDevType("Nominal Power", 100.5);
-
-        DeviceSpecs eWHSpecs = new ElectricWaterHeaterSpecs(50, 150, 100, 0.9);
-
-        //Device electricWaterHeater = new Device("Electric Water Heater", kitchen, eWHSpecs);
-        //kitchen.addDevice(electricWaterHeater);
         house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createNewWashingMachine("Washimashine", 100.5, 8);
+        controller.isProgrammable();
+
+        controller.createNewProgram("Program1");
 
         // Act
-        boolean result = controller.createAndAddProgram("Program1", 10.2, 50);
+        boolean result = controller.addProgram();
 
         // Assert
         assertTrue(result);
     }
 
     @Test
-    public void addProgramToListFalse() {
+    public void testIsDeviceProgrammable_ProgrammableDevice_ReturnsTrue() {
         //Arrange
-        Program program = null;
-        boolean expectedResult = false;
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createNewWashingMachine("Washimashine", 100.5, 8);
 
         //Act
-        boolean result = controller.createAndAddProgram(null, Double.NaN, Double.NaN);
+        boolean result = controller.isProgrammable();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertTrue(result);
     }
 
     @Test
-    public void addProgramToListTrue() {
-        // Arrange
-        //boolean program = controller.createAndAddProgram("Program1", 10.2, 50);
+    public void testIsDeviceProgrammable_NotAProgrammableDevice_ReturnsFalse() {
+        //Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createNewLamp("Lamp", 5, 8);
 
-        // Act
-        boolean result = controller.createAndAddProgram("Program1", 10.2, 50);
+        //Act
+        boolean result = controller.isProgrammable();
 
-        // Assert
-        assertTrue(result);
+        //Assert
+        assertFalse(result);
     }
-*/
+
     @Test
     public void testGetNumberOfDeviceTypes() {
         // Arrange
@@ -406,4 +576,35 @@ public class AddDeviceToRoomControllerTest {
         // Assert
         assertEquals(expectedResult, result);
     }
+
+    @Test
+    public void testSetProgramAttributes_ValidAttribute_ReturnTrue() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createNewWashingMachine("Washimashine", 5, 8);
+        controller.isProgrammable();
+        controller.createNewProgram("Program xpto");
+
+        // Act
+        boolean result = controller.setProgramAttributes("duration", 10);
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testSetProgramAttributes_InvalidAttribute_ReturnFalse() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createNewWashingMachine("Washimashine", 5, 8);
+        controller.isProgrammable();
+        controller.createNewProgram("Program xpto");
+
+        // Act
+        boolean result = controller.setProgramAttributes("wrong attribute", 10);
+        // Assert
+        assertFalse(result);
+    }
+
 }

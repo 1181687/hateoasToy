@@ -6,7 +6,6 @@ import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -419,43 +418,6 @@ public class Room implements Measurable {
             }
         }
         return listOfDevicesWithTheType;
-    }
-
-    /**
-     * Method that sets the value of an attribute of a device.
-     *
-     * @param devicePosition    Device position in the list of devices.
-     * @param attributePosition Position of the attribute to be set.
-     * @param value             Value to be used.
-     * @return True or false.
-     */
-    public boolean setDeviceSpecAttribute(int devicePosition, String attributePosition, Object value) {
-        Device device = this.deviceList.get(devicePosition);
-        return device.setAttributesDevType(attributePosition, value);
-    }
-
-    /**
-     * Method that returns the energy consumption of a device.
-     *
-     * @param devicePosition Device position in the list of devices.
-     * @return Double with the energy consumption.
-     */
-    public double getEnergyConsumptionOfADevice(int devicePosition) {
-        Device device = this.deviceList.get(devicePosition);
-        return device.getEnergyConsumptionInADay();
-    }
-
-    /**
-     * Method that returns the combined energy consumption of all the devices in a list.
-     *
-     * @return Double with the combined energy consumption.
-     */
-    public double getTotalEnergyConsumption() {
-        double totalEnergyConsumption = 0;
-        for (Device device : this.deviceList) {
-            totalEnergyConsumption += device.getEnergyConsumptionInADay();
-        }
-        return Utils.round(totalEnergyConsumption, 2);
     }
 
     /**

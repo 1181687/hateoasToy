@@ -443,8 +443,7 @@ public class GeographicalArea {
      */
     public Reading getFirstHighestReading(SensorType type, LocalDate startDate, LocalDate endDate) {
         Sensor chosenSensor = getNearestSensorWithMostRecentReading(type, this.location);
-        Reading highestReading = chosenSensor.getFirstHighestReading(startDate, endDate);
-        return highestReading;
+        return chosenSensor.getFirstHighestReading(startDate, endDate);
     }
 
     public Reading getLastLowestMaximumReading(Location location, SensorType sensorType, LocalDate startDate, LocalDate endDate) {

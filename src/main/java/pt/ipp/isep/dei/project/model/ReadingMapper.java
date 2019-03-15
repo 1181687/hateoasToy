@@ -2,7 +2,11 @@ package pt.ipp.isep.dei.project.model;
 
 import java.util.Objects;
 
-public class ReadingMapper {
+public final class ReadingMapper {
+
+    private ReadingMapper() {
+        // empty
+    }
 
     /**
      * Method that creates a new ReadingDTO.

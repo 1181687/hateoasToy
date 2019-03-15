@@ -9,7 +9,6 @@ import java.util.Objects;
 
 public class DishWasherSpecs implements DeviceSpecs, Programmable {
     private static final String ATTRIBUTE_CAPACITY = "Capacity";
-    private static final String ATTRIBUTE_DURATION = "Duration";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
     private String typeName;
@@ -125,8 +124,6 @@ public class DishWasherSpecs implements DeviceSpecs, Programmable {
         switch (attributeName) {
             case ATTRIBUTE_CAPACITY:
                 return capacity;
-            //case ATTRIBUTE_DURATION:
-            // return duration;
             case ATTRIBUTE_NOMINAL_POWER:
                 return nominalPower;
             default:

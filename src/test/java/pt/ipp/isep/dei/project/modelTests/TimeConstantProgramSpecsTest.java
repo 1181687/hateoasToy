@@ -56,7 +56,7 @@ public class TimeConstantProgramSpecsTest {
     @Test
     public void testSetAttributeDurationNullChar() {
         // Arrange
-        String attribute = "stuff";
+        double attribute = 30;
         // Act
         boolean result = specs.setAttributes("\0"+DURATION, attribute);
         // Assert
@@ -91,6 +91,16 @@ public class TimeConstantProgramSpecsTest {
         assertFalse(result);
     }
 
+    @Test
+    public void testSetAttributeDurationZeroValue_False() {
+        // Arrange
+        specs.setAttributes(DURATION, 0);
+        // Act
+        boolean result = specs.setAttributes(DURATION, 0);
+        // Assert
+        assertFalse(result);
+    }
+
     /////////////
 
     @Test
@@ -106,7 +116,7 @@ public class TimeConstantProgramSpecsTest {
     @Test
     public void testSetAttributeEnergyConsumptionNullChar() {
         // Arrange
-        String attribute = "stuff";
+        double attribute = 10;
         // Act
         boolean result = specs.setAttributes("\0"+ENERGY_CONSUMPTION, attribute);
         // Assert
