@@ -65,10 +65,6 @@ public interface    Device extends Measurable {
 
     LocalDateTime getDeactivationDate();
 
-    //boolean isProgrammable();
-
-    //Programmable asProgrammable();
-
     boolean setDeactivateDevice();
 
     /**
@@ -79,10 +75,6 @@ public interface    Device extends Measurable {
      * @return true if sets false if don't
      */
     boolean setName(String name);
-
-
-
-    //DEFAULT METHODS
 
 
     /**
