@@ -26,6 +26,33 @@ public class SensorMapperTest {
         String id = "S1";
         String name = "sensor1";
         String typeName = "Temperature";
+        LocalDateTime startingDate = LocalDateTime.of(1991, 11, 2,15,25);
+        LocationDTO location = new LocationDTO();
+        location.setLatitude(123);
+        location.setLongitude(345);
+        location.setElevation(50);
+        String units = "1/ms";
+
+        SensorType temperature = new SensorType(typeName);
+        Location locationSensor = new Location(123, 345, 50);
+
+        Sensor expectedResult = new Sensor(id, name, startingDate, temperature, locationSensor, units);
+
+        //Act
+        SensorDTO sensorDTO = SensorMapper.mapToDTO(expectedResult);
+        Sensor result = SensorMapper.mapToEntity(sensorDTO);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testMapToEntity() {
+        //Arrange
+        //Arrange
+        String id = "S1";
+        String name = "sensor1";
+        String typeName = "Temperature";
         LocalDate startingDate = LocalDate.of(1991, 11, 2);
         LocationDTO location = new LocationDTO();
         location.setLatitude(123);
@@ -36,7 +63,9 @@ public class SensorMapperTest {
         LocalDateTime startingDateSensor = LocalDateTime.of(1991, 11, 2, 21, 10, 25).truncatedTo(ChronoUnit.DAYS);
         SensorType temperature = new SensorType("Temperature");
         Location locationSensor = new Location(123, 345, 50);
-        Sensor sensor = new Sensor(id, name, startingDateSensor, temperature, locationSensor, units);
+
+        Sensor expectedResult = new Sensor(id, name, startingDateSensor, temperature, locationSensor, units);
+
         SensorDTO sensorDTO = SensorMapper.newSensorDTO();
 
         sensorDTO.setId(id);
@@ -45,11 +74,11 @@ public class SensorMapperTest {
         sensorDTO.setStartingDate(startingDate);
         sensorDTO.setLocation(location);
         sensorDTO.setUnits(sensorDTO.getUnits());
-        Sensor expectedResult = SensorMapper.mapToEntity(sensorDTO);
+
 
         //Act
-        SensorDTO sensorDTO1 = SensorMapper.entityToMap(sensor);
-        Sensor result = SensorMapper.mapToEntity(sensorDTO1);
+
+        Sensor result = SensorMapper.mapToEntity(sensorDTO);
         //Assert
         assertEquals(expectedResult, result);
     }

@@ -34,7 +34,7 @@ public class GeographicalAreaDTOTest {
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(42.1596, -8.6109, 97);
         Sensor sensor = new Sensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
-        temperatureSensor = SensorMapper.entityToMap(sensor);
+        temperatureSensor = SensorMapper.mapToDTO(sensor);
         portoCity.addSensor(temperatureSensor);
     }
 

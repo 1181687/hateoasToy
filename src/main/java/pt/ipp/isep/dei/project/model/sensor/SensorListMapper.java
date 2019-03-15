@@ -24,7 +24,7 @@ public final class SensorListMapper {
     public static SensorDTOList mapToDTO(SensorList sensorList) {
         SensorDTOList sensorDTOList = newSensorDTOList();
         for (Sensor sensor : sensorList.getListOfSensors()) {
-            sensorDTOList.addSensorDTO(SensorMapper.entityToMap(sensor));
+            sensorDTOList.addSensorDTO(SensorMapper.mapToDTO(sensor));
         }
         return sensorDTOList;
     }
