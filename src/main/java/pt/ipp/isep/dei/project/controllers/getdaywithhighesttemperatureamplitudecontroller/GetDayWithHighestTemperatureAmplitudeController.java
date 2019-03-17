@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllers.getdaywithhighesttemperatureamplitudecontroller;
+package pt.ipp.isep.dei.project.controllers.getDayWithHighestTemperatureAmplitudeController;
 
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
@@ -80,7 +80,7 @@ public class GetDayWithHighestTemperatureAmplitudeController {
 
                 if (Double.compare(highestAmplitude.getValue(), 0) == 0) {
 
-                    return "There are not enough values to calculate the amplitude.";
+                    return "There are not enough values to calculate the amplitude.\n";
                 }
 
                 if (!output) {
@@ -99,6 +99,5 @@ public class GetDayWithHighestTemperatureAmplitudeController {
         return "There's no registers for this period.\n";
     }
 }
-
 
 
