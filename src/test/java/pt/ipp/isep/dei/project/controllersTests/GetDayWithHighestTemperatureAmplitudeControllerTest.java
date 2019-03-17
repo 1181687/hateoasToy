@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.getdaywithhighesttemperatureamplitudecontroller.GetDayWithHighestTemperatureAmplitudeController;
+import pt.ipp.isep.dei.project.controllers.getDayWithHighestTemperatureAmplitudeController.GetDayWithHighestTemperatureAmplitudeController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
@@ -14,10 +14,8 @@ import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Map;
 
 import static org.testng.Assert.assertEquals;
 
@@ -34,8 +32,6 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
     private House house;
     private GetDayWithHighestTemperatureAmplitudeController controller;
 
-    private Map<LocalDate, Double> mapOfDailyAmplitude;
-    private Map<LocalDate, Double> mapResult;
 
     @BeforeEach
     public void StartUp() {
@@ -67,7 +63,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         this.house.setAddress(address);
 
         // Sensors
-        temperature = new SensorType("temperature");
+        temperature = new SensorType("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
         temperatureSensor = new Sensor("S01", "A123", startDate, temperature, sensorLocation, "l/m2");
@@ -133,7 +129,8 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         //Act
         controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
         String result = controller.displayResults();
-        String expectedResult = "There's no registers for this period.\n";
+        String expectedResult = "The highest temperature amplitude for the chosen period is 20.0 Celsius and was registered on:\n" +
+                "2018-12-04\n";
 
         //Assert
         assertEquals(expectedResult, result);
@@ -174,7 +171,8 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         //Act
         controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
         String result = controller.displayResults();
-        String expectedResult = "There's no registers for this period.\n";
+        String expectedResult = "The highest temperature amplitude for the chosen period is 7.0 Celsius and was registered on:\n" +
+                "2018-12-02\n";
 
         //Assert
         assertEquals(expectedResult, result);
@@ -204,7 +202,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         //Act
         controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
         String result = controller.displayResults();
-        String expectedResult = "There's no registers for this period.\n";
+        String expectedResult = "There are not enough values to calculate the amplitude.\n";
 
         //Assert
         assertEquals(expectedResult, result);
@@ -236,7 +234,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
         //Act
         controller.getDayWithHighestTemperatureAmplitude(startDateTime.toLocalDate(), endDateTime.toLocalDate());
         String result = controller.displayResults();
-        String expectedResult = "There's no registers for this period.\n";
+        String expectedResult = "There are not enough values to calculate the amplitude.\n";
 
         //Assert
         assertEquals(expectedResult, result);
