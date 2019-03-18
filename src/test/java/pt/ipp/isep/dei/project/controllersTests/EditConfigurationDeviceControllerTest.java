@@ -17,7 +17,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class EditConfigurationDeviceControllerTest {
     private EditConfigurationDeviceController controller;

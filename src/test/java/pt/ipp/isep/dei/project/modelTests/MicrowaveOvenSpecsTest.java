@@ -13,8 +13,8 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.testng.Assert.assertEquals;
 
 public class MicrowaveOvenSpecsTest {
     private Room kitchen;

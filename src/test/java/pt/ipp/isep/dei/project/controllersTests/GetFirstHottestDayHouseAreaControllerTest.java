@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class GetFirstHottestDayHouseAreaControllerTest {
     private static final String CONFIG_PROPERTIES = "Configuration.properties";

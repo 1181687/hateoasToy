@@ -6,9 +6,7 @@ import pt.ipp.isep.dei.project.model.devices.ProgramSpecs;
 import pt.ipp.isep.dei.project.model.devices.TimeVariableProgram;
 import pt.ipp.isep.dei.project.model.devices.TimeVariableProgramSpecs;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TimeVariableProgramTest {
 
