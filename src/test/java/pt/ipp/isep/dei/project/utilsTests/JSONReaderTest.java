@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class JSONReaderTest {
     /**
@@ -97,7 +98,7 @@ public class JSONReaderTest {
     }
 
     @Test
-    public void testReadJSONFileToList_geoAreaDTO_withoutSets() {
+    public void testReadJSONFileToList_geoAreaDTO_assertNotEquals() {
         // arrange
         FileReader file;
         try {
@@ -105,8 +106,8 @@ public class JSONReaderTest {
         } catch (FileNotFoundException e) {
             file = null;
         }
-        // geo area ISEP
-        String id = "ISEP";
+        // geo area Porto
+        String id = "Porto";
         String description = "Campus do ISEP";
         String type = "Urban area";
         double width = 0.261;
@@ -126,15 +127,15 @@ public class JSONReaderTest {
         geoAreaDto.add(0, geographicalAreaDTO);
 
 
-        // geo area Porto
-        String id1 = "Porto";
-        String description1 = "City of Porto";
+        // geo area Lisboa
+        String id1 = "Lisboa";
+        String description1 = "City of Lisboa";
         String type1 = "city";
-        double width1 = 10.09;
-        double length1 = 3.30;
-        double latitude1 = 41.149935;
-        double longitude1 = -8.610857;
-        double altitude1 = 118;
+        double width1 = 20;
+        double length1 = 40;
+        double latitude1 = 70;
+        double longitude1 = -9;
+        double altitude1 = 42;
 
         GeographicalAreaDTO geographicalAreaDTO1 = GeographicalAreaMapper.mapToDTO(id1, description1, type1, width1, length1, latitude1, longitude1, altitude1);
 
@@ -152,7 +153,7 @@ public class JSONReaderTest {
         result.add(geoA2);
 
         // assert
-        assertEquals(expectedResult, result);
+        assertNotEquals(expectedResult, result);
     }
 
     @Test
