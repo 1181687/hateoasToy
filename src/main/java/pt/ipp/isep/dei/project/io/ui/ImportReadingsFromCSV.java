@@ -20,31 +20,49 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ImportReadingsFromCSV {
+    private static final Logger LOGGER = Logger.getLogger(ImportReadingsFromCSV.class.getName());
     private ImportReadingsFromCSVController controller;
     private ReadingDTO readingDTO;
-    private static final Logger LOGGER = Logger.getLogger(ImportReadingsFromCSV.class.getName());
 
+    /**
+     * Constructor.
+     *
+     * @param geographicalAreaList
+     */
     public ImportReadingsFromCSV(GeographicalAreaList geographicalAreaList) {
         controller = new ImportReadingsFromCSVController(geographicalAreaList);
         readingDTO = ReadingMapper.newReadingDTO();
     }
 
+    /**
+     * RUN!
+     */
     public void run() {
-        String pathCSVFile = InputValidator.getString("\nPlease specify the name of the CSV file to import (including the \".csv\" part).");
+        String pathCSVFile = InputValidator.getString("\nPlease specify the absolute path of the CSV file to import (including the \".csv\" part).");
+        if (!CSVReader.isCSVFile(pathCSVFile)) {
+            System.out.println("\nERROR: That's not a CSV file.\n");
+            return;
+        }
         Scanner scanner = checkIfFileExistsAndCreateScanner(pathCSVFile);
         if (Objects.isNull(scanner)) {
             System.out.println("\nERROR: There's no such file with that name.\n");
             return;
         }
-        scanner.nextLine();
-        if (!scanner.hasNext()) {
+        String notImportedReadings = importReadings(scanner);
+        if (Objects.isNull(notImportedReadings)) {
             System.out.println("\nThe file is empty, therefore nothing was imported.\n");
-            return;
         }
-        int numberOfFailedImports = readLinesAndImportReadings(scanner);
+        int numberOfFailedImports = notImportedReadings.split("\n").length;
         if (numberOfFailedImports > 0) {
-            System.out.println("Some readings weren't imported.\n");
-            return;
+            String answer = InputValidator.confirmValidation("\nSome lines weren't valid and, therefore, weren't imported " +
+                    "(" + numberOfFailedImports + "). Do you want to see them? (Y/N)");
+            if ("y".equalsIgnoreCase(answer)) {
+                System.out.println(notImportedReadings);
+                return;
+            } else {
+                System.out.println();
+                return;
+            }
         }
         System.out.println("\nAll readings were imported successfully.\n");
     }
@@ -55,7 +73,7 @@ public class ImportReadingsFromCSV {
      * @param pathCSVFile Path of the CSV file.
      * @return Null scanner if there's no such file with the specified name; or a valid scanner if the file exists.
      */
-    public Scanner checkIfFileExistsAndCreateScanner(String pathCSVFile) {
+    private Scanner checkIfFileExistsAndCreateScanner(String pathCSVFile) {
         File file = new File(pathCSVFile);
         Scanner scanner;
         try {
@@ -72,7 +90,7 @@ public class ImportReadingsFromCSV {
      * @param dateTime Datetime to be analysed.
      * @return Double with the value.
      */
-    public LocalDateTime checkDateTimeAndStoreIt(String dateTime) {
+    private LocalDateTime checkDateTimeAndStoreIt(String dateTime) {
         try {
             ZonedDateTime.parse(dateTime);
         } catch (DateTimeParseException e) {
@@ -92,7 +110,7 @@ public class ImportReadingsFromCSV {
      * @param value Value to be analysed.
      * @return Double with the value.
      */
-    public Double checkValueAndStoreIt(String value) {
+    private Double checkValueAndStoreIt(String value) {
         Double readingValue;
         try {
             readingValue = Double.parseDouble(value);
@@ -103,12 +121,12 @@ public class ImportReadingsFromCSV {
     }
 
     /**
-     * Method that stores the information of not imported readings (corresponding to lines in the file).
+     * Method that stores the information of not imported readings (corresponding to each line in the file).
      *
      * @param line Line to be turned into a String.
      * @return String with information about the not imported reading.
      */
-    public String storeNotImportedReadings(List<String> line) {
+    private String storeNotImportedReadings(List<String> line) {
         StringBuilder notImportedReadings = new StringBuilder();
         notImportedReadings.append("Id: " + line.get(0) + "  ");
         notImportedReadings.append("Timestamp/Date: " + line.get(1).trim() + "  ");
@@ -123,17 +141,14 @@ public class ImportReadingsFromCSV {
      * @param scanner Information to be analysed.
      * @return Integer corresponding to the number of failed imports.
      */
-    public int readLinesAndImportReadings(Scanner scanner) {
-        FileHandler fh;
-        try {
-            fh = new FileHandler("log/outputErrors.log");
-        } catch (IOException e) {
-            fh = null;
+    private String importReadings(Scanner scanner) {
+        configLogFile();
+        StringBuilder notImportedReadings = new StringBuilder();
+        List<List<String>> allLines = CSVReader.readFile(scanner);
+        if (allLines.isEmpty()) {
+            return null;
         }
-        LOGGER.addHandler(fh);
-        int numberOfFailedImports = 0;
-        while (scanner.hasNext()) {
-            List<String> line = CSVReader.parseLine((scanner.nextLine()));
+        for (List<String> line : allLines) {
             String sensorId = line.get(0);
             String dateTime = line.get(1);
             String value = line.get(2);
@@ -141,20 +156,34 @@ public class ImportReadingsFromCSV {
                 LocalDateTime readingDateTime = checkDateTimeAndStoreIt(dateTime);
                 Double readingValue = checkValueAndStoreIt(value);
                 if (Objects.isNull(readingDateTime) || Objects.isNull(readingValue)) {
+                    notImportedReadings.append(storeNotImportedReadings(line));
                     LOGGER.log(Level.WARNING, "Line not parsed due to invalid information: "
                             + storeNotImportedReadings(line));
-                    numberOfFailedImports += 1;
                     continue;
                 }
                 readingDTO.setDateTime(readingDateTime);
                 readingDTO.setValue(readingValue);
                 controller.addReadingToSensor(readingDTO);
             } else {
+                notImportedReadings.append(storeNotImportedReadings(line));
                 LOGGER.log(Level.WARNING, "There is no sensor in the system with the id " + sensorId + ".\n");
-                numberOfFailedImports += 1;
             }
         }
-        return numberOfFailedImports;
+        return notImportedReadings.toString();
+    }
+
+    /**
+     * Method that configures the log file, using a FileHandler object to send log information to the specified log file.
+     * The last line is responsible for not letting the information show up in the console.
+     */
+    private void configLogFile() {
+        FileHandler fh;
+        try {
+            fh = new FileHandler("log/outputErrors.log");
+        } catch (IOException e) {
+            fh = null;
+        }
+        LOGGER.addHandler(fh);
+        LOGGER.setUseParentHandlers(false);
     }
 }
-
