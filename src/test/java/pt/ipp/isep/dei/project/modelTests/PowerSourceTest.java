@@ -160,4 +160,22 @@ public class PowerSourceTest {
         //Assert
         assertEquals(expectedResult,result);
     }
+
+    @Test
+    void getPowerSourceType() {
+        //Arrange
+        String powerSourceName1 = "ps1";
+
+        PowerSourceType powerSourceType1 = new PowerSourceType("public electric grid");
+
+        PowerSource powerSource1 = new PowerSource(powerSourceName1, powerSourceType1);
+
+        String expectedResult = "public electric grid";
+
+        //Act
+        String result = powerSource1.getPowerSourceType().getTypeOfPowerSource();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
 }

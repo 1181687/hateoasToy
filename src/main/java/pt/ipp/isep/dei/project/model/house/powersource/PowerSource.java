@@ -81,4 +81,8 @@ public class PowerSource {
     public String getName() {
         return name;
     }
+
+    public PowerSourceType getPowerSourceType() {
+        return powerSourceType;
+    }
 }
