@@ -35,45 +35,12 @@ public class ImportReadingsFromCSV {
     }
 
     /**
-     * RUN!
-     */
-    public void run() {
-        String pathCSVFile = InputValidator.getString("\nPlease specify the absolute path of the CSV file to import (including the \".csv\" part).");
-        if (!CSVReader.isCSVFile(pathCSVFile)) {
-            System.out.println("\nERROR: That's not a CSV file.\n");
-            return;
-        }
-        Scanner scanner = checkIfFileExistsAndCreateScanner(pathCSVFile);
-        if (Objects.isNull(scanner)) {
-            System.out.println("\nERROR: There's no such file with that name.\n");
-            return;
-        }
-        String notImportedReadings = importReadings(scanner);
-        if (Objects.isNull(notImportedReadings)) {
-            System.out.println("\nThe file is empty, therefore nothing was imported.\n");
-        }
-        int numberOfFailedImports = notImportedReadings.split("\n").length;
-        if (numberOfFailedImports > 0) {
-            String answer = InputValidator.confirmValidation("\nSome lines weren't valid and, therefore, weren't imported " +
-                    "(" + numberOfFailedImports + "). Do you want to see them? (Y/N)");
-            if ("y".equalsIgnoreCase(answer)) {
-                System.out.println(notImportedReadings);
-                return;
-            } else {
-                System.out.println();
-                return;
-            }
-        }
-        System.out.println("\nAll readings were imported successfully.\n");
-    }
-
-    /**
      * Method that checks if a file is valid (if it exists) and creates a scanner based on it.
      *
      * @param pathCSVFile Path of the CSV file.
      * @return Null scanner if there's no such file with the specified name; or a valid scanner if the file exists.
      */
-    private Scanner checkIfFileExistsAndCreateScanner(String pathCSVFile) {
+    private static Scanner checkIfFileExistsAndCreateScanner(String pathCSVFile) {
         File file = new File(pathCSVFile);
         Scanner scanner;
         try {
@@ -82,6 +49,22 @@ public class ImportReadingsFromCSV {
             scanner = null;
         }
         return scanner;
+    }
+
+    /**
+     * Method that checks if a value is valid (in order to be used to create a reading) and store it.
+     *
+     * @param value Value to be analysed.
+     * @return Double with the value.
+     */
+    private static Double checkValueAndStoreIt(String value) {
+        Double readingValue;
+        try {
+            readingValue = Double.parseDouble(value);
+        } catch (NumberFormatException e) {
+            return null;
+        }
+        return readingValue;
     }
 
     /**
@@ -105,33 +88,32 @@ public class ImportReadingsFromCSV {
     }
 
     /**
-     * Method that checks if a value is valid (in order to be used to create a reading) and store it.
-     *
-     * @param value Value to be analysed.
-     * @return Double with the value.
-     */
-    private Double checkValueAndStoreIt(String value) {
-        Double readingValue;
-        try {
-            readingValue = Double.parseDouble(value);
-        } catch (NumberFormatException e) {
-            return null;
-        }
-        return readingValue;
-    }
-
-    /**
      * Method that stores the information of not imported readings (corresponding to each line in the file).
      *
      * @param line Line to be turned into a String.
      * @return String with information about the not imported reading.
      */
-    private String storeNotImportedReadings(List<String> line) {
+    private static String storeNotImportedReadings(List<String> line) {
         StringBuilder notImportedReadings = new StringBuilder();
         notImportedReadings.append("Id: " + line.get(0) + "  ");
         notImportedReadings.append("Timestamp/Date: " + line.get(1).trim() + "  ");
         notImportedReadings.append("Value: " + line.get(2) + "\n");
         return notImportedReadings.toString();
+    }
+
+    /**
+     * Method that configures the log file, using a FileHandler object to send log information to the specified log file.
+     * The last line is responsible for not letting the information show up in the console.
+     */
+    private static void configLogFile() {
+        FileHandler fh;
+        try {
+            fh = new FileHandler("log/outputErrors.log");
+        } catch (IOException e) {
+            fh = null;
+        }
+        LOGGER.addHandler(fh);
+        LOGGER.setUseParentHandlers(false);
     }
 
     /**
@@ -173,17 +155,36 @@ public class ImportReadingsFromCSV {
     }
 
     /**
-     * Method that configures the log file, using a FileHandler object to send log information to the specified log file.
-     * The last line is responsible for not letting the information show up in the console.
+     * RUN!
      */
-    private void configLogFile() {
-        FileHandler fh;
-        try {
-            fh = new FileHandler("log/outputErrors.log");
-        } catch (IOException e) {
-            fh = null;
+    public void run() {
+        String pathCSVFile = InputValidator.getString("\nPlease specify the absolute path of the CSV file to import (including the \".csv\" part).");
+        if (!CSVReader.isCSVFile(pathCSVFile)) {
+            System.out.println("\nERROR: That's not a CSV file.\n");
+            return;
         }
-        LOGGER.addHandler(fh);
-        LOGGER.setUseParentHandlers(false);
+        Scanner scanner = checkIfFileExistsAndCreateScanner(pathCSVFile);
+        if (Objects.isNull(scanner)) {
+            System.out.println("\nERROR: There's no such file with that name.\n");
+            return;
+        }
+        String notImportedReadings = importReadings(scanner);
+        if (Objects.isNull(notImportedReadings)) {
+            System.out.println("\nThe file is empty, therefore nothing was imported.\n");
+            return;
+        }
+        int numberOfFailedImports = notImportedReadings.split("\n").length;
+        if (numberOfFailedImports > 0) {
+            String answer = InputValidator.confirmValidation("\nSome lines weren't valid and, therefore, weren't imported " +
+                    "(" + numberOfFailedImports + "). Do you want to see them? (Y/N)");
+            if ("y".equalsIgnoreCase(answer)) {
+                System.out.println(notImportedReadings);
+                return;
+            } else {
+                System.out.println();
+                return;
+            }
+        }
+        System.out.println("\nAll readings were imported successfully.\n");
     }
 }
