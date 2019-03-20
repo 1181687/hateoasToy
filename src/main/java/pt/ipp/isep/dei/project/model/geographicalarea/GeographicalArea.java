@@ -487,4 +487,14 @@ public class GeographicalArea {
     public boolean addSensor(Sensor sensor) {
         return this.sensorList.addSensor(sensor);
     }
+
+    /**
+     * Method that removes a sensor by its id.
+     *
+     * @param sensorId Id of the sensor.
+     * @return True or False.
+     */
+    public boolean removeSensorById(String sensorId) {
+        return sensorList.removeSensorById(sensorId);
+    }
 }

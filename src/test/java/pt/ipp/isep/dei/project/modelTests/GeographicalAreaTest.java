@@ -2181,4 +2181,28 @@ class GeographicalAreaTest {
         //Assert
         assertTrue(result);
     }
+
+    /**
+     * Test that tries to use a valid/existing Id to remove a sensor, which results in true.
+     */
+    @Test
+    public void testRemoveSensorById_tryingWithAnExistingId_ShouldReturnTrue() {
+        // Act
+        boolean result = portoCity.removeSensorById("321");
+
+        // Assert
+        assertTrue(result);
+    }
+
+    /**
+     * Test that tries to use an invalid/non-existing Id to remove a sensor, which results in false.
+     */
+    @Test
+    public void testRemoveSensorById_tryingWithANonExistingId_ShouldReturnFalse() {
+        // Act
+        boolean result = portoCity.removeSensorById("32143256");
+
+        // Assert
+        assertFalse(result);
+    }
 }
