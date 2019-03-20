@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class CSVReader implements FileReader {
     private static final char DEFAULT_SEPARATOR = ',';
 
-    private CSVReader() {
+    public CSVReader() {
         // empty
     }
 
