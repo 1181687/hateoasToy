@@ -280,7 +280,7 @@ public class Sensor {
             return null;
         }
         Reading reading = listOfReadings.get(0);
-        for (int i = (listOfReadings.size() - 1); i >= 0; i--) {
+        for (int i = (listOfReadings.size() - 1); i > 0; i--) {
             if (!(Double.isNaN(listOfReadings.get(i).getValue()))) {
                 return listOfReadings.get(i);
             }
