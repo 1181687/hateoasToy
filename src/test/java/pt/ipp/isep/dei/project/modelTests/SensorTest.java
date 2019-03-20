@@ -207,6 +207,30 @@ class SensorTest {
         assertEquals(expectedResult, result);
     }
 
+    @Test
+    void testGetLastMeasurementTwoReadings_reading2() {
+        //Arrange
+        LocalDateTime sensorDate = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperatura");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor s1 = new Sensor("R003", "A123", sensorDate, sensorType, locS1, "l/m2");
+        LocalDateTime date1 = LocalDateTime.of(2018, 2, 3, 12, 30);
+        LocalDateTime date2 = LocalDateTime.of(2018, 2, 3, 16, 30);
+
+        Reading reading1 = new Reading(22, date1);
+        Reading reading2 = new Reading(20, date2);
+        s1.addReadingsToList(reading1);
+        s1.addReadingsToList(reading2);
+
+        Reading expectedResult = reading2;
+
+        //Act
+        Reading result = s1.getLastMeasurement();
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
 
     @Test
     void testarListaDeMedicoesVazia() {
@@ -1772,6 +1796,25 @@ class SensorTest {
         sensor1.addReadingsToList(reading5);
 
         double expectedResult = 40;
+
+        LocalDateTime searchDate = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
+
+        //Act
+        double result = sensor1.getTotalDailyMeasurements(searchDate.toLocalDate());
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
+    public void testOfGetTotalDailyMeasurements_Empty() {
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+
+        double expectedResult = 0.0;
 
         LocalDateTime searchDate = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
 

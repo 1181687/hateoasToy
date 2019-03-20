@@ -87,7 +87,7 @@ public class SensorDTO {
      * @return Location.
      */
     public LocationDTO getLocation() {
-        return location;
+        return this.location;
     }
 
     /**
@@ -100,7 +100,7 @@ public class SensorDTO {
     }
 
     public String getUnits() {
-        return units;
+        return this.units;
     }
 
     public void setUnits(String units) {
