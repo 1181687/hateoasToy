@@ -295,11 +295,10 @@ public class SensorList {
      * @return True or False.
      */
     public boolean removeSensorById(String sensorId) {
-        for (Sensor sensor : listOfSensors) {
-            if (sensor.getId().equals(sensorId)) {
-                listOfSensors.remove(sensor);
-                return true;
-            }
+        Sensor sensor = getSensorById(sensorId);
+        if (Objects.nonNull(sensor)) {
+            listOfSensors.remove(sensor);
+            return true;
         }
         return false;
     }

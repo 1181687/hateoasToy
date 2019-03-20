@@ -26,7 +26,7 @@ public class GeographicalAreaDTOTest {
         // Geographical Areas
         portoCity = new GeographicalAreaDTO();
         portoCity.setId("S001");
-        portoCity.setName("Sensor1");
+        portoCity.setDescription("Sensor1");
         portoCity.setType("City");
 
         // Sensors
@@ -73,7 +73,7 @@ public class GeographicalAreaDTOTest {
         // arrange
         String expectedResult = "Sensor1";
         // act
-        String result = portoCity.getName();
+        String result = portoCity.getDescription();
         // assert
         assertEquals(expectedResult, result);
     }
@@ -84,10 +84,10 @@ public class GeographicalAreaDTOTest {
     @Test
     public void setSensorNameTest_changeSensorName_Sensor2() {
         // arrange
-        portoCity.setName("Sensor2");
+        portoCity.setDescription("Sensor2");
         String expectedResult = "Sensor2";
         // act
-        String result = portoCity.getName();
+        String result = portoCity.getDescription();
         // assert
         assertEquals(expectedResult, result);
     }
@@ -191,8 +191,8 @@ public class GeographicalAreaDTOTest {
         double expectedResult = 30.0;
 
         // act
-        portoCity.setAltitude(30.0);
-        double result = portoCity.getAltitude();
+        portoCity.setElevation(30.0);
+        double result = portoCity.getElevation();
 
         // assert
         assertEquals(expectedResult, result);

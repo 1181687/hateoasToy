@@ -27,6 +27,7 @@ class ElectricOvenTest {
     private Room kitchen;
     private Room laundry;
     private Device electricOven;
+    private Device electricOven2;
     private House house;
     private Map<LocalDateTime, Double> map;
     private Reading reading0;
@@ -64,7 +65,7 @@ class ElectricOvenTest {
 
 
         // devices
-        house.createDevice("ElectricOven", "Kenmore Elite 95067", kitchen);
+        Device electricOven2 = house.createDevice("ElectricOven", "Kenmore Elite 95067", kitchen);
         electricOven = house.createDevice("ElectricOven", "Kenmore Elite 95053", kitchen);
         electricOven.setAttributesDevType("Time", 1);
         electricOven.setAttributesDevType("Nominal Power", 1200);
@@ -280,10 +281,30 @@ class ElectricOvenTest {
     @Test
     void equalsDifferentObjectTest() {
         // Arrange
-        Object object = new Object();
+        Location location = new Location(43, 42, 2);
 
         // Act
-        boolean result = electricOven.equals(object);
+        boolean result = electricOven.equals(location);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    void equalsSameObjectTest() {
+
+        // Act
+        boolean result = electricOven.equals(electricOven);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @Test
+    void equalsDiferentElectricOvenTest() {
+
+        // Act
+        boolean result = electricOven.equals(electricOven2);
 
         // Assert
         assertFalse(result);

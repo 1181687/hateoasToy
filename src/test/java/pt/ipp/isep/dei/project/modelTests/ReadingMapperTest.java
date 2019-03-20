@@ -13,16 +13,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class ReadingMapperTest {
     private ReadingDTO readingDTO;
+    private Reading reading;
 
     /**
-     * This method pretends to initialize some attributes of this test class to simplifying all tests.
+     * Method that initializes some attributes of this test class to simplify all tests.
      */
     @BeforeEach
     void StartUp() {
+        // ReadingDTO
         readingDTO = ReadingMapper.newReadingDTO();
         LocalDateTime dateTime = LocalDateTime.of(2019, 3, 11, 0, 0, 0);
         readingDTO.setDateTime(dateTime);
         readingDTO.setValue(10);
+
+        // Reading
+        reading = new Reading(10, dateTime);
     }
 
     /**
@@ -48,6 +53,35 @@ class ReadingMapperTest {
     void testMapToEntity_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
         // Act
         Reading result = ReadingMapper.mapToEntity(null);
+
+        // Assert
+        assertNull(result);
+    }
+
+    /**
+     * Test that tries to create a ReadingDTO based on a Reading, which results in a new ReadingDTO with the information
+     * contained by the Reading.
+     */
+    @Test
+    void testMapToDTO_tryingToCreateBasedOnAReading_ShouldReturnTrue() {
+        // Assert
+        ReadingDTO dto = ReadingMapper.mapToDTO(reading);
+        Reading reading1 = ReadingMapper.mapToEntity(dto);
+
+        // Act
+        boolean result = reading1.equals(reading);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    /**
+     * Test that tries to create a ReadingDTO based on a null Object, which results in a non creation.
+     */
+    @Test
+    void testMapToDTO_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
+        // Act
+        ReadingDTO result = ReadingMapper.mapToDTO(null);
 
         // Assert
         assertNull(result);

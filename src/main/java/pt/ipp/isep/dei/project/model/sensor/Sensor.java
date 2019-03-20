@@ -280,7 +280,7 @@ public class Sensor {
             return null;
         }
         Reading reading = listOfReadings.get(0);
-        for (int i = (listOfReadings.size() - 1); i >= 0; i--) {
+        for (int i = (listOfReadings.size() - 1); i > 0; i--) {
             if (!(Double.isNaN(listOfReadings.get(i).getValue()))) {
                 return listOfReadings.get(i);
             }
@@ -524,10 +524,8 @@ public class Sensor {
         }
         Reading highestReading = getReadingsBetweenDates(startDate, endDate).get(0);
         for (Reading reading : getReadingsBetweenDates(startDate, endDate)) {
-            if (!Double.isNaN(reading.getValue())) {
-                if (reading.getValue() > highestReading.getValue()) {
+            if ((!Double.isNaN(reading.getValue())) && reading.getValue() > highestReading.getValue()) {
                     highestReading = reading;
-                }
             }
         }
         return highestReading;
