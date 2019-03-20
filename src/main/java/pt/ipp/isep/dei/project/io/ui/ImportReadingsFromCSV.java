@@ -23,7 +23,7 @@ public class ImportReadingsFromCSV {
     private static final Logger LOGGER = Logger.getLogger(ImportReadingsFromCSV.class.getName());
     private ImportReadingsFromCSVController controller;
     private ReadingDTO readingDTO;
-
+    private CSVReader csvReader = new CSVReader();
     /**
      * Constructor.
      *
@@ -126,7 +126,7 @@ public class ImportReadingsFromCSV {
     private String importReadings(Scanner scanner) {
         configLogFile();
         StringBuilder notImportedReadings = new StringBuilder();
-        List<List<String>> allLines = CSVReader.readFile(scanner);
+        List<List<String>> allLines = csvReader.readFile(scanner);
         if (allLines.isEmpty()) {
             return null;
         }
@@ -159,7 +159,7 @@ public class ImportReadingsFromCSV {
      */
     public void run() {
         String pathCSVFile = InputValidator.getString("\nPlease specify the absolute path of the CSV file to import (including the \".csv\" part).");
-        if (!CSVReader.isCSVFile(pathCSVFile)) {
+        if (!csvReader.isCSVFile(pathCSVFile)) {
             System.out.println("\nERROR: That's not a CSV file.\n");
             return;
         }
