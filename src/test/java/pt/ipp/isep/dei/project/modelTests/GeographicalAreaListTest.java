@@ -236,13 +236,11 @@ public class GeographicalAreaListTest {
         // Arrange
         geoAreaList.removeGeoArea(portoCity);
 
-        GeographicalArea expectedResult = null;
-
         // Act
         GeographicalArea result = geoAreaList.getGeographicalArea(portoCity);
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertNull(result);
     }
 
     /**
@@ -285,4 +283,31 @@ public class GeographicalAreaListTest {
         assertFalse(result);
     }
 
+
+    /**
+     * Test that tries to use a valid/existing Id to get a geographical area, which turns out fine.
+     **/
+    @Test
+    void testGetGeoAreaById_tryingToTestAnExistingId_ShouldReturnTheCorrespondingGeoArea() {
+        // Assert
+        GeographicalArea expectedResult = portoCity;
+
+        // Act
+        GeographicalArea result = geoAreaList.getGeoAreaById("Porto");
+
+        //
+        assertEquals(expectedResult, result);
+    }
+
+    /**
+     * Test that tries to use a invalid/non-existing Id to get a geographical area, which returns null.
+     **/
+    @Test
+    void testGetGeoAreaById_tryingToTestANonExistingId_ShouldReturnNull() {
+        // Act
+        GeographicalArea result = geoAreaList.getGeoAreaById("Gondomar");
+
+        //
+        assertNull(result);
+    }
 }

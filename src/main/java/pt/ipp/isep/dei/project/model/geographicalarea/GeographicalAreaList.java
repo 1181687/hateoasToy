@@ -196,4 +196,18 @@ public class GeographicalAreaList {
         return false;
     }
 
+    /**
+     * Method that returns a geographical area by searching for it by its id. If it's not on the list it returns null.
+     *
+     * @param geoAreaId Id of the geographical area.
+     * @return Geographical area corresponding to the id (or null).
+     */
+    public GeographicalArea getGeoAreaById(String geoAreaId) {
+        for (GeographicalArea geographicalArea : geoAreaList) {
+            if (geographicalArea.getId().equals(geoAreaId)) {
+                return geographicalArea;
+            }
+        }
+        return null;
+    }
 }
