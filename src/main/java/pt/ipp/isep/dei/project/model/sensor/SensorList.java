@@ -287,4 +287,19 @@ public class SensorList {
         }
         return sensorWithMostRecentReading;
     }
+
+    /**
+     * Method that removes a sensor by its id.
+     *
+     * @param sensorId Id of the sensor.
+     * @return True or False.
+     */
+    public boolean removeSensorById(String sensorId) {
+        Sensor sensor = getSensorById(sensorId);
+        if (Objects.nonNull(sensor)) {
+            listOfSensors.remove(sensor);
+            return true;
+        }
+        return false;
+    }
 }

@@ -33,7 +33,7 @@ public class Main {
     private static final String ECO_TURBO = "Eco Turbo";
     private static final String FAST = "Fast";
     private static final String FAST_PLUS = "Fast Plus";
-    private static final String SYNTHETIC_30º = "Synthetic 30º";
+    private static final String SYNTHETIC_30_DEGREES = "Synthetic 30º";
     private static final String ELECTRIC_WATER_HEATER = "ElectricWaterHeater";
     private static final String DISHWASHER = "DishWasher";
     private static final String WASHING_MACHINE = "WashingMachine";
@@ -296,7 +296,7 @@ public class Main {
         program6.setProgramAttributes(DURATION, durationNotAsked);
         program6.setProgramAttributes(ENERGY_CONSUMPTION, 2.7);
 
-        Program program7 = wmB107Programmable.createNewProgram(SYNTHETIC_30º);
+        Program program7 = wmB107Programmable.createNewProgram(SYNTHETIC_30_DEGREES);
         program7.setProgramAttributes(DURATION, durationNotAsked);
         program7.setProgramAttributes(ENERGY_CONSUMPTION, 2.8);
 
@@ -384,7 +384,7 @@ public class Main {
         program10.setProgramAttributes(DURATION, durationNotAsked);
         program10.setProgramAttributes(ENERGY_CONSUMPTION, 1.7);
 
-        Program program11 = wmB109Programmable.createNewProgram(SYNTHETIC_30º);
+        Program program11 = wmB109Programmable.createNewProgram(SYNTHETIC_30_DEGREES);
         program11.setProgramAttributes(DURATION, durationNotAsked);
         program11.setProgramAttributes(ENERGY_CONSUMPTION, 2.1);
 
