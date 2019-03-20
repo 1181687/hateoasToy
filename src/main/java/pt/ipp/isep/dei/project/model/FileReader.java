@@ -2,11 +2,11 @@ package pt.ipp.isep.dei.project.model;
 
 import java.util.List;
 
-public interface FileReading {
+public interface FileReader {
 
 
     String getTypeName();
 
-    List<String> readFile();
+    List<List<String>> readFile();
 
 }
