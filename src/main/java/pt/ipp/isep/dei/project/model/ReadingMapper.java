@@ -4,6 +4,9 @@ import java.util.Objects;
 
 public final class ReadingMapper {
 
+    /**
+     * Constructor.
+     */
     private ReadingMapper() {
         // empty
     }
@@ -28,7 +31,16 @@ public final class ReadingMapper {
         return new Reading(readingDTO.getValue(), readingDTO.getDateTime());
     }
 
+    /**
+     * Method that creates a ReadingDTO based on a existing Reading.
+     *
+     * @param reading Reading to be used.
+     * @return ReadingDTO.
+     */
     public static ReadingDTO mapToDTO(Reading reading) {
+        if (Objects.isNull(reading)) {
+            return null;
+        }
         ReadingDTO dto = newReadingDTO();
         dto.setDateTime(reading.getDateTime());
         dto.setValue(reading.getValue());
