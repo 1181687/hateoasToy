@@ -8,13 +8,13 @@ import java.util.List;
 public class GeographicalAreaDTO {
 
     private String id;
-    private String name;
+    private String description;
     private String type;
     private double width;
     private double length;
     private double latitude;
     private double longitude;
-    private double altitude;
+    private double elevation;
     private List<SensorDTO> sensors = new ArrayList<>();
 
     public GeographicalAreaDTO() {
@@ -29,12 +29,12 @@ public class GeographicalAreaDTO {
         this.id = geoAreaName;
     }
 
-    public String getName() {
-        return name;
+    public String getDescription() {
+        return description;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getType() {
@@ -77,12 +77,12 @@ public class GeographicalAreaDTO {
         this.longitude = longitude;
     }
 
-    public double getAltitude() {
-        return altitude;
+    public double getElevation() {
+        return elevation;
     }
 
-    public void setAltitude(double altitude) {
-        this.altitude = altitude;
+    public void setElevation(double elevation) {
+        this.elevation = elevation;
     }
 
     public List<SensorDTO> getSensors() {

@@ -60,7 +60,7 @@ public class JSONReaderTest {
         // assert
         assertEquals(expectedResult, result);
         assertEquals("ISEP", isep.getId());
-        assertEquals("Campus do ISEP", isep.getName());
+        assertEquals("Campus do ISEP", isep.getDescription());
         assertEquals("RF12345", sensorId);
         assertEquals("Meteo station ISEP - rainfall", sensorName);
         assertEquals(LocalDate.of(2016, 11, 15), sensorDate);
