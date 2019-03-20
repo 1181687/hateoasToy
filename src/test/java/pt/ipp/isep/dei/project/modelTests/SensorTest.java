@@ -1807,6 +1807,25 @@ class SensorTest {
     }
 
     @Test
+    public void testOfGetTotalDailyMeasurements_Empty() {
+        //Arrange
+        LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
+        SensorType sensorType = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+
+        double expectedResult = 0.0;
+
+        LocalDateTime searchDate = LocalDateTime.of(2018, 11, 2, 17, 20, 10);
+
+        //Act
+        double result = sensor1.getTotalDailyMeasurements(searchDate.toLocalDate());
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @Test
     public void testOfGetTotalDailyMeasurementsWithDifferentDays (){
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);

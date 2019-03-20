@@ -524,10 +524,8 @@ public class Sensor {
         }
         Reading highestReading = getReadingsBetweenDates(startDate, endDate).get(0);
         for (Reading reading : getReadingsBetweenDates(startDate, endDate)) {
-            if (!Double.isNaN(reading.getValue())) {
-                if (reading.getValue() > highestReading.getValue()) {
+            if ((!Double.isNaN(reading.getValue())) && reading.getValue() > highestReading.getValue()) {
                     highestReading = reading;
-                }
             }
         }
         return highestReading;
