@@ -1,0 +1,49 @@
+NUMBER: US015
+
+DESCRIPTION: As an Administrator, I want to import geographical areas and sensors from a JSON or XML file
+
+TEAM MEMBERS: Developer - Diana Ferreira; QA - Gabriela Alves;
+
+ACCEPTANCE CRITERIA:
+
+General Criteria:
+- Correct Sequence and Class Diagrams.
+- JavaDoc documentation in both code and tests.
+- JUnit conventions in code and tests. (eg. tests should be named like this:
+                                        testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
+- All code, comments and documentation are in proper English.
+
+Specific Criteria:
+- given - The user (Admin) imports geographical areas and sensors from a XML file.
+- when - The user chooses option "1" from Menu (Administrator), then option "2" (Geographical Area) and then option "9"
+(Import geographical areas and sensors from JSON or XML File). Then User inserts the name of the file to be imported
+(JSONfile.json or DataSet_sprint05_GA.xml). He/She then chooses the option "YES" in "Do you want to import these
+geographic areas and their sensors? (Y/N)"
+- then:
+   * When the user inserts the name of the file the following message appears ("This is the content of the chosen file.")
+with the contents of the file.
+   * When he/she chooses the "Yes" option the following message appears ("The XML file was imported with success.")
+- but - The following messages are displayed:
+
+"ERROR: There's no such file with that name." - when no file or directory is found when the user inputs the name of the
+file to be imported.
+
+"The information on the file is not valid to be imported." - Data is null (a string in the place of a double or
+vice versa) or the file is empty.
+
+"The file is already imported."- when you try to import the contents of the file after that have been already imported.
+
+"The XML file was not imported."- when the file cannot be imported.
+
+
+
+Test Criteria:
+- All unit tests with "Process finished with exit code 0" message.
+
+
+ASSUMPTIONS:
+- Regarding sensors, only the geographical area sensors are imported (not the House sensors).
+- There is User interaction: the application asks the user the location of the files to be imported.
+- For user convenience the data to be imported is in the form of two DTO (Geographical Area DTO and SensorDTO)
+thar are imported at the same time (in a single method) instead of importing the two referred DTO's one at a time.
+

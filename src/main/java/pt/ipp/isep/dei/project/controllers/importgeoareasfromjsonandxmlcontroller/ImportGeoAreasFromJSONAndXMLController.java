@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllers.importgeoareasfromjsoncontroller;
+package pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonandxmlcontroller;
 
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
@@ -9,10 +9,10 @@ import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
 
 import java.util.List;
 
-public class ImportGeoAreasFromJSONController {
+public class ImportGeoAreasFromJSONAndXMLController {
     private GeographicalAreaList geographicalAreaList;
 
-    public ImportGeoAreasFromJSONController(GeographicalAreaList geographicalAreaList) {
+    public ImportGeoAreasFromJSONAndXMLController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;
     }
 
