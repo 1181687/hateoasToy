@@ -60,11 +60,10 @@ public class ImportGeoAreasFromJSONAndXML {
         }
     }
 
-
     /**
      * Method that checks if a file is valid (if it exists) and creates a scanner based on it.
      *
-     * @param fileJSON Path of the CSV file.
+     * @param fileJSON Path of the JSON file.
      * @return Null scanner if there's no such file with the specified name; or a valid scanner if the file exists.
      */
     public FileReader checkIfFileExistsAndCreateFileReader(File fileJSON) {
