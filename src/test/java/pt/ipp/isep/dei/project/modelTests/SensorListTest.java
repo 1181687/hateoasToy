@@ -482,4 +482,28 @@ class SensorListTest {
 
 
     }
+
+    /**
+     * Test that tries to use a valid/existing Id to remove a sensor, which results in true.
+     */
+    @Test
+    public void testRemoveSensorById_tryingWithAnExistingId_ShouldReturnTrue() {
+        // Act
+        boolean result = sensorList.removeSensorById("s1");
+
+        // Assert
+        assertTrue(result);
+    }
+
+    /**
+     * Test that tries to use an invalid/non-existing Id to remove a sensor, which results in false.
+     */
+    @Test
+    public void testRemoveSensorById_tryingWithANonExistingId_ShouldReturnFalse() {
+        // Act
+        boolean result = sensorList.removeSensorById("s11241");
+
+        // Assert
+        assertFalse(result);
+    }
 }
