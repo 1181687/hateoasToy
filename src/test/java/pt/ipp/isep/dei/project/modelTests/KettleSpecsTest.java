@@ -576,7 +576,26 @@ public class KettleSpecsTest {
         //Act
         double result = kettleSpecs.getEnergyConsumptionInADay();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.0001);
+    }
+
+    @Test
+    public void testGetEnergyConsumptionInADay_EnergyConsumptionValue2() {
+        //Arrange
+        double coldWaterTemp = 95;
+        boolean coldWaterTempValue = kettleSpecs.setAttributeValue(COLD_WATER_TEMPERATURE, coldWaterTemp);
+        double volWater = 1.9;
+        boolean volWaterValue = kettleSpecs.setAttributeValue(VOLUME_OF_WATER_TO_HEAT, volWater);
+        double perfRatio = 3;
+        boolean perfRatioValue = kettleSpecs.setAttributeValue(ATTRIBUTE_PERFORMANCE_RATIO, perfRatio);
+
+
+        double expectedResult = 1.163 / 1000 * 1.9 * (100 - 95) * 3;
+        //Act
+        double result = kettleSpecs.getEnergyConsumptionInADay();
+        //Assert
+        System.out.println(result);
+        assertEquals(expectedResult, result, 0.0000001);
     }
 
     /**
