@@ -47,7 +47,8 @@ public class GeographicalAreaMapperTest {
         double length = 150;
         double latitude = 15;
         double longitude = 20;
-        double elevation = 10;
+        double altitude = 10;
+
         GeographicalAreaDTO geographicalAreaDTO = new GeographicalAreaDTO();
         geographicalAreaDTO.setId(id);
         geographicalAreaDTO.setDescription(description);
@@ -56,14 +57,17 @@ public class GeographicalAreaMapperTest {
         geographicalAreaDTO.setLength(length);
         geographicalAreaDTO.setLatitude(latitude);
         geographicalAreaDTO.setLongitude(longitude);
-        geographicalAreaDTO.setElevation(elevation);
+        geographicalAreaDTO.setElevation(altitude);
         GeographicalArea expectedResult = GeographicalAreaMapper.mapToEntity(geographicalAreaDTO);
 
         //Act
-        GeographicalAreaDTO anotherArea = GeographicalAreaMapper.mapToDTO(id, description, geographicalAreaType, width, length, latitude, longitude, elevation);
+        GeographicalAreaDTO anotherArea = GeographicalAreaMapper.mapToDTO(id, description, geographicalAreaType, width, length, latitude, longitude, altitude);
         GeographicalArea result = GeographicalAreaMapper.mapToEntity(anotherArea);
+
         //Assert
         assertEquals(expectedResult, result);
+        assertEquals(width, result.getAreaShape().getWidth());
+        assertEquals(length, result.getAreaShape().getLength());
 
     }
 

@@ -77,11 +77,11 @@ public final class GeographicalAreaMapper {
      * @return GeoArea with the required information.
      */
     public static GeographicalArea mapToEntity(GeographicalAreaDTO geographicalAreaDTO) {
-        if(Objects.isNull(geographicalAreaDTO)){
+        if (Objects.isNull(geographicalAreaDTO)) {
             return null;
         }
         GeographicalAreaType geoType = new GeographicalAreaType(geographicalAreaDTO.getType());
-        Location loc = new Location(geographicalAreaDTO.getLatitude(),geographicalAreaDTO.getLongitude(),geographicalAreaDTO.getElevation());
+        Location loc = new Location(geographicalAreaDTO.getLatitude(), geographicalAreaDTO.getLongitude(), geographicalAreaDTO.getElevation());
         AreaShape areaShape = new AreaShape(geographicalAreaDTO.getWidth(), geographicalAreaDTO.getLength(), loc);
         return new GeographicalArea(geographicalAreaDTO.getId(), geographicalAreaDTO.getDescription(), geoType, loc, areaShape);
     }
