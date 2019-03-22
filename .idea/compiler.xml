@@ -14,7 +14,6 @@
       <entry name="!?*.png" />
     </wildcardResourcePatterns>
     <annotationProcessing>
-      <profile default="true" name="Default" enabled="true" />
       <profile name="Maven default annotation processors profile" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -28,7 +27,7 @@
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="project_g3" options="-parameters -Werror -Xlint:all" />
-      <module name="smarthome" options="-parameters -Werror -Xlint:all -Xlint:-processing" />
+      <module name="smarthome" options="-parameters -Werror -Xlint:all" />
     </option>
   </component>
 </project>
