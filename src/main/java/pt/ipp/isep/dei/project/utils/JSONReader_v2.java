@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.utils;
+/* package pt.ipp.isep.dei.project.utils;
 
 import com.fasterxml.jackson.core.JsonFactory;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-
-public class JSONReader_v2 implements pt.ipp.isep.dei.project.model.FileReader {
+*/
+/*public class JSONReader_v2 implements pt.ipp.isep.dei.project.model.FileReader {
 
     private JSONReader_v2() {
         // empty
@@ -36,3 +36,4 @@ public class JSONReader_v2 implements pt.ipp.isep.dei.project.model.FileReader {
         }
     }
 }
+*/
