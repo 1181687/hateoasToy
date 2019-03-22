@@ -1,20 +1,6 @@
-package pt.ipp.isep.dei.project.utils;
+//package pt.ipp.isep.dei.project.utils;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
-import pt.ipp.isep.dei.project.model.FileReader;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.IOException;
-import java.util.List;
-
-public class XMLReader implements FileReader {
+/*public class XMLReader implements FileReader {
     String typeName;
 
     public XMLReader() {
@@ -100,3 +86,4 @@ public class XMLReader implements FileReader {
 
 
 
+*/
