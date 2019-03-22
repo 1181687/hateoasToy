@@ -44,6 +44,8 @@ public class SensorMapperTest {
 
         //Assert
         assertEquals(expectedResult, result);
+        assertEquals("sensor1", sensorDTO.getName());
+        assertEquals("1/ms", sensorDTO.getUnits());
     }
 
     @Test
