@@ -205,7 +205,7 @@ public final class InputValidator {
                 flag = false;
                 str = in.nextLine();
                 str = str.trim();
-                if (!"y".equals(str) && !"Y".equals(str) && !"n".equals(str) && !"N".equals(str)) {
+                if (!"y".equalsIgnoreCase(str) && !"n".equalsIgnoreCase(str)) {
                     throw new Exception();
                 }
             } catch (Exception e) {
