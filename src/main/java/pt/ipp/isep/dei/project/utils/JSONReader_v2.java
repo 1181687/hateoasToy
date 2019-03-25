@@ -20,7 +20,6 @@ public final class JSONReader_v2 {
         // empty
     }
 
-
     @SuppressWarnings("unchecked")
     public static List<Object> readJSONReadingFileToList(FileReader reader) {
         List<Object> readingList;
