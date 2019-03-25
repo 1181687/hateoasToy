@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public final class ReadingMapper {
@@ -45,5 +46,19 @@ public final class ReadingMapper {
         dto.setDateTime(reading.getDateTime());
         dto.setValue(reading.getValue());
         return dto;
+    }
+
+    /**
+     * Method that creates a ReadingDTO based on a set of information.
+     *
+     * @param dateTime Local Date Time to be used.
+     * @param value    Double to be used.
+     * @return ReadingDTO
+     */
+    public static ReadingDTO mapToDTO(LocalDateTime dateTime, double value) {
+        ReadingDTO readingDTO = new ReadingDTO();
+        readingDTO.setDateTime(dateTime);
+        readingDTO.setValue(value);
+        return readingDTO;
     }
 }
