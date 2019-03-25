@@ -7,7 +7,6 @@ public class LocationDTO {
 
     /**
      * constructor of Location that receives a latitude, a longitude and an elevation.
-     *
      */
     public LocationDTO() {
         //Intentionally empty

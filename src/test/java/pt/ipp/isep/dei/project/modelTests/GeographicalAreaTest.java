@@ -28,7 +28,6 @@ class GeographicalAreaTest {
     private Sensor temperatureSensor1;
     private SensorType temperature;
     private Location location2;
-    private GeographicalAreaType city;
     private AreaShape areaShape2;
 
 
@@ -54,32 +53,26 @@ class GeographicalAreaTest {
 
         // Sensors
         temperature = new SensorType("Temperature");
-        LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 0);
         Location sensorLocation = new Location(42.1596, -8.6109, 97);
         temperatureSensor = new Sensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
-        LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 0);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
         temperatureSensor1 = new Sensor("321", "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
-        LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
-        LocalDateTime readingDate1 = LocalDateTime.of(2018, 12, 3, 13, 24, 00);
+        LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 0);
+        LocalDateTime readingDate1 = LocalDateTime.of(2018, 12, 3, 13, 24, 0);
         Reading reading = new Reading(23, readingDate);
         Reading reading1 = new Reading(30, readingDate1);
         temperatureSensor.addReadingsToList(reading);
         temperatureSensor.addReadingsToList(reading1);
-        LocalDateTime readingDate2 = LocalDateTime.of(2018, 12, 2, 05, 20, 00);
-        LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 05, 24, 00);
+        LocalDateTime readingDate2 = LocalDateTime.of(2018, 12, 2, 5, 20, 0);
+        LocalDateTime readingDate3 = LocalDateTime.of(2018, 12, 3, 5, 24, 0);
         Reading reading2 = new Reading(22, readingDate2);
         Reading reading3 = new Reading(25, readingDate3);
         temperatureSensor1.addReadingsToList(reading2);
         temperatureSensor1.addReadingsToList(reading3);
-
-        //Add sensors to Sensorlist
-
-        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
-        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
-
     }
 
     @Test
@@ -315,7 +308,7 @@ class GeographicalAreaTest {
         SensorType sensorTypePedido = new SensorType("Temperatura");
 
         //Act
-        SensorList result = ag1.getSensorsInGeographicalAreaByType(sensorTypePedido);
+        SensorList result = ag1.getSensorsByType(sensorTypePedido);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -364,7 +357,7 @@ class GeographicalAreaTest {
         ag1.getSensorListInTheGeographicArea().addSensor(s3);
 
         //Act
-        SensorList result = ag1.getSensorsInGeographicalAreaByType(sensorTypePedido);
+        SensorList result = ag1.getSensorsByType(sensorTypePedido);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -730,106 +723,67 @@ class GeographicalAreaTest {
         assertEquals(expectedResult, result);
     }
 
+    /**
+     * Test that tries to get the first temperature sensors in the hierarchy of geo areas, with the first area
+     * having two temperature sensors, which turns out to be the output of the tested method.
+     */
     @Test
-    public void getTheSensorListInTheFirstAreaWithSensorOfAGivenTypeFirstAreaTest() {
+    public void testGetFirstSensorsOfATypeInHierarchy_withTempSensorsInFirstArea_ShouldReturnTheCorrespondingList() {
         // Arrange
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
+        List<Sensor> expectedResult = new ArrayList<>();
+        expectedResult.add(temperatureSensor);
+        expectedResult.add(temperatureSensor1);
 
         // Act
-        boolean result = portoCity.getTheSensorListOfAGivenType(temperature).getListOfSensors().isEmpty();
+        List<Sensor> result = portoCity.getFirstSensorsOfATypeInHierarchy(temperature).getListOfSensors();
 
         // Assert
-        assertFalse(result);
+        assertEquals(expectedResult, result);
     }
 
+    /**
+     * Test that tries to get the first temperature sensors in the hierarchy of geo areas, with the last area
+     * having two temperature sensors, which turns out to be the output of the tested method.
+     */
     @Test
-    public void getTheSensorListInTheFirstAreaWithSensorOfAGivenTypeLastAreaTest() {
+    public void testGetFirstSensorsOfATypeInHierarchy_withTempSensorsInLastArea_ShouldReturnTheCorrespondingList() {
         // Arrange
         northernRegion.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
         northernRegion.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
+        List<Sensor> expectedResult = new ArrayList<>();
+        expectedResult.add(temperatureSensor);
+        expectedResult.add(temperatureSensor1);
 
         // Act
-        boolean result = portoCity.getTheSensorListOfAGivenType(temperature).getListOfSensors().isEmpty();
+        List<Sensor> result = portoCity.getFirstSensorsOfATypeInHierarchy(temperature).getListOfSensors();
 
         // Assert
-        assertFalse(result);
+        assertEquals(expectedResult, result);
     }
 
+    /**
+     * Test that tries to get the first temperature sensors in the hierarchy of geo areas, without any area
+     * having temperature sensors, which turns out to be the output of the tested method (an empty list of sensors).
+     */
     @Test
-    public void getTheSensorListInTheFirstAreaWithSensorOfAGivenTypeNoSensorsTest() {
+    public void testGetFirstSensorsOfATypeInHierarchy_withNoTempSensors_ShouldReturnAnEmptyList() {
         //Arrange
-        // Geographical Area with no sensors
-        Location locationNoSensor = new Location(12.1496, 7.6109, 98);
-        AreaShape areaShape2 = new AreaShape(100, 100, locationNoSensor);
-
-        GeographicalArea coimbraCity = new GeographicalArea("Coimbra", "Cidade de Coimbra", city, locationNoSensor, areaShape2);
+        List<Sensor> expectedResult = new ArrayList<>();
 
         // Act
-        Boolean result = coimbraCity.getTheSensorListOfAGivenType(temperature).getListOfSensors().isEmpty();
+        List<Sensor> result = portoCity.getFirstSensorsOfATypeInHierarchy(temperature).getListOfSensors();
 
         // Assert
-        assertTrue(result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
     public void getLastTemperatureInTheAreaTest() {
         // Arrange
-        // Instantiate GeoAreas
-        String nomeAG2 = "Região Norte";
-        GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
-        Location local2 = new Location(32.1496, 7.6109, 98);
-        AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Região do Norte", tipo2, local2, area2);
-
-        String nomeAG1 = "Distrito Porto";
-        GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
-        Location local1 = new Location(41.1496, -6.6109, 100);
-        AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Distrito do Porto", tipo1, local1, area1);
-        ag1.setInsertedIn(ag2);
-
-        String nomeAG = "Porto";
-        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
-        Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
-        ag.setInsertedIn(ag1);
-
-
-        // Instantiate Sensors
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperature");
-        Location locS0 = new Location(-1, 30, 50);
-        Sensor s0 = new Sensor("7654", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
-        ag2.getSensorListInTheGeographicArea().addSensor(s0);
-
-        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperature");
-        Location locS1 = new Location(0, 30, 50);
-        Sensor s1 = new Sensor("43214", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
-        ag2.getSensorListInTheGeographicArea().addSensor(s1);
-
-        // Instantiate Measurements
-        // Sensor0
-        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
-
-        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
-        Reading reading02 = new Reading(30, dataHoraDaMedicao02);
-
-        s0.addReadingsToList(reading01);
-        s0.addReadingsToList(reading02);
-
-        //Sensor1
-        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
-
-        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
-        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
-
-        s1.addReadingsToList(reading11);
-        s1.addReadingsToList(reading12);
+        northernRegion.addSensor(temperatureSensor);
+        northernRegion.addSensor(temperatureSensor1);
 
         Location location = new Location(0, 30, 50);
 
@@ -837,7 +791,7 @@ class GeographicalAreaTest {
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = ag.getLastMeasurementByLocationType(location, type);
+        double result = portoCity.getLastMeasurementByLocationType(location, type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -928,67 +882,16 @@ class GeographicalAreaTest {
     @Test
     public void getLastTemperatureInTheAreaTestWithSensorInTheSameDistance() {
         // Arrange
-        // Instantiate GeoAreas
-        String nomeAG2 = "Região Norte";
-        GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
-        Location local2 = new Location(32.1496, 7.6109, 98);
-        AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Região Norte", tipo2, local2, area2);
-
-        String nomeAG1 = "Distrito Porto";
-        GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
-        Location local1 = new Location(41.1496, -6.6109, 100);
-        AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Distrito do Porto", tipo1, local1, area1);
-        ag1.setInsertedIn(ag2);
-
-        String nomeAG = "Porto";
-        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
-        Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
-        ag.setInsertedIn(ag1);
-
-        // Instantiate Sensors
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperature");
-        Location locS0 = new Location(-1, 30, 50);
-        Sensor s0 = new Sensor("1231", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
-        ag2.getSensorListInTheGeographicArea().addSensor(s0);
-
-        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperature");
-        Location locS1 = new Location(-1, 30, 50);
-        Sensor s1 = new Sensor("765", "A12555", dataFuncionamento1, sensorType1, locS1, "l/m2");
-        ag2.getSensorListInTheGeographicArea().addSensor(s1);
-
-        // Instantiate Measurements
-        // Sensor0
-        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 19, 24, 00);
-
-        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
-        Reading reading02 = new Reading(30, dataHoraDaMedicao02);
-
-        s0.addReadingsToList(reading01);
-        s0.addReadingsToList(reading02);
-
-        //Sensor1
-        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
-
-        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
-        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
-
-        s1.addReadingsToList(reading11);
-        s1.addReadingsToList(reading12);
+        northernRegion.addSensor(temperatureSensor);
+        temperatureSensor1.getLocation().setLatitude(42.1596);
+        northernRegion.addSensor(temperatureSensor1);
 
         Location location = new Location(0, 30, 50);
         double expectedResult = 30.0;
         SensorType type = new SensorType("Temperature");
 
         //Act
-        double result = ag.getLastMeasurementByLocationType(location, type);
+        double result = portoCity.getLastMeasurementByLocationType(location, type);
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
@@ -1559,69 +1462,16 @@ class GeographicalAreaTest {
     @Test
     public void getDateLastTemperatureInTheAreaTest() {
         // Arrange
-        // Instantiate GeoAreas
-        String nomeAG2 = "Região Norte";
-        GeographicalAreaType tipo2 = new GeographicalAreaType("Região");
-        Location local2 = new Location(32.1496, 7.6109, 98);
-        AreaShape area2 = new AreaShape(10, 10, local2);
-        GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Região Norte", tipo2, local2, area2);
-
-        String nomeAG1 = "Distrito Porto";
-        GeographicalAreaType tipo1 = new GeographicalAreaType("Distrito");
-        Location local1 = new Location(41.1496, -6.6109, 100);
-        AreaShape area1 = new AreaShape(10, 10, local1);
-        GeographicalArea ag1 = new GeographicalArea(nomeAG1, "Distrito do Porto", tipo1, local1, area1);
-        ag1.setInsertedIn(ag2);
-
-        String nomeAG = "Porto";
-        GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
-        Location local = new Location(42.1496, -8.6109, 97);
-        AreaShape area = new AreaShape(10, 10, local);
-        GeographicalArea ag = new GeographicalArea(nomeAG, "Cidade do Porto", tipo, local, area);
-        ag.setInsertedIn(ag1);
-
-
-        // Instantiate Sensors
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperature");
-        Location locS0 = new Location(-1, 30, 50);
-        Sensor s0 = new Sensor("6543", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
-        ag2.getSensorListInTheGeographicArea().addSensor(s0);
-
-        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperature");
-        Location locS1 = new Location(0, 30, 50);
-        Sensor s1 = new Sensor("87654", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
-        ag2.getSensorListInTheGeographicArea().addSensor(s1);
-
-        // Instantiate Measurements
-        // Sensor0
-        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
-
-        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
-        Reading reading02 = new Reading(30, dataHoraDaMedicao02);
-
-        s0.addReadingsToList(reading01);
-        s0.addReadingsToList(reading02);
-
-        //Sensor1
-        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
-
-        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
-        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
-
-        s1.addReadingsToList(reading11);
-        s1.addReadingsToList(reading12);
+        northernRegion.addSensor(temperatureSensor);
+        northernRegion.addSensor(temperatureSensor1);
 
         Location location = new Location(0, 30, 50);
 
-        LocalDateTime expectedResult = LocalDateTime.of(2018, 12, 03, 17, 24);
+        LocalDateTime expectedResult = LocalDateTime.of(2018, 12, 3, 5, 24);
         SensorType type = new SensorType("Temperature");
 
         //Act
-        LocalDateTime result = ag.getDateLastMeasurementByLocationType(location, type);
+        LocalDateTime result = portoCity.getDateLastMeasurementByLocationType(location, type);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -1652,14 +1502,13 @@ class GeographicalAreaTest {
         ag.setInsertedIn(ag1);
 
         Location location = new Location(0, 30, 50);
-        LocalDateTime expectedResult = null;
         SensorType type = new SensorType("Temperature");
 
         //Act
         LocalDateTime result = ag.getDateLastMeasurementByLocationType(location, type);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertNull(result);
     }
 
     /**
@@ -1694,6 +1543,9 @@ class GeographicalAreaTest {
         expectedResult.put(time0.toLocalDate(), 7.0);
         expectedResult.put(time1.toLocalDate(), 6.0);
         expectedResult.put(time2.toLocalDate(), 20.0);
+
+        portoCity.addSensor(temperatureSensor);
+        portoCity.addSensor(temperatureSensor1);
 
         //Act
         Map<LocalDate, Double> result = portoCity.getDailyAmplitudeInInterval(temperature, location2, startDateTime.toLocalDate(), endDateTime.toLocalDate());
@@ -1735,6 +1587,9 @@ class GeographicalAreaTest {
         expectedResult.put(time0.toLocalDate(), 7.0);
         expectedResult.put(time1.toLocalDate(), 6.0);
         expectedResult.put(time2.toLocalDate(), value);
+
+        portoCity.addSensor(temperatureSensor);
+        portoCity.addSensor(temperatureSensor1);
 
         //Act
         Map<LocalDate, Double> result = portoCity.getDailyAmplitudeInInterval(temperature, location2, startDateTime.toLocalDate(), endDateTime.toLocalDate());
@@ -1783,6 +1638,9 @@ class GeographicalAreaTest {
         expectedResult.put(time0.toLocalDate(), 7.0);
         expectedResult.put(time1.toLocalDate(), 6.0);
         expectedResult.put(time2.toLocalDate(), 12.0);
+
+        portoCity.addSensor(temperatureSensor);
+        portoCity.addSensor(temperatureSensor1);
 
         //Act
         Map<LocalDate, Double> result = portoCity.getDailyAmplitudeInInterval(temperature, location2, startDateTime.toLocalDate(), endDateTime.toLocalDate());
@@ -1908,9 +1766,14 @@ class GeographicalAreaTest {
     @Test
     public void getNearestSensorWithMostRecentReading() {
         //Arrange
+        portoCity.addSensor(temperatureSensor);
+        portoCity.addSensor(temperatureSensor1);
+
         Sensor expectedResult = temperatureSensor1;
+
         //Act
         Sensor result = portoCity.getNearestSensorWithMostRecentReading(this.temperature, this.location2);
+
         //Assert
         assertEquals(expectedResult, result);
     }
@@ -1934,6 +1797,9 @@ class GeographicalAreaTest {
         //interval LocalDate
         LocalDate startDate = LocalDate.of(2018, 12, 2);
         LocalDate endDate = LocalDate.of(2018, 12, 4);
+
+        portoCity.addSensor(temperatureSensor);
+        portoCity.addSensor(temperatureSensor1);
 
         Reading expectedResult = reading3;
         //Act
@@ -1990,6 +1856,9 @@ class GeographicalAreaTest {
         LocalDate startDate = LocalDate.of(2018, 12, 7);
         LocalDate endDate = LocalDate.of(2018, 12, 10);
 
+        portoCity.addSensor(temperatureSensor);
+        portoCity.addSensor(temperatureSensor1);
+
         Reading expectedResult = reading4;
         //Act
         Reading result = portoCity.getLastLowestMaximumReading(this.location2, this.temperature, startDate, endDate);
@@ -2031,6 +1900,9 @@ class GeographicalAreaTest {
         LocalDate startDate = LocalDate.of(2018, 12, 2);
         LocalDate endDate = LocalDate.of(2018, 12, 4);
 
+        portoCity.addSensor(temperatureSensor);
+        portoCity.addSensor(temperatureSensor1);
+
         Reading expectedResult = reading7;
 
         //Act
@@ -2058,6 +1930,9 @@ class GeographicalAreaTest {
         //interval LocalDate
         LocalDate startDate = LocalDate.of(2018, 12, 18);
         LocalDate endDate = LocalDate.of(2018, 12, 22);
+
+        portoCity.addSensor(temperatureSensor);
+        portoCity.addSensor(temperatureSensor1);
 
         Reading expectedResult = reading4;
 
@@ -2098,6 +1973,9 @@ class GeographicalAreaTest {
         //interval LocalDate
         LocalDate startDate = LocalDate.of(2018, 12, 2);
         LocalDate endDate = LocalDate.of(2018, 12, 4);
+
+        portoCity.addSensor(temperatureSensor);
+        portoCity.addSensor(temperatureSensor1);
 
         Reading expectedResult = reading5;
 
@@ -2187,6 +2065,10 @@ class GeographicalAreaTest {
      */
     @Test
     public void testRemoveSensorById_tryingWithAnExistingId_ShouldReturnTrue() {
+        // Assert
+        portoCity.addSensor(temperatureSensor);
+        portoCity.addSensor(temperatureSensor1);
+
         // Act
         boolean result = portoCity.removeSensorById("321");
 
@@ -2200,7 +2082,7 @@ class GeographicalAreaTest {
     @Test
     public void testRemoveSensorById_tryingWithANonExistingId_ShouldReturnFalse() {
         // Act
-        boolean result = portoCity.removeSensorById("32143256");
+        boolean result = portoCity.removeSensorById("321");
 
         // Assert
         assertFalse(result);
