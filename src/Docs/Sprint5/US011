@@ -1,0 +1,63 @@
+NUMBER: US011
+
+DESCRIPTION: US011 - As an Administrator, I want to remove a sensor from a geographical area, so that it will no longer
+ be used.
+
+TEAM MEMBERS: Developer - Luís Almeida; QA - Gabriela Alves;
+
+ACCEPTANCE CRITERIA:
+
+General Criteria:
+- Correct Sequence and Class Diagrams.
+- JavaDoc documentation in both code and tests.
+- JUnit conventions in code and tests. (eg. tests should be named like this:
+                                        testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
+- All code, comments and documentation are in proper English.
+
+
+Specific Criteria:
+- given - The user wants to remove  a sensor from a geographical area, so that it will no longer be used.
+
+- when - The user chooses option "1" from Menu (Administrator User), then option "1" (Geographical Area) and then option "12"
+        (Remove a sensor from a geographical area). Then the user select one of the geographical areas displayed.
+        Then the user select one sensor of the sensors displayed, that correspond to the geographical area previously selected.
+        Then a message is displayed and asks to the user if he confirms the action. If he choose (Y),
+
+- then - It is shown to the user "The sensor was removed with success".
+
+- but - The following messages are displayed:
+
+"There are no geographical areas in the system. Please create or import some." - when there aren't geographical areas;
+"There are no sensors in the selected geographical area. Please create or import some." - when there aren't sensors in the geographical area previously selected;
+
+
+Test Criteria:
+- All unit tests with "Process finished with exit code 0" message;
+- In the menu, when choosing the numbered options "1" from Menu (Administrator User), then option "1" (Geographical Area) and then
+  option "12"(Remove a sensor from a geographical area), should not accept letters, symbols, or any
+  number that's not displayed in the menu.
+
+
+Acceptance tests:
+
+  Test_scenario1:
+- Input data: the user select one geographical area, then select the sensor he wants to remove, then choose (Y).
+- Expected result: "The selected sensor was removed with success"
+
+  Test_scenario2:
+- Input data: the user select one geographical area, then select the sensor he wants to remove. Then choose (N).
+- Expected result: the list of sensors is showed again.
+
+  Test_scenario3:
+- Input data: the system doesn't have any geographical areas.
+- Expected result: "There are no geographical areas in the system. Please create or import some.".
+
+  Test_scenario4:
+- Input data: The user select one geographical area that doesn't have any sensor.
+- Expected result: "There are no sensors in the selected geographical area. Please create or import some."
+
+ 
+
+ASSUMPTIONS:
+- There is user interaction: the application asks the user to choose one geographical area from where he will choose the sensor to remove.
+- If a sensor is removed, all the data relative to that sensor will be removed too and can not be recovered anymore.
