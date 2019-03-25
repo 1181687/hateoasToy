@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonandxmlcontroller.ImportGeoAreasFromJSONAndXMLController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
-import pt.ipp.isep.dei.project.utils.JSONReader;
+import pt.ipp.isep.dei.project.utils.JSONReaderGeoAreasSensors;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -30,7 +30,7 @@ public class ImportGeoAreasFromJSONAndXML {
             System.out.println("\nERROR: There's no such file with that name.\n");
             return;
         }
-        List<GeographicalAreaDTO> dtoList = JSONReader.readJSONFileToList(reader);
+        List<GeographicalAreaDTO> dtoList = JSONReaderGeoAreasSensors.readJSONFileToList(reader);
         if (Objects.isNull(dtoList) || dtoList.isEmpty()) {
             System.out.println("\nThe information on the file is not valid to be imported.\n");
             return;
