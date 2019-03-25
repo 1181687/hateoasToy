@@ -1,5 +1,5 @@
 package pt.ipp.isep.dei.project.utils;
-
+/*
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -22,7 +22,7 @@ public class XMLReader implements FileReader {
         this.typeName = "xml";
     }
 
-    public static void main(String[] argv) throws IOException, ParserConfigurationException, NullPointerException, SAXException {
+    public void read() throws IOException, ParserConfigurationException, NullPointerException, SAXException {
 
         File xmlFile = new File("XMLfile_GA.xml");
 
@@ -186,3 +186,5 @@ public class XMLReader implements FileReader {
         return null;
     }
 }
+
+*/
