@@ -809,7 +809,7 @@ public class House {
 
     public boolean hasSensorsOfCertainTypeInInsertedGeoArea(SensorType sensorType) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
-        return !insertedGeoArea.getTheSensorListOfAGivenType(sensorType).isEmpty();
+        return !insertedGeoArea.getFirstSensorsOfATypeInHierarchy(sensorType).isEmpty();
     }
 
     public Sensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
