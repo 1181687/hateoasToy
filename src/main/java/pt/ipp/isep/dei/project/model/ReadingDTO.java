@@ -9,7 +9,7 @@ public class ReadingDTO {
     /**
      * Constructor.
      */
-    protected ReadingDTO() {
+    public ReadingDTO() {
     }
 
     /** Method that returns the value of a reading.

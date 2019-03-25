@@ -6,7 +6,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Properties;
 
 public final class Utils {
 
@@ -142,4 +145,7 @@ public final class Utils {
         return mapOfDailyValues;
     }
 
+    public static double convertFahrenheitToCelsius(double value) {
+        return (value - 32) * 5 / 9;
+    }
 }
