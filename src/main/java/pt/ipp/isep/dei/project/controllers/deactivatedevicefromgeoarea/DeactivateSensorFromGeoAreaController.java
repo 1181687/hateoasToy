@@ -4,14 +4,14 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DeactivateSensorFromGeoAreaController {
     private GeographicalAreaList geoAreaList;
-    private GeographicalArea geoArea;
-    private GeographicalAreaDTO geoAreaDTO;
 
     public DeactivateSensorFromGeoAreaController(GeographicalAreaList geoAreaList) {
         this.geoAreaList = geoAreaList;
@@ -23,6 +23,12 @@ public class DeactivateSensorFromGeoAreaController {
             geoAreaList.add(GeographicalAreaMapper.mapToDTO(geoArea));
         }
         return geoAreaList;
+    }
+
+    public boolean deactivateDevice(SensorDTO sensorDTO) {
+        Sensor sensor = geoAreaList.getSensorById(sensorDTO.getId());
+        sensor.setActive(sensorDTO.isActive());
+        return true;
     }
 
 }
