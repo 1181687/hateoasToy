@@ -1,15 +1,13 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonandxmlcontroller.ImportGeoAreasFromJSONAndXMLController;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
-import pt.ipp.isep.dei.project.utils.JSONReader;
+import pt.ipp.isep.dei.project.utils.JSONReader_v2;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
-import java.util.Objects;
 
 public class ImportGeoAreasFromJSONAndXML {
 
@@ -20,7 +18,7 @@ public class ImportGeoAreasFromJSONAndXML {
         this.controller = new ImportGeoAreasFromJSONAndXMLController(geoList);
     }
 
-    public void run() {
+    /*public void run() {
 
         // Write the path
         String pathJSONFile = InputValidator.getString("Please specify the name of the JSON file to import.");
@@ -58,7 +56,7 @@ public class ImportGeoAreasFromJSONAndXML {
             System.out.println("The JSON file was not imported. \n");
             return;
         }
-    }
+    }*/
 
     /**
      * Method that checks if a file is valid (if it exists) and creates a scanner based on it.
@@ -74,6 +72,14 @@ public class ImportGeoAreasFromJSONAndXML {
             file = null;
         }
         return file;
+    }
+
+    public void run() {
+        String pathJSONFile = InputValidator.getString("Please specify the name of the JSON file to import.");
+        File file = new File(pathJSONFile);
+        FileReader reader = checkIfFileExistsAndCreateFileReader(file);
+        List<Object> objList = JSONReader_v2.readJSONReadingFileToList(reader);
+        System.out.println(objList);
     }
 }
 
