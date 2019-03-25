@@ -7,11 +7,16 @@ import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
+@Entity
 public class GeographicalArea {
+
+    @Id
     private String id;
     private String description;
     private GeographicalAreaType geographicalAreaType;
@@ -19,6 +24,10 @@ public class GeographicalArea {
     private Location location;
     private AreaShape areaShape;
     private SensorList sensorList = new SensorList();
+
+    protected GeographicalArea(){
+        //intentionally empty
+    }
 
     /**
      * constructor of geographical area that receives a name, type, insertedIn, location, areaShape and a sensor list.
