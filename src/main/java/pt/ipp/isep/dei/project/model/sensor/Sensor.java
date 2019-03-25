@@ -2,12 +2,11 @@ package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -22,13 +21,14 @@ public class Sensor {
     private String id;
     private String sensorName;
     private LocalDateTime startingDate;
+
+    @OneToMany
     private List<Reading> listOfReadings = new ArrayList<>();
     private SensorType sensorType;
     private Location location;
     private String units;
 
-    @ManyToOne
-    private GeographicalArea geographicalArea;
+
 
 
 
