@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.utils.Repositories;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import javax.persistence.Entity;
@@ -268,6 +269,8 @@ public class Sensor {
      */
     public void addReadingsToList(Reading reading) {
         this.listOfReadings.add(reading);
+        //Repositories.getSensorReadingsRepository().save(reading);
+
     }
 
     /**
