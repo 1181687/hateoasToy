@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.utils;
-/*
 
+/*
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -24,18 +24,25 @@ public class XMLReader implements FileReader {
 
     public void read() throws IOException, ParserConfigurationException, NullPointerException, SAXException {
 
+        //path to the file
         File xmlFile = new File("XMLfile_GA.xml");
 
+        //get document builder
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = factory.newDocumentBuilder();
         Document doc = dBuilder.parse(xmlFile);
 
+        //Normalize the XML Structure;
         doc.getDocumentElement().normalize();
 
-        NodeList feeds = doc.getElementsByTagName("geographical_area_list");
+        //root node
+        Element root = doc.getDocumentElement();
 
-        for (int i = 0; i < feeds.getLength(); i++) {
-            Node mainNode = feeds.item(i);
+        //get all geographical areas
+        NodeList listOfNodes = doc.getElementsByTagName("geographical_area");
+
+        for (int i = 0; i < listOfNodes.getLength(); i++) {
+            Node mainNode = listOfNodes.item(i);
             if (mainNode.getNodeType() == Node.ELEMENT_NODE) {
                 Element firstElement = (Element) mainNode;
                 NodeList geoArea = firstElement.getElementsByTagName("geographical_area");
@@ -125,7 +132,7 @@ public class XMLReader implements FileReader {
                         Element startDate = (Element) conditionList13.item(k);
                         String conditionText = startDate.getFirstChild().getTextContent();
 
-                        }
+                    }
 
                     NodeList conditionList14 = value.getElementsByTagName("type");
                     for (int k = 0; k < conditionList14.getLength(); ++k) {
