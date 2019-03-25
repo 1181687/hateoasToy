@@ -74,4 +74,14 @@ public class CSVReader implements FileReader {
         }
         return allLines;
     }
+
+    /*public List<Object> readFile2(Scanner scanner) {
+        List<Object> allLines = new ArrayList<>();
+        scanner.nextLine();
+        while (scanner.hasNext()) {
+             List<String> line = parseLine((scanner.nextLine()));
+            allLines.add((Object)line);
+        }
+        return allLines;
+    }*/
 }
