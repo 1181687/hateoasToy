@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller;
 
+import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
@@ -15,6 +16,7 @@ public class ImportReadingsFromCSVController {
     private GeographicalAreaList geographicalAreaList;
     private SensorList allSensorInTheGeoAreas;
     private Sensor sensor;
+    private ProjectFileReader fileReader;
 
     /**
      * Constructor.
@@ -73,5 +75,13 @@ public class ImportReadingsFromCSVController {
             imported = true;
         }
         return imported;
+    }
+
+    public boolean isCSVFile(String fileName) {
+        return fileName.endsWith(".csv");
+    }
+
+    public boolean isValidFormat(String fileName) {
+        return fileName.endsWith(".csv") || fileName.endsWith(".json") || fileName.endsWith(".xml");
     }
 }
