@@ -5,6 +5,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import pt.ipp.isep.dei.project.io.ui.InputValidator;
 import pt.ipp.isep.dei.project.model.FileReader;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
@@ -29,7 +30,7 @@ public class XMLReader implements FileReader {
         this.typeName = "xml";
     }
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
         List<GeographicalArea> GA = null;
 
         try {
@@ -42,7 +43,7 @@ public class XMLReader implements FileReader {
         }
         System.out.println(GA);
     }
-    */
+
 
     @SuppressWarnings("unchecked")
     public static List<GeographicalArea> readXMLFileToList(File file) {
@@ -59,7 +60,7 @@ public class XMLReader implements FileReader {
             doc.getDocumentElement().normalize();
 
 
-            NodeList nodeList = doc.getElementsByTagName("geographical_area");
+            NodeList nodeList = doc.getElementsByTagName("geographical_area_list");
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 geographicalAreaList.add(getGeoArea(nodeList.item(i)));
@@ -82,11 +83,7 @@ public class XMLReader implements FileReader {
             GeographicalAreaType type = new GeographicalAreaType(getTagValue("type", element));
             Double width = Double.parseDouble(getTagValue("width", element));
             Double length = Double.parseDouble(getTagValue("length", element));
-            Node locationNode = element.getFirstChild();
-            if (locationNode.getNodeName().trim().equals("#text")) {
-                locationNode = element.getFirstChild().getNextSibling();
-            }
-            Location location = getLocation(locationNode);
+            Location location = getLocation(getTag("location", element));
             AreaShape areaShape = new AreaShape(width, length, location);
             geographicalArea = new GeographicalArea(id, description, type, location, areaShape);
             addSensorsToGeoArea(geographicalArea, element.getLastChild());
@@ -117,7 +114,6 @@ public class XMLReader implements FileReader {
             LocalDateTime startDate = LocalDateTime.parse(getTagValue("start_date", sensor));
             SensorType type = new SensorType(getTagValue("type", sensor));
             String units = getTagValue("units", sensor);
-
             Location location = getLocation(element.getFirstChild());
             Sensor sensorObject = new Sensor(id, name, startDate, type, location, units);
             geographicalArea.addSensor(sensorObject);
@@ -132,12 +128,18 @@ public class XMLReader implements FileReader {
      * @param element part of the xml document
      * @return
      */
+
     private static String getTagValue(String tag, Element element) {
         NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
         Node node = nodeList.item(0);
         return node.getNodeValue();
     }
 
+
+    private static Node getTag(String tag, Element element) {
+        Node node = element.getElementsByTagName(tag).item(0);
+        return node;
+    }
 
     @Override
     public String getTypeName() {
