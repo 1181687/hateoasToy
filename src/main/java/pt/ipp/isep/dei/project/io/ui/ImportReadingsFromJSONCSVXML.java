@@ -25,12 +25,10 @@ public class ImportReadingsFromJSONCSVXML {
     }
 
     public void run() {
-        String pathFile = InputValidator.getString("Please specify the name of the file you would like to import (extensions accepted: json, csv, xml.");
+        String pathFile = InputValidator.getString("Please specify the name of the file you would like to import (extensions accepted: json, csv, xml).");
         File file = new File(pathFile);
         FileReader reader = checkIfFileExistsAndCreateFileReader(file);
         List<Object> objList = JSONReaderReadings.readJSONReadingFileToList(reader);
-        for (Object object : objList) {
-            System.out.println(object);
-        }
+        System.out.println(objList);
     }
 }
