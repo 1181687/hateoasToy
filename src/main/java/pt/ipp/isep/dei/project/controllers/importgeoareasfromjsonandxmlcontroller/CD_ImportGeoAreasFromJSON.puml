@@ -41,7 +41,7 @@ Class GeographicalAreaList {
 
 Class GeographicalAreaDTO {
 - String id
-- String name
+- String description
 - String type
 - double width
 - double length

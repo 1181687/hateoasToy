@@ -75,7 +75,6 @@ public class RegularUser {
                     ui610.run();
                     break;
                 case 3:
-                    // JUST TESTING
                     EstimateEnergyOfWaterHeater ui752 = new EstimateEnergyOfWaterHeater(house);
                     ui752.run();
                     break;
@@ -90,14 +89,11 @@ public class RegularUser {
             return;
         }
         while (option != 0) {
-
-            switch (option) {
-                case 1:
-                    runRegularUserHouseArea();
-                    break;
-                case 2:
-                    runRegularUserRooms();
-                    break;
+            if (option == 1) {
+                runRegularUserHouseArea();
+            }
+            if (option == 2) {
+                runRegularUserRooms();
             }
             option = Menu.regularUserMenu();
         }
@@ -109,11 +105,9 @@ public class RegularUser {
             return;
         }
         while (option != 0) {
-            switch (option) {
-                case 1:
-                    GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(house);
-                    ui230.run();
-                    break;
+            if (option == 1) {
+                GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(house);
+                ui230.run();
             }
         }
     }

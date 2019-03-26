@@ -67,6 +67,7 @@ public final class GeographicalAreaMapper {
         geoDTO.setLatitude(geographicalArea.getLocation().getLatitude());
         geoDTO.setLongitude(geographicalArea.getLocation().getLongitude());
         geoDTO.setElevation(geographicalArea.getLocation().getElevation());
+        geoDTO.addAllSensors(geographicalArea.getSensorListInTheGeographicArea().getListOfSensors());
         return geoDTO;
     }
 

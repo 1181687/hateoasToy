@@ -245,7 +245,7 @@ class EditConfigurationDeviceControllerTest {
         controller.getRoomByPosition(position);
         controller.getDeviceByPosition(position);
 
-        Throwable exception = assertThrows(RuntimeException.class, () -> device0.setName("Fridgeratah V14"));
+        Throwable exception = assertThrows(RuntimeException.class, () -> device0.setDescription("Fridgeratah V14"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
 
     }
