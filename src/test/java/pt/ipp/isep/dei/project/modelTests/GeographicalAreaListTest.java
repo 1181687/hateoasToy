@@ -289,13 +289,13 @@ public class GeographicalAreaListTest {
      **/
     @Test
     void testGetGeoAreaById_tryingToTestAnExistingId_ShouldReturnTheCorrespondingGeoArea() {
-        // Assert
+        // Arrange
         GeographicalArea expectedResult = portoCity;
 
         // Act
         GeographicalArea result = geoAreaList.getGeoAreaById("Porto");
 
-        //
+        // Assert
         assertEquals(expectedResult, result);
     }
 
@@ -307,7 +307,31 @@ public class GeographicalAreaListTest {
         // Act
         GeographicalArea result = geoAreaList.getGeoAreaById("Gondomar");
 
-        //
+        // Assert
+        assertNull(result);
+    }
+
+    /**
+     * Test that finds a sensor in all of the geographical areas by its Id
+     **/
+    @Test
+    void testGetSensorById_ExistingId_ShouldReturnTheSensor() {
+        // Act
+        Sensor result = geoAreaList.getSensorById("s1");
+
+        // Assert
+        assertEquals(sensor, result);
+    }
+
+    /**
+     * Test that tries to finds a sensor in all of the geographical areas by its Id but there are non.
+     **/
+    @Test
+    void testGetSensorById_IdDoesNotExist_ShouldReturnNull() {
+        // Act
+        Sensor result = geoAreaList.getSensorById("WrongID");
+
+        // Assert
         assertNull(result);
     }
 }

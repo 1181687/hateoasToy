@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.model.geographicalarea;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 
 import java.util.ArrayList;
@@ -215,5 +216,9 @@ public class GeographicalAreaList {
             }
         }
         return null;
+    }
+
+    public Sensor getSensorById(String id) {
+        return getAllSensors().getSensorById(id);
     }
 }

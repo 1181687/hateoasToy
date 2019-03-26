@@ -73,6 +73,14 @@ public class Admin {
                     ImportReadingsFromCSV ui10 = new ImportReadingsFromCSV(geographicalAreaList);
                     ui10.run();
                     break;
+                case 11:
+                    DeactivateSensorFromGeoArea ui11 = new DeactivateSensorFromGeoArea(geographicalAreaList);
+                    ui11.run();
+                    break;
+                case 12:
+                    RemoveSensorFromGeoArea ui12 = new RemoveSensorFromGeoArea(geographicalAreaList);
+                    ui12.run();
+                    break;
             }
             option = Menu.adminGeoAreaMenu();
         }
@@ -181,14 +189,11 @@ public class Admin {
             return;
         }
         while (option != 0) {
-
-            switch (option) {
-                case 1:
-                    runAdminGeographicalArea();
-                    break;
-                case 2:
-                    runAdminHouse();
-                    break;
+            if (option == 1) {
+                runAdminGeographicalArea();
+            }
+            if (option == 2) {
+                runAdminHouse();
             }
             option = Menu.adminMenu();
         }

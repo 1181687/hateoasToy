@@ -65,9 +65,13 @@ public final class Menu {
         content.append("\n");
         content.append("10-Import readings from CSV file");
         content.append("\n");
+        content.append("11-Deactivate a sensor from a geographical area");
+        content.append("\n");
+        content.append("12-Remove a sensor from a geographical area");
+        content.append("\n");
         content.append(RETURN_MENU);
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 10);
+        return InputValidator.getIntRange(label, 0, 12);
     }
 
     public static int adminHouseMenu() {
@@ -76,7 +80,7 @@ public final class Menu {
         content.append("\n");
         content.append("1-Configure the location of the house");
         content.append("\n");
-        content.append("2-Add a room to the housegrid");
+        content.append("2-Add a room to the house");
         content.append("\n");
         content.append("3-Manage House Grid");
         content.append("\n");

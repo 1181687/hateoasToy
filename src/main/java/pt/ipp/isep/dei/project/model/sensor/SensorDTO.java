@@ -11,6 +11,7 @@ public class SensorDTO {
     private String sensorType;
     private LocationDTO location;
     private String units;
+    private boolean isActive = true;
 
     /**
      * Constructor.
@@ -105,5 +106,13 @@ public class SensorDTO {
 
     public void setUnits(String units) {
         this.units = units;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
     }
 }

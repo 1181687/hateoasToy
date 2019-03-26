@@ -32,6 +32,7 @@ public final class SensorMapper {
         sensorDTO.setSensorType(sensor.getSensorType().getType());
         sensorDTO.setLocation(LocationMapper.mapToDTO(sensor.getLocation()));
         sensorDTO.setUnits(sensor.getUnits());
+        sensorDTO.setActive(sensor.isActive());
         return sensorDTO;
     }
 
@@ -44,6 +45,8 @@ public final class SensorMapper {
     public static Sensor mapToEntity(SensorDTO sensorDTO) {
         SensorType sensorType = new SensorType(sensorDTO.getSensorType());
         Location location = LocationMapper.mapToEntity(sensorDTO.getLocation());
-        return new Sensor(sensorDTO.getId(), sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorType, location, sensorDTO.getUnits());
+        Sensor newSensor = new Sensor(sensorDTO.getId(), sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorType, location, sensorDTO.getUnits());
+        newSensor.setActive(sensorDTO.isActive());
+        return newSensor;
     }
 }
