@@ -5,7 +5,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import pt.ipp.isep.dei.project.io.ui.InputValidator;
 import pt.ipp.isep.dei.project.model.FileReader;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
@@ -30,6 +29,7 @@ public class XMLReader implements FileReader {
         this.typeName = "xml";
     }
 
+    /*
     public static void main(String[] args) {
         List<GeographicalArea> GA = null;
 
@@ -44,7 +44,7 @@ public class XMLReader implements FileReader {
         System.out.println(GA);
     }
 
-
+*/
     @SuppressWarnings("unchecked")
     public static List<GeographicalArea> readXMLFileToList(File file) {
 
