@@ -6,12 +6,20 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import pt.ipp.isep.dei.project.model.FileReader;
+import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class XMLReader implements FileReader {
@@ -21,71 +29,115 @@ public class XMLReader implements FileReader {
         this.typeName = "xml";
     }
 
-    public static void main(String[] argv) throws SAXException, IOException, ParserConfigurationException {
+    /*public static void main(String[] args) {
+        List<GeographicalArea> GA = null;
 
-        File xmlFile = new File("XMLfile_GA.xml");
+        try {
+            String path = InputValidator.getString("path");
+            File file = new File(path);
+            GA = readXMLFileToList(file);
 
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = factory.newDocumentBuilder();
-        Document doc = dBuilder.parse(xmlFile);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        System.out.println(GA);
+    }
+    */
 
-        doc.getDocumentElement().normalize();
+    @SuppressWarnings("unchecked")
+    public static List<GeographicalArea> readXMLFileToList(File file) {
 
-        NodeList feeds = doc.getElementsByTagName("geographical_area_list");
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        dbFactory.setIgnoringElementContentWhitespace(true);
+        dbFactory.setNamespaceAware(true);
+        DocumentBuilder dBuilder;
+        List<GeographicalArea> geographicalAreaList = new ArrayList<>();
 
-        for (int i = 0; i < feeds.getLength(); i++) {
-            Node mainNode = feeds.item(i);
-            if (mainNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element firstElement = (Element) mainNode;
-                NodeList geoArea = firstElement.getElementsByTagName("geographical_area");
+        try {
+            dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(file);
+            doc.getDocumentElement().normalize();
 
-                for (int j = 0; j < geoArea.getLength(); ++j) {
-                    Element value = (Element) geoArea.item(j);
 
-                    NodeList conditionList = value.getElementsByTagName("description");
-                    for (int k = 0; k < conditionList.getLength(); ++k) {
-                        Element condition = (Element) conditionList.item(k);
-                        if (condition.getParentNode().getNodeName().equals("geographical_area")) {
-                            String conditionText = condition.getFirstChild().getNodeValue();
-                        }
-                    }
-                    NodeList conditionList1 = value.getElementsByTagName("id");
-                    for (int k = 0; k < conditionList1.getLength(); ++k) {
-                        Element condition = (Element) conditionList1.item(k);
-                        String conditionText = condition.getFirstChild().getNodeValue();
-                    }
+            NodeList nodeList = doc.getElementsByTagName("geographical_area");
 
-                    NodeList conditionList2 = value.getElementsByTagName("type");
-                    for (int k = 0; k < conditionList2.getLength(); ++k) {
-                        Element condition = (Element) conditionList2.item(k);
-                        String conditionText = condition.getFirstChild().getNodeValue();
-                    }
-
-                    NodeList conditionList3 = value.getElementsByTagName("width");
-                    for (int k = 0; k < conditionList3.getLength(); ++k) {
-                        Element condition = (Element) conditionList3.item(k);
-                        String conditionText = condition.getFirstChild().getNodeValue();
-                    }
-
-                    NodeList conditionList4 = value.getElementsByTagName("length");
-                    for (int k = 0; k < conditionList4.getLength(); ++k) {
-                        Element condition = (Element) conditionList4.item(k);
-                        String conditionText = condition.getFirstChild().getNodeValue();
-                    }
-
-                    NodeList conditionList5 = value.getElementsByTagName("location");
-                    for (int k = 0; k < conditionList5.getLength(); ++k) {
-                        Element condition = (Element) conditionList5.item(k);
-                        for (int l = 0; l < condition.getChildNodes().getLength(); ++l) {
-                            Element condition5 = (Element) condition.getChildNodes().item(l);
-                            String conditionText = condition5.getFirstChild().getNodeValue();
-                        }
-                    }
-
-                }
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                geographicalAreaList.add(getGeoArea(nodeList.item(i)));
             }
+        } catch (SAXException | ParserConfigurationException | IOException e1) {
+            e1.printStackTrace();
+
+        }
+        return geographicalAreaList;
+    }
+
+
+    private static GeographicalArea getGeoArea(Node node) {
+
+        GeographicalArea geographicalArea = null;
+        if (node.getNodeType() == Node.ELEMENT_NODE) {
+            Element element = (Element) node;
+            String id = getTagValue("id", element);
+            String description = getTagValue("description", element);
+            GeographicalAreaType type = new GeographicalAreaType(getTagValue("type", element));
+            Double width = Double.parseDouble(getTagValue("width", element));
+            Double length = Double.parseDouble(getTagValue("length", element));
+            Node locationNode = element.getFirstChild();
+            if (locationNode.getNodeName().trim().equals("#text")) {
+                locationNode = element.getFirstChild().getNextSibling();
+            }
+            Location location = getLocation(locationNode);
+            AreaShape areaShape = new AreaShape(width, length, location);
+            geographicalArea = new GeographicalArea(id, description, type, location, areaShape);
+            addSensorsToGeoArea(geographicalArea, element.getLastChild());
+        }
+
+        return geographicalArea;
+    }
+
+
+    private static Location getLocation(Node node) {
+        Element element = (Element) node;
+        Double latitude = Double.parseDouble(getTagValue("latitude", element));
+        Double longitude = Double.parseDouble(getTagValue("longitude", element));
+        Double altitude = Double.parseDouble(getTagValue("altitude", element));
+        Location location = new Location(latitude, longitude, altitude);
+        return location;
+    }
+
+
+    private static void addSensorsToGeoArea(GeographicalArea geographicalArea, Node node) {
+
+        Element element = (Element) node;
+        NodeList sensors = element.getChildNodes();
+        for (int i = 0; i < sensors.getLength(); i++) {
+            Element sensor = (Element) sensors.item(i);
+            String id = getTagValue("id", sensor);
+            String name = getTagValue("name", sensor);
+            LocalDateTime startDate = LocalDateTime.parse(getTagValue("start_date", sensor));
+            SensorType type = new SensorType(getTagValue("type", sensor));
+            String units = getTagValue("units", sensor);
+
+            Location location = getLocation(element.getFirstChild());
+            Sensor sensorObject = new Sensor(id, name, startDate, type, location, units);
+            geographicalArea.addSensor(sensorObject);
         }
     }
+
+
+    /**
+     * get method
+     *
+     * @param tag     identifying string of each element
+     * @param element part of the xml document
+     * @return
+     */
+    private static String getTagValue(String tag, Element element) {
+        NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
+        Node node = nodeList.item(0);
+        return node.getNodeValue();
+    }
+
 
     @Override
     public String getTypeName() {
@@ -97,6 +149,4 @@ public class XMLReader implements FileReader {
         return null;
     }
 }
-
-
 

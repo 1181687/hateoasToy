@@ -7,18 +7,30 @@ import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
+@Entity
 public class GeographicalArea {
+
+    @Id
     private String id;
     private String description;
     private GeographicalAreaType geographicalAreaType;
     private GeographicalArea insertedIn;
     private Location location;
     private AreaShape areaShape;
+
+    @OneToOne
     private SensorList sensorList = new SensorList();
+
+    protected GeographicalArea(){
+        //intentionally empty
+    }
 
     /**
      * constructor of geographical area that receives a name, type, insertedIn, location, areaShape and a sensor list.
@@ -169,7 +181,7 @@ public class GeographicalArea {
      * @param sensorType
      * @return the Sensorlist of sensors by type.
      */
-    public SensorList getSensorsInGeographicalAreaByType(SensorType sensorType) {
+    public SensorList getSensorsByType(SensorType sensorType) {
         SensorList listOfInsertedSensors = new SensorList();
         for (Sensor sensor : this.sensorList.getListOfSensors()) {
             if (checkIfSensorInInsideOfGeoArea(sensor) && sensor.getSensorType().equals(sensorType)) {
@@ -189,7 +201,7 @@ public class GeographicalArea {
      */
     public SensorList getSensorListByTypeInAPeriod(SensorType type, LocalDate startDate, LocalDate endDate) {
 
-        SensorList listOfSensorsInGeoAreaByType = getSensorsInGeographicalAreaByType(type);
+        SensorList listOfSensorsInGeoAreaByType = getSensorsByType(type);
         SensorList listOfSensorsOfATypeDuringAPeriod = new SensorList();
 
         for (Sensor sensor : listOfSensorsInGeoAreaByType.getListOfSensors()) {
@@ -208,7 +220,7 @@ public class GeographicalArea {
      * @return the list of sensors by type in a day.
      */
     public SensorList getSensorListByTypeInADay(SensorType type, LocalDate day) {
-        SensorList sensorListByTypeInAGeoArea = getSensorsInGeographicalAreaByType(type);
+        SensorList sensorListByTypeInAGeoArea = getSensorsByType(type);
         SensorList sensorListByTypeInADay = new SensorList();
 
         for (Sensor sensor : sensorListByTypeInAGeoArea.getListOfSensors()) {
@@ -249,15 +261,13 @@ public class GeographicalArea {
      * @param type
      * @return sensor list.
      */
-    public SensorList getTheSensorListOfAGivenType(SensorType type) {
+    public SensorList getFirstSensorsOfATypeInHierarchy(SensorType type) {
         GeographicalArea areaToBeUsed = this;
-        areaToBeUsed.setInsertedIn(insertedIn);
-        SensorList listOfSensors = getSensorsInGeographicalAreaByType(type);
+        SensorList listOfSensors = getSensorsByType(type);
         while (listOfSensors.getListOfSensors().isEmpty()) {
-            if (areaToBeUsed.getInsertedIn() != null) {
-                areaToBeUsed.getSensorListInTheGeographicArea().setListOfSensors(areaToBeUsed.getInsertedIn().getSensorListInTheGeographicArea().getListOfSensors());
-                areaToBeUsed.setInsertedIn(areaToBeUsed.getInsertedIn().getInsertedIn());
-                listOfSensors.setListOfSensors(areaToBeUsed.getSensorListInTheGeographicArea().getListOfSensors());
+            if (Objects.nonNull(areaToBeUsed.getInsertedIn())) {
+                areaToBeUsed = areaToBeUsed.getInsertedIn();
+                listOfSensors.setListOfSensors(areaToBeUsed.getSensorsByType(type).getListOfSensors());
             } else {
                 return listOfSensors;
             }
@@ -266,7 +276,7 @@ public class GeographicalArea {
     }
 
     public boolean isSensorListOfAGivenTypeEmpty(SensorType type) {
-        return this.getTheSensorListOfAGivenType(type).isEmpty();
+        return this.getFirstSensorsOfATypeInHierarchy(type).isEmpty();
     }
 
     /**
@@ -277,7 +287,7 @@ public class GeographicalArea {
      * @return Last measurement.
      */
     public double getLastMeasurementByLocationType(Location location, SensorType type) {
-        SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
+        SensorList sensorListWithTheRequiredType = getFirstSensorsOfATypeInHierarchy(type);
         double latestReadingValue = Double.NaN;
         if (!sensorListWithTheRequiredType.getListOfSensors().isEmpty()) {
             SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
@@ -294,7 +304,7 @@ public class GeographicalArea {
     }
 
     public LocalDateTime getDateLastMeasurementByLocationType(Location location, SensorType type) {
-        SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
+        SensorList sensorListWithTheRequiredType = getFirstSensorsOfATypeInHierarchy(type);
         LocalDateTime latestReadingDate = null;
         if (!sensorListWithTheRequiredType.getListOfSensors().isEmpty()) {
             SensorList nearestSensors = sensorListWithTheRequiredType.getNearestSensorsToLocation(location);
@@ -474,7 +484,7 @@ public class GeographicalArea {
      * @return
      */
     public Sensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
-        SensorList sensorListWithTheRequiredType = getTheSensorListOfAGivenType(type);
+        SensorList sensorListWithTheRequiredType = getFirstSensorsOfATypeInHierarchy(type);
         if (sensorListWithTheRequiredType.isEmpty()) {
             return null;
         }

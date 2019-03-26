@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,5 +93,11 @@ public class GeographicalAreaDTO {
 
     public void addSensor(SensorDTO sensor) {
         this.sensors.add(sensor);
+    }
+
+    public void addAllSensors(List<Sensor> sensorList) {
+        for (Sensor sensor : sensorList) {
+            this.sensors.add(SensorMapper.mapToDTO(sensor));
+        }
     }
 }
