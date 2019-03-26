@@ -71,7 +71,7 @@ public class Admin {
                     break;
                 case 9:
                     ImportGeoAreasFromJSONAndXML ui9 = new ImportGeoAreasFromJSONAndXML(geographicalAreaList);
-                    ui9.run();
+                    ui9.run2();
                     break;
                 case 10:
                     ImportReadingsFromCSV ui10 = new ImportReadingsFromCSV(geographicalAreaList);
@@ -84,6 +84,10 @@ public class Admin {
                 case 12:
                     RemoveSensorFromGeoArea ui12 = new RemoveSensorFromGeoArea(geographicalAreaList);
                     ui12.run();
+                    break;
+                case 13:
+                    ImportReadingsFromJSONCSVXML ui13 = new ImportReadingsFromJSONCSVXML();
+                    ui13.run();
                     break;
             }
             option = Menu.adminGeoAreaMenu();

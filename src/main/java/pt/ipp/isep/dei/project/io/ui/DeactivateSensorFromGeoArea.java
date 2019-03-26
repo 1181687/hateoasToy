@@ -9,8 +9,9 @@ import java.util.List;
 
 public class DeactivateSensorFromGeoArea {
     private DeactivateSensorFromGeoAreaController ctrl;
-    private final String EXIT = "\r0 - Exit";
+    private static final String exit = "\r0 - Exit";
     private List<GeographicalAreaDTO> geographicalAreaDTOS;
+    private GeographicalAreaDTO geographicalAreaDTO;
 
     public DeactivateSensorFromGeoArea(GeographicalAreaList geographicalAreaList) {
         this.ctrl = new DeactivateSensorFromGeoAreaController(geographicalAreaList);
@@ -24,13 +25,13 @@ public class DeactivateSensorFromGeoArea {
         }
         boolean flag = true;
         do {
-            String label = "\nFrom which geographical area do you want to deactivate a sensor: \n" + printListOfGeoAreas() + EXIT;
+            String label = "\nFrom which geographical area do you want to deactivate a sensor: \n" + printListOfGeoAreas() + exit;
             int chosenGeoArea = InputValidator.getIntRange(label, 0, geographicalAreaDTOS.size()) - 1;
             if (chosenGeoArea == -1) {
                 return;
             }
-            GeographicalAreaDTO geographicalAreaDTO = geographicalAreaDTOS.get(chosenGeoArea);
-            String label2 = printListOfSensors(geographicalAreaDTO) + EXIT;
+            geographicalAreaDTO = geographicalAreaDTOS.get(chosenGeoArea);
+            String label2 = printListOfSensors() + exit;
             int chosenSensor = InputValidator.getIntRange(label2, 0, geographicalAreaDTO.getSensors().size()) - 1;
             if (chosenSensor == -1) {
                 continue;
@@ -50,7 +51,7 @@ public class DeactivateSensorFromGeoArea {
         return content.toString();
     }
 
-    private String printListOfSensors(GeographicalAreaDTO geographicalAreaDTO) {
+    private String printListOfSensors() {
         System.out.println("Which sensor of " + geographicalAreaDTO.getId() + " do you want to deactivate:\n");
         StringBuilder content = new StringBuilder();
         int iterator = 1;

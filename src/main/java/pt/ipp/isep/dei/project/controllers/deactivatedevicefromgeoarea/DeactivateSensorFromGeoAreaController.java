@@ -18,11 +18,11 @@ public class DeactivateSensorFromGeoAreaController {
     }
 
     public List<GeographicalAreaDTO> listOfGeographicalAreas() {
-        List<GeographicalAreaDTO> geoAreaList = new ArrayList<>();
+        List<GeographicalAreaDTO> dtoList = new ArrayList<>();
         for (GeographicalArea geoArea : this.geoAreaList.getGeoAreaList()) {
-            geoAreaList.add(GeographicalAreaMapper.mapToDTO(geoArea));
+            dtoList.add(GeographicalAreaMapper.mapToDTO(geoArea));
         }
-        return geoAreaList;
+        return dtoList;
     }
 
     public boolean deactivateDevice(SensorDTO sensorDTO) {
