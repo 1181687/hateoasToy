@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonandxmlcontroller;
 
+import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
@@ -11,6 +12,7 @@ import java.util.List;
 
 public class ImportGeoAreasFromJSONAndXMLController {
     private GeographicalAreaList geographicalAreaList;
+    private ProjectFileReader reader;
 
     public ImportGeoAreasFromJSONAndXMLController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;
@@ -36,6 +38,14 @@ public class ImportGeoAreasFromJSONAndXMLController {
         return imported;
 
     }
+}
+/*
+    public ProjectFileReader importPath() {
+
+
+
+    }
 
 
 }
+*/
