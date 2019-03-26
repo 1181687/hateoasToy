@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import pt.ipp.isep.dei.project.SensorReadingsRepository;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -131,11 +130,6 @@ public class Sensor {
 
     public void setActive(boolean active) {
         isActive = active;
-    }
-
-    public void setSensorType(String newType) {
-        SensorType sensorType = new SensorType(newType);
-        this.sensorType = sensorType;
     }
 
     /**
