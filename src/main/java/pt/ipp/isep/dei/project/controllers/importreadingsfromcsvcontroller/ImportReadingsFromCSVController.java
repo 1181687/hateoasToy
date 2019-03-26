@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
+import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -63,9 +64,11 @@ public class ImportReadingsFromCSVController {
         boolean imported = false;
         for (ReadingDTO reading : dtoList) {
             Sensor sensor = geographicalAreaList.getSensorById(reading.getID());
-            /*if (reading.getID().contains("TT")){
-                reading.getUnits().equals("C") || reading.getUnits().equals("F")
-            }*/
+            if (reading.getUnits().equals("F")) {
+                double celsiusValue = Utils.convertFahrenheitToCelsius(reading.getValue());
+                reading.setValue(Utils.round(celsiusValue, 2));
+                reading.setUnits("C");
+            }
             sensor.addReadingsToList(ReadingMapper.mapToEntity(reading));
             imported = true;
         }
