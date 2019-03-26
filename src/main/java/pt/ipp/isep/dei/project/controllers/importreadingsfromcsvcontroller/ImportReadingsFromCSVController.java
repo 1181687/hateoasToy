@@ -6,9 +6,9 @@ import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
-import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ImportReadingsFromCSVController {
     private GeographicalAreaList geographicalAreaList;
@@ -59,16 +59,16 @@ public class ImportReadingsFromCSVController {
         sensor.addReadingsToList(reading);
     }
 
-    public void addReadingToSensorById(String id, String units, double value, LocalDateTime date) {
-        Sensor sensor = geographicalAreaList.getSensorById(id);
-        ReadingDTO readingDTO = new ReadingDTO();
-        readingDTO.setDateTime(date);
-        readingDTO.setValue(value);
-        Reading reading = ReadingMapper.mapToEntity(readingDTO);
-        if (units.equals("F")) {
-            Utils.convertFahrenheitToCelsius(value);
-            units.replace("F", "C");
+    public boolean addReadingToSensorById(List<ReadingDTO> dtoList) {
+        boolean imported = false;
+        for (ReadingDTO reading : dtoList) {
+            Sensor sensor = geographicalAreaList.getSensorById(reading.getID());
+            /*if (reading.getID().contains("TT")){
+                reading.getUnits().equals("C") || reading.getUnits().equals("F")
+            }*/
+            sensor.addReadingsToList(ReadingMapper.mapToEntity(reading));
+            imported = true;
         }
-        sensor.addReadingsToList(reading);
+        return imported;
     }
 }
