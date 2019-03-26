@@ -71,7 +71,7 @@ public class Admin {
                     break;
                 case 9:
                     ImportGeoAreasFromJSONAndXML ui9 = new ImportGeoAreasFromJSONAndXML(geographicalAreaList);
-                    ui9.run2();
+                    ui9.jsonGeoAreaSensors();
                     break;
                 case 10:
                     ImportReadingsFromCSV ui10 = new ImportReadingsFromCSV(geographicalAreaList);
@@ -86,7 +86,7 @@ public class Admin {
                     ui12.run();
                     break;
                 case 13:
-                    ImportReadingsFromJSONCSVXML ui13 = new ImportReadingsFromJSONCSVXML();
+                    ImportReadingsFromJSONCSVXML ui13 = new ImportReadingsFromJSONCSVXML(geographicalAreaList);
                     ui13.run();
                     break;
             }

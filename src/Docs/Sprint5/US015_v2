@@ -33,17 +33,110 @@ vice versa) or the file is empty.
 
 "The file is already imported."- when you try to import the contents of the file after that have been already imported.
 
-"The XML file was not imported."- when the file cannot be imported.
+"The file was not imported."- when the file cannot be imported.
+
 
 
 
 Test Criteria:
 - All unit tests with "Process finished with exit code 0" message.
+- When user chooses option "1" from Menu, then option "2" and then option "9", should not accept letters, symbols, or any
+  number that's not displayed in the menu.
+- When He/She then chooses the option "Y" or "N" in "Do you want to import these geographic areas and their sensors? (Y/N)",
+should not accept letters, symbols, or any number unless its a "Y" or "y" or a "N" or a "n".
+
+
+Test_scenario1:
+- Input data: the path of file is not correct, so the file can not be found
+- Expected result: "ERROR: There's no such file with that name."
+
+Test_scenario2:
+- Input data: the path file is correct, but is empty.
+- Expected result: "The information on the file is not valid to be imported."
+
+
+
+Test_scenario3:
+- Input data: the file has only readings that don't the right type of LocalDateTime format (or LocalDate in the case of Rainnfall Readings).
+- Expected result: Warnings regarding errors with the importation and the message "The information on the file is not valid to be imported."
+
+
+
+
+Test_scenario4:
+- Input data: the csv file has only readings that don't have double format measurements.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+
+Test_scenario5:
+- Input data: the csv file has only Data outside the valid sensor operation period.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+
+Test_scenario6:
+- Input data: the csv file has only readings with Sensor Id's that don´t correspond to the existing sensors.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+
+Test_scenario7:
+- Input data: the csv file has only readings without Sensor Id.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+
+Test_scenario8:
+- Input data: the csv file has some readings with Sensor Id that don´t correspond to the existing sensors.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+
+Test_scenario9:
+- Input data: the csv file has some readings that don't have LocalDateTime format.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+
+Test_scenario10:
+- Input data: the csv file has some readings that don't have double format measurements.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+
+Test_scenario11:
+- Input data: the csv file have some Data outside the valid sensor operation period.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+
+Test_scenario12:
+- Input data: the path csv file is correct, and have the correct data and id of the existing sensors in
+a valid operation period.
+- Expected result: "All readings were imported successfully."
+
+Test_scenario13:
+- Input data: the path csv file has all the data in the wrong order.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+
+Test_scenario14:
+- Input data: the path csv file has some the data in the wrong order.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+
+Test_scenario15:
+- Input data: the path csv file has an extra field with data but all the order data are correct an in the correct order.
+- Expected result: "All readings were imported successfully."
+
+Test_scenario16:
+- Input data: the path csv file has several extra fields with data but all the order data are correct an in the correct order.
+- Expected result: "All readings were imported successfully."
+
+Test_scenario17:
+- Input data: the path csv file has a field less.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+
+Test_scenario18:
+- Input data: the path csv file has lesser fields.
+- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
 
 
 ASSUMPTIONS:
 - Regarding sensors, only the geographical area sensors are imported (not the House sensors).
 - There is User interaction: the application asks the user the location of the files to be imported.
 - For user convenience the data to be imported is in the form of two DTO (Geographical Area DTO and SensorDTO)
-thar are imported at the same time (in a single method) instead of importing the two referred DTO's one at a time.
+that are imported at the same time (in a single method) instead of importing the two referred DTO's one at a time.
+
+
+
+
+- Only the geographical areas and sensors that have all attributes are imported.
+- Sensors with ID containing "RF" are assumed they are rainfall sensors, so, the reading only have a LocalDate. Since the reading's
+objects, all have LocalDateTime, the readings where imported after parse the Localdate to LocalDateTime.
+- Sensors of Temperature have readings registered in Celsius units. So, if the readings in the file are in Kelvins (K),
+they were converted to Celsius and then imported.
 

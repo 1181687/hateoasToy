@@ -69,9 +69,11 @@ public final class Menu {
         content.append("\n");
         content.append("12-Remove a sensor from a geographical area");
         content.append("\n");
+        content.append("13 -Import readings from JSON, CSV or XML files");
+        content.append("\n");
         content.append(RETURN_MENU);
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 12);
+        return InputValidator.getIntRange(label, 0, 13);
     }
 
     public static int adminHouseMenu() {
