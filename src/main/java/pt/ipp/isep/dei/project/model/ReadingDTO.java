@@ -3,8 +3,10 @@ package pt.ipp.isep.dei.project.model;
 import java.time.LocalDateTime;
 
 public class ReadingDTO {
+    private String ID;
     private double value;
     private LocalDateTime dateTime;
+    private String units;
 
     /**
      * Constructor.
@@ -38,5 +40,21 @@ public class ReadingDTO {
      */
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getUnits() {
+        return units;
+    }
+
+    public void setUnits(String units) {
+        this.units = units;
     }
 }

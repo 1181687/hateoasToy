@@ -48,17 +48,12 @@ public final class ReadingMapper {
         return dto;
     }
 
-    /**
-     * Method that creates a ReadingDTO based on a set of information.
-     *
-     * @param dateTime Local Date Time to be used.
-     * @param value    Double to be used.
-     * @return ReadingDTO
-     */
-    public static ReadingDTO mapToDTO(LocalDateTime dateTime, double value) {
-        ReadingDTO readingDTO = new ReadingDTO();
-        readingDTO.setDateTime(dateTime);
-        readingDTO.setValue(value);
-        return readingDTO;
+    public static ReadingDTO mapToDTO_id_units(String id, LocalDateTime date, double value, String units) {
+        ReadingDTO dto = newReadingDTO();
+        dto.setID(id);
+        dto.setDateTime(date);
+        dto.setValue(value);
+        dto.setUnits(units);
+        return dto;
     }
 }

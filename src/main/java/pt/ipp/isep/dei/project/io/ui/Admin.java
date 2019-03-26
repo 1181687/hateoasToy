@@ -85,6 +85,10 @@ public class Admin {
                     RemoveSensorFromGeoArea ui12 = new RemoveSensorFromGeoArea(geographicalAreaList);
                     ui12.run();
                     break;
+                case 13:
+                    ImportReadingsFromJSONCSVXML ui13 = new ImportReadingsFromJSONCSVXML(geographicalAreaList);
+                    ui13.run();
+                    break;
             }
             option = Menu.adminGeoAreaMenu();
         }
