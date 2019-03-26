@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public final class ReadingMapper {
@@ -44,6 +45,15 @@ public final class ReadingMapper {
         ReadingDTO dto = newReadingDTO();
         dto.setDateTime(reading.getDateTime());
         dto.setValue(reading.getValue());
+        return dto;
+    }
+
+    public static ReadingDTO mapToDTO_id_units(String id, LocalDateTime date, double value, String units) {
+        ReadingDTO dto = newReadingDTO();
+        dto.setID(id);
+        dto.setDateTime(date);
+        dto.setValue(value);
+        dto.setUnits(units);
         return dto;
     }
 }
