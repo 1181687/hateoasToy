@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllers.deactivatedevicefromgeoarea;
+package pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea;
 
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;

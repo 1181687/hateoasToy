@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.utilsTests;
 
 import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.ProjectFileReader;
+import pt.ipp.isep.dei.project.utils.CSVReader;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.lang.reflect.Constructor;
@@ -297,4 +299,28 @@ class UtilsTest {
         //Assert
         assertEquals(expectedResult, result);
     }
+
+    /*
+        @Test
+        public void testcreateReader(){
+            String path = "blablabla/chichichi/lololol.csv";
+
+            String expectedResult = "csv";
+            String result = Utils.createReader(path);
+
+            assertEquals(expectedResult, result);
+        }
+
+        */
+    @Test
+    public void testcreateReader() {
+        String path = "blablabla/chichichi/lololol.csv";
+
+        ProjectFileReader csvReader = new CSVReader();
+        String expectedResult = csvReader.getTypeName();
+        String result = Utils.createReader(path).getTypeName();
+
+        assertEquals(expectedResult, result);
+    }
+
 }

@@ -21,15 +21,16 @@ Specific Criteria:
 - when - The user chooses option "1" from Menu (Administrator User), then option "1" (Geographical Area) and then option "12"
         (Remove a sensor from a geographical area). Then the user select one of the geographical areas displayed.
         Then the user select one sensor of the sensors displayed, that correspond to the geographical area previously selected.
-        Then a message is displayed and asks to the user if he confirms the action. If he choose (Y),
+        Then a message is displayed and asks to the user if he confirms the action "All the date relative to the sensor will be
+        removed too and can not be recovered anymore. Confirm? (Y/N)". If he choose (Y),
 
-- then - It is shown to the user "The sensor was removed with success".
+- then - It is shown to the user "The sensor was removed with success!".
 
 - but - The following messages are displayed:
 
 "There are no geographical areas in the system. Please create or import some." - when there aren't geographical areas;
 "There are no sensors in the selected geographical area. Please create or import some." - when there aren't sensors in the geographical area previously selected;
-
+"No changes were made."- when the user selects (N) during the confirmation of the removal of the sensor.
 
 Test Criteria:
 - All unit tests with "Process finished with exit code 0" message;
@@ -46,7 +47,7 @@ Acceptance tests:
 
   Test_scenario2:
 - Input data: the user select one geographical area, then select the sensor he wants to remove. Then choose (N).
-- Expected result: the list of sensors is showed again.
+- Expected result: "No changes were made." and the list of geographical areas is showed again.
 
   Test_scenario3:
 - Input data: the system doesn't have any geographical areas.
@@ -56,7 +57,7 @@ Acceptance tests:
 - Input data: The user select one geographical area that doesn't have any sensor.
 - Expected result: "There are no sensors in the selected geographical area. Please create or import some."
 
- 
+
 
 ASSUMPTIONS:
 - There is user interaction: the application asks the user to choose one geographical area from where he will choose the sensor to remove.

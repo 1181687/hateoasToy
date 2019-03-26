@@ -1,13 +1,13 @@
 package pt.ipp.isep.dei.project.utils;
 
-import pt.ipp.isep.dei.project.model.FileReader;
+import pt.ipp.isep.dei.project.model.ProjectFileReader;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-public class CSVReader implements FileReader {
+public class CSVReader implements ProjectFileReader {
     private static final char DEFAULT_SEPARATOR = ',';
 
     public CSVReader() {

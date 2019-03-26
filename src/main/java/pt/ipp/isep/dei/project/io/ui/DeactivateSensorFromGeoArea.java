@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.deactivatedevicefromgeoarea.DeactivateSensorFromGeoAreaController;
+import pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea.DeactivateSensorFromGeoAreaController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
@@ -9,7 +9,7 @@ import java.util.List;
 
 public class DeactivateSensorFromGeoArea {
     private DeactivateSensorFromGeoAreaController ctrl;
-    private static final String exit = "\r0 - Exit";
+    private static final String EXIT = "\r0 - Exit";
     private List<GeographicalAreaDTO> geographicalAreaDTOS;
     private GeographicalAreaDTO geographicalAreaDTO;
 
@@ -25,13 +25,13 @@ public class DeactivateSensorFromGeoArea {
         }
         boolean flag = true;
         do {
-            String label = "\nFrom which geographical area do you want to deactivate a sensor: \n" + printListOfGeoAreas() + exit;
+            String label = "\nFrom which geographical area do you want to deactivate a sensor: \n" + printListOfGeoAreas() + EXIT;
             int chosenGeoArea = InputValidator.getIntRange(label, 0, geographicalAreaDTOS.size()) - 1;
             if (chosenGeoArea == -1) {
                 return;
             }
             geographicalAreaDTO = geographicalAreaDTOS.get(chosenGeoArea);
-            String label2 = printListOfSensors() + exit;
+            String label2 = printListOfSensors() + EXIT;
             int chosenSensor = InputValidator.getIntRange(label2, 0, geographicalAreaDTO.getSensors().size()) - 1;
             if (chosenSensor == -1) {
                 continue;
