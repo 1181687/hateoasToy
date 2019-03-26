@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
@@ -12,8 +14,14 @@ public class AddGeoArea {
 
     private AddGeoAreaController controller;
 
-    public AddGeoArea(GeographicalAreaList list, GeographicalAreaTypeList geoAreaList) {
-        this.controller = new AddGeoAreaController(list, geoAreaList);
+    @Autowired
+    private GeographicalAreaTypeList list;
+
+    @Autowired
+    private GeographicalAreaList geoAreaList;
+
+    public AddGeoArea() {
+        this.controller = new AddGeoAreaController(geoAreaList, list);
     }
 
     public void run() {

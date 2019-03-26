@@ -1,0 +1,18 @@
+NUMBER: 080
+
+DESCRIPTION: As an Administrator, I want the data related to geographical areas,
+including sensors and their readings, to be persisted in a relational database,
+so that this data is available whenever the application is run.
+
+TEAM MEMBERS:
+        - Developer: Gabriela Xavier
+        - QA: Sónia Silva
+
+ACCEPTANCE CRITERIA:
+
+- given - The user (admin) wants the data related to geographical areas, including sensors and their readings, to
+be persisted in a relational database, so that this data is available whenever the application is run.
+
+- when - There is no user interaction. However, all user stories must implement this new functionality.
+
+- then -
