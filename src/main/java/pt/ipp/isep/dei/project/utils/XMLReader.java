@@ -5,8 +5,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import pt.ipp.isep.dei.project.model.FileReader;
 import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class XMLReader implements FileReader {
+public class XMLReader implements ProjectFileReader {
     String typeName;
 
     public XMLReader() {
