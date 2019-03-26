@@ -14,8 +14,6 @@ public class GeographicalAreaList {
 
     private List<GeographicalArea> geoAreaList;
 
-    @Autowired
-    private GeoAreaRepository geoAreaRepository;
 
     /**
      * constructor that receives a new list of Geographical Areas.

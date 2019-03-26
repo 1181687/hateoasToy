@@ -6,16 +6,12 @@ import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-@Service
+@Entity
 public class SensorList {
 
     @Id
@@ -25,8 +21,8 @@ public class SensorList {
     @OneToMany
     private List<Sensor> listOfSensors;
 
-    @Autowired
-    private SensorRepository sensorRepository;
+
+
 
     /**
      * Constructor method.
@@ -64,6 +60,7 @@ public class SensorList {
             return false;
         }
         listOfSensors.add(sensor);
+
         return true;
     }
 

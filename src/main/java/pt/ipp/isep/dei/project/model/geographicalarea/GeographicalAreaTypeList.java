@@ -1,8 +1,10 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
-
+@Service
 public class GeographicalAreaTypeList {
     private List<GeographicalAreaType> geoAreaTypeList = new ArrayList<>();
 

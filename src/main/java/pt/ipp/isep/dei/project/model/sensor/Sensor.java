@@ -1,8 +1,10 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import pt.ipp.isep.dei.project.SensorReadingsRepository;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.utils.Repositories;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import javax.persistence.Entity;
@@ -29,6 +31,9 @@ public class Sensor {
     private Location location;
     private String units;
     private boolean isActive;
+
+    @Autowired
+    private SensorReadingsRepository sensorReadingsRepository;
 
 
 
@@ -283,10 +288,10 @@ public class Sensor {
      *
      * @param reading listOfReadings of a sensor
      */
+
     public void addReadingsToList(Reading reading) {
         this.listOfReadings.add(reading);
-        //Repositories.getSensorReadingsRepository().save(reading);
-
+        //sensorReadingsRepository.save(reading);
     }
 
     /**
