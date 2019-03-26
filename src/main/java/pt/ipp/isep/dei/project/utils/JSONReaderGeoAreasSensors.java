@@ -15,9 +15,9 @@ import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class JSONReader {
+public final class JSONReaderGeoAreasSensors {
 
-    private JSONReader() {
+    private JSONReaderGeoAreasSensors() {
         // empty
     }
 

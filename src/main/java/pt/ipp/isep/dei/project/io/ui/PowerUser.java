@@ -15,13 +15,11 @@ public class PowerUser {
             return;
         }
         while (option != 0) {
-            switch (option) {
-                case 1:
-                    runPowerUserHouseConfig();
-                    break;
-                case 2:
-                    runPowerUserEnergyConsumptionManagement();
-                    break;
+            if (option == 1) {
+                runPowerUserHouseConfig();
+            }
+            if (option == 2) {
+                runPowerUserEnergyConsumptionManagement();
             }
             option = Menu.powerUserMenu();
         }

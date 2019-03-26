@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.utils.JSONReader_v2;
+import pt.ipp.isep.dei.project.utils.JSONReaderReadings;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -25,10 +25,10 @@ public class ImportReadingsFromJSONCSVXML {
     }
 
     public void run() {
-        String pathJSONFile = InputValidator.getString("Please specify the name of the JSON file to import.");
-        File file = new File(pathJSONFile);
+        String pathFile = InputValidator.getString("Please specify the name of the file you would like to import (extensions accepted: json, csv, xml.");
+        File file = new File(pathFile);
         FileReader reader = checkIfFileExistsAndCreateFileReader(file);
-        List<Object> objList = JSONReader_v2.readJSONReadingFileToList(reader);
+        List<Object> objList = JSONReaderReadings.readJSONReadingFileToList(reader);
         for (Object object : objList) {
             System.out.println(object);
         }

@@ -14,9 +14,9 @@ import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class JSONReader_v2 {
+public final class JSONReaderReadings {
 
-    private JSONReader_v2() {
+    private JSONReaderReadings() {
         // empty
     }
 

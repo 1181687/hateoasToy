@@ -15,11 +15,9 @@ public class RoomOwner {
             return;
         }
         while (option != 0) {
-            switch (option) {
-                case 1:
-                    GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(house);
-                    ui230.run();
-                    break;
+            if (option == 1) {
+                GetNominalPowerOfARoom ui230 = new GetNominalPowerOfARoom(house);
+                ui230.run();
             }
             option = Menu.roomOwnerMenu();
         }
