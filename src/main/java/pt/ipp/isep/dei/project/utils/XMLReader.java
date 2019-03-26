@@ -18,7 +18,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +29,8 @@ public class XMLReader implements FileReader {
         this.typeName = "xml";
     }
 
-    /*
-    public static void main(String[] args) {
+
+/*    public static void main(String[] args) {
         List<GeographicalArea> GA = null;
 
         try {
@@ -43,8 +43,8 @@ public class XMLReader implements FileReader {
         }
         System.out.println(GA);
     }
-
 */
+
     @SuppressWarnings("unchecked")
     public static List<GeographicalArea> readXMLFileToList(File file) {
 
@@ -60,7 +60,7 @@ public class XMLReader implements FileReader {
             doc.getDocumentElement().normalize();
 
 
-            NodeList nodeList = doc.getElementsByTagName("geographical_area_list");
+            NodeList nodeList = doc.getElementsByTagName("geographical_area");
 
             for (int i = 0; i < nodeList.getLength(); i++) {
                 geographicalAreaList.add(getGeoArea(nodeList.item(i)));
@@ -86,7 +86,7 @@ public class XMLReader implements FileReader {
             Location location = getLocation(getTag("location", element));
             AreaShape areaShape = new AreaShape(width, length, location);
             geographicalArea = new GeographicalArea(id, description, type, location, areaShape);
-            addSensorsToGeoArea(geographicalArea, element.getLastChild());
+            addSensorsToGeoArea(geographicalArea, getTag("area_sensors", element));
         }
 
         return geographicalArea;
@@ -105,18 +105,21 @@ public class XMLReader implements FileReader {
 
     private static void addSensorsToGeoArea(GeographicalArea geographicalArea, Node node) {
 
-        Element element = (Element) node;
-        NodeList sensors = element.getChildNodes();
+        Element areaSensors = (Element) node;
+        NodeList sensors = areaSensors.getChildNodes();
         for (int i = 0; i < sensors.getLength(); i++) {
-            Element sensor = (Element) sensors.item(i);
-            String id = getTagValue("id", sensor);
-            String name = getTagValue("name", sensor);
-            LocalDateTime startDate = LocalDateTime.parse(getTagValue("start_date", sensor));
-            SensorType type = new SensorType(getTagValue("type", sensor));
-            String units = getTagValue("units", sensor);
-            Location location = getLocation(element.getFirstChild());
-            Sensor sensorObject = new Sensor(id, name, startDate, type, location, units);
-            geographicalArea.addSensor(sensorObject);
+            if (sensors.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                Element sensor = (Element) sensors.item(i);
+                String id = getTagValue("id", sensor);
+                String name = getTagValue("name", sensor);
+                LocalDate startDate = LocalDate.parse(getTagValue("start_date", sensor));
+                SensorType type = new SensorType(getTagValue("type", sensor));
+                String units = getTagValue("units", sensor);
+                Location location = getLocation(getTag("location", sensor));
+                Sensor sensorObject = new Sensor(id, name, startDate.atStartOfDay(), type, location, units);
+                geographicalArea.addSensor(sensorObject);
+
+            }
         }
     }
 
