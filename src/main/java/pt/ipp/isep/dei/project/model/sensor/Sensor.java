@@ -1,9 +1,15 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import pt.ipp.isep.dei.project.SensorReadingsRepository;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -12,15 +18,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+@Entity
 public class Sensor {
+    @Id
     private String id;
     private String sensorName;
     private LocalDateTime startingDate;
+
+    @OneToMany
     private List<Reading> listOfReadings = new ArrayList<>();
     private SensorType sensorType;
     private Location location;
     private String units;
     private boolean isActive;
+
+    @Autowired
+    private SensorReadingsRepository sensorReadingsRepository;
+
+
+
 
 
     /**
@@ -43,7 +59,6 @@ public class Sensor {
 
     /**
      * Constructor method
-     *
      * @param sensorName name of the sensor (string)
      * @param sensorType Type of sensor
      * @param location   Location of the sensor
@@ -273,8 +288,10 @@ public class Sensor {
      *
      * @param reading listOfReadings of a sensor
      */
+
     public void addReadingsToList(Reading reading) {
         this.listOfReadings.add(reading);
+        //sensorReadingsRepository.save(reading);
     }
 
     /**

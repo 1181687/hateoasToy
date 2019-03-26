@@ -1,15 +1,28 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
+@Entity
 public class SensorList {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @OneToMany
     private List<Sensor> listOfSensors;
+
+
+
 
     /**
      * Constructor method.
@@ -47,6 +60,7 @@ public class SensorList {
             return false;
         }
         listOfSensors.add(sensor);
+
         return true;
     }
 

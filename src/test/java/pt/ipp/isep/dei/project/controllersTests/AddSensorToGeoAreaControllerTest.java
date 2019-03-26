@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class AddSensorToGeoAreaControllerTest {
     private AddSensorToGeoAreaController controller;
-    private GeographicalArea CampusDoIsep;
+    private GeographicalArea campusDoIsep;
     private SensorTypeList sensorTypeList;
     private GeographicalAreaList geographicalAreaList;
 
@@ -28,7 +28,7 @@ class AddSensorToGeoAreaControllerTest {
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
-        this.CampusDoIsep = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
+        this.campusDoIsep = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
         this.geographicalAreaList = new GeographicalAreaList();
         this.sensorTypeList = new SensorTypeList();
@@ -55,7 +55,7 @@ class AddSensorToGeoAreaControllerTest {
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Cidade de Ancora", tipo3, local3, area3);
 
 
-        geographicalAreaList.addGeoArea(CampusDoIsep);
+        geographicalAreaList.addGeoArea(campusDoIsep);
         geographicalAreaList.addGeoArea(ag2);
         geographicalAreaList.addGeoArea(ag3);
 
@@ -85,7 +85,7 @@ class AddSensorToGeoAreaControllerTest {
         AreaShape area3 = new AreaShape(10, 10, local3);
         GeographicalArea ag3 = new GeographicalArea(nomeAG3, "Cidade de Ancora", tipo3, local3, area3);
 
-        geographicalAreaList.addGeoArea(CampusDoIsep);
+        geographicalAreaList.addGeoArea(campusDoIsep);
         geographicalAreaList.addGeoArea(ag2);
         geographicalAreaList.addGeoArea(ag3);
 
@@ -104,7 +104,7 @@ class AddSensorToGeoAreaControllerTest {
     public void testarNomeAreaGeograficaPorIndiceComApenasUmaArea () {
 
         // Arrange
-        geographicalAreaList.addGeoArea(CampusDoIsep);
+        geographicalAreaList.addGeoArea(campusDoIsep);
 
         int posicao = 0;
         String expectedResult = "ISEP";
@@ -128,7 +128,7 @@ class AddSensorToGeoAreaControllerTest {
         GeographicalArea ag2 = new GeographicalArea(nomeAG2, "Cidade de Ancora", tipo2, local2, area2);
 
 
-        geographicalAreaList.addGeoArea(CampusDoIsep);
+        geographicalAreaList.addGeoArea(campusDoIsep);
         geographicalAreaList.addGeoArea(ag2);
 
         int expectedResult = 2;
@@ -253,7 +253,7 @@ class AddSensorToGeoAreaControllerTest {
 
         sensorTypeList.addSensorType(sensorType);
 
-        geographicalAreaList.getGeoAreaList().add(CampusDoIsep);
+        geographicalAreaList.getGeoAreaList().add(campusDoIsep);
 
         controller.getAreaGeograficaNaListaPorPosicao(0);
         controller.getTipoSensorPorPosicao(0);
@@ -276,7 +276,7 @@ class AddSensorToGeoAreaControllerTest {
         Sensor s1 = new Sensor("123", "s1", sensorType, local, "l/m2");
 
         sensorTypeList.addSensorType(sensorType);
-        geographicalAreaList.getGeoAreaList().add(CampusDoIsep);
+        geographicalAreaList.getGeoAreaList().add(campusDoIsep);
 
         controller.getAreaGeograficaNaListaPorPosicao(0);
         controller.getTipoSensorPorPosicao(0);
@@ -301,7 +301,7 @@ class AddSensorToGeoAreaControllerTest {
         Sensor s1 = new Sensor(id, name, sensorType, locS1, units);
 
         sensorTypeList.addSensorType(sensorType);
-        geographicalAreaList.getGeoAreaList().add(CampusDoIsep);
+        geographicalAreaList.getGeoAreaList().add(campusDoIsep);
         controller.getAreaGeograficaNaListaPorPosicao(0);
         controller.getTipoSensorPorPosicao(0);
         controller.criarNovaLocalizacao(45, 45, 45);
