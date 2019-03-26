@@ -189,14 +189,11 @@ public class Admin {
             return;
         }
         while (option != 0) {
-
-            switch (option) {
-                case 1:
-                    runAdminGeographicalArea();
-                    break;
-                case 2:
-                    runAdminHouse();
-                    break;
+            if (option == 1) {
+                runAdminGeographicalArea();
+            }
+            if (option == 2) {
+                runAdminHouse();
             }
             option = Menu.adminMenu();
         }
