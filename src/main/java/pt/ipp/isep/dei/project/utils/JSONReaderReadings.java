@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
 
 import java.io.FileReader;
@@ -56,7 +57,6 @@ public final class JSONReaderReadings {
                 // Get objects from reading
 
                 SensorDTO sensorDTO = new SensorDTO();
-                ReadingDTO readingDTO = new ReadingDTO();
 
                 String sensorID = object.get("id").getAsString();
                 sensorDTO.setId(sensorID);
@@ -64,18 +64,25 @@ public final class JSONReaderReadings {
                 if (sensorID.contains("RF")) {
                     LocalDate date = LocalDate.parse(object.get("timestamp/date").getAsString());
                     LocalDateTime dateTime = localDateToLocalDateTime(date);
-                    readingDTO.setDateTime(dateTime);
+                    //readingDTO.setDateTime(dateTime);
+                    double value = object.get("value").getAsDouble();
+                    ReadingDTO readingDTO = ReadingMapper.mapToDTO(dateTime, value);
+                    readingList.add(readingDTO);
                 } else {
                     ZonedDateTime dateTime = ZonedDateTime.parse(object.get("timestamp/date").getAsString());
-                    LocalDateTime dateTimeReding = dateTime.toLocalDateTime();
-                    readingDTO.setDateTime(dateTimeReding);
+                    LocalDateTime dateTimeReading = dateTime.toLocalDateTime();
+                    //readingDTO.setDateTime(dateTimeReading);
+                    double value = object.get("value").getAsDouble();
+                    ReadingDTO readingDTO = ReadingMapper.mapToDTO(dateTimeReading, value);
+                    readingList.add(readingDTO);
                 }
-                double value = object.get("value").getAsDouble();
-                readingDTO.setValue(value);
+                //double value = object.get("value").getAsDouble();
+                //readingDTO.setValue(value);
+
+
                 String readingUnit = object.get("unit").getAsString();
                 sensorDTO.setUnits(readingUnit);
 
-                readingList.add(readingDTO);
                 readingList.add(sensorDTO);
 
             }
