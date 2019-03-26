@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.utilsTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.utils.JSONReader;
+import pt.ipp.isep.dei.project.utils.JSONReaderGeoAreasSensors;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -28,7 +28,7 @@ public class JSONReaderTest {
         }
 
         // geograhical area list
-        List<GeographicalAreaDTO> resultJSON = JSONReader.readJSONFileToList(file);
+        List<GeographicalAreaDTO> resultJSON = JSONReaderGeoAreasSensors.readJSONFileToList(file);
         GeographicalAreaDTO isep = resultJSON.get(0);
         String geoA1 = resultJSON.get(0).getId();
         String geoA2 = resultJSON.get(1).getId();

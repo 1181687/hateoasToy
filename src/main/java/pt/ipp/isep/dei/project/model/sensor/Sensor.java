@@ -20,6 +20,7 @@ public class Sensor {
     private SensorType sensorType;
     private Location location;
     private String units;
+    private boolean isActive;
 
 
     /**
@@ -37,6 +38,7 @@ public class Sensor {
         this.sensorType = sensorType;
         this.location = location;
         this.units = units;
+        this.isActive = true;
     }
 
     /**
@@ -53,6 +55,7 @@ public class Sensor {
         this.sensorType = sensorType;
         this.location = location;
         this.units = units;
+        this.isActive = true;
     }
 
     public String getId() {
@@ -105,6 +108,19 @@ public class Sensor {
 
     public void setUnits(String units) {
         this.units = units;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public void setSensorType(String newType) {
+        SensorType sensorType = new SensorType(newType);
+        this.sensorType = sensorType;
     }
 
     /**
@@ -602,15 +618,15 @@ public class Sensor {
      * @return list of readings registered in given day
      */
     public List<Reading> getDailyMeasurementWithDoubleNaN(LocalDate date) {
-        List<Reading> registosDoDia = new ArrayList<>();
+        List<Reading> dailyReadings = new ArrayList<>();
         for (Reading registo : listOfReadings) {
             LocalDate secondDate = registo.getDateTime().toLocalDate();
 
             if (checkIfDaysAreEqual(date, secondDate)) {
-                registosDoDia.add(registo);
+                dailyReadings.add(registo);
             }
         }
-        return registosDoDia;
+        return dailyReadings;
 
     }
 }
