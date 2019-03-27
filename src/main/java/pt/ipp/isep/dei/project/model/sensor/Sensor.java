@@ -1,8 +1,5 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import pt.ipp.isep.dei.project.SensorReadingsRepository;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.utils.Utils;
@@ -10,6 +7,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Transient;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -27,13 +25,14 @@ public class Sensor {
 
     @OneToMany
     private List<Reading> listOfReadings = new ArrayList<>();
+    @Transient
     private SensorType sensorType;
+    @Transient
     private Location location;
     private String units;
     private boolean isActive;
 
-    @Autowired
-    private SensorReadingsRepository sensorReadingsRepository;
+
 
 
 
@@ -71,6 +70,9 @@ public class Sensor {
         this.location = location;
         this.units = units;
         this.isActive = true;
+    }
+
+    protected Sensor() {
     }
 
     public String getId() {
@@ -131,11 +133,6 @@ public class Sensor {
 
     public void setActive(boolean active) {
         isActive = active;
-    }
-
-    public void setSensorType(String newType) {
-        SensorType sensorType = new SensorType(newType);
-        this.sensorType = sensorType;
     }
 
     /**
