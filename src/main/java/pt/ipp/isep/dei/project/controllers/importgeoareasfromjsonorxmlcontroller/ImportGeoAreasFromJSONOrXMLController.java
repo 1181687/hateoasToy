@@ -1,5 +1,9 @@
 package pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller;
 
+import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
+import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
@@ -12,13 +16,17 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
-
+@Service
 public class ImportGeoAreasFromJSONOrXMLController {
     private GeographicalAreaList geographicalAreaList;
     private ProjectFileReader reader;
+    private GeoAreaRepository geoAreaRepository;
+    private SensorRepository sensorRepository;
 
-    public ImportGeoAreasFromJSONOrXMLController(GeographicalAreaList geographicalAreaList) {
+    public ImportGeoAreasFromJSONOrXMLController(GeographicalAreaList geographicalAreaList, SensorRepository sensorRepository, GeoAreaRepository geoAreaRepository) {
         this.geographicalAreaList = geographicalAreaList;
+        this.sensorRepository = sensorRepository;
+        this.geoAreaRepository= GeoAreaService.getInstance().getGeoAreaRepository();
     }
 
     /**

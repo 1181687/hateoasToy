@@ -4,8 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
 import pt.ipp.isep.dei.project.GeoAreaService;
-import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonandxmlcontroller.ImportGeoAreasFromJSONAndXMLController;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller.ImportGeoAreasFromJSONOrXMLController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
@@ -16,8 +15,6 @@ import java.io.FileReader;
 import java.util.List;
 import java.util.Objects;
 @Service
-public class ImportGeoAreasFromJSONAndXML {
-
 public class ImportGeoAreasFromJSONOrXML {
 
     private ImportGeoAreasFromJSONOrXMLController controller;
@@ -26,8 +23,8 @@ public class ImportGeoAreasFromJSONOrXML {
     GeoAreaRepository geoAreaRepository= GeoAreaService.getInstance().getGeoAreaRepository();
 
 
-    public ImportGeoAreasFromJSONOrXML(GeographicalAreaList geoList) {
-        this.controller = new ImportGeoAreasFromJSONOrXMLController(geoList);
+    public ImportGeoAreasFromJSONOrXML(GeographicalAreaList geoList, SensorRepository sensorRepository, GeoAreaRepository geoAreaRepository) {
+        this.controller = new ImportGeoAreasFromJSONOrXMLController(geoList, sensorRepository, geoAreaRepository);
     }
 
     public void run() throws FileNotFoundException {

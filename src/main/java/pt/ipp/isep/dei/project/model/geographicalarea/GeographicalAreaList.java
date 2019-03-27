@@ -42,6 +42,7 @@ public class GeographicalAreaList {
     public boolean addGeoArea(GeographicalArea geoArea) {
         if (!(geoAreaList.contains(geoArea))) {
             geoAreaList.add(geoArea);
+            //GeoAreaService.getInstance().getGeoAreaRepository().save(geoArea);
             return true;
         }
         return false;
