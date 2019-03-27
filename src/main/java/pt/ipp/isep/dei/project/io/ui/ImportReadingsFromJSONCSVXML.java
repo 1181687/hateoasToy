@@ -1,35 +1,31 @@
 package pt.ipp.isep.dei.project.io.ui;
 
+import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsFromCSVXMLJSONController;
 import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsFromCSVController;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.utils.CSVReader;
-import pt.ipp.isep.dei.project.utils.JSONReaderReadings;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.List;
 import java.util.Objects;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ImportReadingsFromJSONCSVXML {
     private static final Logger LOGGER = Logger.getLogger(ImportReadingsFromCSV.class.getName());
-    private ImportReadingsFromCSVController controller;
+    private ImportReadingsFromCSVXMLJSONController controller;
     private ReadingDTO readingDTO;
     private CSVReader csvReader = new CSVReader();
-    private SensorRepository sensorRepository;
 
     /**
      * Constructor.
      *
      * @param geographicalAreaList
-     * @param sensorRepository
      */
-    public ImportReadingsFromJSONCSVXML(GeographicalAreaList geographicalAreaList, SensorRepository sensorRepository) {
-        controller = new ImportReadingsFromCSVController(geographicalAreaList);
+    public ImportReadingsFromJSONCSVXML(GeographicalAreaList geographicalAreaList) {
+        controller = new ImportReadingsFromCSVXMLJSONController(geographicalAreaList);
         readingDTO = ReadingMapper.newReadingDTO();
     }
 
@@ -60,7 +56,7 @@ public class ImportReadingsFromJSONCSVXML {
             System.out.println("\nERROR: There's no such file with that name.\n");
             return;
         }
-        List<ReadingDTO> objList = JSONReaderReadings.readFile(reader);
+        /*List<ReadingDTO> objList = JSONReaderReadings.readFile(reader);
         if (Objects.isNull(objList) || objList.isEmpty()) {
             LOGGER.log(Level.WARNING, "Line not parsed due to invalid information.\n");
             return;
@@ -79,5 +75,6 @@ public class ImportReadingsFromJSONCSVXML {
             System.out.println("The file was not imported. \n");
             return;
         }
+    }*/
     }
 }

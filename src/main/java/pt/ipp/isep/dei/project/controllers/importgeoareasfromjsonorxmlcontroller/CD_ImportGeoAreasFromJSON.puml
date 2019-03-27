@@ -1,0 +1,79 @@
+@startuml
+skinparam linetype ortho
+
+skinparam class {
+	BackgroundColor PaleTurquoise
+	ArrowColor Black
+	BorderColor Black
+	FontStyle Bold
+}
+
+hide circle
+
+ImportGeoAreasFromJSONOrXMLUI "1" --> "1" ImportGeoAreasFromJSONOrXMLController
+ImportGeoAreasFromJSONOrXMLController "1" -left-> "1" GeographicalAreaList
+ImportGeoAreasFromJSONOrXMLController "1" --> "1" GeographicalAreaMapper
+ImportGeoAreasFromJSONOrXMLController "1" --> "1" GeographicalAreaDTO
+ImportGeoAreasFromJSONOrXMLController  "1" --> "1" SensorDTO
+ImportGeoAreasFromJSONOrXMLController  "1" --> "1" SensorMapper
+ImportGeoAreasFromJSONOrXMLController  "1" -right-> "1" XMLReader
+
+Class ImportGeoAreasFromJSONOrXMLUI {
+- ImportGeoAreasFromJSONOrXMLController controller
++ run()
+
+}
+
+Class ImportGeoAreasFromJSONOrXMLController {
+- geographicalAreaList
++ importGeographicalAreasAndSensors()
+}
+
+Class GeographicalAreaMapper {
++ mapToDTO()
++ mapToEntity(geographicalAreaDTO)
+}
+
+Class GeographicalAreaList {
+- List <GeographicalArea> geoAreaList
++ addGeoArea(geographicalArea)
+}
+
+Class GeographicalAreaDTO {
+- String id
+- String description
+- String type
+- double width
+- double length
+- double latitude
+- double altitude
+- double longitude
+- List <SensorDTO> sensor
++ get()
++ set()
++ addSensor()
+}
+
+Class SensorDTO {
+- String id
+- String name
+- String type
+- LocalDate startingDate
+- LocationDTO location
+- String units
++ get()
++ set()
+}
+
+Class SensorMapper {
+
++ newSensorDTO()
++ entityToMap()
++ mapToEntity()
+}
+
+Class XMLReader {
++ readXMLFileToList()
+}
+
+@enduml

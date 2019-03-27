@@ -11,10 +11,14 @@ import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.logging.FileHandler;
+import java.util.logging.Logger;
 
-public class ImportReadingsFromCSVController {
+public class ImportReadingsFromCSVXMLJSONController {
+    private static final Logger LOGGER = Logger.getLogger(ImportReadingsFromCSVXMLJSONController.class.getName());
     private GeographicalAreaList geographicalAreaList;
     private SensorList allSensorInTheGeoAreas;
     private Sensor sensor;
@@ -25,13 +29,12 @@ public class ImportReadingsFromCSVController {
 
     /**
      * Constructor.
-     *  @param geographicalAreaList GeographicalAreaList to be used.
      *
+     * @param geographicalAreaList GeographicalAreaList to be used.
      */
-    public ImportReadingsFromCSVController(GeographicalAreaList geographicalAreaList) {
+    public ImportReadingsFromCSVXMLJSONController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;
         this.allSensorInTheGeoAreas = this.geographicalAreaList.getAllSensors();
-
     }
 
     /**
@@ -65,7 +68,7 @@ public class ImportReadingsFromCSVController {
      */
     public void addReadingToSensor(ReadingDTO readingDTO) {
         Reading reading = ReadingMapper.mapToEntity(readingDTO);
-        sensor.addReading(reading);
+        sensor.addReadingsToList(reading);
     }
 
     public boolean addReadingToSensorById(List<ReadingDTO> dtoList) {
@@ -77,15 +80,10 @@ public class ImportReadingsFromCSVController {
                 reading.setValue(Utils.round(celsiusValue, 2));
                 reading.setUnits("C");
             }
-            if (sensor.addReading(ReadingMapper.mapToEntity(reading))) {
-                imported = true;
-            }
+            sensor.addReadingsToList(ReadingMapper.mapToEntity(reading));
+            imported = true;
         }
         return imported;
-    }
-
-    public boolean isCSVFile(String fileName) {
-        return fileName.endsWith(".csv");
     }
 
     public boolean isValidFormat(String fileName) {
@@ -94,5 +92,20 @@ public class ImportReadingsFromCSVController {
 
     public void updateGeoAreaRepository(){
         geographicalAreaList.updateRepository();
+    }
+
+    /**
+     * Method that configures the log file, using a FileHandler object to send log information to the specified log file.
+     * The last line is responsible for not letting the information show up in the console.
+     */
+    private static void configLogFile() {
+        FileHandler fh;
+        try {
+            fh = new FileHandler("log/outputErrors.log");
+        } catch (IOException e) {
+            fh = null;
+        }
+        LOGGER.addHandler(fh);
+        LOGGER.setUseParentHandlers(false);
     }
 }
