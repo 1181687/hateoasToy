@@ -1,10 +1,20 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 
+import javax.persistence.*;
+
+@Entity
 public class AreaShape {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private double length;
     private double width;
+    @Transient
     private Location locationAreaShape;
 
     /**

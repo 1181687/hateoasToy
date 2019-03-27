@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -18,14 +19,17 @@ public class Admin {
     private House house;
     private PowerSourceTypeList powerSourceTypeList;
     private RoomList roomList;
+    @Autowired
+    private SensorRepository sensorRepository;
 
-    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList) {
+    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, SensorRepository sensorRepository) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
         this.geographicalAreaList = geographicalAreaList;
         this.sensorTypeList = sensorTypeList;
         this.house = house;
         this.powerSourceTypeList = powerSourceTypeList;
         this.roomList = roomList;
+        this.sensorRepository = sensorRepository;
     }
 
 
@@ -70,7 +74,7 @@ public class Admin {
                     ui8.run();
                     break;
                 case 9:
-                    ImportGeoAreasFromJSONAndXML ui9 = new ImportGeoAreasFromJSONAndXML(geographicalAreaList);
+                    ImportGeoAreasFromJSONAndXML ui9 = new ImportGeoAreasFromJSONAndXML(geographicalAreaList, sensorRepository);
                     ui9.run();
                     break;
                 case 10:

@@ -1,12 +1,21 @@
 package pt.ipp.isep.dei.project.model.house.powersource;
 
+import org.springframework.stereotype.Component;
+
+import javax.persistence.*;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;
 
 public class PowerSource {
+
+
     private String name;
+
     private PowerSourceType powerSourceType;
+
+    protected PowerSource() {
+    }
 
     /**
      * constructor that receives a power source name (String) and a PowerSourceType. Throws an exception if any of the parameters is invalid.

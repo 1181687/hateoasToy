@@ -1,8 +1,19 @@
 package pt.ipp.isep.dei.project.model.house.powersource;
 
+import org.springframework.stereotype.Component;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
-public class PowerSourceType {
+public class PowerSourceType  {
+
+
+    private Long id;
+
+
     private String typeOfPowerSource;
 
     /**

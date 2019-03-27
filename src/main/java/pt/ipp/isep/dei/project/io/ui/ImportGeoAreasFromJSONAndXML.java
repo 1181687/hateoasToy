@@ -1,5 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonandxmlcontroller.ImportGeoAreasFromJSONAndXMLController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
@@ -10,14 +13,16 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
 import java.util.Objects;
-
+@Service
 public class ImportGeoAreasFromJSONAndXML {
 
     private ImportGeoAreasFromJSONAndXMLController controller;
+    @Autowired
+    SensorRepository sensorRepository;
 
 
-    public ImportGeoAreasFromJSONAndXML(GeographicalAreaList geoList) {
-        this.controller = new ImportGeoAreasFromJSONAndXMLController(geoList);
+    public ImportGeoAreasFromJSONAndXML(GeographicalAreaList geoList, SensorRepository sensorRepository) {
+        this.controller = new ImportGeoAreasFromJSONAndXMLController(geoList, sensorRepository);
     }
 
     public void run() {

@@ -1,15 +1,10 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import pt.ipp.isep.dei.project.SensorReadingsRepository;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -25,18 +20,16 @@ public class Sensor {
     private String sensorName;
     private LocalDateTime startingDate;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JoinColumn
     private List<Reading> listOfReadings = new ArrayList<>();
+
+    @Transient
     private SensorType sensorType;
+    @Transient
     private Location location;
     private String units;
     private boolean isActive;
-
-    @Autowired
-    private SensorReadingsRepository sensorReadingsRepository;
-
-
-
 
 
     /**
@@ -59,6 +52,7 @@ public class Sensor {
 
     /**
      * Constructor method
+     *
      * @param sensorName name of the sensor (string)
      * @param sensorType Type of sensor
      * @param location   Location of the sensor
@@ -71,6 +65,9 @@ public class Sensor {
         this.location = location;
         this.units = units;
         this.isActive = true;
+    }
+
+    protected Sensor() {
     }
 
     public String getId() {
@@ -291,7 +288,11 @@ public class Sensor {
 
     public void addReadingsToList(Reading reading) {
         this.listOfReadings.add(reading);
-        //sensorReadingsRepository.save(reading);
+    }
+
+
+    public boolean addReading (Reading reading){
+        return this.listOfReadings.add(reading);
     }
 
     /**
@@ -558,7 +559,7 @@ public class Sensor {
         Reading highestReading = getReadingsBetweenDates(startDate, endDate).get(0);
         for (Reading reading : getReadingsBetweenDates(startDate, endDate)) {
             if ((!Double.isNaN(reading.getValue())) && reading.getValue() > highestReading.getValue()) {
-                    highestReading = reading;
+                highestReading = reading;
             }
         }
         return highestReading;
@@ -568,6 +569,7 @@ public class Sensor {
      * Returns the Reading with the highest value for a given day.
      * If there are two Readings with the same value, it returns the most recent one.
      * If there are no Readings in the given day, this method returns null.
+     *
      * @param day day to check
      * @return Highest, most recent reading of the given day
      */
@@ -586,8 +588,9 @@ public class Sensor {
 
     /**
      * Sorts the maximum Readings in a given interval and returns them in a list.
+     *
      * @param startDate first day of the interval
-     * @param endDate last day of the interval
+     * @param endDate   last day of the interval
      * @return
      */
     public List<Reading> getDailyMaxReadingsInAnInterval(LocalDate startDate, LocalDate endDate) {
@@ -604,6 +607,7 @@ public class Sensor {
     /**
      * Method that receives a list of Readings and returns the most recent Reading that has the lowest value.
      * If the given reading list is empty, the method returns null;
+     *
      * @param readings list of readings
      * @return the most recent lowest Reading
      */
@@ -631,6 +635,7 @@ public class Sensor {
 
     /**
      * Returns a list of the registered readings for a given day, including the invalid ones (Double.Nan).
+     *
      * @param date given day
      * @return list of readings registered in given day
      */
