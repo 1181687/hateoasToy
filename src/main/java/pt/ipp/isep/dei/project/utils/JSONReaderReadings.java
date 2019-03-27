@@ -57,19 +57,18 @@ public final class JSONReaderReadings {
 
                 String readingUnit = object.get("unit").getAsString();
 
+                LocalDateTime dateTime;
+
                 if (sensorID.contains("RF")) {
                     LocalDate date = LocalDate.parse(object.get("timestamp/date").getAsString());
-                    LocalDateTime dateTime = localDateToLocalDateTime(date);
-                    double value = object.get("value").getAsDouble();
-                    ReadingDTO readingDTO = ReadingMapper.mapToDTO_id_units(sensorID, dateTime, value, readingUnit);
-                    readingList.add(readingDTO);
+                    dateTime = localDateToLocalDateTime(date);
                 } else {
-                    ZonedDateTime dateTime = ZonedDateTime.parse(object.get("timestamp/date").getAsString());
-                    LocalDateTime dateTimeReading = dateTime.toLocalDateTime();
-                    double value = object.get("value").getAsDouble();
-                    ReadingDTO readingDTO = ReadingMapper.mapToDTO_id_units(sensorID, dateTimeReading, value, readingUnit);
-                    readingList.add(readingDTO);
+                    ZonedDateTime zonedDateTimeateTime = ZonedDateTime.parse(object.get("timestamp/date").getAsString());
+                    dateTime = zonedDateTimeateTime.toLocalDateTime();
                 }
+                double value = object.get("value").getAsDouble();
+                ReadingDTO readingDTO = ReadingMapper.mapToDTO_id_units(sensorID, dateTime, value, readingUnit);
+                readingList.add(readingDTO);
             }
         }
         return readingList;
