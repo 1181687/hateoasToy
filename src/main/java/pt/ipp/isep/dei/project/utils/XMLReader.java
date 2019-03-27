@@ -5,8 +5,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
+import pt.ipp.isep.dei.project.io.ui.InputValidator;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
@@ -17,6 +20,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +32,11 @@ public class XMLReader implements ProjectFileReader {
         this.typeName = "xml";
     }
 
+    public static void main(String[] args) {
+        String path = InputValidator.getString("path");
+        File file = new File(path);
+        List<ReadingDTO> readingDTOList = readXMLFileToListReadings(file);
+    }
 
 
     @SuppressWarnings("unchecked")
@@ -148,6 +158,54 @@ public class XMLReader implements ProjectFileReader {
     @Override
     public List<List<String>> readFile() {
         return null;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static List<ReadingDTO> readXMLFileToListReadings(File file) {
+
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        dbFactory.setIgnoringElementContentWhitespace(true);
+        dbFactory.setNamespaceAware(true);
+        DocumentBuilder dBuilder;
+        List<ReadingDTO> readingDTOList = new ArrayList<>();
+
+        try {
+            dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(file);
+            doc.getDocumentElement().normalize();
+
+
+            NodeList nodeList = doc.getElementsByTagName("reading");
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                readingDTOList.add(getReadingDTO(nodeList.item(i)));
+            }
+        } catch (SAXException | ParserConfigurationException | IOException e1) {
+            e1.printStackTrace();
+
+        }
+        return readingDTOList;
+    }
+
+    private static ReadingDTO getReadingDTO(Node node) {
+
+        ReadingDTO readingDTO = null;
+        if (node.getNodeType() == Node.ELEMENT_NODE) {
+            Element element = (Element) node;
+            String id = getTagValue("id", element);
+            LocalDateTime dateTime;
+            if (id.contains("RF")) {
+                LocalDate date = LocalDate.parse(getTagValue("timestamp_date", element));
+                dateTime = date.atStartOfDay();
+            } else {
+                ZonedDateTime zonedDateTime = ZonedDateTime.parse(getTagValue("timestamp_date", element));
+                dateTime = zonedDateTime.toLocalDateTime();
+            }
+            Double value = Double.parseDouble(getTagValue("value", element));
+            String unit = getTagValue("unit", element);
+            readingDTO = ReadingMapper.mapToDTO_id_units(id, dateTime, value, unit);
+        }
+        return readingDTO;
     }
 }
 
