@@ -28,6 +28,12 @@ public class XMLReader implements ProjectFileReader {
         // empty
     }
 
+    /*public static void main(String[] args) {
+        String path = InputValidator.getString("path");
+        File file = new File(path);
+        List<ReadingDTO> readingDTOList = readXMLFileToListReadings(file);
+    }*/
+
     @Override
     public String getTypeName() {
         return this.readerName;
