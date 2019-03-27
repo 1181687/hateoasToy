@@ -1,53 +1,57 @@
 package pt.ipp.isep.dei.project.utilsTests;
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
+import pt.ipp.isep.dei.project.utils.CSVReader;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+
 class CSVReaderTest {
+    private CSVReader csvReader = new CSVReader();
+    private File file;
+
+    @BeforeEach
+    void StartUp() {
+        String path = "/Users/luisdealmeida/IdeaProjects/project_g3/datasets/csv/DataSet_sp05_SensorData.csv";
+        file = new File(path);
+    }
 
     /**
-     * Test that tries to parse a valid String, which results in a list with the required information.
+     * Test that tries to read a valid file (with valid information)
+     * and see if the result of the importation (List of Object)
      */
-    /*@Test
-    void testParseLine_tryingToParseAValidString_ShouldReturnSuccessfulResults() {
+    @Test
+    void testReadFile_tryingToSeeIfTheInfoIsImported_ShouldReturnSuccessfulResults() {
         // Arrange
-        String line = "TT12346,2018-12-30T02:00:00+00:00,14.0";
+        ReadingDTO readingDTO = new ReadingDTO();
+        readingDTO.setID("TT12346");
+        LocalDateTime dateTime = LocalDateTime.of(2018, 12, 31, 2, 0, 0);
+        readingDTO.setDateTime(dateTime);
+        readingDTO.setValue(13.8);
+        readingDTO.setUnits("C");
+
+        Reading reading = ReadingMapper.mapToEntity(readingDTO);
 
         // Act
-        List<String> result = parseLine(line);
+        List<Object> result;
+        try {
+            result = csvReader.readFile(file);
+        } catch (FileNotFoundException e) {
+            result = null;
+        }
+
+        Reading reading1 = ReadingMapper.mapToEntity((ReadingDTO) result.get(4));
 
         // Assert
-        assert
-        assertEquals(3, result.size());
-        assertEquals("TT12346", result.get(0));
-        assertEquals("2018-12-30T02:00:00+00:00", result.get(1));
-        assertEquals("14.0", result.get(2));
-    }*/
-
-    /**
-     * Test that tries to parse an empty String, which results in a null Object.
-     */
-    /*@Test
-    void testParseLine_tryingToParseAnEmptyString_ShouldReturnWithASizeOfZero() {
-        // Arrange
-        String line = "";
-
-        // Act
-        List<String> result = CSVReaderProject.parseLine(line);
-
-        // Assert
-        assertEquals(0, result.size());
-    }*/
-
-    /**
-     * Test that tries to parse a null String, which results in a null Object.
-     */
-    /*@Test
-    void testParseLine_tryingToParseANullString_ShouldReturnWithASizeOfZero() {
-        // Arrange
-        String line = null;
-
-        // Act
-        List<String> result = CSVReaderProject.parseLine(line);
-
-        // Assert
-        assertEquals(0, result.size());
-    }*/
+        assertEquals(61, result.size());
+        assertEquals(reading, reading1);
+    }
 }
