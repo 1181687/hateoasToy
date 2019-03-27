@@ -29,8 +29,7 @@ public class ImportGeoAreasFromJSONOrXMLController {
      */
     public boolean importGeographicalAreaAndSensors(File file) throws FileNotFoundException {
         boolean imported = false;
-        List<Object> geoAreaObjects = readfile(file);
-
+        List<Object> geoAreaObjects = readFile(file);
 
         for (Object geoObject : geoAreaObjects) {
             GeographicalAreaDTO geoDTO = (GeographicalAreaDTO) geoObject;
@@ -62,7 +61,7 @@ public class ImportGeoAreasFromJSONOrXMLController {
      * @param file
      * @return
      */
-    public List<Object> readfile(File file) throws FileNotFoundException {
+    public List<Object> readFile(File file) throws FileNotFoundException {
         List<Object> geographicalAreaDTOList = this.reader.readFile(file);
         return geographicalAreaDTOList;
     }

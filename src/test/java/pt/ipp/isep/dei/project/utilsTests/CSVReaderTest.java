@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 class CSVReaderTest {
     private CSVReader csvReader = new CSVReader();
@@ -25,12 +26,15 @@ class CSVReaderTest {
     }
 
     /**
-     * Test that tries to read a valid file (with valid information)
-     * and see if the result of the importation (List of Object)
+     * Test that tries to read a valid file (with valid information) and see if the result of the
+     * importation (List of Object) has the expected size and if it contains a certain Reading.
      */
     @Test
-    void testReadFile_tryingToSeeIfTheInfoIsImported_ShouldReturnSuccessfulResults() {
+    void testReadFile_withAFileWithAllTheInformationValid_ShouldReturnSuccessfulResults() {
         // Arrange
+        String path = "datasets/csv/DataSet_sp05_SensorData.csv";
+        file = new File(path);
+
         ReadingDTO readingDTO = new ReadingDTO();
         readingDTO.setID("TT12346");
         LocalDateTime dateTime = LocalDateTime.of(2018, 12, 31, 2, 0, 0);
@@ -53,5 +57,47 @@ class CSVReaderTest {
         // Assert
         assertEquals(61, result.size());
         assertEquals(reading, reading1);
+    }
+
+    /**
+     * Test that tries to read an empty file, which returns null.
+     */
+    @Test
+    void testReadFile_withEmptyFile_ShouldReturnNull() {
+        // Arrange
+        String path = "datasets/csv/DataSet_sp05_SensorData_empty.csv";
+        file = new File(path);
+
+        // Act
+        List<Object> result;
+        try {
+            result = csvReader.readFile(file);
+        } catch (FileNotFoundException e) {
+            result = null;
+        }
+
+        // Assert
+        assertNull(result);
+    }
+
+    /**
+     * Test that tries to read an empty file, which returns null.
+     */
+    @Test
+    void testReadFile_withHalfEmptyFile_ShouldReturnTheCorrespondingNumberOfImportedReadings() {
+        // Arrange
+        String path = "datasets/csv/DataSet_sp05_SensorData_halfEmpty.csv";
+        file = new File(path);
+
+        // Act
+        List<Object> result;
+        try {
+            result = csvReader.readFile(file);
+        } catch (FileNotFoundException e) {
+            result = null;
+        }
+
+        // Assert
+        assertEquals(11, result.size());
     }
 }

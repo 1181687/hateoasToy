@@ -61,15 +61,13 @@ public final class Menu {
         content.append("\n");
         content.append("8-Verify if one geographical area is included in another one");
         content.append("\n");
-        content.append("9-Import geographical areas and sensors from JSON file");
+        content.append("9-Import geographical areas and sensors");
         content.append("\n");
-        content.append("10-Import readings from CSV file");
+        content.append("10-Import readings");
         content.append("\n");
         content.append("11-Deactivate a sensor from a geographical area");
         content.append("\n");
         content.append("12-Remove a sensor from a geographical area");
-        content.append("\n");
-        content.append("13 -Import readings from JSON, CSV or XML files");
         content.append("\n");
         content.append(RETURN_MENU);
         String label = content.toString();

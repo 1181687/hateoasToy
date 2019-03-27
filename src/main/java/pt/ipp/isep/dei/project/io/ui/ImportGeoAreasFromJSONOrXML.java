@@ -29,21 +29,19 @@ public class ImportGeoAreasFromJSONOrXML {
         this.controller = new ImportGeoAreasFromJSONOrXMLController(geoList);
     }
 
-    public void jsonGeoAreaSensors() throws FileNotFoundException {
+    public void run() throws FileNotFoundException {
 
         // Write the path
         String path = InputValidator.getString("Please specify the name of the file to import.");
         File file = new File(path);
         FileReader reader = checkIfFileExistsAndCreateFileReader(file);
 
-        //this.reader = controller.createReader(path);
-
 
         if (Objects.isNull(reader)) {
             System.out.println("\nERROR: There's no such file with that name.\n");
             return;
         }
-        List<Object> dtoList = controller.readfile(file);
+        List<Object> dtoList = controller.readFile(file);
         if (Objects.isNull(dtoList) || dtoList.isEmpty()) {
             System.out.println("\nThe information on the file is not valid to be imported.\n");
             return;
@@ -61,14 +59,14 @@ public class ImportGeoAreasFromJSONOrXML {
         String importConfirmation = InputValidator.confirmValidation("Do you want to import these geographic areas and their sensors? (Y/N)");
         if ("Y".equals(importConfirmation) || "y".equals(importConfirmation)) {
             if (controller.importGeographicalAreaAndSensors(file)) {
-                System.out.println("\n The JSON file was imported with success.\n");
+                System.out.println("\n The file was imported with success.\n");
                 return;
             } else {
                 System.out.println("The file is already imported.\n");
                 return;
             }
         } else {
-            System.out.println("The JSON file was not imported. \n");
+            System.out.println("The file was not imported. \n");
             return;
         }
     }
@@ -76,17 +74,17 @@ public class ImportGeoAreasFromJSONOrXML {
     /**
      * Method that checks if a file is valid (if it exists) and creates a scanner based on it.
      *
-     * @param fileJSON Path of the JSON file.
+     * @param file Path of the file
      * @return Null scanner if there's no such file with the specified name; or a valid scanner if the file exists.
      */
-    public FileReader checkIfFileExistsAndCreateFileReader(File fileJSON) {
-        FileReader file;
+    public FileReader checkIfFileExistsAndCreateFileReader(File file) {
+        FileReader fileReader;
         try {
-            file = new FileReader(fileJSON);
+            fileReader = new FileReader(file);
         } catch (FileNotFoundException e) {
-            file = null;
+            fileReader = null;
         }
-        return file;
+        return fileReader;
     }
 
 
