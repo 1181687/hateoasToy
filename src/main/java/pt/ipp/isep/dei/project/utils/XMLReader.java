@@ -146,7 +146,7 @@ public class XMLReader implements ProjectFileReader {
     }
 
     @Override
-    public List<List<String>> readFile() {
+    public List<Object> readFile(File file) {
         return null;
     }
 }
