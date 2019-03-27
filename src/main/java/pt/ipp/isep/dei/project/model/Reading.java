@@ -25,6 +25,9 @@ public class Reading {
         this.dateTime = dateTime;
     }
 
+    protected Reading() {
+    }
+
     /**
      * Get method
      * @return value

@@ -6,6 +6,7 @@ import java.util.List;
 public class PowerSourceList {
     private List<PowerSource> listOfPowerSources;
 
+
     /**
      * Power Source List constructor
      */
@@ -23,6 +24,7 @@ public class PowerSourceList {
     public PowerSource createNewPowerSource(String powerSourceName, PowerSourceType type){
         if(!this.powerSourceNameAlreadyExists(powerSourceName)){
             return new PowerSource(powerSourceName, type);
+
         }
         throw new RuntimeException("Name already exists. Please, write a new one.");
     }
@@ -49,6 +51,7 @@ public class PowerSourceList {
         if (!(this.listOfPowerSources.contains(newPowerSource))) {
             this.listOfPowerSources.add(newPowerSource);
             return true;
+
         }
         return false;
     }

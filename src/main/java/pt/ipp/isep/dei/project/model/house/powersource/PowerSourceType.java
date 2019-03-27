@@ -3,6 +3,11 @@ package pt.ipp.isep.dei.project.model.house.powersource;
 import java.util.Objects;
 
 public class PowerSourceType {
+
+
+    private Long id;
+
+
     private String typeOfPowerSource;
 
     /**

@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
@@ -21,6 +22,9 @@ public class ImportReadingsFromCSVXMLJSONController {
     private SensorList allSensorInTheGeoAreas;
     private Sensor sensor;
     private ProjectFileReader fileReader;
+    private GeographicalArea geographicalArea;
+
+
 
     /**
      * Constructor.
@@ -83,6 +87,10 @@ public class ImportReadingsFromCSVXMLJSONController {
 
     public boolean isValidFormat(String fileName) {
         return fileName.endsWith(".csv") || fileName.endsWith(".json") || fileName.endsWith(".xml");
+    }
+
+    public void updateGeoAreaRepository() {
+        geographicalAreaList.updateRepository();
     }
 
     /**
