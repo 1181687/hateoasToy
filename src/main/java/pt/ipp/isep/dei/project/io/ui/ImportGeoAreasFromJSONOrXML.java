@@ -18,12 +18,6 @@ public class ImportGeoAreasFromJSONOrXML {
         this.controller = new ImportGeoAreasFromJSONOrXMLController(geoList);
     }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
-        ImportGeoAreasFromJSONOrXML ui = new ImportGeoAreasFromJSONOrXML(geographicalAreaList);
-        ui.run();
-    }
-
     public void run() throws FileNotFoundException {
 
         // Write the path

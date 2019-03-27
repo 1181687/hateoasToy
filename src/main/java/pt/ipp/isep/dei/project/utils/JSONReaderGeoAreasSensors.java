@@ -4,7 +4,6 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import pt.ipp.isep.dei.project.io.ui.InputValidator;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
@@ -28,13 +27,6 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
 
     public JSONReaderGeoAreasSensors() {
         // empty
-    }
-
-    public static void main(String[] args) throws FileNotFoundException {
-        String path = InputValidator.getString("pathfile now");
-        File file = new File(path);
-        ProjectFileReader projectFileReader = new JSONReaderGeoAreasSensors();
-        projectFileReader.readFile(file);
     }
 
     private static List<Object> parseJsonObjects(JsonElement areaGeo) throws NumberFormatException, DateTimeParseException, NullPointerException {
