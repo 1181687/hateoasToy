@@ -1,21 +1,14 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsFromCSVXMLJSONController;
-import pt.ipp.isep.dei.project.model.ProjectFileReader;
-import pt.ipp.isep.dei.project.model.ReadingDTO;
-import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class ImportReadingsFromJSONCSVXML {
-    private static final Logger LOGGER = Logger.getLogger(ImportReadingsFromCSV.class.getName());
     private ImportReadingsFromCSVXMLJSONController controller;
-    private ReadingDTO readingDTO;
-    private ProjectFileReader projectFileReader;
 
     /**
      * Constructor.
@@ -24,7 +17,6 @@ public class ImportReadingsFromJSONCSVXML {
      */
     public ImportReadingsFromJSONCSVXML(GeographicalAreaList geographicalAreaList) {
         controller = new ImportReadingsFromCSVXMLJSONController(geographicalAreaList);
-        readingDTO = ReadingMapper.newReadingDTO();
     }
 
 
