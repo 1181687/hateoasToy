@@ -49,17 +49,12 @@ public class Main {
 
     private House houseEdificioB;
     private PowerSourceTypeList powerSourceTypeList;
-
-
     private GeographicalAreaList geographicalAreaList;
-
     private SensorTypeList sensorTypeList;
+    private GeographicalAreaTypeList geographicalAreaTypeList;
 
-    GeographicalAreaTypeList geographicalAreaTypeList = new GeographicalAreaTypeList();
-
-    @Autowired
-    SensorRepository sensorRepository;
-
+    //@Autowired
+    //SensorRepository sensorRepository;
     @Autowired
     GeoAreaRepository geoAreaRepository;
 
@@ -76,10 +71,12 @@ public class Main {
 
         return (args) -> {
 
+            GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
+
             data();
 
             //UI levels
-            Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaList, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList(),sensorRepository );
+            Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaList, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList());
             RegularUser regularUser = new RegularUser(geographicalAreaTypeList, geographicalAreaList, sensorTypeList, houseEdificioB);
             PowerUser powerUser = new PowerUser(houseEdificioB);
             RoomOwner roomOwner = new RoomOwner(houseEdificioB);
@@ -91,10 +88,10 @@ public class Main {
             while (option != 0) {
                 switch (option) {
                     case 1:
-                         admin.runAdminOption();
+                        admin.runAdminOption();
                         break;
                     case 2:
-                         regularUser.runRegularUserOption();
+                        regularUser.runRegularUserOption();
                         break;
                     case 3:
                         powerUser.runPowerUserMenu();
@@ -106,7 +103,7 @@ public class Main {
                 option = Menu.usersMenu();
             }
         };
-        }
+    }
 
     public void data (){
 
@@ -125,7 +122,7 @@ public class Main {
         }
         List<String> deviceTypeList = Utils.readConfigFileToList(configFile, "devicetype.count", "devicetype.name");
 
-       // geographicalAreaTypeList = new GeographicalAreaTypeList();
+        geographicalAreaTypeList = new GeographicalAreaTypeList();
         geographicalAreaList = new GeographicalAreaList();
 
         // GEOGRAPHICAL AREAS

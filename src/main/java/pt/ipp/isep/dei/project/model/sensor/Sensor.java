@@ -21,12 +21,15 @@ public class Sensor {
     private LocalDateTime startingDate;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //@JoinColumn
+    @JoinColumn
     private List<Reading> listOfReadings = new ArrayList<>();
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn
     private SensorType sensorType;
-    @Transient
+
+    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @JoinColumn(name = "location_id")
     private Location location;
     private String units;
     private boolean isActive;

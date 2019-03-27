@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
+import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsFromCSVController;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
@@ -19,13 +20,15 @@ public class ImportReadingsFromJSONCSVXML {
     private ImportReadingsFromCSVController controller;
     private ReadingDTO readingDTO;
     private CSVReader csvReader = new CSVReader();
+    private SensorRepository sensorRepository;
 
     /**
      * Constructor.
      *
      * @param geographicalAreaList
+     * @param sensorRepository
      */
-    public ImportReadingsFromJSONCSVXML(GeographicalAreaList geographicalAreaList) {
+    public ImportReadingsFromJSONCSVXML(GeographicalAreaList geographicalAreaList, SensorRepository sensorRepository) {
         controller = new ImportReadingsFromCSVController(geographicalAreaList);
         readingDTO = ReadingMapper.newReadingDTO();
     }

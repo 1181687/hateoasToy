@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.model.Location;
@@ -21,6 +22,7 @@ public class SensorList {
     private Long id;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn
     private List<Sensor> listOfSensors;
 
 

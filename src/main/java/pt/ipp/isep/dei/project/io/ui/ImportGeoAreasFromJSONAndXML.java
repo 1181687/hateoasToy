@@ -2,7 +2,8 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pt.ipp.isep.dei.project.SensorRepository;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonandxmlcontroller.ImportGeoAreasFromJSONAndXMLController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
@@ -17,12 +18,13 @@ import java.util.Objects;
 public class ImportGeoAreasFromJSONAndXML {
 
     private ImportGeoAreasFromJSONAndXMLController controller;
+
     @Autowired
-    SensorRepository sensorRepository;
+    GeoAreaRepository geoAreaRepository= GeoAreaService.getInstance().getGeoAreaRepository();
 
 
-    public ImportGeoAreasFromJSONAndXML(GeographicalAreaList geoList, SensorRepository sensorRepository) {
-        this.controller = new ImportGeoAreasFromJSONAndXMLController(geoList, sensorRepository);
+    public ImportGeoAreasFromJSONAndXML(GeographicalAreaList geoList) {
+        this.controller = new ImportGeoAreasFromJSONAndXMLController(geoList);
     }
 
     public void jsonGeoAreaSensors() {

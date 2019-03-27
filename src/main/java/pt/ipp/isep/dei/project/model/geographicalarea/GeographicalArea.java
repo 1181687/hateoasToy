@@ -30,7 +30,7 @@ public class GeographicalArea {
     private AreaShape areaShape;
 
     @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //@JoinColumn (name = "sensorList_Id")
+    @JoinColumn (name = "sensorList_Id")
     private SensorList sensorList = new SensorList();
 
     protected GeographicalArea(){
