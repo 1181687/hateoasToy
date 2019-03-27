@@ -1,4 +1,4 @@
-ARCHITECTURE
+    ARCHITECTURE
 
 - The architecture of our software is based on three layers: UI, Controller and Model.
 - The UI Layer communicates with the Controller, which, in turn, communicates with the Model layer.

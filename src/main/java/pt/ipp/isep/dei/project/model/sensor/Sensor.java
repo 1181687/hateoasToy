@@ -130,11 +130,6 @@ public class Sensor {
         isActive = active;
     }
 
-    public void setSensorType(String newType) {
-        SensorType sensorType = new SensorType(newType);
-        this.sensorType = sensorType;
-    }
-
     /**
      * Equals method to determine if two Sensors are equal. They are equals if all atributtes are equal
      *

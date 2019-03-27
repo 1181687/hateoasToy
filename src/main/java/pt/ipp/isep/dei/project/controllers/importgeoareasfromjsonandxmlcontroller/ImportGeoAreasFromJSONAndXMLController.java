@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonandxmlcontroll
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.SensorRepository;
+import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class ImportGeoAreasFromJSONAndXMLController {
     private GeographicalAreaList geographicalAreaList;
+    private ProjectFileReader reader;
 
     private SensorRepository sensorRepository;
 
@@ -46,6 +48,14 @@ public class ImportGeoAreasFromJSONAndXMLController {
         return imported;
 
     }
+}
+/*
+    public ProjectFileReader importPath() {
+
+
+
+    }
 
 
 }
+*/

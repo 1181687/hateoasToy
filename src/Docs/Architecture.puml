@@ -14,6 +14,8 @@ package "pt.ipp.isep.dei.project" {
 [UI] -right(0- [Controller]
 [UI] -down(0- [DTO]
 [Controller] -right(0- [Model]
+[Model] -right(0- [Repository]
+[Repository] -down(0- [DataBase]
 [Controller] -(0- [DTO]
 [DTO] -up(0- [Model]
 }

@@ -1,187 +1,154 @@
 package pt.ipp.isep.dei.project.utils;
 
-/*
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import pt.ipp.isep.dei.project.model.FileReader;
+import pt.ipp.isep.dei.project.io.ui.InputValidator;
+import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.ProjectFileReader;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
+import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-public class XMLReader implements FileReader {
+public class XMLReader implements ProjectFileReader {
     String typeName;
 
     public XMLReader() {
         this.typeName = "xml";
     }
 
-    public void read() throws IOException, ParserConfigurationException, NullPointerException, SAXException {
-
-        //path to the file
-        File xmlFile = new File("XMLfile_GA.xml");
-
-        //get document builder
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = factory.newDocumentBuilder();
-        Document doc = dBuilder.parse(xmlFile);
-
-        //Normalize the XML Structure;
-        doc.getDocumentElement().normalize();
-
-        //root node
-        Element root = doc.getDocumentElement();
-
-        //get all geographical areas
-        NodeList listOfNodes = doc.getElementsByTagName("geographical_area");
-
-        for (int i = 0; i < listOfNodes.getLength(); i++) {
-            Node mainNode = listOfNodes.item(i);
-            if (mainNode.getNodeType() == Node.ELEMENT_NODE) {
-                Element firstElement = (Element) mainNode;
-                NodeList geoArea = firstElement.getElementsByTagName("geographical_area");
-
-                for (int j = 0; j < geoArea.getLength(); ++j) {
-                    Element value = (Element) geoArea.item(j);
-
-                    NodeList conditionList = value.getElementsByTagName("description");
-                    for (int k = 0; k < conditionList.getLength(); ++k) {
-                        Element description = (Element) conditionList.item(k);
-                        if (description.getParentNode().getNodeName().equals("geographical_area")) {
-                            String conditionText = description.getFirstChild().getTextContent();
-                        }
-                    }
-                    NodeList conditionList1 = value.getElementsByTagName("id");
-                    for (int k = 0; k < conditionList1.getLength(); ++k) {
-                        Element id = (Element) conditionList1.item(k);
-                        String conditionText = id.getFirstChild().getTextContent();
-                    }
-
-                    NodeList conditionList2 = value.getElementsByTagName("type");
-                    for (int k = 0; k < conditionList2.getLength(); ++k) {
-                        Element type = (Element) conditionList2.item(k);
-                        String conditionText = type.getFirstChild().getTextContent();
-                    }
-
-                    NodeList conditionList3 = value.getElementsByTagName("width");
-                    for (int k = 0; k < conditionList3.getLength(); ++k) {
-                        Element width = (Element) conditionList3.item(k);
-                        String conditionText = width.getFirstChild().getNodeValue();
-                    }
-
-                    NodeList conditionList4 = value.getElementsByTagName("length");
-                    for (int k = 0; k < conditionList4.getLength(); ++k) {
-                        Element length = (Element) conditionList4.item(k);
-                        String conditionText = length.getFirstChild().getNodeValue();
-                    }
+    public static void main(String[] args) {
+        String path = InputValidator.getString("path");
+        File file = new File(path);
+        List<ReadingDTO> readingDTOList = readXMLFileToListReadings(file);
+    }
 
 
-                    NodeList conditionList6 = value.getElementsByTagName("altitude");
-                    for (int k = 0; k < conditionList6.getLength(); ++k) {
-                        Element altitude = (Element) conditionList6.item(k);
-                        if (altitude.getParentNode().getNodeName().equals("location")) {
-                            String conditionText = altitude.getFirstChild().getNodeValue();
-                        }
-                    }
+    @SuppressWarnings("unchecked")
+    public static List<GeographicalAreaDTO> readXMLFileToList(File file) {
 
-                    NodeList conditionList7 = value.getElementsByTagName("latitude");
-                    for (int k = 0; k < conditionList7.getLength(); ++k) {
-                        Element latitude = (Element) conditionList7.item(k);
-                        String conditionText = latitude.getFirstChild().getNodeValue();
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        dbFactory.setIgnoringElementContentWhitespace(true);
+        dbFactory.setNamespaceAware(true);
+        DocumentBuilder dBuilder;
+        List<GeographicalAreaDTO> geographicalAreaDTOList = new ArrayList<>();
 
-                    }
+        try {
+            dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(file);
+            doc.getDocumentElement().normalize();
 
-                    NodeList conditionList8 = value.getElementsByTagName("longitude");
-                    for (int k = 0; k < conditionList8.getLength(); ++k) {
-                        Element longitude = (Element) conditionList8.item(k);
-                        String conditionText = longitude.getFirstChild().getNodeValue();
 
-                    }
+            NodeList nodeList = doc.getElementsByTagName("geographical_area");
 
-                    NodeList conditionList10 = value.getElementsByTagName("sensor");
-                    for (int k = 0; k < conditionList10.getLength(); ++k) {
-                        Element sensor = (Element) conditionList10.item(k);
-                        if (sensor.getParentNode().getNodeName().equals("area_sensors")) {
-                            String conditionText = sensor.getFirstChild().getTextContent();
-                        }
-                    }
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                geographicalAreaDTOList.add(getGeoArea(nodeList.item(i)));
+            }
+        } catch (SAXException | ParserConfigurationException | IOException e1) {
+            e1.printStackTrace();
 
-                    NodeList conditionList11 = value.getElementsByTagName("id");
-                    for (int k = 0; k < conditionList11.getLength(); ++k) {
-                        Element id = (Element) conditionList10.item(k);
-                        if (id.getParentNode().getNodeName().equals("sensor")) {
-                            String conditionText = id.getFirstChild().getTextContent();
-                        }
-                    }
+        }
+        return geographicalAreaDTOList;
+    }
 
-                    NodeList conditionList12 = value.getElementsByTagName("name");
-                    for (int k = 0; k < conditionList12.getLength(); ++k) {
-                        Element name = (Element) conditionList12.item(k);
-                        String conditionText = name.getFirstChild().getTextContent();
 
-                    }
+    private static LocationDTO getLocation(Node node) {
 
-                    NodeList conditionList13 = value.getElementsByTagName("start_date");
-                    for (int k = 0; k < conditionList13.getLength(); ++k) {
-                        Element startDate = (Element) conditionList13.item(k);
-                        String conditionText = startDate.getFirstChild().getTextContent();
+        Element element = (Element) node;
+        Double latitude = Double.parseDouble(getTagValue("latitude", element));
+        Double longitude = Double.parseDouble(getTagValue("longitude", element));
+        Double altitude = Double.parseDouble(getTagValue("altitude", element));
 
-                    }
+        LocationDTO locationDTO = new LocationDTO();
+        locationDTO.setLatitude(latitude);
+        locationDTO.setLongitude(longitude);
+        locationDTO.setElevation(altitude);
+        return locationDTO;
+    }
 
-                    NodeList conditionList14 = value.getElementsByTagName("type");
-                    for (int k = 0; k < conditionList14.getLength(); ++k) {
-                        Element type = (Element) conditionList14.item(k);
-                        String conditionText = type.getFirstChild().getTextContent();
 
-                    }
+    private static GeographicalAreaDTO getGeoArea(Node node) {
 
-                    NodeList conditionList15 = value.getElementsByTagName("units");
-                    for (int k = 0; k < conditionList15.getLength(); ++k) {
-                        Element units = (Element) conditionList15.item(k);
-                        String conditionText = units.getFirstChild().getTextContent();
+        GeographicalAreaDTO geographicalArea = null;
+        if (node.getNodeType() == Node.ELEMENT_NODE) {
+            Element element = (Element) node;
+            String id = getTagValue("id", element);
+            String description = getTagValue("description", element);
+            String type = getTagValue("type", element);
+            Double width = Double.parseDouble(getTagValue("width", element));
+            Double length = Double.parseDouble(getTagValue("length", element));
 
-                    }
+            LocationDTO location = getLocation(getTag("location", element));
 
-                    NodeList conditionList16 = value.getElementsByTagName("location");
-                    for (int k = 0; k < conditionList16.getLength(); ++k) {
-                        Element location = (Element) conditionList16.item(k);
-                        if (location.getParentNode().getNodeName().equals("sensor")) {
-                            String conditionText = location.getFirstChild().getTextContent();
-                        }
-                    }
+            GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTO(id, description, type, width, length, location.getLatitude(), location.getLongitude(), location.getElevation());
+            addSensorsToGeoArea(geographicalAreaDTO, getTag("area_sensors", element));
+        }
 
-                    NodeList conditionList17 = value.getElementsByTagName("altitude");
-                    for (int k = 0; k < conditionList17.getLength(); ++k) {
-                        Element altitude = (Element) conditionList17.item(k);
-                        if (altitude.getParentNode().getNodeName().equals("location")) {
-                            String conditionText = altitude.getFirstChild().getNodeValue();
-                        }
-                    }
+        return geographicalArea;
+    }
 
-                    NodeList conditionList18 = value.getElementsByTagName("latitude");
-                    for (int k = 0; k < conditionList18.getLength(); ++k) {
-                        Element latitude = (Element) conditionList18.item(k);
-                        String conditionText = latitude.getFirstChild().getNodeValue();
 
-                    }
+    private static void addSensorsToGeoArea(GeographicalAreaDTO geographicalAreaDTO, Node node) {
 
-                    NodeList conditionList19 = value.getElementsByTagName("longitude");
-                    for (int k = 0; k < conditionList19.getLength(); ++k) {
-                        Element longitude = (Element) conditionList19.item(k);
-                        String conditionText = longitude.getFirstChild().getNodeValue();
+        Element areaSensors = (Element) node;
+        NodeList sensors = areaSensors.getChildNodes();
+        for (int i = 0; i < sensors.getLength(); i++) {
+            if (sensors.item(i).getNodeType() == Node.ELEMENT_NODE) {
+                Element sensor = (Element) sensors.item(i);
+                String id = getTagValue("id", sensor);
+                String name = getTagValue("name", sensor);
+                LocalDate startDate = LocalDate.parse(getTagValue("start_date", sensor));
+                String type = getTagValue("type", sensor);
+                String units = getTagValue("units", sensor);
+                LocationDTO location = getLocation(getTag("location", sensor));
+                SensorDTO sensorObject = new SensorDTO();
+                sensorObject.setId(id);
+                sensorObject.setName(name);
+                sensorObject.setSensorType(type);
+                sensorObject.setLocation(location);
+                sensorObject.setStartingDate(startDate);
+                sensorObject.setUnits(units);
+                geographicalAreaDTO.addSensor(sensorObject);
 
-                    }
-                }
             }
         }
     }
 
+
+    /**
+     * get method
+     *
+     * @param tag     identifying string of each element
+     * @param element part of the xml document
+     * @return
+     */
+
+    private static String getTagValue(String tag, Element element) {
+        NodeList nodeList = element.getElementsByTagName(tag).item(0).getChildNodes();
+        Node node = nodeList.item(0);
+        return node.getNodeValue();
+    }
+
+
+    private static Node getTag(String tag, Element element) {
+        Node node = element.getElementsByTagName(tag).item(0);
+        return node;
+    }
 
     @Override
     public String getTypeName() {
@@ -192,6 +159,53 @@ public class XMLReader implements FileReader {
     public List<List<String>> readFile() {
         return null;
     }
+
+    @SuppressWarnings("unchecked")
+    public static List<ReadingDTO> readXMLFileToListReadings(File file) {
+
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        dbFactory.setIgnoringElementContentWhitespace(true);
+        dbFactory.setNamespaceAware(true);
+        DocumentBuilder dBuilder;
+        List<ReadingDTO> readingDTOList = new ArrayList<>();
+
+        try {
+            dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(file);
+            doc.getDocumentElement().normalize();
+
+
+            NodeList nodeList = doc.getElementsByTagName("reading");
+
+            for (int i = 0; i < nodeList.getLength(); i++) {
+                readingDTOList.add(getReadingDTO(nodeList.item(i)));
+            }
+        } catch (SAXException | ParserConfigurationException | IOException e1) {
+            e1.printStackTrace();
+
+        }
+        return readingDTOList;
+    }
+
+    private static ReadingDTO getReadingDTO(Node node) {
+
+        ReadingDTO readingDTO = null;
+        if (node.getNodeType() == Node.ELEMENT_NODE) {
+            Element element = (Element) node;
+            String id = getTagValue("id", element);
+            LocalDateTime dateTime;
+            if (id.contains("RF")) {
+                LocalDate date = LocalDate.parse(getTagValue("timestamp_date", element));
+                dateTime = date.atStartOfDay();
+            } else {
+                ZonedDateTime zonedDateTime = ZonedDateTime.parse(getTagValue("timestamp_date", element));
+                dateTime = zonedDateTime.toLocalDateTime();
+            }
+            Double value = Double.parseDouble(getTagValue("value", element));
+            String unit = getTagValue("unit", element);
+            readingDTO = ReadingMapper.mapToDTO_id_units(id, dateTime, value, unit);
+        }
+        return readingDTO;
+    }
 }
 
-*/

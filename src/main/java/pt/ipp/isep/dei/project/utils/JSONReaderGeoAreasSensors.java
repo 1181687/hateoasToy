@@ -21,6 +21,7 @@ public final class JSONReaderGeoAreasSensors {
         // empty
     }
 
+
     @SuppressWarnings("unchecked")
     public static List<GeographicalAreaDTO> readJSONFileToList(FileReader reader) {
         List<GeographicalAreaDTO> finallist;

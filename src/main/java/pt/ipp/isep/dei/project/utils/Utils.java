@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.utils;
 
+import pt.ipp.isep.dei.project.model.ProjectFileReader;
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,6 +14,7 @@ import java.util.Map;
 import java.util.Properties;
 
 public final class Utils {
+    private static final String CONFIG_PROPERTIES = "Configuration.properties";
 
     private Utils() {
         //intentionally empty
@@ -76,6 +79,26 @@ public final class Utils {
         return property;
     }
 
+
+    public static ProjectFileReader createReader(String stringPath) {
+
+        String[] ext = stringPath.split("\\.", 2);
+        String extension = ext[ext.length - 1];
+
+
+        String path = Utils.readConfigFile(CONFIG_PROPERTIES, extension);
+        ProjectFileReader reader = null;
+        try {
+            reader = (ProjectFileReader) Class.forName(path).newInstance();
+            return reader;
+
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return reader;
+    }
+
+
     /**
      * Method turns specific information (through the use of an option that refers to a key)
      * inside a specific configuration file (searched by its name) to a list of strings.
@@ -132,11 +155,12 @@ public final class Utils {
         return value1.compareTo(value2) >= 0;
 
     }
+
     /**
      * receives a Map and cleans the entries key-value that have a doubleNan value
      *
      * @param mapOfDailyValues given Map<LocalDate, Double>
-     * @return Map<LocalDate       ,               Double> map Of Daily Values without doubleNans entries
+     * @return Map<LocalDate, Double> map Of Daily Values without doubleNans entries
      */
     public static Map<LocalDate, Double> removeDoubleNanHashMap(Map<LocalDate, Double> mapOfDailyValues) {
 
