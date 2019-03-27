@@ -8,6 +8,8 @@ import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
+import java.io.FileNotFoundException;
+
 public class Admin {
     @Autowired
     private GeographicalAreaTypeList geographicalAreaTypeList;
@@ -29,7 +31,7 @@ public class Admin {
     }
 
 
-    public void runAdminGeographicalArea() {
+    public void runAdminGeographicalArea() throws FileNotFoundException {
         int option = Menu.adminGeoAreaMenu();
         if (option == 0) {
             return;
@@ -191,7 +193,7 @@ public class Admin {
         }
     }
 
-    public void runAdminOption() {
+    public void runAdminOption() throws FileNotFoundException {
         int option = Menu.adminMenu();
         if (option == 0) {
             return;

@@ -120,34 +120,38 @@ public class ImportReadingsFromCSV {
      * Method that reads each line of the scanner, verifies the information (if it is possible to use that information
      * to create a readingDTO or not) and, subsequently, outputs the number of failed imports.
      *
-     * @param scanner Information to be analysed.
+     * @param file Information to be analysed.
      * @return Integer corresponding to the number of failed imports.
      */
-    private String importReadings(Scanner scanner) {
+    @SuppressWarnings("unchecked")
+    private String importReadings(File file) throws FileNotFoundException {
+
         configLogFile();
         StringBuilder notImportedReadings = new StringBuilder();
-        List<List<String>> allLines = csvReader.readFile(scanner);
+        List<Object> allLines = csvReader.readFile(file);
         if (allLines.isEmpty()) {
             return null;
         }
-        for (List<String> line : allLines) {
-            String sensorId = line.get(0);
-            String dateTime = line.get(1);
-            String value = line.get(2);
+        for (Object line : allLines) {
+            List<String> line2 = (List<String>) line;
+
+            String sensorId = line2.get(0);
+            String dateTime = line2.get(1);
+            String value = line2.get(2);
             if (controller.checkIfSensorExistsById(sensorId)) {
                 LocalDateTime readingDateTime = checkDateTimeAndStoreIt(dateTime);
                 Double readingValue = checkValueAndStoreIt(value);
                 if (Objects.isNull(readingDateTime) || Objects.isNull(readingValue)) {
-                    notImportedReadings.append(storeNotImportedReadings(line));
+                    notImportedReadings.append(storeNotImportedReadings(line2));
                     LOGGER.log(Level.WARNING, "Line not parsed due to invalid information: "
-                            + storeNotImportedReadings(line));
+                            + storeNotImportedReadings(line2));
                     continue;
                 }
                 readingDTO.setDateTime(readingDateTime);
                 readingDTO.setValue(readingValue);
                 controller.addReadingToSensor(readingDTO);
             } else {
-                notImportedReadings.append(storeNotImportedReadings(line));
+                notImportedReadings.append(storeNotImportedReadings(line2));
                 LOGGER.log(Level.WARNING, "There is no sensor in the system with the id " + sensorId + ".\n");
             }
         }
@@ -157,18 +161,20 @@ public class ImportReadingsFromCSV {
     /**
      * RUN!
      */
-    public void run() {
+    public void run() throws FileNotFoundException {
         String pathCSVFile = InputValidator.getString("\nPlease specify the absolute path of the CSV file to import (including the \".csv\" part).");
         if (!csvReader.isCSVFile(pathCSVFile)) {
             System.out.println("\nERROR: That's not a CSV file.\n");
             return;
         }
         Scanner scanner = checkIfFileExistsAndCreateScanner(pathCSVFile);
+        File file = new File(pathCSVFile);
+
         if (Objects.isNull(scanner)) {
             System.out.println("\nERROR: There's no such file with that name.\n");
             return;
         }
-        String notImportedReadings = importReadings(scanner);
+        String notImportedReadings = importReadings(file);
         if (Objects.isNull(notImportedReadings)) {
             System.out.println("\nThe file is empty, therefore nothing was imported.\n");
             return;

@@ -5,54 +5,28 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-public final class JSONReaderGeoAreasSensors {
+public class JSONReaderGeoAreasSensors implements ProjectFileReader {
+    private String readerName = "json";
 
-    private JSONReaderGeoAreasSensors() {
+    public JSONReaderGeoAreasSensors() {
         // empty
     }
 
-
-    @SuppressWarnings("unchecked")
-    public static List<GeographicalAreaDTO> readJSONFileToList(FileReader reader) {
-        List<GeographicalAreaDTO> finallist;
-        //JSON parser object to parse read file
-        JsonParser jsonParser = new JsonParser();
-        //Read JSON file
-        JsonElement elem = jsonParser.parse(reader);
-        try {
-            finallist = parseJsonObjects(elem);
-        } catch (NumberFormatException | DateTimeParseException | NullPointerException e) {
-            finallist = null;
-        }
-        return finallist;
-    }
-
-    private static LocationDTO locationParser(JsonObject object) throws NumberFormatException {
-
-        double latitude = object.get("latitude").getAsDouble();
-        double longitude = object.get("longitude").getAsDouble();
-        double altitude = object.get("altitude").getAsDouble();
-
-        LocationDTO locationDTO = new LocationDTO();
-        locationDTO.setLatitude(latitude);
-        locationDTO.setLongitude(longitude);
-        locationDTO.setElevation(altitude);
-
-        return locationDTO;
-    }
-
-    private static List<GeographicalAreaDTO> parseJsonObjects(JsonElement areaGeo) throws NumberFormatException, DateTimeParseException, NullPointerException {
-        List<GeographicalAreaDTO> areaGeolist = new ArrayList<>();
+    private static List<Object> parseJsonObjects(JsonElement areaGeo) throws NumberFormatException, DateTimeParseException, NullPointerException {
+        List<Object> areaGeolist = new ArrayList<>();
 
         // Get area geo object within list
         if (areaGeo.isJsonObject()) {
@@ -119,5 +93,41 @@ public final class JSONReaderGeoAreasSensors {
 
         }
         return areaGeolist;
+    }
+
+    private static LocationDTO locationParser(JsonObject object) throws NumberFormatException {
+
+        double latitude = object.get("latitude").getAsDouble();
+        double longitude = object.get("longitude").getAsDouble();
+        double altitude = object.get("altitude").getAsDouble();
+
+        LocationDTO locationDTO = new LocationDTO();
+        locationDTO.setLatitude(latitude);
+        locationDTO.setLongitude(longitude);
+        locationDTO.setElevation(altitude);
+
+        return locationDTO;
+    }
+
+    @Override
+    public String getTypeName() {
+        return this.readerName;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Object> readFile(File file) throws FileNotFoundException {
+        FileReader fileReader = new FileReader(file);
+        List<Object> finallist;
+        //JSON parser object to parse read file
+        JsonParser jsonParser = new JsonParser();
+        //Read JSON file
+        JsonElement elem = jsonParser.parse(fileReader);
+        try {
+            finallist = parseJsonObjects(elem);
+        } catch (NumberFormatException | DateTimeParseException | NullPointerException e) {
+            finallist = null;
+        }
+        return finallist;
     }
 }

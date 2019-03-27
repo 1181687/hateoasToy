@@ -5,7 +5,6 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-import pt.ipp.isep.dei.project.io.ui.InputValidator;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
@@ -26,20 +25,46 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class XMLReader implements ProjectFileReader {
-    String typeName;
+
+    private String readerName = "xml";
 
     public XMLReader() {
-        this.typeName = "xml";
+        // empty
     }
 
-    public static void main(String[] args) {
-        String path = InputValidator.getString("path");
-        File file = new File(path);
-        ProjectFileReader projectFileReader = new XMLReader();
-        List<Object> DTOList = projectFileReader.readFile(file);
+    @Override
+    public String getTypeName() {
+        return this.readerName;
     }
 
-    @SuppressWarnings("unchecked")
+    @Override
+    public List<Object> readFile(File file) {
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        dbFactory.setIgnoringElementContentWhitespace(true);
+        dbFactory.setNamespaceAware(true);
+        DocumentBuilder dBuilder;
+        List<Object> objectList = new ArrayList<>();
+        try {
+            dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(file);
+            doc.getDocumentElement().normalize();
+
+            String firstTag = doc.getDocumentElement().getTagName();
+
+            if (firstTag.equals("geographical_area_list")) {
+                objectList = readXMLFileToList(doc);
+            }
+            if (firstTag.equals("readings_list")) {
+                objectList = readXMLFileToListReadings(doc);
+            }
+
+        } catch (SAXException | ParserConfigurationException | IOException e1) {
+            e1.printStackTrace();
+
+        }
+        return objectList;
+    }
+
     public static List<Object> readXMLFileToList(Document doc) {
 
         List<Object> geographicalAreaDTOList = new ArrayList<>();
@@ -68,12 +93,6 @@ public class XMLReader implements ProjectFileReader {
         }
         return readingDTOList;
     }
-
-    @Override
-    public String getTypeName() {
-        return this.typeName;
-    }
-
 
     private static LocationDTO getLocation(Node node) {
 
@@ -158,33 +177,7 @@ public class XMLReader implements ProjectFileReader {
         return node;
     }
 
-    @Override
-    public List<Object> readFile(File file) {
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        dbFactory.setIgnoringElementContentWhitespace(true);
-        dbFactory.setNamespaceAware(true);
-        DocumentBuilder dBuilder;
-        List<Object> objectList = new ArrayList<>();
-        try {
-            dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(file);
-            doc.getDocumentElement().normalize();
 
-            String firstTag = doc.getDocumentElement().getTagName();
-
-            if (firstTag.equals("geographical_area_list")) {
-                objectList = readXMLFileToList(doc);
-            }
-            if (firstTag.equals("readings_list")) {
-                objectList = readXMLFileToListReadings(doc);
-            }
-
-        } catch (SAXException | ParserConfigurationException | IOException e1) {
-            e1.printStackTrace();
-
-        }
-        return objectList;
-    }
 
     private static ReadingDTO getReadingDTO(Node node) {
 
