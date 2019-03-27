@@ -1,4 +1,5 @@
 @startuml
+autonumber
 skinparam sequenceMessageAlign center
 skinparam sequence {
 	ArrowColor Black
@@ -17,32 +18,32 @@ skinparam sequence {
 	ActorFontName Aapex
 }
 
-loop parseGeoArea
+loop GeographicalAreaList
 activate "GeographicalAreaList"
-"GeographicalAreaList" -> "LocationMapper": 1- mapToDTO(latitude,longitude,altitude)
+"GeographicalAreaList" -> "LocationMapper": mapToDTO(latitude,longitude,altitude)
 activate "LocationMapper"
-"LocationMapper" --> "GeographicalAreaList": 2- locationDTO
+"LocationMapper" --> "GeographicalAreaList": locationDTO
 deactivate "LocationMapper"
-"GeographicalAreaList" -> "GeographicalAreaMapper": 3- mapToDTO(id,description,\ntype,width,legth,locationDTO)
+"GeographicalAreaList" -> "GeographicalAreaMapper": mapToDTO(id,description,\ntype,width,legth,locationDTO)
 activate "GeographicalAreaMapper"
-"GeographicalAreaMapper" -> ":GeographicalAreaDTO" : 3.1- create
+"GeographicalAreaMapper" -> ":GeographicalAreaDTO" :  create
 activate ":GeographicalAreaDTO"
-":GeographicalAreaDTO" --> "GeographicalAreaMapper": 3.2- geographicalAreaDTO
+":GeographicalAreaDTO" --> "GeographicalAreaMapper": geographicalAreaDTO
 deactivate ":GeographicalAreaDTO"
 
-"GeographicalAreaMapper" --> "GeographicalAreaList": 4- geographicalAreaDTO
+"GeographicalAreaMapper" --> "GeographicalAreaList": geographicalAreaDTO
 deactivate "GeographicalAreaMapper"
 
 loop parseSensor
-"GeographicalAreaList" -> "LocationMapper": 5- mapToDTO(latitude,longitude,altitude)
+"GeographicalAreaList" -> "LocationMapper": mapToDTO(latitude,longitude,altitude)
 activate "LocationMapper"
-"LocationMapper" --> "GeographicalAreaList": 6- locationDTO
+"LocationMapper" --> "GeographicalAreaList": locationDTO
 deactivate "LocationMapper"
-"GeographicalAreaList" -> ":SensorDTO": 7- newSensorDTO()
+"GeographicalAreaList" -> ":SensorDTO": newSensorDTO()
 activate ":SensorDTO"
-":SensorDTO" --> "GeographicalAreaList": 8- sensorDTO
+":SensorDTO" --> "GeographicalAreaList": sensorDTO
 deactivate ":SensorDTO"
-"GeographicalAreaList" -> ":GeographicalAreaDTO" :9- addSensorDTO
+"GeographicalAreaList" -> ":GeographicalAreaDTO" : addSensorDTO
 
 end
 end

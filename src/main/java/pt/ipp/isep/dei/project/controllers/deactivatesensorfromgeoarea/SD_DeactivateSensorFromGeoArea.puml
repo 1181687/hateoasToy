@@ -22,16 +22,28 @@ activate AdminUser
 actor AdminUser
 
 AdminUser -> "ui : DeactivateSensor\nFromGeoAreaUI" **: Deactivate sensor \nfrom geo area
-"ui : DeactivateSensor\nFromGeoAreaUI" -> "ctrl : DeactivateSensor\nFromGeoArea\nController" **: listOfGeographicalAreas()
 activate "ui : DeactivateSensor\nFromGeoAreaUI"
+"ui : DeactivateSensor\nFromGeoAreaUI" -> "ctrl : DeactivateSensor\nFromGeoArea\nController" **: listOfGeographicalAreas()
 activate "ctrl : DeactivateSensor\nFromGeoArea\nController"
 
 "ctrl : DeactivateSensor\nFromGeoArea\nController" -> "GeographicalAreaList": getGeoAreaList()
+activate "GeographicalAreaList"
 ref over "GeographicalAreaList"
 getGeoAreaList()
 end
 "GeographicalAreaList" --> "ctrl : DeactivateSensor\nFromGeoArea\nController": DTOList
-"ctrl : DeactivateSensor\nFromGeoArea\nController" --> "ui : DeactivateSensor\nFromGeoAreaUI": DTOList
+deactivate "GeographicalAreaList"
+"ctrl : DeactivateSensor\nFromGeoArea\nController" --> AdminUser: DTOList
+deactivate "ui : DeactivateSensor\nFromGeoAreaUI"
+deactivate "ctrl : DeactivateSensor\nFromGeoArea\nController"
+
+deactivate "ui : DeactivateSensor\nFromGeoAreaUI"
+
+
+"ui : DeactivateSensor\nFromGeoAreaUI" --> AdminUser: selectGeoArea
+deactivate "ui : DeactivateSensor\nFromGeoAreaUI"
+AdminUser -> "ui : DeactivateSensor\nFromGeoAreaUI": selectedGeoArea
+
 
 
 
