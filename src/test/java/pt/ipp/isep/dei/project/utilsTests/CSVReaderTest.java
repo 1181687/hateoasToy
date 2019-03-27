@@ -20,7 +20,7 @@ class CSVReaderTest {
 
     @BeforeEach
     void StartUp() {
-        String path = "/Users/luisdealmeida/IdeaProjects/project_g3/datasets/csv/DataSet_sp05_SensorData.csv";
+        String path = "datasets/csv/DataSet_sp05_SensorData.csv";
         file = new File(path);
     }
 
