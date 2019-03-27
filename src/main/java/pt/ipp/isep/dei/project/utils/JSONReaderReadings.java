@@ -20,8 +20,8 @@ public final class JSONReaderReadings {
         // empty
     }
 
-    @SuppressWarnings("unchecked")
-    public static List<ReadingDTO> readJSONReadingFileToList(FileReader reader) {
+
+    public static List<ReadingDTO> readFile(FileReader reader) {
         List<ReadingDTO> readingList;
         //JSON parser object to parse read file
         JsonParser jsonParser = new JsonParser();

@@ -20,11 +20,11 @@ public class ImportGeoAreasFromJSONAndXML {
         this.controller = new ImportGeoAreasFromJSONAndXMLController(geoList);
     }
 
-    public void run() {
+    public void jsonGeoAreaSensors() {
 
         // Write the path
-        String pathJSONFile = InputValidator.getString("Please specify the name of the JSON file to import.");
-        File file = new File(pathJSONFile);
+        String path = InputValidator.getString("Please specify the name of the file to import.");
+        File file = new File(path);
         FileReader reader = checkIfFileExistsAndCreateFileReader(file);
         if (Objects.isNull(reader)) {
             System.out.println("\nERROR: There's no such file with that name.\n");
@@ -75,5 +75,7 @@ public class ImportGeoAreasFromJSONAndXML {
         }
         return file;
     }
+
+
 }
 

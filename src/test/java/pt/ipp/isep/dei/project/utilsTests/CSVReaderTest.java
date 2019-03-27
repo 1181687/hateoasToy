@@ -30,7 +30,7 @@ class CSVReaderTest {
         String line = "";
 
         // Act
-        List<String> result = CSVReader.parseLine(line);
+        List<String> result = CSVReaderProject.parseLine(line);
 
         // Assert
         assertEquals(0, result.size());
@@ -45,7 +45,7 @@ class CSVReaderTest {
         String line = null;
 
         // Act
-        List<String> result = CSVReader.parseLine(line);
+        List<String> result = CSVReaderProject.parseLine(line);
 
         // Assert
         assertEquals(0, result.size());
