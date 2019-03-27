@@ -5,13 +5,10 @@ import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.utils.CSVReader;
-import pt.ipp.isep.dei.project.utils.JSONReaderReadings;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.List;
 import java.util.Objects;
-import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ImportReadingsFromJSONCSVXML {
@@ -57,7 +54,7 @@ public class ImportReadingsFromJSONCSVXML {
             System.out.println("\nERROR: There's no such file with that name.\n");
             return;
         }
-        List<ReadingDTO> objList = JSONReaderReadings.readFile(reader);
+        /*List<ReadingDTO> objList = JSONReaderReadings.readFile(reader);
         if (Objects.isNull(objList) || objList.isEmpty()) {
             LOGGER.log(Level.WARNING, "Line not parsed due to invalid information.\n");
             return;
@@ -76,5 +73,6 @@ public class ImportReadingsFromJSONCSVXML {
             System.out.println("The file was not imported. \n");
             return;
         }
+    }*/
     }
 }
