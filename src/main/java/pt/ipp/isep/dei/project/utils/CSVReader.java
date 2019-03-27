@@ -30,16 +30,6 @@ public class CSVReader implements ProjectFileReader {
     }
 
     /**
-     * Method that checks if the name of a file corresponds to a CSV file.
-     *
-     * @param fileName Name of the file.
-     * @return True or False.
-     */
-    public boolean isCSVFile(String fileName) {
-        return fileName.endsWith(".csv");
-    }
-
-    /**
      * Method that parses a CSV line into a list of strings.
      *
      * @param csvLine String corresponding to a line/row in a CSV file.
@@ -78,7 +68,9 @@ public class CSVReader implements ProjectFileReader {
         List<List<String>> allLines = new ArrayList<>();
         while (scanner.hasNext()) {
             List<String> line = parseLine((scanner.nextLine()));
-            allLines.add(line);
+            if (!line.isEmpty()) {
+                allLines.add(line);
+            }
         }
         if (allLines.isEmpty()) {
             return null;
@@ -100,6 +92,7 @@ public class CSVReader implements ProjectFileReader {
             ReadingDTO readingDTO = ReadingMapper.mapToDTO_id_units(sensorId, readingDateTime, readingValue, unit);
             readingDTOList.add(readingDTO);
         }
+        scanner.close();
         return readingDTOList;
     }
 }
