@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsFromCSVController;
+import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsFromCSVXMLJSONController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
@@ -19,8 +19,8 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class ImportReadingsFromCSVControllerTest {
-    private ImportReadingsFromCSVController controller;
+class ImportReadingsFromCSVXMLJSONControllerTest {
+    private ImportReadingsFromCSVXMLJSONController controller;
     private GeographicalArea portoDistrict;
     private GeographicalArea portoCity;
     private Sensor temperatureSensor;
@@ -65,7 +65,7 @@ class ImportReadingsFromCSVControllerTest {
         readingDTO.setDateTime(dateTime);
 
         // Controller
-        controller = new ImportReadingsFromCSVController(geographicalAreaList);
+        controller = new ImportReadingsFromCSVXMLJSONController(geographicalAreaList);
     }
 
     /**
