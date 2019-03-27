@@ -35,35 +35,43 @@ public class XMLReader implements ProjectFileReader {
     public static void main(String[] args) {
         String path = InputValidator.getString("path");
         File file = new File(path);
-        List<ReadingDTO> readingDTOList = readXMLFileToListReadings(file);
+        ProjectFileReader projectFileReader = new XMLReader();
+        List<Object> DTOList = projectFileReader.readFile(file);
     }
 
-
     @SuppressWarnings("unchecked")
-    public static List<GeographicalAreaDTO> readXMLFileToList(File file) {
+    public static List<Object> readXMLFileToList(Document doc) {
 
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        dbFactory.setIgnoringElementContentWhitespace(true);
-        dbFactory.setNamespaceAware(true);
-        DocumentBuilder dBuilder;
-        List<GeographicalAreaDTO> geographicalAreaDTOList = new ArrayList<>();
+        List<Object> geographicalAreaDTOList = new ArrayList<>();
 
-        try {
-            dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(file);
-            doc.getDocumentElement().normalize();
+        doc.getDocumentElement().normalize();
 
+        NodeList nodeList = doc.getElementsByTagName("geographical_area");
 
-            NodeList nodeList = doc.getElementsByTagName("geographical_area");
-
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                geographicalAreaDTOList.add(getGeoArea(nodeList.item(i)));
-            }
-        } catch (SAXException | ParserConfigurationException | IOException e1) {
-            e1.printStackTrace();
-
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            geographicalAreaDTOList.add(getGeoArea(nodeList.item(i)));
         }
         return geographicalAreaDTOList;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static List<Object> readXMLFileToListReadings(Document doc) {
+
+        List<Object> readingDTOList = new ArrayList<>();
+
+        doc.getDocumentElement().normalize();
+
+        NodeList nodeList = doc.getElementsByTagName("reading");
+
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            readingDTOList.add(getReadingDTO(nodeList.item(i)));
+        }
+        return readingDTOList;
+    }
+
+    @Override
+    public String getTypeName() {
+        return this.typeName;
     }
 
 
@@ -151,40 +159,31 @@ public class XMLReader implements ProjectFileReader {
     }
 
     @Override
-    public String getTypeName() {
-        return this.typeName;
-    }
-
-    @Override
-    public List<List<String>> readFile() {
-        return null;
-    }
-
-    @SuppressWarnings("unchecked")
-    public static List<ReadingDTO> readXMLFileToListReadings(File file) {
-
+    public List<Object> readFile(File file) {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         dbFactory.setIgnoringElementContentWhitespace(true);
         dbFactory.setNamespaceAware(true);
         DocumentBuilder dBuilder;
-        List<ReadingDTO> readingDTOList = new ArrayList<>();
-
+        List<Object> objectList = new ArrayList<>();
         try {
             dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.parse(file);
             doc.getDocumentElement().normalize();
 
+            String firstTag = doc.getDocumentElement().getTagName();
 
-            NodeList nodeList = doc.getElementsByTagName("reading");
-
-            for (int i = 0; i < nodeList.getLength(); i++) {
-                readingDTOList.add(getReadingDTO(nodeList.item(i)));
+            if (firstTag.equals("geographical_area_list")) {
+                objectList = readXMLFileToList(doc);
             }
+            if (firstTag.equals("readings_list")) {
+                objectList = readXMLFileToListReadings(doc);
+            }
+
         } catch (SAXException | ParserConfigurationException | IOException e1) {
             e1.printStackTrace();
 
         }
-        return readingDTOList;
+        return objectList;
     }
 
     private static ReadingDTO getReadingDTO(Node node) {
