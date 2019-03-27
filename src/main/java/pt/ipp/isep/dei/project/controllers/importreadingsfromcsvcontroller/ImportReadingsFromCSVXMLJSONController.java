@@ -9,8 +9,12 @@ import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.logging.FileHandler;
+
+import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 public class ImportReadingsFromCSVXMLJSONController {
     private GeographicalAreaList geographicalAreaList;
@@ -79,5 +83,20 @@ public class ImportReadingsFromCSVXMLJSONController {
 
     public boolean isValidFormat(String fileName) {
         return fileName.endsWith(".csv") || fileName.endsWith(".json") || fileName.endsWith(".xml");
+    }
+
+    /**
+     * Method that configures the log file, using a FileHandler object to send log information to the specified log file.
+     * The last line is responsible for not letting the information show up in the console.
+     */
+    private static void configLogFile() {
+        FileHandler fh;
+        try {
+            fh = new FileHandler("log/outputErrors.log");
+        } catch (IOException e) {
+            fh = null;
+        }
+        LOGGER.addHandler(fh);
+        LOGGER.setUseParentHandlers(false);
     }
 }

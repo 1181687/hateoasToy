@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-public class ImportGeoAreasFromJSONAndXMLControllerTest {
+public class ImportGeoAreasFromJSONOrXMLControllerTest {
 
     /**
      * Test that imports imports geo areas and sensors
@@ -55,7 +55,7 @@ public class ImportGeoAreasFromJSONAndXMLControllerTest {
         geographicalAreaDTO.addSensor(sensorDTO);
         File file = new File("JSONfile.json");
 
-        ImportGeoAreasFromJSONAndXMLController ctrl = new ImportGeoAreasFromJSONAndXMLController(geoList);
+        ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geoList);
 
         // act
         boolean result = ctrl.importGeographicalAreaAndSensors(file);
@@ -116,7 +116,7 @@ public class ImportGeoAreasFromJSONAndXMLControllerTest {
         // add
         geographicalAreaDTO.addSensor(sensorDTO);
 
-        ImportGeoAreasFromJSONAndXMLController ctrl = new ImportGeoAreasFromJSONAndXMLController(geoList);
+        ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geoList);
 
         // act
         boolean result = ctrl.importGeographicalAreaAndSensors(file);

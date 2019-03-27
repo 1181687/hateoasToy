@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonandxmlcontroller;
+package pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller;
 
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
@@ -13,11 +13,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-public class ImportGeoAreasFromJSONAndXMLController {
+public class ImportGeoAreasFromJSONOrXMLController {
     private GeographicalAreaList geographicalAreaList;
     private ProjectFileReader reader;
 
-    public ImportGeoAreasFromJSONAndXMLController(GeographicalAreaList geographicalAreaList) {
+    public ImportGeoAreasFromJSONOrXMLController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;
     }
 

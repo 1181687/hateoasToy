@@ -32,39 +32,6 @@ public class XMLReader implements ProjectFileReader {
         // empty
     }
 
-    @Override
-    public String getTypeName() {
-        return this.readerName;
-    }
-
-    @Override
-    public List<Object> readFile(File file) {
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        dbFactory.setIgnoringElementContentWhitespace(true);
-        dbFactory.setNamespaceAware(true);
-        DocumentBuilder dBuilder;
-        List<Object> objectList = new ArrayList<>();
-        try {
-            dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(file);
-            doc.getDocumentElement().normalize();
-
-            String firstTag = doc.getDocumentElement().getTagName();
-
-            if (firstTag.equals("geographical_area_list")) {
-                objectList = readXMLFileToList(doc);
-            }
-            if (firstTag.equals("readings_list")) {
-                objectList = readXMLFileToListReadings(doc);
-            }
-
-        } catch (SAXException | ParserConfigurationException | IOException e1) {
-            e1.printStackTrace();
-
-        }
-        return objectList;
-    }
-
     public static List<Object> readXMLFileToList(Document doc) {
 
         List<Object> geographicalAreaDTOList = new ArrayList<>();
@@ -92,6 +59,32 @@ public class XMLReader implements ProjectFileReader {
             readingDTOList.add(getReadingDTO(nodeList.item(i)));
         }
         return readingDTOList;
+    }
+
+    private static ReadingDTO getReadingDTO(Node node) {
+
+        ReadingDTO readingDTO = null;
+        if (node.getNodeType() == Node.ELEMENT_NODE) {
+            Element element = (Element) node;
+            String id = getTagValue("id", element);
+            LocalDateTime dateTime;
+            if (id.contains("RF")) {
+                LocalDate date = LocalDate.parse(getTagValue("timestamp_date", element));
+                dateTime = date.atStartOfDay();
+            } else {
+                ZonedDateTime zonedDateTime = ZonedDateTime.parse(getTagValue("timestamp_date", element));
+                dateTime = zonedDateTime.toLocalDateTime();
+            }
+            Double value = Double.parseDouble(getTagValue("value", element));
+            String unit = getTagValue("unit", element);
+            readingDTO = ReadingMapper.mapToDTO_id_units(id, dateTime, value, unit);
+        }
+        return readingDTO;
+    }
+
+    @Override
+    public String getTypeName() {
+        return this.readerName;
     }
 
     private static LocationDTO getLocation(Node node) {
@@ -177,27 +170,32 @@ public class XMLReader implements ProjectFileReader {
         return node;
     }
 
+    @Override
+    public List<Object> readFile(File file) {
+        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+        dbFactory.setIgnoringElementContentWhitespace(true);
+        dbFactory.setNamespaceAware(true);
+        DocumentBuilder dBuilder;
+        List<Object> objectList = new ArrayList<>();
+        try {
+            dBuilder = dbFactory.newDocumentBuilder();
+            Document doc = dBuilder.parse(file);
+            doc.getDocumentElement().normalize();
 
+            String firstTag = doc.getDocumentElement().getTagName();
 
-    private static ReadingDTO getReadingDTO(Node node) {
-
-        ReadingDTO readingDTO = null;
-        if (node.getNodeType() == Node.ELEMENT_NODE) {
-            Element element = (Element) node;
-            String id = getTagValue("id", element);
-            LocalDateTime dateTime;
-            if (id.contains("RF")) {
-                LocalDate date = LocalDate.parse(getTagValue("timestamp_date", element));
-                dateTime = date.atStartOfDay();
-            } else {
-                ZonedDateTime zonedDateTime = ZonedDateTime.parse(getTagValue("timestamp_date", element));
-                dateTime = zonedDateTime.toLocalDateTime();
+            if (firstTag.equals("geographical_area_list")) {
+                objectList = readXMLFileToList(doc);
             }
-            Double value = Double.parseDouble(getTagValue("value", element));
-            String unit = getTagValue("unit", element);
-            readingDTO = ReadingMapper.mapToDTO_id_units(id, dateTime, value, unit);
+            if (firstTag.equals("readings_list")) {
+                objectList = readXMLFileToListReadings(doc);
+            }
+
+        } catch (SAXException | ParserConfigurationException | IOException e1) {
+            e1.printStackTrace();
+
         }
-        return readingDTO;
+        return objectList;
     }
 }
 
