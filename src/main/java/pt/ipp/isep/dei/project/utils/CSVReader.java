@@ -18,7 +18,7 @@ import java.util.Scanner;
 
 public class CSVReader implements ProjectFileReader {
     private static final char DEFAULT_SEPARATOR = ',';
-    private String type = "csv";
+    private String readerName = "csv";
 
     public CSVReader() {
         // empty
@@ -26,7 +26,17 @@ public class CSVReader implements ProjectFileReader {
 
     @Override
     public String getTypeName() {
-        return type;
+        return this.readerName;
+    }
+
+    /**
+     * Method that checks if the name of a file corresponds to a CSV file.
+     *
+     * @param fileName Name of the file.
+     * @return True or False.
+     */
+    public boolean isCSVFile(String fileName) {
+        return fileName.endsWith(".csv");
     }
 
     /**

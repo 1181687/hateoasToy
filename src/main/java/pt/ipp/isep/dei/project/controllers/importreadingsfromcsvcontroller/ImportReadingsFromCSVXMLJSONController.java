@@ -16,7 +16,7 @@ import java.util.logging.FileHandler;
 
 import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
-public class ImportReadingsFromCSVController {
+public class ImportReadingsFromCSVXMLJSONController {
     private GeographicalAreaList geographicalAreaList;
     private SensorList allSensorInTheGeoAreas;
     private Sensor sensor;
@@ -27,7 +27,7 @@ public class ImportReadingsFromCSVController {
      *
      * @param geographicalAreaList GeographicalAreaList to be used.
      */
-    public ImportReadingsFromCSVController(GeographicalAreaList geographicalAreaList) {
+    public ImportReadingsFromCSVXMLJSONController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;
         this.allSensorInTheGeoAreas = this.geographicalAreaList.getAllSensors();
     }
@@ -79,10 +79,6 @@ public class ImportReadingsFromCSVController {
             imported = true;
         }
         return imported;
-    }
-
-    public boolean isCSVFile(String fileName) {
-        return fileName.endsWith(".csv");
     }
 
     public boolean isValidFormat(String fileName) {
