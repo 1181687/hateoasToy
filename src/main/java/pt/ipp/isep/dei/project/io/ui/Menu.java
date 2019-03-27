@@ -13,7 +13,7 @@ public final class Menu {
 
     public static int usersMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("What type of user are you?");
+        content.append("\nWhat type of user are you?");
         content.append("\n");
         content.append("1-Administrator");
         content.append("\n");
