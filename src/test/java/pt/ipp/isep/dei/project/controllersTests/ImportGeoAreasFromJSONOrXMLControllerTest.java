@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonandxmlcontroller.ImportGeoAreasFromJSONAndXMLController;
+import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller.ImportGeoAreasFromJSONOrXMLController;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.LocationMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
@@ -18,7 +18,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class ImportGeoAreasFromJSONAndXMLControllerTest {
+public class ImportGeoAreasFromJSONOrXMLControllerTest {
 
     /**
      * Test that imports imports geo areas and sensors
@@ -72,7 +72,7 @@ public class ImportGeoAreasFromJSONAndXMLControllerTest {
         geographicalAreaDTOList.add(geographicalAreaDTO);
         geographicalAreaDTO.addSensor(sensorDTO);
 
-        ImportGeoAreasFromJSONAndXMLController ctrl = new ImportGeoAreasFromJSONAndXMLController(geoList);
+        ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geoList);
 
         // act
         boolean result = ctrl.importGeographicalAreaAndSensors(geographicalAreaDTOList);
@@ -132,7 +132,7 @@ public class ImportGeoAreasFromJSONAndXMLControllerTest {
         // add
         geographicalAreaDTO.addSensor(sensorDTO);
 
-        ImportGeoAreasFromJSONAndXMLController ctrl = new ImportGeoAreasFromJSONAndXMLController(geoList);
+        ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geoList);
 
         // act
         boolean result = ctrl.importGeographicalAreaAndSensors(geographicalAreaDTOList);

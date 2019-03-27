@@ -1,0 +1,72 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+actor AdminUser
+activate AdminUser
+actor AdminUser
+
+AdminUser -> ":ImportGeoAreas\nFromJSONOrXMLUI": 1- importGeoAreasFromJSON
+activate ":ImportGeoAreas\nFromJSONOrXMLUI"
+AdminUser <-- ":ImportGeoAreas\nFromJSONOrXMLUI": 2- pathOfJsonFileRequest
+deactivate ":ImportGeoAreas\nFromJSONOrXMLUI"
+AdminUser -> ":ImportGeoAreas\nFromJSONOrXMLUI": 3- pathOfJSONFile
+activate ":ImportGeoAreas\nFromJSONOrXMLUI"
+":ImportGeoAreas\nFromJSONOrXMLUI" -> "JSONReader" : 3.1- readJSONFileToList (reader)
+activate "JSONReader"
+ref over "JSONReader"
+parseToGeographicalAreaDTO
+end
+":ImportGeoAreas\nFromJSONOrXMLUI" <-- "JSONReader" : 3.2- ListOfGeographicalAreasDTO
+deactivate "JSONReader"
+AdminUser <-- ":ImportGeoAreas\nFromJSONOrXMLUI": 4- contentOfFile + confirmationMessage (Y/N)
+deactivate ":ImportGeoAreas\nFromJSONOrXMLUI"
+AdminUser -> ":ImportGeoAreas\nFromJSONOrXMLUI": 5- confirmationMessage
+activate ":ImportGeoAreas\nFromJSONOrXMLUI"
+":ImportGeoAreas\nFromJSONOrXMLUI" -> ":ImportGeoAreas\nFromJSONOrXMLController": 5.1-importGeographicalAreasAndSensors\n(listOfGeoAreasDTO)
+activate ":ImportGeoAreas\nFromJSONOrXMLController"
+loop
+":ImportGeoAreas\nFromJSONOrXMLController" -> "GeographicalAreaMapper" : 5.1.1- mapToEntity(geographicalAreaDTO)
+activate "GeographicalAreaMapper"
+"GeographicalAreaMapper" -> ":GeographicalArea" : 5.1.1.1- createGeographicalArea()
+activate ":GeographicalArea"
+"GeographicalAreaMapper" <-- ":GeographicalArea" : 5.1.1.2- geographicalArea
+deactivate ":GeographicalArea"
+":ImportGeoAreas\nFromJSONOrXMLController" <-- "GeographicalAreaMapper" : 5.1.2- geographicalArea
+deactivate "GeographicalAreaMapper"
+":ImportGeoAreas\nFromJSONOrXMLController" -> "SensorMapper" : 5.1.3- mapToEntity(sensor)
+loop
+activate "SensorMapper"
+"SensorMapper" -> ":Sensor" : 5.1.3.1- createSensor()
+activate ":Sensor"
+"SensorMapper" <-- ":Sensor" : 5.1.3.2- sensor
+deactivate ":Sensor"
+end
+":ImportGeoAreas\nFromJSONOrXMLController" <-- "SensorMapper" : 5.1.4- sensor
+ deactivate "SensorMapper"
+":ImportGeoAreas\nFromJSONOrXMLController"  -> ":GeographicalAreaList" : 5.1.5- AddGeographicalArea(geographicalArea)
+activate ":GeographicalAreaList"
+":ImportGeoAreas\nFromJSONOrXMLController" <-- ":GeographicalAreaList" : 5.1.6- boolean
+deactivate ":GeographicalAreaList"
+end
+":ImportGeoAreas\nFromJSONOrXMLUI" <-- ":ImportGeoAreas\nFromJSONOrXMLController": 5.2- boolean
+deactivate ":ImportGeoAreas\nFromJSONOrXMLController"
+AdminUser <-- ":ImportGeoAreas\nFromJSONOrXMLUI": 6- confirmationMessage
+deactivate ":ImportGeoAreas\nFromJSONOrXMLUI"
+deactivate AdminUser
+
+@enduml
