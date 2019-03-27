@@ -2,6 +2,7 @@ package pt.ipp.isep.dei.project.utils;
 
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -20,7 +21,7 @@ public class CSVReader implements ProjectFileReader {
     }
 
     @Override
-    public List<List<String>> readFile() {
+    public List<Object> readFile(File file) {
         return null;
     }
 
