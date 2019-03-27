@@ -21,22 +21,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class XMLReader implements ProjectFileReader {
-    String typeName;
+
+    private String readerName = "xml";
 
     public XMLReader() {
-        this.typeName = "xml";
+        // empty
     }
 
+    @Override
+    public String getTypeName() {
+        return this.readerName;
+    }
 
-
+    @Override
     @SuppressWarnings("unchecked")
-    public static List<GeographicalAreaDTO> readXMLFileToList(File file) {
+    public List<Object> readFile(File file) {
 
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         dbFactory.setIgnoringElementContentWhitespace(true);
         dbFactory.setNamespaceAware(true);
         DocumentBuilder dBuilder;
-        List<GeographicalAreaDTO> geographicalAreaDTOList = new ArrayList<>();
+        List<Object> geographicalAreaDTOList = new ArrayList<>();
 
         try {
             dBuilder = dbFactory.newDocumentBuilder();
@@ -140,14 +145,5 @@ public class XMLReader implements ProjectFileReader {
         return node;
     }
 
-    @Override
-    public String getTypeName() {
-        return this.typeName;
-    }
-
-    @Override
-    public List<List<String>> readFile() {
-        return null;
-    }
 }
 

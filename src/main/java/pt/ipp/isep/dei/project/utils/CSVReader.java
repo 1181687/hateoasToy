@@ -2,6 +2,8 @@ package pt.ipp.isep.dei.project.utils;
 
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -9,6 +11,7 @@ import java.util.Scanner;
 
 public class CSVReader implements ProjectFileReader {
     private static final char DEFAULT_SEPARATOR = ',';
+    private String readerName = "csv";
 
     public CSVReader() {
         // empty
@@ -16,13 +19,9 @@ public class CSVReader implements ProjectFileReader {
 
     @Override
     public String getTypeName() {
-        return "";
+        return this.readerName;
     }
 
-    @Override
-    public List<List<String>> readFile() {
-        return null;
-    }
 
     /**
      * Method that checks if the name of a file corresponds to a CSV file.
@@ -62,11 +61,13 @@ public class CSVReader implements ProjectFileReader {
     /**
      * Method that reads all the content of a CSV file and stores the information in a list.
      *
-     * @param scanner Scanner with the information of the file.
+     * @param file Scanner with the information of the file.
      * @return List with lists of Strings corresponding to the information of each line in the file.
      */
-    public List<List<String>> readFile(Scanner scanner) {
-        List<List<String>> allLines = new ArrayList<>();
+    @Override
+    public List<Object> readFile(File file) throws FileNotFoundException {
+        Scanner scanner = new Scanner(file);
+        List<Object> allLines = new ArrayList<>();
         scanner.nextLine();
         while (scanner.hasNext()) {
             List<String> line = parseLine((scanner.nextLine()));

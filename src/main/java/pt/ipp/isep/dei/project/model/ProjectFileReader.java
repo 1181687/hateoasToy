@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.project.model;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.List;
-import java.util.Objects;
 
 public interface ProjectFileReader {
 
     String getTypeName();
 
-    List<Objects> readFile();
+    List<Object> readFile(File file) throws FileNotFoundException;
 
 }
