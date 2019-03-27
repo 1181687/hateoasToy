@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller;
 
+import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
@@ -10,6 +11,8 @@ import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -21,10 +24,7 @@ public class ImportReadingsFromCSVXMLJSONController {
     private GeographicalAreaList geographicalAreaList;
     private SensorList allSensorInTheGeoAreas;
     private Sensor sensor;
-    private ProjectFileReader fileReader;
-    private GeographicalArea geographicalArea;
-
-
+    private List<Object> readingDTOList;
 
     /**
      * Constructor.
@@ -70,9 +70,11 @@ public class ImportReadingsFromCSVXMLJSONController {
         sensor.addReadingsToList(reading);
     }
 
-    public boolean addReadingToSensorById(List<ReadingDTO> dtoList) {
+    public boolean addReadingToSensorById() {
+        configLogFile();
         boolean imported = false;
-        for (ReadingDTO reading : dtoList) {
+        for (Object object : this.readingDTOList) {
+            ReadingDTO reading = (ReadingDTO) object;
             Sensor sensor = geographicalAreaList.getSensorById(reading.getID());
             if (reading.getUnits().equals("F")) {
                 double celsiusValue = Utils.convertFahrenheitToCelsius(reading.getValue());
@@ -106,5 +108,15 @@ public class ImportReadingsFromCSVXMLJSONController {
         }
         LOGGER.addHandler(fh);
         LOGGER.setUseParentHandlers(false);
+    }
+
+    public ProjectFileReader createReader(String path) {
+        return Utils.createReader(path);
+    }
+
+    public List<Object> readfile(File file, String path) throws FileNotFoundException {
+        ProjectFileReader fileReader = createReader(path);
+        readingDTOList = fileReader.readFile(file);
+        return readingDTOList;
     }
 }
