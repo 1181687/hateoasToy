@@ -15,10 +15,10 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.logging.FileHandler;
-
-import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
+import java.util.logging.Logger;
 
 public class ImportReadingsFromCSVXMLJSONController {
+    private static final Logger LOGGER = Logger.getLogger(ImportReadingsFromCSVXMLJSONController.class.getName());
     private GeographicalAreaList geographicalAreaList;
     private SensorList allSensorInTheGeoAreas;
     private Sensor sensor;
@@ -69,6 +69,7 @@ public class ImportReadingsFromCSVXMLJSONController {
     }
 
     public boolean addReadingToSensorById() {
+        configLogFile();
         boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
