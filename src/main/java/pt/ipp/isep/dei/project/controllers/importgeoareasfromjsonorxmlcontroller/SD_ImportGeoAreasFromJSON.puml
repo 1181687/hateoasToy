@@ -20,13 +20,15 @@ actor AdminUser
 activate AdminUser
 actor AdminUser
 
-AdminUser -> ":ImportGeoAreas\nFromJSONOrXMLUI": 1- importGeoAreasFromJSON
+AdminUser -> ":ImportGeoAreas\nFromJSONOrXMLUI": 1- importGeoAreas
 activate ":ImportGeoAreas\nFromJSONOrXMLUI"
-AdminUser <-- ":ImportGeoAreas\nFromJSONOrXMLUI": 2- pathOfJsonFileRequest
+AdminUser <-- ":ImportGeoAreas\nFromJSONOrXMLUI": 2- pathOFileRequest
 deactivate ":ImportGeoAreas\nFromJSONOrXMLUI"
-AdminUser -> ":ImportGeoAreas\nFromJSONOrXMLUI": 3- pathOfJSONFile
+AdminUser -> ":ImportGeoAreas\nFromJSONOrXMLUI": 3- pathOfFile
 activate ":ImportGeoAreas\nFromJSONOrXMLUI"
-":ImportGeoAreas\nFromJSONOrXMLUI" -> "JSONReader" : 3.1- readJSONFileToList (reader)
+":ImportGeoAreas\nFromJSONOrXMLUI" -> ":ImportGeoAreas\nFromJSONOrXMLController": checkIfFileExistsAndCreateReader
+activate ":ImportGeoAreas\nFromJSONOrXMLController"
+":ImportGeoAreas\nFromJSONOrXMLUI" -> ":ImportGeoAreas\nFromJSONOrXMLController": readFile
 activate "JSONReader"
 ref over "JSONReader"
 parseToGeographicalAreaDTO

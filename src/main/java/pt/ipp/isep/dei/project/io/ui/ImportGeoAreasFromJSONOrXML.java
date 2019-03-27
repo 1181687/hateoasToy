@@ -30,7 +30,7 @@ public class ImportGeoAreasFromJSONOrXML {
             System.out.println("\nERROR: There's no such file with that name.\n");
             return;
         }
-        List<Object> dtoList = controller.readFile(file);
+        List<Object> dtoList = controller.readFile(file, path);
         if (Objects.isNull(dtoList) || dtoList.isEmpty()) {
             System.out.println("\nThe information on the file is not valid to be imported.\n");
             return;
@@ -46,8 +46,8 @@ public class ImportGeoAreasFromJSONOrXML {
 
         // Import confirmation
         String importConfirmation = InputValidator.confirmValidation("Do you want to import these geographic areas and their sensors? (Y/N)");
-        if ("Y".equals(importConfirmation) || "y".equals(importConfirmation)) {
-            if (controller.importGeographicalAreaAndSensors(file)) {
+        if ("Y".equalsIgnoreCase(importConfirmation)) {
+            if (controller.importGeographicalAreaAndSensors()) {
                 System.out.println("\n The file was imported with success.\n");
                 return;
             } else {
