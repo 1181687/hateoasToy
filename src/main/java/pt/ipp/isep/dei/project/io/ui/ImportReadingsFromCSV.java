@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsFromCSVController;
+import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsFromCSVXMLJSONController;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 
 public class ImportReadingsFromCSV {
     private static final Logger LOGGER = Logger.getLogger(ImportReadingsFromCSV.class.getName());
-    private ImportReadingsFromCSVController controller;
+    private ImportReadingsFromCSVXMLJSONController controller;
     private ReadingDTO readingDTO;
     private CSVReader csvReader = new CSVReader();
     /**
@@ -30,7 +30,7 @@ public class ImportReadingsFromCSV {
      * @param geographicalAreaList
      */
     public ImportReadingsFromCSV(GeographicalAreaList geographicalAreaList) {
-        controller = new ImportReadingsFromCSVController(geographicalAreaList);
+        controller = new ImportReadingsFromCSVXMLJSONController(geographicalAreaList);
         readingDTO = ReadingMapper.newReadingDTO();
     }
 
