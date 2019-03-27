@@ -13,7 +13,7 @@ public final class Menu {
 
     public static int usersMenu() {
         StringBuilder content = new StringBuilder();
-        content.append("What type of user are you?");
+        content.append("\nWhat type of user are you?");
         content.append("\n");
         content.append("1-Administrator");
         content.append("\n");
@@ -71,7 +71,7 @@ public final class Menu {
         content.append("\n");
         content.append(RETURN_MENU);
         String label = content.toString();
-        return InputValidator.getIntRange(label, 0, 13);
+        return InputValidator.getIntRange(label, 0, 12);
     }
 
     public static int adminHouseMenu() {

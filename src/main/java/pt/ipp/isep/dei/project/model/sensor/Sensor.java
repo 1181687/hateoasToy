@@ -24,11 +24,11 @@ public class Sensor {
     @JoinColumn
     private List<Reading> listOfReadings = new ArrayList<>();
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn
     private SensorType sensorType;
 
-    @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "location_id")
     private Location location;
     private String units;
@@ -289,7 +289,7 @@ public class Sensor {
     }
 
 
-    public boolean addReading (Reading reading){
+    public boolean addReading(Reading reading) {
         return this.listOfReadings.add(reading);
     }
 

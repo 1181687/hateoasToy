@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 
 import javax.persistence.*;

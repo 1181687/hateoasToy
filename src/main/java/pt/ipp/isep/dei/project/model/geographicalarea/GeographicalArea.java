@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
@@ -29,8 +28,8 @@ public class GeographicalArea {
     @Transient
     private AreaShape areaShape;
 
-    @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn (name = "sensorList_Id")
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "sensorList_Id")
     private SensorList sensorList = new SensorList();
 
     protected GeographicalArea(){

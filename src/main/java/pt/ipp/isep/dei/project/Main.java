@@ -19,7 +19,7 @@ import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
-import pt.ipp.isep.dei.project.model.sensor.*;
+import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.time.LocalDateTime;
@@ -46,18 +46,15 @@ public class Main {
     private static final String WASHING_MACHINE = "WashingMachine";
     private static final String DURATION = "Duration";
     private static final String ENERGY_CONSUMPTION = "Energy Consumption";
-
+    @Autowired
+    SensorRepository sensorRepository;
+    @Autowired
+    GeoAreaRepository geoAreaRepository;
     private House houseEdificioB;
     private PowerSourceTypeList powerSourceTypeList;
     private GeographicalAreaList geographicalAreaList;
     private SensorTypeList sensorTypeList;
     private GeographicalAreaTypeList geographicalAreaTypeList;
-
-    @Autowired
-    SensorRepository sensorRepository;
-    @Autowired
-    GeoAreaRepository geoAreaRepository;
-
 
     public static void main(String[] args) {
 
@@ -105,7 +102,7 @@ public class Main {
         };
     }
 
-    public void data (){
+    public void data() {
 
         String configFile = "Configuration.properties";
 
