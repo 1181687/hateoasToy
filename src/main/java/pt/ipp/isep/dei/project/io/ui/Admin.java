@@ -78,8 +78,8 @@ public class Admin {
                     ui8.run();
                     break;
                 case 9:
-                    ImportGeoAreasFromJSONOrXML ui9 = new ImportGeoAreasFromJSONOrXML(geographicalAreaList,sensorRepository, geoAreaRepository );
-                    ui9.run();
+                    ImportGeoAreasFromJSONOrXML ui9 = new ImportGeoAreasFromJSONOrXML(geographicalAreaList, sensorRepository, geoAreaRepository);
+                    ui9.jsonGeoAreaSensors();
                     break;
                 case 10:
                     ImportReadingsFromCSV ui10 = new ImportReadingsFromCSV(geographicalAreaList, sensorRepository);
