@@ -6,6 +6,7 @@ import pt.ipp.isep.dei.project.GeoAreaRepository;
 import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller.ImportGeoAreasFromJSONOrXMLController;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 
 import java.io.File;
