@@ -48,9 +48,9 @@ public final class ReadingMapper {
         return dto;
     }
 
-    public static ReadingDTO mapToDTO_id_units(String id, LocalDateTime date, double value, String units) {
+    public static ReadingDTO mapToDTOwithIDandUnits(String id, LocalDateTime date, double value, String units) {
         ReadingDTO dto = newReadingDTO();
-        dto.setID(id);
+        dto.setId(id);
         dto.setDateTime(date);
         dto.setValue(value);
         dto.setUnits(units);

@@ -46,15 +46,17 @@ public class Main {
     private static final String WASHING_MACHINE = "WashingMachine";
     private static final String DURATION = "Duration";
     private static final String ENERGY_CONSUMPTION = "Energy Consumption";
-    @Autowired
-    SensorRepository sensorRepository;
-    @Autowired
-    GeoAreaRepository geoAreaRepository;
+
     private House houseEdificioB;
     private PowerSourceTypeList powerSourceTypeList;
     private GeographicalAreaList geographicalAreaList;
     private SensorTypeList sensorTypeList;
     private GeographicalAreaTypeList geographicalAreaTypeList;
+
+
+    @Autowired
+    GeoAreaRepository geoAreaRepository;
+
 
     public static void main(String[] args) {
 

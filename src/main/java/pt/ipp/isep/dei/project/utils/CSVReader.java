@@ -55,14 +55,31 @@ public class CSVReader implements ProjectFileReader {
     }
 
     /**
+     * Method that creates a scanner based on a given file.
+     *
+     * @param file File to be used in the scanner creation.
+     * @return Scanner.
+     */
+    private Scanner createScanner(File file) {
+        Scanner scanner;
+        try {
+            scanner = new Scanner(file);
+
+        } catch (FileNotFoundException e) {
+            scanner = null;
+        }
+        return scanner;
+    }
+
+    /**
      * Method that reads all the content of a CSV file and stores the information in a list.
      *
      * @param file File with the information needed.
      * @return List with lists of Strings corresponding to the information of each line in the file.
      */
     @Override
-    public List<Object> readFile(File file) throws FileNotFoundException {
-        Scanner scanner = new Scanner(file);
+    public List<Object> readFile(File file) {
+        Scanner scanner = createScanner(file);
         List<Object> readingDTOList = new ArrayList<>();
         scanner.nextLine();
         List<List<String>> allLines = new ArrayList<>();
@@ -89,10 +106,9 @@ public class CSVReader implements ProjectFileReader {
                 readingDateTime = zonedDateTime.toLocalDateTime();
             }
             double readingValue = Double.parseDouble(value);
-            ReadingDTO readingDTO = ReadingMapper.mapToDTO_id_units(sensorId, readingDateTime, readingValue, unit);
+            ReadingDTO readingDTO = ReadingMapper.mapToDTOwithIDandUnits(sensorId, readingDateTime, readingValue, unit);
             readingDTOList.add(readingDTO);
         }
-        scanner.close();
         return readingDTOList;
     }
 }

@@ -1,11 +1,9 @@
 package pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller;
 
-import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
@@ -75,14 +73,15 @@ public class ImportReadingsFromCSVXMLJSONController {
         boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
-            Sensor sensor = geographicalAreaList.getSensorById(reading.getID());
+            Sensor sensor = geographicalAreaList.getSensorById(reading.getId());
             if (reading.getUnits().equals("F")) {
                 double celsiusValue = Utils.convertFahrenheitToCelsius(reading.getValue());
                 reading.setValue(Utils.round(celsiusValue, 2));
                 reading.setUnits("C");
             }
-            sensor.addReadingsToList(ReadingMapper.mapToEntity(reading));
-            imported = true;
+            if (sensor.addReading(ReadingMapper.mapToEntity(reading))) {
+                imported = true;
+            }
         }
         return imported;
     }
@@ -114,7 +113,7 @@ public class ImportReadingsFromCSVXMLJSONController {
         return Utils.createReader(path);
     }
 
-    public List<Object> readfile(File file, String path) throws FileNotFoundException {
+    public List<Object> readFile(File file, String path) throws FileNotFoundException {
         ProjectFileReader fileReader = createReader(path);
         readingDTOList = fileReader.readFile(file);
         return readingDTOList;
