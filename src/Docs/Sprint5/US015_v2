@@ -16,33 +16,49 @@ General Criteria:
 Specific Criteria:
 - given - The user (Admin) imports geographical areas and sensors from a XML file.
 - when - The user chooses option "1" from Menu (Administrator), then option "2" (Geographical Area) and then option "9"
-(Import geographical areas and sensors from JSON or XML File). Then User inserts the name of the file to be imported
-(JSONfile.json or DataSet_sprint05_GA.xml). He/She then chooses the option "YES" in "Do you want to import these
-geographic areas and their sensors? (Y/N)"
+(Import geographical areas and sensors from JSON or XML File). Then User inserts the name of the file to be imported.
+ He/She then chooses the option "YES" in "Do you want to import these geographic areas and their sensors? (Y/N)"
 - then:
    * When the user inserts the name of the file the following message appears ("This is the content of the chosen file.")
 with the contents of the file.
-   * When he/she chooses the "Yes" option the following message appears ("The XML file was imported with success.")
+   * When he/she chooses the "Yes" option the following message appears ("The file was imported with success.")
 - but - The following messages are displayed:
 
 "ERROR: There's no such file with that name." - when no file or directory is found when the user inputs the name of the
 file to be imported.
 
-"The information on the file is not valid to be imported." - Data is null (a string in the place of a double or
-vice versa) or the file is empty.
+"The information on the file is not valid to be imported." - Data is null or doesn't have the right format (a string in
+the place of a double or vice versa) or the file is empty.
 
 "The file is already imported."- when you try to import the contents of the file after that have been already imported.
 
-"The file was not imported."- when the file cannot be imported.
+i"The file was not imported."- when the file cannot be imported.
 
 
+json
+GEO
+id- nao pode existir igual
+tipo- tem que ser um tipo valido
+descr
+localziçao (alt lat long --tem que ser double e estar entre valores corretos-180a 180 e -90 a 90)
+
+
+SENSOR
+id- nao pode existir igual
+tipo- tem que ser um tipo valido
+stardate- localDate
+Unidades - ver se corresponde ao tipo de sensor (temo so aceita celsius, rainfall so aceita mm)
+localziçao (alt lat long --tem que ser double e estar entre valores corretos-180a 180 e -90 a 90)
+
+xml e json
+- breca se algumas das cs acima n bater certo
 
 
 Test Criteria:
 - All unit tests with "Process finished with exit code 0" message.
 - When user chooses option "1" from Menu, then option "2" and then option "9", should not accept letters, symbols, or any
   number that's not displayed in the menu.
-- When He/She then chooses the option "Y" or "N" in "Do you want to import these geographic areas and their sensors? (Y/N)",
+- When He/She then chooses the option "Y" or "N" in "Do you want to import these geographical areas and their sensors? (Y/N)",
 should not accept letters, symbols, or any number unless its a "Y" or "y" or a "N" or a "n".
 
 
@@ -56,15 +72,14 @@ Test_scenario2:
 
 
 
+
+//sensors
 Test_scenario3:
-- Input data: the file has only readings that don't the right type of LocalDateTime format (or LocalDate in the case of Rainnfall Readings).
+- Input data: the file has some Sensor's that don't have the right format of LocalDate.
 - Expected result: Warnings regarding errors with the importation and the message "The information on the file is not valid to be imported."
 
-
-
-
 Test_scenario4:
-- Input data: the csv file has only readings that don't have double format measurements.
+- Input data: the file has only readings that don't have double format measurements.
 - Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
 
 Test_scenario5:
@@ -137,6 +152,12 @@ that are imported at the same time (in a single method) instead of importing the
 - Only the geographical areas and sensors that have all attributes are imported.
 - Sensors with ID containing "RF" are assumed they are rainfall sensors, so, the reading only have a LocalDate. Since the reading's
 objects, all have LocalDateTime, the readings where imported after parse the Localdate to LocalDateTime.
+- Rainfall Sensor units have to be in l/m2 (liter per square meter) or mm (milliliter).
+- Temperature sensor units have to be in C (celsius).
+
+
+
+us 20
 - Sensors of Temperature have readings registered in Celsius units. So, if the readings in the file are in Kelvins (K),
 they were converted to Celsius and then imported.
 
