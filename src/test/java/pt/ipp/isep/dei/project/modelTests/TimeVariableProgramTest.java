@@ -10,7 +10,7 @@ import pt.ipp.isep.dei.project.model.devices.TimeVariableProgramSpecs;
 public class TimeVariableProgramTest {
 
     @Test
-    void testGetProgramSpecs() {
+    public void testGetProgramSpecs() {
         //Arrange
         String name = "Program 1";
         ProgramSpecs programSpecs = new TimeVariableProgramSpecs();
@@ -23,7 +23,7 @@ public class TimeVariableProgramTest {
     }
 
     @Test
-    void testSetProgramAttributes_True() {
+    public void testSetProgramAttributes_True() {
         //Arrange
         String name = "Program 1";
         ProgramSpecs programSpecs = new TimeVariableProgramSpecs();
@@ -35,7 +35,7 @@ public class TimeVariableProgramTest {
     }
 
     @Test
-    void testSetProgramAttributes_False() {
+    public void testSetProgramAttributes_False() {
         //Arrange
         String name = "Program 1";
         ProgramSpecs programSpecs = new TimeVariableProgramSpecs();
@@ -47,7 +47,7 @@ public class TimeVariableProgramTest {
     }
 
     @Test
-    void testSetProgramAttributeprogramNominalPower_NullChar() {
+    public void testSetProgramAttributeprogramNominalPower_NullChar() {
         //Arrange
         String name = "Program 1";
         ProgramSpecs programSpecs = new TimeVariableProgramSpecs();
@@ -59,7 +59,7 @@ public class TimeVariableProgramTest {
     }
 
     @Test
-    void testSetProgramAttributeTime_NullChar() {
+    public void testSetProgramAttributeTime_NullChar() {
         //Arrange
         String name = "Program 1";
         ProgramSpecs programSpecs = new TimeVariableProgramSpecs();

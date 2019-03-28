@@ -422,7 +422,7 @@ public class TelevisionSpecsTest {
     }
 
     @Test
-    void testIfDeviceIsProgrammableFalse() {
+    public void testIfDeviceIsProgrammableFalse() {
         //Arrange
         //Act
         boolean result = television.getSpecs().isProgrammable();
@@ -431,7 +431,7 @@ public class TelevisionSpecsTest {
     }
 
     @Test
-    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
+    public void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
         //Arrange
         television.getSpecs().asProgrammable();
         //Act

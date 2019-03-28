@@ -25,7 +25,7 @@ public class TimeConstantProgramSpecsTest {
         //Act
         double result = specs.getDuration();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -36,7 +36,7 @@ public class TimeConstantProgramSpecsTest {
         //Act
         double result = specs.getEnergyConsumption();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
 

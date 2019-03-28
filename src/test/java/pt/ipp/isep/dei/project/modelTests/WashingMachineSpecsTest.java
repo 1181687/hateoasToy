@@ -79,7 +79,7 @@ public class WashingMachineSpecsTest {
         double result = washingMachineSpecs.getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
 
@@ -120,7 +120,7 @@ public class WashingMachineSpecsTest {
         double result = washingMachineSpecs.getEnergyConsumptionInADay();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test

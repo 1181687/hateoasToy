@@ -26,7 +26,7 @@ public class TimeVariableProgramSpecsTest {
         //Act
         double result = specs.getTime();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class TimeVariableProgramSpecsTest {
         //Act
         double result = specs.getProgramNominalPower();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
