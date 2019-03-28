@@ -20,7 +20,7 @@ public class DeactivateSensorFromGeoAreaController {
     public List<GeographicalAreaDTO> listOfGeographicalAreas() {
         List<GeographicalAreaDTO> dtoList = new ArrayList<>();
         for (GeographicalArea geoArea : this.geoAreaList.getGeoAreaList()) {
-            dtoList.add(GeographicalAreaMapper.mapToDTO(geoArea));
+            dtoList.add(GeographicalAreaMapper.mapToDTOwithSensors(geoArea));
         }
         return dtoList;
     }

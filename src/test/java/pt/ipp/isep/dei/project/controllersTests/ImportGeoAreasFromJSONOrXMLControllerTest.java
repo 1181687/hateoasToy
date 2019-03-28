@@ -63,7 +63,7 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
         double latitude = -516;
         double longitude = 12;
         double altitude = 156;
-        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTO(id, description, type, width, length, latitude, longitude, altitude);
+        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTOwithoutSensors(id, description, type, width, length, latitude, longitude, altitude);
 
         // Geographical Area List
         GeographicalAreaList geoList = new GeographicalAreaList();

@@ -61,7 +61,7 @@ public class GeographicalAreaMapperTest {
         GeographicalArea expectedResult = GeographicalAreaMapper.mapToEntity(geographicalAreaDTO);
 
         //Act
-        GeographicalAreaDTO anotherArea = GeographicalAreaMapper.mapToDTO(id, description, geographicalAreaType, width, length, latitude, longitude, altitude);
+        GeographicalAreaDTO anotherArea = GeographicalAreaMapper.mapToDTOwithoutSensors(id, description, geographicalAreaType, width, length, latitude, longitude, altitude);
         GeographicalArea result = GeographicalAreaMapper.mapToEntity(anotherArea);
 
         //Assert
@@ -103,7 +103,7 @@ public class GeographicalAreaMapperTest {
     @Test
     void testMapToDTO_tryingToCreateBasedOnAReading_ShouldReturnTrue() {
         // Act
-        boolean result = GeographicalAreaMapper.mapToDTO(porto).getId().equalsIgnoreCase(portoDTO.getId());
+        boolean result = GeographicalAreaMapper.mapToDTOwithSensors(porto).getId().equalsIgnoreCase(portoDTO.getId());
 
         // Assert
         assertTrue(result);
@@ -115,7 +115,7 @@ public class GeographicalAreaMapperTest {
     @Test
     void testMapToDTO_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
         // Act
-        GeographicalAreaDTO result = GeographicalAreaMapper.mapToDTO(null);
+        GeographicalAreaDTO result = GeographicalAreaMapper.mapToDTOwithSensors(null);
 
         // Assert
         assertNull(result);

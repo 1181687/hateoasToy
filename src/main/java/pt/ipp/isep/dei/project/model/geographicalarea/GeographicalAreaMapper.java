@@ -25,26 +25,21 @@ public final class GeographicalAreaMapper {
     /**
      * Method that creates a GeoAreaDTO based on a set of information.
      *
-     * @param geoAreaId            Id to be used.
-     * @param description          Description to be used.
-     * @param geographicalAreaType Type to be used.
-     * @param width                Width to be used.
-     * @param length               Length to be used.
-     * @param latitude             Latitude to be used.
-     * @param longitude            Longitude to be used.
-     * @param elevation            Elevation to be used.
+     * @param geographicalArea geoARea
      * @return GeoAreaDTO.
      */
-    public static GeographicalAreaDTO mapToDTO(String geoAreaId, String description, String geographicalAreaType, double width, double length, double latitude, double longitude, double elevation) {
+    public static GeographicalAreaDTO mapToDTOwithoutSensors(GeographicalArea geographicalArea) {
+
+
         GeographicalAreaDTO geoDTO = new GeographicalAreaDTO();
-        geoDTO.setId(geoAreaId);
-        geoDTO.setDescription(description);
-        geoDTO.setType(geographicalAreaType);
-        geoDTO.setWidth(width);
-        geoDTO.setLength(length);
-        geoDTO.setLatitude(latitude);
-        geoDTO.setLongitude(longitude);
-        geoDTO.setElevation(elevation);
+        geoDTO.setId(geographicalArea.getId());
+        geoDTO.setDescription(geographicalArea.getDescription());
+        geoDTO.setType(geographicalArea.getGeoAreaType().getStringOfTypeOfGeoArea());
+        geoDTO.setWidth(geographicalArea.getAreaShape().getWidth());
+        geoDTO.setLength(geographicalArea.getAreaShape().getLength());
+        geoDTO.setLatitude(geographicalArea.getLocation().getLatitude());
+        geoDTO.setLongitude(geographicalArea.getLocation().getLongitude());
+        geoDTO.setElevation(geographicalArea.getLocation().getElevation());
         return geoDTO;
     }
 
@@ -54,7 +49,7 @@ public final class GeographicalAreaMapper {
      * @param geographicalArea GeoArea to be used.
      * @return GeoAreaDTO.
      */
-    public static GeographicalAreaDTO mapToDTO(GeographicalArea geographicalArea) {
+    public static GeographicalAreaDTO mapToDTOwithSensors(GeographicalArea geographicalArea) {
         if (Objects.isNull(geographicalArea)) {
             return null;
         }

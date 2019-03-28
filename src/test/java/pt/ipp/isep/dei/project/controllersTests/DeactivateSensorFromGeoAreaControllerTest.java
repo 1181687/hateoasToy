@@ -36,7 +36,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         geographicalAreaList.addGeoArea(porto);
 
         // Geographical Area DTO
-        portoDTO = GeographicalAreaMapper.mapToDTO(porto);
+        portoDTO = GeographicalAreaMapper.mapToDTOwithSensors(porto);
 
         // Sensors
         SensorType temperature = new SensorType("temperature");
@@ -46,7 +46,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         porto.addSensor(temperatureSensor);
 
         // SensorDTOs
-        temperatureSensorDTO = SensorMapper.mapToDTO(temperatureSensor);
+        temperatureSensorDTO = SensorMapper.mapToDTOwithSensors(temperatureSensor);
 
         // Controller
         this.controller = new DeactivateSensorFromGeoAreaController(geographicalAreaList);
