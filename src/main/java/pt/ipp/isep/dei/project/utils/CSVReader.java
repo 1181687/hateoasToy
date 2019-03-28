@@ -89,7 +89,7 @@ public class CSVReader implements ProjectFileReader {
                 readingDateTime = zonedDateTime.toLocalDateTime();
             }
             double readingValue = Double.parseDouble(value);
-            ReadingDTO readingDTO = ReadingMapper.mapToDTO_id_units(sensorId, readingDateTime, readingValue, unit);
+            ReadingDTO readingDTO = ReadingMapper.mapToDTOwithIDandUnits(sensorId, readingDateTime, readingValue, unit);
             readingDTOList.add(readingDTO);
         }
         scanner.close();

@@ -36,7 +36,7 @@ class CSVReaderTest {
         file = new File(path);
 
         ReadingDTO readingDTO = new ReadingDTO();
-        readingDTO.setID("TT12346");
+        readingDTO.setId("TT12346");
         LocalDateTime dateTime = LocalDateTime.of(2018, 12, 31, 2, 0, 0);
         readingDTO.setDateTime(dateTime);
         readingDTO.setValue(13.8);

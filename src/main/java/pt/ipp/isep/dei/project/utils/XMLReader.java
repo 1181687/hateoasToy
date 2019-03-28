@@ -77,7 +77,7 @@ public class XMLReader implements ProjectFileReader {
             }
             Double value = Double.parseDouble(getTagValue("value", element));
             String unit = getTagValue("unit", element);
-            readingDTO = ReadingMapper.mapToDTO_id_units(id, dateTime, value, unit);
+            readingDTO = ReadingMapper.mapToDTOwithIDandUnits(id, dateTime, value, unit);
         }
         return readingDTO;
     }

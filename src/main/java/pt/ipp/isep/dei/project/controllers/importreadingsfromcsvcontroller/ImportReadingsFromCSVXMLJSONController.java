@@ -1,11 +1,9 @@
 package pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller;
 
-import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
@@ -75,7 +73,7 @@ public class ImportReadingsFromCSVXMLJSONController {
         boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
-            Sensor sensor = geographicalAreaList.getSensorById(reading.getID());
+            Sensor sensor = geographicalAreaList.getSensorById(reading.getId());
             if (reading.getUnits().equals("F")) {
                 double celsiusValue = Utils.convertFahrenheitToCelsius(reading.getValue());
                 reading.setValue(Utils.round(celsiusValue, 2));
