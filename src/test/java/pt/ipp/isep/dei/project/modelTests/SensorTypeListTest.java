@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomList;
@@ -10,12 +10,12 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class SensorTypeListTest {
+public class SensorTypeListTest {
 
     @Test
-    void testarContrutorNaoVazio() {
+    public void testarContrutorNaoVazio() {
         //Arrange
         List<SensorType> lista = new ArrayList<>();
         SensorType tipo1 = new SensorType("Humidade");
@@ -30,7 +30,7 @@ class SensorTypeListTest {
     }
 
     @Test
-    void testarGetListaTipoSensores() {
+    public void testarGetListaTipoSensores() {
         //Arrange
         List<SensorType> lista = new ArrayList<>();
         SensorType tipo1 = new SensorType("Humidade");
@@ -48,7 +48,7 @@ class SensorTypeListTest {
     }
 
     @Test
-    void testarAdicionarTipoDeSensorAListaPositivo() {
+    public void testarAdicionarTipoDeSensorAListaPositivo() {
         //Arrange
         SensorTypeList lista = new SensorTypeList();
         String novoTipo = "Humidade";
@@ -60,7 +60,7 @@ class SensorTypeListTest {
     }
 
     @Test
-    void testarAdicionarTipoDeSensorAListaNegativo() {
+    public void testarAdicionarTipoDeSensorAListaNegativo() {
         //Arrange
         SensorTypeList lista = new SensorTypeList();
         String novoTipo = "Humidade";
@@ -73,7 +73,7 @@ class SensorTypeListTest {
     }
 
     @Test
-    void testarNovoTipoSensorMesmoTipo() {
+    public void testarNovoTipoSensorMesmoTipo() {
         //Arrange
         SensorTypeList lista = new SensorTypeList();
         String novoTipo = "Humidade";
@@ -87,7 +87,7 @@ class SensorTypeListTest {
     }
 
     @Test
-    void testarNovoTipoSensorOutroTipoTrue() {
+    public void testarNovoTipoSensorOutroTipoTrue() {
         //Arrange
         SensorTypeList lista = new SensorTypeList();
         String novoTipo = "Humidade";
@@ -101,7 +101,7 @@ class SensorTypeListTest {
     }
 
     @Test
-    void testarGetTipoSensorPorPosicao() {
+    public void testarGetTipoSensorPorPosicao() {
         //Arrange
         List<SensorType> lista = new ArrayList<>();
         SensorType tipo1 = new SensorType("Humidade");
@@ -117,7 +117,7 @@ class SensorTypeListTest {
     }
 
     @Test
-    void testarGetTipoSensorPorPosicaoComUmTipoApenas() {
+    public void testarGetTipoSensorPorPosicaoComUmTipoApenas() {
         //Arrange
         List<SensorType> lista = new ArrayList<>();
         SensorType tipo1 = new SensorType("Humidade");
@@ -131,7 +131,7 @@ class SensorTypeListTest {
     }
 
     @Test
-    void testarGetTipoSensorPorPosicaoMaxima() {
+    public void testarGetTipoSensorPorPosicaoMaxima() {
         //Arrange
         List<SensorType> lista = new ArrayList<>();
         SensorType tipo1 = new SensorType("Humidade");
@@ -150,7 +150,7 @@ class SensorTypeListTest {
     }
 
     @Test
-    void testDisplayListOfSensorsType() {
+    public void testDisplayListOfSensorsType() {
         // Arrange
         // RoomList with two rooms
         RoomList roomList = new RoomList();
@@ -178,7 +178,7 @@ class SensorTypeListTest {
     }
 
     @Test
-    void checkIfTheListOfSensorTypeIsEmptyPositive() {
+    public void checkIfTheListOfSensorTypeIsEmptyPositive() {
         // Arrange
         // RoomList with two rooms
         RoomList roomList = new RoomList();
@@ -198,7 +198,4 @@ class SensorTypeListTest {
         // Assert
         assertTrue(result);
     }
-
-
-
-}*/
+}
