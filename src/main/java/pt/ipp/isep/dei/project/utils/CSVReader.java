@@ -60,7 +60,7 @@ public class CSVReader implements ProjectFileReader {
      * @param file File to be used in the scanner creation.
      * @return Scanner.
      */
-    private Scanner createScanner(File file) {
+    public Scanner createScanner(File file) {
         Scanner scanner;
         try {
             scanner = new Scanner(file);

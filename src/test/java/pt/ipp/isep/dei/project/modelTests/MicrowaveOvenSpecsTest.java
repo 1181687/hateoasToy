@@ -1,5 +1,5 @@
 package pt.ipp.isep.dei.project.modelTests;
-
+/*
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -319,4 +319,4 @@ public class MicrowaveOvenSpecsTest {
         Assertions.assertEquals(expectedResult, result);
     }
 
-}
+}*/

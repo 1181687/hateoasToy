@@ -1,5 +1,5 @@
 package pt.ipp.isep.dei.project.controllersTests;
-
+/*
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetRoomListController;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -85,4 +85,4 @@ class GetRoomListControllerTest {
         assertFalse(result);
     }
 
-}
+}*/
