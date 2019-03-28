@@ -26,14 +26,14 @@ AdminUser <-- ":ImportGeoAreas\nFromJSONOrXMLUI": 2- pathOFileRequest
 deactivate ":ImportGeoAreas\nFromJSONOrXMLUI"
 AdminUser -> ":ImportGeoAreas\nFromJSONOrXMLUI": 3- pathOfFile
 activate ":ImportGeoAreas\nFromJSONOrXMLUI"
-":ImportGeoAreas\nFromJSONOrXMLUI" -> ":ImportGeoAreas\nFromJSONOrXMLController": checkIfFileExistsAndCreateReader
+":ImportGeoAreas\nFromJSONOrXMLUI" -> ":ImportGeoAreas\nFromJSONOrXMLController": 3.1- checkIfFileExistsAndCreateReader()
 activate ":ImportGeoAreas\nFromJSONOrXMLController"
-":ImportGeoAreas\nFromJSONOrXMLUI" -> ":ImportGeoAreas\nFromJSONOrXMLController": readFile
+":ImportGeoAreas\nFromJSONOrXMLUI" -> ":ImportGeoAreas\nFromJSONOrXMLController": 3.2- readFile()
 activate "JSONReader"
 ref over "JSONReader"
 parseToGeographicalAreaDTO
 end
-":ImportGeoAreas\nFromJSONOrXMLUI" <-- "JSONReader" : 3.2- ListOfGeographicalAreasDTO
+":ImportGeoAreas\nFromJSONOrXMLUI" <-- "JSONReader" : 3.3- ListOfGeographicalAreasDTO
 deactivate "JSONReader"
 AdminUser <-- ":ImportGeoAreas\nFromJSONOrXMLUI": 4- contentOfFile + confirmationMessage (Y/N)
 deactivate ":ImportGeoAreas\nFromJSONOrXMLUI"
