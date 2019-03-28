@@ -32,7 +32,7 @@ public class XMLReader implements ProjectFileReader {
         // empty
     }
 
-    public static List<Object> readXMLFileToList(Document doc) {
+    private static List<Object> readXMLFileToList(Document doc) {
 
         List<Object> geographicalAreaDTOList = new ArrayList<>();
 
@@ -47,7 +47,7 @@ public class XMLReader implements ProjectFileReader {
     }
 
     @SuppressWarnings("unchecked")
-    public static List<Object> readXMLFileToListReadings(Document doc) {
+    private static List<Object> readXMLFileToListReadings(Document doc) {
 
         List<Object> readingDTOList = new ArrayList<>();
 
