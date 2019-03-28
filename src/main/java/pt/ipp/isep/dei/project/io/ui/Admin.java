@@ -82,7 +82,7 @@ public class Admin {
                     ui9.jsonGeoAreaSensors();
                     break;
                 case 10:
-                    ImportReadingsFromCSV ui10 = new ImportReadingsFromCSV(geographicalAreaList, sensorRepository);
+                    ImportReadings ui10 = new ImportReadings(geographicalAreaList);
                     ui10.run();
                     break;
                 case 11:
@@ -94,7 +94,7 @@ public class Admin {
                     ui12.run();
                     break;
                 case 13:
-                    ImportReadingsFromJSONCSVXML ui13 = new ImportReadingsFromJSONCSVXML(geographicalAreaList);
+                    ImportReadings ui13 = new ImportReadings(geographicalAreaList);
                     ui13.run();
                     break;
             }

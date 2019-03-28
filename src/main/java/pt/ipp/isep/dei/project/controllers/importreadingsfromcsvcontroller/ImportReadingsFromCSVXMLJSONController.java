@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
@@ -74,6 +75,9 @@ public class ImportReadingsFromCSVXMLJSONController {
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
             sensor = allSensorInTheGeoAreas.getSensorById(reading.getID());
+            if(Objects.isNull(sensor) || isDateTimeBeforeSensorStartingDate(reading.getDateTime())){
+                continue;
+            }
             if (reading.getUnits().equals("F")) {
                 double celsiusValue = Utils.convertFahrenheitToCelsius(reading.getValue());
                 reading.setValue(Utils.round(celsiusValue, 2));

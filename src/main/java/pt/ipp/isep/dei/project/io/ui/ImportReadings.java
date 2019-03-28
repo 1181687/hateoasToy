@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
+import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsFromCSVXMLJSONController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 
@@ -7,7 +8,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-public class ImportReadingsFromJSONCSVXML {
+public class ImportReadings {
     private ImportReadingsFromCSVXMLJSONController controller;
 
     /**
@@ -15,7 +16,7 @@ public class ImportReadingsFromJSONCSVXML {
      *
      * @param geographicalAreaList
      */
-    public ImportReadingsFromJSONCSVXML(GeographicalAreaList geographicalAreaList) {
+    public ImportReadings(GeographicalAreaList geographicalAreaList) {
         controller = new ImportReadingsFromCSVXMLJSONController(geographicalAreaList);
     }
 
@@ -23,7 +24,7 @@ public class ImportReadingsFromJSONCSVXML {
     public void run() throws FileNotFoundException {
         String pathFile = InputValidator.getString("Please specify the name of the file you would like to import (extensions accepted: json, csv, xml).");
         if (!controller.isValidFormat(pathFile)) {
-            System.out.println("Error. Please insert a valid format.\n");
+            System.out.println("\nERROR: Please insert a valid format.\n");
             return;
         }
         File file = new File(pathFile);
@@ -39,6 +40,12 @@ public class ImportReadingsFromJSONCSVXML {
         }
         String importConfirmation = InputValidator.confirmValidation("Do you really want to import the readings? (Y/N)\n");
         if ("Y".equals(importConfirmation) || "y".equals(importConfirmation)) {
+            try {
+                controller.addReadingToSensorById();
+            } catch (Exception e) {
+                System.out.println("Sorry! The file doesn't contain valid readings. It was not possible to import them.");
+                return;
+            }
             if (controller.addReadingToSensorById()) {
                 System.out.println("\n The file was imported with success.\n");
                 return;
