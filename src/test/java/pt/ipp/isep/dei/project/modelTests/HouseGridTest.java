@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -15,7 +15,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class HouseGridTest {
     private House house;
@@ -30,7 +30,7 @@ public class HouseGridTest {
     private Device electricWaterHeater;
     private Map<LocalDateTime, Double> map;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -368,54 +368,55 @@ public class HouseGridTest {
         assertFalse(result);
     }
 
-    @Test
-    public void testValidateNameWithEmptyNameShouldThrowException() {
-        //Arrange
-        String name = " ";
+    /*
+        @Test
+        public void testValidateNameWithEmptyNameShouldThrowException() {
+            //Arrange
+            String name = " ";
 
-        //Act
-        Throwable exception = assertThrows(RuntimeException.class, () ->
-                new HouseGrid(name)
-        );
-        //Assert
-        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
-    }
+            //Act
+            Throwable exception = assertThrows(RuntimeException.class, () ->
+                    new HouseGrid(name)
+            );
+            //Assert
+            assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+        }
 
-    @Test
-    public void testValidateNameWithNullNameShouldThrowException() {
-        //Act
-        Throwable exception = assertThrows(RuntimeException.class, () ->
-                new HouseGrid(null)
-        );
-        //Assert
-        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
-    }
+        @Test
+        public void testValidateNameWithNullNameShouldThrowException() {
+            //Act
+            Throwable exception = assertThrows(RuntimeException.class, () ->
+                    new HouseGrid(null)
+            );
+            //Assert
+            assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+        }
 
-    @Test
-    public void testConstructorWithEmptyNameShouldThrowException() {
-        //Arrange
-        String name = "";
+        @Test
+        public void testConstructorWithEmptyNameShouldThrowException() {
+            //Arrange
+            String name = "";
 
-        //Act
-        Throwable exception = assertThrows(RuntimeException.class, () ->
-                new HouseGrid(name)
-        );
+            //Act
+            Throwable exception = assertThrows(RuntimeException.class, () ->
+                    new HouseGrid(name)
+            );
 
-        //Assert
-        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
-    }
+            //Assert
+            assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+        }
 
-    @Test
-    public void testConstructorWithNullNameShouldThrowException() {
-        //Act
-        Throwable exception = assertThrows(RuntimeException.class, () ->
-                new HouseGrid(null)
-        );
+        @Test
+        public void testConstructorWithNullNameShouldThrowException() {
+            //Act
+            Throwable exception = assertThrows(RuntimeException.class, () ->
+                    new HouseGrid(null)
+            );
 
-        //Assert
-        assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
-    }
-
+            //Assert
+            assertEquals("Please enter a valid name. Name should not be empty", exception.getMessage());
+        }
+    */
     @Test
     public void testGetNameToString() {
         // Arrange
@@ -486,7 +487,7 @@ public class HouseGridTest {
 
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.00001);
     }
 
     @Test
@@ -530,4 +531,3 @@ public class HouseGridTest {
 
     }
 }
-*/
