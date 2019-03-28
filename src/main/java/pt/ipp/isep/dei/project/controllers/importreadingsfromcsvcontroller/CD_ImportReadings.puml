@@ -10,46 +10,66 @@ skinparam class {
 
 hide circle
 
-ImportReadings "1" -> "1" ImportReadingsController
-ImportReadingsController "1" -> "1" GeographicalAreaList
+ImportReadings "1" --> "1" ImportReadingsController
+ImportReadingsController "1" -right-> "1" GeographicalAreaList
+ImportReadingsController "1" --> "1" ReadingMapper :uses
 ImportReadingsController "1" -> "1" SensorList
 ImportReadingsController "1" -> "1" Sensor
-ImportReadingsController "1" -> "1" ProjectFileReader
-ImportReadingsController "1" -> "1" ReadingMapper :uses
+ImportReadingsController "1" -> "1" "<<ProjectFileReader>>"
 ReadingMapper "1" -> "1" ReadingDTO : creates
-ImportReadingsController "1" -down-> "1" GeographicalAreaList
-ImportReadingsController "1" -> "1" SensorList
-ImportReadingsController "1" -> "1" Sensor
-GeographicalAreaList "1" --> "0*" SensorList
-SensorList "1" -left-> "0*" Sensor
+GeographicalAreaList "1" -> "*" SensorList
+SensorList "1" -> "0*" Sensor
+XMLReader ---* "<<ProjectFileReader>>" : implements
+CSVReader ---* "<<ProjectFileReader>>" : implements
+JSONReader ---* "<<ProjectFileReader>>" : implements
+XMLReader -> ReadingMapper : uses
+CSVReader -> ReadingMapper : uses
+JSONReader -> ReadingMapper : uses
 
-Class ImportReadingsFromCSVUI {
--controller: ImportReadingsFromCSVController
--readingDTO: ReadingDTO
+Class ImportReadings {
+-controller: ImportReadingsController
 +run()
-+checkIfFileExistsAndCreateScanner()
-+checkDateTimeAndStoreIt()
-+checkValueAndStoreIt()
-+storeNotImportedReadings()
-+readLinesAndImportReadings()
 }
 
-Class ImportReadingsFromCSVController {
+Class ImportReadingsController {
 -geographicalAreaList: GeographicalAreaList
 -allSensorInTheGeoAreas: SensorList
 -sensor: Sensor
+-readingDTOList : List<Object>
++createReader()
++readFile()
++importReadings()
 +checkIfSensorExistsById()
-+addReadingToSensor()
++isDateTimeBeforeSensorStartingDate()
+}
+
+
+Class XMLReader {
+-readerName : String
++readFile()
++getTypeName()w
+-readReadingsFile()
+-getReadingDTO()
+-getTagValue()
+-getTag()
 }
 
 Class ReadingMapper {
-+newReadingDTO()
 +mapToEntity()
 +mapToDTO()
 }
-
 Class CSVReader {
-+parseLine()
+-readerName : String
++readFile()
++getTypeName()
+-parseLine()
+}
+
+Class JSONReader {
+-readerName : String
++readFile()
++getTypeName()
+-parseReadings()
 }
 
 Class GeographicalAreaList {
@@ -67,15 +87,27 @@ Class Sensor {
 -id: String;
 -startingDate LocalDateTime
 -listOfReadings: List<Reading>
-+addReadingsToList()
++addReading()
 }
 
 Class ReadingDTO {
+-id: String
 -value: double
 -dateTime: LocalDateTime
+-unit: String
 +getValue()
 +setValue()
 +getDateTime()
 +setDateTime()
++getId()
++setId()
++getUnit()
++setUnit()
+}
+
+
+Interface "<<ProjectFileReader>>" {
++getTypeName()
++readFile()
 }
 @enduml

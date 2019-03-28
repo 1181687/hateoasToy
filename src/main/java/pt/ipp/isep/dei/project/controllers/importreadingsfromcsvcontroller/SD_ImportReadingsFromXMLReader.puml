@@ -26,11 +26,18 @@ activate "ui : ImportReadings"
 deactivate "ui : ImportReadings"
 AdminUser -> "ui : ImportReadings": 3 - File path
 activate "ui : ImportReadings"
-"ui : ImportReadings" -> "ctrl : ImportReadings\nController": 3.1 - readFile(file)
+"ui : ImportReadings" -> "ctrl : ImportReadings\nController": 3.1 - readFile(file, path)
 activate "ctrl : ImportReadings\nController"
-"ctrl : ImportReadings\nController" -> "reader : XMLReader": 3.1.1 - readFile(file)
+"ctrl : ImportReadings\nController" -> "reader : XMLReader": 3.1.1 - createReader(path)
 activate "reader : XMLReader"
-"reader : XMLReader" --> "ctrl : ImportReadings\nController": 3.1.2 - readingDTOs
+"reader : XMLReader" --> "ctrl : ImportReadings\nController": 3.1.2 - reader
+deactivate "reader : XMLReader"
+"ctrl : ImportReadings\nController" -> "reader : XMLReader": 3.1.3 - readFile(file)
+activate "reader : XMLReader"
+ref over "reader : XMLReader"
+readFile
+end
+"reader : XMLReader" --> "ctrl : ImportReadings\nController": 3.1.4 - readingDTOs
 deactivate "reader : XMLReader"
 "ctrl : ImportReadings\nController" --> "ui : ImportReadings": 3.2 - readingDTOs
 deactivate "ctrl : ImportReadings\nController"

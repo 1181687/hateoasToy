@@ -8,8 +8,7 @@ import pt.ipp.isep.dei.project.model.ReadingMapper;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ReadingMapperTest {
     private ReadingDTO readingDTO;
@@ -25,6 +24,8 @@ class ReadingMapperTest {
         LocalDateTime dateTime = LocalDateTime.of(2019, 3, 11, 0, 0, 0);
         readingDTO.setDateTime(dateTime);
         readingDTO.setValue(10);
+        readingDTO.setId("TT123");
+        readingDTO.setUnits("C");
 
         // Reading
         reading = new Reading(10, dateTime);
@@ -85,5 +86,17 @@ class ReadingMapperTest {
 
         // Assert
         assertNull(result);
+    }
+
+    @Test
+    void testMapToDTO_id_units_tryingToTestTheSets_IDandUnits() {
+        // act
+        String id = "TT123";
+        String units = "C";
+
+        // assert
+        assertEquals(id, readingDTO.getId());
+        assertEquals(units, readingDTO.getUnits());
+
     }
 }

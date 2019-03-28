@@ -150,7 +150,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                     dateTime = zonedDateTimeateTime.toLocalDateTime();
                 }
                 double value = object.get("value").getAsDouble();
-                ReadingDTO readingDTO = ReadingMapper.mapToDTO_id_units(sensorID, dateTime, value, readingUnit);
+                ReadingDTO readingDTO = ReadingMapper.mapToDTOwithIDandUnits(sensorID, dateTime, value, readingUnit);
                 readingList.add(readingDTO);
             }
         }
