@@ -31,7 +31,7 @@ public class ImportReadingsFromJSONCSVXML {
             System.out.println("\nERROR: There's no such file with that name.\n");
             return;
         }
-        List<Object> readings = controller.readfile(file, pathFile);
+        List<Object> readings = controller.readFile(file, pathFile);
         // Import confirmation
         if (readings.isEmpty()) {
             System.out.println("Sorry! The file is empty.");

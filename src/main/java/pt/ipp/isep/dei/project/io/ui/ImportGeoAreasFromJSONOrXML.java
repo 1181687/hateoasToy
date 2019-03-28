@@ -11,7 +11,6 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,12 +33,9 @@ public class ImportGeoAreasFromJSONOrXML {
         // Write the path
         String path = InputValidator.getString("Please specify the name of the file to import.");
         File file = new File(path);
-        FileReader reader = checkIfFileExistsAndCreateFileReader(file);
-
-        //this.reader = controller.createReader(path);
 
 
-        if (Objects.isNull(reader)) {
+        if (!file.exists()) {
             System.out.println("\nERROR: There's no such file with that name.\n");
             return;
         }
@@ -81,24 +77,9 @@ public class ImportGeoAreasFromJSONOrXML {
                 return;
             }
         } else {
-            System.out.println("The JSON file was not imported. \n");
+            System.out.println("The file was not imported. \n");
             return;
         }
     }
 
-    /**
-     * Method that checks if a file is valid (if it exists) and creates a scanner based on it.
-     *
-     * @param fileJSON Path of the JSON file.
-     * @return Null scanner if there's no such file with the specified name; or a valid scanner if the file exists.
-     */
-    public FileReader checkIfFileExistsAndCreateFileReader(File fileJSON) {
-        FileReader file;
-        try {
-            file = new FileReader(fileJSON);
-        } catch (FileNotFoundException e) {
-            file = null;
-        }
-        return file;
-    }
 }
