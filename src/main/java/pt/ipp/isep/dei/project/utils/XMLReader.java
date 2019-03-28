@@ -32,6 +32,12 @@ public class XMLReader implements ProjectFileReader {
         // empty
     }
 
+    /**
+     * method that receives a doc (in this case a XML file and converts it to a List of objects
+     *
+     * @param doc document
+     * @return list of geographical areas DTO List
+     */
     private static List<Object> readXMLFileToList(Document doc) {
 
         List<Object> geographicalAreaDTOList = new ArrayList<>();
@@ -87,6 +93,13 @@ public class XMLReader implements ProjectFileReader {
         return this.readerName;
     }
 
+    /**
+     * Method that receives a node from the XML  file (in this case the node related to location) and gets the value of
+     * each location attribute(latitude, longitude and altitude), transforms them from strings to doubles, then creating
+     * a new object location DTO
+     * @param node part of the xml file to be read
+     * @return location DTO
+     */
     private static LocationDTO getLocation(Node node) {
 
         Element element = (Element) node;
@@ -101,7 +114,14 @@ public class XMLReader implements ProjectFileReader {
         return locationDTO;
     }
 
-
+    /**
+     * Method that receives a node from the XML  file (in this case the node related to geo areas) and gets the value of
+     * each geographical area attributes(id, description, type, width), transforms them from strings to doubles. Receives the
+     * each geo area location (recaling the method for getlocation) and creates a new geoareaDTO. The it adds the created
+     * sensors to the geoArea
+     * @param node nodes part of the XML document
+     * @return geographicalAreaDTO
+     */
     private static GeographicalAreaDTO getGeoArea(Node node) {
 
         GeographicalAreaDTO geographicalAreaDTO = null;
@@ -122,7 +142,14 @@ public class XMLReader implements ProjectFileReader {
         return geographicalAreaDTO;
     }
 
-
+    /**
+     * Method that receives a node from the XML  file (in this case the node related to sensors) and gets the value of
+     * each sensor attribute(id, name, startDate, type and units), transforms them from strings to doubles, then creating
+     * a new object (sensor object) and then adding them to the geographical area DTO. This happens for every sensor
+     * present in the area sensors
+     * @param geographicalAreaDTO
+     * @param node
+     */
     private static void addSensorsToGeoArea(GeographicalAreaDTO geographicalAreaDTO, Node node) {
 
         Element areaSensors = (Element) node;
@@ -152,8 +179,7 @@ public class XMLReader implements ProjectFileReader {
 
     /**
      * get method
-     *
-     * @param tag     identifying string of each element
+     * @param tag identifying the string of each element
      * @param element part of the xml document
      * @return
      */
@@ -166,10 +192,15 @@ public class XMLReader implements ProjectFileReader {
 
 
     private static Node getTag(String tag, Element element) {
-        Node node = element.getElementsByTagName(tag).item(0);
-        return node;
+        return element.getElementsByTagName(tag).item(0);
     }
 
+    /**
+     * Method that receives a XML file, reads the first tag and redirects to the method "readXMLFileToList" if the tag
+     * is geographical area list or to method "readXMLFileToListReadings" if the tag is readings list
+     * @param file XML file to be read
+     * @return list of objects (readings list or geographical area list)
+     */
     @Override
     public List<Object> readFile(File file) {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();

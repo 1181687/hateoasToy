@@ -16,15 +16,15 @@ ImportReadingsController "1" --> "1" ReadingMapper :uses
 ImportReadingsController "1" -> "1" SensorList
 ImportReadingsController "1" -> "1" Sensor
 ImportReadingsController "1" -> "1" "<<ProjectFileReader>>"
-ReadingMapper "1" -> "1" ReadingDTO : creates
-GeographicalAreaList "1" -> "*" SensorList
-SensorList "1" -> "0*" Sensor
-XMLReader ---* "<<ProjectFileReader>>" : implements
-CSVReader ---* "<<ProjectFileReader>>" : implements
-JSONReader ---* "<<ProjectFileReader>>" : implements
-XMLReader -> ReadingMapper : uses
-CSVReader -> ReadingMapper : uses
-JSONReader -> ReadingMapper : uses
+ReadingMapper "1" -up-> "1" ReadingDTO : creates
+GeographicalAreaList "1" -down-> "*" SensorList
+SensorList "1" -down-> "0*" Sensor
+XMLReader -left-* "<<ProjectFileReader>>" : implements
+CSVReader -left-* "<<ProjectFileReader>>" : implements
+JSONReader -left-* "<<ProjectFileReader>>" : implements
+XMLReader -up-> ReadingMapper : uses
+CSVReader -up-> ReadingMapper : uses
+JSONReader -up-> ReadingMapper : uses
 
 Class ImportReadings {
 -controller: ImportReadingsController
