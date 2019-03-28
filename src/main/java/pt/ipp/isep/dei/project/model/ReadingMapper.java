@@ -8,7 +8,7 @@ public final class ReadingMapper {
     /**
      * Constructor.
      */
-    private ReadingMapper() {
+    protected ReadingMapper() {
         // empty
     }
 

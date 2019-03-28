@@ -55,16 +55,33 @@ public class CSVReader implements ProjectFileReader {
     }
 
     /**
+     * Method that creates a scanner based on a given file.
+     *
+     * @param file File to be used in the scanner creation.
+     * @return Scanner.
+     */
+    private Scanner createScanner(File file) {
+        Scanner scanner;
+        try {
+            scanner = new Scanner(file);
+
+        } catch (FileNotFoundException e) {
+            scanner = null;
+        }
+        return scanner;
+    }
+
+    /**
      * Method that reads all the content of a CSV file and stores the information in a list.
      *
      * @param file File with the information needed.
      * @return List with lists of Strings corresponding to the information of each line in the file.
      */
     @Override
-    public List<Object> readFile(File file) throws FileNotFoundException {
-        Scanner scanner = new Scanner(file);
-        if (!scanner.hasNext()) {
-            scanner.close();
+    public List<Object> readFile(File file) {
+        Scanner scanner = createScanner(file);
+        if (Objects.isNull(scanner)) {
+            return null;
         }
         List<Object> readingDTOList = new ArrayList<>();
         scanner.nextLine();

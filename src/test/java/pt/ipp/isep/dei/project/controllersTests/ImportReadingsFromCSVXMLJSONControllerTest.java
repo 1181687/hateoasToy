@@ -1,12 +1,12 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsFromCSVXMLJSONController;
+import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsController;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 
 class ImportReadingsFromCSVXMLJSONControllerTest {
-    private ImportReadingsFromCSVXMLJSONController controller;
+    private ImportReadingsController controller;
     private GeographicalArea portoDistrict;
     private GeographicalArea portoCity;
     private Sensor temperatureSensor;
@@ -52,7 +52,7 @@ class ImportReadingsFromCSVXMLJSONControllerTest {
         readingDTO.setDateTime(dateTime);
 
         // Controller
-        controller = new ImportReadingsFromCSVXMLJSONController(geographicalAreaList);
+        controller = new ImportReadingsController(geographicalAreaList);
     }
 
     /**

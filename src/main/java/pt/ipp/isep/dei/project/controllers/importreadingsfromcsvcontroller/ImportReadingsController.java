@@ -14,11 +14,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
-public class ImportReadingsFromCSVXMLJSONController {
-    private static final Logger LOGGER = Logger.getLogger(ImportReadingsFromCSVXMLJSONController.class.getName());
+public class ImportReadingsController {
+    private static final Logger LOGGER = Logger.getLogger(ImportReadingsController.class.getName());
     private GeographicalAreaList geographicalAreaList;
     private SensorList allSensorInTheGeoAreas;
     private Sensor sensor;
@@ -29,7 +30,7 @@ public class ImportReadingsFromCSVXMLJSONController {
      *
      * @param geographicalAreaList GeographicalAreaList to be used.
      */
-    public ImportReadingsFromCSVXMLJSONController(GeographicalAreaList geographicalAreaList) {
+    public ImportReadingsController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;
         this.allSensorInTheGeoAreas = this.geographicalAreaList.getAllSensors();
     }
@@ -73,7 +74,10 @@ public class ImportReadingsFromCSVXMLJSONController {
         boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
-            Sensor sensor = geographicalAreaList.getSensorById(reading.getId());
+            sensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
+            if(Objects.isNull(sensor) || isDateTimeBeforeSensorStartingDate(reading.getDateTime())){
+                continue;
+            }
             if (reading.getUnits().equals("F")) {
                 double celsiusValue = Utils.convertFahrenheitToCelsius(reading.getValue());
                 reading.setValue(Utils.round(celsiusValue, 2));
