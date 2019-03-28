@@ -135,7 +135,7 @@ that are imported at the same time (in a single method) instead of importing the
 
 
 - Only the geographical areas and sensors that have all attributes are imported.
-- Sensors with ID containing "RF" are assumed they are rainfall sensors, so, the reading only have a LocalDate. Since the reading's
+- Sensors with id containing "RF" are assumed they are rainfall sensors, so, the reading only have a LocalDate. Since the reading's
 objects, all have LocalDateTime, the readings where imported after parse the Localdate to LocalDateTime.
 - Sensors of Temperature have readings registered in Celsius units. So, if the readings in the file are in Kelvins (K),
 they were converted to Celsius and then imported.

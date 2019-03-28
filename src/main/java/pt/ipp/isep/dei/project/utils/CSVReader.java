@@ -63,6 +63,9 @@ public class CSVReader implements ProjectFileReader {
     @Override
     public List<Object> readFile(File file) throws FileNotFoundException {
         Scanner scanner = new Scanner(file);
+        if (!scanner.hasNext()) {
+            scanner.close();
+        }
         List<Object> readingDTOList = new ArrayList<>();
         scanner.nextLine();
         List<List<String>> allLines = new ArrayList<>();
@@ -89,10 +92,9 @@ public class CSVReader implements ProjectFileReader {
                 readingDateTime = zonedDateTime.toLocalDateTime();
             }
             double readingValue = Double.parseDouble(value);
-            ReadingDTO readingDTO = ReadingMapper.mapToDTO_id_units(sensorId, readingDateTime, readingValue, unit);
+            ReadingDTO readingDTO = ReadingMapper.mapToDTOwithIDandUnits(sensorId, readingDateTime, readingValue, unit);
             readingDTOList.add(readingDTO);
         }
-        scanner.close();
         return readingDTOList;
     }
 }

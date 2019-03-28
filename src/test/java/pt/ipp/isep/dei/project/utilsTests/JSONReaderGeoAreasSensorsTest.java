@@ -1,24 +1,39 @@
 package pt.ipp.isep.dei.project.utilsTests;
 
-public class JSONReaderTest {
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.utils.JSONReaderGeoAreasSensors;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class JSONReaderGeoAreasSensorsTest {
+    private JSONReaderGeoAreasSensors jsonReaderGeoAreasSensors = new JSONReaderGeoAreasSensors();
+
     /**
      * readJSON File receives a DTO and transforms it
      */
-    /*@Test
-    public void testReadJSONFileToList_geoAreaDTO() {
+    @Test
+    public void testReadJSONFileToList_geoAreaDTO() throws FileNotFoundException {
         // arrange
-        FileReader file;
-        try {
-            file = new FileReader("JSONfile.json");
-        } catch (FileNotFoundException e) {
-            file = null;
-        }
+        String path = "datasets/json/JSONfile.json";
+        File file = new File(path);
 
         // geograhical area list
-        List<Object> resultJSON = JSONReaderGeoAreasSensors
-        GeographicalAreaDTO isep = resultJSON.get(0);
-        String geoA1 = resultJSON.get(0).getId();
-        String geoA2 = resultJSON.get(1).getId();
+        List<Object> resultJSON = jsonReaderGeoAreasSensors.readFile(file);
+        Object isepObj = resultJSON.get(0);
+        GeographicalAreaDTO isep = (GeographicalAreaDTO) isepObj;
+        Object portoObj = resultJSON.get(1);
+        GeographicalAreaDTO porto = (GeographicalAreaDTO) portoObj;
+
+        String geoA1 = isep.getId();
+        String geoA2 = porto.getId();
 
         // sensor
         String sensorId = isep.getSensors().get(0).getId();
@@ -28,7 +43,7 @@ public class JSONReaderTest {
         String sensorUnits = isep.getSensors().get(0).getUnits();
 
         // location
-        LocationDTO location = resultJSON.get(0).getSensors().get(0).getLocation();
+        LocationDTO location = isep.getSensors().get(0).getLocation();
 
         double latitude = location.getLatitude();
         double longitude = location.getLongitude();
@@ -56,7 +71,9 @@ public class JSONReaderTest {
         assertEquals(41.178553, latitude);
         assertEquals(-8.608035, longitude);
         assertEquals(111, altitude);
-    }*/
+    }
+
+
     
 
 }

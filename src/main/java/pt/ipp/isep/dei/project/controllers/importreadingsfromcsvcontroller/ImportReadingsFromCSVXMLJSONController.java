@@ -73,7 +73,7 @@ public class ImportReadingsFromCSVXMLJSONController {
         boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
-            sensor = allSensorInTheGeoAreas.getSensorById(reading.getID());
+            Sensor sensor = geographicalAreaList.getSensorById(reading.getId());
             if (reading.getUnits().equals("F")) {
                 double celsiusValue = Utils.convertFahrenheitToCelsius(reading.getValue());
                 reading.setValue(Utils.round(celsiusValue, 2));
