@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.utilsTests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -63,10 +64,10 @@ class CSVReaderTest {
         file = new File(path);
 
         // Act
-        List<Object> result = csvReader.readFile(file);
+        boolean result = csvReader.readFile(file).isEmpty();
 
         // Assert
-        assertNull(result);
+        Assertions.assertTrue(result);
     }
 
     /**
