@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model.house.housegrid;
 
 public final class HouseGridMapper {
-    
+
     protected HouseGridMapper() {
         //This is an utility class
     }
