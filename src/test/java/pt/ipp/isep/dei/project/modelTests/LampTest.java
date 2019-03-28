@@ -92,7 +92,7 @@ class LampTest {
         double result = lamp.getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.0001);
     }
 
     @Test

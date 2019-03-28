@@ -44,7 +44,7 @@ public class AddSensorToRoomControllerTest {
     }
 
     @Test
-    void testDisplayRoomsInTheHouse() {
+    public void testDisplayRoomsInTheHouse() {
         // Arrange
         // RoomList with two rooms
         RoomList roomList = new RoomList();
@@ -77,7 +77,7 @@ public class AddSensorToRoomControllerTest {
     }
 
     @Test
-    void displayListOfSensorsType() {
+    public void displayListOfSensorsType() {
         // Arrange
         // RoomList with two rooms
         RoomList roomList = new RoomList();
@@ -108,7 +108,7 @@ public class AddSensorToRoomControllerTest {
     }
 
     @Test
-    void createAndAddSensorToTheList() {
+    public void createAndAddSensorToTheList() {
         // Arrange
 
         // sensor
@@ -145,7 +145,7 @@ public class AddSensorToRoomControllerTest {
     }
 
     @Test
-    void checkIfRoomListIsEmptyPositive() {
+    public void checkIfRoomListIsEmptyPositive() {
         // Arrange
         RoomList roomList = new RoomList();
 
@@ -161,7 +161,7 @@ public class AddSensorToRoomControllerTest {
     }
 
     @Test
-    void checkIfRoomListIsEmptyNegative() {
+    public void checkIfRoomListIsEmptyNegative() {
         // Arrange
         RoomList roomList = new RoomList();
 
@@ -186,7 +186,7 @@ public class AddSensorToRoomControllerTest {
     }
 
     @Test
-    void checkIfTheListOfSensorTypeIsEmptyPositive() {
+    public void checkIfTheListOfSensorTypeIsEmptyPositive() {
         // Arrange
         // RoomList with two rooms
         RoomList roomList = new RoomList();
@@ -210,7 +210,7 @@ public class AddSensorToRoomControllerTest {
     }
 
     @Test
-    void checkIfTheListOfSensorTypeIsEmptyNegative() {
+    public void checkIfTheListOfSensorTypeIsEmptyNegative() {
         // Arrange
         // RoomList with two rooms
         RoomList roomList = new RoomList();

@@ -15,7 +15,7 @@ public class GeographicalAreaMapperTest {
      * Method that initializes some attributes of this test class to simplify all tests.
      */
     @Before
-    void StartUp() {
+    public void StartUp() {
         // Geo Area DTO
         portoDTO = GeographicalAreaMapper.newGeoAreaDTO();
         portoDTO.setId("Porto");
@@ -76,7 +76,7 @@ public class GeographicalAreaMapperTest {
      * new GeographicalArea with the information contained by the GeographicalAreaDTO.
      */
     @Test
-    void testMapToEntity_tryingToCreateBasedOnAGeoAreaDTO_ShouldReturnTrue() {
+    public void testMapToEntity_tryingToCreateBasedOnAGeoAreaDTO_ShouldReturnTrue() {
         // Act
         boolean result = GeographicalAreaMapper.mapToEntity(portoDTO).equals(porto);
 
@@ -88,7 +88,7 @@ public class GeographicalAreaMapperTest {
      * Test that tries to create a GeographicalArea based on a null Object, which results in a non creation.
      */
     @Test
-    void testMapToEntity_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
+    public void testMapToEntity_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
         // Act
         GeographicalArea result = GeographicalAreaMapper.mapToEntity(null);
 
@@ -101,7 +101,7 @@ public class GeographicalAreaMapperTest {
      * contained by the Reading.
      */
     @Test
-    void testMapToDTO_tryingToCreateBasedOnAReading_ShouldReturnTrue() {
+    public void testMapToDTO_tryingToCreateBasedOnAReading_ShouldReturnTrue() {
         // Act
         boolean result = GeographicalAreaMapper.mapToDTO(porto).getId().equalsIgnoreCase(portoDTO.getId());
 
@@ -113,7 +113,7 @@ public class GeographicalAreaMapperTest {
      * Test that tries to create a ReadingDTO based on a null Object, which results in a non creation.
      */
     @Test
-    void testMapToDTO_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
+    public void testMapToDTO_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
         // Act
         GeographicalAreaDTO result = GeographicalAreaMapper.mapToDTO(null);
 

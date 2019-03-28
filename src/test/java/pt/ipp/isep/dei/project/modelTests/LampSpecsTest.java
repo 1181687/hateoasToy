@@ -358,7 +358,7 @@ public class LampSpecsTest {
     }
 
     @Test
-    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
+    public void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
         //Arrange
         lamp.getSpecs().asProgrammable();
         //Act

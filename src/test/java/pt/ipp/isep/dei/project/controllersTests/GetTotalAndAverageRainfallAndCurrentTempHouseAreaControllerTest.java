@@ -111,7 +111,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         double result = this.controller.getTotalRainfallInTheHouseAreaInTheSelectedDay(day.toLocalDate());
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.0001);
     }
 
     @Test
@@ -162,7 +162,7 @@ public class GetTotalAndAverageRainfallAndCurrentTempHouseAreaControllerTest {
         double result = this.controller.getAverageDailyRainfall(startDate1.toLocalDate(), endDate1.toLocalDate());
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.0001);
     }
 
     @Test

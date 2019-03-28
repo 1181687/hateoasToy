@@ -127,7 +127,7 @@ public class AttachRoomToHouseGridControllerTest {
     }
 
     @Test
-    void getRoomFromTheListTest() {
+    public void getRoomFromTheListTest() {
         // Arrange
 
         String name1 = "Kitchen";
@@ -150,7 +150,7 @@ public class AttachRoomToHouseGridControllerTest {
     }
 
     @Test
-    void checkIfTheChosenRoomIsAlreadyInTheChosenGridPositiveTest() {
+    public void checkIfTheChosenRoomIsAlreadyInTheChosenGridPositiveTest() {
         // Arrange
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
@@ -174,7 +174,7 @@ public class AttachRoomToHouseGridControllerTest {
     }
 
     @Test
-    void checkIfTheChosenRoomIsAlreadyInTheChosenGridNegativeTest() {
+    public void checkIfTheChosenRoomIsAlreadyInTheChosenGridNegativeTest() {
         // Arrange
 
         String gridName = "Grid";
@@ -199,7 +199,7 @@ public class AttachRoomToHouseGridControllerTest {
     }
 
     @Test
-    void houseGridListLengthTest() {
+    public void houseGridListLengthTest() {
         // Arrange
         // Instantiate House Grids
         String gridName = "Grid";
@@ -244,7 +244,7 @@ public class AttachRoomToHouseGridControllerTest {
     }
 
     @Test
-    void roomListLengthTest() {
+    public void roomListLengthTest() {
         // Arrange
         // Instantiate Room
         String roomName = "Kitchen";
@@ -332,7 +332,7 @@ public class AttachRoomToHouseGridControllerTest {
     }
 
     @Test
-    void detachRoomFromGridListTest() {
+    public void detachRoomFromGridListTest() {
         //Arrange
         // Instantiate Rooms
         String roomName0 = "Kitchen";

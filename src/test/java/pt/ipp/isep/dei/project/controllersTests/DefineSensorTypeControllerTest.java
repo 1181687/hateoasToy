@@ -10,7 +10,7 @@ import static org.junit.Assert.assertTrue;
 public class DefineSensorTypeControllerTest {
 
     @Test
-    void criarEAdicionarTipoDeSensor() {
+    public void criarEAdicionarTipoDeSensor() {
         SensorTypeList lista = new SensorTypeList();
         String novoTipo = "Humidade";
         DefineSensorTypeController controller = new DefineSensorTypeController(lista);
@@ -21,7 +21,7 @@ public class DefineSensorTypeControllerTest {
     }
 
     @Test
-    void criarEAdicionarTipoDeSensorTipoRepetido() {
+    public void criarEAdicionarTipoDeSensorTipoRepetido() {
         SensorTypeList lista = new SensorTypeList();
         String novoTipo = "Humidade";
         String outroTipo = "Humidade";
