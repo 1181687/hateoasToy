@@ -188,7 +188,7 @@
                     </targetClasses>
 
                     <excludedClasses>
-                        <param>pt.ipp.isep.dei.project.Application.Main</param>
+                        <param>pt.ipp.isep.dei.project.Main</param>
                     </excludedClasses>
 
                     <targetTests>
