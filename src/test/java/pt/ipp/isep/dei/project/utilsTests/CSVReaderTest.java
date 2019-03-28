@@ -20,7 +20,7 @@ class CSVReaderTest {
     private File file;
 
     @Before
-    void StartUp() {
+    public void StartUp() {
         String path = "datasets/csv/DataSet_sp05_SensorData.csv";
         file = new File(path);
     }
@@ -30,7 +30,7 @@ class CSVReaderTest {
      * importation (List of Object) has the expected size and if it contains a certain Reading.
      */
     @Test
-    void testReadFile_withAFileWithAllTheInformationValid_ShouldReturnSuccessfulResults() {
+    public void testReadFile_withAFileWithAllTheInformationValid_ShouldReturnSuccessfulResults() {
         // Arrange
         String path = "datasets/csv/DataSet_sp05_SensorData.csv";
         file = new File(path);
@@ -58,7 +58,7 @@ class CSVReaderTest {
      * Test that tries to read an empty file, which returns null.
      */
     @Test
-    void testReadFile_withEmptyFile_ShouldReturnNull() {
+    public void testReadFile_withEmptyFile_ShouldReturnNull() {
         // Arrange
         String path = "datasets/csv/DataSet_sp05_SensorData_empty.csv";
         file = new File(path);
@@ -74,7 +74,7 @@ class CSVReaderTest {
      * Test that tries to read an empty file, which returns null.
      */
     @Test
-    void testReadFile_withHalfEmptyFile_ShouldReturnTheCorrespondingNumberOfImportedReadings() {
+    public void testReadFile_withHalfEmptyFile_ShouldReturnTheCorrespondingNumberOfImportedReadings() {
         // Arrange
         String path = "datasets/csv/DataSet_sp05_SensorData_halfEmpty.csv";
         file = new File(path);
@@ -90,7 +90,7 @@ class CSVReaderTest {
      * Test that tries to read an inexistent file, which returns null.
      */
     @Test
-    void testCreateScanner_InexistentFile_ShouldReturnNull() {
+    public void testCreateScanner_InexistentFile_ShouldReturnNull() {
         // Arrange
         String path = "rfg.csv";
         file = new File(path);
@@ -103,7 +103,7 @@ class CSVReaderTest {
     }
 
     @Test
-    void testReadFile_NullObject_ShouldReturnNull() {
+    public void testReadFile_NullObject_ShouldReturnNull() {
         // Arrange
         String path = "rfg.csv";
         file = new File(path);

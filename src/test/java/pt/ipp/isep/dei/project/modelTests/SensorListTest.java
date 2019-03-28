@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 class SensorListTest {
     private SensorList sensorList;
@@ -30,7 +31,7 @@ class SensorListTest {
     private Location location;
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // Sensor List
         sensorList = new SensorList();
@@ -185,7 +186,7 @@ class SensorListTest {
         double result = sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(temperature, date);
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -200,7 +201,7 @@ class SensorListTest {
         double result = emptySensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(temperature, date);
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -214,7 +215,7 @@ class SensorListTest {
         double result = sensorList.getDailyAverage(searchDate);
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -228,7 +229,7 @@ class SensorListTest {
         double result = sensorList.getDailyAverage(searchDate);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test

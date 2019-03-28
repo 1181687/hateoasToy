@@ -70,9 +70,9 @@ public class JSONReaderGeoAreasSensorsTest {
         assertEquals(LocalDate.of(2016, 11, 15), sensorDate);
         assertEquals("Rainfall", sensorType);
         assertEquals("l/m2", sensorUnits);
-        assertEquals(41.178553, latitude);
-        assertEquals(-8.608035, longitude);
-        assertEquals(111, altitude);
+        assertEquals(41.178553, latitude, 0.001);
+        assertEquals(-8.608035, longitude, 0.001);
+        assertEquals(111, altitude, 0.001);
     }
 
     @Test
@@ -107,7 +107,7 @@ public class JSONReaderGeoAreasSensorsTest {
         assertEquals("TT12346", sensorId);
         assertEquals(LocalDateTime.of(2018, 12, 30, 02, 00), sensorDate);
         assertEquals("C", units);
-        assertEquals(14, value);
+        assertEquals(14, value, 0.001);
     }
 
 }

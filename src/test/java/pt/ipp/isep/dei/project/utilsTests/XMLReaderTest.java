@@ -14,7 +14,6 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 
-
 public class XMLReaderTest {
     private XMLReader XMLReader = new XMLReader();
 
@@ -70,9 +69,9 @@ public class XMLReaderTest {
         assertEquals(LocalDate.of(2016, 11, 15), sensorDate);
         assertEquals("rainfall", sensorType);
         assertEquals("l/m2", sensorUnits);
-        assertEquals(41.17923, latitude);
-        assertEquals(-8.606409, longitude);
-        assertEquals(125, altitude);
+        assertEquals(41.17923, latitude, 0.001);
+        assertEquals(-8.606409, longitude, 0.001);
+        assertEquals(125, altitude, 0.001);
     }
 
 }

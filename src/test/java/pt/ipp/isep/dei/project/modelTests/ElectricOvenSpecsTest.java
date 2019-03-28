@@ -14,7 +14,6 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-
 public class ElectricOvenSpecsTest {
     private static final String ATTRIBUTE_TIME = "Time";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
@@ -289,7 +288,7 @@ public class ElectricOvenSpecsTest {
         //Act
         double result = specs.getNominalPower();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     /**
@@ -302,7 +301,7 @@ public class ElectricOvenSpecsTest {
         //Act
         double result = specs.getEnergyConsumptionInADay();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     /**

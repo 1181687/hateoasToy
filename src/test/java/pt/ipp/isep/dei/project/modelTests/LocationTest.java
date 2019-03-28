@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.project.modelTests;
 
+
 import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 
 import static org.junit.Assert.assertEquals;
 
-
 public class LocationTest {
 
     @Test
-    void testarDistanciaDuasLocalizacoes() {
+    public void testarDistanciaDuasLocalizacoes() {
         double lat1 = 41.1496;
         double lon1 = -8.6109;
         double alt1 = 97;
@@ -24,7 +24,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarDistanciaDuasLocalizacoesForaInvervalo() {
+    public void testarDistanciaDuasLocalizacoesForaInvervalo() {
         double lat1 = 41.1496;
         double lon1 = -200.6109;
         double alt1 = 97;
@@ -40,7 +40,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarAlteracaoLatitudeDentroIntervaloLimitePositivo() {
+    public void testarAlteracaoLatitudeDentroIntervaloLimitePositivo() {
         //arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -57,7 +57,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarAlteracaoLatitudeDentroIntervaloLimiteNegativo() {
+    public void testarAlteracaoLatitudeDentroIntervaloLimiteNegativo() {
         //arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -74,7 +74,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarAlteracaoLatitudeForaIntervaloNegativo() {
+    public void testarAlteracaoLatitudeForaIntervaloNegativo() {
         //arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -91,7 +91,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarAlteracaoLatitudeForaIntervaloPositivo() {
+    public void testarAlteracaoLatitudeForaIntervaloPositivo() {
         //arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -108,7 +108,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarAlteracaoLongitudeDentroIntervaloLimitePositivo() {
+    public void testarAlteracaoLongitudeDentroIntervaloLimitePositivo() {
         //arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -125,7 +125,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarAlteracaoLongitudeDentroIntervaloLimiteNegativo() {
+    public void testarAlteracaoLongitudeDentroIntervaloLimiteNegativo() {
         //arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -142,7 +142,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarAlteracaoLongitudeForaIntervaloPositivo() {
+    public void testarAlteracaoLongitudeForaIntervaloPositivo() {
         //arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -159,7 +159,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarAlteracaoLongitudeForaIntervaloNegativo() {
+    public void testarAlteracaoLongitudeForaIntervaloNegativo() {
         //arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -176,7 +176,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarEqualsComOMesmoObjetoDaClasseLocalizacao(){
+    public void testarEqualsComOMesmoObjetoDaClasseLocalizacao() {
         //Arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -192,7 +192,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarEqualsComUmObjetoQueNaoEDaClasseLocalizacao(){
+    public void testarEqualsComUmObjetoQueNaoEDaClasseLocalizacao() {
         //Arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -209,7 +209,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarEqualsComDuasLocalizacoesIguais(){
+    public void testarEqualsComDuasLocalizacoesIguais() {
         //Arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -231,7 +231,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarEqualsComDuasLocalizacoesDiferentes(){
+    public void testarEqualsComDuasLocalizacoesDiferentes() {
         //Arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -253,7 +253,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarHashCode () {
+    public void testarHashCode() {
         // Arrange
         Location local = new Location(41.1496, -8.6109, 97);
         int expectedResult = 1;
@@ -266,7 +266,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarEqualsComDuasLocalizacoesComLatitudeDiferente() {
+    public void testarEqualsComDuasLocalizacoesComLatitudeDiferente() {
         //Arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -288,7 +288,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarEqualsComDuasLocalizacoesComLongitudeDiferente() {
+    public void testarEqualsComDuasLocalizacoesComLongitudeDiferente() {
         //Arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -310,7 +310,7 @@ public class LocationTest {
     }
 
     @Test
-    void testarEqualsComDuasLocalizacoesAltitudeDiferente() {
+    public void testarEqualsComDuasLocalizacoesAltitudeDiferente() {
         //Arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
