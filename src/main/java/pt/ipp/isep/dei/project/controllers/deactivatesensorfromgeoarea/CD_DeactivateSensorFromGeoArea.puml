@@ -15,8 +15,8 @@ GeographicalArea "1" --> "1" SensorList
 GeographicalAreaList "1" --> "*" GeographicalArea
 DeactivateSensorFromGeoAreaController --> GeographicalAreaMapper: uses
 
-GeographicalAreaMapper --> GeographicalAreaDTO : creates
-DeactivateSensorFromGeoAreaUI --> GeographicalAreaDTO
+GeographicalAreaMapper -left-> GeographicalAreaDTO : creates
+DeactivateSensorFromGeoAreaUI "1"--> "*" GeographicalAreaDTO
 SensorList "1" -left-> "*" Sensor
 GeographicalAreaDTO "1" -down-> "*" SensorDTO
 
