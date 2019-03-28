@@ -2,12 +2,13 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 
 import java.time.LocalDateTime;
+
+import static org.junit.Assert.*;
 
 
 class ReadingMapperTest {

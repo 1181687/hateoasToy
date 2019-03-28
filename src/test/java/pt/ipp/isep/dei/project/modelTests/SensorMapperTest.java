@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;import pt.ipp.isep.dei.project.model.Location;
+import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
@@ -12,6 +11,8 @@ import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+
+import static org.junit.Assert.assertEquals;
 
 
 public class SensorMapperTest {

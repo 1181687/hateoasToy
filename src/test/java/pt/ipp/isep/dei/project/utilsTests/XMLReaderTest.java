@@ -1,9 +1,7 @@
 package pt.ipp.isep.dei.project.utilsTests;
 
-
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.LocationDTO;
-
-
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.utils.XMLReader;
 
@@ -13,9 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 
 public class XMLReaderTest {
@@ -73,9 +69,9 @@ public class XMLReaderTest {
         assertEquals(LocalDate.of(2016, 11, 15), sensorDate);
         assertEquals("rainfall", sensorType);
         assertEquals("l/m2", sensorUnits);
-        assertEquals(41.17923, latitude,0.001);
-        assertEquals(-8.606409, longitude,0.001);
-        assertEquals(125, altitude,0.001);
+        assertEquals(41.17923, latitude, 0.001);
+        assertEquals(-8.606409, longitude, 0.001);
+        assertEquals(125, altitude, 0.001);
     }
 
 }

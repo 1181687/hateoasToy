@@ -66,7 +66,7 @@ public class GeographicalAreaListTest {
      * test that doesn't add a new geo area because it already exists
      */
     @Test
-    public  void testAddGeoAreaAlreadyThere_boolean_False() {
+    public void testAddGeoAreaAlreadyThere_boolean_False() {
         // Act
         boolean result = geoAreaList.addGeoArea(portoCity);
 

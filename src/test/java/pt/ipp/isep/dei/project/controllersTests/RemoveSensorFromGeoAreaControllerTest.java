@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.removesensorfromgeoareacontroller.RemoveSensorFromGeoAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
@@ -12,8 +14,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
 import static org.junit.Assert.*;
 
 

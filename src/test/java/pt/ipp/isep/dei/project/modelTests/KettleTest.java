@@ -45,9 +45,52 @@ public class KettleTest {
     @Autowired
     private GeoAreaRepository geoAreaRepository;
 */
-    /**
-     * This method pretends to initialize some attributes of this test class to simplifying all tests.
-     */
+/**
+ * This method pretends to initialize some attributes of this test class to simplifying all tests.
+ * <p>
+ * Test the setLocation method with the same location,
+ * so the result should be false, as the method doesn't allow that.
+ * <p>
+ * Test the setLocation method with another location,
+ * so the result should be true.
+ * <p>
+ * Test the setName method with a new name for the device,
+ * so the result should be true.
+ * <p>
+ * Test the setName method with the same name for the device,
+ * so the result should be false, as the method doesn't allow that.
+ * <p>
+ * Test the setName method with an already existent name for the device,
+ * so the result should be false, as the method doesn't allow that.
+ * <p>
+ * Tests if the method getLocation returns the location of the device kettle1.
+ * The location should be the kitchen.
+ * <p>
+ * Tests if the method getName returns the name of the device kettle1.
+ * The location should be the "Kettle 1".
+ * <p>
+ * Test the equals method as to know if an object is equal to another.
+ * This test is comparing two different objects.
+ * The result should be false.
+ * <p>
+ * Test the equals method as to know if an object is equal to another.
+ * This test is comparing the same name with some Case Letters.
+ * The result should be false.
+ * <p>
+ * Test the equals method as to know if an object is equal to another.
+ * This test is comparing the same object.
+ * The result should be true.
+ * <p>
+ * Test the setDeactivateDevice as to know if the device is active.
+ * <p>
+ * Test the setDeactivateDevice as to know if the device is deactive.
+ * <p>
+ * Test the method getIsActive when the device is active.
+ * So the test should return True.
+ * <p>
+ * Test the method getIsActive when the device is deactive.
+ * So the test should return False.
+ */
    /* @Before
     public void StartUp() {
         GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
