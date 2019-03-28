@@ -10,13 +10,17 @@ skinparam class {
 
 hide circle
 
+
+
 ImportGeoAreasFromJSONOrXMLUI "1" --> "1" ImportGeoAreasFromJSONOrXMLController
-ImportGeoAreasFromJSONOrXMLController "1" -left-> "1" GeographicalAreaList
+ImportGeoAreasFromJSONOrXMLController "1" -right-> "1" GeographicalAreaList
 ImportGeoAreasFromJSONOrXMLController "1" --> "1" GeographicalAreaMapper
 ImportGeoAreasFromJSONOrXMLController "1" --> "1" GeographicalAreaDTO
 ImportGeoAreasFromJSONOrXMLController  "1" --> "1" SensorDTO
 ImportGeoAreasFromJSONOrXMLController  "1" --> "1" SensorMapper
-ImportGeoAreasFromJSONOrXMLController  "1" -right-> "1" JSONReader
+ImportGeoAreasFromJSONOrXMLController  "1" -left-> "1" XMLReader
+XMLReader "1" -right-* "1" ProjectFileReader : implements
+
 
 Class ImportGeoAreasFromJSONOrXMLUI {
 - ImportGeoAreasFromJSONOrXMLController controller
@@ -27,6 +31,8 @@ Class ImportGeoAreasFromJSONOrXMLUI {
 Class ImportGeoAreasFromJSONOrXMLController {
 - geographicalAreaList
 + importGeographicalAreasAndSensors()
++ createReader ()
++ readFile ()
 }
 
 Class GeographicalAreaMapper {
@@ -66,14 +72,25 @@ Class SensorDTO {
 }
 
 Class SensorMapper {
-
 + newSensorDTO()
 + entityToMap()
 + mapToEntity()
 }
 
-Class JSONReader {
-+ readJSONFileToList()
+Interface ProjectFileReader {
++ getTypeName()
++ readFile()
+}
+
+Class XMLReader {
++ readFile()
++ readXMLFileToList()
++ getTypeName ()
+- getLocation ()
+- getGeoArea ()
+- addSensorsToGeoArea ()
+- getTagValue ()
+- getTag ()
 }
 
 @enduml
