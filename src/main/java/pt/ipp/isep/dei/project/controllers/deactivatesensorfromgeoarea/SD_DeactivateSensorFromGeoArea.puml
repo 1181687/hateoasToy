@@ -18,8 +18,8 @@ skinparam sequence {
 	ActorFontName Aapex
 }
 
-activate AdminUser
 actor AdminUser
+activate AdminUser
 
 AdminUser -> "ui : DeactivateSensor\nFromGeoAreaUI" **: Deactivate sensor \nfrom geo area
 activate "ui : DeactivateSensor\nFromGeoAreaUI"
@@ -33,16 +33,33 @@ getGeoAreaList()
 end
 "GeographicalAreaList" --> "ctrl : DeactivateSensor\nFromGeoArea\nController": DTOList
 deactivate "GeographicalAreaList"
-"ctrl : DeactivateSensor\nFromGeoArea\nController" --> AdminUser: DTOList
-deactivate "ui : DeactivateSensor\nFromGeoAreaUI"
+"ctrl : DeactivateSensor\nFromGeoArea\nController" --> "ui : DeactivateSensor\nFromGeoAreaUI": DTOList
 deactivate "ctrl : DeactivateSensor\nFromGeoArea\nController"
+"ui : DeactivateSensor\nFromGeoAreaUI" --> AdminUser : printListOfGeoAreas()
 
+AdminUser -> "ui : DeactivateSensor\nFromGeoAreaUI": selectGeoArea
+"ui : DeactivateSensor\nFromGeoAreaUI" -> AdminUser: printListOfSensors()
+"ui : DeactivateSensor\nFromGeoAreaUI" <- AdminUser: selectSensor
+"ui : DeactivateSensor\nFromGeoAreaUI" --> AdminUser: confirmValidation(Y/N)
+
+AdminUser -> "ui : DeactivateSensor\nFromGeoAreaUI": yes
+
+"ui : DeactivateSensor\nFromGeoAreaUI" -> "ctrl : DeactivateSensor\nFromGeoArea\nController": deactivateSensor()
+deactivate "ui : DeactivateSensor\nFromGeoAreaUI"
+activate "ctrl : DeactivateSensor\nFromGeoArea\nController"
+"ctrl : DeactivateSensor\nFromGeoArea\nController" -> "GeographicalAreaList" : getSensorById(dto.getId())
+"GeographicalAreaList" --> "ctrl : DeactivateSensor\nFromGeoArea\nController": sensor
+"ctrl : DeactivateSensor\nFromGeoArea\nController" -> Sensor: setActive(dto.isActive)
+Sensor --> "ctrl : DeactivateSensor\nFromGeoArea\nController": boolean
+"ctrl : DeactivateSensor\nFromGeoArea\nController" --> "ui : DeactivateSensor\nFromGeoAreaUI": boolean
+activate "ui : DeactivateSensor\nFromGeoAreaUI"
+"ui : DeactivateSensor\nFromGeoAreaUI" --> AdminUser: confirmation
 deactivate "ui : DeactivateSensor\nFromGeoAreaUI"
 
 
-"ui : DeactivateSensor\nFromGeoAreaUI" --> AdminUser: selectGeoArea
-deactivate "ui : DeactivateSensor\nFromGeoAreaUI"
-AdminUser -> "ui : DeactivateSensor\nFromGeoAreaUI": selectedGeoArea
+
+
+
 
 
 
