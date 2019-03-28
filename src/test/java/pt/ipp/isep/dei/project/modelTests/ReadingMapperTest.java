@@ -89,14 +89,20 @@ class ReadingMapperTest {
     }
 
     @Test
-    void testMapToDTO_id_units_tryingToTestTheSets_IDandUnits() {
+    void testMapToDTO_id_units_tryingToTestTheSets() {
         // act
         String id = "TT123";
         String units = "C";
+        double value = 14;
+        LocalDateTime date = LocalDateTime.of(2019, 3, 11, 0, 0);
+
+        ReadingDTO readingDTO = ReadingMapper.mapToDTOwithIDandUnits(id, date, value, units);
 
         // assert
         assertEquals(id, readingDTO.getId());
         assertEquals(units, readingDTO.getUnits());
+        assertEquals(date, readingDTO.getDateTime());
+        assertEquals(value, readingDTO.getValue());
 
     }
 }
