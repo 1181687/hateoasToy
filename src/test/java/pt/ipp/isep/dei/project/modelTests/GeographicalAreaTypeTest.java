@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Test;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
+
+import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class GeographicalAreaTypeTest {
+class GeographicalAreaTypeTest {
 
     @Test
     void testehashCode() {

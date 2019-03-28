@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.utilsTests;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
@@ -19,8 +19,8 @@ class CSVReaderTest {
     private CSVReader csvReader = new CSVReader();
     private File file;
 
-    @BeforeEach
-    void StartUp() {
+    @Before
+    public void StartUp() {
         String path = "datasets/csv/DataSet_sp05_SensorData.csv";
         file = new File(path);
     }
@@ -30,7 +30,7 @@ class CSVReaderTest {
      * importation (List of Object) has the expected size and if it contains a certain Reading.
      */
     @Test
-    void testReadFile_withAFileWithAllTheInformationValid_ShouldReturnSuccessfulResults() {
+    public void testReadFile_withAFileWithAllTheInformationValid_ShouldReturnSuccessfulResults() {
         // Arrange
         String path = "datasets/csv/DataSet_sp05_SensorData.csv";
         file = new File(path);
@@ -58,7 +58,7 @@ class CSVReaderTest {
      * Test that tries to read an empty file, which returns null.
      */
     @Test
-    void testReadFile_withEmptyFile_ShouldReturnNull() {
+    public void testReadFile_withEmptyFile_ShouldReturnNull() {
         // Arrange
         String path = "datasets/csv/DataSet_sp05_SensorData_empty.csv";
         file = new File(path);
@@ -67,14 +67,14 @@ class CSVReaderTest {
         boolean result = csvReader.readFile(file).isEmpty();
 
         // Assert
-        Assertions.assertTrue(result);
+        assertTrue(result);
     }
 
     /**
      * Test that tries to read an empty file, which returns null.
      */
     @Test
-    void testReadFile_withHalfEmptyFile_ShouldReturnTheCorrespondingNumberOfImportedReadings() {
+    public void testReadFile_withHalfEmptyFile_ShouldReturnTheCorrespondingNumberOfImportedReadings() {
         // Arrange
         String path = "datasets/csv/DataSet_sp05_SensorData_halfEmpty.csv";
         file = new File(path);
@@ -90,7 +90,7 @@ class CSVReaderTest {
      * Test that tries to read an inexistent file, which returns null.
      */
     @Test
-    void testCreateScanner_InexistentFile_ShouldReturnNull() {
+    public void testCreateScanner_InexistentFile_ShouldReturnNull() {
         // Arrange
         String path = "rfg.csv";
         file = new File(path);
@@ -103,7 +103,7 @@ class CSVReaderTest {
     }
 
     @Test
-    void testReadFile_NullObject_ShouldReturnNull() {
+    public  void testReadFile_NullObject_ShouldReturnNull() {
         // Arrange
         String path = "rfg.csv";
         file = new File(path);

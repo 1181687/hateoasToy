@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
@@ -13,7 +12,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class GeographicalAreaDTOTest {
 
@@ -21,7 +22,7 @@ public class GeographicalAreaDTOTest {
     private SensorDTO temperatureSensor;
     private SensorType temperature;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // Geographical Areas
         portoCity = new GeographicalAreaDTO();
@@ -131,7 +132,7 @@ public class GeographicalAreaDTOTest {
         portoCity.setWidth(10.0);
         double result = portoCity.getWidth();
         // assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
     }
 
     /**
@@ -147,7 +148,7 @@ public class GeographicalAreaDTOTest {
         double result = portoCity.getLength();
 
         // assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
     }
 
     /**
@@ -163,7 +164,7 @@ public class GeographicalAreaDTOTest {
         double result = portoCity.getLatitude();
 
         // assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
     }
 
     /**
@@ -179,7 +180,7 @@ public class GeographicalAreaDTOTest {
         double result = portoCity.getLongitude();
 
         // assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
     }
 
     /**
@@ -195,7 +196,7 @@ public class GeographicalAreaDTOTest {
         double result = portoCity.getElevation();
 
         // assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
     }
 
     /**
