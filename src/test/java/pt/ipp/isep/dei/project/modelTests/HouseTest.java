@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class HouseTest {
     private House house;
@@ -40,7 +40,7 @@ public class HouseTest {
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -1785,7 +1785,7 @@ public class HouseTest {
             //Assert
             assertEquals(expectedResult,result);
         }
-    */
+
     @Test
     void getDeviceByNameExceptionTest() {
         // Arrange
@@ -1798,7 +1798,7 @@ public class HouseTest {
 
         // Assert
         assertEquals(expectedResult, exception.getMessage());
-    }
+    }*/
 
     @Test
     void setAttributeTrueTest() {

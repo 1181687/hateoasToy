@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.AddSensorToGeoAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
@@ -12,16 +13,17 @@ import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class AddSensorToGeoAreaControllerTest {
+
+public class AddSensorToGeoAreaControllerTest {
     private AddSensorToGeoAreaController controller;
     private GeographicalArea campusDoIsep;
     private SensorTypeList sensorTypeList;
     private GeographicalAreaList geographicalAreaList;
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
 
         //Geographical Area
@@ -314,4 +316,4 @@ class AddSensorToGeoAreaControllerTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-}*/
+}

@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.DeleteAndDeactivateDeviceFromRoomController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -18,9 +18,9 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class DeleteAndDeactivateDeviceFromRoomControllerTest {
+public class DeleteAndDeactivateDeviceFromRoomControllerTest {
 
     private DeleteAndDeactivateDeviceFromRoomController controller;
     private House house;
@@ -30,7 +30,7 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
     private static final String ATTRIBUTE_ANNUAL_ENERGY_CONSUMPTION = "Annual Energy Consumption";
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -556,4 +556,4 @@ class DeleteAndDeactivateDeviceFromRoomControllerTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-}*/
+}

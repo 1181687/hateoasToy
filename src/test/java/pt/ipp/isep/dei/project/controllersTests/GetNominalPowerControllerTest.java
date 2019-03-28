@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.MeasurableList;
@@ -18,9 +18,10 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class GetNominalPowerControllerTest {
+
+public class GetNominalPowerControllerTest {
     private GetNominalPowerController controller;
     private House houseEdificioB;
     private HouseGrid grid;
@@ -28,7 +29,7 @@ class GetNominalPowerControllerTest {
     private Room roomOne;
     private Room roomTwo;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -556,4 +557,4 @@ class GetNominalPowerControllerTest {
         //Assert
         assertFalse(result);
     }
-}*/
+}

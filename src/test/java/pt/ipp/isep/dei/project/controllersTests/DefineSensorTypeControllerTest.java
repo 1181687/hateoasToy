@@ -1,13 +1,13 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.DefineSensorTypeController;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-class DefineSensorTypeControllerTest {
+public class DefineSensorTypeControllerTest {
 
     @Test
     void criarEAdicionarTipoDeSensor() {
@@ -32,4 +32,4 @@ class DefineSensorTypeControllerTest {
         //Assert
         assertFalse(resultado);
     }
-}*/
+}

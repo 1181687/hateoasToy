@@ -1,11 +1,11 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class GeographicalAreaMapperTest {
     private GeographicalAreaDTO portoDTO;
@@ -14,7 +14,7 @@ public class GeographicalAreaMapperTest {
     /**
      * Method that initializes some attributes of this test class to simplify all tests.
      */
-    @BeforeEach
+    @Before
     void StartUp() {
         // Geo Area DTO
         portoDTO = GeographicalAreaMapper.newGeoAreaDTO();
@@ -66,8 +66,8 @@ public class GeographicalAreaMapperTest {
 
         //Assert
         assertEquals(expectedResult, result);
-        assertEquals(width, result.getAreaShape().getWidth());
-        assertEquals(length, result.getAreaShape().getLength());
+        assertEquals(width, result.getAreaShape().getWidth(), 0.00001);
+        assertEquals(length, result.getAreaShape().getLength(), 0.00001);
 
     }
 
