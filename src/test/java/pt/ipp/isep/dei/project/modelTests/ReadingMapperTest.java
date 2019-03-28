@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 class ReadingMapperTest {
     private ReadingDTO readingDTO;
@@ -17,8 +17,8 @@ class ReadingMapperTest {
     /**
      * Method that initializes some attributes of this test class to simplify all tests.
      */
-    @BeforeEach
-    void StartUp() {
+    @Before
+    public void StartUp() {
         // ReadingDTO
         readingDTO = ReadingMapper.newReadingDTO();
         LocalDateTime dateTime = LocalDateTime.of(2019, 3, 11, 0, 0, 0);
@@ -36,7 +36,7 @@ class ReadingMapperTest {
      * contained by the ReadingDTO.
      */
     @Test
-    void testMapToEntity_tryingToCreateBasedOnAReadingDTO_ShouldReturnTrue() {
+    public void testMapToEntity_tryingToCreateBasedOnAReadingDTO_ShouldReturnTrue() {
         // Arrange
         Reading reading = new Reading(readingDTO.getValue(), readingDTO.getDateTime());
 
@@ -51,7 +51,7 @@ class ReadingMapperTest {
      * Test that tries to create a Reading based on a null Object, which results in a non creation.
      */
     @Test
-    void testMapToEntity_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
+    public void testMapToEntity_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
         // Act
         Reading result = ReadingMapper.mapToEntity(null);
 
@@ -64,7 +64,7 @@ class ReadingMapperTest {
      * contained by the Reading.
      */
     @Test
-    void testMapToDTO_tryingToCreateBasedOnAReading_ShouldReturnTrue() {
+    public void testMapToDTO_tryingToCreateBasedOnAReading_ShouldReturnTrue() {
         // Assert
         ReadingDTO dto = ReadingMapper.mapToDTO(reading);
         Reading reading1 = ReadingMapper.mapToEntity(dto);
@@ -80,7 +80,7 @@ class ReadingMapperTest {
      * Test that tries to create a ReadingDTO based on a null Object, which results in a non creation.
      */
     @Test
-    void testMapToDTO_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
+    public void testMapToDTO_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
         // Act
         ReadingDTO result = ReadingMapper.mapToDTO(null);
 
@@ -89,7 +89,7 @@ class ReadingMapperTest {
     }
 
     @Test
-    void testMapToDTO_id_units_tryingToTestTheSets() {
+    public void testMapToDTO_id_units_tryingToTestTheSets() {
         // act
         String id = "TT123";
         String units = "C";
@@ -102,7 +102,7 @@ class ReadingMapperTest {
         assertEquals(id, readingDTO.getId());
         assertEquals(units, readingDTO.getUnits());
         assertEquals(date, readingDTO.getDateTime());
-        assertEquals(value, readingDTO.getValue());
+        assertEquals(value, readingDTO.getValue(), 0.001);
 
     }
 }

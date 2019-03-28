@@ -1,14 +1,5 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.GeoAreaRepository;
 import pt.ipp.isep.dei.project.controllers.removesensorfromgeoareacontroller.RemoveSensorFromGeoAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
@@ -21,7 +12,10 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 
 public class RemoveSensorFromGeoAreaControllerTest {
     private RemoveSensorFromGeoAreaController controller;
@@ -30,7 +24,7 @@ public class RemoveSensorFromGeoAreaControllerTest {
     private Sensor temperatureSensor;
     private SensorDTO temperatureSensorDTO;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // Geo Area List
         GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
