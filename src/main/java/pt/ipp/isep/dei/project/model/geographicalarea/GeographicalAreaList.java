@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
-import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
@@ -9,14 +8,10 @@ import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
 public class GeographicalAreaList {
 
     private List<GeographicalArea> geoAreaList;
 
-    /*@Autowired
-    private GeoAreaRepository geoAreaRepository;
-*/
 
     /**
      * constructor that receives a new list of Geographical Areas.
