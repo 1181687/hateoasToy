@@ -70,7 +70,7 @@ public class ImportReadingsController {
         sensor.addReadingsToList(reading);
     }
 
-    public int getNumberOfNotImportedReadings(){
+    public int getNumberOfNotImportedReadings() {
         return this.numberOfNotImportedReadings;
     }
 
@@ -80,11 +80,11 @@ public class ImportReadingsController {
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
             sensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
-            if(Objects.isNull(sensor)){
+            if (Objects.isNull(sensor)) {
                 numberOfNotImportedReadings++;
                 continue;
             }
-            if (isDateTimeBeforeSensorStartingDate(reading.getDateTime())){
+            if (isDateTimeBeforeSensorStartingDate(reading.getDateTime())) {
                 numberOfNotImportedReadings++;
                 continue;
             }
