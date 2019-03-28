@@ -17,34 +17,41 @@ skinparam sequence {
 	ActorFontSize 17
 	ActorFontName Aapex
 }
+activate "ctrl : DeactivateSensor\nFromGeoArea\nController"
+"ctrl : DeactivateSensor\nFromGeoArea\nController" -> GeographicalArea: getGeoAreaList()
 
-loop GeographicalAreaList
-activate "GeographicalAreaList"
-"GeographicalAreaList" -> "LocationMapper": mapToDTO(latitude,longitude,altitude)
+loop GeographicalArea
+
+"GeographicalArea" -> "LocationMapper": mapToDTO(latitude,longitude,altitude)
+activate "GeographicalArea"
 activate "LocationMapper"
-"LocationMapper" --> "GeographicalAreaList": locationDTO
+"LocationMapper" --> "GeographicalArea": locationDTO
+deactivate GeographicalArea
 deactivate "LocationMapper"
-"GeographicalAreaList" -> "GeographicalAreaMapper": mapToDTO(id,description,\ntype,width,legth,locationDTO)
+"GeographicalArea" -> "GeographicalAreaMapper": mapToDTO(id,description,\ntype,width,legth,locationDTO)
+activate GeographicalArea
 activate "GeographicalAreaMapper"
 "GeographicalAreaMapper" -> ":GeographicalAreaDTO" :  create
 activate ":GeographicalAreaDTO"
 ":GeographicalAreaDTO" --> "GeographicalAreaMapper": geographicalAreaDTO
 deactivate ":GeographicalAreaDTO"
 
-"GeographicalAreaMapper" --> "GeographicalAreaList": geographicalAreaDTO
+loop SensorList
+"SensorList" -> "LocationMapper": mapToDTO(latitude,longitude,altitude)
+activate "LocationMapper"
+"LocationMapper" --> "SensorList": locationDTO
+deactivate "LocationMapper"
+"SensorList" -> ":SensorDTO": newSensorDTO()
+activate ":SensorDTO"
+":SensorDTO" --> "SensorList": sensorDTO
+deactivate ":SensorDTO"
+"SensorList" -> ":GeographicalAreaDTO" : addSensorDTO
+end
+end
+"GeographicalAreaMapper" --> "ctrl : DeactivateSensor\nFromGeoArea\nController" :DTOList
+deactivate GeographicalArea
 deactivate "GeographicalAreaMapper"
 
-loop parseSensor
-"GeographicalAreaList" -> "LocationMapper": mapToDTO(latitude,longitude,altitude)
-activate "LocationMapper"
-"LocationMapper" --> "GeographicalAreaList": locationDTO
-deactivate "LocationMapper"
-"GeographicalAreaList" -> ":SensorDTO": newSensorDTO()
-activate ":SensorDTO"
-":SensorDTO" --> "GeographicalAreaList": sensorDTO
-deactivate ":SensorDTO"
-"GeographicalAreaList" -> ":GeographicalAreaDTO" : addSensorDTO
 
-end
-end
+
 @enduml
