@@ -232,4 +232,6 @@ public class GeographicalAreaList {
             GeoAreaService.getInstance().getGeoAreaRepository().save(geoArea);
         }
     }
+
+
 }
