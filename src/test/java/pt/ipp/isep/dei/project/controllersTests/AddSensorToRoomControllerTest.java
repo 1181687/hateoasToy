@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.AddSensorToRoomController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
@@ -14,14 +15,14 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class AddSensorToRoomControllerTest {
+public class AddSensorToRoomControllerTest {
     private AddSensorToRoomController controller;
     private GeographicalArea CampusDoIsep;
     private House houseEdificioB;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
 
         //Geographical Area
@@ -43,7 +44,7 @@ class AddSensorToRoomControllerTest {
     }
 
     @Test
-    void testDisplayRoomsInTheHouse() {
+    public void testDisplayRoomsInTheHouse() {
         // Arrange
         // RoomList with two rooms
         RoomList roomList = new RoomList();
@@ -76,7 +77,7 @@ class AddSensorToRoomControllerTest {
     }
 
     @Test
-    void displayListOfSensorsType() {
+    public void displayListOfSensorsType() {
         // Arrange
         // RoomList with two rooms
         RoomList roomList = new RoomList();
@@ -107,7 +108,7 @@ class AddSensorToRoomControllerTest {
     }
 
     @Test
-    void createAndAddSensorToTheList() {
+    public void createAndAddSensorToTheList() {
         // Arrange
 
         // sensor
@@ -144,7 +145,7 @@ class AddSensorToRoomControllerTest {
     }
 
     @Test
-    void checkIfRoomListIsEmptyPositive() {
+    public void checkIfRoomListIsEmptyPositive() {
         // Arrange
         RoomList roomList = new RoomList();
 
@@ -160,7 +161,7 @@ class AddSensorToRoomControllerTest {
     }
 
     @Test
-    void checkIfRoomListIsEmptyNegative() {
+    public void checkIfRoomListIsEmptyNegative() {
         // Arrange
         RoomList roomList = new RoomList();
 
@@ -185,7 +186,7 @@ class AddSensorToRoomControllerTest {
     }
 
     @Test
-    void checkIfTheListOfSensorTypeIsEmptyPositive() {
+    public void checkIfTheListOfSensorTypeIsEmptyPositive() {
         // Arrange
         // RoomList with two rooms
         RoomList roomList = new RoomList();
@@ -209,7 +210,7 @@ class AddSensorToRoomControllerTest {
     }
 
     @Test
-    void checkIfTheListOfSensorTypeIsEmptyNegative() {
+    public void checkIfTheListOfSensorTypeIsEmptyNegative() {
         // Arrange
         // RoomList with two rooms
         RoomList roomList = new RoomList();
@@ -235,4 +236,4 @@ class AddSensorToRoomControllerTest {
         // Assert
         assertFalse(result);
     }
-}*/
+}

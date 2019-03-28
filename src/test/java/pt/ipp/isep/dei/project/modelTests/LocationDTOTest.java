@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class LocationDTOTest {
     private LocationDTO locationDTO;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         this.locationDTO = new LocationDTO();
 
@@ -25,7 +25,7 @@ public class LocationDTOTest {
         //Act
         double result = locationDTO.getLatitude();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.00001);
 
     }
 
@@ -37,7 +37,7 @@ public class LocationDTOTest {
         //Act
         double result = locationDTO.getLatitude();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.00001);
 
     }
 
@@ -48,7 +48,7 @@ public class LocationDTOTest {
         //Act
         double result = locationDTO.getLongitude();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.00001);
 
     }
 
@@ -60,7 +60,7 @@ public class LocationDTOTest {
         //Act
         double result = locationDTO.getLongitude();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.00001);
 
     }
 
@@ -71,7 +71,7 @@ public class LocationDTOTest {
         //Act
         double result = locationDTO.getElevation();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.00001);
 
     }
 
@@ -83,8 +83,8 @@ public class LocationDTOTest {
         //Act
         double result = locationDTO.getElevation();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.00001);
 
     }
 
-}*/
+}

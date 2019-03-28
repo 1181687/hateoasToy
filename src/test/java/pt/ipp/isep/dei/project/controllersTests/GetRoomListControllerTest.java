@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.GetRoomListController;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class GetRoomListControllerTest {
+public class GetRoomListControllerTest {
 
     @Test
     public void getDisplayRoomListTest(){
@@ -85,4 +85,4 @@ class GetRoomListControllerTest {
         assertFalse(result);
     }
 
-}*/
+}
