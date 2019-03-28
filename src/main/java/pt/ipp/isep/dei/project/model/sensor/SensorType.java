@@ -1,7 +1,16 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class SensorType {
+
+    @Id
     private String type;
+
+    protected SensorType() {
+    }
 
     /**
      * Constructor of SensorType

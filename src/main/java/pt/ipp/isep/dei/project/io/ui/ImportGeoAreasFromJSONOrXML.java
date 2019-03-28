@@ -1,6 +1,12 @@
 package pt.ipp.isep.dei.project.io.ui;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
+import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller.ImportGeoAreasFromJSONOrXMLController;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 
 import java.io.File;
@@ -9,13 +15,18 @@ import java.io.FileReader;
 import java.util.List;
 import java.util.Objects;
 
+@Service
+
 public class ImportGeoAreasFromJSONOrXML {
 
     private ImportGeoAreasFromJSONOrXMLController controller;
 
+    @Autowired
+    GeoAreaRepository geoAreaRepository = GeoAreaService.getInstance().getGeoAreaRepository();
 
-    public ImportGeoAreasFromJSONOrXML(GeographicalAreaList geoList) {
-        this.controller = new ImportGeoAreasFromJSONOrXMLController(geoList);
+
+    public ImportGeoAreasFromJSONOrXML(GeographicalAreaList geoList, SensorRepository sensorRepository, GeoAreaRepository geoAreaRepository) {
+        this.controller = new ImportGeoAreasFromJSONOrXMLController(geoList, sensorRepository, geoAreaRepository);
     }
 
     public void jsonGeoAreaSensors() throws FileNotFoundException {
@@ -32,7 +43,7 @@ public class ImportGeoAreasFromJSONOrXML {
             System.out.println("\nERROR: There's no such file with that name.\n");
             return;
         }
-        List<Object> dtoList = controller.readfile(file);
+        List<Object> dtoList = controller.readFile(file, path);
         if (Objects.isNull(dtoList) || dtoList.isEmpty()) {
             System.out.println("\nThe information on the file is not valid to be imported.\n");
             return;
@@ -41,16 +52,29 @@ public class ImportGeoAreasFromJSONOrXML {
         // Content of the choosen file
         String confirmOptions = "\n This is the content of the chosen file: \n";
 
-        /*String areaGeo1 = " > " + dtoList.get(0).getId() + " - Number of sensors: " + dtoList.get(0).getSensors().size();
-        String areaGeo2 = " > " + dtoList.get(1).getId() + " - Number of sensors: " + dtoList.get(0).getSensors().size();
+        StringBuilder content = new StringBuilder();
+        content.append(confirmOptions);
+        content.append("\n");
+        for (Object areaGeo : dtoList) {
+            GeographicalAreaDTO geoDTO = (GeographicalAreaDTO) areaGeo;
+            String id = geoDTO.getId();
+            int numberOfSensors = geoDTO.getSensors().size();
+            content.append(" > ");
+            content.append(id);
+            content.append("\n");
+            content.append(" - Number of sensors: ");
+            content.append(numberOfSensors);
+            content.append("\n");
+        }
 
-        System.out.println(confirmOptions + "\n" + areaGeo1 + "\n" + areaGeo2 + "\n");*/
+        System.out.println(content);
+
 
         // Import confirmation
         String importConfirmation = InputValidator.confirmValidation("Do you want to import these geographic areas and their sensors? (Y/N)");
-        if ("Y".equals(importConfirmation) || "y".equals(importConfirmation)) {
-            if (controller.importGeographicalAreaAndSensors(file)) {
-                System.out.println("\n The JSON file was imported with success.\n");
+        if ("Y".equalsIgnoreCase(importConfirmation)) {
+            if (controller.importGeographicalAreaAndSensors()) {
+                System.out.println("\n The file was imported with success.\n");
                 return;
             } else {
                 System.out.println("The file is already imported.\n");
@@ -77,7 +101,4 @@ public class ImportGeoAreasFromJSONOrXML {
         }
         return file;
     }
-
-
 }
-

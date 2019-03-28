@@ -6,6 +6,8 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
+import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
@@ -14,6 +16,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -114,20 +118,65 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
         return this.readerName;
     }
 
+    private static List<Object> parseJsonObjectsReadings(JsonElement sensorReading) throws NumberFormatException, NullPointerException {
+        List<Object> readingList = new ArrayList<>();
+
+        // Get reading within list
+        if (sensorReading.isJsonObject()) {
+            JsonObject jsonObject = sensorReading.getAsJsonObject();
+
+            JsonArray readingArray = jsonObject.get("readings").getAsJsonArray();
+
+            List<JsonObject> list = new ArrayList<>();
+
+            for (int i = 0; i < readingArray.size(); i++) {
+                list.add(readingArray.get(i).getAsJsonObject());
+            }
+            //Reads reading attributes
+            for (JsonObject object : list) {
+                // Get objects from reading
+
+                String sensorID = object.get("id").getAsString();
+
+                String readingUnit = object.get("unit").getAsString();
+
+                LocalDateTime dateTime;
+
+                if (sensorID.contains("RF")) {
+                    LocalDate date = LocalDate.parse(object.get("timestamp/date").getAsString());
+                    dateTime = date.atStartOfDay();
+                } else {
+                    ZonedDateTime zonedDateTimeateTime = ZonedDateTime.parse(object.get("timestamp/date").getAsString());
+                    dateTime = zonedDateTimeateTime.toLocalDateTime();
+                }
+                double value = object.get("value").getAsDouble();
+                ReadingDTO readingDTO = ReadingMapper.mapToDTO_id_units(sensorID, dateTime, value, readingUnit);
+                readingList.add(readingDTO);
+            }
+        }
+        return readingList;
+    }
+
     @Override
     @SuppressWarnings("unchecked")
     public List<Object> readFile(File file) throws FileNotFoundException {
         FileReader fileReader = new FileReader(file);
-        List<Object> finallist;
         //JSON parser object to parse read file
         JsonParser jsonParser = new JsonParser();
         //Read JSON file
         JsonElement elem = jsonParser.parse(fileReader);
+        List<Object> finalList = new ArrayList<>();
         try {
-            finallist = parseJsonObjects(elem);
+            String firstElement = elem.toString();
+            if (firstElement.startsWith("{\"geographical_area_list")) {
+                finalList = parseJsonObjects(elem);
+            }
+            if (firstElement.startsWith("{\"readings")) {
+                finalList = parseJsonObjectsReadings(elem);
+            }
         } catch (NumberFormatException | DateTimeParseException | NullPointerException e) {
-            finallist = null;
+            finalList = null;
         }
-        return finallist;
+        return finalList;
     }
 }

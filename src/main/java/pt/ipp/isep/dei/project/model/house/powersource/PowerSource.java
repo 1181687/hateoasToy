@@ -5,8 +5,14 @@ import java.util.Objects;
 import static java.util.Objects.isNull;
 
 public class PowerSource {
+
+
     private String name;
+
     private PowerSourceType powerSourceType;
+
+    protected PowerSource() {
+    }
 
     /**
      * constructor that receives a power source name (String) and a PowerSourceType. Throws an exception if any of the parameters is invalid.

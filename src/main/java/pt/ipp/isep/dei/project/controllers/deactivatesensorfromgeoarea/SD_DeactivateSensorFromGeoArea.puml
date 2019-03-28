@@ -1,4 +1,5 @@
 @startuml
+autonumber
 skinparam sequenceMessageAlign center
 skinparam sequence {
 	ArrowColor Black
@@ -16,6 +17,22 @@ skinparam sequence {
 	ActorFontSize 17
 	ActorFontName Aapex
 }
+
+activate AdminUser
+actor AdminUser
+
+AdminUser -> "ui : DeactivateSensor\nFromGeoAreaUI" **: Deactivate sensor \nfrom geo area
+"ui : DeactivateSensor\nFromGeoAreaUI" -> "ctrl : DeactivateSensor\nFromGeoArea\nController" **: listOfGeographicalAreas()
+activate "ui : DeactivateSensor\nFromGeoAreaUI"
+activate "ctrl : DeactivateSensor\nFromGeoArea\nController"
+
+"ctrl : DeactivateSensor\nFromGeoArea\nController" -> "GeographicalAreaList": getGeoAreaList()
+ref over "GeographicalAreaList"
+getGeoAreaList()
+end
+"GeographicalAreaList" --> "ctrl : DeactivateSensor\nFromGeoArea\nController": DTOList
+"ctrl : DeactivateSensor\nFromGeoArea\nController" --> "ui : DeactivateSensor\nFromGeoAreaUI": DTOList
+
 
 
 @enduml

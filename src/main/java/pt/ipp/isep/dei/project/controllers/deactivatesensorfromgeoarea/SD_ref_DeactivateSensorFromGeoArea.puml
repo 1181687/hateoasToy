@@ -1,0 +1,49 @@
+@startuml
+skinparam sequenceMessageAlign center
+skinparam sequence {
+	ArrowColor Black
+	ActorBorderColor DarkBlue
+	LifeLineBorderColor black
+	LifeLineBackgroundColor LightGrey
+
+	ParticipantBorderColor Black
+	ParticipantBackgroundColor LightGrey
+	ParticipantFontStyle Bold
+
+	ActorBackgroundColor DimGrey
+	ActorFontColor DeepSkyBlue
+	ActorFontStyle Bold
+	ActorFontSize 17
+	ActorFontName Aapex
+}
+
+loop parseGeoArea
+activate "GeographicalAreaList"
+"GeographicalAreaList" -> "LocationMapper": 1- mapToDTO(latitude,longitude,altitude)
+activate "LocationMapper"
+"LocationMapper" --> "GeographicalAreaList": 2- locationDTO
+deactivate "LocationMapper"
+"GeographicalAreaList" -> "GeographicalAreaMapper": 3- mapToDTO(id,description,\ntype,width,legth,locationDTO)
+activate "GeographicalAreaMapper"
+"GeographicalAreaMapper" -> ":GeographicalAreaDTO" : 3.1- create
+activate ":GeographicalAreaDTO"
+":GeographicalAreaDTO" --> "GeographicalAreaMapper": 3.2- geographicalAreaDTO
+deactivate ":GeographicalAreaDTO"
+
+"GeographicalAreaMapper" --> "GeographicalAreaList": 4- geographicalAreaDTO
+deactivate "GeographicalAreaMapper"
+
+loop parseSensor
+"GeographicalAreaList" -> "LocationMapper": 5- mapToDTO(latitude,longitude,altitude)
+activate "LocationMapper"
+"LocationMapper" --> "GeographicalAreaList": 6- locationDTO
+deactivate "LocationMapper"
+"GeographicalAreaList" -> ":SensorDTO": 7- newSensorDTO()
+activate ":SensorDTO"
+":SensorDTO" --> "GeographicalAreaList": 8- sensorDTO
+deactivate ":SensorDTO"
+"GeographicalAreaList" -> ":GeographicalAreaDTO" :9- addSensorDTO
+
+end
+end
+@enduml
