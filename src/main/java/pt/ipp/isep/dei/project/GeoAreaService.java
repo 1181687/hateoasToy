@@ -19,15 +19,14 @@ public class GeoAreaService {
     }
 
     // static method to create instance of Singleton class
-    public static GeoAreaService getInstance()
-    {
+    public static GeoAreaService getInstance() {
         if (single_instance == null)
             single_instance = new GeoAreaService();
 
         return single_instance;
     }
 
-    public GeoAreaRepository getGeoAreaRepository(){
+    public GeoAreaRepository getGeoAreaRepository() {
         return geoAreaRepository;
     }
 

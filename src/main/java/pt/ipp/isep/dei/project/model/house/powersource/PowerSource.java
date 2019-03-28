@@ -1,8 +1,5 @@
 package pt.ipp.isep.dei.project.model.house.powersource;
 
-import org.springframework.stereotype.Component;
-
-import javax.persistence.*;
 import java.util.Objects;
 
 import static java.util.Objects.isNull;

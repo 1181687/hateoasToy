@@ -17,23 +17,25 @@ import java.util.List;
 public class ImportGeoAreasFromJSONOrXMLController {
     private GeographicalAreaList geographicalAreaList;
     private ProjectFileReader reader;
+    private List<Object> geoAreaDTOList;
+
 
 
     public ImportGeoAreasFromJSONOrXMLController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;
+
     }
 
     /**
      * This method import the GeographicalAreaDTO list to be imported
      *
-     * @param file
+     * @param
      * @return boolean
      */
-    public boolean importGeographicalAreaAndSensors(File file) throws FileNotFoundException {
+    public boolean importGeographicalAreaAndSensors() {
         boolean imported = false;
-        List<Object> geoAreaObjects = readFile(file);
 
-        for (Object geoObject : geoAreaObjects) {
+        for (Object geoObject : this.geoAreaDTOList) {
             GeographicalAreaDTO geoDTO = (GeographicalAreaDTO) geoObject;
             GeographicalArea geoArea = GeographicalAreaMapper.mapToEntity(geoDTO);
             for (SensorDTO sensorDTO : geoDTO.getSensors()) {
@@ -63,8 +65,9 @@ public class ImportGeoAreasFromJSONOrXMLController {
      * @param file
      * @return
      */
-    public List<Object> readFile(File file) throws FileNotFoundException {
-        List<Object> geographicalAreaDTOList = this.reader.readFile(file);
-        return geographicalAreaDTOList;
+    public List<Object> readFile(File file, String path) throws FileNotFoundException {
+        createReader(path);
+        this.geoAreaDTOList = this.reader.readFile(file);
+        return geoAreaDTOList;
     }
 }

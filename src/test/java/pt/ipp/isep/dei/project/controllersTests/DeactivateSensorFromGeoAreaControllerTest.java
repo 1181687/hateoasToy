@@ -73,7 +73,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
     @Test
     public void testDeactivateDevice() {
         // Act
-        boolean result = controller.deactivateDevice(temperatureSensorDTO);
+        boolean result = controller.deactivateSensor(temperatureSensorDTO);
 
         // Assert
         assertTrue(result);
@@ -83,7 +83,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
     public void deactivateDevice() {
         // Act
         temperatureSensorDTO.setActive(false);
-        controller.deactivateDevice(temperatureSensorDTO);
+        controller.deactivateSensor(temperatureSensorDTO);
 
         boolean result = temperatureSensor.isActive();
         // Assert

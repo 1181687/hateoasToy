@@ -37,7 +37,7 @@ public class DeactivateSensorFromGeoArea {
                 continue;
             }
             SensorDTO sensorDTO = geographicalAreaDTO.getSensors().get(chosenSensor);
-            deactivateDevice(sensorDTO);
+            deactivateSensor(sensorDTO);
         } while (flag);
     }
 
@@ -64,15 +64,20 @@ public class DeactivateSensorFromGeoArea {
         return content.toString();
     }
 
-    private boolean deactivateDevice(SensorDTO sensorDTO) {
+    private boolean deactivateSensor(SensorDTO sensorDTO) {
         String confirmation = InputValidator.confirmValidation("\nThe sensor is going to be deactivated. It can be reactivated on a later date.\nConfirm? (Y/N)");
         if ("N".equalsIgnoreCase(confirmation)) {
             System.out.println("\nNo changes were made.\n");
             return true;
         } else {
             sensorDTO.setActive(false);
-            ctrl.deactivateDevice(sensorDTO);
-            System.out.println("The sensor is now deactivated");
+            if(ctrl.deactivateSensor(sensorDTO)){
+                System.out.println("The sensor is now deactivated.\n");
+            }
+            else {
+                System.out.println("It was not possible to deactivate "+sensorDTO.getId()+"\n");
+            }
+
         }
         return false;
     }

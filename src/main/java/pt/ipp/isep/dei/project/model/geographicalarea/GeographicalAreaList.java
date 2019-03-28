@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.model.Location;
@@ -225,8 +224,8 @@ public class GeographicalAreaList {
         return getAllSensors().getSensorById(id);
     }
 
-    public void updateRepository(){
-        for (GeographicalArea geoArea:this.geoAreaList) {
+    public void updateRepository() {
+        for (GeographicalArea geoArea : this.geoAreaList) {
             GeoAreaService.getInstance().getGeoAreaRepository().save(geoArea);
         }
     }
