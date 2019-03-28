@@ -29,7 +29,7 @@ public class Sensor {
     private SensorType sensorType;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "location_id")
+    @JoinColumn
     private Location location;
     private String units;
     private boolean isActive;

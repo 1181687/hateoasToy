@@ -41,7 +41,7 @@ public class ImportGeoAreasFromJSONOrXMLController {
             for (SensorDTO sensorDTO : geoDTO.getSensors()) {
                 geoArea.addSensor(SensorMapper.mapToEntity(sensorDTO));
             }
-            if (geographicalAreaList.addGeoArea(geoArea)) {
+            if (geographicalAreaList.addGeoAreaToRepository(geoArea)) {
                 imported = true;
             }
         }
