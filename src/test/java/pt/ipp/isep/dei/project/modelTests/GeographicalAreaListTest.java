@@ -1,7 +1,17 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
+import pt.ipp.isep.dei.project.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
@@ -14,16 +24,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@DataJpaTest
+@ContextConfiguration(classes = {Main.class},
+        loader = AnnotationConfigContextLoader.class)
 public class GeographicalAreaListTest {
     private GeographicalAreaList geoAreaList;
     private GeographicalArea portoCity;
     private GeographicalArea bonfimStreet;
     private Sensor sensor;
 
-    @BeforeEach
+    @Autowired
+    private GeoAreaRepository geoAreaRepository;
+
+
+    @Before
     public void StartUp() {
+        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
         // Geographical Area List
         geoAreaList = new GeographicalAreaList();
 
@@ -46,7 +66,7 @@ public class GeographicalAreaListTest {
      * test that doesn't add a new geo area because it already exists
      */
     @Test
-    void testAddGeoAreaAlreadyThere_boolean_False() {
+    public void testAddGeoAreaAlreadyThere_boolean_False() {
         // Act
         boolean result = geoAreaList.addGeoArea(portoCity);
 
@@ -263,7 +283,7 @@ public class GeographicalAreaListTest {
      * Test that tries to use a valid/existing Id to search for a Sensor, which results in True.
      **/
     @Test
-    void testCheckIfGeoAreaExistsById_tryingToTestAnExistingId_ShouldReturnTrue() {
+    public void testCheckIfGeoAreaExistsById_tryingToTestAnExistingId_ShouldReturnTrue() {
         // Act
         boolean result = geoAreaList.checkIfGeoAreaExistsById("Porto");
 
@@ -275,7 +295,7 @@ public class GeographicalAreaListTest {
      * Test that tries to use an invalid/non-existing Id to search for a GeoArea, which results in False.
      **/
     @Test
-    void testCheckIfGeoExistsById_tryingToTestANonExistingId_ShouldReturnFalse() {
+    public void testCheckIfGeoExistsById_tryingToTestANonExistingId_ShouldReturnFalse() {
         // Act
         boolean result = geoAreaList.checkIfGeoAreaExistsById("BadId");
 
@@ -288,7 +308,7 @@ public class GeographicalAreaListTest {
      * Test that tries to use a valid/existing Id to get a geographical area, which turns out fine.
      **/
     @Test
-    void testGetGeoAreaById_tryingToTestAnExistingId_ShouldReturnTheCorrespondingGeoArea() {
+    public void testGetGeoAreaById_tryingToTestAnExistingId_ShouldReturnTheCorrespondingGeoArea() {
         // Arrange
         GeographicalArea expectedResult = portoCity;
 
@@ -303,7 +323,7 @@ public class GeographicalAreaListTest {
      * Test that tries to use a invalid/non-existing Id to get a geographical area, which returns null.
      **/
     @Test
-    void testGetGeoAreaById_tryingToTestANonExistingId_ShouldReturnNull() {
+    public void testGetGeoAreaById_tryingToTestANonExistingId_ShouldReturnNull() {
         // Act
         GeographicalArea result = geoAreaList.getGeoAreaById("Gondomar");
 
@@ -315,7 +335,7 @@ public class GeographicalAreaListTest {
      * Test that finds a sensor in all of the geographical areas by its Id
      **/
     @Test
-    void testGetSensorById_ExistingId_ShouldReturnTheSensor() {
+    public void testGetSensorById_ExistingId_ShouldReturnTheSensor() {
         // Act
         Sensor result = geoAreaList.getSensorById("s1");
 
@@ -327,7 +347,7 @@ public class GeographicalAreaListTest {
      * Test that tries to finds a sensor in all of the geographical areas by its Id but there are non.
      **/
     @Test
-    void testGetSensorById_IdDoesNotExist_ShouldReturnNull() {
+    public void testGetSensorById_IdDoesNotExist_ShouldReturnNull() {
         // Act
         Sensor result = geoAreaList.getSensorById("WrongID");
 

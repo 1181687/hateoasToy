@@ -1,5 +1,5 @@
 package pt.ipp.isep.dei.project.controllersTests;
-
+/*
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -673,3 +673,4 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     }
 
 }
+*/

@@ -1,4 +1,4 @@
-package pt.ipp.isep.dei.project.modelTests;
+/*package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,7 +17,6 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class KettleTest {
-
     private Room kitchen;
     private Room laundry;
     private Device kettle1;
@@ -28,9 +27,7 @@ public class KettleTest {
     private Reading reading1;
     private Reading reading2;
 
-    /**
-     * This method pretends to initialize some attributes of this test class to simplifying all tests.
-     */
+
     @BeforeEach
     public void StartUp() {
         // House
@@ -75,6 +72,7 @@ public class KettleTest {
      * Test the setLocation method with the same location,
      * so the result should be false, as the method doesn't allow that.
      */
+/*
     @Test
     public void testSetLocation_SameLocation_False() {
         //Arrange
@@ -88,11 +86,11 @@ public class KettleTest {
         assertEquals(expectedResult, result);
     }
 
-
     /**
      * Test the setLocation method with another location,
      * so the result should be true.
      */
+/*
     @Test
     public void testSetLocation_AnotherLocation_True() {
         //Arrange
@@ -123,6 +121,7 @@ public class KettleTest {
      * Test the setName method with a new name for the device,
      * so the result should be true.
      */
+/*
     @Test
     public void testSetName_NewName_True() {
         //Arrange
@@ -140,6 +139,7 @@ public class KettleTest {
      * Test the setName method with the same name for the device,
      * so the result should be false, as the method doesn't allow that.
      */
+/*
     @Test
     public void testSetName_SameName_False() {
         //Arrange
@@ -154,6 +154,8 @@ public class KettleTest {
      * Test the setName method with an already existent name for the device,
      * so the result should be false, as the method doesn't allow that.
      */
+
+/*
     @Test
     public void testSetName_ExistentName_False() {
         //Arrange
@@ -168,6 +170,8 @@ public class KettleTest {
      * Tests if the method getLocation returns the location of the device kettle1.
      * The location should be the kitchen.
      */
+
+/*
     @Test
     public void testGetLocation_DeviceLocation() {
         //Arrange
@@ -182,6 +186,8 @@ public class KettleTest {
      * Tests if the method getName returns the name of the device kettle1.
      * The location should be the "Kettle 1".
      */
+
+/*
     @Test
     public void testGetName_DeviceName() {
         //Arrange
@@ -224,6 +230,8 @@ public class KettleTest {
      * This test is comparing two different objects.
      * The result should be false.
      */
+
+/*
     @Test
     void testEquals_DifferentObject_False() {
         // Arrange
@@ -242,6 +250,8 @@ public class KettleTest {
      * This test is comparing the same name with some Case Letters.
      * The result should be false.
      */
+
+/*
     @Test
     void testEquals_SameNameWithDifferentCase_False() {
         // Arrange
@@ -261,6 +271,9 @@ public class KettleTest {
      * This test is comparing the same object.
      * The result should be true.
      */
+
+
+/*
     @Test
     public void testEquals_SameObject_True() {
         // Arrange
@@ -288,6 +301,8 @@ public class KettleTest {
     /**
      * Test the setDeactivateDevice as to know if the device is active.
      */
+
+/*
     @Test
     public void testSetDeactivationDate_True() {
         //Arrange
@@ -301,6 +316,8 @@ public class KettleTest {
     /**
      * Test the setDeactivateDevice as to know if the device is deactive.
      */
+
+/*
     @Test
     public void testGetDeactivationDate_False() {
         //Arrange
@@ -317,6 +334,8 @@ public class KettleTest {
      * Test the method getIsActive when the device is active.
      * So the test should return True.
      */
+
+/*
     @Test
     void testGetIsActive_True() {
         //Arrange
@@ -332,6 +351,8 @@ public class KettleTest {
      * Test the method getIsActive when the device is deactive.
      * So the test should return False.
      */
+
+/*
     @Test
     void testGetIsActive_False() {
         //Arrange
@@ -345,3 +366,5 @@ public class KettleTest {
         assertEquals(expectedResult, result);
     }
 }
+*/
+

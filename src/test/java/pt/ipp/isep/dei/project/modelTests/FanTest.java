@@ -1,5 +1,5 @@
 package pt.ipp.isep.dei.project.modelTests;
-
+/*
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -373,17 +373,17 @@ public class FanTest {
         assertEquals(expectedResult, result);
     }
 
-        /*@Test
+    @Test
     public void testGetSpecs(){
     }
 
     @Test
     public void getEnergyConsumptionInADayTest() {
 
-    }*/
+    }
 
 
-    /*@Test
+    @Test
     void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
 
     }
@@ -401,7 +401,7 @@ public class FanTest {
     @Test
     void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
 
-    }*/
+    }
 
 
-}
+}*/

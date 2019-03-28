@@ -1,5 +1,5 @@
 package pt.ipp.isep.dei.project.modelTests;
-
+/*
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
@@ -362,4 +362,4 @@ public class DimensionTest {
 
         assertEquals("Please enter a valid width. Width should be greater than zero", exception.getMessage());
     }
-}
+}*/

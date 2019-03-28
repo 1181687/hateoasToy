@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.FileHandler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ImportReadingsController {
@@ -24,6 +25,7 @@ public class ImportReadingsController {
     private SensorList allSensorInTheGeoAreas;
     private Sensor sensor;
     private List<Object> readingDTOList;
+    private int numberOfNotImportedReadings;
 
     /**
      * Constructor.
@@ -69,13 +71,24 @@ public class ImportReadingsController {
         sensor.addReadingsToList(reading);
     }
 
+    public int getNumberOfNotImportedReadings() {
+        return this.numberOfNotImportedReadings;
+    }
+
     public boolean addReadingToSensorById() {
         configLogFile();
         boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
             sensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
-            if(Objects.isNull(sensor) || isDateTimeBeforeSensorStartingDate(reading.getDateTime())){
+            if (Objects.isNull(sensor)) {
+                numberOfNotImportedReadings++;
+                continue;
+            }
+            if (isDateTimeBeforeSensorStartingDate(reading.getDateTime())) {
+                numberOfNotImportedReadings++;
+                String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
+                LOGGER.log(Level.WARNING, "Reading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
                 continue;
             }
             if (reading.getUnits().equals("F")) {

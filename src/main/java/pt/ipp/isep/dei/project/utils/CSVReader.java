@@ -57,7 +57,7 @@ public class CSVReader implements ProjectFileReader {
      * @param file File to be used in the scanner creation.
      * @return Scanner.
      */
-    private Scanner createScanner(File file) {
+    public Scanner createScanner(File file) {
         Scanner scanner;
         try {
             scanner = new Scanner(file);
@@ -89,25 +89,24 @@ public class CSVReader implements ProjectFileReader {
                 allLines.add(line);
             }
         }
-        if (allLines.isEmpty()) {
-            return Collections.emptyList();
-        }
-        for (List<String> line : allLines) {
-            String sensorId = line.get(0);
-            String dateTime = line.get(1);
-            String value = line.get(2);
-            String unit = line.get(3);
-            LocalDateTime readingDateTime;
-            if (sensorId.contains("RF")) {
-                LocalDate readingDate = LocalDate.parse(dateTime, DateTimeFormatter.ofPattern("dd/MM/uuuu"));
-                readingDateTime = readingDate.atStartOfDay();
-            } else {
-                ZonedDateTime zonedDateTime = ZonedDateTime.parse(dateTime);
-                readingDateTime = zonedDateTime.toLocalDateTime();
+        if (!allLines.isEmpty()) {
+            for (List<String> line : allLines) {
+                String sensorId = line.get(0);
+                String dateTime = line.get(1);
+                String value = line.get(2);
+                String unit = line.get(3);
+                LocalDateTime readingDateTime;
+                if (sensorId.contains("RF")) {
+                    LocalDate readingDate = LocalDate.parse(dateTime, DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+                    readingDateTime = readingDate.atStartOfDay();
+                } else {
+                    ZonedDateTime zonedDateTime = ZonedDateTime.parse(dateTime);
+                    readingDateTime = zonedDateTime.toLocalDateTime();
+                }
+                double readingValue = Double.parseDouble(value);
+                ReadingDTO readingDTO = ReadingMapper.mapToDTOwithIDandUnits(sensorId, readingDateTime, readingValue, unit);
+                readingDTOList.add(readingDTO);
             }
-            double readingValue = Double.parseDouble(value);
-            ReadingDTO readingDTO = ReadingMapper.mapToDTOwithIDandUnits(sensorId, readingDateTime, readingValue, unit);
-            readingDTOList.add(readingDTO);
         }
         return readingDTOList;
     }
