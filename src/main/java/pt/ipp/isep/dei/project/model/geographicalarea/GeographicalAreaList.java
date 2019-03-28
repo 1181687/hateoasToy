@@ -9,14 +9,10 @@ import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service
 public class GeographicalAreaList {
 
     private List<GeographicalArea> geoAreaList;
 
-    /*@Autowired
-    private GeoAreaRepository geoAreaRepository;
-*/
 
     /**
      * constructor that receives a new list of Geographical Areas.
