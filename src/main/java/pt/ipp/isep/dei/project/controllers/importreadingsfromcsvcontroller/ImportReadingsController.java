@@ -18,8 +18,8 @@ import java.util.Objects;
 import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
-public class ImportReadingsFromCSVXMLJSONController {
-    private static final Logger LOGGER = Logger.getLogger(ImportReadingsFromCSVXMLJSONController.class.getName());
+public class ImportReadingsController {
+    private static final Logger LOGGER = Logger.getLogger(ImportReadingsController.class.getName());
     private GeographicalAreaList geographicalAreaList;
     private SensorList allSensorInTheGeoAreas;
     private Sensor sensor;
@@ -30,7 +30,7 @@ public class ImportReadingsFromCSVXMLJSONController {
      *
      * @param geographicalAreaList GeographicalAreaList to be used.
      */
-    public ImportReadingsFromCSVXMLJSONController(GeographicalAreaList geographicalAreaList) {
+    public ImportReadingsController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;
         this.allSensorInTheGeoAreas = this.geographicalAreaList.getAllSensors();
     }

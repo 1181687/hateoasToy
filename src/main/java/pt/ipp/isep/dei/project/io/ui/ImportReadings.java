@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import pt.ipp.isep.dei.project.SensorRepository;
-import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsFromCSVXMLJSONController;
+import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 
 import java.io.File;
@@ -9,7 +8,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 public class ImportReadings {
-    private ImportReadingsFromCSVXMLJSONController controller;
+    private ImportReadingsController controller;
 
     /**
      * Constructor.
@@ -17,7 +16,7 @@ public class ImportReadings {
      * @param geographicalAreaList
      */
     public ImportReadings(GeographicalAreaList geographicalAreaList) {
-        controller = new ImportReadingsFromCSVXMLJSONController(geographicalAreaList);
+        controller = new ImportReadingsController(geographicalAreaList);
     }
 
 
