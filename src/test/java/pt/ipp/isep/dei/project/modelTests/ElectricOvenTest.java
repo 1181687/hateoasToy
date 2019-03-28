@@ -98,7 +98,7 @@ public class ElectricOvenTest {
         double result = electricOven.getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test

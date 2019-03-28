@@ -63,7 +63,7 @@ public class AddGeoAreaToAnotherGeoAreaControllerTest {
     }
 
     @Test
-    void getListToStringTest() {
+    public void getListToStringTest() {
         // Arrange
         String expectResult = "1 - ID: Porto, Description: City of Porto, Type: City, Latitude: 41.178553, Longitude: -8.608035\n" +
                 "2 - ID: Bonfim, Description: Parish of Bonfim, Type: Parish, Latitude: 40.178553, Longitude: -8.208035, Inserted in: City City of Porto\n";

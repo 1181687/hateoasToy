@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.removesensorfromgeoareacontroller.RemoveSensorFromGeoAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 
 public class RemoveSensorFromGeoAreaControllerTest {
@@ -24,7 +24,7 @@ public class RemoveSensorFromGeoAreaControllerTest {
     private Sensor temperatureSensor;
     private SensorDTO temperatureSensorDTO;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // Geo Area List
         GeographicalAreaList geographicalAreaList = new GeographicalAreaList();

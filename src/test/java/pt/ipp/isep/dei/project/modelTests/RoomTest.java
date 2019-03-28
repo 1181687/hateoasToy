@@ -316,7 +316,7 @@ public class RoomTest {
         double result = kitchen.getNominalPower();
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test

@@ -77,7 +77,7 @@ public class FanTest {
         double result = fan.getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test

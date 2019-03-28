@@ -2,7 +2,16 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
+import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
@@ -17,14 +26,22 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@DataJpaTest
+@ContextConfiguration(classes = {Main.class},
+        loader = AnnotationConfigContextLoader.class)
 public class AddDeviceToRoomControllerTest {
     private AddDeviceToRoomController controller;
     private House house;
     private Room kitchen;
     private Room livingRoom;
 
+    @Autowired
+    private GeoAreaRepository geoAreaRepository;
+
     @Before
     public void StartUp() {
+        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
@@ -79,7 +96,7 @@ public class AddDeviceToRoomControllerTest {
     }
 
     @Test
-    void getSelectedRoom() {
+    public void getSelectedRoom() {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
@@ -120,7 +137,7 @@ public class AddDeviceToRoomControllerTest {
     }
 
     @Test
-    void getDeviceTypeListToString() {
+    public void getDeviceTypeListToString() {
         // Arrange
         String expectedResult = "1- Fridge\n" +
                 "2- Lamp\n" +

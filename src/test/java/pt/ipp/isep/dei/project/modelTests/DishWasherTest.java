@@ -86,7 +86,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getNominalPowerTest() {
+    public void getNominalPowerTest() {
         //Arrange
         double expectedResult = 1200.0;
 
@@ -94,11 +94,11 @@ public class DishWasherTest {
         double result = dishWasher.getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
-    void getLocationTest() {
+    public void getLocationTest() {
         // Arrange
         Room expectedResult = kitchen;
 
@@ -110,7 +110,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getNameTest() {
+    public void getNameTest() {
         // Arrange
         String expectedResult = "Bosch 500 Series";
 
@@ -122,7 +122,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getTypeTest() {
+    public void getTypeTest() {
         // Arrange
         String expectedResult = "DishWasher";
 
@@ -176,7 +176,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void setLocationFalseTest() {
+    public void setLocationFalseTest() {
         // Act
         boolean result = dishWasher.setLocation(kitchen);
 
@@ -185,7 +185,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void setLocationTrueTest() {
+    public void setLocationTrueTest() {
         // Act
         boolean result = dishWasher.setLocation(laundry);
 
@@ -194,7 +194,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void setLocationTrueTestNullValue() {
+    public void setLocationTrueTestNullValue() {
         // Act
         DishWasherType dishWasherType = new DishWasherType();
         Device maquina = dishWasherType.createDevice("nome");
@@ -207,7 +207,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getDevSpecsAttributesToStringTest() {
+    public void getDevSpecsAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Capacity: 10\n" +
                 "2 - Nominal Power: 1200.0\n";
@@ -219,7 +219,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getAttributesToStringTest() {
+    public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Bosch 500 Series\n" +
                 "2 - Device Specifications \n" +
@@ -248,7 +248,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void hashCodeTest() {
+    public void hashCodeTest() {
         // Arrange
         int expectedResult = Objects.hash(dishWasher.getName());
 
@@ -260,7 +260,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void equalsDifferentObjectTest() {
+    public void equalsDifferentObjectTest() {
         // Arrange
         Object object = new Object();
 
@@ -272,7 +272,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getNumberOfSpecsAttributesTest() {
+    public void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 2;
 
@@ -284,7 +284,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getNameToStringTest() {
+    public void getNameToStringTest() {
         // Arrange
         String expectedResult = "Device: Bosch 500 Series, located in room: Kitchen\n";
 
@@ -296,7 +296,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
         // Arrange
         double expectedResult = 0;
 
@@ -311,7 +311,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
         // Arrange
         double expectedResult = 12;
 
@@ -326,7 +326,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest2() {
+    public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest2() {
         // Arrange
         double expectedResult = 7;
 
@@ -341,7 +341,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
         // Arrange
         double expectedResult = 15;
 
@@ -356,7 +356,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getDeactivationDate() {
+    public void getDeactivationDate() {
         // arrange
         LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         dishWasher.setDeactivateDevice();
@@ -367,7 +367,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getDateDeactivateDeviceToString() {
+    public void getDateDeactivateDeviceToString() {
         // arrange
         String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
         dishWasher.setDeactivateDevice();
@@ -378,7 +378,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getIsActiveTrueTest() {
+    public void getIsActiveTrueTest() {
         // Act
         boolean result = dishWasher.getIsActive();
 
@@ -387,7 +387,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getIsActiveFalseTest() {
+    public void getIsActiveFalseTest() {
         // arrange
         dishWasher.setDeactivateDevice();
 
@@ -399,7 +399,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getDataSeriesTest() {
+    public void getDataSeriesTest() {
         // Assert
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
@@ -414,7 +414,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getSpecsListTest() {
+    public void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
         expectedResult.add("Capacity");
@@ -428,7 +428,7 @@ public class DishWasherTest {
     }
 
     @Test
-    void getAttributeValueTest() {
+    public void getAttributeValueTest() {
         // Assert
         int expectedResult = 10;
 

@@ -288,7 +288,7 @@ public class ElectricOvenSpecsTest {
         //Act
         double result = specs.getNominalPower();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     /**
@@ -301,7 +301,7 @@ public class ElectricOvenSpecsTest {
         //Act
         double result = specs.getEnergyConsumptionInADay();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     /**

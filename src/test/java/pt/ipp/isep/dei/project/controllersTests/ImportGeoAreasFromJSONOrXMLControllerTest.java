@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller.ImportGeoAreasFromJSONOrXMLController;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.LocationMapper;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 public class ImportGeoAreasFromJSONOrXMLControllerTest {
 

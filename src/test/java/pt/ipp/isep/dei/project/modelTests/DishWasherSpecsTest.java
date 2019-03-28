@@ -64,7 +64,7 @@ public class DishWasherSpecsTest {
         double result = dishWasherSpecs.getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
 
@@ -104,7 +104,7 @@ public class DishWasherSpecsTest {
         double result = dishWasherSpecs.getEnergyConsumptionInADay();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test

@@ -61,7 +61,7 @@ public class MicrowaveOvenSpecsTest {
         double result = microwaveOven.getSpecs().getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -75,7 +75,7 @@ public class MicrowaveOvenSpecsTest {
         double result = microwaveOven.getSpecs().getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
 
@@ -114,7 +114,7 @@ public class MicrowaveOvenSpecsTest {
         double result = microwaveOven.getSpecs().getEnergyConsumptionInADay();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test

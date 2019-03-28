@@ -227,7 +227,7 @@ public class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void isHouseGridListEmpty_HouseHasNoHouseGrids_ShouldReturnTrue() {
+    public void isHouseGridListEmpty_HouseHasNoHouseGrids_ShouldReturnTrue() {
         //Act
         boolean result= this.ctrl.isHouseGridListEmpty();
         //Assert
@@ -236,7 +236,7 @@ public class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void isHouseGridListEmpty_HouseWithOneHouseGrid_ShouldReturnFalse() {
+    public void isHouseGridListEmpty_HouseWithOneHouseGrid_ShouldReturnFalse() {
         //Arrange
         HouseGrid grid = new HouseGrid("Main Grid");
         this.house.addGrid(grid);
@@ -294,7 +294,7 @@ public class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void getRoomListToString(){
+    public void getRoomListToString() {
         //Arrange
         String expectedResult= "1- Name: Kitchen, House Floor: 1, Dimension - Height: 3.0, Length: 5.0, Width: 6.0\n" +
                 "2- Name: Laundry, House Floor: 2, Dimension - Height: 3.0, Length: 5.0, Width: 6.0\n";
@@ -305,7 +305,7 @@ public class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void roomListIsEmpty_HouseHasNoRooms_ShouldReturnTrue(){
+    public void roomListIsEmpty_HouseHasNoRooms_ShouldReturnTrue() {
         //Arrange
 
         //House
@@ -323,7 +323,7 @@ public class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void roomListIsEmpty_HouseHas2Rooms_ShouldReturnFalse(){
+    public void roomListIsEmpty_HouseHas2Rooms_ShouldReturnFalse() {
         //Act
         boolean result = ctrl.roomListIsEmpty();
         //Assert
@@ -331,7 +331,7 @@ public class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void getRoomListSize_HouseWithTwoRooms_ShouldReturn2() {
+    public void getRoomListSize_HouseWithTwoRooms_ShouldReturn2() {
         //Arrange
         int expectedResult = 2;
         //Act
@@ -341,7 +341,7 @@ public class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void isDeviceListEmpty_RoomHasDevices_ShouldReturnFalse(){
+    public void isDeviceListEmpty_RoomHasDevices_ShouldReturnFalse() {
         //Arrange
         ctrl.getRoomByPosition(0);
         //Act
@@ -351,7 +351,7 @@ public class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void getRoomName_HouseHas2Rooms_ShouldReturnKitchen(){
+    public void getRoomName_HouseHas2Rooms_ShouldReturnKitchen() {
         //Arrange
         ctrl.getRoomByPosition(0);
         String expectedResult = "Kitchen";

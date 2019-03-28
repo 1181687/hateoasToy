@@ -170,7 +170,7 @@ public class GetLastColdestDayHouseAreaControllerTest {
     }
 
     @Test
-    void hasSensorsOfGivenTypeInGeoArea_withSensorsOfGivenTypeInArea_ShouldReturnTrue(){
+    public void hasSensorsOfGivenTypeInGeoArea_withSensorsOfGivenTypeInArea_ShouldReturnTrue() {
         //Act
         boolean result = this.controller.hasSensorsOfGivenTypeInGeoArea();
         //Assert
@@ -178,7 +178,7 @@ public class GetLastColdestDayHouseAreaControllerTest {
     }
 
     @Test
-    void hasSensorsOfGivenTypeInGeoArea_withoutSensorsOfGivenTypeInArea_ShouldReturnFalse(){
+    public void hasSensorsOfGivenTypeInGeoArea_withoutSensorsOfGivenTypeInArea_ShouldReturnFalse() {
         //Arrange
         // Geographical Area Types
         GeographicalAreaType city = new GeographicalAreaType("City");

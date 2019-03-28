@@ -10,7 +10,8 @@ import java.time.LocalDateTime;
 
 import static org.junit.Assert.*;
 
-public class ReadingMapperTest {
+
+class ReadingMapperTest {
     private ReadingDTO readingDTO;
     private Reading reading;
 
@@ -18,7 +19,7 @@ public class ReadingMapperTest {
      * Method that initializes some attributes of this test class to simplify all tests.
      */
     @Before
-    void StartUp() {
+    public void StartUp() {
         // ReadingDTO
         readingDTO = ReadingMapper.newReadingDTO();
         LocalDateTime dateTime = LocalDateTime.of(2019, 3, 11, 0, 0, 0);
@@ -36,7 +37,7 @@ public class ReadingMapperTest {
      * contained by the ReadingDTO.
      */
     @Test
-    void testMapToEntity_tryingToCreateBasedOnAReadingDTO_ShouldReturnTrue() {
+    public void testMapToEntity_tryingToCreateBasedOnAReadingDTO_ShouldReturnTrue() {
         // Arrange
         Reading reading = new Reading(readingDTO.getValue(), readingDTO.getDateTime());
 
@@ -51,7 +52,7 @@ public class ReadingMapperTest {
      * Test that tries to create a Reading based on a null Object, which results in a non creation.
      */
     @Test
-    void testMapToEntity_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
+    public void testMapToEntity_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
         // Act
         Reading result = ReadingMapper.mapToEntity(null);
 
@@ -64,7 +65,7 @@ public class ReadingMapperTest {
      * contained by the Reading.
      */
     @Test
-    void testMapToDTO_tryingToCreateBasedOnAReading_ShouldReturnTrue() {
+    public void testMapToDTO_tryingToCreateBasedOnAReading_ShouldReturnTrue() {
         // Assert
         ReadingDTO dto = ReadingMapper.mapToDTO(reading);
         Reading reading1 = ReadingMapper.mapToEntity(dto);
@@ -80,7 +81,7 @@ public class ReadingMapperTest {
      * Test that tries to create a ReadingDTO based on a null Object, which results in a non creation.
      */
     @Test
-    void testMapToDTO_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
+    public void testMapToDTO_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
         // Act
         ReadingDTO result = ReadingMapper.mapToDTO(null);
 
@@ -89,7 +90,7 @@ public class ReadingMapperTest {
     }
 
     @Test
-    void testMapToDTO_id_units_tryingToTestTheSets() {
+    public void testMapToDTO_id_units_tryingToTestTheSets() {
         // act
         String id = "TT123";
         String units = "C";
@@ -102,7 +103,7 @@ public class ReadingMapperTest {
         assertEquals(id, readingDTO.getId());
         assertEquals(units, readingDTO.getUnits());
         assertEquals(date, readingDTO.getDateTime());
-        assertEquals(value, readingDTO.getValue());
+        assertEquals(value, readingDTO.getValue(), 0.001);
 
     }
 }

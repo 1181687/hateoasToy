@@ -13,33 +13,31 @@ public final class GeographicalAreaMapper {
         // empty
     }
 
-    /**
-     * Method that creates a new GeoAreaDTO.
-     *
-     * @return GeoAreaDTO.
-     */
-    public static GeographicalAreaDTO newGeoAreaDTO() {
-        return new GeographicalAreaDTO();
-    }
 
     /**
      * Method that creates a GeoAreaDTO based on a set of information.
      *
-     * @param geographicalArea geoARea
+     * @param id                   Id to be used.
+     * @param description          Description to be used.
+     * @param type                 Type to be used.
+     * @param width                Width to be used.
+     * @param length               Length to be used.
+     * @param latitude             Latitude to be used.
+     * @param longitude            Longitude to be used.
+     * @param altitude            Elevation to be used.
      * @return GeoAreaDTO.
      */
-    public static GeographicalAreaDTO mapToDTOwithoutSensors(GeographicalArea geographicalArea) {
-
+    public static GeographicalAreaDTO mapToDTOwithoutSensors(String id, String description, String type, double width, double length, double latitude, double longitude, double altitude) {
 
         GeographicalAreaDTO geoDTO = new GeographicalAreaDTO();
-        geoDTO.setId(geographicalArea.getId());
-        geoDTO.setDescription(geographicalArea.getDescription());
-        geoDTO.setType(geographicalArea.getGeoAreaType().getStringOfTypeOfGeoArea());
-        geoDTO.setWidth(geographicalArea.getAreaShape().getWidth());
-        geoDTO.setLength(geographicalArea.getAreaShape().getLength());
-        geoDTO.setLatitude(geographicalArea.getLocation().getLatitude());
-        geoDTO.setLongitude(geographicalArea.getLocation().getLongitude());
-        geoDTO.setElevation(geographicalArea.getLocation().getElevation());
+        geoDTO.setId(id);
+        geoDTO.setDescription(description);
+        geoDTO.setType(type);
+        geoDTO.setWidth(width);
+        geoDTO.setLength(length);
+        geoDTO.setLatitude(latitude);
+        geoDTO.setLongitude(longitude);
+        geoDTO.setElevation(altitude);
         return geoDTO;
     }
 

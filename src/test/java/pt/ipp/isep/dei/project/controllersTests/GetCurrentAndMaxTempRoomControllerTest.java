@@ -297,11 +297,11 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         double result = ctrl.getMaximumTemperatureOfRoomInGivenDay(name, sensorType0, dateTimeDayMeasure3.toLocalDate());
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
-    void testGetmType() {
+    public void testGetmType() {
         //Arrange
         SensorType sensorType = new SensorType("Temperature");
 

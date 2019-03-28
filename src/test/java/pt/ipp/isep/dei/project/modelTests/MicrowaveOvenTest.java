@@ -177,7 +177,7 @@ public class MicrowaveOvenTest {
         double result = microwaveOven.getSpecs().getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test

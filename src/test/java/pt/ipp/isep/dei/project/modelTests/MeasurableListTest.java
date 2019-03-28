@@ -79,7 +79,7 @@ public class MeasurableListTest {
         double result = mList.getNominalPower();
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test

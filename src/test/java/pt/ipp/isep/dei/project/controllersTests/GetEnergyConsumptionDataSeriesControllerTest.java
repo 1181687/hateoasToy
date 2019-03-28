@@ -241,7 +241,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     }
 
     @Test
-    void testGetDeviceDataSeriesToString() {
+    public void testGetDeviceDataSeriesToString() {
         //Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -302,7 +302,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     }
 
     @Test
-    void testGetDeviceDataSeriesToStringNoValidNumbers() {
+    public void testGetDeviceDataSeriesToStringNoValidNumbers() {
         //Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);

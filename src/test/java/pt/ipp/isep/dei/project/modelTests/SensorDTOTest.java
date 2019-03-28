@@ -11,7 +11,8 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class SensorDTOTest {
+
+class SensorDTOTest {
     SensorDTO sensorDTO;
 
     @Before

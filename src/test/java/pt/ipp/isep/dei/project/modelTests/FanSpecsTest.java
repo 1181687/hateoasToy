@@ -65,7 +65,7 @@ public class FanSpecsTest {
         double result = fan.getSpecs().getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class FanSpecsTest {
         double result = fan.getSpecs().getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
 
@@ -118,7 +118,7 @@ public class FanSpecsTest {
         double result = fan.getSpecs().getEnergyConsumptionInADay();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test

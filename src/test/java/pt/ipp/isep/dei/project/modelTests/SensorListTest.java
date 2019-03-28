@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
 
+
 import org.junit.Before;
 import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
@@ -16,7 +17,7 @@ import java.util.Objects;
 
 import static org.junit.Assert.*;
 
-public class SensorListTest {
+class SensorListTest {
     private SensorList sensorList;
     private Sensor temperatureSensor1;
     private Sensor temperatureSensor2;
@@ -185,7 +186,7 @@ public class SensorListTest {
         double result = sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(temperature, date);
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -200,7 +201,7 @@ public class SensorListTest {
         double result = emptySensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(temperature, date);
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -214,7 +215,7 @@ public class SensorListTest {
         double result = sensorList.getDailyAverage(searchDate);
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -228,7 +229,7 @@ public class SensorListTest {
         double result = sensorList.getDailyAverage(searchDate);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
