@@ -1,5 +1,5 @@
 package pt.ipp.isep.dei.project.modelTests;
-
+/*
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -122,4 +122,4 @@ class MeasurableListTest {
         // assert
         assertEquals(expectedResult, result);
     }
-}
+}*/

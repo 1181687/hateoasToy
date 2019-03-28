@@ -1,5 +1,5 @@
 package pt.ipp.isep.dei.project.modelTests;
-
+/*
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
@@ -91,4 +91,4 @@ class SensorTypeTest {
         assertEquals(expectedResult, result);
     }
 
-}
+}*/

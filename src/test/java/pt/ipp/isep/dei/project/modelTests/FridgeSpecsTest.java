@@ -1,5 +1,5 @@
 package pt.ipp.isep.dei.project.modelTests;
-
+/*
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -471,12 +471,13 @@ public class FridgeSpecsTest {
 
         // Assert
         assertFalse(result);
-    }
+    }*/
+
     /**
      * Test the method that gives the programmable property to the device.
      * The Kettle is not programmable, so it just has the false return.
      */
-    @Test
+  /*  @Test
     public void testIsProgrammable_False() {
         //Arrange
         boolean expectedResult = false;
@@ -485,13 +486,13 @@ public class FridgeSpecsTest {
 
         //Assert
         assertEquals(expectedResult, result);
-    }
+    }*/
 
     /**
      * Test the method that returns a Programmable if the device is Programmable.
      * The Kettler is not programmable so the method only return "null" value.
      */
-    @Test
+   /* @Test
     public void testAsProgrammable_null() {
         //Arrange
         Programmable expectedResult = null;
@@ -502,4 +503,4 @@ public class FridgeSpecsTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-}
+}*/

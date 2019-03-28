@@ -1,5 +1,5 @@
 package pt.ipp.isep.dei.project.modelTests;
-
+/*
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
@@ -2473,12 +2473,12 @@ class SensorTest {
 
         //Assert
         assertEquals(expectedResult,result);
-    }
+    }*/
 
     /**
      * Test that tries to get an existing list of Readings from the Sensor.
      */
-    @Test
+  /*  @Test
     void testGetListOfReadings_tryingToGetAnExistingList_ShouldReturnTheCorrespondingList() {
         // Arrange
         List<Reading> expectedResult = new ArrayList<>();
@@ -2515,4 +2515,4 @@ class SensorTest {
         //Assert
         assertEquals(expectedResult,result);
     }
-}
+}*/
