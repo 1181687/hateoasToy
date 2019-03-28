@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
 
@@ -9,12 +10,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SensorDTOTest {
     SensorDTO sensorDTO;
 
-    @BeforeEach
+    @Before
     void StartUp() {
         sensorDTO = new SensorDTO();
 

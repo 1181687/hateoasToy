@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.electricoven.ElectricOvenSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -12,7 +13,8 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.Assert.assertEquals;
 
 public class ElectricOvenSpecsTest {
     private static final String ATTRIBUTE_TIME = "Time";
@@ -24,7 +26,7 @@ public class ElectricOvenSpecsTest {
     private House house;
     private DeviceSpecs specs;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
 
         // House
@@ -288,7 +290,7 @@ public class ElectricOvenSpecsTest {
         //Act
         double result = specs.getNominalPower();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
     }
 
     /**
@@ -301,7 +303,7 @@ public class ElectricOvenSpecsTest {
         //Act
         double result = specs.getEnergyConsumptionInADay();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
     }
 
     /**
