@@ -11,9 +11,9 @@ import pt.ipp.isep.dei.project.utils.CSVReader;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 
 class CSVReaderTest {
     private CSVReader csvReader = new CSVReader();
@@ -84,5 +84,34 @@ class CSVReaderTest {
 
         // Assert
         assertEquals(11, result.size());
+    }
+
+    /**
+     * Test that tries to read an inexistent file, which returns null.
+     */
+    @Test
+    void testCreateScanner_InexistentFile_ShouldReturnNull() {
+        // Arrange
+        String path = "rfg.csv";
+        file = new File(path);
+
+        // Act
+        Scanner result = csvReader.createScanner(file);
+
+        // Assert
+        assertEquals(null, result);
+    }
+
+    @Test
+    void testReadFile_NullObject_ShouldReturnNull() {
+        // Arrange
+        String path = "rfg.csv";
+        file = new File(path);
+
+        // Act
+        List<Object> result = csvReader.readFile(file);
+
+        // Assert
+        assertEquals(null, result);
     }
 }
