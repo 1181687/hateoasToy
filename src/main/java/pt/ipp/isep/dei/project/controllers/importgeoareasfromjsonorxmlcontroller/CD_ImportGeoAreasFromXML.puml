@@ -19,8 +19,9 @@ ImportGeoAreasFromJSONOrXMLController "1" --> "1" GeographicalAreaDTO
 ImportGeoAreasFromJSONOrXMLController  "1" --> "1" SensorDTO
 ImportGeoAreasFromJSONOrXMLController  "1" --> "1" SensorMapper
 ImportGeoAreasFromJSONOrXMLController  "1" -left-> "1" XMLReader
-XMLReader "1" -right-* "1" ProjectFileReader : implements
-
+ImportGeoAreasFromJSONOrXMLController  "1" -left-> "1" JSONReader
+XMLReader "1" -up-* "1" ProjectFileReader : implements
+JSONReader "1" -right-* "1" ProjectFileReader : implements
 
 Class ImportGeoAreasFromJSONOrXMLUI {
 - ImportGeoAreasFromJSONOrXMLController controller
@@ -91,6 +92,13 @@ Class XMLReader {
 - addSensorsToGeoArea ()
 - getTagValue ()
 - getTag ()
+}
+
+Class JSONReader {
++ readFile()
++ getTypeName ()
+- locationParser ()
+- parseJsonObjects ()
 }
 
 @enduml
