@@ -2,12 +2,14 @@ package pt.ipp.isep.dei.project.utilsTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.utils.JSONReaderGeoAreasSensors;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +75,39 @@ public class JSONReaderGeoAreasSensorsTest {
         assertEquals(111, altitude);
     }
 
+    @Test
+    public void testReadJSONFileToList_readingsDTO() throws FileNotFoundException {
+        // arrange
+        String path = "datasets/json/DataSet_sprint05_SensorData.json";
+        File file = new File(path);
 
-    
+        // geograhical area list
+        List<Object> resultJSON = jsonReaderGeoAreasSensors.readFile(file);
+        Object readingObj = resultJSON.get(0);
+        ReadingDTO readingDTO = (ReadingDTO) readingObj;
+
+        String geoA1 = readingDTO.getId();
+
+        // sensor
+        String sensorId = readingDTO.getId();
+        double value = readingDTO.getValue();
+        LocalDateTime sensorDate = readingDTO.getDateTime();
+        String units = readingDTO.getUnits();
+
+        // result
+        List<String> result = new ArrayList<>();
+        result.add(geoA1);
+
+        // expected result
+        List<String> expectedResult = new ArrayList<>();
+        expectedResult.add("TT12346");
+
+        // assert
+        assertEquals(expectedResult, result);
+        assertEquals("TT12346", sensorId);
+        assertEquals(LocalDateTime.of(2018, 12, 30, 02, 00), sensorDate);
+        assertEquals("C", units);
+        assertEquals(14, value);
+    }
 
 }

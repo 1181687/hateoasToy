@@ -13,17 +13,29 @@ ACCEPTANCE CRITERIA:
 - given - The user (admin) wants the data related to geographical areas, including sensors and their readings, to
 be persisted in a relational database, so that this data is available whenever the application is run.
 
-- when - There is no user interaction. However, all user stories must implement this new functionality.
+- when - We can see if this user story works if, for example,
+         the user chooses option "1" from Menu (Administrator),
+         then option "2" (Geographical Area) and then option "9"
+         (Import geographical areas and sensors from JSON or XML File).
+         Then User inserts the name of the file to be imported.
+         He/She then chooses the option "YES" in "Do you want to import these geographic areas and their sensors? (Y/N)".
 
-- then - If we choose the US 015, "As an Administrator, I want to import geographical areas and sensors from a JSON file",
-we
+After that, the user have access to the database, where the user can see the persistence data, on the link:
 
-- but -
+port: 8080
+spring.h2.console.path=/h2-console
+spring.datasource.url=jdbc:h2:file:~/test2;DB_CLOSE_ON_EXIT=FALSE;AUTO_RECONNECT=TRUE
 
+- then - If the Geographical Areas and their sensors are on the database, the persistence has been accomplished.
+
+- but - If the Geographical Areas and their sensors aren't on the database, the persistence has not been accomplished.
 
 
 TEST CRITERIA:
+- All unit tests with "Process finished with exit code 0" message.
 -
 
+
 ASSUMPTIONS:
--
+- There is no user interaction. However, the user stories 015v2 and 020v2 must implement this new functionality.
+- Both user stories need to work to have persistence.
