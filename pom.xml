@@ -187,10 +187,6 @@
                         <param>pt.ipp.isep.dei.project.controllers.*</param>
                     </targetClasses>
 
-                    <excludedClasses>
-                        <param>pt.ipp.isep.dei.project.Main</param>
-                    </excludedClasses>
-
                     <targetTests>
                         <param>pt.ipp.isep.dei.project.modelTests.*</param>
                         <param>pt.ipp.isep.dei.project.utilsTests.*</param>

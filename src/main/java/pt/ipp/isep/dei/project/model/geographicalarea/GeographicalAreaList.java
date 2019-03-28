@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
-import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
@@ -37,7 +36,7 @@ public class GeographicalAreaList {
     public boolean addGeoArea(GeographicalArea geoArea) {
         if (!(geoAreaList.contains(geoArea))) {
             geoAreaList.add(geoArea);
-            //GeoAreaService.getInstance().getGeoAreaRepository().save(geoArea);
+            GeoAreaService.getInstance().getGeoAreaRepository().save(geoArea);
             return true;
         }
         return false;
