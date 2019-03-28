@@ -80,6 +80,9 @@ public class CSVReader implements ProjectFileReader {
     @Override
     public List<Object> readFile(File file) {
         Scanner scanner = createScanner(file);
+        if (Objects.isNull(scanner)) {
+            return null;
+        }
         List<Object> readingDTOList = new ArrayList<>();
         scanner.nextLine();
         List<List<String>> allLines = new ArrayList<>();
