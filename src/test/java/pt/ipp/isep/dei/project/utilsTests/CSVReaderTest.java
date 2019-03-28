@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.utilsTests;
 
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
@@ -14,6 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 class CSVReaderTest {
     private CSVReader csvReader = new CSVReader();
@@ -103,7 +103,7 @@ class CSVReaderTest {
     }
 
     @Test
-    public  void testReadFile_NullObject_ShouldReturnNull() {
+    public void testReadFile_NullObject_ShouldReturnNull() {
         // Arrange
         String path = "rfg.csv";
         file = new File(path);

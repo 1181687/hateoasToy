@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 
 import java.time.LocalDateTime;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 class ReadingDTOTest {
     private ReadingDTO readingDTO;

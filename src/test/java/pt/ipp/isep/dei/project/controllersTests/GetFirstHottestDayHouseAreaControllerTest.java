@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.getfirsthottestdayhouseareacontroller.GetFirstHottestDayHouseAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -18,8 +20,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class GetFirstHottestDayHouseAreaControllerTest {
