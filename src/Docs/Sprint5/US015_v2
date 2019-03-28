@@ -17,7 +17,7 @@ Specific Criteria:
 - given - The user (Admin) imports geographical areas and sensors from a XML file.
 - when - The user chooses option "1" from Menu (Administrator), then option "2" (Geographical Area) and then option "9"
 (Import geographical areas and sensors from JSON or XML File). Then User inserts the name of the file to be imported
-(JSONfile.json or DataSet_sprint05_GA.xml). He/She then chooses the option "YES" in "Do you want to import these
+(JSONfile.json or XMLFile_GA.xml). He/She then chooses the option "YES" in "Do you want to import these
 geographic areas and their sensors? (Y/N)"
 - then:
    * When the user inserts the name of the file the following message appears ("This is the content of the chosen file.")
@@ -53,8 +53,6 @@ Test_scenario1:
 Test_scenario2:
 - Input data: the path file is correct, but is empty.
 - Expected result: "The information on the file is not valid to be imported."
-
-
 
 Test_scenario3:
 - Input data: the file has only readings that don't the right type of LocalDateTime format (or LocalDate in the case of Rainnfall Readings).

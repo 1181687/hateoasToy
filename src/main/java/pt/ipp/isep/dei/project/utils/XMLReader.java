@@ -166,8 +166,7 @@ public class XMLReader implements ProjectFileReader {
 
 
     private static Node getTag(String tag, Element element) {
-        Node node = element.getElementsByTagName(tag).item(0);
-        return node;
+        return element.getElementsByTagName(tag).item(0);
     }
 
     @Override
