@@ -13,15 +13,15 @@ hide circle
 
 
 ImportGeoAreasFromJSONOrXMLUI "1" --> "1" ImportGeoAreasFromJSONOrXMLController
-ImportGeoAreasFromJSONOrXMLController "1" -right-> "1" GeographicalAreaList
-ImportGeoAreasFromJSONOrXMLController "1" --> "1" GeographicalAreaMapper
+ImportGeoAreasFromJSONOrXMLController "1" -up-> "1" GeographicalAreaList
+ImportGeoAreasFromJSONOrXMLController "1" -left-> "1" GeographicalAreaMapper
 ImportGeoAreasFromJSONOrXMLController "1" --> "1" GeographicalAreaDTO
 ImportGeoAreasFromJSONOrXMLController  "1" --> "1" SensorDTO
 ImportGeoAreasFromJSONOrXMLController  "1" --> "1" SensorMapper
-ImportGeoAreasFromJSONOrXMLController  "1" -left-> "1" XMLReader
-ImportGeoAreasFromJSONOrXMLController  "1" -left-> "1" JSONReader
-XMLReader "1" -up-* "1" ProjectFileReader : implements
-JSONReader "1" -right-* "1" ProjectFileReader : implements
+ImportGeoAreasFromJSONOrXMLController  "1" -right-> "1" "<<ProjectFileReader>>"
+
+XMLReader "1" -down-* "1" "<<ProjectFileReader>>" : implements
+JSONReader "1" -right-* "1" "<<ProjectFileReader>>" : implements
 
 Class ImportGeoAreasFromJSONOrXMLUI {
 - ImportGeoAreasFromJSONOrXMLController controller
@@ -78,7 +78,7 @@ Class SensorMapper {
 + mapToEntity()
 }
 
-Interface ProjectFileReader {
+Interface "<<ProjectFileReader>>" {
 + getTypeName()
 + readFile()
 }
