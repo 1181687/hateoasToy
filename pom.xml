@@ -192,7 +192,9 @@
                     </excludedClasses>
 
                     <targetTests>
-                        <param>pt.ipp.isep.dei.project.*</param>
+                        <param>pt.ipp.isep.dei.project.modelTests.*</param>
+                        <param>pt.ipp.isep.dei.project.utilsTests.*</param>
+                        <param>pt.ipp.isep.dei.project.controllersTests.*</param>
                     </targetTests>
 
                     <outputFormats>

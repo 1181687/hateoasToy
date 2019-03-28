@@ -5,7 +5,7 @@ import pt.ipp.isep.dei.project.model.LocationMapper;
 
 public final class SensorMapper {
 
-    private SensorMapper() {
+    protected SensorMapper() {
         // empty
     }
 

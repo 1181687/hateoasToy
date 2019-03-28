@@ -17,7 +17,12 @@ public class LocationMapperTest {
 
         Location localização = new Location(latitude, longitude, altitude);
 
-        LocationDTO locationDTO = new LocationDTO();
+        /*LocationDTO locationDTO = new LocationDTO();
+        locationDTO.setLongitude(longitude);
+        locationDTO.setElevation(altitude);
+        locationDTO.setLatitude(latitude);*/
+
+        LocationDTO locationDTO = LocationMapper.newLocationDTO();
         locationDTO.setLongitude(longitude);
         locationDTO.setElevation(altitude);
         locationDTO.setLatitude(latitude);
@@ -28,6 +33,7 @@ public class LocationMapperTest {
         Location result = LocationMapper.mapToEntity(outraCoisa);
         //Assert
         assertEquals(expectedResult, result);
-
     }
+
+
 }
