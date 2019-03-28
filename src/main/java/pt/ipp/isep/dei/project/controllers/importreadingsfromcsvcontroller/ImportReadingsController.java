@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.logging.FileHandler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ImportReadingsController {
@@ -86,6 +87,8 @@ public class ImportReadingsController {
             }
             if (isDateTimeBeforeSensorStartingDate(reading.getDateTime())) {
                 numberOfNotImportedReadings++;
+                String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
+                LOGGER.log(Level.WARNING, "Reading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
                 continue;
             }
             if (reading.getUnits().equals("F")) {

@@ -39,21 +39,20 @@ public class ImportReadings {
         }
         String importConfirmation = InputValidator.confirmValidation("\nDo you really want to import the readings? (Y/N)\n");
         if ("Y".equals(importConfirmation) || "y".equals(importConfirmation)) {
+
             try {
-                controller.addReadingToSensorById();
+                if (controller.addReadingToSensorById()) {
+                    int notImportedReadings = controller.getNumberOfNotImportedReadings();
+                    if (notImportedReadings > 0) {
+                        System.out.println("The file was partially imported. There were " + notImportedReadings + " readings that were not imported, due to invalid information.\n");
+                        return;
+                    }
+                    System.out.println("\n The file was imported with success.\n");
+                } else {
+                    System.out.println("\nThe file was not imported. \n");
+                }
             } catch (Exception e) {
                 System.out.println("\nSorry! The file doesn't contain valid readings. It was not possible to import them.\n");
-                return;
-            }
-            if (controller.addReadingToSensorById()) {
-                int notImportedReadings = controller.getNumberOfNotImportedReadings();
-                if (notImportedReadings > 0) {
-                    System.out.println("The file was partially imported. There were " + notImportedReadings + " readings that were not imported, due to invalid information.");
-                    return;
-                }
-                System.out.println("\n The file was imported with success.\n");
-            } else {
-                System.out.println("\nThe file was not imported. \n");
             }
         }
     }
