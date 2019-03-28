@@ -1,7 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
@@ -12,8 +11,10 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class WallTowelHeaterSpecsTest {
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
@@ -24,7 +25,7 @@ public class WallTowelHeaterSpecsTest {
     private DeviceSpecs specs;
     private House house;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
 
         // House
@@ -274,7 +275,7 @@ public class WallTowelHeaterSpecsTest {
         //Act
         double result = specs.getNominalPower();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
     }
 
     /**
@@ -291,7 +292,7 @@ public class WallTowelHeaterSpecsTest {
         //Act
         double result = specs.getEnergyConsumptionInADay();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
     }
 
     /**

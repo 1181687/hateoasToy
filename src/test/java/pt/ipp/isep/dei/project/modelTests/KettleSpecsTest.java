@@ -1,7 +1,5 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceSpecs;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
@@ -12,8 +10,9 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class KettleSpecsTest {
     private static final String ATTRIBUTE_NOMINAL_POWER = "Nominal Power";
@@ -31,7 +30,7 @@ public class KettleSpecsTest {
     /**
      * This method pretends to initialize some attributes of this test class to simplifying all tests.
      */
-    @BeforeEach
+    @Before
     public void StartUp() {
 
         // House
@@ -555,7 +554,7 @@ public class KettleSpecsTest {
         //Act
         double result = kettleSpecs.getNominalPower();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     /**
