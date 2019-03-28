@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.television.TelevisionType;
@@ -16,7 +17,6 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 public class TelevisionTest {
     private Room bedroom;
@@ -28,7 +28,7 @@ public class TelevisionTest {
     private Reading reading2;
     private House house;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -117,7 +117,7 @@ public class TelevisionTest {
         // Assert
         assertEquals(expectedResult, result, 0.001);
     }
-
+/*
     @Test
     public void setNameWithSameNameTestSmartTV() {
         Throwable exception = assertThrows(RuntimeException.class, () -> television.setName("Smart TV"));
@@ -141,7 +141,7 @@ public class TelevisionTest {
         Throwable exception = assertThrows(RuntimeException.class, () -> bedroom.getDeviceByPosition(0).setName("Flat Screen TV"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
-
+*/
     @Test
     public void setNameTrueTest() {
         // Act
@@ -508,4 +508,3 @@ public class TelevisionTest {
     }
 
 }
-*/

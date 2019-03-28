@@ -1,12 +1,11 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+
+
+import org.junit.Test;
+import static org.junit.Assert.*;
 import pt.ipp.isep.dei.project.model.devices.ProgramSpecs;
 import pt.ipp.isep.dei.project.model.devices.TimeVariableProgram;
 import pt.ipp.isep.dei.project.model.devices.TimeVariableProgramSpecs;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 public class TimeVariableProgramTest {
 
@@ -81,7 +80,7 @@ public class TimeVariableProgramTest {
         // Act
         String result = program.getName();
         // Assert
-        Assertions.assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result);
     }
 
-}*/
+}

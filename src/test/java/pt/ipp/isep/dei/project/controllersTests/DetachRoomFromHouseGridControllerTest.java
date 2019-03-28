@@ -1,7 +1,9 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 import pt.ipp.isep.dei.project.controllers.DetachRoomFromHouseGridController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
@@ -13,9 +15,9 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-class DetachRoomFromHouseGridControllerTest {
+
+public class DetachRoomFromHouseGridControllerTest {
 
     private DetachRoomFromHouseGridController ctrl;
     private House house;
@@ -24,7 +26,7 @@ class DetachRoomFromHouseGridControllerTest {
     private HouseGrid mainGrid;
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -191,4 +193,4 @@ class DetachRoomFromHouseGridControllerTest {
         //Assert
         assertEquals(result, expectedResult);
     }
-}*/
+}

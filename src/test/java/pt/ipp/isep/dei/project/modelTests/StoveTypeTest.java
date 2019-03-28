@@ -1,20 +1,20 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.stove.StoveType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StoveTypeTest {
 
     private StoveType stoveType;
     private Room kitchen;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         //Type
         stoveType = new StoveType();
@@ -44,4 +44,4 @@ public class StoveTypeTest {
         //Assert
         assertEquals(result, expectedResult);
     }
-}*/
+}
