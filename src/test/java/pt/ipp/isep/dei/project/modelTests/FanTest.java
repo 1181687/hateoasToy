@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.fan.FanType;
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class FanTest {
     private Room kitchen;
@@ -28,7 +28,7 @@ public class FanTest {
     private Reading reading2;
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -186,7 +186,7 @@ public class FanTest {
         assertFalse(result);
     }
 
-    @Test
+    /*@Test
     public void setNameWithSameNameTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> fan.setName("Fan300"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -196,7 +196,7 @@ public class FanTest {
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> fan.setName("Fan200"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
+    }*/
 
     @Test
     public void setNameFalseTest() {
@@ -402,6 +402,4 @@ public class FanTest {
     void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
 
     }
-
-
-}*/
+}

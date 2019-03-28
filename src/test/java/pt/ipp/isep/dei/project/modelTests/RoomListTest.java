@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -17,8 +17,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.Assert.*;
 
 public class RoomListTest {
 
@@ -30,7 +29,7 @@ public class RoomListTest {
     private static final String WASHING_MACHINE_TYPE = "WashingMachine";
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -174,7 +173,7 @@ public class RoomListTest {
         assertEquals(true, result);
     }
 
-    @Test
+    /*@Test
     public void testNewRoomFalseDuplicatedName() {
         //arrange
         RoomList list = new RoomList();
@@ -187,7 +186,7 @@ public class RoomListTest {
         );
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
+    }*/
 
     @Test
     public void getDisplayOfTheChosenRoomTest() {
@@ -940,4 +939,3 @@ public class RoomListTest {
     }
 }
 
-*/

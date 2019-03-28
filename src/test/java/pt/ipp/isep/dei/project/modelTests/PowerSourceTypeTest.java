@@ -1,12 +1,12 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class PowerSourceTypeTest {
 
@@ -70,4 +70,3 @@ public class PowerSourceTypeTest {
         assertFalse(result);
     }
 }
-*/

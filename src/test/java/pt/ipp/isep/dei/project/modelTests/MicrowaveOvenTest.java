@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class MicrowaveOvenTest {
     private Room kitchen;
@@ -32,7 +32,7 @@ public class MicrowaveOvenTest {
     private Reading reading2;
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -95,7 +95,7 @@ public class MicrowaveOvenTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    /*@Test
     public void setNameWithSameNameTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> microwaveOven.setName("Becken BMW2328"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -105,7 +105,7 @@ public class MicrowaveOvenTest {
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> microwaveOven.setName("Becken BMW2329"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
+    }*/
 
     @Test
     public void setNameFalseTest() {
@@ -266,4 +266,4 @@ public class MicrowaveOvenTest {
         assertEquals(expectedResult, result);
     }
 
-}*/
+}

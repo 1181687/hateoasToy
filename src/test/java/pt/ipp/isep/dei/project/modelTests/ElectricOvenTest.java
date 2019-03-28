@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -19,11 +19,14 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
-import java.util.*;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeMap;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class ElectricOvenTest {
+public class ElectricOvenTest {
     private Room kitchen;
     private Room laundry;
     private Device electricOven;
@@ -36,8 +39,7 @@ class ElectricOvenTest {
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
 
-
-    @BeforeEach
+    @Before
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -147,7 +149,7 @@ class ElectricOvenTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @Test
+    /*@Test
     public void setNameWithSameNameTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> electricOven.setName("Kenmore Elite 95053"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -157,7 +159,7 @@ class ElectricOvenTest {
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> electricOven.setName("Kenmore Elite 95067"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
+    }*/
 
     @Test
     public void setNameFalseTest() {
@@ -526,6 +528,5 @@ class ElectricOvenTest {
         electricOven.setDeactivateDevice();
         boolean result = electricOven.setDeactivateDevice();
         assertEquals(expectedResult, result);
-    }
-
-}*/
+    }*/
+}

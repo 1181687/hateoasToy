@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.MeasurableList;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -17,9 +16,9 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class MeasurableListTest {
+public class MeasurableListTest {
     private House house;
     private Device dev1;
     private Device dev2;
@@ -34,7 +33,7 @@ class MeasurableListTest {
     private static final String WASHING_MACHINE_TYPE = "WashingMachine";
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -122,4 +121,4 @@ class MeasurableListTest {
         // assert
         assertEquals(expectedResult, result);
     }
-}*/
+}

@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class SensorListTest {
+public class SensorListTest {
     private SensorList sensorList;
     private Sensor temperatureSensor1;
     private Sensor temperatureSensor2;
@@ -30,7 +30,7 @@ class SensorListTest {
     private Location location;
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // Sensor List
         sensorList = new SensorList();

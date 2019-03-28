@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -20,9 +19,9 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class GetEnergyConsumptionControllerTest {
+public class GetEnergyConsumptionControllerTest {
     private GetEnergyConsumptionController ctrl;
     private Room room;
     private House house;
@@ -30,7 +29,7 @@ class GetEnergyConsumptionControllerTest {
     private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -361,5 +360,4 @@ class GetEnergyConsumptionControllerTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-
-}*/
+}

@@ -1,21 +1,21 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
-class ReadingDTOTest {
+public class ReadingDTOTest {
     private ReadingDTO readingDTO;
 
     /**
      * This method pretends to initialize some attributes of this test class to simplifying all tests.
      */
-    @BeforeEach
+    @Before
     void StartUp() {
         readingDTO = ReadingMapper.newReadingDTO();
     }

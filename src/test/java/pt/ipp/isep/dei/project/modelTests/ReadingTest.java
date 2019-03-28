@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+
 
 public class ReadingTest {
 
@@ -83,4 +84,4 @@ public class ReadingTest {
         assertTrue(result);
     }
 
-}*/
+}
