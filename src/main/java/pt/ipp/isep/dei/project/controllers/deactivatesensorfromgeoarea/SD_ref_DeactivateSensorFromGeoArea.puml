@@ -1,4 +1,5 @@
 @startuml
+autonumber
 skinparam sequenceMessageAlign center
 skinparam sequence {
 	ArrowColor Black
@@ -16,34 +17,41 @@ skinparam sequence {
 	ActorFontSize 17
 	ActorFontName Aapex
 }
+activate "ctrl : DeactivateSensor\nFromGeoArea\nController"
+"ctrl : DeactivateSensor\nFromGeoArea\nController" -> GeographicalArea: getGeoAreaList()
 
-loop parseGeoArea
-activate "GeographicalAreaList"
-"GeographicalAreaList" -> "LocationMapper": 1- mapToDTO(latitude,longitude,altitude)
+loop GeographicalArea
+
+"GeographicalArea" -> "LocationMapper": mapToDTO(latitude,longitude,altitude)
+activate "GeographicalArea"
 activate "LocationMapper"
-"LocationMapper" --> "GeographicalAreaList": 2- locationDTO
+"LocationMapper" --> "GeographicalArea": locationDTO
+deactivate GeographicalArea
 deactivate "LocationMapper"
-"GeographicalAreaList" -> "GeographicalAreaMapper": 3- mapToDTO(id,description,\ntype,width,legth,locationDTO)
+"GeographicalArea" -> "GeographicalAreaMapper": mapToDTO(id,description,\ntype,width,legth,locationDTO)
+activate GeographicalArea
 activate "GeographicalAreaMapper"
-"GeographicalAreaMapper" -> ":GeographicalAreaDTO" : 3.1- create
+"GeographicalAreaMapper" -> ":GeographicalAreaDTO" :  create
 activate ":GeographicalAreaDTO"
-":GeographicalAreaDTO" --> "GeographicalAreaMapper": 3.2- geographicalAreaDTO
+":GeographicalAreaDTO" --> "GeographicalAreaMapper": geographicalAreaDTO
 deactivate ":GeographicalAreaDTO"
 
-"GeographicalAreaMapper" --> "GeographicalAreaList": 4- geographicalAreaDTO
+loop SensorList
+"SensorList" -> "LocationMapper": mapToDTO(latitude,longitude,altitude)
+activate "LocationMapper"
+"LocationMapper" --> "SensorList": locationDTO
+deactivate "LocationMapper"
+"SensorList" -> ":SensorDTO": newSensorDTO()
+activate ":SensorDTO"
+":SensorDTO" --> "SensorList": sensorDTO
+deactivate ":SensorDTO"
+"SensorList" -> ":GeographicalAreaDTO" : addSensorDTO
+end
+end
+"GeographicalAreaMapper" --> "ctrl : DeactivateSensor\nFromGeoArea\nController" :DTOList
+deactivate GeographicalArea
 deactivate "GeographicalAreaMapper"
 
-loop parseSensor
-"GeographicalAreaList" -> "LocationMapper": 5- mapToDTO(latitude,longitude,altitude)
-activate "LocationMapper"
-"LocationMapper" --> "GeographicalAreaList": 6- locationDTO
-deactivate "LocationMapper"
-"GeographicalAreaList" -> ":SensorDTO": 7- newSensorDTO()
-activate ":SensorDTO"
-":SensorDTO" --> "GeographicalAreaList": 8- sensorDTO
-deactivate ":SensorDTO"
-"GeographicalAreaList" -> ":GeographicalAreaDTO" :9- addSensorDTO
 
-end
-end
+
 @enduml

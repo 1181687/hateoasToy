@@ -11,7 +11,6 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,12 +33,9 @@ public class ImportGeoAreasFromJSONOrXML {
         // Write the path
         String path = InputValidator.getString("Please specify the name of the file to import.");
         File file = new File(path);
-        FileReader reader = checkIfFileExistsAndCreateFileReader(file);
-
-        //this.reader = controller.createReader(path);
 
 
-        if (Objects.isNull(reader)) {
+        if (!file.exists()) {
             System.out.println("\nERROR: There's no such file with that name.\n");
             return;
         }
@@ -52,10 +48,23 @@ public class ImportGeoAreasFromJSONOrXML {
         // Content of the choosen file
         String confirmOptions = "\n This is the content of the chosen file: \n";
 
-        /*String areaGeo1 = " > " + dtoList.get(0).getId() + " - Number of sensors: " + dtoList.get(0).getSensors().size();
-        String areaGeo2 = " > " + dtoList.get(1).getId() + " - Number of sensors: " + dtoList.get(0).getSensors().size();
+        StringBuilder content = new StringBuilder();
+        content.append(confirmOptions);
+        content.append("\n");
+        for (Object areaGeo : dtoList) {
+            GeographicalAreaDTO geoDTO = (GeographicalAreaDTO) areaGeo;
+            String id = geoDTO.getId();
+            int numberOfSensors = geoDTO.getSensors().size();
+            content.append(" > ");
+            content.append(id);
+            content.append("\n");
+            content.append(" - Number of sensors: ");
+            content.append(numberOfSensors);
+            content.append("\n");
+        }
 
-        System.out.println(confirmOptions + "\n" + areaGeo1 + "\n" + areaGeo2 + "\n");*/
+        System.out.println(content);
+
 
         // Import confirmation
         String importConfirmation = InputValidator.confirmValidation("Do you want to import these geographic areas and their sensors? (Y/N)");
@@ -68,24 +77,9 @@ public class ImportGeoAreasFromJSONOrXML {
                 return;
             }
         } else {
-            System.out.println("The JSON file was not imported. \n");
+            System.out.println("The file was not imported. \n");
             return;
         }
     }
 
-    /**
-     * Method that checks if a file is valid (if it exists) and creates a scanner based on it.
-     *
-     * @param fileJSON Path of the JSON file.
-     * @return Null scanner if there's no such file with the specified name; or a valid scanner if the file exists.
-     */
-    public FileReader checkIfFileExistsAndCreateFileReader(File fileJSON) {
-        FileReader file;
-        try {
-            file = new FileReader(fileJSON);
-        } catch (FileNotFoundException e) {
-            file = null;
-        }
-        return file;
-    }
 }
