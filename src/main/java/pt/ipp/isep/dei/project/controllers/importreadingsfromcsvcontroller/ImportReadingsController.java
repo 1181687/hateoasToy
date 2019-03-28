@@ -24,6 +24,7 @@ public class ImportReadingsController {
     private SensorList allSensorInTheGeoAreas;
     private Sensor sensor;
     private List<Object> readingDTOList;
+    private int numberOfNotImportedReadings;
 
     /**
      * Constructor.
@@ -69,13 +70,22 @@ public class ImportReadingsController {
         sensor.addReadingsToList(reading);
     }
 
+    public int getNumberOfNotImportedReadings(){
+        return this.numberOfNotImportedReadings;
+    }
+
     public boolean addReadingToSensorById() {
         configLogFile();
         boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
             sensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
-            if(Objects.isNull(sensor) || isDateTimeBeforeSensorStartingDate(reading.getDateTime())){
+            if(Objects.isNull(sensor)){
+                numberOfNotImportedReadings++;
+                continue;
+            }
+            if (isDateTimeBeforeSensorStartingDate(reading.getDateTime())){
+                numberOfNotImportedReadings++;
                 continue;
             }
             if (reading.getUnits().equals("F")) {

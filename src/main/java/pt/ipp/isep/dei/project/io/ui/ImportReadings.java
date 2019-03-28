@@ -21,7 +21,7 @@ public class ImportReadings {
 
 
     public void run() throws FileNotFoundException {
-        String pathFile = InputValidator.getString("Please specify the name of the file you would like to import (extensions accepted: json, csv, xml).");
+        String pathFile = InputValidator.getString("Please specify the name of the file you would like to import (extensions accepted: json, csv, xml).\n");
         if (!controller.isValidFormat(pathFile)) {
             System.out.println("\nERROR: Please insert a valid format.\n");
             return;
@@ -34,27 +34,27 @@ public class ImportReadings {
         List<Object> readings = controller.readFile(file, pathFile);
         // Import confirmation
         if (readings.isEmpty()) {
-            System.out.println("Sorry! The file is empty.");
+            System.out.println("\nSorry! The file is empty.\n");
             return;
         }
-        String importConfirmation = InputValidator.confirmValidation("Do you really want to import the readings? (Y/N)\n");
+        String importConfirmation = InputValidator.confirmValidation("\nDo you really want to import the readings? (Y/N)\n");
         if ("Y".equals(importConfirmation) || "y".equals(importConfirmation)) {
             try {
                 controller.addReadingToSensorById();
             } catch (Exception e) {
-                System.out.println("Sorry! The file doesn't contain valid readings. It was not possible to import them.");
+                System.out.println("\nSorry! The file doesn't contain valid readings. It was not possible to import them.\n");
                 return;
             }
             if (controller.addReadingToSensorById()) {
+                int notImportedReadings = controller.getNumberOfNotImportedReadings();
+                if (notImportedReadings > 0) {
+                    System.out.println("The file was partially imported. There were " + notImportedReadings + " readings that were not imported, due to invalid information.");
+                    return;
+                }
                 System.out.println("\n The file was imported with success.\n");
-                return;
             } else {
-                System.out.println("The file is already imported.\n");
-                return;
+                System.out.println("\nThe file was not imported. \n");
             }
-        } else {
-            System.out.println("The file was not imported. \n");
-            return;
         }
     }
 }
