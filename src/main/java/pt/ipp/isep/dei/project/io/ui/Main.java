@@ -1,11 +1,15 @@
-package pt.ipp.isep.dei.project;
+package pt.ipp.isep.dei.project.io.ui;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
-import pt.ipp.isep.dei.project.io.ui.*;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -25,6 +29,9 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@EnableJpaRepositories(basePackages = "pt.ipp.isep.dei.project")
+@EntityScan(basePackages = "pt.ipp.isep.dei.project")
+@ComponentScan(basePackages = "pt.ipp.isep.dei.project")
 @SpringBootApplication
 public class Main {
 
@@ -57,13 +64,11 @@ public class Main {
     @Autowired
     GeoAreaRepository geoAreaRepository;
 
-
     public static void main(String[] args) {
 
         SpringApplication.run(Main.class, args);
 
     }
-
 
     @Bean
     public CommandLineRunner mainRun() {
@@ -73,6 +78,7 @@ public class Main {
             GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
 
             data();
+            
 
             //UI levels
             Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaList, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList());

@@ -55,16 +55,33 @@ public class CSVReader implements ProjectFileReader {
     }
 
     /**
+     * Method that creates a scanner based on a given file.
+     *
+     * @param file File to be used in the scanner creation.
+     * @return Scanner.
+     */
+    private Scanner createScanner(File file) {
+        Scanner scanner;
+        try {
+            scanner = new Scanner(file);
+
+        } catch (FileNotFoundException e) {
+            scanner = null;
+        }
+        return scanner;
+    }
+
+    /**
      * Method that reads all the content of a CSV file and stores the information in a list.
      *
      * @param file File with the information needed.
      * @return List with lists of Strings corresponding to the information of each line in the file.
      */
     @Override
-    public List<Object> readFile(File file) throws FileNotFoundException {
-        Scanner scanner = new Scanner(file);
-        if (!scanner.hasNext()) {
-            scanner.close();
+    public List<Object> readFile(File file) {
+        Scanner scanner = createScanner(file);
+        if (Objects.isNull(scanner)) {
+            return null;
         }
         List<Object> readingDTOList = new ArrayList<>();
         scanner.nextLine();
@@ -75,25 +92,24 @@ public class CSVReader implements ProjectFileReader {
                 allLines.add(line);
             }
         }
-        if (allLines.isEmpty()) {
-            return null;
-        }
-        for (List<String> line : allLines) {
-            String sensorId = line.get(0);
-            String dateTime = line.get(1);
-            String value = line.get(2);
-            String unit = line.get(3);
-            LocalDateTime readingDateTime;
-            if (sensorId.contains("RF")) {
-                LocalDate readingDate = LocalDate.parse(dateTime, DateTimeFormatter.ofPattern("dd/MM/uuuu"));
-                readingDateTime = readingDate.atStartOfDay();
-            } else {
-                ZonedDateTime zonedDateTime = ZonedDateTime.parse(dateTime);
-                readingDateTime = zonedDateTime.toLocalDateTime();
+        if (!allLines.isEmpty()) {
+            for (List<String> line : allLines) {
+                String sensorId = line.get(0);
+                String dateTime = line.get(1);
+                String value = line.get(2);
+                String unit = line.get(3);
+                LocalDateTime readingDateTime;
+                if (sensorId.contains("RF")) {
+                    LocalDate readingDate = LocalDate.parse(dateTime, DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+                    readingDateTime = readingDate.atStartOfDay();
+                } else {
+                    ZonedDateTime zonedDateTime = ZonedDateTime.parse(dateTime);
+                    readingDateTime = zonedDateTime.toLocalDateTime();
+                }
+                double readingValue = Double.parseDouble(value);
+                ReadingDTO readingDTO = ReadingMapper.mapToDTOwithIDandUnits(sensorId, readingDateTime, readingValue, unit);
+                readingDTOList.add(readingDTO);
             }
-            double readingValue = Double.parseDouble(value);
-            ReadingDTO readingDTO = ReadingMapper.mapToDTOwithIDandUnits(sensorId, readingDateTime, readingValue, unit);
-            readingDTOList.add(readingDTO);
         }
         return readingDTOList;
     }

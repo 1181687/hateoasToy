@@ -20,7 +20,6 @@ public class ImportGeoAreasFromJSONOrXMLController {
     private List<Object> geoAreaDTOList;
 
 
-
     public ImportGeoAreasFromJSONOrXMLController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;
 

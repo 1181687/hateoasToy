@@ -58,7 +58,7 @@ public class ImportGeoAreasFromJSONOrXML {
 
 
         // Import confirmation
-        String importConfirmation = InputValidator.confirmValidation("Do you want to import these geographic areas and their sensors? (Y/N)");
+        String importConfirmation = InputValidator.confirmValidation("Do you want to import these geographical areas and their sensors? (Y/N)");
         if ("Y".equalsIgnoreCase(importConfirmation)) {
             if (controller.importGeographicalAreaAndSensors()) {
                 System.out.println("\n The file was imported with success.\n");

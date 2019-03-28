@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.utilsTests;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -8,7 +9,6 @@ import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.utils.CSVReader;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -45,12 +45,7 @@ class CSVReaderTest {
         Reading reading = ReadingMapper.mapToEntity(readingDTO);
 
         // Act
-        List<Object> result;
-        try {
-            result = csvReader.readFile(file);
-        } catch (FileNotFoundException e) {
-            result = null;
-        }
+        List<Object> result = csvReader.readFile(file);
 
         Reading reading1 = ReadingMapper.mapToEntity((ReadingDTO) result.get(4));
 
@@ -69,15 +64,10 @@ class CSVReaderTest {
         file = new File(path);
 
         // Act
-        List<Object> result;
-        try {
-            result = csvReader.readFile(file);
-        } catch (FileNotFoundException e) {
-            result = null;
-        }
+        boolean result = csvReader.readFile(file).isEmpty();
 
         // Assert
-        assertNull(result);
+        Assertions.assertTrue(result);
     }
 
     /**
@@ -90,12 +80,7 @@ class CSVReaderTest {
         file = new File(path);
 
         // Act
-        List<Object> result;
-        try {
-            result = csvReader.readFile(file);
-        } catch (FileNotFoundException e) {
-            result = null;
-        }
+        List<Object> result = csvReader.readFile(file);
 
         // Assert
         assertEquals(11, result.size());

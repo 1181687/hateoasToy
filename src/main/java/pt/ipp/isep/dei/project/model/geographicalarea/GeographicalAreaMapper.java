@@ -9,7 +9,7 @@ public final class GeographicalAreaMapper {
     /**
      * Constructor.
      */
-    private GeographicalAreaMapper() {
+    protected GeographicalAreaMapper() {
         // empty
     }
 

@@ -14,22 +14,25 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Objects;
 import java.util.logging.FileHandler;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ImportReadingsFromCSVXMLJSONController {
-    private static final Logger LOGGER = Logger.getLogger(ImportReadingsFromCSVXMLJSONController.class.getName());
+public class ImportReadingsController {
+    private static final Logger LOGGER = Logger.getLogger(ImportReadingsController.class.getName());
     private GeographicalAreaList geographicalAreaList;
     private SensorList allSensorInTheGeoAreas;
     private Sensor sensor;
     private List<Object> readingDTOList;
+    private int numberOfNotImportedReadings;
 
     /**
      * Constructor.
      *
      * @param geographicalAreaList GeographicalAreaList to be used.
      */
-    public ImportReadingsFromCSVXMLJSONController(GeographicalAreaList geographicalAreaList) {
+    public ImportReadingsController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;
         this.allSensorInTheGeoAreas = this.geographicalAreaList.getAllSensors();
     }
@@ -68,12 +71,26 @@ public class ImportReadingsFromCSVXMLJSONController {
         sensor.addReadingsToList(reading);
     }
 
+    public int getNumberOfNotImportedReadings() {
+        return this.numberOfNotImportedReadings;
+    }
+
     public boolean addReadingToSensorById() {
         configLogFile();
         boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
-            Sensor sensor = geographicalAreaList.getSensorById(reading.getId());
+            sensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
+            if (Objects.isNull(sensor)) {
+                numberOfNotImportedReadings++;
+                continue;
+            }
+            if (isDateTimeBeforeSensorStartingDate(reading.getDateTime())) {
+                numberOfNotImportedReadings++;
+                String invalidInfo = "id: " + reading.getId() + ", value: " + reading.getValue() + ", timestamp/date: " + reading.getDateTime() + ", unit: " + reading.getUnits() + ".";
+                LOGGER.log(Level.WARNING, "Reading not imported due to timestamp/date of reading being before starting date of sensor: " + invalidInfo);
+                continue;
+            }
             if (reading.getUnits().equals("F")) {
                 double celsiusValue = Utils.convertFahrenheitToCelsius(reading.getValue());
                 reading.setValue(Utils.round(celsiusValue, 2));

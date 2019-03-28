@@ -17,35 +17,35 @@ Specific Criteria:
 - given - The user (Admin) imports geographical areas and sensors from a XML file.
 - when - The user chooses option "1" from Menu (Administrator), then option "2" (Geographical Area) and then option "9"
 (Import geographical areas and sensors from JSON or XML File). Then User inserts the name of the file to be imported
-(JSONfile.json or DataSet_sprint05_GA.xml). He/She then chooses the option "YES" in "Do you want to import these
+(JSONfile.json or XMLFile_GA.xml). He/She then chooses the option "YES" in "Do you want to import these
 geographic areas and their sensors? (Y/N)"
 - then:
    * When the user inserts the name of the file the following message appears ("This is the content of the chosen file.")
 with the contents of the file.
-   * When he/she chooses the "Yes" option the following message appears ("The XML file was imported with success.")
+   * When he/she chooses the "Yes" option the following message appears ("The file was imported with success.")
 - but - The following messages are displayed:
 
 "ERROR: There's no such file with that name." - when no file or directory is found when the user inputs the name of the
 file to be imported.
 
-"The information on the file is not valid to be imported." - Data is null (a string in the place of a double or
-vice versa) or the file is empty.
+"The information on the file is not valid to be imported." - Data is null or doesn't have the right format (a string in
+the place of a double or vice versa) or the file is empty.
 
 "The file is already imported."- when you try to import the contents of the file after that have been already imported.
 
 "The file was not imported."- when the file cannot be imported.
 
 
-
-
 Test Criteria:
 - All unit tests with "Process finished with exit code 0" message.
 - When user chooses option "1" from Menu, then option "2" and then option "9", should not accept letters, symbols, or any
   number that's not displayed in the menu.
-- When He/She then chooses the option "Y" or "N" in "Do you want to import these geographic areas and their sensors? (Y/N)",
+- When He/She then chooses the option "Y" or "N" in "Do you want to import these geographical areas and their sensors? (Y/N)",
 should not accept letters, symbols, or any number unless its a "Y" or "y" or a "N" or a "n".
 
+Acceptance Tests:
 
+//File
 Test_scenario1:
 - Input data: the path of file is not correct, so the file can not be found
 - Expected result: "ERROR: There's no such file with that name."
@@ -54,75 +54,53 @@ Test_scenario2:
 - Input data: the path file is correct, but is empty.
 - Expected result: "The information on the file is not valid to be imported."
 
-
-
 Test_scenario3:
-- Input data: the file has only readings that don't the right type of LocalDateTime format (or LocalDate in the case of Rainnfall Readings).
+- Input data: the path file is correct, but don't have the structure of geographical areas or sensors.
+- Expected result: "The information on the file is not valid to be imported."
+
+Test_scenario4:
+- Input data: the path file is correct, but it has some or all data, already imported.
+- Expected result: "The file is already imported."
+
+
+//Sensors
+Test_scenario5:
+- Input data: the file has some Sensor's that don't have the right format of LocalDate.
+- Expected result: Warnings regarding errors with the importation and the message "The information on the file is not valid to be imported."
+
+Test_scenario6:
+- Input data: the file has some Sensor's with an Id that already exists in the system.
+- Expected result: Warnings regarding errors with the importation and the message "The information on the file is not valid to be imported."
+
+Test_scenario7:
+- Input data: the file has some Sensor's that don't have a valid type.
+- Expected result: Warnings regarding errors with the importation and the message "The information on the file is not valid to be imported."
+
+Test_scenario8:
+- Input data: the file has some Sensor's that have a type that don't match the type of the correspondent sensor.
+- Expected result: Warnings regarding errors with the importation and the message "The information on the file is not valid to be imported."
+
+Test_scenario9:
+- Input data: the file has some Sensor's that don't have the right Unit for the type of sensor.
+- Expected result: Warnings regarding errors with the importation and the message "The information on the file is not valid to be imported."
+
+Test_scenario10:
+- Input data: the file has some Sensor's that don't have the right type of data for location (double and between -180 to 180 (longitude) and -90 to 90(latitude))
 - Expected result: Warnings regarding errors with the importation and the message "The information on the file is not valid to be imported."
 
 
-
-
-Test_scenario4:
-- Input data: the csv file has only readings that don't have double format measurements.
-- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
-
-Test_scenario5:
-- Input data: the csv file has only Data outside the valid sensor operation period.
-- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
-
-Test_scenario6:
-- Input data: the csv file has only readings with Sensor Id's that don´t correspond to the existing sensors.
-- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
-
-Test_scenario7:
-- Input data: the csv file has only readings without Sensor Id.
-- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
-
-Test_scenario8:
-- Input data: the csv file has some readings with Sensor Id that don´t correspond to the existing sensors.
-- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
-
-Test_scenario9:
-- Input data: the csv file has some readings that don't have LocalDateTime format.
-- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
-
-Test_scenario10:
-- Input data: the csv file has some readings that don't have double format measurements.
-- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
-
+//Geographical areas
 Test_scenario11:
-- Input data: the csv file have some Data outside the valid sensor operation period.
-- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+- Input data: the file has some Geographical areas with an Id that already exists in the system.
+- Expected result: Warnings regarding errors with the importation and the message "The information on the file is not valid to be imported."
 
 Test_scenario12:
-- Input data: the path csv file is correct, and have the correct data and id of the existing sensors in
-a valid operation period.
-- Expected result: "All readings were imported successfully."
+- Input data: the file has some Geographical areas that don't have a valid type.
+- Expected result: Warnings regarding errors with the importation and the message "The information on the file is not valid to be imported."
 
 Test_scenario13:
-- Input data: the path csv file has all the data in the wrong order.
-- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
-
-Test_scenario14:
-- Input data: the path csv file has some the data in the wrong order.
-- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
-
-Test_scenario15:
-- Input data: the path csv file has an extra field with data but all the order data are correct an in the correct order.
-- Expected result: "All readings were imported successfully."
-
-Test_scenario16:
-- Input data: the path csv file has several extra fields with data but all the order data are correct an in the correct order.
-- Expected result: "All readings were imported successfully."
-
-Test_scenario17:
-- Input data: the path csv file has a field less.
-- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
-
-Test_scenario18:
-- Input data: the path csv file has lesser fields.
-- Expected result: Warnings regarding errors with the importation and the message "Some readings weren't imported."
+- Input data: the file has some Geographical areas that don't have the right type of data for location (double and between -180 to 180 (longitude) and -90 to 90(latitude))
+- Expected result: Warnings regarding errors with the importation and the message "The information on the file is not valid to be imported."
 
 
 ASSUMPTIONS:
@@ -130,13 +108,7 @@ ASSUMPTIONS:
 - There is User interaction: the application asks the user the location of the files to be imported.
 - For user convenience the data to be imported is in the form of two DTO (Geographical Area DTO and SensorDTO)
 that are imported at the same time (in a single method) instead of importing the two referred DTO's one at a time.
-
-
-
-
 - Only the geographical areas and sensors that have all attributes are imported.
-- Sensors with id containing "RF" are assumed they are rainfall sensors, so, the reading only have a LocalDate. Since the reading's
-objects, all have LocalDateTime, the readings where imported after parse the Localdate to LocalDateTime.
-- Sensors of Temperature have readings registered in Celsius units. So, if the readings in the file are in Kelvins (K),
-they were converted to Celsius and then imported.
+- Rainfall Sensor units have to be in l/m2 (liter per square meter) or mm (milliliter).
+- Temperature sensor units have to be in C (celsius).
 
