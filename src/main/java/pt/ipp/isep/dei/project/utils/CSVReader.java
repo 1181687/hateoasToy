@@ -35,7 +35,7 @@ public class CSVReader implements ProjectFileReader {
      * @param csvLine String corresponding to a line/row in a CSV file.
      * @return List of Strings corresponding to the information of each column.
      */
-    private List<String> parseLine(String csvLine) {
+    private static List<String> parseLine(String csvLine) {
         List<String> result = new ArrayList<>();
         if (Objects.isNull(csvLine) || csvLine.isEmpty()) {
             return result;
