@@ -74,7 +74,7 @@ public class ImportReadingsFromCSVXMLJSONController {
         boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
-            sensor = allSensorInTheGeoAreas.getSensorById(reading.getID());
+            sensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
             if(Objects.isNull(sensor) || isDateTimeBeforeSensorStartingDate(reading.getDateTime())){
                 continue;
             }

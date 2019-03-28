@@ -8,7 +8,6 @@ import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.utils.CSVReader;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -36,7 +35,7 @@ class CSVReaderTest {
         file = new File(path);
 
         ReadingDTO readingDTO = new ReadingDTO();
-        readingDTO.setID("TT12346");
+        readingDTO.setId("TT12346");
         LocalDateTime dateTime = LocalDateTime.of(2018, 12, 31, 2, 0, 0);
         readingDTO.setDateTime(dateTime);
         readingDTO.setValue(13.8);
@@ -45,12 +44,7 @@ class CSVReaderTest {
         Reading reading = ReadingMapper.mapToEntity(readingDTO);
 
         // Act
-        List<Object> result;
-        try {
-            result = csvReader.readFile(file);
-        } catch (FileNotFoundException e) {
-            result = null;
-        }
+        List<Object> result = csvReader.readFile(file);
 
         Reading reading1 = ReadingMapper.mapToEntity((ReadingDTO) result.get(4));
 
@@ -69,12 +63,7 @@ class CSVReaderTest {
         file = new File(path);
 
         // Act
-        List<Object> result;
-        try {
-            result = csvReader.readFile(file);
-        } catch (FileNotFoundException e) {
-            result = null;
-        }
+        List<Object> result = csvReader.readFile(file);
 
         // Assert
         assertNull(result);
@@ -90,12 +79,7 @@ class CSVReaderTest {
         file = new File(path);
 
         // Act
-        List<Object> result;
-        try {
-            result = csvReader.readFile(file);
-        } catch (FileNotFoundException e) {
-            result = null;
-        }
+        List<Object> result = csvReader.readFile(file);
 
         // Assert
         assertEquals(11, result.size());

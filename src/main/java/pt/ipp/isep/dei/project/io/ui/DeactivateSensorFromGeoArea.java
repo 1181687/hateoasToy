@@ -71,11 +71,10 @@ public class DeactivateSensorFromGeoArea {
             return true;
         } else {
             sensorDTO.setActive(false);
-            if(ctrl.deactivateSensor(sensorDTO)){
+            if (ctrl.deactivateSensor(sensorDTO)) {
                 System.out.println("The sensor is now deactivated.\n");
-            }
-            else {
-                System.out.println("It was not possible to deactivate "+sensorDTO.getId()+"\n");
+            } else {
+                System.out.println("It was not possible to deactivate " + sensorDTO.getId() + "\n");
             }
 
         }

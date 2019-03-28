@@ -1,8 +1,5 @@
 package pt.ipp.isep.dei.project.io.ui;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -13,19 +10,14 @@ import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 import java.io.FileNotFoundException;
 
 public class Admin {
-    @Autowired
+
     private GeographicalAreaTypeList geographicalAreaTypeList;
-    @Autowired
     private GeographicalAreaList geographicalAreaList;
-    @Autowired
     private SensorTypeList sensorTypeList;
     private House house;
     private PowerSourceTypeList powerSourceTypeList;
     private RoomList roomList;
-    @Autowired
-    private SensorRepository sensorRepository;
-    @Autowired
-    private GeoAreaRepository geoAreaRepository;
+
 
     public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
@@ -78,7 +70,7 @@ public class Admin {
                     ui8.run();
                     break;
                 case 9:
-                    ImportGeoAreasFromJSONOrXML ui9 = new ImportGeoAreasFromJSONOrXML(geographicalAreaList, sensorRepository, geoAreaRepository);
+                    ImportGeoAreasFromJSONOrXML ui9 = new ImportGeoAreasFromJSONOrXML(geographicalAreaList);
                     ui9.jsonGeoAreaSensors();
                     break;
                 case 10:
@@ -92,10 +84,6 @@ public class Admin {
                 case 12:
                     RemoveSensorFromGeoArea ui12 = new RemoveSensorFromGeoArea(geographicalAreaList);
                     ui12.run();
-                    break;
-                case 13:
-                    ImportReadings ui13 = new ImportReadings(geographicalAreaList);
-                    ui13.run();
                     break;
             }
             option = Menu.adminGeoAreaMenu();

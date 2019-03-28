@@ -1,14 +1,32 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.jupiter.api.Test;
+import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller.ImportGeoAreasFromJSONOrXMLController;
+import pt.ipp.isep.dei.project.model.LocationDTO;
+import pt.ipp.isep.dei.project.model.LocationMapper;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
+import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.GregorianCalendar;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 public class ImportGeoAreasFromJSONOrXMLControllerTest {
 
     /**
      * Test that imports imports geo areas and sensors
      */
-    /* @Test
+    @Test
     public void testImportGeographicalAreaAndSensors_True() throws FileNotFoundException {
         // arrange
-
         // DTO's
         List<Object> geographicalAreaDTOList = new ArrayList<>();
 
@@ -53,26 +71,27 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
         // add
         geographicalAreaDTOList.add(geographicalAreaDTO);
         geographicalAreaDTO.addSensor(sensorDTO);
-        File file = new File("JSONfile.json");
+
+        String path = "datasets/json/JSONfile.json";
+        File file = new File(path);
 
         ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geoList);
+        ctrl.createReader(path);
+        ctrl.readFile(file, path);
 
         // act
-        boolean result = ctrl.importGeographicalAreaAndSensors(file);
+        boolean result = ctrl.importGeographicalAreaAndSensors();
 
         // assert
         assertTrue(result);
-    } */
+    }
 
     /**
      * test that doesn't import geo areas and sensors
      */
-    /* @Test
+    /*@Test
     public void testImportGeographicalAreaAndSensors_False() throws FileNotFoundException {
         // arrange
-
-        // DTO's
-        List<Object> geographicalAreaDTOList = new ArrayList<>();
 
         // LocationDTO
         double latitude1 = 45;
@@ -111,17 +130,22 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
 
         // Geographical Area List
         GeographicalAreaList geoList = new GeographicalAreaList();
-        File file = new File("Jsonfile.json");
 
         // add
         geographicalAreaDTO.addSensor(sensorDTO);
 
         ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geoList);
 
+        String path = "datasets/json/JSONfile.json";
+        File file = new File(path);
+        ctrl.createReader(path);
+        ctrl.readFile(file, path);
+
         // act
-        boolean result = ctrl.importGeographicalAreaAndSensors(file);
+        boolean result = ctrl.importGeographicalAreaAndSensors();
 
         // assert
         assertFalse(result);
-    } */
+    }*/
+
 }
