@@ -1,12 +1,7 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
-import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 
 import javax.persistence.*;
 import java.time.LocalDate;

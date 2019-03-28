@@ -53,8 +53,7 @@ public class Main {
     private SensorTypeList sensorTypeList;
     private GeographicalAreaTypeList geographicalAreaTypeList;
 
-    @Autowired
-    SensorRepository sensorRepository;
+
     @Autowired
     GeoAreaRepository geoAreaRepository;
 

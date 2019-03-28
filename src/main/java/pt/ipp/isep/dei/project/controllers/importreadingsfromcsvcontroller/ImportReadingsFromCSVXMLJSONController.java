@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller;
 
-import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
