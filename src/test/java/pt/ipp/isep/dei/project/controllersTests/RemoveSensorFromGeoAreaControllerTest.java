@@ -2,7 +2,16 @@ package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.controllers.removesensorfromgeoareacontroller.RemoveSensorFromGeoAreaController;
+import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
@@ -16,16 +25,24 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-
+@RunWith(SpringJUnit4ClassRunner.class)
+@DataJpaTest
+@ContextConfiguration(classes = {Main.class},
+        loader = AnnotationConfigContextLoader.class)
 public class RemoveSensorFromGeoAreaControllerTest {
     private RemoveSensorFromGeoAreaController controller;
     private GeographicalArea porto;
     private GeographicalAreaDTO portoDTO;
     private Sensor temperatureSensor;
     private SensorDTO temperatureSensorDTO;
+    @Autowired
+    private GeoAreaRepository geoAreaRepository;
 
     @Before
     public void StartUp() {
+        // Repo configuration
+        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
+
         // Geo Area List
         GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
 

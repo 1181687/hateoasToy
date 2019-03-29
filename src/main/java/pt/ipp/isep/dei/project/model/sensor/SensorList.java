@@ -16,12 +16,14 @@ public class SensorList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
     @JoinColumn
     private List<Sensor> listOfSensors;
 
 
-
+    public Long getId() {
+        return id;
+    }
 
     /**
      * Constructor method.

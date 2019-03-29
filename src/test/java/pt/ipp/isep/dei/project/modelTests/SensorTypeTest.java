@@ -1,18 +1,18 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class SensorTypeTest {
+public class SensorTypeTest {
 
     @Test
-    void TestaGetTipoSensor() {
+    public void TestaGetTipoSensor() {
         //Arrange
         SensorType tipo0 = new SensorType("Temperatura");
         String expectedResult = "Temperatura";
@@ -23,7 +23,7 @@ class SensorTypeTest {
     }
 
     @Test
-    void testaEqualsSameObject() {
+    public void testaEqualsSameObject() {
         //Arrange
         SensorType tipo0 = new SensorType("Temperatura");
         //Act
@@ -33,7 +33,7 @@ class SensorTypeTest {
     }
 
     @Test
-    void testaEqualsTrue() {
+    public void testaEqualsTrue() {
         //Arrange
         SensorType tipo0 = new SensorType("Temperatura");
         SensorType tipo1 = new SensorType("Temperatura");
@@ -44,7 +44,7 @@ class SensorTypeTest {
     }
 
     @Test
-    void testaEqualsFalseTiposDiferentes() {
+    public void testaEqualsFalseTiposDiferentes() {
         //Arrange
         SensorType tipo0 = new SensorType("Temperatura");
         SensorType tipo1 = new SensorType("Humidade");
@@ -55,7 +55,7 @@ class SensorTypeTest {
     }
 
     @Test
-    void testaEqualsFalse() {
+    public void testaEqualsFalse() {
         //Arrange
         String tipoSensor = "Temperatura";
         SensorType tipo0 = new SensorType(tipoSensor);
@@ -66,7 +66,7 @@ class SensorTypeTest {
     }
 
     @Test
-    void testaEqualsObjetosDiferentes() {
+    public void testaEqualsObjetosDiferentes() {
         //Arrange
         SensorType tipo0 = new SensorType("Temperatura");
         // Instanciar sensor
@@ -81,7 +81,7 @@ class SensorTypeTest {
     }
 
     @Test
-    void testarHashCode () {
+    public void testarHashCode() {
         // Arrange
         SensorType tipo0 = new SensorType("Temperatura");
         int expectedResult = 1;
@@ -90,5 +90,4 @@ class SensorTypeTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-
-}*/
+}

@@ -1,7 +1,16 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
+import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
@@ -14,16 +23,24 @@ import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-
-class SensorTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+@DataJpaTest
+@ContextConfiguration(classes = {Main.class},
+        loader = AnnotationConfigContextLoader.class)
+public class SensorTest {
     private Sensor temperatureSensor;
     private Reading reading;
     private Reading reading1;
+    @Autowired
+    private GeoAreaRepository geoAreaRepository;
 
-    @BeforeEach
-    void StartUp() {
+    @Before
+    public void StartUp() {
+        // Repo configuration
+        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
+
         // Sensor
         LocalDateTime startingDate = LocalDateTime.of(1991, 11, 2, 21, 10, 25);
         SensorType temperature = new SensorType("Temperature");
@@ -40,7 +57,7 @@ class SensorTest {
     }
 
     @Test
-    void testaConstrutor() {
+    public void testaConstrutor() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -54,7 +71,7 @@ class SensorTest {
     }
 
     @Test
-    void testaConstrutorSensor() {
+    public void testaConstrutorSensor() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -68,7 +85,7 @@ class SensorTest {
     }
 
     @Test
-    void testaConstrutorSensorData() {
+    public void testaConstrutorSensorData() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -82,7 +99,7 @@ class SensorTest {
     }
 
     @Test
-    void testaConstrutorSensorTipo() {
+    public void testaConstrutorSensorTipo() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -96,7 +113,7 @@ class SensorTest {
     }
 
     @Test
-    void testarEqualsSame() {
+    public void testarEqualsSame() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -110,7 +127,7 @@ class SensorTest {
     }
 
     @Test
-    void testarHashCode() {
+    public void testarHashCode() {
         // Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -124,7 +141,7 @@ class SensorTest {
     }
 
     @Test
-    void testarEqualsFalse() {
+    public void testarEqualsFalse() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -138,7 +155,7 @@ class SensorTest {
     }
 
     @Test
-    void testarEqualsNomeSensorDiferente() {
+    public void testarEqualsNomeSensorDiferente() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -153,7 +170,7 @@ class SensorTest {
     }
 
     @Test
-    void testaConstrutorSensorLocalizacao() {
+    public void testaConstrutorSensorLocalizacao() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -168,7 +185,7 @@ class SensorTest {
 
 
     @Test
-    void testarDistanciaLinear() {
+    public void testarDistanciaLinear() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -188,7 +205,7 @@ class SensorTest {
     }
 
     @Test
-    void testarRegistoDeMedicao() {
+    public void testarRegistoDeMedicao() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -208,7 +225,7 @@ class SensorTest {
     }
 
     @Test
-    void testGetLastMeasurementTwoReadings_reading2() {
+    public void testGetLastMeasurementTwoReadings_reading2() {
         //Arrange
         LocalDateTime sensorDate = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -233,7 +250,7 @@ class SensorTest {
 
 
     @Test
-    void testarListaDeMedicoesVazia() {
+    public void testarListaDeMedicoesVazia() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -250,7 +267,7 @@ class SensorTest {
     }
 
     @Test
-    void testarListaDeRegistosVazia() {
+    public void testarListaDeRegistosVazia() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -265,7 +282,7 @@ class SensorTest {
     }
 
     @Test
-    void testarListaDeRegistosNaoEVazia() {
+    public void testarListaDeRegistosNaoEVazia() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -285,7 +302,7 @@ class SensorTest {
     }
 
     @Test
-    void testarListaDeMedicoesDefinida() {
+    public void testarListaDeMedicoesDefinida() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -311,7 +328,7 @@ class SensorTest {
     }
 
     @Test
-    void testarGetMenorRegistoMes() {
+    public void testarGetMenorRegistoMes() {
 
         // Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
@@ -340,7 +357,7 @@ class SensorTest {
     }
 
     @Test
-    void testarGetMenorRegistoMesListaSemRegistos() {
+    public void testarGetMenorRegistoMesListaSemRegistos() {
 
         // Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
@@ -359,7 +376,7 @@ class SensorTest {
     }
 
     @Test
-    void testarGetMenorRegistoMesDiferente() {
+    public void testarGetMenorRegistoMesDiferente() {
 
         // Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
@@ -388,7 +405,7 @@ class SensorTest {
     }
 
     @Test
-    void testarGetMenorRegistoMesOutroDiferente() {
+    public void testarGetMenorRegistoMesOutroDiferente() {
 
         // Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
@@ -417,7 +434,7 @@ class SensorTest {
     }
 
     @Test
-    void testarGetMenorRegistoMesTodosIguais() {
+    public void testarGetMenorRegistoMesTodosIguais() {
 
         // Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
@@ -446,7 +463,7 @@ class SensorTest {
     }
 
     @Test
-    void testarGetMenorRegistoMesOutroDiferenteUltimoDiferente() {
+    public void testarGetMenorRegistoMesOutroDiferenteUltimoDiferente() {
 
         // Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
@@ -475,7 +492,7 @@ class SensorTest {
     }
 
     @Test
-    void testaGetMaiorRegistoMes() {
+    public void testaGetMaiorRegistoMes() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -508,7 +525,7 @@ class SensorTest {
     }
 
     @Test
-    void testaGetMaiorRegistoMes2() {
+    public void testaGetMaiorRegistoMes2() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -541,7 +558,7 @@ class SensorTest {
     }
 
     @Test
-    void testaGetMaiorRegistoMesListaSemRegistos() {
+    public void testaGetMaiorRegistoMesListaSemRegistos() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -559,7 +576,7 @@ class SensorTest {
     }
 
     @Test
-    void testaGetMediaRegistoMes() {
+    public void testaGetMediaRegistoMes() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -590,7 +607,7 @@ class SensorTest {
     }
 
     @Test
-    void testaGetMediaRegistoMes_SemRegistos() {
+    public void testaGetMediaRegistoMes_SemRegistos() {
         //Arrange
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -1365,7 +1382,7 @@ class SensorTest {
     }
 
     @Test
-    public void testarListaMaximosSemana(){
+    public void testarListaMaximosSemana() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -1421,7 +1438,7 @@ class SensorTest {
     }
 
     @Test
-    public void testarListaMaximosSemanaDoubleNaN(){
+    public void testarListaMaximosSemanaDoubleNaN() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -1477,7 +1494,7 @@ class SensorTest {
     }
 
     @Test
-    public void testarListaMaximosSemanaComCincoRegistos(){
+    public void testarListaMaximosSemanaComCincoRegistos() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -1523,7 +1540,7 @@ class SensorTest {
     }
 
     @Test
-    public void testarListaMaximosSemanaComDataSemanaDiferente(){
+    public void testarListaMaximosSemanaComDataSemanaDiferente() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
@@ -1569,14 +1586,14 @@ class SensorTest {
     }
 
     @Test
-    public void testarListaMaximosSemanaSemRegistos(){
+    public void testarListaMaximosSemanaSemRegistos() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
-        List <Double> expectedResult = new ArrayList<>(Arrays.asList());
+        List<Double> expectedResult = new ArrayList<>(Arrays.asList());
 
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
@@ -1588,7 +1605,7 @@ class SensorTest {
     }
 
     @Test
-    public void testarGetMediaRegistosMaxSemanal(){
+    public void testarGetMediaRegistosMaxSemanal() {
 
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
@@ -1647,7 +1664,7 @@ class SensorTest {
     }
 
     @Test
-    public void testarGetMediaRegistosMaxSemanalDoubleNan(){
+    public void testarGetMediaRegistosMaxSemanalDoubleNan() {
 
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
@@ -1655,7 +1672,7 @@ class SensorTest {
         Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
-        double expectedResult= Double.NaN;
+        double expectedResult = Double.NaN;
 
         LocalDate searchDate = LocalDate.of(2018, 12, 4);
 
@@ -1667,7 +1684,7 @@ class SensorTest {
     }
 
     @Test
-    public void testarGetMediaRegistosMaxSemanalComCincoDiasDeRegisto(){
+    public void testarGetMediaRegistosMaxSemanalComCincoDiasDeRegisto() {
 
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
@@ -1761,7 +1778,7 @@ class SensorTest {
     }
 
     @Test
-    public void testOfGetTotalDailyMeasurementsOfTheSameDay (){
+    public void testOfGetTotalDailyMeasurementsOfTheSameDay() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -1826,7 +1843,7 @@ class SensorTest {
     }
 
     @Test
-    public void testOfGetTotalDailyMeasurementsWithDifferentDays (){
+    public void testOfGetTotalDailyMeasurementsWithDifferentDays() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -1902,7 +1919,7 @@ class SensorTest {
         double result = sensor1.getBiggestMeasurementOfMonth(data1.toLocalDate());
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -1920,7 +1937,7 @@ class SensorTest {
         double result = sensor1.getBiggestMeasurementOfMonth(data.toLocalDate());
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -1958,7 +1975,7 @@ class SensorTest {
         sensor1.addReadingsToList(reading4);
         sensor1.addReadingsToList(reading5);
 
-        LocalDate day = LocalDate.of(2018,11,2);
+        LocalDate day = LocalDate.of(2018, 11, 2);
 
         Reading expectedResult = reading2;
 
@@ -1966,7 +1983,7 @@ class SensorTest {
         Reading result = sensor1.getHighestReadingOfADay(day);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -2004,7 +2021,7 @@ class SensorTest {
         sensor1.addReadingsToList(reading4);
         sensor1.addReadingsToList(reading5);
 
-        LocalDate day = LocalDate.of(2018,11,3);
+        LocalDate day = LocalDate.of(2018, 11, 3);
 
         Reading expectedResult = reading5;
 
@@ -2012,11 +2029,11 @@ class SensorTest {
         Reading result = sensor1.getHighestReadingOfADay(day);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void getHighestReadingOfADay_WithSeveralHighestReadingsInOneDay_ShouldReturnMostRecentOne(){
+    public void getHighestReadingOfADay_WithSeveralHighestReadingsInOneDay_ShouldReturnMostRecentOne() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -2050,7 +2067,7 @@ class SensorTest {
         sensor1.addReadingsToList(reading4);
         sensor1.addReadingsToList(reading5);
 
-        LocalDate day = LocalDate.of(2018,11,2);
+        LocalDate day = LocalDate.of(2018, 11, 2);
 
         Reading expectedResult = reading2;
 
@@ -2058,11 +2075,11 @@ class SensorTest {
         Reading result = sensor1.getHighestReadingOfADay(day);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void getHighestReadingOfADay_WithNoReadings_ShouldReturnNull(){
+    public void getHighestReadingOfADay_WithNoReadings_ShouldReturnNull() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -2081,7 +2098,7 @@ class SensorTest {
         sensor1.addReadingsToList(reading1);
         sensor1.addReadingsToList(reading2);
 
-        LocalDate day = LocalDate.of(2018,11,5);
+        LocalDate day = LocalDate.of(2018, 11, 5);
 
         Reading expectedResult = null;
 
@@ -2089,7 +2106,7 @@ class SensorTest {
         Reading result = sensor1.getHighestReadingOfADay(day);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -2202,8 +2219,8 @@ class SensorTest {
         sensor1.addReadingsToList(reading4);
         sensor1.addReadingsToList(reading5);
 
-        LocalDate startDate = LocalDate.of(2018,11,2);
-        LocalDate endDate = LocalDate.of(2018,11,3);
+        LocalDate startDate = LocalDate.of(2018, 11, 2);
+        LocalDate endDate = LocalDate.of(2018, 11, 3);
 
         List<Reading> expectedResult = new ArrayList<>();
         expectedResult.add(reading2);
@@ -2308,14 +2325,14 @@ class SensorTest {
         expectedResult.add(reading3);
 
         //Act
-        List<Reading> result = sensor1.getDailyMaxReadingsInAnInterval(startDate,endDate);
+        List<Reading> result = sensor1.getDailyMaxReadingsInAnInterval(startDate, endDate);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void getLastLowestReading_SensorWithValidReadings_ShouldReturnLastLowestReading(){
+    public void getLastLowestReading_SensorWithValidReadings_ShouldReturnLastLowestReading() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -2349,21 +2366,21 @@ class SensorTest {
         sensor1.addReadingsToList(reading4);
         sensor1.addReadingsToList(reading5);
 
-        LocalDate startDate = LocalDate.of(2018,11,2);
-        LocalDate endDate = LocalDate.of(2018,11,3);
+        LocalDate startDate = LocalDate.of(2018, 11, 2);
+        LocalDate endDate = LocalDate.of(2018, 11, 3);
 
         Reading expectedResult = reading4;
-        List<Reading> readings = sensor1.getReadingsBetweenDates(startDate,endDate);
+        List<Reading> readings = sensor1.getReadingsBetweenDates(startDate, endDate);
 
         //Act
         Reading result = sensor1.getLastLowestReading(readings);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void getLastLowestReading_SensorWithDayWithDoubleNaNReadings_ShouldReturnLastLowestReading(){
+    public void getLastLowestReading_SensorWithDayWithDoubleNaNReadings_ShouldReturnLastLowestReading() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -2397,21 +2414,21 @@ class SensorTest {
         sensor1.addReadingsToList(reading4);
         sensor1.addReadingsToList(reading5);
 
-        LocalDate startDate = LocalDate.of(2018,11,2);
-        LocalDate endDate = LocalDate.of(2018,11,3);
+        LocalDate startDate = LocalDate.of(2018, 11, 2);
+        LocalDate endDate = LocalDate.of(2018, 11, 3);
 
         Reading expectedResult = reading4;
-        List<Reading> readings = sensor1.getReadingsBetweenDates(startDate,endDate);
+        List<Reading> readings = sensor1.getReadingsBetweenDates(startDate, endDate);
 
         //Act
         Reading result = sensor1.getLastLowestReading(readings);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void getLastLowestReading_SensorWithOnlyDoubleNaNReadings_ShouldReturnReadingWithDoubleNaN(){
+    public void getLastLowestReading_SensorWithOnlyDoubleNaNReadings_ShouldReturnReadingWithDoubleNaN() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
@@ -2441,45 +2458,45 @@ class SensorTest {
         sensor1.addReadingsToList(reading3);
         sensor1.addReadingsToList(reading4);
 
-        LocalDate startDate = LocalDate.of(2018,11,2);
-        LocalDate endDate = LocalDate.of(2018,11,3);
+        LocalDate startDate = LocalDate.of(2018, 11, 2);
+        LocalDate endDate = LocalDate.of(2018, 11, 3);
 
         Reading expectedResult = reading4;
-        List<Reading> readings = sensor1.getReadingsBetweenDates(startDate,endDate);
+        List<Reading> readings = sensor1.getReadingsBetweenDates(startDate, endDate);
 
         //Act
         Reading result = sensor1.getLastLowestReading(readings);
 
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    public void getLastLowestReading_SensorWithNoReadings_ShouldReturnNull(){
+    public void getLastLowestReading_SensorWithNoReadings_ShouldReturnNull() {
         //Arrange
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
         Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
-        LocalDate startDate = LocalDate.of(2018,11,2);
-        LocalDate endDate = LocalDate.of(2018,11,3);
+        LocalDate startDate = LocalDate.of(2018, 11, 2);
+        LocalDate endDate = LocalDate.of(2018, 11, 3);
 
         Reading expectedResult = null;
-        List<Reading> readings = sensor1.getReadingsBetweenDates(startDate,endDate);
+        List<Reading> readings = sensor1.getReadingsBetweenDates(startDate, endDate);
 
         //Act
         Reading result = sensor1.getLastLowestReading(readings);
 
         //Assert
-        assertEquals(expectedResult,result);
-    }*/
+        assertEquals(expectedResult, result);
+    }
 
     /**
      * Test that tries to get an existing list of Readings from the Sensor.
      */
-  /*  @Test
-    void testGetListOfReadings_tryingToGetAnExistingList_ShouldReturnTheCorrespondingList() {
+    @Test
+    public void testGetListOfReadings_tryingToGetAnExistingList_ShouldReturnTheCorrespondingList() {
         // Arrange
         List<Reading> expectedResult = new ArrayList<>();
         expectedResult.add(reading);
@@ -2493,7 +2510,7 @@ class SensorTest {
     }
 
     @Test
-    void setAndGetId(){
+    public void setAndGetId() {
         //Arrange
         String id = "sdfg22";
         String expectedResult = "sdfg22";
@@ -2501,11 +2518,11 @@ class SensorTest {
         this.temperatureSensor.setId(id);
         String result = this.temperatureSensor.getId();
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
-    void setAndGetUnits(){
+    public void setAndGetUnits() {
         //Arrange
         String units = "Fahrenheit";
         String expectedResult = "Fahrenheit";
@@ -2513,6 +2530,6 @@ class SensorTest {
         this.temperatureSensor.setUnits(units);
         String result = this.temperatureSensor.getUnits();
         //Assert
-        assertEquals(expectedResult,result);
+        assertEquals(expectedResult, result);
     }
-}*/
+}
