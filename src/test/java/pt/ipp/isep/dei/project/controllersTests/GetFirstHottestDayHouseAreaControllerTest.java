@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.getfirsthottestdayhouseareacontroller.GetFirstHottestDayHouseAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -21,8 +20,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.*;
 
 public class GetFirstHottestDayHouseAreaControllerTest {
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
@@ -36,7 +34,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
     private House house;
     private GetFirstHottestDayHouseAreaController controller;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -204,6 +202,6 @@ public class GetFirstHottestDayHouseAreaControllerTest {
         ReadingDTO resultDTO = controller.getFirstHighestReadingHouseArea(startDate, endDate);
         Reading result = ReadingMapper.mapToEntity(resultDTO);
         //Assert
-        Assertions.assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result);
     }
 }

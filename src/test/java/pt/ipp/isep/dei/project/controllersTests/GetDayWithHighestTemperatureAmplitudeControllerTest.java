@@ -1,8 +1,17 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.controllers.getDayWithHighestTemperatureAmplitudeController.GetDayWithHighestTemperatureAmplitudeController;
+import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
@@ -17,8 +26,12 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@DataJpaTest
+@ContextConfiguration(classes = {Main.class},
+        loader = AnnotationConfigContextLoader.class)
 public class GetDayWithHighestTemperatureAmplitudeControllerTest {
 
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
@@ -33,8 +46,13 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
     private GetDayWithHighestTemperatureAmplitudeController controller;
 
 
-    @BeforeEach
+    @Autowired
+    private GeoAreaRepository geoAreaRepository;
+
+    @Before
     public void StartUp() {
+        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
+
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
         GeographicalAreaType district = new GeographicalAreaType("District");
@@ -106,7 +124,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      *                 "2018-12-04\n"
      */
     @Test
-    void getHighestDailyAmplitude_4_12_2018_amplitude20() {
+    public void getHighestDailyAmplitude_4_12_2018_amplitude20() {
 
         // Extra Reading
         LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
@@ -147,7 +165,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * expected highest amplipude is 7.
      */
     @Test
-    void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7_2_12_2018() {
+    public void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7_2_12_2018() {
 
         // Extra Reading
         double value = Double.NaN;
@@ -188,7 +206,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * expected result is: "There are not enough values to calculate the amplitude."
      */
     @Test
-    void getHighestDailyAmplitude_onlyOneValuePerDay_ThereAreNotEnoughValuesToCalculateTheAmplitude() {
+    public void getHighestDailyAmplitude_onlyOneValuePerDay_ThereAreNotEnoughValuesToCalculateTheAmplitude() {
 
         // Extra Reading
         LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
@@ -219,7 +237,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * expected result is: "There are not enough values to calculate the amplitude."
      */
     @Test
-    void getHighestDailyAmplitude_onlyOneValuePerDayWithOneBeingDoubleNan_ThereAreNotEnoughValuesToCalculateTheAmplitude() {
+    public void getHighestDailyAmplitude_onlyOneValuePerDayWithOneBeingDoubleNan_ThereAreNotEnoughValuesToCalculateTheAmplitude() {
 
         double valueNan = Double.NaN;
         // Extra Reading
@@ -250,7 +268,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * expected result is: "There's no registers for this period."
      */
     @Test
-    void getHighestDailyAmplitude_onlyValuesDoubleNan_TheresNoRegisterForThisPeriod() {
+    public void getHighestDailyAmplitude_onlyValuesDoubleNan_TheresNoRegisterForThisPeriod() {
 
         double valueNan = Double.NaN;
         // Extra Reading
@@ -285,7 +303,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * expected a message "There's no registers for this period.\n"
      **/
     @Test
-    void getHighestDailyAmplitude_noMeasurements() {
+    public void getHighestDailyAmplitude_noMeasurements() {
 
         //interval LocalDate
         LocalDateTime startDateTime = LocalDateTime.of(2018, 01, 2, 00, 00, 01);
@@ -305,7 +323,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * expected a message "There's no registers for this period.\n"
      **/
     @Test
-    void getHighestDailyAmplitude_noSensor() {
+    public void getHighestDailyAmplitude_noSensor() {
 
         //interval LocalDate
         LocalDateTime startDateTime = LocalDateTime.of(2010, 01, 2, 00, 00, 01);

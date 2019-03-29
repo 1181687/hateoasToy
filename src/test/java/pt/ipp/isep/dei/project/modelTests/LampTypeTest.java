@@ -1,20 +1,20 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.lamp.LampType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 
 public class LampTypeTest {
     private LampType lampType;
     private Room kitchen;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // Type
         lampType = new LampType();

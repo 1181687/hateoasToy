@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 class GeographicalAreaTypeTest {
 
     @Test
-    void testehashCode() {
+    public void testehashCode() {
         //Arrange
         GeographicalAreaType tipo = new GeographicalAreaType("Cidade");
         int expectedResult = 1;
@@ -20,7 +20,7 @@ class GeographicalAreaTypeTest {
     }
 
     @Test
-    void testaEqualsTrue() {
+    public void testaEqualsTrue() {
         //Arrange
         GeographicalAreaType tipo0 = new GeographicalAreaType("Cidade");
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");
@@ -31,7 +31,7 @@ class GeographicalAreaTypeTest {
     }
 
     @Test
-    void testaEqualsFalseTiposDiferentes() {
+    public void testaEqualsFalseTiposDiferentes() {
         //Arrange
         GeographicalAreaType tipo0 = new GeographicalAreaType("Cidade");
         GeographicalAreaType tipo1 = new GeographicalAreaType("Rua");
@@ -42,7 +42,7 @@ class GeographicalAreaTypeTest {
     }
 
     @Test
-    void testaEqualsFalse() {
+    public void testaEqualsFalse() {
         //Arrange
         String TipoAreaGeo = "Cidade";
         GeographicalAreaType tipo0 = new GeographicalAreaType(TipoAreaGeo);
@@ -54,7 +54,7 @@ class GeographicalAreaTypeTest {
     }
 
     @Test
-    void testarGetmTipoAreaGeo() {
+    public void testarGetmTipoAreaGeo() {
         //Arrange
         String TipoAreaGeo = "Rua";
         GeographicalAreaType tipo1 = new GeographicalAreaType(TipoAreaGeo);
@@ -66,7 +66,7 @@ class GeographicalAreaTypeTest {
     }
 
     @Test
-    void testarUmTipoAreaGeoEIgualAOutraTrue() {
+    public void testarUmTipoAreaGeoEIgualAOutraTrue() {
         //Arrange
         String TipoAreaGeo1 = "Rua";
         GeographicalAreaType tipo1 = new GeographicalAreaType(TipoAreaGeo1);
@@ -82,7 +82,7 @@ class GeographicalAreaTypeTest {
     }
 
     @Test
-    void testarUmTipoAreaGeoEIgualAOutraFalse() {
+    public void testarUmTipoAreaGeoEIgualAOutraFalse() {
         //Arrange
         String TipoAreaGeo1 = "Rua";
         GeographicalAreaType tipo1 = new GeographicalAreaType(TipoAreaGeo1);

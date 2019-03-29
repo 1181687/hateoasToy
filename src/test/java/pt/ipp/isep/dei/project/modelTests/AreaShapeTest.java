@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -8,12 +8,12 @@ import pt.ipp.isep.dei.project.model.house.Room;
 
 import java.util.Objects;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class AreaShapeTest {
+public class AreaShapeTest {
 
     @Test
-    void testhashCode() {
+    public void testhashCode() {
         //Arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area = new AreaShape(10, 10, local1);
@@ -28,7 +28,7 @@ class AreaShapeTest {
     }
 
     @Test
-    void testarEqualsSame() {
+    public void testarEqualsSame() {
         //arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(10, 10, local1);
@@ -41,7 +41,7 @@ class AreaShapeTest {
     }
 
     @Test
-    void testarEqualsTrueAllAttributes() {
+    public void testarEqualsTrueAllAttributes() {
         //arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
         Location local2 = new Location(41.1496, -8.6109, 97);
@@ -267,7 +267,7 @@ class AreaShapeTest {
     }
 
     @Test
-    void verificarSeLocationEstaContidaNumaAreaComTesteVerdadeiroNoLimiteMaximo() {
+    public void verificarSeLocationEstaContidaNumaAreaComTesteVerdadeiroNoLimiteMaximo() {
         // Arrange
         Location location0 = new Location(50,40,65);
         Location locationRectangleArea = new Location(40,20,65);
@@ -281,7 +281,7 @@ class AreaShapeTest {
     }
 
     @Test
-    void verificarSeLocationEstaContidaNumaAreaComTesteVerdadeiroNoLimiteMinimo() {
+    public void verificarSeLocationEstaContidaNumaAreaComTesteVerdadeiroNoLimiteMinimo() {
         // Arrange
         Location location0 = new Location(30,0,65);
         Location locationRectangleArea = new Location(40,20,65);
@@ -295,7 +295,7 @@ class AreaShapeTest {
     }
 
     @Test
-    void verificarSeLocationEstaContidaNumaAreaNumLimiteDeForaDaLatitudeCantoSuperiorEsquerdo() {
+    public void verificarSeLocationEstaContidaNumaAreaNumLimiteDeForaDaLatitudeCantoSuperiorEsquerdo() {
         // Arrange
         Location location0 = new Location(51,20,65);
         Location locationRectangleArea = new Location(40,20,65);
@@ -309,7 +309,7 @@ class AreaShapeTest {
     }
 
     @Test
-    void verificarSeLocationEstaContidaNumaAreaNumLimiteDeForaDaLongitudeCantoSuperiorEsquerdo() {
+    public void verificarSeLocationEstaContidaNumaAreaNumLimiteDeForaDaLongitudeCantoSuperiorEsquerdo() {
         // Arrange
         Location location0 = new Location(45,41,65);
         Location locationRectangleArea = new Location(40,20,65);
@@ -323,7 +323,7 @@ class AreaShapeTest {
     }
 
     @Test
-    void verificarSeLocationEstaContidaNumaAreaNumLimiteDeForaDaLatitudeCantoInferiorDireito() {
+    public void verificarSeLocationEstaContidaNumaAreaNumLimiteDeForaDaLatitudeCantoInferiorDireito() {
         // Arrange
         Location location0 = new Location(29,20,65);
         Location locationRectangleArea = new Location(40,20,65);
@@ -337,7 +337,7 @@ class AreaShapeTest {
     }
 
     @Test
-    void verificarSeLocationEstaContidaNumaAreaNumLimiteDeForaDaLongitudeCantoInferiorDireito() {
+    public void verificarSeLocationEstaContidaNumaAreaNumLimiteDeForaDaLongitudeCantoInferiorDireito() {
         // Arrange
         Location location0 = new Location(51,-1,65);
         Location locationRectangleArea = new Location(40,20,65);
@@ -351,7 +351,7 @@ class AreaShapeTest {
     }
 
     @Test
-    void testGetWidth (){
+    public void testGetWidth() {
         // Arrange
         Location location0 = new Location(29,20,65);
         Location locationRectangleArea = new Location(40,20,65);
@@ -366,7 +366,7 @@ class AreaShapeTest {
 
 
     @Test
-    void testGetLength (){
+    public void testGetLength() {
         // Arrange
         Location location0 = new Location(29,20,65);
         Location locationRectangleArea = new Location(40,20,65);

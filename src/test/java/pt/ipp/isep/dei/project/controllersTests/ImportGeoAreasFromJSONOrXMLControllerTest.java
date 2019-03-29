@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller.ImportGeoAreasFromJSONOrXMLController;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.LocationMapper;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 public class ImportGeoAreasFromJSONOrXMLControllerTest {
 
@@ -63,7 +63,7 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
         double latitude = -516;
         double longitude = 12;
         double altitude = 156;
-        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTO(id, description, type, width, length, latitude, longitude, altitude);
+        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTOwithoutSensors(id, description, type, width, length, latitude, longitude, altitude);
 
         // Geographical Area List
         GeographicalAreaList geoList = new GeographicalAreaList();

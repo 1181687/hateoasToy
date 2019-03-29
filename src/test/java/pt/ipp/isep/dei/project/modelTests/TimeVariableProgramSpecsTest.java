@@ -1,18 +1,18 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.devices.TimeVariableProgramSpecs;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import pt.ipp.isep.dei.project.model.devices.TimeVariableProgramSpecs;
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 
 public class TimeVariableProgramSpecsTest {
     private static final String TIME = "time";
     private static final String NOMINAL_POWER = "programNominalPower";
     private TimeVariableProgramSpecs specs;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         String name = "prog1";
         specs = new TimeVariableProgramSpecs();
@@ -26,7 +26,7 @@ public class TimeVariableProgramSpecsTest {
         //Act
         double result = specs.getTime();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -37,7 +37,7 @@ public class TimeVariableProgramSpecsTest {
         //Act
         double result = specs.getProgramNominalPower();
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test

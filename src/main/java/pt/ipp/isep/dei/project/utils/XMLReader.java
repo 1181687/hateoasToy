@@ -135,7 +135,7 @@ public class XMLReader implements ProjectFileReader {
 
             LocationDTO location = getLocation(getTag("location", element));
 
-            geographicalAreaDTO = GeographicalAreaMapper.mapToDTO(id, description, type, width, length, location.getLatitude(), location.getLongitude(), location.getElevation());
+            geographicalAreaDTO = GeographicalAreaMapper.mapToDTOwithoutSensors(id, description, type, width, length, location.getLatitude(), location.getLongitude(), location.getElevation());
             addSensorsToGeoArea(geographicalAreaDTO, getTag("area_sensors", element));
         }
 
@@ -215,10 +215,10 @@ public class XMLReader implements ProjectFileReader {
 
             String firstTag = doc.getDocumentElement().getTagName();
 
-            if (firstTag.equals("geographical_area_list")) {
+            if ("geographical_area_list".equals(firstTag)) {
                 objectList = readXMLFileToList(doc);
             }
-            if (firstTag.equals("readings_list")) {
+            if ("readings_list".equals(firstTag)) {
                 objectList = readXMLFileToListReadings(doc);
             }
 

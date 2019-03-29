@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.AddRoomController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
@@ -15,14 +16,14 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class AddRoomControllerTest {
     private AddRoomController controller;
     private House house;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);

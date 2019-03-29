@@ -1,8 +1,17 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.controllers.GetListOfTypeOfGeoAreaController;
+import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
 
@@ -10,8 +19,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@DataJpaTest
+@ContextConfiguration(classes = {Main.class},
+        loader = AnnotationConfigContextLoader.class)
 public class GetListOfTypeOfGeoAreaControllerTest {
 
     private GeographicalAreaList geographicalAreaList;
@@ -20,9 +33,12 @@ public class GetListOfTypeOfGeoAreaControllerTest {
     private GeographicalAreaType type;
     private GetListOfTypeOfGeoAreaController controller;
 
-    @BeforeEach
-    public void StartUp() {
+    @Autowired
+    private GeoAreaRepository geoAreaRepository;
 
+    @Before
+    public void StartUp() {
+        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
         //Geographical Area & Geographical Area Type
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);

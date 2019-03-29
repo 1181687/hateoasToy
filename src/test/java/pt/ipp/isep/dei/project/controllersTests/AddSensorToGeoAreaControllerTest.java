@@ -1,8 +1,18 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.controllers.AddSensorToGeoAreaController;
+import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
@@ -12,18 +22,25 @@ import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class AddSensorToGeoAreaControllerTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+@DataJpaTest
+@ContextConfiguration(classes = {Main.class},
+        loader = AnnotationConfigContextLoader.class)
+public class AddSensorToGeoAreaControllerTest {
     private AddSensorToGeoAreaController controller;
     private GeographicalArea campusDoIsep;
     private SensorTypeList sensorTypeList;
     private GeographicalAreaList geographicalAreaList;
 
+    @Autowired
+    private GeoAreaRepository geoAreaRepository;
 
-    @BeforeEach
+
+    @Before
     public void StartUp() {
-
+        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
@@ -291,7 +308,7 @@ class AddSensorToGeoAreaControllerTest {
     }
 
     @Test
-    void testarNovoSensor() {
+    public void testarNovoSensor() {
         //Arrange
         String id = "123";
         String name = "A123";

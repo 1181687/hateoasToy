@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.AttachRoomToHouseGridController;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -12,16 +13,16 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class AttachRoomToHouseGridControllerTest {
+public class AttachRoomToHouseGridControllerTest {
 
     private AttachRoomToHouseGridController controller;
 
     private House house;
     private RoomList roomList;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         this.roomList = new RoomList();
 
@@ -126,7 +127,7 @@ class AttachRoomToHouseGridControllerTest {
     }
 
     @Test
-    void getRoomFromTheListTest() {
+    public void getRoomFromTheListTest() {
         // Arrange
 
         String name1 = "Kitchen";
@@ -149,7 +150,7 @@ class AttachRoomToHouseGridControllerTest {
     }
 
     @Test
-    void checkIfTheChosenRoomIsAlreadyInTheChosenGridPositiveTest() {
+    public void checkIfTheChosenRoomIsAlreadyInTheChosenGridPositiveTest() {
         // Arrange
         String gridName = "Grid";
         HouseGrid grid = new HouseGrid(gridName);
@@ -173,7 +174,7 @@ class AttachRoomToHouseGridControllerTest {
     }
 
     @Test
-    void checkIfTheChosenRoomIsAlreadyInTheChosenGridNegativeTest() {
+    public void checkIfTheChosenRoomIsAlreadyInTheChosenGridNegativeTest() {
         // Arrange
 
         String gridName = "Grid";
@@ -198,7 +199,7 @@ class AttachRoomToHouseGridControllerTest {
     }
 
     @Test
-    void houseGridListLengthTest() {
+    public void houseGridListLengthTest() {
         // Arrange
         // Instantiate House Grids
         String gridName = "Grid";
@@ -243,7 +244,7 @@ class AttachRoomToHouseGridControllerTest {
     }
 
     @Test
-    void roomListLengthTest() {
+    public void roomListLengthTest() {
         // Arrange
         // Instantiate Room
         String roomName = "Kitchen";
@@ -331,7 +332,7 @@ class AttachRoomToHouseGridControllerTest {
     }
 
     @Test
-    void detachRoomFromGridListTest() {
+    public void detachRoomFromGridListTest() {
         //Arrange
         // Instantiate Rooms
         String roomName0 = "Kitchen";

@@ -1,20 +1,20 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class AddressTest {
     private GeographicalArea isep;
 
-    @BeforeEach
-    void StartUp() {
+    @Before
+    public void StartUp() {
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
@@ -209,7 +209,7 @@ public class AddressTest {
     }
 
     @Test
-    void testGetLocation() {
+    public void testGetLocation() {
         // Arrange
         String zipCode = "4050";
         double latitude = 40.5;

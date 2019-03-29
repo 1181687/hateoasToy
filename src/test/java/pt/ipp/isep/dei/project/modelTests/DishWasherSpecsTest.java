@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.dishwasher.DishWasherSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -12,7 +12,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class DishWasherSpecsTest {
     private Room kitchen;
@@ -22,7 +22,7 @@ public class DishWasherSpecsTest {
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
 
         // House
@@ -64,7 +64,7 @@ public class DishWasherSpecsTest {
         double result = dishWasherSpecs.getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
 
@@ -104,7 +104,7 @@ public class DishWasherSpecsTest {
         double result = dishWasherSpecs.getEnergyConsumptionInADay();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test

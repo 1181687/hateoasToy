@@ -1,7 +1,17 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
+import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -24,8 +34,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@DataJpaTest
+@ContextConfiguration(classes = {Main.class},
+        loader = AnnotationConfigContextLoader.class)
 public class HouseTest {
     private House house;
     private GeographicalArea ag;
@@ -39,9 +53,14 @@ public class HouseTest {
     private static final String WASHING_MACHINE_TYPE = "WashingMachine";
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
 
+    @Autowired
+    private GeoAreaRepository geoAreaRepository;
 
-    @BeforeEach
+
+    @Before
     public void StartUp() {
+        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
+
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(1.261, 1.249, location);
@@ -258,7 +277,7 @@ public class HouseTest {
         double result = house.getAverageDailyMeasurementInHouseArea(searchType, startDate, endDate);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
     }
 
     @Test
@@ -287,7 +306,7 @@ public class HouseTest {
         double result = house.getAverageDailyMeasurementInHouseArea(searchType, startDate, endDate);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
     }
 
     @Test
@@ -464,7 +483,7 @@ public class HouseTest {
         double result = house.getTotalDailyMeasurementInHouseArea(searchType, day);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
     }
 
     @Test
@@ -736,7 +755,7 @@ public class HouseTest {
         double result = house.getMaximumTemperatureOfRoomInSpecificDay(name, sensorType0, dayNeeded);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
 
     }
 
@@ -984,7 +1003,7 @@ public class HouseTest {
         double result = house.houseRoomListSize();
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
 
     }
 /* --> TESTE A SER ALTERADO DEPOIS DE IMPLEMENTAÇÃO DE DTO's.
@@ -1024,8 +1043,7 @@ public class HouseTest {
     }
 
     */
-
-    @Test
+@Test
     public void getNameByHGPosition() {
         // Arrange
         // Instantiate House Grids
@@ -1088,8 +1106,8 @@ public class HouseTest {
         // Assert
         assertFalse(result);
     }
-/*
-    @Test
+
+   /* @Test
     public void checkIfARoomIsAlreadyInAHouseGridOfTheListWithNegativeTest() {
         // Arrange
         String roomName = "Kitchen";
@@ -1105,8 +1123,8 @@ public class HouseTest {
 
         // Assert
         assertFalse(result);
-    }
-*/
+    }*/
+
 
     @Test
     public void getTheGridWhereTheRoomIsConnectedTest() {
@@ -1759,8 +1777,7 @@ public class HouseTest {
         //Assert
         assertFalse(result);
     }
-
-    /*
+/*
         @Test
         public void testNewHouseGrid_ThrowsException(){
             //Arrange
@@ -1784,10 +1801,9 @@ public class HouseTest {
             housegrid result = this.housegrid.createHouseGrid(name);
             //Assert
             assertEquals(expectedResult,result);
-        }
-    */
-    @Test
-    void getDeviceByNameExceptionTest() {
+        }*/
+    /*@Test
+    public void getDeviceByNameExceptionTest() {
         // Arrange
         String expectedResult = "There isn't any device with that name.";
 
@@ -1798,10 +1814,10 @@ public class HouseTest {
 
         // Assert
         assertEquals(expectedResult, exception.getMessage());
-    }
+    }*/
 
     @Test
-    void setAttributeTrueTest() {
+    public void setAttributeTrueTest() {
         // Act
         boolean result = house.setDeviceAttribute("Bosch Tronic 3000", "Cold-Water Temperature", 40);
 
@@ -1810,7 +1826,7 @@ public class HouseTest {
     }
 
     @Test
-    void setAttributeFalseTest() {
+    public void setAttributeFalseTest() {
         // Act
         boolean result = house.setDeviceAttribute("Bosch Tronic 3000", "Hot-Water Temperature", 70);
 
@@ -1824,7 +1840,7 @@ public class HouseTest {
      * expected result {2018-12-04=20, 2018-12-03=6.0, 2018-12-02=7.0}
      */
     @Test
-    void getDailyAmplitudeInterval() {
+    public void getDailyAmplitudeInterval() {
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
         GeographicalAreaType district = new GeographicalAreaType("District");
@@ -1920,7 +1936,7 @@ public class HouseTest {
      * expected result {2018-12-04=NaN, 2018-12-03=6.0, 2018-12-02=7.0}
      */
     @Test
-    void getDailyAmplitudeInterval_doubleNanValuesFor4_12_2018() {
+    public void getDailyAmplitudeInterval_doubleNanValuesFor4_12_2018() {
 
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -2017,7 +2033,7 @@ public class HouseTest {
      * expected result {2018-12-04=12, 2018-12-03=6.0, 2018-12-02=7.0}
      */
     @Test
-    void getDailyAmplitudeInterval_oneDayOneDoubleNanValueTwoValidValues_For4_12_2018() {
+    public void getDailyAmplitudeInterval_oneDayOneDoubleNanValueTwoValidValues_For4_12_2018() {
 
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -2112,7 +2128,7 @@ public class HouseTest {
 
 
     @Test
-    void getDailyAmplitudeInterval_emptySensor_emptyMap() {
+    public void getDailyAmplitudeInterval_emptySensor_emptyMap() {
 
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -2190,7 +2206,7 @@ public class HouseTest {
      * expected highest amplipude is 20.
      */
     @Test
-    void getHighestDailyAmplitude_4_12_2018_amplitude20() {
+    public void getHighestDailyAmplitude_4_12_2018_amplitude20() {
 
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -2277,7 +2293,7 @@ public class HouseTest {
      * expected highest amplipude is 7.
      */
     @Test
-    void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7() {
+    public void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7() {
 
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -2363,7 +2379,7 @@ public class HouseTest {
      * expected a empty Map.
      */
     @Test
-    void getHighestDailyAmplitude_emptyMap_emptyMap() {
+    public void getHighestDailyAmplitude_emptyMap_emptyMap() {
 
         // Maps
         Map<LocalDate, Double> dailyAmplitudesEmpty = new HashMap<>();

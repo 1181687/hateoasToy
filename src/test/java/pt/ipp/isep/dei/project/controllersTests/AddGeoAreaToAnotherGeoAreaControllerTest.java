@@ -1,25 +1,42 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaToAnotherGeoAreaController;
+import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class AddGeoAreaToAnotherGeoAreaControllerTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+@DataJpaTest
+@ContextConfiguration(classes = {Main.class},
+        loader = AnnotationConfigContextLoader.class)
+public class AddGeoAreaToAnotherGeoAreaControllerTest {
     private AddGeoAreaToAnotherGeoAreaController controller;
     private GeographicalAreaList geographicalAreaList;
     private GeographicalArea cityOfPorto;
     private GeographicalArea parishOfBonfim;
     private GeographicalArea cityOfBraga;
 
-    @BeforeEach
+    @Autowired
+    private GeoAreaRepository geoAreaRepository;
+
+    @Before
     public void StartUp() {
+        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
         // Geographical Area Types
         GeographicalAreaType city = new GeographicalAreaType("City");
         GeographicalAreaType parish = new GeographicalAreaType("Parish");
@@ -46,7 +63,7 @@ class AddGeoAreaToAnotherGeoAreaControllerTest {
     }
 
     @Test
-    void getListToStringTest() {
+    public void getListToStringTest() {
         // Arrange
         String expectResult = "1 - ID: Porto, Description: City of Porto, Type: City, Latitude: 41.178553, Longitude: -8.608035\n" +
                 "2 - ID: Bonfim, Description: Parish of Bonfim, Type: Parish, Latitude: 40.178553, Longitude: -8.208035, Inserted in: City City of Porto\n";

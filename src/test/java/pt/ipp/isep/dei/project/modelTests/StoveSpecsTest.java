@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.stove.StoveSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -12,7 +12,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class StoveSpecsTest {
 
@@ -21,7 +21,7 @@ public class StoveSpecsTest {
     private House house;
     private DeviceSpecs stoveSpecs;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
 
         // House
@@ -63,7 +63,7 @@ public class StoveSpecsTest {
         double result = stove.getSpecs().getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -77,7 +77,7 @@ public class StoveSpecsTest {
         double result = stove.getSpecs().getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
 
@@ -116,7 +116,7 @@ public class StoveSpecsTest {
         double result = stove.getSpecs().getEnergyConsumptionInADay();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -309,5 +309,4 @@ public class StoveSpecsTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-
 }

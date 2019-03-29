@@ -1,10 +1,10 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class PowerSourceTypeListTest {
 

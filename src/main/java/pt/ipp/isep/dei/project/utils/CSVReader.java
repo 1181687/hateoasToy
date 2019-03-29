@@ -10,10 +10,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class CSVReader implements ProjectFileReader {
@@ -35,7 +32,7 @@ public class CSVReader implements ProjectFileReader {
      * @param csvLine String corresponding to a line/row in a CSV file.
      * @return List of Strings corresponding to the information of each column.
      */
-    private List<String> parseLine(String csvLine) {
+    private static List<String> parseLine(String csvLine) {
         List<String> result = new ArrayList<>();
         if (Objects.isNull(csvLine) || csvLine.isEmpty()) {
             return result;
@@ -81,7 +78,7 @@ public class CSVReader implements ProjectFileReader {
     public List<Object> readFile(File file) {
         Scanner scanner = createScanner(file);
         if (Objects.isNull(scanner)) {
-            return null;
+            return Collections.emptyList();
         }
         List<Object> readingDTOList = new ArrayList<>();
         scanner.nextLine();

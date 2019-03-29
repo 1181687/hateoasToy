@@ -1,18 +1,18 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaTypeController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class AddGeographicalAreaTypeControllerTest {
     private AddGeoAreaTypeController controller;
     private GeographicalAreaTypeList geographicalAreaTypeList;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // List of Geographical Area Types
         geographicalAreaTypeList = new GeographicalAreaTypeList();

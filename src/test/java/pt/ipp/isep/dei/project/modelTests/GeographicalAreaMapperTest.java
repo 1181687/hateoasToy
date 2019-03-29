@@ -1,11 +1,11 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class GeographicalAreaMapperTest {
     private GeographicalAreaDTO portoDTO;
@@ -14,8 +14,8 @@ public class GeographicalAreaMapperTest {
     /**
      * Method that initializes some attributes of this test class to simplify all tests.
      */
-    @BeforeEach
-    void StartUp() {
+    @Before
+    public void StartUp() {
         // Geo Area DTO
         portoDTO = GeographicalAreaMapper.newGeoAreaDTO();
         portoDTO.setId("Porto");
@@ -61,13 +61,13 @@ public class GeographicalAreaMapperTest {
         GeographicalArea expectedResult = GeographicalAreaMapper.mapToEntity(geographicalAreaDTO);
 
         //Act
-        GeographicalAreaDTO anotherArea = GeographicalAreaMapper.mapToDTO(id, description, geographicalAreaType, width, length, latitude, longitude, altitude);
+        GeographicalAreaDTO anotherArea = GeographicalAreaMapper.mapToDTOwithoutSensors(id, description, geographicalAreaType, width, length, latitude, longitude, altitude);
         GeographicalArea result = GeographicalAreaMapper.mapToEntity(anotherArea);
 
         //Assert
         assertEquals(expectedResult, result);
-        assertEquals(width, result.getAreaShape().getWidth());
-        assertEquals(length, result.getAreaShape().getLength());
+        assertEquals(width, result.getAreaShape().getWidth(), 0.00001);
+        assertEquals(length, result.getAreaShape().getLength(), 0.00001);
 
     }
 
@@ -76,7 +76,7 @@ public class GeographicalAreaMapperTest {
      * new GeographicalArea with the information contained by the GeographicalAreaDTO.
      */
     @Test
-    void testMapToEntity_tryingToCreateBasedOnAGeoAreaDTO_ShouldReturnTrue() {
+    public void testMapToEntity_tryingToCreateBasedOnAGeoAreaDTO_ShouldReturnTrue() {
         // Act
         boolean result = GeographicalAreaMapper.mapToEntity(portoDTO).equals(porto);
 
@@ -88,7 +88,7 @@ public class GeographicalAreaMapperTest {
      * Test that tries to create a GeographicalArea based on a null Object, which results in a non creation.
      */
     @Test
-    void testMapToEntity_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
+    public void testMapToEntity_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
         // Act
         GeographicalArea result = GeographicalAreaMapper.mapToEntity(null);
 
@@ -101,9 +101,9 @@ public class GeographicalAreaMapperTest {
      * contained by the Reading.
      */
     @Test
-    void testMapToDTO_tryingToCreateBasedOnAReading_ShouldReturnTrue() {
+    public void testMapToDTO_tryingToCreateBasedOnAReading_ShouldReturnTrue() {
         // Act
-        boolean result = GeographicalAreaMapper.mapToDTO(porto).getId().equalsIgnoreCase(portoDTO.getId());
+        boolean result = GeographicalAreaMapper.mapToDTOwithSensors(porto).getId().equalsIgnoreCase(portoDTO.getId());
 
         // Assert
         assertTrue(result);
@@ -113,9 +113,9 @@ public class GeographicalAreaMapperTest {
      * Test that tries to create a ReadingDTO based on a null Object, which results in a non creation.
      */
     @Test
-    void testMapToDTO_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
+    public void testMapToDTO_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
         // Act
-        GeographicalAreaDTO result = GeographicalAreaMapper.mapToDTO(null);
+        GeographicalAreaDTO result = GeographicalAreaMapper.mapToDTOwithSensors(null);
 
         // Assert
         assertNull(result);

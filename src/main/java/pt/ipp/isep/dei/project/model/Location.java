@@ -18,6 +18,7 @@ public class Location {
     private double elevation;
 
     protected Location() {
+        //intentionally empty
     }
 
     /**
@@ -30,6 +31,10 @@ public class Location {
         setLatitude(latitude);
         setLongitude(longitude);
         this.elevation = elevation;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     /**

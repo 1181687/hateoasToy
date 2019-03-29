@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionDataSeriesController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -32,7 +31,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     private GetEnergyConsumptionDataSeriesController ctrl;
     private House house;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -242,7 +241,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     }
 
     @Test
-    void testGetDeviceDataSeriesToString() {
+    public void testGetDeviceDataSeriesToString() {
         //Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -303,7 +302,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     }
 
     @Test
-    void testGetDeviceDataSeriesToStringNoValidNumbers() {
+    public void testGetDeviceDataSeriesToStringNoValidNumbers() {
         //Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -671,5 +670,4 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         // Assert
         assertTrue(result);
     }
-
 }

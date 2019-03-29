@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.Test;
+
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 
@@ -8,12 +9,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 class GeographicalAreaTypeListTest {
 
     @Test
-    void testaadicionarElementoAListaPositivo() {
+    public void testaadicionarElementoAListaPositivo() {
         //Arrange
         GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
         String novoTipoAG = "Cidade";
@@ -27,7 +28,7 @@ class GeographicalAreaTypeListTest {
     }
 
     @Test
-    void testaadicionarElementoAListaNegativo() {
+    public void testaadicionarElementoAListaNegativo() {
         //Arrange
         GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
         String novoTipoAG = "Cidade";
@@ -42,7 +43,7 @@ class GeographicalAreaTypeListTest {
     }
 
     @Test
-    void testarNovoTipoAG() {
+    public void testarNovoTipoAG() {
         //Arrange
         GeographicalAreaTypeList lista = new GeographicalAreaTypeList();
         String novoTipoAG = "Cidade";
@@ -58,7 +59,7 @@ class GeographicalAreaTypeListTest {
     }
 
     @Test
-    void testarConstrutorNaoVazio(){
+    public void testarConstrutorNaoVazio() {
         //Arrange
         List<GeographicalAreaType> lista = new ArrayList<>();
         GeographicalAreaType tipo1 = new GeographicalAreaType("Cidade");

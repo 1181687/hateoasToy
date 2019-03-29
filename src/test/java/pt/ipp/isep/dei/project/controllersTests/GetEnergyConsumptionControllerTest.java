@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -20,9 +19,9 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class GetEnergyConsumptionControllerTest {
+public class GetEnergyConsumptionControllerTest {
     private GetEnergyConsumptionController ctrl;
     private Room room;
     private House house;
@@ -30,7 +29,7 @@ class GetEnergyConsumptionControllerTest {
     private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -228,7 +227,7 @@ class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void isHouseGridListEmpty_HouseHasNoHouseGrids_ShouldReturnTrue() {
+    public void isHouseGridListEmpty_HouseHasNoHouseGrids_ShouldReturnTrue() {
         //Act
         boolean result= this.ctrl.isHouseGridListEmpty();
         //Assert
@@ -237,7 +236,7 @@ class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void isHouseGridListEmpty_HouseWithOneHouseGrid_ShouldReturnFalse() {
+    public void isHouseGridListEmpty_HouseWithOneHouseGrid_ShouldReturnFalse() {
         //Arrange
         HouseGrid grid = new HouseGrid("Main Grid");
         this.house.addGrid(grid);
@@ -295,7 +294,7 @@ class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void getRoomListToString(){
+    public void getRoomListToString() {
         //Arrange
         String expectedResult= "1- Name: Kitchen, House Floor: 1, Dimension - Height: 3.0, Length: 5.0, Width: 6.0\n" +
                 "2- Name: Laundry, House Floor: 2, Dimension - Height: 3.0, Length: 5.0, Width: 6.0\n";
@@ -306,7 +305,7 @@ class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void roomListIsEmpty_HouseHasNoRooms_ShouldReturnTrue(){
+    public void roomListIsEmpty_HouseHasNoRooms_ShouldReturnTrue() {
         //Arrange
 
         //House
@@ -324,7 +323,7 @@ class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void roomListIsEmpty_HouseHas2Rooms_ShouldReturnFalse(){
+    public void roomListIsEmpty_HouseHas2Rooms_ShouldReturnFalse() {
         //Act
         boolean result = ctrl.roomListIsEmpty();
         //Assert
@@ -332,7 +331,7 @@ class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void getRoomListSize_HouseWithTwoRooms_ShouldReturn2() {
+    public void getRoomListSize_HouseWithTwoRooms_ShouldReturn2() {
         //Arrange
         int expectedResult = 2;
         //Act
@@ -342,7 +341,7 @@ class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void isDeviceListEmpty_RoomHasDevices_ShouldReturnFalse(){
+    public void isDeviceListEmpty_RoomHasDevices_ShouldReturnFalse() {
         //Arrange
         ctrl.getRoomByPosition(0);
         //Act
@@ -352,7 +351,7 @@ class GetEnergyConsumptionControllerTest {
     }
 
     @Test
-    void getRoomName_HouseHas2Rooms_ShouldReturnKitchen(){
+    public void getRoomName_HouseHas2Rooms_ShouldReturnKitchen() {
         //Arrange
         ctrl.getRoomByPosition(0);
         String expectedResult = "Kitchen";
@@ -361,5 +360,4 @@ class GetEnergyConsumptionControllerTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-
 }

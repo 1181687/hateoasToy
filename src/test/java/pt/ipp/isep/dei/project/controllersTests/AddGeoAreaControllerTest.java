@@ -1,23 +1,41 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaController;
+import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@DataJpaTest
+@ContextConfiguration(classes = {Main.class},
+        loader = AnnotationConfigContextLoader.class)
 public class AddGeoAreaControllerTest {
     private AddGeoAreaController controller;
     private GeographicalAreaList geographicalAreaList;
     private GeographicalArea cityOfPorto;
 
-    @BeforeEach
+    @Autowired
+    private GeoAreaRepository geoAreaRepository;
+
+    @Before
     public void StartUp() {
+        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
         // List of Geographical Area Types
         GeographicalAreaTypeList geographicalAreaTypeList = new GeographicalAreaTypeList();
 

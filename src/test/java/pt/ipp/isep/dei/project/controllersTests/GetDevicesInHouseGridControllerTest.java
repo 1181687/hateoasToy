@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.GetDevicesInHouseGridController;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -10,10 +10,10 @@ import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class GetDevicesInHouseGridControllerTest {
     private GetDevicesInHouseGridController ctrl;
@@ -29,7 +29,7 @@ public class GetDevicesInHouseGridControllerTest {
     private static final String ATTRIBUTE_ENERGY_CONSUMPTION = "Energy Consumption";
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
 
         //House

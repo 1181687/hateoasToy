@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -12,7 +12,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class FreezerSpecsTest {
     private Room kitchen;
@@ -21,7 +21,7 @@ public class FreezerSpecsTest {
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
 
         // House

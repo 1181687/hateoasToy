@@ -1,7 +1,16 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
+import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -11,18 +20,25 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@DataJpaTest
+@ContextConfiguration(classes = {Main.class},
+        loader = AnnotationConfigContextLoader.class)
 public class WineCoolerSpecsTest {
     private Room kitchen;
     private Device wineCooler;
     private House house;
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
+    @Autowired
+    private GeoAreaRepository geoAreaRepository;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
+        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
 
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -418,7 +434,7 @@ public class WineCoolerSpecsTest {
     }
 
     @Test
-    void testIfDeviceIsProgrammableFalse() {
+    public void testIfDeviceIsProgrammableFalse() {
         //Arrange
         //Act
         boolean result = wineCooler.getSpecs().isProgrammable();
@@ -427,7 +443,7 @@ public class WineCoolerSpecsTest {
     }
 
     @Test
-    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
+    public void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
         //Arrange
         wineCooler.getSpecs().asProgrammable();
         //Act

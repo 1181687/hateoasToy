@@ -78,7 +78,7 @@ public class Main {
             GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
 
             data();
-            
+
 
             //UI levels
             Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaList, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList());
