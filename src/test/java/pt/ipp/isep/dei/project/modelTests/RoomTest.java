@@ -77,7 +77,7 @@ public class RoomTest {
     }
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
         //Arrange
 
         int expectedResult = Objects.hash("Kitchen");
@@ -89,7 +89,7 @@ public class RoomTest {
     }
 
     @Test
-    void testHashCodeNotEquals() {
+    public void testHashCodeNotEquals() {
         //Arrange
         String name = "roomOne";
         String name2 = "roomtwo";
@@ -104,7 +104,7 @@ public class RoomTest {
     }
 
     @Test
-    void testEqualsTrue() {
+    public void testEqualsTrue() {
         //Arrange
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room2 = new Room("Laundry", 2, dim);
@@ -115,7 +115,7 @@ public class RoomTest {
     }
 
     @Test
-    void testEqualsFalse() {
+    public void testEqualsFalse() {
         //Arrange
 
         //Act
@@ -125,7 +125,7 @@ public class RoomTest {
     }
 
     @Test
-    void testEqualsFalseDifTypes() {
+    public void testEqualsFalseDifTypes() {
         //Arrange
 
         SensorType tipo = new SensorType("humidade");
@@ -137,7 +137,7 @@ public class RoomTest {
     }
 
     @Test
-    void testAddSensorToTheListOfSensorsInTheRoom() {
+    public void testAddSensorToTheListOfSensorsInTheRoom() {
         // Arrange
         LocalDateTime dataFuncionamento = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType = new SensorType("Temperatura");
@@ -155,7 +155,7 @@ public class RoomTest {
     }
 
     @Test
-    void getSensorList() {
+    public void getSensorList() {
         //Arrange
         SensorList sensorList = new SensorList();
 

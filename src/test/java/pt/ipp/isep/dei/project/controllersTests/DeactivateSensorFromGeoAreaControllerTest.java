@@ -1,8 +1,18 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea.DeactivateSensorFromGeoAreaController;
+import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
@@ -16,6 +26,10 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@DataJpaTest
+@ContextConfiguration(classes = {Main.class},
+        loader = AnnotationConfigContextLoader.class)
 public class DeactivateSensorFromGeoAreaControllerTest {
     private DeactivateSensorFromGeoAreaController controller;
     private GeographicalArea porto;
@@ -23,8 +37,12 @@ public class DeactivateSensorFromGeoAreaControllerTest {
     private Sensor temperatureSensor;
     private SensorDTO temperatureSensorDTO;
 
-    @BeforeEach
+    @Autowired
+    private GeoAreaRepository geoAreaRepository;
+
+    @Before
     public void StartUp() {
+        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
         // Geo Area List
         GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
 
@@ -46,7 +64,7 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         porto.addSensor(temperatureSensor);
 
         // SensorDTOs
-        temperatureSensorDTO = SensorMapper.mapToDTOwithSensors(temperatureSensor);
+        temperatureSensorDTO = SensorMapper.mapToDTO(temperatureSensor);
 
         // Controller
         this.controller = new DeactivateSensorFromGeoAreaController(geographicalAreaList);
@@ -89,4 +107,4 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         // Assert
         assertFalse(result);
     }
-}*/
+}

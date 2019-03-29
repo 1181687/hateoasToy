@@ -375,7 +375,7 @@ public class RoomListTest {
     }
 
     @Test
-    void testAddRoomToRoomList() {
+    public void testAddRoomToRoomList() {
         //Arrange
         RoomList list = new RoomList();
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -389,7 +389,7 @@ public class RoomListTest {
     }
 
     @Test
-    void testAddRoomToRoomListFalse() {
+    public void testAddRoomToRoomListFalse() {
         //Arrange
         RoomList list = new RoomList();
         Dimension dim = new Dimension(3, 3.5, 3.5);

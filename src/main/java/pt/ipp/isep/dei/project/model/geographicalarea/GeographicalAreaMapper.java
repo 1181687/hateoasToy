@@ -13,6 +13,15 @@ public final class GeographicalAreaMapper {
         // empty
     }
 
+    /**
+     * Method that creates a new GeoAreaDTO.
+     *
+     * @return GeoAreaDTO.
+     */
+    public static GeographicalAreaDTO newGeoAreaDTO() {
+        return new GeographicalAreaDTO();
+    }
+
 
     /**
      * Method that creates a GeoAreaDTO based on a set of information.

@@ -162,7 +162,7 @@ public class PowerSourceTest {
     }
 
     @Test
-    void getPowerSourceType() {
+    public void getPowerSourceType() {
         //Arrange
         String powerSourceName1 = "ps1";
 

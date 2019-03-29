@@ -126,7 +126,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void getLocationTest() {
+    public void getLocationTest() {
         // Arrange
         Room expectedResult = kitchen;
 
@@ -138,7 +138,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void setLocationFalseTest() {
+    public void setLocationFalseTest() {
         // Act
         boolean result = microwaveOven.setLocation(kitchen);
 
@@ -147,7 +147,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void setLocationTrueTest() {
+    public void setLocationTrueTest() {
         // Act
         boolean result = microwaveOven.setLocation(laundry);
 
@@ -156,7 +156,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void setLocationTrueTestNullValue() {
+    public void setLocationTrueTestNullValue() {
         // Act
         MicrowaveOvenType type = new MicrowaveOvenType();
         Device maquina = type.createDevice("nome");
@@ -169,7 +169,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void getNominalPowerTest() {
+    public void getNominalPowerTest() {
         //Arrange
         double expectedResult = 1200.0;
 
@@ -196,7 +196,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void getIsActiveTrueTest() {
+    public void getIsActiveTrueTest() {
         // Act
         boolean result = microwaveOven.getIsActive();
 
@@ -205,7 +205,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void getIsActiveFalseTest() {
+    public void getIsActiveFalseTest() {
         // arrange
         microwaveOven.setDeactivateDevice();
 
@@ -217,7 +217,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void getDeactivationDate() {
+    public void getDeactivationDate() {
         // arrange
         LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         microwaveOven.setDeactivateDevice();
@@ -228,7 +228,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void hashCodeTest() {
+    public void hashCodeTest() {
         // Arrange
         int expectedResult = Objects.hash(microwaveOven.getName());
 
@@ -240,7 +240,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void equalsDifferentObjectTest() {
+    public void equalsDifferentObjectTest() {
         // Arrange
         Object object = new Object();
 

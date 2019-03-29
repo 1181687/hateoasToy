@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.utilsTests;
 
-
 import org.junit.Test;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;

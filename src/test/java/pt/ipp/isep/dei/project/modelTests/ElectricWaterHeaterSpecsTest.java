@@ -515,7 +515,7 @@ public class ElectricWaterHeaterSpecsTest {
     }
 
     @Test
-    void testIfDeviceIsProgrammableFalse() {
+    public void testIfDeviceIsProgrammableFalse() {
         //Arrange
         //Act
         boolean result = electricWaterHeater.getSpecs().isProgrammable();
@@ -524,7 +524,7 @@ public class ElectricWaterHeaterSpecsTest {
     }
 
     @Test
-    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
+    public void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
         //Arrange
         electricWaterHeater.getSpecs().asProgrammable();
         //Act

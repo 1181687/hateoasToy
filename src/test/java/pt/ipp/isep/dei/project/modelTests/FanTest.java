@@ -69,7 +69,7 @@ public class FanTest {
     }
 
     @Test
-    void getNominalPowerTest() {
+    public void getNominalPowerTest() {
         //Arrange
         double expectedResult = 1200.0;
 
@@ -105,7 +105,7 @@ public class FanTest {
     }
 
     @Test
-    void getTypeTest() {
+    public void getTypeTest() {
         // Arrange
         String expectedResult = "Fan";
 
@@ -117,7 +117,7 @@ public class FanTest {
     }
 
     @Test
-    void setLocationFalseTest() {
+    public void setLocationFalseTest() {
         // Act
         boolean result = fan.setLocation(kitchen);
 
@@ -126,7 +126,7 @@ public class FanTest {
     }
 
     @Test
-    void setLocationTrueTest() {
+    public void setLocationTrueTest() {
         // Act
         boolean result = fan.setLocation(laundry);
 
@@ -135,7 +135,7 @@ public class FanTest {
     }
 
     @Test
-    void setLocationTrueTestNullValue() {
+    public void setLocationTrueTestNullValue() {
         // Act
         FanType fanType = new FanType();
         Device maquina = fanType.createDevice("nome");
@@ -148,7 +148,7 @@ public class FanTest {
     }
 
     @Test
-    void getIsActiveTrueTest() {
+    public void getIsActiveTrueTest() {
         // Act
         boolean result = fan.getIsActive();
 
@@ -157,7 +157,7 @@ public class FanTest {
     }
 
     @Test
-    void getIsActiveFalseTest() {
+    public void getIsActiveFalseTest() {
         // arrange
         fan.setDeactivateDevice();
 
@@ -217,7 +217,7 @@ public class FanTest {
     }
 
     @Test
-    void equalsDifferentObjectTest() {
+    public void equalsDifferentObjectTest() {
         // Arrange
         Object object = new Object();
 
@@ -257,7 +257,7 @@ public class FanTest {
     }
 
     @Test
-    void getDevSpecsAttributesToStringTest() {
+    public void getDevSpecsAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Nominal Power: 1200.0\n";
         // Act
@@ -268,7 +268,7 @@ public class FanTest {
     }
 
     @Test
-    void getAttributesToStringTest() {
+    public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Fan300\n" +
                 "2 - Device Specifications \n" +
@@ -298,7 +298,7 @@ public class FanTest {
     }
 
     @Test
-    void getNumberOfSpecsAttributesTest() {
+    public void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 1;
 
@@ -310,7 +310,7 @@ public class FanTest {
     }
 
     @Test
-    void getNameToStringTest() {
+    public void getNameToStringTest() {
         // Arrange
         String expectedResult = "Device: Fan300, located in room: Kitchen\n";
 
@@ -322,7 +322,7 @@ public class FanTest {
     }
 
     @Test
-    void getDateDeactivateDeviceToString() {
+    public void getDateDeactivateDeviceToString() {
         // arrange
         String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
         fan.setDeactivateDevice();
@@ -333,7 +333,7 @@ public class FanTest {
     }
 
     @Test
-    void getDataSeriesTest() {
+    public void getDataSeriesTest() {
         // Assert
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
@@ -348,7 +348,7 @@ public class FanTest {
     }
 
     @Test
-    void getSpecsListTest() {
+    public void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
         expectedResult.add("Nominal Power");
@@ -362,7 +362,7 @@ public class FanTest {
 
 
     @Test
-    void getAttributeValueTest() {
+    public void getAttributeValueTest() {
         // Assert
         double expectedResult = 1200.0;
 
@@ -384,22 +384,22 @@ public class FanTest {
 
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
 
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
 
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest2() {
+    public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest2() {
 
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
 
     }
 }

@@ -68,7 +68,7 @@ public class MeasurableListTest {
 
 
     @Test
-    void getNominalPower() {
+    public void getNominalPower() {
         // Arrange
         mList.addMeasurable(dev1);
         mList.addMeasurable(room2);
@@ -83,7 +83,7 @@ public class MeasurableListTest {
     }
 
     @Test
-    void checkIfMeasurableObjIsInListTrue() {
+    public void checkIfMeasurableObjIsInListTrue() {
         // Arrange
         mList.addMeasurable(dev1);
         mList.addMeasurable(room2);
@@ -96,7 +96,7 @@ public class MeasurableListTest {
     }
 
     @Test
-    void checkIfMeasurableObjIsInListFalse() {
+    public void checkIfMeasurableObjIsInListFalse() {
         // Arrange
         mList.addMeasurable(room2);
 
@@ -108,7 +108,7 @@ public class MeasurableListTest {
     }
 
     @Test
-    void testGetListToString() {
+    public void testGetListToString() {
         // Arrange
         mList.addMeasurable(room2);
         mList.addMeasurable(dev1);

@@ -90,7 +90,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void getNominalPowerTest() {
+    public void getNominalPowerTest() {
         //Arrange
         double expectedResult = 1200.0;
 
@@ -102,7 +102,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void getLocationTest() {
+    public void getLocationTest() {
         // Arrange
         Room expectedResult = kitchen;
 
@@ -114,7 +114,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void getNameTest() {
+    public void getNameTest() {
         // Arrange
         String expectedResult = "Kenmore Elite 95053";
 
@@ -126,7 +126,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void getTypeTest() {
+    public void getTypeTest() {
         // Arrange
         String expectedResult = "ElectricOven";
 
@@ -180,7 +180,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void setLocationFalseTest() {
+    public void setLocationFalseTest() {
         // Act
         boolean result = electricOven.setLocation(kitchen);
 
@@ -189,7 +189,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void setLocationTrueTest() {
+    public void setLocationTrueTest() {
         // Act
         boolean result = electricOven.setLocation(laundry);
 
@@ -198,7 +198,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void setLocationTrueTestNullValue() {
+    public void setLocationTrueTestNullValue() {
         // Act
         ElectricOvenType electricOvenType = new ElectricOvenType();
         Device maquina = electricOvenType.createDevice("nome");
@@ -211,7 +211,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void getDevSpecsAttributesToStringTest() {
+    public void getDevSpecsAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Nominal Power: 1200.0\n";
         // Act
@@ -222,7 +222,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void getAttributesToStringTest() {
+    public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Kenmore Elite 95053\n" +
                 "2 - Device Specifications \n" +
@@ -269,7 +269,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void hashCodeTest() {
+    public void hashCodeTest() {
         // Arrange
         int expectedResult = Objects.hash(electricOven.getName());
 
@@ -281,7 +281,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void equalsDifferentObjectTest() {
+    public void equalsDifferentObjectTest() {
         // Arrange
         Location location = new Location(43, 42, 2);
 
@@ -293,7 +293,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void equalsSameObjectTest() {
+    public void equalsSameObjectTest() {
 
         // Act
         boolean result = electricOven.equals(electricOven);
@@ -303,7 +303,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void equalsDiferentElectricOvenTest() {
+    public void equalsDiferentElectricOvenTest() {
 
         // Act
         boolean result = electricOven.equals(electricOven2);
@@ -313,7 +313,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void getNumberOfSpecsAttributesTest() {
+    public void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 1;
 
@@ -325,7 +325,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void getNameToStringTest() {
+    public void getNameToStringTest() {
         // Arrange
         String expectedResult = "Device: Kenmore Elite 95053, located in room: Kitchen\n";
 
@@ -337,7 +337,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
         // Arrange
         double expectedResult = 0;
 
@@ -352,7 +352,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
         // Arrange
         double expectedResult = 12;
 
@@ -367,7 +367,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest2() {
+    public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest2() {
         // Arrange
         double expectedResult = 7;
 
@@ -382,7 +382,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
         // Arrange
         double expectedResult = 15;
 
@@ -397,7 +397,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void getDeactivationDate() {
+    public void getDeactivationDate() {
         // arrange
         LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         electricOven.setDeactivateDevice();
@@ -408,7 +408,7 @@ public class ElectricOvenTest {
     }
 
     @Test
-    void getDateDeactivateDeviceToString() {
+    public void getDateDeactivateDeviceToString() {
         // arrange
         String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
         electricOven.setDeactivateDevice();

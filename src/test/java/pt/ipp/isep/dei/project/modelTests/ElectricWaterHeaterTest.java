@@ -101,7 +101,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getNominalPowerTest() {
+    public void getNominalPowerTest() {
         //Arrange
         double expectedResult = 700.0;
 
@@ -113,7 +113,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getLocationTest() {
+    public void getLocationTest() {
         // Arrange
         Room expectedResult = kitchen;
 
@@ -125,7 +125,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getNameTest() {
+    public void getNameTest() {
         // Arrange
         String expectedResult = "Bosch Tronic 3000";
 
@@ -137,7 +137,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getTypeTest() {
+    public void getTypeTest() {
         // Arrange
         String expectedResult = "ElectricWaterHeater";
 
@@ -191,7 +191,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void setLocationFalseTest() {
+    public void setLocationFalseTest() {
         // Act
         boolean result = electricWaterHeater.setLocation(kitchen);
 
@@ -200,7 +200,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void setLocationTrueTest() {
+    public void setLocationTrueTest() {
         // Act
         boolean result = electricWaterHeater.setLocation(laundry);
 
@@ -209,7 +209,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void setLocationTrueTestNullValue() {
+    public void setLocationTrueTestNullValue() {
         // Act
         ElectricWaterHeaterType electricWaterHeaterType = new ElectricWaterHeaterType();
         Device maquina = electricWaterHeaterType.createDevice("nome");
@@ -222,7 +222,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getDevSpecsAttributesToStringTest() {
+    public void getDevSpecsAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Hot Water Temperature: 55.0\n" +
                 "2 - Performance Ratio: 0.9\n" +
@@ -235,7 +235,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getAttributesToStringTest() {
+    public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Bosch Tronic 3000\n" +
                 "2 - Device Specifications \n" +
@@ -264,7 +264,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void hashCodeTest() {
+    public void hashCodeTest() {
         // Arrange
         int expectedResult = Objects.hash(electricWaterHeater.getName());
 
@@ -276,7 +276,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void equalsDifferentObjectTest() {
+    public void equalsDifferentObjectTest() {
         // Arrange
         Object object = new Object();
 
@@ -288,7 +288,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getNumberOfSpecsAttributesTest() {
+    public void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 3;
 
@@ -300,7 +300,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getNameToStringTest() {
+    public void getNameToStringTest() {
         // Arrange
         String expectedResult = "Device: Bosch Tronic 3000, located in room: Kitchen\n";
 
@@ -312,7 +312,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
         // Arrange
         double expectedResult = 0;
 
@@ -327,7 +327,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
         // Arrange
         double expectedResult = 7;
 
@@ -342,7 +342,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
         // Arrange
         double expectedResult = 15;
 
@@ -357,7 +357,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getDeactivationDate() {
+    public void getDeactivationDate() {
         // arrange
         LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         electricWaterHeater.setDeactivateDevice();
@@ -368,7 +368,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getDateDeactivateDeviceToString() {
+    public void getDateDeactivateDeviceToString() {
         // arrange
         String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
         electricWaterHeater.setDeactivateDevice();
@@ -380,7 +380,7 @@ public class ElectricWaterHeaterTest {
 
 
     @Test
-    void getIsActiveTrueTest() {
+    public void getIsActiveTrueTest() {
         // Act
         boolean result = electricWaterHeater.getIsActive();
 
@@ -389,7 +389,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getIsActiveFalseTest() {
+    public void getIsActiveFalseTest() {
         // Assert
         electricWaterHeater.setDeactivateDevice();
 
@@ -401,7 +401,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getDataSeriesTest() {
+    public void getDataSeriesTest() {
         // Assert
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
@@ -416,7 +416,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getSpecsListTest() {
+    public void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
         expectedResult.add("Hot-Water Temperature");
@@ -431,7 +431,7 @@ public class ElectricWaterHeaterTest {
     }
 
     @Test
-    void getAttributeValueTest() {
+    public void getAttributeValueTest() {
         // Assert
         double expectedResult = 700.0;
 
