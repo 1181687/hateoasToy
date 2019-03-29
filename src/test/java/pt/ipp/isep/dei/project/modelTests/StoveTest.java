@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.stove.StoveType;
@@ -15,8 +15,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
+import static org.junit.Assert.*;
 public class StoveTest {
 
     private Room kitchen;
@@ -30,7 +29,7 @@ public class StoveTest {
     private Reading reading2;
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -71,7 +70,7 @@ public class StoveTest {
     }
 
     @Test
-    void getNominalPowerTest() {
+    public void getNominalPowerTest() {
         //Arrange
         double expectedResult = 2000.0;
 
@@ -79,7 +78,7 @@ public class StoveTest {
         double result = stove2000.getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -107,7 +106,7 @@ public class StoveTest {
     }
 
     @Test
-    void getTypeTest() {
+    public void getTypeTest() {
         // Arrange
         String expectedResult = "Stove";
 
@@ -119,7 +118,7 @@ public class StoveTest {
     }
 
     @Test
-    void setLocationFalseTest() {
+    public void setLocationFalseTest() {
         // Act
         boolean result = stove2000.setLocation(kitchen);
 
@@ -128,7 +127,7 @@ public class StoveTest {
     }
 
     @Test
-    void setLocationTrueTest() {
+    public void setLocationTrueTest() {
         // Act
         boolean result = stove2000.setLocation(laundry);
 
@@ -137,7 +136,7 @@ public class StoveTest {
     }
 
     @Test
-    void setLocationTrueTestNullValue() {
+    public void setLocationTrueTestNullValue() {
         // Act
         StoveType type = new StoveType();
         Device maquina = type.createDevice("nome");
@@ -150,7 +149,7 @@ public class StoveTest {
     }
 
     @Test
-    void getIsActiveTrueTest() {
+    public void getIsActiveTrueTest() {
         // Act
         boolean result = stove2000.getIsActive();
 
@@ -159,7 +158,7 @@ public class StoveTest {
     }
 
     @Test
-    void getIsActiveFalseTest() {
+    public void getIsActiveFalseTest() {
         // arrange
         stove2000.setDeactivateDevice();
 
@@ -187,7 +186,7 @@ public class StoveTest {
         // assert
         assertFalse(result);
     }
-
+/*
     @Test
     public void setNameWithSameNameTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> stove2000.setName("stove2000"));
@@ -198,7 +197,7 @@ public class StoveTest {
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> stove2000.setName("stove3000"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
+    }*/
 
     @Test
     public void setNameFalseTest() {
@@ -219,7 +218,7 @@ public class StoveTest {
     }
 
     @Test
-    void equalsDifferentObjectTest() {
+    public void equalsDifferentObjectTest() {
         // Arrange
         Object object = new Object();
 
@@ -259,7 +258,7 @@ public class StoveTest {
     }
 
     @Test
-    void getDevSpecsAttributesToStringTest() {
+    public void getDevSpecsAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Nominal Power: 2000.0\n";
         // Act
@@ -270,7 +269,7 @@ public class StoveTest {
     }
 
     @Test
-    void getAttributesToStringTest() {
+    public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Stove2000\n" +
                 "2 - Device Specifications \n" +
@@ -300,7 +299,7 @@ public class StoveTest {
     }
 
     @Test
-    void getNumberOfSpecsAttributesTest() {
+    public void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 1;
 
@@ -312,7 +311,7 @@ public class StoveTest {
     }
 
     @Test
-    void getNameToStringTest() {
+    public void getNameToStringTest() {
         // Arrange
         String expectedResult = "Device: Stove2000, located in room: Kitchen\n";
 
@@ -324,7 +323,7 @@ public class StoveTest {
     }
 
     @Test
-    void getDateDeactivateDeviceToString() {
+    public void getDateDeactivateDeviceToString() {
         // arrange
         String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
         stove2000.setDeactivateDevice();
@@ -335,7 +334,7 @@ public class StoveTest {
     }
 
     @Test
-    void getDataSeriesTest() {
+    public void getDataSeriesTest() {
         // Assert
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
@@ -350,7 +349,7 @@ public class StoveTest {
     }
 
     @Test
-    void getSpecsListTest() {
+    public void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
         expectedResult.add("Nominal Power");
@@ -364,7 +363,7 @@ public class StoveTest {
 
 
     @Test
-    void getAttributeValueTest() {
+    public void getAttributeValueTest() {
         // Assert
         double expectedResult = 2000.0;
 
@@ -375,4 +374,3 @@ public class StoveTest {
         assertEquals(expectedResult, result);
     }
 }
-*/

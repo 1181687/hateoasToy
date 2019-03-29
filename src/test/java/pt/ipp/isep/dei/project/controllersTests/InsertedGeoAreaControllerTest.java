@@ -1,26 +1,43 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.controllers.InsertedGeoAreaController;
+import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-class InsertedGeoAreaControllerTest {
+@RunWith(SpringJUnit4ClassRunner.class)
+@DataJpaTest
+@ContextConfiguration(classes = {Main.class},
+        loader = AnnotationConfigContextLoader.class)
+public class InsertedGeoAreaControllerTest {
 
     private InsertedGeoAreaController controller;
     private GeographicalArea CidadeDoPorto;
     private GeographicalAreaList geographicalAreaList;
     private GeographicalArea RuaDoBonfim;
+    @Autowired
+    private GeoAreaRepository geoAreaRepository;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
+        // Repo configuration
+        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
 
         //Geographical Area
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
@@ -259,4 +276,4 @@ class InsertedGeoAreaControllerTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-}*/
+}

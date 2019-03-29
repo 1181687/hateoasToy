@@ -11,7 +11,7 @@ public class RemoveSensorFromGeoArea {
     private RemoveSensorFromGeoAreaController controller;
     private List<GeographicalAreaDTO> geographicalAreaDTOS;
     private List<SensorDTO> sensorDTOS;
-    private final String EXIT = "\r0 - Exit";
+    private final static String EXIT = "\r0 - Exit";
 
     /**
      * Constructor.
@@ -33,8 +33,7 @@ public class RemoveSensorFromGeoArea {
         }
         boolean flag = true;
         do {
-            String exit = "\r0 - Exit";
-            String label = "\nPlease choose a geographical area:\n" + geoAreaDTOsToString() + exit;
+            String label = "\nPlease choose a geographical area:\n" + geoAreaDTOsToString() + EXIT;
             int chosenGeoArea = InputValidator.getIntRange(label, 0, geographicalAreaDTOS.size()) - 1;
             if (chosenGeoArea == -1) {
                 return;
@@ -46,13 +45,13 @@ public class RemoveSensorFromGeoArea {
                 System.out.println("\nThere are no sensors in the selected geographical area. Please create or import some.");
                 continue;
             }
-            String label2 = "\nPlease choose a sensor:\n" + sensorDTOsToString() + exit;
+            String label2 = "\nPlease choose a sensor:\n" + sensorDTOsToString() + EXIT;
             int chosenSensor = InputValidator.getIntRange(label2, 0, sensorDTOS.size()) - 1;
             if (chosenSensor == -1) {
                 continue;
             }
             String sensorId = positionToSensorId(chosenSensor);
-            String confirmation = InputValidator.confirmValidation("\nAll the date relative to the sensor will be removed too and can not be recovered anymore. Confirm? (Y/N)");
+            String confirmation = InputValidator.confirmValidation("\nAll the data relative to the sensor will be removed too and can not be recovered anymore. Confirm? (Y/N)");
             if ("N".equalsIgnoreCase(confirmation)) {
                 System.out.println("\nNo changes were made.");
                 continue;
@@ -111,14 +110,5 @@ public class RemoveSensorFromGeoArea {
      */
     private String positionToSensorId(int uiId) {
         return sensorDTOS.get(uiId).getId();
-    }
-
-    private void chooseGeoArea() {
-        String exit = "\r0 - Exit";
-        String label = "\nPlease choose a geographical area:\n" + geoAreaDTOsToString() + exit;
-        int chosenGeoArea = InputValidator.getIntRange(label, 0, geographicalAreaDTOS.size()) - 1;
-        if (chosenGeoArea == -1) {
-            return;
-        }
     }
 }
