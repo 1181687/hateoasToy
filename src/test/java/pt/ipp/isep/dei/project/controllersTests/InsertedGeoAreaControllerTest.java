@@ -246,7 +246,7 @@ public class InsertedGeoAreaControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+  /*  @Test
     public void testarSeAGEstaContidaNoutraNoCasoDeEstarIndiretamente () {
         //Arrange
         String nomeAG2 = "Porto";
@@ -275,5 +275,5 @@ public class InsertedGeoAreaControllerTest {
 
         //Assert
         assertEquals(expectedResult, result);
-    }
+    }*/
 }
