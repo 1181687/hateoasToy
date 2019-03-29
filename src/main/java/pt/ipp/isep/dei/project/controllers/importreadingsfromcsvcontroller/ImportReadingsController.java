@@ -100,6 +100,7 @@ public class ImportReadingsController {
                 imported = true;
             }
         }
+        //this.geographicalAreaList.updateRepository();
         return imported;
     }
 
@@ -107,9 +108,6 @@ public class ImportReadingsController {
         return fileName.endsWith(".csv") || fileName.endsWith(".json") || fileName.endsWith(".xml");
     }
 
-    public void updateGeoAreaRepository() {
-        geographicalAreaList.updateRepository();
-    }
 
     /**
      * Method that configures the log file, using a FileHandler object to send log information to the specified log file.

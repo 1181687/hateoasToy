@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.walltowelheater.WallTowelHeaterType;
@@ -15,9 +16,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class WallTowelHeaterTest {
+public class WallTowelHeaterTest {
     private static final String WALL_TOWEL_HEATER_TYPE = "WallTowelHeater";
     private static final String NOMINAL_POWER = "Nominal Power";
     private House house;
@@ -29,8 +28,8 @@ class WallTowelHeaterTest {
     private Reading reading2;
 
 
-    @BeforeEach
-    private void StartUp() {
+    @Before
+    public void StartUp() {
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
@@ -74,7 +73,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void getName() {
+    public void getName() {
         //Arrange
         String expectedResult = "Towel Warmer XPT0";
         //Act
@@ -84,7 +83,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void setLocation_WithRoomDifferentFromLocation_ShouldReturnTrue() {
+    public void setLocation_WithRoomDifferentFromLocation_ShouldReturnTrue() {
         //Act
         boolean result = this.wallTowerHeater.setLocation(this.kitchen);
         //Assert
@@ -92,7 +91,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void setLocation_WithRoomEqualToLocation_ShouldReturnTrue() {
+    public void setLocation_WithRoomEqualToLocation_ShouldReturnTrue() {
         //Act
         boolean result = this.wallTowerHeater.setLocation(this.bathroom);
         //Assert
@@ -100,7 +99,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void setLocationTrueTestNullValue() {
+    public void setLocationTrueTestNullValue() {
         // Act
         WallTowelHeaterType type = new WallTowelHeaterType();
         Device maquina = type.createDevice("nome");
@@ -113,7 +112,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void getIsActive_WithActiveDevice_ShouldReturnTrue() {
+    public void getIsActive_WithActiveDevice_ShouldReturnTrue() {
         //Act
         boolean result = this.wallTowerHeater.getIsActive();
         //Assert
@@ -121,7 +120,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void getIsActive_WithDeactivatedDevice_ShouldReturnFalse() {
+    public void getIsActive_WithDeactivatedDevice_ShouldReturnFalse() {
         //Arrange
         this.wallTowerHeater.setDeactivateDevice();
         //Act
@@ -131,7 +130,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void getDeactivationDate() {
+    public void getDeactivationDate() {
         //Arrange
         LocalDateTime expectedResult = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         this.wallTowerHeater.setDeactivateDevice();
@@ -142,7 +141,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void setDeactivateDevice_WithActiveDevice_ShouldReturnTrue() {
+    public void setDeactivateDevice_WithActiveDevice_ShouldReturnTrue() {
         //Act
         boolean result = this.wallTowerHeater.setDeactivateDevice();
         //Assert
@@ -150,7 +149,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void setDeactivateDevice_WithDeviceThatIsAlreadyDeactivated_ShouldReturnFalse() {
+    public void setDeactivateDevice_WithDeviceThatIsAlreadyDeactivated_ShouldReturnFalse() {
         //Arrange
         this.wallTowerHeater.setDeactivateDevice();
         //Act
@@ -160,7 +159,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void setName_WithDifferentName_ShouldReturnTrue() {
+    public void setName_WithDifferentName_ShouldReturnTrue() {
         //Arrange
         String newName = "TowelHeater2000";
         //Act
@@ -168,9 +167,9 @@ class WallTowelHeaterTest {
         //Assert
         assertTrue(result);
     }
-
+/*
     @Test
-    void setName_WithSameName_ShouldReturnFalse() {
+    public void setName_WithSameName_ShouldReturnFalse() {
         //Arrange
         String newName = "Towel Warmer XPT0";
         //Act
@@ -180,7 +179,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void setName_RoomAlreadyHaveDeviceWithSameName_ShouldReturnFalse() {
+    public void setName_RoomAlreadyHaveDeviceWithSameName_ShouldReturnFalse() {
         //Arrange
         String deviceName = "WarmyTowel";
 
@@ -192,9 +191,9 @@ class WallTowelHeaterTest {
         //Assert
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
-
+*/
     @Test
-    void getReadings() {
+    public void getReadings() {
         //Arrange
         List<Reading> expectedResult = new ArrayList<>();
         expectedResult.add(this.reading0);
@@ -217,7 +216,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void getAttributesToString() {
+    public void getAttributesToString() {
         //Arrange
         String expectedResult = "1 - Name: Towel Warmer XPT0\n" +
                 "2 - Device Specifications \n" +
@@ -229,7 +228,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void setAttributesDevType_WithNewValueDifferentFromOldOne_ShouldReturnTrue() {
+    public void setAttributesDevType_WithNewValueDifferentFromOldOne_ShouldReturnTrue() {
         //Arrange
         double newValue = 20.0;
         //Act
@@ -239,7 +238,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void setAttributesDevType_WithNewValueEqualToOldOne_ShouldReturnFalse() {
+    public void setAttributesDevType_WithNewValueEqualToOldOne_ShouldReturnFalse() {
         //Arrange
         double newValue = 90.0;
         //Act
@@ -249,7 +248,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void getNumberOfSpecsAttributes() {
+    public void getNumberOfSpecsAttributes() {
         //Arrange
         int expectedResult = 1;
         //Act
@@ -259,7 +258,7 @@ class WallTowelHeaterTest {
     }
 
     @Test
-    void getNameToString() {
+    public void getNameToString() {
         //Arrange
         String expectedResult = "Device: Towel Warmer XPT0, located in room: Bathroom\n";
         //Act
@@ -267,4 +266,4 @@ class WallTowelHeaterTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-}*/
+}
