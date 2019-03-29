@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.washingmachine.WashingMachineSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -12,9 +13,8 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-class WashingMachineSpecsTest {
+public class WashingMachineSpecsTest {
     private Room kitchen;
     private Device washingMachine;
     private House house;
@@ -29,7 +29,7 @@ class WashingMachineSpecsTest {
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -79,7 +79,7 @@ class WashingMachineSpecsTest {
         double result = washingMachineSpecs.getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
 
@@ -120,7 +120,7 @@ class WashingMachineSpecsTest {
         double result = washingMachineSpecs.getEnergyConsumptionInADay();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -425,4 +425,4 @@ class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-}*/
+}

@@ -42,6 +42,15 @@ public class GeographicalAreaList {
         return false;
     }
 
+    public boolean addGeoAreaToRepository(GeographicalArea geoArea) {
+        if (addGeoArea(geoArea)) {
+
+            GeoAreaService.getInstance().getGeoAreaRepository().save(geoArea);
+            return true;
+        }
+        return false;
+    }
+
     /**
      * get a geographical area of a geographical areas list.
      * @param geographicalArea

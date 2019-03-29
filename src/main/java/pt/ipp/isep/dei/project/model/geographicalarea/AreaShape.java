@@ -28,6 +28,9 @@ public class AreaShape {
         this.locationAreaShape = locationAreaShape;
     }
 
+    protected AreaShape() {
+    }
+
     /**
      * Get method for Width.
      *

@@ -19,17 +19,17 @@ public class GeographicalArea {
     private String id;
     private String description;
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private GeographicalAreaType geographicalAreaType;
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private GeographicalArea insertedIn;
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Location location;
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private AreaShape areaShape;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "sensorList_Id")
+    @JoinColumn
     private SensorList sensorList = new SensorList();
 
     protected GeographicalArea(){

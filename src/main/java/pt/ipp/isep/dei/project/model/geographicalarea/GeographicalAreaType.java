@@ -22,6 +22,9 @@ public class GeographicalAreaType {
         this.geoAreaType = geoAreaType;
     }
 
+    protected GeographicalAreaType() {
+    }
+
     /**
      * method that creates the hashcode to geoAreaType.
      */

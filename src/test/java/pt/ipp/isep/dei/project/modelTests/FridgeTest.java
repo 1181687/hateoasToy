@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.fridge.FridgeType;
@@ -16,9 +17,7 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-class FridgeTest {
+public class FridgeTest {
     private Room kitchen;
     private Room laundry;
     private Device fridge;
@@ -29,7 +28,7 @@ class FridgeTest {
     private House house;
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
 
         // House
@@ -90,7 +89,7 @@ class FridgeTest {
     }
 
     @Test
-    void getNominalPowerTest() {
+    public void getNominalPowerTest() {
         //Arrange
         double expectedResult = 900.0;
 
@@ -98,11 +97,11 @@ class FridgeTest {
         double result = fridge.getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
     }
 
     @Test
-    void getLocationTest() {
+    public void getLocationTest() {
         // Arrange
         Room expectedResult = kitchen;
 
@@ -114,7 +113,7 @@ class FridgeTest {
     }
 
     @Test
-    void getNameTest() {
+    public void getNameTest() {
         // Arrange
         String expectedResult = "Miele PerfectCool Series 3500";
 
@@ -126,7 +125,7 @@ class FridgeTest {
     }
 
     @Test
-    void getTypeTest() {
+    public void getTypeTest() {
         // Arrange
         String expectedResult = "Fridge";
 
@@ -148,7 +147,7 @@ class FridgeTest {
         // Assert
         assertEquals(expectedResult, result, 0.000001);
     }
-
+/*
     @Test
     public void setNameWithSameNameTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> fridge.setName("Miele PerfectCool Series 3500"));
@@ -172,7 +171,7 @@ class FridgeTest {
         Throwable exception = assertThrows(RuntimeException.class, () -> fridge.setName("Miele PerfectCool Series 1000"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
-
+*/
     @Test
     public void setNameFalseTest() {
         // Act
@@ -192,7 +191,7 @@ class FridgeTest {
     }
 
     @Test
-    void setLocationFalseTest() {
+    public void setLocationFalseTest() {
         // Act
         boolean result = fridge.setLocation(kitchen);
 
@@ -201,7 +200,7 @@ class FridgeTest {
     }
 
     @Test
-    void setLocationTrueTest() {
+    public void setLocationTrueTest() {
         // Act
         boolean result = fridge.setLocation(laundry);
 
@@ -210,7 +209,7 @@ class FridgeTest {
     }
 
     @Test
-    void setLocationTrueTestNullValue() {
+    public void setLocationTrueTestNullValue() {
         // Act
         FridgeType type = new FridgeType();
         Device maquina = type.createDevice("nome");
@@ -223,7 +222,7 @@ class FridgeTest {
     }
 
     @Test
-    void getDevSpecsAttributesToStringTest() {
+    public void getDevSpecsAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Freezer Capacity: 40.0\n" +
                 "2 - Refrigerator Capacity: 20.0\n" +
@@ -237,7 +236,7 @@ class FridgeTest {
     }
 
     @Test
-    void getAttributesToStringTest() {
+    public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Miele PerfectCool Series 3500\n" +
                 "2 - Device Specifications \n" +
@@ -268,7 +267,7 @@ class FridgeTest {
 
 
     @Test
-    void hashCodeTest() {
+    public void hashCodeTest() {
         // Arrange
         int expectedResult = Objects.hash(fridge.getName());
 
@@ -280,7 +279,7 @@ class FridgeTest {
     }
 
     @Test
-    void equalsDifferentObjectTest() {
+    public void equalsDifferentObjectTest() {
         // Arrange
         Object object = new Object();
 
@@ -292,7 +291,7 @@ class FridgeTest {
     }
 
     @Test
-    void getNumberOfSpecsAttributesTest() {
+    public void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 4;
 
@@ -304,7 +303,7 @@ class FridgeTest {
     }
 
     @Test
-    void getNameToStringTest() {
+    public void getNameToStringTest() {
         // Arrange
         String expectedResult = "Device: Miele PerfectCool Series 3500, located in room: Kitchen\n";
 
@@ -316,7 +315,7 @@ class FridgeTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
         // Arrange
         double expectedResult = 0;
 
@@ -331,7 +330,7 @@ class FridgeTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
         // Arrange
         double expectedResult = 7;
 
@@ -346,7 +345,7 @@ class FridgeTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
         // Arrange
         double expectedResult = 15;
 
@@ -376,7 +375,7 @@ class FridgeTest {
     }
 
     @Test
-    void getDeactivationDate() {
+    public void getDeactivationDate() {
         // arrange
         LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         fridge.setDeactivateDevice();
@@ -387,7 +386,7 @@ class FridgeTest {
     }
 
     @Test
-    void getDateDeactivateDeviceToString() {
+    public void getDateDeactivateDeviceToString() {
         // arrange
         String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
         fridge.setDeactivateDevice();
@@ -399,7 +398,7 @@ class FridgeTest {
 
 
     @Test
-    void getIsActiveTrueTest() {
+    public void getIsActiveTrueTest() {
         // Act
         boolean result = fridge.getIsActive();
 
@@ -408,7 +407,7 @@ class FridgeTest {
     }
 
     @Test
-    void getIsActiveFalseTest() {
+    public void getIsActiveFalseTest() {
         // Assert
         fridge.setDeactivateDevice();
 
@@ -420,7 +419,7 @@ class FridgeTest {
     }
 
     @Test
-    void getDataSeriesTest() {
+    public void getDataSeriesTest() {
         // Assert
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
@@ -435,7 +434,7 @@ class FridgeTest {
     }
 
     @Test
-    void getSpecsListTest() {
+    public void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
         expectedResult.add("Freezer Capacity");
@@ -451,7 +450,7 @@ class FridgeTest {
     }
 
     @Test
-    void getAttributeValueTest() {
+    public void getAttributeValueTest() {
         // Assert
         double expectedResult = 900.0;
 
@@ -463,7 +462,7 @@ class FridgeTest {
     }
 
     @Test
-    void testGetSpecsToString() {
+    public void testGetSpecsToString() {
         // Arrange
         String expectedResult = "1 - Freezer Capacity: 40.0\n" +
                 "2 - Refrigerator Capacity: 20.0\n" +
@@ -474,4 +473,4 @@ class FridgeTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-}*/
+}
