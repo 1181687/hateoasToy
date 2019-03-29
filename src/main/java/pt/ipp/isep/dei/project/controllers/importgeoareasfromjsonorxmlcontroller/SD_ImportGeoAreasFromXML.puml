@@ -34,8 +34,9 @@ activate ":XMLReader"
 ref over ":XMLReader"
 readXMLFileToList
 end
-":ImportGeoAreas\nFromJSONOrXMLUI" <-- ":XMLReader" : ListOfGeographicalAreasDTO
+":ImportGeoAreas\nFromJSONOrXMLController" <-- ":XMLReader" : ListOfGeographicalAreasDTO
 deactivate ":XMLReader"
+":ImportGeoAreas\nFromJSONOrXMLUI" <-- ":ImportGeoAreas\nFromJSONOrXMLController" : ListOfGeographicalAreasDTO
 deactivate ":ImportGeoAreas\nFromJSONOrXMLController"
 AdminUser <-- ":ImportGeoAreas\nFromJSONOrXMLUI": contentOfFile + confirmationMessage (Y/N)
 deactivate ":ImportGeoAreas\nFromJSONOrXMLUI"
