@@ -44,7 +44,7 @@ public class ImportReadings {
                 if (controller.addReadingToSensorById()) {
                     int notImportedReadings = controller.getNumberOfNotImportedReadings();
                     if (notImportedReadings > 0) {
-                        System.out.println("The file was partially imported. There were " + notImportedReadings + " readings that were not imported, due to invalid information.\n");
+                        System.out.println("\nThe file was partially imported. There were " + notImportedReadings + " readings that were not imported, due to invalid information.\n");
                         return;
                     }
                     System.out.println("\n The file was imported with success.\n");

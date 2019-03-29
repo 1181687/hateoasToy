@@ -86,7 +86,10 @@ public class ImportReadingsController {
                 imported = true;
             }
         }
-        this.geographicalAreaList.updateRepository();
+        if(imported){
+
+            this.geographicalAreaList.updateRepository();
+        }
         return imported;
     }
 
