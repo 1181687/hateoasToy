@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
+
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -18,8 +20,6 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
 import static org.junit.Assert.*;
 
 
@@ -36,7 +36,7 @@ public class WineCoolerSpecsTest {
     @Autowired
     private GeoAreaRepository geoAreaRepository;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
 
@@ -193,7 +193,7 @@ public class WineCoolerSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted an null character attribute.
      */
-/*    @Test
+    @Test
     public void testGetAttributeValue_NullNominalPower (){
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
@@ -208,7 +208,7 @@ public class WineCoolerSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted an null character attribute.
      */
-/*    @Test
+    @Test
     public void testGetAttributeValue_NullNumberOfBottles (){
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
@@ -223,7 +223,7 @@ public class WineCoolerSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted an null character attribute.
      */
-/*    @Test
+    @Test
     public void testGetAttributeValue_Null_AnnualEnergyConsumption (){
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
@@ -434,7 +434,7 @@ public class WineCoolerSpecsTest {
     }
 
     @Test
-    void testIfDeviceIsProgrammableFalse() {
+    public void testIfDeviceIsProgrammableFalse() {
         //Arrange
         //Act
         boolean result = wineCooler.getSpecs().isProgrammable();
@@ -443,7 +443,7 @@ public class WineCoolerSpecsTest {
     }
 
     @Test
-    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
+    public void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
         //Arrange
         wineCooler.getSpecs().asProgrammable();
         //Act
@@ -452,4 +452,3 @@ public class WineCoolerSpecsTest {
         assertFalse(result);
     }
 }
-*/

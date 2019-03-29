@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
+
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -24,9 +26,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
@@ -110,7 +110,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
 
         controller = new GetDayWithHighestTemperatureAmplitudeController(house);
 
-    }*/
+    }
 
     /**
      * temperatureSensor1 is the nearest sensor in Geographical area portocity
@@ -123,8 +123,8 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * expected result: "The highest temperature amplitude for the chosen period is 20.0 Celsius and was registered on:\n" +
      *                 "2018-12-04\n"
      */
- /*   @Test
-    void getHighestDailyAmplitude_4_12_2018_amplitude20() {
+    @Test
+    public void getHighestDailyAmplitude_4_12_2018_amplitude20() {
 
         // Extra Reading
         LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);
@@ -152,7 +152,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
 
         //Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 
     /**
      * temperatureSensor1 is the nearest sensor in Geographical area portocity
@@ -164,8 +164,8 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * 02/12/2018 is the expected date with the daily highest amplitude
      * expected highest amplipude is 7.
      */
-  /*  @Test
-    void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7_2_12_2018() {
+    @Test
+    public void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7_2_12_2018() {
 
         // Extra Reading
         double value = Double.NaN;
@@ -194,7 +194,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
 
         //Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 
     /**
      * temperatureSensor1 is the nearest sensor in Geographical area portocity
@@ -205,8 +205,8 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * 4/12/2018 = 13.0;
      * expected result is: "There are not enough values to calculate the amplitude."
      */
-   /* @Test
-    void getHighestDailyAmplitude_onlyOneValuePerDay_ThereAreNotEnoughValuesToCalculateTheAmplitude() {
+    @Test
+    public void getHighestDailyAmplitude_onlyOneValuePerDay_ThereAreNotEnoughValuesToCalculateTheAmplitude() {
 
         // Extra Reading
         LocalDateTime time2 = LocalDateTime.of(2018, 12, 4, 06, 20, 00);
@@ -224,7 +224,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
 
         //Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 
 
     /**
@@ -236,8 +236,8 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * 4/12/2018 = DoubleNan;
      * expected result is: "There are not enough values to calculate the amplitude."
      */
-   /* @Test
-    void getHighestDailyAmplitude_onlyOneValuePerDayWithOneBeingDoubleNan_ThereAreNotEnoughValuesToCalculateTheAmplitude() {
+    @Test
+    public void getHighestDailyAmplitude_onlyOneValuePerDayWithOneBeingDoubleNan_ThereAreNotEnoughValuesToCalculateTheAmplitude() {
 
         double valueNan = Double.NaN;
         // Extra Reading
@@ -256,7 +256,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
 
         //Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 
     /**
      * temperatureSensor1 is the nearest sensor in Geographical area portocity
@@ -267,8 +267,8 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * 13/12/2018 = DoubleNan;
      * expected result is: "There's no registers for this period."
      */
-    /*@Test
-    void getHighestDailyAmplitude_onlyValuesDoubleNan_TheresNoRegisterForThisPeriod() {
+    @Test
+    public void getHighestDailyAmplitude_onlyValuesDoubleNan_TheresNoRegisterForThisPeriod() {
 
         double valueNan = Double.NaN;
         // Extra Reading
@@ -293,7 +293,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
 
         //Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 
 
 
@@ -302,8 +302,8 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * there aren't measurements in that period
      * expected a message "There's no registers for this period.\n"
      **/
-   /* @Test
-    void getHighestDailyAmplitude_noMeasurements() {
+    @Test
+    public void getHighestDailyAmplitude_noMeasurements() {
 
         //interval LocalDate
         LocalDateTime startDateTime = LocalDateTime.of(2018, 01, 2, 00, 00, 01);
@@ -316,14 +316,14 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
 
         //Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 
     /**
      * there aren't sensors in that period
      * expected a message "There's no registers for this period.\n"
      **/
-   /* @Test
-    void getHighestDailyAmplitude_noSensor() {
+    @Test
+    public void getHighestDailyAmplitude_noSensor() {
 
         //interval LocalDate
         LocalDateTime startDateTime = LocalDateTime.of(2010, 01, 2, 00, 00, 01);
@@ -339,4 +339,3 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
     }
 
 }
-*/

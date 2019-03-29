@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
 
+
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -22,9 +24,8 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -44,97 +45,11 @@ public class KettleTest {
     private Reading reading2;
     @Autowired
     private GeoAreaRepository geoAreaRepository;
-*/
-/**
- * This method pretends to initialize some attributes of this test class to simplifying all tests.
- * <p>
- * Test the setLocation method with the same location,
- * so the result should be false, as the method doesn't allow that.
- * <p>
- * Test the setLocation method with another location,
- * so the result should be true.
- * <p>
- * Test the setName method with a new name for the device,
- * so the result should be true.
- * <p>
- * Test the setName method with the same name for the device,
- * so the result should be false, as the method doesn't allow that.
- * <p>
- * Test the setName method with an already existent name for the device,
- * so the result should be false, as the method doesn't allow that.
- * <p>
- * Tests if the method getLocation returns the location of the device kettle1.
- * The location should be the kitchen.
- * <p>
- * Tests if the method getName returns the name of the device kettle1.
- * The location should be the "Kettle 1".
- * <p>
- * Test the equals method as to know if an object is equal to another.
- * This test is comparing two different objects.
- * The result should be false.
- * <p>
- * Test the equals method as to know if an object is equal to another.
- * This test is comparing the same name with some Case Letters.
- * The result should be false.
- * <p>
- * Test the equals method as to know if an object is equal to another.
- * This test is comparing the same object.
- * The result should be true.
- * <p>
- * Test the setDeactivateDevice as to know if the device is active.
- * <p>
- * Test the setDeactivateDevice as to know if the device is deactive.
- * <p>
- * Test the method getIsActive when the device is active.
- * So the test should return True.
- * <p>
- * Test the method getIsActive when the device is deactive.
- * So the test should return False.
- * <p>
- * Test the setLocation method with the same location,
- * so the result should be false, as the method doesn't allow that.
- * <p>
- * Test the setLocation method with another location,
- * so the result should be true.
- * <p>
- * Test the setName method with a new name for the device,
- * so the result should be true.
- * <p>
- * Test the setName method with the same name for the device,
- * so the result should be false, as the method doesn't allow that.
- * <p>
- * Test the setName method with an already existent name for the device,
- * so the result should be false, as the method doesn't allow that.
- * <p>
- * Tests if the method getLocation returns the location of the device kettle1.
- * The location should be the kitchen.
- * <p>
- * Tests if the method getName returns the name of the device kettle1.
- * The location should be the "Kettle 1".
- * <p>
- * Test the equals method as to know if an object is equal to another.
- * This test is comparing two different objects.
- * The result should be false.
- * <p>
- * Test the equals method as to know if an object is equal to another.
- * This test is comparing the same name with some Case Letters.
- * The result should be false.
- * <p>
- * Test the equals method as to know if an object is equal to another.
- * This test is comparing the same object.
- * The result should be true.
- * <p>
- * Test the setDeactivateDevice as to know if the device is active.
- * <p>
- * Test the setDeactivateDevice as to know if the device is deactive.
- * <p>
- * Test the method getIsActive when the device is active.
- * So the test should return True.
- * <p>
- * Test the method getIsActive when the device is deactive.
- * So the test should return False.
- */
-   /* @Before
+
+    /**
+     * This method pretends to initialize some attributes of this test class to simplifying all tests.
+     */
+    @Before
     public void StartUp() {
         GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
 
@@ -175,12 +90,12 @@ public class KettleTest {
         map.put(time1, 5.0);
         map.put(time2, 7.0);
     }
-*/
+
     /**
      * Test the setLocation method with the same location,
      * so the result should be false, as the method doesn't allow that.
      */
-  /*  @Test
+    @Test
     public void testSetLocation_SameLocation_False() {
         //Arrange
         Room location = kitchen;
@@ -191,14 +106,14 @@ public class KettleTest {
 
         //Assert
         assertEquals(expectedResult, result);
-    }*/
+    }
 
 
     /**
      * Test the setLocation method with another location,
      * so the result should be true.
      */
-   /* @Test
+    @Test
     public void testSetLocation_AnotherLocation_True() {
         //Arrange
         Room location = laundry;
@@ -212,7 +127,7 @@ public class KettleTest {
     }
 
     @Test
-    void setLocationTrueTestNullValue() {
+    public void setLocationTrueTestNullValue() {
         // Act
         KettleType type = new KettleType();
         Device maquina = type.createDevice("nome");
@@ -222,13 +137,13 @@ public class KettleTest {
 
         // Assert
         assertTrue(result);
-    }*/
+    }
 
     /**
      * Test the setName method with a new name for the device,
      * so the result should be true.
      */
-   /* @Test
+    @Test
     public void testSetName_NewName_True() {
         //Arrange
         String name = "Nome novo";
@@ -240,12 +155,12 @@ public class KettleTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-*/
+
     /**
      * Test the setName method with the same name for the device,
      * so the result should be false, as the method doesn't allow that.
      */
-    /*@Test
+  /*  @Test
     public void testSetName_SameName_False() {
         //Arrange
         //Act
@@ -253,13 +168,13 @@ public class KettleTest {
 
         //Assert
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }*/
+    }
 
     /**
      * Test the setName method with an already existent name for the device,
      * so the result should be false, as the method doesn't allow that.
      */
-   /* @Test
+/*    @Test
     public void testSetName_ExistentName_False() {
         //Arrange
         //Act
@@ -267,13 +182,13 @@ public class KettleTest {
 
         //Assert
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }*/
+    }
 
     /**
      * Tests if the method getLocation returns the location of the device kettle1.
      * The location should be the kitchen.
      */
-/*    @Test
+    @Test
     public void testGetLocation_DeviceLocation() {
         //Arrange
         Room expectedResult = kitchen;
@@ -282,12 +197,12 @@ public class KettleTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-*/
+
     /**
      * Tests if the method getName returns the name of the device kettle1.
      * The location should be the "Kettle 1".
      */
-/*    @Test
+    @Test
     public void testGetName_DeviceName() {
         //Arrange
         String expectedResult = "Kettle 1";
@@ -323,14 +238,14 @@ public class KettleTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-*/
+
     /**
      * Test the equals method as to know if an object is equal to another.
      * This test is comparing two different objects.
      * The result should be false.
      */
-/*    @Test
-    void testEquals_DifferentObject_False() {
+    @Test
+    public void testEquals_DifferentObject_False() {
         // Arrange
         boolean expectedResult = false;
         Object object = new Object();
@@ -341,14 +256,14 @@ public class KettleTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-*/
+
     /**
      * Test the equals method as to know if an object is equal to another.
      * This test is comparing the same name with some Case Letters.
      * The result should be false.
      */
-/*    @Test
-    void testEquals_SameNameWithDifferentCase_False() {
+    @Test
+    public void testEquals_SameNameWithDifferentCase_False() {
         // Arrange
         boolean expectedResult = false;
         String name = "kettle 1";
@@ -360,13 +275,13 @@ public class KettleTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-*/
+
     /**
      * Test the equals method as to know if an object is equal to another.
      * This test is comparing the same object.
      * The result should be true.
      */
-/*    @Test
+    @Test
     public void testEquals_SameObject_True() {
         // Arrange
         boolean expectedResult = true;
@@ -389,11 +304,11 @@ public class KettleTest {
         assertEquals(expectedResult, result);
 
     }
-*/
+
     /**
      * Test the setDeactivateDevice as to know if the device is active.
      */
-/*   @Test
+    @Test
     public void testSetDeactivationDate_True() {
         //Arrange
         boolean expectedResult = true;
@@ -402,11 +317,11 @@ public class KettleTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-*/
+
     /**
      * Test the setDeactivateDevice as to know if the device is deactive.
      */
-/*    @Test
+    @Test
     public void testGetDeactivationDate_False() {
         //Arrange
         kettle1.setDeactivateDevice();
@@ -417,13 +332,13 @@ public class KettleTest {
         // assert
         assertEquals(expectedResult, result);
     }
-*/
+
     /**
      * Test the method getIsActive when the device is active.
      * So the test should return True.
      */
-/*    @Test
-    void testGetIsActive_True() {
+    @Test
+    public void testGetIsActive_True() {
         //Arrange
         boolean expectedResult = true;
         //Act
@@ -432,13 +347,13 @@ public class KettleTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-*/
+
     /**
      * Test the method getIsActive when the device is deactive.
      * So the test should return False.
      */
-  /*  @Test
-    void testGetIsActive_False() {
+    @Test
+    public void testGetIsActive_False() {
         //Arrange
         kettle1.setDeactivateDevice();
         boolean expectedResult = false;
@@ -449,4 +364,4 @@ public class KettleTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-}*/
+}
