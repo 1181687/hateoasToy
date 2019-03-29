@@ -65,6 +65,9 @@ activate "sensor : Sensor"
 "sensor : Sensor" --> "ctrl : ImportReadings\nController": 5.1.6 - true
 deactivate "sensor : Sensor"
 end loop
+ref over "ctrl : ImportReadings\nController"
+updateRepository
+end
 "ctrl : ImportReadings\nController" --> "ui : ImportReadings": 5.2 - true
 deactivate "ctrl : ImportReadings\nController"
 "ui : ImportReadings" --> AdminUser: 6 - Give feedback

@@ -65,6 +65,9 @@ end
  deactivate "SensorMapper"
 ":ImportGeoAreas\nFromJSONOrXMLController"  -> ":GeographicalAreaList" : AddGeographicalArea(geographicalArea)
 activate ":GeographicalAreaList"
+ref over ":GeographicalAreaList"
+saveGeographicalAreasToRepository
+end
 ":ImportGeoAreas\nFromJSONOrXMLController" <-- ":GeographicalAreaList" : boolean
 deactivate ":GeographicalAreaList"
 end
