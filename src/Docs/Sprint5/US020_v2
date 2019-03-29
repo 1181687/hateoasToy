@@ -1,0 +1,105 @@
+NUMBER: US020_v2
+
+DESCRIPTION: As an Administrator, I want to import geographical areas sensors’ readings into the application from a CSV,
+ a JSON or a XML file. Data outside the valid sensor operation period shouldn’t be imported but registered in the
+ application log.
+
+TEAM MEMBERS: Developer - Joana Figueira; QA - Luís de Almeida;
+
+ACCEPTANCE CRITERIA:
+
+General Criteria:
+- Correct Sequence and Class Diagrams.
+- JavaDoc documentation in both code and tests.
+- JUnit conventions in code and tests. (eg. tests should be named like this:
+                                        testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
+- All code, comments and documentation are in proper English.
+
+
+Specific Criteria:
+- given - The administrator imports geographical areas sensors’ readings into the application from a CSV file, a JSON
+or a XML file.
+
+- when - The user chooses option "1" from Menu (Administrator), then option "1" (Geographical Area) and then option "10"
+(Import Readings). Then User inserts the path to the file to be imported.
+
+- then - A success message is displayed if all the sensors' readings are imported:
+Output_1: "All readings were imported successfully".
+
+- but - Depending on the result, one of the following messages are displayed:
+
+Output_2: "ERROR: Please insert a valid format." - When the format of the file isn't CSV, JSON or XML.
+
+Output_3: "ERROR: There's no such file with that name." - When no file or directory is found when the user inputs the
+name/path of the file from where he/she wants to import the readings;
+
+Output_4: "The file is empty, therefore nothing was imported." - When the file is empty.
+
+Output_5: "The file was partially imported. There were ... readings that were not imported, due to invalid information." -
+When the file doesn't have all the readings in a valid state (i.e. the timestamp of the readings is before the datetime
+of the corresponding sensor).
+
+Output_6: "The file was not imported." - When the file has all the readings in an invalid state (or if the information
+was previously imported).
+
+Output_7: "Sorry! The file doesn't contain valid readings. It was not possible to import them." - When the file has its
+information in a wrong/undesired structure (i.e. the reading doesn't have the four pieces of information needed).
+
+
+Test Criteria:
+- All unit tests with "Process finished with exit code 0" message.
+- In the menu, when choosing the numbered options "1" from Menu (Administrator), then option "1" (Geographical Area)
+and then option "10"(Import Readings), should not accept letters, symbols, or any number that's not
+displayed in the menu.
+
+- Acceptance tests:
+
+Test_scenario1:
+- Input data: Path that isn't in a valid format (.csv/.json/.xml);
+- Expected result: "ERROR: Please insert a valid format".
+
+Test_scenario2:
+- Input data: File that doesn't exist;
+- Expected result: "ERROR: There's no such file with that name".
+
+Test_scenario3:
+- Input data: File that exists but is empty;
+- Expected result: Sorry! The file is empty".
+
+Test_scenario4:
+- Input data: File that has readings with timestamp outside the valid sensor operation period.
+- Expected result: The invalid readings aren't imported and its information goes to the application log. Also, the
+message "The file was partially imported. There were ... readings that were not imported, due to invalid information."
+is shown.
+
+Test_scenario5:
+- Input data: File that has readings with sensor ids that don´t correspond to existing sensors.
+- Expected result: The invalid readings aren't imported and the message "The file was partially imported.
+There were ... readings that were not imported, due to invalid information." is shown.
+
+Test_scenario6:
+- Input data: File that has its information in a wrong/undesired structure (i.e. the reading doesn't have the
+four pieces of information needed).
+- Expected result: The importation stops and the message "Sorry! The file doesn't contain valid readings.
+It was not possible to import them." is shown.
+
+Test_scenario7:
+- Input data: File that has its information already imported.
+- Expected result: "The file was not imported."
+
+Test_scenario8:
+- Input data: File that has all its information in an invalid state.
+- Expected result: "The file was not imported."
+
+Test_scenario9:
+- Input data: File that has all the information in a valid state.
+- Expected result: "All readings were imported successfully."
+
+
+ASSUMPTIONS:
+- There is User interaction: the application asks the user the location of the files to be imported.
+- Sensors with id containing "RF" are assumed to be Rainfall-typed sensors, so, even if the readings aren't in LocalDateTime
+format, they are accepted (by being parsed into the correct format).
+- Rainfall Sensor units have to be in l/m2 (liter per square meter) or mm (milliliter).
+- Temperature sensor units have to be in Celsius (C) (if, by change, a reading in the file is in Kelvins (K), its value
+is converted).
