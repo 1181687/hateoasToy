@@ -36,7 +36,7 @@ public class WineCoolerSpecsTest {
     @Autowired
     private GeoAreaRepository geoAreaRepository;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
 

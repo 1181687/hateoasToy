@@ -1,9 +1,10 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
-import pt.ipp.isep.dei.project.model.Location;
 import org.junit.Test;
-import static org.junit.Assert.*;
+import pt.ipp.isep.dei.project.model.Location;
+
+import static org.junit.Assert.assertEquals;
 
 public class LocationTest {
 
@@ -175,7 +176,7 @@ public class LocationTest {
     }
 
     @Test
-    public void testarEqualsComOMesmoObjetoDaClasseLocalizacao(){
+    public void testarEqualsComOMesmoObjetoDaClasseLocalizacao() {
         //Arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -191,7 +192,7 @@ public class LocationTest {
     }
 
     @Test
-    public void testarEqualsComUmObjetoQueNaoEDaClasseLocalizacao(){
+    public void testarEqualsComUmObjetoQueNaoEDaClasseLocalizacao() {
         //Arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -208,7 +209,7 @@ public class LocationTest {
     }
 
     @Test
-    public void testarEqualsComDuasLocalizacoesIguais(){
+    public void testarEqualsComDuasLocalizacoesIguais() {
         //Arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -230,7 +231,7 @@ public class LocationTest {
     }
 
     @Test
-    public void testarEqualsComDuasLocalizacoesDiferentes(){
+    public void testarEqualsComDuasLocalizacoesDiferentes() {
         //Arrange
         double latitude = 41.1496;
         double longitude = -8.6109;
@@ -252,7 +253,7 @@ public class LocationTest {
     }
 
     @Test
-    public void testarHashCode () {
+    public void testarHashCode() {
         // Arrange
         Location local = new Location(41.1496, -8.6109, 97);
         int expectedResult = 1;

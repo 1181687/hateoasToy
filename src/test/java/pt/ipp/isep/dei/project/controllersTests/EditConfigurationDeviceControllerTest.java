@@ -1,5 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.EditConfigurationDeviceController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -14,9 +16,8 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 class EditConfigurationDeviceControllerTest {
     private EditConfigurationDeviceController controller;

@@ -1,13 +1,12 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import pt.ipp.isep.dei.project.model.devices.ProgramSpecs;
 import pt.ipp.isep.dei.project.model.devices.TimeConstantProgram;
 import pt.ipp.isep.dei.project.model.devices.TimeConstantProgramSpecs;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class TimeConstantProgramTest {
     private TimeConstantProgram timeConstantProgram;
@@ -16,7 +15,7 @@ public class TimeConstantProgramTest {
     private static final String DURATION = "duration";
     private static final String ENERGY_CONSUMPTION = "energyConsumption";
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         String name = "prog1";
         specs = new TimeConstantProgramSpecs();
@@ -147,4 +146,4 @@ public class TimeConstantProgramTest {
         assertEquals(expectedResult, result);
     }
 
-}*/
+}

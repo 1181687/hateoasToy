@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
@@ -17,8 +19,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Before;
-import org.junit.Test;
 import static org.junit.Assert.*;
 
 
@@ -1086,7 +1086,7 @@ class GeographicalAreaTest {
         double result = ag.getDailyAverageOfASensor(s1, searchDate);
 
         //Assert
-        assertEquals(expectedResult, result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -1129,7 +1129,7 @@ class GeographicalAreaTest {
         double result = ag.getDailyAverageOfASensor(s1, searchDate);
 
         //Assert
-        assertEquals(expectedResult, result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
 
@@ -1387,7 +1387,7 @@ class GeographicalAreaTest {
         double result = ag.getTotalDailyMeasurement(typeOfSensorTested, day, local);
 
         //ASSERT
-        assertEquals(expectedResult, result,0.001);
+        assertEquals(expectedResult, result, 0.001);
 
     }
 
@@ -1414,7 +1414,7 @@ class GeographicalAreaTest {
         double result = ag.getTotalDailyMeasurement(typeOfSensorTested, day, local);
 
         //ASSERT
-        assertEquals(expectedResult, result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -1457,7 +1457,7 @@ class GeographicalAreaTest {
         double result = ag.getTotalDailyMeasurement(typeOfSensorTested, day, local);
 
         //ASSERT
-        assertEquals(expectedResult, result,0.001);
+        assertEquals(expectedResult, result, 0.001);
 
     }
 

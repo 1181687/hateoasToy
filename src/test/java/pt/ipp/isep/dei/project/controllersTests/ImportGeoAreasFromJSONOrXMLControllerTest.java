@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller.ImportGeoAreasFromJSONOrXMLController;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.LocationMapper;
@@ -16,9 +17,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-
-import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class ImportGeoAreasFromJSONOrXMLControllerTest {
 

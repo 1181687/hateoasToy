@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.MeasurableList;
@@ -18,9 +18,10 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class GetNominalPowerControllerTest {
+
+public class GetNominalPowerControllerTest {
     private GetNominalPowerController controller;
     private House houseEdificioB;
     private HouseGrid grid;
@@ -28,7 +29,7 @@ class GetNominalPowerControllerTest {
     private Room roomOne;
     private Room roomTwo;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -290,7 +291,7 @@ class GetNominalPowerControllerTest {
     }
 
     @Test
-    void TestDisplayRoomsAttachedToHouseGrid() {
+    public void TestDisplayRoomsAttachedToHouseGrid() {
 
         // Arrange
         houseEdificioB.addGrid(grid);
@@ -340,7 +341,7 @@ class GetNominalPowerControllerTest {
     }
 
     @Test
-    void getNominalPowerOfSelectedMeasurableObjects() {
+    public void getNominalPowerOfSelectedMeasurableObjects() {
         // Arrange
         houseEdificioB.addGrid(grid);
         grid.addRoom(roomOne);
@@ -361,7 +362,7 @@ class GetNominalPowerControllerTest {
     }
 
     @Test
-    void checkIfObjInList() {
+    public void checkIfObjInList() {
         // Arrange
         houseEdificioB.addGrid(grid);
         grid.addRoom(roomOne);
@@ -378,7 +379,7 @@ class GetNominalPowerControllerTest {
     }
 
     @Test
-    void checkIfObjNotInList() {
+    public void checkIfObjNotInList() {
         // Arrange
         houseEdificioB.addGrid(grid);
         grid.addRoom(roomOne);
@@ -398,7 +399,7 @@ class GetNominalPowerControllerTest {
     }
 
     @Test
-    void testGetListToString() {
+    public void testGetListToString() {
         // Arrange
         houseEdificioB.addGrid(grid);
         grid.addRoom(roomOne);
@@ -449,7 +450,7 @@ class GetNominalPowerControllerTest {
     }
 
     @Test
-    void testGetListOfRooms() {
+    public void testGetListOfRooms() {
 
         String expectedResult = "1- Name: Kid's room, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n" +
                 "2- Name: Bathroom, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n";
@@ -463,7 +464,7 @@ class GetNominalPowerControllerTest {
 
 
     @Test
-    void testGetListOfRoomsEmpty() {
+    public void testGetListOfRoomsEmpty() {
         String expectedResult = "1- Name: Kid's room, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n" +
                 "2- Name: Bathroom, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n";
         //Act
@@ -475,7 +476,7 @@ class GetNominalPowerControllerTest {
     }
 
     @Test
-    void getNominalPower() {
+    public void getNominalPower() {
 
         this.controller.getRoom(0);
 
@@ -491,11 +492,11 @@ class GetNominalPowerControllerTest {
         double result = controller.getNominalPower();
 
         //Assert
-        assertEquals(result, expectedResult);
+        assertEquals(result, expectedResult, 0.0001);
     }
 
     @Test
-    void getNominalPowerNoDevices() {
+    public void getNominalPowerNoDevices() {
 
         this.controller.getRoom(0);
         double expectedResult = 0;
@@ -504,12 +505,12 @@ class GetNominalPowerControllerTest {
         double result = controller.getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.0001);
     }
 
 
     @Test
-    void testGetRoomListLength() {
+    public void testGetRoomListLength() {
         //Arrange
         int expectedResult = 2;
 
@@ -556,4 +557,4 @@ class GetNominalPowerControllerTest {
         //Assert
         assertFalse(result);
     }
-}*/
+}
