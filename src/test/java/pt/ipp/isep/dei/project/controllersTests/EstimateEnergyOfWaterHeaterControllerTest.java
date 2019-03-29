@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.EstimateEnergyOfWaterHeaterController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -15,9 +15,9 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
-class EstimateEnergyOfWaterHeaterControllerTest {
+public class EstimateEnergyOfWaterHeaterControllerTest {
     private EstimateEnergyOfWaterHeaterController controller;
     private House house;
     private Room kitchen;
@@ -25,7 +25,7 @@ class EstimateEnergyOfWaterHeaterControllerTest {
     private Device device1;
     private Device device2;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -134,7 +134,4 @@ class EstimateEnergyOfWaterHeaterControllerTest {
         assertEquals(expectedResult, result, 0.0001);
     }
 
-
-
-
-}*/
+}

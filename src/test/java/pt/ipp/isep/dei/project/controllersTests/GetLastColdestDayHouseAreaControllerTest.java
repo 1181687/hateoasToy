@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.getlastcoldestdayhouseareacontroller.GetLastColdestDayHouseAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class GetLastColdestDayHouseAreaControllerTest {
 
@@ -35,7 +35,7 @@ public class GetLastColdestDayHouseAreaControllerTest {
     private House house;
     private GetLastColdestDayHouseAreaController controller;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -170,7 +170,7 @@ public class GetLastColdestDayHouseAreaControllerTest {
     }
 
     @Test
-    void hasSensorsOfGivenTypeInGeoArea_withSensorsOfGivenTypeInArea_ShouldReturnTrue(){
+    public void hasSensorsOfGivenTypeInGeoArea_withSensorsOfGivenTypeInArea_ShouldReturnTrue() {
         //Act
         boolean result = this.controller.hasSensorsOfGivenTypeInGeoArea();
         //Assert
@@ -178,7 +178,7 @@ public class GetLastColdestDayHouseAreaControllerTest {
     }
 
     @Test
-    void hasSensorsOfGivenTypeInGeoArea_withoutSensorsOfGivenTypeInArea_ShouldReturnFalse(){
+    public void hasSensorsOfGivenTypeInGeoArea_withoutSensorsOfGivenTypeInArea_ShouldReturnFalse() {
         //Arrange
         // Geographical Area Types
         GeographicalAreaType city = new GeographicalAreaType("City");
@@ -205,4 +205,3 @@ public class GetLastColdestDayHouseAreaControllerTest {
         assertFalse(result);
     }
 }
-*/

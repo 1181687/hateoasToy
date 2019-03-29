@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class RoomTest {
 
@@ -35,7 +35,7 @@ public class RoomTest {
     private static final String WASHING_MACHINE_TYPE = "WashingMachine";
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -77,7 +77,7 @@ public class RoomTest {
     }
 
     @Test
-    void testHashCode() {
+    public void testHashCode() {
         //Arrange
 
         int expectedResult = Objects.hash("Kitchen");
@@ -89,7 +89,7 @@ public class RoomTest {
     }
 
     @Test
-    void testHashCodeNotEquals() {
+    public void testHashCodeNotEquals() {
         //Arrange
         String name = "roomOne";
         String name2 = "roomtwo";
@@ -104,7 +104,7 @@ public class RoomTest {
     }
 
     @Test
-    void testEqualsTrue() {
+    public void testEqualsTrue() {
         //Arrange
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room2 = new Room("Laundry", 2, dim);
@@ -115,7 +115,7 @@ public class RoomTest {
     }
 
     @Test
-    void testEqualsFalse() {
+    public void testEqualsFalse() {
         //Arrange
 
         //Act
@@ -125,7 +125,7 @@ public class RoomTest {
     }
 
     @Test
-    void testEqualsFalseDifTypes() {
+    public void testEqualsFalseDifTypes() {
         //Arrange
 
         SensorType tipo = new SensorType("humidade");
@@ -137,7 +137,7 @@ public class RoomTest {
     }
 
     @Test
-    void testAddSensorToTheListOfSensorsInTheRoom() {
+    public void testAddSensorToTheListOfSensorsInTheRoom() {
         // Arrange
         LocalDateTime dataFuncionamento = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType = new SensorType("Temperatura");
@@ -155,7 +155,7 @@ public class RoomTest {
     }
 
     @Test
-    void getSensorList() {
+    public void getSensorList() {
         //Arrange
         SensorList sensorList = new SensorList();
 
@@ -173,7 +173,7 @@ public class RoomTest {
         assertEquals(result, expectedResult);
     }
 
-    @Test
+    /*@Test
     public void testValidateNameNull() {
         String name = null;
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
@@ -201,7 +201,7 @@ public class RoomTest {
                 new Room(name, 2, dim)
         );
         assertEquals("Dimension should not be null", exception.getMessage());
-    }
+    }*/
 
     @Test
     public void getSensorsListContentTest() {
@@ -316,7 +316,7 @@ public class RoomTest {
         double result = kitchen.getNominalPower();
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -742,7 +742,7 @@ public class RoomTest {
         assertFalse(result);
     }
 
-    @Test
+    /*@Test
     public void testAddDeviceSameDevice_Exception() {
 
         Device lamp = house.createDevice(LAMP_TYPE, "Lamp", kitchen);
@@ -761,7 +761,7 @@ public class RoomTest {
 
         );
         assertEquals("Device is null.", exception.getMessage());
-    }
+    }*/
 
     @Test
     public void testAddDeviceTrue() {
@@ -800,4 +800,3 @@ public class RoomTest {
         assertFalse(result);
     }
 }
-*/

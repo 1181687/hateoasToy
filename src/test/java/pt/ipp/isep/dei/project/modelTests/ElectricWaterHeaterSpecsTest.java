@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -11,10 +11,9 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-
-class ElectricWaterHeaterSpecsTest {
+public class ElectricWaterHeaterSpecsTest {
     private House house;
     private Room kitchen;
     private Device electricWaterHeater;
@@ -22,7 +21,7 @@ class ElectricWaterHeaterSpecsTest {
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
 
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -516,7 +515,7 @@ class ElectricWaterHeaterSpecsTest {
     }
 
     @Test
-    void testIfDeviceIsProgrammableFalse() {
+    public void testIfDeviceIsProgrammableFalse() {
         //Arrange
         //Act
         boolean result = electricWaterHeater.getSpecs().isProgrammable();
@@ -525,7 +524,7 @@ class ElectricWaterHeaterSpecsTest {
     }
 
     @Test
-    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
+    public void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
         //Arrange
         electricWaterHeater.getSpecs().asProgrammable();
         //Act
@@ -533,4 +532,4 @@ class ElectricWaterHeaterSpecsTest {
         //Assert
         assertFalse(result);
     }
-}*/
+}

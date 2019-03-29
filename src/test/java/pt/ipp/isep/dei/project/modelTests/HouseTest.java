@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-/*
+
+import org.junit.Before;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -32,8 +34,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.junit.Before;
-import org.junit.Test;
 import static org.junit.Assert.*;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -1043,8 +1043,7 @@ public class HouseTest {
     }
 
     */
-
-  /*  @Test
+@Test
     public void getNameByHGPosition() {
         // Arrange
         // Instantiate House Grids
@@ -1107,8 +1106,8 @@ public class HouseTest {
         // Assert
         assertFalse(result);
     }
-/*
-    @Test
+
+   /* @Test
     public void checkIfARoomIsAlreadyInAHouseGridOfTheListWithNegativeTest() {
         // Arrange
         String roomName = "Kitchen";
@@ -1124,10 +1123,10 @@ public class HouseTest {
 
         // Assert
         assertFalse(result);
-    }
-*/
+    }*/
 
-  /*  @Test
+
+    @Test
     public void getTheGridWhereTheRoomIsConnectedTest() {
         // Arrange
         // Instantiate Room
@@ -1778,8 +1777,7 @@ public class HouseTest {
         //Assert
         assertFalse(result);
     }
-
-    /*
+/*
         @Test
         public void testNewHouseGrid_ThrowsException(){
             //Arrange
@@ -1803,10 +1801,9 @@ public class HouseTest {
             housegrid result = this.housegrid.createHouseGrid(name);
             //Assert
             assertEquals(expectedResult,result);
-        }
-    */
+        }*/
     /*@Test
-    void getDeviceByNameExceptionTest() {
+    public void getDeviceByNameExceptionTest() {
         // Arrange
         String expectedResult = "There isn't any device with that name.";
 
@@ -1819,8 +1816,8 @@ public class HouseTest {
         assertEquals(expectedResult, exception.getMessage());
     }*/
 
-/*    @Test
-    void setAttributeTrueTest() {
+    @Test
+    public void setAttributeTrueTest() {
         // Act
         boolean result = house.setDeviceAttribute("Bosch Tronic 3000", "Cold-Water Temperature", 40);
 
@@ -1829,7 +1826,7 @@ public class HouseTest {
     }
 
     @Test
-    void setAttributeFalseTest() {
+    public void setAttributeFalseTest() {
         // Act
         boolean result = house.setDeviceAttribute("Bosch Tronic 3000", "Hot-Water Temperature", 70);
 
@@ -1842,8 +1839,8 @@ public class HouseTest {
      * beforeach has some readings, extra ones where added, included a negative value
      * expected result {2018-12-04=20, 2018-12-03=6.0, 2018-12-02=7.0}
      */
-/*    @Test
-    void getDailyAmplitudeInterval() {
+    @Test
+    public void getDailyAmplitudeInterval() {
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
         GeographicalAreaType district = new GeographicalAreaType("District");
@@ -1938,8 +1935,8 @@ public class HouseTest {
      * 12/04/2018 has only a DoubleNan values, so the amplitude in that day will be DoubleNan.
      * expected result {2018-12-04=NaN, 2018-12-03=6.0, 2018-12-02=7.0}
      */
-/*    @Test
-    void getDailyAmplitudeInterval_doubleNanValuesFor4_12_2018() {
+    @Test
+    public void getDailyAmplitudeInterval_doubleNanValuesFor4_12_2018() {
 
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -2035,8 +2032,8 @@ public class HouseTest {
      * with that two valid values
      * expected result {2018-12-04=12, 2018-12-03=6.0, 2018-12-02=7.0}
      */
-/*    @Test
-    void getDailyAmplitudeInterval_oneDayOneDoubleNanValueTwoValidValues_For4_12_2018() {
+    @Test
+    public void getDailyAmplitudeInterval_oneDayOneDoubleNanValueTwoValidValues_For4_12_2018() {
 
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -2131,7 +2128,7 @@ public class HouseTest {
 
 
     @Test
-    void getDailyAmplitudeInterval_emptySensor_emptyMap() {
+    public void getDailyAmplitudeInterval_emptySensor_emptyMap() {
 
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -2208,8 +2205,8 @@ public class HouseTest {
      * 4/12/2018 is the expected date with the daily highest amplitude
      * expected highest amplipude is 20.
      */
-/*    @Test
-    void getHighestDailyAmplitude_4_12_2018_amplitude20() {
+    @Test
+    public void getHighestDailyAmplitude_4_12_2018_amplitude20() {
 
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -2295,8 +2292,8 @@ public class HouseTest {
      * 2/12/2018 is the expected date with the daily highest amplitude
      * expected highest amplipude is 7.
      */
-/*    @Test
-    void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7() {
+    @Test
+    public void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7() {
 
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -2381,8 +2378,8 @@ public class HouseTest {
      * the Map is empty
      * expected a empty Map.
      */
-/*    @Test
-    void getHighestDailyAmplitude_emptyMap_emptyMap() {
+    @Test
+    public void getHighestDailyAmplitude_emptyMap_emptyMap() {
 
         // Maps
         Map<LocalDate, Double> dailyAmplitudesEmpty = new HashMap<>();
@@ -2952,5 +2949,5 @@ public class HouseTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-}*/
+}
 

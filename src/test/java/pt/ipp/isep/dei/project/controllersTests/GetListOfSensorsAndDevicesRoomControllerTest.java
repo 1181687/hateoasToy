@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.controllers.GetListOfSensorsAndDevicesRoomController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -16,16 +16,16 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
-class GetListOfSensorsAndDevicesRoomControllerTest {
+public class GetListOfSensorsAndDevicesRoomControllerTest {
 
     private GetListOfSensorsAndDevicesRoomController controller;
     private House house;
     private RoomList roomList;
     private Room room;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
 
         //Geographical Area
@@ -282,4 +282,4 @@ class GetListOfSensorsAndDevicesRoomControllerTest {
         //assert
         assertEquals(expectResult, result);
     }
-}*/
+}

@@ -1,19 +1,19 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.dishwasher.DishWasherType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 public class DishWasherTypeTest {
     private DishWasherType dishWasherType;
     private Room kitchen;
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // Type
         dishWasherType = new DishWasherType();
@@ -47,4 +47,4 @@ public class DishWasherTypeTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-}*/
+}

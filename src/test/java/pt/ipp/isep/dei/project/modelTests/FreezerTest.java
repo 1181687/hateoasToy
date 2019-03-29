@@ -1,7 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.freezer.FreezerType;
@@ -16,8 +17,6 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class FreezerTest {
     private Room kitchen;
     private Room laundry;
@@ -28,7 +27,7 @@ public class FreezerTest {
     private Reading reading2;
     private House house;
 
-    @BeforeEach
+    @Before
     public void StartUp(){
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -70,7 +69,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getLocationTest() {
+    public void getLocationTest() {
         // Arrange
         Room expectedResult = kitchen;
 
@@ -82,7 +81,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getNameTest() {
+    public void getNameTest() {
         // Arrange
         String expectedResult = "Miele Freezer Series 3500";
 
@@ -94,7 +93,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getTypeTest() {
+    public void getTypeTest() {
         // Arrange
         String expectedResult = "Freezer";
 
@@ -116,7 +115,7 @@ public class FreezerTest {
         // Assert
         assertEquals(expectedResult, result, 0.000001);
     }
-
+/*
     @Test
     public void setNameWithSameNameTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> freezer.setName("Miele Freezer Series 3500"));
@@ -140,7 +139,7 @@ public class FreezerTest {
         Throwable exception = assertThrows(RuntimeException.class, () -> freezer.setName("Miele Freezer Series 1000"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }
-
+*/
     @Test
     public void setNameFalseTest() {
         // Act
@@ -160,7 +159,7 @@ public class FreezerTest {
     }
 
     @Test
-    void setLocationFalseTest() {
+    public void setLocationFalseTest() {
         // Act
         boolean result = freezer.setLocation(kitchen);
 
@@ -169,7 +168,7 @@ public class FreezerTest {
     }
 
     @Test
-    void setLocationTrueTest() {
+    public void setLocationTrueTest() {
         // Act
         boolean result = freezer.setLocation(laundry);
 
@@ -178,7 +177,7 @@ public class FreezerTest {
     }
 
     @Test
-    void setLocationTrueTestNullValue() {
+    public void setLocationTrueTestNullValue() {
         // Act
         FreezerType type = new FreezerType();
         Device maquina = type.createDevice("nome");
@@ -191,7 +190,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getDevSpecsAttributesToStringTest() {
+    public void getDevSpecsAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Freezer Capacity: 40.0\n" +
                 "2 - Annual Energy Consumption: 36500.0\n" +
@@ -204,7 +203,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getAttributesToStringTest() {
+    public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Miele Freezer Series 3500\n" +
                 "2 - Device Specifications \n" +
@@ -227,7 +226,7 @@ public class FreezerTest {
 
 
     @Test
-    void hashCodeTest() {
+    public void hashCodeTest() {
         // Arrange
         int expectedResult = Objects.hash(freezer.getName());
 
@@ -239,7 +238,7 @@ public class FreezerTest {
     }
 
     @Test
-    void equalsDifferentObjectTest() {
+    public void equalsDifferentObjectTest() {
         // Arrange
         Object object = new Object();
 
@@ -251,7 +250,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getNumberOfSpecsAttributesTest() {
+    public void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 3;
 
@@ -263,7 +262,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getNameToStringTest() {
+    public void getNameToStringTest() {
         // Arrange
         String expectedResult = "Device: Miele Freezer Series 3500, located in room: Kitchen\n";
 
@@ -275,7 +274,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithoutSolutionsTest() {
         // Arrange
         double expectedResult = 0;
 
@@ -290,7 +289,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithOneSolutionTest() {
         // Arrange
         double expectedResult = 7;
 
@@ -305,7 +304,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
+    public void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
         // Arrange
         double expectedResult = 15;
 
@@ -335,7 +334,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getDeactivationDate() {
+    public void getDeactivationDate() {
         // arrange
         LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         freezer.setDeactivateDevice();
@@ -346,7 +345,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getDateDeactivateDeviceToString() {
+    public void getDateDeactivateDeviceToString() {
         // arrange
         String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
         freezer.setDeactivateDevice();
@@ -358,7 +357,7 @@ public class FreezerTest {
 
 
     @Test
-    void getIsActiveTrueTest() {
+    public void getIsActiveTrueTest() {
         // Act
         boolean result = freezer.getIsActive();
 
@@ -367,7 +366,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getIsActiveFalseTest() {
+    public void getIsActiveFalseTest() {
         // Assert
         freezer.setDeactivateDevice();
 
@@ -379,7 +378,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getDataSeriesTest() {
+    public void getDataSeriesTest() {
         // Assert
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         LocalDateTime time2 = LocalDateTime.of(2019, 01, 24, 16, 00, 00);
@@ -394,7 +393,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getSpecsListTest() {
+    public void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
         expectedResult.add("Freezer Capacity");
@@ -409,7 +408,7 @@ public class FreezerTest {
     }
 
     @Test
-    void getAttributeValueTest() {
+    public void getAttributeValueTest() {
         // Assert
         double expectedResult = 900.0;
 
@@ -422,7 +421,7 @@ public class FreezerTest {
 
 
     @Test
-    void testGetSpecsToString() {
+    public void testGetSpecsToString() {
         // Arrange
         String expectedResult = "1 - Freezer Capacity: 40.0\n" +
                 "2 - Annual Energy Consumption: 36500.0\n" +
@@ -450,7 +449,7 @@ public class FreezerTest {
     }
 
     @Test
-    void testGetNominalPowerTest() {
+    public void testGetNominalPowerTest() {
         //Arrange
         double expectedResult = 900.0;
 
@@ -458,11 +457,11 @@ public class FreezerTest {
         double result = freezer.getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result,0.001);
     }
 
     @Test
-    void testIfDeviceIsActiveTrue() {
+    public void testIfDeviceIsActiveTrue() {
         //Arrange
         //Act
         boolean result = freezer.getIsActive();
@@ -471,7 +470,7 @@ public class FreezerTest {
     }
 
     @Test
-    void testIfDeviceIsActiveFalse() {
+    public void testIfDeviceIsActiveFalse() {
         //Arrange
         freezer.setDeactivateDevice();
         //Act
@@ -479,9 +478,9 @@ public class FreezerTest {
         //Assert
         assertFalse(result);
     }
-
-    /*@Test
-    void testIfDeviceIsProgrammableFalse() {
+/*
+    @Test
+    public void testIfDeviceIsProgrammableFalse() {
         //Arrange
         //Act
         boolean result = freezer.isProgrammable();
@@ -490,7 +489,7 @@ public class FreezerTest {
     }
 
     @Test
-    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
+    public void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
         //Arrange
         freezer.asProgrammable();
         //Act
@@ -498,4 +497,5 @@ public class FreezerTest {
         //Assert
         assertFalse(result);
     }
-}*/
+    */
+}

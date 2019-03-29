@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
 
 public class MicrowaveOvenTest {
     private Room kitchen;
@@ -32,7 +32,7 @@ public class MicrowaveOvenTest {
     private Reading reading2;
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -95,7 +95,7 @@ public class MicrowaveOvenTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    /*@Test
     public void setNameWithSameNameTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> microwaveOven.setName("Becken BMW2328"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
@@ -105,7 +105,7 @@ public class MicrowaveOvenTest {
     public void setNameAlreadyInListTest() {
         Throwable exception = assertThrows(RuntimeException.class, () -> microwaveOven.setName("Becken BMW2329"));
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }
+    }*/
 
     @Test
     public void setNameFalseTest() {
@@ -126,7 +126,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void getLocationTest() {
+    public void getLocationTest() {
         // Arrange
         Room expectedResult = kitchen;
 
@@ -138,7 +138,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void setLocationFalseTest() {
+    public void setLocationFalseTest() {
         // Act
         boolean result = microwaveOven.setLocation(kitchen);
 
@@ -147,7 +147,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void setLocationTrueTest() {
+    public void setLocationTrueTest() {
         // Act
         boolean result = microwaveOven.setLocation(laundry);
 
@@ -156,7 +156,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void setLocationTrueTestNullValue() {
+    public void setLocationTrueTestNullValue() {
         // Act
         MicrowaveOvenType type = new MicrowaveOvenType();
         Device maquina = type.createDevice("nome");
@@ -169,7 +169,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void getNominalPowerTest() {
+    public void getNominalPowerTest() {
         //Arrange
         double expectedResult = 1200.0;
 
@@ -177,7 +177,7 @@ public class MicrowaveOvenTest {
         double result = microwaveOven.getSpecs().getNominalPower();
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -196,7 +196,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void getIsActiveTrueTest() {
+    public void getIsActiveTrueTest() {
         // Act
         boolean result = microwaveOven.getIsActive();
 
@@ -205,7 +205,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void getIsActiveFalseTest() {
+    public void getIsActiveFalseTest() {
         // arrange
         microwaveOven.setDeactivateDevice();
 
@@ -217,7 +217,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void getDeactivationDate() {
+    public void getDeactivationDate() {
         // arrange
         LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
         microwaveOven.setDeactivateDevice();
@@ -228,7 +228,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void hashCodeTest() {
+    public void hashCodeTest() {
         // Arrange
         int expectedResult = Objects.hash(microwaveOven.getName());
 
@@ -240,7 +240,7 @@ public class MicrowaveOvenTest {
     }
 
     @Test
-    void equalsDifferentObjectTest() {
+    public void equalsDifferentObjectTest() {
         // Arrange
         Object object = new Object();
 
@@ -266,4 +266,4 @@ public class MicrowaveOvenTest {
         assertEquals(expectedResult, result);
     }
 
-}*/
+}
