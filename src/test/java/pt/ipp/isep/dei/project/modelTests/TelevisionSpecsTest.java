@@ -1,7 +1,26 @@
 package pt.ipp.isep.dei.project.modelTests;
 
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-/*
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
+import pt.ipp.isep.dei.project.GeoAreaService;
+import pt.ipp.isep.dei.project.io.ui.Main;
+import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.Dimension;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.utils.Utils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -138,7 +157,7 @@ public class TelevisionSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted an null character attribute.
      */
-/*    @Test
+    @Test
     public void testGetAttributeValue_NullNominalPower (){
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
@@ -165,7 +184,7 @@ public class TelevisionSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted an null character attribute.
      */
-/*    @Test
+    @Test
     public void testGetAttributeValue_NullStandbyPower (){
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
@@ -180,7 +199,7 @@ public class TelevisionSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted an null character attribute.
      */
-/*    @Test
+    @Test
     public void testGetAttributeValue_NullTime (){
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
@@ -403,7 +422,7 @@ public class TelevisionSpecsTest {
     }
 
     @Test
-    void testIfDeviceIsProgrammableFalse() {
+    public void testIfDeviceIsProgrammableFalse() {
         //Arrange
         //Act
         boolean result = television.getSpecs().isProgrammable();
@@ -412,7 +431,7 @@ public class TelevisionSpecsTest {
     }
 
     @Test
-    void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
+    public void testIfDeviceIsProgrammableReturnsFalseBecauseItsNotProgrammable() {
         //Arrange
         television.getSpecs().asProgrammable();
         //Act
@@ -421,5 +440,5 @@ public class TelevisionSpecsTest {
         assertFalse(result);
     }
 
-}*/
+}
 

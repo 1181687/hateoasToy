@@ -1,7 +1,9 @@
 package pt.ipp.isep.dei.project.controllersTests;
-/*
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+
+import org.junit.Before;
+import org.junit.Test;
+import static org.junit.Assert.*;
+
 import pt.ipp.isep.dei.project.controllers.DetachRoomFromHouseGridController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
@@ -13,9 +15,9 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-class DetachRoomFromHouseGridControllerTest {
+
+public class DetachRoomFromHouseGridControllerTest {
 
     private DetachRoomFromHouseGridController ctrl;
     private House house;
@@ -24,7 +26,7 @@ class DetachRoomFromHouseGridControllerTest {
     private HouseGrid mainGrid;
 
 
-    @BeforeEach
+    @Before
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -66,7 +68,7 @@ class DetachRoomFromHouseGridControllerTest {
     }
 
     @Test
-    void testsGetListContentMethod() {
+    public void testsGetListContentMethod() {
         //Arrange
         String expectedResult = "1 - Name: Main Grid" + "\n";
         //Act
@@ -76,7 +78,7 @@ class DetachRoomFromHouseGridControllerTest {
     }
 
     @Test
-    void testsGetListContentMethodMoreThanOneGrid() {
+    public void testsGetListContentMethodMoreThanOneGrid() {
         //Arrange
         HouseGrid newGrid1 = new HouseGrid("Secondary Grid");
         this.house.addGrid(newGrid1);
@@ -89,7 +91,7 @@ class DetachRoomFromHouseGridControllerTest {
     }
 
     @Test
-    void getHouseGridFromTheList() {
+    public void getHouseGridFromTheList() {
         //Arrange
         HouseGrid expectedResult = house.getHouseGridByPosition(0);
         //Act
@@ -99,7 +101,7 @@ class DetachRoomFromHouseGridControllerTest {
     }
 
     @Test
-    void getListOfRooms() {
+    public void getListOfRooms() {
         //Arrange
         String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimension - Height: 2.0, Length: 3.0, Width: 4.0\n" +
                 "2- Name: Living Room, House Floor: 2, Dimension - Height: 2.0, Length: 3.0, Width: 3.0\n";
@@ -110,7 +112,7 @@ class DetachRoomFromHouseGridControllerTest {
     }
 
     @Test
-     void getRoomFromTheListOfRoomByAPosition() {
+     public void getRoomFromTheListOfRoomByAPosition() {
          //Arrange
         ctrl.getHouseGridFromTheList(0);
          Room expectedResult = r1;
@@ -121,7 +123,7 @@ class DetachRoomFromHouseGridControllerTest {
      }
 
     @Test
-    void detachRoomFromGridList() {
+    public void detachRoomFromGridList() {
         //Arrange
 
         ctrl.detachRoomFromGridList(mainGrid, r1);
@@ -133,7 +135,7 @@ class DetachRoomFromHouseGridControllerTest {
     }
 
     @Test
-    void detachRoomFromGridListRoomNotInTheListRemainsTheSame() {
+    public void detachRoomFromGridListRoomNotInTheListRemainsTheSame() {
         //Arrange
 
         Dimension r1Dimension = new Dimension(2, 3, 3);
@@ -152,7 +154,7 @@ class DetachRoomFromHouseGridControllerTest {
     }
 
     @Test
-    void detachRoomFromGridListRoomNotInTheListRemainsTheSameBooleanMethod() {
+    public void detachRoomFromGridListRoomNotInTheListRemainsTheSameBooleanMethod() {
         //Arrange
         Dimension r1Dimension = new Dimension(2, 3, 3);
         Room r2 = new Room("Bathroom", 2, r1Dimension);
@@ -167,7 +169,7 @@ class DetachRoomFromHouseGridControllerTest {
     }
 
     @Test
-    void detachRoomFromGridListBooleanMethod() {
+    public void detachRoomFromGridListBooleanMethod() {
         //Act
         boolean result = ctrl.detachRoomFromGridList(mainGrid, r1);
         //Assert
@@ -175,7 +177,7 @@ class DetachRoomFromHouseGridControllerTest {
     }
 
     @Test
-    void getGridListSize() {
+    public void getGridListSize() {
         //Arrange
         Dimension r1Dimension = new Dimension(2, 3, 3);
 
@@ -191,4 +193,4 @@ class DetachRoomFromHouseGridControllerTest {
         //Assert
         assertEquals(result, expectedResult);
     }
-}*/
+}
