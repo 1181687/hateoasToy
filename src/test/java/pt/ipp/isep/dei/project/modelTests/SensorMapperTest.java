@@ -47,6 +47,7 @@ public class SensorMapperTest {
         assertEquals(expectedResult, result);
         assertEquals("sensor1", sensorDTO.getName());
         assertEquals("1/ms", sensorDTO.getUnits());
+        assertEquals(true, sensorDTO.getIsActive());
     }
 
     @Test
@@ -77,6 +78,7 @@ public class SensorMapperTest {
         sensorDTO.setStartingDate(startingDate);
         sensorDTO.setLocation(location);
         sensorDTO.setUnits(sensorDTO.getUnits());
+        sensorDTO.setActive(sensorDTO.getIsActive());
 
 
         //Act

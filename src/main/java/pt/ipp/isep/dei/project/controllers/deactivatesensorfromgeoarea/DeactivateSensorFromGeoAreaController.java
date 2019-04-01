@@ -27,7 +27,7 @@ public class DeactivateSensorFromGeoAreaController {
 
     public boolean deactivateSensor(SensorDTO sensorDTO) {
         Sensor sensor = geoAreaList.getSensorById(sensorDTO.getId());
-        sensor.setActive(sensorDTO.isActive());
+        sensor.setActive(sensorDTO.getIsActive());
         //geoAreaList.updateRepository();
         return true;
     }

@@ -56,7 +56,7 @@ public class DeactivateSensorFromGeoArea {
         StringBuilder content = new StringBuilder();
         int iterator = 1;
         for (SensorDTO sensorDTO : geographicalAreaDTO.getSensors()) {
-            if (sensorDTO.isActive()) {
+            if (sensorDTO.getIsActive()) {
                 content.append(iterator + " - " + sensorDTO.getId() + "\n");
                 iterator++;
             }
