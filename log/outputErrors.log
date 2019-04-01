@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-03-29T10:58:30</date>
+  <millis>1553857110208</millis>
+  <sequence>4</sequence>
+  <logger>pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsController</logger>
+  <level>WARNING</level>
+  <class>pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsController</class>
+  <method>addReadingToSensorById</method>
+  <thread>1</thread>
+  <message>Reading not imported due to timestamp/date of reading being before starting date of sensor: id: TT12346, value: 61.7, timestamp/date: 1928-12-30T14:00, unit: F.</message>
+</record>
+<record>
+  <date>2019-03-29T10:59:22</date>
+  <millis>1553857162608</millis>
+  <sequence>5</sequence>
+  <logger>pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsController</logger>
+  <level>WARNING</level>
+  <class>pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsController</class>
+  <method>addReadingToSensorById</method>
+  <thread>1</thread>
+  <message>Reading not imported due to timestamp/date of reading being before starting date of sensor: id: TT12346, value: 61.7, timestamp/date: 1928-12-30T14:00, unit: F.</message>
+</record>

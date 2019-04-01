@@ -46,7 +46,7 @@ public final class SensorMapper {
         SensorType sensorType = new SensorType(sensorDTO.getSensorType());
         Location location = LocationMapper.mapToEntity(sensorDTO.getLocation());
         Sensor newSensor = new Sensor(sensorDTO.getId(), sensorDTO.getName(), sensorDTO.getStartingDate().atStartOfDay(), sensorType, location, sensorDTO.getUnits());
-        newSensor.setActive(sensorDTO.isActive());
+        newSensor.setActive(sensorDTO.getIsActive());
         return newSensor;
     }
 }
