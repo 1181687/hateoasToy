@@ -26,27 +26,11 @@ public final class GeographicalAreaMapper {
     /**
      * Method that creates a GeoAreaDTO based on a set of information.
      *
-     * @param id                   Id to be used.
-     * @param description          Description to be used.
-     * @param type                 Type to be used.
-     * @param width                Width to be used.
-     * @param length               Length to be used.
-     * @param latitude             Latitude to be used.
-     * @param longitude            Longitude to be used.
-     * @param altitude            Elevation to be used.
      * @return GeoAreaDTO.
      */
-    public static GeographicalAreaDTO mapToDTOwithoutSensors(String id, String description, String type, double width, double length, double latitude, double longitude, double altitude) {
+    public static GeographicalAreaDTO newDTO() {
 
         GeographicalAreaDTO geoDTO = new GeographicalAreaDTO();
-        geoDTO.setId(id);
-        geoDTO.setDescription(description);
-        geoDTO.setType(type);
-        geoDTO.setWidth(width);
-        geoDTO.setLength(length);
-        geoDTO.setLatitude(latitude);
-        geoDTO.setLongitude(longitude);
-        geoDTO.setElevation(altitude);
         return geoDTO;
     }
 
