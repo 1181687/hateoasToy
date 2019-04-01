@@ -7,13 +7,12 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.utils.XMLReader;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 
 public class XMLReaderTest {
@@ -23,7 +22,7 @@ public class XMLReaderTest {
      * readJSON File receives a DTO and transforms it
      */
     @Test
-    public void testReadXMLFileToList_geoAreaDTO(){
+    public void testReadXMLFileToList_geoAreaDTO() {
         // arrange
         String path = "datasets/xml/XMLfile_GA.xml";
         File file = new File(path);
@@ -113,14 +112,14 @@ public class XMLReaderTest {
         // assert
         assertEquals(expectedResult, result);
         assertEquals("TT12346", id1);
-        assertEquals(LocalDateTime.of(2018,12,30,2,00), readingDate1);
-        assertEquals(57.2, value1,0.0001);
+        assertEquals(LocalDateTime.of(2018, 12, 30, 2, 00), readingDate1);
+        assertEquals(57.2, value1, 0.0001);
         assertEquals("F", sensorUnits1);
 
         assertEquals(expectedResult, result);
         assertEquals("RF12345", id2);
-        assertEquals(LocalDate.of(2019,1,6), readingDate2);
-        assertEquals(2.5, value2,0.0001);
+        assertEquals(LocalDate.of(2019, 1, 6), readingDate2);
+        assertEquals(2.5, value2, 0.0001);
         assertEquals("mm", sensorUnits2);
     }
 
