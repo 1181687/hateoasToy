@@ -61,7 +61,16 @@ public class GeographicalAreaMapperTest {
         GeographicalArea expectedResult = GeographicalAreaMapper.mapToEntity(geographicalAreaDTO);
 
         //Act
-        GeographicalAreaDTO anotherArea = GeographicalAreaMapper.mapToDTOwithoutSensors(id, description, geographicalAreaType, width, length, latitude, longitude, altitude);
+        GeographicalAreaDTO anotherArea = GeographicalAreaMapper.newDTO();
+        anotherArea.setId(id);
+        anotherArea.setDescription(description);
+        anotherArea.setType(geographicalAreaType);
+        anotherArea.setWidth(width);
+        anotherArea.setLength(length);
+        anotherArea.setLatitude(latitude);
+        anotherArea.setLongitude(longitude);
+        anotherArea.setElevation(altitude);
+
         GeographicalArea result = GeographicalAreaMapper.mapToEntity(anotherArea);
 
         //Assert

@@ -301,7 +301,10 @@ public class Sensor {
 
 
     public boolean addReading(Reading reading) {
-        return this.listOfReadings.add(reading);
+        if (!listOfReadings.contains(reading)){
+            return this.listOfReadings.add(reading);
+        }
+        return false;
     }
 
     /**

@@ -38,20 +38,6 @@ public class ImportReadingsController {
     }
 
     /**
-     * Method that checks if a sensor exists in the list by its id and, if so, stores it.
-     *
-     * @param sensorId Id of the sensor.
-     * @return True or false.
-     */
-    public boolean checkIfSensorExistsById(String sensorId) {
-        if (allSensorInTheGeoAreas.checkIfSensorExistsById(sensorId)) {
-            sensor = allSensorInTheGeoAreas.getSensorById(sensorId);
-            return true;
-        }
-        return false;
-    }
-
-    /**
      * Method that checks if a given date time is before the starting date of the sensor.
      *
      * @param localDateTime Given date time to be compared.
@@ -100,7 +86,10 @@ public class ImportReadingsController {
                 imported = true;
             }
         }
-        //this.geographicalAreaList.updateRepository();
+        if(imported){
+
+            this.geographicalAreaList.updateRepository();
+        }
         return imported;
     }
 

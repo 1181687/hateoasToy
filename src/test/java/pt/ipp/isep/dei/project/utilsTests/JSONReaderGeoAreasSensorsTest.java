@@ -110,4 +110,33 @@ public class JSONReaderGeoAreasSensorsTest {
         assertEquals(14, value, 0.001);
     }
 
+    @Test
+    public void getTypeNameTest() {
+        //Arrange
+        String path = "rfg.json";
+
+        String expectedResult = "json";
+
+        // Act
+        String result = jsonReaderGeoAreasSensors.getTypeName();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /*@Test
+    public void testReadFile_NullObject_ShouldReturnNull () {
+        // Arrange
+        String path = "rfg.csv";
+        File file = new File(path);
+
+        List<Object> expectedResult = new ArrayList<>();
+
+        // Act
+        List<Object> result = jsonReaderGeoAreasSensors.readFile(file);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }*/
+
 }

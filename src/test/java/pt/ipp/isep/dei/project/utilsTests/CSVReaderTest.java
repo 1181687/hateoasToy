@@ -10,13 +10,14 @@ import pt.ipp.isep.dei.project.utils.CSVReader;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class CSVReaderTest {
+public class CSVReaderTest {
     private CSVReader csvReader = new CSVReader();
     private File file;
 
@@ -30,7 +31,7 @@ class CSVReaderTest {
      * Test that tries to read a valid file (with valid information) and see if the result of the
      * importation (List of Object) has the expected size and if it contains a certain Reading.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testReadFile_withAFileWithAllTheInformationValid_ShouldReturnSuccessfulResults() {
         // Arrange
         String path = "datasets/csv/DataSet_sp05_SensorData.csv";
@@ -58,7 +59,7 @@ class CSVReaderTest {
     /**
      * Test that tries to read an empty file, which returns null.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void testReadFile_withEmptyFile_ShouldReturnNull() {
         // Arrange
         String path = "datasets/csv/DataSet_sp05_SensorData_empty.csv";
@@ -109,10 +110,26 @@ class CSVReaderTest {
         String path = "rfg.csv";
         file = new File(path);
 
+        List<Object> expectedResult = new ArrayList<>();
+
         // Act
         List<Object> result = csvReader.readFile(file);
 
         // Assert
         assertEquals(Collections.emptyList(), result);
+    }
+
+    @Test
+    public void getTypeNameTest() {
+        //Arrange
+        String path = "rfg.csv";
+
+        String expectedResult = "csv";
+
+        // Act
+        String result = csvReader.getTypeName();
+
+        // Assert
+        assertEquals(expectedResult, result);
     }
 }

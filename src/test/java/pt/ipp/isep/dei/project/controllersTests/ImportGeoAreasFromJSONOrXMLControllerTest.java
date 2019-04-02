@@ -78,7 +78,16 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
         double latitude = -516;
         double longitude = 12;
         double altitude = 156;
-        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTOwithoutSensors(id, description, type, width, length, latitude, longitude, altitude);
+        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.newDTO();
+        geographicalAreaDTO.setId(id);
+        geographicalAreaDTO.setDescription(description);
+        geographicalAreaDTO.setType(type);
+        geographicalAreaDTO.setWidth(width);
+        geographicalAreaDTO.setLength(length);
+        geographicalAreaDTO.setLatitude(latitude);
+        geographicalAreaDTO.setLongitude(longitude);
+        geographicalAreaDTO.setElevation(altitude);
+
 
         // add
         geographicalAreaDTOList.add(geographicalAreaDTO);

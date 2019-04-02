@@ -56,7 +56,16 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
 
                 LocationDTO areaLocation = locationParser(location);
 
-                GeographicalAreaDTO geoAreaDTO = GeographicalAreaMapper.mapToDTOwithoutSensors(id, description, type, width, length, areaLocation.getLatitude(), areaLocation.getLongitude(), areaLocation.getElevation());
+                GeographicalAreaDTO geoAreaDTO = GeographicalAreaMapper.newDTO();
+
+                geoAreaDTO.setId(id);
+                geoAreaDTO.setDescription(description);
+                geoAreaDTO.setType(type);
+                geoAreaDTO.setWidth(width);
+                geoAreaDTO.setLength(length);
+                geoAreaDTO.setLongitude(areaLocation.getLongitude());
+                geoAreaDTO.setLatitude(areaLocation.getLatitude());
+                geoAreaDTO.setElevation(areaLocation.getElevation());
 
                 //Reads Sensor attributes
                 JsonArray areaSensor = object.get("area_sensor").getAsJsonArray();
