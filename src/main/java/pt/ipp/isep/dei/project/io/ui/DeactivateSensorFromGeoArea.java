@@ -73,7 +73,7 @@ public class DeactivateSensorFromGeoArea {
     private List<SensorDTO> getListOfActiveSensors() {
         List<SensorDTO> activeList = new ArrayList<>();
         for (SensorDTO sensorDTO : geographicalAreaDTO.getSensors()) {
-            if (sensorDTO.isActive()) {
+            if (sensorDTO.getIsActive()) {
                 activeList.add(sensorDTO);
             }
         }
