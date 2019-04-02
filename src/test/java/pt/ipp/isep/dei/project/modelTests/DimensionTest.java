@@ -1,13 +1,13 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.util.Objects;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DimensionTest {
 
@@ -27,7 +27,7 @@ public class DimensionTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testhashCodeTrue() {
         //Arrange
         double height = 5.98;
@@ -75,7 +75,7 @@ public class DimensionTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testEqualsTrueAllDimensions() {
         //Arrange
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
@@ -88,7 +88,7 @@ public class DimensionTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testEqualsFalseHeight() {
         //Arrange
         Dimension dim = new Dimension(2, 3.5, 3.5);
@@ -114,7 +114,7 @@ public class DimensionTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testEqualsFalseWidth() {
         //Arrange
         Dimension dim = new Dimension(3.5, 3.5, 2);

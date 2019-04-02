@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AttachRoomToHouseGridController;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
@@ -13,7 +13,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AttachRoomToHouseGridControllerTest {
 
@@ -22,7 +22,7 @@ public class AttachRoomToHouseGridControllerTest {
     private House house;
     private RoomList roomList;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         this.roomList = new RoomList();
 
@@ -331,7 +331,7 @@ public class AttachRoomToHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void detachRoomFromGridListTest() {
         //Arrange
         // Instantiate Rooms

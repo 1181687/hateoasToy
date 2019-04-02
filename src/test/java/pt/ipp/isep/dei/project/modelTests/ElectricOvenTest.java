@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ElectricOvenTest {
     private Room kitchen;
@@ -39,7 +39,7 @@ public class ElectricOvenTest {
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -89,7 +89,7 @@ public class ElectricOvenTest {
         map.put(time2, 7.0);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getNominalPowerTest() {
         //Arrange
         double expectedResult = 1200.0;
@@ -188,7 +188,7 @@ public class ElectricOvenTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setLocationTrueTest() {
         // Act
         boolean result = electricOven.setLocation(laundry);
@@ -221,7 +221,7 @@ public class ElectricOvenTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Kenmore Elite 95053\n" +
@@ -312,7 +312,7 @@ public class ElectricOvenTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 1;
@@ -396,7 +396,7 @@ public class ElectricOvenTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDeactivationDate() {
         // arrange
         LocalDateTime date = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);

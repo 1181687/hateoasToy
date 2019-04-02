@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LocationDTOTest {
     private LocationDTO locationDTO;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         this.locationDTO = new LocationDTO();
 
@@ -29,7 +29,7 @@ public class LocationDTOTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetLatitude_200() {
         //Arrange
         locationDTO.setLatitude(200);
@@ -41,7 +41,7 @@ public class LocationDTOTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetLongitude_200() {
         //Arrange
         double expectedResult = 200;
@@ -64,7 +64,7 @@ public class LocationDTOTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetElevation_150() {
         //Arrange
         double expectedResult = 150;

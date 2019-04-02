@@ -1,15 +1,12 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -23,24 +20,19 @@ import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
 @ContextConfiguration(classes = {Main.class},
         loader = AnnotationConfigContextLoader.class)
+@SpringJUnitConfig(SensorTest.Config.class)
 public class SensorTest {
     private Sensor temperatureSensor;
     private Reading reading;
     private Reading reading1;
-    @Autowired
-    private GeoAreaRepository geoAreaRepository;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
-        // Repo configuration
-        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
-
         // Sensor
         LocalDateTime startingDate = LocalDateTime.of(1991, 11, 2, 21, 10, 25);
         SensorType temperature = new SensorType("Temperature");
@@ -54,6 +46,10 @@ public class SensorTest {
         LocalDateTime dateTime1 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
         reading1 = new Reading(14, dateTime1);
         temperatureSensor.addReadingsToList(reading1);
+    }
+
+    @Configuration
+    static class Config {
     }
 
     @Test

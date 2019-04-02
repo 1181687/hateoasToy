@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 
 import java.time.LocalDateTime;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ReadingDTOTest {
     private ReadingDTO readingDTO;
@@ -16,7 +16,7 @@ class ReadingDTOTest {
     /**
      * This method pretends to initialize some attributes of this test class to simplifying all tests.
      */
-    @Before
+    @BeforeEach
     void StartUp() {
         readingDTO = ReadingMapper.newReadingDTO();
     }
@@ -24,7 +24,7 @@ class ReadingDTOTest {
     /**
      * Test that tries to get the value of the Reading DTO, which is expected to be 10.0.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     void testGetValue_whenTheValueIsSetTo10_ShouldReturn10() {
         // Arrange
         readingDTO.setValue(10);

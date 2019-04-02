@@ -1,15 +1,12 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.controllers.AddDeviceToRoomController;
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
@@ -24,24 +21,20 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
 @ContextConfiguration(classes = {Main.class},
         loader = AnnotationConfigContextLoader.class)
+@SpringJUnitConfig(AddDeviceToRoomControllerTest.Config.class)
 public class AddDeviceToRoomControllerTest {
     private AddDeviceToRoomController controller;
     private House house;
     private Room kitchen;
     private Room livingRoom;
 
-    @Autowired
-    private GeoAreaRepository geoAreaRepository;
-
-    @Before
+    @BeforeEach
     public void StartUp() {
-        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
@@ -67,7 +60,7 @@ public class AddDeviceToRoomControllerTest {
         controller = new AddDeviceToRoomController(house);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDisplayRoomListTest() {
         // Arrange
         house.addRoom(kitchen);
@@ -83,13 +76,28 @@ public class AddDeviceToRoomControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDisplayRoomListEmptyTest() {
         // Arrange
         String expectResult = "";
 
         // Act
         String result = controller.getRoomListContent();
+
+        // Assert
+        assertEquals(expectResult, result);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void getListSize() {
+        // Arrange
+        house.addRoom(kitchen);
+        house.addRoom(livingRoom);
+
+        int expectResult = 2;
+
+        // Act
+        int result = controller.roomListSize();
 
         // Assert
         assertEquals(expectResult, result);
@@ -109,22 +117,7 @@ public class AddDeviceToRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void getListSize() {
-        // Arrange
-        house.addRoom(kitchen);
-        house.addRoom(livingRoom);
-
-        int expectResult = 2;
-
-        // Act
-        int result = controller.roomListSize();
-
-        // Assert
-        assertEquals(expectResult, result);
-    }
-
-    @Test
+    @org.junit.jupiter.api.Test
     public void getListSizeEmptyList() {
         // Arrange
         int expectResult = 0;
@@ -134,6 +127,20 @@ public class AddDeviceToRoomControllerTest {
 
         // Assert
         assertEquals(expectResult, result);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void testNewFridge_ValidDevice_ReturnsTrue() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+
+        // Act
+        boolean result = controller.createNewFridge("Fridge", 1000,
+                200, 20, 50);
+
+        // Assert
+        assertTrue(result);
     }
 
     @Test
@@ -162,15 +169,14 @@ public class AddDeviceToRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void testNewFridge_ValidDevice_ReturnsTrue() {
+    @org.junit.jupiter.api.Test
+    public void testNewLamp_ValidDevice_ReturnTrue() {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
 
         // Act
-        boolean result = controller.createNewFridge("Fridge", 1000,
-                200, 20, 50);
+        boolean result = controller.createNewLamp("lamp", 200, 100);
 
         // Assert
         assertTrue(result);
@@ -191,21 +197,7 @@ public class AddDeviceToRoomControllerTest {
         assertFalse(result);
     }
 
-    @Test
-    public void testNewLamp_ValidDevice_ReturnTrue() {
-        // Arrange
-        house.addRoom(kitchen);
-        controller.getRoom(0);
-
-        // Act
-        boolean result = controller.createNewLamp("lamp", 200, 100);
-
-        // Assert
-        assertTrue(result);
-    }
-
-
-    @Test
+    @org.junit.jupiter.api.Test
     public void testNewLampNegative() {
         // Arrange
         house.addRoom(kitchen);
@@ -219,7 +211,7 @@ public class AddDeviceToRoomControllerTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testNewWashingMachine() {
         // Arrange
         house.addRoom(kitchen);
@@ -227,6 +219,19 @@ public class AddDeviceToRoomControllerTest {
 
         // Act
         boolean result = controller.createNewWashingMachine("Washing Machine", 200, 100);
+
+        // Assert
+        assertTrue(result);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void newElectricWaterHeater() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+
+        // Act
+        boolean result = controller.createNewElectricWaterHeater("Electric Water Heater", 80, 100, 1.5, 0.9);
 
         // Assert
         assertTrue(result);
@@ -246,22 +251,7 @@ public class AddDeviceToRoomControllerTest {
         assertFalse(result);
     }
 
-
-    @Test
-    public void newElectricWaterHeater() {
-        // Arrange
-        house.addRoom(kitchen);
-        controller.getRoom(0);
-
-        // Act
-        boolean result = controller.createNewElectricWaterHeater("Electric Water Heater", 80, 100, 1.5, 0.9);
-
-        // Assert
-        assertTrue(result);
-    }
-
-
-    @Test
+    @org.junit.jupiter.api.Test
     public void newElectricWaterHeaterNegative() {
         // Arrange
         house.addRoom(kitchen);
@@ -272,6 +262,19 @@ public class AddDeviceToRoomControllerTest {
         // Act
         boolean result = controller.createNewElectricWaterHeater("ElectricWaterHeater", 50, 150,
                 100, 0.9);
+        // Assert
+        assertFalse(result);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void newDishWasherNegative() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createNewDishWasher("DW1", 12, 50);
+
+        // Act
+        boolean result = controller.createNewDishWasher("DW1", 12, 50);
         // Assert
         assertFalse(result);
     }
@@ -290,21 +293,7 @@ public class AddDeviceToRoomControllerTest {
         assertTrue(result);
     }
 
-
-    @Test
-    public void newDishWasherNegative() {
-        // Arrange
-        house.addRoom(kitchen);
-        controller.getRoom(0);
-        controller.createNewDishWasher("DW1", 12, 50);
-
-        // Act
-        boolean result = controller.createNewDishWasher("DW1", 12, 50);
-        // Assert
-        assertFalse(result);
-    }
-
-    @Test
+    @org.junit.jupiter.api.Test
     public void testNewKettle_ValidDevice_ReturnsTrue() {
         // Arrange
         house.addRoom(kitchen);
@@ -317,7 +306,7 @@ public class AddDeviceToRoomControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testNewKettle_SameDeviceAlreadyExists_ReturnFalse() {
         // Arrange
         house.addRoom(kitchen);
@@ -330,7 +319,7 @@ public class AddDeviceToRoomControllerTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testNewElectricOven_ValidDevice_ReturnsTrue() {
         // Arrange
         house.addRoom(kitchen);
@@ -343,7 +332,7 @@ public class AddDeviceToRoomControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testNewElectricOven_SameDeviceAlreadyExists_ReturnFalse() {
         // Arrange
         house.addRoom(kitchen);
@@ -352,6 +341,19 @@ public class AddDeviceToRoomControllerTest {
 
         // Act
         boolean result = controller.createNewElectricOven("Oven", 1.5, 20);
+        // Assert
+        assertFalse(result);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void testNewFan_SameDeviceAlreadyExists_ReturnFalse() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createFan("Fan", 1.5);
+
+        // Act
+        boolean result = controller.createFan("Fan", 1.5);
         // Assert
         assertFalse(result);
     }
@@ -369,15 +371,15 @@ public class AddDeviceToRoomControllerTest {
         assertTrue(result);
     }
 
-    @Test
-    public void testNewFan_SameDeviceAlreadyExists_ReturnFalse() {
+    @org.junit.jupiter.api.Test
+    public void testNewFreezer_SameDeviceAlreadyExists_ReturnFalse() {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
-        controller.createFan("Fan", 1.5);
+        controller.createFreezer("Freezer", 1.5, 20, 300);
 
         // Act
-        boolean result = controller.createFan("Fan", 1.5);
+        boolean result = controller.createFreezer("Freezer", 1.5, 20, 300);
         // Assert
         assertFalse(result);
     }
@@ -395,20 +397,7 @@ public class AddDeviceToRoomControllerTest {
         assertTrue(result);
     }
 
-    @Test
-    public void testNewFreezer_SameDeviceAlreadyExists_ReturnFalse() {
-        // Arrange
-        house.addRoom(kitchen);
-        controller.getRoom(0);
-        controller.createFreezer("Freezer", 1.5, 20, 300);
-
-        // Act
-        boolean result = controller.createFreezer("Freezer", 1.5, 20, 300);
-        // Assert
-        assertFalse(result);
-    }
-
-    @Test
+    @org.junit.jupiter.api.Test
     public void testNewMicroWaveOven_ValidDevice_ReturnsTrue() {
         // Arrange
         house.addRoom(kitchen);
@@ -421,7 +410,7 @@ public class AddDeviceToRoomControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testNewMicroWaveOven_SameDeviceAlreadyExists_ReturnFalse() {
         // Arrange
         house.addRoom(kitchen);
@@ -432,6 +421,19 @@ public class AddDeviceToRoomControllerTest {
         boolean result = controller.createMicroWaveOven("Microwave", 1.5);
         // Assert
         assertFalse(result);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void testNewWallTowelHeater_ValidDevice_ReturnsTrue() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+
+        // Act
+        boolean result = controller.createWallTowelHeater("Wall Towel Heater", 1.5, 20);
+
+        // Assert
+        assertTrue(result);
     }
 
     @Test
@@ -460,14 +462,14 @@ public class AddDeviceToRoomControllerTest {
         assertFalse(result);
     }
 
-    @Test
-    public void testNewWallTowelHeater_ValidDevice_ReturnsTrue() {
+    @org.junit.jupiter.api.Test
+    public void testNewWineCooler_ValidDevice_ReturnsTrue() {
         // Arrange
         house.addRoom(kitchen);
         controller.getRoom(0);
 
         // Act
-        boolean result = controller.createWallTowelHeater("Wall Towel Heater", 1.5, 20);
+        boolean result = controller.createWineCooler("Wine coolah", 1.5, 20, 350);
 
         // Assert
         assertTrue(result);
@@ -486,33 +488,7 @@ public class AddDeviceToRoomControllerTest {
         assertFalse(result);
     }
 
-    @Test
-    public void testNewWineCooler_ValidDevice_ReturnsTrue() {
-        // Arrange
-        house.addRoom(kitchen);
-        controller.getRoom(0);
-
-        // Act
-        boolean result = controller.createWineCooler("Wine coolah", 1.5, 20, 350);
-
-        // Assert
-        assertTrue(result);
-    }
-
-    @Test
-    public void testNewWineCooler_SameDeviceAlreadyExists_ReturnFalse() {
-        // Arrange
-        house.addRoom(kitchen);
-        controller.getRoom(0);
-        controller.createWineCooler("Wine coolah", 1.5, 20, 350);
-
-        // Act
-        boolean result = controller.createWineCooler("Wine coolah", 1.5, 20, 350);
-        // Assert
-        assertFalse(result);
-    }
-
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetDeviceListContentOfARoomTest() {
         // Arrange
         house.addRoom(kitchen);
@@ -531,6 +507,31 @@ public class AddDeviceToRoomControllerTest {
 
         // Act
         String result = controller.getDeviceListContentOfARoom(0);
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void testNewWineCooler_SameDeviceAlreadyExists_ReturnFalse() {
+        // Arrange
+        house.addRoom(kitchen);
+        controller.getRoom(0);
+        controller.createWineCooler("Wine coolah", 1.5, 20, 350);
+
+        // Act
+        boolean result = controller.createWineCooler("Wine coolah", 1.5, 20, 350);
+        // Assert
+        assertFalse(result);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void testGetNumberOfDeviceTypes() {
+        // Arrange
+        int expectedResult = 14;
+
+        // Act
+        int result = controller.getNumberOfDeviceTypes();
 
         // Assert
         assertEquals(expectedResult, result);
@@ -581,19 +582,7 @@ public class AddDeviceToRoomControllerTest {
         assertFalse(result);
     }
 
-    @Test
-    public void testGetNumberOfDeviceTypes() {
-        // Arrange
-        int expectedResult = 14;
-
-        // Act
-        int result = controller.getNumberOfDeviceTypes();
-
-        // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetProgramAttributes_ValidAttribute_ReturnTrue() {
         // Arrange
         house.addRoom(kitchen);
@@ -608,7 +597,7 @@ public class AddDeviceToRoomControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetProgramAttributes_InvalidAttribute_ReturnFalse() {
         // Arrange
         house.addRoom(kitchen);
@@ -621,6 +610,10 @@ public class AddDeviceToRoomControllerTest {
         boolean result = controller.setProgramAttributes("wrong attribute", 10);
         // Assert
         assertFalse(result);
+    }
+
+    @Configuration
+    static class Config {
     }
 
 }

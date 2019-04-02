@@ -1,18 +1,18 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddGeoAreaTypeController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AddGeographicalAreaTypeControllerTest {
     private AddGeoAreaTypeController controller;
     private GeographicalAreaTypeList geographicalAreaTypeList;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         // List of Geographical Area Types
         geographicalAreaTypeList = new GeographicalAreaTypeList();
@@ -25,7 +25,7 @@ public class AddGeographicalAreaTypeControllerTest {
         controller = new AddGeoAreaTypeController(geographicalAreaTypeList);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void addTypeOfGeoAreaToTheListPositiveTest() {
         // Act
         boolean result = controller.addTypeOfGeoAreaToTheList("Region");
@@ -43,7 +43,7 @@ public class AddGeographicalAreaTypeControllerTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getListTest() {
         //Arrange
         GeographicalAreaTypeList expectedResult = geographicalAreaTypeList;

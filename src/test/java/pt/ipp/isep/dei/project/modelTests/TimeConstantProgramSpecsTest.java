@@ -1,9 +1,11 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.TimeConstantProgramSpecs;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class TimeConstantProgramSpecsTest {
     private TimeConstantProgramSpecs specs;
@@ -11,13 +13,13 @@ public class TimeConstantProgramSpecsTest {
     private static final String DURATION = "duration";
     private static final String ENERGY_CONSUMPTION = "energyConsumption";
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         String name = "prog1";
         specs = new TimeConstantProgramSpecs();
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetDuration (){
         //Arrange
         specs.setAttributes(DURATION, 100);
@@ -28,7 +30,7 @@ public class TimeConstantProgramSpecsTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetEnergyConsumption (){
         //Arrange
         specs.setAttributes(ENERGY_CONSUMPTION, 100);
@@ -51,7 +53,7 @@ public class TimeConstantProgramSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeDurationNullChar() {
         // Arrange
         double attribute = 30;
@@ -61,7 +63,7 @@ public class TimeConstantProgramSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeDurationTrue() {
         //Arrange
 
@@ -79,7 +81,7 @@ public class TimeConstantProgramSpecsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeDurationSameValue_False() {
         // Arrange
         specs.setAttributes(DURATION, 20);
@@ -101,7 +103,7 @@ public class TimeConstantProgramSpecsTest {
 
     /////////////
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeEnergyConsumptionNotValid() {
         // Arrange
         String attribute = "stuff";
@@ -111,7 +113,7 @@ public class TimeConstantProgramSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeEnergyConsumptionNullChar() {
         // Arrange
         double attribute = 10;
@@ -139,7 +141,7 @@ public class TimeConstantProgramSpecsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeEnergyConsumptionSameValue_False() {
         // Arrange
         specs.setAttributes(ENERGY_CONSUMPTION, 20);

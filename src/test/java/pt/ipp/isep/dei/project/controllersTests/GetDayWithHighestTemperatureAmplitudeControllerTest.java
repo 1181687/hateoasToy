@@ -1,15 +1,12 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.controllers.getDayWithHighestTemperatureAmplitudeController.GetDayWithHighestTemperatureAmplitudeController;
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
@@ -26,12 +23,12 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
 @ContextConfiguration(classes = {Main.class},
         loader = AnnotationConfigContextLoader.class)
+@SpringJUnitConfig(GetDayWithHighestTemperatureAmplitudeControllerTest.Config.class)
 public class GetDayWithHighestTemperatureAmplitudeControllerTest {
 
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
@@ -45,14 +42,8 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
     private House house;
     private GetDayWithHighestTemperatureAmplitudeController controller;
 
-
-    @Autowired
-    private GeoAreaRepository geoAreaRepository;
-
-    @Before
+    @BeforeEach
     public void StartUp() {
-        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
-
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
         GeographicalAreaType district = new GeographicalAreaType("District");
@@ -123,7 +114,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * expected result: "The highest temperature amplitude for the chosen period is 20.0 Celsius and was registered on:\n" +
      *                 "2018-12-04\n"
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void getHighestDailyAmplitude_4_12_2018_amplitude20() {
 
         // Extra Reading
@@ -164,7 +155,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * 02/12/2018 is the expected date with the daily highest amplitude
      * expected highest amplipude is 7.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7_2_12_2018() {
 
         // Extra Reading
@@ -205,7 +196,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * 4/12/2018 = 13.0;
      * expected result is: "There are not enough values to calculate the amplitude."
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void getHighestDailyAmplitude_onlyOneValuePerDay_ThereAreNotEnoughValuesToCalculateTheAmplitude() {
 
         // Extra Reading
@@ -224,6 +215,10 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
 
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Configuration
+    static class Config {
     }
 
 

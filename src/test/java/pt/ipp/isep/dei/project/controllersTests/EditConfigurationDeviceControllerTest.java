@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.EditConfigurationDeviceController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -16,8 +16,8 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class EditConfigurationDeviceControllerTest {
     private EditConfigurationDeviceController controller;
@@ -26,7 +26,7 @@ class EditConfigurationDeviceControllerTest {
     private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -78,7 +78,7 @@ class EditConfigurationDeviceControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetDisplayRoomListEmptyTest() {
         //arrange
 
@@ -124,7 +124,7 @@ class EditConfigurationDeviceControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetDevicesInTheRoomTest() {
         // Arrange
 
@@ -424,7 +424,7 @@ class EditConfigurationDeviceControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getListSizeEmptyList() {
         //arrange
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
@@ -542,7 +542,7 @@ class EditConfigurationDeviceControllerTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void getNumberOfAttributesInDeviceSpecs() {
         // Arrange
         // Dimension Instantiation

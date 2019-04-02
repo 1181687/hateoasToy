@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -16,13 +16,13 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GetCurrentAndMaxTempRoomControllerTest {
     private GetCurrentAndMaxTempRoomController ctrl;
     private House house;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -46,7 +46,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDisplayRoomListTest() {
         //arrange
         String name1 = "Kitchen";
@@ -71,7 +71,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetDisplayRoomListEmpty() {
         //arrange
         RoomList rList = new RoomList();
@@ -84,7 +84,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testLengthOfRoomList() {
         //arrange
         String name1 = "Kitchen";
@@ -107,7 +107,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetLatestTemperatureRoom() {
         //arrange
         Dimension dimension = new Dimension(300, 600, 600);
@@ -177,7 +177,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetLatestTemperatureRoomNull() {
         //arrange
         Dimension dimension = new Dimension(300, 600, 600);
@@ -211,7 +211,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getNameOfTheChosenRoomInSpecificPos() {
         //Arrange
         Dimension dim0 = new Dimension(3, 3.5, 3.5);
@@ -241,7 +241,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getMaximumTemperatureOfARoomInAGivenDay() {
         String name = "Master Bedroom";
         int houseFloor = 2;
@@ -300,7 +300,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetmType() {
         //Arrange
         SensorType sensorType = new SensorType("Temperature");

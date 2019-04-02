@@ -1,11 +1,11 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GeographicalAreaMapperTest {
     private GeographicalAreaDTO portoDTO;
@@ -14,7 +14,7 @@ public class GeographicalAreaMapperTest {
     /**
      * Method that initializes some attributes of this test class to simplify all tests.
      */
-    @Before
+    @BeforeEach
     public void StartUp() {
         // Geo Area DTO
         portoDTO = GeographicalAreaMapper.newGeoAreaDTO();
@@ -75,7 +75,7 @@ public class GeographicalAreaMapperTest {
      * Test that tries to create a GeographicalArea based on a GeographicalAreaDTO, which results in a
      * new GeographicalArea with the information contained by the GeographicalAreaDTO.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testMapToEntity_tryingToCreateBasedOnAGeoAreaDTO_ShouldReturnTrue() {
         // Act
         boolean result = GeographicalAreaMapper.mapToEntity(portoDTO).equals(porto);
@@ -87,7 +87,7 @@ public class GeographicalAreaMapperTest {
     /**
      * Test that tries to create a GeographicalArea based on a null Object, which results in a non creation.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testMapToEntity_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
         // Act
         GeographicalArea result = GeographicalAreaMapper.mapToEntity(null);
@@ -100,7 +100,7 @@ public class GeographicalAreaMapperTest {
      * Test that tries to create a ReadingDTO based on a Reading, which results in a new ReadingDTO with the information
      * contained by the Reading.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testMapToDTO_tryingToCreateBasedOnAReading_ShouldReturnTrue() {
         // Act
         boolean result = GeographicalAreaMapper.mapToDTOwithSensors(porto).getId().equalsIgnoreCase(portoDTO.getId());
@@ -112,7 +112,7 @@ public class GeographicalAreaMapperTest {
     /**
      * Test that tries to create a ReadingDTO based on a null Object, which results in a non creation.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testMapToDTO_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
         // Act
         GeographicalAreaDTO result = GeographicalAreaMapper.mapToDTOwithSensors(null);

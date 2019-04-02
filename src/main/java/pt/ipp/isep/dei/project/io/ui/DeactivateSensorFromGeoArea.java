@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DeactivateSensorFromGeoArea {
@@ -31,12 +32,16 @@ public class DeactivateSensorFromGeoArea {
                 return;
             }
             geographicalAreaDTO = geographicalAreaDTOS.get(chosenGeoArea);
-            String label2 = printListOfSensors() + EXIT;
-            int chosenSensor = InputValidator.getIntRange(label2, 0, geographicalAreaDTO.getSensors().size()) - 1;
+            if (getListOfActiveSensors().isEmpty()) {
+                System.out.println("\nThere are no active Sensors in " + geographicalAreaDTO.getId());
+                continue;
+            }
+            String label2 = printListOfActiveSensors() + EXIT;
+            int chosenSensor = InputValidator.getIntRange(label2, 0, getListOfActiveSensors().size()) - 1;
             if (chosenSensor == -1) {
                 continue;
             }
-            SensorDTO sensorDTO = geographicalAreaDTO.getSensors().get(chosenSensor);
+            SensorDTO sensorDTO = getListOfActiveSensors().get(chosenSensor);
             deactivateSensor(sensorDTO);
         } while (flag);
     }
@@ -51,17 +56,28 @@ public class DeactivateSensorFromGeoArea {
         return content.toString();
     }
 
-    private String printListOfSensors() {
-        System.out.println("Which sensor of " + geographicalAreaDTO.getId() + " do you want to deactivate:\n");
+    private String printListOfActiveSensors() {
+        if (getListOfActiveSensors().isEmpty()) {
+            return ("There are no active Sensors in " + geographicalAreaDTO.getId());
+        }
+        System.out.println("Which sensor of " + geographicalAreaDTO.getId() + " do you want to deactivate:");
         StringBuilder content = new StringBuilder();
         int iterator = 1;
-        for (SensorDTO sensorDTO : geographicalAreaDTO.getSensors()) {
-            if (sensorDTO.isActive()) {
-                content.append(iterator + " - " + sensorDTO.getId() + "\n");
-                iterator++;
-            }
+        for (SensorDTO sensorDTO : getListOfActiveSensors()) {
+            content.append(iterator + " - " + sensorDTO.getId() + "\n");
+            iterator++;
         }
         return content.toString();
+    }
+
+    private List<SensorDTO> getListOfActiveSensors() {
+        List<SensorDTO> activeList = new ArrayList<>();
+        for (SensorDTO sensorDTO : geographicalAreaDTO.getSensors()) {
+            if (sensorDTO.isActive()) {
+                activeList.add(sensorDTO);
+            }
+        }
+        return activeList;
     }
 
     private boolean deactivateSensor(SensorDTO sensorDTO) {

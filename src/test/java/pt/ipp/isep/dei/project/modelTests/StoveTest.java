@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.stove.StoveType;
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 public class StoveTest {
 
     private Room kitchen;
@@ -29,7 +29,7 @@ public class StoveTest {
     private Reading reading2;
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -69,7 +69,7 @@ public class StoveTest {
         map.put(time2, 7.0);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getNominalPowerTest() {
         //Arrange
         double expectedResult = 2000.0;
@@ -81,7 +81,7 @@ public class StoveTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetLocation() {
         // Arrange
         Room expectedResult = kitchen;
@@ -93,7 +93,7 @@ public class StoveTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetName() {
         // Arrange
         String expectedResult = "Stove2000";
@@ -105,7 +105,7 @@ public class StoveTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getTypeTest() {
         // Arrange
         String expectedResult = "Stove";
@@ -117,7 +117,7 @@ public class StoveTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setLocationFalseTest() {
         // Act
         boolean result = stove2000.setLocation(kitchen);
@@ -126,7 +126,7 @@ public class StoveTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setLocationTrueTest() {
         // Act
         boolean result = stove2000.setLocation(laundry);
@@ -135,7 +135,7 @@ public class StoveTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setLocationTrueTestNullValue() {
         // Act
         StoveType type = new StoveType();
@@ -148,7 +148,7 @@ public class StoveTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getIsActiveTrueTest() {
         // Act
         boolean result = stove2000.getIsActive();
@@ -157,7 +157,7 @@ public class StoveTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getIsActiveFalseTest() {
         // arrange
         stove2000.setDeactivateDevice();
@@ -169,7 +169,7 @@ public class StoveTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetDeactivationDate_True() {
         // act
         boolean result = stove2000.setDeactivateDevice();
@@ -199,7 +199,7 @@ public class StoveTest {
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }*/
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setNameFalseTest() {
         // Act
         boolean result = stove2000.setName("");
@@ -208,7 +208,7 @@ public class StoveTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setNameTrueTest() {
         // Act
         boolean result = stove2000.setName("stove4000");
@@ -217,7 +217,7 @@ public class StoveTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void equalsDifferentObjectTest() {
         // Arrange
         Object object = new Object();
@@ -229,7 +229,7 @@ public class StoveTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testHashCode() {
         // Arrange
         int expectedResult = Objects.hash(stove2000.getName());
@@ -242,7 +242,7 @@ public class StoveTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetReadings() {
         //Arrange
         List<Reading> expectedResult = new ArrayList<>();
@@ -257,7 +257,7 @@ public class StoveTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDevSpecsAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Nominal Power: 2000.0\n";
@@ -268,7 +268,7 @@ public class StoveTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Stove2000\n" +
@@ -282,7 +282,7 @@ public class StoveTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setSetAttributesDevTypeTrue() {
         //Act
         boolean result = stove2000.setAttributesDevType("Nominal Power", 1500);
@@ -290,7 +290,7 @@ public class StoveTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setSetAttributesDevTypeFalse() {
         //Act
         boolean result = stove2000.setAttributesDevType("Nominal Power", "fh");
@@ -298,7 +298,7 @@ public class StoveTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 1;
@@ -310,7 +310,7 @@ public class StoveTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getNameToStringTest() {
         // Arrange
         String expectedResult = "Device: Stove2000, located in room: Kitchen\n";
@@ -322,7 +322,7 @@ public class StoveTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDateDeactivateDeviceToString() {
         // arrange
         String date = LocalDate.now().toString() + " " + LocalTime.now().toString().substring(0, 5);
@@ -333,7 +333,7 @@ public class StoveTest {
         assertEquals(date, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDataSeriesTest() {
         // Assert
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -348,7 +348,7 @@ public class StoveTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
@@ -362,7 +362,7 @@ public class StoveTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getAttributeValueTest() {
         // Assert
         double expectedResult = 2000.0;

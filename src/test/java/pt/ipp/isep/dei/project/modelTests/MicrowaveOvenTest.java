@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MicrowaveOvenTest {
     private Room kitchen;
@@ -32,7 +32,7 @@ public class MicrowaveOvenTest {
     private Reading reading2;
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);

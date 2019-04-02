@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
@@ -15,6 +16,7 @@ import java.io.FileNotFoundException;
 import java.util.List;
 
 public class ImportGeoAreasFromJSONOrXMLController {
+    @Autowired
     private GeographicalAreaList geographicalAreaList;
     private ProjectFileReader reader;
     private List<Object> geoAreaDTOList;
@@ -22,7 +24,6 @@ public class ImportGeoAreasFromJSONOrXMLController {
 
     public ImportGeoAreasFromJSONOrXMLController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;
-
     }
 
     /**
@@ -40,7 +41,7 @@ public class ImportGeoAreasFromJSONOrXMLController {
             for (SensorDTO sensorDTO : geoDTO.getSensors()) {
                 geoArea.addSensor(SensorMapper.mapToEntity(sensorDTO));
             }
-            if (geographicalAreaList.addGeoAreaToRepository(geoArea)) {
+            if (geographicalAreaList.addGeoArea(geoArea)) {
                 imported = true;
             }
         }

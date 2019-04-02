@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetListGeoAreaTypesController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
@@ -9,14 +9,14 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GetListGeographicalAreaTypesControllerTest {
 
     private GetListGeoAreaTypesController controller;
     private GeographicalAreaTypeList geographicalAreaTypeList;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         //Geographical Area Type List
         this.geographicalAreaTypeList = new GeographicalAreaTypeList();
@@ -40,7 +40,7 @@ public class GetListGeographicalAreaTypesControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarGetListaDosTiposDeAGAdicionandoMaisDoQueUmTipo() {
         //Arrange
         String nameOfType1 = "Cidade";
@@ -60,7 +60,7 @@ public class GetListGeographicalAreaTypesControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarGetListaDosTiposDeAGASemAdicionarNenhumTipo() {
         //Arrange
         List<String> expectedResult = Arrays.asList();

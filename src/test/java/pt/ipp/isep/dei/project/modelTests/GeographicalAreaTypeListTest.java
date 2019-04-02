@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class GeographicalAreaTypeListTest {
 
@@ -75,7 +75,7 @@ class GeographicalAreaTypeListTest {
         assertFalse(resultado);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarGetListaDosTiposDeAG() {
         //Arrange
 
@@ -93,7 +93,7 @@ class GeographicalAreaTypeListTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarGetListaDosTiposDeAGAdicionandoMaisDoQueUmTipo() {
         //Arrange
 

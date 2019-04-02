@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.washingmachine.WashingMachineSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -12,6 +11,8 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class WashingMachineSpecsTest {
@@ -29,7 +30,7 @@ public class WashingMachineSpecsTest {
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -57,7 +58,7 @@ public class WashingMachineSpecsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetTypeName() {
         //Arrange
         String expectedResult = "WashingMachine";
@@ -70,7 +71,7 @@ public class WashingMachineSpecsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetNominalPower() {
         //Arrange
         double expectedResult = 200;
@@ -83,7 +84,7 @@ public class WashingMachineSpecsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributesToString() {
         //Arrange
 
@@ -96,7 +97,7 @@ public class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetNumberOfAttributes() {
         //Arrange
 
@@ -111,7 +112,7 @@ public class WashingMachineSpecsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetEnergyConsumptionInADay() {
 
         double expectedResult = 0;
@@ -123,7 +124,7 @@ public class WashingMachineSpecsTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testgetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
@@ -137,7 +138,7 @@ public class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValueNominalPower() {
         // Arrange
         washingMachine.setAttributesDevType("Nominal Power", 100.0);
@@ -149,7 +150,7 @@ public class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValueNullChar() {
         // Arrange
         washingMachine.setAttributesDevType("Nominal Power", 100.0);
@@ -161,7 +162,7 @@ public class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValueCapacity() {
         // Arrange
         Object expectedResult = 3.0;
@@ -171,7 +172,7 @@ public class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValueCapacityNullChar() {
         // Arrange
         Object expectedResult = NOT_VALID_ATTRIBUTE;
@@ -182,7 +183,7 @@ public class WashingMachineSpecsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
         Object expectedResult = NOT_VALID_ATTRIBUTE;
@@ -192,7 +193,7 @@ public class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeCapacityValueNotAValidType() {
         // Arrange
         String attribute = "stuff";
@@ -202,7 +203,7 @@ public class WashingMachineSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeCapacityValueNullChar() {
         // Arrange
         double attribute = 250;
@@ -212,7 +213,7 @@ public class WashingMachineSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeCapacitySameValue() {
         // Arrange
         double attribute = 3;
@@ -222,7 +223,7 @@ public class WashingMachineSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeCapacitySameValueZero() {
         // Arrange
         double attribute = 0;
@@ -264,7 +265,7 @@ public class WashingMachineSpecsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeNominalPowerValidValue() {
         // Act
         boolean result = washingMachineSpecs.setAttributeValue("Nominal Power", 1.3);
@@ -272,7 +273,7 @@ public class WashingMachineSpecsTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeNotAValidAttribute() {
         // Act
         boolean result = washingMachineSpecs.setAttributeValue("Wrong Attribute", 1.3);
@@ -280,7 +281,7 @@ public class WashingMachineSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeNominalPowerSameValue() {
         // Arrange
         washingMachine.setAttributesDevType("Nominal Power", 100.0);
@@ -291,7 +292,7 @@ public class WashingMachineSpecsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getAttributeDataTypeTest() {
         // arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
@@ -301,7 +302,7 @@ public class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testIsProgrammable() {
         //arrange
         boolean expectedResult = true;
@@ -312,7 +313,7 @@ public class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetNominalPowerZeroSameValue_False() {
         boolean expectedResult = false;
         washingMachineSpecs.setAttributeValue(ATTRIBUTE_NOMINAL_POWER, 0);
@@ -324,7 +325,7 @@ public class WashingMachineSpecsTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetCapacityZeroSameValue_False() {
         boolean expectedResult = false;
         washingMachineSpecs.setAttributeValue(ATTRIBUTE_CAPACITY, 0);
@@ -334,7 +335,7 @@ public class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAsProgrammable() {
         //Arrange
         Programmable expectedResult = (Programmable) washingMachineSpecs;
@@ -346,7 +347,7 @@ public class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAsProgrammable_device(){
         Programmable expectedResult = (Programmable) washingMachineSpecs;
         Programmable result = washingMachineSpecs.asProgrammable();
@@ -354,7 +355,7 @@ public class WashingMachineSpecsTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetProgramList() {
         //Arrange
         String programName = "fast";
@@ -375,7 +376,7 @@ public class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
         //Arrange
         boolean expectedResult = false;
@@ -406,7 +407,7 @@ public class WashingMachineSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
         //Arrange
         String programName = "fast";

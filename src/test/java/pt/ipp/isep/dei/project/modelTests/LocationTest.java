@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LocationTest {
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarDistanciaDuasLocalizacoes() {
         double lat1 = 41.1496;
         double lon1 = -8.6109;
@@ -23,7 +23,7 @@ public class LocationTest {
         assertEquals(expectedResult,result,0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarDistanciaDuasLocalizacoesForaInvervalo() {
         double lat1 = 41.1496;
         double lon1 = -200.6109;
@@ -39,7 +39,7 @@ public class LocationTest {
         assertEquals(expectedResult,result,0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarAlteracaoLatitudeDentroIntervaloLimitePositivo() {
         //arrange
         double latitude = 41.1496;
@@ -73,7 +73,7 @@ public class LocationTest {
         assertEquals(expectedResult,result,0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarAlteracaoLatitudeForaIntervaloNegativo() {
         //arrange
         double latitude = 41.1496;
@@ -90,7 +90,7 @@ public class LocationTest {
         assertEquals(expectedResult,result,0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarAlteracaoLatitudeForaIntervaloPositivo() {
         //arrange
         double latitude = 41.1496;
@@ -107,7 +107,7 @@ public class LocationTest {
         assertEquals(expectedResult,result,0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarAlteracaoLongitudeDentroIntervaloLimitePositivo() {
         //arrange
         double latitude = 41.1496;
@@ -124,7 +124,7 @@ public class LocationTest {
         assertEquals(expectedResult,result,0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarAlteracaoLongitudeDentroIntervaloLimiteNegativo() {
         //arrange
         double latitude = 41.1496;
@@ -141,7 +141,7 @@ public class LocationTest {
         assertEquals(expectedResult,result,0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarAlteracaoLongitudeForaIntervaloPositivo() {
         //arrange
         double latitude = 41.1496;
@@ -158,7 +158,7 @@ public class LocationTest {
         assertEquals(expectedResult,result,0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarAlteracaoLongitudeForaIntervaloNegativo() {
         //arrange
         double latitude = 41.1496;
@@ -175,7 +175,7 @@ public class LocationTest {
         assertEquals(expectedResult,result,0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarEqualsComOMesmoObjetoDaClasseLocalizacao() {
         //Arrange
         double latitude = 41.1496;
@@ -191,7 +191,7 @@ public class LocationTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarEqualsComUmObjetoQueNaoEDaClasseLocalizacao() {
         //Arrange
         double latitude = 41.1496;
@@ -208,7 +208,7 @@ public class LocationTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarEqualsComDuasLocalizacoesIguais() {
         //Arrange
         double latitude = 41.1496;
@@ -230,7 +230,7 @@ public class LocationTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarEqualsComDuasLocalizacoesDiferentes() {
         //Arrange
         double latitude = 41.1496;
@@ -252,7 +252,7 @@ public class LocationTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarHashCode() {
         // Arrange
         Location local = new Location(41.1496, -8.6109, 97);
@@ -265,7 +265,7 @@ public class LocationTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarEqualsComDuasLocalizacoesComLatitudeDiferente() {
         //Arrange
         double latitude = 41.1496;
@@ -287,7 +287,7 @@ public class LocationTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarEqualsComDuasLocalizacoesComLongitudeDiferente() {
         //Arrange
         double latitude = 41.1496;
@@ -309,7 +309,7 @@ public class LocationTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarEqualsComDuasLocalizacoesAltitudeDiferente() {
         //Arrange
         double latitude = 41.1496;

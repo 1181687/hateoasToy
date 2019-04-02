@@ -1,20 +1,20 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.microwaveoven.MicrowaveOvenType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MicrowaveOvenTypeTest {
 
     private MicrowaveOvenType microwaveOvenType;
     private Room kitchen;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         // Type
         microwaveOvenType = new MicrowaveOvenType();
@@ -24,7 +24,7 @@ public class MicrowaveOvenTypeTest {
         kitchen = new Room("Kitchen", 1, dim);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testCreateDevice() {
         // Arrange
         Device expectedResult = microwaveOvenType.createDevice("Microwave Teka");

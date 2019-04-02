@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.stove.StoveSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -12,7 +12,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class StoveSpecsTest {
 
@@ -21,7 +21,7 @@ public class StoveSpecsTest {
     private House house;
     private DeviceSpecs stoveSpecs;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
 
         // House
@@ -53,7 +53,7 @@ public class StoveSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetNominalPower() {
         //Arrange
 
@@ -66,7 +66,7 @@ public class StoveSpecsTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testEmptyConstructor() {
         //Arrange
         stove.setAttributesDevType("Nominal Power", 30);
@@ -81,7 +81,7 @@ public class StoveSpecsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributesToString() {
         //Arrange
 
@@ -93,7 +93,7 @@ public class StoveSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetNumberOfAttributes() {
         //Arrange
 
@@ -107,7 +107,7 @@ public class StoveSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetEnergyConsumptionInADay() {
 
         double expectedResult = 0;
@@ -119,7 +119,7 @@ public class StoveSpecsTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
@@ -132,7 +132,7 @@ public class StoveSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValueNominalPower() {
         // Arrange
         stove.setAttributesDevType("Nominal Power", 100.0);
@@ -144,7 +144,7 @@ public class StoveSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValue_notAValidSpec() {
         // Arrange
         Object expectedResult = "not a valid attribute";
@@ -154,7 +154,7 @@ public class StoveSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeNominalPowerValue_NotAValidType() {
         // Arrange
         String attribute = "stuff";
@@ -164,7 +164,7 @@ public class StoveSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeNominalPower_ValidValue() {
         // Act
         boolean result = stove.getSpecs().setAttributeValue("Nominal Power", 1.3);
@@ -172,7 +172,7 @@ public class StoveSpecsTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttribute_NotAValidAttribute() {
         // Act
         boolean result = stove.getSpecs().setAttributeValue("Wrong Attribute", 1.3);
@@ -191,7 +191,7 @@ public class StoveSpecsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getAttributeDataTypeTest_notValidAttributte() {
         // arrange
         String expectedResult = "not a valid attribute";
@@ -201,7 +201,7 @@ public class StoveSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getAttributeDataTypeTest() {
         // arrange
         String expectedResult = "Double";
@@ -212,7 +212,7 @@ public class StoveSpecsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
         //Arrange
         boolean expectedResult = false;
@@ -223,7 +223,7 @@ public class StoveSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
         //Arrange
         String programName = "fast";
@@ -245,7 +245,7 @@ public class StoveSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
         //Arrange
         String programName = "fast";
@@ -266,7 +266,7 @@ public class StoveSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetProgramList() {
         //Arrange
         String programName = "fast";
@@ -288,7 +288,7 @@ public class StoveSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testIsProgrammable() {
         //Act
         boolean result = stoveSpecs.isProgrammable();
@@ -298,7 +298,7 @@ public class StoveSpecsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAsProgrammable() {
         //Arrange
         Programmable expectedResult = (Programmable) stoveSpecs;

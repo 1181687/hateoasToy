@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class SensorListTest {
     private SensorList sensorList;
@@ -31,7 +31,7 @@ class SensorListTest {
     private Location location;
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         // Sensor List
         sensorList = new SensorList();
@@ -72,7 +72,7 @@ class SensorListTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void getSensorListTest() {
         // Arrange
         List<Sensor> expectedResult = new ArrayList<>();
@@ -121,7 +121,7 @@ class SensorListTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getListOfLatestMeasurementsBySensorTypeEmptyListTest() {
         // Arrange
         List<Reading> expectedResult = new ArrayList<>();
@@ -135,7 +135,7 @@ class SensorListTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getLatestMeasurementBySensorTypeTemperatureTest() {
         // Arrange
         Reading expectedResult = reading1;
@@ -149,7 +149,7 @@ class SensorListTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getLatestMeasurementBySensorTypeNullTest() {
         // Arrange
         SensorType humidity = new SensorType("Humidity");
@@ -338,7 +338,7 @@ class SensorListTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getSensorByIdPositiveTest() {
         // Arrange
         Sensor expectedResult = temperatureSensor1;
@@ -449,7 +449,7 @@ class SensorListTest {
     /**
      * Test that tries to use an invalid/non-existing Id to get a Sensor, which results in returning a null Object.
      **/
-    @Test
+    @org.junit.jupiter.api.Test
     void testGetSensorById_tryingToTestANonExistingId_ShouldReturnNull() {
         // Act
         Sensor result = sensorList.getSensorById("FUKU");

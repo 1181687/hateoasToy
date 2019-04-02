@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
-import pt.ipp.isep.dei.project.GeoAreaService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import pt.ipp.isep.dei.project.GeoAreaRepository;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
@@ -8,10 +10,13 @@ import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class GeographicalAreaList {
 
     private List<GeographicalArea> geoAreaList;
 
+    @Autowired
+    private GeoAreaRepository geoAreaRepository;
 
     /**
      * constructor that receives a new list of Geographical Areas.
@@ -36,16 +41,7 @@ public class GeographicalAreaList {
     public boolean addGeoArea(GeographicalArea geoArea) {
         if (!(geoAreaList.contains(geoArea))) {
             geoAreaList.add(geoArea);
-            GeoAreaService.getInstance().getGeoAreaRepository().save(geoArea);
-            return true;
-        }
-        return false;
-    }
-
-    public boolean addGeoAreaToRepository(GeographicalArea geoArea) {
-        if (addGeoArea(geoArea)) {
-
-            GeoAreaService.getInstance().getGeoAreaRepository().save(geoArea);
+            geoAreaRepository.save(geoArea);
             return true;
         }
         return false;
@@ -106,6 +102,7 @@ public class GeographicalAreaList {
     public boolean checkIfGeoAreaDoesntHaveAnInsertedArea(GeographicalArea area) {
         return area.getInsertedIn() == null;
     }
+
     /**
      * that method remove a geo area from the list of geo areas.
      * @param geoArea
@@ -230,7 +227,7 @@ public class GeographicalAreaList {
 
     public void updateRepository() {
         for (GeographicalArea geoArea : this.geoAreaList) {
-            GeoAreaService.getInstance().getGeoAreaRepository().save(geoArea);
+            geoAreaRepository.save(geoArea);
         }
     }
 }

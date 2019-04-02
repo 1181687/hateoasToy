@@ -1,16 +1,17 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.controllers.AddSensorToGeoAreaController;
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
@@ -22,37 +23,60 @@ import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@DataJpaTest
+@SpringBootTest
 @ContextConfiguration(classes = {Main.class},
         loader = AnnotationConfigContextLoader.class)
+@SpringJUnitConfig(AddSensorToGeoAreaControllerTest.Config.class)
 public class AddSensorToGeoAreaControllerTest {
     private AddSensorToGeoAreaController controller;
     private GeographicalArea campusDoIsep;
     private SensorTypeList sensorTypeList;
+    @InjectMocks
     private GeographicalAreaList geographicalAreaList;
 
-    @Autowired
+    @Mock
     private GeoAreaRepository geoAreaRepository;
 
-
-    @Before
+    @BeforeEach
     public void StartUp() {
-        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
+        MockitoAnnotations.initMocks(this);
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(0.261, 0.249, location);
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Urban area");
         this.campusDoIsep = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
 
-        this.geographicalAreaList = new GeographicalAreaList();
         this.sensorTypeList = new SensorTypeList();
 
         this.controller = new AddSensorToGeoAreaController(sensorTypeList, geographicalAreaList);
 
 
+    }
+
+    @Test
+    public void testarAdicaoSensorAAreaGeograficaNegativo() {
+        //Arrange
+        SensorType sensorType = new SensorType("Humidade");
+        Location local = new Location(45, 45, 45);
+        Sensor s1 = new Sensor("123", "s1", sensorType, local, "l/m2");
+
+        sensorTypeList.addSensorType(sensorType);
+
+        geographicalAreaList.getGeoAreaList().add(campusDoIsep);
+
+        controller.getAreaGeograficaNaListaPorPosicao(0);
+        controller.getTipoSensorPorPosicao(0);
+        controller.criarNovaLocalizacao(41.1496, -8.6109, 97);
+        controller.criarNovoSensor("s1", "sensor2", "l/m2");
+        controller.adicionarSensorAAreaGeografica(s1);
+
+        //Act
+        boolean resultado = controller.adicionarSensorAAreaGeografica(s1);
+
+        //Assert
+        assertFalse(resultado);
     }
 
     @Test
@@ -260,29 +284,8 @@ public class AddSensorToGeoAreaControllerTest {
         assertEquals(expectedResult, resultado);
     }
 
-    @Test
-    public void testarAdicaoSensorAAreaGeograficaNegativo () {
-        //Arrange
-        SensorType sensorType = new SensorType("Humidade");
-        Location local = new Location(45, 45, 45);
-        Sensor s1 = new Sensor("123", "s1", sensorType, local, "l/m2");
-
-
-        sensorTypeList.addSensorType(sensorType);
-
-        geographicalAreaList.getGeoAreaList().add(campusDoIsep);
-
-        controller.getAreaGeograficaNaListaPorPosicao(0);
-        controller.getTipoSensorPorPosicao(0);
-        controller.criarNovaLocalizacao(41.1496, -8.6109, 97);
-        controller.criarNovoSensor("s1", "sensor2", "l/m2");
-        controller.adicionarSensorAAreaGeografica(s1);
-
-        //Act
-        boolean resultado = controller.adicionarSensorAAreaGeografica(s1);
-
-        //Assert
-        assertFalse(resultado);
+    @Configuration
+    static class Config {
     }
 
     @Test

@@ -1,15 +1,16 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.ProgramSpecs;
 import pt.ipp.isep.dei.project.model.devices.TimeVariableProgram;
 import pt.ipp.isep.dei.project.model.devices.TimeVariableProgramSpecs;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class TimeVariableProgramTest {
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetProgramSpecs() {
         //Arrange
         String name = "Program 1";
@@ -46,7 +47,7 @@ public class TimeVariableProgramTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetProgramAttributeprogramNominalPower_NullChar() {
         //Arrange
         String name = "Program 1";

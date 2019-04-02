@@ -1,12 +1,12 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 
 import java.util.Objects;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PowerSourceTest {
 
@@ -29,7 +29,7 @@ public class PowerSourceTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testingEqualsNegativeTestDifferentNames() {
         //Arrange
         String powerSourceName1 = "ps1";
@@ -49,7 +49,7 @@ public class PowerSourceTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testingEqualsComparingTheSameObjectPositiveTest(){
         //Arrange
         String powerSourceName1 = "ps1";
@@ -65,7 +65,7 @@ public class PowerSourceTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testingEqualsComparingDifferentObjectTypeNegativeTest(){
         //Arrange
         String powerSourceName1 = "ps1";
@@ -81,7 +81,7 @@ public class PowerSourceTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testingHashCode() {
         //Arrange
         String powerSourceName1 = "ps1";
@@ -143,7 +143,7 @@ public class PowerSourceTest {
         assertEquals("Please select a valid power source type", exception.getMessage());
     }*/
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testingGetName(){
         //Arrange
         String powerSourceName1 = "ps1";

@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RoomListTest {
 
@@ -29,7 +29,7 @@ public class RoomListTest {
     private static final String WASHING_MACHINE_TYPE = "WashingMachine";
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -49,7 +49,7 @@ public class RoomListTest {
         house.setAddress(address);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDisplayRoomListTest() {
         //arrange
         RoomList rList = new RoomList();
@@ -76,7 +76,7 @@ public class RoomListTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDisplayRoomListEmptyTest() {
         //arrange
         RoomList rList = new RoomList();
@@ -144,7 +144,7 @@ public class RoomListTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getListSizeEmptyList() {
         //arrange
         RoomList rList = new RoomList();
@@ -188,7 +188,7 @@ public class RoomListTest {
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }*/
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDisplayOfTheChosenRoomTest() {
         //arrange
         RoomList rList = new RoomList();
@@ -246,7 +246,7 @@ public class RoomListTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setHouseFloorInList() {
         //arrange
         RoomList rList = new RoomList();
@@ -277,7 +277,7 @@ public class RoomListTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setRoomHeightInList() {
         //arrange
         RoomList rList = new RoomList();
@@ -374,7 +374,7 @@ public class RoomListTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAddRoomToRoomList() {
         //Arrange
         RoomList list = new RoomList();
@@ -388,7 +388,7 @@ public class RoomListTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAddRoomToRoomListFalse() {
         //Arrange
         RoomList list = new RoomList();
@@ -415,7 +415,7 @@ public class RoomListTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetRoomByNameListOfRooms() {
         //Arrange
         RoomList rList = new RoomList();
@@ -451,7 +451,7 @@ public class RoomListTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetNameOfRoomInListOfRooms() {
         //Arrange
         RoomList rList = new RoomList();
@@ -666,7 +666,7 @@ public class RoomListTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfSensorListIsEmptyTestFalse() {
         // Arrange
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
@@ -732,7 +732,7 @@ public class RoomListTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDeviceListContentOfARoomTest() {
         // Arrange
         Dimension dim = new Dimension(3, 3.5, 3.5);
@@ -800,7 +800,7 @@ public class RoomListTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testCheckIfThereAreNoDevicesFalse() {
         // Arrange
         String name1 = "Room";
@@ -898,7 +898,7 @@ public class RoomListTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getAllDevicesToStringTest() {
         // Arrange
         Dimension dim = new Dimension(3, 5, 6);

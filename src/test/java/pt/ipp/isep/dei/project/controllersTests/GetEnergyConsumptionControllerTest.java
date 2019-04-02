@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -19,7 +19,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GetEnergyConsumptionControllerTest {
     private GetEnergyConsumptionController ctrl;
@@ -29,7 +29,7 @@ public class GetEnergyConsumptionControllerTest {
     private static final String ELECTRIC_W_H_TYPE = "ElectricWaterHeater";
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -124,7 +124,7 @@ public class GetEnergyConsumptionControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getNumberOfDevicesTest() {
         // Arrange
         int expectedResult = 5;
@@ -166,7 +166,7 @@ public class GetEnergyConsumptionControllerTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithTwoSolutions() {
         // Arrange
         // Reading Instantiation
@@ -226,7 +226,7 @@ public class GetEnergyConsumptionControllerTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void isHouseGridListEmpty_HouseHasNoHouseGrids_ShouldReturnTrue() {
         //Act
         boolean result= this.ctrl.isHouseGridListEmpty();
@@ -235,7 +235,7 @@ public class GetEnergyConsumptionControllerTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void isHouseGridListEmpty_HouseWithOneHouseGrid_ShouldReturnFalse() {
         //Arrange
         HouseGrid grid = new HouseGrid("Main Grid");
@@ -247,7 +247,7 @@ public class GetEnergyConsumptionControllerTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getHouseGridListSize_WithOneGrid_ShouldReturnOne() {
         //Arrange
         HouseGrid grid = new HouseGrid("Main Grid");
@@ -304,7 +304,7 @@ public class GetEnergyConsumptionControllerTest {
         assertEquals(expectedResult,result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void roomListIsEmpty_HouseHasNoRooms_ShouldReturnTrue() {
         //Arrange
 
@@ -322,7 +322,7 @@ public class GetEnergyConsumptionControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void roomListIsEmpty_HouseHas2Rooms_ShouldReturnFalse() {
         //Act
         boolean result = ctrl.roomListIsEmpty();
@@ -340,7 +340,7 @@ public class GetEnergyConsumptionControllerTest {
         assertEquals(expectedResult,result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void isDeviceListEmpty_RoomHasDevices_ShouldReturnFalse() {
         //Arrange
         ctrl.getRoomByPosition(0);
@@ -350,7 +350,7 @@ public class GetEnergyConsumptionControllerTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getRoomName_HouseHas2Rooms_ShouldReturnKitchen() {
         //Arrange
         ctrl.getRoomByPosition(0);

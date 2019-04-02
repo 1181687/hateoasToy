@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetNominalPowerController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.MeasurableList;
@@ -18,7 +18,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class GetNominalPowerControllerTest {
@@ -29,7 +29,7 @@ public class GetNominalPowerControllerTest {
     private Room roomOne;
     private Room roomTwo;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -67,7 +67,7 @@ public class GetNominalPowerControllerTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfHouseGridListIsEmptyWithPositiveTest() {
         // Act
         boolean result = controller.isGridListEmpty();
@@ -76,7 +76,7 @@ public class GetNominalPowerControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfHouseGridListIsEmptyWithNegativeTest() {
         // Arrange
         houseEdificioB.addGrid(grid);
@@ -103,7 +103,7 @@ public class GetNominalPowerControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getHouseGridListLengthTest() {
         //New Grids
         houseEdificioB.addGrid(grid);
@@ -118,7 +118,7 @@ public class GetNominalPowerControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getHouseGridListLengthEmptyListTest() {
         // Arrange
         int expectedResult = 0;
@@ -130,7 +130,7 @@ public class GetNominalPowerControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getRoomFromAPosition() {
         //Arrange
         //Adding Grids
@@ -156,7 +156,7 @@ public class GetNominalPowerControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDeviceListContentTest() {
         //Arrange
         //Adding Grids
@@ -183,7 +183,7 @@ public class GetNominalPowerControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDeviceListSize() {
 
         // Arrange
@@ -207,7 +207,7 @@ public class GetNominalPowerControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfRoomListIsEmptyTrue() {
         //arrange
         //housegrid
@@ -222,7 +222,7 @@ public class GetNominalPowerControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfRoomListIsEmptyFalse() {
         houseEdificioB.addGrid(grid);
 
@@ -236,7 +236,7 @@ public class GetNominalPowerControllerTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
         houseEdificioB.addGrid(grid);
@@ -251,7 +251,7 @@ public class GetNominalPowerControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
         houseEdificioB.addGrid(grid);
@@ -312,7 +312,7 @@ public class GetNominalPowerControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getListSize() {
         // Arrange
         houseEdificioB.addGrid(grid);
@@ -327,7 +327,7 @@ public class GetNominalPowerControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getListSizeEmptyList() {
         // Arrange
         houseEdificioB.addGrid(grid);
@@ -361,7 +361,7 @@ public class GetNominalPowerControllerTest {
         assertEquals(expectedResult, result, 0.00001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfObjInList() {
         // Arrange
         houseEdificioB.addGrid(grid);
@@ -378,7 +378,7 @@ public class GetNominalPowerControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfObjNotInList() {
         // Arrange
         houseEdificioB.addGrid(grid);
@@ -398,7 +398,7 @@ public class GetNominalPowerControllerTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetListToString() {
         // Arrange
         houseEdificioB.addGrid(grid);
@@ -426,7 +426,7 @@ public class GetNominalPowerControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getHouseGridTotalNominalPower_CalculatesTotalNominalPowerOfHGWithTwoDevices_ShouldReturn15() {
         //Arrange
         houseEdificioB.addGrid(grid);
@@ -449,7 +449,7 @@ public class GetNominalPowerControllerTest {
         assertEquals(expectedResult, result, 0.00001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetListOfRooms() {
 
         String expectedResult = "1- Name: Kid's room, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n" +
@@ -463,7 +463,7 @@ public class GetNominalPowerControllerTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetListOfRoomsEmpty() {
         String expectedResult = "1- Name: Kid's room, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n" +
                 "2- Name: Bathroom, House Floor: 1, Dimension - Height: 5.2, Length: 3.7, Width: 8.5\n";
@@ -495,7 +495,7 @@ public class GetNominalPowerControllerTest {
         assertEquals(result, expectedResult, 0.0001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getNominalPowerNoDevices() {
 
         this.controller.getRoom(0);
@@ -509,7 +509,7 @@ public class GetNominalPowerControllerTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetRoomListLength() {
         //Arrange
         int expectedResult = 2;
@@ -540,7 +540,7 @@ public class GetNominalPowerControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testifDeviceListIsEmptyWithDevices() {
 
         Device fridge = houseEdificioB.createDevice("Fridge", "FridgeAriston", roomOne);

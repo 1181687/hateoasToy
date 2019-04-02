@@ -1,15 +1,12 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -20,26 +17,21 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
 @ContextConfiguration(classes = {Main.class},
         loader = AnnotationConfigContextLoader.class)
+@SpringJUnitConfig(WineCoolerSpecsTest.Config.class)
 public class WineCoolerSpecsTest {
     private Room kitchen;
     private Device wineCooler;
     private House house;
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
-    @Autowired
-    private GeoAreaRepository geoAreaRepository;
-
-    @Before
+    @BeforeEach
     public void StartUp() {
-        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
-
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
@@ -55,6 +47,19 @@ public class WineCoolerSpecsTest {
         wineCooler.setAttributesDevType("Nominal Power", 100.0);
         wineCooler.setAttributesDevType("Number of Bottles", 33);
         wineCooler.setAttributesDevType("Annual Energy Consumption", 10000.0);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void getEnergyConsumptionInADayTestWithValidValues() {
+        // Arrange
+        //10000/365
+        double expectedResult = 27.4;
+
+        // Act
+        double result = wineCooler.getSpecs().getEnergyConsumptionInADay();
+
+        // Assert
+        assertEquals(expectedResult, result, 0.0001);
     }
 
     @Test
@@ -82,17 +87,16 @@ public class WineCoolerSpecsTest {
 
     }
 
-    @Test
-    public void getEnergyConsumptionInADayTestWithValidValues() {
+    @org.junit.jupiter.api.Test
+    public void testGetAttributeValueNominalPower() {
         // Arrange
-        //10000/365
-        double expectedResult = 27.4;
+        Object expectedResult = 100.0;
 
         // Act
-        double result = wineCooler.getSpecs().getEnergyConsumptionInADay();
+        Object result = wineCooler.getSpecs().getAttributeValue("Nominal Power");
 
         // Assert
-        assertEquals(expectedResult, result, 0.0001);
+        assertEquals(expectedResult, result);
     }
 
 
@@ -140,13 +144,13 @@ public class WineCoolerSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void testGetAttributeValueNominalPower() {
+    @org.junit.jupiter.api.Test
+    public void testGetAttributeValueAnnualEnergyConsumption() {
         // Arrange
-        Object expectedResult = 100.0;
+        Object expectedResult = 10000.0;
 
         // Act
-        Object result = wineCooler.getSpecs().getAttributeValue("Nominal Power");
+        Object result = wineCooler.getSpecs().getAttributeValue("Annual Energy Consumption");
 
         // Assert
         assertEquals(expectedResult, result);
@@ -165,15 +169,18 @@ public class WineCoolerSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void testGetAttributeValueAnnualEnergyConsumption() {
-        // Arrange
-        Object expectedResult = 10000.0;
+    /**
+     * Test the return "not a valid attribute" of the method getAttributeValue,
+     * when inserted an null character attribute.
+     */
+    @org.junit.jupiter.api.Test
+    public void testGetAttributeValue_NullNominalPower() {
+        //Arrange
+        String expectedResult = NOT_VALID_ATTRIBUTE;
+        //Act
+        Object result = wineCooler.getSpecs().getAttributeValue("\0" + "Nominal Power");
 
-        // Act
-        Object result = wineCooler.getSpecs().getAttributeValue("Annual Energy Consumption");
-
-        // Assert
+        //Assert
         assertEquals(expectedResult, result);
     }
 
@@ -193,12 +200,12 @@ public class WineCoolerSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted an null character attribute.
      */
-    @Test
-    public void testGetAttributeValue_NullNominalPower (){
+    @org.junit.jupiter.api.Test
+    public void testGetAttributeValue_Null_AnnualEnergyConsumption() {
         //Arrange
         String expectedResult = NOT_VALID_ATTRIBUTE;
         //Act
-        Object result = wineCooler.getSpecs().getAttributeValue("\0"+ "Nominal Power");
+        Object result = wineCooler.getSpecs().getAttributeValue("\0" + "Annual Energy Consumption");
 
         //Assert
         assertEquals(expectedResult, result);
@@ -219,22 +226,7 @@ public class WineCoolerSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    /**
-     * Test the return "not a valid attribute" of the method getAttributeValue,
-     * when inserted an null character attribute.
-     */
-    @Test
-    public void testGetAttributeValue_Null_AnnualEnergyConsumption (){
-        //Arrange
-        String expectedResult = NOT_VALID_ATTRIBUTE;
-        //Act
-        Object result = wineCooler.getSpecs().getAttributeValue("\0"+ "Annual Energy Consumption");
-
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeNumberOfBottlesValueValidType() {
         // Arrange
         int number = 30;
@@ -246,13 +238,25 @@ public class WineCoolerSpecsTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeNumberOfBottlesValueNotAValidType() {
         // Arrange
         String random = "random";
 
         // Act
         boolean result = wineCooler.getSpecs().setAttributeValue("Number of Bottles", random);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void testSetAttributeAnnualEnergyConsumptionValueNotAValidType() {
+        // Arrange
+        String random = "random";
+
+        // Act
+        boolean result = wineCooler.getSpecs().setAttributeValue("Annual Energy Consumption", random);
 
         // Assert
         assertFalse(result);
@@ -309,19 +313,7 @@ public class WineCoolerSpecsTest {
         assertTrue(result);
     }
 
-    @Test
-    public void testSetAttributeAnnualEnergyConsumptionValueNotAValidType() {
-        // Arrange
-        String random = "random";
-
-        // Act
-        boolean result = wineCooler.getSpecs().setAttributeValue("Annual Energy Consumption", random);
-
-        // Assert
-        assertFalse(result);
-    }
-
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeAnnualEnergyConsumptionSameValue() {
         // Arrange
         wineCooler.getSpecs().setAttributeValue("Annual Energy Consumption", 100);
@@ -331,6 +323,18 @@ public class WineCoolerSpecsTest {
 
         // Assert
         assertFalse(result);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void testSetAttributeNominalPowerValueValidType() {
+        // Arrange
+        double nominalPower = 1.5;
+
+        // Act
+        boolean result = wineCooler.getSpecs().setAttributeValue("Nominal Power", nominalPower);
+
+        // Assert
+        assertTrue(result);
     }
 
     @Test
@@ -372,16 +376,13 @@ public class WineCoolerSpecsTest {
         assertFalse(result);
     }
 
-    @Test
-    public void testSetAttributeNominalPowerValueValidType() {
-        // Arrange
-        double nominalPower = 1.5;
-
-        // Act
-        boolean result = wineCooler.getSpecs().setAttributeValue("Nominal Power", nominalPower);
-
-        // Assert
-        assertTrue(result);
+    @org.junit.jupiter.api.Test
+    public void testIfDeviceIsProgrammableFalse() {
+        //Arrange
+        //Act
+        boolean result = wineCooler.getSpecs().isProgrammable();
+        //Assert
+        assertFalse(result);
     }
 
     @Test
@@ -433,13 +434,8 @@ public class WineCoolerSpecsTest {
         assertEquals(attributeDataType, result);
     }
 
-    @Test
-    public void testIfDeviceIsProgrammableFalse() {
-        //Arrange
-        //Act
-        boolean result = wineCooler.getSpecs().isProgrammable();
-        //Assert
-        assertFalse(result);
+    @Configuration
+    static class Config {
     }
 
     @Test

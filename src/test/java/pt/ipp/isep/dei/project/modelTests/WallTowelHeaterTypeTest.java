@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.walltowelheater.WallTowelHeaterType;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class WallTowelHeaterTypeTest {
@@ -14,7 +15,7 @@ public class WallTowelHeaterTypeTest {
     private WallTowelHeaterType wallTowelHeaterType;
     private Room kitchen;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         //Type
         wallTowelHeaterType = new WallTowelHeaterType();
@@ -24,7 +25,7 @@ public class WallTowelHeaterTypeTest {
         kitchen = new Room("Kitchen", 1, dim);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetTypeName() {
         //Arrange
         String expectedResult = "WallTowelHeater";

@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.utilsTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
@@ -9,17 +9,18 @@ import pt.ipp.isep.dei.project.utils.CSVReader;
 
 import java.io.File;
 import java.time.LocalDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CSVReaderTest {
     private CSVReader csvReader = new CSVReader();
     private File file;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         String path = "datasets/csv/DataSet_sp05_SensorData.csv";
         file = new File(path);
@@ -29,7 +30,7 @@ class CSVReaderTest {
      * Test that tries to read a valid file (with valid information) and see if the result of the
      * importation (List of Object) has the expected size and if it contains a certain Reading.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testReadFile_withAFileWithAllTheInformationValid_ShouldReturnSuccessfulResults() {
         // Arrange
         String path = "datasets/csv/DataSet_sp05_SensorData.csv";
@@ -57,7 +58,7 @@ class CSVReaderTest {
     /**
      * Test that tries to read an empty file, which returns null.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testReadFile_withEmptyFile_ShouldReturnNull() {
         // Arrange
         String path = "datasets/csv/DataSet_sp05_SensorData_empty.csv";
@@ -112,6 +113,6 @@ class CSVReaderTest {
         List<Object> result = csvReader.readFile(file);
 
         // Assert
-        assertEquals(null, result);
+        assertEquals(Collections.emptyList(), result);
     }
 }

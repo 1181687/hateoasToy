@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.freezer.FreezerType;
@@ -17,6 +16,8 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class FreezerTest {
     private Room kitchen;
     private Room laundry;
@@ -27,7 +28,7 @@ public class FreezerTest {
     private Reading reading2;
     private House house;
 
-    @Before
+    @BeforeEach
     public void StartUp(){
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -176,7 +177,7 @@ public class FreezerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setLocationTrueTestNullValue() {
         // Act
         FreezerType type = new FreezerType();
@@ -189,7 +190,7 @@ public class FreezerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDevSpecsAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Freezer Capacity: 40.0\n" +
@@ -249,7 +250,7 @@ public class FreezerTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 3;
@@ -325,7 +326,7 @@ public class FreezerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setDeactivateDeviceAlreadyDeactivatedFalse() {
 
         freezer.setDeactivateDevice();
@@ -377,7 +378,7 @@ public class FreezerTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDataSeriesTest() {
         // Assert
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -420,7 +421,7 @@ public class FreezerTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetSpecsToString() {
         // Arrange
         String expectedResult = "1 - Freezer Capacity: 40.0\n" +
@@ -448,7 +449,7 @@ public class FreezerTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetNominalPowerTest() {
         //Arrange
         double expectedResult = 900.0;
@@ -469,7 +470,7 @@ public class FreezerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testIfDeviceIsActiveFalse() {
         //Arrange
         freezer.setDeactivateDevice();

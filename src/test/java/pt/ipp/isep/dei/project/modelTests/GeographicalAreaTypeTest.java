@@ -1,10 +1,10 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class GeographicalAreaTypeTest {
 
@@ -19,7 +19,7 @@ class GeographicalAreaTypeTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testaEqualsTrue() {
         //Arrange
         GeographicalAreaType tipo0 = new GeographicalAreaType("Cidade");
@@ -65,7 +65,7 @@ class GeographicalAreaTypeTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarUmTipoAreaGeoEIgualAOutraTrue() {
         //Arrange
         String TipoAreaGeo1 = "Rua";

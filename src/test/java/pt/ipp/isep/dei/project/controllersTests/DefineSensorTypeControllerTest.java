@@ -1,11 +1,11 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.DefineSensorTypeController;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DefineSensorTypeControllerTest {
 
@@ -20,7 +20,7 @@ public class DefineSensorTypeControllerTest {
         assertTrue(resultado);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void criarEAdicionarTipoDeSensorTipoRepetido() {
         SensorTypeList lista = new SensorTypeList();
         String novoTipo = "Humidade";

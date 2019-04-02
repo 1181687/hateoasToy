@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.controllers.removesensorfromgeoareacontroller;
 
-import pt.ipp.isep.dei.project.GeoAreaService;
+import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RemoveSensorFromGeoAreaController {
+    @Autowired
     private GeographicalAreaList geographicalAreaList;
     private GeographicalArea geographicalArea;
 

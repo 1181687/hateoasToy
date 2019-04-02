@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetDevicesInHouseGridController;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -13,7 +13,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GetDevicesInHouseGridControllerTest {
     private GetDevicesInHouseGridController ctrl;
@@ -29,7 +29,7 @@ public class GetDevicesInHouseGridControllerTest {
     private static final String ATTRIBUTE_ENERGY_CONSUMPTION = "Energy Consumption";
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
 
         //House
@@ -112,7 +112,7 @@ public class GetDevicesInHouseGridControllerTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetDeviceListContentNameTypeLocationByHG() {
         //Arrange
         String expectedResult = "WashingMachine\n" +
@@ -132,7 +132,7 @@ public class GetDevicesInHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void displayOfTheContentOfTheHouseGrids() {
         // Arrange
         String expectedResult = "1 - Name: grid1\n2 - Name: grid2\n";
@@ -144,7 +144,7 @@ public class GetDevicesInHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfHouseGridListIsEmptyWithPositiveTest() {
         // Arrange
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -181,7 +181,7 @@ public class GetDevicesInHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testCheckIfThereAreNoDevicesHGbyPositionFalse() {
 
         // Act
@@ -191,7 +191,7 @@ public class GetDevicesInHouseGridControllerTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testCheckIfThereAreNoDevicesHGbyPositionTrue() {
 
         // Act
@@ -201,7 +201,7 @@ public class GetDevicesInHouseGridControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getNameByHGPosition() {
         // Arrange
         int position = 0;

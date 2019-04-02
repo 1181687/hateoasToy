@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddPowerSourceToHouseGridController;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
@@ -11,7 +11,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AddPowerSourceToHouseGridControllerTest {
     private AddPowerSourceToHouseGridController controller;
@@ -20,7 +20,7 @@ public class AddPowerSourceToHouseGridControllerTest {
     private PowerSourceType publicElectricGrid;
     private House house;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
 
         // House Grids
@@ -46,7 +46,7 @@ public class AddPowerSourceToHouseGridControllerTest {
         controller = new AddPowerSourceToHouseGridController(house, powerSourceTypeList);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void isHouseGridListEmptyPositiveTest() {
         // Act
         boolean result = controller.isHouseGridListEmpty();
@@ -55,7 +55,7 @@ public class AddPowerSourceToHouseGridControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void isHouseGridListEmptyNegativeTest() {
         // Arrange
         house.addGrid(mainGrid);
@@ -67,7 +67,7 @@ public class AddPowerSourceToHouseGridControllerTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getHouseGridListToStringTest() {
         // Arrange
         house.addGrid(mainGrid);
@@ -92,7 +92,7 @@ public class AddPowerSourceToHouseGridControllerTest {
         assertEquals(expectedResult,result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getPowerSourceTypeListSizeTest() {
         // Arrange
         int expectedResult = 1;
@@ -118,7 +118,7 @@ public class AddPowerSourceToHouseGridControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void createAndAddPowerSourceToHouseGridTestWithVariousGrid() {
         // Arrange
         house.addGrid(mainGrid);
@@ -150,7 +150,7 @@ public class AddPowerSourceToHouseGridControllerTest {
     }*/
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getPowerSourceTypeListToStringTest() {
         // Arrange
         house.addGrid(mainGrid);
@@ -164,7 +164,7 @@ public class AddPowerSourceToHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void listPowerSourcesConnectedToHouseGridTest() {
         // Arrange
         house.addGrid(mainGrid);
@@ -181,7 +181,7 @@ public class AddPowerSourceToHouseGridControllerTest {
         assertEquals(expectedResult,result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getHouseGridNameTest() {
         // Arrange
         house.addGrid(mainGrid);

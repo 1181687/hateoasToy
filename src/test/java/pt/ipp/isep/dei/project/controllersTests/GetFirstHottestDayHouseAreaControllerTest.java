@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.getfirsthottestdayhouseareacontroller.GetFirstHottestDayHouseAreaController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -20,7 +20,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GetFirstHottestDayHouseAreaControllerTest {
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
@@ -34,7 +34,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
     private House house;
     private GetFirstHottestDayHouseAreaController controller;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -107,7 +107,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * There are 2 temperature sensors in Geographical area portocity
      * expected that isSensorListEmpty method returns false;
      **/
-    @Test
+    @org.junit.jupiter.api.Test
     public void isSensorListEmpty_False() {
         // Arrange
 
@@ -122,7 +122,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * There are no temperature sensors in Geographical area "newGeoArea"
      * expected that isSensorListEmpty method returns true;
      **/
-    @Test
+    @org.junit.jupiter.api.Test
     public void isSensorListEmptyTest_True() {
         // Arrange
         GeographicalAreaType street = new GeographicalAreaType("Street");
@@ -148,7 +148,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * there are 5 measurements in that period (reading2, reading3, reading4, reading5 and reading6)
      * expected to return true;
      **/
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkNearestSensorReadingsExistenceBetweenDates_True() {
         // Arrange
         LocalDate initialDate = LocalDate.of(2018, 12, 2);
@@ -185,7 +185,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * after calculating the first highest reading, it should be turned into a readingDTO
      * expected to return ReadingDTO;
      **/
-    @Test
+    @org.junit.jupiter.api.Test
     public void getFirstHighestReadingHouseArea_ReadingDTO() {
         //Arrange
         LocalDate startDate = LocalDate.of(2018, 12, 2);

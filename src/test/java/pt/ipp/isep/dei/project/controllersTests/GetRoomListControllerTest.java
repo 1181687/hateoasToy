@@ -1,16 +1,16 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetRoomListController;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.Room;
 import pt.ipp.isep.dei.project.model.house.RoomList;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GetRoomListControllerTest {
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDisplayRoomListTest(){
         //arrange
         RoomList rList = new RoomList();
@@ -65,7 +65,7 @@ public class GetRoomListControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfRoomListIsEmptyFalse(){
         //arrange
         RoomList rList = new RoomList();
