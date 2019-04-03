@@ -32,7 +32,7 @@ activate ":ImportGeoAreas\nFromJSONOrXMLController"
 activate ":XMLReader"
 ":XMLReader" -> ":XMLReader" : readFile(file)
 ref over ":XMLReader"
-readXMLFileToList
+readFile
 end
 ":ImportGeoAreas\nFromJSONOrXMLController" <-- ":XMLReader" : ListOfGeographicalAreasDTO
 deactivate ":XMLReader"
