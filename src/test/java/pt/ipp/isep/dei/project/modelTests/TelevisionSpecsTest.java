@@ -1,17 +1,12 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
-
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -22,25 +17,21 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+
 @DataJpaTest
 @ContextConfiguration(classes = {Main.class},
         loader = AnnotationConfigContextLoader.class)
+@SpringJUnitConfig(TelevisionSpecsTest.Config.class)
 public class TelevisionSpecsTest {
     private Room livingRoom;
     private Device television;
     private House house;
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
-    @Autowired
-    private GeoAreaRepository geoAreaRepository;
 
-
-    @Before
+    @BeforeEach
     public void StartUp() {
-        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
-
-
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
@@ -56,6 +47,10 @@ public class TelevisionSpecsTest {
         television.setAttributesDevType("Nominal Power", 100.0);
         television.setAttributesDevType("Standby Power", 33.0);
         television.setAttributesDevType("Time", 120.0);
+    }
+
+    @Configuration
+    static class Config {
     }
 
     @Test

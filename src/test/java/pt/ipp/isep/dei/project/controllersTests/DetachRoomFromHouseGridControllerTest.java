@@ -1,9 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
-
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.DetachRoomFromHouseGridController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
@@ -14,6 +12,8 @@ import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 
@@ -26,7 +26,7 @@ public class DetachRoomFromHouseGridControllerTest {
     private HouseGrid mainGrid;
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -67,7 +67,7 @@ public class DetachRoomFromHouseGridControllerTest {
         this.ctrl = new DetachRoomFromHouseGridController(house, roomList);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testsGetListContentMethod() {
         //Arrange
         String expectedResult = "1 - Name: Main Grid" + "\n";
@@ -77,7 +77,7 @@ public class DetachRoomFromHouseGridControllerTest {
         assertEquals(result, expectedResult);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testsGetListContentMethodMoreThanOneGrid() {
         //Arrange
         HouseGrid newGrid1 = new HouseGrid("Secondary Grid");
@@ -100,7 +100,7 @@ public class DetachRoomFromHouseGridControllerTest {
         assertEquals(result, expectedResult);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getListOfRooms() {
         //Arrange
         String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimension - Height: 2.0, Length: 3.0, Width: 4.0\n" +
@@ -111,7 +111,7 @@ public class DetachRoomFromHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
      public void getRoomFromTheListOfRoomByAPosition() {
          //Arrange
         ctrl.getHouseGridFromTheList(0);
@@ -134,7 +134,7 @@ public class DetachRoomFromHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void detachRoomFromGridListRoomNotInTheListRemainsTheSame() {
         //Arrange
 
@@ -153,7 +153,7 @@ public class DetachRoomFromHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void detachRoomFromGridListRoomNotInTheListRemainsTheSameBooleanMethod() {
         //Arrange
         Dimension r1Dimension = new Dimension(2, 3, 3);
@@ -176,7 +176,7 @@ public class DetachRoomFromHouseGridControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getGridListSize() {
         //Arrange
         Dimension r1Dimension = new Dimension(2, 3, 3);

@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.controllers.InsertedGeoAreaController;
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
@@ -18,27 +18,26 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@DataJpaTest
+@ExtendWith(SpringExtension.class)
+@SpringBootTest
 @ContextConfiguration(classes = {Main.class},
         loader = AnnotationConfigContextLoader.class)
 public class InsertedGeoAreaControllerTest {
 
     private InsertedGeoAreaController controller;
     private GeographicalArea CidadeDoPorto;
+    @InjectMocks
     private GeographicalAreaList geographicalAreaList;
     private GeographicalArea RuaDoBonfim;
-    @Autowired
+
+    @Mock
     private GeoAreaRepository geoAreaRepository;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
-        // Repo configuration
-        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
-
         //Geographical Area
         GeographicalAreaType geographicalAreaType = new GeographicalAreaType("Cidade");
         Location local1 = new Location(41.1496, -8.6109, 97);
@@ -50,8 +49,6 @@ public class InsertedGeoAreaControllerTest {
         AreaShape area2 = new AreaShape(10, 10, local1);
         this.RuaDoBonfim = new GeographicalArea("Rua do Bonfim", "Rua do Bonfim", geographicalAreaType2, local2, area2);
         RuaDoBonfim.setInsertedIn(CidadeDoPorto);
-
-        this.geographicalAreaList = new GeographicalAreaList();
 
         this.controller = new InsertedGeoAreaController(geographicalAreaList);
     }
@@ -260,7 +257,6 @@ public class InsertedGeoAreaControllerTest {
         geographicalAreaList.addGeoArea(ag3);
         CidadeDoPorto.setInsertedIn(ag2);
         ag2.setInsertedIn(ag3);
-
 
         boolean expectedResult = true;
 

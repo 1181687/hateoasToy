@@ -1,9 +1,6 @@
 package pt.ipp.isep.dei.project.utilsTests;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
-import pt.ipp.isep.dei.project.model.ProjectFileReader;
-import pt.ipp.isep.dei.project.utils.CSVReader;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.lang.reflect.Constructor;
@@ -12,6 +9,8 @@ import java.lang.reflect.Modifier;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UtilsTest {
 
@@ -28,7 +27,7 @@ public class UtilsTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void isSameDoubleFalse() {
         // arrange
         double value1 = 1.1;
@@ -41,7 +40,7 @@ public class UtilsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testIfConstructorException() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
         //arrange
         Constructor<Utils> constructor = Utils.class.getDeclaredConstructor();
@@ -92,7 +91,7 @@ public class UtilsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testMeteringPeriodWrongKey() {
         //Arrange
         String expectedResult = "Wrong Key";
@@ -103,7 +102,7 @@ public class UtilsTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testMeteringPeriodWrongFile() {
         //Arrange
         String expectedResult = "There is no file with that filename.";
@@ -149,7 +148,7 @@ public class UtilsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetDataSeries() {
         //Arrange
 
@@ -199,7 +198,7 @@ public class UtilsTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void isSameNumberFalseTest() {
         // Act
         boolean result = Utils.isSameNumber(1.1, 1.0);
@@ -208,7 +207,7 @@ public class UtilsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void isFirstDoubleBiggerThanSecondOneTestTrue() {
         // arrange
         double value1 = 1.2;
@@ -221,7 +220,7 @@ public class UtilsTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void isFirstDoubleBiggerThanSecondOneTestFalse() {
         // arrange
         double value1 = 1.1;

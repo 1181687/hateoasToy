@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GeographicalAreaDTOTest {
 
@@ -22,7 +22,7 @@ public class GeographicalAreaDTOTest {
     private SensorDTO temperatureSensor;
     private SensorType temperature;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         // Geographical Areas
         portoCity = new GeographicalAreaDTO();
@@ -55,7 +55,7 @@ public class GeographicalAreaDTOTest {
     /**
      * set method for ID, changes ID to S002
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testsetId_changeId_S002() {
         // arrange
         portoCity.setId("S002");
@@ -82,7 +82,7 @@ public class GeographicalAreaDTOTest {
     /**
      * set method for sensor, changes name to Sensor2
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void setSensorNameTest_changeSensorName_Sensor2() {
         // arrange
         portoCity.setDescription("Sensor2");
@@ -110,7 +110,7 @@ public class GeographicalAreaDTOTest {
     /**
      * set method for geographicalareatype, changes type to newGeoArea
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void setGeographicalAreaTypeTest_newGeoAreaType_NewGeoArea() {
         // arrange
         portoCity.setType("New Geo Area");
@@ -170,7 +170,7 @@ public class GeographicalAreaDTOTest {
     /**
      * set and get methods for longitude changes longitude to 25.0
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void setAndGetLongitudeTest_getLongitudeAndChangeLongitude_25() {
         // arrange
         double expectedResult = 25.0;

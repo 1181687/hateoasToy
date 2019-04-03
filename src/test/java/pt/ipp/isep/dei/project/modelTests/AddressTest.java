@@ -1,19 +1,19 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AddressTest {
     private GeographicalArea isep;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -22,7 +22,7 @@ public class AddressTest {
         isep = new GeographicalArea("ISEP", "Campus do ISEP", geographicalAreaType, location, areaShape);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testIfTwoAddressAreNotEqual() {
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -52,7 +52,7 @@ public class AddressTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testIfTwoAddressAreTheSame() {
 
         //Arrange
@@ -70,7 +70,7 @@ public class AddressTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testIfTwoAddressAreEqual() {
 
         //Arrange
@@ -96,7 +96,7 @@ public class AddressTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testIfTwoAddressesWithTheSameAttributesAreEqual() {
 
         //Arrange
@@ -119,7 +119,7 @@ public class AddressTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testIfTwoAddressesWithDifferentAttributesAreEqualFalse() {
 
         //arrange
@@ -162,7 +162,7 @@ public class AddressTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testIfTwoAddressesWithTheSameZipCodeAreFalse() {
 
         //Arrange
@@ -188,7 +188,7 @@ public class AddressTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarHashCode() {
         //Arrange
         String zipCode = "4050";
@@ -208,7 +208,7 @@ public class AddressTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetLocation() {
         // Arrange
         String zipCode = "4050";

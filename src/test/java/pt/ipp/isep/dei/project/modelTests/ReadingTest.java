@@ -1,17 +1,17 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 
 import java.time.LocalDateTime;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class ReadingTest {
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testHashCode() {
         //Arrange
         LocalDateTime date = LocalDateTime.of(2018, 2, 3, 12, 30);
@@ -36,7 +36,7 @@ public class ReadingTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void equals_WithReadingsWithDifferentDateAndSameValue_ShouldReturnFalse() {
         //Arrange
         LocalDateTime date = LocalDateTime.of(2018, 2, 3, 12, 30);
@@ -49,7 +49,7 @@ public class ReadingTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void equals_WithReadingsWithDifferentValueAndSameDate_ShouldReturnFalse() {
         //Arrange
         LocalDateTime date = LocalDateTime.of(2018, 2, 3, 12, 30);
@@ -73,7 +73,7 @@ public class ReadingTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void equals_ComparingSameReading_ShouldReturnTrue() {
         //Arrange
         LocalDateTime date = LocalDateTime.of(2018, 2, 3, 12, 30);

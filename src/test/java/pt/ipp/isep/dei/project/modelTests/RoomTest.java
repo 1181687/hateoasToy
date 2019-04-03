@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -22,7 +22,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class RoomTest {
 
@@ -35,7 +35,7 @@ public class RoomTest {
     private static final String WASHING_MACHINE_TYPE = "WashingMachine";
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -64,7 +64,7 @@ public class RoomTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDisplayRoomTest() {
         //arrange
 
@@ -88,7 +88,7 @@ public class RoomTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testHashCodeNotEquals() {
         //Arrange
         String name = "roomOne";
@@ -114,7 +114,7 @@ public class RoomTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testEqualsFalse() {
         //Arrange
 
@@ -154,7 +154,7 @@ public class RoomTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getSensorList() {
         //Arrange
         SensorList sensorList = new SensorList();
@@ -319,7 +319,7 @@ public class RoomTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
         // Act
@@ -329,7 +329,7 @@ public class RoomTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
         Device dev1 = house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
@@ -341,7 +341,7 @@ public class RoomTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDeviceListSize() {
         // Arrange
 
@@ -388,7 +388,7 @@ public class RoomTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetNameToString() {
         // Arrange
 
@@ -433,7 +433,7 @@ public class RoomTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithTwoFullPeriods() {
         // Arrange
         // Device Instantiation
@@ -464,7 +464,7 @@ public class RoomTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithoutFullPeriods() {
         // Arrange
 
@@ -496,7 +496,7 @@ public class RoomTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithOneFullPeriodDeviceListEmpty() {
         // Arrange
         double expectedResult = 0.0;
@@ -511,7 +511,7 @@ public class RoomTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void deleteDeviceTrue() {
         // Arrange
         house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
@@ -523,7 +523,7 @@ public class RoomTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void deleteDeviceFalse() {
         // Arrange
         // act
@@ -563,7 +563,7 @@ public class RoomTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void deactivationDeviceTrue() {
 
         // Arrange
@@ -590,7 +590,7 @@ public class RoomTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void deactivationDeviceAlreadyDeactivatedFalse() {
 
         // Arrange
@@ -605,7 +605,7 @@ public class RoomTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void deactivationDeviceFalse() {
         // Arrange
         // act
@@ -653,7 +653,7 @@ public class RoomTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getActiveDeviceListToString_Deactivated() {
 
         // Arrange
@@ -717,7 +717,7 @@ public class RoomTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void removeDevice_True() {
         // Arrange
         Device lamp = house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
@@ -729,7 +729,7 @@ public class RoomTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void removeDevice_False() {
         // Arrange
         Device lamp = house.createDevice(LAMP_TYPE, "Lamp1", kitchen);
@@ -763,7 +763,7 @@ public class RoomTest {
         assertEquals("Device is null.", exception.getMessage());
     }*/
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAddDeviceTrue() {
         Device lamp = house.createDevice(LAMP_TYPE, "Lamp", laundry);
 

@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PowerSourceTypeListTest {
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAddPowerSourceTypeToPowerSourceTypeListPowerSourceIsAddedTest() {
 
         //Arrange
@@ -28,7 +28,7 @@ public class PowerSourceTypeListTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAddPowerSourceTypeToPowerSourceTypeListPowerSourceIsNotAddedTest() {
 
         //Arrange
@@ -48,7 +48,7 @@ public class PowerSourceTypeListTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testDisplayPowerSourceTypeList() {
         //Arrange
         String powerSourceTypeName1 = "Battery";
@@ -96,7 +96,7 @@ public class PowerSourceTypeListTest {
         assertEquals(expectedResult,result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetPowerSourceTypeFromASpecificPositionInTheListGetLastPositionTest(){
 
         //Arrange

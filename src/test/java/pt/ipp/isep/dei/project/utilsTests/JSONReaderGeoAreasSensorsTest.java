@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.utilsTests;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class JSONReaderGeoAreasSensorsTest {
     private JSONReaderGeoAreasSensors jsonReaderGeoAreasSensors = new JSONReaderGeoAreasSensors();

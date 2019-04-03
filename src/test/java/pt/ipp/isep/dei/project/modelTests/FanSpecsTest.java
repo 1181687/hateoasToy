@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.fan.FanSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -12,7 +12,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FanSpecsTest {
     private Room kitchen;
@@ -22,7 +22,7 @@ public class FanSpecsTest {
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
 
         // House
@@ -95,7 +95,7 @@ public class FanSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetNumberOfAttributes() {
         //Arrange
 
@@ -109,7 +109,7 @@ public class FanSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetEnergyConsumptionInADay() {
 
         double expectedResult = 0;
@@ -146,7 +146,7 @@ public class FanSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
         Object expectedResult = NOT_VALID_ATTRIBUTE;
@@ -192,7 +192,7 @@ public class FanSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeNominalPowerSameValue() {
         // Arrange
         fan.setAttributesDevType("Nominal Power", 100.0);
@@ -212,7 +212,7 @@ public class FanSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeTimeValueZero() {
         // Act
         boolean result = fan.getSpecs().setAttributeValue("Time", 0);
@@ -220,7 +220,7 @@ public class FanSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
         //Arrange
         boolean expectedResult = false;
@@ -274,7 +274,7 @@ public class FanSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetProgramList() {
         //Arrange
         String programName = "fast";
@@ -296,7 +296,7 @@ public class FanSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testIsProgrammable() {
         //Act
         boolean result = fanSpecs.isProgrammable();

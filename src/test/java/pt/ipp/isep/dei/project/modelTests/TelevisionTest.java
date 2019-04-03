@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.television.TelevisionType;
@@ -17,6 +16,8 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 
 public class TelevisionTest {
     private Room bedroom;
@@ -28,7 +29,7 @@ public class TelevisionTest {
     private Reading reading2;
     private House house;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -230,7 +231,7 @@ public class TelevisionTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Smart TV\n" +
@@ -346,7 +347,7 @@ public class TelevisionTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setDeactivateDeviceTrue() {
 
         boolean result = television.setDeactivateDevice();
@@ -393,7 +394,7 @@ public class TelevisionTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getIsActiveFalseTest() {
         // Assert
         television.setDeactivateDevice();
@@ -448,7 +449,7 @@ public class TelevisionTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetSpecsToString() {
         // Arrange
         String expectedResult = "1 - Nominal Power: 90.0\n" +
@@ -476,7 +477,7 @@ public class TelevisionTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetNominalPowerTest() {
         //Arrange
         double expectedResult = 90.0;

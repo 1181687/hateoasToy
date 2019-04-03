@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.lamp.LampType;
@@ -16,7 +16,7 @@ import java.time.LocalTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class LampTest {
     private Room kitchen;
@@ -28,7 +28,7 @@ class LampTest {
     private Reading reading1;
     private Reading reading2;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -67,7 +67,7 @@ class LampTest {
         map.put(time2, 7.0);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetReadings() {
         //Arrange
         List<Reading> expectedResult = new ArrayList<>();
@@ -170,7 +170,7 @@ class LampTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setNameTrueTest() {
         // Act
         boolean result = lamp.setName("Miele PerfectCool Series 4000");
@@ -264,7 +264,7 @@ class LampTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void equalsDifferentObjectTest() {
         // Arrange
         Object object = new Object();
@@ -276,7 +276,7 @@ class LampTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void getNumberOfSpecsAttributesTest() {
         // Arrange
         int expectedResult = 2;
@@ -430,7 +430,7 @@ class LampTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     void testGetSpecsToString() {
         // Arrange
         String expectedResult = "1 - Luminous Flux: 2800.0\n" +

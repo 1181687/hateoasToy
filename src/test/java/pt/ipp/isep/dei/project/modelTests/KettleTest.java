@@ -1,16 +1,13 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
-import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -24,14 +21,14 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
 @ContextConfiguration(classes = {Main.class},
         loader = AnnotationConfigContextLoader.class)
+@SpringJUnitConfig(KettleTest.Config.class)
 public class KettleTest {
 
     private Room kitchen;
@@ -43,16 +40,12 @@ public class KettleTest {
     private Reading reading0;
     private Reading reading1;
     private Reading reading2;
-    @Autowired
-    private GeoAreaRepository geoAreaRepository;
 
     /**
      * This method pretends to initialize some attributes of this test class to simplifying all tests.
      */
-    @Before
+    @BeforeEach
     public void StartUp() {
-        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
-
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
         int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodDevice"));
@@ -92,6 +85,23 @@ public class KettleTest {
     }
 
     /**
+     * Test the setLocation method with another location,
+     * so the result should be true.
+     */
+    @org.junit.jupiter.api.Test
+    public void testSetLocation_AnotherLocation_True() {
+        //Arrange
+        Room location = laundry;
+        boolean expectedResult = true;
+
+        //Act
+        boolean result = kettle1.setLocation(location);
+
+        //Assert
+        assertEquals(expectedResult, result);
+    }
+
+    /**
      * Test the setLocation method with the same location,
      * so the result should be false, as the method doesn't allow that.
      */
@@ -108,19 +118,18 @@ public class KettleTest {
         assertEquals(expectedResult, result);
     }
 
-
     /**
-     * Test the setLocation method with another location,
+     * Test the setName method with a new name for the device,
      * so the result should be true.
      */
-    @Test
-    public void testSetLocation_AnotherLocation_True() {
+    @org.junit.jupiter.api.Test
+    public void testSetName_NewName_True() {
         //Arrange
-        Room location = laundry;
+        String name = "Nome novo";
         boolean expectedResult = true;
 
         //Act
-        boolean result = kettle1.setLocation(location);
+        boolean result = kettle1.setName(name);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -139,20 +148,15 @@ public class KettleTest {
         assertTrue(result);
     }
 
-    /**
-     * Test the setName method with a new name for the device,
-     * so the result should be true.
-     */
-    @Test
-    public void testSetName_NewName_True() {
-        //Arrange
-        String name = "Nome novo";
-        boolean expectedResult = true;
+    @org.junit.jupiter.api.Test
+    public void testHashCode_voidReturn() {
+        // Arrange
+        int expectedResult = Objects.hash(kettle1.getName());
 
-        //Act
-        boolean result = kettle1.setName(name);
+        // Act
+        int result = kettle1.hashCode();
 
-        //Assert
+        // Assert
         assertEquals(expectedResult, result);
     }
 
@@ -227,13 +231,20 @@ public class KettleTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void testHashCode_voidReturn() {
+    /**
+     * Test the equals method as to know if an object is equal to another.
+     * This test is comparing the same name with some Case Letters.
+     * The result should be false.
+     */
+    @org.junit.jupiter.api.Test
+    public void testEquals_SameNameWithDifferentCase_False() {
         // Arrange
-        int expectedResult = Objects.hash(kettle1.getName());
+        boolean expectedResult = false;
+        String name = "kettle 1";
+        Device kettle = house.createDevice("Kettle", name, kitchen);
 
         // Act
-        int result = kettle1.hashCode();
+        boolean result = kettle1.equals(kettle);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -258,21 +269,17 @@ public class KettleTest {
     }
 
     /**
-     * Test the equals method as to know if an object is equal to another.
-     * This test is comparing the same name with some Case Letters.
-     * The result should be false.
+     * Test the setDeactivateDevice as to know if the device is deactive.
      */
-    @Test
-    public void testEquals_SameNameWithDifferentCase_False() {
-        // Arrange
+    @org.junit.jupiter.api.Test
+    public void testGetDeactivationDate_False() {
+        //Arrange
+        kettle1.setDeactivateDevice();
         boolean expectedResult = false;
-        String name = "kettle 1";
-        Device kettle = house.createDevice("Kettle", name, kitchen);
 
-        // Act
-        boolean result = kettle1.equals(kettle);
-
-        // Assert
+        //Act
+        boolean result = kettle1.setDeactivateDevice();
+        // assert
         assertEquals(expectedResult, result);
     }
 
@@ -319,25 +326,10 @@ public class KettleTest {
     }
 
     /**
-     * Test the setDeactivateDevice as to know if the device is deactive.
-     */
-    @Test
-    public void testGetDeactivationDate_False() {
-        //Arrange
-        kettle1.setDeactivateDevice();
-        boolean expectedResult = false;
-
-        //Act
-        boolean result = kettle1.setDeactivateDevice();
-        // assert
-        assertEquals(expectedResult, result);
-    }
-
-    /**
      * Test the method getIsActive when the device is active.
      * So the test should return True.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetIsActive_True() {
         //Arrange
         boolean expectedResult = true;
@@ -346,6 +338,10 @@ public class KettleTest {
 
         //Assert
         assertEquals(expectedResult, result);
+    }
+
+    @Configuration
+    static class Config {
     }
 
     /**

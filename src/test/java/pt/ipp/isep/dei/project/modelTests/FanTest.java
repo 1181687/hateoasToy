@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.fan.FanType;
@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.*;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class FanTest {
     private Room kitchen;
@@ -28,7 +28,7 @@ public class FanTest {
     private Reading reading2;
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -68,7 +68,7 @@ public class FanTest {
         map.put(time2, 7.0);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getNominalPowerTest() {
         //Arrange
         double expectedResult = 1200.0;
@@ -80,7 +80,7 @@ public class FanTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetLocation() {
         // Arrange
         Room expectedResult = kitchen;
@@ -116,7 +116,7 @@ public class FanTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setLocationFalseTest() {
         // Act
         boolean result = fan.setLocation(kitchen);
@@ -134,7 +134,7 @@ public class FanTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setLocationTrueTestNullValue() {
         // Act
         FanType fanType = new FanType();
@@ -147,7 +147,7 @@ public class FanTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getIsActiveTrueTest() {
         // Act
         boolean result = fan.getIsActive();
@@ -156,7 +156,7 @@ public class FanTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getIsActiveFalseTest() {
         // arrange
         fan.setDeactivateDevice();
@@ -168,7 +168,7 @@ public class FanTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetDeactivationDate_True() {
         // act
         boolean result = fan.setDeactivateDevice();
@@ -198,7 +198,7 @@ public class FanTest {
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
     }*/
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setNameFalseTest() {
         // Act
         boolean result = fan.setName("");
@@ -228,7 +228,7 @@ public class FanTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testHashCode() {
         // Arrange
         int expectedResult = Objects.hash(fan.getName());
@@ -241,7 +241,7 @@ public class FanTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetReadings() {
         //Arrange
         List<Reading> expectedResult = new ArrayList<>();
@@ -267,7 +267,7 @@ public class FanTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getAttributesToStringTest() {
         // Arrange
         String expectedResult = "1 - Name: Fan300\n" +
@@ -281,7 +281,7 @@ public class FanTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void setSetAttributesDevTypeTrue() {
         //Act
         boolean result = fan.setAttributesDevType("Nominal Power", 15);
@@ -332,7 +332,7 @@ public class FanTest {
         assertEquals(date, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDataSeriesTest() {
         // Assert
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
@@ -347,7 +347,7 @@ public class FanTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getSpecsListTest() {
         // Assert
         List<String> expectedResult = new ArrayList<>();
@@ -361,7 +361,7 @@ public class FanTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getAttributeValueTest() {
         // Assert
         double expectedResult = 1200.0;
@@ -373,11 +373,11 @@ public class FanTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetSpecs(){
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getEnergyConsumptionInADayTest() {
 
     }
@@ -398,7 +398,7 @@ public class FanTest {
 
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getTotalEnergyConsumptionInAnIntervalWithThreeSolutionsTest() {
 
     }

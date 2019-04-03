@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.GetEnergyConsumptionDataSeriesController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -23,15 +23,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import static junit.framework.TestCase.assertTrue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class GetEnergyConsumptionDataSeriesControllerTest {
     private GetEnergyConsumptionDataSeriesController ctrl;
     private House house;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -71,7 +69,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDisplayRoomListTest() {
         //arrange
         String name1 = "Kitchen";
@@ -131,7 +129,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getHouseGridListLengthTest() {
         // Arrange
         //grid
@@ -203,7 +201,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDeviceListSize() {
         //arrange
         String name1 = "Kitchen";
@@ -224,7 +222,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getDeviceListSizeEmptyList() {
         //arrange
         //initiate Room
@@ -561,7 +559,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfHouseGridListIsEmptyWithPositiveTest() {
         // Arrange
         // Geographical Area

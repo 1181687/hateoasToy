@@ -8,8 +8,6 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -56,13 +54,15 @@ public class Main {
 
     private House houseEdificioB;
     private PowerSourceTypeList powerSourceTypeList;
-    private GeographicalAreaList geographicalAreaList;
     private SensorTypeList sensorTypeList;
     private GeographicalAreaTypeList geographicalAreaTypeList;
 
-
+    //GeographicalArea Repository Injection
     @Autowired
-    GeoAreaRepository geoAreaRepository;
+    private GeographicalAreaList geographicalAreaList;
+
+
+
 
     public static void main(String[] args) {
 
@@ -75,10 +75,7 @@ public class Main {
 
         return (args) -> {
 
-            GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
-
             data();
-
 
             //UI levels
             Admin admin = new Admin(geographicalAreaTypeList, geographicalAreaList, sensorTypeList, houseEdificioB, powerSourceTypeList, houseEdificioB.getRoomList());
@@ -128,7 +125,7 @@ public class Main {
         List<String> deviceTypeList = Utils.readConfigFileToList(configFile, "devicetype.count", "devicetype.name");
 
         geographicalAreaTypeList = new GeographicalAreaTypeList();
-        geographicalAreaList = new GeographicalAreaList();
+        //geographicalAreaList = new GeographicalAreaList();
 
         // GEOGRAPHICAL AREAS
         // Inserted Geo Area (Campus do ISEP)

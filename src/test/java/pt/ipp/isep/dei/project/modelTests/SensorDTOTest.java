@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
 
@@ -9,13 +9,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 class SensorDTOTest {
     SensorDTO sensorDTO;
 
-    @Before
+    @BeforeEach
     void StartUp() {
         sensorDTO = new SensorDTO();
 
@@ -35,7 +35,7 @@ class SensorDTOTest {
     /**
      * get method for sensor Id. gets id ISEP-Temperature
      */
-    @Test
+    @org.junit.jupiter.api.Test
     void testGetId_get_isepTemperature() {
         //Arrange
         String expectedResult = "ISEP-Temperature";
@@ -62,7 +62,7 @@ class SensorDTOTest {
     /**
      * get method for sensor name. gets Temperature sensor
      */
-    @Test
+    @org.junit.jupiter.api.Test
     void testGetName_get_temperatureSensor() {
         //Arrange
         String expectedResult = "Temperature sensor";
@@ -89,7 +89,7 @@ class SensorDTOTest {
     /**
      * get method for starting date. gets local date now
      */
-    @Test
+    @org.junit.jupiter.api.Test
     void testGetStartingDate_get() {
         //Arrange
         LocalDate expectedResult = LocalDate.now();
@@ -116,7 +116,7 @@ class SensorDTOTest {
     /**
      * get method for sensor type. gets Temperature
      */
-    @Test
+    @org.junit.jupiter.api.Test
     void testGetSensorType_get_temperature() {
         //Arrange
         String expectedResult = "Temperature";
@@ -130,7 +130,7 @@ class SensorDTOTest {
     /**
      * set method for sensor type. changes sensor type to Rainfall
      */
-    @Test
+    @org.junit.jupiter.api.Test
     void testSetSensorType_set_rainfall() {
         //Arrange
         String expectedResult = "Rainfall";
@@ -182,7 +182,7 @@ class SensorDTOTest {
     /**
      * get method for sensor units. gets units in ºC
      */
-    @Test
+    @org.junit.jupiter.api.Test
     void testGetUnits_get_C() {
         //Arrange
         String expectedResult = "ºC";

@@ -7,9 +7,9 @@
         <unit>F</unit>
     </reading>
     <reading>
-        <id>TT12346</id>
-        <timestamp_date>2018-12-30T08:00:00+00:00</timestamp_date>
-        <value>56.66</value>
-        <unit>F</unit>
+        <id>RF12345</id>
+        <timestamp_date>2019-01-06</timestamp_date>
+        <value>2.5</value>
+        <unit>mm</unit>
     </reading>
 </readings_list>

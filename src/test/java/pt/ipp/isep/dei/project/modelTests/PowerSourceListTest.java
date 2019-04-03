@@ -1,11 +1,11 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceList;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class PowerSourceListTest {
 
@@ -47,7 +47,7 @@ public class PowerSourceListTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testCreateNewPowerSource(){
         //Arrange
         String name = "Power Source 1";
@@ -84,7 +84,7 @@ public class PowerSourceListTest {
         assertEquals(expectedResult,result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testPowerSourceNameAlreadyExistsTrue() {
         //Arrange
         String name = "Power Source 1";
@@ -104,7 +104,7 @@ public class PowerSourceListTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testPowerSourceNameAlreadyExistsFalse() {
         //Arrange
         String name = "Power Source 1";

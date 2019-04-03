@@ -1,14 +1,14 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 
 import java.time.LocalDateTime;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class ReadingMapperTest {
@@ -18,7 +18,7 @@ class ReadingMapperTest {
     /**
      * Method that initializes some attributes of this test class to simplify all tests.
      */
-    @Before
+    @BeforeEach
     public void StartUp() {
         // ReadingDTO
         readingDTO = ReadingMapper.newReadingDTO();
@@ -36,7 +36,7 @@ class ReadingMapperTest {
      * Test that tries to create a Reading based on a ReadingDTO, which results in a new Reading with the information
      * contained by the ReadingDTO.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testMapToEntity_tryingToCreateBasedOnAReadingDTO_ShouldReturnTrue() {
         // Arrange
         Reading reading = new Reading(readingDTO.getValue(), readingDTO.getDateTime());
@@ -51,7 +51,7 @@ class ReadingMapperTest {
     /**
      * Test that tries to create a Reading based on a null Object, which results in a non creation.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testMapToEntity_tryingToCreateBasedOnANullObject_ShouldReturnNull() {
         // Act
         Reading result = ReadingMapper.mapToEntity(null);
@@ -64,7 +64,7 @@ class ReadingMapperTest {
      * Test that tries to create a ReadingDTO based on a Reading, which results in a new ReadingDTO with the information
      * contained by the Reading.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testMapToDTO_tryingToCreateBasedOnAReading_ShouldReturnTrue() {
         // Assert
         ReadingDTO dto = ReadingMapper.mapToDTO(reading);
@@ -89,7 +89,7 @@ class ReadingMapperTest {
         assertNull(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testMapToDTO_id_units_tryingToTestTheSets() {
         // act
         String id = "TT123";

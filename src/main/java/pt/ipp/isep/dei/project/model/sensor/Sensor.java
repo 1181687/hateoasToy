@@ -129,8 +129,19 @@ public class Sensor {
         return isActive;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
+    /**
+     * Method that deactivates the sensor.
+     * If the sensor is active it deactivates it, as expected and returns a positive boolean expression.
+     * If the sensor is already deactivated it doesn't change it's state and returns a negative boolean expression.
+     *
+     * @return
+     */
+    public boolean deactivateDevice() {
+        if (isActive) {
+            isActive = false;
+            return true;
+        }
+        return false;
     }
 
     /**

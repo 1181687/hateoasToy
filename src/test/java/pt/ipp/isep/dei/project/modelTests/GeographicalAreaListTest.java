@@ -1,16 +1,17 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
@@ -24,29 +25,26 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@DataJpaTest
 @ContextConfiguration(classes = {Main.class},
         loader = AnnotationConfigContextLoader.class)
+@SpringJUnitConfig(GeographicalAreaListTest.Config.class)
+@DataJpaTest
 public class GeographicalAreaListTest {
+    @InjectMocks
     private GeographicalAreaList geoAreaList;
     private GeographicalArea portoCity;
     private GeographicalArea bonfimStreet;
     private Sensor sensor;
 
-    @Autowired
+    @Mock
     private GeoAreaRepository geoAreaRepository;
 
-
-    @Before
+    @BeforeEach
     public void StartUp() {
-        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
-        // Geographical Area List
-        geoAreaList = new GeographicalAreaList();
-
+        MockitoAnnotations.initMocks(this);
         // Geographical Areas
         Location portoLocation = new Location(41.1496,
                 -8.6109, 97);
@@ -60,6 +58,10 @@ public class GeographicalAreaListTest {
         SensorType temperature = new SensorType("Temperature");
         sensor = new Sensor("s1", "TT123123", temperature, location, "l/m2");
         portoCity.getSensorListInTheGeographicArea().addSensor(sensor);
+    }
+
+    @Configuration
+    static class Config {
     }
 
     /**

@@ -1,15 +1,15 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.controllers.removesensorfromgeoareacontroller.RemoveSensorFromGeoAreaController;
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
@@ -23,29 +23,27 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@DataJpaTest
+@SpringBootTest
 @ContextConfiguration(classes = {Main.class},
         loader = AnnotationConfigContextLoader.class)
+@SpringJUnitConfig(RemoveSensorFromGeoAreaControllerTest.Config.class)
 public class RemoveSensorFromGeoAreaControllerTest {
     private RemoveSensorFromGeoAreaController controller;
     private GeographicalArea porto;
     private GeographicalAreaDTO portoDTO;
     private Sensor temperatureSensor;
     private SensorDTO temperatureSensorDTO;
-    @Autowired
+    @InjectMocks
+    private GeographicalAreaList geographicalAreaList;
+
+    @Mock
     private GeoAreaRepository geoAreaRepository;
 
-    @Before
+
+    @BeforeEach
     public void StartUp() {
-        // Repo configuration
-        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
-
-        // Geo Area List
-        GeographicalAreaList geographicalAreaList = new GeographicalAreaList();
-
         // Geographical Area
         GeographicalAreaType city = new GeographicalAreaType("City");
         Location location = new Location(41.1496, -8.6109, 97);
@@ -68,6 +66,10 @@ public class RemoveSensorFromGeoAreaControllerTest {
 
         // Controller
         this.controller = new RemoveSensorFromGeoAreaController(geographicalAreaList);
+    }
+
+    @Configuration
+    static class Config {
     }
 
     /**

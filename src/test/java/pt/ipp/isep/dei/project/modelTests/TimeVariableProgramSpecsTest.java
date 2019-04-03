@@ -1,10 +1,12 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.TimeVariableProgramSpecs;
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 
 public class TimeVariableProgramSpecsTest {
@@ -12,7 +14,7 @@ public class TimeVariableProgramSpecsTest {
     private static final String NOMINAL_POWER = "programNominalPower";
     private TimeVariableProgramSpecs specs;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         String name = "prog1";
         specs = new TimeVariableProgramSpecs();
@@ -60,7 +62,7 @@ public class TimeVariableProgramSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeTimeTrue() {
         //Arrange
 
@@ -90,7 +92,7 @@ public class TimeVariableProgramSpecsTest {
 
     /////
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeNomPowerNotValid() {
         // Arrange
         String attribute = "stuff";
@@ -100,7 +102,7 @@ public class TimeVariableProgramSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeNomPowerNullChar() {
         // Arrange
         String attribute = "stuff";
@@ -138,7 +140,7 @@ public class TimeVariableProgramSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetEnergyConsumption() {
         //Arrange
 

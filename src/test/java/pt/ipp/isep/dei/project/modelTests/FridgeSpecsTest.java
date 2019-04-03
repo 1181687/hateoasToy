@@ -1,11 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
-import static org.junit.Assert.*;
-
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.house.Dimension;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.Room;
@@ -14,6 +11,8 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class FridgeSpecsTest {
     private Room kitchen;
     private Device fridge;
@@ -21,7 +20,7 @@ public class FridgeSpecsTest {
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
 
         // House
@@ -42,7 +41,7 @@ public class FridgeSpecsTest {
         fridge.setAttributesDevType("Annual Energy Consumption", 10000.0);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetTypeName() {
         //Arrange
         String expectedResult = "Fridge";
@@ -98,7 +97,7 @@ public class FridgeSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getNumberOfAttributes() {
         // Arrange
         int expectedResult = 4;
@@ -126,7 +125,7 @@ public class FridgeSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValueNominalPower() {
         // Arrange
         Object expectedResult = 100.0;
@@ -138,7 +137,7 @@ public class FridgeSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValueNominalPowerNullChar() {
         // Arrange
         Object expectedResult = NOT_VALID_ATTRIBUTE;
@@ -150,7 +149,7 @@ public class FridgeSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValueFreezerCapacity() {
         // Arrange
         Object expectedResult = 20.0;
@@ -186,7 +185,7 @@ public class FridgeSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValueRefrigeratorCapacityNullChar() {
         // Arrange
         Object expectedResult = NOT_VALID_ATTRIBUTE;
@@ -293,7 +292,7 @@ public class FridgeSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeRefrigeratorCapacityValueNullChar() {
         // Arrange
         String stuff = "stuff";
@@ -401,7 +400,7 @@ public class FridgeSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeFreezerCapacitySameValueZero() {
         // Arrange
         fridge.getSpecs().setAttributeValue("Freezer Capacity", 0);
@@ -413,7 +412,7 @@ public class FridgeSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeRefrigeratorCapacitySameValueZero() {
         // Arrange
         fridge.getSpecs().setAttributeValue("Freezer Capacity", 0);
@@ -425,7 +424,7 @@ public class FridgeSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeNominalPowerSameValueZero() {
         // Arrange
         fridge.getSpecs().setAttributeValue("Freezer Capacity", 0);
@@ -449,7 +448,7 @@ public class FridgeSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeRefrigeratorCapacitySameValue() {
         // Arrange
         fridge.getSpecs().setAttributeValue("Refrigerator Capacity", 50);
@@ -461,7 +460,7 @@ public class FridgeSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeAnnualEnergyConsumptionSameValue() {
         // Arrange
         fridge.getSpecs().setAttributeValue("Annual Energy Consumption", 100);

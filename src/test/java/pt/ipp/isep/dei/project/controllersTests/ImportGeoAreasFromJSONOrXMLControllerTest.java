@@ -1,7 +1,15 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
+import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller.ImportGeoAreasFromJSONOrXMLController;
+import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.LocationMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
@@ -17,15 +25,22 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@DataJpaTest
+@ContextConfiguration(classes = {Main.class},
+        loader = AnnotationConfigContextLoader.class)
+@SpringJUnitConfig(AddSensorToGeoAreaControllerTest.Config.class)
 public class ImportGeoAreasFromJSONOrXMLControllerTest {
+    @Autowired
+    private GeographicalAreaList geographicalAreaList;
 
     /**
      * Test that imports imports geo areas and sensors
      */
     @Test
     public void testImportGeographicalAreaAndSensors_True() throws FileNotFoundException {
+        MockitoAnnotations.initMocks(this);
         // arrange
         // DTO's
         List<Object> geographicalAreaDTOList = new ArrayList<>();
@@ -63,10 +78,16 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
         double latitude = -516;
         double longitude = 12;
         double altitude = 156;
-        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.mapToDTOwithoutSensors(id, description, type, width, length, latitude, longitude, altitude);
+        GeographicalAreaDTO geographicalAreaDTO = GeographicalAreaMapper.newDTO();
+        geographicalAreaDTO.setId(id);
+        geographicalAreaDTO.setDescription(description);
+        geographicalAreaDTO.setType(type);
+        geographicalAreaDTO.setWidth(width);
+        geographicalAreaDTO.setLength(length);
+        geographicalAreaDTO.setLatitude(latitude);
+        geographicalAreaDTO.setLongitude(longitude);
+        geographicalAreaDTO.setElevation(altitude);
 
-        // Geographical Area List
-        GeographicalAreaList geoList = new GeographicalAreaList();
 
         // add
         geographicalAreaDTOList.add(geographicalAreaDTO);
@@ -75,7 +96,7 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
         String path = "datasets/json/JSONfile.json";
         File file = new File(path);
 
-        ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geoList);
+        ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geographicalAreaList);
         ctrl.createReader(path);
         ctrl.readFile(file, path);
 
@@ -84,6 +105,10 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
 
         // assert
         assertTrue(result);
+    }
+
+    @Configuration
+    static class Config {
     }
 
 }

@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationDTO;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
@@ -12,7 +12,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 public class SensorMapperTest {
@@ -20,7 +20,7 @@ public class SensorMapperTest {
     /**
      * this method map to DTO a GeographicalArea
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testMapToDTO_GeoAreaDTO() {
         //Arrange
         //Arrange
@@ -47,6 +47,7 @@ public class SensorMapperTest {
         assertEquals(expectedResult, result);
         assertEquals("sensor1", sensorDTO.getName());
         assertEquals("1/ms", sensorDTO.getUnits());
+        assertEquals(true, sensorDTO.getIsActive());
     }
 
     @Test
@@ -77,6 +78,7 @@ public class SensorMapperTest {
         sensorDTO.setStartingDate(startingDate);
         sensorDTO.setLocation(location);
         sensorDTO.setUnits(sensorDTO.getUnits());
+        sensorDTO.setActive(sensorDTO.getIsActive());
 
 
         //Act

@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.CreateHouseGridController;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
@@ -9,7 +9,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CreateHouseGridControllerTest {
 
@@ -35,7 +35,7 @@ public class CreateHouseGridControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testCreateANewHouseGrid() {
         // Arrange
         //House Instantiation

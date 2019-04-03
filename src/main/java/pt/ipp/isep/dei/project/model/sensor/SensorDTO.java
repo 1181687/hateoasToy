@@ -108,8 +108,8 @@ public class SensorDTO {
         this.units = units;
     }
 
-    public boolean isActive() {
-        return isActive;
+    public boolean getIsActive() {
+        return this.isActive;
     }
 
     public void setActive(boolean active) {

@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.controllersTests;
 
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.controllers.AddSensorToRoomController;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
@@ -15,14 +15,14 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class AddSensorToRoomControllerTest {
     private AddSensorToRoomController controller;
     private GeographicalArea CampusDoIsep;
     private House houseEdificioB;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
 
         //Geographical Area
@@ -43,7 +43,7 @@ public class AddSensorToRoomControllerTest {
         houseEdificioB.setAddress(address);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testDisplayRoomsInTheHouse() {
         // Arrange
         // RoomList with two rooms
@@ -76,7 +76,7 @@ public class AddSensorToRoomControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void displayListOfSensorsType() {
         // Arrange
         // RoomList with two rooms
@@ -107,7 +107,7 @@ public class AddSensorToRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void createAndAddSensorToTheList() {
         // Arrange
 
@@ -144,7 +144,7 @@ public class AddSensorToRoomControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfRoomListIsEmptyPositive() {
         // Arrange
         RoomList roomList = new RoomList();
@@ -160,7 +160,7 @@ public class AddSensorToRoomControllerTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfRoomListIsEmptyNegative() {
         // Arrange
         RoomList roomList = new RoomList();
@@ -185,7 +185,7 @@ public class AddSensorToRoomControllerTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfTheListOfSensorTypeIsEmptyPositive() {
         // Arrange
         // RoomList with two rooms

@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.dishwasher.DishWasherSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -12,7 +12,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class DishWasherSpecsTest {
     private Room kitchen;
@@ -22,7 +22,7 @@ public class DishWasherSpecsTest {
     private static final String NOT_VALID_ATTRIBUTE = "not a valid attribute";
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
 
         // House
@@ -107,7 +107,7 @@ public class DishWasherSpecsTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testgetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
@@ -121,7 +121,7 @@ public class DishWasherSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValueNominalPower() {
         // Arrange
         dishWasher.setAttributesDevType("Nominal Power", 100.0);
@@ -155,7 +155,7 @@ public class DishWasherSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValueCapacityNullChar() {
         // Arrange
         Object expectedResult = NOT_VALID_ATTRIBUTE;
@@ -166,7 +166,7 @@ public class DishWasherSpecsTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValueNotAValidSpec() {
         // Arrange
         Object expectedResult = NOT_VALID_ATTRIBUTE;
@@ -196,7 +196,7 @@ public class DishWasherSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetCapacity_False() {
         boolean expectedResult = false;
         dishWasherSpecs.setAttributeValue("capacity", 0);
@@ -244,7 +244,7 @@ public class DishWasherSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeNominalPowerSameValue() {
         // Arrange
         dishWasher.setAttributesDevType("Nominal Power", 100.0);
@@ -275,7 +275,7 @@ public class DishWasherSpecsTest {
         assertEquals(attributeDataType, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAddProgram_WithNullProgram_ShouldReturnFalse() {
         //Arrange
         boolean expectedResult = false;

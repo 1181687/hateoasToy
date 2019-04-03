@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.MeasurableList;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -16,7 +16,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MeasurableListTest {
     private House house;
@@ -33,7 +33,7 @@ public class MeasurableListTest {
     private static final String WASHING_MACHINE_TYPE = "WashingMachine";
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -67,7 +67,7 @@ public class MeasurableListTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getNominalPower() {
         // Arrange
         mList.addMeasurable(dev1);
@@ -82,7 +82,7 @@ public class MeasurableListTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void checkIfMeasurableObjIsInListTrue() {
         // Arrange
         mList.addMeasurable(dev1);
@@ -107,7 +107,7 @@ public class MeasurableListTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetListToString() {
         // Arrange
         mList.addMeasurable(room2);

@@ -1,16 +1,15 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import pt.ipp.isep.dei.project.GeoAreaRepository;
-import pt.ipp.isep.dei.project.GeoAreaService;
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -34,12 +33,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
-@RunWith(SpringJUnit4ClassRunner.class)
 @DataJpaTest
 @ContextConfiguration(classes = {Main.class},
         loader = AnnotationConfigContextLoader.class)
+@SpringJUnitConfig(HouseTest.Config.class)
 public class HouseTest {
     private House house;
     private GeographicalArea ag;
@@ -56,11 +55,8 @@ public class HouseTest {
     @Autowired
     private GeoAreaRepository geoAreaRepository;
 
-
-    @Before
+    @BeforeEach
     public void StartUp() {
-        GeoAreaService.getInstance().setGeoAreaRepository(geoAreaRepository);
-
         // Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
         AreaShape areaShape = new AreaShape(1.261, 1.249, location);
@@ -87,6 +83,17 @@ public class HouseTest {
         house.setDeviceAttribute("Bosch Tronic 3000", "Nominal Power", 0.5);
         house.setDeviceAttribute("Bosch Tronic 3000", "Performance Ratio", 0.8);
         house.setDeviceAttribute("Bosch Tronic 3000", "Hot-Water Temperature", 70);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void getDisplayRoomListTest() {
+        // Arrange
+        String expectResult = "1- Name: Laundry, House Floor: 2, Dimension - Height: 3.0, Length: 3.5, Width: 3.5\n";
+        // Act
+        String result = house.getRoomListContent();
+
+        // Assert
+        assertEquals(expectResult, result);
     }
 
     @Test
@@ -124,12 +131,14 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void getDisplayRoomListTest() {
+    @org.junit.jupiter.api.Test
+    public void getListSizeEmptyList() {
         // Arrange
-        String expectResult = "1- Name: Laundry, House Floor: 2, Dimension - Height: 3.0, Length: 3.5, Width: 3.5\n";
+        house.getRoomList().getListOfRooms().remove(laundry);
+        int expectResult = 0;
+
         // Act
-        String result = house.getRoomListContent();
+        int result = house.getRoomListSize();
 
         // Assert
         assertEquals(expectResult, result);
@@ -185,51 +194,7 @@ public class HouseTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
-    public void getListSizeEmptyList() {
-        // Arrange
-        house.getRoomList().getListOfRooms().remove(laundry);
-        int expectResult = 0;
-
-        // Act
-        int result = house.getRoomListSize();
-
-        // Assert
-        assertEquals(expectResult, result);
-    }
-
-    @Test
-    public void testAddRoomToHouse() {
-        // Act
-        boolean result = house.addRoom(kitchen);
-
-        // Assert
-        assertTrue(result);
-    }
-
-    @Test
-    public void testAddRoomToHouseFalse() {
-        // Act
-        boolean result = house.addRoom(null);
-
-        // Assert
-        assertFalse(result);
-    }
-
-    @Test
-    public void testGetLocationOfTheHouse() {
-        // Arrange
-        Location location = new Location(41.178553, -8.608035, 111);
-        Location expectedResult = location;
-
-        // Act
-        Location result = house.getLocation();
-
-        // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
+    @org.junit.jupiter.api.Test
     public void testeAverageRainfallOfHouseArea() {
         //Arrange
         //Instanciar sensor
@@ -281,35 +246,37 @@ public class HouseTest {
     }
 
     @Test
-    public void testeAverageRainfallOfHouseAreaNoMeasurements() {
-        //Arrange
-        //Instanciar sensor
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Rainfall");
-        Location locS0 = new Location(42.1496, -8.6109, 97);
-        Sensor s0 = new Sensor("S02", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
-        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
+    public void testAddRoomToHouse() {
+        // Act
+        boolean result = house.addRoom(kitchen);
 
-        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Rainfall");
-        Location locS1 = new Location(42.149, -8.610, 97);
-        Sensor s1 = new Sensor("32", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
-        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
-
-        LocalDate startDate = LocalDate.of(2018, 12, 1);
-        LocalDate endDate = LocalDate.of(2018, 12, 6);
-
-        double expectedResult = 0;
-
-        SensorType searchType = new SensorType("Rainfall");
-        //Act
-        double result = house.getAverageDailyMeasurementInHouseArea(searchType, startDate, endDate);
-
-        //Assert
-        assertEquals(expectedResult, result,0.001);
+        // Assert
+        assertTrue(result);
     }
 
     @Test
+    public void testAddRoomToHouseFalse() {
+        // Act
+        boolean result = house.addRoom(null);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testGetLocationOfTheHouse() {
+        // Arrange
+        Location location = new Location(41.178553, -8.608035, 111);
+        Location expectedResult = location;
+
+        // Act
+        Location result = house.getLocation();
+
+        // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @org.junit.jupiter.api.Test
     public void testGetLastTemperatureOfTheHouseArea() {
         //arrange
         String name1 = "Kitchen";
@@ -372,6 +339,35 @@ public class HouseTest {
     }
 
     @Test
+    public void testeAverageRainfallOfHouseAreaNoMeasurements() {
+        //Arrange
+        //Instanciar sensor
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Rainfall");
+        Location locS0 = new Location(42.1496, -8.6109, 97);
+        Sensor s0 = new Sensor("S02", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
+
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Rainfall");
+        Location locS1 = new Location(42.149, -8.610, 97);
+        Sensor s1 = new Sensor("32", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
+
+        LocalDate startDate = LocalDate.of(2018, 12, 1);
+        LocalDate endDate = LocalDate.of(2018, 12, 6);
+
+        double expectedResult = 0;
+
+        SensorType searchType = new SensorType("Rainfall");
+        //Act
+        double result = house.getAverageDailyMeasurementInHouseArea(searchType, startDate, endDate);
+
+        //Assert
+        assertEquals(expectedResult, result, 0.001);
+    }
+
+    @org.junit.jupiter.api.Test
     public void testGetLastTemperatureOfTheHouseAreaWithoutMeasurements() {
         //arrange
         String name1 = "Kitchen";
@@ -409,6 +405,74 @@ public class HouseTest {
 
         //Assert
         assertEquals(expectedResult, result, 0.0001);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresIguais() {
+        //arrange
+        //sensor
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Temperatura");
+        Location locS0 = new Location(123, 345, 50);
+        Sensor s0 = new Sensor("87654", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 5, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Temperatura");
+        Location locS1 = new Location(123, 355, 50);
+        Sensor s1 = new Sensor("87654", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+
+        LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 11, 15, 20, 00);
+        SensorType sensorType2 = new SensorType("Temperatura");
+        Location locS2 = new Location(123, 345, 55);
+        Sensor s2 = new Sensor("87654", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
+
+        //Reading
+        // Sensor0
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
+
+        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
+        Reading reading02 = new Reading(24, dataHoraDaMedicao02);
+
+        s0.addReadingsToList(reading01);
+        s0.addReadingsToList(reading02);
+
+        //Sensor1
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 12, 24, 17, 24, 00);
+
+        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+        Reading reading12 = new Reading(30, dataHoraDaMedicao12);
+
+        s1.addReadingsToList(reading11);
+        s1.addReadingsToList(reading12);
+
+        //Sensor2
+        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 12, 4, 17, 24, 00);
+
+        Reading reading21 = new Reading(20, dataHoraDaMedicao21);
+        Reading reading22 = new Reading(27, dataHoraDaMedicao22);
+
+        s2.addReadingsToList(reading21);
+        s2.addReadingsToList(reading22);
+
+        SensorType sensorType = new SensorType("Temperatura");
+        Dimension dim = new Dimension(4, 4, 4);
+        Room room = new Room("F5", 1, dim);
+        room.addSensorToListOfSensorsInRoom(s0);
+        room.addSensorToListOfSensorsInRoom(s1);
+        room.addSensorToListOfSensorsInRoom(s2);
+
+        house.addRoom(room);
+
+        Reading expectedResult = reading22;
+
+        //Act
+        Reading result = house.getLatestMeasurementBySensorType("F5", sensorType);
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -486,72 +550,62 @@ public class HouseTest {
         assertEquals(expectedResult, result,0.001);
     }
 
-    @Test
-    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresIguais() {
-        //arrange
-        //sensor
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperatura");
+    @org.junit.jupiter.api.Test
+    public void getMaximumTemperatureOfARoomInASpecificDay() {
+        //Arrange
+        String name = "Master Bedroom";
+        int houseFloor = 2;
+        double height = 10.0;
+        double length = 5.0;
+        double width = 5.0;
+        Dimension dimension = new Dimension(height, length, width);
+        Room room1 = new Room(name, houseFloor, dimension);
+
+        house.addRoom(room1);
+
+        LocalDateTime date0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("87654", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+        Sensor s0 = new Sensor("3213", "A123", date0, sensorType0, locS0, "l/m2");
 
-        LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperatura");
-        Location locS1 = new Location(123, 355, 50);
-        Sensor s1 = new Sensor("87654", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+        LocalDateTime date1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Temperature");
+        Location locS1 = new Location(123, 345, 50);
+        Sensor s1 = new Sensor("1414", "B123", date1, sensorType1, locS1, "l/m2");
 
-        LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 11, 15, 20, 00);
-        SensorType sensorType2 = new SensorType("Temperatura");
-        Location locS2 = new Location(123, 345, 55);
-        Sensor s2 = new Sensor("87654", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
+        LocalDateTime dateTimeDayMeasure1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 12, 2, 20, 24, 00);
 
-        //Reading
-        // Sensor0
-        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
+        Reading reading1 = new Reading(-20.0, dateTimeDayMeasure1);
+        Reading reading2 = new Reading(-25.0, dateTimeDayMeasure2);
 
-        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
-        Reading reading02 = new Reading(24, dataHoraDaMedicao02);
+        s0.addReadingsToList(reading1);
+        s0.addReadingsToList(reading2);
 
-        s0.addReadingsToList(reading01);
-        s0.addReadingsToList(reading02);
+        LocalDateTime dateTimeDayMeasure3 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+        LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 12, 2, 17, 24, 00);
 
-        //Sensor1
-        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 12, 24, 17, 24, 00);
+        Reading reading3 = new Reading(-10.0, dateTimeDayMeasure3);
+        Reading reading4 = new Reading(-15.0, dateTimeDayMeasure4);
 
-        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
-        Reading reading12 = new Reading(30, dataHoraDaMedicao12);
+        s1.addReadingsToList(reading3);
+        s1.addReadingsToList(reading4);
 
-        s1.addReadingsToList(reading11);
-        s1.addReadingsToList(reading12);
+        room1.getSensorList().addSensor(s0);
+        room1.getSensorList().addSensor(s1);
 
-        //Sensor2
-        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 12, 4, 17, 24, 00);
+        house.addRoom(room1);
 
-        Reading reading21 = new Reading(20, dataHoraDaMedicao21);
-        Reading reading22 = new Reading(27, dataHoraDaMedicao22);
+        LocalDate dayNeeded = LocalDate.of(1991, 12, 2);
 
-        s2.addReadingsToList(reading21);
-        s2.addReadingsToList(reading22);
-
-        SensorType sensorType = new SensorType("Temperatura");
-        Dimension dim = new Dimension(4, 4, 4);
-        Room room = new Room("F5", 1, dim);
-        room.addSensorToListOfSensorsInRoom(s0);
-        room.addSensorToListOfSensorsInRoom(s1);
-        room.addSensorToListOfSensorsInRoom(s2);
-
-        house.addRoom(room);
-
-        Reading expectedResult = reading22;
+        double expectedResult = -10.0;
 
         //Act
-        Reading result = house.getLatestMeasurementBySensorType("F5", sensorType);
+        double result = house.getMaximumTemperatureOfRoomInSpecificDay(name, sensorType0, dayNeeded);
 
         //Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectedResult, result, 0.001);
+
     }
 
     @Test
@@ -700,63 +754,16 @@ public class HouseTest {
         assertNull(result);
     }
 
+    @org.junit.jupiter.api.Test
+    public void getDeviceListContentOfARoomTest() {
+        // Arrange
+        String expectedResult = "1 - Name of the device: Bosch Tronic 3000\n";
 
-    @Test
-    public void getMaximumTemperatureOfARoomInASpecificDay() {
-        //Arrange
-        String name = "Master Bedroom";
-        int houseFloor = 2;
-        double height = 10.0;
-        double length = 5.0;
-        double width = 5.0;
-        Dimension dimension = new Dimension(height, length, width);
-        Room room1 = new Room(name, houseFloor, dimension);
+        // Act
+        String result = house.getDeviceListContentRoom(0);
 
-        house.addRoom(room1);
-
-        LocalDateTime date0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperature");
-        Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("3213", "A123", date0, sensorType0, locS0, "l/m2");
-
-        LocalDateTime date1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperature");
-        Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("1414", "B123", date1, sensorType1, locS1, "l/m2");
-
-        LocalDateTime dateTimeDayMeasure1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 12, 2, 20, 24, 00);
-
-        Reading reading1 = new Reading(-20.0, dateTimeDayMeasure1);
-        Reading reading2 = new Reading(-25.0, dateTimeDayMeasure2);
-
-        s0.addReadingsToList(reading1);
-        s0.addReadingsToList(reading2);
-
-        LocalDateTime dateTimeDayMeasure3 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 12, 2, 17, 24, 00);
-
-        Reading reading3 = new Reading(-10.0, dateTimeDayMeasure3);
-        Reading reading4 = new Reading(-15.0, dateTimeDayMeasure4);
-
-        s1.addReadingsToList(reading3);
-        s1.addReadingsToList(reading4);
-
-        room1.getSensorList().addSensor(s0);
-        room1.getSensorList().addSensor(s1);
-
-        house.addRoom(room1);
-
-        LocalDate dayNeeded = LocalDate.of(1991, 12, 2);
-
-        double expectedResult = -10.0;
-
-        //Act
-        double result = house.getMaximumTemperatureOfRoomInSpecificDay(name, sensorType0, dayNeeded);
-
-        //Assert
-        assertEquals(expectedResult, result,0.001);
-
+        // Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -850,52 +857,7 @@ public class HouseTest {
         assertFalse(result);
     }
 
-
-    @Test
-    public void getDeviceListContentOfARoomTest() {
-        // Arrange
-        String expectedResult = "1 - Name of the device: Bosch Tronic 3000\n";
-
-        // Act
-        String result = house.getDeviceListContentRoom(0);
-
-        // Assert
-        assertEquals(expectedResult, result);
-    }
-
-    @Test
-    public void checkIfDeviceListIsEmptyTestTrue() {
-        // Arrange
-        laundry.removeDevice(electricWaterHeater);
-
-        // Act
-        boolean result = house.isDeviceListEmpty(0);
-
-        // Assert
-        assertTrue(result);
-    }
-
-
-    @Test
-    public void checkIfDeviceListIsEmptyTestFalse() {
-        // Arrange
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
-
-        Device dev1 = house.createDevice("Lamp", "Lamp1", room);
-
-        house.addRoom(room);
-
-        int position = 0;
-        // Act
-        boolean result = house.isDeviceListEmpty(position);
-
-        // Assert
-        assertFalse(result);
-    }
-
-
-    @Test
+    @org.junit.jupiter.api.Test
     public void TestGetAllDevicesListByGridPosition() {
         //Room ONE
         String name = "Kitchen";
@@ -938,6 +900,50 @@ public class HouseTest {
         List<Device> result = house.getAllDevicesListByGridPosition(0);
 
         assertEquals(expectedResult, result);
+    }
+
+    @Test
+    public void checkIfDeviceListIsEmptyTestTrue() {
+        // Arrange
+        laundry.removeDevice(electricWaterHeater);
+
+        // Act
+        boolean result = house.isDeviceListEmpty(0);
+
+        // Assert
+        assertTrue(result);
+    }
+
+
+    @Test
+    public void checkIfDeviceListIsEmptyTestFalse() {
+        // Arrange
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", 2, dim);
+
+        Device dev1 = house.createDevice("Lamp", "Lamp1", room);
+
+        house.addRoom(room);
+
+        int position = 0;
+        // Act
+        boolean result = house.isDeviceListEmpty(position);
+
+        // Assert
+        assertFalse(result);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void testGetRoomListLength() {
+        // Arrange
+        double expectedResult = 1;
+
+        // Act
+        double result = house.houseRoomListSize();
+
+        // Assert
+        assertEquals(expectedResult, result, 0.001);
+
     }
 
     @Test
@@ -993,19 +999,6 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
-
-    @Test
-    public void testGetRoomListLength() {
-        // Arrange
-        double expectedResult = 1;
-
-        // Act
-        double result = house.houseRoomListSize();
-
-        // Assert
-        assertEquals(expectedResult, result,0.001);
-
-    }
 /* --> TESTE A SER ALTERADO DEPOIS DE IMPLEMENTAÇÃO DE DTO's.
     @Test
     public void getEnergyConsumptionInADayOfAllDevicesOfATypeTestWithValidValues() {
@@ -1043,7 +1036,7 @@ public class HouseTest {
     }
 
     */
-@Test
+@org.junit.jupiter.api.Test
     public void getNameByHGPosition() {
         // Arrange
         // Instantiate House Grids
@@ -1066,6 +1059,17 @@ public class HouseTest {
         String result = house.getGridNameByPosition(position);
 
         // Assert
+        assertEquals(expectedResult, result);
+    }
+
+    @org.junit.jupiter.api.Test
+    public void getDeviceNameOfATypeByPositionTest() {
+        // Arrange
+        String expectedResult = "Bosch Tronic 3000";
+
+        // Act
+        String result = house.getDeviceNameOfATypeByPosition("ElectricWaterHeater", 0);
+
         assertEquals(expectedResult, result);
     }
 
@@ -1329,15 +1333,16 @@ public class HouseTest {
 
     }
 
-    @Test
-    public void getDeviceNameOfATypeByPositionTest() {
+    @org.junit.jupiter.api.Test
+    public void checkIfRoomListIsEmptyTrue() {
         // Arrange
-        String expectedResult = "Bosch Tronic 3000";
+        house.getRoomList().getListOfRooms().remove(laundry);
 
         // Act
-        String result = house.getDeviceNameOfATypeByPosition("ElectricWaterHeater", 0);
+        boolean result = house.roomListIsEmpty();
 
-        assertEquals(expectedResult, result);
+        // Assert
+        assertTrue(result);
     }
 
     @Test
@@ -1352,16 +1357,16 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void checkIfRoomListIsEmptyTrue() {
+    @org.junit.jupiter.api.Test
+    public void getAllDevicesToStringTest() {
         // Arrange
-        house.getRoomList().getListOfRooms().remove(laundry);
+        String expectedResult = "1 - Device: Bosch Tronic 3000, located in room: Laundry\n";
 
         // Act
-        boolean result = house.roomListIsEmpty();
+        String result = house.getAllDevicesToString();
 
         // Assert
-        assertTrue(result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -1381,16 +1386,17 @@ public class HouseTest {
         assertFalse(result);
     }
 
-    @Test
-    public void getAllDevicesToStringTest() {
+    @org.junit.jupiter.api.Test
+    public void getDeviceListSizeEmptyList() {
         // Arrange
-        String expectedResult = "1 - Device: Bosch Tronic 3000, located in room: Laundry\n";
+        house.getRoomList().getListOfRooms().remove(laundry);
+        int expectResult = 0;
 
         // Act
-        String result = house.getAllDevicesToString();
+        int result = house.getDeviceSize();
 
         // Assert
-        assertEquals(expectedResult, result);
+        assertEquals(expectResult, result);
     }
 
     @Test
@@ -1457,17 +1463,66 @@ public class HouseTest {
         assertEquals(expectResult, result);
     }
 
-    @Test
-    public void getDeviceListSizeEmptyList() {
-        // Arrange
-        house.getRoomList().getListOfRooms().remove(laundry);
-        int expectResult = 0;
+    @org.junit.jupiter.api.Test
+    public void testGetDateLastTemperatureOfTheHouseArea() {
+        //arrange
+        String name1 = "Kitchen";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, houseFloor1, dimension1);
 
-        // Act
-        int result = house.getDeviceSize();
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, houseFloor2, dimension2);
 
-        // Assert
-        assertEquals(expectResult, result);
+        house.addRoom(room1);
+        house.addRoom(room2);
+
+        //Instantiate Sensors
+        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        SensorType sensorType0 = new SensorType("Temperature");
+        Location locS0 = new Location(41.178553, -8.608035, 111);
+        Sensor s0 = new Sensor("421", "A122", dataFuncionamento0, sensorType0, locS0, "l/m2");
+        ag.getSensorListInTheGeographicArea().addSensor(s0);
+
+        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        SensorType sensorType1 = new SensorType("Temperature");
+        Location locS1 = new Location(41.178553, -8.608035, 111);
+        Sensor s1 = new Sensor("131", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+        ag.getSensorListInTheGeographicArea().addSensor(s1);
+
+
+        //Instantiate Reading
+        // Sensor0
+        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 4, 17, 24, 00);
+
+        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
+        Reading reading02 = new Reading(30, dataHoraDaMedicao02);
+
+        s0.addReadingsToList(reading01);
+        s0.addReadingsToList(reading02);
+
+        //Sensor1
+        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
+
+        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
+
+        s1.addReadingsToList(reading11);
+        s1.addReadingsToList(reading12);
+
+        LocalDateTime expectedResult = LocalDateTime.of(2018, 12, 4, 17, 24);
+
+        SensorType type = new SensorType("Temperature");
+
+        //Act
+        LocalDateTime result = house.getDateOfLastMeasurementByType(type);
+
+        //Assert
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -1590,67 +1645,15 @@ public class HouseTest {
 
     }
 
-
-    @Test
-    public void testGetDateLastTemperatureOfTheHouseArea() {
-        //arrange
-        String name1 = "Kitchen";
-        int houseFloor1 = 0;
-        Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
-
-        String name2 = "Living Room";
-        int houseFloor2 = 1;
-        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
-
-        house.addRoom(room1);
-        house.addRoom(room2);
-
-        //Instantiate Sensors
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperature");
-        Location locS0 = new Location(41.178553, -8.608035, 111);
-        Sensor s0 = new Sensor("421", "A122", dataFuncionamento0, sensorType0, locS0, "l/m2");
-        ag.getSensorListInTheGeographicArea().addSensor(s0);
-
-        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperature");
-        Location locS1 = new Location(41.178553, -8.608035, 111);
-        Sensor s1 = new Sensor("131", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
-        ag.getSensorListInTheGeographicArea().addSensor(s1);
-
-
-        //Instantiate Reading
-        // Sensor0
-        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 4, 17, 24, 00);
-
-        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
-        Reading reading02 = new Reading(30, dataHoraDaMedicao02);
-
-        s0.addReadingsToList(reading01);
-        s0.addReadingsToList(reading02);
-
-        //Sensor1
-        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 3, 17, 24, 00);
-
-        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
-        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
-
-        s1.addReadingsToList(reading11);
-        s1.addReadingsToList(reading12);
-
-        LocalDateTime expectedResult = LocalDateTime.of(2018, 12, 4, 17, 24);
-
-        SensorType type = new SensorType("Temperature");
-
+    @org.junit.jupiter.api.Test
+    public void testAddGridTrue() {
+        //Arrange
+        String gridName = "main grid";
+        HouseGrid houseGrid = new HouseGrid(gridName);
         //Act
-        LocalDateTime result = house.getDateOfLastMeasurementByType(type);
-
+        boolean result = this.house.addGrid(houseGrid);
         //Assert
-        assertEquals(expectedResult, result);
+        assertTrue(result);
     }
 
     @Test
@@ -1720,15 +1723,61 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void testAddGridTrue() {
+    @org.junit.jupiter.api.Test
+    public void getFirstHighestReading_WithOnlyOneDoubleNaNValue_Null() {
         //Arrange
-        String gridName = "main grid";
-        HouseGrid houseGrid = new HouseGrid(gridName);
+        // Geographical Area Types
+        GeographicalAreaType region = new GeographicalAreaType("Region");
+        GeographicalAreaType district = new GeographicalAreaType("District");
+        GeographicalAreaType city = new GeographicalAreaType("City");
+
+        // Geographical Areas
+        Location location = new Location(32.1496, 7.6109, 98);
+        AreaShape areaShape = new AreaShape(100, 100, location);
+        GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
+        Location location1 = new Location(41.1496, -6.6109, 100);
+        AreaShape areaShape1 = new AreaShape(40, 40, location1);
+        GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
+        portoDistrict.setInsertedIn(northernRegion);
+        Location location2 = new Location(42.1496, -8.6109, 97);
+        AreaShape areaShape2 = new AreaShape(10, 10, location2);
+        GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
+        portoCity.setInsertedIn(portoDistrict);
+
+        // House
+        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodGrid"));
+        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodDevice"));
+        List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
+        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
+        Location houseLocation = new Location(41.178553, -8.608035, 111);
+        Address address = new Address("4200-072", houseLocation, portoCity);
+        this.house.setAddress(address);
+        this.house.setInsertedGeoArea(portoCity);
+
+
+        // Sensors
+        SensorType temperature = new SensorType("Temperature");
+        LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+        Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
+        Sensor temperatureSensor1 = new Sensor("543", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+
+        // Reading
+        LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
+        Reading reading = new Reading(Double.NaN, readingDate);
+        temperatureSensor1.addReadingsToList(reading);
+
+        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
+
+        //interval LocalDate
+        LocalDate startDate = LocalDate.of(2018, 12, 2);
+        LocalDate endDate = LocalDate.of(2018, 12, 4);
+
+        Reading expectedResult = reading;
+
         //Act
-        boolean result = this.house.addGrid(houseGrid);
+        Reading result = this.house.getFirstHighestReadingHouseArea(temperature, startDate, endDate);
         //Assert
-        assertTrue(result);
+        assertEquals(expectedResult, result);
     }
 
     @Test
@@ -2893,61 +2942,8 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
-    public void getFirstHighestReading_WithOnlyOneDoubleNaNValue_Null() {
-        //Arrange
-        // Geographical Area Types
-        GeographicalAreaType region = new GeographicalAreaType("Region");
-        GeographicalAreaType district = new GeographicalAreaType("District");
-        GeographicalAreaType city = new GeographicalAreaType("City");
-
-        // Geographical Areas
-        Location location = new Location(32.1496, 7.6109, 98);
-        AreaShape areaShape = new AreaShape(100, 100, location);
-        GeographicalArea northernRegion = new GeographicalArea("Norte", "Northern Region", region, location, areaShape);
-        Location location1 = new Location(41.1496, -6.6109, 100);
-        AreaShape areaShape1 = new AreaShape(40, 40, location1);
-        GeographicalArea portoDistrict = new GeographicalArea("Porto District", "District of Porto", district, location1, areaShape1);
-        portoDistrict.setInsertedIn(northernRegion);
-        Location location2 = new Location(42.1496, -8.6109, 97);
-        AreaShape areaShape2 = new AreaShape(10, 10, location2);
-        GeographicalArea portoCity = new GeographicalArea("Porto City", "City of Porto", city, location2, areaShape2);
-        portoCity.setInsertedIn(portoDistrict);
-
-        // House
-        int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodGrid"));
-        int meteringPeriodDevice = Integer.parseInt(Utils.readConfigFile(CONFIG_PROPERTIES, "MeteringPeriodDevice"));
-        List<String> deviceTypeList = Utils.readConfigFileToList(CONFIG_PROPERTIES, "devicetype.count", "devicetype.name");
-        this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
-        Location houseLocation = new Location(41.178553, -8.608035, 111);
-        Address address = new Address("4200-072", houseLocation, portoCity);
-        this.house.setAddress(address);
-        this.house.setInsertedGeoArea(portoCity);
-
-
-        // Sensors
-        SensorType temperature = new SensorType("Temperature");
-        LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
-        Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        Sensor temperatureSensor1 = new Sensor("543", "B123", startDate1, temperature, sensorLocation1, "l/m2");
-
-        // Reading
-        LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);
-        Reading reading = new Reading(Double.NaN, readingDate);
-        temperatureSensor1.addReadingsToList(reading);
-
-        portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
-
-        //interval LocalDate
-        LocalDate startDate = LocalDate.of(2018, 12, 2);
-        LocalDate endDate = LocalDate.of(2018, 12, 4);
-
-        Reading expectedResult = reading;
-
-        //Act
-        Reading result = this.house.getFirstHighestReadingHouseArea(temperature, startDate, endDate);
-        //Assert
-        assertEquals(expectedResult, result);
+    @Configuration
+    static class Config {
     }
 }
 

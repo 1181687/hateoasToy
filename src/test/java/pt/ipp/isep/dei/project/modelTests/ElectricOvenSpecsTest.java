@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.electricoven.ElectricOvenSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -12,7 +12,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class ElectricOvenSpecsTest {
     private static final String ATTRIBUTE_TIME = "Time";
@@ -24,7 +24,7 @@ public class ElectricOvenSpecsTest {
     private House house;
     private DeviceSpecs specs;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
 
         // House
@@ -129,7 +129,7 @@ public class ElectricOvenSpecsTest {
      * Test the setNominalPower method with the method setAttributeValue.
      * This test checks if we can set the Nominal Power value with an invalid Data Type.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetNominalPower_InvalidDataType_False() {
         //Arrange
         boolean expectedResult = false;
@@ -146,7 +146,7 @@ public class ElectricOvenSpecsTest {
      * Test the setNominalPower method with the method setAttributeValue.
      * This test checks if we can set the Nominal Power value with zero value.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetNominalPower_ZeroValue_False() {
         //Arrange
         boolean expectedResult = false;
@@ -180,7 +180,7 @@ public class ElectricOvenSpecsTest {
      * Test the setTime method with the method setAttributeValue.
      * This test checks if we can set the Time value with the already existent value.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetTime_SameDoubleValue_False() {
         //Arrange
         boolean expectedResult = false;
@@ -216,7 +216,7 @@ public class ElectricOvenSpecsTest {
      * Test the setTime method with the method setAttributeValue.
      * This test checks if we can set the Time value with with an invalid Data Type.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetTime_InvalidDataType_False() {
         //Arrange
         boolean expectedResult = false;
@@ -249,7 +249,7 @@ public class ElectricOvenSpecsTest {
     /**
      * Test the setAttributeValue method in the case that there isn't a valid attribute name.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeValue_InvalidAttributeName_False() {
         //Arrange
         boolean expectedResult = false;
@@ -382,7 +382,7 @@ public class ElectricOvenSpecsTest {
      * Test the return "not a valid attribute" of the method getAttributeValue,
      * when inserted an null character attribute.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValue_NullCharacterNomPower (){
         //Arrange
         String expectedResult = "not a valid attribute";
@@ -427,7 +427,7 @@ public class ElectricOvenSpecsTest {
      * Test if the method getAttributeDataType shows the Data type of a valid attribute,
      * in this case, the volume Of Water To Heat.
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeDataType_volumeOfWaterToHeat() {
         //Arrange
         String expectedResult = "Double";

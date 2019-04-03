@@ -1,8 +1,8 @@
 package pt.ipp.isep.dei.project.modelTests;
 
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
@@ -19,7 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class GeographicalAreaTest {
@@ -33,7 +33,7 @@ class GeographicalAreaTest {
     private AreaShape areaShape2;
 
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         // Geographical Area Types
         GeographicalAreaType region = new GeographicalAreaType("Region");
@@ -147,7 +147,7 @@ class GeographicalAreaTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarEqualsObjetosDiferentes() {
         //arrange
         String nomeAG = "Porto";
@@ -224,7 +224,7 @@ class GeographicalAreaTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarSensorNaoContidoEmAreaGeografica() {
         //Arrange
         String nomeAG = "Porto";
@@ -265,7 +265,7 @@ class GeographicalAreaTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void listarSensoresContidosNaAGPorTipo() {
         //Arrange
         String nomeAG = "Porto";
@@ -623,7 +623,7 @@ class GeographicalAreaTest {
         assertTrue(resultado);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testarAdicaoDeUmSensorApenasAAreaGeografica() {
         //Arrange
         String nomeAG1 = "Porto";
@@ -769,7 +769,7 @@ class GeographicalAreaTest {
      * Test that tries to get the first temperature sensors in the hierarchy of geo areas, without any area
      * having temperature sensors, which turns out to be the output of the tested method (an empty list of sensors).
      */
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetFirstSensorsOfATypeInHierarchy_withNoTempSensors_ShouldReturnAnEmptyList() {
         //Arrange
         List<Sensor> expectedResult = new ArrayList<>();
@@ -960,7 +960,7 @@ class GeographicalAreaTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getAverageRainfallInTheAreaTestOneSensorWithNoReadings() {
         //arrange
         //Instanciar AG
@@ -1810,7 +1810,7 @@ class GeographicalAreaTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetLastLowestMaximumReading_WithNullSensor_Null() {
         //Arrange
         LocalDateTime time0 = LocalDateTime.of(2018, 12, 2, 12, 20, 00);

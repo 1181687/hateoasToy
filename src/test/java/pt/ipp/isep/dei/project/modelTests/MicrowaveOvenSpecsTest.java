@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.devices.*;
 import pt.ipp.isep.dei.project.model.devices.microwaveoven.MicrowaveOvenSpecs;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -12,7 +12,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class MicrowaveOvenSpecsTest {
     private Room kitchen;
@@ -20,7 +20,7 @@ public class MicrowaveOvenSpecsTest {
     private House house;
     private DeviceSpecs microwaveOvenSpecs;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
 
         // House
@@ -64,7 +64,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testEmptyConstructor() {
         //Arrange
         microwaveOven.setAttributesDevType("Nominal Power", 30);
@@ -105,7 +105,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetEnergyConsumptionInADay() {
 
         double expectedResult = 0;
@@ -117,7 +117,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetSpecsInAListOfStrings() {
         // Arrange
         List<String> expectedResult = new ArrayList<>();
@@ -142,7 +142,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetAttributeValue_notAValidSpec() {
         // Arrange
         Object expectedResult = "not a valid attribute";
@@ -152,7 +152,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeNominalPowerValue_NotAValidType() {
         // Arrange
         String attribute = "stuff";
@@ -162,7 +162,7 @@ public class MicrowaveOvenSpecsTest {
         assertFalse(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttributeNominalPower_ValidValue() {
         // Act
         boolean result = microwaveOven.getSpecs().setAttributeValue("Nominal Power", 1.3);
@@ -170,7 +170,7 @@ public class MicrowaveOvenSpecsTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testSetAttribute_NotAValidAttribute() {
         // Act
         boolean result = microwaveOven.getSpecs().setAttributeValue("Wrong Attribute", 1.3);
@@ -208,7 +208,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getAttributeDataTypeTest() {
         // arrange
         String expectedResult = "Double";
@@ -230,7 +230,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAddProgram_ProgramAlreadyInTheList_ShouldReturnFalse() {
         //Arrange
         String programName = "fast";
@@ -252,7 +252,7 @@ public class MicrowaveOvenSpecsTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testAddProgram_ProgramIsNotInTheList_ShouldReturnTrue() {
         //Arrange
         String programName = "fast";

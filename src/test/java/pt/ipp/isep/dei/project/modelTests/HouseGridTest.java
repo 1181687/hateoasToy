@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.house.Dimension;
@@ -15,7 +15,7 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.time.LocalDateTime;
 import java.util.*;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class HouseGridTest {
     private House house;
@@ -30,7 +30,7 @@ public class HouseGridTest {
     private Device electricWaterHeater;
     private Map<LocalDateTime, Double> map;
 
-    @Before
+    @BeforeEach
     public void StartUp() {
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -172,7 +172,7 @@ public class HouseGridTest {
         assertTrue(result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testListPowerSources() {
         //Arrange
         String expectedResult = "1- Power Source 1\n" +
@@ -330,7 +330,7 @@ public class HouseGridTest {
     }
 
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getListSizeEmptyList() {
         //arrange
 
@@ -457,7 +457,7 @@ public class HouseGridTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void testGetEnergyConsumptionInAnIntervalWithNoValidReadingss() {
 
         //Arrange
@@ -506,7 +506,7 @@ public class HouseGridTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+    @org.junit.jupiter.api.Test
     public void getReadings(){
         LocalDateTime time0 = LocalDateTime.of(2019, 01, 24, 00, 00, 00);
         Reading reading0 = new Reading(3, time0);
