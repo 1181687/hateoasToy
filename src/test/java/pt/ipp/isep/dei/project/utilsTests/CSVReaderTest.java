@@ -9,8 +9,8 @@ import pt.ipp.isep.dei.project.utils.CSVReader;
 
 import java.io.File;
 import java.time.LocalDateTime;
-import java.util.Collections;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -23,7 +23,7 @@ public class CSVReaderTest {
 
     @BeforeEach
     public void StartUp() {
-        String path = "datasets/csv/DataSet_sp05_SensorData.csv";
+        String path = "datasets/sensorReadings/csv/DataSet_sp05_SensorData.csv";
         file = new File(path);
     }
 
@@ -34,9 +34,6 @@ public class CSVReaderTest {
     @Test
     public void testReadFile_withAFileWithAllTheInformationValid_ShouldReturnSuccessfulResults() {
         // Arrange
-        String path = "datasets/csv/DataSet_sp05_SensorData.csv";
-        file = new File(path);
-
         ReadingDTO readingDTO = new ReadingDTO();
         readingDTO.setId("TT12346");
         LocalDateTime dateTime = LocalDateTime.of(2018, 12, 31, 2, 0, 0);
@@ -62,7 +59,7 @@ public class CSVReaderTest {
     @Test
     public void testReadFile_withEmptyFile_ShouldReturnNull() {
         // Arrange
-        String path = "datasets/csv/DataSet_sp05_SensorData_empty.csv";
+        String path = "datasets/sensorReadings/csv/DataSet_sp05_SensorData_empty.csv";
         file = new File(path);
 
         // Act
@@ -78,7 +75,7 @@ public class CSVReaderTest {
     @Test
     public void testReadFile_withHalfEmptyFile_ShouldReturnTheCorrespondingNumberOfImportedReadings() {
         // Arrange
-        String path = "datasets/csv/DataSet_sp05_SensorData_halfEmpty.csv";
+        String path = "datasets/sensorReadings/csv/DataSet_sp05_SensorData_halfEmpty.csv";
         file = new File(path);
 
         // Act

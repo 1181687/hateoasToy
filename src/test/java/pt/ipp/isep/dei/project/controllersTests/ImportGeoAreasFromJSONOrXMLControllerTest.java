@@ -93,7 +93,7 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
         geographicalAreaDTOList.add(geographicalAreaDTO);
         geographicalAreaDTO.addSensor(sensorDTO);
 
-        String path = "datasets/json/JSONfile.json";
+        String path = "datasets/geoAreas/json/JSONfile.json";
         File file = new File(path);
 
         ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geographicalAreaList);

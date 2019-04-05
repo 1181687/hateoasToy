@@ -24,7 +24,7 @@ public class XMLReaderTest {
     @Test
     public void testReadXMLFileToList_geoAreaDTO() {
         // arrange
-        String path = "datasets/xml/XMLfile_GA.xml";
+        String path = "datasets/geoAreas/xml/XMLfile_GA.xml";
         File file = new File(path);
 
         // geograhical area list
@@ -78,7 +78,7 @@ public class XMLReaderTest {
     @Test
     public void testReadXMLFileToListReadings_readingDTO() {
         // arrange
-        String path = "datasets/xml/XMLfile_Readings_twoReadings.xml";
+        String path = "datasets/sensorReadings/xml/XMLfile_Readings_twoReadings.xml";
         File file = new File(path);
 
         // reading list

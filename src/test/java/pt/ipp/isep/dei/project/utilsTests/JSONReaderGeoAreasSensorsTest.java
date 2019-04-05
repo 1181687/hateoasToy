@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class JSONReaderGeoAreasSensorsTest {
     private JSONReaderGeoAreasSensors jsonReaderGeoAreasSensors = new JSONReaderGeoAreasSensors();
@@ -24,7 +25,7 @@ public class JSONReaderGeoAreasSensorsTest {
     @Test
     public void testReadJSONFileToList_geoAreaDTO() throws FileNotFoundException {
         // arrange
-        String path = "datasets/json/JSONfile.json";
+        String path = "datasets/geoAreas/json/JSONfile.json";
         File file = new File(path);
 
         // geograhical area list
@@ -78,7 +79,7 @@ public class JSONReaderGeoAreasSensorsTest {
     @Test
     public void testReadJSONFileToList_readingsDTO() throws FileNotFoundException {
         // arrange
-        String path = "datasets/json/DataSet_sprint05_SensorData.json";
+        String path = "datasets/sensorReadings/json/DataSet_sprint05_SensorData.json";
         File file = new File(path);
 
         // geograhical area list
@@ -124,19 +125,17 @@ public class JSONReaderGeoAreasSensorsTest {
         assertEquals(expectedResult, result);
     }
 
-    /*@Test
+    @Test
     public void testReadFile_NullObject_ShouldReturnNull () {
         // Arrange
         String path = "rfg.csv";
         File file = new File(path);
 
-        List<Object> expectedResult = new ArrayList<>();
-
         // Act
-        List<Object> result = jsonReaderGeoAreasSensors.readFile(file);
+        Throwable exception = assertThrows(FileNotFoundException.class, () -> jsonReaderGeoAreasSensors.readFile(file));
 
-        // Assert
-        assertEquals(expectedResult, result);
-    }*/
+        //Assert
+        assertEquals("rfg.csv (No such file or directory)", exception.getMessage());
+    }
 
 }
