@@ -43,7 +43,7 @@ public class AddSensorToRoomControllerTest {
         houseEdificioB.setAddress(address);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testDisplayRoomsInTheHouse() {
         // Arrange
         // RoomList with two rooms
@@ -76,7 +76,7 @@ public class AddSensorToRoomControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void displayListOfSensorsType() {
         // Arrange
         // RoomList with two rooms
@@ -107,7 +107,7 @@ public class AddSensorToRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void createAndAddSensorToTheList() {
         // Arrange
 
@@ -144,7 +144,7 @@ public class AddSensorToRoomControllerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkIfRoomListIsEmptyPositive() {
         // Arrange
         RoomList roomList = new RoomList();
@@ -160,7 +160,7 @@ public class AddSensorToRoomControllerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkIfRoomListIsEmptyNegative() {
         // Arrange
         RoomList roomList = new RoomList();
@@ -185,7 +185,7 @@ public class AddSensorToRoomControllerTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkIfTheListOfSensorTypeIsEmptyPositive() {
         // Arrange
         // RoomList with two rooms
