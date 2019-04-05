@@ -85,7 +85,7 @@ public class HouseTest {
         house.setDeviceAttribute("Bosch Tronic 3000", "Hot-Water Temperature", 70);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDisplayRoomListTest() {
         // Arrange
         String expectResult = "1- Name: Laundry, House Floor: 2, Dimension - Height: 3.0, Length: 3.5, Width: 3.5\n";
@@ -131,7 +131,7 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getListSizeEmptyList() {
         // Arrange
         house.getRoomList().getListOfRooms().remove(laundry);
@@ -194,7 +194,7 @@ public class HouseTest {
         assertEquals(expectResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testeAverageRainfallOfHouseArea() {
         //Arrange
         //Instanciar sensor
@@ -242,7 +242,7 @@ public class HouseTest {
         double result = house.getAverageDailyMeasurementInHouseArea(searchType, startDate, endDate);
 
         //Assert
-        assertEquals(expectedResult, result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
     @Test
@@ -276,7 +276,7 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetLastTemperatureOfTheHouseArea() {
         //arrange
         String name1 = "Kitchen";
@@ -367,7 +367,7 @@ public class HouseTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetLastTemperatureOfTheHouseAreaWithoutMeasurements() {
         //arrange
         String name1 = "Kitchen";
@@ -407,7 +407,7 @@ public class HouseTest {
         assertEquals(expectedResult, result, 0.0001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresIguais() {
         //arrange
         //sensor
@@ -547,10 +547,10 @@ public class HouseTest {
         double result = house.getTotalDailyMeasurementInHouseArea(searchType, day);
 
         //Assert
-        assertEquals(expectedResult, result,0.001);
+        assertEquals(expectedResult, result, 0.001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getMaximumTemperatureOfARoomInASpecificDay() {
         //Arrange
         String name = "Master Bedroom";
@@ -754,7 +754,7 @@ public class HouseTest {
         assertNull(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDeviceListContentOfARoomTest() {
         // Arrange
         String expectedResult = "1 - Name of the device: Bosch Tronic 3000\n";
@@ -857,7 +857,7 @@ public class HouseTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void TestGetAllDevicesListByGridPosition() {
         //Room ONE
         String name = "Kitchen";
@@ -933,7 +933,7 @@ public class HouseTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetRoomListLength() {
         // Arrange
         double expectedResult = 1;
@@ -999,44 +999,44 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
-/* --> TESTE A SER ALTERADO DEPOIS DE IMPLEMENTAÇÃO DE DTO's.
+    /* --> TESTE A SER ALTERADO DEPOIS DE IMPLEMENTAÇÃO DE DTO's.
+        @Test
+        public void getEnergyConsumptionInADayOfAllDevicesOfATypeTestWithValidValues() {
+            // Arrange
+            // Dimension Instantiation
+            double height = 3;
+            double length = 3.5;
+            double width = 3.5;
+            Dimension dim = new Dimension(height, length, width);
+
+            // Room Instantiation
+            Room room = new Room("Room", 2, dim);
+
+            // ElectricWaterHeaterSpecs Instantiation
+            Device device0 = housegrid.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeater", room);
+            device0.setAttributesDevType("Hot-Water Temperature",50);
+            device0.setAttributesDevType("Volume Of Water To Heat",150);
+            device0.setAttributesDevType("Performance Ratio",0.9);
+            device0.setAttributesDevType("Nominal Power",100);
+
+            housegrid.addRoom(room);
+
+            int coldWaterTempPosition = 5;
+            int volumeOfWaterToHeatPosition = 6;
+            housegrid.setDeviceAttribute("ElectricWaterHeater", 0, coldWaterTempPosition, 30);
+            housegrid.setDeviceAttribute("ElectricWaterHeater", 0, volumeOfWaterToHeatPosition, 100);
+
+            double expectedResult = 2.09;
+
+            // Act
+            double result = housegrid.getDailyEnergyConsumptionOfADevice("ElectricWaterHeater", 0);
+
+            // Assert
+            assertEquals(expectedResult, result, 0.000001);
+        }
+
+        */
     @Test
-    public void getEnergyConsumptionInADayOfAllDevicesOfATypeTestWithValidValues() {
-        // Arrange
-        // Dimension Instantiation
-        double height = 3;
-        double length = 3.5;
-        double width = 3.5;
-        Dimension dim = new Dimension(height, length, width);
-
-        // Room Instantiation
-        Room room = new Room("Room", 2, dim);
-
-        // ElectricWaterHeaterSpecs Instantiation
-        Device device0 = housegrid.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeater", room);
-        device0.setAttributesDevType("Hot-Water Temperature",50);
-        device0.setAttributesDevType("Volume Of Water To Heat",150);
-        device0.setAttributesDevType("Performance Ratio",0.9);
-        device0.setAttributesDevType("Nominal Power",100);
-
-        housegrid.addRoom(room);
-
-        int coldWaterTempPosition = 5;
-        int volumeOfWaterToHeatPosition = 6;
-        housegrid.setDeviceAttribute("ElectricWaterHeater", 0, coldWaterTempPosition, 30);
-        housegrid.setDeviceAttribute("ElectricWaterHeater", 0, volumeOfWaterToHeatPosition, 100);
-
-        double expectedResult = 2.09;
-
-        // Act
-        double result = housegrid.getDailyEnergyConsumptionOfADevice("ElectricWaterHeater", 0);
-
-        // Assert
-        assertEquals(expectedResult, result, 0.000001);
-    }
-
-    */
-@org.junit.jupiter.api.Test
     public void getNameByHGPosition() {
         // Arrange
         // Instantiate House Grids
@@ -1062,7 +1062,7 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDeviceNameOfATypeByPositionTest() {
         // Arrange
         String expectedResult = "Bosch Tronic 3000";
@@ -1333,7 +1333,7 @@ public class HouseTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkIfRoomListIsEmptyTrue() {
         // Arrange
         house.getRoomList().getListOfRooms().remove(laundry);
@@ -1357,7 +1357,7 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getAllDevicesToStringTest() {
         // Arrange
         String expectedResult = "1 - Device: Bosch Tronic 3000, located in room: Laundry\n";
@@ -1386,7 +1386,7 @@ public class HouseTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDeviceListSizeEmptyList() {
         // Arrange
         house.getRoomList().getListOfRooms().remove(laundry);
@@ -1463,7 +1463,7 @@ public class HouseTest {
         assertEquals(expectResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetDateLastTemperatureOfTheHouseArea() {
         //arrange
         String name1 = "Kitchen";
@@ -1645,7 +1645,7 @@ public class HouseTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testAddGridTrue() {
         //Arrange
         String gridName = "main grid";
@@ -1723,7 +1723,7 @@ public class HouseTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getFirstHighestReading_WithOnlyOneDoubleNaNValue_Null() {
         //Arrange
         // Geographical Area Types
@@ -1826,16 +1826,16 @@ public class HouseTest {
         //Assert
         assertFalse(result);
     }
-/*
+
         @Test
         public void testNewHouseGrid_ThrowsException(){
             //Arrange
             String name = "Main Grid";
-            housegrid grid = new housegrid(name);
-            this.housegrid.addGrid(grid);
+            HouseGrid grid = new HouseGrid(name);
+            this.house.addGrid(grid);
             //Act
             Throwable exception = assertThrows(RuntimeException.class, () ->
-                    this.housegrid.createHouseGrid(name)
+                    this.house.createHouseGrid(grid)
             );
             //Assert
             assertEquals("Name already exists. Please, write a new one.", exception.getMessage());
@@ -1845,13 +1845,14 @@ public class HouseTest {
         public void testNewHouseGrid_CreatesHouseGrid(){
             //Arrange
             String name = "Main Grid";
-            housegrid expectedResult = new housegrid(name);
+            HouseGrid expectedResult = new HouseGrid(name);
             //Act
-            housegrid result = this.housegrid.createHouseGrid(name);
+            boolean result = this.house.createHouseGrid(expectedResult);
             //Assert
-            assertEquals(expectedResult,result);
-        }*/
-    /*@Test
+            assertTrue(result);
+        }
+
+    @Test
     public void getDeviceByNameExceptionTest() {
         // Arrange
         String expectedResult = "There isn't any device with that name.";
@@ -1863,7 +1864,7 @@ public class HouseTest {
 
         // Assert
         assertEquals(expectedResult, exception.getMessage());
-    }*/
+    }
 
     @Test
     public void setAttributeTrueTest() {

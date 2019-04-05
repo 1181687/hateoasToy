@@ -21,8 +21,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 @DataJpaTest
@@ -164,7 +163,7 @@ public class KettleTest {
      * Test the setName method with the same name for the device,
      * so the result should be false, as the method doesn't allow that.
      */
-  /*  @Test
+    @Test
     public void testSetName_SameName_False() {
         //Arrange
         //Act
@@ -178,7 +177,7 @@ public class KettleTest {
      * Test the setName method with an already existent name for the device,
      * so the result should be false, as the method doesn't allow that.
      */
-/*    @Test
+    @Test
     public void testSetName_ExistentName_False() {
         //Arrange
         //Act
