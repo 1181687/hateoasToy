@@ -114,7 +114,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * expected result: "The highest temperature amplitude for the chosen period is 20.0 Celsius and was registered on:\n" +
      *                 "2018-12-04\n"
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void getHighestDailyAmplitude_4_12_2018_amplitude20() {
 
         // Extra Reading
@@ -155,7 +155,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * 02/12/2018 is the expected date with the daily highest amplitude
      * expected highest amplipude is 7.
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void getHighestDailyAmplitude_doubleNanValuesIn4_12_2018_highestAmplitude7_2_12_2018() {
 
         // Extra Reading
@@ -196,7 +196,7 @@ public class GetDayWithHighestTemperatureAmplitudeControllerTest {
      * 4/12/2018 = 13.0;
      * expected result is: "There are not enough values to calculate the amplitude."
      */
-    @org.junit.jupiter.api.Test
+    @Test
     public void getHighestDailyAmplitude_onlyOneValuePerDay_ThereAreNotEnoughValuesToCalculateTheAmplitude() {
 
         // Extra Reading

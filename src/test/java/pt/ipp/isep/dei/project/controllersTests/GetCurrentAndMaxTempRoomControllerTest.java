@@ -46,7 +46,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         ctrl = new GetCurrentAndMaxTempRoomController(house, sensorType);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDisplayRoomListTest() {
         //arrange
         String name1 = "Kitchen";
@@ -71,7 +71,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetDisplayRoomListEmpty() {
         //arrange
         RoomList rList = new RoomList();
@@ -84,7 +84,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testLengthOfRoomList() {
         //arrange
         String name1 = "Kitchen";
@@ -107,7 +107,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetLatestTemperatureRoom() {
         //arrange
         Dimension dimension = new Dimension(300, 600, 600);
@@ -177,7 +177,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetLatestTemperatureRoomNull() {
         //arrange
         Dimension dimension = new Dimension(300, 600, 600);
@@ -211,7 +211,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNameOfTheChosenRoomInSpecificPos() {
         //Arrange
         Dimension dim0 = new Dimension(3, 3.5, 3.5);
@@ -241,7 +241,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getMaximumTemperatureOfARoomInAGivenDay() {
         String name = "Master Bedroom";
         int houseFloor = 2;
@@ -300,7 +300,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         assertEquals(expectedResult, result, 0.001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetmType() {
         //Arrange
         SensorType sensorType = new SensorType("Temperature");

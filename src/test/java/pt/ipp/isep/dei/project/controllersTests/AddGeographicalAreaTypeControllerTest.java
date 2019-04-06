@@ -25,7 +25,7 @@ public class AddGeographicalAreaTypeControllerTest {
         controller = new AddGeoAreaTypeController(geographicalAreaTypeList);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void addTypeOfGeoAreaToTheListPositiveTest() {
         // Act
         boolean result = controller.addTypeOfGeoAreaToTheList("Region");
@@ -43,7 +43,7 @@ public class AddGeographicalAreaTypeControllerTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getListTest() {
         //Arrange
         GeographicalAreaTypeList expectedResult = geographicalAreaTypeList;

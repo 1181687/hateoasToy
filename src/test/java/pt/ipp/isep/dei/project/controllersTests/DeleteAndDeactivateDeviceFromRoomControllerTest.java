@@ -159,7 +159,7 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getListSizeEmptyList() {
         //arrange
         int expectResult = 0;

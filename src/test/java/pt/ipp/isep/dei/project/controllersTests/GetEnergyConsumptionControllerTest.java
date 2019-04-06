@@ -124,7 +124,7 @@ public class GetEnergyConsumptionControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNumberOfDevicesTest() {
         // Arrange
         int expectedResult = 5;
@@ -166,7 +166,7 @@ public class GetEnergyConsumptionControllerTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionInAnIntervalTestWithTwoSolutions() {
         // Arrange
         // Reading Instantiation
@@ -226,7 +226,7 @@ public class GetEnergyConsumptionControllerTest {
         assertEquals(expectedResult, result, 0.000001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void isHouseGridListEmpty_HouseHasNoHouseGrids_ShouldReturnTrue() {
         //Act
         boolean result= this.ctrl.isHouseGridListEmpty();
@@ -235,7 +235,7 @@ public class GetEnergyConsumptionControllerTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void isHouseGridListEmpty_HouseWithOneHouseGrid_ShouldReturnFalse() {
         //Arrange
         HouseGrid grid = new HouseGrid("Main Grid");
@@ -247,7 +247,7 @@ public class GetEnergyConsumptionControllerTest {
 
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getHouseGridListSize_WithOneGrid_ShouldReturnOne() {
         //Arrange
         HouseGrid grid = new HouseGrid("Main Grid");
@@ -304,7 +304,7 @@ public class GetEnergyConsumptionControllerTest {
         assertEquals(expectedResult,result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void roomListIsEmpty_HouseHasNoRooms_ShouldReturnTrue() {
         //Arrange
 
@@ -322,7 +322,7 @@ public class GetEnergyConsumptionControllerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void roomListIsEmpty_HouseHas2Rooms_ShouldReturnFalse() {
         //Act
         boolean result = ctrl.roomListIsEmpty();
@@ -340,7 +340,7 @@ public class GetEnergyConsumptionControllerTest {
         assertEquals(expectedResult,result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void isDeviceListEmpty_RoomHasDevices_ShouldReturnFalse() {
         //Arrange
         ctrl.getRoomByPosition(0);
@@ -350,7 +350,7 @@ public class GetEnergyConsumptionControllerTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getRoomName_HouseHas2Rooms_ShouldReturnKitchen() {
         //Arrange
         ctrl.getRoomByPosition(0);

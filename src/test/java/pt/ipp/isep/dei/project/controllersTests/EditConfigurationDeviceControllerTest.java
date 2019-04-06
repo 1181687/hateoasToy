@@ -78,7 +78,7 @@ class EditConfigurationDeviceControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetDisplayRoomListEmptyTest() {
         //arrange
 
@@ -124,7 +124,7 @@ class EditConfigurationDeviceControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetDevicesInTheRoomTest() {
         // Arrange
 
@@ -424,7 +424,7 @@ class EditConfigurationDeviceControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getListSizeEmptyList() {
         //arrange
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
@@ -542,7 +542,7 @@ class EditConfigurationDeviceControllerTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void getNumberOfAttributesInDeviceSpecs() {
         // Arrange
         // Dimension Instantiation

@@ -112,7 +112,7 @@ public class GetDevicesInHouseGridControllerTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetDeviceListContentNameTypeLocationByHG() {
         //Arrange
         String expectedResult = "WashingMachine\n" +
@@ -132,7 +132,7 @@ public class GetDevicesInHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void displayOfTheContentOfTheHouseGrids() {
         // Arrange
         String expectedResult = "1 - Name: grid1\n2 - Name: grid2\n";
@@ -144,7 +144,7 @@ public class GetDevicesInHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkIfHouseGridListIsEmptyWithPositiveTest() {
         // Arrange
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -181,7 +181,7 @@ public class GetDevicesInHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testCheckIfThereAreNoDevicesHGbyPositionFalse() {
 
         // Act
@@ -191,7 +191,7 @@ public class GetDevicesInHouseGridControllerTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testCheckIfThereAreNoDevicesHGbyPositionTrue() {
 
         // Act
@@ -201,7 +201,7 @@ public class GetDevicesInHouseGridControllerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNameByHGPosition() {
         // Arrange
         int position = 0;

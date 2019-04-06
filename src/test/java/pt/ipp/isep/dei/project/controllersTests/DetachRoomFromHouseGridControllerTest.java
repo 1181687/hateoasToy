@@ -67,7 +67,7 @@ public class DetachRoomFromHouseGridControllerTest {
         this.ctrl = new DetachRoomFromHouseGridController(house, roomList);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testsGetListContentMethod() {
         //Arrange
         String expectedResult = "1 - Name: Main Grid" + "\n";
@@ -77,7 +77,7 @@ public class DetachRoomFromHouseGridControllerTest {
         assertEquals(result, expectedResult);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testsGetListContentMethodMoreThanOneGrid() {
         //Arrange
         HouseGrid newGrid1 = new HouseGrid("Secondary Grid");
@@ -100,7 +100,7 @@ public class DetachRoomFromHouseGridControllerTest {
         assertEquals(result, expectedResult);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getListOfRooms() {
         //Arrange
         String expectedResult = "1- Name: Bedroom, House Floor: 3, Dimension - Height: 2.0, Length: 3.0, Width: 4.0\n" +
@@ -111,7 +111,7 @@ public class DetachRoomFromHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
      public void getRoomFromTheListOfRoomByAPosition() {
          //Arrange
         ctrl.getHouseGridFromTheList(0);
@@ -134,7 +134,7 @@ public class DetachRoomFromHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void detachRoomFromGridListRoomNotInTheListRemainsTheSame() {
         //Arrange
 
@@ -153,7 +153,7 @@ public class DetachRoomFromHouseGridControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void detachRoomFromGridListRoomNotInTheListRemainsTheSameBooleanMethod() {
         //Arrange
         Dimension r1Dimension = new Dimension(2, 3, 3);
@@ -176,7 +176,7 @@ public class DetachRoomFromHouseGridControllerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getGridListSize() {
         //Arrange
         Dimension r1Dimension = new Dimension(2, 3, 3);

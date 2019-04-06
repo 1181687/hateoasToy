@@ -40,7 +40,7 @@ public class GetListGeographicalAreaTypesControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarGetListaDosTiposDeAGAdicionandoMaisDoQueUmTipo() {
         //Arrange
         String nameOfType1 = "Cidade";
@@ -60,7 +60,7 @@ public class GetListGeographicalAreaTypesControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testarGetListaDosTiposDeAGASemAdicionarNenhumTipo() {
         //Arrange
         List<String> expectedResult = Arrays.asList();

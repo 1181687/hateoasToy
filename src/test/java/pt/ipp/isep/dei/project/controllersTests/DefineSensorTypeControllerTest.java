@@ -20,7 +20,7 @@ public class DefineSensorTypeControllerTest {
         assertTrue(resultado);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void criarEAdicionarTipoDeSensorTipoRepetido() {
         SensorTypeList lista = new SensorTypeList();
         String novoTipo = "Humidade";

@@ -35,7 +35,7 @@ public class CreateHouseGridControllerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testCreateANewHouseGrid() {
         // Arrange
         //House Instantiation

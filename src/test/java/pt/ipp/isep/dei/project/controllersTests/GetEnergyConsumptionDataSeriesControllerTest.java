@@ -69,7 +69,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDisplayRoomListTest() {
         //arrange
         String name1 = "Kitchen";
@@ -129,7 +129,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getHouseGridListLengthTest() {
         // Arrange
         //grid
@@ -201,7 +201,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDeviceListSize() {
         //arrange
         String name1 = "Kitchen";
@@ -222,7 +222,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDeviceListSizeEmptyList() {
         //arrange
         //initiate Room
@@ -559,7 +559,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkIfHouseGridListIsEmptyWithPositiveTest() {
         // Arrange
         // Geographical Area

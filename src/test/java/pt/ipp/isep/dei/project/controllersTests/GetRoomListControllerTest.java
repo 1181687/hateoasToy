@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GetRoomListControllerTest {
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDisplayRoomListTest(){
         //arrange
         RoomList rList = new RoomList();
@@ -65,7 +65,7 @@ public class GetRoomListControllerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkIfRoomListIsEmptyFalse(){
         //arrange
         RoomList rList = new RoomList();

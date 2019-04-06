@@ -56,7 +56,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         this.controller = new GetListOfSensorsAndDevicesRoomController(house);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getSensorsListContentOfARoomTest() {
         // Arrange
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
@@ -84,7 +84,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkIfSensorListIsEmptyTestTrue() {
         // Arrange
         this.house.addRoom(room);
@@ -97,7 +97,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkIfSensorListIsEmptyTestFalse() {
         // Arrange
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
@@ -116,7 +116,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDeviceListContentTest() {
         // Arrange
         house.createDevice("Fridge", "Fridge1", room);
@@ -134,7 +134,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
         house.addRoom(room);
@@ -145,7 +145,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
         Device dev1 = house.createDevice("Lamp", "Lamp1", room);
@@ -158,7 +158,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getListSize() {
         //arrange
         String name2 = "Living Room";
@@ -177,7 +177,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getListSizeEmptyList() {
         //arrange
         int expectResult = 0;
@@ -189,7 +189,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getRoomListTest() {
         // Arrange
         house.addRoom(room);
@@ -214,7 +214,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetNameOfRoomInListOfRooms() {
         //Arrange
         Dimension dim1 = new Dimension(4, 4, 4);
@@ -232,7 +232,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void testGetNameOfRoomInEmptyListOfRooms() {
         //Arrange
         String expectedResult = null;
@@ -245,7 +245,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDisplayRoomListTest() {
         //arrange
         String name1 = "Kitchen";
@@ -271,7 +271,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
         assertEquals(expectResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getDisplayRoomListEmptyTest() {
         //arrange
         String expectResult = "";

@@ -74,7 +74,7 @@ public class EstimateEnergyOfWaterHeaterControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getNameOfWaterHeaterTest() {
         // Arrange
         String expectedResult = "Bosch Tronic 3000";
@@ -86,7 +86,7 @@ public class EstimateEnergyOfWaterHeaterControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getEnergyConsumptionTest() {
         // Arrange
         double expectedResult = 2.61;
@@ -98,7 +98,7 @@ public class EstimateEnergyOfWaterHeaterControllerTest {
         assertEquals(expectedResult, result, 0.0001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getTotalEnergyConsumptionTest() {
         // Arrange
         double expectedResult = 5.54;
@@ -110,7 +110,7 @@ public class EstimateEnergyOfWaterHeaterControllerTest {
         assertEquals(expectedResult, result, 0.0001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setColdWaterTemperatureTest() {
         // Arrange
         controller.setColdWaterTemp("Bosch Tronic 3000", 20);
@@ -122,7 +122,7 @@ public class EstimateEnergyOfWaterHeaterControllerTest {
         assertEquals(expectedResult, result, 0.0001);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void setVolumeOfWaterToHeatTest() {
         // Arrange
         controller.setVolumeOfWaterToHeat("Bosch Tronic 3000", 200);

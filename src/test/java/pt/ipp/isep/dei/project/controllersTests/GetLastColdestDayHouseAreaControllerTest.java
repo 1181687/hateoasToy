@@ -104,7 +104,7 @@ public class GetLastColdestDayHouseAreaControllerTest {
         controller = new GetLastColdestDayHouseAreaController(house);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void hasReadingsBetweenDates_WithNoReadingsInInterval_ShouldReturnFalse() {
         //Arrange
         LocalDate startDate = LocalDate.of(2018, 12, 1);
@@ -115,7 +115,7 @@ public class GetLastColdestDayHouseAreaControllerTest {
         assertFalse(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void hasReadingsBetweenDates_WithReadingsInInterval_ShouldReturnTrue() {
         //Arrange
         LocalDate startDate = LocalDate.of(2018, 12, 2);
@@ -126,7 +126,7 @@ public class GetLastColdestDayHouseAreaControllerTest {
         assertTrue(result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getLastLowestMaximumReading_WithOneLowestMaxReadingInInterval_ShouldReturnLastLowestMaxReadingDTO() {
         //Arrange
         LocalDate startDate = LocalDate.of(2018, 12, 2);
@@ -146,7 +146,7 @@ public class GetLastColdestDayHouseAreaControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     public void getLastLowestMaximumReading_WithTwoEqualLowestMaxReadingInInterval_ShouldReturnLastOne() {
         //Arrange
         LocalDate startDate = LocalDate.of(2018, 12, 2);

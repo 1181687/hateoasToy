@@ -107,7 +107,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * There are 2 temperature sensors in Geographical area portocity
      * expected that isSensorListEmpty method returns false;
      **/
-    @org.junit.jupiter.api.Test
+    @Test
     public void isSensorListEmpty_False() {
         // Arrange
 
@@ -122,7 +122,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * There are no temperature sensors in Geographical area "newGeoArea"
      * expected that isSensorListEmpty method returns true;
      **/
-    @org.junit.jupiter.api.Test
+    @Test
     public void isSensorListEmptyTest_True() {
         // Arrange
         GeographicalAreaType street = new GeographicalAreaType("Street");
@@ -148,7 +148,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * there are 5 measurements in that period (reading2, reading3, reading4, reading5 and reading6)
      * expected to return true;
      **/
-    @org.junit.jupiter.api.Test
+    @Test
     public void checkNearestSensorReadingsExistenceBetweenDates_True() {
         // Arrange
         LocalDate initialDate = LocalDate.of(2018, 12, 2);
@@ -185,7 +185,7 @@ public class GetFirstHottestDayHouseAreaControllerTest {
      * after calculating the first highest reading, it should be turned into a readingDTO
      * expected to return ReadingDTO;
      **/
-    @org.junit.jupiter.api.Test
+    @Test
     public void getFirstHighestReadingHouseArea_ReadingDTO() {
         //Arrange
         LocalDate startDate = LocalDate.of(2018, 12, 2);
