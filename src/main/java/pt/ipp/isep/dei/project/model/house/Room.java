@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.model.house;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
@@ -7,6 +8,7 @@ import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -24,10 +26,10 @@ public class Room implements Measurable {
     private String description;
     private int houseFloor;
 
-    //@Embedded
-    @Transient
+    @Embedded
     private Dimension dimension;
 
+    @Autowired
     @Transient
     private SensorList sensorList;
 

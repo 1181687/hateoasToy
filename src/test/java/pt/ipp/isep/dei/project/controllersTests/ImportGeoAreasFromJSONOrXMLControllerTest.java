@@ -16,6 +16,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
 
 import java.io.File;
@@ -34,6 +35,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ImportGeoAreasFromJSONOrXMLControllerTest {
     @Autowired
     private GeographicalAreaList geographicalAreaList;
+
+    @Autowired
+    private SensorList sensorList;
 
     /**
      * Test that imports imports geo areas and sensors
@@ -96,7 +100,7 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
         String path = "datasets/geoAreas/json/JSONfile.json";
         File file = new File(path);
 
-        ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geographicalAreaList);
+        ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geographicalAreaList, sensorList);
         ctrl.createReader(path);
         ctrl.readFile(file, path);
 

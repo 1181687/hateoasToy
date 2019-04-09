@@ -8,6 +8,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -21,9 +22,13 @@ public class ImportGeoAreasFromJSONOrXMLController {
     private ProjectFileReader reader;
     private List<Object> geoAreaDTOList;
 
+    @Autowired
+    private SensorList sensorList;
 
-    public ImportGeoAreasFromJSONOrXMLController(GeographicalAreaList geographicalAreaList) {
+
+    public ImportGeoAreasFromJSONOrXMLController(GeographicalAreaList geographicalAreaList, SensorList sensorList) {
         this.geographicalAreaList = geographicalAreaList;
+        this.sensorList = sensorList;
     }
 
     /**
