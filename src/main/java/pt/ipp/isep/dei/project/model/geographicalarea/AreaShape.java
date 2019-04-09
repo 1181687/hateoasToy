@@ -4,15 +4,13 @@ import pt.ipp.isep.dei.project.model.Location;
 
 import javax.persistence.*;
 
-@Entity
+@Embeddable
 public class AreaShape {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
     private double length;
+
     private double width;
+
     @Transient
     private Location locationAreaShape;
 

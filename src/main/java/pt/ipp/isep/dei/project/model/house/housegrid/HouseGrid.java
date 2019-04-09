@@ -8,14 +8,23 @@ import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceList;
 
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
 import static java.util.Objects.isNull;
 
+@Entity
 public class HouseGrid implements Measurable {
+
+    @Id
     private String houseGridName;
+
+    @Transient
     private PowerSourceList powerSourceList;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn
     private RoomList roomList;
 
     /**
@@ -31,6 +40,8 @@ public class HouseGrid implements Measurable {
         this.powerSourceList = new PowerSourceList();
     }
 
+    public HouseGrid() {
+    }
 
     private static void validateName(String name) {
         if (isNull(name) || name.trim().length() == 0) {
