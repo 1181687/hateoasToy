@@ -50,7 +50,7 @@ public class GetCurrentTemperatureRoom {
      */
     public void run() {
 
-        if (controller.getRoomListContent().isEmpty()) {
+       /* if (controller.getRoomListContent().isEmpty()) {
             System.out.println("There are no rooms available\n");
             return;
         }
@@ -66,7 +66,7 @@ public class GetCurrentTemperatureRoom {
             return;
         }
 
-        displayResults(roomName, temp.getValue(), temp.getDateTime().toString());
+        displayResults(roomName, temp.getValue(), temp.getDateTime().toString());*/
     }
 
 }

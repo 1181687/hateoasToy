@@ -18,7 +18,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class GeographicalAreaListTest {
     private GeographicalAreaList geoAreaList;
     private GeographicalArea portoCity;
     private GeographicalArea bonfimStreet;
-    private Sensor sensor;
+    private GeoAreaSensor sensor;
 
     @Mock
     private GeoAreaRepository geoAreaRepository;
@@ -53,10 +53,10 @@ public class GeographicalAreaListTest {
         bonfimStreet = geoAreaList.newGeographicalArea("Bonfim", "Bonfim Street", "Street", portoLocation, 5, 5);
         geoAreaList.addGeoArea(bonfimStreet);
 
-        // Sensor
+        // GeoAreaSensor
         Location location = new Location(41.1496, -8.6109, 97);
         SensorType temperature = new SensorType("Temperature");
-        sensor = new Sensor("s1", "TT123123", temperature, location, "l/m2");
+        sensor = new GeoAreaSensor("s1", "TT123123", temperature, location, "l/m2");
         portoCity.getSensorListInTheGeographicArea().addSensor(sensor);
     }
 
@@ -271,18 +271,18 @@ public class GeographicalAreaListTest {
     @Test
     public void getAllSensorsTest() {
         // Arrange
-        List<Sensor> expectedResult = new ArrayList<>();
+        List<GeoAreaSensor> expectedResult = new ArrayList<>();
         expectedResult.add(sensor);
 
         // Act
-        List<Sensor> result = geoAreaList.getAllSensors().getListOfSensors();
+        List<GeoAreaSensor> result = geoAreaList.getAllSensors().getListOfSensors();
 
         // Assert
         assertEquals(expectedResult, result);
     }
 
     /**
-     * Test that tries to use a valid/existing Id to search for a Sensor, which results in True.
+     * Test that tries to use a valid/existing Id to search for a GeoAreaSensor, which results in True.
      **/
     @Test
     public void testCheckIfGeoAreaExistsById_tryingToTestAnExistingId_ShouldReturnTrue() {
@@ -339,7 +339,7 @@ public class GeographicalAreaListTest {
     @Test
     public void testGetSensorById_ExistingId_ShouldReturnTheSensor() {
         // Act
-        Sensor result = geoAreaList.getSensorById("s1");
+        GeoAreaSensor result = geoAreaList.getSensorById("s1");
 
         // Assert
         assertEquals(sensor, result);
@@ -351,7 +351,7 @@ public class GeographicalAreaListTest {
     @Test
     public void testGetSensorById_IdDoesNotExist_ShouldReturnNull() {
         // Act
-        Sensor result = geoAreaList.getSensorById("WrongID");
+        GeoAreaSensor result = geoAreaList.getSensorById("WrongID");
 
         // Assert
         assertNull(result);

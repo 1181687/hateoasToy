@@ -10,7 +10,7 @@ import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
-import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -67,7 +67,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                 geoAreaDTO.setLatitude(areaLocation.getLatitude());
                 geoAreaDTO.setElevation(areaLocation.getElevation());
 
-                //Reads Sensor attributes
+                //Reads GeoAreaSensor attributes
                 JsonArray areaSensor = object.get("area_sensor").getAsJsonArray();
 
                 List<JsonObject> sensorList = new ArrayList<>();
@@ -90,7 +90,7 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
 
                     LocationDTO sensorLocation = locationParser(locationSensor);
 
-                    SensorDTO areaSensor1 = new SensorDTO();
+                    GeoAreaSensorDTO areaSensor1 = new GeoAreaSensorDTO();
                     areaSensor1.setId(sensorId);
                     areaSensor1.setName(sensorName);
                     areaSensor1.setSensorType(sensorType);

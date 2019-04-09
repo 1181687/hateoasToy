@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SensorDTOList {
-    private List<SensorDTO> list;
+    private List<GeoAreaSensorDTO> list;
 
     /**
      * Constructor.
@@ -18,16 +18,16 @@ public class SensorDTOList {
      *
      * @return List with SensorDTOs.
      */
-    public List<SensorDTO> getList() {
+    public List<GeoAreaSensorDTO> getList() {
         return list;
     }
 
     /**
-     * Method that adds a SensorDTO to the list.
+     * Method that adds a GeoAreaSensorDTO to the list.
      *
-     * @param sensorDTO SensorDTO to be used.
+     * @param sensorDTO GeoAreaSensorDTO to be used.
      */
-    public void addSensorDTO(SensorDTO sensorDTO) {
+    public void addSensorDTO(GeoAreaSensorDTO sensorDTO) {
         this.list.add(sensorDTO);
     }
 }

@@ -12,7 +12,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -27,8 +27,8 @@ public class GetFirstHottestDayHouseAreaControllerTest {
     private GeographicalArea northernRegion;
     private GeographicalArea portoDistrict;
     private GeographicalArea portoCity;
-    private Sensor temperatureSensor;
-    private Sensor temperatureSensor1;
+    private GeoAreaSensor temperatureSensor;
+    private GeoAreaSensor temperatureSensor1;
     private SensorType temperature;
     private Location location2;
     private House house;
@@ -67,10 +67,10 @@ public class GetFirstHottestDayHouseAreaControllerTest {
         temperature = new SensorType("temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        temperatureSensor = new Sensor("S01", "A123", startDate, temperature, sensorLocation, "l/m2");
+        temperatureSensor = new GeoAreaSensor("S01", "A123", startDate, temperature, sensorLocation, "l/m2");
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        temperatureSensor1 = new Sensor("S01", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        temperatureSensor1 = new GeoAreaSensor("S01", "B123", startDate1, temperature, sensorLocation1, "l/m2");
 
         // Reading
         LocalDateTime readingDate = LocalDateTime.of(2018, 12, 2, 13, 20, 00);

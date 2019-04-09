@@ -3,9 +3,9 @@ package pt.ipp.isep.dei.project.modelTests;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.LocationDTO;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDate;
@@ -15,7 +15,7 @@ import java.time.temporal.ChronoUnit;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class SensorMapperTest {
+public class GeoAreaSensorMapperTest {
 
     /**
      * this method map to DTO a GeographicalArea
@@ -37,11 +37,11 @@ public class SensorMapperTest {
         SensorType temperature = new SensorType(typeName);
         Location locationSensor = new Location(123, 345, 50);
 
-        Sensor expectedResult = new Sensor(id, name, startingDate, temperature, locationSensor, units);
+        GeoAreaSensor expectedResult = new GeoAreaSensor(id, name, startingDate, temperature, locationSensor, units);
 
         //Act
-        SensorDTO sensorDTO = SensorMapper.mapToDTO(expectedResult);
-        Sensor result = SensorMapper.mapToEntity(sensorDTO);
+        GeoAreaSensorDTO sensorDTO = GeoAreaSensorMapper.mapToDTO(expectedResult);
+        GeoAreaSensor result = GeoAreaSensorMapper.mapToEntity(sensorDTO);
 
         //Assert
         assertEquals(expectedResult, result);
@@ -68,9 +68,9 @@ public class SensorMapperTest {
         SensorType temperature = new SensorType("Temperature");
         Location locationSensor = new Location(123, 345, 50);
 
-        Sensor expectedResult = new Sensor(id, name, startingDateSensor, temperature, locationSensor, units);
+        GeoAreaSensor expectedResult = new GeoAreaSensor(id, name, startingDateSensor, temperature, locationSensor, units);
 
-        SensorDTO sensorDTO = SensorMapper.newSensorDTO();
+        GeoAreaSensorDTO sensorDTO = GeoAreaSensorMapper.newSensorDTO();
 
         sensorDTO.setId(id);
         sensorDTO.setName(sensorDTO.getName());
@@ -83,7 +83,7 @@ public class SensorMapperTest {
 
         //Act
 
-        Sensor result = SensorMapper.mapToEntity(sensorDTO);
+        GeoAreaSensor result = GeoAreaSensorMapper.mapToEntity(sensorDTO);
         //Assert
         assertEquals(expectedResult, result);
     }

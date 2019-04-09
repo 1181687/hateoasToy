@@ -3,14 +3,14 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.removesensorfromgeoareacontroller.RemoveSensorFromGeoAreaController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
-import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 
 import java.util.List;
 
 public class RemoveSensorFromGeoArea {
     private RemoveSensorFromGeoAreaController controller;
     private List<GeographicalAreaDTO> geographicalAreaDTOS;
-    private List<SensorDTO> sensorDTOS;
+    private List<GeoAreaSensorDTO> sensorDTOS;
     private final static String EXIT = "\r0 - Exit";
 
     /**
@@ -88,14 +88,14 @@ public class RemoveSensorFromGeoArea {
     }
 
     /**
-     * Method that generates a list of SensorDTO.
+     * Method that generates a list of GeoAreaSensorDTO.
      *
      * @return String representing the list.
      */
     private String sensorDTOsToString() {
         StringBuilder content = new StringBuilder();
         int numberInTheList = 1;
-        for (SensorDTO sensorDTO : sensorDTOS) {
+        for (GeoAreaSensorDTO sensorDTO : sensorDTOS) {
             content.append(numberInTheList + " - " + sensorDTO.getName() + "\n");
             numberInTheList++;
         }
@@ -103,10 +103,10 @@ public class RemoveSensorFromGeoArea {
     }
 
     /**
-     * Method that turns the UI's Id corresponding to a SensorDTO into the real Id of the SensorDTO.
+     * Method that turns the UI's Id corresponding to a GeoAreaSensorDTO into the real Id of the GeoAreaSensorDTO.
      *
      * @param uiId Position in the list.
-     * @return String corresponding to the Id of the SensorDTO.
+     * @return String corresponding to the Id of the GeoAreaSensorDTO.
      */
     private String positionToSensorId(int uiId) {
         return sensorDTOS.get(uiId).getId();
