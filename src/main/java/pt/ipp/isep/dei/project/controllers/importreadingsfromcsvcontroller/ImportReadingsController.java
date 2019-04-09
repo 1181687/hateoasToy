@@ -72,7 +72,13 @@ public class ImportReadingsController {
         boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
-            sensor = sensorList.getSensorById(reading.getId());
+            if(option.equalsIgnoreCase("geoarea")){
+                sensor = getGeoAreaSensor(reading);
+            }
+            if(option.equalsIgnoreCase("room")) {
+                sensor = getRoomSensor(reading);
+            }
+            //sensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
             if (Objects.isNull(sensor)) {
                 numberOfNotImportedReadings++;
                 continue;
