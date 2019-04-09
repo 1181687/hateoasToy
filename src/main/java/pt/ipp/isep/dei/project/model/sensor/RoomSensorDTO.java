@@ -1,13 +1,14 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class RoomSensorDTO {
 
     private String id;
     private String name;
-    private LocalDate startingDate;
-    private String sensorType;
+    private LocalDateTime startingDate;
+    private String type;
     private String RoomId;
     private String units;
     private boolean isActive = true;
@@ -31,20 +32,20 @@ public class RoomSensorDTO {
         this.name = name;
     }
 
-    public LocalDate getStartingDate() {
+    public LocalDateTime getStartingDate() {
         return startingDate;
     }
 
-    public void setStartingDate(LocalDate startingDate) {
+    public void setStartingDate(LocalDateTime startingDate) {
         this.startingDate = startingDate;
     }
 
     public String getSensorType() {
-        return sensorType;
+        return type;
     }
 
     public void setSensorType(String sensorType) {
-        this.sensorType = sensorType;
+        this.type = sensorType;
     }
 
     public String getRoomId() {
