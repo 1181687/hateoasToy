@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
+import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.utils.Utils;
@@ -23,18 +24,23 @@ public class ImportReadingsController {
     private static final Logger LOGGER = Logger.getLogger(ImportReadingsController.class.getName());
     private GeographicalAreaList geographicalAreaList;
     private SensorList allSensorInTheGeoAreas;
+    private SensorList allSensorInTheRooms;
     private Sensor sensor;
     private List<Object> readingDTOList;
+    private RoomList roomList;
     private int numberOfNotImportedReadings;
 
     /**
      * Constructor.
      *
      * @param geographicalAreaList GeographicalAreaList to be used.
+     * @param roomList
      */
-    public ImportReadingsController(GeographicalAreaList geographicalAreaList) {
+    public ImportReadingsController(GeographicalAreaList geographicalAreaList, RoomList roomList) {
         this.geographicalAreaList = geographicalAreaList;
+        this.roomList = roomList;
         this.allSensorInTheGeoAreas = this.geographicalAreaList.getAllSensors();
+        this.allSensorInTheRooms = this.roomList.getAllSensors();
     }
 
     /**
@@ -61,12 +67,12 @@ public class ImportReadingsController {
         return this.numberOfNotImportedReadings;
     }
 
-    public boolean addReadingToSensorById() {
+    public boolean addReadingToSensorById(String option) {
         configLogFile();
         boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
-            sensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
+            sensor = sensorList.getSensorById(reading.getId());
             if (Objects.isNull(sensor)) {
                 numberOfNotImportedReadings++;
                 continue;
@@ -91,6 +97,14 @@ public class ImportReadingsController {
             this.geographicalAreaList.updateRepository();
         }
         return imported;
+    }
+
+    public Sensor getGeoAreaSensor(ReadingDTO reading){
+        return allSensorInTheGeoAreas.getSensorById(reading.getId());
+    }
+
+    public Sensor getRoomSensor(ReadingDTO reading){
+        return allSensorInTheRooms.getSensorById(reading.getId());
     }
 
     public boolean isValidFormat(String fileName) {
