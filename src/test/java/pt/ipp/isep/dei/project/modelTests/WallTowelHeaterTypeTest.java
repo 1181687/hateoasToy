@@ -22,7 +22,7 @@ public class WallTowelHeaterTypeTest {
 
         // Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        kitchen = new Room("Kitchen", 1, dim);
+        kitchen = new Room("Kitchen", "room", 1, dim);
     }
 
     @org.junit.jupiter.api.Test

@@ -45,9 +45,9 @@ public class HouseGridTest {
 
         // Rooms
         Dimension dimensionRoom = new Dimension(5.2, 3.7, 8.5);
-        kidsRoom = new Room("Kid's room", 1, dimensionRoom);
-        bathroom = new Room("Bathroom", 1, dimensionRoom);
-        livingRoom = new Room("Living Room", 1, dimensionRoom);
+        kidsRoom = new Room("Kid's room", "room", 1, dimensionRoom);
+        bathroom = new Room("Bathroom", "room", 1, dimensionRoom);
+        livingRoom = new Room("Living Room", "room", 1, dimensionRoom);
         this.mainGrid.addRoom(kidsRoom);
         this.mainGrid.addRoom(bathroom);
         this.mainGrid.addRoom(livingRoom);

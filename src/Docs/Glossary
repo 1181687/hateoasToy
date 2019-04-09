@@ -12,7 +12,7 @@ centre. Areas are measured in km2.
 HOUSE
 A house or apartment that is to be managed. A house may include gardens and other outbuildings
 that are part of the house (e.g. garage, garden shed, etc.). A house is located in a geographical area
-and has an address, including ZIP code, and a GPS location.
+and has an completeAddress, including ZIP code, and a GPS location.
 
 
 ROOM

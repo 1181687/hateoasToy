@@ -29,12 +29,15 @@ public class AddRoom {
     public void run() {
 
         String label1 = "What is the name of the room you want to add to the housegrid?";
-        String name = InputValidator.getString(label1);
+        String id = InputValidator.getString(label1);
 
-        while (controller.isNameExistant(name)) {
+        while (controller.isNameExistant(id)) {
             System.out.println("Name already exists. Please write a new one.");
-            name = InputValidator.getString(label1);
+            id = InputValidator.getString(label1);
         }
+
+        String label11 = "What is the description of the room you want to add to the housegrid?";
+        String description = InputValidator.getString(label11);
 
         String label2 = "Write the number of housefloor's room";
         int houseFloor = InputValidator.getInt(label2);
@@ -48,12 +51,12 @@ public class AddRoom {
         String label5 = "Write the width of the room";
         double width = InputValidator.getDoublePos(label5);
 
-        controller.newRoom(height, length, width, name, houseFloor);
+        controller.newRoom(height, length, width, id, description, houseFloor);
         controller.addRoomToHouse();
 
         StringBuilder content = new StringBuilder();
         content.append("The new room ");
-        content.append(name);
+        content.append(id);
         content.append(" was created with sucess!\n");
         System.out.println(content.toString());
     }

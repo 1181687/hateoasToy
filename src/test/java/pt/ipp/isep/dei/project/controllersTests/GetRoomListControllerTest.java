@@ -15,14 +15,15 @@ public class GetRoomListControllerTest {
         //arrange
         RoomList rList = new RoomList();
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         rList.addRoom(room1);
         rList.addRoom(room2);
@@ -70,9 +71,10 @@ public class GetRoomListControllerTest {
         //arrange
         RoomList rList = new RoomList();
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         rList.addRoom(room1);
 

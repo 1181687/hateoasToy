@@ -54,14 +54,15 @@ class EditConfigurationDeviceControllerTest {
         //arrange
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
@@ -95,9 +96,9 @@ class EditConfigurationDeviceControllerTest {
     public void testGetRoomName() {
         //Arrange
         Dimension dim0 = new Dimension(4, 4, 4);
-        Room room0 = new Room("RoomOne", 1, dim0);
+        Room room0 = new Room("RoomOne", "room", 1, dim0);
         Dimension dim1 = new Dimension(4, 4, 4);
-        Room room1 = new Room("RoomTwo", 1, dim1);
+        Room room1 = new Room("RoomTwo", "room", 1, dim1);
 
         house.addRoom(room0);
         house.addRoom(room1);
@@ -130,7 +131,7 @@ class EditConfigurationDeviceControllerTest {
 
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         //initiate Device fridge
         String freezerCapacity = "freezer Capacity";
@@ -176,7 +177,7 @@ class EditConfigurationDeviceControllerTest {
         //Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         //initiate Device fridge
         String freezerCapacity = "freezer Capacity";
@@ -255,8 +256,9 @@ class EditConfigurationDeviceControllerTest {
     public void testSetNameTrue() {
         // Arrange
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         //initiate Device fridge
         String freezerCapacity = "freezer Capacity";
@@ -295,7 +297,7 @@ class EditConfigurationDeviceControllerTest {
         Dimension dim = new Dimension(height, length, width);
 
         // Room Instantiation
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         //initiate Device Fridge
         String freezerCapacity = "Freezer Capacity";
@@ -338,8 +340,8 @@ class EditConfigurationDeviceControllerTest {
         Dimension dim = new Dimension(height, length, width);
 
         // Room Instantiation
-        Room room = new Room("Room", 2, dim);
-        Room room2 = new Room("Bedroom", 1, dim);
+        Room room = new Room("Room", "room", 2, dim);
+        Room room2 = new Room("Bedroom", "room", 1, dim);
 
         //initiate Device fridge
         String freezerCapacity = "Freezer Capacity";
@@ -384,9 +386,10 @@ class EditConfigurationDeviceControllerTest {
     public void checkIfRoomListIsEmptyFalse() {
         //arrange
         String name1 = "Kitchen";
+        String description = "room";
         int houseEdificioBFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseEdificioBFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseEdificioBFloor1, dimension1);
 
         house.addRoom(room1);
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
@@ -403,14 +406,15 @@ class EditConfigurationDeviceControllerTest {
     public void getListSize() {
         //arrange
         String name1 = "Kitchen";
+        String description = "room";
         int houseEdificioBFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseEdificioBFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseEdificioBFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseEdificioBFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseEdificioBFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseEdificioBFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
@@ -439,8 +443,9 @@ class EditConfigurationDeviceControllerTest {
     public void testAddDeviceTrue() {
         // arrange
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         //initiate Device fridge
         String freezerCapacity = "freezer Capacity";
@@ -473,8 +478,9 @@ class EditConfigurationDeviceControllerTest {
     public void testAddDeviceFalse() {
         // arrange
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
         house.addRoom(room);
@@ -493,8 +499,9 @@ class EditConfigurationDeviceControllerTest {
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         EditConfigurationDeviceController controller = new EditConfigurationDeviceController(house);
         house.addRoom(room);
@@ -513,8 +520,9 @@ class EditConfigurationDeviceControllerTest {
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         //initiate Device fridge
         String freezerCapacity = "freezer Capacity";
@@ -552,7 +560,7 @@ class EditConfigurationDeviceControllerTest {
         Dimension dim = new Dimension(height, length, width);
 
         // Room Instantiation
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         //initiate Device fridge
         String freezerCapacity = "freezer Capacity";

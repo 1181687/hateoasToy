@@ -59,8 +59,8 @@ public class ElectricOvenTest {
 
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
-        this.kitchen = new Room("Kitchen", 1, dim);
-        this.laundry = new Room("Laundry", 1, dim);
+        this.kitchen = new Room("Kitchen", "room", 1, dim);
+        this.laundry = new Room("Laundry", "room", 1, dim);
 
         house.addRoom(kitchen);
         house.addRoom(laundry);

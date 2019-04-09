@@ -51,8 +51,8 @@ public class MeasurableListTest {
         this.house.setAddress(address);
 
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        this.room1 = new Room("Room1", 2, dim);
-        this.room2 = new Room("Room2", 2, dim);
+        this.room1 = new Room("Room1", "room", 2, dim);
+        this.room2 = new Room("Room2", "room", 2, dim);
 
         this.dev1 = house.createDevice(FRIDGE_TYPE, "FridgeAriston", room1);
         dev1.setAttributesDevType("Nominal Power",500);

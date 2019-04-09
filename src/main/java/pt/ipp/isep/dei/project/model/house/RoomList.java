@@ -1,10 +1,8 @@
 package pt.ipp.isep.dei.project.model.house;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,19 +63,19 @@ public class RoomList {
     /**
      * method that creates a new room
      *
-     * @param name       given name to the new room
+     * @param id       given name to the new room
      * @param housefloor given housefloor number to the new room
      * @param height     given height number to the new room
      * @param length     given length number to the new room
      * @param width      given width number to the new room
      * @return the new room
      */
-    public Room newRoom(String name, int housefloor, double height, double length, double width) {
-        if (isNameExistant(name)) {
+    public Room newRoom(String id, String description, int housefloor, double height, double length, double width) {
+        if (isNameExistant(id)) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
         Dimension newDimension = new Dimension(height, length, width);
-        return new Room(name, housefloor, newDimension);
+        return new Room(id, description, housefloor, newDimension);
     }
 
     /**
@@ -121,7 +119,7 @@ public class RoomList {
      */
     public String getChosenRoomToString(int position) {
         StringBuilder content = new StringBuilder();
-        content.append("1 - Name: " + listOfRooms.get(position).getName());
+        content.append("1 - Name: " + listOfRooms.get(position).getId());
         content.append("\n");
         content.append("2 - House Floor: " + listOfRooms.get(position).getHouseFloor());
         content.append("\n");
@@ -140,7 +138,7 @@ public class RoomList {
      * @param changeName new name for the room
      */
     public void changeRoomName(int chosenRoom, String changeName) {
-        listOfRooms.get(chosenRoom).setName(changeName);
+        listOfRooms.get(chosenRoom).setId(changeName);
     }
 
     /**
@@ -179,7 +177,7 @@ public class RoomList {
     public Room getRoomByName(String name) {
 
         for (Room room : listOfRooms) {
-            if (room.getName().equals(name)) {
+            if (room.getId().equals(name)) {
                 return room;
             }
         }
@@ -196,7 +194,7 @@ public class RoomList {
         if (listOfRooms.isEmpty()) {
             return null;
         }
-        return listOfRooms.get(position).getName();
+        return listOfRooms.get(position).getId();
     }
 
 /*
@@ -222,7 +220,7 @@ public class RoomList {
     public boolean isNameExistant(String name) {
 
         for (int i = 0; i < listOfRooms.size(); i++) {
-            if (listOfRooms.get(i).getName().equalsIgnoreCase(name)) {
+            if (listOfRooms.get(i).getId().equalsIgnoreCase(name)) {
                 return true;
             }
         }
@@ -311,7 +309,7 @@ public class RoomList {
     public String getRoomListToString() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= listOfRooms.size(); i++) {
-            content.append(i + " - Name: " + listOfRooms.get(i - 1).getName());
+            content.append(i + " - Name: " + listOfRooms.get(i - 1).getId());
             content.append("\n");
         }
         return content.toString();

@@ -51,14 +51,15 @@ public class GetCurrentAndMaxTempRoomControllerTest {
     public void getDisplayRoomListTest() {
         //arrange
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
@@ -89,14 +90,15 @@ public class GetCurrentAndMaxTempRoomControllerTest {
     public void testLengthOfRoomList() {
         //arrange
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
@@ -112,7 +114,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
     public void testGetLatestTemperatureRoom() {
         //arrange
         Dimension dimension = new Dimension(300, 600, 600);
-        Room room1 = new Room("room1", 1, dimension);
+        Room room1 = new Room("room1", "room", 1, dimension);
 
         //Instanciar sensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
@@ -182,7 +184,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
     public void testGetLatestTemperatureRoomNull() {
         //arrange
         Dimension dimension = new Dimension(300, 600, 600);
-        Room room1 = new Room("room1", 1, dimension);
+        Room room1 = new Room("room1", "room", 1, dimension);
 
         //sensor
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
@@ -217,8 +219,8 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         //Arrange
         Dimension dim0 = new Dimension(3, 3.5, 3.5);
         Dimension dim1 = new Dimension(3, 3.5, 3.5);
-        Room room0 = new Room("RoomOne", 2, dim0);
-        Room room1 = new Room("RoomTwo", 2, dim1);
+        Room room0 = new Room("RoomOne", "room", 2, dim0);
+        Room room1 = new Room("RoomTwo", "room", 2, dim1);
 
         house.addRoom(room0);
         house.addRoom(room1);
@@ -245,12 +247,13 @@ public class GetCurrentAndMaxTempRoomControllerTest {
     @Test
     public void getMaximumTemperatureOfARoomInAGivenDay() {
         String name = "Master Bedroom";
+        String description = "room";
         int houseFloor = 2;
         double height = 10.0;
         double length = 5.0;
         double width = 5.0;
         Dimension dimension = new Dimension(height, length, width);
-        Room room1 = new Room(name, houseFloor, dimension);
+        Room room1 = new Room(name, description, houseFloor, dimension);
 
         house.addRoom(room1);
 

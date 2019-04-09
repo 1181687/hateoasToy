@@ -31,7 +31,7 @@ public class FreezerSpecsTest {
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Dimension dim = new Dimension(3, 5, 6);
-        kitchen = new Room("Kitchen", 1, dim);
+        kitchen = new Room("Kitchen", "room", 1, dim);
         freezer = house.createDevice("Freezer", "Freezer Ariston", kitchen);
         this.house.addRoom(kitchen);
 

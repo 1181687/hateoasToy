@@ -57,14 +57,15 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
         //arrange
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
@@ -96,8 +97,9 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
         // Arrange
 
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         house.addRoom(room);
 
@@ -115,8 +117,9 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         house.addRoom(room);
         Device fridge = house.createDevice("Fridge", "Fridge Ariston", room);
@@ -140,14 +143,15 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
     public void getListSize() {
         //arrange
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
@@ -173,8 +177,9 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
     public void deleteDeviceTrue() {
         // Arrange
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         Device fridge = house.createDevice("Fridge", "Fridge Ariston", room);
         fridge.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, 100);
@@ -198,8 +203,9 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
     public void deleteDeviceFalse() {
         // Arrange
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         int position = 0;
         house.addRoom(room);
@@ -215,8 +221,9 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
     public void getDeviceNameByPositionIsEmpty() {
         // Arrange
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         int position = 0;
 
@@ -236,8 +243,9 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
         // Arrange
 
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         Device fridge = house.createDevice("Fridge", "Fridge Ariston", room);
         fridge.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, 100);
@@ -263,8 +271,9 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
 
         // Arrange
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         Device fridge1 = house.createDevice("Fridge", "Fridge Ariston", room);
         fridge1.setAttributesDevType(ATTRIBUTE_FREEZER_CAPACITY, 100);
@@ -302,9 +311,10 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
     public void checkIfRoomListIsEmptyFalse() {
         //arrange
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         house.addRoom(room1);
         //act
@@ -319,7 +329,7 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
 
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         //initiate devices
         double freezerCapacity = 5.5;
@@ -361,8 +371,9 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
     public void deactivateDeviceTrue() {
         // Arrange
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
@@ -391,8 +402,9 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
         // Arrange
 
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         int position = 0;
         this.house.addRoom(room);
@@ -410,7 +422,7 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
 
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         //initiate devices
         double freezerCapacity = 5.5;
@@ -442,8 +454,9 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
 
         // Arrange
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
 
         double freezerCapacity = 5.5;
@@ -482,8 +495,9 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
 
         // Arrange
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;
@@ -520,8 +534,9 @@ public class DeleteAndDeactivateDeviceFromRoomControllerTest {
 
         // Arrange
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room(name, 2, dim);
+        Room room = new Room(name, description, 2, dim);
 
         double freezerCapacity = 5.5;
         double refrigeratorCapacity = 15.5;

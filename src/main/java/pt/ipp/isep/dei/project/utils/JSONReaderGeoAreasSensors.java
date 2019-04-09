@@ -10,6 +10,9 @@ import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
+import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridDTO;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 
 import java.io.File;
@@ -27,6 +30,129 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
 
     public JSONReaderGeoAreasSensors() {
         // empty
+    }
+
+    private static List<Object> parseJsonObjectsHouse(JsonElement house) throws NumberFormatException, NullPointerException {
+        List<Object> houseObject = new ArrayList<>();
+
+        // Get address attributes
+        if (house.isJsonObject()) {
+            JsonObject jsonObject = house.getAsJsonObject();
+            JsonObject address = jsonObject.get("address").getAsJsonObject();
+
+            StringBuilder completeAddress = new StringBuilder();
+            completeAddress.append(address.get("street").getAsString());
+            completeAddress.append(", " + address.get("number").getAsString());
+            completeAddress.append(", " + address.get("zip").getAsString());
+            completeAddress.append(", " + address.get("town").getAsString());
+            completeAddress.append(", " + address.get("country").getAsString());
+
+            AddressDTO addressDTO = AddressMapper.newAddressDTO();
+            addressDTO.setCompleteAddress(completeAddress.toString());
+
+            // Get rooms within list
+            JsonArray roomArray = jsonObject.get("room").getAsJsonArray();
+
+            List<JsonObject> roomList = new ArrayList<>();
+
+            for (int i = 0; i < roomArray.size(); i++) {
+                roomList.add(roomArray.get(i).getAsJsonObject());
+            }
+            List<RoomDTO> roomDTOS = new ArrayList<>();
+
+            //Reads room attributes
+            for (JsonObject object : roomList) {
+
+
+                String id = object.get("id").getAsString();
+
+                String description = object.get("description").getAsString();
+
+                int floor = object.get("floor").getAsInt();
+
+                double width = object.get("width").getAsDouble();
+
+                double length = object.get("length").getAsDouble();
+
+                double height = object.get("height").getAsDouble();
+
+
+                RoomDTO roomDTO = RoomMapper.newRoomDTO();
+
+                roomDTO.setRoomId(id);
+                roomDTO.setDescription(description);
+                roomDTO.setHouseFloor(floor);
+                roomDTO.setWidth(width);
+                roomDTO.setLength(length);
+                roomDTO.setHeight(height);
+
+                roomDTOS.add(roomDTO);
+
+            }
+
+            // Get house grids within list
+
+            JsonArray gridArray = jsonObject.get("grid").getAsJsonArray();
+
+            List<JsonObject> gridList = new ArrayList<>();
+
+            for (int i = 0; i < gridArray.size(); i++) {
+                gridList.add(gridArray.get(i).getAsJsonObject());
+            }
+            List<HouseGridDTO> houseGridDTOS = new ArrayList<>();
+
+
+            //Reads grid attributes
+            for (JsonObject object : gridList) {
+
+                // Get name from grid
+
+                String gridName = object.get("name").getAsString();
+
+                // create HouseGridDTO
+                HouseGridDTO houseGridDTO = HouseGridMapper.newHouseGridDTO();
+
+                houseGridDTO.setName(gridName);
+
+                //array of room inside the grid
+                JsonArray roomsGridArray = jsonObject.get("rooms").getAsJsonArray();
+
+                List<JsonObject> roomsGridList = new ArrayList<>();
+
+                //get roms by id
+                for (int i = 0; i < roomsGridArray.size(); i++) {
+                    roomsGridList.add(roomsGridArray.get(i).getAsJsonObject());
+                }
+
+                for (JsonObject roomId : roomsGridList) {
+                    String roomID = roomId.getAsString();
+                    RoomDTO dto = getRoomDtoById(roomDTOS, roomID);
+                    houseGridDTO.addRoomDTO(dto);
+                }
+
+                houseGridDTOS.add(houseGridDTO);
+
+            }
+
+            HouseDTO houseDTO = HouseMapper.newHouseDTO();
+            houseDTO.setAddressDTO(addressDTO);
+            houseDTO.setRoomDTOList(roomDTOS);
+            houseDTO.setHouseGridDTOList(houseGridDTOS);
+            houseObject.add(houseDTO);
+        }
+
+        return houseObject;
+    }
+
+
+    private static RoomDTO getRoomDtoById(List<RoomDTO> listRoomDto, String id) {
+        for (RoomDTO room : listRoomDto) {
+            if (room.getRoomId().equals(id)) {
+                return room;
+            }
+        }
+
+        return null;
     }
 
     private static List<Object> parseJsonObjects(JsonElement areaGeo) throws NumberFormatException, DateTimeParseException, NullPointerException {
@@ -182,6 +308,9 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
             }
             if (firstElement.startsWith("{\"readings")) {
                 finalList = parseJsonObjectsReadings(elem);
+            }
+            if (firstElement.startsWith("{\"address")) {
+                finalList = parseJsonObjectsHouse(elem);
             }
         } catch (NumberFormatException | DateTimeParseException | NullPointerException e) {
             finalList = null;
