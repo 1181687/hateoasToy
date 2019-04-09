@@ -2,7 +2,8 @@ package pt.ipp.isep.dei.project.model.geographicalarea;
 
 import pt.ipp.isep.dei.project.model.Location;
 
-import javax.persistence.*;
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
 
 @Embeddable
 public class AreaShape {
@@ -38,6 +39,10 @@ public class AreaShape {
         return width;
     }
 
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
     /**
      * Get method for Length.
      *
@@ -45,6 +50,10 @@ public class AreaShape {
      */
     public double getLength() {
         return length;
+    }
+
+    public void setLength(double length) {
+        this.length = length;
     }
 
     /**
