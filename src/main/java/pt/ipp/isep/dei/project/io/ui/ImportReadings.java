@@ -15,10 +15,9 @@ public class ImportReadings {
      * Constructor.
      *
      * @param geographicalAreaList
-     * @param roomList
      */
-    public ImportReadings(GeographicalAreaList geographicalAreaList, RoomList roomList) {
-        controller = new ImportReadingsController(geographicalAreaList, roomList);
+    public ImportReadings(GeographicalAreaList geographicalAreaList) {
+        controller = new ImportReadingsController(geographicalAreaList);
     }
 
 
@@ -42,7 +41,7 @@ public class ImportReadings {
                 String importConfirmation = InputValidator.confirmValidation("\nDo you really want to import the readings? (Y/N)\n");
                 if ("Y".equals(importConfirmation) || "y".equals(importConfirmation)) {
                     try {
-                        if (controller.addReadingToSensorById(sensorType)) {
+                        if (controller.addReadingToSensorById()) {
                             int notImportedReadings = controller.getNumberOfNotImportedReadings();
                             if (notImportedReadings > 0) {
                                 System.out.println("\nThe file was partially imported. There were " + notImportedReadings + " readings that were not imported, due to invalid information.\n");

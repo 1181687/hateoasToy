@@ -3,10 +3,8 @@ package pt.ipp.isep.dei.project.model.house;
 import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -364,7 +362,7 @@ public class RoomList {
         }
         return content.toString();
     }
-
+/*
     public Sensor getSensorById(String id) {
         for (Room room : this.listOfRooms) {
             Sensor sensor = room.getSensorList().getSensorById(id);
@@ -382,4 +380,5 @@ public class RoomList {
         }
         return sensorList;
     }
+    */
 }

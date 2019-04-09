@@ -85,9 +85,11 @@ public class ImportRoomSensorsAndReadingsController {
      * @param localDateTime Given date time to be compared.
      * @return True or False.
      */
+    /*
     public boolean isDateTimeBeforeSensorStartingDate(LocalDateTime localDateTime) {
         return localDateTime.isBefore(sensor.getStartingDate());
     }
+    */
 
 }
 

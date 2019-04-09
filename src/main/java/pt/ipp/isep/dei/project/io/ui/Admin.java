@@ -74,7 +74,7 @@ public class Admin {
                     ui9.jsonGeoAreaSensors();
                     break;
                 case 10:
-                    ImportReadings ui10 = new ImportReadings(geographicalAreaList, roomList);
+                    ImportReadings ui10 = new ImportReadings(geographicalAreaList);
                     ui10.run();
                     break;
                 case 11:
