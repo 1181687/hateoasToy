@@ -38,8 +38,8 @@ public class WineCoolerTest {
 
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
-        kitchen = new Room("Kitchen", 1, dim);
-        livingRoom = new Room("LivingRoom", 1, dim);
+        kitchen = new Room("Kitchen", "room", 1, dim);
+        livingRoom = new Room("LivingRoom", "room", 1, dim);
         this.house.addRoom(kitchen);
         this.house.addRoom(livingRoom);
 

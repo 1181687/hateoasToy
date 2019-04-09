@@ -43,14 +43,15 @@ public class GetDevicesInHouseGridControllerTest {
         this.ctrl = new GetDevicesInHouseGridController(houseEdificioB);
 
         //Room ONE
-        String name = "Kitchen";
+        String id = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
-        Room room1 = new Room(name, 2, dim);
+        Room room1 = new Room(id, description, 2, dim);
 
         //Room TWO
-        String name2 = "KitchenBasement";
+        String id2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
-        Room room2 = new Room(name2, -1, dim2);
+        Room room2 = new Room(id2, description, -1, dim2);
 
         //devices
         double freezerCapacity = 5.5;

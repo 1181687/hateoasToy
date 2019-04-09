@@ -30,7 +30,7 @@ public class MicrowaveOvenSpecsTest {
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         //Room
         Dimension dim = new Dimension(3, 5, 6);
-        this.kitchen = new Room("Kitchen", 1, dim);
+        this.kitchen = new Room("Kitchen", "room", 1, dim);
         this.house.addRoom(kitchen);
         this.microwaveOven = this.house.createDevice("MicrowaveOven", "MicrowaveOven teka", kitchen);
         this.microwaveOven.setAttributesDevType("Nominal Power", 30);

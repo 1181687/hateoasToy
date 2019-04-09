@@ -35,7 +35,7 @@ public class ElectricOvenSpecsTest {
 
         //Room
         Dimension dim = new Dimension(3, 5, 6);
-        this.kitchen = new Room("Kitchen", 1, dim);
+        this.kitchen = new Room("Kitchen", "room", 1, dim);
         this.house.addRoom(kitchen);
         this.electricOven = this.house.createDevice("ElectricOven", "Forno", kitchen);
         this.electricOven.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, 30);

@@ -107,13 +107,14 @@ public class AttachRoomToHouseGridControllerTest {
         // Arrange
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
         roomList.addRoom(room1);
         roomList.addRoom(room2);
 
@@ -131,13 +132,14 @@ public class AttachRoomToHouseGridControllerTest {
         // Arrange
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
         roomList.addRoom(room1);
         roomList.addRoom(room2);
         Room expectedResult = room1;
@@ -157,9 +159,10 @@ public class AttachRoomToHouseGridControllerTest {
         house.createHouseGrid(grid);
         house.addGrid(grid);
         String roomName = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room = new Room(roomName, houseFloor1, dimension1);
+        Room room = new Room(roomName, description, houseFloor1, dimension1);
         roomList.addRoom(room);
 
         controller.setGridToBeUsed(grid);
@@ -183,9 +186,10 @@ public class AttachRoomToHouseGridControllerTest {
         house.addGrid(grid);
 
         String roomName = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room = new Room(roomName, houseFloor1, dimension1);
+        Room room = new Room(roomName, description, houseFloor1, dimension1);
         roomList.addRoom(room);
 
         controller.setGridToBeUsed(grid);
@@ -221,9 +225,10 @@ public class AttachRoomToHouseGridControllerTest {
         // Arrange
         // Instantiate Room
         String roomName = "Kitchen";
+        String description = "room";
         int houseFloor = 0;
         Dimension dimension = new Dimension(4, 10, 12);
-        Room room = new Room(roomName, houseFloor, dimension);
+        Room room = new Room(roomName, description, houseFloor, dimension);
 
         roomList.addRoom(room);
 
@@ -248,9 +253,10 @@ public class AttachRoomToHouseGridControllerTest {
         // Arrange
         // Instantiate Room
         String roomName = "Kitchen";
+        String description = "room";
         int houseFloor = 0;
         Dimension dimension = new Dimension(4, 10, 12);
-        Room room = new Room(roomName, houseFloor, dimension);
+        Room room = new Room(roomName, description, houseFloor, dimension);
 
         // Instantiate List of Rooms
         roomList.addRoom(room);
@@ -270,9 +276,10 @@ public class AttachRoomToHouseGridControllerTest {
         // Arrange
         // Instantiate Room
         String roomName = "Kitchen";
+        String description = "room";
         int houseFloor = 0;
         Dimension dimension = new Dimension(4, 10, 12);
-        Room room = new Room(roomName, houseFloor, dimension);
+        Room room = new Room(roomName, description, houseFloor, dimension);
 
         // Instantiate House Grids
         String gridName0 = "Grid";
@@ -304,9 +311,10 @@ public class AttachRoomToHouseGridControllerTest {
         // Arrange
         // Instantiate Room
         String roomName = "Kitchen";
+        String description = "room";
         int houseFloor = 0;
         Dimension dimension = new Dimension(4, 10, 12);
-        Room room = new Room(roomName, houseFloor, dimension);
+        Room room = new Room(roomName, description, houseFloor, dimension);
 
         // Instantiate House Grids
         String gridName0 = "Grid";
@@ -336,13 +344,14 @@ public class AttachRoomToHouseGridControllerTest {
         //Arrange
         // Instantiate Rooms
         String roomName0 = "Kitchen";
+        String description = "room";
         int houseFloor0 = 0;
         Dimension dimension0 = new Dimension(4, 10, 12);
-        Room room0 = new Room(roomName0, houseFloor0, dimension0);
+        Room room0 = new Room(roomName0, description, houseFloor0, dimension0);
         String roomName1 = "Kitchen";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(4, 10, 12);
-        Room room1 = new Room(roomName1, houseFloor1, dimension1);
+        Room room1 = new Room(roomName1, description, houseFloor1, dimension1);
 
         roomList.addRoom(room0);
         roomList.addRoom(room1);

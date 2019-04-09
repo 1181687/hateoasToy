@@ -74,9 +74,9 @@ public class HouseTest {
 
         // Room Instantiation
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        laundry = new Room("Laundry", 2, dim);
+        laundry = new Room("Laundry", "room", 2, dim);
         house.addRoom(laundry);
-        kitchen = new Room("Kitchen", 1, dim);
+        kitchen = new Room("Kitchen", "room", 1, dim);
 
         // ElectricWaterHeaters Instantiation
         electricWaterHeater = house.createDevice(ELECTRIC_W_H_TYPE, "Bosch Tronic 3000", laundry);
@@ -280,14 +280,15 @@ public class HouseTest {
     public void testGetLastTemperatureOfTheHouseArea() {
         //arrange
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
@@ -371,14 +372,15 @@ public class HouseTest {
     public void testGetLastTemperatureOfTheHouseAreaWithoutMeasurements() {
         //arrange
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
@@ -457,12 +459,12 @@ public class HouseTest {
             s2.addReadingsToList(reading21);
             s2.addReadingsToList(reading22);
 
-            SensorType sensorType = new SensorType("Temperatura");
-            Dimension dim = new Dimension(4, 4, 4);
-            Room room = new Room("F5", 1, dim);
-            room.addSensorToListOfSensorsInRoom(s0);
-            room.addSensorToListOfSensorsInRoom(s1);
-            room.addSensorToListOfSensorsInRoom(s2);
+        SensorType sensorType = new SensorType("Temperatura");
+        Dimension dim = new Dimension(4, 4, 4);
+        Room room = new Room("F5", "room", 1, dim);
+        room.addSensorToListOfSensorsInRoom(s0);
+        room.addSensorToListOfSensorsInRoom(s1);
+        room.addSensorToListOfSensorsInRoom(s2);
 
             house.addRoom(room);
 
@@ -475,18 +477,19 @@ public class HouseTest {
             assertEquals(expectedResult, result);
         }
 
-        @Test
-        public void testGetLastTemperatureOfTheHouseAreaWithoutSensors() {
-            //arrange
-            String name1 = "Kitchen";
-            int houseFloor1 = 0;
-            Dimension dimension1 = new Dimension(2, 2, 2);
-            Room room1 = new Room(name1, houseFloor1, dimension1);
+    @Test
+    public void testGetLastTemperatureOfTheHouseAreaWithoutSensors() {
+        //arrange
+        String name1 = "Kitchen";
+        String description = "room";
+        int houseFloor1 = 0;
+        Dimension dimension1 = new Dimension(2, 2, 2);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
-            String name2 = "Living Room";
-            int houseFloor2 = 1;
-            Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-            Room room2 = new Room(name2, houseFloor2, dimension2);
+        String name2 = "Living Room";
+        int houseFloor2 = 1;
+        Dimension dimension2 = new Dimension(2, 1.5, 1.3);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
             house.addRoom(room1);
             house.addRoom(room2);
@@ -550,16 +553,17 @@ public class HouseTest {
             assertEquals(expectedResult, result, 0.001);
         }
 
-        @Test
-        public void getMaximumTemperatureOfARoomInASpecificDay() {
-            //Arrange
-            String name = "Master Bedroom";
-            int houseFloor = 2;
-            double height = 10.0;
-            double length = 5.0;
-            double width = 5.0;
-            Dimension dimension = new Dimension(height, length, width);
-            Room room1 = new Room(name, houseFloor, dimension);
+    @Test
+    public void getMaximumTemperatureOfARoomInASpecificDay() {
+        //Arrange
+        String name = "Master Bedroom";
+        String description = "room";
+        int houseFloor = 2;
+        double height = 10.0;
+        double length = 5.0;
+        double width = 5.0;
+        Dimension dimension = new Dimension(height, length, width);
+        Room room1 = new Room(name, description, houseFloor, dimension);
 
             house.addRoom(room1);
 
@@ -660,11 +664,11 @@ public class HouseTest {
 
             SensorType tipoResultado = new SensorType("Pluviosidade");
 
-            Dimension dim = new Dimension(4, 4, 4);
-            Room room = new Room("F5", 1, dim);
-            room.addSensorToListOfSensorsInRoom(s0);
-            room.addSensorToListOfSensorsInRoom(s1);
-            room.addSensorToListOfSensorsInRoom(s2);
+        Dimension dim = new Dimension(4, 4, 4);
+        Room room = new Room("F5", "room", 1, dim);
+        room.addSensorToListOfSensorsInRoom(s0);
+        room.addSensorToListOfSensorsInRoom(s1);
+        room.addSensorToListOfSensorsInRoom(s2);
 
             house.addRoom(room);
 
@@ -727,11 +731,11 @@ public class HouseTest {
 
             SensorType tipoResultado = new SensorType("Pluviosidade");
 
-            Dimension dim = new Dimension(4, 4, 4);
-            Room room = new Room("F5", 1, dim);
-            room.addSensorToListOfSensorsInRoom(s0);
-            room.addSensorToListOfSensorsInRoom(s1);
-            room.addSensorToListOfSensorsInRoom(s2);
+        Dimension dim = new Dimension(4, 4, 4);
+        Room room = new Room("F5", "room", 1, dim);
+        room.addSensorToListOfSensorsInRoom(s0);
+        room.addSensorToListOfSensorsInRoom(s1);
+        room.addSensorToListOfSensorsInRoom(s2);
 
             house.addRoom(room);
 
@@ -772,9 +776,9 @@ public class HouseTest {
             String nameToCheck = "Room one";
             String name = "ROOM ONE";
 
-            Dimension dim = new Dimension(5, 6, 7);
-            Room room1 = new Room(name, 1, dim);
-            house.addRoom(room1);
+        Dimension dim = new Dimension(5, 6, 7);
+        Room room1 = new Room(name, "room", 1, dim);
+        house.addRoom(room1);
 
             //Act
             boolean expectedResult = true;
@@ -791,11 +795,11 @@ public class HouseTest {
             String nameToCheck = "Room one";
             String name = "ROOM Two";
 
-            Dimension dim = new Dimension(5, 6, 7);
-            Room room1 = new Room(name, 1, dim);
-            house.addRoom(room1);
-            //Act
-            boolean expectedResult = false;
+        Dimension dim = new Dimension(5, 6, 7);
+        Room room1 = new Room(name, "room", 1, dim);
+        house.addRoom(room1);
+        //Act
+        boolean expectedResult = false;
 
             boolean result = house.isNameExistant(nameToCheck);
             //Assert
@@ -857,12 +861,12 @@ public class HouseTest {
             assertFalse(result);
         }
 
-        @Test
-        public void TestGetAllDevicesListByGridPosition() {
-            //Room ONE
-            String name = "Kitchen";
-            Dimension dim = new Dimension(3.5, 10.5, 20.5);
-            Room room1 = new Room(name, 2, dim);
+    @Test
+    public void TestGetAllDevicesListByGridPosition() {
+        //Room ONE
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3.5, 10.5, 20.5);
+        Room room1 = new Room(name, "room", 2, dim);
 
             Device dev1 = house.createDevice(FRIDGE_TYPE, "FridgeAriston", room1);
 
@@ -871,9 +875,9 @@ public class HouseTest {
             Device dev3 = house.createDevice(DISHWASHER_TYPE, "DishWasherSpecs", room1);
 
 
-            //Room TWO
-            String name2 = "KitchenBasement";
-            Room room2 = new Room(name2, -1, dim);
+        //Room TWO
+        String name2 = "KitchenBasement";
+        Room room2 = new Room(name2, "room", -1, dim);
 
             Device dev4 = house.createDevice(FRIDGE_TYPE, "FridgeSiemens", room2);
             Device dev5 = house.createDevice(DISHWASHER_TYPE, "DishWasherTeka", room2);
@@ -915,11 +919,11 @@ public class HouseTest {
         }
 
 
-        @Test
-        public void checkIfDeviceListIsEmptyTestFalse() {
-            // Arrange
-            Dimension dim = new Dimension(3, 3.5, 3.5);
-            Room room = new Room("Room", 2, dim);
+    @Test
+    public void checkIfDeviceListIsEmptyTestFalse() {
+        // Arrange
+        Dimension dim = new Dimension(3, 3.5, 3.5);
+        Room room = new Room("Room", "room", 2, dim);
 
             Device dev1 = house.createDevice("Lamp", "Lamp1", room);
 
@@ -946,13 +950,13 @@ public class HouseTest {
 
         }
 
-        @Test
-        public void testGetDeviceListContentNameTypeLocationByHG() {
-            //Arrange
-            //Room ONE
-            String name = "Kitchen";
-            Dimension dim = new Dimension(3.5, 10.5, 20.5);
-            Room room1 = new Room(name, 2, dim);
+    @Test
+    public void testGetDeviceListContentNameTypeLocationByHG() {
+        //Arrange
+        //Room ONE
+        String name = "Kitchen";
+        Dimension dim = new Dimension(3.5, 10.5, 20.5);
+        Room room1 = new Room(name, "room", 2, dim);
 
             Device dev1 = house.createDevice(FRIDGE_TYPE, "FridgeAriston", room1);
 
@@ -961,9 +965,9 @@ public class HouseTest {
             Device dev3 = house.createDevice(DISHWASHER_TYPE, "DishWasherSpecs", room1);
 
 
-            //Room TWO
-            String name2 = "KitchenBasement";
-            Room room2 = new Room(name2, -1, dim);
+        //Room TWO
+        String name2 = "KitchenBasement";
+        Room room2 = new Room(name2, "room", -1, dim);
 
             Device dev4 = house.createDevice(FRIDGE_TYPE, "FridgeSiemens", room2);
             Device dev5 = house.createDevice(DISHWASHER_TYPE, "DishWasherTeka", room2);
@@ -1135,9 +1139,10 @@ public class HouseTest {
         // Arrange
         // Instantiate Room
         String roomName = "Kitchen";
+        String description = "room";
         int houseFloor = 0;
         Dimension dimension = new Dimension(4, 10, 12);
-        Room room = new Room(roomName, houseFloor, dimension);
+        Room room = new Room(roomName, description, houseFloor, dimension);
 
         // Instantiate House Grids
         String gridName0 = "Grid1";
@@ -1167,9 +1172,10 @@ public class HouseTest {
         // Arrange
         // Instantiate Room
         String roomName = "Kitchen";
+        String description = "room";
         int houseFloor = 0;
         Dimension dimension = new Dimension(4, 10, 12);
-        Room room = new Room(roomName, houseFloor, dimension);
+        Room room = new Room(roomName, description, houseFloor, dimension);
 
         // Instantiate House Grids
         String gridName0 = "Grid";
@@ -1266,8 +1272,9 @@ public class HouseTest {
         // Arrange
         //Room TWO
         String name2 = "KitchenBasement";
+        String description = "room";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
-        Room room2 = new Room(name2, -1, dim2);
+        Room room2 = new Room(name2, description, -1, dim2);
 
         house.createDevice(FRIDGE_TYPE, "FridgeSiemens", room2);
 
@@ -1304,8 +1311,9 @@ public class HouseTest {
         //Arrange
         //Room ONE
         String name = "Kitchen";
+        String description = "room";
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
-        Room room1 = new Room(name, 2, dim);
+        Room room1 = new Room(name, description, 2, dim);
 
 
         house.createDevice(FRIDGE_TYPE, "FridgeAriston", room1);
@@ -1316,7 +1324,7 @@ public class HouseTest {
         //Room TWO
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
-        Room room2 = new Room(name2, -1, dim2);
+        Room room2 = new Room(name2, description, -1, dim2);
 
         house.createDevice(FRIDGE_TYPE, "FridgeSiemens", room2);
         house.createDevice(DISHWASHER_TYPE, "DishWasherTeka", room2);
@@ -1374,9 +1382,10 @@ public class HouseTest {
         //arrange
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         house.addRoom(room1);
 
@@ -1419,8 +1428,8 @@ public class HouseTest {
         Dimension dim = new Dimension(3, 5, 6);
 
         // Room Instantiation
-        Room room0 = new Room("Kitchen", 1, dim);
-        Room room1 = new Room("Laundry", 2, dim);
+        Room room0 = new Room("Kitchen", "room", 1, dim);
+        Room room1 = new Room("Laundry", "room", 2, dim);
 
         house.addRoom(room0);
         house.addRoom(room1);
@@ -1467,14 +1476,15 @@ public class HouseTest {
     public void testGetDateLastTemperatureOfTheHouseArea() {
         //arrange
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
@@ -1530,7 +1540,7 @@ public class HouseTest {
         //arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         //initiate House
         Location location = new Location(42.0, -8.608035, 111);
@@ -1553,12 +1563,12 @@ public class HouseTest {
 
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         //Room TWO
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
-        Room room2 = new Room(name2, -1, dim2);
+        Room room2 = new Room(name2, "room", -1, dim2);
 
 
         // Device Instantiation
@@ -1660,14 +1670,15 @@ public class HouseTest {
     public void testGetDateLastTemperatureOfTheHouseAreaWithoutMeasurements() {
         //arrange
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
@@ -1700,14 +1711,15 @@ public class HouseTest {
     public void testDateGetLastTemperatureOfTheHouseAreaWithoutSensors() {
         //arrange
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);

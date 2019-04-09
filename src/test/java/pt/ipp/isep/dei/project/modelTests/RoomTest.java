@@ -57,9 +57,9 @@ public class RoomTest {
 
         // Room Instantiation
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        laundry = new Room("Laundry", 2, dim);
+        laundry = new Room("Laundry", "room", 2, dim);
         house.addRoom(laundry);
-        kitchen = new Room("Kitchen", 1, dim);
+        kitchen = new Room("Kitchen", "room", 1, dim);
         house.addRoom(kitchen);
 
     }
@@ -108,7 +108,7 @@ public class RoomTest {
     public void testEqualsTrue() {
         //Arrange
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room2 = new Room("Laundry", 2, dim);
+        Room room2 = new Room("Laundry", "room", 2, dim);
         //Act
         boolean result = laundry.equals(room2);
         //Assert

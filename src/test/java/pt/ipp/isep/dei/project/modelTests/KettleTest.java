@@ -53,8 +53,8 @@ public class KettleTest {
 
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
-        this.kitchen = new Room("Kitchen", 1, dim);
-        this.laundry = new Room("Laundry", 1, dim);
+        this.kitchen = new Room("Kitchen", "room", 1, dim);
+        this.laundry = new Room("Laundry", "room", 1, dim);
 
         house.addRoom(kitchen);
         house.addRoom(laundry);
@@ -202,7 +202,7 @@ public class KettleTest {
     }
 
     /**
-     * Tests if the method getName returns the name of the device kettle1.
+     * Tests if the method getId returns the name of the device kettle1.
      * The location should be the "Kettle 1".
      */
     @Test

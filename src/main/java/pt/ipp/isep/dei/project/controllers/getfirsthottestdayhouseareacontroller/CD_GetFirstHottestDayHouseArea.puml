@@ -38,7 +38,7 @@ Class GetFirstHottestDayHouseArea\nController {
 
 Class House {
 -GeographicalArea insertedGeoArea
--Address address
+-Address completeAddress
 +isSensorListOfATypeEmpty()
 +checkNearestSensorReadingsExistenceBetweenDates()
 +getNearestSensorWithTheMostRecentReading()

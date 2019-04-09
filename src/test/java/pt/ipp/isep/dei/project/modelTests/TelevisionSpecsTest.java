@@ -39,7 +39,7 @@ public class TelevisionSpecsTest {
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Dimension dim = new Dimension(4, 4, 3);
-        livingRoom = new Room("Living Room", 1, dim);
+        livingRoom = new Room("Living Room", "room", 1, dim);
         television = house.createDevice("Television", "Flat Screen TV", livingRoom);
         this.house.addRoom(livingRoom);
 

@@ -22,7 +22,7 @@ public class WineCoolerTypeTest {
         House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         String name = "Awesome Wine Cooler";
         Dimension dim = new Dimension(3, 2.2, 3.0);
-        Room room = new Room("Kitchen", 2, dim);
+        Room room = new Room("Kitchen", "room", 2, dim);
 
         Device expectedResult = house.createDevice("WineCooler", name, room);
 
