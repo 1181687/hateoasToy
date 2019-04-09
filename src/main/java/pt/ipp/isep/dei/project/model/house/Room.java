@@ -7,7 +7,9 @@ import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -22,7 +24,8 @@ public class Room implements Measurable {
     private String description;
     private int houseFloor;
 
-    @Embedded
+    //@Embedded
+    @Transient
     private Dimension dimension;
 
     @Transient

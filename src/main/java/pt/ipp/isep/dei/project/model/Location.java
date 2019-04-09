@@ -1,6 +1,6 @@
 package pt.ipp.isep.dei.project.model;
 
-import javax.persistence.*;
+import javax.persistence.Embeddable;
 
 @Embeddable
 public class Location {

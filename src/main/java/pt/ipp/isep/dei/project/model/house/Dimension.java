@@ -1,4 +1,5 @@
 package pt.ipp.isep.dei.project.model.house;
+
 import javax.persistence.Embeddable;
 import java.util.Objects;
 
