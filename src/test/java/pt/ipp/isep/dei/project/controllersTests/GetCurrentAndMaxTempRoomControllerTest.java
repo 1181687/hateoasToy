@@ -9,7 +9,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.*;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -117,16 +117,16 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("S01", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+        GeoAreaSensor s0 = new GeoAreaSensor("S01", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         Location locS1 = new Location(123, 355, 50);
-        Sensor s1 = new Sensor("S01", "A123", dataFuncionamento1, sensorType0, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("S01", "A123", dataFuncionamento1, sensorType0, locS1, "l/m2");
 
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Humidade");
         Location locS2 = new Location(123, 345, 55);
-        Sensor s2 = new Sensor("S03", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
+        GeoAreaSensor s2 = new GeoAreaSensor("S03", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
 
         //Reading
         // Sensor0
@@ -187,7 +187,7 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType2 = new SensorType("Humidity");
         Location locS2 = new Location(123, 345, 55);
-        Sensor s2 = new Sensor("S01", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
+        GeoAreaSensor s2 = new GeoAreaSensor("S01", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
 
         //Reading
         LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
@@ -256,12 +256,12 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         LocalDateTime date0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("S01", "A123", date0, sensorType0, locS0, "l/m2");
+        GeoAreaSensor s0 = new GeoAreaSensor("S01", "A123", date0, sensorType0, locS0, "l/m2");
 
         LocalDateTime date1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("S02", "B123", date1, sensorType1, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("S02", "B123", date1, sensorType1, locS1, "l/m2");
 
         LocalDateTime dateTimeDayMeasure1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 

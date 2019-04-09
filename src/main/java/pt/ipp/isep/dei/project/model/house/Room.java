@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.model.house;
 import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
@@ -168,7 +168,7 @@ public class Room implements Measurable {
      * @param newSensor add to the list of sensors
      * @return a new sensor to the list of sensors
      */
-    public boolean addSensorToListOfSensorsInRoom(Sensor newSensor) {
+    public boolean addSensorToListOfSensorsInRoom(GeoAreaSensor newSensor) {
         return this.sensorList.addSensor(newSensor);
     }
 

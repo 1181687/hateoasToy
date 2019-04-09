@@ -5,9 +5,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDateTime;
@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class GeographicalAreaDTOTest {
 
     private GeographicalAreaDTO portoCity;
-    private SensorDTO temperatureSensor;
+    private GeoAreaSensorDTO temperatureSensor;
     private SensorType temperature;
 
     @BeforeEach
@@ -34,8 +34,8 @@ public class GeographicalAreaDTOTest {
         temperature = new SensorType("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(42.1596, -8.6109, 97);
-        Sensor sensor = new Sensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
-        temperatureSensor = SensorMapper.mapToDTO(sensor);
+        GeoAreaSensor sensor = new GeoAreaSensor("123", "A123", startDate, temperature, sensorLocation, "l/m2");
+        temperatureSensor = GeoAreaSensorMapper.mapToDTO(sensor);
         portoCity.addSensor(temperatureSensor);
     }
 
@@ -67,7 +67,7 @@ public class GeographicalAreaDTOTest {
     }
 
     /**
-     * get method for Sensor, Sensor1
+     * get method for GeoAreaSensor, Sensor1
      */
     @Test
     public void getSensorNameTest_getSensorName_Sensor1() {
@@ -200,16 +200,16 @@ public class GeographicalAreaDTOTest {
     }
 
     /**
-     * get methods for sensor, returns temperature Sensor
+     * get methods for sensor, returns temperature GeoAreaSensor
      */
     @Test
     public void getSensors_get_temperatureSensor() {
         //arrange
-        List<SensorDTO> expectedResult = new ArrayList<>();
+        List<GeoAreaSensorDTO> expectedResult = new ArrayList<>();
         expectedResult.add(temperatureSensor);
 
         //act
-        List<SensorDTO> result = portoCity.getSensors();
+        List<GeoAreaSensorDTO> result = portoCity.getSensors();
 
 
         //assert

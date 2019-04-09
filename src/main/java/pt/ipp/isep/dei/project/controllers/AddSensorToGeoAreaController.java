@@ -3,7 +3,7 @@ package pt.ipp.isep.dei.project.controllers;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
@@ -43,7 +43,7 @@ public class AddSensorToGeoAreaController {
         return sensorTypeList.getSensorTypeByPosition(posicao).getType();
     }
 
-    public boolean adicionarSensorAAreaGeografica(Sensor sensor) {
+    public boolean adicionarSensorAAreaGeografica(GeoAreaSensor sensor) {
         if ((!(this.geographicalAreaList.getGeographicalArea(this.geographicalArea).getSensorListInTheGeographicArea().getListOfSensors().contains(sensor)))) {
             geographicalAreaList.getGeographicalArea(this.geographicalArea).getSensorListInTheGeographicArea().addSensor(sensor);
             return true;
@@ -55,7 +55,7 @@ public class AddSensorToGeoAreaController {
         location = this.geographicalAreaList.getGeographicalArea(this.geographicalArea).newLocation(mAltitude, mLatitude, mLongitude);
     }
 
-    public Sensor criarNovoSensor(String id, String nome, String units) {
+    public GeoAreaSensor criarNovoSensor(String id, String nome, String units) {
         return this.geographicalArea.newSensor(id, nome, this.sensorType, this.location, units);
     }
 }

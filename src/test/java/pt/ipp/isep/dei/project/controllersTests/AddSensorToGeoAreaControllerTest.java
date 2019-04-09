@@ -19,7 +19,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
@@ -60,7 +60,7 @@ public class AddSensorToGeoAreaControllerTest {
         //Arrange
         SensorType sensorType = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
-        Sensor s1 = new Sensor("123", "s1", sensorType, local, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("123", "s1", sensorType, local, "l/m2");
 
         sensorTypeList.addSensorType(sensorType);
 
@@ -293,7 +293,7 @@ public class AddSensorToGeoAreaControllerTest {
         //Arrange
         SensorType sensorType = new SensorType("Humidade");
         Location local = new Location(45, 45, 45);
-        Sensor s1 = new Sensor("123", "s1", sensorType, local, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("123", "s1", sensorType, local, "l/m2");
 
         sensorTypeList.addSensorType(sensorType);
         geographicalAreaList.getGeoAreaList().add(campusDoIsep);
@@ -318,7 +318,7 @@ public class AddSensorToGeoAreaControllerTest {
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(45, 45, 45);
         String units = "l/m2";
-        Sensor s1 = new Sensor(id, name, sensorType, locS1, units);
+        GeoAreaSensor s1 = new GeoAreaSensor(id, name, sensorType, locS1, units);
 
         sensorTypeList.addSensorType(sensorType);
         geographicalAreaList.getGeoAreaList().add(campusDoIsep);
@@ -326,10 +326,10 @@ public class AddSensorToGeoAreaControllerTest {
         controller.getTipoSensorPorPosicao(0);
         controller.criarNovaLocalizacao(45, 45, 45);
 
-        Sensor expectedResult = s1;
+        GeoAreaSensor expectedResult = s1;
 
         //Act
-        Sensor result = controller.criarNovoSensor(id, name, units);
+        GeoAreaSensor result = controller.criarNovoSensor(id, name, units);
 
         //Assert
         assertEquals(expectedResult, result);

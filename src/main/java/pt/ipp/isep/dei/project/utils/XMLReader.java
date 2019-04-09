@@ -11,7 +11,7 @@ import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
-import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -172,7 +172,7 @@ public class XMLReader implements ProjectFileReader {
                 String type = getTagValue("type", sensor);
                 String units = getTagValue("units", sensor);
                 LocationDTO location = getLocation(getTag("location", sensor));
-                SensorDTO sensorObject = new SensorDTO();
+                GeoAreaSensorDTO sensorObject = new GeoAreaSensorDTO();
                 sensorObject.setId(id);
                 sensorObject.setName(name);
                 sensorObject.setSensorType(type);

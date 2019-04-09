@@ -8,7 +8,7 @@ import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.DeviceType;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -812,7 +812,7 @@ public class House {
         return !insertedGeoArea.getFirstSensorsOfATypeInHierarchy(sensorType).isEmpty();
     }
 
-    public Sensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
+    public GeoAreaSensor getNearestSensorWithMostRecentReading(SensorType type, Location location) {
         GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
         return insertedGeoArea.getNearestSensorWithMostRecentReading(type, location);
     }

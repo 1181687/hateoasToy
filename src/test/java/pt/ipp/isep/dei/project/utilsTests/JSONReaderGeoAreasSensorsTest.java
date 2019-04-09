@@ -124,7 +124,7 @@ public class JSONReaderGeoAreasSensorsTest {
         // Assert
         assertEquals(expectedResult, result);
     }
-
+/*
     @Test
     public void testReadFile_NullObject_ShouldReturnNull () {
         // Arrange
@@ -137,5 +137,5 @@ public class JSONReaderGeoAreasSensorsTest {
         //Assert
         assertEquals("rfg.csv (No such file or directory)", exception.getMessage());
     }
-
+*/
 }

@@ -9,7 +9,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.*;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -501,12 +501,12 @@ public class RoomListTest {
         LocalDateTime date0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("123", "A123", date0, sensorType0, locS0, "l/m2");
+        GeoAreaSensor s0 = new GeoAreaSensor("123", "A123", date0, sensorType0, locS0, "l/m2");
 
         LocalDateTime date1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("1241254", "B123", date1, sensorType1, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("1241254", "B123", date1, sensorType1, locS1, "l/m2");
 
         LocalDateTime dateTimeDayMeasure1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
@@ -558,12 +558,12 @@ public class RoomListTest {
         LocalDateTime date0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
         Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("124124", "A123", date0, sensorType0, locS0, "l/m2");
+        GeoAreaSensor s0 = new GeoAreaSensor("124124", "A123", date0, sensorType0, locS0, "l/m2");
 
         LocalDateTime date1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("64", "B123", date1, sensorType1, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("64", "B123", date1, sensorType1, locS1, "l/m2");
 
         LocalDateTime dateTimeDayMeasure1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
@@ -626,12 +626,12 @@ public class RoomListTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("F421", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+        GeoAreaSensor s0 = new GeoAreaSensor("F421", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2010, 11, 2, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Temperatura");
         Location locS1 = new Location(123, 300, 50);
-        Sensor s1 = new Sensor("54", "A456", dataFuncionamento1, sensorType1, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("54", "A456", dataFuncionamento1, sensorType1, locS1, "l/m2");
 
         room.addSensorToListOfSensorsInRoom(s0);
         room.addSensorToListOfSensorsInRoom(s1);
@@ -672,7 +672,7 @@ public class RoomListTest {
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperatura");
         Location locS0 = new Location(123, 345, 50);
-        Sensor s0 = new Sensor("4124", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+        GeoAreaSensor s0 = new GeoAreaSensor("4124", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", 2, dim);

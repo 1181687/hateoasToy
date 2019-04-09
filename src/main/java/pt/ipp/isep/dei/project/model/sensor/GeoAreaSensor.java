@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @Entity
-public class Sensor {
+public class GeoAreaSensor {
     @Id
     private String id;
     private String sensorName;
@@ -43,7 +43,7 @@ public class Sensor {
      * @param sensorType   Type of sensor
      * @param location     Location of the sensor
      */
-    public Sensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, Location location, String units) {
+    public GeoAreaSensor(String id, String sensorName, LocalDateTime startingDate, SensorType sensorType, Location location, String units) {
         this.id = id;
         this.sensorName = sensorName;
         this.startingDate = startingDate;
@@ -60,7 +60,7 @@ public class Sensor {
      * @param sensorType Type of sensor
      * @param location   Location of the sensor
      */
-    public Sensor(String id, String sensorName, SensorType sensorType, Location location, String units) {
+    public GeoAreaSensor(String id, String sensorName, SensorType sensorType, Location location, String units) {
         this.id = id;
         this.sensorName = sensorName;
         this.startingDate = LocalDateTime.now();
@@ -70,7 +70,7 @@ public class Sensor {
         this.isActive = true;
     }
 
-    protected Sensor() {
+    protected GeoAreaSensor() {
     }
 
     public String getId() {
@@ -154,10 +154,10 @@ public class Sensor {
         if (this == objeto) {
             return true;
         }
-        if (!(objeto instanceof Sensor)) {
+        if (!(objeto instanceof GeoAreaSensor)) {
             return false;
         }
-        Sensor sensor = (Sensor) objeto;
+        GeoAreaSensor sensor = (GeoAreaSensor) objeto;
         return (this.id.equals(sensor.id) && this.sensorType.equals(sensor.sensorType) && this.location.equals(sensor.location));
     }
 
@@ -176,7 +176,7 @@ public class Sensor {
      * @param sensor1 a sensor
      * @return distance between two locations
      */
-    public double distanceBetweenTwoLocations(Sensor sensor1) {
+    public double distanceBetweenTwoLocations(GeoAreaSensor sensor1) {
 
         return this.location.distanceBetweenTwoLocations(sensor1.location);
     }
@@ -637,7 +637,7 @@ public class Sensor {
     }
 
     /**
-     * Method that returns the list of Readings of a Sensor.
+     * Method that returns the list of Readings of a GeoAreaSensor.
      *
      * @return List with Readings.
      */

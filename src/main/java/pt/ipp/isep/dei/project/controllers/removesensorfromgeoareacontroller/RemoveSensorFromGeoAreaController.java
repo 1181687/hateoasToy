@@ -5,9 +5,9 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,19 +54,19 @@ public class RemoveSensorFromGeoAreaController {
      *
      * @return List with SensorDTOs ready to be sent to the UI.
      */
-    public List<SensorDTO> getSensorList() {
-        List<SensorDTO> sensorDTOList = new ArrayList<>();
-        for (Sensor sensor : geographicalArea.getSensorListInTheGeographicArea().getListOfSensors()) {
-            SensorDTO sensorDTO = SensorMapper.mapToDTO(sensor);
+    public List<GeoAreaSensorDTO> getSensorList() {
+        List<GeoAreaSensorDTO> sensorDTOList = new ArrayList<>();
+        for (GeoAreaSensor sensor : geographicalArea.getSensorListInTheGeographicArea().getListOfSensors()) {
+            GeoAreaSensorDTO sensorDTO = GeoAreaSensorMapper.mapToDTO(sensor);
             sensorDTOList.add(sensorDTO);
         }
         return sensorDTOList;
     }
 
     /**
-     * Method that removes a Sensor from the GeoArea via its Id.
+     * Method that removes a GeoAreaSensor from the GeoArea via its Id.
      *
-     * @param sensorId Id of the Sensor to be removed.
+     * @param sensorId Id of the GeoAreaSensor to be removed.
      */
     public boolean removeSensor(String sensorId) {
         if(geographicalArea.removeSensorById(sensorId)){

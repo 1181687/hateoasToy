@@ -5,7 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
@@ -19,11 +19,11 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class SensorListTest {
     private SensorList sensorList;
-    private Sensor temperatureSensor1;
-    private Sensor temperatureSensor2;
-    private Sensor rainfallSensor;
-    private Sensor humiditySensor;
-    private Sensor dummySensor;
+    private GeoAreaSensor temperatureSensor1;
+    private GeoAreaSensor temperatureSensor2;
+    private GeoAreaSensor rainfallSensor;
+    private GeoAreaSensor humiditySensor;
+    private GeoAreaSensor dummySensor;
     private Reading reading0;
     private Reading reading1;
     private Reading nullReading;
@@ -33,21 +33,21 @@ class SensorListTest {
 
     @BeforeEach
     public void StartUp() {
-        // Sensor List
+        // GeoAreaSensor List
         sensorList = new SensorList();
 
         // Sensors
         location = new Location(41.1496, -8.6109, 97);
         SensorType temperature = new SensorType("Temperature");
-        temperatureSensor1 = sensorList.newSensor("s1", "Sensor Temp 1", temperature, location, "l/m2");
+        temperatureSensor1 = sensorList.newSensor("s1", "GeoAreaSensor Temp 1", temperature, location, "l/m2");
         sensorList.addSensor(temperatureSensor1);
-        temperatureSensor2 = sensorList.newSensor("s2", "Sensor Temp 2", temperature, location, "l/m2");
+        temperatureSensor2 = sensorList.newSensor("s2", "GeoAreaSensor Temp 2", temperature, location, "l/m2");
         sensorList.addSensor(temperatureSensor2);
         SensorType rainfall = new SensorType("Rainfall");
-        rainfallSensor = sensorList.newSensor("s3", "Sensor Rain", rainfall, location, "l/m2");
+        rainfallSensor = sensorList.newSensor("s3", "GeoAreaSensor Rain", rainfall, location, "l/m2");
         sensorList.addSensor(rainfallSensor);
         SensorType humidity = new SensorType("Humidity");
-        humiditySensor = sensorList.newSensor("s4", "Sensor Humidity", humidity, location, "l/m2");
+        humiditySensor = sensorList.newSensor("s4", "GeoAreaSensor Humidity", humidity, location, "l/m2");
         sensorList.addSensor(humiditySensor);
         dummySensor = sensorList.newSensor("s5", "Dummy", null, null, "l/m2");
 
@@ -75,14 +75,14 @@ class SensorListTest {
     @org.junit.jupiter.api.Test
     void getSensorListTest() {
         // Arrange
-        List<Sensor> expectedResult = new ArrayList<>();
+        List<GeoAreaSensor> expectedResult = new ArrayList<>();
         expectedResult.add(temperatureSensor1);
         expectedResult.add(temperatureSensor2);
         expectedResult.add(rainfallSensor);
         expectedResult.add(humiditySensor);
 
         // Act
-        List<Sensor> result = sensorList.getListOfSensors();
+        List<GeoAreaSensor> result = sensorList.getListOfSensors();
 
         // Assert
         assertEquals(result, expectedResult);
@@ -236,10 +236,10 @@ class SensorListTest {
     public void getSensorsListContentTest() {
         // Arrange
         String expectedResult =
-                "1 - Name of the sensor: Sensor Temp 1\n" +
-                        "2 - Name of the sensor: Sensor Temp 2\n" +
-                        "3 - Name of the sensor: Sensor Rain\n" +
-                        "4 - Name of the sensor: Sensor Humidity\n";
+                "1 - Name of the sensor: GeoAreaSensor Temp 1\n" +
+                        "2 - Name of the sensor: GeoAreaSensor Temp 2\n" +
+                        "3 - Name of the sensor: GeoAreaSensor Rain\n" +
+                        "4 - Name of the sensor: GeoAreaSensor Humidity\n";
 
         // Act
         String result = sensorList.getSensorListToString();
@@ -311,10 +311,10 @@ class SensorListTest {
     @Test
     public void testGetSensorWithMostRecentReading() {
         // Arrange
-        Sensor expectedResult = temperatureSensor2;
+        GeoAreaSensor expectedResult = temperatureSensor2;
 
         // Act
-        Sensor result = sensorList.getSensorWithMostRecentReading(sensorList);
+        GeoAreaSensor result = sensorList.getSensorWithMostRecentReading(sensorList);
 
         // Assert
         assertEquals(expectedResult, result);
@@ -341,10 +341,10 @@ class SensorListTest {
     @org.junit.jupiter.api.Test
     public void getSensorByIdPositiveTest() {
         // Arrange
-        Sensor expectedResult = temperatureSensor1;
+        GeoAreaSensor expectedResult = temperatureSensor1;
 
         // Act
-        Sensor result = sensorList.getSensorById("s1");
+        GeoAreaSensor result = sensorList.getSensorById("s1");
 
         // Assert
         assertEquals(expectedResult, result);
@@ -353,7 +353,7 @@ class SensorListTest {
     @Test
     public void getSensorByIdNullTest() {
         // Act
-        Sensor result = sensorList.getSensorById("s14123");
+        GeoAreaSensor result = sensorList.getSensorById("s14123");
 
         // Assert
         assertEquals(null, result);
@@ -364,17 +364,17 @@ class SensorListTest {
         //arrange
         SensorList sensorList = new SensorList();
 
-        //Sensor
+        //GeoAreaSensor
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Rainfall");
         Location locS0 = new Location(42.1496, -8.6109, 97);
-        Sensor s0 = new Sensor("S09", "Sensor0", dataFuncionamento0, sensorType0, locS0, "l/m2");
+        GeoAreaSensor s0 = new GeoAreaSensor("S09", "Sensor0", dataFuncionamento0, sensorType0, locS0, "l/m2");
         sensorList.addSensor(s0);
 
         LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         SensorType sensorType1 = new SensorType("Rainfall");
         Location locS1 = new Location(42.1496, -8.6109, 97);
-        Sensor s1 = new Sensor("S02", "Sensor1", dataFuncionamento1, sensorType1, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("S02", "Sensor1", dataFuncionamento1, sensorType1, locS1, "l/m2");
         sensorList.addSensor(s1);
 
         // Sensor0
@@ -399,16 +399,16 @@ class SensorListTest {
         s1.addReadingsToList(reading12);
         s1.addReadingsToList(reading13);
 
-        Sensor expectedResult = s1;
+        GeoAreaSensor expectedResult = s1;
 
-        Sensor result = sensorList.getSensorWithMostRecentReading();
+        GeoAreaSensor result = sensorList.getSensorWithMostRecentReading();
 
         //Assert
         assertEquals(expectedResult, result);
     }
 
     /**
-     * Test that tries to use a valid/existing Id to search for a Sensor, which results in True.
+     * Test that tries to use a valid/existing Id to search for a GeoAreaSensor, which results in True.
      **/
     @Test
     void testCheckIfSensorExistsById_tryingToTestAnExistingId_ShouldReturnTrue() {
@@ -420,7 +420,7 @@ class SensorListTest {
     }
 
     /**
-     * Test that tries to use an invalid/non-existing Id to search for a Sensor, which results in False.
+     * Test that tries to use an invalid/non-existing Id to search for a GeoAreaSensor, which results in False.
      **/
     @Test
     void testCheckIfSensorExistsById_tryingToTestANonExistingId_ShouldReturnFalse() {
@@ -432,27 +432,27 @@ class SensorListTest {
     }
 
     /**
-     * Test that tries to use a valid/existing Id to get a Sensor, which results in returning the corresponding Sensor.
+     * Test that tries to use a valid/existing Id to get a GeoAreaSensor, which results in returning the corresponding GeoAreaSensor.
      **/
     @Test
     void testGetSensorById_tryingToTestAnExistingId_ShouldReturnTheCorrespondingSensor() {
         // Arrange
-        Sensor expectedResult = temperatureSensor1;
+        GeoAreaSensor expectedResult = temperatureSensor1;
 
         // Act
-        Sensor result = sensorList.getSensorById("s1");
+        GeoAreaSensor result = sensorList.getSensorById("s1");
 
         //
         assertEquals(expectedResult, result);
     }
 
     /**
-     * Test that tries to use an invalid/non-existing Id to get a Sensor, which results in returning a null Object.
+     * Test that tries to use an invalid/non-existing Id to get a GeoAreaSensor, which results in returning a null Object.
      **/
     @org.junit.jupiter.api.Test
     void testGetSensorById_tryingToTestANonExistingId_ShouldReturnNull() {
         // Act
-        Sensor result = sensorList.getSensorById("FUKU");
+        GeoAreaSensor result = sensorList.getSensorById("FUKU");
 
         //
         assertEquals(null, result);

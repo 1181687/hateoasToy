@@ -10,7 +10,7 @@ import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDate;
@@ -27,17 +27,17 @@ import static org.junit.jupiter.api.Assertions.*;
         loader = AnnotationConfigContextLoader.class)
 @SpringJUnitConfig(SensorTest.Config.class)
 public class SensorTest {
-    private Sensor temperatureSensor;
+    private GeoAreaSensor temperatureSensor;
     private Reading reading;
     private Reading reading1;
 
     @BeforeEach
     public void StartUp() {
-        // Sensor
+        // GeoAreaSensor
         LocalDateTime startingDate = LocalDateTime.of(1991, 11, 2, 21, 10, 25);
         SensorType temperature = new SensorType("Temperature");
         Location location = new Location(123, 345, 50);
-        temperatureSensor = new Sensor("R003", "A123", startingDate, temperature, location, "l/m2");
+        temperatureSensor = new GeoAreaSensor("R003", "A123", startingDate, temperature, location, "l/m2");
 
         // Readings
         LocalDateTime dateTime = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
@@ -58,8 +58,8 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
-        Sensor s2 = new Sensor("R003", "A456", dataFuncionamento, sensorType, locS1, "2/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s2 = new GeoAreaSensor("R003", "A456", dataFuncionamento, sensorType, locS1, "2/m2");
         //Act
         boolean result = s1.equals(s2);
         //Assert
@@ -72,7 +72,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         String expectedResult = "A123";
         //Act
         String result = s1.getSensorName();
@@ -86,7 +86,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("S09", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("S09", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         LocalDate expectedResult = dataFuncionamento.toLocalDate();
         //Act
         LocalDate result = s1.getStartingDate().toLocalDate();
@@ -100,7 +100,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         SensorType expectedResult = sensorType;
         //Act
         SensorType result = s1.getSensorType();
@@ -114,7 +114,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         boolean expectedResult = true;
         //Act
         boolean result = s1.equals(s1);
@@ -128,7 +128,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         int expectedResult = 1;
         // Act
         int result = s1.hashCode();
@@ -142,7 +142,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         boolean expectedResult = false;
         //Act
         boolean result = s1.equals(sensorType);
@@ -156,8 +156,8 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
-        Sensor s2 = new Sensor("R004", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s2 = new GeoAreaSensor("R004", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         boolean expectedResult = false;
         //Act
         boolean result = s1.equals(s2);
@@ -171,7 +171,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         Location expectedResult = locS1;
         //Act
         Location result = s1.getLocation();
@@ -186,10 +186,10 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(40, 10, 20);
-        Sensor s1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
 
         Location locS2 = new Location(30, 15, 10);
-        Sensor s2 = new Sensor("R004", "A123", dataFuncionamento, sensorType, locS2, "l/m2");
+        GeoAreaSensor s2 = new GeoAreaSensor("R004", "A123", dataFuncionamento, sensorType, locS2, "l/m2");
 
         double expectedResult = 1201040.7956;
 
@@ -206,7 +206,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
 
         Reading reading = new Reading(20, dataFuncionamento);
         s1.addReadingsToList(reading);
@@ -226,7 +226,7 @@ public class SensorTest {
         LocalDateTime sensorDate = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("R003", "A123", sensorDate, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", sensorDate, sensorType, locS1, "l/m2");
         LocalDateTime date1 = LocalDateTime.of(2018, 2, 3, 12, 30);
         LocalDateTime date2 = LocalDateTime.of(2018, 2, 3, 16, 30);
 
@@ -251,7 +251,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
 
         Reading expectedResult = null;
 
@@ -268,7 +268,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
 
         //Act
         boolean result = s1.isMeasurementListEmpty();
@@ -283,7 +283,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
 
         LocalDateTime dataHoraDaMedicao1 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
 
@@ -303,7 +303,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
 
         LocalDateTime dataHoraDaMedicao1 = LocalDate.of(1991, 11, 2).atTime(15, 20, 00);
 
@@ -330,7 +330,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         LocalDateTime data1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
         LocalDateTime data2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
         LocalDateTime data3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
@@ -359,7 +359,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
 
         double expectedResult = Double.NaN;
         LocalDate diaDoMes = LocalDate.of(2017, GregorianCalendar.AUGUST, 15);
@@ -378,7 +378,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         LocalDateTime data1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
         LocalDateTime data2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
         LocalDateTime data3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
@@ -407,7 +407,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         LocalDateTime data1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
         LocalDateTime data2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
         LocalDateTime data3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
@@ -436,7 +436,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         LocalDateTime data1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
         LocalDateTime data2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
         LocalDateTime data3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
@@ -465,7 +465,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         LocalDateTime data1 = LocalDateTime.of(2017, 8, 15, 5, 30, 0);
         LocalDateTime data2 = LocalDateTime.of(2017, 8, 15, 6, 02, 0);
         LocalDateTime data3 = LocalDateTime.of(2017, 8, 16, 6, 30, 0);
@@ -493,7 +493,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
 
         LocalDateTime data1 = LocalDateTime.of(2018, 4, 11, 5, 55);
         LocalDateTime data2 = LocalDateTime.of(2018, 2, 1, 6, 25);
@@ -526,7 +526,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
 
         LocalDateTime data1 = LocalDateTime.of(2018, 4, 11, 5, 55);
         LocalDateTime data2 = LocalDateTime.of(2018, 2, 1, 6, 25);
@@ -559,7 +559,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
 
         LocalDate dataDoMes = LocalDate.of(2018, 2, 15);
         double expectedResult = Double.NaN;
@@ -577,7 +577,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
 
         LocalDateTime data1 = LocalDateTime.of(2018, 4, 11, 5, 55);
         LocalDateTime data2 = LocalDateTime.of(2018, 2, 1, 6, 25);
@@ -608,7 +608,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
 
         double expectedResult = Double.NaN;
         LocalDate diaDoMes = LocalDate.of(2018, 2, 20);
@@ -625,7 +625,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         SensorType tipoPedido = new SensorType("Temperatura");
         //Act
         boolean resultado = sensor1.sensorTypeEqualsSensorType(tipoPedido);
@@ -639,7 +639,7 @@ public class SensorTest {
         LocalDateTime dataFuncionamento = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         SensorType tipoPedido = new SensorType("Humidade");
         //Act
         boolean resultado = sensor1.sensorTypeEqualsSensorType(tipoPedido);
@@ -659,7 +659,7 @@ public class SensorTest {
 
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", dataDomingo1, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", dataDomingo1, sensorType, locS1, "l/m2");
         Reading readingDomingo1 = new Reading(30, dataDomingo1);
         Reading readingDomingo2 = new Reading(35, dataDomingo2);
         Reading readingSegunda = new Reading(40, dataSegunda);
@@ -692,7 +692,7 @@ public class SensorTest {
 
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", dataDomingo1, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", dataDomingo1, sensorType, locS1, "l/m2");
         Reading readingDomingo1 = new Reading(Double.NaN, dataDomingo1);
         Reading readingDomingo2 = new Reading(35.0, dataDomingo2);
         Reading readingSegunda = new Reading(40.0, dataSegunda);
@@ -722,7 +722,7 @@ public class SensorTest {
         boolean expectedResult = false;
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
         boolean result = sensor1.checkIfDaysAreEqual(data.toLocalDate(), data2.toLocalDate());
 
         //assert
@@ -740,7 +740,7 @@ public class SensorTest {
         boolean expectedResult = true;
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Act
         boolean result = sensor1.checkIfDaysAreEqual(data.toLocalDate(), data2.toLocalDate());
@@ -758,7 +758,7 @@ public class SensorTest {
 
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Act
         boolean result = sensor1.checkIfDaysAreEqual(data.toLocalDate(), data2.toLocalDate());
@@ -773,7 +773,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
@@ -809,7 +809,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
@@ -845,7 +845,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
@@ -881,7 +881,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         double expectedResult = Double.NaN;
 
@@ -898,7 +898,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
@@ -934,7 +934,7 @@ public class SensorTest {
         LocalDateTime data = LocalDateTime.of(1991, 11, 2, 21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
         LocalDate expectedResult = LocalDate.of(1991, 10, 27);
 
         LocalDate result = sensor1.getFirstDayOfWeek(data.toLocalDate());
@@ -949,7 +949,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
@@ -1011,7 +1011,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
@@ -1067,7 +1067,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
@@ -1113,7 +1113,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
@@ -1160,7 +1160,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList());
 
@@ -1180,7 +1180,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
@@ -1239,7 +1239,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         double expectedResult = Double.NaN;
 
@@ -1258,7 +1258,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
@@ -1294,7 +1294,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
@@ -1330,7 +1330,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         double expectedResult = Double.NaN;
 
@@ -1347,7 +1347,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 00, 00, 01);
@@ -1383,7 +1383,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
@@ -1439,7 +1439,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 5, 01, 00, 01);
@@ -1495,7 +1495,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 6, 01, 00, 01);
@@ -1541,7 +1541,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
@@ -1587,7 +1587,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         List<Double> expectedResult = new ArrayList<>(Arrays.asList());
 
@@ -1607,7 +1607,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
@@ -1666,7 +1666,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         double expectedResult = Double.NaN;
 
@@ -1686,7 +1686,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 01, 00, 01);
@@ -1732,7 +1732,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
@@ -1779,7 +1779,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
@@ -1825,7 +1825,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         double expectedResult = 0.0;
 
@@ -1844,7 +1844,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 10, 2, 8, 00, 01);
@@ -1890,7 +1890,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Registo 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
@@ -1925,7 +1925,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         double expectedResult = Double.NaN;
 
@@ -1942,7 +1942,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Reading 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
@@ -1988,7 +1988,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Reading 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
@@ -2034,7 +2034,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Reading 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
@@ -2080,7 +2080,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Reading 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
@@ -2111,7 +2111,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Reading 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
@@ -2157,7 +2157,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Reading 2
         LocalDateTime data2 = LocalDateTime.of(2018, 11, 2, 15, 59, 59);
@@ -2186,7 +2186,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Reading 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
@@ -2235,7 +2235,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Reading 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
@@ -2284,7 +2284,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Reading 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
@@ -2333,7 +2333,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Reading 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
@@ -2381,7 +2381,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Reading 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
@@ -2429,7 +2429,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         //Reading 1
         LocalDateTime data1 = LocalDateTime.of(2018, 11, 2, 8, 00, 01);
@@ -2473,7 +2473,7 @@ public class SensorTest {
         LocalDateTime data = LocalDate.of(1991, 11, 2).atTime(21, 10, 25);
         SensorType sensorType = new SensorType("Temperature");
         Location locS1 = new Location(123, 345, 50);
-        Sensor sensor1 = new Sensor("R003", "A123", data, sensorType, locS1, "l/m2");
+        GeoAreaSensor sensor1 = new GeoAreaSensor("R003", "A123", data, sensorType, locS1, "l/m2");
 
         LocalDate startDate = LocalDate.of(2018, 11, 2);
         LocalDate endDate = LocalDate.of(2018, 11, 3);
@@ -2489,7 +2489,7 @@ public class SensorTest {
     }
 
     /**
-     * Test that tries to get an existing list of Readings from the Sensor.
+     * Test that tries to get an existing list of Readings from the GeoAreaSensor.
      */
     @Test
     public void testGetListOfReadings_tryingToGetAnExistingList_ShouldReturnTheCorrespondingList() {

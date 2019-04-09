@@ -14,9 +14,9 @@ import pt.ipp.isep.dei.project.controllers.removesensorfromgeoareacontroller.Rem
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDateTime;
@@ -33,8 +33,8 @@ public class RemoveSensorFromGeoAreaControllerTest {
     private RemoveSensorFromGeoAreaController controller;
     private GeographicalArea porto;
     private GeographicalAreaDTO portoDTO;
-    private Sensor temperatureSensor;
-    private SensorDTO temperatureSensorDTO;
+    private GeoAreaSensor temperatureSensor;
+    private GeoAreaSensorDTO temperatureSensorDTO;
     @InjectMocks
     private GeographicalAreaList geographicalAreaList;
 
@@ -58,11 +58,11 @@ public class RemoveSensorFromGeoAreaControllerTest {
         SensorType temperature = new SensorType("temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        temperatureSensor = new Sensor("S01", "A123", startDate, temperature, sensorLocation, "l/m2");
+        temperatureSensor = new GeoAreaSensor("S01", "A123", startDate, temperature, sensorLocation, "l/m2");
         porto.addSensor(temperatureSensor);
 
         // SensorDTOs
-        temperatureSensorDTO = SensorMapper.mapToDTO(temperatureSensor);
+        temperatureSensorDTO = GeoAreaSensorMapper.mapToDTO(temperatureSensor);
 
         // Controller
         this.controller = new RemoveSensorFromGeoAreaController(geographicalAreaList);
@@ -97,20 +97,20 @@ public class RemoveSensorFromGeoAreaControllerTest {
     public void testGetSensorList_ShouldReturnTheCorrespondingList() {
         // Arrange
         controller.setGeoAreaById("Porto");
-        List<Sensor> expectedResult = new ArrayList<>();
-        expectedResult.add(SensorMapper.mapToEntity(temperatureSensorDTO));
+        List<GeoAreaSensor> expectedResult = new ArrayList<>();
+        expectedResult.add(GeoAreaSensorMapper.mapToEntity(temperatureSensorDTO));
 
         // Act
-        List<SensorDTO> firstResult = controller.getSensorList();
-        List<Sensor> result = new ArrayList<>();
-        result.add(SensorMapper.mapToEntity(firstResult.get(0)));
+        List<GeoAreaSensorDTO> firstResult = controller.getSensorList();
+        List<GeoAreaSensor> result = new ArrayList<>();
+        result.add(GeoAreaSensorMapper.mapToEntity(firstResult.get(0)));
 
         // Assert
         assertEquals(expectedResult, result);
     }
 
     /**
-     * Test that tries to remove a Sensor from a GeoArea when the Id doesn't correspond to an existing Sensor.
+     * Test that tries to remove a GeoAreaSensor from a GeoArea when the Id doesn't correspond to an existing GeoAreaSensor.
      */
     @Test
     public void testRemoveSensor_whenIdDoesntCorrespond_ShouldReturnFalse() {
@@ -125,7 +125,7 @@ public class RemoveSensorFromGeoAreaControllerTest {
     }
 
     /**
-     * Test that tries to remove a Sensor from a GeoArea when the Id corresponds to an existing Sensor.
+     * Test that tries to remove a GeoAreaSensor from a GeoArea when the Id corresponds to an existing GeoAreaSensor.
      */
     @Test
     public void testRemoveSensor_whenIdCorresponds_ShouldReturnTrue() {

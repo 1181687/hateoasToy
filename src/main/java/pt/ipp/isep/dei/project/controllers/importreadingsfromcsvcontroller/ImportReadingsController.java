@@ -5,7 +5,7 @@ import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -23,7 +23,7 @@ public class ImportReadingsController {
     private static final Logger LOGGER = Logger.getLogger(ImportReadingsController.class.getName());
     private GeographicalAreaList geographicalAreaList;
     private SensorList allSensorInTheGeoAreas;
-    private Sensor sensor;
+    private GeoAreaSensor sensor;
     private List<Object> readingDTOList;
     private int numberOfNotImportedReadings;
 
