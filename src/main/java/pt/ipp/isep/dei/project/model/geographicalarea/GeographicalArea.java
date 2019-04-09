@@ -21,11 +21,14 @@ public class GeographicalArea {
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private GeographicalAreaType geographicalAreaType;
+
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private GeographicalArea insertedIn;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    @Embedded
     private Location location;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    @Embedded
     private AreaShape areaShape;
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

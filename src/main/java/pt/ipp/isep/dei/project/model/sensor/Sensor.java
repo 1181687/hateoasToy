@@ -71,6 +71,7 @@ public class Sensor {
     }
 
     protected Sensor() {
+        // empty
     }
 
     public String getId() {

@@ -1,15 +1,9 @@
 package pt.ipp.isep.dei.project.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Entity
+@Embeddable
 public class Location {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private double latitude;
 
@@ -31,10 +25,6 @@ public class Location {
         setLatitude(latitude);
         setLongitude(longitude);
         this.elevation = elevation;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     /**
@@ -76,6 +66,10 @@ public class Location {
      */
     public double getElevation() {
         return elevation;
+    }
+
+    public void setElevation(double elevation) {
+        this.elevation = elevation;
     }
 
     /**
