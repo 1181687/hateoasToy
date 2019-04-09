@@ -1,16 +1,9 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Embeddable;
 
-@Entity
+@Embeddable
 public class GeographicalAreaType {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String geoAreaType;
 
@@ -56,8 +49,13 @@ public class GeographicalAreaType {
      * @return a type of geo area.
      */
     public String getStringOfTypeOfGeoArea() {
-        return geoAreaType;
+        return this.geoAreaType;
     }
+
+    public void setStringOfTypeOfGeoArea(String geoAreaType) {
+        this.geoAreaType = geoAreaType;
+    }
+
 
     /**
      * method that check if one type of geo area is equal to another type of geo area.

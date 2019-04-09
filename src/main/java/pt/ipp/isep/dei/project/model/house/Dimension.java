@@ -1,7 +1,9 @@
 package pt.ipp.isep.dei.project.model.house;
 
+import javax.persistence.Embeddable;
 import java.util.Objects;
 
+@Embeddable
 public class Dimension {
     private double height;
     private double length;
@@ -23,6 +25,10 @@ public class Dimension {
         this.height = height;
         this.length = length;
         this.width = width;
+    }
+
+    public Dimension() {
+        // empty
     }
 
     /**

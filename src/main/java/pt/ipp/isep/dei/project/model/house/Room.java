@@ -8,17 +8,30 @@ import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
 import static java.util.Objects.isNull;
 
+@Entity
 public class Room implements Measurable {
+
+    @Id
     private String roomName;
+    private String description;
     private int houseFloor;
+
+    //@Embedded
+    @Transient
     private Dimension dimension;
+    @Transient
     private RoomSensorList sensorList;
+
+    @Transient
     private List<Device> deviceList;
 
     /**
@@ -38,6 +51,10 @@ public class Room implements Measurable {
         this.dimension = dimension;
         this.sensorList = new RoomSensorList();
         this.deviceList = new ArrayList<>();
+    }
+
+    public Room() {
+        // empty
     }
 
     /**

@@ -7,7 +7,9 @@ import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -19,17 +21,24 @@ public class GeographicalArea {
     private String id;
     private String description;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@Embedded
+    @Transient
     private GeographicalAreaType geographicalAreaType;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    @Transient
     private GeographicalArea insertedIn;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    //@Embedded
+    @Transient
     private Location location;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+
+    //@Embedded
+    @Transient
     private AreaShape areaShape;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn
+    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JoinColumn
+    @Transient
     private SensorList sensorList = new SensorList();
 
     protected GeographicalArea(){

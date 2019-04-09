@@ -1,16 +1,13 @@
 package pt.ipp.isep.dei.project.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
 
-@Entity
+@Embeddable
 public class Reading {
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private Long id;
+    //@Id
+    //@GeneratedValue (strategy = GenerationType.IDENTITY)
+    //private Long id;
     private double value;
     private LocalDateTime dateTime;
 
@@ -26,6 +23,7 @@ public class Reading {
     }
 
     protected Reading() {
+        // empty
     }
 
     /**
@@ -36,12 +34,20 @@ public class Reading {
         return value;
     }
 
+    public void setValue(double value) {
+        this.value = value;
+    }
+
     /**
      * Get method
      * @return dateTime
      */
     public LocalDateTime getDateTime() {
         return dateTime;
+    }
+
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     /**
