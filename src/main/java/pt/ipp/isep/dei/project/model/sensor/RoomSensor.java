@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoomSensor {
+public class RoomSensor implements Sensor {
 
     private String id;
     private String sensorName;

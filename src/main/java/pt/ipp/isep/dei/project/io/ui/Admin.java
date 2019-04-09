@@ -119,7 +119,7 @@ public class Admin {
                     break;
                 case 6:
                     GetListOfSensorsAndDevicesRoom ui250 = new GetListOfSensorsAndDevicesRoom(house);
-                    ui250.listOfSensors();
+                    //ui250.listOfSensors();
                     break;
                 case 7:
                     EditConfigurationDevice ui215 = new EditConfigurationDevice(house);

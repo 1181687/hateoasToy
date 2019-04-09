@@ -243,24 +243,28 @@ public class House {
         return insertedGeoArea.getTotalDailyMeasurement(measurementType, day, this.address.getLocation());
     }
 
-    /**
+/*
+    */
+/**
      * @param name name of room
      * @param type type of sensor (temperature)
      * @param date given day
      * @return returns the maximum temperature in a specific day
-     */
+     *//*
+
     public double getMaximumTemperatureOfRoomInSpecificDay(String name, SensorType type, LocalDate date) {
         return this.roomList.getMaximumTemperatureInRoomInGivenDay(name, type, date);
     }
+*/
 
 
-    /**
+/*    *//**
      * Method that get the latest measurement by sensor type.
      *
      * @param name
      * @param type
      * @return latest measurement.
-     */
+     *//*
     public Reading getLatestMeasurementBySensorType(String name, SensorType type) {
         Room room = roomList.getRoomByName(name);
         if (Objects.isNull(room)) {
@@ -271,7 +275,7 @@ public class House {
             return null;
         }
         return reading;
-    }
+    }*/
 
     /**
      * method that display a room list.
@@ -351,23 +355,29 @@ public class House {
         return roomList.isDeviceListEmpty(position);
     }
 
-    /**
+/*
+    */
+/**
      * method that displays the sensor list content of a Room
      *
      * @param position
-     */
+     *//*
+
     public String getSensorListContentOfARoom(int position) {
         return roomList.getSensorListContentOfRoom(position);
     }
 
-    /**
+    */
+/**
      * method that check if the sensor list of the room is empty
      *
      * @param position
-     */
+     *//*
+
     public boolean isSensorListEmpty(int position) {
         return roomList.isSensorListEmpty(position);
     }
+*/
 
     /**
      * method that gets a List of all devices in a housegrid grid, by it position in a HouseGridList

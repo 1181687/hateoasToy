@@ -107,7 +107,7 @@ public class AddSensorToRoomControllerTest {
         assertEquals(expectedResult, result);
     }
 
-    @Test
+/*    @Test
     public void createAndAddSensorToTheList() {
         // Arrange
 
@@ -142,7 +142,7 @@ public class AddSensorToRoomControllerTest {
 
         // Assert
         assertTrue(result);
-    }
+    }*/
 
     @Test
     public void checkIfRoomListIsEmptyPositive() {

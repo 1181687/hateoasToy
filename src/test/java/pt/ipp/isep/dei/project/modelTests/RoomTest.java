@@ -1,3 +1,4 @@
+/*
 package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -173,7 +174,8 @@ public class RoomTest {
         assertEquals(result, expectedResult);
     }
 
-    /*@Test
+    */
+/*@Test
     public void testValidateNameNull() {
         String name = null;
         Dimension dim = new Dimension(3.5, 3.5, 3.5);
@@ -201,7 +203,8 @@ public class RoomTest {
                 new Room(name, 2, dim)
         );
         assertEquals("Dimension should not be null", exception.getMessage());
-    }*/
+    }*//*
+
 
     @Test
     public void getSensorsListContentTest() {
@@ -742,7 +745,8 @@ public class RoomTest {
         assertFalse(result);
     }
 
-    /*@Test
+    */
+/*@Test
     public void testAddDeviceSameDevice_Exception() {
 
         Device lamp = house.createDevice(LAMP_TYPE, "Lamp", kitchen);
@@ -761,7 +765,8 @@ public class RoomTest {
 
         );
         assertEquals("Device is null.", exception.getMessage());
-    }*/
+    }*//*
+
 
     @org.junit.jupiter.api.Test
     public void testAddDeviceTrue() {
@@ -799,4 +804,4 @@ public class RoomTest {
         //Assert
         assertFalse(result);
     }
-}
+}*/

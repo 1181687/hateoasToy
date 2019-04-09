@@ -1,3 +1,4 @@
+/*
 package pt.ipp.isep.dei.project.controllersTests;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -313,4 +314,4 @@ public class GetCurrentAndMaxTempRoomControllerTest {
         //Assert
         assertEquals(expectedResult, result);
     }
-}
+}*/

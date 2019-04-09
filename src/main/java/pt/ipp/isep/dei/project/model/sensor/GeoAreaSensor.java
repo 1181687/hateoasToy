@@ -14,7 +14,7 @@ import java.util.List;
 
 
 @Entity
-public class GeoAreaSensor {
+public class GeoAreaSensor implements Sensor {
     @Id
     private String id;
     private String sensorName;

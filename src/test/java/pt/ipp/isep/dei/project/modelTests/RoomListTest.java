@@ -29,7 +29,7 @@ public class RoomListTest {
     private static final String WASHING_MACHINE_TYPE = "WashingMachine";
 
 
-    @BeforeEach
+/*    @BeforeEach
     public void StartUp() {
         //Geographical Area
         Location location = new Location(41.178553, -8.608035, 111);
@@ -173,7 +173,7 @@ public class RoomListTest {
         assertEquals(true, result);
     }
 
-    /*@Test
+    *//*@Test
     public void testNewRoomFalseDuplicatedName() {
         //arrange
         RoomList list = new RoomList();
@@ -186,7 +186,7 @@ public class RoomListTest {
         );
 
         assertEquals("Name already exists. Please write a new one.", exception.getMessage());
-    }*/
+    }*//*
 
     @org.junit.jupiter.api.Test
     public void getDisplayOfTheChosenRoomTest() {
@@ -936,6 +936,6 @@ public class RoomListTest {
 
         // Assert
         assertEquals(expectedResult, result);
-    }
+    }*/
 }
 

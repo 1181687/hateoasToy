@@ -26,7 +26,7 @@ public class GetMaxTemperatureRoom {
 
     public void run() {
 
-        System.out.println(controller.getRoomListContent());
+      /*  System.out.println(controller.getRoomListContent());
         if (controller.getRoomListContent().isEmpty()) {
             System.out.println("There are no rooms available\n");
             return;
@@ -45,6 +45,6 @@ public class GetMaxTemperatureRoom {
             return;
         }
 
-        System.out.println("The maximum temperature is " + temp + "ºC");
+        System.out.println("The maximum temperature is " + temp + "ºC");*/
     }
 }

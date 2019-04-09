@@ -407,7 +407,7 @@ public class HouseTest {
         assertEquals(expectedResult, result, 0.0001);
     }
 
-    @Test
+/*    @Test
     public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresIguais() {
         //arrange
         //sensor

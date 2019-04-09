@@ -63,15 +63,15 @@ public class AddSensorToRoomController {
         locationOfTheHouse = house.getLocation();
     }
 
-    /**
+/*    *//**
      * This method create and add a sensor to the list of sensors in the room.
      * @param name of the new sensor.
      * @return a new sensor added in the list of sensors in the room.
-     */
+     *//*
     public boolean createAndAddSensorToTheList(String id, String name, String units) {
         GeoAreaSensor newSensor = selectedRoom.getSensorList().newSensor(id, name, sensorType, locationOfTheHouse, units);
         return selectedRoom.addSensorToListOfSensorsInRoom(newSensor);
-    }
+    }*/
 
     /**
      * Method that checks if a room isn't already in the list of rooms.

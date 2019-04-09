@@ -26,16 +26,20 @@ public class GetCurrentAndMaxTempRoomController {
         return sensorType;
     }
 
-    /**
+/*
+    */
+/**
      * receives a Room name, and gets the latest Reading according to the sensorType
      * passed on the constructor
      *
      * @param name String name of the room
      * @return latest measurement
-     */
+     *//*
+
     public Reading getLatestMeasurementByRoomName(String name) {
         return this.house.getLatestMeasurementBySensorType(name, sensorType);
     }
+*/
 
     /**
      * gets a formatted string with information from the rooms that are available
@@ -71,7 +75,8 @@ public class GetCurrentAndMaxTempRoomController {
      * @param date receives a given day
      * @return the maximum temperature of that room in the choosen day
      */
-    public double getMaximumTemperatureOfRoomInGivenDay(String name, SensorType type, LocalDate date) {
+ /*   public double getMaximumTemperatureOfRoomInGivenDay(String name, SensorType type, LocalDate date) {
         return this.house.getMaximumTemperatureOfRoomInSpecificDay(name, type, date);
     }
+    */
 }
