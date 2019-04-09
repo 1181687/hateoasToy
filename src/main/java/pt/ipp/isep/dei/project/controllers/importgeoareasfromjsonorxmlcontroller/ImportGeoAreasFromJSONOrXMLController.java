@@ -9,6 +9,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
+import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -18,12 +19,15 @@ import java.util.List;
 public class ImportGeoAreasFromJSONOrXMLController {
     @Autowired
     private GeographicalAreaList geographicalAreaList;
+    @Autowired
+    private SensorList sensorList;
     private ProjectFileReader reader;
     private List<Object> geoAreaDTOList;
 
 
-    public ImportGeoAreasFromJSONOrXMLController(GeographicalAreaList geographicalAreaList) {
+    public ImportGeoAreasFromJSONOrXMLController(GeographicalAreaList geographicalAreaList, SensorList sensorList) {
         this.geographicalAreaList = geographicalAreaList;
+        this.sensorList = sensorList;
     }
 
     /**
@@ -39,7 +43,7 @@ public class ImportGeoAreasFromJSONOrXMLController {
             GeographicalAreaDTO geoDTO = (GeographicalAreaDTO) geoObject;
             GeographicalArea geoArea = GeographicalAreaMapper.mapToEntity(geoDTO);
             for (GeoAreaSensorDTO sensorDTO : geoDTO.getSensors()) {
-                geoArea.addSensor(GeoAreaSensorMapper.mapToEntity(sensorDTO));
+                sensorList.addSensor(GeoAreaSensorMapper.mapToEntity(sensorDTO));
             }
             if (geographicalAreaList.addGeoArea(geoArea)) {
                 imported = true;

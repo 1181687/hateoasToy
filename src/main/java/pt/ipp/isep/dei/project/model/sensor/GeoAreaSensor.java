@@ -4,6 +4,7 @@ import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -22,9 +23,7 @@ public class GeoAreaSensor implements Sensor {
     private String sensorName;
     private LocalDateTime startingDate;
 
-    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    //@JoinColumn
-    @Transient
+    @ElementCollection
     private List<Reading> listOfReadings = new ArrayList<>();
 
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
@@ -39,6 +38,7 @@ public class GeoAreaSensor implements Sensor {
 
     private String units;
 
+    @Transient
     private boolean isActive;
 
 

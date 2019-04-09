@@ -55,6 +55,7 @@ public class SensorList {
             return false;
         }
         listOfSensors.add(sensor);
+        sensorRepository.save(sensor);
 
         return true;
     }
