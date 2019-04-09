@@ -3,14 +3,14 @@ package pt.ipp.isep.dei.project.controllersTests;
 import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsController;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 
 class ImportReadingsFromCSVXMLJSONControllerTest {
     private ImportReadingsController controller;
     private GeographicalArea portoDistrict;
     private GeographicalArea portoCity;
-    private Sensor temperatureSensor;
-    private Sensor temperatureSensor1;
+    private GeoAreaSensor temperatureSensor;
+    private GeoAreaSensor temperatureSensor1;
     private ReadingDTO readingDTO;
 
     /**
@@ -38,11 +38,11 @@ class ImportReadingsFromCSVXMLJSONControllerTest {
         SensorType temperature = new SensorType("Temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(42.1596, -8.6109, 97);
-        temperatureSensor = new Sensor("432", "A123", startDate, temperature, sensorLocation, "l/m2");
+        temperatureSensor = new GeoAreaSensor("432", "A123", startDate, temperature, sensorLocation, "l/m2");
         portoCity.getSensorListInTheGeographicArea().addSensor(temperatureSensor);
         LocalDateTime startDate1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
         Location sensorLocation1 = new Location(42.1496, -8.6109, 97);
-        temperatureSensor1 = new Sensor("654", "B123", startDate1, temperature, sensorLocation1, "l/m2");
+        temperatureSensor1 = new GeoAreaSensor("654", "B123", startDate1, temperature, sensorLocation1, "l/m2");
         portoDistrict.getSensorListInTheGeographicArea().addSensor(temperatureSensor1);
 
         // Reading DTO
@@ -56,7 +56,7 @@ class ImportReadingsFromCSVXMLJSONControllerTest {
     }
 
     /**
-     * Test that tries to use an valid Id to verify if a Sensor exists, which works and returns true.
+     * Test that tries to use an valid Id to verify if a GeoAreaSensor exists, which works and returns true.
      */
     /*
     @Test
@@ -69,7 +69,7 @@ class ImportReadingsFromCSVXMLJSONControllerTest {
     }
 
     /**
-     * Test that tries to use an invalid Id to verify if a Sensor exists, which doesn't work and returns false.
+     * Test that tries to use an invalid Id to verify if a GeoAreaSensor exists, which doesn't work and returns false.
      */
     /*
     @Test
@@ -116,7 +116,7 @@ class ImportReadingsFromCSVXMLJSONControllerTest {
     }
 
     /**
-     * Test that tries to add a Reading to a Sensor, using a valid ReadingDTO, which results in a successful attempt.
+     * Test that tries to add a Reading to a GeoAreaSensor, using a valid ReadingDTO, which results in a successful attempt.
      */
     /*
     @Test
@@ -134,7 +134,7 @@ class ImportReadingsFromCSVXMLJSONControllerTest {
     }
 
     /**
-     * Test that tries to add a null Object to a Sensor, which results in a non addition.
+     * Test that tries to add a null Object to a GeoAreaSensor, which results in a non addition.
      */
     /*
     @Test

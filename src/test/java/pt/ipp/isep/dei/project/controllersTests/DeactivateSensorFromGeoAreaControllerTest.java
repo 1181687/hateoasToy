@@ -14,9 +14,9 @@ import pt.ipp.isep.dei.project.controllers.deactivatesensorfromgeoarea.Deactivat
 import pt.ipp.isep.dei.project.io.ui.Main;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDateTime;
@@ -34,8 +34,8 @@ public class DeactivateSensorFromGeoAreaControllerTest {
     private DeactivateSensorFromGeoAreaController controller;
     private GeographicalArea porto;
     private GeographicalAreaDTO portoDTO;
-    private Sensor temperatureSensor;
-    private SensorDTO temperatureSensorDTO;
+    private GeoAreaSensor temperatureSensor;
+    private GeoAreaSensorDTO temperatureSensorDTO;
     @Autowired
     private GeographicalAreaList geographicalAreaList;
 
@@ -56,11 +56,11 @@ public class DeactivateSensorFromGeoAreaControllerTest {
         SensorType temperature = new SensorType("temperature");
         LocalDateTime startDate = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
         Location sensorLocation = new Location(38.1596, -8.6109, 97);
-        temperatureSensor = new Sensor("S01", "A123", startDate, temperature, sensorLocation, "l/m2");
+        temperatureSensor = new GeoAreaSensor("S01", "A123", startDate, temperature, sensorLocation, "l/m2");
         porto.addSensor(temperatureSensor);
 
         // SensorDTOs
-        temperatureSensorDTO = SensorMapper.mapToDTO(temperatureSensor);
+        temperatureSensorDTO = GeoAreaSensorMapper.mapToDTO(temperatureSensor);
 
         // Controller
         this.controller = new DeactivateSensorFromGeoAreaController(geographicalAreaList);

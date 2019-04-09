@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.modelTests;
 
 import org.junit.jupiter.api.Test;
 import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import java.time.LocalDateTime;
@@ -73,7 +73,7 @@ public class SensorTypeTest {
         LocalDateTime dataFuncionamento = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType = new SensorType("Temperatura");
         Location locS1 = new Location(123, 345, 50);
-        Sensor s1 = new Sensor("123", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
+        GeoAreaSensor s1 = new GeoAreaSensor("123", "A123", dataFuncionamento, sensorType, locS1, "l/m2");
         //Act
         boolean result = tipo0.equals(s1);
         //Assert

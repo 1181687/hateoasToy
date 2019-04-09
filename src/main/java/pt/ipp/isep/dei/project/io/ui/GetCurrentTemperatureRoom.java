@@ -1,11 +1,8 @@
 package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.GetCurrentAndMaxTempRoomController;
-import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
-
-import java.util.Objects;
 
 
 /** US605 As a Regular User, I want to get the current temperature in a room, in order to check
@@ -50,7 +47,7 @@ public class GetCurrentTemperatureRoom {
      */
     public void run() {
 
-        if (controller.getRoomListContent().isEmpty()) {
+       /* if (controller.getRoomListContent().isEmpty()) {
             System.out.println("There are no rooms available\n");
             return;
         }
@@ -66,7 +63,7 @@ public class GetCurrentTemperatureRoom {
             return;
         }
 
-        displayResults(roomName, temp.getValue(), temp.getDateTime().toString());
+        displayResults(roomName, temp.getValue(), temp.getDateTime().toString());*/
     }
 
 }

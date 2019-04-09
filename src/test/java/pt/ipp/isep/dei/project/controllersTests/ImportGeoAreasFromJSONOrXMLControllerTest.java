@@ -15,9 +15,8 @@ import pt.ipp.isep.dei.project.model.LocationMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
-import pt.ipp.isep.dei.project.model.sensor.SensorDTO;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
-import pt.ipp.isep.dei.project.model.sensor.SensorMapper;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -35,9 +34,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ImportGeoAreasFromJSONOrXMLControllerTest {
     @Autowired
     private GeographicalAreaList geographicalAreaList;
-
-    @Autowired
-    private SensorList sensorList;
 
     /**
      * Test that imports imports geo areas and sensors
@@ -58,14 +54,14 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
         locationDTO.setLongitude(longitude1);
         locationDTO.setElevation(altitude1);
 
-        // SensorDTO
+        // GeoAreaSensorDTO
         String idSensor = "S1";
         String nameSensor ="sensor";
         LocalDate startingDate = LocalDate.of(2017, GregorianCalendar.AUGUST, 15);
         String typeSensor = "Temperature";
         String units = "1m/s";
 
-        SensorDTO sensorDTO = SensorMapper.newSensorDTO();
+        GeoAreaSensorDTO sensorDTO = GeoAreaSensorMapper.newSensorDTO();
         sensorDTO.setId(idSensor);
         sensorDTO.setName(nameSensor);
         sensorDTO.setSensorType(typeSensor);
@@ -100,7 +96,7 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
         String path = "datasets/geoAreas/json/JSONfile.json";
         File file = new File(path);
 
-        ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geographicalAreaList, sensorList);
+        ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geographicalAreaList);
         ctrl.createReader(path);
         ctrl.readFile(file, path);
 

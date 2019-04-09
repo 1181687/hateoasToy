@@ -4,7 +4,7 @@ import pt.ipp.isep.dei.project.model.LocationDTO;
 
 import java.time.LocalDate;
 
-public class SensorDTO {
+public class GeoAreaSensorDTO {
     private String id;
     private String name;
     private LocalDate startingDate;
@@ -16,7 +16,7 @@ public class SensorDTO {
     /**
      * Constructor.
      */
-    public SensorDTO() {
+    public GeoAreaSensorDTO() {
         //intentionally empty
     }
 

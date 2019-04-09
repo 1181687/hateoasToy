@@ -1,18 +1,14 @@
 package pt.ipp.isep.dei.project.model.house;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -28,10 +24,8 @@ public class Room implements Measurable {
 
     @Embedded
     private Dimension dimension;
-
-    @Autowired
     @Transient
-    private SensorList sensorList;
+    private RoomSensorList sensorList;
 
     @Transient
     private List<Device> deviceList;
@@ -51,7 +45,7 @@ public class Room implements Measurable {
         this.roomName = name.trim();
         this.houseFloor = houseFloor;
         this.dimension = dimension;
-        this.sensorList = new SensorList();
+        this.sensorList = new RoomSensorList();
         this.deviceList = new ArrayList<>();
     }
 
@@ -181,44 +175,54 @@ public class Room implements Measurable {
         Room roomOne = (Room) obj;
         return this.roomName.equalsIgnoreCase(roomOne.roomName);
     }
+    /*
 
-    /**
+     */
+/**
      * This method add a new sensor to the list of sensors in the room
      *
      * @param newSensor add to the list of sensors
      * @return a new sensor to the list of sensors
-     */
-    public boolean addSensorToListOfSensorsInRoom(Sensor newSensor) {
+ *//*
+
+    public boolean addSensorToListOfSensorsInRoom(GeoAreaSensor newSensor) {
         return this.sensorList.addSensor(newSensor);
     }
 
-    /**
+    */
+/**
      * This method gets the sensor list.
      *
      * @return the list of sensors.
-     */
+ *//*
+
     public SensorList getSensorList() {
         return sensorList;
     }
 
-    /**
+    */
+/**
      * @param type of sensor (temperature)
      * @param date any given day
      * @return maximum temperature
-     */
+ *//*
+
     public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         return sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(type, date);
     }
 
-    /**
+    */
+/**
      * Method that gets the latest measurement by type of sensor
      *
      * @param type type of sensor
      * @return latest measurement by sensor type
-     */
+ *//*
+
     public Reading getLatestMeasurementBySensorType(SensorType type) {
         return sensorList.getLatestMeasurementBySensorType(type);
     }
+*/
 
     /**
      * Method that return the nominal power of the list of devices in the room.
@@ -237,21 +241,27 @@ public class Room implements Measurable {
         return totalNominalPower;
     }
 
-    /**
+    /*
+     */
+/**
      * method that displays the content of the list of sesnsors
      *
      * @return sensor list content
-     */
+ *//*
+
     public String getSensorListContent() {
         return this.sensorList.getSensorListToString();
     }
 
-    /**
+    */
+/**
      * method that check if the sensor list of the room is empty
-     */
+ *//*
+
     public boolean isSensorListEmpty() {
         return this.sensorList.isEmpty();
     }
+*/
 
 
     /**

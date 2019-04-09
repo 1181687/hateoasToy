@@ -22,7 +22,7 @@ public class AddSensorToRoom {
 
         Scanner read = new Scanner(System.in);
 
-        if (controller.isRoomListEmpty()) {
+       /* if (controller.isRoomListEmpty()) {
             System.out.println("There are no rooms in the housegrid. Please create a room");
         } else if (controller.isSensorTypeListEmpty()) {
             System.out.println("There are no sensor types created. Please create one.");
@@ -53,5 +53,7 @@ public class AddSensorToRoom {
             }
 
         }
+        */
     }
+
 }

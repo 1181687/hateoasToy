@@ -14,7 +14,7 @@ import java.util.Objects;
 @Service
 public class SensorList {
 
-    private List<Sensor> listOfSensors;
+    private List<GeoAreaSensor> listOfSensors;
 
     @Autowired
     private SensorRepository sensorRepository;
@@ -31,7 +31,7 @@ public class SensorList {
      *
      * @return listOfSensors.
      */
-    public List<Sensor> getListOfSensors() {
+    public List<GeoAreaSensor> getListOfSensors() {
         return listOfSensors;
     }
 
@@ -40,7 +40,7 @@ public class SensorList {
      *
      * @param listOfSensors List of sensors to be used.
      */
-    public void setListOfSensors(List<Sensor> listOfSensors) {
+    public void setListOfSensors(List<GeoAreaSensor> listOfSensors) {
         this.listOfSensors = listOfSensors;
     }
 
@@ -50,12 +50,11 @@ public class SensorList {
      * @param sensor Chosen sensor.
      * @return True or false.
      */
-    public boolean addSensor(Sensor sensor) {
+    public boolean addSensor(GeoAreaSensor sensor) {
         if (listOfSensors.contains(sensor)) {
             return false;
         }
         listOfSensors.add(sensor);
-        sensorRepository.save(sensor);
 
         return true;
     }
@@ -68,8 +67,8 @@ public class SensorList {
      * @param location   Location of the sensor.
      * @return sensor.
      */
-    public Sensor newSensor(String id, String name, SensorType sensorType, Location location, String units) {
-        return new Sensor(id, name, sensorType, location, units);
+    public GeoAreaSensor newSensor(String id, String name, SensorType sensorType, Location location, String units) {
+        return new GeoAreaSensor(id, name, sensorType, location, units);
     }
 
     /**
@@ -80,7 +79,7 @@ public class SensorList {
      */
     public List<Reading> getListOfLatestMeasurementsBySensorType(SensorType type) {
         List<Reading> listOfLatestReadings = new ArrayList<>();
-        for (Sensor sensor : listOfSensors) {
+        for (GeoAreaSensor sensor : listOfSensors) {
             if (sensor.isMeasurementListEmpty()) {
                 break;
             }
@@ -119,7 +118,7 @@ public class SensorList {
     public double getMaximumMeasureOfTypeOfSensorInGivenDay(SensorType type, LocalDate date) {
         if (!listOfSensors.isEmpty()) {
             double maxValue = listOfSensors.get(0).getMaximumValueOfDay(date);
-            for (Sensor sensor : listOfSensors) {
+            for (GeoAreaSensor sensor : listOfSensors) {
                 if (sensor.getSensorType().equals(type) && (!(sensor.getDailyMeasurement(date).isEmpty())) && (Double.compare(sensor.getMaximumValueOfDay(date), maxValue) == 1)) {
                         maxValue = sensor.getMaximumValueOfDay(date);
                 }
@@ -137,7 +136,7 @@ public class SensorList {
      */
     public double getDailyAverage(LocalDate date) {
         double dailyAverage = Double.NaN;
-        for (Sensor sensor : listOfSensors) {
+        for (GeoAreaSensor sensor : listOfSensors) {
             if (!(sensor.getDailyMeasurement(date).isEmpty())) {
                 dailyAverage = sensor.getDailyAverage(date);
             }
@@ -154,7 +153,7 @@ public class SensorList {
     public SensorList getNearestSensorsToLocation(Location location) {
         SensorList nearestSensors = new SensorList();
         double shortestDistance = Double.NaN;
-        for (Sensor sensor : listOfSensors) {
+        for (GeoAreaSensor sensor : listOfSensors) {
             if (Double.isNaN(shortestDistance) || shortestDistance > sensor.distanceBetweenSensorAndLocation(location)) {
                 shortestDistance = sensor.distanceBetweenSensorAndLocation(location);
                 nearestSensors.getListOfSensors().clear();
@@ -237,9 +236,9 @@ public class SensorList {
      * @param sensorList
      * @return
      */
-    public Sensor getSensorWithMostRecentReading(SensorList sensorList) {
-        Sensor sensorWithMostRecentReading = sensorList.getListOfSensors().get(0);
-        for (Sensor sensor : sensorList.getListOfSensors()) {
+    public GeoAreaSensor getSensorWithMostRecentReading(SensorList sensorList) {
+        GeoAreaSensor sensorWithMostRecentReading = sensorList.getListOfSensors().get(0);
+        for (GeoAreaSensor sensor : sensorList.getListOfSensors()) {
             if (!(sensor.isMeasurementListEmpty()) &&
                     sensor.getLastMeasurement().getDateTime().isAfter(sensorWithMostRecentReading.getLastMeasurement().getDateTime())) {
                 sensorWithMostRecentReading = sensor;
@@ -260,7 +259,7 @@ public class SensorList {
      * @return True or false.
      */
     public boolean checkIfSensorExistsById(String sensorId) {
-        for (Sensor sensor : listOfSensors) {
+        for (GeoAreaSensor sensor : listOfSensors) {
             if (sensor.getId().equals(sensorId)) {
                 return true;
             }
@@ -272,10 +271,10 @@ public class SensorList {
      * Method that returns a sensor by searching for it by its id.
      *
      * @param sensorId Id of the sensor.
-     * @return Sensor corresponding to the id.
+     * @return GeoAreaSensor corresponding to the id.
      */
-    public Sensor getSensorById(String sensorId) {
-        for (Sensor sensor : listOfSensors) {
+    public GeoAreaSensor getSensorById(String sensorId) {
+        for (GeoAreaSensor sensor : listOfSensors) {
             if (sensor.getId().equals(sensorId)) {
                 return sensor;
             }
@@ -284,12 +283,12 @@ public class SensorList {
     }
 
     /**
-     * Returns the Sensor with the most recent reading, of a list of sensors.
-     * @return Sensor
+     * Returns the GeoAreaSensor with the most recent reading, of a list of sensors.
+     * @return GeoAreaSensor
      */
-    public Sensor getSensorWithMostRecentReading() {
-        Sensor sensorWithMostRecentReading = this.getListOfSensors().get(0);
-        for (Sensor sensor : this.getListOfSensors()) {
+    public GeoAreaSensor getSensorWithMostRecentReading() {
+        GeoAreaSensor sensorWithMostRecentReading = this.getListOfSensors().get(0);
+        for (GeoAreaSensor sensor : this.getListOfSensors()) {
             if (!(sensor.isMeasurementListEmpty()) &&
                     sensor.getLastMeasurement().getDateTime().isAfter(sensorWithMostRecentReading.getLastMeasurement().getDateTime())) {
                 sensorWithMostRecentReading = sensor;
@@ -305,7 +304,7 @@ public class SensorList {
      * @return True or False.
      */
     public boolean removeSensorById(String sensorId) {
-        Sensor sensor = getSensorById(sensorId);
+        GeoAreaSensor sensor = getSensorById(sensorId);
         if (Objects.nonNull(sensor)) {
             listOfSensors.remove(sensor);
             return true;
