@@ -22,60 +22,76 @@ public class ConfigureHouseFromAFile {
         // Write the path
         String path = InputValidator.getString("Please specify the name of the file to import.");
         File file = new File(path);
+        boolean flag = true;
 
-        if (!file.exists()) {
-            System.out.println("\nERROR: There's no such file with that name.\n");
-            return;
-        }
-        List<Object> dtoList = controller.readFile(file, path);
-        if (Objects.isNull(dtoList) || dtoList.isEmpty()) {
-            System.out.println("\nThe information on the file is not valid to be imported.\n");
-            return;
-        }
+        do {
 
-        // Content of the choosen file
-        String confirmOptions = "\n This is the content of the chosen file: \n";
-
-        StringBuilder content = new StringBuilder();
-        content.append(confirmOptions);
-        content.append("\n");
-        for (Object house : dtoList) {
-            HouseDTO houseDTO = (HouseDTO) house;
-            String id = houseDTO.getAddressDTO().getCompleteAddress();
-            int numberOfRooms = houseDTO.getRoomDTOList().size();
-            int numberOfGrids = houseDTO.getHouseGridDTOList().size();
-            content.append(" > ");
-            content.append(id);
-            content.append("\n");
-            content.append(" - Number of rooms: ");
-            content.append(numberOfRooms);
-            content.append("\n");
-            content.append(" - Number of Grids: ");
-            content.append(numberOfGrids);
-            content.append("\n");
-        }
-
-        System.out.println(content);
-
-
-        // Import confirmation
-        String importConfirmation = InputValidator.confirmValidation("Do you want to configure the House with this information? (Y/N)");
-        if ("Y".equalsIgnoreCase(importConfirmation)) {
-
-            try {
-                if (controller.importHouseInformation()) {
-                    System.out.println("\n The House was configured with success.\n");
-                } else {
-                    System.out.println("The House is already configured.\n");
-                }
-            } catch (Exception e) {
-                System.out.println("\nSorry! The file doesn't contain valid information. It was not possible to import it.\n");
+            if (!file.exists()) {
+                System.out.println("\nERROR: There's no such file with that name.\n");
+                return;
+            }
+            List<Object> dtoList = controller.readFile(file, path);
+            if (Objects.isNull(dtoList) || dtoList.isEmpty()) {
+                System.out.println("\nThe information on the file is not valid to be imported.\n");
+                return;
             }
 
-        } else {
-            System.out.println("The House was not configured. \n");
-        }
+            // Content of the choosen file
+            String confirmOptions = "\n This is the content of the chosen file: \n";
 
+            StringBuilder content = new StringBuilder();
+            content.append(confirmOptions);
+            content.append("\n");
+            for (Object house : dtoList) {
+                HouseDTO houseDTO = (HouseDTO) house;
+                String id = houseDTO.getAddressDTO().getCompleteAddress();
+                int numberOfRooms = houseDTO.getRoomDTOList().size();
+                int numberOfGrids = houseDTO.getHouseGridDTOList().size();
+                content.append(" > ");
+                content.append(id);
+                content.append("\n");
+                content.append(" - Number of rooms: ");
+                content.append(numberOfRooms);
+                content.append("\n");
+                content.append(" - Number of Grids: ");
+                content.append(numberOfGrids);
+                content.append("\n");
+            }
+
+            System.out.println(content);
+
+
+            // Import confirmation
+            String importConfirmation = InputValidator.confirmValidation("Do you want to configure the House with this information? (Y/N)");
+            if ("Y".equalsIgnoreCase(importConfirmation)) {
+
+                try {
+                    if (controller.addRoomsToGrid()) ;
+                    {
+                        int notImportedRooms = controller.getNumberOfNotImportedRooms();
+                        if (notImportedRooms > 0) {
+                            System.out.println("\nThe file was partially imported. There were " + notImportedRooms + " rooms that were not imported, due to invalid information.\n");
+                            flag = false;
+                            return;
+                        }
+
+                        if (controller.importHouseInformation()) {
+                            System.out.println("\n The House was configured with success.\n");
+
+                        } else {
+                            System.out.println("The House is already configured.\n");
+                        }
+
+                    }
+                } catch (Exception e) {
+                    System.out.println("\nSorry! The file doesn't contain valid information. It was not possible to import it.\n");
+                }
+
+            } else {
+                System.out.println("The House was not configured. \n");
+            }
+
+        } while (flag);
     }
 
 }
