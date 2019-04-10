@@ -9,6 +9,7 @@ import pt.ipp.isep.dei.project.model.sensor.*;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
