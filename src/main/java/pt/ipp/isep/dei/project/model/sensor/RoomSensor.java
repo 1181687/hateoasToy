@@ -1,7 +1,9 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
 import pt.ipp.isep.dei.project.model.Reading;
+import pt.ipp.isep.dei.project.utils.Utils;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,59 @@ public class RoomSensor implements Sensor {
         this.isActive = true;
     }
 
+    public SensorType getSensorType() {
+        return sensorType;
+    }
 
+    public double getMaximumValueOfDay(LocalDate date) {
+        if (!getDailyMeasurement(date).isEmpty()) {
+            double maximumValueOfDay = getDailyMeasurement(date).get(0).getValue();
+            for (Reading reading : getDailyMeasurement(date)) {
+                if (!Utils.isFirstDoubleBiggerThanSecondOne(maximumValueOfDay, reading.getValue()) && !Utils.isSameDouble(maximumValueOfDay, reading.getValue())) {
+                    maximumValueOfDay = reading.getValue();
+                }
+            }
+            return maximumValueOfDay;
+        }
+        return Double.NaN;
+    }
 
+    public List<Reading> getDailyMeasurement(LocalDate date) {
+        List<Reading> daylyReadings = new ArrayList<>();
+        for (Reading registo : listOfReadings) {
+            LocalDate secondDate = registo.getDateTime().toLocalDate();
+
+            if (checkIfDaysAreEqual(date, secondDate) && (!Double.isNaN(registo.getValue()))) {
+                daylyReadings.add(registo);
+            }
+        }
+        return daylyReadings;
+
+    }
+
+    public boolean checkIfDaysAreEqual(LocalDate firstDate, LocalDate secondDate) {
+        return (firstDate.isEqual(secondDate));
+    }
+
+    public boolean isMeasurementListEmpty() {
+        return listOfReadings.isEmpty();
+    }
+
+    public boolean sensorTypeEqualsSensorType(SensorType type) {
+        String tipoDoSensorPedido = type.getType();
+        return (this.getSensorType().getType().equals(tipoDoSensorPedido));
+    }
+
+    public Reading getLastMeasurement() {
+        if (listOfReadings.isEmpty()) {
+            return null;
+        }
+        Reading reading = listOfReadings.get(0);
+        for (int i = (listOfReadings.size() - 1); i > 0; i--) {
+            if (!(Double.isNaN(listOfReadings.get(i).getValue()))) {
+                return listOfReadings.get(i);
+            }
+        }
+        return reading;
+    }
 }
