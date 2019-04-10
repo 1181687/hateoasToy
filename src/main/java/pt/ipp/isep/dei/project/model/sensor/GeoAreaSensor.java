@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.utils.Utils;
@@ -25,16 +24,11 @@ public class GeoAreaSensor implements Sensor {
     @CollectionTable(name = "Reading",
             joinColumns = @JoinColumn(name = "SENSOR_ID"))
 
-    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Reading> listOfReadings = new ArrayList<>();
 
-    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    //@JoinColumn
     @Transient
     private SensorType sensorType;
 
-    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    //@JoinColumn
     @Transient
     private Location location;
 

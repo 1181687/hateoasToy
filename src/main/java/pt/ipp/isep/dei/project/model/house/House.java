@@ -1,8 +1,7 @@
 package pt.ipp.isep.dei.project.model.house;
 
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.MeasurableList;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -14,7 +13,6 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -23,33 +21,31 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-@Entity
+@Service
 public class House {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn
-    private RoomList roomList;
-
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Fetch(value = FetchMode.SUBSELECT)
-    private List<HouseGrid> listHouseGrids;
-
+    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JoinTable(name="house_rooms", joinColumns=@JoinColumn(name="house_fk"),
+    //inverseJoinColumns = @JoinColumn(name="room_fk"))
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@JoinColumn
-    @Embedded
+    //@Transient
+    private RoomList roomList;
+
+    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@Fetch(value = FetchMode.SUBSELECT)
+    //@Transient
+    private List<HouseGrid> listHouseGrids;
+
+    //@Embedded
     private Address address;
 
-    @Transient
+    //@Transient
     private List<DeviceType> deviceTypeList;
 
-    @Transient
+    //@Transient
     private int meteringPeriodGrid;
 
-    @Transient
+    //@Transient
     private int meteringPeriodDevice;
 
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
@@ -437,7 +433,7 @@ public class House {
                 content.append("- Device Name: ");
                 content.append(dev.getName());
                 content.append(", Location: ");
-                content.append(dev.getLocation().getId());
+                content.append(dev.getLocation().getRoomId());
                 content.append(".\n");
             }
             content.append("\n");
