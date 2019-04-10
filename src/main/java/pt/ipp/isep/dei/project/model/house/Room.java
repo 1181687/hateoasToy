@@ -3,14 +3,12 @@ package pt.ipp.isep.dei.project.model.house;
 import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.house.housegrid.HouseGridId;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -20,13 +18,19 @@ import static java.util.Objects.isNull;
 @Entity
 public class Room implements Measurable {
 
-    @Id
-    private String id;
+    //@Id
+    @Column(name = "cenas", insertable = false, updatable = false)
+    @EmbeddedId
+    private RoomId roomId;
     private String description;
     private int houseFloor;
 
     @Embedded
+    private HouseGridId houseGridId;
+
+    @Embedded
     private Dimension dimension;
+
     @Transient
     private RoomSensorList sensorList;
 
@@ -38,14 +42,14 @@ public class Room implements Measurable {
      * throw an exception if any of the parameters is invalid.
      * Invalid parameters if Dimension is null or name is null or empty
      *
-     * @param id
+     * @param roomId
      * @param houseFloor
      * @param dimension
      */
-    public Room(String id, String description, int houseFloor, Dimension dimension) {
-        validateName(id);
+    public Room(String roomId, String description, int houseFloor, Dimension dimension) {
+        validateName(roomId);
         validateDimensions(dimension);
-        this.id = id.trim();
+        this.roomId = new RoomId(roomId.trim());
         this.description = description;
         this.houseFloor = houseFloor;
         this.dimension = dimension;
@@ -53,8 +57,12 @@ public class Room implements Measurable {
         this.deviceList = new ArrayList<>();
     }
 
-    public Room() {
+    protected Room() {
         // empty
+    }
+
+    public void setHouseGridId(HouseGridId houseGridId) {
+        this.houseGridId = houseGridId;
     }
 
     /**
@@ -86,8 +94,8 @@ public class Room implements Measurable {
      *
      * @return name
      */
-    public String getId() {
-        return id;
+    public String getRoomId() {
+        return roomId.getId();
     }
 
     /**
@@ -95,8 +103,8 @@ public class Room implements Measurable {
      *
      * @param name name of a room (string)
      */
-    public void setId(String name) {
-        this.id = name;
+    public void setRoomId(String name) {
+        this.roomId = new RoomId(name);
     }
 
     /**
@@ -142,7 +150,7 @@ public class Room implements Measurable {
      */
     public String getRoomToString() {
         StringBuilder content = new StringBuilder();
-        content.append("Name: " + getId());
+        content.append("Name: " + getRoomId());
         content.append(", House Floor: " + getHouseFloor());
         content.append(", Dimension - Height: " + getDimension().getHeight());
         content.append(", Length: " + getDimension().getLength());
@@ -157,7 +165,7 @@ public class Room implements Measurable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(this.id);
+        return Objects.hash(this.roomId);
     }
 
     /**
@@ -177,7 +185,7 @@ public class Room implements Measurable {
             return false;
         }
         Room roomOne = (Room) obj;
-        return this.id.equalsIgnoreCase(roomOne.id);
+        return this.roomId.getId().equalsIgnoreCase(roomOne.roomId.getId());
     }
 
 
@@ -316,7 +324,7 @@ public RoomSensorList getSensorList() {
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();
-        name.append("Room: " + this.id + "\n");
+        name.append("Room: " + this.roomId + "\n");
         return name.toString();
     }
 

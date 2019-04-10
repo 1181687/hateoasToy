@@ -1,12 +1,13 @@
 package pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncontroller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.house.Address;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseDTO;
-import pt.ipp.isep.dei.project.model.house.HouseMapper;
+import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.*;
@@ -16,13 +17,16 @@ import java.util.Properties;
 
 public class ConfigureHouseInformationFromJsonController {
 
+    @Autowired
+    private HouseService houseService;
     private House house;
     private List<Object> houseObjects;
     private ProjectFileReader reader;
 
 
-    public ConfigureHouseInformationFromJsonController(House house) {
+    public ConfigureHouseInformationFromJsonController(House house, HouseService houseService) {
         this.house = house;
+        this.houseService = houseService;
     }
 
     /**
@@ -56,7 +60,7 @@ public class ConfigureHouseInformationFromJsonController {
     public boolean importHouseInformation() {
         boolean imported = false;
         HouseDTO houseDTO = (HouseDTO) houseObjects.get(0);
-        house = HouseMapper.mapToEntity(houseDTO, house);
+        houseService.mapToEntity(houseDTO, house);
         writeAddressToFile(house.getAddress());
         if (Objects.nonNull(house)) {
             imported = true;

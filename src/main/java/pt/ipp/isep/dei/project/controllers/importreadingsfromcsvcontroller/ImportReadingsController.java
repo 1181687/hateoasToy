@@ -35,8 +35,8 @@ public class ImportReadingsController {
 
     /**
      * Constructor.
-     *  @param geographicalAreaList GeographicalAreaList to be used.
      *
+     * @param geographicalAreaList GeographicalAreaList to be used.
      */
     public ImportReadingsController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;

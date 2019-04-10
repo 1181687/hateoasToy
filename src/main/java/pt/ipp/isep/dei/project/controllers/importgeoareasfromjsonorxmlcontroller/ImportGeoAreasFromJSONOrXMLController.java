@@ -46,6 +46,7 @@ public class ImportGeoAreasFromJSONOrXMLController {
                 imported = true;
             }
         }
+        //geographicalAreaList.updateRepository();
         return imported;
 
     }

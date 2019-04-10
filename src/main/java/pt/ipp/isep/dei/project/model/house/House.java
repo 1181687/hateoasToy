@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model.house;
 
 
+import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.MeasurableList;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -20,13 +21,33 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Service
 public class House {
+    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JoinTable(name="house_rooms", joinColumns=@JoinColumn(name="house_fk"),
+    //inverseJoinColumns = @JoinColumn(name="room_fk"))
+    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JoinColumn
+    //@Transient
     private RoomList roomList;
+
+    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@Fetch(value = FetchMode.SUBSELECT)
+    //@Transient
     private List<HouseGrid> listHouseGrids;
+
+    //@Embedded
     private Address address;
+
+    //@Transient
     private List<DeviceType> deviceTypeList;
+
+    //@Transient
     private int meteringPeriodGrid;
+
+    //@Transient
     private int meteringPeriodDevice;
+
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
 
 
@@ -39,6 +60,9 @@ public class House {
         this.meteringPeriodDevice = meteringPeriodDevice;
     }
 
+    protected House() {
+        //empty
+    }
 
     /**
      * This method create device types using a path and a class name.
@@ -409,7 +433,7 @@ public class House {
                 content.append("- Device Name: ");
                 content.append(dev.getName());
                 content.append(", Location: ");
-                content.append(dev.getLocation().getId());
+                content.append(dev.getLocation().getRoomId());
                 content.append(".\n");
             }
             content.append("\n");
