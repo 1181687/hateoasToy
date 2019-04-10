@@ -1,13 +1,11 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,6 +22,8 @@ public class GeoAreaSensor implements Sensor {
     private LocalDateTime startingDate;
 
     @ElementCollection
+    @CollectionTable(name = "Reading",
+            joinColumns = @JoinColumn(name = "SENSOR_ID"))
     private List<Reading> listOfReadings = new ArrayList<>();
 
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
@@ -41,6 +41,9 @@ public class GeoAreaSensor implements Sensor {
     @Transient
     private boolean isActive;
 
+    @Autowired
+    @Transient
+    private SensorList sensorList;
 
     /**
      * Constructor method
@@ -313,6 +316,7 @@ public class GeoAreaSensor implements Sensor {
         }
         return false;
     }
+
 
     /**
      * Boolean method that checks if a list of measurements is empty

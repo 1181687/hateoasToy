@@ -60,6 +60,12 @@ public class SensorList {
         return true;
     }
 
+    public void updateSensors() {
+        for (GeoAreaSensor geoAreaSensor : this.listOfSensors) {
+            sensorRepository.save(geoAreaSensor);
+        }
+    }
+
     /**
      * Method that creates a new sensor.
      *
