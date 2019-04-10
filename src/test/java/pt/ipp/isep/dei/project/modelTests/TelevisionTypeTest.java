@@ -23,7 +23,7 @@ public class TelevisionTypeTest {
         House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         String name = "Smart TV";
         Dimension dim = new Dimension(3.3, 2.2, 1.0);
-        Room room = new Room("Living Room", 1, dim);
+        Room room = new Room("Living Room", "room", 1, dim);
 
         Device expectedResult = house.createDevice("Television", name, room);
 

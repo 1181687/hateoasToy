@@ -42,7 +42,7 @@ public class KettleSpecsTest {
 
         //Room
         Dimension dim = new Dimension(3, 5, 6);
-        this.kitchen = new Room("Kitchen", 1, dim);
+        this.kitchen = new Room("Kitchen", "room", 1, dim);
         this.house.addRoom(kitchen);
         this.kettle = this.house.createDevice("Kettle", "KettleKitchen", kitchen);
         this.kettle.setAttributesDevType(ATTRIBUTE_NOMINAL_POWER, 30);

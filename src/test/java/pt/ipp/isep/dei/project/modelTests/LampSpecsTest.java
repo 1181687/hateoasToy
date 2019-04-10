@@ -32,7 +32,7 @@ public class LampSpecsTest {
 
         //Room
         Dimension dim = new Dimension(3, 5, 6);
-        livingRoom = new Room("Living Room", 1, dim);
+        livingRoom = new Room("Living Room", "room", 1, dim);
         this.house.addRoom(livingRoom);
 
         //Device

@@ -143,7 +143,7 @@ public class GetEnergyConsumptionController {
      * @return
      */
     public String getRoomName(){
-        return ((Room)this.measurable).getName();
+        return ((Room) this.measurable).getId();
     }
 
 

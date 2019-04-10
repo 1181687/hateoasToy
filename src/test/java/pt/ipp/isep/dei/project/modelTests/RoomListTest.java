@@ -1,23 +1,6 @@
 package pt.ipp.isep.dei.project.modelTests;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import pt.ipp.isep.dei.project.model.Location;
-import pt.ipp.isep.dei.project.model.Reading;
-import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
-import pt.ipp.isep.dei.project.model.house.*;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
-import pt.ipp.isep.dei.project.utils.Utils;
-
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
+import pt.ipp.isep.dei.project.model.house.House;
 
 public class RoomListTest {
 
@@ -55,14 +38,15 @@ public class RoomListTest {
         RoomList rList = new RoomList();
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         rList.addRoom(room1);
         rList.addRoom(room2);
@@ -104,9 +88,10 @@ public class RoomListTest {
         //arrange
         RoomList rList = new RoomList();
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         rList.addRoom(room1);
 
@@ -123,14 +108,15 @@ public class RoomListTest {
         RoomList rList = new RoomList();
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         rList.addRoom(room1);
         rList.addRoom(room2);
@@ -163,8 +149,8 @@ public class RoomListTest {
         //arrange
         RoomList list = new RoomList();
         Dimension dim = new Dimension(3.5, 6.5, 7.5);
-        Room room1 = new Room("Room1", 2, dim);
-        Room room2 = list.newRoom("Room1", 2, 3.5, 6.5, 7.5);
+        Room room1 = new Room("Room1", "room", 2, dim);
+        Room room2 = list.newRoom("Room1", "room", 2, 3.5, 6.5, 7.5);
 
         //act
         boolean result = room1.equals(room2);
@@ -194,6 +180,7 @@ public class RoomListTest {
         RoomList rList = new RoomList();
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
         Room room1 = new Room(name1, houseFloor1, dimension1);
@@ -201,7 +188,7 @@ public class RoomListTest {
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         rList.addRoom(room1);
         rList.addRoom(room2);
@@ -221,14 +208,15 @@ public class RoomListTest {
         RoomList rList = new RoomList();
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         rList.addRoom(room1);
         rList.addRoom(room2);
@@ -252,14 +240,15 @@ public class RoomListTest {
         RoomList rList = new RoomList();
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         rList.addRoom(room1);
         rList.addRoom(room2);
@@ -283,14 +272,15 @@ public class RoomListTest {
         RoomList rList = new RoomList();
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         rList.addRoom(room1);
         rList.addRoom(room2);
@@ -315,14 +305,15 @@ public class RoomListTest {
         RoomList rList = new RoomList();
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Bathroom";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         rList.addRoom(room1);
         rList.addRoom(room2);
@@ -347,15 +338,17 @@ public class RoomListTest {
         RoomList rList = new RoomList();
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
 
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Bathroom";
+
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2.6, 2.8, 2.1);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         rList.addRoom(room1);
         rList.addRoom(room2);
@@ -379,7 +372,7 @@ public class RoomListTest {
         //Arrange
         RoomList list = new RoomList();
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("RoomOne", 2, dim);
+        Room room = new Room("RoomOne", "room", 2, dim);
 
         //Act
         boolean result = list.addRoom(room);
@@ -393,7 +386,7 @@ public class RoomListTest {
         //Arrange
         RoomList list = new RoomList();
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("RoomOne", 2, dim);
+        Room room = new Room("RoomOne", "room", 2, dim);
         list.addRoom(room);
 
         //Act
@@ -421,8 +414,8 @@ public class RoomListTest {
         RoomList rList = new RoomList();
         Dimension dim0 = new Dimension(3, 3.5, 3.5);
         Dimension dim1 = new Dimension(3, 3.5, 3.5);
-        Room room0 = new Room("RoomOne", 2, dim0);
-        Room room1 = new Room("RoomTwo", 2, dim1);
+        Room room0 = new Room("RoomOne", "room", 2, dim0);
+        Room room1 = new Room("RoomTwo", "room", 2, dim1);
 
         rList.addRoom(room0);
         rList.addRoom(room1);
@@ -457,8 +450,8 @@ public class RoomListTest {
         RoomList rList = new RoomList();
         Dimension dim0 = new Dimension(3, 3.5, 3.5);
         Dimension dim1 = new Dimension(3, 3.5, 3.5);
-        Room room0 = new Room("RoomOne", 2, dim0);
-        Room room1 = new Room("RoomTwo", 2, dim1);
+        Room room0 = new Room("RoomOne", "room", 2, dim0);
+        Room room1 = new Room("RoomTwo", "room", 2, dim1);
 
         rList.addRoom(room0);
         rList.addRoom(room1);
@@ -491,12 +484,13 @@ public class RoomListTest {
     public void getMaximumTemperatureInARoomInAGivenDay() {
         //Arrange
         String name = "Master Bedroom";
+        String description = "room";
         int houseFloor = 2;
         double height = 10.0;
         double length = 5.0;
         double width = 5.0;
         Dimension dimension = new Dimension(height, length, width);
-        Room room1 = new Room(name, houseFloor, dimension);
+        Room room1 = new Room(name, description, houseFloor, dimension);
 
         LocalDateTime date0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
@@ -548,12 +542,13 @@ public class RoomListTest {
     public void getMaximumTemperatureInARoomInAGivenDayNegativeTemperatures() {
         //Arrange
         String name = "Master Bedroom";
+        String description = "room";
         int houseFloor = 2;
         double height = 10.0;
         double length = 5.0;
         double width = 5.0;
         Dimension dimension = new Dimension(height, length, width);
-        Room room1 = new Room(name, houseFloor, dimension);
+        Room room1 = new Room(name, description, houseFloor, dimension);
 
         LocalDateTime date0 = LocalDateTime.of(1991, 11, 2, 15, 20, 00);
         SensorType sensorType0 = new SensorType("Temperature");
@@ -604,9 +599,10 @@ public class RoomListTest {
     public void testCheckIfNameAlreadyExists() {
         String nameToCheck = "Room one";
         String name = "ROOM ONE";
+        String description = "room";
         RoomList list = new RoomList();
         Dimension dim = new Dimension(5, 6, 7);
-        Room room1 = new Room(name, 1, dim);
+        Room room1 = new Room(name, description,1, dim);
         list.addRoom(room1);
 
         boolean expectedResult = true;
@@ -620,7 +616,7 @@ public class RoomListTest {
     public void getSensorsListContentOfARoomTest() {
         // Arrange
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
         RoomList list = new RoomList();
 
         LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
@@ -653,7 +649,7 @@ public class RoomListTest {
     public void checkIfSensorListIsEmptyTestTrue() {
         // Arrange
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
         RoomList roomList = new RoomList();
 
         roomList.addRoom(room);
@@ -675,7 +671,7 @@ public class RoomListTest {
         GeoAreaSensor s0 = new GeoAreaSensor("4124", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
         RoomList roomList = new RoomList();
 
         roomList.addRoom(room);
@@ -695,7 +691,7 @@ public class RoomListTest {
         //Arrange
         String name = "Kitchen";
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
-        Room room1 = new Room(name, 2, dim);
+        Room room1 = new Room(name, "room", 2, dim);
 
         String nameFridge = "FridgeAriston";
         Device fridge1 = house.createDevice(FRIDGE_TYPE, nameFridge, room1);
@@ -708,7 +704,7 @@ public class RoomListTest {
 
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
-        Room room2 = new Room(name2, -1, dim2);
+        Room room2 = new Room(name2, "room", -1, dim2);
 
         String nameFridge1 = "FridgeSiemens";
         Device fridge2 = house.createDevice(FRIDGE_TYPE, nameFridge1, room2);
@@ -736,7 +732,7 @@ public class RoomListTest {
     public void getDeviceListContentOfARoomTest() {
         // Arrange
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         String nameFridge1 = "Fridge1";
         house.createDevice(FRIDGE_TYPE, nameFridge1, room);
@@ -764,7 +760,7 @@ public class RoomListTest {
     public void checkIfDeviceListIsEmptyTestTrue() {
         // Arrange
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         house.addRoom(room);
 
@@ -782,7 +778,7 @@ public class RoomListTest {
     public void checkIfDeviceListIsEmptyTestFalse() {
         // Arrange
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
         RoomList roomList = new RoomList();
 
         String nameFridge1 = "Fridge1";
@@ -805,7 +801,7 @@ public class RoomListTest {
         // Arrange
         String name1 = "Room";
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room1 = new Room(name1, 2, dim);
+        Room room1 = new Room(name1, "room", 2, dim);
         RoomList roomList = new RoomList();
 
         String nameFridge = "FridgeAriston";
@@ -819,7 +815,7 @@ public class RoomListTest {
 
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
-        Room room2 = new Room(name2, -1, dim2);
+        Room room2 = new Room(name2, "room", -1, dim2);
 
         String nameFridge1 = "FridgeSiemens";
         house.createDevice(FRIDGE_TYPE, nameFridge1, room2);
@@ -856,8 +852,8 @@ public class RoomListTest {
         RoomList rList = new RoomList();
         Dimension dim0 = new Dimension(3, 3.5, 3.5);
         Dimension dim1 = new Dimension(3, 3.5, 3.5);
-        Room room0 = new Room("RoomOne", 2, dim0);
-        Room room1 = new Room("RoomTwo", 2, dim1);
+        Room room0 = new Room("RoomOne", "room", 2, dim0);
+        Room room1 = new Room("RoomTwo", "room", 2, dim1);
 
         rList.addRoom(room0);
         rList.addRoom(room1);
@@ -877,14 +873,15 @@ public class RoomListTest {
         //arrange
         RoomList rList = new RoomList();
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         rList.addRoom(room1);
         rList.addRoom(room2);
@@ -902,8 +899,8 @@ public class RoomListTest {
     public void getAllDevicesToStringTest() {
         // Arrange
         Dimension dim = new Dimension(3, 5, 6);
-        Room room0 = new Room("Kitchen", 1, dim);
-        Room room1 = new Room("Laundry", 2, dim);
+        Room room0 = new Room("Kitchen", "room", 1, dim);
+        Room room1 = new Room("Laundry", "room", 2, dim);
 
         String nameFridge = "Fridgeratah V14";
         house.createDevice(FRIDGE_TYPE, nameFridge, room0);

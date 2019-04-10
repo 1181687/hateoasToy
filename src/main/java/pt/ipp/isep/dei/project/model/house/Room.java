@@ -3,10 +3,8 @@ package pt.ipp.isep.dei.project.model.house;
 import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
+import pt.ipp.isep.dei.project.model.sensor.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -21,7 +19,7 @@ import static java.util.Objects.isNull;
 public class Room implements Measurable {
 
     @Id
-    private String roomName;
+    private String id;
     private String description;
     private int houseFloor;
 
@@ -39,14 +37,15 @@ public class Room implements Measurable {
      * throw an exception if any of the parameters is invalid.
      * Invalid parameters if Dimension is null or name is null or empty
      *
-     * @param name
+     * @param id
      * @param houseFloor
      * @param dimension
      */
-    public Room(String name, int houseFloor, Dimension dimension) {
-        validateName(name);
+    public Room(String id, String description, int houseFloor, Dimension dimension) {
+        validateName(id);
         validateDimensions(dimension);
-        this.roomName = name.trim();
+        this.id = id.trim();
+        this.description = description;
         this.houseFloor = houseFloor;
         this.dimension = dimension;
         this.sensorList = new RoomSensorList();
@@ -86,8 +85,8 @@ public class Room implements Measurable {
      *
      * @return name
      */
-    public String getName() {
-        return roomName;
+    public String getId() {
+        return id;
     }
 
     /**
@@ -95,8 +94,8 @@ public class Room implements Measurable {
      *
      * @param name name of a room (string)
      */
-    public void setName(String name) {
-        this.roomName = name;
+    public void setId(String name) {
+        this.id = name;
     }
 
     /**
@@ -142,7 +141,7 @@ public class Room implements Measurable {
      */
     public String getRoomToString() {
         StringBuilder content = new StringBuilder();
-        content.append("Name: " + getName());
+        content.append("Name: " + getId());
         content.append(", House Floor: " + getHouseFloor());
         content.append(", Dimension - Height: " + getDimension().getHeight());
         content.append(", Length: " + getDimension().getLength());
@@ -157,7 +156,7 @@ public class Room implements Measurable {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(this.roomName);
+        return Objects.hash(this.id);
     }
 
     /**
@@ -177,56 +176,56 @@ public class Room implements Measurable {
             return false;
         }
         Room roomOne = (Room) obj;
-        return this.roomName.equalsIgnoreCase(roomOne.roomName);
+        return this.id.equalsIgnoreCase(roomOne.id);
     }
-/*
 
-    */
+
+
 /**
      * This method add a new sensor to the list of sensors in the room
      *
      * @param newSensor add to the list of sensors
      * @return a new sensor to the list of sensors
-     *//*
+     */
 
-    public boolean addSensorToListOfSensorsInRoom(GeoAreaSensor newSensor) {
+    public boolean addSensorToListOfSensorsInRoom(RoomSensor newSensor) {
         return this.sensorList.addSensor(newSensor);
     }
 
-    */
+
 /**
      * This method gets the sensor list.
      *
      * @return the list of sensors.
-     *//*
+     */
 
-    public SensorList getSensorList() {
+    public RoomSensorList getSensorList() {
         return sensorList;
     }
 
-    */
+
 /**
      * @param type of sensor (temperature)
      * @param date any given day
      * @return maximum temperature
-     *//*
+     */
 
     public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         return sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(type, date);
     }
 
-    */
+
 /**
      * Method that gets the latest measurement by type of sensor
      *
      * @param type type of sensor
      * @return latest measurement by sensor type
-     *//*
+     */
 
     public Reading getLatestMeasurementBySensorType(SensorType type) {
         return sensorList.getLatestMeasurementBySensorType(type);
     }
-*/
+
 
     /**
      * Method that return the nominal power of the list of devices in the room.
@@ -317,7 +316,7 @@ public class Room implements Measurable {
     @Override
     public String getNameToString() {
         StringBuilder name = new StringBuilder();
-        name.append("Room: " + this.roomName + "\n");
+        name.append("Room: " + this.id + "\n");
         return name.toString();
     }
 
@@ -497,5 +496,13 @@ public class Room implements Measurable {
             }
         }
         return false;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

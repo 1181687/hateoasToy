@@ -23,7 +23,7 @@ public class FridgeTypeTest {
         House house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         String name = "fridge Ariston 2000";
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         Device expectedResult = house.createDevice("Fridge", name, room);
         //Act

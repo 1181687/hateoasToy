@@ -51,9 +51,9 @@ public class GetNominalPowerControllerTest {
 
         //Rooms
         Dimension dimensionRoom1 = new Dimension(5.2, 3.7, 8.5);
-        roomOne = new Room("Kid's room", 1, dimensionRoom1);
+        roomOne = new Room("Kid's room", "room", 1, dimensionRoom1);
         Dimension dimensionRoom2 = new Dimension(5.2, 3.7, 8.5);
-        roomTwo = new Room("Bathroom", 1, dimensionRoom2);
+        roomTwo = new Room("Bathroom", "room", 1, dimensionRoom2);
 
         houseEdificioB.addRoom(roomOne);
         houseEdificioB.addRoom(roomTwo);
@@ -525,10 +525,10 @@ public class GetNominalPowerControllerTest {
     public void testIfDeviceListIsEmpty() {
 
         Dimension dim1 = new Dimension(4, 4, 4);
-        Room room1 = new Room("Kitchen", 1, dim1);
+        Room room1 = new Room("Kitchen", "room", 1, dim1);
 
         Dimension dim2 = new Dimension(4, 4, 4);
-        Room room2 = new Room("Bedroom", 1, dim2);
+        Room room2 = new Room("Bedroom", "room", 1, dim2);
 
         houseEdificioB.addRoom(room1);
         houseEdificioB.addRoom(room2);

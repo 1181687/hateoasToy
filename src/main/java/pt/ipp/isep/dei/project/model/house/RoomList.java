@@ -1,13 +1,10 @@
 package pt.ipp.isep.dei.project.model.house;
 
 import pt.ipp.isep.dei.project.model.devices.Device;
-import pt.ipp.isep.dei.project.model.sensor.Sensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
 public class RoomList {
@@ -66,24 +63,23 @@ public class RoomList {
     /**
      * method that creates a new room
      *
-     * @param name       given name to the new room
+     * @param id       given name to the new room
      * @param housefloor given housefloor number to the new room
      * @param height     given height number to the new room
      * @param length     given length number to the new room
      * @param width      given width number to the new room
      * @return the new room
      */
-    public Room newRoom(String name, int housefloor, double height, double length, double width) {
-        if (isNameExistant(name)) {
+    public Room newRoom(String id, String description, int housefloor, double height, double length, double width) {
+        if (isNameExistant(id)) {
             throw new RuntimeException("Name already exists. Please write a new one.");
         }
         Dimension newDimension = new Dimension(height, length, width);
-        return new Room(name, housefloor, newDimension);
+        return new Room(id, description, housefloor, newDimension);
     }
 
     /**
      * method that displays the List of Rooms
-     *
      * @return Content of Room List
      */
     public String getRoomListContent() {
@@ -102,7 +98,6 @@ public class RoomList {
 
     /**
      * Method that checks if a Room List is Empty
-     *
      * @return true if it is empty
      */
     public boolean isEmpty() {
@@ -111,7 +106,6 @@ public class RoomList {
 
     /**
      * Method that gives us the size of the Room List
-     *
      * @return Room List size
      */
     public int getLength() {
@@ -120,13 +114,12 @@ public class RoomList {
 
     /**
      * Method that displays a choosen Room (in a specific position) with its characteristics (name, housegrid floor, height, length and width)
-     *
      * @param position position of the Room in the Room List
      * @return Content of the Room
      */
     public String getChosenRoomToString(int position) {
         StringBuilder content = new StringBuilder();
-        content.append("1 - Name: " + listOfRooms.get(position).getName());
+        content.append("1 - Name: " + listOfRooms.get(position).getId());
         content.append("\n");
         content.append("2 - House Floor: " + listOfRooms.get(position).getHouseFloor());
         content.append("\n");
@@ -141,17 +134,15 @@ public class RoomList {
 
     /**
      * Method that changes the name of a Room
-     *
      * @param chosenRoom room that you want to change
      * @param changeName new name for the room
      */
     public void changeRoomName(int chosenRoom, String changeName) {
-        listOfRooms.get(chosenRoom).setName(changeName);
+        listOfRooms.get(chosenRoom).setId(changeName);
     }
 
     /**
      * Method that changes the housegrid floor of a Room
-     *
      * @param chosenRoom       room that you want to change
      * @param changeHouseFloor new housegrid floor for the room
      */
@@ -161,7 +152,6 @@ public class RoomList {
 
     /**
      * Method that changes the dimensions of a Room
-     *
      * @param chosenRoom      room that you want to change
      * @param chosenFeature   Dimension that you want to change (Height, Length, Width)
      * @param changeDimension New value (double) for the chosen dimension (Height, Length, Width)
@@ -180,7 +170,6 @@ public class RoomList {
 
     /**
      * Method that goes through the room list and shows the room by name if that name matches a room with the same name in the list
-     *
      * @param name room name (string)
      * @return room
      */
@@ -188,7 +177,7 @@ public class RoomList {
     public Room getRoomByName(String name) {
 
         for (Room room : listOfRooms) {
-            if (room.getName().equals(name)) {
+            if (room.getId().equals(name)) {
                 return room;
             }
         }
@@ -197,7 +186,6 @@ public class RoomList {
 
     /**
      * Method that gets the name of the chosen room in a specific position in the room list
-     *
      * @param position position of the chosen room in a List
      * @return if the List is empty, returns null. Else returns the name of room in that position
      */
@@ -206,14 +194,13 @@ public class RoomList {
         if (listOfRooms.isEmpty()) {
             return null;
         }
-        return listOfRooms.get(position).getName();
+        return listOfRooms.get(position).getId();
     }
 
 /*
     */
 /**
      * method that get the maximum temperature in a room in a given day.
-     *
      * @param name of Room
      * @param type of sensor (temperature)
      * @param date any given day
@@ -227,14 +214,13 @@ public class RoomList {
 
     /**
      * method that check if a name of a room already exists on the list of rooms.
-     *
      * @param name
      * @return boolean
      */
     public boolean isNameExistant(String name) {
 
         for (int i = 0; i < listOfRooms.size(); i++) {
-            if (listOfRooms.get(i).getName().equalsIgnoreCase(name)) {
+            if (listOfRooms.get(i).getId().equalsIgnoreCase(name)) {
                 return true;
             }
         }
@@ -243,7 +229,6 @@ public class RoomList {
 
     /**
      * Method that displays the device list content of a Room
-     *
      * @param position position of the room in the room list
      * @return list of devices of a room
      */
@@ -253,7 +238,6 @@ public class RoomList {
 
     /**
      * Method that checks if the Device List of the room is empty
-     *
      * @param position chosen room
      */
     public boolean isDeviceListEmpty(int position) {
@@ -262,7 +246,6 @@ public class RoomList {
 
     /**
      * method that checks if there are no devices in the RoomList
-     *
      * @return true if there aren't devices. False if there are devices
      */
     public boolean isDeviceListOfAllRoomsEmpty() {
@@ -279,7 +262,6 @@ public class RoomList {
     */
 /**
      * Method that displays the sensor list content of a Room
-     *
      * @param position
      * @return
      *//*
@@ -302,7 +284,6 @@ public class RoomList {
 
     /**
      * method that gets a list of devices in all rooms of roomlist
-     *
      * @return DeviceList
      */
     public List<Device> getAllDevicesList() {
@@ -328,7 +309,7 @@ public class RoomList {
     public String getRoomListToString() {
         StringBuilder content = new StringBuilder();
         for (int i = 1; i <= listOfRooms.size(); i++) {
-            content.append(i + " - Name: " + listOfRooms.get(i - 1).getName());
+            content.append(i + " - Name: " + listOfRooms.get(i - 1).getId());
             content.append("\n");
         }
         return content.toString();
@@ -336,7 +317,6 @@ public class RoomList {
 
     /**
      * method that get all devices of a type.
-     *
      * @return list with a devices type.
      */
     public List<Device> getAllDevicesOfAType(String type) {
@@ -362,23 +342,5 @@ public class RoomList {
         }
         return content.toString();
     }
-/*
-    public Sensor getSensorById(String id) {
-        for (Room room : this.listOfRooms) {
-            Sensor sensor = room.getSensorList().getSensorById(id);
-            if (!Objects.isNull(sensor)) {
-                return sensor;
-            }
-        }
-        return null;
-    }
 
-    public SensorList getAllSensors() {
-        SensorList sensorList = new SensorList();
-        for (Room room : this.getListOfRooms()) {
-            sensorList.getListOfSensors().addAll(room.getSensorList().getListOfSensors());
-        }
-        return sensorList;
-    }
-    */
 }

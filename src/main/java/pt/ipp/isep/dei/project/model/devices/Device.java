@@ -96,7 +96,7 @@ public interface    Device extends Measurable {
         StringBuilder attributes = new StringBuilder();
         attributes.append("1 - Name: " + getName() + "\n");
         attributes.append("2 - Device Specifications \n");
-        attributes.append("3 - Location: " + getLocation().getName() + "\n");
+        attributes.append("3 - Location: " + getLocation().getId() + "\n");
         return attributes.toString();
     }
 
@@ -130,7 +130,7 @@ public interface    Device extends Measurable {
     default String getNameToString() {
         StringBuilder nameLocation = new StringBuilder();
         nameLocation.append("Device: " + getName());
-        nameLocation.append(", located in room: " + getLocation().getName() + "\n");
+        nameLocation.append(", located in room: " + getLocation().getId() + "\n");
         return nameLocation.toString();
     }
 

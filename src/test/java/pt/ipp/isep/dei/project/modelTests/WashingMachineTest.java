@@ -39,8 +39,8 @@ public class WashingMachineTest {
 
         // Rooms
         Dimension dim = new Dimension(3, 5, 6);
-        kitchen = new Room("Kitchen", 1, dim);
-        laundry = new Room("Laundry", 1, dim);
+        kitchen = new Room("Kitchen", "room", 1, dim);
+        laundry = new Room("Laundry", "room", 1, dim);
 
         // devices
         house.createDevice(WASHING_MACHINE_TYPE, "Maytag 2.6", kitchen);

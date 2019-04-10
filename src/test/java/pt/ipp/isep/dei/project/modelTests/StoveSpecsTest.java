@@ -32,7 +32,7 @@ public class StoveSpecsTest {
 
         //Room
         Dimension dim = new Dimension(3, 5, 6);
-        this.kitchen = new Room("Kitchen", 1, dim);
+        this.kitchen = new Room("Kitchen", "room", 1, dim);
         this.house.addRoom(kitchen);
         this.stove = this.house.createDevice("Stove", "Stove200", kitchen);
         this.stove.setAttributesDevType("Nominal Power", 30);

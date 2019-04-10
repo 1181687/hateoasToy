@@ -73,14 +73,15 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     public void getDisplayRoomListTest() {
         //arrange
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
@@ -101,8 +102,8 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         Dimension dim = new Dimension(3, 5, 6);
 
         // Room Instantiation
-        Room room0 = new Room("Kitchen", 1, dim);
-        Room room1 = new Room("Laundry", 2, dim);
+        Room room0 = new Room("Kitchen", "room", 1, dim);
+        Room room1 = new Room("Laundry", "room", 2, dim);
 
         // FridgeSpecs Instantiation
 
@@ -170,14 +171,15 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     public void getRoomListSize() {
         //arrange
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         house.addRoom(room1);
         house.addRoom(room2);
@@ -205,9 +207,10 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
     public void getDeviceListSize() {
         //arrange
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         //initiate devices
         house.addRoom(room1);
@@ -227,7 +230,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("RoomOne", "room", 2, dim);
 
         house.addRoom(room);
 
@@ -243,7 +246,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("RoomOne", "room", 2, dim);
 
         house.addRoom(room);
 
@@ -304,7 +307,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("RoomOne", "room", 2, dim);
 
         house.addRoom(room);
 
@@ -354,7 +357,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         house.addRoom(room);
 
@@ -405,7 +408,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         house.addRoom(room);
 
@@ -454,7 +457,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         //grid
         String gridName = "Grid";
@@ -510,7 +513,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         //grid
         String gridName = "Grid";
@@ -614,9 +617,10 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         //arrange
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         house.addRoom(room1);
 
@@ -631,12 +635,12 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         // Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         //Room TWO
         String name2 = "KitchenBasement";
         Dimension dim2 = new Dimension(3.5, 30.5, 20.5);
-        Room room2 = new Room(name2, -1, dim2);
+        Room room2 = new Room(name2, "room", -1, dim2);
 
         FridgeType fridgeType = new FridgeType();
 
@@ -660,7 +664,7 @@ public class GetEnergyConsumptionDataSeriesControllerTest {
         // Arrange
         //initiate Room
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         // Act
         boolean result = ctrl.deviceListIsEmpty();

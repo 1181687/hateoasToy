@@ -33,7 +33,7 @@ public class FanSpecsTest {
 
         //Room
         Dimension dim = new Dimension(3, 5, 6);
-        this.kitchen = new Room("Kitchen", 1, dim);
+        this.kitchen = new Room("Kitchen", "room", 1, dim);
         this.house.addRoom(kitchen);
         this.fan = this.house.createDevice("Fan", "Fan200", kitchen);
         this.fan.setAttributesDevType("Nominal Power", 30);
