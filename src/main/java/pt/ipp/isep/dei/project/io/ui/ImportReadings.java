@@ -21,17 +21,6 @@ public class ImportReadings {
 
 
     public void run() throws FileNotFoundException {
-        int option = InputValidator.getIntRange("What kind of sensor do you want to import readings to:", 0, 2);
-        String sensorType = "";
-        if (option == 0) {
-            return;
-        }
-        if (option == 1) {
-            sensorType = "geoarea";
-        }
-        if (option == 2) {
-            sensorType = "room";
-        }
         String pathFile = InputValidator.getString("Please specify the name of the file you would like to import (extensions accepted: json, csv, xml).\n");
         File file = new File(pathFile);
         boolean flag = true;
