@@ -89,10 +89,11 @@ public class ImportReadingsController {
                 imported = true;
             }
         }
-        if(imported){
+        /*if(imported){
 
             this.geographicalAreaList.updateRepository();
-        }
+        }*/
+        this.geographicalAreaList.updateRepository();
         return imported;
     }
 

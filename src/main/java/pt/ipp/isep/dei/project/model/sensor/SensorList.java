@@ -21,6 +21,7 @@ SensorList {
     private long id;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn
     private List<GeoAreaSensor> listOfSensors;
 
     /**

@@ -24,6 +24,8 @@ public class GeoAreaSensor implements Sensor {
     @ElementCollection
     @CollectionTable(name = "Reading",
             joinColumns = @JoinColumn(name = "SENSOR_ID"))
+
+    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Reading> listOfReadings = new ArrayList<>();
 
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)

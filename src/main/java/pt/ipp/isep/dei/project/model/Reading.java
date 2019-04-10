@@ -3,11 +3,10 @@ package pt.ipp.isep.dei.project.model;
 import javax.persistence.Embeddable;
 import java.time.LocalDateTime;
 
-//@Entity(name = "Sensor")
 @Embeddable
 public class Reading {
     //@Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue (strategy = GenerationType.IDENTITY)
     //private Long id;
     private double value;
     private LocalDateTime dateTime;
