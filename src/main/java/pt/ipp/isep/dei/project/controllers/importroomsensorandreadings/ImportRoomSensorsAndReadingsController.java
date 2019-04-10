@@ -4,6 +4,8 @@ import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.house.RoomList;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorMapper;
 import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -60,14 +62,14 @@ public class ImportRoomSensorsAndReadingsController {
     public int getNumberOfNotImportedReadings() {
         return this.numberOfNotImportedReadings;
     }
-/*
+
     public boolean addSensorsToRooms() {
         configLogFile();
         boolean imported = false;
         for (Object object : this.DTOList) {
             RoomSensorDTO sensorDTO = (RoomSensorDTO) object;
-            RoomId roomId = new RoomId(sensorDTO.getRoom());
-            if (!this.roomService.roomExists(roomId)) {
+            String roomId = sensorDTO.getRoomId();
+            if (!this.roomList.isNameExistant(roomId)) {
                 numberOfNotImportedReadings++;
                 String invalidInfo = "id: " + sensorDTO.getId() + ".";
                 LOGGER.log(Level.WARNING, "Sensor was not imported due because" + roomId +" doesn't exist: " + invalidInfo);
@@ -78,7 +80,7 @@ public class ImportRoomSensorsAndReadingsController {
         }
         return imported;
     }
-*/
+
     /**
      * Method that checks if a given date time is before the starting date of the sensor.
      *
