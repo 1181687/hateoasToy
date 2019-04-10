@@ -43,7 +43,7 @@ public class HouseGrid implements Measurable {
         this.powerSourceList = new PowerSourceList();
     }
 
-    public HouseGrid() {
+    protected HouseGrid() {
     }
 
     private static void validateName(String name) {

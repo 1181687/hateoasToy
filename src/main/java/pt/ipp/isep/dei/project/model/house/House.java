@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.model.house;
 
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.MeasurableList;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -12,6 +14,7 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,13 +23,35 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Entity
 public class House {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn
     private RoomList roomList;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<HouseGrid> listHouseGrids;
+
+    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JoinColumn
+    @Embedded
     private Address address;
+
+    @Transient
     private List<DeviceType> deviceTypeList;
+
+    @Transient
     private int meteringPeriodGrid;
+
+    @Transient
     private int meteringPeriodDevice;
+
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
 
 
@@ -39,6 +64,9 @@ public class House {
         this.meteringPeriodDevice = meteringPeriodDevice;
     }
 
+    protected House() {
+        //empty
+    }
 
     /**
      * This method create device types using a path and a class name.
@@ -246,10 +274,10 @@ public class House {
     /*
      */
 /**
-     * @param name name of room
-     * @param type type of sensor (temperature)
-     * @param date given day
-     * @return returns the maximum temperature in a specific day
+ * @param name name of room
+ * @param type type of sensor (temperature)
+ * @param date given day
+ * @return returns the maximum temperature in a specific day
  *//*
 
     public double getMaximumTemperatureOfRoomInSpecificDay(String name, SensorType type, LocalDate date) {
@@ -358,9 +386,9 @@ public class House {
     /*
      */
 /**
-     * method that displays the sensor list content of a Room
-     *
-     * @param position
+ * method that displays the sensor list content of a Room
+ *
+ * @param position
  *//*
 
     public String getSensorListContentOfARoom(int position) {
@@ -369,9 +397,9 @@ public class House {
 
     */
 /**
-     * method that check if the sensor list of the room is empty
-     *
-     * @param position
+ * method that check if the sensor list of the room is empty
+ *
+ * @param position
  *//*
 
     public boolean isSensorListEmpty(int position) {

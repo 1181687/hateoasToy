@@ -3,9 +3,15 @@ package pt.ipp.isep.dei.project.model.house;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 
+import javax.persistence.Embeddable;
+import javax.persistence.Transient;
+
+@Embeddable
 public class Address {
     private String completeAddress;
+    @Transient
     private Location location;
+    @Transient
     private GeographicalArea insertedGeoArea;
 
 
@@ -19,6 +25,10 @@ public class Address {
         this.completeAddress = completeAddress;
         this.location = location;
         this.insertedGeoArea = insertedGeoArea;
+    }
+
+    protected Address() {
+        //empty
     }
 
     /**
@@ -82,5 +92,9 @@ public class Address {
      */
     public String getCompleteAddress() {
         return completeAddress;
+    }
+
+    public void setCompleteAddress(String completeAddress) {
+        this.completeAddress = completeAddress;
     }
 }

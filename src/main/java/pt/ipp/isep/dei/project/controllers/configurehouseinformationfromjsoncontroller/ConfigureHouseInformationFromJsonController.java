@@ -1,9 +1,13 @@
 package pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncontroller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
-import pt.ipp.isep.dei.project.model.house.*;
+import pt.ipp.isep.dei.project.model.house.Address;
+import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.HouseDTO;
+import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.*;
@@ -11,20 +15,22 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Properties;
 import java.util.logging.FileHandler;
-import java.util.logging.Level;
 
 import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
 public class ConfigureHouseInformationFromJsonController {
 
+    @Autowired
+    private HouseService houseService;
     private House house;
     private List<Object> houseObjects;
     private int numberOfNotImportedRooms;
     private ProjectFileReader reader;
 
 
-    public ConfigureHouseInformationFromJsonController(House house) {
+    public ConfigureHouseInformationFromJsonController(House house, HouseService houseService) {
         this.house = house;
+        this.houseService = houseService;
     }
 
 
@@ -43,7 +49,7 @@ public class ConfigureHouseInformationFromJsonController {
         return this.numberOfNotImportedRooms;
     }
 
-    public boolean addRoomsToGrid() {
+  /*  public boolean addRoomsToGrid() {
         configLogFile();
         boolean imported = false;
         for (Object object : this.houseObjects) {
@@ -74,7 +80,7 @@ public class ConfigureHouseInformationFromJsonController {
         return imported;
     }
 
-
+*/
 
     /**
      * receives the String Path (json) and creates the respective reader (json)
@@ -107,7 +113,7 @@ public class ConfigureHouseInformationFromJsonController {
     public boolean importHouseInformation() {
         boolean imported = false;
         HouseDTO houseDTO = (HouseDTO) houseObjects.get(0);
-        house = HouseMapper.mapToEntity(houseDTO, house);
+        houseService.mapToEntity(houseDTO, house);
         writeAddressToFile(house.getAddress());
         if (Objects.nonNull(house)) {
             imported = true;
