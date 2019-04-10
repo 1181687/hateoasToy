@@ -8,7 +8,9 @@ import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceList;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -19,7 +21,7 @@ import static java.util.Objects.isNull;
 public class HouseGrid implements Measurable {
 
     @Id
-    private String houseGridName;
+    private HouseGridId houseGridName;
 
     @Transient
     private PowerSourceList powerSourceList;
@@ -27,8 +29,9 @@ public class HouseGrid implements Measurable {
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@JoinTable(name="housegrid_rooms", joinColumns=@JoinColumn(name="housegrid_fk"),
     //inverseJoinColumns = @JoinColumn(name="room_fk"))
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@JoinColumn
+    @Transient
     private RoomList roomList;
 
     /**
@@ -39,7 +42,7 @@ public class HouseGrid implements Measurable {
 
     public HouseGrid(String houseGridName) {
         validateName(houseGridName);
-        this.houseGridName = houseGridName;
+        this.houseGridName = new HouseGridId(houseGridName);
         this.roomList = new RoomList();
         this.powerSourceList = new PowerSourceList();
     }
@@ -81,14 +84,18 @@ public class HouseGrid implements Measurable {
             return false;
         }
         HouseGrid houseGrid = (HouseGrid) obj;
-        return this.houseGridName.equalsIgnoreCase(houseGrid.houseGridName);
+        return this.houseGridName.getHousegridId().equalsIgnoreCase(houseGrid.houseGridName.getHousegridId());
     }
 
     /**
      * method that gets the name of the housegrid grid.
      */
     public String getName() {
-        return this.houseGridName;
+        return this.houseGridName.getHousegridId();
+    }
+
+    public HouseGridId getHouseGridName() {
+        return houseGridName;
     }
 
     /**

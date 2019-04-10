@@ -5,9 +5,7 @@ import java.time.LocalDateTime;
 
 @Embeddable
 public class Reading {
-    //@Id
-    //@GeneratedValue (strategy = GenerationType.IDENTITY)
-    //private Long id;
+
     private double value;
     private LocalDateTime dateTime;
 
