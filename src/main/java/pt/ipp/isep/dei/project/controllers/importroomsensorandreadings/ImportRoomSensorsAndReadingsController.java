@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.List;
 import java.util.logging.FileHandler;
+import java.util.logging.Level;
 
 import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
@@ -58,7 +59,7 @@ public class ImportRoomSensorsAndReadingsController {
         return this.numberOfNotImportedReadings;
     }
 
-    public boolean addSensorsToRooms() {
+    /*public boolean addSensorsToRooms() {
         configLogFile();
         boolean imported = false;
         for (Object object : this.DTOList) {
@@ -74,19 +75,8 @@ public class ImportRoomSensorsAndReadingsController {
             }
         }
         return imported;
-    }
+    }*/
 
-    /**
-     * Method that checks if a given date time is before the starting date of the sensor.
-     *
-     * @param localDateTime Given date time to be compared.
-     * @return True or False.
-     */
-    /*
-    public boolean isDateTimeBeforeSensorStartingDate(LocalDateTime localDateTime) {
-        return localDateTime.isBefore(sensor.getStartingDate());
-    }
-    */
 
 }
 

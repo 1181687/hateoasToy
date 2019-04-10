@@ -30,7 +30,7 @@ public class ImportRoomSensors {
             //return;
         }
         String importConfirmation = InputValidator.confirmValidation("\nDo you really want to import the sensors? (Y/N)\n");
-        if ("Y".equals(importConfirmation) || "y".equals(importConfirmation)) {
+       /* if ("Y".equals(importConfirmation) || "y".equals(importConfirmation)) {
 
             try {
                 if (controller.addSensorsToRooms()) {
@@ -46,7 +46,7 @@ public class ImportRoomSensors {
             } catch (Exception e) {
                 System.out.println("\nSorry! The file doesn't contain valid readings. It was not possible to import them.\n");
             }
-        }
+        }*/
     }
 
     private void getFilePath() {
