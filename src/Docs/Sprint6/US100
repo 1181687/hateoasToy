@@ -1,68 +1,1 @@
-NUMBER: US100
-
-DESCRIPTION: As an Administrator, I want to configure the house from a file containing basic house information, grids
-and rooms.
-
-TEAM MEMBERS: Developer - Diana Ferreira; QA - Joana Figueira;
-
-ACCEPTANCE CRITERIA:
-
-General Criteria:
-- Correct Sequence and Class Diagrams.
-- JavaDoc documentation in both code and tests.
-- JUnit conventions in code and tests. (eg. tests should be named like this:
-                                        testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
-- All code, comments and documentation are in proper English.
-
-Specific Criteria:
-- given - The user (Admin) configures a House from a file.
-- when - The user chooses option "1" from Menu (Administrator), then option "1" (House) and then option "13"
-(Configure House from a file). Then User inserts the name of the file to be imported
-(datasets/house/json/DataSet_sprint06_House.json). He/She then chooses the option "YES" in "Do you want to configure
-the House with this information? (Y/N)"
-- then:
-   * When the user inserts the name of the file the following message appears ("This is the content of the chosen file.")
-with the contents of the file.
-   * When he/she chooses the "Yes" option the following message appears ("The House was configured with success.")
-- but - The following messages are displayed:
-
-
-"ERROR: There's no such file with that name." - when no file or directory is found when the user inputs the name of the
-file to be imported.
-
-"Sorry! The file doesn't contain valid information. It was not possible to import it." - Data is null or doesn't have
-the right format (a string in the place of a double or vice versa) or the file is empty.
-
-"The House is already configured."- when you try to import the contents of the file after that have been already imported.
-
-"The House was not configured."- when the file cannot be imported.
-
-
-Test Criteria:
-- All unit tests with "Process finished with exit code 0" message.
-- When user chooses option "1" from Menu, then option "1" and then option "13", should not accept letters, symbols, or
-any number that's not displayed in the menu.
-- When He/She then chooses the option "Y" or "N" in "Do you want to configure the House with this information? (Y/N)",
-should not accept letters, symbols, or any number unless its a "Y" or "y" or a "N" or a "n".
-
-Acceptance Tests:
-
-//File
-Test_scenario1:
-- Input data: the path of file is not correct, so the file can not be found
-- Expected result: "ERROR: There's no such file with that name."
-
-Test_scenario2:
-- Input data: the path file is correct, but is empty.
-- Expected result: "The information on the file is not valid to be imported."
-
-Test_scenario3:
-- Input data: the path file is correct, but it has some or all data, already imported.
-- Expected result: "The House is already configured."
-
-
-
-ASSUMPTIONS:
-- There is User interaction: the application asks the user the location of the files to be imported.
-- US100 is an alternative method to US 105,130,135 and 147.
-
+NUMBER: US100DESCRIPTION: As an Administrator, I want to configure the house from a file containing basic house information, gridsand rooms.TEAM MEMBERS: Developer - Diana Ferreira; QA - Joana Figueira;ACCEPTANCE CRITERIA:General Criteria:- Correct Sequence and Class Diagrams.- JavaDoc documentation in both code and tests.- JUnit conventions in code and tests. (eg. tests should be named like this:                                        testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).- All code, comments and documentation are in proper English.Specific Criteria:- given - The user (Admin) configures a House from a file.- when - The user chooses option "1" from Menu (Administrator), then option "1" (House) and then option "13"(Configure House from a file). Then User inserts the name of the file to be imported(datasets/house/json/DataSet_sprint06_House.json). He/She then chooses the option "YES" in "Do you want to configurethe House with this information? (Y/N)"- then:   * When the user inserts the name of the file the following message appears ("This is the content of the chosen file.")with the contents of the file.   * When he/she chooses the "Yes" option the following message appears ("The House was configured with success.")- but - The following messages are displayed:"ERROR: There's no such file with that name." - when no file or directory is found when the user inputs the name of thefile to be imported."Sorry! The file doesn't contain valid information. It was not possible to import it." - Data is null or doesn't havethe right format (a string in the place of a double or vice versa) or the file is empty."The House is already configured."- when you try to import the contents of the file after that have been already imported."The House was not configured."- when the file cannot be imported.Test Criteria:- All unit tests with "Process finished with exit code 0" message.- When user chooses option "1" from Menu, then option "1" and then option "13", should not accept letters, symbols, orany number that's not displayed in the menu.- When He/She then chooses the option "Y" or "N" in "Do you want to configure the House with this information? (Y/N)",should not accept letters, symbols, or any number unless its a "Y" or "y" or a "N" or a "n".Acceptance Tests://FileTest_scenario1:- Input data: the path of file is not correct, so the file can not be found- Expected result: "ERROR: There's no such file with that name."Test_scenario2:- Input data: the path file is correct, but is empty.- Expected result: "The information on the file is not valid to be imported."Test_scenario3:- Input data: the path file is correct, but it has some or all data, already imported.- Expected result: "The House is already configured."ASSUMPTIONS:- There is User interaction: the application asks the user the location of the files to be imported.- US100 is an alternative method to US 105,130,135 and 147.
