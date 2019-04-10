@@ -22,8 +22,8 @@ public class GeoAreaSensor implements Sensor {
     private LocalDateTime startingDate;
 
     @ElementCollection
-    @CollectionTable(name = "Reading",
-            joinColumns = @JoinColumn(name = "SENSOR_ID"))
+    //@CollectionTable(name = "Reading",
+            //joinColumns = @JoinColumn(name = "SENSOR_ID"))
     private List<Reading> listOfReadings = new ArrayList<>();
 
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)

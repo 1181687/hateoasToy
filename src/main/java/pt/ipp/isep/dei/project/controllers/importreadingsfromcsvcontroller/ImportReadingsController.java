@@ -24,7 +24,6 @@ public class ImportReadingsController {
     private static final Logger LOGGER = Logger.getLogger(ImportReadingsController.class.getName());
     @Autowired
     private GeographicalAreaList geographicalAreaList;
-    @Autowired
     private SensorList allSensorInTheGeoAreas;
     private GeoAreaSensor sensor;
     private List<Object> readingDTOList;
@@ -32,13 +31,12 @@ public class ImportReadingsController {
 
     /**
      * Constructor.
+     *  @param geographicalAreaList GeographicalAreaList to be used.
      *
-     * @param geographicalAreaList GeographicalAreaList to be used.
-     * @param sensorList
      */
-    public ImportReadingsController(GeographicalAreaList geographicalAreaList, SensorList sensorList) {
+    public ImportReadingsController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;
-        this.allSensorInTheGeoAreas = sensorList;
+        this.allSensorInTheGeoAreas = this.geographicalAreaList.getAllSensors();
     }
 
     /**
@@ -92,7 +90,7 @@ public class ImportReadingsController {
         }
         if(imported){
 
-            this.allSensorInTheGeoAreas.updateSensors();
+            this.geographicalAreaList.updateRepository();
         }
         return imported;
     }

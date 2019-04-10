@@ -2,7 +2,6 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,12 +12,11 @@ public class ImportReadings {
 
     /**
      * Constructor.
+     *  @param geographicalAreaList
      *
-     * @param geographicalAreaList
-     * @param sensorList
      */
-    public ImportReadings(GeographicalAreaList geographicalAreaList, SensorList sensorList) {
-        controller = new ImportReadingsController(geographicalAreaList, sensorList);
+    public ImportReadings(GeographicalAreaList geographicalAreaList) {
+        controller = new ImportReadingsController(geographicalAreaList);
     }
 
 

@@ -4,7 +4,6 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.controllers.importgeoareasfromjsonorxmlcontroller.ImportGeoAreasFromJSONOrXMLController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaDTO;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
-import pt.ipp.isep.dei.project.model.sensor.SensorList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,8 +15,8 @@ public class ImportGeoAreasFromJSONOrXML {
     private ImportGeoAreasFromJSONOrXMLController controller;
 
 
-    public ImportGeoAreasFromJSONOrXML(GeographicalAreaList geoList, SensorList sensorList) {
-        this.controller = new ImportGeoAreasFromJSONOrXMLController(geoList, sensorList);
+    public ImportGeoAreasFromJSONOrXML(GeographicalAreaList geoList) {
+        this.controller = new ImportGeoAreasFromJSONOrXMLController(geoList);
     }
 
     public void jsonGeoAreaSensors() throws FileNotFoundException {

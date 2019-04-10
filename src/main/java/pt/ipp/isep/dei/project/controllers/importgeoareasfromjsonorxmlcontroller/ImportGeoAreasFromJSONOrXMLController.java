@@ -19,15 +19,12 @@ import java.util.List;
 public class ImportGeoAreasFromJSONOrXMLController {
     @Autowired
     private GeographicalAreaList geographicalAreaList;
-    @Autowired
-    private SensorList sensorList;
     private ProjectFileReader reader;
     private List<Object> geoAreaDTOList;
 
 
-    public ImportGeoAreasFromJSONOrXMLController(GeographicalAreaList geographicalAreaList, SensorList sensorList) {
+    public ImportGeoAreasFromJSONOrXMLController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;
-        this.sensorList = sensorList;
     }
 
     /**
@@ -43,7 +40,7 @@ public class ImportGeoAreasFromJSONOrXMLController {
             GeographicalAreaDTO geoDTO = (GeographicalAreaDTO) geoObject;
             GeographicalArea geoArea = GeographicalAreaMapper.mapToEntity(geoDTO);
             for (GeoAreaSensorDTO sensorDTO : geoDTO.getSensors()) {
-                sensorList.addSensor(GeoAreaSensorMapper.mapToEntity(sensorDTO));
+                geoArea.addSensor(GeoAreaSensorMapper.mapToEntity(sensorDTO));
             }
             if (geographicalAreaList.addGeoArea(geoArea)) {
                 imported = true;

@@ -35,8 +35,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class ImportGeoAreasFromJSONOrXMLControllerTest {
     @Autowired
     private GeographicalAreaList geographicalAreaList;
-    @Autowired
-    private SensorList sensorList;
 
     /**
      * Test that imports imports geo areas and sensors
@@ -99,7 +97,7 @@ public class ImportGeoAreasFromJSONOrXMLControllerTest {
         String path = "datasets/geoAreas/json/JSONfile.json";
         File file = new File(path);
 
-        ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geographicalAreaList, sensorList);
+        ImportGeoAreasFromJSONOrXMLController ctrl = new ImportGeoAreasFromJSONOrXMLController(geographicalAreaList);
         ctrl.createReader(path);
         ctrl.readFile(file, path);
 

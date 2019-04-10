@@ -2,22 +2,24 @@ package pt.ipp.isep.dei.project.model.sensor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pt.ipp.isep.dei.project.SensorRepository;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Service
-public class SensorList {
+@Entity
+public class
+SensorList {
 
+    @Id
+    private long id;
+
+    @OneToMany
     private List<GeoAreaSensor> listOfSensors;
-
-    @Autowired
-    private SensorRepository sensorRepository;
 
     /**
      * Constructor method.
@@ -54,16 +56,7 @@ public class SensorList {
         if (listOfSensors.contains(sensor)) {
             return false;
         }
-        listOfSensors.add(sensor);
-        sensorRepository.save(sensor);
-
         return true;
-    }
-
-    public void updateSensors() {
-        for (GeoAreaSensor geoAreaSensor : this.listOfSensors) {
-            sensorRepository.save(geoAreaSensor);
-        }
     }
 
     /**
