@@ -1,6 +1,8 @@
 package pt.ipp.isep.dei.project.model.house;
 
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.MeasurableList;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -32,15 +34,21 @@ public class House {
     @JoinColumn
     private RoomList roomList;
 
-    @Transient
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(value = FetchMode.SUBSELECT)
     private List<HouseGrid> listHouseGrids;
 
-    @Transient
+    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JoinColumn
+    @Embedded
     private Address address;
+
     @Transient
     private List<DeviceType> deviceTypeList;
+
     @Transient
     private int meteringPeriodGrid;
+
     @Transient
     private int meteringPeriodDevice;
 
