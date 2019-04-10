@@ -49,7 +49,7 @@ public class ConfigureHouseInformationFromJsonController {
         return this.numberOfNotImportedRooms;
     }
 
-  /*  public boolean addRoomsToGrid() {
+ /* public boolean addRoomsToGridById() {
         configLogFile();
         boolean imported = false;
         for (Object object : this.houseObjects) {
@@ -81,7 +81,6 @@ public class ConfigureHouseInformationFromJsonController {
     }
 
 */
-
     /**
      * receives the String Path (json) and creates the respective reader (json)
      * and saves it in controller private attribute reader

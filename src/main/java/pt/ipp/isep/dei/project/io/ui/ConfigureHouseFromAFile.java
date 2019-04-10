@@ -1,5 +1,5 @@
-package pt.ipp.isep.dei.project.io.ui;
-/*
+/*package pt.ipp.isep.dei.project.io.ui;
+
 import pt.ipp.isep.dei.project.controllers.configurehouseinformationfromjsoncontroller.ConfigureHouseInformationFromJsonController;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.HouseDTO;
@@ -67,7 +67,7 @@ public class ConfigureHouseFromAFile {
             if ("Y".equalsIgnoreCase(importConfirmation)) {
 
                 try {
-                    if (controller.addRoomsToGrid()) ;
+                    if (controller.addRoomsToGridById()) ;
                     {
                         int notImportedRooms = controller.getNumberOfNotImportedRooms();
                         if (notImportedRooms > 0) {
