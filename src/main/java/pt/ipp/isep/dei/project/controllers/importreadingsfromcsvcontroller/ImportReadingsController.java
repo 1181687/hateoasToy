@@ -7,6 +7,8 @@ import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -25,7 +27,9 @@ public class ImportReadingsController {
     @Autowired
     private GeographicalAreaList geographicalAreaList;
     private SensorList allSensorInTheGeoAreas;
-    private GeoAreaSensor sensor;
+    private RoomSensorList allSensorInTheHouse;
+    private GeoAreaSensor geoAreaSensor;
+    private RoomSensor roomSensor;
     private List<Object> readingDTOList;
     private int numberOfNotImportedReadings;
 
@@ -37,6 +41,7 @@ public class ImportReadingsController {
     public ImportReadingsController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;
         this.allSensorInTheGeoAreas = this.geographicalAreaList.getAllSensors();
+        this.allSensorInTheHouse = this.
     }
 
     /**
@@ -45,8 +50,12 @@ public class ImportReadingsController {
      * @param localDateTime Given date time to be compared.
      * @return True or False.
      */
-    public boolean isDateTimeBeforeSensorStartingDate(LocalDateTime localDateTime) {
-        return localDateTime.isBefore(sensor.getStartingDate());
+    public boolean isDateTimeBeforeGeoAreaSensorStartingDate(LocalDateTime localDateTime) {
+        return localDateTime.isBefore(geoAreaSensor.getStartingDate());
+    }
+
+    public boolean isDateTimeBeforeRoomSensorStartingDate(LocalDateTime localDateTime) {
+        return localDateTime.isBefore(geoAreaSensor.getStartingDate());
     }
 
     /**
@@ -56,20 +65,26 @@ public class ImportReadingsController {
      */
     public void addReadingToSensor(ReadingDTO readingDTO) {
         Reading reading = ReadingMapper.mapToEntity(readingDTO);
-        sensor.addReadingsToList(reading);
+        geoAreaSensor.addReadingsToList(reading);
     }
 
     public int getNumberOfNotImportedReadings() {
         return this.numberOfNotImportedReadings;
     }
 
-    public boolean addReadingToSensorById() {
+    public boolean addReadingToSensorById(int option) {
         configLogFile();
         boolean imported = false;
         for (Object object : this.readingDTOList) {
             ReadingDTO reading = (ReadingDTO) object;
-            sensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
-            if (Objects.isNull(sensor)) {
+            if(option==1){
+                geoAreaSensor = allSensorInTheGeoAreas.getSensorById(reading.getId());
+            }
+            if(option==2){
+                roomSensor = allSensorInTheHouse.getSensorById(reading.getId());
+            }
+
+            if (Objects.isNull(geoAreaSensor) || Objects.isNull(roomSensor)) {
                 numberOfNotImportedReadings++;
                 continue;
             }

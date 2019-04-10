@@ -92,7 +92,7 @@ class ImportReadingsFromCSVXMLJSONControllerTest {
         controller.checkIfSensorExistsById("432");
 
         // Act
-        boolean result = controller.isDateTimeBeforeSensorStartingDate(localDateTime);
+        boolean result = controller.isDateTimeBeforeGeoAreaSensorStartingDate(localDateTime);
 
         // Assert
         assertTrue(result);
@@ -109,7 +109,7 @@ class ImportReadingsFromCSVXMLJSONControllerTest {
         controller.checkIfSensorExistsById("432");
 
         // Act
-        boolean result = controller.isDateTimeBeforeSensorStartingDate(localDateTime);
+        boolean result = controller.isDateTimeBeforeGeoAreaSensorStartingDate(localDateTime);
 
         // Assert
         assertFalse(result);

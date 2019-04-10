@@ -75,7 +75,7 @@ public class Admin {
                     break;
                 case 10:
                     ImportReadings ui10 = new ImportReadings(geographicalAreaList);
-                    ui10.run();
+                    ui10.run(1);
                     break;
                 case 11:
                     DeactivateSensorFromGeoArea ui11 = new DeactivateSensorFromGeoArea(geographicalAreaList);
@@ -85,6 +85,9 @@ public class Admin {
                     RemoveSensorFromGeoArea ui12 = new RemoveSensorFromGeoArea(geographicalAreaList);
                     ui12.run();
                     break;
+                case 15:
+                    ImportReadings ui15 = new ImportReadings(geographicalAreaList);
+                    ui15.run(2);
             }
             option = Menu.adminGeoAreaMenu();
         }

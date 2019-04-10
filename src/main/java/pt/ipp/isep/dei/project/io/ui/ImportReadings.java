@@ -20,7 +20,7 @@ public class ImportReadings {
     }
 
 
-    public void run() throws FileNotFoundException {
+    public void run(int option) throws FileNotFoundException {
         String pathFile = InputValidator.getString("Please specify the name of the file you would like to import (extensions accepted: json, csv, xml).\n");
         File file = new File(pathFile);
         boolean flag = true;
@@ -29,7 +29,7 @@ public class ImportReadings {
                 String importConfirmation = InputValidator.confirmValidation("\nDo you really want to import the readings? (Y/N)\n");
                 if ("Y".equals(importConfirmation) || "y".equals(importConfirmation)) {
                     try {
-                        if (controller.addReadingToSensorById()) {
+                        if (controller.addReadingToSensorById(option)) {
                             int notImportedReadings = controller.getNumberOfNotImportedReadings();
                             if (notImportedReadings > 0) {
                                 System.out.println("\nThe file was partially imported. There were " + notImportedReadings + " readings that were not imported, due to invalid information.\n");
