@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.ReadingDTO;
@@ -21,6 +22,7 @@ import java.util.logging.Logger;
 
 public class ImportReadingsController {
     private static final Logger LOGGER = Logger.getLogger(ImportReadingsController.class.getName());
+    @Autowired
     private GeographicalAreaList geographicalAreaList;
     private SensorList allSensorInTheGeoAreas;
     private GeoAreaSensor sensor;
@@ -29,8 +31,8 @@ public class ImportReadingsController {
 
     /**
      * Constructor.
+     *  @param geographicalAreaList GeographicalAreaList to be used.
      *
-     * @param geographicalAreaList GeographicalAreaList to be used.
      */
     public ImportReadingsController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;

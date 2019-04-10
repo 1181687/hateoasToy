@@ -409,55 +409,55 @@ public class HouseTest {
         assertEquals(expectedResult, result, 0.0001);
     }
 
-/*    @Test
-    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresIguais() {
-        //arrange
-        //sensor
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperatura");
-        Location locS0 = new Location(123, 345, 50);
-        GeoAreaSensor s0 = new GeoAreaSensor("87654", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+    /*    @Test
+        public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresIguais() {
+            //arrange
+            //sensor
+            LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            SensorType sensorType0 = new SensorType("Temperatura");
+            Location locS0 = new Location(123, 345, 50);
+            GeoAreaSensor s0 = new GeoAreaSensor("87654", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
-        LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperatura");
-        Location locS1 = new Location(123, 355, 50);
-        GeoAreaSensor s1 = new GeoAreaSensor("87654", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+            LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 5, 15, 20, 00);
+            SensorType sensorType1 = new SensorType("Temperatura");
+            Location locS1 = new Location(123, 355, 50);
+            GeoAreaSensor s1 = new GeoAreaSensor("87654", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
 
-        LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 11, 15, 20, 00);
-        SensorType sensorType2 = new SensorType("Temperatura");
-        Location locS2 = new Location(123, 345, 55);
-        GeoAreaSensor s2 = new GeoAreaSensor("87654", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
+            LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 11, 15, 20, 00);
+            SensorType sensorType2 = new SensorType("Temperatura");
+            Location locS2 = new Location(123, 345, 55);
+            GeoAreaSensor s2 = new GeoAreaSensor("87654", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
 
-        //Reading
-        // Sensor0
-        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
+            //Reading
+            // Sensor0
+            LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
 
-        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
-        Reading reading02 = new Reading(24, dataHoraDaMedicao02);
+            Reading reading01 = new Reading(23, dataHoraDaMedicao01);
+            Reading reading02 = new Reading(24, dataHoraDaMedicao02);
 
-        s0.addReadingsToList(reading01);
-        s0.addReadingsToList(reading02);
+            s0.addReadingsToList(reading01);
+            s0.addReadingsToList(reading02);
 
-        //Sensor1
-        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 12, 24, 17, 24, 00);
+            //Sensor1
+            LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 12, 24, 17, 24, 00);
 
-        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
-        Reading reading12 = new Reading(30, dataHoraDaMedicao12);
+            Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+            Reading reading12 = new Reading(30, dataHoraDaMedicao12);
 
-        s1.addReadingsToList(reading11);
-        s1.addReadingsToList(reading12);
+            s1.addReadingsToList(reading11);
+            s1.addReadingsToList(reading12);
 
-        //Sensor2
-        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 12, 4, 17, 24, 00);
+            //Sensor2
+            LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 12, 4, 17, 24, 00);
 
-        Reading reading21 = new Reading(20, dataHoraDaMedicao21);
-        Reading reading22 = new Reading(27, dataHoraDaMedicao22);
+            Reading reading21 = new Reading(20, dataHoraDaMedicao21);
+            Reading reading22 = new Reading(27, dataHoraDaMedicao22);
 
-        s2.addReadingsToList(reading21);
-        s2.addReadingsToList(reading22);
+            s2.addReadingsToList(reading21);
+            s2.addReadingsToList(reading22);
 
         SensorType sensorType = new SensorType("Temperatura");
         Dimension dim = new Dimension(4, 4, 4);
@@ -466,16 +466,16 @@ public class HouseTest {
         room.addSensorToListOfSensorsInRoom(s1);
         room.addSensorToListOfSensorsInRoom(s2);
 
-        house.addRoom(room);
+            house.addRoom(room);
 
-        Reading expectedResult = reading22;
+            Reading expectedResult = reading22;
 
-        //Act
-        Reading result = house.getLatestMeasurementBySensorType("F5", sensorType);
+            //Act
+            Reading result = house.getLatestMeasurementBySensorType("F5", sensorType);
 
-        //Assert
-        assertEquals(expectedResult, result);
-    }
+            //Assert
+            assertEquals(expectedResult, result);
+        }
 
     @Test
     public void testGetLastTemperatureOfTheHouseAreaWithoutSensors() {
@@ -491,67 +491,67 @@ public class HouseTest {
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
         Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
-        house.addRoom(room1);
-        house.addRoom(room2);
+            house.addRoom(room1);
+            house.addRoom(room2);
 
-        double expectedResult = Double.NaN;
+            double expectedResult = Double.NaN;
 
-        SensorType type = new SensorType("Temperature");
+            SensorType type = new SensorType("Temperature");
 
-        //Act
-        double result = house.getLastMeasurementByTypeInHouseArea(type);
+            //Act
+            double result = house.getLastMeasurementByTypeInHouseArea(type);
 
-        //Assert
-        assertEquals(expectedResult, result, 0.0001);
-    }
+            //Assert
+            assertEquals(expectedResult, result, 0.0001);
+        }
 
-    @Test
-    public void testTotalDailyMeasurementInAHouseArea() {
-        //Arrange
-        //Instantiate sensor
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Rainfall");
-        Location locS0 = new Location(41.1, -8.6, 111);
-        GeoAreaSensor s0 = new GeoAreaSensor("6546", "A122", dataFuncionamento0, sensorType0, locS0, "l/m2");
-        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
+        @Test
+        public void testTotalDailyMeasurementInAHouseArea() {
+            //Arrange
+            //Instantiate sensor
+            LocalDateTime dataFuncionamento0 = LocalDateTime.of(2018, 12, 2, 15, 20, 00);
+            SensorType sensorType0 = new SensorType("Rainfall");
+            Location locS0 = new Location(41.1, -8.6, 111);
+            GeoAreaSensor s0 = new GeoAreaSensor("6546", "A122", dataFuncionamento0, sensorType0, locS0, "l/m2");
+            house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s0);
 
-        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Rainfall");
-        Location locS1 = new Location(41.1, -8.6, 111);
-        GeoAreaSensor s1 = new GeoAreaSensor("653", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
-        house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
+            LocalDateTime dataFuncionamento1 = LocalDateTime.of(2018, 12, 5, 15, 20, 00);
+            SensorType sensorType1 = new SensorType("Rainfall");
+            Location locS1 = new Location(41.1, -8.6, 111);
+            GeoAreaSensor s1 = new GeoAreaSensor("653", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+            house.getInsertedGeoArea().getSensorListInTheGeographicArea().addSensor(s1);
 
-        // Sensor0 - Register 1
-        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 1, 15, 20, 00);
-        Reading reading01 = new Reading(10, dataHoraDaMedicao01);
-        s0.addReadingsToList(reading01);
+            // Sensor0 - Register 1
+            LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(2018, 12, 1, 15, 20, 00);
+            Reading reading01 = new Reading(10, dataHoraDaMedicao01);
+            s0.addReadingsToList(reading01);
 
-        // Sensor0 - Register 2
-        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 1, 17, 24, 00);
-        Reading reading02 = new Reading(11, dataHoraDaMedicao02);
-        s0.addReadingsToList(reading02);
+            // Sensor0 - Register 2
+            LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(2018, 12, 1, 17, 24, 00);
+            Reading reading02 = new Reading(11, dataHoraDaMedicao02);
+            s0.addReadingsToList(reading02);
 
-        //Sensor1 - Register 1
-        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 1, 17, 20, 00);
-        Reading reading11 = new Reading(15, dataHoraDaMedicao11);
-        s1.addReadingsToList(reading11);
+            //Sensor1 - Register 1
+            LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(2018, 12, 1, 17, 20, 00);
+            Reading reading11 = new Reading(15, dataHoraDaMedicao11);
+            s1.addReadingsToList(reading11);
 
-        //Sensor1 - Register 2
-        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 1, 23, 24, 00);
-        Reading reading12 = new Reading(20, dataHoraDaMedicao12);
-        s1.addReadingsToList(reading12);
+            //Sensor1 - Register 2
+            LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(2018, 12, 1, 23, 24, 00);
+            Reading reading12 = new Reading(20, dataHoraDaMedicao12);
+            s1.addReadingsToList(reading12);
 
-        LocalDate day = LocalDate.of(2018, 12, 1);
+            LocalDate day = LocalDate.of(2018, 12, 1);
 
-        double expectedResult = 20;
+            double expectedResult = 20;
 
-        SensorType searchType = new SensorType("Rainfall");
-        //Act
-        double result = house.getTotalDailyMeasurementInHouseArea(searchType, day);
+            SensorType searchType = new SensorType("Rainfall");
+            //Act
+            double result = house.getTotalDailyMeasurementInHouseArea(searchType, day);
 
-        //Assert
-        assertEquals(expectedResult, result, 0.001);
-    }
+            //Assert
+            assertEquals(expectedResult, result, 0.001);
+        }
 
     @Test
     public void getMaximumTemperatureOfARoomInASpecificDay() {
@@ -565,171 +565,104 @@ public class HouseTest {
         Dimension dimension = new Dimension(height, length, width);
         Room room1 = new Room(name, description, houseFloor, dimension);
 
-        house.addRoom(room1);
+            house.addRoom(room1);
 
-        LocalDateTime date0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperature");
-        Location locS0 = new Location(123, 345, 50);
-        GeoAreaSensor s0 = new GeoAreaSensor("3213", "A123", date0, sensorType0, locS0, "l/m2");
+            LocalDateTime date0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            SensorType sensorType0 = new SensorType("Temperature");
+            Location locS0 = new Location(123, 345, 50);
+            GeoAreaSensor s0 = new GeoAreaSensor("3213", "A123", date0, sensorType0, locS0, "l/m2");
 
-        LocalDateTime date1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperature");
-        Location locS1 = new Location(123, 345, 50);
-        GeoAreaSensor s1 = new GeoAreaSensor("1414", "B123", date1, sensorType1, locS1, "l/m2");
+            LocalDateTime date1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            SensorType sensorType1 = new SensorType("Temperature");
+            Location locS1 = new Location(123, 345, 50);
+            GeoAreaSensor s1 = new GeoAreaSensor("1414", "B123", date1, sensorType1, locS1, "l/m2");
 
-        LocalDateTime dateTimeDayMeasure1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 12, 2, 20, 24, 00);
+            LocalDateTime dateTimeDayMeasure1 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            LocalDateTime dateTimeDayMeasure2 = LocalDateTime.of(1991, 12, 2, 20, 24, 00);
 
-        Reading reading1 = new Reading(-20.0, dateTimeDayMeasure1);
-        Reading reading2 = new Reading(-25.0, dateTimeDayMeasure2);
+            Reading reading1 = new Reading(-20.0, dateTimeDayMeasure1);
+            Reading reading2 = new Reading(-25.0, dateTimeDayMeasure2);
 
-        s0.addReadingsToList(reading1);
-        s0.addReadingsToList(reading2);
+            s0.addReadingsToList(reading1);
+            s0.addReadingsToList(reading2);
 
-        LocalDateTime dateTimeDayMeasure3 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 12, 2, 17, 24, 00);
+            LocalDateTime dateTimeDayMeasure3 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            LocalDateTime dateTimeDayMeasure4 = LocalDateTime.of(1991, 12, 2, 17, 24, 00);
 
-        Reading reading3 = new Reading(-10.0, dateTimeDayMeasure3);
-        Reading reading4 = new Reading(-15.0, dateTimeDayMeasure4);
+            Reading reading3 = new Reading(-10.0, dateTimeDayMeasure3);
+            Reading reading4 = new Reading(-15.0, dateTimeDayMeasure4);
 
-        s1.addReadingsToList(reading3);
-        s1.addReadingsToList(reading4);
+            s1.addReadingsToList(reading3);
+            s1.addReadingsToList(reading4);
 
-        room1.getSensorList().addSensor(s0);
-        room1.getSensorList().addSensor(s1);
+            room1.getSensorList().addSensor(s0);
+            room1.getSensorList().addSensor(s1);
 
-        house.addRoom(room1);
+            house.addRoom(room1);
 
-        LocalDate dayNeeded = LocalDate.of(1991, 12, 2);
+            LocalDate dayNeeded = LocalDate.of(1991, 12, 2);
 
-        double expectedResult = -10.0;
+            double expectedResult = -10.0;
 
-        //Act
-        double result = house.getMaximumTemperatureOfRoomInSpecificDay(name, sensorType0, dayNeeded);
+            //Act
+            double result = house.getMaximumTemperatureOfRoomInSpecificDay(name, sensorType0, dayNeeded);
 
-        //Assert
-        assertEquals(expectedResult, result, 0.001);
+            //Assert
+            assertEquals(expectedResult, result, 0.001);
 
-    }
+        }
 
-    @Test
-    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresQueNaoTem() {
-        //arrange
-        //Instanciar sensor
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperatura");
-        Location locS0 = new Location(123, 345, 50);
-        GeoAreaSensor s0 = new GeoAreaSensor("g34", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+        @Test
+        public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresQueNaoTem() {
+            //arrange
+            //Instanciar sensor
+            LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            SensorType sensorType0 = new SensorType("Temperatura");
+            Location locS0 = new Location(123, 345, 50);
+            GeoAreaSensor s0 = new GeoAreaSensor("g34", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
-        LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperatura");
-        Location locS1 = new Location(123, 355, 50);
-        GeoAreaSensor s1 = new GeoAreaSensor("2423r", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
+            LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 5, 15, 20, 00);
+            SensorType sensorType1 = new SensorType("Temperatura");
+            Location locS1 = new Location(123, 355, 50);
+            GeoAreaSensor s1 = new GeoAreaSensor("2423r", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
 
-        LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 11, 15, 20, 00);
-        SensorType sensorType2 = new SensorType("Humidade");
-        Location locS2 = new Location(123, 345, 55);
-        GeoAreaSensor s2 = new GeoAreaSensor("6325", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
+            LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 11, 15, 20, 00);
+            SensorType sensorType2 = new SensorType("Humidade");
+            Location locS2 = new Location(123, 345, 55);
+            GeoAreaSensor s2 = new GeoAreaSensor("6325", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
 
-        //Instanciar Reading
-        // Sensor0
-        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
+            //Instanciar Reading
+            // Sensor0
+            LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
 
-        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
-        Reading reading02 = new Reading(25, dataHoraDaMedicao02);
+            Reading reading01 = new Reading(23, dataHoraDaMedicao01);
+            Reading reading02 = new Reading(25, dataHoraDaMedicao02);
 
-        s0.addReadingsToList(reading01);
-        s0.addReadingsToList(reading02);
+            s0.addReadingsToList(reading01);
+            s0.addReadingsToList(reading02);
 
-        //Sensor1
-        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 12, 4, 17, 24, 00);
+            //Sensor1
+            LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 12, 4, 17, 24, 00);
 
-        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
-        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
+            Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+            Reading reading12 = new Reading(25, dataHoraDaMedicao12);
 
-        s1.addReadingsToList(reading11);
-        s1.addReadingsToList(reading12);
+            s1.addReadingsToList(reading11);
+            s1.addReadingsToList(reading12);
 
-        //Sensor2
-        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
+            //Sensor2
+            LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
 
-        Reading reading21 = new Reading(20, dataHoraDaMedicao21);
-        Reading reading22 = new Reading(25, dataHoraDaMedicao22);
+            Reading reading21 = new Reading(20, dataHoraDaMedicao21);
+            Reading reading22 = new Reading(25, dataHoraDaMedicao22);
 
-        s2.addReadingsToList(reading21);
-        s2.addReadingsToList(reading22);
+            s2.addReadingsToList(reading21);
+            s2.addReadingsToList(reading22);
 
-        SensorType tipoResultado = new SensorType("Pluviosidade");
-
-        Dimension dim = new Dimension(4, 4, 4);
-        Room room = new Room("F5", "room", 1, dim);
-        room.addSensorToListOfSensorsInRoom(s0);
-        room.addSensorToListOfSensorsInRoom(s1);
-        room.addSensorToListOfSensorsInRoom(s2);
-
-        house.addRoom(room);
-
-        //Act
-        Reading result = house.getLatestMeasurementBySensorType("F5", tipoResultado);
-
-        //Assert
-        assertNull(result);
-    }
-
-    @Test
-    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresQuartoNulo() {
-        //arrange
-        //Instanciar sensor
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperatura");
-        Location locS0 = new Location(123, 345, 50);
-        GeoAreaSensor s0 = new GeoAreaSensor("4214", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
-
-        LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 5, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperatura");
-        Location locS1 = new Location(123, 355, 50);
-        GeoAreaSensor s1 = new GeoAreaSensor("4124", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
-
-        LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 11, 15, 20, 00);
-        SensorType sensorType2 = new SensorType("Humidade");
-        Location locS2 = new Location(123, 345, 55);
-        GeoAreaSensor s2 = new GeoAreaSensor("7657", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
-
-        //Instanciar Reading
-        // Sensor0
-        LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
-
-        Reading reading01 = new Reading(23, dataHoraDaMedicao01);
-        Reading reading02 = new Reading(25, dataHoraDaMedicao02);
-
-        s0.addReadingsToList(reading01);
-        s0.addReadingsToList(reading02);
-
-        //Sensor1
-        LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 12, 4, 17, 24, 00);
-
-        Reading reading11 = new Reading(22, dataHoraDaMedicao11);
-        Reading reading12 = new Reading(25, dataHoraDaMedicao12);
-
-        s1.addReadingsToList(reading11);
-        s1.addReadingsToList(reading12);
-
-        //Sensor2
-        LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
-        LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
-
-        Reading reading21 = new Reading(20, dataHoraDaMedicao21);
-        Reading reading22 = new Reading(25, dataHoraDaMedicao22);
-
-        s2.addReadingsToList(reading21);
-        s2.addReadingsToList(reading22);
-
-        SensorType tipoResultado = new SensorType("Pluviosidade");
+            SensorType tipoResultado = new SensorType("Pluviosidade");
 
         Dimension dim = new Dimension(4, 4, 4);
         Room room = new Room("F5", "room", 1, dim);
@@ -737,63 +670,130 @@ public class HouseTest {
         room.addSensorToListOfSensorsInRoom(s1);
         room.addSensorToListOfSensorsInRoom(s2);
 
-        house.addRoom(room);
+            house.addRoom(room);
 
-        //Act
-        Reading result = house.getLatestMeasurementBySensorType("F6", tipoResultado);
+            //Act
+            Reading result = house.getLatestMeasurementBySensorType("F5", tipoResultado);
 
-        //Assert
-        assertNull(result);
-    }
+            //Assert
+            assertNull(result);
+        }
 
-    @Test
-    public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresListaVazia() {
-        //arrange
-        SensorType tipoResultado = new SensorType("Temperatura");
+        @Test
+        public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresQuartoNulo() {
+            //arrange
+            //Instanciar sensor
+            LocalDateTime dataFuncionamento0 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            SensorType sensorType0 = new SensorType("Temperatura");
+            Location locS0 = new Location(123, 345, 50);
+            GeoAreaSensor s0 = new GeoAreaSensor("4214", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
 
-        //Act
-        Reading result = house.getLatestMeasurementBySensorType("F5", tipoResultado);
+            LocalDateTime dataFuncionamento1 = LocalDateTime.of(1991, 12, 5, 15, 20, 00);
+            SensorType sensorType1 = new SensorType("Temperatura");
+            Location locS1 = new Location(123, 355, 50);
+            GeoAreaSensor s1 = new GeoAreaSensor("4124", "A123", dataFuncionamento1, sensorType1, locS1, "l/m2");
 
-        //Assert
-        assertNull(result);
-    }
+            LocalDateTime dataFuncionamento2 = LocalDateTime.of(1991, 12, 11, 15, 20, 00);
+            SensorType sensorType2 = new SensorType("Humidade");
+            Location locS2 = new Location(123, 345, 55);
+            GeoAreaSensor s2 = new GeoAreaSensor("7657", "A123", dataFuncionamento2, sensorType2, locS2, "l/m2");
 
-    @Test
-    public void getDeviceListContentOfARoomTest() {
-        // Arrange
-        String expectedResult = "1 - Name of the device: Bosch Tronic 3000\n";
+            //Instanciar Reading
+            // Sensor0
+            LocalDateTime dataHoraDaMedicao01 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            LocalDateTime dataHoraDaMedicao02 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
 
-        // Act
-        String result = house.getDeviceListContentRoom(0);
+            Reading reading01 = new Reading(23, dataHoraDaMedicao01);
+            Reading reading02 = new Reading(25, dataHoraDaMedicao02);
 
-        // Assert
-        assertEquals(expectedResult, result);
-    }
+            s0.addReadingsToList(reading01);
+            s0.addReadingsToList(reading02);
 
-    @Test
-    public void testCheckIfNameAlreadyExists() {
-        //Arrange
-        String nameToCheck = "Room one";
-        String name = "ROOM ONE";
+            //Sensor1
+            LocalDateTime dataHoraDaMedicao11 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            LocalDateTime dataHoraDaMedicao12 = LocalDateTime.of(1991, 12, 4, 17, 24, 00);
+
+            Reading reading11 = new Reading(22, dataHoraDaMedicao11);
+            Reading reading12 = new Reading(25, dataHoraDaMedicao12);
+
+            s1.addReadingsToList(reading11);
+            s1.addReadingsToList(reading12);
+
+            //Sensor2
+            LocalDateTime dataHoraDaMedicao21 = LocalDateTime.of(1991, 12, 2, 15, 20, 00);
+            LocalDateTime dataHoraDaMedicao22 = LocalDateTime.of(1991, 12, 3, 17, 24, 00);
+
+            Reading reading21 = new Reading(20, dataHoraDaMedicao21);
+            Reading reading22 = new Reading(25, dataHoraDaMedicao22);
+
+            s2.addReadingsToList(reading21);
+            s2.addReadingsToList(reading22);
+
+            SensorType tipoResultado = new SensorType("Pluviosidade");
+
+        Dimension dim = new Dimension(4, 4, 4);
+        Room room = new Room("F5", "room", 1, dim);
+        room.addSensorToListOfSensorsInRoom(s0);
+        room.addSensorToListOfSensorsInRoom(s1);
+        room.addSensorToListOfSensorsInRoom(s2);
+
+            house.addRoom(room);
+
+            //Act
+            Reading result = house.getLatestMeasurementBySensorType("F6", tipoResultado);
+
+            //Assert
+            assertNull(result);
+        }
+
+        @Test
+        public void testarUltimoRegistoDeUmaListaDeTiposDeSensoresListaVazia() {
+            //arrange
+            SensorType tipoResultado = new SensorType("Temperatura");
+
+            //Act
+            Reading result = house.getLatestMeasurementBySensorType("F5", tipoResultado);
+
+            //Assert
+            assertNull(result);
+        }
+
+        @Test
+        public void getDeviceListContentOfARoomTest() {
+            // Arrange
+            String expectedResult = "1 - Name of the device: Bosch Tronic 3000\n";
+
+            // Act
+            String result = house.getDeviceListContentRoom(0);
+
+            // Assert
+            assertEquals(expectedResult, result);
+        }
+
+        @Test
+        public void testCheckIfNameAlreadyExists() {
+            //Arrange
+            String nameToCheck = "Room one";
+            String name = "ROOM ONE";
 
         Dimension dim = new Dimension(5, 6, 7);
         Room room1 = new Room(name, "room", 1, dim);
         house.addRoom(room1);
 
-        //Act
-        boolean expectedResult = true;
+            //Act
+            boolean expectedResult = true;
 
-        boolean result = house.isNameExistant(nameToCheck);
-        //Assert
-        assertEquals(expectedResult, result);
+            boolean result = house.isNameExistant(nameToCheck);
+            //Assert
+            assertEquals(expectedResult, result);
 
-    }
+        }
 
-    @Test
-    public void testCheckIfNameAlreadyExistsFalse() {
-        //Arrange
-        String nameToCheck = "Room one";
-        String name = "ROOM Two";
+        @Test
+        public void testCheckIfNameAlreadyExistsFalse() {
+            //Arrange
+            String nameToCheck = "Room one";
+            String name = "ROOM Two";
 
         Dimension dim = new Dimension(5, 6, 7);
         Room room1 = new Room(name, "room", 1, dim);
@@ -801,65 +801,65 @@ public class HouseTest {
         //Act
         boolean expectedResult = false;
 
-        boolean result = house.isNameExistant(nameToCheck);
-        //Assert
-        assertEquals(expectedResult, result);
-    }
+            boolean result = house.isNameExistant(nameToCheck);
+            //Assert
+            assertEquals(expectedResult, result);
+        }
 
-    @Test
-    public void getSensorsListContentOfARoomTest() {
-        // Arrange
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperatura");
-        Location locS0 = new Location(123, 345, 50);
-        GeoAreaSensor s0 = new GeoAreaSensor("242", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
-        LocalDateTime dataFuncionamento1 = LocalDateTime.of(2010, 11, 2, 15, 20, 00);
-        SensorType sensorType1 = new SensorType("Temperatura");
-        Location locS1 = new Location(123, 300, 50);
-        GeoAreaSensor s1 = new GeoAreaSensor("767", "A456", dataFuncionamento1, sensorType1, locS1, "l/m2");
-        laundry.addSensorToListOfSensorsInRoom(s0);
-        laundry.addSensorToListOfSensorsInRoom(s1);
-        String expectedResult =
-                "1 - Name of the sensor: A123\n" +
-                        "2 - Name of the sensor: A456\n";
-        // Act
-        String result = house.getSensorListContentOfARoom(0);
+        @Test
+        public void getSensorsListContentOfARoomTest() {
+            // Arrange
+            LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
+            SensorType sensorType0 = new SensorType("Temperatura");
+            Location locS0 = new Location(123, 345, 50);
+            GeoAreaSensor s0 = new GeoAreaSensor("242", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+            LocalDateTime dataFuncionamento1 = LocalDateTime.of(2010, 11, 2, 15, 20, 00);
+            SensorType sensorType1 = new SensorType("Temperatura");
+            Location locS1 = new Location(123, 300, 50);
+            GeoAreaSensor s1 = new GeoAreaSensor("767", "A456", dataFuncionamento1, sensorType1, locS1, "l/m2");
+            laundry.addSensorToListOfSensorsInRoom(s0);
+            laundry.addSensorToListOfSensorsInRoom(s1);
+            String expectedResult =
+                    "1 - Name of the sensor: A123\n" +
+                            "2 - Name of the sensor: A456\n";
+            // Act
+            String result = house.getSensorListContentOfARoom(0);
 
-        // Assert
-        assertEquals(expectedResult, result);
-    }
+            // Assert
+            assertEquals(expectedResult, result);
+        }
 
-    @Test
-    public void checkIfSensorListIsEmptyTestTrue() {
-        // Arrange
-        Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        @Test
+        public void checkIfSensorListIsEmptyTestTrue() {
+            // Arrange
+            Dimension dim = new Dimension(3, 3.5, 3.5);
+            Room room = new Room("Room", 2, dim);
 
-        house.addRoom(room);
+            house.addRoom(room);
 
-        int position = 0;
-        // Act
-        boolean result = house.isSensorListEmpty(position);
+            int position = 0;
+            // Act
+            boolean result = house.isSensorListEmpty(position);
 
-        // Assert
-        assertTrue(result);
-    }
+            // Assert
+            assertTrue(result);
+        }
 
-    @Test
-    public void checkIfSensorListIsEmptyTestFalse() {
-        // Arrange
-        LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
-        SensorType sensorType0 = new SensorType("Temperatura");
-        Location locS0 = new Location(123, 345, 50);
-        GeoAreaSensor s0 = new GeoAreaSensor("123", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
-        laundry.addSensorToListOfSensorsInRoom(s0);
+        @Test
+        public void checkIfSensorListIsEmptyTestFalse() {
+            // Arrange
+            LocalDateTime dataFuncionamento0 = LocalDateTime.of(2015, 11, 2, 15, 20, 00);
+            SensorType sensorType0 = new SensorType("Temperatura");
+            Location locS0 = new Location(123, 345, 50);
+            GeoAreaSensor s0 = new GeoAreaSensor("123", "A123", dataFuncionamento0, sensorType0, locS0, "l/m2");
+            laundry.addSensorToListOfSensorsInRoom(s0);
 
-        // Act
-        boolean result = house.isSensorListEmpty(0);
+            // Act
+            boolean result = house.isSensorListEmpty(0);
 
-        // Assert
-        assertFalse(result);
-    }
+            // Assert
+            assertFalse(result);
+        }
 
     @Test
     public void TestGetAllDevicesListByGridPosition() {
@@ -868,55 +868,55 @@ public class HouseTest {
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, "room", 2, dim);
 
-        Device dev1 = house.createDevice(FRIDGE_TYPE, "FridgeAriston", room1);
+            Device dev1 = house.createDevice(FRIDGE_TYPE, "FridgeAriston", room1);
 
-        Device dev2 = house.createDevice(WASHING_MACHINE_TYPE, "WashingMachineBosh", room1);
+            Device dev2 = house.createDevice(WASHING_MACHINE_TYPE, "WashingMachineBosh", room1);
 
-        Device dev3 = house.createDevice(DISHWASHER_TYPE, "DishWasherSpecs", room1);
+            Device dev3 = house.createDevice(DISHWASHER_TYPE, "DishWasherSpecs", room1);
 
 
         //Room TWO
         String name2 = "KitchenBasement";
         Room room2 = new Room(name2, "room", -1, dim);
 
-        Device dev4 = house.createDevice(FRIDGE_TYPE, "FridgeSiemens", room2);
-        Device dev5 = house.createDevice(DISHWASHER_TYPE, "DishWasherTeka", room2);
+            Device dev4 = house.createDevice(FRIDGE_TYPE, "FridgeSiemens", room2);
+            Device dev5 = house.createDevice(DISHWASHER_TYPE, "DishWasherTeka", room2);
 
-        Device dev6 = house.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeaterSpecs", room2);
+            Device dev6 = house.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeaterSpecs", room2);
 
-        //add to Lists
-        house.addRoom(room1);
-        house.addRoom(room2);
+            //add to Lists
+            house.addRoom(room1);
+            house.addRoom(room2);
 
-        HouseGrid grid = new HouseGrid("g1");
-        grid.addRoom(room1);
-        grid.addRoom(room2);
-        house.addGrid(grid);
+            HouseGrid grid = new HouseGrid("g1");
+            grid.addRoom(room1);
+            grid.addRoom(room2);
+            house.addGrid(grid);
 
-        List<Device> expectedResult = new ArrayList<>();
-        expectedResult.add(dev1);
-        expectedResult.add(dev2);
-        expectedResult.add(dev3);
-        expectedResult.add(dev4);
-        expectedResult.add(dev5);
-        expectedResult.add(dev6);
+            List<Device> expectedResult = new ArrayList<>();
+            expectedResult.add(dev1);
+            expectedResult.add(dev2);
+            expectedResult.add(dev3);
+            expectedResult.add(dev4);
+            expectedResult.add(dev5);
+            expectedResult.add(dev6);
 
-        List<Device> result = house.getAllDevicesListByGridPosition(0);
+            List<Device> result = house.getAllDevicesListByGridPosition(0);
 
-        assertEquals(expectedResult, result);
-    }
+            assertEquals(expectedResult, result);
+        }
 
-    @Test
-    public void checkIfDeviceListIsEmptyTestTrue() {
-        // Arrange
-        laundry.removeDevice(electricWaterHeater);
+        @Test
+        public void checkIfDeviceListIsEmptyTestTrue() {
+            // Arrange
+            laundry.removeDevice(electricWaterHeater);
 
-        // Act
-        boolean result = house.isDeviceListEmpty(0);
+            // Act
+            boolean result = house.isDeviceListEmpty(0);
 
-        // Assert
-        assertTrue(result);
-    }
+            // Assert
+            assertTrue(result);
+        }
 
 
     @Test
@@ -925,30 +925,30 @@ public class HouseTest {
         Dimension dim = new Dimension(3, 3.5, 3.5);
         Room room = new Room("Room", "room", 2, dim);
 
-        Device dev1 = house.createDevice("Lamp", "Lamp1", room);
+            Device dev1 = house.createDevice("Lamp", "Lamp1", room);
 
-        house.addRoom(room);
+            house.addRoom(room);
 
-        int position = 0;
-        // Act
-        boolean result = house.isDeviceListEmpty(position);
+            int position = 0;
+            // Act
+            boolean result = house.isDeviceListEmpty(position);
 
-        // Assert
-        assertFalse(result);
-    }
+            // Assert
+            assertFalse(result);
+        }
 
-    @Test
-    public void testGetRoomListLength() {
-        // Arrange
-        double expectedResult = 1;
+        @Test
+        public void testGetRoomListLength() {
+            // Arrange
+            double expectedResult = 1;
 
-        // Act
-        double result = house.houseRoomListSize();
+            // Act
+            double result = house.houseRoomListSize();
 
-        // Assert
-        assertEquals(expectedResult, result, 0.001);
+            // Assert
+            assertEquals(expectedResult, result, 0.001);
 
-    }
+        }
 
     @Test
     public void testGetDeviceListContentNameTypeLocationByHG() {
@@ -958,88 +958,88 @@ public class HouseTest {
         Dimension dim = new Dimension(3.5, 10.5, 20.5);
         Room room1 = new Room(name, "room", 2, dim);
 
-        Device dev1 = house.createDevice(FRIDGE_TYPE, "FridgeAriston", room1);
+            Device dev1 = house.createDevice(FRIDGE_TYPE, "FridgeAriston", room1);
 
-        Device dev2 = house.createDevice(WASHING_MACHINE_TYPE, "WashingMachineBosh", room1);
+            Device dev2 = house.createDevice(WASHING_MACHINE_TYPE, "WashingMachineBosh", room1);
 
-        Device dev3 = house.createDevice(DISHWASHER_TYPE, "DishWasherSpecs", room1);
+            Device dev3 = house.createDevice(DISHWASHER_TYPE, "DishWasherSpecs", room1);
 
 
         //Room TWO
         String name2 = "KitchenBasement";
         Room room2 = new Room(name2, "room", -1, dim);
 
-        Device dev4 = house.createDevice(FRIDGE_TYPE, "FridgeSiemens", room2);
-        Device dev5 = house.createDevice(DISHWASHER_TYPE, "DishWasherTeka", room2);
+            Device dev4 = house.createDevice(FRIDGE_TYPE, "FridgeSiemens", room2);
+            Device dev5 = house.createDevice(DISHWASHER_TYPE, "DishWasherTeka", room2);
 
-        Device dev6 = house.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeaterSpecs", room2);
+            Device dev6 = house.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeaterSpecs", room2);
 
 
-        HouseGrid hg = new HouseGrid("Grid");
-        house.addGrid(hg);
-        hg.addRoom(room1);
-        hg.addRoom(room2);
+            HouseGrid hg = new HouseGrid("Grid");
+            house.addGrid(hg);
+            hg.addRoom(room1);
+            hg.addRoom(room2);
 
-        //add to Lists
-        house.addRoom(room1);
-        house.addRoom(room2);
+            //add to Lists
+            house.addRoom(room1);
+            house.addRoom(room2);
 
-        String expectedResult = "WashingMachine\n" +
-                "- Device Name: WashingMachineBosh, Location: Kitchen.\n" +
-                "\n" +
-                "DishWasher\n" +
-                "- Device Name: DishWasherSpecs, Location: Kitchen.\n" +
-                "- Device Name: DishWasherTeka, Location: KitchenBasement.\n" +
-                "\n" +
-                "ElectricWaterHeater\n" +
-                "- Device Name: ElectricWaterHeaterSpecs, Location: KitchenBasement.\n" +
-                "\n" +
-                "Fridge\n" +
-                "- Device Name: FridgeAriston, Location: Kitchen.\n" +
-                "- Device Name: FridgeSiemens, Location: KitchenBasement.\n\n";
+            String expectedResult = "WashingMachine\n" +
+                    "- Device Name: WashingMachineBosh, Location: Kitchen.\n" +
+                    "\n" +
+                    "DishWasher\n" +
+                    "- Device Name: DishWasherSpecs, Location: Kitchen.\n" +
+                    "- Device Name: DishWasherTeka, Location: KitchenBasement.\n" +
+                    "\n" +
+                    "ElectricWaterHeater\n" +
+                    "- Device Name: ElectricWaterHeaterSpecs, Location: KitchenBasement.\n" +
+                    "\n" +
+                    "Fridge\n" +
+                    "- Device Name: FridgeAriston, Location: Kitchen.\n" +
+                    "- Device Name: FridgeSiemens, Location: KitchenBasement.\n\n";
 
-        String result = house.getDeviceListContentNameTypeLocationByGrid(0);
-        //Assert
-        assertEquals(expectedResult, result);
-    }
-
-    /* --> TESTE A SER ALTERADO DEPOIS DE IMPLEMENTAÇÃO DE DTO's.
-        @Test
-        public void getEnergyConsumptionInADayOfAllDevicesOfATypeTestWithValidValues() {
-            // Arrange
-            // Dimension Instantiation
-            double height = 3;
-            double length = 3.5;
-            double width = 3.5;
-            Dimension dim = new Dimension(height, length, width);
-
-            // Room Instantiation
-            Room room = new Room("Room", 2, dim);
-
-            // ElectricWaterHeaterSpecs Instantiation
-            Device device0 = housegrid.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeater", room);
-            device0.setAttributesDevType("Hot-Water Temperature",50);
-            device0.setAttributesDevType("Volume Of Water To Heat",150);
-            device0.setAttributesDevType("Performance Ratio",0.9);
-            device0.setAttributesDevType("Nominal Power",100);
-
-            housegrid.addRoom(room);
-
-            int coldWaterTempPosition = 5;
-            int volumeOfWaterToHeatPosition = 6;
-            housegrid.setDeviceAttribute("ElectricWaterHeater", 0, coldWaterTempPosition, 30);
-            housegrid.setDeviceAttribute("ElectricWaterHeater", 0, volumeOfWaterToHeatPosition, 100);
-
-            double expectedResult = 2.09;
-
-            // Act
-            double result = housegrid.getDailyEnergyConsumptionOfADevice("ElectricWaterHeater", 0);
-
-            // Assert
-            assertEquals(expectedResult, result, 0.000001);
+            String result = house.getDeviceListContentNameTypeLocationByGrid(0);
+            //Assert
+            assertEquals(expectedResult, result);
         }
 
-        */
+        /* --> TESTE A SER ALTERADO DEPOIS DE IMPLEMENTAÇÃO DE DTO's.
+            @Test
+            public void getEnergyConsumptionInADayOfAllDevicesOfATypeTestWithValidValues() {
+                // Arrange
+                // Dimension Instantiation
+                double height = 3;
+                double length = 3.5;
+                double width = 3.5;
+                Dimension dim = new Dimension(height, length, width);
+
+                // Room Instantiation
+                Room room = new Room("Room", 2, dim);
+
+                // ElectricWaterHeaterSpecs Instantiation
+                Device device0 = housegrid.createDevice(ELECTRIC_W_H_TYPE, "ElectricWaterHeater", room);
+                device0.setAttributesDevType("Hot-Water Temperature",50);
+                device0.setAttributesDevType("Volume Of Water To Heat",150);
+                device0.setAttributesDevType("Performance Ratio",0.9);
+                device0.setAttributesDevType("Nominal Power",100);
+
+                housegrid.addRoom(room);
+
+                int coldWaterTempPosition = 5;
+                int volumeOfWaterToHeatPosition = 6;
+                housegrid.setDeviceAttribute("ElectricWaterHeater", 0, coldWaterTempPosition, 30);
+                housegrid.setDeviceAttribute("ElectricWaterHeater", 0, volumeOfWaterToHeatPosition, 100);
+
+                double expectedResult = 2.09;
+
+                // Act
+                double result = housegrid.getDailyEnergyConsumptionOfADevice("ElectricWaterHeater", 0);
+
+                // Assert
+                assertEquals(expectedResult, result, 0.000001);
+            }
+
+            */
     @Test
     public void getNameByHGPosition() {
         // Arrange
