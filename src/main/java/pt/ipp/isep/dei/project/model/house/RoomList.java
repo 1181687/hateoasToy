@@ -197,15 +197,15 @@ public class RoomList {
         return listOfRooms.get(position).getId();
     }
 
-/*
-    */
+    /*
+     */
 /**
      * method that get the maximum temperature in a room in a given day.
      * @param name of Room
      * @param type of sensor (temperature)
      * @param date any given day
      * @return the maximum temperature in a specific Room in a given day
-     *//*
+ *//*
 
     public double getMaximumTemperatureInRoomInGivenDay(String name, SensorType type, LocalDate date) {
         return getRoomByName(name).getMaximumMeasurementInGivenDay(type, date);
@@ -258,13 +258,13 @@ public class RoomList {
         return true;
     }
 
-/*
-    */
+    /*
+     */
 /**
      * Method that displays the sensor list content of a Room
      * @param position
      * @return
-     *//*
+ *//*
 
     public String getSensorListContentOfRoom(int position) {
         return listOfRooms.get(position).getSensorListContent();
@@ -275,7 +275,7 @@ public class RoomList {
      * method that check if the sensor list of the room is empty
      *
      * @param position
-     *//*
+ *//*
 
     public boolean isSensorListEmpty(int position) {
         return listOfRooms.get(position).isSensorListEmpty();

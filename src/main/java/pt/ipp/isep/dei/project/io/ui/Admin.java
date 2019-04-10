@@ -5,6 +5,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.model.house.House;
 import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
+import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
 
 import java.io.FileNotFoundException;
@@ -17,15 +18,17 @@ public class Admin {
     private House house;
     private PowerSourceTypeList powerSourceTypeList;
     private RoomList roomList;
+    private SensorList sensorList;
 
 
-    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList) {
+    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, SensorList sensorList) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
         this.geographicalAreaList = geographicalAreaList;
         this.sensorTypeList = sensorTypeList;
         this.house = house;
         this.powerSourceTypeList = powerSourceTypeList;
         this.roomList = roomList;
+        this.sensorList = sensorList;
     }
 
 
@@ -70,11 +73,11 @@ public class Admin {
                     ui8.run();
                     break;
                 case 9:
-                    ImportGeoAreasFromJSONOrXML ui9 = new ImportGeoAreasFromJSONOrXML(geographicalAreaList);
+                    ImportGeoAreasFromJSONOrXML ui9 = new ImportGeoAreasFromJSONOrXML(geographicalAreaList, sensorList);
                     ui9.jsonGeoAreaSensors();
                     break;
                 case 10:
-                    ImportReadings ui10 = new ImportReadings(geographicalAreaList);
+                    ImportReadings ui10 = new ImportReadings(geographicalAreaList, sensorList);
                     ui10.run();
                     break;
                 case 11:

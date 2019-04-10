@@ -3,9 +3,11 @@ package pt.ipp.isep.dei.project.model.house;
 import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
-import pt.ipp.isep.dei.project.model.sensor.*;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
@@ -23,8 +25,7 @@ public class Room implements Measurable {
     private String description;
     private int houseFloor;
 
-    //@Embedded
-    @Transient
+    @Embedded
     private Dimension dimension;
     @Transient
     private RoomSensorList sensorList;
@@ -180,8 +181,7 @@ public class Room implements Measurable {
     }
 
 
-
-/**
+    /**
      * This method add a new sensor to the list of sensors in the room
      *
      * @param newSensor add to the list of sensors
@@ -197,9 +197,9 @@ public class Room implements Measurable {
      * This method gets the sensor list.
      *
      * @return the list of sensors.
-     */
+ */
 
-    public RoomSensorList getSensorList() {
+public RoomSensorList getSensorList() {
         return sensorList;
     }
 
@@ -208,7 +208,7 @@ public class Room implements Measurable {
      * @param type of sensor (temperature)
      * @param date any given day
      * @return maximum temperature
-     */
+ */
 
     public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         return sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(type, date);
@@ -220,7 +220,7 @@ public class Room implements Measurable {
      *
      * @param type type of sensor
      * @return latest measurement by sensor type
-     */
+ */
 
     public Reading getLatestMeasurementBySensorType(SensorType type) {
         return sensorList.getLatestMeasurementBySensorType(type);
@@ -244,13 +244,13 @@ public class Room implements Measurable {
         return totalNominalPower;
     }
 
-/*
-    */
+    /*
+     */
 /**
      * method that displays the content of the list of sesnsors
      *
      * @return sensor list content
-     *//*
+ *//*
 
     public String getSensorListContent() {
         return this.sensorList.getSensorListToString();
@@ -259,7 +259,7 @@ public class Room implements Measurable {
     */
 /**
      * method that check if the sensor list of the room is empty
-     *//*
+ *//*
 
     public boolean isSensorListEmpty() {
         return this.sensorList.isEmpty();

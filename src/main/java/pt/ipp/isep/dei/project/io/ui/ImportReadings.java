@@ -2,7 +2,7 @@ package pt.ipp.isep.dei.project.io.ui;
 
 import pt.ipp.isep.dei.project.controllers.importreadingsfromcsvcontroller.ImportReadingsController;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
-import pt.ipp.isep.dei.project.model.house.RoomList;
+import pt.ipp.isep.dei.project.model.sensor.SensorList;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,24 +15,14 @@ public class ImportReadings {
      * Constructor.
      *
      * @param geographicalAreaList
+     * @param sensorList
      */
-    public ImportReadings(GeographicalAreaList geographicalAreaList) {
-        controller = new ImportReadingsController(geographicalAreaList);
+    public ImportReadings(GeographicalAreaList geographicalAreaList, SensorList sensorList) {
+        controller = new ImportReadingsController(geographicalAreaList, sensorList);
     }
 
 
     public void run() throws FileNotFoundException {
-        int option = InputValidator.getIntRange("What kind of sensor do you want to import readings to:",0,2);
-        String sensorType="";
-        if (option==0){
-            return;
-        }
-        if (option==1){
-            sensorType="geoarea";
-        }
-        if (option==2){
-            sensorType="room";
-        }
         String pathFile = InputValidator.getString("Please specify the name of the file you would like to import (extensions accepted: json, csv, xml).\n");
         File file = new File(pathFile);
         boolean flag = true;
@@ -45,11 +35,11 @@ public class ImportReadings {
                             int notImportedReadings = controller.getNumberOfNotImportedReadings();
                             if (notImportedReadings > 0) {
                                 System.out.println("\nThe file was partially imported. There were " + notImportedReadings + " readings that were not imported, due to invalid information.\n");
-                                flag=false;
+                                flag = false;
                                 return;
                             }
                             System.out.println("\n The file was imported with success.\n");
-                            flag=false;
+                            flag = false;
 
                         } else {
                             System.out.println("\nThe file was not imported. \n");

@@ -6,12 +6,12 @@ public final class RoomSensorMapper {
 
     }
 
-    public static RoomSensorDTO newRoomSensorDTO(){
+    public static RoomSensorDTO newRoomSensorDTO() {
         return new RoomSensorDTO();
     }
 
-    public RoomSensor mapToEntity(RoomSensorDTO sensorDTO){
+    public RoomSensor mapToEntity(RoomSensorDTO sensorDTO) {
         SensorType type = new SensorType(sensorDTO.getSensorType());
-        return new RoomSensor(sensorDTO.getId(),sensorDTO.getName(),sensorDTO.getStartingDate(),type,sensorDTO.getUnits());
+        return new RoomSensor(sensorDTO.getId(), sensorDTO.getName(), sensorDTO.getStartingDate(), type, sensorDTO.getUnits());
     }
 }

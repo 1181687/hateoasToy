@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
@@ -7,6 +8,10 @@ import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Transient;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -30,14 +35,14 @@ public class GeographicalArea {
    // @Transient
    // private Location location;
 
-    //@Embedded
-    @Transient
+    @Embedded
     private AreaShape areaShape;
 
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@JoinColumn
+    @Autowired
     @Transient
-    private SensorList sensorList = new SensorList();
+    private SensorList sensorList;
 
     protected GeographicalArea(){
         //intentionally empty

@@ -293,35 +293,6 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
         return readingList;
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<Object> readFile(File file) throws FileNotFoundException {
-        FileReader fileReader = new FileReader(file);
-        //JSON parser object to parse read file
-        JsonParser jsonParser = new JsonParser();
-        //Read JSON file
-        JsonElement elem = jsonParser.parse(fileReader);
-        List<Object> finalList = new ArrayList<>();
-        try {
-            String firstElement = elem.toString();
-            if (firstElement.startsWith("{\"geographical_area_list")) {
-                finalList = parseJsonObjects(elem);
-            }
-            if (firstElement.startsWith("{\"readings")) {
-                finalList = parseJsonObjectsReadings(elem);
-            }
-            if (firstElement.startsWith("{\"address")) {
-                finalList = parseJsonObjectsHouse(elem);
-            }
-            if (firstElement.startsWith("{\"sensor")) {
-                finalList = parseJsonRoomSensorsDTO(elem);
-            }
-        } catch (NumberFormatException | DateTimeParseException | NullPointerException e) {
-            finalList = null;
-        }
-        return finalList;
-    }
-
     private static List<Object> parseJsonRoomSensorsDTO(JsonElement sensorsDataSet) throws NumberFormatException, DateTimeParseException, NullPointerException {
         List<Object> roomSensorsDTO = new ArrayList<>();
 
@@ -358,5 +329,34 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
         }
 
         return roomSensorsDTO;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Object> readFile(File file) throws FileNotFoundException {
+        FileReader fileReader = new FileReader(file);
+        //JSON parser object to parse read file
+        JsonParser jsonParser = new JsonParser();
+        //Read JSON file
+        JsonElement elem = jsonParser.parse(fileReader);
+        List<Object> finalList = new ArrayList<>();
+        try {
+            String firstElement = elem.toString();
+            if (firstElement.startsWith("{\"geographical_area_list")) {
+                finalList = parseJsonObjects(elem);
+            }
+            if (firstElement.startsWith("{\"readings")) {
+                finalList = parseJsonObjectsReadings(elem);
+            }
+            if (firstElement.startsWith("{\"address")) {
+                finalList = parseJsonObjectsHouse(elem);
+            }
+            if (firstElement.startsWith("{\"sensor")) {
+                finalList = parseJsonRoomSensorsDTO(elem);
+            }
+        } catch (NumberFormatException | DateTimeParseException | NullPointerException e) {
+            finalList = null;
+        }
+        return finalList;
     }
 }

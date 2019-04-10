@@ -1,5 +1,6 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.utils.Utils;
@@ -20,9 +21,9 @@ public class GeoAreaSensor implements Sensor {
     private String sensorName;
     private LocalDateTime startingDate;
 
-    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
-    //@JoinColumn
-    @Transient
+    @ElementCollection
+    @CollectionTable(name = "Reading",
+            joinColumns = @JoinColumn(name = "SENSOR_ID"))
     private List<Reading> listOfReadings = new ArrayList<>();
 
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
@@ -37,8 +38,12 @@ public class GeoAreaSensor implements Sensor {
 
     private String units;
 
+    @Transient
     private boolean isActive;
 
+    @Autowired
+    @Transient
+    private SensorList sensorList;
 
     /**
      * Constructor method
@@ -306,11 +311,12 @@ public class GeoAreaSensor implements Sensor {
 
 
     public boolean addReading(Reading reading) {
-        if (!listOfReadings.contains(reading)){
+        if (!listOfReadings.contains(reading)) {
             return this.listOfReadings.add(reading);
         }
         return false;
     }
+
 
     /**
      * Boolean method that checks if a list of measurements is empty

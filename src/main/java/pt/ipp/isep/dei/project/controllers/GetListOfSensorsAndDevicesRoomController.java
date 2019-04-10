@@ -36,13 +36,13 @@ public class GetListOfSensorsAndDevicesRoomController {
         return this.house.getRoomListContent();
     }
 
-/*
-    */
+    /*
+     */
 /**
      * method that return the method getSensorListToString of the class House
      * @param position
      * @return the sensor list content of a room by a position
-     *//*
+ *//*
 
     public String getSensorsListContent(int position) {
         return this.house.getSensorListContentOfARoom(position);
@@ -52,7 +52,7 @@ public class GetListOfSensorsAndDevicesRoomController {
 /**
      * method that return the method isSensorListEmpty of the class House
      * @param position
-     *//*
+ *//*
 
     public boolean isSensorListEmpty(int position) {
         return this.house.isSensorListEmpty(position);
