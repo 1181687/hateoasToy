@@ -45,7 +45,7 @@ public final class GeographicalAreaMapper {
             return null;
         }
         GeographicalAreaDTO geoDTO = new GeographicalAreaDTO();
-        geoDTO.setId(geographicalArea.getId());
+        geoDTO.setId(geographicalArea.getId().getId());
         geoDTO.setDescription(geographicalArea.getDescription());
         geoDTO.setType(geographicalArea.getGeoAreaType().getStringOfTypeOfGeoArea());
         geoDTO.setWidth(geographicalArea.getAreaShape().getWidth());

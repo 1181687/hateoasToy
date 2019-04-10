@@ -1,10 +1,11 @@
 package pt.ipp.isep.dei.project.model;
 
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
-public class Location {
-
+public class Location implements Serializable {
+    private static final long serialVersionUID = 1L;
     private double latitude;
 
     private double longitude;

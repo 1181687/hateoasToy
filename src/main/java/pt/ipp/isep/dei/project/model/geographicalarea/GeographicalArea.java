@@ -7,9 +7,7 @@ import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
@@ -17,20 +15,20 @@ import java.util.*;
 @Entity
 public class GeographicalArea {
 
-    @Id
-    private String id;
+    @EmbeddedId
+    private GeoAreaId id;
     private String description;
 
     //@Embedded
-    @Transient
-    private GeographicalAreaType geographicalAreaType;
+    //@Transient
+    //private GeographicalAreaType geographicalAreaType;
 
     @Transient
     private GeographicalArea insertedIn;
 
     //@Embedded
-    @Transient
-    private Location location;
+   // @Transient
+   // private Location location;
 
     //@Embedded
     @Transient
@@ -54,10 +52,8 @@ public class GeographicalArea {
      * @param areaShape
      */
     public GeographicalArea(String id, String description, GeographicalAreaType geographicalAreaType, Location location, AreaShape areaShape) {
-        this.id = id;
+        this.id = new GeoAreaId(location, id, geographicalAreaType);
         this.description = description;
-        this.geographicalAreaType = geographicalAreaType;
-        this.location = location;
         this.areaShape = areaShape;
     }
 
@@ -94,10 +90,10 @@ public class GeographicalArea {
             return false;
         }
         GeographicalArea ag = (GeographicalArea) obj;
-        return this.id.equals(ag.id) && this.geographicalAreaType.equals(ag.geographicalAreaType) && this.location.equals(ag.location);
+        return this.id.equals(ag.id) && this.id.getGeographicalAreaType().equals(ag.id.getGeographicalAreaType()) && this.id.getLocation().equals(ag.id.getLocation());
     }
 
-    public String getId() {
+    public GeoAreaId getId() {
         return id;
     }
 
@@ -120,11 +116,11 @@ public class GeographicalArea {
      * @return a type of geographical area.
      */
     public GeographicalAreaType getGeoAreaType() {
-        return geographicalAreaType;
+        return id.getGeographicalAreaType();
     }
 
     public void setGeographicalAreaType(GeographicalAreaType geographicalAreaType) {
-        this.geographicalAreaType = geographicalAreaType;
+        this.id.setGeographicalAreaType(geographicalAreaType);
     }
 
     /**
@@ -133,11 +129,11 @@ public class GeographicalArea {
      * @return a location
      */
     public Location getLocation() {
-        return this.location;
+        return this.id.getLocation();
     }
 
     public void setLocation(Location location) {
-        this.location = location;
+        this.id.setLocation(location);
     }
 
     /**
@@ -173,7 +169,7 @@ public class GeographicalArea {
      * @return location between two geo areas.
      */
     public double linearDistanceBetweenTwoGeoAreas(GeographicalArea newGeoArea) {
-        return this.location.distanceBetweenTwoLocations(newGeoArea.getLocation());
+        return this.id.getLocation().distanceBetweenTwoLocations(newGeoArea.getLocation());
     }
 
     /**
@@ -404,7 +400,7 @@ public class GeographicalArea {
      * if there are two equal amplitudes, it gets both.
      *
      * @param mapOfDailyAmplitude given daily Amplitude Map<LocalDate, Double>
-     * @return Map<LocalDate                               ,                                                               Double> map Of Highest Daily Amplitude
+     * @return Map<LocalDate, Double> map Of Highest Daily Amplitude
      */
     public Map<LocalDate, Double> getHighestDailyAmplitude(Map<LocalDate, Double> mapOfDailyAmplitude) {
 
@@ -465,7 +461,7 @@ public class GeographicalArea {
      * @return a Reading
      */
     public Reading getFirstHighestReading(SensorType type, LocalDate startDate, LocalDate endDate) {
-        GeoAreaSensor chosenSensor = getNearestSensorWithMostRecentReading(type, this.location);
+        GeoAreaSensor chosenSensor = getNearestSensorWithMostRecentReading(type, this.id.getLocation());
         return chosenSensor.getFirstHighestReading(startDate, endDate);
     }
 
