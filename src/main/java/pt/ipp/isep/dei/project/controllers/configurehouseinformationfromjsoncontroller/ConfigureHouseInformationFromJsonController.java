@@ -56,7 +56,7 @@ public class ConfigureHouseInformationFromJsonController {
             if (this.houseService.roomExists(roomId)) {
                 numberOfNotImportedRooms++;
                 String invalidInfo = "id: " + roomDTO.getRoomId() + ".";
-                LOGGER.log(Level.WARNING, "Room was not imported because" + roomId + " already exist: " + invalidInfo);
+                LOGGER.log(Level.WARNING, "Room was not imported because" + roomId + " already exists: " + invalidInfo);
                 continue;
             }
             if (Double.isNaN(length) || Utils.isFirstDoubleSmallerThanOrEqualToSecondOne(length, 0.0) ||
