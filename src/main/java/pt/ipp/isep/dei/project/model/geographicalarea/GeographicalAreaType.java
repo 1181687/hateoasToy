@@ -1,7 +1,7 @@
 package pt.ipp.isep.dei.project.model.geographicalarea;
 
 import javax.persistence.Embeddable;
-
+import java.io.Serializable;
 @Embeddable
 public class GeographicalAreaType {
 

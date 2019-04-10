@@ -116,18 +116,17 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                 houseGridDTO.setName(gridName);
 
                 //array of room inside the grid
-                JsonArray roomsGridArray = jsonObject.get("rooms").getAsJsonArray();
+                JsonArray roomsGridArray = object.get("rooms").getAsJsonArray();
 
-                List<JsonObject> roomsGridList = new ArrayList<>();
+                List<String> roomsGridList = new ArrayList<>();
 
                 //get roms by id
                 for (int i = 0; i < roomsGridArray.size(); i++) {
-                    roomsGridList.add(roomsGridArray.get(i).getAsJsonObject());
+                    roomsGridList.add(roomsGridArray.get(i).getAsString());
                 }
 
-                for (JsonObject roomId : roomsGridList) {
-                    String roomID = roomId.getAsString();
-                    RoomDTO dto = getRoomDtoById(roomDTOS, roomID);
+                for (String roomId : roomsGridList) {
+                    RoomDTO dto = getRoomDtoById(roomDTOS, roomId);
                     houseGridDTO.addRoomDTO(dto);
                 }
 
@@ -293,35 +292,6 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
         return readingList;
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public List<Object> readFile(File file) throws FileNotFoundException {
-        FileReader fileReader = new FileReader(file);
-        //JSON parser object to parse read file
-        JsonParser jsonParser = new JsonParser();
-        //Read JSON file
-        JsonElement elem = jsonParser.parse(fileReader);
-        List<Object> finalList = new ArrayList<>();
-        try {
-            String firstElement = elem.toString();
-            if (firstElement.startsWith("{\"geographical_area_list")) {
-                finalList = parseJsonObjects(elem);
-            }
-            if (firstElement.startsWith("{\"readings")) {
-                finalList = parseJsonObjectsReadings(elem);
-            }
-            if (firstElement.startsWith("{\"address")) {
-                finalList = parseJsonObjectsHouse(elem);
-            }
-            if (firstElement.startsWith("{\"sensor")) {
-                finalList = parseJsonRoomSensorsDTO(elem);
-            }
-        } catch (NumberFormatException | DateTimeParseException | NullPointerException e) {
-            finalList = null;
-        }
-        return finalList;
-    }
-
     private static List<Object> parseJsonRoomSensorsDTO(JsonElement sensorsDataSet) throws NumberFormatException, DateTimeParseException, NullPointerException {
         List<Object> roomSensorsDTO = new ArrayList<>();
 
@@ -358,5 +328,34 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
         }
 
         return roomSensorsDTO;
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public List<Object> readFile(File file) throws FileNotFoundException {
+        FileReader fileReader = new FileReader(file);
+        //JSON parser object to parse read file
+        JsonParser jsonParser = new JsonParser();
+        //Read JSON file
+        JsonElement elem = jsonParser.parse(fileReader);
+        List<Object> finalList = new ArrayList<>();
+        try {
+            String firstElement = elem.toString();
+            if (firstElement.startsWith("{\"geographical_area_list")) {
+                finalList = parseJsonObjects(elem);
+            }
+            if (firstElement.startsWith("{\"readings")) {
+                finalList = parseJsonObjectsReadings(elem);
+            }
+            if (firstElement.startsWith("{\"address")) {
+                finalList = parseJsonObjectsHouse(elem);
+            }
+            if (firstElement.startsWith("{\"sensor")) {
+                finalList = parseJsonRoomSensorsDTO(elem);
+            }
+        } catch (NumberFormatException | DateTimeParseException | NullPointerException e) {
+            finalList = null;
+        }
+        return finalList;
     }
 }

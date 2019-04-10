@@ -1,0 +1,35 @@
+NUMBER: US260
+
+DESCRIPTION: As an Administrator, I want to import a list of sensors for the house rooms. Sensors without a valid room
+shouldn’t be imported but registered in the application log.
+
+TEAM MEMBERS: Developer - Gabriela Xavier/Diana Silva; QA - Sónia Silva;
+
+ACCEPTANCE CRITERIA:
+
+General Criteria:
+- Correct Sequence and Class Diagrams.
+- JavaDoc documentation in both code and tests.
+- JUnit conventions in code and tests. (eg. tests should be named like this:
+                                        testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
+- All code, comments and documentation are in proper English.
+
+Specific Criteria:
+- given -
+- when -
+- then:
+
+- but -
+
+
+
+Test Criteria:
+
+
+Acceptance Tests:
+
+
+
+ASSUMPTIONS:
+
+

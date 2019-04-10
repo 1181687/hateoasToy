@@ -67,7 +67,7 @@ public class GeographicalAreaList {
      * @return the name of a geoArea that is on the position selected on the list.
      */
     public String getGeographicalAreaNameByPosition(int position) {
-        return this.geoAreaList.get(position).getId();
+        return this.geoAreaList.get(position).getId().getId();
     }
 
     /**

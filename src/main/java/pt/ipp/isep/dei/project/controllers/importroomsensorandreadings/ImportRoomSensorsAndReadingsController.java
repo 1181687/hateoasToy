@@ -1,8 +1,6 @@
 package pt.ipp.isep.dei.project.controllers.importroomsensorandreadings;
 
 import pt.ipp.isep.dei.project.model.ProjectFileReader;
-import pt.ipp.isep.dei.project.model.ReadingDTO;
-import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorMapper;
@@ -12,11 +10,8 @@ import pt.ipp.isep.dei.project.utils.Utils;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.logging.FileHandler;
-import java.util.logging.Level;
 
 import static com.sun.xml.internal.ws.spi.db.BindingContextFactory.LOGGER;
 
@@ -27,7 +22,7 @@ public class ImportRoomSensorsAndReadingsController {
     private Sensor sensor;
 
     public ImportRoomSensorsAndReadingsController(RoomList roomList) {
-        this.roomList=roomList;
+        this.roomList = roomList;
     }
 
     /**

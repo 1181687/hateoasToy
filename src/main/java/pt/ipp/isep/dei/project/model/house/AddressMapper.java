@@ -49,10 +49,15 @@ public class AddressMapper {
         if (Objects.isNull(addressDTO)) {
             return null;
         }
-        Location location = LocationMapper.mapToEntity(addressDTO.getLocation());
-        GeographicalArea insertedGeoArea = GeographicalAreaMapper.mapToEntity(addressDTO.getInsertedGeoArea());
+        Location location = null;
+        if (Objects.nonNull(addressDTO.getLocation())) {
+            location = LocationMapper.mapToEntity(addressDTO.getLocation());
+        }
+        GeographicalArea insertedGeoArea = null;
+        if (Objects.nonNull(addressDTO.getInsertedGeoArea())) {
+            insertedGeoArea = GeographicalAreaMapper.mapToEntity(addressDTO.getInsertedGeoArea());
+        }
         return new Address(addressDTO.getCompleteAddress(), location, insertedGeoArea);
     }
-
 }
 

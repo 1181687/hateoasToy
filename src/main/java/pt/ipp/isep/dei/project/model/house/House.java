@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model.house;
 
 
+import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.MeasurableList;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -20,13 +21,33 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Service
 public class House {
+    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JoinTable(name="house_rooms", joinColumns=@JoinColumn(name="house_fk"),
+    //inverseJoinColumns = @JoinColumn(name="room_fk"))
+    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JoinColumn
+    //@Transient
     private RoomList roomList;
+
+    //@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@Fetch(value = FetchMode.SUBSELECT)
+    //@Transient
     private List<HouseGrid> listHouseGrids;
+
+    //@Embedded
     private Address address;
+
+    //@Transient
     private List<DeviceType> deviceTypeList;
+
+    //@Transient
     private int meteringPeriodGrid;
+
+    //@Transient
     private int meteringPeriodDevice;
+
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
 
 
@@ -39,6 +60,9 @@ public class House {
         this.meteringPeriodDevice = meteringPeriodDevice;
     }
 
+    protected House() {
+        //empty
+    }
 
     /**
      * This method create device types using a path and a class name.
@@ -243,14 +267,14 @@ public class House {
         return insertedGeoArea.getTotalDailyMeasurement(measurementType, day, this.address.getLocation());
     }
 
-/*
-    */
+    /*
+     */
 /**
      * @param name name of room
      * @param type type of sensor (temperature)
      * @param date given day
      * @return returns the maximum temperature in a specific day
-     *//*
+ *//*
 
     public double getMaximumTemperatureOfRoomInSpecificDay(String name, SensorType type, LocalDate date) {
         return this.roomList.getMaximumTemperatureInRoomInGivenDay(name, type, date);
@@ -258,7 +282,7 @@ public class House {
 */
 
 
-/*    *//**
+    /*    *//**
      * Method that get the latest measurement by sensor type.
      *
      * @param name
@@ -355,13 +379,13 @@ public class House {
         return roomList.isDeviceListEmpty(position);
     }
 
-/*
-    */
+    /*
+     */
 /**
      * method that displays the sensor list content of a Room
      *
      * @param position
-     *//*
+ *//*
 
     public String getSensorListContentOfARoom(int position) {
         return roomList.getSensorListContentOfRoom(position);
@@ -372,7 +396,7 @@ public class House {
      * method that check if the sensor list of the room is empty
      *
      * @param position
-     *//*
+ *//*
 
     public boolean isSensorListEmpty(int position) {
         return roomList.isSensorListEmpty(position);
@@ -409,7 +433,7 @@ public class House {
                 content.append("- Device Name: ");
                 content.append(dev.getName());
                 content.append(", Location: ");
-                content.append(dev.getLocation().getId());
+                content.append(dev.getLocation().getRoomId());
                 content.append(".\n");
             }
             content.append("\n");

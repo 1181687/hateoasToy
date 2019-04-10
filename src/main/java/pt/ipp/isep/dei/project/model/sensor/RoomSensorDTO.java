@@ -1,6 +1,5 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class RoomSensorDTO {

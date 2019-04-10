@@ -3,6 +3,7 @@ package pt.ipp.isep.dei.project.io.ui;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaTypeList;
 import pt.ipp.isep.dei.project.model.house.House;
+import pt.ipp.isep.dei.project.model.house.HouseService;
 import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
 import pt.ipp.isep.dei.project.model.sensor.SensorTypeList;
@@ -17,15 +18,17 @@ public class Admin {
     private House house;
     private PowerSourceTypeList powerSourceTypeList;
     private RoomList roomList;
+    private HouseService houseService;
 
 
-    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList) {
+    public Admin(GeographicalAreaTypeList geographicalAreaTypeList, GeographicalAreaList geographicalAreaList, SensorTypeList sensorTypeList, House house, PowerSourceTypeList powerSourceTypeList, RoomList roomList, HouseService houseService) {
         this.geographicalAreaTypeList = geographicalAreaTypeList;
         this.geographicalAreaList = geographicalAreaList;
         this.sensorTypeList = sensorTypeList;
         this.house = house;
         this.powerSourceTypeList = powerSourceTypeList;
         this.roomList = roomList;
+        this.houseService = houseService;
     }
 
 
@@ -146,6 +149,14 @@ public class Admin {
                     ui720.run();
                     break;
                 case 13:
+                    ConfigureHouseFromAFile ui13 = new ConfigureHouseFromAFile(house, houseService);
+                    try {
+                        ui13.run();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case 14:
                     ImportRoomSensors ui260 = new ImportRoomSensors(roomList);
                     ui260.run();
                     break;

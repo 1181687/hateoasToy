@@ -17,14 +17,18 @@ import java.util.*;
 import static java.util.Objects.isNull;
 
 @Entity
+//@Table(name="housegrid")
 public class HouseGrid implements Measurable {
 
     @Id
-    private String houseGridName;
+    private HouseGridId houseGridName;
 
     @Transient
     private PowerSourceList powerSourceList;
 
+    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JoinTable(name="housegrid_rooms", joinColumns=@JoinColumn(name="housegrid_fk"),
+    //inverseJoinColumns = @JoinColumn(name="room_fk"))
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@JoinColumn
     @Transient
@@ -38,12 +42,13 @@ public class HouseGrid implements Measurable {
 
     public HouseGrid(String houseGridName) {
         validateName(houseGridName);
-        this.houseGridName = houseGridName;
+        this.houseGridName = new HouseGridId(houseGridName);
         this.roomList = new RoomList();
         this.powerSourceList = new PowerSourceList();
     }
 
-    public HouseGrid() {
+    protected HouseGrid() {
+        // empty
     }
 
     private static void validateName(String name) {
@@ -79,14 +84,18 @@ public class HouseGrid implements Measurable {
             return false;
         }
         HouseGrid houseGrid = (HouseGrid) obj;
-        return this.houseGridName.equalsIgnoreCase(houseGrid.houseGridName);
+        return this.houseGridName.getHousegridId().equalsIgnoreCase(houseGrid.houseGridName.getHousegridId());
     }
 
     /**
      * method that gets the name of the housegrid grid.
      */
     public String getName() {
-        return this.houseGridName;
+        return this.houseGridName.getHousegridId();
+    }
+
+    public HouseGridId getHouseGridName() {
+        return houseGridName;
     }
 
     /**

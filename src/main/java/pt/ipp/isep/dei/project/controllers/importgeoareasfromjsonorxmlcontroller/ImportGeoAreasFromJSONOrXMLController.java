@@ -9,6 +9,7 @@ import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaMapper;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorDTO;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensorMapper;
+import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
 import java.io.File;
@@ -45,6 +46,7 @@ public class ImportGeoAreasFromJSONOrXMLController {
                 imported = true;
             }
         }
+        //geographicalAreaList.updateRepository();
         return imported;
 
     }
