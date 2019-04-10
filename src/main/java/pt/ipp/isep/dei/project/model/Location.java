@@ -4,8 +4,7 @@ import javax.persistence.Embeddable;
 import java.io.Serializable;
 
 @Embeddable
-public class Location implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class Location {
     private double latitude;
 
     private double longitude;
