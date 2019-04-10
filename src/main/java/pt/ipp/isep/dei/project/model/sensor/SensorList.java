@@ -1,6 +1,7 @@
 package pt.ipp.isep.dei.project.model.sensor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.web.ResourceProperties;
 import org.springframework.stereotype.Service;
 import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.Reading;
@@ -16,9 +17,10 @@ public class
 SensorList {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<GeoAreaSensor> listOfSensors;
 
     /**
@@ -56,6 +58,7 @@ SensorList {
         if (listOfSensors.contains(sensor)) {
             return false;
         }
+        listOfSensors.add(sensor);
         return true;
     }
 

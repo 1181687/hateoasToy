@@ -7,6 +7,7 @@ import pt.ipp.isep.dei.project.model.ReadingDTO;
 import pt.ipp.isep.dei.project.model.ReadingMapper;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaList;
 import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
+import pt.ipp.isep.dei.project.model.sensor.Sensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorList;
 import pt.ipp.isep.dei.project.utils.Utils;
 
@@ -31,8 +32,8 @@ public class ImportReadingsController {
 
     /**
      * Constructor.
-     *  @param geographicalAreaList GeographicalAreaList to be used.
      *
+     * @param geographicalAreaList GeographicalAreaList to be used.
      */
     public ImportReadingsController(GeographicalAreaList geographicalAreaList) {
         this.geographicalAreaList = geographicalAreaList;
