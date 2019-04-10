@@ -1,0 +1,35 @@
+NUMBER: US080_v2
+
+DESCRIPTION: s an Administrator, I want the data related to geographical areas (including sensors and their readings)
+and to the house (including grids, rooms and sensors) to be persisted in a relational database, so that this data is
+available whenever the application is running.
+
+TEAM MEMBERS: Developer -  Joana Figueira/Sónia Silva; QA - Ricardo Araújo;
+
+ACCEPTANCE CRITERIA:
+
+General Criteria:
+- Correct Sequence and Class Diagrams.
+- JavaDoc documentation in both code and tests.
+- JUnit conventions in code and tests. (eg. tests should be named like this:
+                                        testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
+- All code, comments and documentation are in proper English.
+
+Specific Criteria:
+- given - 
+- when - 
+- then:
+- but - 
+
+"
+
+
+Test Criteria:
+
+
+Acceptance Tests:
+
+
+ASSUMPTIONS:
+
+

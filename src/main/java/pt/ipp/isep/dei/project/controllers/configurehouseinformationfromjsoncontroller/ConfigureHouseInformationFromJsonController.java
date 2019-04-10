@@ -84,7 +84,7 @@ public class ConfigureHouseInformationFromJsonController {
 
             GeographicalArea insertedGeoArea = address.getInsertedGeoArea();
             if (Objects.nonNull(insertedGeoArea)) {
-                prop.setProperty("id", insertedGeoArea.getId());
+                prop.setProperty("id", insertedGeoArea.getId().toString());
             }
 
             fileOut = new FileOutputStream("Configuration.properties");

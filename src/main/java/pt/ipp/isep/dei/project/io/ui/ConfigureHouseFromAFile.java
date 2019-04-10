@@ -69,7 +69,7 @@ public class ConfigureHouseFromAFile {
                     System.out.println("The House is already configured.\n");
                 }
             } catch (Exception e) {
-                System.out.println("\nSorry! The file doesn't contain valid info. It was not possible to import them.\n");
+                System.out.println("\nSorry! The file doesn't contain valid information. It was not possible to import it.\n");
             }
 
         } else {

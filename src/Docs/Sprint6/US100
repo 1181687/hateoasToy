@@ -1,0 +1,35 @@
+NUMBER: US100
+
+DESCRIPTION: As an Administrator, I want to configure the house from a file containing basic house information, grids
+and rooms.
+
+TEAM MEMBERS: Developer - Diana Ferreira; QA - Joana Figueira;
+
+ACCEPTANCE CRITERIA:
+
+General Criteria:
+- Correct Sequence and Class Diagrams.
+- JavaDoc documentation in both code and tests.
+- JUnit conventions in code and tests. (eg. tests should be named like this:
+                                        testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
+- All code, comments and documentation are in proper English.
+
+Specific Criteria:
+- given -
+- when -
+- then:
+
+- but -
+
+
+
+Test Criteria:
+
+
+Acceptance Tests:
+
+
+
+ASSUMPTIONS:
+
+
