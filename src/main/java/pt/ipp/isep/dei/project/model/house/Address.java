@@ -74,4 +74,13 @@ public class Address {
     public void setInsertedGeoArea(GeographicalArea geoArea) {
         insertedGeoArea = geoArea;
     }
+
+    /**
+     * Get method.
+     *
+     * @return
+     */
+    public String getCompleteAddress() {
+        return completeAddress;
+    }
 }

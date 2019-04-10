@@ -1,0 +1,34 @@
+NUMBER: US061
+
+DESCRIPTION: As a Product Owner, I want that no duplicate information to be created when importing data. Equality
+criterion should be based on business rules.
+
+TEAM MEMBERS: Developer -  Gabriela Alves; QA - Gabriela Xaxier;
+
+ACCEPTANCE CRITERIA:
+
+General Criteria:
+- Correct Sequence and Class Diagrams.
+- JavaDoc documentation in both code and tests.
+- JUnit conventions in code and tests. (eg. tests should be named like this:
+                                        testNameOfTheMethod_conditionThatIsBeingTested_expectedResult).
+- All code, comments and documentation are in proper English.
+
+Specific Criteria:
+- given -
+- when -
+- then:
+- but -
+
+
+
+
+Test Criteria:
+
+
+Acceptance Tests:
+
+
+ASSUMPTIONS:
+
+

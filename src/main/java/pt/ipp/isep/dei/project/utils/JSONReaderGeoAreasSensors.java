@@ -116,18 +116,17 @@ public class JSONReaderGeoAreasSensors implements ProjectFileReader {
                 houseGridDTO.setName(gridName);
 
                 //array of room inside the grid
-                JsonArray roomsGridArray = jsonObject.get("rooms").getAsJsonArray();
+                JsonArray roomsGridArray = object.get("rooms").getAsJsonArray();
 
-                List<JsonObject> roomsGridList = new ArrayList<>();
+                List<String> roomsGridList = new ArrayList<>();
 
                 //get roms by id
                 for (int i = 0; i < roomsGridArray.size(); i++) {
-                    roomsGridList.add(roomsGridArray.get(i).getAsJsonObject());
+                    roomsGridList.add(roomsGridArray.get(i).getAsString());
                 }
 
-                for (JsonObject roomId : roomsGridList) {
-                    String roomID = roomId.getAsString();
-                    RoomDTO dto = getRoomDtoById(roomDTOS, roomID);
+                for (String roomId : roomsGridList) {
+                    RoomDTO dto = getRoomDtoById(roomDTOS, roomId);
                     houseGridDTO.addRoomDTO(dto);
                 }
 
