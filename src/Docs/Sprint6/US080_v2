@@ -1,6 +1,6 @@
 NUMBER: US080_v2
 
-DESCRIPTION: s an Administrator, I want the data related to geographical areas (including sensors and their readings)
+DESCRIPTION: As an Administrator, I want the data related to geographical areas (including sensors and their readings)
 and to the house (including grids, rooms and sensors) to be persisted in a relational database, so that this data is
 available whenever the application is running.
 

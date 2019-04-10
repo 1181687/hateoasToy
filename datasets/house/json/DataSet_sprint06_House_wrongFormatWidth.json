@@ -8,9 +8,10 @@
   },
   "room": [
     {
+      "id": "B107",
       "description": "Classroom",
       "floor": "1",
-      "width": 10,
+      "width": 0,
       "length": 6,
       "height": 3.5
     },
@@ -18,7 +19,7 @@
       "id": "B109",
       "description": "Classroom",
       "floor": "1",
-      "width": 10,
+      "width": 0,
       "length": 6,
       "height": 3.5
     },
@@ -26,7 +27,7 @@
       "id": "B106",
       "description": "Classroom",
       "floor": "1",
-      "width": 13,
+      "width": 0,
       "length": 7,
       "height": 3.5
     },

@@ -270,10 +270,10 @@ public class House {
     /*
      */
 /**
-     * @param name name of room
-     * @param type type of sensor (temperature)
-     * @param date given day
-     * @return returns the maximum temperature in a specific day
+ * @param name name of room
+ * @param type type of sensor (temperature)
+ * @param date given day
+ * @return returns the maximum temperature in a specific day
  *//*
 
     public double getMaximumTemperatureOfRoomInSpecificDay(String name, SensorType type, LocalDate date) {
@@ -382,9 +382,9 @@ public class House {
     /*
      */
 /**
-     * method that displays the sensor list content of a Room
-     *
-     * @param position
+ * method that displays the sensor list content of a Room
+ *
+ * @param position
  *//*
 
     public String getSensorListContentOfARoom(int position) {
@@ -393,9 +393,9 @@ public class House {
 
     */
 /**
-     * method that check if the sensor list of the room is empty
-     *
-     * @param position
+ * method that check if the sensor list of the room is empty
+ *
+ * @param position
  *//*
 
     public boolean isSensorListEmpty(int position) {
