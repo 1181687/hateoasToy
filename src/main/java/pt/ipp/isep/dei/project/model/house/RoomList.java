@@ -14,13 +14,13 @@ public class RoomList {
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn
-    private List<Room> listOfRooms = new ArrayList<>();
+    private List<Room> listOfRooms;
 
     /**
      * Constructor.
      */
     public RoomList() {
-        //intentionally empty
+        this.listOfRooms = new ArrayList<>();
     }
 
     /**

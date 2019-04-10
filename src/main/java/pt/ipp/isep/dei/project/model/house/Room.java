@@ -54,7 +54,7 @@ public class Room implements Measurable {
         this.deviceList = new ArrayList<>();
     }
 
-    public Room() {
+    protected Room() {
         // empty
     }
 

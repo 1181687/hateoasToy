@@ -30,6 +30,9 @@ public class House {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JoinTable(name="house_rooms", joinColumns=@JoinColumn(name="house_fk"),
+    //inverseJoinColumns = @JoinColumn(name="room_fk"))
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn
     private RoomList roomList;
@@ -38,8 +41,6 @@ public class House {
     @Fetch(value = FetchMode.SUBSELECT)
     private List<HouseGrid> listHouseGrids;
 
-    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    //@JoinColumn
     @Embedded
     private Address address;
 

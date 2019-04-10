@@ -8,15 +8,14 @@ import pt.ipp.isep.dei.project.model.house.RoomList;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSource;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceList;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.*;
 
 import static java.util.Objects.isNull;
 
 @Entity
+//@Table(name="housegrid")
 public class HouseGrid implements Measurable {
 
     @Id
@@ -26,8 +25,10 @@ public class HouseGrid implements Measurable {
     private PowerSourceList powerSourceList;
 
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@JoinTable(name="housegrid_rooms", joinColumns=@JoinColumn(name="housegrid_fk"),
+    //inverseJoinColumns = @JoinColumn(name="room_fk"))
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@JoinColumn
-    @Transient
     private RoomList roomList;
 
     /**
@@ -44,6 +45,7 @@ public class HouseGrid implements Measurable {
     }
 
     protected HouseGrid() {
+        // empty
     }
 
     private static void validateName(String name) {
