@@ -12,6 +12,7 @@ import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
 import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -20,13 +21,26 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+@Entity
 public class House {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Transient
     private RoomList roomList;
+    @Transient
     private List<HouseGrid> listHouseGrids;
+    @Transient
     private Address address;
+    @Transient
     private List<DeviceType> deviceTypeList;
+    @Transient
     private int meteringPeriodGrid;
+    @Transient
     private int meteringPeriodDevice;
+
     private static final String CONFIG_PROPERTIES = "Configuration.properties";
 
 
@@ -39,6 +53,9 @@ public class House {
         this.meteringPeriodDevice = meteringPeriodDevice;
     }
 
+    protected House() {
+        //empty
+    }
 
     /**
      * This method create device types using a path and a class name.

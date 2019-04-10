@@ -14,10 +14,7 @@ import pt.ipp.isep.dei.project.model.devices.Device;
 import pt.ipp.isep.dei.project.model.devices.Program;
 import pt.ipp.isep.dei.project.model.devices.Programmable;
 import pt.ipp.isep.dei.project.model.geographicalarea.*;
-import pt.ipp.isep.dei.project.model.house.Address;
-import pt.ipp.isep.dei.project.model.house.Dimension;
-import pt.ipp.isep.dei.project.model.house.House;
-import pt.ipp.isep.dei.project.model.house.Room;
+import pt.ipp.isep.dei.project.model.house.*;
 import pt.ipp.isep.dei.project.model.house.housegrid.HouseGrid;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceType;
 import pt.ipp.isep.dei.project.model.house.powersource.PowerSourceTypeList;
@@ -61,6 +58,9 @@ public class Main {
     @Autowired
     private GeographicalAreaList geographicalAreaList;
 
+    //House Repository Injection
+    @Autowired
+    private HouseService houseService;
 
 
     public static void main(String[] args) {
