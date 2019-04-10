@@ -27,6 +27,7 @@ public class Room implements Measurable {
 
     @Embedded
     private Dimension dimension;
+
     @Transient
     private RoomSensorList sensorList;
 

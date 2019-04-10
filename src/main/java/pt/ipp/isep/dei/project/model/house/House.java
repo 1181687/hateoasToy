@@ -28,10 +28,13 @@ public class House {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Transient
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn
     private RoomList roomList;
+
     @Transient
     private List<HouseGrid> listHouseGrids;
+
     @Transient
     private Address address;
     @Transient
