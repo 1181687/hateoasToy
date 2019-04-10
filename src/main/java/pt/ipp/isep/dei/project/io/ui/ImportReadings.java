@@ -23,39 +23,69 @@ public class ImportReadings {
 
 
     public void run() throws FileNotFoundException {
+        int option = InputValidator.getIntRange("What kind of sensor do you want to import readings to:", 0, 2);
+        String sensorType = "";
+        if (option == 0) {
+            return;
+        }
+        if (option == 1) {
+            sensorType = "geoarea";
+        }
+        if (option == 2) {
+            sensorType = "room";
+        }
         String pathFile = InputValidator.getString("Please specify the name of the file you would like to import (extensions accepted: json, csv, xml).\n");
+        File file = new File(pathFile);
+        boolean flag = true;
+        do {
+            if (isFormatValid(pathFile) && doesFileExist(file) && !isFileEmpty(file, pathFile)) {
+                String importConfirmation = InputValidator.confirmValidation("\nDo you really want to import the readings? (Y/N)\n");
+                if ("Y".equals(importConfirmation) || "y".equals(importConfirmation)) {
+                    try {
+                        if (controller.addReadingToSensorById()) {
+                            int notImportedReadings = controller.getNumberOfNotImportedReadings();
+                            if (notImportedReadings > 0) {
+                                System.out.println("\nThe file was partially imported. There were " + notImportedReadings + " readings that were not imported, due to invalid information.\n");
+                                flag = false;
+                                return;
+                            }
+                            System.out.println("\n The file was imported with success.\n");
+                            flag = false;
+
+                        } else {
+                            System.out.println("\nThe file was not imported. \n");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("\nSorry! The file doesn't contain valid readings. It was not possible to import them.\n");
+                    }
+                }
+            }
+        } while (flag);
+    }
+
+    public boolean isFormatValid(String pathFile) {
         if (!controller.isValidFormat(pathFile)) {
             System.out.println("\nERROR: Please insert a valid format.\n");
-            return;
+            return false;
         }
-        File file = new File(pathFile);
+        return true;
+    }
+
+    public boolean doesFileExist(File file) {
         if (!file.exists()) {
             System.out.println("\nERROR: There's no such file with that name.\n");
-            return;
+            return false;
         }
+        return true;
+    }
+
+    public boolean isFileEmpty(File file, String pathFile) throws FileNotFoundException {
         List<Object> readings = controller.readFile(file, pathFile);
         // Import confirmation
         if (readings.isEmpty()) {
             System.out.println("\nSorry! The file is empty.\n");
-            return;
+            return true;
         }
-        String importConfirmation = InputValidator.confirmValidation("\nDo you really want to import the readings? (Y/N)\n");
-        if ("Y".equals(importConfirmation) || "y".equals(importConfirmation)) {
-
-            try {
-                if (controller.addReadingToSensorById()) {
-                    int notImportedReadings = controller.getNumberOfNotImportedReadings();
-                    if (notImportedReadings > 0) {
-                        System.out.println("\nThe file was partially imported. There were " + notImportedReadings + " readings that were not imported, due to invalid information.\n");
-                        return;
-                    }
-                    System.out.println("\n The file was imported with success.\n");
-                } else {
-                    System.out.println("\nThe file was not imported. \n");
-                }
-            } catch (Exception e) {
-                System.out.println("\nSorry! The file doesn't contain valid readings. It was not possible to import them.\n");
-            }
-        }
+        return false;
     }
 }

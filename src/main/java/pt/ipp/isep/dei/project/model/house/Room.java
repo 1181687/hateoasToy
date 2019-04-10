@@ -3,12 +3,15 @@ package pt.ipp.isep.dei.project.model.house;
 import pt.ipp.isep.dei.project.model.Measurable;
 import pt.ipp.isep.dei.project.model.Reading;
 import pt.ipp.isep.dei.project.model.devices.Device;
+import pt.ipp.isep.dei.project.model.sensor.RoomSensor;
 import pt.ipp.isep.dei.project.model.sensor.RoomSensorList;
+import pt.ipp.isep.dei.project.model.sensor.SensorType;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -176,54 +179,53 @@ public class Room implements Measurable {
         Room roomOne = (Room) obj;
         return this.id.equalsIgnoreCase(roomOne.id);
     }
-    /*
 
-     */
-/**
+
+    /**
      * This method add a new sensor to the list of sensors in the room
      *
      * @param newSensor add to the list of sensors
      * @return a new sensor to the list of sensors
- *//*
+     */
 
-    public boolean addSensorToListOfSensorsInRoom(GeoAreaSensor newSensor) {
+    public boolean addSensorToListOfSensorsInRoom(RoomSensor newSensor) {
         return this.sensorList.addSensor(newSensor);
     }
 
-    */
+
 /**
      * This method gets the sensor list.
      *
      * @return the list of sensors.
- *//*
+ */
 
-    public SensorList getSensorList() {
+public RoomSensorList getSensorList() {
         return sensorList;
     }
 
-    */
+
 /**
      * @param type of sensor (temperature)
      * @param date any given day
      * @return maximum temperature
- *//*
+ */
 
     public double getMaximumMeasurementInGivenDay(SensorType type, LocalDate date) {
         return sensorList.getMaximumMeasureOfTypeOfSensorInGivenDay(type, date);
     }
 
-    */
+
 /**
      * Method that gets the latest measurement by type of sensor
      *
      * @param type type of sensor
      * @return latest measurement by sensor type
- *//*
+ */
 
     public Reading getLatestMeasurementBySensorType(SensorType type) {
         return sensorList.getLatestMeasurementBySensorType(type);
     }
-*/
+
 
     /**
      * Method that return the nominal power of the list of devices in the room.
