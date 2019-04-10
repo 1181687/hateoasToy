@@ -309,12 +309,12 @@ public class House {
      * @param height
      * @param length
      * @param width
-     * @param name
+     * @param id
      * @param housefloor
      * @return a new room in the list.
      */
-    public Room newRoom(double height, double length, double width, String name, int housefloor) {
-        return roomList.newRoom(name, housefloor, height, length, width);
+    public Room newRoom(double height, double length, double width, String id, String description, int housefloor) {
+        return roomList.newRoom(id, description, housefloor, height, length, width);
     }
 
     /**
@@ -409,7 +409,7 @@ public class House {
                 content.append("- Device Name: ");
                 content.append(dev.getName());
                 content.append(", Location: ");
-                content.append(dev.getLocation().getName());
+                content.append(dev.getLocation().getId());
                 content.append(".\n");
             }
             content.append("\n");

@@ -40,10 +40,10 @@ public class EstimateEnergyOfWaterHeaterControllerTest {
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         // Room Instantiation
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        this.kitchen = new Room("Kitchen", 2, dim);
+        this.kitchen = new Room("Kitchen", "room", 2, dim);
         house.addRoom(kitchen);
         Dimension dim1 = new Dimension(3, 3.5, 5.5);
-        this.laundry = new Room("Laundry", 1, dim1);
+        this.laundry = new Room("Laundry", "room", 1, dim1);
         house.addRoom(laundry);
 
         // ElectricWaterHeaters Instantiation

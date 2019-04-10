@@ -35,9 +35,9 @@ public class AddDeviceToRoomControllerTest {
 
         // Rooms
         Dimension dimension1 = new Dimension(2, 2, 2);
-        kitchen = new Room("Kitchen", 0, dimension1);
+        kitchen = new Room("Kitchen", "room", 0, dimension1);
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        livingRoom = new Room("Living Room", 1, dimension2);
+        livingRoom = new Room("Living Room", "room", 1, dimension2);
 
         // House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));

@@ -52,8 +52,8 @@ public class GetEnergyConsumptionControllerTest {
         Dimension dim = new Dimension(3, 5, 6);
 
         // Room Instantiation
-        Room room0 = new Room("Kitchen", 1, dim);
-        Room room1 = new Room("Laundry", 2, dim);
+        Room room0 = new Room("Kitchen", "room", 1, dim);
+        Room room1 = new Room("Laundry", "room", 2, dim);
 
         house.addRoom(room0);
         house.addRoom(room1);

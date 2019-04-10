@@ -40,7 +40,7 @@ public class WashingMachineSpecsTest {
 
         // Room
         Dimension dimension = new Dimension(2, 2, 2);
-        this.kitchen = new Room("Kitchen", 0, dimension);
+        this.kitchen = new Room("Kitchen", "room", 0, dimension);
         house.addRoom(kitchen);
 
         // Device

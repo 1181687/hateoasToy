@@ -47,11 +47,11 @@ public class DetachRoomFromHouseGridControllerTest {
 
         //room0
         Dimension r0Dimension = new Dimension(2, 3, 4);
-        this.r0= new Room("Bedroom", 3, r0Dimension);
+        this.r0 = new Room("Bedroom", "room", 3, r0Dimension);
 
         //room1
         Dimension r1Dimension = new Dimension(2, 3, 3);
-        this.r1 = new Room("Living Room", 2, r1Dimension);
+        this.r1 = new Room("Living Room", "room", 2, r1Dimension);
 
         house.addRoom(r0);
         house.addRoom(r1);
@@ -139,7 +139,7 @@ public class DetachRoomFromHouseGridControllerTest {
         //Arrange
 
         Dimension r1Dimension = new Dimension(2, 3, 3);
-        Room r2 = new Room("Bathroom", 2, r1Dimension);
+        Room r2 = new Room("Bathroom", "room", 2, r1Dimension);
 
         HouseGrid newGrid1 = new HouseGrid("Secondary Grid");
         newGrid1.addRoom(r2);
@@ -157,7 +157,7 @@ public class DetachRoomFromHouseGridControllerTest {
     public void detachRoomFromGridListRoomNotInTheListRemainsTheSameBooleanMethod() {
         //Arrange
         Dimension r1Dimension = new Dimension(2, 3, 3);
-        Room r2 = new Room("Bathroom", 2, r1Dimension);
+        Room r2 = new Room("Bathroom", "room", 2, r1Dimension);
 
         HouseGrid newGrid1 = new HouseGrid("Secondary Grid");
         newGrid1.addRoom(r2);
@@ -181,7 +181,7 @@ public class DetachRoomFromHouseGridControllerTest {
         //Arrange
         Dimension r1Dimension = new Dimension(2, 3, 3);
 
-        Room r2 = new Room("Bathroom", 2, r1Dimension);
+        Room r2 = new Room("Bathroom", "room", 2, r1Dimension);
 
         HouseGrid newGrid1 = new HouseGrid("Secondary Grid");
         newGrid1.addRoom(r2);

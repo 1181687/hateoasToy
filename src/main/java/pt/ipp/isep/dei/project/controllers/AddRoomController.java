@@ -23,11 +23,12 @@ public class AddRoomController {
      * @param height given height number to the new room
      * @param length given length number to the new room
      * @param width given width number to the new room
-     * @param name given name to the new room
+     * @param id given name to the new room
+     * @param description description of the room
      * @param housefloor given housefloor number to the new room
      */
-    public void newRoom(double height, double length, double width, String name, int housefloor ){
-        this.room = house.newRoom(height, length, width, name, housefloor);
+    public void newRoom(double height, double length, double width, String id, String description, int housefloor) {
+        this.room = house.newRoom(height, length, width, id, description, housefloor);
     }
 
     /**

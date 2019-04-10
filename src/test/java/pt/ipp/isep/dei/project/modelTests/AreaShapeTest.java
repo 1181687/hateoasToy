@@ -254,10 +254,11 @@ public class AreaShapeTest {
         //arrange
         Location local1 = new Location(41.1496, -8.6109, 97);
         AreaShape area1 = new AreaShape(12, 8, local1);
-        String name = "roomOne";
+        String id = "1";
+        String description = "room";
         int housefloor = 2;
         Dimension dim = new Dimension(4, 10.5, 7.5);
-        Room room = new Room(name, housefloor, dim);
+        Room room = new Room(id, description, housefloor, dim);
 
         //act
         boolean result = area1.equals(room);

@@ -39,8 +39,8 @@ public class TelevisionTest {
 
         // Rooms
         Dimension dim = new Dimension(2, 2, 3);
-        bedroom = new Room("Bedroom", 2, dim);
-        livingRoom = new Room("LivingRoom", 1, dim);
+        bedroom = new Room("Bedroom", "room", 2, dim);
+        livingRoom = new Room("LivingRoom", "room", 1, dim);
         this.house.addRoom(bedroom);
         this.house.addRoom(livingRoom);
 

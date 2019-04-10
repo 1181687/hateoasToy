@@ -39,7 +39,7 @@ public class WineCoolerSpecsTest {
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
 
         Dimension dim = new Dimension(2, 2, 3);
-        kitchen = new Room("Kitchen", 1, dim);
+        kitchen = new Room("Kitchen", "room", 1, dim);
         wineCooler = house.createDevice("WineCooler", "Awesome Wine Cooler", kitchen);
         this.house.addRoom(kitchen);
 

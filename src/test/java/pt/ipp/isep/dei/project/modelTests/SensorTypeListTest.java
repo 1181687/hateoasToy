@@ -156,9 +156,10 @@ public class SensorTypeListTest {
         RoomList roomList = new RoomList();
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         roomList.addRoom(room1);
 
@@ -184,9 +185,10 @@ public class SensorTypeListTest {
         RoomList roomList = new RoomList();
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         roomList.addRoom(room1);
 

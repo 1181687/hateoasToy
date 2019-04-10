@@ -248,28 +248,29 @@ public class Main {
 
         // ROOMS
         // Room 1
-        String name = "B107";
+        String id = "B107";
+        String description = "Classroom";
         int houseFloor = 1;
         double height = 3.5;
         double length = 11;
         double width = 7;
         Dimension dimension = new Dimension(height, length, width);
-        Room room1 = new Room(name, houseFloor, dimension);
+        Room room1 = new Room(id, description, houseFloor, dimension);
         houseEdificioB.addRoom(room1);
 
         // Room 2
-        String name2 = "B109";
-        Room room2 = new Room(name2, houseFloor, dimension);
+        String id2 = "B109";
+        Room room2 = new Room(id2, description, houseFloor, dimension);
         houseEdificioB.addRoom(room2);
 
         // Room 3
-        String name3 = "B106";
+        String id3 = "B106";
         int houseFloor3 = 1;
         double height3 = 3.5;
         double length3 = 13;
         double width3 = 7;
         Dimension dimension3 = new Dimension(height3, length3, width3);
-        Room room3 = new Room(name3, houseFloor3, dimension3);
+        Room room3 = new Room(id3, description, houseFloor3, dimension3);
         houseEdificioB.addRoom(room3);
 
         // DEVICES

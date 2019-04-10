@@ -35,7 +35,7 @@ Class GetDayWithHighestTemperatureAmplitude\nController {
 
 Class House {
 -GeographicalArea insertedGeoArea
--Address address
+-Address completeAddress
 +getDailyAmplitudeInIntervalInHouseArea()
 +getHighestDailyAmplitudeInHouseArea()
 }

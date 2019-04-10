@@ -50,14 +50,15 @@ public class AddSensorToRoomControllerTest {
         RoomList roomList = new RoomList();
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         roomList.addRoom(room1);
         roomList.addRoom(room2);
@@ -83,9 +84,10 @@ public class AddSensorToRoomControllerTest {
         RoomList roomList = new RoomList();
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         roomList.addRoom(room1);
 
@@ -119,9 +121,10 @@ public class AddSensorToRoomControllerTest {
 
         // Room
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         // Room list
         RoomList roomList = new RoomList();
@@ -167,9 +170,10 @@ public class AddSensorToRoomControllerTest {
 
         // Room
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         roomList.addRoom(room1);
 
@@ -193,8 +197,9 @@ public class AddSensorToRoomControllerTest {
 
         String name1 = "Kitchen";
         int houseFloor1 = 0;
+        String description = "room";
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         roomList.addRoom(room1);
 
@@ -216,9 +221,10 @@ public class AddSensorToRoomControllerTest {
         RoomList roomList = new RoomList();
 
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         roomList.addRoom(room1);
 

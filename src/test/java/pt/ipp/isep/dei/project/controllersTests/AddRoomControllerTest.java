@@ -56,7 +56,7 @@ public class AddRoomControllerTest {
     @org.junit.jupiter.api.Test
     public void addRoomToHousePositiveTest() {
         // Arrange
-        controller.newRoom(4, 4, 4, "Kitchen", 0);
+        controller.newRoom(4, 4, 4, "Kitchen", "room", 0);
 
         // Act
         boolean result = controller.addRoomToHouse();
@@ -69,7 +69,7 @@ public class AddRoomControllerTest {
     public void isNameExistantPositiveTest() {
         // Arrange
         Dimension dim = new Dimension(5, 6, 7);
-        Room kitchen = new Room("Kitchen", 0, dim);
+        Room kitchen = new Room("Kitchen", "room", 0, dim);
         house.addRoom(kitchen);
 
         // Act

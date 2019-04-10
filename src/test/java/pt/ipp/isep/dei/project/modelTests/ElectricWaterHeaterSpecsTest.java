@@ -30,7 +30,7 @@ public class ElectricWaterHeaterSpecsTest {
 
         this.house = new House(deviceTypeList, meteringPeriodGrid, meteringPeriodDevice);
         Dimension dim = new Dimension(3, 5, 6);
-        kitchen = new Room("Kitchen", 1, dim);
+        kitchen = new Room("Kitchen", "room", 1, dim);
 
         electricWaterHeater = house.createDevice(ELECTRIC_W_H_TYPE, "dishwasher Bosch", kitchen);
     }

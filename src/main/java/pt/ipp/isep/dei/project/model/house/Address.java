@@ -4,25 +4,25 @@ import pt.ipp.isep.dei.project.model.Location;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 
 public class Address {
-    private String zipCode;
+    private String completeAddress;
     private Location location;
     private GeographicalArea insertedGeoArea;
 
 
     /**
-     * constructor of Address that receives a zipCode and a location
-     * @param zipCode
+     * constructor of Address that receives a completeAddress and a location
+     * @param completeAddress
      * @param location
      * @param insertedGeoArea
      */
-    public Address(String zipCode, Location location, GeographicalArea insertedGeoArea) {
-        this.zipCode = zipCode;
+    public Address(String completeAddress, Location location, GeographicalArea insertedGeoArea) {
+        this.completeAddress = completeAddress;
         this.location = location;
         this.insertedGeoArea = insertedGeoArea;
     }
 
     /**
-     * method that creates the hashcode to address
+     * method that creates the hashcode to completeAddress
      */
     @Override
     public int hashCode() {
@@ -31,7 +31,7 @@ public class Address {
 
     /**
      * Equals method to determine if two Addresses are equal.
-     * They are equals if all atributtes (zipCode and location) are equal.
+     * They are equals if all atributtes (completeAddress and location) are equal.
      * @param obj
      * @return boolean
      */
@@ -44,7 +44,7 @@ public class Address {
             return false;
         }
         Address address = (Address) obj;
-        return address.zipCode.equals(this.zipCode)
+        return address.completeAddress.equals(this.completeAddress)
                 && address.location.equals(this.location)
                 && address.insertedGeoArea.equals(this.insertedGeoArea);
     }

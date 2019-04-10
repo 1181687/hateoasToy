@@ -9,11 +9,8 @@ import pt.ipp.isep.dei.project.model.geographicalarea.AreaShape;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalArea;
 import pt.ipp.isep.dei.project.model.geographicalarea.GeographicalAreaType;
 import pt.ipp.isep.dei.project.model.house.*;
-import pt.ipp.isep.dei.project.model.sensor.GeoAreaSensor;
-import pt.ipp.isep.dei.project.model.sensor.SensorType;
 import pt.ipp.isep.dei.project.utils.Utils;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -36,9 +33,10 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
 
         // Room 1
         String name = "room1";
+        String description = "room";
         int houseFloor = 3;
         Dimension dimension = new Dimension(3, 3.5, 3.5);
-        this.room = new Room(name, houseFloor, dimension);
+        this.room = new Room(name, description, houseFloor, dimension);
 
         //House
         int meteringPeriodGrid = Integer.parseInt(Utils.readConfigFile("Configuration.properties", "MeteringPeriodGrid"));
@@ -162,9 +160,10 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
     public void getListSize() {
         //arrange
         String name2 = "Living Room";
+        String description = "room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         house.addRoom(room);
         house.addRoom(room2);
@@ -218,7 +217,7 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
     public void testGetNameOfRoomInListOfRooms() {
         //Arrange
         Dimension dim1 = new Dimension(4, 4, 4);
-        Room room1 = new Room("RoomTwo", 1, dim1);
+        Room room1 = new Room("RoomTwo", "room", 1, dim1);
         this.roomList.addRoom(room);
         this.roomList.addRoom(room1);
 
@@ -249,14 +248,15 @@ public class GetListOfSensorsAndDevicesRoomControllerTest {
     public void getDisplayRoomListTest() {
         //arrange
         String name1 = "Kitchen";
+        String description = "room";
         int houseFloor1 = 0;
         Dimension dimension1 = new Dimension(2, 2, 2);
-        Room room1 = new Room(name1, houseFloor1, dimension1);
+        Room room1 = new Room(name1, description, houseFloor1, dimension1);
 
         String name2 = "Living Room";
         int houseFloor2 = 1;
         Dimension dimension2 = new Dimension(2, 1.5, 1.3);
-        Room room2 = new Room(name2, houseFloor2, dimension2);
+        Room room2 = new Room(name2, description, houseFloor2, dimension2);
 
         this.house.addRoom(room1);
         this.house.addRoom(room2);

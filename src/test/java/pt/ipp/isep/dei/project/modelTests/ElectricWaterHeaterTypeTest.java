@@ -23,7 +23,7 @@ public class ElectricWaterHeaterTypeTest {
 
         String name = "EWH Kitchen";
         Dimension dim = new Dimension(3, 3.5, 3.5);
-        Room room = new Room("Room", 2, dim);
+        Room room = new Room("Room", "room", 2, dim);
 
         Device expectedResult = house.createDevice("ElectricWaterHeater", name, room);
         //Act
