@@ -145,6 +145,14 @@ public class Admin {
                     GetEnergyConsumptionDevice ui720 = new GetEnergyConsumptionDevice(house);
                     ui720.run();
                     break;
+                case 13:
+                    ConfigureHouseFromAFile ui13 = new ConfigureHouseFromAFile(house);
+                    try {
+                        ui13.run();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
             }
             option = Menu.adminHouseMenu();
         }

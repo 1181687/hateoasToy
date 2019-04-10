@@ -30,7 +30,7 @@ public class Location {
     /**
      * method that get the latitude.
      */
-    public double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
@@ -47,7 +47,7 @@ public class Location {
     /**
      * method that get the longitude.
      */
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
@@ -64,7 +64,7 @@ public class Location {
     /**
      * method that get the elevation.
      */
-    public double getElevation() {
+    public Double getElevation() {
         return elevation;
     }
 
