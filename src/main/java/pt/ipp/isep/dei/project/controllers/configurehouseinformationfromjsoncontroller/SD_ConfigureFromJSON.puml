@@ -27,50 +27,57 @@ AdminUser <-- ":ConfigureHouseFromAFileUI": pathOFileRequest
 deactivate ":ConfigureHouseFromAFileUI"
 AdminUser -> ":ConfigureHouseFromAFileUI": pathOfFile
 activate ":ConfigureHouseFromAFileUI"
-":ConfigureHouseFromAFileUI" -> ":ConfigureHouseInformation\nFromJSONOController" :  checkIfFileExistsAndCreateReader()
-activate ":ImportGeoAreas\nFromJSONOrXMLController"
+":ConfigureHouseFromAFileUI" -> ":ConfigureHouseInformation\nFromJSONOController" :  readFile(file,path)
+activate ":ConfigureHouseInformation\nFromJSONOController"
 ":ConfigureHouseInformation\nFromJSONOController" -> "<<ProjectFileReader>>": readFile()
 activate "<<ProjectFileReader>>"
 ref over "<<ProjectFileReader>>"
-pparseJsonObjectsHouse
+readFile()
 end
 
-":ImportGeoAreas\nFromJSONOrXMLUI" <-- "JSONReader" : 3.3- ListOfGeographicalAreasDTO
-deactivate "JSONReader"
-AdminUser <-- ":ImportGeoAreas\nFromJSONOrXMLUI": 4- contentOfFile + confirmationMessage (Y/N)
-deactivate ":ImportGeoAreas\nFromJSONOrXMLUI"
-AdminUser -> ":ImportGeoAreas\nFromJSONOrXMLUI": 5- confirmationMessage
-activate ":ImportGeoAreas\nFromJSONOrXMLUI"
-":ImportGeoAreas\nFromJSONOrXMLUI" -> ":ImportGeoAreas\nFromJSONOrXMLController": 5.1-importGeographicalAreasAndSensors\n(listOfGeoAreasDTO)
-activate ":ImportGeoAreas\nFromJSONOrXMLController"
+":ConfigureHouseInformation\nFromJSONOController" <--  "<<ProjectFileReader>>": ListOfHouseObjects
+deactivate "<<ProjectFileReader>>"
+":ConfigureHouseFromAFileUI" <-- ":ConfigureHouseInformation\nFromJSONOController": ListOfHouseObjects
+deactivate ":ConfigureHouseInformation\nFromJSONOController"
+AdminUser <-- ":ConfigureHouseFromAFileUI" : contentOfFile + confirmationMessage (Y/N)
+deactivate ":ConfigureHouseFromAFileUI"
+AdminUser -> ":ConfigureHouseFromAFileUI": confirmationMessage
+activate ":ConfigureHouseFromAFileUI"
+":ConfigureHouseFromAFileUI" -> ":ConfigureHouseInformation\nFromJSONOController": importHouseInformation()
+activate ":ConfigureHouseInformation\nFromJSONOController"
+":ConfigureHouseInformation\nFromJSONOController" -> ":HouseService": updateHouseWithRoomsAndGrids()
+activate ":HouseService"
+":HouseService" -> "AddressMapper" : mapToEntity(address)
+activate "AddressMapper"
+":HouseService"<-- "AddressMapper" : address
+deactivate "AddressMapper"
 loop
-":ImportGeoAreas\nFromJSONOrXMLController" -> "GeographicalAreaMapper" : 5.1.1- mapToEntity(geographicalAreaDTO)
-activate "GeographicalAreaMapper"
-"GeographicalAreaMapper" -> ":GeographicalArea" : 5.1.1.1- createGeographicalArea()
-activate ":GeographicalArea"
-"GeographicalAreaMapper" <-- ":GeographicalArea" : 5.1.1.2- geographicalArea
-deactivate ":GeographicalArea"
-":ImportGeoAreas\nFromJSONOrXMLController" <-- "GeographicalAreaMapper" : 5.1.2- geographicalArea
-deactivate "GeographicalAreaMapper"
-":ImportGeoAreas\nFromJSONOrXMLController" -> "SensorMapper" : 5.1.3- mapToEntity(sensor)
-loop
-activate "SensorMapper"
-"SensorMapper" -> ":Sensor" : 5.1.3.1- createSensor()
-activate ":Sensor"
-"SensorMapper" <-- ":Sensor" : 5.1.3.2- sensor
-deactivate ":Sensor"
-end
-":ImportGeoAreas\nFromJSONOrXMLController" <-- "SensorMapper" : 5.1.4- sensor
- deactivate "SensorMapper"
-":ImportGeoAreas\nFromJSONOrXMLController"  -> ":GeographicalAreaList" : 5.1.5- AddGeographicalArea(geographicalArea)
-activate ":GeographicalAreaList"
-":ImportGeoAreas\nFromJSONOrXMLController" <-- ":GeographicalAreaList" : 5.1.6- boolean
-deactivate ":GeographicalAreaList"
-end
-":ImportGeoAreas\nFromJSONOrXMLUI" <-- ":ImportGeoAreas\nFromJSONOrXMLController": 5.2- boolean
-deactivate ":ImportGeoAreas\nFromJSONOrXMLController"
-AdminUser <-- ":ImportGeoAreas\nFromJSONOrXMLUI": 6- confirmationMessage
-deactivate ":ImportGeoAreas\nFromJSONOrXMLUI"
+":HouseService" -> "RoomMapper" :  mapToEntity(room)
+activate "RoomMapper"
+":HouseService" <-- "RoomMapper" : room
+ deactivate "RoomMapper"
+ end
+ loop
+":HouseService" -> "HouseGridMapper" :  mapToEntity(houseGrid)
+ activate "HouseGridMapper"
+ ":HouseService" <-- "HouseGridMapper" : grid
+  deactivate "HouseGridMapper"
+  loop for each room
+  ":HouseService" -> "grid :HouseGrid" :  addRoom(room)
+  activate "grid :HouseGrid"
+  ":HouseService" <-- "grid :HouseGrid" : true
+  deactivate "grid :HouseGrid"
+  end
+  end
+ ":ConfigureHouseInformation\nFromJSONOController" <-- ":HouseService": true
+ deactivate ":HouseService"
+ ":ConfigureHouseInformation\nFromJSONOController" <-- ":ConfigureHouseInformation\nFromJSONOController" : writeAddressToFile(address)
+":ConfigureHouseFromAFileUI" <-- ":ConfigureHouseInformation\nFromJSONOController": true
+ deactivate ":ConfigureHouseInformation\nFromJSONOController"
+AdminUser <-- ":ConfigureHouseFromAFileUI": confirmationMessage
+deactivate ":ConfigureHouseFromAFileUI"
 deactivate AdminUser
+
+
 
 @enduml

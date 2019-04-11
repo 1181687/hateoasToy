@@ -107,7 +107,9 @@ Class HouseService {
 - RoomRepository roomRepository
 - HouseGridRepository houseGridRepository
 + mapToEntity ()
++ updateHouseWithRoomsAndGrids ()
 + addRoomToHouseGrid ()
++ getRoomById ()
 + roomExists ()
 + gridExists ()
 

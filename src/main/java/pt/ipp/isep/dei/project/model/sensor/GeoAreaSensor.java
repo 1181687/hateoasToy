@@ -150,18 +150,18 @@ public class GeoAreaSensor implements Sensor {
     /**
      * Equals method to determine if two Sensors are equal. They are equals if all atributtes are equal
      *
-     * @param objeto receives an object
+     * @param object receives an object
      * @return boolean
      */
-    public boolean equals(Object objeto) {
-        if (this == objeto) {
+    public boolean equals(Object object) {
+        if (this == object) {
             return true;
         }
-        if (!(objeto instanceof GeoAreaSensor)) {
+        if (!(object instanceof GeoAreaSensor)) {
             return false;
         }
-        GeoAreaSensor sensor = (GeoAreaSensor) objeto;
-        return (this.id.equals(sensor.id) && this.sensorType.equals(sensor.sensorType) && this.location.equals(sensor.location));
+        GeoAreaSensor sensor = (GeoAreaSensor) object;
+        return this.id.equalsIgnoreCase(sensor.id);
     }
 
     /**
